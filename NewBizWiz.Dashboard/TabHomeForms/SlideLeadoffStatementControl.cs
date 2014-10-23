@@ -18,7 +18,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	public sealed partial class SlideLeadoffStatementControl : SlideBaseControl
 	{
 		private bool _allowToSave;
-		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Introduction Slide", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipLoad = new SuperTooltipInfo("Intro Slides", "", "Open previously-saved Intro slide data files", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipHelp = new SuperTooltipInfo("HELP", "", "Help me with the Introduction Slide", null, null, eTooltipColor.Gray);
 
 		public SlideLeadoffStatementControl()
 		{
@@ -67,9 +68,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return "Introduction"; }
 		}
 
-		public override SuperTooltipInfo Tooltip
+		public override SuperTooltipInfo TooltipLoad
 		{
-			get { return _toolTip; }
+			get { return _toolTipLoad; }
+		}
+
+		public override SuperTooltipInfo TooltipHelp
+		{
+			get { return _toolTipHelp; }
 		}
 
 		public override ButtonItem ThemeButton

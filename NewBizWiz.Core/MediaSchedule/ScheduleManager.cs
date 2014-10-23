@@ -461,17 +461,13 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			var result = new StringBuilder();
 			result.AppendLine(@"<BusinessName>" + BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
-			if (!Common.ListManager.Instance.Advertisers.Contains(BusinessName))
-			{
-				Common.ListManager.Instance.Advertisers.Add(BusinessName);
-				Common.ListManager.Instance.SaveAdvertisers();
-			}
+			Common.ListManager.Instance.Advertisers.Add(BusinessName);
+			Common.ListManager.Instance.Advertisers.Save();
+
 			result.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
-			if (!Common.ListManager.Instance.DecisionMakers.Contains(DecisionMaker))
-			{
-				Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-				Common.ListManager.Instance.SaveDecisionMakers();
-			}
+			Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+			Common.ListManager.Instance.DecisionMakers.Save();
+	
 			result.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			result.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
 			result.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace NewBizWiz.Core.Common
+namespace NewBizWiz.CommonGUI.Common
 {
 	public class TabbedCombobox : ComboBoxEdit
 	{

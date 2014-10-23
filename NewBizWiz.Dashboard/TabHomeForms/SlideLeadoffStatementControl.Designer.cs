@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.ckC = new System.Windows.Forms.CheckBox();
 			this.ckB = new System.Windows.Forms.CheckBox();
 			this.ckA = new System.Windows.Forms.CheckBox();
@@ -74,11 +77,20 @@
 			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(146, 20);
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
 			// 
 			// pbDescription
 			// 
 			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionLeadoff;
+			// 
+			// simpleButtonSaveTemplate
+			// 
+			toolTipTitleItem1.Text = "Save";
+			toolTipItem1.LeftIndent = 6;
+			toolTipItem1.Text = "Save this Intro Slide\r\nData for future presentations";
+			superToolTip1.Items.Add(toolTipTitleItem1);
+			superToolTip1.Items.Add(toolTipItem1);
+			this.simpleButtonSaveTemplate.SuperTip = superToolTip1;
 			// 
 			// ckC
 			// 

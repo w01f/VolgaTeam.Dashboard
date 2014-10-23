@@ -66,6 +66,7 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		private void pbDelete_Click(object sender, EventArgs e)
 		{
+			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete this product?") == DialogResult.Yes)
 			if (ItemDeleted != null)
 				ItemDeleted(this, new SummaryItemEventArgs(this));
 		}

@@ -58,7 +58,7 @@
 			// laNumber
 			// 
 			this.laNumber.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laNumber.Location = new System.Drawing.Point(2, 2);
+			this.laNumber.Location = new System.Drawing.Point(3, 36);
 			this.laNumber.Name = "laNumber";
 			this.laNumber.Size = new System.Drawing.Size(42, 42);
 			this.laNumber.TabIndex = 27;
@@ -83,9 +83,9 @@
 			this.panelExMain.Controls.Add(this.spinEditMonthly);
 			this.panelExMain.Controls.Add(this.spinEditTotal);
 			this.panelExMain.DisabledBackColor = System.Drawing.Color.Empty;
-			this.panelExMain.Location = new System.Drawing.Point(45, 12);
+			this.panelExMain.Location = new System.Drawing.Point(45, 36);
 			this.panelExMain.Name = "panelExMain";
-			this.panelExMain.Size = new System.Drawing.Size(509, 99);
+			this.panelExMain.Size = new System.Drawing.Size(479, 99);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
 			this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
 			this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.LightGray;
@@ -176,7 +176,7 @@
 			this.memoEditDetails.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.memoEditDetails.Properties.Appearance.Options.UseFont = true;
 			this.memoEditDetails.Properties.NullText = "Brief Overview...";
-			this.memoEditDetails.Size = new System.Drawing.Size(182, 84);
+			this.memoEditDetails.Size = new System.Drawing.Size(152, 84);
 			this.memoEditDetails.TabIndex = 3;
 			this.memoEditDetails.UseOptimizedRendering = true;
 			this.memoEditDetails.EditValueChanged += new System.EventHandler(this.memoEditDetails_EditValueChanged);
@@ -229,7 +229,7 @@
 			// 
 			this.pbUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbUp.Image = global::NewBizWiz.Dashboard.Properties.Resources.UpArrow;
-			this.pbUp.Location = new System.Drawing.Point(560, 45);
+			this.pbUp.Location = new System.Drawing.Point(530, 70);
 			this.pbUp.Name = "pbUp";
 			this.pbUp.Size = new System.Drawing.Size(32, 32);
 			this.pbUp.TabIndex = 36;
@@ -242,7 +242,7 @@
 			// 
 			this.pbDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDown.Image = global::NewBizWiz.Dashboard.Properties.Resources.DownArrow;
-			this.pbDown.Location = new System.Drawing.Point(560, 79);
+			this.pbDown.Location = new System.Drawing.Point(530, 104);
 			this.pbDown.Name = "pbDown";
 			this.pbDown.Size = new System.Drawing.Size(32, 32);
 			this.pbDown.TabIndex = 35;
@@ -255,7 +255,7 @@
 			// 
 			this.pbDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteButton;
-			this.pbDelete.Location = new System.Drawing.Point(560, 11);
+			this.pbDelete.Location = new System.Drawing.Point(530, 36);
 			this.pbDelete.Name = "pbDelete";
 			this.pbDelete.Size = new System.Drawing.Size(32, 32);
 			this.pbDelete.TabIndex = 34;
@@ -274,7 +274,7 @@
 			this.Controls.Add(this.panelExMain);
 			this.Controls.Add(this.laNumber);
 			this.Name = "SimpleSummaryItemControl";
-			this.Size = new System.Drawing.Size(595, 123);
+			this.Size = new System.Drawing.Size(595, 145);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).EndInit();

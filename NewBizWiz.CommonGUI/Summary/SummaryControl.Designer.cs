@@ -55,6 +55,7 @@
 			this.pnInputFooter = new System.Windows.Forms.Panel();
 			this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
 			this.laSlideCount = new System.Windows.Forms.Label();
+			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
@@ -161,10 +162,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(8, 379);
+			this.buttonXAddItem.Location = new System.Drawing.Point(23, 379);
 			this.buttonXAddItem.Name = "buttonXAddItem";
-			this.buttonXAddItem.Size = new System.Drawing.Size(215, 40);
+			this.buttonXAddItem.Size = new System.Drawing.Size(187, 40);
 			this.buttonXAddItem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXAddItem, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Add another Media Sales\r\nItem to your Summary Slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonXAddItem.TabIndex = 120;
 			this.buttonXAddItem.TabStop = false;
 			this.buttonXAddItem.Text = "Add an Item";
@@ -173,7 +175,7 @@
 			// laFlightDates
 			// 
 			this.laFlightDates.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDates.Location = new System.Drawing.Point(24, 30);
+			this.laFlightDates.Location = new System.Drawing.Point(41, 30);
 			this.laFlightDates.Name = "laFlightDates";
 			this.laFlightDates.Size = new System.Drawing.Size(137, 21);
 			this.laFlightDates.TabIndex = 118;
@@ -182,7 +184,7 @@
 			// laPresentationDate
 			// 
 			this.laPresentationDate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laPresentationDate.Location = new System.Drawing.Point(24, 95);
+			this.laPresentationDate.Location = new System.Drawing.Point(41, 95);
 			this.laPresentationDate.Name = "laPresentationDate";
 			this.laPresentationDate.Size = new System.Drawing.Size(134, 22);
 			this.laPresentationDate.TabIndex = 119;
@@ -191,7 +193,7 @@
 			// 
 			// checkEditTotalInvestment
 			// 
-			this.checkEditTotalInvestment.Location = new System.Drawing.Point(6, 223);
+			this.checkEditTotalInvestment.Location = new System.Drawing.Point(23, 223);
 			this.checkEditTotalInvestment.Name = "checkEditTotalInvestment";
 			this.checkEditTotalInvestment.Properties.AllowFocused = false;
 			this.checkEditTotalInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -211,7 +213,7 @@
             0,
             0});
 			this.spinEditTotal.Enabled = false;
-			this.spinEditTotal.Location = new System.Drawing.Point(28, 250);
+			this.spinEditTotal.Location = new System.Drawing.Point(45, 250);
 			this.spinEditTotal.Name = "spinEditTotal";
 			this.spinEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditTotal.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -235,7 +237,7 @@
 			// 
 			// checkEditPresentationDate
 			// 
-			this.checkEditPresentationDate.Location = new System.Drawing.Point(6, 71);
+			this.checkEditPresentationDate.Location = new System.Drawing.Point(23, 71);
 			this.checkEditPresentationDate.Name = "checkEditPresentationDate";
 			this.checkEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
@@ -246,7 +248,7 @@
 			// 
 			// checkEditFlightDates
 			// 
-			this.checkEditFlightDates.Location = new System.Drawing.Point(6, 6);
+			this.checkEditFlightDates.Location = new System.Drawing.Point(23, 6);
 			this.checkEditFlightDates.Name = "checkEditFlightDates";
 			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
@@ -263,7 +265,7 @@
             0,
             0});
 			this.spinEditMonthly.Enabled = false;
-			this.spinEditMonthly.Location = new System.Drawing.Point(28, 171);
+			this.spinEditMonthly.Location = new System.Drawing.Point(45, 171);
 			this.spinEditMonthly.Name = "spinEditMonthly";
 			this.spinEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditMonthly.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -287,7 +289,7 @@
 			// 
 			// checkEditMonthlyInvestment
 			// 
-			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(6, 144);
+			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(23, 144);
 			this.checkEditMonthlyInvestment.Name = "checkEditMonthlyInvestment";
 			this.checkEditMonthlyInvestment.Properties.AllowFocused = false;
 			this.checkEditMonthlyInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -373,6 +375,11 @@
 			this.laSlideCount.Text = "Estimated Slide Count:";
 			this.laSlideCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// superTooltip
+			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			// 
 			// SummaryControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -428,6 +435,7 @@
 		protected System.Windows.Forms.Label laSlideCount;
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditHeader;
 		private System.Windows.Forms.Label label1;
+		private DevComponents.DotNetBar.SuperTooltip superTooltip;
 
 	}
 }

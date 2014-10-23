@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.comboBoxEditGoal5 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.comboBoxEditGoal4 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.comboBoxEditGoal3 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -84,11 +87,19 @@
 			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(146, 20);
 			// 
 			// pbDescription
 			// 
 			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionClientGoals;
+			// 
+			// simpleButtonSaveTemplate
+			// 
+			toolTipTitleItem1.Text = "Save";
+			toolTipItem1.LeftIndent = 6;
+			toolTipItem1.Text = "Save this Needs Analysis Slide\r\nData for future presentations";
+			superToolTip1.Items.Add(toolTipTitleItem1);
+			superToolTip1.Items.Add(toolTipItem1);
+			this.simpleButtonSaveTemplate.SuperTip = superToolTip1;
 			// 
 			// comboBoxEditGoal5
 			// 
@@ -251,6 +262,7 @@
 			this.Name = "SlideClientGoalsControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();

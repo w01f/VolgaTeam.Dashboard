@@ -82,6 +82,8 @@
     <Compile Include="AdSchedule\Activities.cs" />
     <Compile Include="Calendar\CalendarTemplatesManager.cs" />
     <Compile Include="Common\ActivityManager.cs" />
+    <Compile Include="Common\AdvertisersManager.cs" />
+    <Compile Include="Common\DecisionMakersManager.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\FavoriteImagesManager.cs" />
     <Compile Include="Common\GalleryManager.cs" />
@@ -91,9 +93,6 @@
     <Compile Include="Common\SlideManager.cs" />
     <Compile Include="Common\SpecialLinkButton.cs" />
     <Compile Include="Common\Summary.cs" />
-    <Compile Include="Common\TabbedControls.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Common\TextItem.cs" />
     <Compile Include="Common\ThemeManager.cs" />
     <Compile Include="Dashboard\Activities.cs" />

@@ -88,8 +88,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ComboBoxListEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\FormStateHelper.cs" />
     <Compile Include="Common\GridDragDropHelper.cs" />
+    <Compile Include="Common\TabbedControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FavoriteImages\FavoriteImagesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -118,6 +124,12 @@
       <DependentUpon>GalleryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Interop\SummaryHelper.cs" />
+    <Compile Include="ListEditor\ListContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListEditor\ListContainer.Designer.cs">
+      <DependentUpon>ListContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Preview\PreviewGroup.cs" />
     <Compile Include="Preview\PreviewGroupControl.cs">
       <SubType>Component</SubType>
@@ -255,6 +267,12 @@
     <Compile Include="Preview\FormEmail.designer.cs">
       <DependentUpon>FormEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListEditor\FormCommonListEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListEditor\FormCommonListEditor.Designer.cs">
+      <DependentUpon>FormCommonListEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormEmailFileName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gallery\GalleryControl.resx">
       <DependentUpon>GalleryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListEditor\ListContainer.resx">
+      <DependentUpon>ListContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
@@ -369,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Preview\FormEmail.resx">
       <DependentUpon>FormEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListEditor\FormCommonListEditor.resx">
+      <DependentUpon>FormCommonListEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
       <DependentUpon>FormEmailFileName.cs</DependentUpon>

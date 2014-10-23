@@ -10,7 +10,7 @@ namespace NewBizWiz.MediaSchedule.Single.Radio
 {
 	static class Program
 	{
-		private static Mutex mutex; //Used to determine if the application is already open
+		private static Mutex _mutex; //Used to determine if the application is already open
 
 		/// <summary>
 		/// The main entry point for the application.
@@ -20,7 +20,7 @@ namespace NewBizWiz.MediaSchedule.Single.Radio
 		{
 			bool firstInstance;
 			string uniqueIdentifier = "Local\\RadioSellerApplication";
-			mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();

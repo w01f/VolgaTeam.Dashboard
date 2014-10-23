@@ -9,6 +9,7 @@ namespace NewBizWiz.QuickShare.Single.Radio
 {
 	static class Program
 	{
+		private static Mutex _mutex;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -17,7 +18,7 @@ namespace NewBizWiz.QuickShare.Single.Radio
 		{
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\RadioQuickShareApplication";
-			new Mutex(false, uniqueIdentifier, out firstInstance);
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();

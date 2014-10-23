@@ -10,6 +10,7 @@ namespace NewBizWiz.MediaSchedule.Single.TV
 {
 	static class Program
 	{
+		private static Mutex _mutex;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -18,7 +19,7 @@ namespace NewBizWiz.MediaSchedule.Single.TV
 		{
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\TVSellerApplication";
-			new Mutex(false, uniqueIdentifier, out firstInstance);
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();

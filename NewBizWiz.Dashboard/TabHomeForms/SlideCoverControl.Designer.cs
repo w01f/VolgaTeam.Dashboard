@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideCoverControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.checkEditPresentationDate = new DevExpress.XtraEditors.CheckEdit();
-			this.comboBoxEditDecisionMaker = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.comboBoxEditAdvertiser = new DevExpress.XtraEditors.ComboBoxEdit();
+			this.comboBoxEditDecisionMaker = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditAdvertiser = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
 			this.buttonXSalesQuote = new DevComponents.DotNetBar.ButtonX();
 			this.memoEditSalesQuote = new DevExpress.XtraEditors.MemoEdit();
 			this.textEditSalesQuoteAuthor = new DevExpress.XtraEditors.TextEdit();
@@ -129,6 +132,15 @@
 			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionCover;
 			this.pbDescription.Size = new System.Drawing.Size(255, 48);
 			// 
+			// simpleButtonSaveTemplate
+			// 
+			toolTipTitleItem1.Text = "Save";
+			toolTipItem1.LeftIndent = 6;
+			toolTipItem1.Text = "Save this Cover Slide\r\nData for future presentations";
+			superToolTip1.Items.Add(toolTipTitleItem1);
+			superToolTip1.Items.Add(toolTipItem1);
+			this.simpleButtonSaveTemplate.SuperTip = superToolTip1;
+			// 
 			// checkEditPresentationDate
 			// 
 			this.checkEditPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -156,7 +168,9 @@
 			this.comboBoxEditDecisionMaker.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditDecisionMaker.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(344, 22);
 			this.comboBoxEditDecisionMaker.TabIndex = 2;
@@ -177,7 +191,10 @@
 			this.comboBoxEditAdvertiser.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditAdvertiser.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditAdvertiser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.comboBoxEditAdvertiser.Properties.CaseSensitiveSearch = true;
+			this.comboBoxEditAdvertiser.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(344, 22);
 			this.comboBoxEditAdvertiser.TabIndex = 1;
@@ -520,8 +537,8 @@
         private DevExpress.XtraEditors.TextEdit textEditSalesQuoteAuthor;
         private DevComponents.DotNetBar.ButtonX buttonXSalesQuote;
         private DevExpress.XtraEditors.MemoEdit memoEditSalesQuote;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDecisionMaker;
-		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditAdvertiser;
+		private CommonGUI.Common.ComboBoxListEdit comboBoxEditDecisionMaker;
+		private CommonGUI.Common.ComboBoxListEdit comboBoxEditAdvertiser;
         private DevExpress.XtraEditors.CheckEdit checkEditFirstSlide;
 		private DevExpress.XtraEditors.CheckEdit checkEditUseEmptyCover;
         private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;

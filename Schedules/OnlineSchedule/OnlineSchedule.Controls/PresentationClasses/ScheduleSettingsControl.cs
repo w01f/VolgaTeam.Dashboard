@@ -121,10 +121,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			{
 				LoadView();
 
-				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
-				Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-				Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 				Controller.Instance.HomeClientType.Properties.Items.Clear();
 				Controller.Instance.HomeClientType.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.ClientTypes.ToArray());
 
@@ -250,10 +246,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 			SaveView();
 
-			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
-			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				_localSchedule.Name = scheduleName;

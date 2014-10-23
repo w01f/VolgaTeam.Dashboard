@@ -9,6 +9,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 {
 	internal static class Program
 	{
+		private static Mutex _mutex;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -17,7 +18,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		{
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\AdSellerApplication";
-			new Mutex(false, uniqueIdentifier, out firstInstance);
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();

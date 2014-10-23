@@ -169,10 +169,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				xtraTabPageMedia.Text = String.Format("{0} Strategy", MediaMetaData.Instance.DataTypeString);
 				pbMediaLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TV ? Properties.Resources.HomeTVLogo : Properties.Resources.HomeRadioLogo;
 
-				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
-				Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-				Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 				Controller.Instance.HomeClientType.Properties.Items.Clear();
 				Controller.Instance.HomeClientType.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.ClientTypes.ToArray());
 
@@ -459,10 +455,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			digitalProductListControl.SaveView();
 
-			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
-			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 			UpdateScheduleControls();
 			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickSave, _digitalChanged, _calendarTypeChanged, this);
 			SettingsNotSaved = false;

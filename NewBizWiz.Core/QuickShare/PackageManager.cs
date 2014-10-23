@@ -274,17 +274,13 @@ namespace NewBizWiz.Core.QuickShare
 
 			xml.AppendLine(@"<Package>");
 			xml.AppendLine(@"<BusinessName>" + BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
-			if (!ListManager.Instance.Advertisers.Contains(BusinessName))
-			{
-				ListManager.Instance.Advertisers.Add(BusinessName);
-				ListManager.Instance.SaveAdvertisers();
-			}
+			ListManager.Instance.Advertisers.Add(BusinessName);
+			ListManager.Instance.Advertisers.Save();
+
 			xml.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
-			if (!ListManager.Instance.DecisionMakers.Contains(DecisionMaker))
-			{
-				ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-				ListManager.Instance.SaveDecisionMakers();
-			}
+			ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+			ListManager.Instance.DecisionMakers.Save();
+
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");

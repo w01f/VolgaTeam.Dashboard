@@ -10,6 +10,7 @@ namespace NewBizWiz.Dashboard
 {
 	internal static class Program
 	{
+		private static Mutex _mutex;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -18,7 +19,7 @@ namespace NewBizWiz.Dashboard
 		{
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\NewBizWizApplication";
-			new Mutex(false, uniqueIdentifier, out firstInstance);
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			bool firstRun;
 			SettingsManager.Instance.LoadSettings();
 			Core.Common.SettingsManager.Instance.CheckStaticFolders(out firstRun);

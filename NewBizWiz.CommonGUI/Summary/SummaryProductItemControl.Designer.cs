@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.panelExMain = new DevComponents.DotNetBar.PanelEx();
 			this.laTitle = new System.Windows.Forms.Label();
 			this.ckItem = new System.Windows.Forms.CheckBox();
 			this.ckDetails = new System.Windows.Forms.CheckBox();
 			this.memoEditDetails = new DevExpress.XtraEditors.MemoEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
 			this.panelExMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).BeginInit();
@@ -53,9 +52,9 @@
 			this.panelExMain.Controls.Add(this.ckDetails);
 			this.panelExMain.Controls.Add(this.memoEditDetails);
 			this.panelExMain.DisabledBackColor = System.Drawing.Color.Empty;
-			this.panelExMain.Location = new System.Drawing.Point(45, 21);
+			this.panelExMain.Location = new System.Drawing.Point(72, 31);
 			this.panelExMain.Name = "panelExMain";
-			this.panelExMain.Size = new System.Drawing.Size(543, 99);
+			this.panelExMain.Size = new System.Drawing.Size(484, 99);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
 			this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
 			this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.LightGray;
@@ -70,7 +69,7 @@
 			this.laTitle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTitle.Location = new System.Drawing.Point(30, 10);
 			this.laTitle.Name = "laTitle";
-			this.laTitle.Size = new System.Drawing.Size(507, 25);
+			this.laTitle.Size = new System.Drawing.Size(448, 25);
 			this.laTitle.TabIndex = 38;
 			this.laTitle.Text = "label1";
 			// 
@@ -108,7 +107,7 @@
 			this.memoEditDetails.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.memoEditDetails.Properties.Appearance.Options.UseFont = true;
 			this.memoEditDetails.Properties.NullText = "Brief Overview...";
-			this.memoEditDetails.Size = new System.Drawing.Size(504, 54);
+			this.memoEditDetails.Size = new System.Drawing.Size(445, 54);
 			this.memoEditDetails.TabIndex = 3;
 			this.memoEditDetails.UseOptimizedRendering = true;
 			this.memoEditDetails.EditValueChanged += new System.EventHandler(this.memoEditDetails_EditValueChanged);
@@ -121,7 +120,7 @@
 			// 
 			// pictureBoxLogo
 			// 
-			this.pictureBoxLogo.Location = new System.Drawing.Point(7, 21);
+			this.pictureBoxLogo.Location = new System.Drawing.Point(34, 31);
 			this.pictureBoxLogo.Name = "pictureBoxLogo";
 			this.pictureBoxLogo.Size = new System.Drawing.Size(32, 32);
 			this.pictureBoxLogo.TabIndex = 31;
@@ -134,7 +133,7 @@
 			this.Controls.Add(this.pictureBoxLogo);
 			this.Controls.Add(this.panelExMain);
 			this.Name = "SummaryProductItemControl";
-			this.Size = new System.Drawing.Size(595, 140);
+			this.Size = new System.Drawing.Size(595, 150);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).EndInit();

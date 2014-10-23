@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
@@ -58,13 +59,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			textEditItem.EditValue = !string.IsNullOrEmpty(itemState.Value) ? itemState.Value : null;
 			memoEditDetails.EditValue = !string.IsNullOrEmpty(itemState.Description) ? itemState.Description : null;
-			spinEditMonthly.EditValue = itemState.ShowMonthly?(decimal?)itemState.Monthly:null;
-			spinEditTotal.EditValue = itemState.ShowTotal ? (decimal?)itemState.Total : null;
+			spinEditMonthly.EditValue = itemState.ShowMonthly ? itemState.Monthly : null;
+			spinEditTotal.EditValue = itemState.ShowTotal ? itemState.Total : null;
 		}
 
 		private void pbDelete_Click(object sender, EventArgs e)
 		{
-			_parent.DeleteItem(_itemNumber);
+			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete this product?") == DialogResult.Yes)
+				_parent.DeleteItem(_itemNumber);
 		}
 
 		private void pbUp_Click(object sender, EventArgs e)

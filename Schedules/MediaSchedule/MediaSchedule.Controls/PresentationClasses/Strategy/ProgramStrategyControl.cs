@@ -55,6 +55,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			Controller.Instance.StrategyShowDescriptionToggle.CheckStateChanged += UpdateRows;
 			retractableBarRight.StateChanged += Favorites_StateChanged;
 			retractableBarRight.AddButtons(new[] { new ButtonInfo { Logo = Resources.FavoritesLogo, Tooltip = "Expand bar" } });
+			favoriteImagesControl.ImageTooltip = "Drag and Drop this image to a program on the left";
 		}
 
 		#region Methods

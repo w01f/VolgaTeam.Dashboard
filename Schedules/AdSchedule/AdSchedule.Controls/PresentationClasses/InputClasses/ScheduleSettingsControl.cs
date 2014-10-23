@@ -14,6 +14,7 @@ using DevExpress.XtraTab;
 using Microsoft.Vbe.Interop;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -74,7 +75,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control.GetType() != typeof(CheckedListBoxControl)
 				&& control.GetType() != typeof(ComboBoxEdit)
 				&& control.GetType() != typeof(TabbedDateEdit)
-				&& control.GetType() != typeof(TabbedCombobox))
+				&& control.GetType() != typeof(TabbedCombobox)
+				&& control.GetType() != typeof(ComboBoxListEdit))
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)
@@ -122,10 +124,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				#region Print Products
 				repositoryItemComboBox.Items.Clear();
 				repositoryItemComboBox.Items.AddRange(Core.AdSchedule.ListManager.Instance.PublicationSources.Where(x => !x.Name.Equals("Default")).Select(x => x.Name).Distinct().ToArray());
-				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
-				Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-				Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 				Controller.Instance.HomeClientType.Properties.Items.Clear();
 				Controller.Instance.HomeClientType.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.ClientTypes.ToArray());
 
@@ -281,10 +279,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 			repositoryItemComboBox.Items.Clear();
 			repositoryItemComboBox.Items.AddRange(Core.AdSchedule.ListManager.Instance.PublicationSources.Select(x => x.Name).Distinct().ToArray());
-			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
-			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)

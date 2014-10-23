@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.Utils;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Layout;
 using DevExpress.XtraGrid.Views.Layout.ViewInfo;
 using NewBizWiz.CommonGUI.Common;
@@ -16,6 +18,8 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 		private Cursor _dragRowCursor;
 		private LayoutViewHitInfo _downHitInfo;
 		private LayoutViewHitInfo _menuHitInfo;
+
+		public string ImageTooltip { get; set; }
 
 		public FavoriteImagesControl()
 		{
@@ -166,6 +170,15 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete image?") != DialogResult.Yes) return;
 			_manager.DeleteImage(imageSource);
 			_menuHitInfo = null;
+		}
+
+		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			var view = gridControlLogoGallery.GetViewAt(e.ControlMousePosition) as LayoutView;
+			if (view == null) return;
+			var hi = view.CalcHitInfo(e.ControlMousePosition);
+			if (!hi.InFieldValue) return;
+			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), ImageTooltip);
 		}
 	}
 }

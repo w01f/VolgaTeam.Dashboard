@@ -45,9 +45,9 @@
 			this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
-			this.dateEditFlightDatesStart = new NewBizWiz.Core.Common.TabbedDateEdit();
+			this.dateEditFlightDatesStart = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.dateEditFlightDatesEnd = new NewBizWiz.Core.Common.TabbedDateEdit();
+			this.dateEditFlightDatesEnd = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerFlightDatesStart = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemMonday = new DevComponents.DotNetBar.LabelItem();
@@ -57,10 +57,10 @@
 			this.controlContainerItemFlightDatesEnd = new DevComponents.DotNetBar.ControlContainerItem();
 			this.labelItemFlightDatesWeeks = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
-			this.comboBoxEditBusinessName = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.comboBoxEditDecisionMaker = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.comboBoxEditClientType = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.dateEditPresentationDate = new NewBizWiz.Core.Common.TabbedDateEdit();
+			this.comboBoxEditBusinessName = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditDecisionMaker = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditClientType = new NewBizWiz.CommonGUI.Common.TabbedCombobox();
+			this.dateEditPresentationDate = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
 			this.textEditAccountNumber = new DevExpress.XtraEditors.TextEdit();
 			this.itemContainerHomeAdvertiser = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeAdvertiserTitle = new DevComponents.DotNetBar.LabelItem();
@@ -362,7 +362,7 @@
 			this.buttonItemHomeExit.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeExit.Image")));
 			this.buttonItemHomeExit.Name = "buttonItemHomeExit";
 			this.buttonItemHomeExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Ninja Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeExit.Text = "buttonItem1";
 			this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
@@ -724,8 +724,10 @@
 			this.comboBoxEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditBusinessName.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditBusinessName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
+			this.comboBoxEditBusinessName.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(135, 20);
 			this.comboBoxEditBusinessName.StyleController = this.styleController;
 			this.comboBoxEditBusinessName.TabIndex = 0;
@@ -737,8 +739,10 @@
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
+			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(135, 20);
 			this.comboBoxEditDecisionMaker.StyleController = this.styleController;
 			this.comboBoxEditDecisionMaker.TabIndex = 1;
@@ -970,7 +974,7 @@
 			this.buttonItemHomeNewSchedule.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeNewSchedule.Image")));
 			this.buttonItemHomeNewSchedule.Name = "buttonItemHomeNewSchedule";
 			this.buttonItemHomeNewSchedule.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeNewSchedule, new DevComponents.DotNetBar.SuperTooltipInfo("New Schedule", "", "Create a New Ninja Calendar Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeNewSchedule, new DevComponents.DotNetBar.SuperTooltipInfo("New Schedule", "", "Create a New Calendar Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeNewSchedule.Text = "New";
 			this.buttonItemHomeNewSchedule.Click += new System.EventHandler(this.buttonItemHomeNewSchedule_Click);
 			// 
@@ -981,7 +985,7 @@
 			this.buttonItemHomeOpenSchedule.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeOpenSchedule.Image")));
 			this.buttonItemHomeOpenSchedule.Name = "buttonItemHomeOpenSchedule";
 			this.buttonItemHomeOpenSchedule.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeOpenSchedule, new DevComponents.DotNetBar.SuperTooltipInfo("Open Schedule", "", "Open a previously-saved Ninja Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeOpenSchedule, new DevComponents.DotNetBar.SuperTooltipInfo("Open Schedule", "", "Open a previously-saved Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeOpenSchedule.Text = "Open";
 			this.buttonItemHomeOpenSchedule.Click += new System.EventHandler(this.buttonItemHomeOpenSchedule_Click);
 			// 
@@ -1053,7 +1057,7 @@
 			this.buttonItemGridExit.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemGridExit.Image")));
 			this.buttonItemGridExit.Name = "buttonItemGridExit";
 			this.buttonItemGridExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemGridExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Ninja Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemGridExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemGridExit.Text = "buttonItem1";
 			this.buttonItemGridExit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
@@ -1260,7 +1264,7 @@
 			this.buttonItemGridEmail.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemGridEmail.Image")));
 			this.buttonItemGridEmail.Name = "buttonItemGridEmail";
 			this.buttonItemGridEmail.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemGridEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Ninja Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemGridEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarGridPreview
 			// 
@@ -1299,7 +1303,7 @@
 			this.buttonItemGridPreview.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemGridPreview.Image")));
 			this.buttonItemGridPreview.Name = "buttonItemGridPreview";
 			this.buttonItemGridPreview.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemGridPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Preview this Ninja Calendar before you send to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemGridPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Preview this Calendar before you send to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarGridEdit
 			// 
@@ -1508,7 +1512,7 @@
 			this.buttonItemCalendarExit.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemCalendarExit.Image")));
 			this.buttonItemCalendarExit.Name = "buttonItemCalendarExit";
 			this.buttonItemCalendarExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Ninja Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemCalendarExit.Text = "buttonItem1";
 			this.buttonItemCalendarExit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
@@ -1715,7 +1719,7 @@
 			this.buttonItemCalendarEmail.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemCalendarEmail.Image")));
 			this.buttonItemCalendarEmail.Name = "buttonItemCalendarEmail";
 			this.buttonItemCalendarEmail.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Ninja Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarCalendarPreview
 			// 
@@ -1754,7 +1758,7 @@
 			this.buttonItemCalendarPreview.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemCalendarPreview.Image")));
 			this.buttonItemCalendarPreview.Name = "buttonItemCalendarPreview";
 			this.buttonItemCalendarPreview.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Preview this Ninja Calendar before you send to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Preview this Calendar before you send to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarCalendarEdit
 			// 
@@ -3016,7 +3020,7 @@
 			this.buttonItemRateCardExit.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemRateCardExit.Image")));
 			this.buttonItemRateCardExit.Name = "buttonItemRateCardExit";
 			this.buttonItemRateCardExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRateCardExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Ninja Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemRateCardExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemRateCardExit.Text = "buttonItem1";
 			this.buttonItemRateCardExit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
@@ -3422,12 +3426,12 @@
 		private DevComponents.DotNetBar.ItemContainer itemContainerHomeSchedule;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeNewSchedule;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeOpenSchedule;
-		public Core.Common.TabbedDateEdit dateEditFlightDatesEnd;
-		public Core.Common.TabbedDateEdit dateEditFlightDatesStart;
-		public Core.Common.TabbedCombobox comboBoxEditBusinessName;
-		public Core.Common.TabbedCombobox comboBoxEditDecisionMaker;
-		public Core.Common.TabbedCombobox comboBoxEditClientType;
-		public Core.Common.TabbedDateEdit dateEditPresentationDate;
+		public CommonGUI.Common.TabbedDateEdit dateEditFlightDatesEnd;
+		public CommonGUI.Common.TabbedDateEdit dateEditFlightDatesStart;
+		public CommonGUI.Common.ComboBoxListEdit comboBoxEditBusinessName;
+		public CommonGUI.Common.ComboBoxListEdit comboBoxEditDecisionMaker;
+		public CommonGUI.Common.TabbedCombobox comboBoxEditClientType;
+		public CommonGUI.Common.TabbedDateEdit dateEditPresentationDate;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarGridOptions;
 		private DevComponents.DotNetBar.ItemContainer itemContainerGridOptions1;
 		private DevComponents.DotNetBar.ButtonItem buttonItemGridSave;

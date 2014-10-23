@@ -41,6 +41,7 @@
 			this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -62,6 +63,7 @@
             this.repositoryItemPictureEdit});
 			this.gridControlLogoGallery.Size = new System.Drawing.Size(251, 391);
 			this.gridControlLogoGallery.TabIndex = 38;
+			this.gridControlLogoGallery.ToolTipController = this.toolTipController;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewLogoGallery});
 			this.gridControlLogoGallery.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.gridControlLogoGallery_GiveFeedback);
@@ -220,6 +222,12 @@
 			this.toolStripMenuItemDelete.Text = "Delete";
 			this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
 			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
+			// 
 			// FavoriteImagesControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -254,5 +262,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

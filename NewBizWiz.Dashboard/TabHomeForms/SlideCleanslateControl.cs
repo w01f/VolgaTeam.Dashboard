@@ -14,16 +14,16 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	[ToolboxItem(false)]
 	public partial class SlideCleanslateControl : SlideBaseControl
 	{
-		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipHelp = new SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, eTooltipColor.Gray);
 
 		public override string SlideName
 		{
 			get { return "Slide Header"; }
 		}
 
-		public override SuperTooltipInfo Tooltip
+		public override SuperTooltipInfo TooltipHelp
 		{
-			get { return _toolTip; }
+			get { return _toolTipHelp; }
 		}
 
 		public override ButtonItem ThemeButton

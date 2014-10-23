@@ -189,6 +189,7 @@ namespace NewBizWiz.Calendar.Controls
 					var containerButton = new ButtonItem();
 					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
 					containerButton.AutoExpandOnClick = true;
+					Supertip.SetSuperTooltip(containerButton, new SuperTooltipInfo("Links", "", "Helpful schedule building Links and resources", null, null, eTooltipColor.Gray));
 					ribbonBar.Items.Add(containerButton);
 					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 					{

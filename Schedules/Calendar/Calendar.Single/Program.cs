@@ -9,7 +9,7 @@ namespace NewBizWiz.Calendar.Single
 {
 	internal static class Program
 	{
-		private static Mutex mutex; //Used to determine if the application is already open
+		private static Mutex _mutex; //Used to determine if the application is already open
 
 		/// <summary>
 		/// The main entry point for the application.
@@ -19,7 +19,7 @@ namespace NewBizWiz.Calendar.Single
 		{
 			bool firstInstance;
 			string uniqueIdentifier = "Local\\CalendarBuilderApplication";
-			mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();

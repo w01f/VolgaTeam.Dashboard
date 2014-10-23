@@ -19,7 +19,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	[ToolboxItem(false)]
 	public sealed partial class SlideSimpleSummaryControl : SlideBaseControl, ISummaryControl
 	{
-		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Closing Summary Slide", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipLoad = new SuperTooltipInfo("Summary Slides", "", "Open previously-saved Summary slide data files", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipHelp = new SuperTooltipInfo("HELP", "", "Help me with the Closing Summary Slide", null, null, eTooltipColor.Gray);
 
 		public SlideSimpleSummaryControl()
 		{
@@ -61,12 +62,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
 				comboBoxEditSlideHeader.SelectedIndex = 0;
 
-			comboBoxEditAdvertiser.Properties.Items.Clear();
-			comboBoxEditAdvertiser.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers);
-
-			comboBoxEditDecisionMaker.Properties.Items.Clear();
-			comboBoxEditDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers);
-
 			checkEditSolutionNew.EditValueChanged += EditValueChanged;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
@@ -88,9 +83,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return "Closing Summary"; }
 		}
 
-		public override SuperTooltipInfo Tooltip
+		public override SuperTooltipInfo TooltipLoad
 		{
-			get { return _toolTip; }
+			get { return _toolTipLoad; }
+		}
+
+		public override SuperTooltipInfo TooltipHelp
+		{
+			get { return _toolTipHelp; }
 		}
 
 		public override ButtonItem ThemeButton
@@ -135,10 +135,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 
 			ckAdvertiser.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowAdvertiser;
-			comboBoxEditAdvertiser.EditValue = string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.Advertiser) ? null : ViewSettingsManager.Instance.SimpleSummaryState.Advertiser;
-
 			ckDecisionMaker.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowDecisionMaker;
-			comboBoxEditDecisionMaker.EditValue = string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker) ? null : ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker;
+			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.Advertiser) ? null : ViewSettingsManager.Instance.SimpleSummaryState.Advertiser;
+			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker) ? null : ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker;
 
 			ckDate.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowPresentationDate;
 			if (ckDate.Checked)
@@ -534,18 +533,12 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		protected override void SaveChanges(string fileName = "")
 		{
-			if (!Core.Common.ListManager.Instance.Advertisers.Contains(Advertiser) && !string.IsNullOrEmpty(Advertiser))
-			{
-				Core.Common.ListManager.Instance.Advertisers.Add(Advertiser);
-				Core.Common.ListManager.Instance.SaveAdvertisers();
-			}
-
-			if (!Core.Common.ListManager.Instance.DecisionMakers.Contains(DecisionMaker) && !string.IsNullOrEmpty(DecisionMaker))
-			{
-				Core.Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-				Core.Common.ListManager.Instance.SaveDecisionMakers();
-			}
-
+			Core.Common.ListManager.Instance.Advertisers.Add(Advertiser);
+			Core.Common.ListManager.Instance.Advertisers.Save();
+		
+			Core.Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+			Core.Common.ListManager.Instance.DecisionMakers.Save();
+		
 			if (SettingsNotSaved)
 			{
 				SaveState();

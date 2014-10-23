@@ -18,7 +18,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	public sealed partial class SlideClientGoalsControl : SlideBaseControl
 	{
 		private bool _allowToSave;
-		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Client Needs Analysis Slide", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipLoad = new SuperTooltipInfo("Needs Analysis Slides", "", "Open previously-saved CNA slide data files", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipHelp = new SuperTooltipInfo("HELP", "", "Help me with the Client Needs Analysis Slide", null, null, eTooltipColor.Gray);
 
 		public SlideClientGoalsControl()
 			: base()
@@ -86,9 +87,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return "Needs Analysis"; }
 		}
 
-		public override SuperTooltipInfo Tooltip
+		public override SuperTooltipInfo TooltipLoad
 		{
-			get { return _toolTip; }
+			get { return _toolTipLoad; }
+		}
+
+		public override SuperTooltipInfo TooltipHelp
+		{
+			get { return _toolTipHelp; }
 		}
 
 		public override ButtonItem ThemeButton

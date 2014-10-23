@@ -13,6 +13,7 @@ using DevExpress.XtraTab.ViewInfo;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -73,7 +74,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control.GetType() != typeof(CheckedListBoxControl)
 				&& control.GetType() != typeof(ComboBoxEdit)
 				&& control.GetType() != typeof(TabbedDateEdit)
-				&& control.GetType() != typeof(TabbedCombobox))
+				&& control.GetType() != typeof(TabbedCombobox)
+				&& control.GetType() != typeof(ComboBoxListEdit))
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)

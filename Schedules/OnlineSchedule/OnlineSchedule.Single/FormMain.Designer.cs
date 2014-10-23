@@ -32,6 +32,18 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelScheduleSettings = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -49,9 +61,9 @@
 			this.buttonItemHomeDigitalProductAdd = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeDigitalProductClone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
-			this.dateEditFlightDatesStart = new NewBizWiz.Core.Common.TabbedDateEdit();
+			this.dateEditFlightDatesStart = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.dateEditFlightDatesEnd = new NewBizWiz.Core.Common.TabbedDateEdit();
+			this.dateEditFlightDatesEnd = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerHomeFlightDatesStartLogo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeFlightDatesStart = new DevComponents.DotNetBar.LabelItem();
@@ -63,10 +75,10 @@
 			this.controlContainerItemFlightDatesEnd = new DevComponents.DotNetBar.ControlContainerItem();
 			this.labelItemHomeFlightDatesWeeks = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
-			this.comboBoxEditBusinessName = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.comboBoxEditDecisionMaker = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.comboBoxEditClientType = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.dateEditPresentationDate = new NewBizWiz.Core.Common.TabbedDateEdit();
+			this.comboBoxEditBusinessName = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditDecisionMaker = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditClientType = new NewBizWiz.CommonGUI.Common.TabbedCombobox();
+			this.dateEditPresentationDate = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
 			this.textEditAccountNumber = new DevExpress.XtraEditors.TextEdit();
 			this.itemContainerHomeAdvertiser = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeAdvertiserTitle = new DevComponents.DotNetBar.LabelItem();
@@ -324,11 +336,11 @@
 			this.ribbonControl.CanCustomize = false;
 			this.ribbonControl.CaptionVisible = true;
 			this.ribbonControl.Controls.Add(this.ribbonPanelScheduleSettings);
+			this.ribbonControl.Controls.Add(this.ribbonPanelSummaryLight);
+			this.ribbonControl.Controls.Add(this.ribbonPanelSummaryFull);
 			this.ribbonControl.Controls.Add(this.ribbonPanelGallery2);
 			this.ribbonControl.Controls.Add(this.ribbonPanelGallery1);
 			this.ribbonControl.Controls.Add(this.ribbonPanelRateCard);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSummaryFull);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSummaryLight);
 			this.ribbonControl.Controls.Add(this.ribbonPanelAdPlan);
 			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalPackage);
 			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSlides);
@@ -899,7 +911,15 @@
 			this.comboBoxEditBusinessName.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditBusinessName.Properties.Appearance.Options.UseForeColor = true;
 			this.comboBoxEditBusinessName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.comboBoxEditBusinessName.Properties.Items.AddRange(new object[] {
+            "111111",
+            "Alex",
+            "Fred\'s Rib Shack",
+            "Fred\'s Used Cars",
+            "Mike\'s Automotive"});
+			this.comboBoxEditBusinessName.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
 			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(135, 20);
 			this.comboBoxEditBusinessName.StyleController = this.styleController;
@@ -916,7 +936,15 @@
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseForeColor = true;
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.comboBoxEditDecisionMaker.Properties.Items.AddRange(new object[] {
+            "2222222",
+            "Carlie",
+            "Coding",
+            "Fred Jones",
+            "Mike Jones"});
+			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(135, 20);
 			this.comboBoxEditDecisionMaker.StyleController = this.styleController;
@@ -2586,7 +2614,7 @@
 			this.ribbonPanelSummaryFull.Location = new System.Drawing.Point(0, 53);
 			this.ribbonPanelSummaryFull.Name = "ribbonPanelSummaryFull";
 			this.ribbonPanelSummaryFull.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelSummaryFull.Size = new System.Drawing.Size(990, 132);
+			this.ribbonPanelSummaryFull.Size = new System.Drawing.Size(990, 137);
 			// 
 			// 
 			// 
@@ -2623,7 +2651,7 @@
 			this.ribbonBarSummaryFullExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryFullExit.Location = new System.Drawing.Point(690, 0);
 			this.ribbonBarSummaryFullExit.Name = "ribbonBarSummaryFullExit";
-			this.ribbonBarSummaryFullExit.Size = new System.Drawing.Size(84, 130);
+			this.ribbonBarSummaryFullExit.Size = new System.Drawing.Size(84, 135);
 			this.ribbonBarSummaryFullExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryFullExit.TabIndex = 92;
 			this.ribbonBarSummaryFullExit.Text = "EXIT";
@@ -2663,7 +2691,7 @@
 			this.ribbonBarSummaryFullSpecialButtons.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryFullSpecialButtons.Location = new System.Drawing.Point(590, 0);
 			this.ribbonBarSummaryFullSpecialButtons.Name = "ribbonBarSummaryFullSpecialButtons";
-			this.ribbonBarSummaryFullSpecialButtons.Size = new System.Drawing.Size(100, 130);
+			this.ribbonBarSummaryFullSpecialButtons.Size = new System.Drawing.Size(100, 135);
 			this.ribbonBarSummaryFullSpecialButtons.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryFullSpecialButtons.TabIndex = 96;
 			this.ribbonBarSummaryFullSpecialButtons.Text = "Special Buttons";
@@ -2698,7 +2726,7 @@
 			this.ribbonBarSummaryFullOptions.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryFullOptions.Location = new System.Drawing.Point(449, 0);
 			this.ribbonBarSummaryFullOptions.Name = "ribbonBarSummaryFullOptions";
-			this.ribbonBarSummaryFullOptions.Size = new System.Drawing.Size(141, 130);
+			this.ribbonBarSummaryFullOptions.Size = new System.Drawing.Size(141, 135);
 			this.ribbonBarSummaryFullOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryFullOptions.TabIndex = 95;
 			this.ribbonBarSummaryFullOptions.Text = "Options";
@@ -2798,7 +2826,7 @@
 			this.ribbonBarSummaryFullOutputStyle.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryFullOutputStyle.Location = new System.Drawing.Point(324, 0);
 			this.ribbonBarSummaryFullOutputStyle.Name = "ribbonBarSummaryFullOutputStyle";
-			this.ribbonBarSummaryFullOutputStyle.Size = new System.Drawing.Size(125, 130);
+			this.ribbonBarSummaryFullOutputStyle.Size = new System.Drawing.Size(125, 135);
 			this.ribbonBarSummaryFullOutputStyle.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryFullOutputStyle.TabIndex = 97;
 			this.ribbonBarSummaryFullOutputStyle.Text = "Slide Output Settings";
@@ -2814,7 +2842,7 @@
 			// checkEditSummaryFullOutputSlide
 			// 
 			this.checkEditSummaryFullOutputSlide.EditValue = true;
-			this.checkEditSummaryFullOutputSlide.Location = new System.Drawing.Point(4, 28);
+			this.checkEditSummaryFullOutputSlide.Location = new System.Drawing.Point(4, 29);
 			this.checkEditSummaryFullOutputSlide.Name = "checkEditSummaryFullOutputSlide";
 			this.checkEditSummaryFullOutputSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditSummaryFullOutputSlide.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -2824,11 +2852,18 @@
 			this.checkEditSummaryFullOutputSlide.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditSummaryFullOutputSlide.Properties.RadioGroupIndex = 99;
 			this.checkEditSummaryFullOutputSlide.Size = new System.Drawing.Size(110, 20);
+			toolTipTitleItem3.Text = "Standard Slide";
+			toolTipItem3.LeftIndent = 6;
+			toolTipItem3.Text = "The Summary will generate standard\r\nTextboxes that you can move around\r\nOn the sl" +
+    "ide";
+			superToolTip3.Items.Add(toolTipTitleItem3);
+			superToolTip3.Items.Add(toolTipItem3);
+			this.checkEditSummaryFullOutputSlide.SuperTip = superToolTip3;
 			this.checkEditSummaryFullOutputSlide.TabIndex = 0;
 			// 
 			// checkEditSummaryFullOutputTable
 			// 
-			this.checkEditSummaryFullOutputTable.Location = new System.Drawing.Point(4, 70);
+			this.checkEditSummaryFullOutputTable.Location = new System.Drawing.Point(4, 71);
 			this.checkEditSummaryFullOutputTable.Name = "checkEditSummaryFullOutputTable";
 			this.checkEditSummaryFullOutputTable.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditSummaryFullOutputTable.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -2838,6 +2873,12 @@
 			this.checkEditSummaryFullOutputTable.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditSummaryFullOutputTable.Properties.RadioGroupIndex = 99;
 			this.checkEditSummaryFullOutputTable.Size = new System.Drawing.Size(110, 20);
+			toolTipTitleItem4.Text = "Table Grid";
+			toolTipItem4.LeftIndent = 6;
+			toolTipItem4.Text = "The Summary will generate\r\nAll text in a simple MS Office\r\nTable on the slide";
+			superToolTip4.Items.Add(toolTipTitleItem4);
+			superToolTip4.Items.Add(toolTipItem4);
+			this.checkEditSummaryFullOutputTable.SuperTip = superToolTip4;
 			this.checkEditSummaryFullOutputTable.TabIndex = 3;
 			this.checkEditSummaryFullOutputTable.TabStop = false;
 			// 
@@ -2895,7 +2936,7 @@
 			this.ribbonBarSummaryFullPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryFullPowerPoint.Location = new System.Drawing.Point(187, 0);
 			this.ribbonBarSummaryFullPowerPoint.Name = "ribbonBarSummaryFullPowerPoint";
-			this.ribbonBarSummaryFullPowerPoint.Size = new System.Drawing.Size(137, 130);
+			this.ribbonBarSummaryFullPowerPoint.Size = new System.Drawing.Size(137, 135);
 			this.ribbonBarSummaryFullPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryFullPowerPoint.TabIndex = 91;
 			this.ribbonBarSummaryFullPowerPoint.Text = "PowerPoint";
@@ -2943,7 +2984,7 @@
 			this.ribbonBarSummaryFullEmail.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryFullEmail.Location = new System.Drawing.Point(95, 0);
 			this.ribbonBarSummaryFullEmail.Name = "ribbonBarSummaryFullEmail";
-			this.ribbonBarSummaryFullEmail.Size = new System.Drawing.Size(92, 130);
+			this.ribbonBarSummaryFullEmail.Size = new System.Drawing.Size(92, 135);
 			this.ribbonBarSummaryFullEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryFullEmail.TabIndex = 93;
 			this.ribbonBarSummaryFullEmail.Text = "Email";
@@ -2984,7 +3025,7 @@
 			this.ribbonBarSummaryFullPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryFullPreview.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarSummaryFullPreview.Name = "ribbonBarSummaryFullPreview";
-			this.ribbonBarSummaryFullPreview.Size = new System.Drawing.Size(92, 130);
+			this.ribbonBarSummaryFullPreview.Size = new System.Drawing.Size(92, 135);
 			this.ribbonBarSummaryFullPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryFullPreview.TabIndex = 94;
 			this.ribbonBarSummaryFullPreview.Text = "Preview Slide";
@@ -3018,7 +3059,7 @@
 			this.ribbonPanelSummaryLight.Location = new System.Drawing.Point(0, 53);
 			this.ribbonPanelSummaryLight.Name = "ribbonPanelSummaryLight";
 			this.ribbonPanelSummaryLight.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelSummaryLight.Size = new System.Drawing.Size(990, 132);
+			this.ribbonPanelSummaryLight.Size = new System.Drawing.Size(990, 137);
 			// 
 			// 
 			// 
@@ -3055,7 +3096,7 @@
 			this.ribbonBarSummaryLightExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryLightExit.Location = new System.Drawing.Point(690, 0);
 			this.ribbonBarSummaryLightExit.Name = "ribbonBarSummaryLightExit";
-			this.ribbonBarSummaryLightExit.Size = new System.Drawing.Size(84, 130);
+			this.ribbonBarSummaryLightExit.Size = new System.Drawing.Size(84, 135);
 			this.ribbonBarSummaryLightExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryLightExit.TabIndex = 86;
 			this.ribbonBarSummaryLightExit.Text = "EXIT";
@@ -3095,7 +3136,7 @@
 			this.ribbonBarSummaryLightSpecialButtons.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryLightSpecialButtons.Location = new System.Drawing.Point(590, 0);
 			this.ribbonBarSummaryLightSpecialButtons.Name = "ribbonBarSummaryLightSpecialButtons";
-			this.ribbonBarSummaryLightSpecialButtons.Size = new System.Drawing.Size(100, 130);
+			this.ribbonBarSummaryLightSpecialButtons.Size = new System.Drawing.Size(100, 135);
 			this.ribbonBarSummaryLightSpecialButtons.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryLightSpecialButtons.TabIndex = 90;
 			this.ribbonBarSummaryLightSpecialButtons.Text = "Special Buttons";
@@ -3130,7 +3171,7 @@
 			this.ribbonBarSummaryLightOptions.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryLightOptions.Location = new System.Drawing.Point(449, 0);
 			this.ribbonBarSummaryLightOptions.Name = "ribbonBarSummaryLightOptions";
-			this.ribbonBarSummaryLightOptions.Size = new System.Drawing.Size(141, 130);
+			this.ribbonBarSummaryLightOptions.Size = new System.Drawing.Size(141, 135);
 			this.ribbonBarSummaryLightOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryLightOptions.TabIndex = 89;
 			this.ribbonBarSummaryLightOptions.Text = "Options";
@@ -3230,7 +3271,7 @@
 			this.ribbonBarSummaryLightOutputStyle.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryLightOutputStyle.Location = new System.Drawing.Point(324, 0);
 			this.ribbonBarSummaryLightOutputStyle.Name = "ribbonBarSummaryLightOutputStyle";
-			this.ribbonBarSummaryLightOutputStyle.Size = new System.Drawing.Size(125, 130);
+			this.ribbonBarSummaryLightOutputStyle.Size = new System.Drawing.Size(125, 135);
 			this.ribbonBarSummaryLightOutputStyle.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryLightOutputStyle.TabIndex = 91;
 			this.ribbonBarSummaryLightOutputStyle.Text = "Slide Output Settings";
@@ -3246,7 +3287,7 @@
 			// checkEditSummaryLightOutputSlide
 			// 
 			this.checkEditSummaryLightOutputSlide.EditValue = true;
-			this.checkEditSummaryLightOutputSlide.Location = new System.Drawing.Point(4, 28);
+			this.checkEditSummaryLightOutputSlide.Location = new System.Drawing.Point(4, 29);
 			this.checkEditSummaryLightOutputSlide.Name = "checkEditSummaryLightOutputSlide";
 			this.checkEditSummaryLightOutputSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditSummaryLightOutputSlide.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -3256,11 +3297,18 @@
 			this.checkEditSummaryLightOutputSlide.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditSummaryLightOutputSlide.Properties.RadioGroupIndex = 99;
 			this.checkEditSummaryLightOutputSlide.Size = new System.Drawing.Size(110, 20);
+			toolTipTitleItem1.Text = "Standard Slide";
+			toolTipItem1.LeftIndent = 6;
+			toolTipItem1.Text = "The Summary will generate standard\r\nTextboxes that you can move around\r\nOn the sl" +
+    "ide";
+			superToolTip1.Items.Add(toolTipTitleItem1);
+			superToolTip1.Items.Add(toolTipItem1);
+			this.checkEditSummaryLightOutputSlide.SuperTip = superToolTip1;
 			this.checkEditSummaryLightOutputSlide.TabIndex = 0;
 			// 
 			// checkEditSummaryLightOutputTable
 			// 
-			this.checkEditSummaryLightOutputTable.Location = new System.Drawing.Point(4, 70);
+			this.checkEditSummaryLightOutputTable.Location = new System.Drawing.Point(4, 71);
 			this.checkEditSummaryLightOutputTable.Name = "checkEditSummaryLightOutputTable";
 			this.checkEditSummaryLightOutputTable.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditSummaryLightOutputTable.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -3270,6 +3318,12 @@
 			this.checkEditSummaryLightOutputTable.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditSummaryLightOutputTable.Properties.RadioGroupIndex = 99;
 			this.checkEditSummaryLightOutputTable.Size = new System.Drawing.Size(110, 20);
+			toolTipTitleItem2.Text = "Table Grid";
+			toolTipItem2.LeftIndent = 6;
+			toolTipItem2.Text = "The Summary will generate\r\nAll text in a simple MS Office\r\nTable on the slide";
+			superToolTip2.Items.Add(toolTipTitleItem2);
+			superToolTip2.Items.Add(toolTipItem2);
+			this.checkEditSummaryLightOutputTable.SuperTip = superToolTip2;
 			this.checkEditSummaryLightOutputTable.TabIndex = 3;
 			this.checkEditSummaryLightOutputTable.TabStop = false;
 			// 
@@ -3327,7 +3381,7 @@
 			this.ribbonBarSummaryLightPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryLightPowerPoint.Location = new System.Drawing.Point(187, 0);
 			this.ribbonBarSummaryLightPowerPoint.Name = "ribbonBarSummaryLightPowerPoint";
-			this.ribbonBarSummaryLightPowerPoint.Size = new System.Drawing.Size(137, 130);
+			this.ribbonBarSummaryLightPowerPoint.Size = new System.Drawing.Size(137, 135);
 			this.ribbonBarSummaryLightPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryLightPowerPoint.TabIndex = 85;
 			this.ribbonBarSummaryLightPowerPoint.Text = "PowerPoint";
@@ -3375,7 +3429,7 @@
 			this.ribbonBarSummaryLightEmail.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryLightEmail.Location = new System.Drawing.Point(95, 0);
 			this.ribbonBarSummaryLightEmail.Name = "ribbonBarSummaryLightEmail";
-			this.ribbonBarSummaryLightEmail.Size = new System.Drawing.Size(92, 130);
+			this.ribbonBarSummaryLightEmail.Size = new System.Drawing.Size(92, 135);
 			this.ribbonBarSummaryLightEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryLightEmail.TabIndex = 87;
 			this.ribbonBarSummaryLightEmail.Text = "Email";
@@ -3416,7 +3470,7 @@
 			this.ribbonBarSummaryLightPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSummaryLightPreview.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarSummaryLightPreview.Name = "ribbonBarSummaryLightPreview";
-			this.ribbonBarSummaryLightPreview.Size = new System.Drawing.Size(92, 130);
+			this.ribbonBarSummaryLightPreview.Size = new System.Drawing.Size(92, 135);
 			this.ribbonBarSummaryLightPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSummaryLightPreview.TabIndex = 88;
 			this.ribbonBarSummaryLightPreview.Text = "Preview Slide";
@@ -4708,12 +4762,12 @@
 		public DevComponents.DotNetBar.ButtonItem buttonItemAdPlanEmail;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarAdPlanPreview;
 		public DevComponents.DotNetBar.ButtonItem buttonItemAdPlanPreview;
-		public Core.Common.TabbedDateEdit dateEditFlightDatesEnd;
-		public Core.Common.TabbedDateEdit dateEditFlightDatesStart;
-		public Core.Common.TabbedCombobox comboBoxEditBusinessName;
-		public Core.Common.TabbedCombobox comboBoxEditDecisionMaker;
-		public Core.Common.TabbedCombobox comboBoxEditClientType;
-		public Core.Common.TabbedDateEdit dateEditPresentationDate;
+		public CommonGUI.Common.TabbedDateEdit dateEditFlightDatesEnd;
+		public CommonGUI.Common.TabbedDateEdit dateEditFlightDatesStart;
+		public CommonGUI.Common.ComboBoxListEdit comboBoxEditBusinessName;
+		public CommonGUI.Common.ComboBoxListEdit comboBoxEditDecisionMaker;
+		public CommonGUI.Common.TabbedCombobox comboBoxEditClientType;
+		public CommonGUI.Common.TabbedDateEdit dateEditPresentationDate;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarAdPlanOptions;
 		private DevComponents.DotNetBar.ItemContainer itemContainerAdPlanOptions;
 		private DevComponents.DotNetBar.ButtonItem buttonItemAdPlanSave;

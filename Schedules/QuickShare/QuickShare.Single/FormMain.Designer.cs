@@ -46,11 +46,11 @@
 			this.buttonItemHomeScheduleAdd = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeScheduleClone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
-			this.comboBoxEditBusinessName = new NewBizWiz.Core.Common.TabbedCombobox();
+			this.comboBoxEditBusinessName = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.comboBoxEditDecisionMaker = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.comboBoxEditClientType = new NewBizWiz.Core.Common.TabbedCombobox();
-			this.dateEditPresentationDate = new NewBizWiz.Core.Common.TabbedDateEdit();
+			this.comboBoxEditDecisionMaker = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditClientType = new NewBizWiz.CommonGUI.Common.TabbedCombobox();
+			this.dateEditPresentationDate = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
 			this.textEditAccountNumber = new DevExpress.XtraEditors.TextEdit();
 			this.itemContainerHomeAdvertiser = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeAdvertiserTitle = new DevComponents.DotNetBar.LabelItem();
@@ -403,8 +403,10 @@
 			this.comboBoxEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditBusinessName.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditBusinessName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
+			this.comboBoxEditBusinessName.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(135, 20);
 			this.comboBoxEditBusinessName.StyleController = this.styleController;
 			this.comboBoxEditBusinessName.TabIndex = 0;
@@ -416,8 +418,10 @@
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
+			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(135, 20);
 			this.comboBoxEditDecisionMaker.StyleController = this.styleController;
 			this.comboBoxEditDecisionMaker.TabIndex = 1;
@@ -774,10 +778,10 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeScheduleAdd;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeScheduleClone;
 		private System.Windows.Forms.ImageList imageList;
-		public Core.Common.TabbedCombobox comboBoxEditBusinessName;
-		public Core.Common.TabbedCombobox comboBoxEditDecisionMaker;
-		public Core.Common.TabbedCombobox comboBoxEditClientType;
-		public Core.Common.TabbedDateEdit dateEditPresentationDate;
+		public CommonGUI.Common.ComboBoxListEdit comboBoxEditBusinessName;
+		public CommonGUI.Common.ComboBoxListEdit comboBoxEditDecisionMaker;
+		public CommonGUI.Common.TabbedCombobox comboBoxEditClientType;
+		public CommonGUI.Common.TabbedDateEdit dateEditPresentationDate;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeOptions;
 		private DevComponents.DotNetBar.ItemContainer itemContainerHomeOptions1;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeSave;

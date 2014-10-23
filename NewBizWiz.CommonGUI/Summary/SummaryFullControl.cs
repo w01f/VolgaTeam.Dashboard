@@ -70,6 +70,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			var focussed = AddItemToList(newItemData);
 			UpdateControlsInList(focussed);
 			UpdateTotalItems();
+			UpdateOutput();
 			SettingsNotSaved = true;
 		}
 
@@ -82,6 +83,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			UpdateNumbers();
 			UpdateTotalItems();
 			UpdateTotals();
+			UpdateOutput();
 			SettingsNotSaved = true;
 		}
 

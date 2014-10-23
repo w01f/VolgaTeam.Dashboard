@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Summary;
@@ -23,7 +24,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
-					UpdateOutput(e.QuickSave && !e.UpdateDigital);
+					LoadData(e.QuickSave && !e.UpdateDigital);
 			});
 		}
 
@@ -66,7 +67,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			get { return Controller.Instance.SummaryLightTableOutputToggle; }
 		}
 
-		public override void UpdateOutput(bool quickLoad)
+		public override void LoadData(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			checkEditBusinessName.Text = String.Format("{0}", LocalSchedule.BusinessName);
@@ -82,7 +83,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
-			base.UpdateOutput(quickLoad);
+			base.LoadData(quickLoad);
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
@@ -125,12 +126,27 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			HelpManager.OpenHelpLink("summary1");
 		}
 
+		public override ButtonItem PowerPointButton
+		{
+			get { return Controller.Instance.SummaryLightPowerPoint; }
+		}
+
+		public override ButtonItem PreviewButton
+		{
+			get { return Controller.Instance.SummaryLightPreview; }
+		}
+
+		public override ButtonItem EmailButton
+		{
+			get { return Controller.Instance.SummaryLightEmail; }
+		}
+
 		public override Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1))); }
 		}
 
-		public override void Output()
+		protected override void Output()
 		{
 			SaveSchedule();
 			TrackOutput();

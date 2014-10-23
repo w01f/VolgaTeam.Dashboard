@@ -116,7 +116,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					FormMain.Instance.LoadClick = SlideCleanslate.LoadClick;
 					FormMain.Instance.OutputClick = SlideCleanslate.Output;
 					FormMain.Instance.PreviewClick = SlideCleanslate.Preview;
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCleanslate.Tooltip);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeLoad, SlideCleanslate.TooltipLoad);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCleanslate.TooltipHelp);
 					if (!Controls.Contains(SlideCleanslate))
 						Controls.Add(SlideCleanslate);
 					SlideCleanslate.BringToFront();
@@ -127,7 +128,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					FormMain.Instance.LoadClick = SlideCover.LoadClick;
 					FormMain.Instance.OutputClick = SlideCover.Output;
 					FormMain.Instance.PreviewClick = SlideCover.Preview;
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCover.Tooltip);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeLoad, SlideCover.TooltipLoad);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCover.TooltipHelp);
 					if (!Controls.Contains(SlideCover))
 						Controls.Add(SlideCover);
 					SlideCover.BringToFront();
@@ -138,7 +140,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					FormMain.Instance.LoadClick = SlideLeadoff.LoadClick;
 					FormMain.Instance.OutputClick = SlideLeadoff.Output;
 					FormMain.Instance.PreviewClick = SlideLeadoff.Preview;
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideLeadoff.Tooltip);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeLoad, SlideLeadoff.TooltipLoad);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideLeadoff.TooltipHelp);
 					if (!Controls.Contains(SlideLeadoff))
 						Controls.Add(SlideLeadoff);
 					SlideLeadoff.BringToFront();
@@ -149,7 +152,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					FormMain.Instance.LoadClick = SlideClientGoals.LoadClick;
 					FormMain.Instance.OutputClick = SlideClientGoals.Output;
 					FormMain.Instance.PreviewClick = SlideClientGoals.Preview;
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideClientGoals.Tooltip);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeLoad, SlideClientGoals.TooltipLoad);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideClientGoals.TooltipHelp);
 					if (!Controls.Contains(SlideClientGoals))
 						Controls.Add(SlideClientGoals);
 					SlideClientGoals.BringToFront();
@@ -160,7 +164,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					FormMain.Instance.LoadClick = SlideTargetCustomers.LoadClick;
 					FormMain.Instance.OutputClick = SlideTargetCustomers.Output;
 					FormMain.Instance.PreviewClick = SlideTargetCustomers.Preview;
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideTargetCustomers.Tooltip);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeLoad, SlideTargetCustomers.TooltipLoad);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideTargetCustomers.TooltipHelp);
 					if (!Controls.Contains(SlideTargetCustomers))
 						Controls.Add(SlideTargetCustomers);
 					SlideTargetCustomers.BringToFront();
@@ -171,7 +176,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					FormMain.Instance.LoadClick = SlideSimpleSummary.LoadClick;
 					FormMain.Instance.OutputClick = SlideSimpleSummary.Output;
 					FormMain.Instance.PreviewClick = SlideSimpleSummary.Preview;
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideSimpleSummary.Tooltip);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeLoad, SlideSimpleSummary.TooltipLoad);
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideSimpleSummary.TooltipHelp);
 					if (!Controls.Contains(SlideSimpleSummary))
 						Controls.Add(SlideSimpleSummary);
 					SlideSimpleSummary.BringToFront();

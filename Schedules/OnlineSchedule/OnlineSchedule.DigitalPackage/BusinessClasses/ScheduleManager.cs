@@ -274,21 +274,15 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 			if (!String.IsNullOrEmpty(BusinessName))
 			{
 				xml.AppendLine(@"<BusinessName>" + BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
-				if (!Core.Common.ListManager.Instance.Advertisers.Contains(BusinessName))
-				{
-					Core.Common.ListManager.Instance.Advertisers.Add(BusinessName);
-					Core.Common.ListManager.Instance.SaveAdvertisers();
-				}
+				Core.Common.ListManager.Instance.Advertisers.Add(BusinessName);
+				Core.Common.ListManager.Instance.Advertisers.Save();
 			}
 
 			if (!String.IsNullOrEmpty(DecisionMaker))
 			{
 				xml.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
-				if (!Core.Common.ListManager.Instance.DecisionMakers.Contains(DecisionMaker))
-				{
-					Core.Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-					Core.Common.ListManager.Instance.SaveDecisionMakers();
-				}
+				Core.Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+				Core.Common.ListManager.Instance.DecisionMakers.Save();
 			}
 			xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
 			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart + @"</FlightDateStart>");

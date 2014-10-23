@@ -186,7 +186,7 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		public bool Complited
 		{
-			get { return Data.ShowValue && !String.IsNullOrEmpty(ItemTitle); }
+			get { return Data.ShowValue; }
 		}
 		#endregion
 	}

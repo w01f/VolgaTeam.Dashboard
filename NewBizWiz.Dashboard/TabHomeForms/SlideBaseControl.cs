@@ -22,7 +22,12 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return null; }
 		}
 
-		public virtual SuperTooltipInfo Tooltip
+		public virtual SuperTooltipInfo TooltipLoad
+		{
+			get { return null; }
+		}
+
+		public virtual SuperTooltipInfo TooltipHelp
 		{
 			get { return null; }
 		}
@@ -93,7 +98,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			UpdateSavedFilesState();
 		}
 
-		public void SelectSlideType(SlideType slideType)
+		public virtual void SelectSlideType(SlideType slideType)
 		{
 			foreach (var button in pnSlideSelector.Controls.OfType<ButtonX>())
 				button.Checked = false;

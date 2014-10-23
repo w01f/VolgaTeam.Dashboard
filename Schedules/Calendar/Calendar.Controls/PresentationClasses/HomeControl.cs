@@ -55,10 +55,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 			{
 				_allowToSave = false;
 
-				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
-				Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-				Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
 				Controller.Instance.HomeClientType.Properties.Items.Clear();
 				Controller.Instance.HomeClientType.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.ClientTypes.ToArray());
 
@@ -150,10 +146,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 				return false;
 			}
 
-			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
-			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
 			Controller.Instance.UpdateScheduleTabs(Controller.Instance.HomeBusinessName.EditValue != null &
 												   Controller.Instance.HomeDecisionMaker.EditValue != null &
 												   Controller.Instance.HomeClientType.EditValue != null &

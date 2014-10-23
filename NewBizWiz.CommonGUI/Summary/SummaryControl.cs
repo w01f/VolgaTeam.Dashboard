@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -44,6 +45,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		protected SummaryBaseControl()
 		{
 			SetClickEventHandler(this);
+			
 			checkEditBusinessName.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditDecisionMaker.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditTotalInvestment.CheckedChanged += checkEdit_CheckedChanged;
@@ -52,6 +54,10 @@ namespace NewBizWiz.CommonGUI.Summary
 			checkEditMonthlyInvestment.CheckedChanged += checkEdit_CheckedChanged;
 			TableOutputToggle.CheckedChanged += checkEdit_CheckedChanged;
 			comboBoxEditHeader.EditValueChanged += checkEdit_CheckedChanged;
+
+			PowerPointButton.Click += (o, e) => Output();
+			PreviewButton.Click += (o, e) => Preview();
+			EmailButton.Click += (o, e) => Email();
 		}
 
 		public bool AllowToLeaveControl
@@ -94,7 +100,7 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		public bool SettingsNotSaved { get; set; }
 
-		public virtual void UpdateOutput(bool quickLoad)
+		public virtual void LoadData(bool quickLoad)
 		{
 			_allowToSave = false;
 			if (!quickLoad)
@@ -122,6 +128,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			LoadItems(quickLoad);
 			UpdateTotalItems();
 			UpdateTotals();
+			UpdateOutput();
 			_allowToSave = true;
 			SettingsNotSaved = false;
 		}
@@ -170,6 +177,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			{
 				SettingsNotSaved = true;
 				UpdateTotalItems();
+				UpdateOutput();
 			};
 			item.InvestmentChanged += (o, e) => UpdateTotals();
 		}
@@ -198,6 +206,14 @@ namespace NewBizWiz.CommonGUI.Summary
 		}
 
 		protected abstract void UpdateTotals();
+
+		protected void UpdateOutput()
+		{
+			var outputEnabled = ItemsCount > 0;
+			PowerPointButton.Enabled = outputEnabled;
+			PreviewButton.Enabled = outputEnabled;
+			EmailButton.Enabled = outputEnabled;
+		}
 
 		public virtual void OpenHelp()
 		{
@@ -232,8 +248,11 @@ namespace NewBizWiz.CommonGUI.Summary
 		}
 
 		#region Output Stuff
+		public abstract ButtonItem PowerPointButton { get; }
+		public abstract ButtonItem PreviewButton { get; }
+		public abstract ButtonItem EmailButton { get; }
 		public abstract Theme SelectedTheme { get; }
-		public abstract void Output();
+		protected abstract void Output();
 		protected abstract void PreparePreview(string tempFileName);
 		protected abstract void ShowEmail(string tempFileName);
 		protected abstract void ShowPreview(string tempFileName);
@@ -426,7 +445,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			}
 		}
 
-		public void Email()
+		protected void Email()
 		{
 			SaveSchedule();
 			using (var formProgress = new FormProgress())
@@ -442,7 +461,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			}
 		}
 
-		public void Preview()
+		protected void Preview()
 		{
 			SaveSchedule();
 			using (var formProgress = new FormProgress())

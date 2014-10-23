@@ -9,6 +9,7 @@ namespace NewBizWiz.AdSchedule.Single
 {
 	internal static class Program
 	{
+		private static Mutex _mutex;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>

@@ -59,10 +59,6 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			_allowToSave = false;
 			_localPackage = BusinessWrapper.Instance.PackageManager.GetLocalPackage();
 
-			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
-			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
 			Controller.Instance.HomeClientType.Properties.Items.Clear();
 			Controller.Instance.HomeClientType.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.ClientTypes.ToArray());
 
@@ -151,10 +147,6 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			foreach (var page in xtraTabControl.TabPages.OfType<ScheduleSettingsControl>())
 				page.SaveData();
 
-			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
-			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
-			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
-			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
 			UpdateControl();
 			Controller.Instance.SavePackage(_localPackage, nameChanged, true, this);
 			SettingsNotSaved = false;

@@ -99,8 +99,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			(Controller.Instance.DigitalPackageTheme.ContainerControl as RibbonBar).RecalcLayout();
 
 			AllowApplyValues = false;
-			comboBoxEditAdvertiser.Properties.Items.Clear();
-			comboBoxEditAdvertiser.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers);
 			comboBoxEditAdvertiser.EditValue = LocalSchedule.BusinessName;
 			AllowApplyValues = true;
 

@@ -20,7 +20,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	public sealed partial class SlideCoverControl : SlideBaseControl
 	{
 		private bool _allowToSave;
-		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Cover Slide", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipLoad = new SuperTooltipInfo("Cover Slides", "", "Open previously-saved Cover slide data files", null, null, eTooltipColor.Gray);
+		private readonly SuperTooltipInfo _toolTipHelp = new SuperTooltipInfo("HELP", "", "Help me with the Cover Slide", null, null, eTooltipColor.Gray);
 		private readonly List<User> _users = new List<User>();
 
 		public SlideCoverControl()
@@ -54,12 +55,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.CoverLists.Headers);
 
-			comboBoxEditAdvertiser.Properties.Items.Clear();
-			comboBoxEditAdvertiser.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers);
-
-			comboBoxEditDecisionMaker.Properties.Items.Clear();
-			comboBoxEditDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers);
-
 			_users.Clear();
 			_users.AddRange(ListManager.Instance.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
 			comboBoxEditSalesRep.Properties.Items.Clear();
@@ -82,9 +77,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return "Cover"; }
 		}
 
-		public override SuperTooltipInfo Tooltip
+		public override SuperTooltipInfo TooltipLoad
 		{
-			get { return _toolTip; }
+			get { return _toolTipLoad; }
+		}
+
+		public override SuperTooltipInfo TooltipHelp
+		{
+			get { return _toolTipHelp; }
 		}
 
 		public override ButtonItem ThemeButton
@@ -106,6 +106,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.CoverState.SlideHeader);
 				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
 			}
+			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.Advertiser) ? null : ViewSettingsManager.Instance.CoverState.Advertiser;
+			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.DecisionMaker) ? null : ViewSettingsManager.Instance.CoverState.DecisionMaker;
 
 			checkEditFirstSlide.Checked = ViewSettingsManager.Instance.CoverState.AddAsPageOne;
 			checkEditPresentationDate.Checked = ViewSettingsManager.Instance.CoverState.ShowPresentationDate;
@@ -146,9 +148,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				memoEditSalesQuote.Visible = false;
 				laSalesQuotesHint.Visible = true;
 			}
-
-			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.Advertiser) ? null : ViewSettingsManager.Instance.CoverState.Advertiser;
-			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.DecisionMaker) ? null : ViewSettingsManager.Instance.CoverState.DecisionMaker;
 
 			_allowToSave = true;
 			SettingsNotSaved = false;
@@ -335,17 +334,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		protected override void SaveChanges(string fileName = "")
 		{
-			if (!Core.Common.ListManager.Instance.Advertisers.Contains(Advertiser) && !string.IsNullOrEmpty(Advertiser))
-			{
-				Core.Common.ListManager.Instance.Advertisers.Add(Advertiser);
-				Core.Common.ListManager.Instance.SaveAdvertisers();
-			}
+			Core.Common.ListManager.Instance.Advertisers.Add(Advertiser);
+			Core.Common.ListManager.Instance.Advertisers.Save();
 
-			if (!Core.Common.ListManager.Instance.DecisionMakers.Contains(DecisionMaker) && !string.IsNullOrEmpty(DecisionMaker))
-			{
-				Core.Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-				Core.Common.ListManager.Instance.SaveDecisionMakers();
-			}
+			Core.Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+			Core.Common.ListManager.Instance.DecisionMakers.Save();
 
 			if (!SettingsNotSaved) return;
 			SaveState();

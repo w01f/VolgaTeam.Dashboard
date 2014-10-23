@@ -103,7 +103,17 @@ namespace NewBizWiz.Core.Interop
 
 		public bool IsActive
 		{
-			get { return WinAPIHelper.IsWindowVisible(_windowHandle) || IsMinimized; }
+			get 
+			{
+				try
+				{
+					return WinAPIHelper.IsWindowVisible(_windowHandle) || IsMinimized; 
+				}
+				catch
+				{
+					return true;
+				}
+			}
 		}
 
 		public bool Is2003

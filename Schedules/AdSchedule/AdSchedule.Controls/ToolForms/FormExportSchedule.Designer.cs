@@ -57,7 +57,7 @@
 			this.laLogo.Name = "laLogo";
 			this.laLogo.Size = new System.Drawing.Size(282, 41);
 			this.laLogo.TabIndex = 1;
-			this.laLogo.Text = "Save this Ninja Calendar as:";
+			this.laLogo.Text = "Save this Calendar as:";
 			this.laLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// buttonXOK
@@ -111,7 +111,7 @@
 			this.labelDescription.Name = "labelDescription";
 			this.labelDescription.Size = new System.Drawing.Size(363, 71);
 			this.labelDescription.TabIndex = 3;
-			this.labelDescription.Text = "After you save this Calendar, you can open and edit later in the Ninja Calendar A" +
+			this.labelDescription.Text = "After you save this Calendar, you can open and edit later in the Calendar A" +
     "pplication Dashboard…";
 			this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 

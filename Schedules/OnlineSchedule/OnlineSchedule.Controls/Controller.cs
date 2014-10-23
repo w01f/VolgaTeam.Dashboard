@@ -116,9 +116,6 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			SummaryLightSave.Click += SummaryLight.Save_Click;
 			SummaryLightSaveAs.Click += SummaryLight.SaveAs_Click;
 			SummaryLightHelp.Click += (o, e) => SummaryLight.OpenHelp();
-			SummaryLightPowerPoint.Click += (o, e) => SummaryLight.Output();
-			SummaryLightEmail.Click += (o, e) => SummaryLight.Email();
-			SummaryLightPreview.Click += (o, e) => SummaryLight.Preview();
 			#endregion
 
 			#region Summary Full
@@ -126,9 +123,6 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			SummaryFullSave.Click += SummaryFull.Save_Click;
 			SummaryFullSaveAs.Click += SummaryFull.SaveAs_Click;
 			SummaryFullHelp.Click += (o, e) => SummaryFull.OpenHelp();
-			SummaryFullPowerPoint.Click += (o, e) => SummaryFull.Output();
-			SummaryFullEmail.Click += (o, e) => SummaryFull.Email();
-			SummaryFullPreview.Click += (o, e) => SummaryFull.Preview();
 			#endregion
 
 			#region Rate Card Events
@@ -176,8 +170,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ScheduleSlides.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
 			AdPlan.LoadSchedule(false);
-			SummaryLight.UpdateOutput(false);
-			SummaryFull.UpdateOutput(false);
+			SummaryLight.LoadData(false);
+			SummaryFull.LoadData(false);
 
 			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
 			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
@@ -343,6 +337,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 					var containerButton = new ButtonItem();
 					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
 					containerButton.AutoExpandOnClick = true;
+					Supertip.SetSuperTooltip(containerButton, new SuperTooltipInfo("Links", "", "Helpful schedule building Links and resources", null, null, eTooltipColor.Gray));
 					ribbonBar.Items.Add(containerButton);
 					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 					{

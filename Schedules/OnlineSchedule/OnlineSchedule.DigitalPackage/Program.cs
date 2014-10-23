@@ -9,7 +9,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 {
 	static class Program
 	{
-		private static Mutex mutex; //Used to determine if the application is already open
+		private static Mutex _mutex; //Used to determine if the application is already open
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -18,7 +18,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		{
 			bool firstInstance;
 			string uniqueIdentifier = "Local\\AdSellerApplication";
-			mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();

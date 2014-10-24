@@ -25,18 +25,18 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 			if (FormMain.Instance != null)
 			{
-				textEditItem.MouseUp += FormMain.Instance.Editor_MouseUp;
-				textEditItem.MouseDown += FormMain.Instance.Editor_MouseDown;
-				textEditItem.Enter += FormMain.Instance.Editor_Enter;
-				spinEditMonthly.MouseUp += FormMain.Instance.Editor_MouseUp;
-				spinEditMonthly.MouseDown += FormMain.Instance.Editor_MouseDown;
-				spinEditMonthly.Enter += FormMain.Instance.Editor_Enter;
-				spinEditTotal.MouseUp += FormMain.Instance.Editor_MouseUp;
-				spinEditTotal.MouseDown += FormMain.Instance.Editor_MouseDown;
-				spinEditTotal.Enter += FormMain.Instance.Editor_Enter;
-				memoEditDetails.MouseUp += FormMain.Instance.Editor_MouseUp;
-				memoEditDetails.MouseDown += FormMain.Instance.Editor_MouseDown;
-				memoEditDetails.Enter += FormMain.Instance.Editor_Enter;
+				textEditItem.MouseUp += Utilities.Instance.Editor_MouseUp;
+				textEditItem.MouseDown += Utilities.Instance.Editor_MouseDown;
+				textEditItem.Enter += Utilities.Instance.Editor_Enter;
+				spinEditMonthly.MouseUp += Utilities.Instance.Editor_MouseUp;
+				spinEditMonthly.MouseDown += Utilities.Instance.Editor_MouseDown;
+				spinEditMonthly.Enter += Utilities.Instance.Editor_Enter;
+				spinEditTotal.MouseUp += Utilities.Instance.Editor_MouseUp;
+				spinEditTotal.MouseDown += Utilities.Instance.Editor_MouseDown;
+				spinEditTotal.Enter += Utilities.Instance.Editor_Enter;
+				memoEditDetails.MouseUp += Utilities.Instance.Editor_MouseUp;
+				memoEditDetails.MouseDown += Utilities.Instance.Editor_MouseDown;
+				memoEditDetails.Enter += Utilities.Instance.Editor_Enter;
 			}
 		}
 

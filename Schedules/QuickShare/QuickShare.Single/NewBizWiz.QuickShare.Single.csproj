@@ -143,6 +143,7 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ToolForms\FormOpenPackage.resx">
       <DependentUpon>FormOpenPackage.cs</DependentUpon>
     </EmbeddedResource>

@@ -185,18 +185,6 @@
     <EmbeddedResource Include="TabHomeForms\FormQuotes.resx">
       <DependentUpon>FormQuotes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabOnlineForms\TabOnlineMainPage.resx">
-      <DependentUpon>TabOnlineMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabNewspaperForms\PrintScheduleBuilderControl.resx">
-      <DependentUpon>PrintScheduleBuilderControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabNewspaperForms\TabNewspaperMainPage.resx">
-      <DependentUpon>TabNewspaperMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabOnlineForms\OnlineScheduleBuilderControl.resx">
-      <DependentUpon>OnlineScheduleBuilderControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\SlideClientGoalsControl.resx">
       <DependentUpon>SlideClientGoalsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,18 +202,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TabSlides\TabSlidesMainPage.resx">
       <DependentUpon>TabSlidesMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabRadioForms\TabRadioMainPage.resx">
-      <DependentUpon>TabRadioMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabRadioForms\RadioScheduleBuilderControl.resx">
-      <DependentUpon>RadioScheduleBuilderControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabTVForms\TVScheduleBuilderControl.resx">
-      <DependentUpon>TVScheduleBuilderControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabTVForms\TabTVMainPage.resx">
-      <DependentUpon>TabTVMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormLoadSplash.resx">
       <DependentUpon>FormLoadSplash.cs</DependentUpon>
@@ -305,30 +281,6 @@
     <Compile Include="TabHomeForms\FormQuotes.Designer.cs">
       <DependentUpon>FormQuotes.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabOnlineForms\TabOnlineMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabOnlineForms\TabOnlineMainPage.Designer.cs">
-      <DependentUpon>TabOnlineMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabNewspaperForms\PrintScheduleBuilderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabNewspaperForms\PrintScheduleBuilderControl.Designer.cs">
-      <DependentUpon>PrintScheduleBuilderControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabNewspaperForms\TabNewspaperMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabNewspaperForms\TabNewspaperMainPage.Designer.cs">
-      <DependentUpon>TabNewspaperMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabOnlineForms\OnlineScheduleBuilderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabOnlineForms\OnlineScheduleBuilderControl.Designer.cs">
-      <DependentUpon>OnlineScheduleBuilderControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="TabHomeForms\SlideClientGoalsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -364,30 +316,6 @@
     </Compile>
     <Compile Include="TabSlides\TabSlidesMainPage.Designer.cs">
       <DependentUpon>TabSlidesMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabRadioForms\TabRadioMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabRadioForms\TabRadioMainPage.Designer.cs">
-      <DependentUpon>TabRadioMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabRadioForms\RadioScheduleBuilderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabRadioForms\RadioScheduleBuilderControl.Designer.cs">
-      <DependentUpon>RadioScheduleBuilderControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabTVForms\TVScheduleBuilderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabTVForms\TVScheduleBuilderControl.Designer.cs">
-      <DependentUpon>TVScheduleBuilderControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabTVForms\TabTVMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabTVForms\TabTVMainPage.Designer.cs">
-      <DependentUpon>TabTVMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormLoadSplash.cs">
       <SubType>Form</SubType>
@@ -441,43 +369,26 @@
     <None Include="Resources\SlideClientGoals.png" />
     <None Include="Resources\SlideLeadoff.png" />
     <None Include="Resources\SlideCover.png" />
-    <None Include="Resources\TitleCalendar.png" />
-    <None Include="Resources\TitleNewspaper.png" />
-    <None Include="Resources\LabelNewspaper.png" />
-    <None Include="Resources\TitleOnline.png" />
-    <None Include="Resources\LableOnline.png" />
-    <None Include="Resources\TitleRadio.png" />
-    <None Include="Resources\LableRadio.png" />
-    <None Include="Resources\TitleTV.png" />
-    <None Include="Resources\LableTV.png" />
     <None Include="Resources\Preview.png" />
     <None Include="Resources\DownArrow.png" />
     <None Include="Resources\UpArrow.png" />
-    <None Include="Resources\CableLittle.png" />
     <None Include="Resources\DeleteButton.png" />
     <None Include="Resources\Floater.png" />
     <None Include="Resources\RedWarning.png" />
     <None Include="Resources\Help.png" />
-    <None Include="Resources\RadioLittle.png" />
-    <None Include="Resources\TVLittle.png" />
     <None Include="Resources\Advertiser.png" />
     <None Include="Resources\HomeCable.png" />
     <None Include="Resources\HomeRadio.png" />
     <None Include="Resources\HomeTV.png" />
     <None Include="Resources\Output.png" />
-    <None Include="Resources\DeleteSchedule.png" />
     <None Include="Resources\HomeOnline.png" />
     <None Include="Resources\HomeNewspaper.png" />
     <None Include="Resources\SalesQuotes.png" />
     <None Include="Resources\SalesRep.png" />
-    <None Include="Resources\OpenSchedule.png" />
-    <None Include="Resources\NewSchedule.png" />
     <None Include="Resources\Date.png" />
     <None Include="Resources\DecisionMaker.png" />
     <None Include="Resources\MasterWizardLogo.png" />
     <None Include="Resources\Calendar.png" />
-    <None Include="Resources\NewspaperLittle.png" />
-    <None Include="Resources\WebLittle.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\" />
@@ -512,34 +423,6 @@
     <ProjectReference Include="..\NewBizWiz.Core\NewBizWiz.Core.csproj">
       <Project>{164AB808-DBD3-4D71-9431-5A5B44B70593}</Project>
       <Name>NewBizWiz.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\AdSchedule\AdSchedule.Controls\NewBizWiz.AdSchedule.Controls.csproj">
-      <Project>{B096C96B-E96F-4223-AE01-B32D3730DC82}</Project>
-      <Name>NewBizWiz.AdSchedule.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\AdSchedule\AdSchedule.Internal\NewBizWiz.AdSchedule.Internal.csproj">
-      <Project>{C4A3DF41-C6D7-4209-9EFB-07FA7DF86327}</Project>
-      <Name>NewBizWiz.AdSchedule.Internal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\Calendar\Calendar.Controls\NewBizWiz.Calendar.Controls.csproj">
-      <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>
-      <Name>NewBizWiz.Calendar.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\MediaSchedule\MediaSchedule.Controls\NewBizWiz.MediaSchedule.Controls.csproj">
-      <Project>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</Project>
-      <Name>NewBizWiz.MediaSchedule.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\MediaSchedule\MediaSchedule.Internal\NewBizWiz.MediaSchedule.Internal.csproj">
-      <Project>{5E0317D7-2267-4E06-9B5F-9DC258533B93}</Project>
-      <Name>NewBizWiz.MediaSchedule.Internal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\OnlineSchedule\OnlineSchedule.Controls\NewBizWiz.OnlineSchedule.Controls.csproj">
-      <Project>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</Project>
-      <Name>NewBizWiz.OnlineSchedule.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\OnlineSchedule\OnlineSchedule.Internal\NewBizWiz.OnlineSchedule.Internal.csproj">
-      <Project>{14338B89-EEC4-45CC-A87F-2507FE32A32E}</Project>
-      <Name>NewBizWiz.OnlineSchedule.Internal</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

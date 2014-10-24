@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -18,8 +17,6 @@ namespace NewBizWiz.Dashboard
 	{
 		#region Delegates
 		public delegate void EmptyParametersDelegate();
-
-		public delegate void SingleParameterDelegate(bool parameter);
 		#endregion
 
 		private static readonly AppManager _instance = new AppManager();
@@ -77,6 +74,15 @@ namespace NewBizWiz.Dashboard
 			return DashboardPowerPointHelper.Instance.Connect();
 		}
 
+		public void RunProcess(string path)
+		{
+			try
+			{
+				Process.Start(path);
+			}
+			catch{}
+		}
+
 		public void ActivateMainForm()
 		{
 			var mainFormHandle = RegistryHelper.MainFormHandle;
@@ -106,13 +112,6 @@ namespace NewBizWiz.Dashboard
 				}
 			}
 			Utilities.Instance.MinimizeForm(mainFormHandle);
-		}
-
-		public static void SetAutoScrollPosition(ScrollableControl sender, Point p)
-		{
-			p.X = Math.Abs(p.X);
-			p.Y = Math.Abs(p.Y);
-			sender.AutoScrollPosition = p;
 		}
 
 		public void SetClickEventHandler(Control control)

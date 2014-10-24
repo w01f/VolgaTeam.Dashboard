@@ -76,18 +76,6 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolForms\FormOpenSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormOpenSchedule.Designer.cs">
-      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormStart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormStart.Designer.cs">
-      <DependentUpon>FormStart.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">
@@ -146,12 +134,6 @@
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormOpenSchedule.resx">
-      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormStart.resx">
-      <DependentUpon>FormStart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

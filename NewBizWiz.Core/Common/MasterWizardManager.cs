@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Xml;
-using NewBizWiz.Core.Properties;
 
 namespace NewBizWiz.Core.Common
 {

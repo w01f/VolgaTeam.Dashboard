@@ -87,7 +87,6 @@
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\FavoriteImagesManager.cs" />
     <Compile Include="Common\GalleryManager.cs" />
-    <Compile Include="Common\NBWLink.cs" />
     <Compile Include="Common\OrderedItem.cs" />
     <Compile Include="Common\ScheduleSaveEventArgs.cs" />
     <Compile Include="Common\SlideManager.cs" />

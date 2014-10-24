@@ -9,9 +9,10 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
+using NewBizWiz.MediaSchedule.Controls.Properties;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.MediaSchedule.Single
+namespace NewBizWiz.MediaSchedule.Controls.ToolForms
 {
 	public partial class FormOpenSchedule : MetroForm
 	{
@@ -20,6 +21,7 @@ namespace NewBizWiz.MediaSchedule.Single
 		public FormOpenSchedule()
 		{
 			InitializeComponent();
+			barStaticItemLogo.Glyph = MediaMetaData.Instance.DataType == MediaDataType.TV ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo;
 		}
 
 		public string ScheduleName { get; set; }

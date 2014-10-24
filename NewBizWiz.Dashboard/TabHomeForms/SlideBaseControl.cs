@@ -48,9 +48,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			InitializeComponent();
 			if ((CreateGraphics()).DpiX > 96) { }
-			comboBoxEditSlideHeader.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += FormMain.Instance.Editor_Enter;
+			comboBoxEditSlideHeader.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditSlideHeader.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditSlideHeader.Enter += Utilities.Instance.Editor_Enter;
 		}
 
 		protected void SetLoadState(bool enable)

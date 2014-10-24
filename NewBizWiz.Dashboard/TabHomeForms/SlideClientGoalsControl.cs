@@ -36,21 +36,21 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				laGoal4.Font = new Font(laGoal4.Font.FontFamily, laGoal4.Font.Size - 3, laGoal4.Font.Style);
 				laGoal5.Font = new Font(laGoal5.Font.FontFamily, laGoal5.Font.Size - 3, laGoal5.Font.Style);
 			}
-			comboBoxEditGoal1.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditGoal1.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditGoal1.Enter += FormMain.Instance.Editor_Enter;
-			comboBoxEditGoal2.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditGoal2.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditGoal2.Enter += FormMain.Instance.Editor_Enter;
-			comboBoxEditGoal3.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditGoal3.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditGoal3.Enter += FormMain.Instance.Editor_Enter;
-			comboBoxEditGoal4.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditGoal4.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditGoal4.Enter += FormMain.Instance.Editor_Enter;
-			comboBoxEditGoal5.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditGoal5.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditGoal5.Enter += FormMain.Instance.Editor_Enter;
+			comboBoxEditGoal1.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditGoal1.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditGoal1.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditGoal2.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditGoal2.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditGoal2.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditGoal3.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditGoal3.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditGoal3.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditGoal4.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditGoal4.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditGoal4.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditGoal5.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditGoal5.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditGoal5.Enter += Utilities.Instance.Editor_Enter;
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Headers);

@@ -33,18 +33,18 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ckC.Font = new Font(ckC.Font.FontFamily, ckC.Font.Size - 3, ckC.Font.Style);
 			}
 			UpdateEditState();
-			comboBoxEditSlideHeader.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += FormMain.Instance.Editor_Enter;
-			memoEditA.MouseUp += FormMain.Instance.Editor_MouseUp;
-			memoEditA.MouseDown += FormMain.Instance.Editor_MouseDown;
-			memoEditA.Enter += FormMain.Instance.Editor_Enter;
-			memoEditB.MouseUp += FormMain.Instance.Editor_MouseUp;
-			memoEditB.MouseDown += FormMain.Instance.Editor_MouseDown;
-			memoEditB.Enter += FormMain.Instance.Editor_Enter;
-			memoEditC.MouseUp += FormMain.Instance.Editor_MouseUp;
-			memoEditC.MouseDown += FormMain.Instance.Editor_MouseDown;
-			memoEditC.Enter += FormMain.Instance.Editor_Enter;
+			comboBoxEditSlideHeader.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditSlideHeader.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditSlideHeader.Enter += Utilities.Instance.Editor_Enter;
+			memoEditA.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditA.MouseDown += Utilities.Instance.Editor_MouseDown;
+			memoEditA.Enter += Utilities.Instance.Editor_Enter;
+			memoEditB.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditB.MouseDown += Utilities.Instance.Editor_MouseDown;
+			memoEditB.Enter += Utilities.Instance.Editor_Enter;
+			memoEditC.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditC.MouseDown += Utilities.Instance.Editor_MouseDown;
+			memoEditC.Enter += Utilities.Instance.Editor_Enter;
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);

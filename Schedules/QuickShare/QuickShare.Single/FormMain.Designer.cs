@@ -171,7 +171,7 @@
 			this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(586, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(635, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(89, 135);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -213,7 +213,7 @@
             this.itemContainerHomeOptions1,
             this.itemContainerHomeOptions2});
 			this.ribbonBarHomeOptions.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeOptions.Location = new System.Drawing.Point(445, 0);
+			this.ribbonBarHomeOptions.Location = new System.Drawing.Point(494, 0);
 			this.ribbonBarHomeOptions.Name = "ribbonBarHomeOptions";
 			this.ribbonBarHomeOptions.Size = new System.Drawing.Size(141, 135);
 			this.ribbonBarHomeOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -309,7 +309,7 @@
 			this.ribbonBarHomeSchedule.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.itemContainerHomeSchedule});
 			this.ribbonBarHomeSchedule.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeSchedule.Location = new System.Drawing.Point(361, 0);
+			this.ribbonBarHomeSchedule.Location = new System.Drawing.Point(410, 0);
 			this.ribbonBarHomeSchedule.Name = "ribbonBarHomeSchedule";
 			this.ribbonBarHomeSchedule.Size = new System.Drawing.Size(84, 135);
 			this.ribbonBarHomeSchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -383,7 +383,7 @@
 			this.ribbonBarHomeBasicInfo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeBasicInfo.Location = new System.Drawing.Point(96, 0);
 			this.ribbonBarHomeBasicInfo.Name = "ribbonBarHomeBasicInfo";
-			this.ribbonBarHomeBasicInfo.Size = new System.Drawing.Size(265, 135);
+			this.ribbonBarHomeBasicInfo.Size = new System.Drawing.Size(314, 135);
 			this.ribbonBarHomeBasicInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeBasicInfo.TabIndex = 24;
 			this.ribbonBarHomeBasicInfo.Text = "Basic Info";
@@ -405,9 +405,15 @@
 			this.comboBoxEditBusinessName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
+			this.comboBoxEditBusinessName.Properties.Items.AddRange(new object[] {
+            "11111111",
+            "Alex",
+            "Fred\'s Rib Shack",
+            "Fred\'s Used Cars",
+            "Mike\'s Automotive"});
 			this.comboBoxEditBusinessName.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
-			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(135, 20);
+			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
+			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(180, 20);
 			this.comboBoxEditBusinessName.StyleController = this.styleController;
 			this.comboBoxEditBusinessName.TabIndex = 0;
 			// 
@@ -420,9 +426,15 @@
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
+			this.comboBoxEditDecisionMaker.Properties.Items.AddRange(new object[] {
+            "222222",
+            "Carlie",
+            "Coding",
+            "Fred Jones",
+            "Mike Jones"});
 			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
-			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(135, 20);
+			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
+			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(180, 20);
 			this.comboBoxEditDecisionMaker.StyleController = this.styleController;
 			this.comboBoxEditDecisionMaker.TabIndex = 1;
 			// 
@@ -436,14 +448,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditClientType.Properties.NullText = "Select";
 			this.comboBoxEditClientType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditClientType.Size = new System.Drawing.Size(135, 20);
+			this.comboBoxEditClientType.Size = new System.Drawing.Size(180, 20);
 			this.comboBoxEditClientType.StyleController = this.styleController;
 			this.comboBoxEditClientType.TabIndex = 1;
 			// 
 			// dateEditPresentationDate
 			// 
 			this.dateEditPresentationDate.EditValue = null;
-			this.dateEditPresentationDate.Location = new System.Drawing.Point(150, 22);
+			this.dateEditPresentationDate.Location = new System.Drawing.Point(195, 22);
 			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
 			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -468,7 +480,7 @@
 			// textEditAccountNumber
 			// 
 			this.textEditAccountNumber.Enabled = false;
-			this.textEditAccountNumber.Location = new System.Drawing.Point(150, 78);
+			this.textEditAccountNumber.Location = new System.Drawing.Point(195, 78);
 			this.textEditAccountNumber.Name = "textEditAccountNumber";
 			this.textEditAccountNumber.Size = new System.Drawing.Size(103, 20);
 			this.textEditAccountNumber.StyleController = this.styleController;

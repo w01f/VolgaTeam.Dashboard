@@ -44,18 +44,18 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				checkEditTotalInvestment.Font = new Font(checkEditTotalInvestment.Font.FontFamily, checkEditTotalInvestment.Font.Size - 2, checkEditTotalInvestment.Font.Style);
 				checkEditTableOutput.Font = new Font(checkEditTableOutput.Font.FontFamily, checkEditTableOutput.Font.Size - 2, checkEditTableOutput.Font.Style);
 			}
-			comboBoxEditAdvertiser.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditAdvertiser.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditAdvertiser.Enter += FormMain.Instance.Editor_Enter;
-			comboBoxEditDecisionMaker.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditDecisionMaker.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditDecisionMaker.Enter += FormMain.Instance.Editor_Enter;
-			spinEditMonthly.MouseUp += FormMain.Instance.Editor_MouseUp;
-			spinEditMonthly.MouseDown += FormMain.Instance.Editor_MouseDown;
-			spinEditMonthly.Enter += FormMain.Instance.Editor_Enter;
-			spinEditTotal.MouseUp += FormMain.Instance.Editor_MouseUp;
-			spinEditTotal.MouseDown += FormMain.Instance.Editor_MouseDown;
-			spinEditTotal.Enter += FormMain.Instance.Editor_Enter;
+			comboBoxEditAdvertiser.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditAdvertiser.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditAdvertiser.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditDecisionMaker.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditDecisionMaker.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditDecisionMaker.Enter += Utilities.Instance.Editor_Enter;
+			spinEditMonthly.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditMonthly.MouseDown += Utilities.Instance.Editor_MouseDown;
+			spinEditMonthly.Enter += Utilities.Instance.Editor_Enter;
+			spinEditTotal.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditTotal.MouseDown += Utilities.Instance.Editor_MouseDown;
+			spinEditTotal.Enter += Utilities.Instance.Editor_Enter;
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.SimpleSummaryLists.Headers);

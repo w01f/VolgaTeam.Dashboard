@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using NewBizWiz.Core.Dashboard;
 
 namespace NewBizWiz.Dashboard.TabHomeForms.Dashboard
 {
@@ -34,12 +35,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms.Dashboard
 
 		private void pbSellerPoint_Click(object sender, EventArgs e)
 		{
-			FormMain.Instance.ribbonTabItemRadio.Select();
+			AppManager.Instance.RunProcess(SettingsManager.Instance.RadioSchedulePath);
+			FormMain.Instance.Close();
 		}
 
 		private void pbOnline_Click(object sender, EventArgs e)
 		{
-			FormMain.Instance.ribbonTabItemOnline.Select();
+			AppManager.Instance.RunProcess(SettingsManager.Instance.DigitalSchedulePath);
+			FormMain.Instance.Close();
 		}
 	}
 }

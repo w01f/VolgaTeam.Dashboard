@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
 using NewBizWiz.Dashboard.TabHomeForms;
-using NewBizWiz.Dashboard.TabNewspaperForms;
-using NewBizWiz.Dashboard.TabOnlineForms;
-using NewBizWiz.Dashboard.TabRadioForms;
 using NewBizWiz.Dashboard.TabSlides;
-using NewBizWiz.Dashboard.TabTVForms;
 using NewBizWiz.Dashboard.ToolForms;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
@@ -25,6 +19,7 @@ namespace NewBizWiz.Dashboard
 	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
+
 		private FormMain()
 		{
 			_instance = this;
@@ -61,57 +56,13 @@ namespace NewBizWiz.Dashboard
 
 			var userName = Environment.UserName;
 			ribbonBarHomeOverview.Text = userName;
-			ribbonBarOnlineLogo.Text = userName;
-			ribbonBarNewspaperLogo.Text = userName;
-			ribbonBarTVLogo.Text = userName;
-			ribbonBarRadioLogo.Text = userName;
 			ribbonBarSlidesLogo.Text = userName;
 
 			var masterWizardLogo = Resources.RibbonLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
-			buttonItemOnlineLogo.Image = masterWizardLogo;
-			buttonItemNewspaperLogo.Image = masterWizardLogo;
-			buttonItemTVLogo.Image = masterWizardLogo;
-			buttonItemRadioLogo.Image = masterWizardLogo;
 			buttonItemSlidesLogo.Image = masterWizardLogo;
 			ribbonBarHomeOverview.RecalcLayout();
 			ribbonPanelHome.PerformLayout();
-		}
-
-		private void SetDashboardCode()
-		{
-			switch (Core.Common.SettingsManager.Instance.DashboardCode)
-			{
-				case "newspaper":
-					ribbonTabItemNewspaper.Visible = true;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = false;
-					break;
-				case "tv":
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					buttonItemTVScheduleBuilder.Image = Resources.TVLittle;
-					break;
-				case "radio":
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = true;
-					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
-					ribbonTabItemTV.Visible = false;
-					break;
-				case "cable":
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					buttonItemTVScheduleBuilder.Image = Resources.CableLittle;
-					break;
-			}
 		}
 		#endregion
 
@@ -121,8 +72,6 @@ namespace NewBizWiz.Dashboard
 			timer.Start();
 			Application.DoEvents();
 			ApplyMasterWizard();
-			Application.DoEvents();
-			SetDashboardCode();
 			Application.DoEvents();
 		}
 
@@ -153,18 +102,6 @@ namespace NewBizWiz.Dashboard
 				while (thread.IsAlive)
 					Application.DoEvents();
 				Init();
-				buttonItemNewspaperNew.Click += PrintScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-				buttonItemNewspaperOpen.Click += PrintScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-				buttonItemNewspaperDelete.Click += PrintScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-				buttonItemOnlineNew.Click += OnlineScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-				buttonItemOnlineOpen.Click += OnlineScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-				buttonItemOnlineDelete.Click += OnlineScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-				buttonItemTVNew.Click += TVScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-				buttonItemTVOpen.Click += TVScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-				buttonItemTVDelete.Click += TVScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-				buttonItemRadioNew.Click += RadioScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-				buttonItemRadioOpen.Click += RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-				buttonItemRadioDelete.Click += RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
 				buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 				buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
 				ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
@@ -223,34 +160,6 @@ namespace NewBizWiz.Dashboard
 					pnMain.Controls.Add(TabHomeMainPage.Instance);
 				TabHomeMainPage.Instance.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOnline)
-			{
-				TabOnlineMainPage.Instance.UpdatePageAccordingToggledButton();
-				if (!pnMain.Controls.Contains(TabOnlineMainPage.Instance))
-					pnMain.Controls.Add(TabOnlineMainPage.Instance);
-				TabOnlineMainPage.Instance.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemNewspaper)
-			{
-				TabNewspaperMainPage.Instance.UpdatePageAccordingToggledButton();
-				if (!pnMain.Controls.Contains(TabNewspaperMainPage.Instance))
-					pnMain.Controls.Add(TabNewspaperMainPage.Instance);
-				TabNewspaperMainPage.Instance.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemTV)
-			{
-				TabTVMainPage.Instance.UpdatePageAccordingToggledButton();
-				if (!pnMain.Controls.Contains(TabTVMainPage.Instance))
-					pnMain.Controls.Add(TabTVMainPage.Instance);
-				TabTVMainPage.Instance.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRadio)
-			{
-				TabRadioMainPage.Instance.UpdatePageAccordingToggledButton();
-				if (!pnMain.Controls.Contains(TabRadioMainPage.Instance))
-					pnMain.Controls.Add(TabRadioMainPage.Instance);
-				TabRadioMainPage.Instance.BringToFront();
-			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSlides)
 			{
 				if (!pnMain.Controls.Contains(TabSlidesMainPage.Instance))
@@ -273,13 +182,6 @@ namespace NewBizWiz.Dashboard
 		#endregion
 
 		#region Ribbon Buttons's Clicks Event Handlers
-		public void buttonItemFloater_Click(object sender, FloaterRequestedEventArgs e)
-		{
-			var formSender = sender as Form;
-			if (formSender.IsDisposed) return;
-			AppManager.Instance.ShowFloater(formSender, e);
-		}
-
 		public void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
@@ -321,14 +223,6 @@ namespace NewBizWiz.Dashboard
 			string helpKey = String.Empty;
 			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemHome)
 				helpKey = TabHomeMainPage.Instance.HelpKey;
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOnline)
-				helpKey = "Online";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemNewspaper)
-				helpKey = "Newspaper";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemTV)
-				helpKey = "TV";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRadio)
-				helpKey = "Radio";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSlides)
 				helpKey = "Slides";
 
@@ -350,35 +244,6 @@ namespace NewBizWiz.Dashboard
 		}
 		#endregion
 
-		#endregion
-
-		#region Select All in Editor Handlers
-		private bool enter;
-		private bool needSelect;
-
-		public void Editor_Enter(object sender, EventArgs e)
-		{
-			enter = true;
-			BeginInvoke(new MethodInvoker(ResetEnterFlag));
-		}
-
-		public void Editor_MouseUp(object sender, MouseEventArgs e)
-		{
-			if (needSelect)
-			{
-				(sender as BaseEdit).SelectAll();
-			}
-		}
-
-		public void Editor_MouseDown(object sender, MouseEventArgs e)
-		{
-			needSelect = enter;
-		}
-
-		private void ResetEnterFlag()
-		{
-			enter = false;
-		}
 		#endregion
 	}
 }

@@ -42,15 +42,15 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				textEditSalesQuoteAuthor.Font = new Font(textEditSalesQuoteAuthor.Font.FontFamily, textEditSalesQuoteAuthor.Font.Size - 2, textEditSalesQuoteAuthor.Font.Style);
 				memoEditSalesQuote.Font = new Font(memoEditSalesQuote.Font.FontFamily, memoEditSalesQuote.Font.Size - 2, memoEditSalesQuote.Font.Style);
 			}
-			comboBoxEditSlideHeader.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += FormMain.Instance.Editor_Enter;
-			comboBoxEditAdvertiser.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditAdvertiser.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditAdvertiser.Enter += FormMain.Instance.Editor_Enter;
-			comboBoxEditDecisionMaker.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditDecisionMaker.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditDecisionMaker.Enter += FormMain.Instance.Editor_Enter;
+			comboBoxEditSlideHeader.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditSlideHeader.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditSlideHeader.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditAdvertiser.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditAdvertiser.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditAdvertiser.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditDecisionMaker.MouseUp += Utilities.Instance.Editor_MouseUp;
+			comboBoxEditDecisionMaker.MouseDown += Utilities.Instance.Editor_MouseDown;
+			comboBoxEditDecisionMaker.Enter += Utilities.Instance.Editor_Enter;
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.CoverLists.Headers);

@@ -88,8 +88,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
-			if (!quickLoad)
-				MediaFullSummary.UpdateItems();
 			base.LoadData(quickLoad);
 		}
 

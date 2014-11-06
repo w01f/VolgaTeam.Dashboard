@@ -9,9 +9,9 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
-using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
+using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.OnlineSchedule.Single
+namespace NewBizWiz.OnlineSchedule.Controls.ToolForms
 {
 	public partial class FormOpenSchedule : MetroForm
 	{
@@ -54,7 +54,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 
 		private void barLargeButtonItemDelete_ItemClick(object sender, ItemClickEventArgs e)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Delete this Ad Schedule?") == DialogResult.Yes)
+			if (Utilities.Instance.ShowWarningQuestion("Delete this Schedule?") == DialogResult.Yes)
 			{
 				string fileName = _scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName;
 				try

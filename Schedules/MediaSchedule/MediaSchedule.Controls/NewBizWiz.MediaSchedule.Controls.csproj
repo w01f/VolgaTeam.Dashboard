@@ -267,9 +267,6 @@
     <None Include="Resources\Floater.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GridDetails.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Help.png" />
   </ItemGroup>
   <ItemGroup>

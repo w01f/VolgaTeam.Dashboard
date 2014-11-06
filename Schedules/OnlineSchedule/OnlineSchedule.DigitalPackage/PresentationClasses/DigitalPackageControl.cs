@@ -62,11 +62,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			get { return LocalSchedule.DigitalProducts.Select(p => p.PackageRecord).ToList(); }
 		}
 
-		public override ButtonItem OptionsButtons
-		{
-			get { return Controller.Instance.DigitalPackageOptions; }
-		}
-
 		public override ButtonItem Preview
 		{
 			get { return Controller.Instance.DigitalPackagePreview; }

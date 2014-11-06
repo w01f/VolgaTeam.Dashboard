@@ -47,7 +47,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
 			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
-			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
 			#region Rate Card Events
@@ -217,7 +216,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
 		public ButtonItem DigitalPackageTheme { get; set; }
-		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
 		#region Rate Card

@@ -60,7 +60,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
 			#endregion
 
 			#region Rate Card
@@ -95,7 +94,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 				styleController.AppearanceReadOnly.Font = font;
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageSettings.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonPanelDigitalPackage.PerformLayout();
 			}

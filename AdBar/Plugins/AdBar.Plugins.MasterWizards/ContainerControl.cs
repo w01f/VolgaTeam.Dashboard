@@ -173,47 +173,46 @@ namespace AdBar.Plugins.MasterWizards
 			buttonItemSize5.Checked = false;
 			(sender as ButtonItem).Checked = true;
 			SettingsManager.Instance.SaveSharedSettings();
+			AdBarPowerPointHelper.Instance.Disconnect();
 			AdBarPowerPointHelper.Instance.Connect(false);
 			AdBarPowerPointHelper.Instance.SetPresentationSettings();
 		}
 
 		private void buttonItemSize_CheckedChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave && (sender as ButtonItem).Checked)
+			if (!_allowToSave || !(sender as ButtonItem).Checked) return;
+			if (buttonItemSize1.Checked)
 			{
-				if (buttonItemSize1.Checked)
-				{
-					SettingsManager.Instance.SizeWidth = 10;
-					SettingsManager.Instance.SizeHeght = 7.5;
-					SettingsManager.Instance.Orientation = "Landscape";
-				}
-				else if (buttonItemSize2.Checked)
-				{
-					SettingsManager.Instance.SizeWidth = 10.75;
-					SettingsManager.Instance.SizeHeght = 8.25;
-					SettingsManager.Instance.Orientation = "Landscape";
-				}
-				else if (buttonItemSize3.Checked)
-				{
-					SettingsManager.Instance.SizeWidth = 13;
-					SettingsManager.Instance.SizeHeght = 7.32;
-					SettingsManager.Instance.Orientation = "Landscape";
-				}
-				else if (buttonItemSize4.Checked)
-				{
-					SettingsManager.Instance.SizeWidth = 7.5;
-					SettingsManager.Instance.SizeHeght = 10;
-					SettingsManager.Instance.Orientation = "Portrait";
-				}
-				else if (buttonItemSize5.Checked)
-				{
-					SettingsManager.Instance.SizeWidth = 8.25;
-					SettingsManager.Instance.SizeHeght = 10.75;
-					SettingsManager.Instance.Orientation = "Portrait";
-				}
-				if (StateChanged != null)
-					StateChanged(this, new AdBarControlStateEventArgs());
+				SettingsManager.Instance.SizeWidth = 10;
+				SettingsManager.Instance.SizeHeght = 7.5;
+				SettingsManager.Instance.Orientation = "Landscape";
 			}
+			else if (buttonItemSize2.Checked)
+			{
+				SettingsManager.Instance.SizeWidth = 10.75;
+				SettingsManager.Instance.SizeHeght = 8.25;
+				SettingsManager.Instance.Orientation = "Landscape";
+			}
+			else if (buttonItemSize3.Checked)
+			{
+				SettingsManager.Instance.SizeWidth = 13;
+				SettingsManager.Instance.SizeHeght = 7.32;
+				SettingsManager.Instance.Orientation = "Landscape";
+			}
+			else if (buttonItemSize4.Checked)
+			{
+				SettingsManager.Instance.SizeWidth = 7.5;
+				SettingsManager.Instance.SizeHeght = 10;
+				SettingsManager.Instance.Orientation = "Portrait";
+			}
+			else if (buttonItemSize5.Checked)
+			{
+				SettingsManager.Instance.SizeWidth = 8.25;
+				SettingsManager.Instance.SizeHeght = 10.75;
+				SettingsManager.Instance.Orientation = "Portrait";
+			}
+			if (StateChanged != null)
+				StateChanged(this, new AdBarControlStateEventArgs());
 		}
 
 		private void comboBoxEditStyle_EditValueChanging(object sender, ChangingEventArgs e)

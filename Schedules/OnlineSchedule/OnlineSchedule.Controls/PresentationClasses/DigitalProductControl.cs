@@ -87,7 +87,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
-			if (control.GetType() != typeof(TextEdit) && control.GetType() != typeof(MemoEdit) && control.GetType() != typeof(ComboBoxEdit) && control.GetType() != typeof(LookUpEdit) && control.GetType() != typeof(DateEdit) && control.GetType() != typeof(CheckedListBoxControl) && control.GetType() != typeof(SpinEdit) && control.GetType() != typeof(CheckEdit))
+			if (control.GetType() != typeof(TextEdit) && 
+				control.GetType() != typeof(MemoEdit) && 
+				control.GetType() != typeof(ComboBoxEdit) && 
+				control.GetType() != typeof(LookUpEdit) && 
+				control.GetType() != typeof(DateEdit) && 
+				control.GetType() != typeof(CheckedListBoxControl) && 
+				control.GetType() != typeof(SpinEdit) && 
+				control.GetType() != typeof(CheckEdit))
 			{
 				foreach (Control childControl in control.Controls)
 					AssignCloseActiveEditorsonOutSideClick(childControl);

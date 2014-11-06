@@ -1,6 +1,6 @@
 ﻿using DevComponents.DotNetBar.Metro;
 
-namespace NewBizWiz.OnlineSchedule.Single
+namespace NewBizWiz.OnlineSchedule.Controls.ToolForms
 {
 	public partial class FormStart : MetroForm
 	{

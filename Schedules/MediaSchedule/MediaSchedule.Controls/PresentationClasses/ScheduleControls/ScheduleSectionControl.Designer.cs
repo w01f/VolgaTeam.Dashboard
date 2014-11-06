@@ -442,7 +442,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.bandedGridColumnDaypart.AppearanceCell.Options.UseTextOptions = true;
 			this.bandedGridColumnDaypart.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.bandedGridColumnDaypart.AutoFillDown = true;
-			this.bandedGridColumnDaypart.Caption = "DP";
+			this.bandedGridColumnDaypart.Caption = "Daypart";
 			this.bandedGridColumnDaypart.ColumnEdit = this.repositoryItemComboBoxDayparts;
 			this.bandedGridColumnDaypart.FieldName = "Daypart";
 			this.bandedGridColumnDaypart.MinWidth = 39;
@@ -1539,7 +1539,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// checkEditOutputLimitPeriods
 			// 
 			this.checkEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 390);
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 389);
 			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
 			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
 			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
@@ -2023,7 +2023,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// xtraTabPageDataSpecs
 			// 
 			this.xtraTabPageDataSpecs.Name = "xtraTabPageDataSpecs";
-			this.xtraTabPageDataSpecs.Size = new System.Drawing.Size(826, 519);
+			this.xtraTabPageDataSpecs.Size = new System.Drawing.Size(826, 544);
 			this.xtraTabPageDataSpecs.Text = "Pre-Buy Specs";
 			// 
 			// ScheduleSectionControl

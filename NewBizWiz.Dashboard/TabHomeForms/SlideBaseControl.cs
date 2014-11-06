@@ -73,7 +73,18 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			ThemeButton.Visible = true;
 			FormThemeSelector.Link(ThemeButton, themes, SettingsManager.Instance.GetSelectedTheme(slideType).Name, (t =>
 			{
-				SettingsManager.Instance.SetSelectedTheme(slideType, t.Name);
+				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.Cleanslate).Any(slideTheme => slideTheme.Name == t.Name))
+					SettingsManager.Instance.SetSelectedTheme(SlideType.Cleanslate, t.Name);
+				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.Cover).Any(slideTheme => slideTheme.Name == t.Name))
+					SettingsManager.Instance.SetSelectedTheme(SlideType.Cover, t.Name);
+				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.LeadoffStatement).Any(slideTheme => slideTheme.Name == t.Name))
+					SettingsManager.Instance.SetSelectedTheme(SlideType.LeadoffStatement, t.Name);
+				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.ClientGoals).Any(slideTheme => slideTheme.Name == t.Name))
+					SettingsManager.Instance.SetSelectedTheme(SlideType.ClientGoals, t.Name);
+				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.TargetCustomers).Any(slideTheme => slideTheme.Name == t.Name))
+					SettingsManager.Instance.SetSelectedTheme(SlideType.TargetCustomers, t.Name);
+				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.SimpleSummary).Any(slideTheme => slideTheme.Name == t.Name))
+					SettingsManager.Instance.SetSelectedTheme(SlideType.SimpleSummary, t.Name);
 				SettingsManager.Instance.SaveDashboardSettings();
 			}));
 			if (!themes.Any())

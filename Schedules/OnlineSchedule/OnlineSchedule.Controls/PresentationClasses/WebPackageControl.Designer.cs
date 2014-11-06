@@ -47,7 +47,6 @@
 			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnButtons = new System.Windows.Forms.Panel();
 			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXInfo = new DevComponents.DotNetBar.ButtonX();
@@ -99,9 +98,8 @@
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
+			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
-			this.splitContainerControl.SuspendLayout();
 			this.pnButtons.SuspendLayout();
 			this.pnFormula.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).BeginInit();
@@ -122,6 +120,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).BeginInit();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
+			this.retractableBar.Content.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -138,28 +137,6 @@
 			this.styleController.AppearanceFocused.Options.UseFont = true;
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
-			// splitContainerControl
-			// 
-			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.White;
-			this.splitContainerControl.Appearance.Options.UseBackColor = true;
-			this.splitContainerControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-			this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
-			this.splitContainerControl.Name = "splitContainerControl";
-			this.splitContainerControl.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-			this.splitContainerControl.Panel1.Controls.Add(this.pnButtons);
-			this.splitContainerControl.Panel1.Controls.Add(this.pnFormula);
-			this.splitContainerControl.Panel1.MinSize = 230;
-			this.splitContainerControl.Panel1.Text = "Panel1";
-			this.splitContainerControl.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-			this.splitContainerControl.Panel2.Controls.Add(this.pnData);
-			this.splitContainerControl.Panel2.Controls.Add(this.pnHeader);
-			this.splitContainerControl.Panel2.Text = "Panel2";
-			this.splitContainerControl.Size = new System.Drawing.Size(1033, 587);
-			this.splitContainerControl.SplitterPosition = 230;
-			this.splitContainerControl.TabIndex = 101;
-			this.splitContainerControl.Text = "splitContainerControl1";
 			// 
 			// pnButtons
 			// 
@@ -333,7 +310,7 @@
 			this.pnFormula.Controls.Add(this.checkEditFormulaInvestment);
 			this.pnFormula.Controls.Add(this.checkEditFormulaImpressions);
 			this.pnFormula.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnFormula.Location = new System.Drawing.Point(0, 334);
+			this.pnFormula.Location = new System.Drawing.Point(0, 298);
 			this.pnFormula.Name = "pnFormula";
 			this.pnFormula.Size = new System.Drawing.Size(226, 245);
 			this.pnFormula.TabIndex = 54;
@@ -403,7 +380,7 @@
 			this.checkEditFormulaCPM.Properties.Caption = "<b>CPM</b><br>Investment / (Impressions / 10)";
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaCPM.Size = new System.Drawing.Size(207, 36);
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(207, 19);
 			toolTipItem4.Text = "Type Impressions and Investment";
 			superToolTip4.Items.Add(toolTipItem4);
 			this.checkEditFormulaCPM.SuperTip = superToolTip4;
@@ -437,7 +414,7 @@
 			this.checkEditFormulaInvestment.Properties.Caption = "<b>Investment</b><br>(Impressions  x 10%) / CPM";
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(207, 36);
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(207, 19);
 			toolTipItem5.Text = "Type Impressions and CPM";
 			superToolTip5.Items.Add(toolTipItem5);
 			this.checkEditFormulaInvestment.SuperTip = superToolTip5;
@@ -471,7 +448,7 @@
 			this.checkEditFormulaImpressions.Properties.Caption = "<b>Impressions</b><br>(CPM x Investment x 10)";
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(207, 36);
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(207, 19);
 			toolTipItem6.Text = "Type CPM and Investment";
 			superToolTip6.Items.Add(toolTipItem6);
 			this.checkEditFormulaImpressions.SuperTip = superToolTip6;
@@ -485,13 +462,14 @@
 			this.pnData.Controls.Add(this.gridControl);
 			this.pnData.Controls.Add(this.pbDisabledOutput);
 			this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnData.Location = new System.Drawing.Point(0, 30);
+			this.pnData.Location = new System.Drawing.Point(230, 42);
 			this.pnData.Name = "pnData";
-			this.pnData.Size = new System.Drawing.Size(783, 549);
+			this.pnData.Size = new System.Drawing.Size(803, 545);
 			this.pnData.TabIndex = 5;
 			// 
 			// gridControl
 			// 
+			this.gridControl.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControl.Location = new System.Drawing.Point(0, 0);
 			this.gridControl.MainView = this.advBandedGridView;
@@ -504,7 +482,7 @@
             this.repositoryItemComboBoxCategory,
             this.repositoryItemComboBoxGroup,
             this.repositoryItemComboBoxProduct});
-			this.gridControl.Size = new System.Drawing.Size(783, 549);
+			this.gridControl.Size = new System.Drawing.Size(803, 545);
 			this.gridControl.TabIndex = 4;
 			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -888,7 +866,7 @@
 			this.pbDisabledOutput.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.DigitalPackageDisabled;
 			this.pbDisabledOutput.Location = new System.Drawing.Point(0, 0);
 			this.pbDisabledOutput.Name = "pbDisabledOutput";
-			this.pbDisabledOutput.Size = new System.Drawing.Size(783, 549);
+			this.pbDisabledOutput.Size = new System.Drawing.Size(803, 545);
 			this.pbDisabledOutput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbDisabledOutput.TabIndex = 5;
 			this.pbDisabledOutput.TabStop = false;
@@ -901,16 +879,16 @@
 			this.pnHeader.Controls.Add(this.hyperLinkEditReset);
 			this.pnHeader.Controls.Add(this.laAdvertiser);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 0);
+			this.pnHeader.Location = new System.Drawing.Point(230, 0);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(783, 30);
+			this.pnHeader.Size = new System.Drawing.Size(803, 42);
 			this.pnHeader.TabIndex = 3;
 			// 
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(713, 4);
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(733, 10);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.AllowFocused = false;
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -934,21 +912,43 @@
 			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
 			this.laAdvertiser.Location = new System.Drawing.Point(0, 0);
 			this.laAdvertiser.Name = "laAdvertiser";
-			this.laAdvertiser.Size = new System.Drawing.Size(300, 30);
+			this.laAdvertiser.Size = new System.Drawing.Size(300, 42);
 			this.laAdvertiser.TabIndex = 2;
 			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// retractableBar
+			// 
+			this.retractableBar.BackColor = System.Drawing.Color.Transparent;
+			// 
+			// retractableBar.Content
+			// 
+			this.retractableBar.Content.Controls.Add(this.pnButtons);
+			this.retractableBar.Content.Controls.Add(this.pnFormula);
+			this.retractableBar.Content.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.retractableBar.Content.Location = new System.Drawing.Point(2, 42);
+			this.retractableBar.Content.Name = "Content";
+			this.retractableBar.Content.Size = new System.Drawing.Size(226, 543);
+			this.retractableBar.Content.TabIndex = 1;
+			this.retractableBar.ContentSize = 230;
+			this.retractableBar.Dock = System.Windows.Forms.DockStyle.Left;
+			this.retractableBar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.retractableBar.Location = new System.Drawing.Point(0, 0);
+			this.retractableBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.retractableBar.Name = "retractableBar";
+			this.retractableBar.Size = new System.Drawing.Size(230, 587);
+			this.retractableBar.TabIndex = 102;
 			// 
 			// WebPackageControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.splitContainerControl);
+			this.Controls.Add(this.pnData);
+			this.Controls.Add(this.pnHeader);
+			this.Controls.Add(this.retractableBar);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "WebPackageControl";
 			this.Size = new System.Drawing.Size(1033, 587);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
-			this.splitContainerControl.ResumeLayout(false);
 			this.pnButtons.ResumeLayout(false);
 			this.pnFormula.ResumeLayout(false);
 			this.pnFormula.PerformLayout();
@@ -970,6 +970,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).EndInit();
 			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
+			this.retractableBar.Content.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -998,7 +999,6 @@
 		protected System.Windows.Forms.Panel pnHeader;
 		protected System.Windows.Forms.Label laAdvertiser;
 		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
-		protected DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditImpressions;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditInvestment;
@@ -1029,6 +1029,7 @@
 		private DevExpress.Utils.ToolTipController toolTipController;
 		protected System.Windows.Forms.PictureBox pbDisabledOutput;
 		protected System.Windows.Forms.PictureBox pbFormualHelp;
+		private CommonGUI.RetractableBar.RetractableBarLeft retractableBar;
 
     }
 }

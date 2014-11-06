@@ -98,7 +98,6 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
 			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
-			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
 			#region AdPlan
@@ -251,6 +250,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
 			TabAdPlan.Enabled = enable;
 			TabSummaryLight.Enabled = enable;
+			TabSummaryFull.Enabled = enable;
 		}
 
 		public void UpdateOutputButtonsAccordingThemeStatus()
@@ -415,7 +415,6 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
 		public ButtonItem DigitalPackageTheme { get; set; }
-		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
 		#region AdPlan

@@ -171,7 +171,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
 			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
-			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
 			#region Summaries
@@ -729,7 +728,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
 		public ButtonItem DigitalPackageTheme { get; set; }
-		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
 		#region Basic Overview

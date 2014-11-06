@@ -658,9 +658,6 @@
     <None Include="Resources\SharePageBig.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GridDetails.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">
       <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
       <Name>NewBizWiz.CommonGUI</Name>

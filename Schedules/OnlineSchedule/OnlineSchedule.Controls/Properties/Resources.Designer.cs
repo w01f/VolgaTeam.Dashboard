@@ -153,6 +153,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap DeleteSchedule {
+            get {
+                object obj = ResourceManager.GetObject("DeleteSchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap DigitalPackageDisabled {
             get {
                 object obj = ResourceManager.GetObject("DigitalPackageDisabled", resourceCulture);

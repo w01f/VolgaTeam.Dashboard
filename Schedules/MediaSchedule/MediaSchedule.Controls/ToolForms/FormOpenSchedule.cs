@@ -56,7 +56,7 @@ namespace NewBizWiz.MediaSchedule.Controls.ToolForms
 
 		private void barLargeButtonItemDelete_ItemClick(object sender, ItemClickEventArgs e)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Delete this Ad Schedule?") == DialogResult.Yes)
+			if (Utilities.Instance.ShowWarningQuestion("Delete this Schedule?") == DialogResult.Yes)
 			{
 				string fileName = _scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName;
 				try

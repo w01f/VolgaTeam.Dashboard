@@ -197,11 +197,23 @@
     <Compile Include="ToolForms\FormGridType.Designer.cs">
       <DependentUpon>FormGridType.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormOpenSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormOpenSchedule.Designer.cs">
+      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormProductInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ToolForms\FormProductInfo.Designer.cs">
       <DependentUpon>FormProductInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.Designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="PresentationClasses\AdPlan\AdPlanControl.resx">
       <DependentUpon>AdPlanControl.cs</DependentUpon>
@@ -252,8 +264,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ToolForms\FormOpenSchedule.resx">
+      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProductInfo.resx">
       <DependentUpon>FormProductInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
   </ItemGroup>
@@ -421,6 +439,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteSchedule.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

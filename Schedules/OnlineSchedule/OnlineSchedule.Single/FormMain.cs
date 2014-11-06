@@ -13,6 +13,7 @@ using NewBizWiz.OnlineSchedule.Controls;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
+using NewBizWiz.OnlineSchedule.Controls.ToolForms;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.OnlineSchedule.Single
@@ -81,7 +82,6 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
 			#endregion
 
 			#region AdPlan
@@ -197,7 +197,6 @@ namespace NewBizWiz.OnlineSchedule.Single
 				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageSettings.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonBarAdPlanEmail.RecalcLayout();
 				ribbonBarAdPlanExit.RecalcLayout();

@@ -119,7 +119,6 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
 			#endregion
 
 			#region Calendar 1
@@ -266,7 +265,6 @@ namespace NewBizWiz.MediaSchedule.Single
 				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageSettings.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonPanelDigitalSlides.PerformLayout();
 				ribbonPanelHome.PerformLayout();

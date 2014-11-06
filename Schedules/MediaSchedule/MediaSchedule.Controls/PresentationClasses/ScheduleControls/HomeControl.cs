@@ -410,15 +410,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					_localSchedule.Demo = comboBoxEditDemos.EditValue as String;
 				}
 
-				_localSchedule.Section.ShowRating = _localSchedule.Section.ShowRating & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.Section.ShowCPP = _localSchedule.Section.ShowCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.Section.ShowGRP = _localSchedule.Section.ShowGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.Section.ShowTotalCPP = _localSchedule.Section.ShowTotalCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.Section.ShowTotalGRP = _localSchedule.Section.ShowTotalGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-
 				if (!quickSave)
 				{
-					_localSchedule.Section.RebuildSpots();
+					_localSchedule.RebuildSectionSpots();
 				}
 			}
 			else
@@ -431,8 +425,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType != _loadedScheduleType)
 			{
 				_localSchedule.ResetSection();
+				_loadedScheduleType = _localSchedule.SelectedSpotType;
 				quickSave = false;
 			}
+
+			_localSchedule.Section.ShowRating = _localSchedule.Section.ShowRating & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+			_localSchedule.Section.ShowCPP = _localSchedule.Section.ShowCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+			_localSchedule.Section.ShowGRP = _localSchedule.Section.ShowGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+			_localSchedule.Section.ShowTotalCPP = _localSchedule.Section.ShowTotalCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+			_localSchedule.Section.ShowTotalGRP = _localSchedule.Section.ShowTotalGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 
 			if (stationsControl.HasChanged)
 			{

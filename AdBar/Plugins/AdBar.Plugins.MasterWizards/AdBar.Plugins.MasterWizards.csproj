@@ -63,7 +63,9 @@
     <Compile Include="ContainerControl.Designer.cs">
       <DependentUpon>ContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFormatChangeNotification.cs" />
+    <Compile Include="FormFormatChangeNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFormatChangeNotification.Designer.cs">
       <DependentUpon>FormFormatChangeNotification.cs</DependentUpon>
     </Compile>

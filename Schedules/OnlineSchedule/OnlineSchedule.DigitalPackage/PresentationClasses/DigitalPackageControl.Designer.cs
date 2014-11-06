@@ -28,15 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.comboBoxEditAdvertiser = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.scheduleListControl = new NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses.ScheduleListControl();
 			this.laLastModified = new System.Windows.Forms.Label();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
-			this.splitContainerControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
@@ -68,12 +65,6 @@
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Visible = false;
 			// 
-			// splitContainerControl
-			// 
-			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.splitContainerControl.Appearance.Options.UseBackColor = true;
-			this.splitContainerControl.Panel1.Controls.Add(this.scheduleListControl);
-			// 
 			// pbFormualHelp
 			// 
 			this.pbFormualHelp.Image = global::NewBizWiz.OnlineSchedule.DigitalPackage.Properties.Resources.HelpSmall;
@@ -96,7 +87,7 @@
 			// 
 			// comboBoxEditAdvertiser
 			// 
-			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(3, 4);
+			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(3, 10);
 			this.comboBoxEditAdvertiser.Name = "comboBoxEditAdvertiser";
 			this.comboBoxEditAdvertiser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -124,9 +115,9 @@
 			// laLastModified
 			// 
 			this.laLastModified.Dock = System.Windows.Forms.DockStyle.Right;
-			this.laLastModified.Location = new System.Drawing.Point(491, 0);
+			this.laLastModified.Location = new System.Drawing.Point(503, 0);
 			this.laLastModified.Name = "laLastModified";
-			this.laLastModified.Size = new System.Drawing.Size(300, 30);
+			this.laLastModified.Size = new System.Drawing.Size(300, 42);
 			this.laLastModified.TabIndex = 104;
 			this.laLastModified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
@@ -137,8 +128,6 @@
 			this.Name = "DigitalPackageControl";
 			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
-			this.splitContainerControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();

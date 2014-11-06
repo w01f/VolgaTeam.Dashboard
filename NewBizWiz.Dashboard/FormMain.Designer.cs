@@ -178,7 +178,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(681, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(649, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(94, 130);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -220,7 +220,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeFloater});
 			this.ribbonBarHomeFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(593, 0);
+			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(561, 0);
 			this.ribbonBarHomeFloater.Name = "ribbonBarHomeFloater";
 			this.ribbonBarHomeFloater.Size = new System.Drawing.Size(88, 130);
 			this.ribbonBarHomeFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -261,7 +261,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeHelp});
 			this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(517, 0);
+			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(485, 0);
 			this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
 			this.ribbonBarHomeHelp.Size = new System.Drawing.Size(76, 130);
 			this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -302,7 +302,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeLoad.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeLoad});
 			this.ribbonBarHomeLoad.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeLoad.Location = new System.Drawing.Point(423, 0);
+			this.ribbonBarHomeLoad.Location = new System.Drawing.Point(391, 0);
 			this.ribbonBarHomeLoad.Name = "ribbonBarHomeLoad";
 			this.ribbonBarHomeLoad.Size = new System.Drawing.Size(94, 130);
 			this.ribbonBarHomeLoad.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -350,7 +350,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarPowerPoint.Location = new System.Drawing.Point(291, 0);
 			this.ribbonBarPowerPoint.Name = "ribbonBarPowerPoint";
-			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(132, 130);
+			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(100, 130);
 			this.ribbonBarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarPowerPoint.TabIndex = 20;
 			this.ribbonBarPowerPoint.Text = "PowerPoint";

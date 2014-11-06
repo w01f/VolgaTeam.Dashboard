@@ -187,6 +187,8 @@ namespace NewBizWiz.Core.AdSchedule
 		{
 			ClientType = string.Empty;
 			AccountNumber = string.Empty;
+			ClientType = ListManager.Instance.ClientTypes.FirstOrDefault();
+			PresentationDate = DateTime.Now;
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
 			PrintProducts = new List<PrintProduct>();
 			DigitalProducts = new List<DigitalProduct>();
@@ -2367,6 +2369,8 @@ namespace NewBizWiz.Core.AdSchedule
 						break;
 				}
 			}
+			if (IsDefaultSate)
+				UpdateItems();
 		}
 
 		public void UpdateItems()

@@ -67,7 +67,16 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
-			if (control.GetType() == typeof(TextEdit) || control.GetType() == typeof(MemoEdit) || control.GetType() == typeof(ComboBoxEdit) || control.GetType() == typeof(LookUpEdit) || control.GetType() == typeof(DateEdit) || control.GetType() == typeof(CheckedListBoxControl) || control.GetType() == typeof(SpinEdit) || control.GetType() == typeof(CheckEdit) || control.GetType() == typeof(ImageListBoxControl)) return;
+			if (control.GetType() == typeof(TextEdit) || 
+				control.GetType() == typeof(MemoEdit) || 
+				control.GetType() == typeof(ComboBoxEdit) || 
+				control.GetType() == typeof(LookUpEdit) || 
+				control.GetType() == typeof(DateEdit) || 
+				control.GetType() == typeof(CheckedListBoxControl) || 
+				control.GetType() == typeof(SpinEdit) || 
+				control.GetType() == typeof(CheckEdit) || 
+				control.GetType() == typeof(ImageListBoxControl)) 
+				return;
 			control.Click += CloseActiveEditorsonOutSideClick;
 			foreach (Control childControl in control.Controls)
 				AssignCloseActiveEditorsonOutSideClick(childControl);

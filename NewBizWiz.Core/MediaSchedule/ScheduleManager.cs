@@ -177,6 +177,9 @@ namespace NewBizWiz.Core.MediaSchedule
 		private DateTime? _userFlightDateStart;
 		private DateTime? _userFlightDateEnd;
 
+		private ScheduleSection _weeklySection;
+		private ScheduleSection _monthlySection;
+
 		protected Schedule()
 		{
 			BusinessName = string.Empty;
@@ -189,6 +192,10 @@ namespace NewBizWiz.Core.MediaSchedule
 			ImportDemo = false;
 			DemoType = DemoType.Imp;
 			MondayBased = true;
+
+			_weeklySection = new WeeklySection(this);
+			_monthlySection = new MonthlySection(this);
+
 			ResetSection();
 
 			Dayparts = new List<Daypart>();
@@ -215,7 +222,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool MondayBased { get; private set; }
 
 		public SpotType SelectedSpotType { get; set; }
-		public ScheduleSection Section { get; set; }
+		public ScheduleSection Section { get; private set; }
 		public List<Daypart> Dayparts { get; private set; }
 		public List<Station> Stations { get; private set; }
 
@@ -414,17 +421,24 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (node != null)
 				if (int.TryParse(node.InnerText, out tempInt))
 					SelectedSpotType = (SpotType)tempInt;
-			ResetSection();
 
 			node = rootNode.SelectSingleNode(@"WeeklySection");
-			if (node != null && SelectedSpotType == SpotType.Week)
-				Section.Deserialize(node);
+			if (node != null)
+				_weeklySection.Deserialize(node);
+
 			node = rootNode.SelectSingleNode(@"MonthlySection");
-			if (node != null && SelectedSpotType == SpotType.Month)
-				Section.Deserialize(node);
+			if (node != null)
+				_monthlySection.Deserialize(node);
+
 			node = rootNode.SelectSingleNode(@"Section");
 			if (node != null)
-				Section.Deserialize(node);
+			{
+				if (SelectedSpotType == SpotType.Week)
+					_weeklySection.Deserialize(node);
+				else if (SelectedSpotType == SpotType.Month)
+					_monthlySection.Deserialize(node);
+			}
+			ResetSection();
 
 			node = rootNode.SelectSingleNode(@"Dayparts");
 			if (node != null)
@@ -467,7 +481,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
 			Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
 			Common.ListManager.Instance.DecisionMakers.Save();
-	
+
 			result.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			result.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
 			result.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
@@ -490,7 +504,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (!String.IsNullOrEmpty(Source))
 				result.AppendLine(@"<Source>" + Source.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Source>");
 			result.AppendLine(@"<SelectedSpotType>" + (Int32)SelectedSpotType + @"</SelectedSpotType>");
-			result.AppendLine(@"<Section>" + Section.Serialize() + @"</Section>");
+			result.AppendLine(@"<WeeklySection>" + _weeklySection.Serialize() + @"</WeeklySection>");
+			result.AppendLine(@"<MonthlySection>" + _monthlySection.Serialize() + @"</MonthlySection>");
 
 			result.AppendLine(@"<Dayparts>");
 			foreach (var daypart in Dayparts)
@@ -515,7 +530,27 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public void ResetSection()
 		{
-			Section = ScheduleSection.GetSectionByType(this);
+			switch (SelectedSpotType)
+			{
+				case SpotType.Week:
+					if (_weeklySection == null)
+						_weeklySection = ScheduleSection.GetSectionByType(this);
+					Section = _weeklySection;
+					break;
+				case SpotType.Month:
+					if (_monthlySection == null)
+						_monthlySection = ScheduleSection.GetSectionByType(this);
+					Section = _monthlySection;
+					break;
+			}
+		}
+
+		public void RebuildSectionSpots()
+		{
+			if (_weeklySection != null)
+				_weeklySection.RebuildSpots();
+			if (_monthlySection != null)
+				_monthlySection.RebuildSpots();
 		}
 
 		protected void LoadQuarters()
@@ -2415,6 +2450,8 @@ namespace NewBizWiz.Core.MediaSchedule
 						break;
 				}
 			}
+			if (IsDefaultSate)
+				UpdateItems();
 		}
 
 		public void UpdateItems()

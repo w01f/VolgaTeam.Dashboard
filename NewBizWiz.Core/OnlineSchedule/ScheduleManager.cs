@@ -165,12 +165,14 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			ClientType = string.Empty;
 			AccountNumber = string.Empty;
+			ClientType = AdSchedule.ListManager.Instance.ClientTypes.FirstOrDefault();
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
+			PresentationDate = DateTime.Now;
 			DigitalProducts = new List<DigitalProduct>();
 			ViewSettings = new ScheduleBuilderViewSettings();
 			DigitalProductSummary = new DigitalProductSummary();
 			ProductSummary = new BaseSummarySettings();
-			CustomSummary = new CustomSummarySettings();
+			CustomSummary = new DigitalFullSummarySettings();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -1837,5 +1839,59 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public Image Logo { get; set; }
 		public string TooltipTitle { get; set; }
 		public string TooltipValue { get; set; }
+	}
+
+	public class DigitalFullSummarySettings : CustomSummarySettings
+	{
+		public bool IsDefaultSate { get; set; }
+
+		public DigitalFullSummarySettings()
+		{
+			IsDefaultSate = true;
+		}
+
+		public override string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(base.Serialize());
+			result.AppendLine(@"<IsDefaultSate>" + IsDefaultSate + @"</IsDefaultSate>");
+			return result.ToString();
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			base.Deserialize(node);
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "IsDefaultSate":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								IsDefaultSate = temp;
+						}
+						break;
+				}
+			}
+			if (IsDefaultSate)
+				UpdateItems();
+		}
+
+		public void UpdateItems()
+		{
+			if (!IsDefaultSate) return;
+			if (Items.Count != 2) return;
+			foreach (var item in Items)
+			{
+				item.ShowValue = true;
+				item.Value = String.Format("Digital Product {0}", item.Order + 1);
+				item.ShowDescription = true;
+				item.ShowMonthly = false;
+				item.Monthly = null;
+				item.ShowTotal = false;
+				item.Total = null;
+			}
+		}
 	}
 }

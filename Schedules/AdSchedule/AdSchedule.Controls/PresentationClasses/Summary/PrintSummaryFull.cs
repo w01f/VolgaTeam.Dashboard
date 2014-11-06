@@ -76,8 +76,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
-			if (!quickLoad)
-				AdFullSummary.UpdateItems();
 			base.LoadData(quickLoad);
 		}
 

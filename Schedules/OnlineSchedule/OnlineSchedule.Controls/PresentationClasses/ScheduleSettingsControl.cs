@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
@@ -68,18 +70,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
-			if (control != Controller.Instance.HomeBusinessName
-				&& control != Controller.Instance.HomeClientType
-				&& control != Controller.Instance.HomeDecisionMaker
-				&& control != Controller.Instance.HomeAccountNumberText
-				&& control != Controller.Instance.HomeFlightDatesEnd
-				&& control != Controller.Instance.HomeFlightDatesStart
-				&& control != Controller.Instance.HomePresentationDate
-				&& control != Controller.Instance.RateCardCombo
-				&& control != Controller.Instance.Gallery1Sections
-				&& control != Controller.Instance.Gallery1Groups
-				&& control != Controller.Instance.Gallery2Sections
-				&& control != Controller.Instance.Gallery2Groups)
+			if (control.GetType() != typeof(CheckEdit)
+				&& control.GetType() != typeof(SpinEdit)
+				&& control.GetType() != typeof(DateEdit)
+				&& control.GetType() != typeof(TextEdit)
+				&& control.GetType() != typeof(ImageListBoxControl)
+				&& control.GetType() != typeof(CheckedListBoxControl)
+				&& control.GetType() != typeof(ComboBoxEdit)
+				&& control.GetType() != typeof(TabbedDateEdit)
+				&& control.GetType() != typeof(TabbedCombobox)
+				&& control.GetType() != typeof(ComboBoxListEdit))
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)

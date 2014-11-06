@@ -1264,7 +1264,7 @@
 			this.buttonItemGridEmail.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemGridEmail.Image")));
 			this.buttonItemGridEmail.Name = "buttonItemGridEmail";
 			this.buttonItemGridEmail.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemGridEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemGridEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email Slide", "", "Send this Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarGridPreview
 			// 
@@ -1719,7 +1719,7 @@
 			this.buttonItemCalendarEmail.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemCalendarEmail.Image")));
 			this.buttonItemCalendarEmail.Name = "buttonItemCalendarEmail";
 			this.buttonItemCalendarEmail.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemCalendarEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email Slide", "", "Send this Calendar as an Email Attachment", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarCalendarPreview
 			// 

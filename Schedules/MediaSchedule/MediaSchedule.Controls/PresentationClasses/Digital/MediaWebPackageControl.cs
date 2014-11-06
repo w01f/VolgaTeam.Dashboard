@@ -50,10 +50,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 		{
 			get { return LocalSchedule.DigitalProducts.OrderBy(p => p.Index).Select(p => p.PackageRecord).ToList(); }
 		}
-		public override ButtonItem OptionsButtons
-		{
-			get { return Controller.Instance.DigitalPackageOptions; }
-		}
 
 		public override ButtonItem Preview
 		{

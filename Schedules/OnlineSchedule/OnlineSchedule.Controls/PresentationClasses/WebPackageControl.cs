@@ -8,7 +8,6 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Utils;
-using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
@@ -60,13 +59,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				pbFormualHelp.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 				pnFormula.Parent = null;
 				Controls.Add(pnFormula);
-				pnFormula.BorderStyle = BorderStyle.Fixed3D;
 				pnFormula.Dock = DockStyle.Bottom;
 				pnFormula.Height = pbFormula.Height + 20;
-				splitContainerControl.BorderStyle = BorderStyles.Style3D;
-				splitContainerControl.BringToFront();
 				pnFormula.SendToBack();
 			}
+			retractableBar.StateChanged += retractableBar_StateChanged;
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -113,7 +110,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public virtual ISchedule Schedule { get; private set; }
 		public virtual DigitalPackageSettings Settings { get; private set; }
 		public virtual IEnumerable<ProductPackageRecord> PackageRecords { get; private set; }
-		public virtual ButtonItem OptionsButtons { get; private set; }
 		public virtual ButtonItem Preview { get; private set; }
 		public virtual ButtonItem PowerPoint { get; private set; }
 		public virtual ButtonItem Email { get; private set; }
@@ -182,7 +178,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			Settings.ShowGroup &= PackageRecords.Any(r => !String.IsNullOrEmpty(r.SubCategory));
 
-			OptionsButtons.Checked = Settings.ShowOptions;
+			if (Settings.ShowOptions)
+				retractableBar.Expand(true);
+			else
+				retractableBar.Collapse(true);
 			buttonXCategory.Checked = Settings.ShowCategory;
 			buttonXGroup.Checked = Settings.ShowGroup;
 			buttonXProduct.Checked = Settings.ShowProduct;
@@ -215,7 +214,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void SaveSettings()
 		{
-			Settings.ShowOptions = OptionsButtons.Checked;
 			Settings.ShowCategory = buttonXCategory.Checked;
 			Settings.ShowGroup = buttonXGroup.Checked;
 			Settings.ShowProduct = buttonXProduct.Checked;
@@ -237,7 +235,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		private void UpdateControls()
 		{
 			advBandedGridView.PostEditor();
-			splitContainerControl.PanelVisibility = Settings.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
 			pnFormula.Enabled = Settings.ShowInvestment && Settings.ShowImpressions && Settings.ShowCPM;
 			pbFormula.Image = pnFormula.Enabled ? Resources.FormulaLogo : Resources.FormulaLogoDisabled;
 			UpdateGridColumns();
@@ -520,12 +517,17 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void TogledButton_CheckedChanged(object sender, EventArgs e)
 		{
-			if (AllowApplyValues)
-			{
-				SaveSettings();
-				UpdateControls();
-				SettingsNotSaved = true;
-			}
+			if (!AllowApplyValues) return;
+			SaveSettings();
+			UpdateControls();
+			SettingsNotSaved = true;
+		}
+
+		private void retractableBar_StateChanged(object sender, CommonGUI.RetractableBar.StateChangedEventArgs e)
+		{
+			if (!AllowApplyValues) return;
+			Settings.ShowOptions = e.Expaned;
+			SettingsNotSaved = true;
 		}
 
 		private void advBandedGridView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -696,7 +698,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
-				formProgress.Show();var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				formProgress.Show(); var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
 				formProgress.Close();
 				if (File.Exists(tempFileName))

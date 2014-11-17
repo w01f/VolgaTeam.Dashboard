@@ -386,18 +386,18 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				if (checkEditUseEmptyCover.Checked)
-					DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName, checkEditFirstSlide.Checked);
+					DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName);
 				else
-					DashboardPowerPointHelper.Instance.PrepareCover(tempFileName, checkEditFirstSlide.Checked);
+					DashboardPowerPointHelper.Instance.PrepareCover(tempFileName);
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
 				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Slides";
-					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName, InsertOnTop = checkEditFirstSlide.Checked } });
 					RegistryHelper.MainFormHandle = formPreview.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					var previewResult = formPreview.ShowDialog();

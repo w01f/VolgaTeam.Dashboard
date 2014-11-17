@@ -69,9 +69,9 @@ namespace NewBizWiz.Dashboard.InteropClasses
 			}
 		}
 
-		public void PrepareCover(string fileName, bool firstSlide)
+		public void PrepareCover(string fileName)
 		{
-			PreparePresentation(fileName, presentation => AppendCover(firstSlide, presentation));
+			PreparePresentation(fileName, presentation => AppendCover(false, presentation));
 		}
 
 		public void AppendGenericCover(bool firstSlide, Presentation destinationPresentation = null)
@@ -101,9 +101,9 @@ namespace NewBizWiz.Dashboard.InteropClasses
 			}
 		}
 
-		public void PrepareGenericCover(string fileName, bool firstSlide)
+		public void PrepareGenericCover(string fileName)
 		{
-			PreparePresentation(fileName, presentation => AppendGenericCover(firstSlide, presentation));
+			PreparePresentation(fileName, presentation => AppendGenericCover(false, presentation));
 		}
 	}
 }

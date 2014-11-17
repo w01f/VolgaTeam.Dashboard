@@ -150,13 +150,14 @@
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPresentationDate.Properties.Caption = "Presentation Date?";
 			this.checkEditPresentationDate.Size = new System.Drawing.Size(227, 19);
-			this.checkEditPresentationDate.TabIndex = 94;
+			this.checkEditPresentationDate.TabIndex = 5;
 			this.checkEditPresentationDate.CheckedChanged += new System.EventHandler(this.ckPresentationDate_CheckedChanged);
 			// 
 			// comboBoxEditDecisionMaker
 			// 
 			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(70, 199);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
+			this.comboBoxEditDecisionMaker.OverrideTab = false;
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditDecisionMaker.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -170,6 +171,12 @@
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.comboBoxEditDecisionMaker.Properties.Items.AddRange(new object[] {
+            "222222",
+            "Carlie",
+            "Coding",
+            "Fred Jones",
+            "Mike Jones"});
 			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(344, 22);
@@ -180,6 +187,7 @@
 			// 
 			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(70, 61);
 			this.comboBoxEditAdvertiser.Name = "comboBoxEditAdvertiser";
+			this.comboBoxEditAdvertiser.OverrideTab = false;
 			this.comboBoxEditAdvertiser.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditAdvertiser.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditAdvertiser.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -194,6 +202,12 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditAdvertiser.Properties.CaseSensitiveSearch = true;
+			this.comboBoxEditAdvertiser.Properties.Items.AddRange(new object[] {
+            "11111111",
+            "Alex",
+            "Fred\'s Rib Shack",
+            "Fred\'s Used Cars",
+            "Mike\'s Automotive"});
 			this.comboBoxEditAdvertiser.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(344, 22);
@@ -328,7 +342,7 @@
 			this.dateEditPresentationDate.Properties.ShowToday = false;
 			this.dateEditPresentationDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.dateEditPresentationDate.Size = new System.Drawing.Size(120, 20);
-			this.dateEditPresentationDate.TabIndex = 4;
+			this.dateEditPresentationDate.TabIndex = 6;
 			// 
 			// laDecisionMaker
 			// 
@@ -380,7 +394,7 @@
 			this.checkEditSalesRep.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSalesRep.Properties.Caption = "Sales Rep:";
 			this.checkEditSalesRep.Size = new System.Drawing.Size(227, 19);
-			this.checkEditSalesRep.TabIndex = 95;
+			this.checkEditSalesRep.TabIndex = 3;
 			this.checkEditSalesRep.CheckedChanged += new System.EventHandler(this.checkEditSalesRep_CheckedChanged);
 			// 
 			// checkEditFirstSlide
@@ -473,7 +487,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditSalesRep.Properties.NullText = "Type or Select";
 			this.comboBoxEditSalesRep.Size = new System.Drawing.Size(260, 22);
-			this.comboBoxEditSalesRep.TabIndex = 99;
+			this.comboBoxEditSalesRep.TabIndex = 4;
 			this.comboBoxEditSalesRep.EditValueChanged += new System.EventHandler(this.comboBoxEditSalesRep_EditValueChanged);
 			// 
 			// laSalesRepDetails

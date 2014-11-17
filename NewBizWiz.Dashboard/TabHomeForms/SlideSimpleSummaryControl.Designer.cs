@@ -178,7 +178,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.dateEditFligtDatesStart.Properties.ShowToday = false;
 			this.dateEditFligtDatesStart.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.dateEditFligtDatesStart.Size = new System.Drawing.Size(123, 20);
-			this.dateEditFligtDatesStart.TabIndex = 76;
+			this.dateEditFligtDatesStart.TabIndex = 8;
 			this.dateEditFligtDatesStart.EditValueChanged += new System.EventHandler(this.dateEditFligtDatesStart_EditValueChanged);
 			// 
 			// ckFlightDates
@@ -192,7 +192,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.ckFlightDates.Location = new System.Drawing.Point(455, 202);
 			this.ckFlightDates.Name = "ckFlightDates";
 			this.ckFlightDates.Size = new System.Drawing.Size(15, 14);
-			this.ckFlightDates.TabIndex = 73;
+			this.ckFlightDates.TabIndex = 7;
 			this.ckFlightDates.UseVisualStyleBackColor = false;
 			this.ckFlightDates.CheckedChanged += new System.EventHandler(this.ckFlightDates_CheckedChanged);
 			// 
@@ -218,7 +218,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.dateEditFligtDatesEnd.Properties.ShowToday = false;
 			this.dateEditFligtDatesEnd.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.dateEditFligtDatesEnd.Size = new System.Drawing.Size(123, 20);
-			this.dateEditFligtDatesEnd.TabIndex = 75;
+			this.dateEditFligtDatesEnd.TabIndex = 9;
 			this.dateEditFligtDatesEnd.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// laFlightDatesStart
@@ -253,6 +253,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.comboBoxEditDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(476, 102);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
+			this.comboBoxEditDecisionMaker.OverrideTab = false;
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditDecisionMaker.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -267,21 +268,22 @@ namespace NewBizWiz.Dashboard.TabHomeForms
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditDecisionMaker.Properties.Items.AddRange(new object[] {
-            "2222222",
+            "222222",
             "Carlie",
             "Coding",
             "Fred Jones",
             "Mike Jones"});
 			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
-			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(275, 22);
-			this.comboBoxEditDecisionMaker.TabIndex = 1;
+			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(275, 20);
+			this.comboBoxEditDecisionMaker.TabIndex = 4;
 			this.comboBoxEditDecisionMaker.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// comboBoxEditAdvertiser
 			// 
 			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(38, 102);
 			this.comboBoxEditAdvertiser.Name = "comboBoxEditAdvertiser";
+			this.comboBoxEditAdvertiser.OverrideTab = false;
 			this.comboBoxEditAdvertiser.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditAdvertiser.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditAdvertiser.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -296,7 +298,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditAdvertiser.Properties.Items.AddRange(new object[] {
-            "111111",
+            "11111111",
             "Alex",
             "Fred\'s Rib Shack",
             "Fred\'s Used Cars",
@@ -304,7 +306,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.comboBoxEditAdvertiser.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(257, 22);
-			this.comboBoxEditAdvertiser.TabIndex = 0;
+			this.comboBoxEditAdvertiser.TabIndex = 2;
 			this.comboBoxEditAdvertiser.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// dateEditDate
@@ -328,7 +330,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.dateEditDate.Properties.ShowToday = false;
 			this.dateEditDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.dateEditDate.Size = new System.Drawing.Size(120, 22);
-			this.dateEditDate.TabIndex = 2;
+			this.dateEditDate.TabIndex = 6;
 			this.dateEditDate.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// ckDate
@@ -341,7 +343,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.ckDate.Location = new System.Drawing.Point(17, 202);
 			this.ckDate.Name = "ckDate";
 			this.ckDate.Size = new System.Drawing.Size(15, 14);
-			this.ckDate.TabIndex = 44;
+			this.ckDate.TabIndex = 5;
 			this.ckDate.UseVisualStyleBackColor = false;
 			this.ckDate.CheckedChanged += new System.EventHandler(this.ckDate_CheckedChanged);
 			// 
@@ -356,7 +358,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.ckDecisionMaker.Location = new System.Drawing.Point(455, 55);
 			this.ckDecisionMaker.Name = "ckDecisionMaker";
 			this.ckDecisionMaker.Size = new System.Drawing.Size(15, 14);
-			this.ckDecisionMaker.TabIndex = 41;
+			this.ckDecisionMaker.TabIndex = 3;
 			this.ckDecisionMaker.UseVisualStyleBackColor = false;
 			this.ckDecisionMaker.CheckedChanged += new System.EventHandler(this.ckDecisionMaker_CheckedChanged);
 			// 
@@ -370,7 +372,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.ckAdvertiser.Location = new System.Drawing.Point(17, 55);
 			this.ckAdvertiser.Name = "ckAdvertiser";
 			this.ckAdvertiser.Size = new System.Drawing.Size(15, 14);
-			this.ckAdvertiser.TabIndex = 38;
+			this.ckAdvertiser.TabIndex = 1;
 			this.ckAdvertiser.UseVisualStyleBackColor = false;
 			this.ckAdvertiser.CheckedChanged += new System.EventHandler(this.ckAdvertiser_CheckedChanged);
 			// 

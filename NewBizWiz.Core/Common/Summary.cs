@@ -325,6 +325,7 @@ namespace NewBizWiz.Core.Common
 		{
 			Parent = parent;
 			Order = Parent.SummaryOrder;
+			ShowDescription = true;
 		}
 	}
 }

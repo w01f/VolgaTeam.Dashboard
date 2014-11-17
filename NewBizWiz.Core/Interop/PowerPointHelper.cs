@@ -29,7 +29,7 @@ namespace NewBizWiz.Core.Interop
 		int GetActiveSlideIndex();
 		void CreateLockedPresentation(string sourceFolderPathName, string destinationFileName);
 		void ConvertToPDF(string originalFileName, string pdfFileName);
-		void AppendSlidesFromFile(string filePath);
+		void AppendSlidesFromFile(string filePath, bool firstSlide);
 		void AppendSlide(Presentation sourcePresentation, int slideIndex, Presentation destinationPresentation = null, bool firstSlide = false, int indexToPaste = 0);
 		void AppendSlideMaster(string presentationTemplatePath, Presentation destinationPresentation = null);
 		void SetPresentationSettings();
@@ -103,11 +103,11 @@ namespace NewBizWiz.Core.Interop
 
 		public bool IsActive
 		{
-			get 
+			get
 			{
 				try
 				{
-					return WinAPIHelper.IsWindowVisible(_windowHandle) || IsMinimized; 
+					return WinAPIHelper.IsWindowVisible(_windowHandle) || IsMinimized;
 				}
 				catch
 				{
@@ -427,7 +427,7 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		public void AppendSlidesFromFile(string filePath)
+		public void AppendSlidesFromFile(string filePath, bool firstSlide)
 		{
 			if (!File.Exists(filePath)) return;
 			try
@@ -436,7 +436,7 @@ namespace NewBizWiz.Core.Interop
 				{
 					MessageFilter.Register();
 					var presentation = _powerPointObject.Presentations.Open(filePath, WithWindow: MsoTriState.msoFalse);
-					AppendSlide(presentation, -1);
+					AppendSlide(presentation, -1, null, firstSlide);
 					presentation.Close();
 				});
 				thread.Start();

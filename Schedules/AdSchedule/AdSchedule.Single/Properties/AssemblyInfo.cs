@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AdScheduleBuilder")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("AdSeller")]
+[assembly: AssemblyDescription("adSALESapps Software")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AdScheduleBuilder")]
+[assembly: AssemblyCompany("adSALESapps.com")]
+[assembly: AssemblyProduct("adSALESapps")]
 [assembly: AssemblyCopyright("Copyright ©  2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

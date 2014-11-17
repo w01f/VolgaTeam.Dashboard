@@ -1505,18 +1505,18 @@ namespace NewBizWiz.Core.OnlineSchedule
 				if (!String.IsNullOrEmpty(Comment))
 				{
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("monthly{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("monthly{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("total{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
-					return Path.Combine(outputTemplateFolderPath, "comments", String.Format("none{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("total{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+					return Path.Combine(outputTemplateFolderPath, "comments", String.Format("none{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 				}
 				else
 				{
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("monthly{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("monthly{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("total{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
-					return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("none{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("total{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+					return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("none{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 				}
 			}
 		}

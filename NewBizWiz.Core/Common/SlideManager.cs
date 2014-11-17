@@ -81,7 +81,7 @@ namespace NewBizWiz.Core.Common
 				RibbonLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 72) / borderedLogo.Height, 72, null, IntPtr.Zero);
 				AdBarLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 86) / borderedLogo.Height, 86, null, IntPtr.Zero);
 			}
-			MasterPath = Directory.GetFiles(rootPath, "*.ppt").FirstOrDefault();
+			MasterPath = Directory.GetFiles(rootPath, "*.pptx").FirstOrDefault();
 		}
 	}
 

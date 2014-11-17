@@ -112,7 +112,7 @@ namespace NewBizWiz.CommonGUI.Preview
 				RegistryHelper.MainFormHandle = form.Handle;
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".ppt");
+					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pptx");
 					try
 					{
 						_powerPointHelper.CreateLockedPresentation(_mergedGroup.PresentationSourcePath.Replace(Path.GetExtension(_mergedGroup.PresentationSourcePath), string.Empty), emailFile);
@@ -141,7 +141,7 @@ namespace NewBizWiz.CommonGUI.Preview
 				RegistryHelper.MainFormHandle = form.Handle;
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".ppt");
+					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pptx");
 					try
 					{
 						_powerPointHelper.ConvertToPDF(_mergedGroup.PresentationSourcePath, emailFile);

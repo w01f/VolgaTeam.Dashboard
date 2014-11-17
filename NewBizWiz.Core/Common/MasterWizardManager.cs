@@ -8,12 +8,12 @@ namespace NewBizWiz.Core.Common
 {
 	public class MasterWizardManager
 	{
-		public const string CleanslateFileName = @"{0}\Basic Slides\CleanSlate.ppt";
-		public const string CoverFileName = @"{0}\Basic Slides\WizCover.ppt";
-		public const string GenericCoverFileName = @"{0}\Basic Slides\WizCover2.ppt";
+		public const string CleanslateFileName = @"{0}\Basic Slides\CleanSlate.pptx";
+		public const string CoverFileName = @"{0}\Basic Slides\WizCover.pptx";
+		public const string GenericCoverFileName = @"{0}\Basic Slides\WizCover2.pptx";
 		public const string ContentsFolderPath = @"{0}\Contents Slides";
-		public const string ContentsFileName = @"Contents{0}.ppt";
-		public const string PageNumbersFileName = @"!pagenumber.ppt";
+		public const string ContentsFileName = @"Contents{0}.pptx";
+		public const string PageNumbersFileName = @"!pagenumber.pptx";
 
 		public const string AdScheduleSlideFolderName = @"{0}\Newspaper Slides";
 		public const string OnlineScheduleSlideFolderName = @"{0}\Online Slides";
@@ -32,17 +32,17 @@ namespace NewBizWiz.Core.Common
 
 		#region Home Constants
 		public const string LeadoffTemplatesFolder = @"{0}\Basic Slides\intro slide";
-		public const string LeadOffSlideTemplate = @"intro-{0}.ppt";
+		public const string LeadOffSlideTemplate = @"intro-{0}.pptx";
 
 		public const string ClientGoalsTemplatesFolder = @"{0}\Basic Slides\needs analysis";
-		public const string ClientGoalsSlideTemplate = @"needs-{0}.ppt";
+		public const string ClientGoalsSlideTemplate = @"needs-{0}.pptx";
 
 		public const string TargetCustomersTemplatesFolder = @"{0}\Basic Slides\target customer";
-		public const string TargetCustomersSlideTemplate = @"target-{0}.ppt";
+		public const string TargetCustomersSlideTemplate = @"target-{0}.pptx";
 
 		public const string SimpleSummaryTemlatesFolder = @"{0}\Basic Slides\closing summary";
-		public const string SimpleSummarySlideTemplate = @"closing-{0}.ppt";
-		public const string SimpleSummaryTableTemplate = @"product_table_{0}.ppt";
+		public const string SimpleSummarySlideTemplate = @"closing-{0}.pptx";
+		public const string SimpleSummaryTableTemplate = @"product_table_{0}.pptx";
 		#endregion
 
 		private MasterWizardManager()

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NewBizWiz Form")]
-[assembly: AssemblyDescription("NewBizWiz application")]
+[assembly: AssemblyTitle("adSALESapps")]
+[assembly: AssemblyDescription("adSALESapps Software")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("VolgaTeam")]
-[assembly: AssemblyProduct("New Biz Wiz")]
-[assembly: AssemblyCopyright("Copyright ©  2010")]
+[assembly: AssemblyCompany("adSALESapps.com")]
+[assembly: AssemblyProduct("adSALESapps")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

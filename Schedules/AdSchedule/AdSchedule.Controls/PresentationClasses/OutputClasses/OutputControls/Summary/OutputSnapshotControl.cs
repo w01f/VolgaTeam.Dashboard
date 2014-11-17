@@ -349,13 +349,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			var template = String.Empty;
 			if (buttonXLogo.Checked && LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled && (slideIndex == 0 || !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.OutputOnlyOnce))
-				template = "snapshot-{0}logo_digital.ppt";
+				template = "snapshot-{0}logo_digital.pptx";
 			else if (buttonXLogo.Checked)
-				template = "snapshot-{0}logo.ppt";
+				template = "snapshot-{0}logo.pptx";
 			else if (LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled && (slideIndex == 0 || !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.OutputOnlyOnce))
-				template = "snapshot-{0}nologo_digital.ppt";
+				template = "snapshot-{0}nologo_digital.pptx";
 			else
-				template = "snapshot-{0}nologo.ppt";
+				template = "snapshot-{0}nologo.pptx";
 			var templateIndex = 6;
 			var totalRecords = PublicationNames.Length;
 			if (slideIndex == 0)

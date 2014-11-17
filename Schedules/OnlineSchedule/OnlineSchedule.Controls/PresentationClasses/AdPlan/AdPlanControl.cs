@@ -190,17 +190,17 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					case 8:
 					case 11:
 					case 12:
-						return Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides ? "adplan4.ppt" : "adplan6.ppt";
+						return Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides ? "adplan4.pptx" : "adplan6.pptx";
 					case 9:
 					case 10:
 					case 13:
 					case 14:
 					case 15:
-						return Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides ? "adplan5.ppt" : "adplan6.ppt";
+						return Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides ? "adplan5.pptx" : "adplan6.pptx";
 					default:
 						if (totalRecords < 6)
-							return String.Format("adplan{0}.ppt", totalRecords);
-						return "adplan5.ppt";
+							return String.Format("adplan{0}.pptx", totalRecords);
+						return "adplan5.pptx";
 				}
 			}
 		}

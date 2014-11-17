@@ -74,7 +74,7 @@ namespace NewBizWiz.CommonGUI.Preview
 				_showFloater(() =>
 				{
 					foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
-						_powerPointHelper.AppendSlidesFromFile(previewGroup.PresentationSourcePath);
+						_powerPointHelper.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
 					formProgress.Close();
 				});
 			}

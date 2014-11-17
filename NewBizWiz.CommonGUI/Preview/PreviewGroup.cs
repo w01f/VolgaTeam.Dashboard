@@ -8,6 +8,8 @@ namespace NewBizWiz.CommonGUI.Preview
 		public string Name { get; set; }
 		public string PresentationSourcePath { get; set; }
 
+		public bool InsertOnTop { get; set; }
+
 		public string ImageSourcePath
 		{
 			get { return PresentationSourcePath.Replace(Path.GetExtension(PresentationSourcePath), String.Empty); }

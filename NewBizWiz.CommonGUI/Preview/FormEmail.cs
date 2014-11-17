@@ -86,7 +86,7 @@ namespace NewBizWiz.CommonGUI.Preview
 				RegistryHelper.MainFormHandle = form.Handle;
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".ppt");
+					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pptx");
 					try
 					{
 						File.Copy(_mergedGroup.PresentationSourcePath, emailFile, true);

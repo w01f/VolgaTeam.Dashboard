@@ -125,7 +125,6 @@
 			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
 			// 
 			// pbDescription
 			// 
@@ -401,7 +400,7 @@
 			// 
 			this.checkEditFirstSlide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditFirstSlide.EditValue = true;
-			this.checkEditFirstSlide.Location = new System.Drawing.Point(272, 27);
+			this.checkEditFirstSlide.Location = new System.Drawing.Point(284, 27);
 			this.checkEditFirstSlide.Name = "checkEditFirstSlide";
 			this.checkEditFirstSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFirstSlide.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -409,27 +408,9 @@
 			this.checkEditFirstSlide.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditFirstSlide.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditFirstSlide.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditFirstSlide.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditFirstSlide.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.checkEditFirstSlide.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.checkEditFirstSlide.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.checkEditFirstSlide.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditFirstSlide.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditFirstSlide.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditFirstSlide.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Black;
-			this.checkEditFirstSlide.Properties.AppearanceFocused.Options.UseFont = true;
-			this.checkEditFirstSlide.Properties.AppearanceFocused.Options.UseForeColor = true;
-			this.checkEditFirstSlide.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditFirstSlide.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditFirstSlide.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
-			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditFirstSlide.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditFirstSlide.Properties.AutoWidth = true;
 			this.checkEditFirstSlide.Properties.Caption = "Cover Page 1";
-			this.checkEditFirstSlide.Size = new System.Drawing.Size(99, 19);
+			this.checkEditFirstSlide.Size = new System.Drawing.Size(99, 20);
 			this.checkEditFirstSlide.TabIndex = 93;
 			this.checkEditFirstSlide.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
@@ -444,27 +425,9 @@
 			this.checkEditUseEmptyCover.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditUseEmptyCover.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditUseEmptyCover.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditUseEmptyCover.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Black;
-			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Options.UseFont = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Options.UseForeColor = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
-			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditUseEmptyCover.Properties.AutoWidth = true;
 			this.checkEditUseEmptyCover.Properties.Caption = "Empty Cover";
-			this.checkEditUseEmptyCover.Size = new System.Drawing.Size(97, 19);
+			this.checkEditUseEmptyCover.Size = new System.Drawing.Size(97, 20);
 			this.checkEditUseEmptyCover.TabIndex = 92;
 			this.checkEditUseEmptyCover.CheckedChanged += new System.EventHandler(this.checkEditUseEmptyCover_CheckedChanged);
 			// 
@@ -516,6 +479,7 @@
 			this.Name = "SlideCoverControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();

@@ -39,11 +39,6 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			}
 		}
 
-		private void pbHelp_Click(object sender, EventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("pricestrategy");
-		}
-
 		#region Picture Box Clicks Habdlers
 		/// <summary>
 		/// Buttonize the PictureBox 

@@ -31,17 +31,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Dock = DockStyle.Fill;
 
 			ColumnsColumns = new ColumnsControl(this);
-			ColumnsColumns.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar1");
-
 			AdNotes = new AdNotesControl(this);
-			AdNotes.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar2");
-
 			SlideBullets = new SlideBulletsControl(this);
-			SlideBullets.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar4");
-
 			SlideHeader = new SlideHeaderControl(this);
-			SlideHeader.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar3");
-
 			SlideHeader.checkEditLogo1.Text = "Publication Logo";
 
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Help me understand how to use the Detailed Grid", null, null, eTooltipColor.Gray);

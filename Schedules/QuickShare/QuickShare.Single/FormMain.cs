@@ -97,7 +97,7 @@ namespace NewBizWiz.QuickShare.Single
 		{
 			if (string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard)) return;
 			var shortSchedule = BusinessWrapper.Instance.PackageManager.GetShortPackage();
-			Text = String.Format("QuickSHARE - {0} - {1} {2}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, String.Format("({0})", shortSchedule != null ? shortSchedule.ShortFileName : String.Empty));
+			Text = String.Format("{0} - {1} - {2} {3}", Utilities.Instance.Title, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, String.Format("({0})", shortSchedule != null ? shortSchedule.ShortFileName : String.Empty));
 		}
 
 		private void LoadData()

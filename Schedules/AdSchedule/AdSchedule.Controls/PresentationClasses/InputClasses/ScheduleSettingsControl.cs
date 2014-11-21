@@ -11,7 +11,6 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
-using Microsoft.Vbe.Interop;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Common;
@@ -142,8 +141,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				#endregion
 
+				CalcWeeksOnFlightDatesChange(null, EventArgs.Empty);
 				Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
-
 				xtraTabControlProducts_SelectedPageChanged(xtraTabControlProducts, new TabPageChangedEventArgs(null, xtraTabControlProducts.SelectedTabPage));
 			}
 			SettingsNotSaved = false;
@@ -361,10 +360,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			Controller.Instance.HomeWeeks.Text = "";
 			Controller.Instance.HomeWeeks.Visible = false;
-			if (Controller.Instance.HomeFlightDatesStart.EditValue == null || Controller.Instance.HomeFlightDatesEnd.EditValue == null) return;
-			TimeSpan datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
-			int weeksCount = datesRange.Days / 7 + 1;
-			Controller.Instance.HomeWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
+			if (Controller.Instance.HomeFlightDatesStart.EditValue == null || Controller.Instance.HomeFlightDatesEnd.EditValue == null)
+			{
+				Controller.Instance.UpdateCalendar2Tab(false);
+				return;
+			}
+			var datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
+			var weeksCount = datesRange.Days / 7 + 1;
+			Controller.Instance.UpdateCalendar2Tab(weeksCount > 0);
+			Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
 			Controller.Instance.HomeWeeks.Visible = true;
 		}
 
@@ -420,7 +424,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void buttonItemPrintScheduleettingsHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("home");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink(xtraTabControlProducts.SelectedTabPage == xtraTabPageDigitalProducts ? "homedigital" : "home");
 		}
 		#endregion
 
@@ -535,7 +539,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			gridBandAbbreviation.Visible = buttonXPrintProductCode.Checked;
 			var tooltip = new SuperToolTip();
 			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductCode.Checked ? "Hide Publication Code" : "Show Publication Code" });
-			toolTipController.SetSuperTip(buttonXPrintProductCode, tooltip);
+			toolTipControllerButtons.SetSuperTip(buttonXPrintProductCode, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -547,7 +551,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			gridBandLogo.Visible = buttonXPrintProductLogo.Checked;
 			var tooltip = new SuperToolTip();
 			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductLogo.Checked ? "Hide Logo" : "Show Logo" });
-			toolTipController.SetSuperTip(buttonXPrintProductLogo, tooltip);
+			toolTipControllerButtons.SetSuperTip(buttonXPrintProductLogo, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -564,7 +568,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				gridColumnName.RowCount = 1;
 			var tooltip = new SuperToolTip();
 			tooltip.Items.Add(new ToolTipItem { Text = buttonXPrintProductReadership.Checked ? "Hide Readership" : "Show Readership" });
-			toolTipController.SetSuperTip(buttonXPrintProductReadership, tooltip);
+			toolTipControllerButtons.SetSuperTip(buttonXPrintProductReadership, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -581,7 +585,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				gridColumnName.RowCount = 1;
 			var tooltip = new SuperToolTip();
 			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductDelivery.Checked ? "Hide Delivery" : "Show Delivery" });
-			toolTipController.SetSuperTip(buttonXPrintProductDelivery, tooltip);
+			toolTipControllerButtons.SetSuperTip(buttonXPrintProductDelivery, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -606,6 +610,26 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
+			}
+		}
+
+		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			ToolTipControlInfo info = null;
+			try
+			{
+				var view = gridControlPrintProducts.GetViewAt(e.ControlMousePosition) as GridView;
+				if (view == null) return;
+				var hi = view.CalcHitInfo(e.ControlMousePosition);
+				if (!hi.InRowCell) return;
+				if (hi.Column == gridColumnLogo)
+					info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Click to change logo");
+				else if (hi.Column == gridColumnDelete)
+					info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Delete this publication");
+			}
+			finally
+			{
+				e.Info = info;
 			}
 		}
 		#endregion

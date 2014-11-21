@@ -4,10 +4,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Design;
 using DevExpress.XtraEditors.ViewInfo;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses

@@ -33,6 +33,12 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			memoEdit.Enter += Utilities.Instance.Editor_Enter;
 			memoEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
 			memoEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
+
+			if (calendarNote.UserAdded)
+			{
+				labelControl_Click(null, EventArgs.Empty);
+				calendarNote.UserAdded = false;
+			}
 		}
 
 		public CalendarNote CalendarNote { get; private set; }

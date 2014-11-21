@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -183,8 +184,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 										dayControl.ImagePasted += (sender, e) =>
 										{
 											ImageSource imageSource = null;
-											if (Clipboard.ContainsImage())
-												imageSource = ImageSource.FromImage(Clipboard.GetImage());
+											var clipboardImage = Utilities.Instance.GetImageFormClipboard();
+											if (clipboardImage != null)
+												imageSource = ImageSource.FromImage(clipboardImage);
 											else if (Clipboard.ContainsText(TextDataFormat.Html))
 											{
 												var textContent = Clipboard.GetText(TextDataFormat.Html);

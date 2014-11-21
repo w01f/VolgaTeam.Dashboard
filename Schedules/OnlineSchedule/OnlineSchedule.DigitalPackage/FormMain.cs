@@ -102,7 +102,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		private void UpdateFormTitle()
 		{
 			var schedule = BusinessWrapper.Instance.ScheduleManager.GetShortSchedule();
-			Text = String.Format("WebQuick - {0}", (schedule != null && !String.IsNullOrEmpty(schedule.ShortFileName) ? schedule.ShortFileName : "New Schedule"));
+			Text = String.Format("{0} - {1}", Utilities.Instance.Title, (schedule != null && !String.IsNullOrEmpty(schedule.ShortFileName) ? schedule.ShortFileName : "New Schedule"));
 		}
 
 		private void OpenSchedule(string scheduleFilePath)

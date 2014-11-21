@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Utils;
@@ -32,7 +33,7 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			_manager.CollectionChanged += (o, e) =>
 			{
 				gridControlLogoGallery.DataSource = _manager.Images;
-				gridControlLogoGallery.RefreshDataSource();
+				layoutViewLogoGallery.Refresh();
 			};
 			gridControlLogoGallery.DataSource = _manager.Images;
 		}
@@ -178,7 +179,8 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			if (view == null) return;
 			var hi = view.CalcHitInfo(e.ControlMousePosition);
 			if (!hi.InFieldValue) return;
-			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), ImageTooltip);
+			var imageSource = view.GetRow(hi.RowHandle) as ImageSource;
+			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), !String.IsNullOrEmpty(ImageTooltip) ? ImageTooltip : Path.GetFileName(imageSource.FileName));
 		}
 	}
 }

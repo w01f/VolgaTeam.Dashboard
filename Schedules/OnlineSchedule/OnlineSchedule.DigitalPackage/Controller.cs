@@ -37,6 +37,8 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 
 		public void Init()
 		{
+			Utilities.Instance.Title = "WebQuick"; 
+			
 			#region Web Package
 			DigitalPackage = new DigitalPackageControl(FormMain);
 			DigitalPackageAdd.Click += DigitalPackage.Add_Click;

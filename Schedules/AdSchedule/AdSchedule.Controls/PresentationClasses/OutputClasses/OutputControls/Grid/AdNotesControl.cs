@@ -15,9 +15,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	public partial class AdNotesControl : UserControl
 	{
 		private readonly IGridOutputControl _settingsContainer;
-
-		public event EventHandler<EventArgs> OnHelp;
-
+		
 		public AdNotesControl(IGridOutputControl settingsContainer)
 		{
 			InitializeComponent();

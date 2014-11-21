@@ -24,7 +24,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		protected Form _formContainer;
 		protected List<DigitalProductControl> _tabPages = new List<DigitalProductControl>();
 
-		public DigitalProductContainer(Form formContainer)
+		protected DigitalProductContainer(Form formContainer)
 		{
 			InitializeComponent();
 			_formContainer = formContainer;
@@ -46,6 +46,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			spinEditDuration.Enter += Utilities.Instance.Editor_Enter;
 			spinEditDuration.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditDuration.MouseUp += Utilities.Instance.Editor_MouseUp;
+			AssignCloseActiveEditorsonOutSideClick(pnHeader);
 		}
 
 		#region CommandButtons

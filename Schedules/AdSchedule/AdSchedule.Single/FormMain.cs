@@ -9,6 +9,7 @@ using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
 using NewBizWiz.AdSchedule.Controls.Properties;
+using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -43,7 +44,8 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.TabAdPlan = ribbonTabItemAdPlan;
 			Controller.Instance.TabDetailedGrid = ribbonTabItemDetailedGrid;
 			Controller.Instance.TabMultiGrid = ribbonTabItemMultiGrid;
-			Controller.Instance.TabCalendar = ribbonTabItemCalendars;
+			Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
+			Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
 			Controller.Instance.TabSummaryLight = ribbonTabItemSummaryLight;
 			Controller.Instance.TabSummaryFull = ribbonTabItemSummaryFull;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
@@ -215,19 +217,32 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.MultiGridDigitalLegend = buttonItemMultiGridDigital;
 			#endregion
 
-			#region Calendar
-			Controller.Instance.CalendarSpecialButtons = ribbonBarCalendarSpecialButtons;
-			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
-			Controller.Instance.CalendarPaste = buttonItemCalendarPaste;
-			Controller.Instance.CalendarClone = buttonItemCalendarClone;
-			Controller.Instance.CalendarHelp = buttonItemCalendarHelp;
-			Controller.Instance.CalendarSave = buttonItemCalendarSave;
-			Controller.Instance.CalendarSaveAs = buttonItemCalendarSaveAs;
-			Controller.Instance.CalendarPreview = buttonItemCalendarPreview;
-			Controller.Instance.CalendarEmail = buttonItemCalendarEmail;
-			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
-			Controller.Instance.CalendarExport = buttonItemCalendarExport;
-			Controller.Instance.CalendarMonthList = listBoxControlCalendarList;
+			#region Calendar 1
+			Controller.Instance.Calendar1SpecialButtons = ribbonBarCalendar1SpecialButtons;
+			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
+			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
+			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
+			Controller.Instance.Calendar1Help = buttonItemCalendar1Help;
+			Controller.Instance.Calendar1Save = buttonItemCalendar1Save;
+			Controller.Instance.Calendar1SaveAs = buttonItemCalendar1SaveAs;
+			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
+			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
+			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
+			Controller.Instance.Calendar1MonthList = listBoxControlCalendar1List;
+			#endregion
+
+			#region Calendar 2
+			Controller.Instance.Calendar2SpecialButtons = ribbonBarCalendar2SpecialButtons;
+			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
+			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
+			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
+			Controller.Instance.Calendar2Help = buttonItemCalendar2Help;
+			Controller.Instance.Calendar2Save = buttonItemCalendar2Save;
+			Controller.Instance.Calendar2SaveAs = buttonItemCalendar2SaveAs;
+			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
+			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
+			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
+			Controller.Instance.Calendar2MonthList = listBoxControlCalendar2List;
 			#endregion
 
 			#region Summary Light
@@ -343,7 +358,7 @@ namespace NewBizWiz.AdSchedule.Single
 				ribbonBarPrintScheduleStrategy.RecalcLayout();
 				ribbonBarPrintScheduleDimensions.RecalcLayout();
 				ribbonBarHomeBasicInfo.RecalcLayout();
-				ribbonBarCalendarExit.RecalcLayout();
+				ribbonBarCalendar1Exit.RecalcLayout();
 				ribbonBarPrintScheduleColor.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
 				ribbonBarHomeExit.RecalcLayout();
@@ -357,7 +372,7 @@ namespace NewBizWiz.AdSchedule.Single
 				ribbonBarSnapshotPowerPoint.RecalcLayout();
 				ribbonPanelPrintSchedule.PerformLayout();
 				ribbonPanelScheduleSettings.PerformLayout();
-				ribbonPanelCalendars.PerformLayout();
+				ribbonPanelCalendar1.PerformLayout();
 				ribbonPanelSnapshot.PerformLayout();
 			}
 		}
@@ -381,7 +396,7 @@ namespace NewBizWiz.AdSchedule.Single
 		private void UpdateFormTitle()
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint for Newspaper - {0} ({1})", SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("{0} - {1} ({2})", Utilities.Instance.Title, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private bool AllowToLeaveCurrentControl()
@@ -417,9 +432,13 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				result = Controller.Instance.Grids.AllowToLeaveControl;
 			}
-			else if ((_currentControl == Controller.Instance.Calendar))
+			else if ((_currentControl == Controller.Instance.Calendar1))
 			{
-				result = Controller.Instance.Calendar.AllowToLeaveControl;
+				result = Controller.Instance.Calendar1.AllowToLeaveControl;
+			}
+			else if ((_currentControl == Controller.Instance.Calendar2))
+			{
+				result = Controller.Instance.Calendar2.AllowToLeaveControl;
 			}
 			else if ((_currentControl == Controller.Instance.AdPlan))
 			{
@@ -471,9 +490,9 @@ namespace NewBizWiz.AdSchedule.Single
 				Text = String.Format("SellerPoint for Newspaper - {0}", SettingsManager.Instance.Size);
 
 			if (SettingsManager.Instance.SizeWidth == 10 && SettingsManager.Instance.SizeHeght == 5.63)
-				buttonItemCalendarPowerPoint.Enabled = false;
+				buttonItemCalendar1PowerPoint.Enabled = false;
 			else
-				buttonItemCalendarPowerPoint.Enabled = true;
+				buttonItemCalendar1PowerPoint.Enabled = true;
 
 			Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
@@ -718,23 +737,45 @@ namespace NewBizWiz.AdSchedule.Single
 					_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendars)
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar1)
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
-					Controller.Instance.Calendar.ShowCalendar(false);
-					if (!pnMain.Controls.Contains(Controller.Instance.Calendar))
+					Controller.Instance.Calendar1.ShowCalendar(false);
+					if (!pnMain.Controls.Contains(Controller.Instance.Calendar1))
 					{
 						Application.DoEvents();
 						pnEmpty.BringToFront();
 						Application.DoEvents();
-						pnMain.Controls.Add(Controller.Instance.Calendar);
+						pnMain.Controls.Add(Controller.Instance.Calendar1);
 						Application.DoEvents();
 						pnMain.BringToFront();
 						Application.DoEvents();
 					}
-					Controller.Instance.Calendar.BringToFront();
-					_currentControl = Controller.Instance.Calendar;
+					Controller.Instance.Calendar1.BringToFront();
+					_currentControl = Controller.Instance.Calendar1;
+				}
+				else
+					_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar2)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					Controller.Instance.Calendar2.ShowCalendar(false);
+					if (!pnMain.Controls.Contains(Controller.Instance.Calendar2))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(Controller.Instance.Calendar2);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					Controller.Instance.Calendar2.BringToFront();
+					_currentControl = Controller.Instance.Calendar2;
 				}
 				else
 					_currentControl.BringToFront();
@@ -873,8 +914,10 @@ namespace NewBizWiz.AdSchedule.Single
 				result = Controller.Instance.Summaries.AllowToLeaveControl;
 			else if (_currentControl != null && _currentControl == Controller.Instance.Grids)
 				result = Controller.Instance.Grids.AllowToLeaveControl;
-			else if (_currentControl != null && _currentControl == Controller.Instance.Calendar)
-				result = Controller.Instance.Calendar.AllowToLeaveControl;
+			else if (_currentControl != null && _currentControl == Controller.Instance.Calendar1)
+				result = Controller.Instance.Calendar1.AllowToLeaveControl;
+			else if (_currentControl != null && _currentControl == Controller.Instance.Calendar2)
+				result = Controller.Instance.Calendar2.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.AdPlan)
 				result = Controller.Instance.AdPlan.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.SummaryLight)

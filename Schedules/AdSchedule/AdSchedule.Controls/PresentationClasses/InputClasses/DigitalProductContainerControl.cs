@@ -81,6 +81,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				var summaryControl = new DigitalSummaryControl(this);
 				summaryControl.UpdateControls(_tabPages.Select(tp => tp.SummaryControl));
 				xtraTabControlProducts.TabPages.Add(summaryControl);
+				AssignCloseActiveEditorsonOutSideClick(summaryControl);
 
 				Application.DoEvents();
 				xtraTabControlProducts.ResumeLayout();

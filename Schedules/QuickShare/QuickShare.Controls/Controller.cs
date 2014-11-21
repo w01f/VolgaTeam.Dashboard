@@ -38,6 +38,7 @@ namespace NewBizWiz.QuickShare.Controls
 		public void Init()
 		{
 			SetDefaultCulture();
+			Utilities.Instance.Title = String.Format("QuickSHARE for {0}", MediaMetaData.Instance.DataTypeString);
 
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 

@@ -92,6 +92,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 			return base.SaveSchedule(scheduleName);
 		}
 
+		public override void Help_Click(object sender, EventArgs e)
+		{
+			HelpManager.OpenHelpLink("digitalpkg");
+		}
+
 		private void TrackOutput()
 		{
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabDigitalPackage.Text, Schedule.BusinessName, PackageRecords.Sum(pr => pr.InvestmentCalculated)));

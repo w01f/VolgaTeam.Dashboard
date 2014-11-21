@@ -41,6 +41,8 @@ namespace NewBizWiz.Calendar.Controls
 
 		public void Init()
 		{
+			Utilities.Instance.Title = "Ninja Calendar";
+
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
 			HomeControl = new HomeControl();

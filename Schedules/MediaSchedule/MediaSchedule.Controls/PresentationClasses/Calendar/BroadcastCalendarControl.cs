@@ -2,7 +2,6 @@
 using System.Linq;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 {
@@ -64,11 +63,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		public override void Help_Click(object sender, EventArgs e)
 		{
 			OpenHelp("calendar");
-		}
-
-		public override void OpenHelp(string key)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);
 		}
 
 		public override void UpdateOutputFunctions()

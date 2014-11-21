@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.Common;

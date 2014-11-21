@@ -4,10 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -18,15 +16,13 @@ using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
 {
-	public sealed class AdCalendarControl : BaseCalendarControl
+	public abstract class AdCalendarControl : BaseCalendarControl
 	{
-		private Schedule _localSchedule = null;
+		protected Schedule _localSchedule = null;
 
 		public AdCalendarControl()
-			: base()
 		{
 			Dock = DockStyle.Fill;
-			InitSlideInfo<SlideInfoControl>();
 			laCalendarName.Visible = false;
 			hyperLinkEditReset.Visible = true;
 			hyperLinkEditReset.OpenLink += hyperLinkEditReset_OpenLink;
@@ -52,55 +48,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return Controller.Instance.Ribbon; }
 		}
 
-		public override ImageListBoxControl MonthList
-		{
-			get { return Controller.Instance.CalendarMonthList; }
-		}
-
-		public override ButtonItem PreviewButton
-		{
-			get { return Controller.Instance.CalendarPreview; }
-		}
-
-		public override ButtonItem EmailButton
-		{
-			get { return Controller.Instance.CalendarEmail; }
-		}
-
-		public override ButtonItem PowerPointButton
-		{
-			get { return Controller.Instance.CalendarPowerPoint; }
-		}
-
-		public override ButtonItem ThemeButton
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public override ButtonItem CopyButton
-		{
-			get { return Controller.Instance.CalendarCopy; }
-		}
-
-		public override ButtonItem PasteButton
-		{
-			get { return Controller.Instance.CalendarPaste; }
-		}
-
-		public override ButtonItem CloneButton
-		{
-			get { return Controller.Instance.CalendarClone; }
-		}
-
-		public override Core.Calendar.Calendar CalendarData
-		{
-			get { return _localSchedule.Calendar; }
-		}
-
 		public override CalendarSettings CalendarSettings
 		{
 			get { return _localSchedule.ViewSettings.CalendarSettings; }
 		}
+
+		protected abstract RibbonTabItem CalendarTab { get; }
 
 		public override void LoadCalendar(bool quickLoad)
 		{
@@ -149,7 +102,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabCalendar.Text, _localSchedule.BusinessName, (decimal)_localSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(CalendarTab.Text, _localSchedule.BusinessName, (decimal)_localSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
 		}
 
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
@@ -254,7 +207,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to reset data?") == DialogResult.Yes)
 			{
-				_localSchedule.Calendar.ResetToDefault();
+				((AdCalendar)CalendarData).ResetToDefault();
 				MonthView.RefreshData();
 				SlideInfo.LoadData(allowToSave: false);
 			}
@@ -312,19 +265,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
-		public void Export_Click(object sender, EventArgs e)
-		{
-			using (var form = new FormExportSchedule())
-			{
-				form.Text = _localSchedule.Name;
-				form.ScheduleName = String.Format("Ninja-{0}", DateTime.Now.ToString("MMddyy-hhmmtt"));
-				if (form.ShowDialog() == DialogResult.OK)
-				{
-					Core.Calendar.ScheduleManager.ImportSchedule(_localSchedule.ScheduleFile.FullName, form.ScheduleName);
-				}
-			}
-		}
-
 		public void Preview_Click(object sender, EventArgs e)
 		{
 			SaveCalendarData(false);
@@ -343,10 +283,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Email();
 		}
 
-		public void Help_Click(object sender, EventArgs e)
-		{
-			OpenHelp("calendars");
-		}
+		public abstract void Help_Click(object sender, EventArgs e);
 		#endregion
 	}
 }

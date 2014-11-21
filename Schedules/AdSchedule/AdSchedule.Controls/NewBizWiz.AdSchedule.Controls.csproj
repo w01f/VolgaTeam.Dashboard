@@ -144,11 +144,23 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\AdCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SlideInfoControl.cs">
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CustomSlideInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SlideInfoControl.Designer.cs">
-      <DependentUpon>SlideInfoControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CustomSlideInfoControl.Designer.cs">
+      <DependentUpon>CustomSlideInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CustomCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\PublicationCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\PublicationSlideInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\PublicationSlideInfoControl.Designer.cs">
+      <DependentUpon>PublicationSlideInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\BasicOverviewSummaryControl.cs">
       <SubType>Component</SubType>
@@ -260,12 +272,6 @@
     <Compile Include="ToolForms\FormDigital.Designer.cs">
       <DependentUpon>FormDigital.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormExportSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormExportSchedule.Designer.cs">
-      <DependentUpon>FormExportSchedule.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormCloneInsert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -351,14 +357,29 @@
     <Compile Include="PresentationClasses\InputClasses\MechanicalControl.Designer.cs">
       <DependentUpon>MechanicalControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormOpenSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormOpenSchedule.Designer.cs">
+      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.Designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="PresentationClasses\InputClasses\AdNotesDaysSelector.resx">
       <DependentUpon>AdNotesDaysSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\AdPlanPrintProductControl.resx">
       <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SlideInfoControl.resx">
-      <DependentUpon>SlideInfoControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CustomSlideInfoControl.resx">
+      <DependentUpon>CustomSlideInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\PublicationSlideInfoControl.resx">
+      <DependentUpon>PublicationSlideInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\BasicOverviewSummaryControl.resx">
       <DependentUpon>BasicOverviewSummaryControl.cs</DependentUpon>
@@ -407,9 +428,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormDigital.resx">
       <DependentUpon>FormDigital.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormExportSchedule.resx">
-      <DependentUpon>FormExportSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormCloneInsert.resx">
       <DependentUpon>FormCloneInsert.cs</DependentUpon>
@@ -462,6 +480,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\InputClasses\MechanicalControl.resx">
       <DependentUpon>MechanicalControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormOpenSchedule.resx">
+      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
   </ItemGroup>
@@ -740,9 +764,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BasicInfo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ExportCalendar.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AdPlanPrintProduct.png" />

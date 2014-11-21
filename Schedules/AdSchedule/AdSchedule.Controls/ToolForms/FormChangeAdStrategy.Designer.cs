@@ -39,10 +39,8 @@
 			this.ckDeleteAllDiscounts = new System.Windows.Forms.CheckBox();
 			this.ckDeleteAllColorRates = new System.Windows.Forms.CheckBox();
 			this.pictureBoxImage = new System.Windows.Forms.PictureBox();
-			this.pbHelp = new System.Windows.Forms.PictureBox();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// laHeader
@@ -189,23 +187,6 @@
 			this.pictureBoxImage.TabIndex = 11;
 			this.pictureBoxImage.TabStop = false;
 			// 
-			// pbHelp
-			// 
-			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbHelp.BackColor = System.Drawing.Color.White;
-			this.pbHelp.ForeColor = System.Drawing.Color.Black;
-			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
-			this.pbHelp.Location = new System.Drawing.Point(544, 6);
-			this.pbHelp.Name = "pbHelp";
-			this.pbHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-			this.superTooltip.SetSuperTooltip(this.pbHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn about Pricing Strategy", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.pbHelp.TabIndex = 26;
-			this.pbHelp.TabStop = false;
-			this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
-			this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
 			// superTooltip
 			// 
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
@@ -216,7 +197,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(577, 303);
-			this.Controls.Add(this.pbHelp);
 			this.Controls.Add(this.pictureBoxImage);
 			this.Controls.Add(this.ckDeleteAllColorRates);
 			this.Controls.Add(this.ckDeleteAllDiscounts);
@@ -239,7 +219,6 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Change Pricing Strategy?";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -257,8 +236,7 @@
         public System.Windows.Forms.Label laPublication;
         public System.Windows.Forms.CheckBox ckDeleteAllDiscounts;
         public System.Windows.Forms.CheckBox ckDeleteAllColorRates;
-        public System.Windows.Forms.PictureBox pictureBoxImage;
-        private System.Windows.Forms.PictureBox pbHelp;
+		public System.Windows.Forms.PictureBox pictureBoxImage;
         public DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

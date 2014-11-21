@@ -184,8 +184,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			else if (SelectionStateRequested != null)
 				SelectionStateRequested(sender, new EventArgs());
 			toolStripMenuItemCopyImage.Enabled = Day.Logo.ContainsData;
-			toolStripMenuItemPasteImage.Enabled = Clipboard.ContainsImage() || Clipboard.ContainsText(TextDataFormat.Html);
 			toolStripMenuItemDeleteImage.Enabled = Day.Logo.ContainsData;
+			var clipBoardImage = Utilities.Instance.GetImageFormClipboard();
+			toolStripMenuItemPasteImage.Enabled = clipBoardImage != null || Clipboard.ContainsText(TextDataFormat.Html);
 		}
 
 		private void contextMenuStrip_Opened(object sender, EventArgs e)

@@ -64,17 +64,18 @@
 			this.gridBandDelete = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.gridColumnDelete = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemButtonEditDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
-			this.xtraTabPagePrintProducts = new DevExpress.XtraTab.XtraTabPage();
-			this.pnPrintProductBottomBar = new System.Windows.Forms.Panel();
-			this.pictureBoxPrintProductAppLogo = new System.Windows.Forms.PictureBox();
+			this.toolTipControllerButtons = new DevExpress.Utils.ToolTipController(this.components);
 			this.buttonXPrintProductLogo = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductCode = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductDelivery = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductReadership = new DevComponents.DotNetBar.ButtonX();
+			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
+			this.xtraTabPagePrintProducts = new DevExpress.XtraTab.XtraTabPage();
+			this.pnPrintProductBottomBar = new System.Windows.Forms.Panel();
+			this.pictureBoxPrintProductAppLogo = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigitalProducts = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipControllerGrid = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).BeginInit();
@@ -93,6 +94,7 @@
 			// 
 			// gridControlPrintProducts
 			// 
+			this.gridControlPrintProducts.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlPrintProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControlPrintProducts.Location = new System.Drawing.Point(0, 0);
 			this.gridControlPrintProducts.MainView = this.gridViewPrintProducts;
@@ -104,8 +106,9 @@
             this.repositoryItemSpinEdit,
             this.repositoryItemTextEdit,
             this.repositoryItemButtonEditDelete});
-			this.gridControlPrintProducts.Size = new System.Drawing.Size(826, 364);
+			this.gridControlPrintProducts.Size = new System.Drawing.Size(822, 361);
 			this.gridControlPrintProducts.TabIndex = 0;
+			this.gridControlPrintProducts.ToolTipController = this.toolTipControllerGrid;
 			this.gridControlPrintProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrintProducts});
 			// 
@@ -421,10 +424,84 @@
 			// 
 			this.repositoryItemButtonEditDelete.AutoHeight = false;
 			this.repositoryItemButtonEditDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "Delete this publication", null, null, true)});
 			this.repositoryItemButtonEditDelete.Name = "repositoryItemButtonEditDelete";
 			this.repositoryItemButtonEditDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDelete_ButtonClick);
+			// 
+			// toolTipControllerButtons
+			// 
+			this.toolTipControllerButtons.Rounded = true;
+			this.toolTipControllerButtons.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
+			this.toolTipControllerButtons.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
+			// 
+			// buttonXPrintProductLogo
+			// 
+			this.buttonXPrintProductLogo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXPrintProductLogo.AutoCheckOnClick = true;
+			this.buttonXPrintProductLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXPrintProductLogo.Location = new System.Drawing.Point(14, 5);
+			this.buttonXPrintProductLogo.Name = "buttonXPrintProductLogo";
+			this.buttonXPrintProductLogo.Size = new System.Drawing.Size(84, 29);
+			this.buttonXPrintProductLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem1.Text = "Show Logo";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.toolTipControllerButtons.SetSuperTip(this.buttonXPrintProductLogo, superToolTip1);
+			this.buttonXPrintProductLogo.TabIndex = 6;
+			this.buttonXPrintProductLogo.Text = "Logo";
+			this.buttonXPrintProductLogo.TextColor = System.Drawing.Color.Black;
+			this.buttonXPrintProductLogo.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyLogo_CheckedChanged);
+			// 
+			// buttonXPrintProductCode
+			// 
+			this.buttonXPrintProductCode.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXPrintProductCode.AutoCheckOnClick = true;
+			this.buttonXPrintProductCode.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXPrintProductCode.Location = new System.Drawing.Point(120, 5);
+			this.buttonXPrintProductCode.Name = "buttonXPrintProductCode";
+			this.buttonXPrintProductCode.Size = new System.Drawing.Size(84, 29);
+			this.buttonXPrintProductCode.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem2.Text = "Show Publication Code";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.toolTipControllerButtons.SetSuperTip(this.buttonXPrintProductCode, superToolTip2);
+			this.buttonXPrintProductCode.TabIndex = 5;
+			this.buttonXPrintProductCode.Text = "Code";
+			this.buttonXPrintProductCode.TextColor = System.Drawing.Color.Black;
+			this.buttonXPrintProductCode.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyAbbreviation_CheckedChanged);
+			// 
+			// buttonXPrintProductDelivery
+			// 
+			this.buttonXPrintProductDelivery.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXPrintProductDelivery.AutoCheckOnClick = true;
+			this.buttonXPrintProductDelivery.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXPrintProductDelivery.Location = new System.Drawing.Point(226, 5);
+			this.buttonXPrintProductDelivery.Name = "buttonXPrintProductDelivery";
+			this.buttonXPrintProductDelivery.Size = new System.Drawing.Size(84, 29);
+			this.buttonXPrintProductDelivery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem3.Text = "Show Delivery";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.toolTipControllerButtons.SetSuperTip(this.buttonXPrintProductDelivery, superToolTip3);
+			this.buttonXPrintProductDelivery.TabIndex = 4;
+			this.buttonXPrintProductDelivery.Text = "Delivery";
+			this.buttonXPrintProductDelivery.TextColor = System.Drawing.Color.Black;
+			this.buttonXPrintProductDelivery.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyDelivery_CheckedChanged);
+			// 
+			// buttonXPrintProductReadership
+			// 
+			this.buttonXPrintProductReadership.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXPrintProductReadership.AutoCheckOnClick = true;
+			this.buttonXPrintProductReadership.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXPrintProductReadership.Location = new System.Drawing.Point(332, 5);
+			this.buttonXPrintProductReadership.Name = "buttonXPrintProductReadership";
+			this.buttonXPrintProductReadership.Size = new System.Drawing.Size(84, 29);
+			this.buttonXPrintProductReadership.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem4.Text = "Show Readership";
+			superToolTip4.Items.Add(toolTipItem4);
+			this.toolTipControllerButtons.SetSuperTip(this.buttonXPrintProductReadership, superToolTip4);
+			this.buttonXPrintProductReadership.TabIndex = 3;
+			this.buttonXPrintProductReadership.Text = "Readership";
+			this.buttonXPrintProductReadership.TextColor = System.Drawing.Color.Black;
+			this.buttonXPrintProductReadership.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyReadership_CheckedChanged);
 			// 
 			// xtraTabControlProducts
 			// 
@@ -456,7 +533,7 @@
 			this.xtraTabPagePrintProducts.Controls.Add(this.gridControlPrintProducts);
 			this.xtraTabPagePrintProducts.Controls.Add(this.pnPrintProductBottomBar);
 			this.xtraTabPagePrintProducts.Name = "xtraTabPagePrintProducts";
-			this.xtraTabPagePrintProducts.Size = new System.Drawing.Size(826, 402);
+			this.xtraTabPagePrintProducts.Size = new System.Drawing.Size(822, 399);
 			this.xtraTabPagePrintProducts.Text = "Print Products";
 			// 
 			// pnPrintProductBottomBar
@@ -468,94 +545,26 @@
 			this.pnPrintProductBottomBar.Controls.Add(this.buttonXPrintProductDelivery);
 			this.pnPrintProductBottomBar.Controls.Add(this.buttonXPrintProductReadership);
 			this.pnPrintProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnPrintProductBottomBar.Location = new System.Drawing.Point(0, 364);
+			this.pnPrintProductBottomBar.Location = new System.Drawing.Point(0, 361);
 			this.pnPrintProductBottomBar.Name = "pnPrintProductBottomBar";
-			this.pnPrintProductBottomBar.Size = new System.Drawing.Size(826, 38);
+			this.pnPrintProductBottomBar.Size = new System.Drawing.Size(822, 38);
 			this.pnPrintProductBottomBar.TabIndex = 1;
 			// 
 			// pictureBoxPrintProductAppLogo
 			// 
 			this.pictureBoxPrintProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pictureBoxPrintProductAppLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
-			this.pictureBoxPrintProductAppLogo.Location = new System.Drawing.Point(666, 0);
+			this.pictureBoxPrintProductAppLogo.Location = new System.Drawing.Point(662, 0);
 			this.pictureBoxPrintProductAppLogo.Name = "pictureBoxPrintProductAppLogo";
 			this.pictureBoxPrintProductAppLogo.Size = new System.Drawing.Size(160, 38);
 			this.pictureBoxPrintProductAppLogo.TabIndex = 7;
 			this.pictureBoxPrintProductAppLogo.TabStop = false;
 			// 
-			// buttonXPrintProductLogo
-			// 
-			this.buttonXPrintProductLogo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXPrintProductLogo.AutoCheckOnClick = true;
-			this.buttonXPrintProductLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductLogo.Location = new System.Drawing.Point(14, 5);
-			this.buttonXPrintProductLogo.Name = "buttonXPrintProductLogo";
-			this.buttonXPrintProductLogo.Size = new System.Drawing.Size(84, 29);
-			this.buttonXPrintProductLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem1.Text = "Show Logo";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductLogo, superToolTip1);
-			this.buttonXPrintProductLogo.TabIndex = 6;
-			this.buttonXPrintProductLogo.Text = "Logo";
-			this.buttonXPrintProductLogo.TextColor = System.Drawing.Color.Black;
-			this.buttonXPrintProductLogo.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyLogo_CheckedChanged);
-			// 
-			// buttonXPrintProductCode
-			// 
-			this.buttonXPrintProductCode.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXPrintProductCode.AutoCheckOnClick = true;
-			this.buttonXPrintProductCode.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductCode.Location = new System.Drawing.Point(120, 5);
-			this.buttonXPrintProductCode.Name = "buttonXPrintProductCode";
-			this.buttonXPrintProductCode.Size = new System.Drawing.Size(84, 29);
-			this.buttonXPrintProductCode.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem2.Text = "Show Publication Code";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductCode, superToolTip2);
-			this.buttonXPrintProductCode.TabIndex = 5;
-			this.buttonXPrintProductCode.Text = "Code";
-			this.buttonXPrintProductCode.TextColor = System.Drawing.Color.Black;
-			this.buttonXPrintProductCode.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyAbbreviation_CheckedChanged);
-			// 
-			// buttonXPrintProductDelivery
-			// 
-			this.buttonXPrintProductDelivery.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXPrintProductDelivery.AutoCheckOnClick = true;
-			this.buttonXPrintProductDelivery.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductDelivery.Location = new System.Drawing.Point(226, 5);
-			this.buttonXPrintProductDelivery.Name = "buttonXPrintProductDelivery";
-			this.buttonXPrintProductDelivery.Size = new System.Drawing.Size(84, 29);
-			this.buttonXPrintProductDelivery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem3.Text = "Show Delivery";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductDelivery, superToolTip3);
-			this.buttonXPrintProductDelivery.TabIndex = 4;
-			this.buttonXPrintProductDelivery.Text = "Delivery";
-			this.buttonXPrintProductDelivery.TextColor = System.Drawing.Color.Black;
-			this.buttonXPrintProductDelivery.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyDelivery_CheckedChanged);
-			// 
-			// buttonXPrintProductReadership
-			// 
-			this.buttonXPrintProductReadership.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXPrintProductReadership.AutoCheckOnClick = true;
-			this.buttonXPrintProductReadership.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductReadership.Location = new System.Drawing.Point(332, 5);
-			this.buttonXPrintProductReadership.Name = "buttonXPrintProductReadership";
-			this.buttonXPrintProductReadership.Size = new System.Drawing.Size(84, 29);
-			this.buttonXPrintProductReadership.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem4.Text = "Show Readership";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductReadership, superToolTip4);
-			this.buttonXPrintProductReadership.TabIndex = 3;
-			this.buttonXPrintProductReadership.Text = "Readership";
-			this.buttonXPrintProductReadership.TextColor = System.Drawing.Color.Black;
-			this.buttonXPrintProductReadership.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyReadership_CheckedChanged);
-			// 
 			// xtraTabPageDigitalProducts
 			// 
 			this.xtraTabPageDigitalProducts.Controls.Add(this.digitalProductListControl);
 			this.xtraTabPageDigitalProducts.Name = "xtraTabPageDigitalProducts";
-			this.xtraTabPageDigitalProducts.Size = new System.Drawing.Size(826, 402);
+			this.xtraTabPageDigitalProducts.Size = new System.Drawing.Size(822, 399);
 			this.xtraTabPageDigitalProducts.Text = "Digital Products";
 			// 
 			// digitalProductListControl
@@ -566,14 +575,12 @@
 			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalProductListControl.Logo = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
 			this.digitalProductListControl.Name = "digitalProductListControl";
-			this.digitalProductListControl.Size = new System.Drawing.Size(826, 402);
+			this.digitalProductListControl.Size = new System.Drawing.Size(822, 399);
 			this.digitalProductListControl.TabIndex = 0;
 			// 
-			// toolTipController
+			// toolTipControllerGrid
 			// 
-			this.toolTipController.Rounded = true;
-			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
-			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
+			this.toolTipControllerGrid.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
 			// 
 			// ScheduleSettingsControl
 			// 
@@ -628,7 +635,7 @@
 		private DevComponents.DotNetBar.ButtonX buttonXPrintProductReadership;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageDigitalProducts;
 		private System.Windows.Forms.PictureBox pictureBoxPrintProductAppLogo;
-		private DevExpress.Utils.ToolTipController toolTipController;
+		private DevExpress.Utils.ToolTipController toolTipControllerButtons;
 		private OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl digitalProductListControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandPrintProductsPosition;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandPrintProductsPublication;
@@ -637,6 +644,7 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDelete;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDelete;
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDelete;
+		private DevExpress.Utils.ToolTipController toolTipControllerGrid;
 
     }
 }

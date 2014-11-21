@@ -2089,9 +2089,9 @@ namespace NewBizWiz.Core.MediaSchedule
 				if (month == null)
 				{
 					if (_parentSchedule.MondayBased)
-						month = new CalendarMonthBroadcastMondayBased(this);
+						month = new CalendarMonthMediaMondayBased(this);
 					else
-						month = new CalendarMonthBroadcastSundayBased(this);
+						month = new CalendarMonthMediaSundayBased(this);
 				}
 				var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
 				if (monthTemplate == null) continue;
@@ -2131,9 +2131,9 @@ namespace NewBizWiz.Core.MediaSchedule
 		public override void Deserialize(XmlNode node)
 		{
 			if (_parentSchedule.MondayBased)
-				Deserialize<CalendarMonthBroadcastMondayBased, CalendarDayMondayBased, MediaDataNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+				Deserialize<CalendarMonthMediaMondayBased, CalendarDayMondayBased, MediaDataNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
 			else
-				Deserialize<CalendarMonthBroadcastSundayBased, CalendarDaySundayBased, MediaDataNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+				Deserialize<CalendarMonthMediaSundayBased, CalendarDaySundayBased, MediaDataNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
 		}
 
 		public override void UpdateNotesCollection()
@@ -2225,18 +2225,18 @@ namespace NewBizWiz.Core.MediaSchedule
 		public override void Deserialize(XmlNode node)
 		{
 			if (_parentSchedule.MondayBased)
-				Deserialize<CalendarMonthBroadcastMondayBased, CalendarDayMondayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+				Deserialize<CalendarMonthMediaMondayBased, CalendarDayMondayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
 			else
-				Deserialize<CalendarMonthBroadcastSundayBased, CalendarDaySundayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+				Deserialize<CalendarMonthMediaSundayBased, CalendarDaySundayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
 		}
 	}
 
-	public abstract class CalendarMonthBroadcast : CalendarMonth
+	public abstract class CalendarMonthMedia : CalendarMonth
 	{
-		protected CalendarMonthBroadcast(Calendar.Calendar parent)
+		protected CalendarMonthMedia(Calendar.Calendar parent)
 			: base(parent)
 		{
-			OutputData = new BroadcastCalendarOutputData(this);
+			OutputData = new MediaCalendarOutputData(this);
 		}
 
 		public override DateTime Date
@@ -2246,47 +2246,27 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 	}
 
-	public class CalendarMonthBroadcastMondayBased : CalendarMonthBroadcast
+	public class CalendarMonthMediaMondayBased : CalendarMonthMedia
 	{
-		public CalendarMonthBroadcastMondayBased(Calendar.Calendar parent) : base(parent) { }
+		public CalendarMonthMediaMondayBased(Calendar.Calendar parent) : base(parent) { }
 	}
 
-	public class CalendarMonthBroadcastSundayBased : CalendarMonthBroadcast
+	public class CalendarMonthMediaSundayBased : CalendarMonthMedia
 	{
-		public CalendarMonthBroadcastSundayBased(Calendar.Calendar parent) : base(parent) { }
+		public CalendarMonthMediaSundayBased(Calendar.Calendar parent) : base(parent) { }
 	}
 
-	public class BroadcastCalendarOutputData : CalendarOutputData
+	public class MediaCalendarOutputData : CalendarOutputData
 	{
-		public BroadcastCalendarOutputData(CalendarMonth parent)
+		public MediaCalendarOutputData(CalendarMonth parent)
 			: base(parent)
 		{
 			ApplyForAllCustomComment = false;
 			ShowLogo = false;
 		}
-
-		public override string TagA
-		{
-			get { return String.Empty; }
-		}
-
-		public override string TagB
-		{
-			get { return String.Empty; }
-		}
-
-		public override string TagC
-		{
-			get { return String.Empty; }
-		}
-
-		public override string TagD
-		{
-			get { return String.Empty; }
-		}
 	}
 
-	public class BroadcastMonthTemplate
+	public class MediaMonthTemplate
 	{
 		public DateTime? Month { get; set; }
 		public DateTime? StartDate { get; set; }

@@ -48,7 +48,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		public RibbonTabItem TabAdPlan { get; set; }
 		public RibbonTabItem TabDetailedGrid { get; set; }
 		public RibbonTabItem TabMultiGrid { get; set; }
-		public RibbonTabItem TabCalendar { get; set; }
+		public RibbonTabItem TabCalendar1 { get; set; }
+		public RibbonTabItem TabCalendar2 { get; set; }
 		public RibbonTabItem TabSummaryLight { get; set; }
 		public RibbonTabItem TabSummaryFull { get; set; }
 		public RibbonTabItem TabRateCard { get; set; }
@@ -57,6 +58,8 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		public void Init()
 		{
+			Utilities.Instance.Title = "SellerPoint for Newspaper";
+
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
 			#region Schedule Settings
@@ -238,18 +241,31 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Calendars
-			Calendar = new AdCalendarControl();
-			CalendarMonthList.SelectedIndexChanged += Calendar.MonthList_SelectedIndexChanged;
-			CalendarCopy.Click += Calendar.CalendarCopy_Click;
-			CalendarPaste.Click += Calendar.CalendarPaste_Click;
-			CalendarClone.Click += Calendar.CalendarClone_Click;
-			CalendarSave.Click += Calendar.Save_Click;
-			CalendarSaveAs.Click += Calendar.SaveAs_Click;
-			CalendarPreview.Click += Calendar.Preview_Click;
-			CalendarPowerPoint.Click += Calendar.PowerPoint_Click;
-			CalendarEmail.Click += Calendar.Email_Click;
-			CalendarHelp.Click += Calendar.Help_Click;
-			CalendarExport.Click += Calendar.Export_Click;
+			Calendar1 = new PublicationCalendarControl();
+			Calendar1MonthList.SelectedIndexChanged += Calendar1.MonthList_SelectedIndexChanged;
+			Calendar1Copy.Click += Calendar1.CalendarCopy_Click;
+			Calendar1Paste.Click += Calendar1.CalendarPaste_Click;
+			Calendar1Clone.Click += Calendar1.CalendarClone_Click;
+			Calendar1Save.Click += Calendar1.Save_Click;
+			Calendar1SaveAs.Click += Calendar1.SaveAs_Click;
+			Calendar1Preview.Click += Calendar1.Preview_Click;
+			Calendar1PowerPoint.Click += Calendar1.PowerPoint_Click;
+			Calendar1Email.Click += Calendar1.Email_Click;
+			Calendar1Help.Click += Calendar1.Help_Click;
+			#endregion
+
+			#region Calendars
+			Calendar2 = new CustomCalendarControl();
+			Calendar2MonthList.SelectedIndexChanged += Calendar2.MonthList_SelectedIndexChanged;
+			Calendar2Copy.Click += Calendar2.CalendarCopy_Click;
+			Calendar2Paste.Click += Calendar2.CalendarPaste_Click;
+			Calendar2Clone.Click += Calendar2.CalendarClone_Click;
+			Calendar2Save.Click += Calendar2.Save_Click;
+			Calendar2SaveAs.Click += Calendar2.SaveAs_Click;
+			Calendar2Preview.Click += Calendar2.Preview_Click;
+			Calendar2PowerPoint.Click += Calendar2.PowerPoint_Click;
+			Calendar2Email.Click += Calendar2.Email_Click;
+			Calendar2Help.Click += Calendar2.Help_Click;
 			#endregion
 
 			#region AdPlan
@@ -283,12 +299,12 @@ namespace NewBizWiz.AdSchedule.Controls
 
 			#region Gallery 1
 			Gallery1 = new PrintGallery1Control();
-			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery1");
 			#endregion
 
 			#region Gallery 2
 			Gallery2 = new PrintGallery2Control();
-			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery2");
 			#endregion
 
 			ConfigureTabPages();
@@ -318,7 +334,8 @@ namespace NewBizWiz.AdSchedule.Controls
 			AdPlan.Dispose();
 			SummaryLight.Dispose();
 			SummaryFull.Dispose();
-			Calendar.Dispose();
+			Calendar1.Dispose();
+			Calendar2.Dispose();
 			RateCard.Dispose();
 			Gallery1.Dispose();
 			Gallery2.Dispose();
@@ -339,7 +356,8 @@ namespace NewBizWiz.AdSchedule.Controls
 			AdPlan.LoadSchedule(false);
 			SummaryLight.LoadData(false);
 			SummaryFull.LoadData(false);
-			Calendar.LoadCalendar(false);
+			Calendar1.LoadCalendar(false);
+			Calendar2.LoadCalendar(false);
 
 			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
 			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
@@ -348,6 +366,11 @@ namespace NewBizWiz.AdSchedule.Controls
 		public void UpdatePrintProductTab(bool enable)
 		{
 			TabPrintProduct.Enabled = enable;
+		}
+
+		public void UpdateCalendar2Tab(bool enable)
+		{
+			TabCalendar2.Enabled = enable;
 		}
 
 		public void UpdateDigitalProductTab(bool enable)
@@ -369,7 +392,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabAdPlan.Enabled = enable && Directory.Exists(BusinessWrapper.Instance.OutputManager.AdPlanTemlatesFolderPath);
 			TabDetailedGrid.Enabled = enable;
 			TabMultiGrid.Enabled = enable;
-			TabCalendar.Enabled = enable;
+			TabCalendar1.Enabled = enable;
 			TabSummaryLight.Enabled = enable;
 			TabSummaryFull.Enabled = enable;
 		}
@@ -444,7 +467,7 @@ namespace NewBizWiz.AdSchedule.Controls
 				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
 				SummaryLightTheme.Click += (o, e) => themesDisabledHandler();
-				
+
 				SummaryFullPowerPoint.Visible = false;
 				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = false;
@@ -506,33 +529,37 @@ namespace NewBizWiz.AdSchedule.Controls
 						TabDigitalPackage.Text = tabPageConfig.Name;
 						tabPages.Add(TabDigitalPackage);
 						break;
-					case "1. AdPlan":
+					case "AdPlan":
 						TabAdPlan.Text = tabPageConfig.Name;
 						tabPages.Add(TabAdPlan);
 						break;
-					case "2. Overview":
+					case "Overview":
 						TabBasicOverview.Text = tabPageConfig.Name;
 						tabPages.Add(TabBasicOverview);
 						break;
-					case "3. Analysis":
+					case "Analysis":
 						TabMultiSummary.Text = tabPageConfig.Name;
 						tabPages.Add(TabMultiSummary);
 						break;
-					case "4. Snapshot":
+					case "Snapshot":
 						TabSnapshot.Text = tabPageConfig.Name;
 						tabPages.Add(TabSnapshot);
 						break;
-					case "5. Detailed Grid":
+					case "Detailed Grid":
 						TabDetailedGrid.Text = tabPageConfig.Name;
 						tabPages.Add(TabDetailedGrid);
 						break;
-					case "6. Logo Grid":
+					case "Logo Grid":
 						TabMultiGrid.Text = tabPageConfig.Name;
 						tabPages.Add(TabMultiGrid);
 						break;
-					case "7. Calendar":
-						TabCalendar.Text = tabPageConfig.Name;
-						tabPages.Add(TabCalendar);
+					case "Calendar":
+						TabCalendar1.Text = tabPageConfig.Name;
+						tabPages.Add(TabCalendar1);
+						break;
+					case "Calendar2":
+						TabCalendar2.Text = tabPageConfig.Name;
+						tabPages.Add(TabCalendar2);
 						break;
 					case "Summary1":
 						TabSummaryLight.Text = tabPageConfig.Name;
@@ -573,7 +600,8 @@ namespace NewBizWiz.AdSchedule.Controls
 				SnapshotSpecialButtons,
 				DetailedGridSpecialButtons,
 				MultiGridSpecialButtons,
-				CalendarSpecialButtons,
+				Calendar1SpecialButtons,
+				Calendar2SpecialButtons,
 				SummaryLightSpecialButtons,
 				SummaryFullSpecialButtons,
 				RateCardSpecialButtons,
@@ -809,19 +837,32 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiGridDigitalLegend { get; set; }
 		#endregion
 
-		#region Calendar
-		public ImageListBoxControl CalendarMonthList { get; set; }
-		public ButtonItem CalendarCopy { get; set; }
-		public ButtonItem CalendarPaste { get; set; }
-		public ButtonItem CalendarClone { get; set; }
-		public ButtonItem CalendarHelp { get; set; }
-		public ButtonItem CalendarSave { get; set; }
-		public ButtonItem CalendarSaveAs { get; set; }
-		public ButtonItem CalendarPreview { get; set; }
-		public ButtonItem CalendarEmail { get; set; }
-		public ButtonItem CalendarPowerPoint { get; set; }
-		public ButtonItem CalendarExport { get; set; }
-		public RibbonBar CalendarSpecialButtons { get; set; }
+		#region Calendar 1
+		public ImageListBoxControl Calendar1MonthList { get; set; }
+		public ButtonItem Calendar1Copy { get; set; }
+		public ButtonItem Calendar1Paste { get; set; }
+		public ButtonItem Calendar1Clone { get; set; }
+		public ButtonItem Calendar1Help { get; set; }
+		public ButtonItem Calendar1Save { get; set; }
+		public ButtonItem Calendar1SaveAs { get; set; }
+		public ButtonItem Calendar1Preview { get; set; }
+		public ButtonItem Calendar1Email { get; set; }
+		public ButtonItem Calendar1PowerPoint { get; set; }
+		public RibbonBar Calendar1SpecialButtons { get; set; }
+		#endregion
+
+		#region Calendar 2
+		public ImageListBoxControl Calendar2MonthList { get; set; }
+		public ButtonItem Calendar2Copy { get; set; }
+		public ButtonItem Calendar2Paste { get; set; }
+		public ButtonItem Calendar2Clone { get; set; }
+		public ButtonItem Calendar2Help { get; set; }
+		public ButtonItem Calendar2Save { get; set; }
+		public ButtonItem Calendar2SaveAs { get; set; }
+		public ButtonItem Calendar2Preview { get; set; }
+		public ButtonItem Calendar2Email { get; set; }
+		public ButtonItem Calendar2PowerPoint { get; set; }
+		public RibbonBar Calendar2SpecialButtons { get; set; }
 		#endregion
 
 		#region Summary Light
@@ -908,7 +949,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		public PrintSummaryLight SummaryLight { get; private set; }
 		public PrintSummaryFull SummaryFull { get; private set; }
 		public PrintAdPlanControl AdPlan { get; private set; }
-		public AdCalendarControl Calendar { get; private set; }
+		public PublicationCalendarControl Calendar1 { get; private set; }
+		public CustomCalendarControl Calendar2 { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		public GalleryControl Gallery1 { get; private set; }
 		public GalleryControl Gallery2 { get; private set; }

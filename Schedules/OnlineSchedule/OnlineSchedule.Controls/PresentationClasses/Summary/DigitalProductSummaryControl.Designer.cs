@@ -204,13 +204,14 @@
 			this.pnFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnFooter.Location = new System.Drawing.Point(1, 95);
 			this.pnFooter.Name = "pnFooter";
+			this.pnFooter.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.pnFooter.Size = new System.Drawing.Size(769, 34);
 			this.pnFooter.TabIndex = 0;
 			// 
 			// checkEditInvDetails
 			// 
 			this.checkEditInvDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.checkEditInvDetails.Location = new System.Drawing.Point(548, 0);
+			this.checkEditInvDetails.Location = new System.Drawing.Point(553, 0);
 			this.checkEditInvDetails.Name = "checkEditInvDetails";
 			this.checkEditInvDetails.Properties.AllowFocused = false;
 			this.checkEditInvDetails.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -218,7 +219,7 @@
 			this.checkEditInvDetails.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditInvDetails.Properties.AutoHeight = false;
 			this.checkEditInvDetails.Properties.Caption = "Investment Details: <b>Creative Design</b>";
-			this.checkEditInvDetails.Size = new System.Drawing.Size(221, 34);
+			this.checkEditInvDetails.Size = new System.Drawing.Size(216, 34);
 			this.checkEditInvDetails.StyleController = this.styleController;
 			this.checkEditInvDetails.TabIndex = 3;
 			this.checkEditInvDetails.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -226,7 +227,7 @@
 			// checkEditCPM
 			// 
 			this.checkEditCPM.Dock = System.Windows.Forms.DockStyle.Left;
-			this.checkEditCPM.Location = new System.Drawing.Point(384, 0);
+			this.checkEditCPM.Location = new System.Drawing.Point(389, 0);
 			this.checkEditCPM.Name = "checkEditCPM";
 			this.checkEditCPM.Properties.AllowFocused = false;
 			this.checkEditCPM.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -242,7 +243,7 @@
 			// checkEditInvestments
 			// 
 			this.checkEditInvestments.Dock = System.Windows.Forms.DockStyle.Left;
-			this.checkEditInvestments.Location = new System.Drawing.Point(192, 0);
+			this.checkEditInvestments.Location = new System.Drawing.Point(197, 0);
 			this.checkEditInvestments.Name = "checkEditInvestments";
 			this.checkEditInvestments.Properties.AllowFocused = false;
 			this.checkEditInvestments.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -258,7 +259,7 @@
 			// checkEditImpressions
 			// 
 			this.checkEditImpressions.Dock = System.Windows.Forms.DockStyle.Left;
-			this.checkEditImpressions.Location = new System.Drawing.Point(0, 0);
+			this.checkEditImpressions.Location = new System.Drawing.Point(5, 0);
 			this.checkEditImpressions.Name = "checkEditImpressions";
 			this.checkEditImpressions.Properties.AllowFocused = false;
 			this.checkEditImpressions.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;

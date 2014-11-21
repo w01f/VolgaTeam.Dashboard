@@ -378,16 +378,30 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			gridBandSpots.Visible = _spotColumns.Count > 0 && ScheduleSection.ShowSpots;
 		}
 
-		private IEnumerable<DXMenuItem> GetContextMenuItems(GridView targetView, GridColumn targetColumn, int targetRowHandle)
+		private IEnumerable<DXMenuItem> GetContextMenuItems(ColumnView targetView, GridColumn targetColumn, int targetRowHandle)
 		{
 			var items = new List<DXMenuItem>();
 			if (_spotColumns.Any(sc => sc.Visible && sc == targetColumn))
 			{
-				var valueToClone = targetView.GetRowCellValue(targetRowHandle, targetColumn);
 				var columnName = ((object[])targetColumn.Tag)[1];
-				items.Add(new DXMenuItem(String.Format("Clone {1} to all {0}s", SpotTitle, columnName), (o, args) => CloneSpots(targetRowHandle, valueToClone, -1, false)));
-				items.Add(new DXMenuItem(String.Format("Clone {1} to all Remaining {0}s", SpotTitle, columnName), (o, args) => CloneSpots(targetRowHandle, valueToClone, targetColumn.VisibleIndex, false)));
-				items.Add(new DXMenuItem(String.Format("Clone {1} to every other Remaining {0}s", SpotTitle, columnName), (o, args) => CloneSpots(targetRowHandle, valueToClone, targetColumn.VisibleIndex, true)));
+				items.Add(new DXMenuItem(String.Format("Clone {1} to all {0}s", SpotTitle, columnName), (o, args) =>
+				{
+					targetView.CloseEditor();
+					var valueToClone = targetView.GetRowCellValue(targetRowHandle, targetColumn);
+					CloneSpots(targetRowHandle, valueToClone, -1, false);
+				}));
+				items.Add(new DXMenuItem(String.Format("Clone {1} to all Remaining {0}s", SpotTitle, columnName), (o, args) =>
+				{
+					targetView.CloseEditor();
+					var valueToClone = targetView.GetRowCellValue(targetRowHandle, targetColumn);
+					CloneSpots(targetRowHandle, valueToClone, targetColumn.VisibleIndex, false);
+				}));
+				items.Add(new DXMenuItem(String.Format("Clone {1} to every other Remaining {0}s", SpotTitle, columnName), (o, args) =>
+				{
+					targetView.CloseEditor();
+					var valueToClone = targetView.GetRowCellValue(targetRowHandle, targetColumn);
+					CloneSpots(targetRowHandle, valueToClone, targetColumn.VisibleIndex, true);
+				}));
 				items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(targetRowHandle, null, -1, false)));
 			}
 			else if (targetColumn == bandedGridColumnIndex ||

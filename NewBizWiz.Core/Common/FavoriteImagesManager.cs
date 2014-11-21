@@ -71,5 +71,13 @@ namespace NewBizWiz.Core.Common
 			LoadImages();
 			OnCollectionChanged();
 		}
+
+		public void SaveImages(Dictionary<string, Image> images)
+		{
+			foreach (var image in images)
+				image.Value.Save(Path.Combine(_storageFolderPath, String.Format("{0}.png", image.Key)));	
+			LoadImages();
+			OnCollectionChanged();
+		}
 	}
 }

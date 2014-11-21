@@ -14,8 +14,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private bool _allowToCheckSlideOptions;
 		private bool _allowToSave;
 
-		public event EventHandler<EventArgs> OnHelp;
-
 		#region Slide Options
 		public string TotalInserts
 		{

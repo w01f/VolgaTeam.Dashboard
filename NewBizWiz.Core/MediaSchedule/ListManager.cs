@@ -27,8 +27,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			Days = new List<string>();
 			SourcePrograms = new List<SourceProgram>();
 			Statuses = new List<string>();
-			MonthTemplatesMondayBased = new List<BroadcastMonthTemplate>();
-			MonthTemplatesSundayBased = new List<BroadcastMonthTemplate>();
+			MonthTemplatesMondayBased = new List<MediaMonthTemplate>();
+			MonthTemplatesSundayBased = new List<MediaMonthTemplate>();
 
 			var folderPath = Path.Combine(ImageFolderPath, "Big Logos");
 			if (Directory.Exists(folderPath))
@@ -68,8 +68,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<Station> Stations { get; set; }
 		public List<SourceProgram> SourcePrograms { get; set; }
 		public List<string> Statuses { get; set; }
-		public List<BroadcastMonthTemplate> MonthTemplatesMondayBased { get; set; }
-		public List<BroadcastMonthTemplate> MonthTemplatesSundayBased { get; set; }
+		public List<MediaMonthTemplate> MonthTemplatesMondayBased { get; set; }
+		public List<MediaMonthTemplate> MonthTemplatesSundayBased { get; set; }
 
 		public ImageSource DefaultStrategyLogo { get; set; }
 
@@ -201,7 +201,7 @@ namespace NewBizWiz.Core.MediaSchedule
 									}
 								break;
 							case "BroadcastMonthTemplate":
-								var monthTemplate = new BroadcastMonthTemplate();
+								var monthTemplate = new MediaMonthTemplate();
 								monthTemplate.Deserialize(childeNode);
 								MonthTemplatesMondayBased.Add(monthTemplate);
 								MonthTemplatesSundayBased.Add(monthTemplate);

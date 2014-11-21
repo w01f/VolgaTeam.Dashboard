@@ -95,6 +95,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 		}
 
+		public override void OpenHelp(string key)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);
+		}
+
 		public override void TrackActivity(UserActivity activity)
 		{
 			BusinessWrapper.Instance.ActivityManager.AddActivity(activity);

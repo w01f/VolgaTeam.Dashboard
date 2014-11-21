@@ -3799,16 +3799,10 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowBigDate = true;
 
 			EnableLogo = true;
-			EnableTotalCost = true;
 			EnableComments = true;
-			EnableTotalAds = true;
-			EnableActiveDays = true;
 
 			ShowLogo = true;
-			ShowTotalCost = false;
 			ShowComments = false;
-			ShowTotalAds = false;
-			ShowActiveDays = false;
 
 			EnableGray = true;
 			EnableBlack = true;
@@ -3838,17 +3832,10 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowBigDate { get; set; }
 
 		public bool EnableLogo { get; set; }
-		public bool EnableTotalCost { get; set; }
 		public bool EnableComments { get; set; }
-		public bool EnableTotalAds { get; set; }
-		public bool EnableActiveDays { get; set; }
 
 		public bool ShowLogo { get; set; }
-		public bool ShowTotalCost { get; set; }
 		public bool ShowComments { get; set; }
-		public bool ShowTotalAds { get; set; }
-		public bool ShowActiveDays { get; set; }
-		public bool ShowDigital { get; set; }
 
 		public bool EnableGray { get; set; }
 		public bool EnableBlack { get; set; }
@@ -3880,17 +3867,9 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowBigDate>" + ShowBigDate + @"</ShowBigDate>");
 
 			result.AppendLine(@"<EnableLogo>" + EnableLogo + @"</EnableLogo>");
-			result.AppendLine(@"<EnableTotalCost>" + EnableTotalCost + @"</EnableTotalCost>");
 			result.AppendLine(@"<EnableComments>" + EnableComments + @"</EnableComments>");
-			result.AppendLine(@"<EnableTotalAds>" + EnableTotalAds + @"</EnableTotalAds>");
-			result.AppendLine(@"<EnableActiveDays>" + EnableActiveDays + @"</EnableActiveDays>");
-			result.AppendLine(@"<ShowDigital>" + ShowDigital + @"</ShowDigital>");
-
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
-			result.AppendLine(@"<ShowTotalCost>" + ShowTotalCost + @"</ShowTotalCost>");
 			result.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
-			result.AppendLine(@"<ShowTotalAds>" + ShowTotalAds + @"</ShowTotalAds>");
-			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays + @"</ShowActiveDays>");
 
 			result.AppendLine(@"<EnableGray>" + EnableGray + @"</EnableGray>");
 			result.AppendLine(@"<EnableBlack>" + EnableBlack + @"</EnableBlack>");
@@ -3979,46 +3958,18 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableLogo = tempBool;
 						break;
-					case "EnableTotalCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableTotalCost = tempBool;
-						break;
 					case "EnableComments":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableComments = tempBool;
-						break;
-					case "EnableTotalAds":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableTotalAds = tempBool;
-						break;
-					case "EnableActiveDays":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableActiveDays = tempBool;
 						break;
 
 					case "ShowLogo":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowLogo = tempBool;
 						break;
-					case "ShowTotalCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalCost = tempBool;
-						break;
 					case "ShowComments":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowComments = tempBool;
-						break;
-					case "ShowTotalAds":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalAds = tempBool;
-						break;
-					case "ShowActiveDays":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowActiveDays = tempBool;
-						break;
-					case "ShowDigital":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDigital = tempBool;
 						break;
 
 					case "EnableGray":
@@ -4061,10 +4012,7 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowBigDate &= EnableBigDate;
 
 			ShowLogo &= EnableLogo;
-			ShowTotalCost &= EnableTotalCost;
 			ShowComments &= EnableComments;
-			ShowTotalAds &= EnableTotalAds;
-			ShowActiveDays &= EnableActiveDays;
 		}
 	}
 }

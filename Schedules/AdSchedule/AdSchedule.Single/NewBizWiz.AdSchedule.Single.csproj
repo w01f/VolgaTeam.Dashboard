@@ -99,12 +99,6 @@
   <ItemGroup>
     <Compile Include="AppManager.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ToolForms\FormOpenSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormOpenSchedule.designer.cs">
-      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,15 +106,6 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolForms\FormStart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormStart.designer.cs">
-      <DependentUpon>FormStart.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="ToolForms\FormOpenSchedule.resx">
-      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,9 +119,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ToolForms\FormStart.resx">
-      <DependentUpon>FormStart.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>

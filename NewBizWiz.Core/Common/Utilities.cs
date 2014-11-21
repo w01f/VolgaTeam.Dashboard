@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -25,19 +26,27 @@ namespace NewBizWiz.Core.Common
 			get { return _instance; }
 		}
 
+		private string _title;
+
+		public string Title
+		{
+			get { return _title ?? SettingsManager.Instance.DashboardName; }
+			set { _title = value; }
+		}
+
 		public void ShowWarning(string text)
 		{
-			MessageBox.Show(text, SettingsManager.Instance.DashboardName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			MessageBox.Show(text, Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 		}
 
 		public DialogResult ShowWarningQuestion(string text)
 		{
-			return MessageBox.Show(text, SettingsManager.Instance.DashboardName, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+			return MessageBox.Show(text, Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 		}
 
 		public void ShowInformation(string text)
 		{
-			MessageBox.Show(text, SettingsManager.Instance.DashboardName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(text, Title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		public void ActivateForm(IntPtr handle, bool maximized, bool topMost)
@@ -347,6 +356,24 @@ namespace NewBizWiz.Core.Common
 			return null;
 		}
 		#endregion
+
+		public void PutImageToClipboard(Image imageData)
+		{
+			if (imageData == null) return;
+			using (var stream = new MemoryStream())
+			{
+				imageData.Save(stream, ImageFormat.Png);
+				var data = new DataObject("PNG", stream);
+				Clipboard.Clear();
+				Clipboard.SetDataObject(data, true);
+			}
+		}
+
+		public Image GetImageFormClipboard()
+		{
+			if (!Clipboard.ContainsData("PNG")) return null;
+			return Image.FromStream((Stream)Clipboard.GetData("PNG"));
+		}
 	}
 
 	public static class Extensions

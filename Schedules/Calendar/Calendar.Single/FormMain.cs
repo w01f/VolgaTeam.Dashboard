@@ -274,7 +274,7 @@ namespace NewBizWiz.Calendar.Single
 			#endregion
 
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("Ninja Calendar BETA - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
+				Text = String.Format("{0} - {1} - {2}", Utilities.Instance.Title, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
 
 			Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
 			AppManager.ActivateMainForm();

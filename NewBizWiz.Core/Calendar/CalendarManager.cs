@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.ApplicationServices;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
@@ -53,29 +54,6 @@ namespace NewBizWiz.Core.Calendar
 		{
 			string calendarFilePath = GetScheduleFileName(scheduleName);
 			OpenSchedule(calendarFilePath);
-		}
-
-		public static void ImportSchedule(string sourceSchedulePath, string newName)
-		{
-			var sourceSchedule = new AdSchedule.Schedule(sourceSchedulePath);
-
-			var newSchedule = new Schedule(GetScheduleFileName(newName));
-
-			newSchedule.BusinessName = sourceSchedule.BusinessName;
-			newSchedule.DecisionMaker = sourceSchedule.DecisionMaker;
-			newSchedule.ClientType = sourceSchedule.ClientType;
-			newSchedule.PresentationDate = sourceSchedule.PresentationDate;
-			newSchedule.FlightDateStart = sourceSchedule.FlightDateStart;
-			newSchedule.FlightDateEnd = sourceSchedule.FlightDateEnd;
-			newSchedule.Status = ListManager.Instance.Statuses.FirstOrDefault();
-
-			newSchedule.GraphicCalendar = new CalendarSundayBased(newSchedule);
-			newSchedule.GraphicCalendar.UpdateDaysCollection();
-			newSchedule.GraphicCalendar.UpdateMonthCollection();
-			newSchedule.GraphicCalendar.UpdateNotesCollection();
-			newSchedule.GraphicCalendar.ImportDays(sourceSchedule);
-
-			newSchedule.Save();
 		}
 
 		public void OpenSchedule(string scheduleFilePath)
@@ -326,7 +304,7 @@ namespace NewBizWiz.Core.Calendar
 			xml.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
 			Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
 			Common.ListManager.Instance.DecisionMakers.Save();
-	
+
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
@@ -430,12 +408,12 @@ namespace NewBizWiz.Core.Calendar
 		public void AddNote(DateRange range, string noteText = "")
 		{
 			var note = new TextItem(noteText, false);
-			AddNote(range, note);
+			AddNote(range, note, true);
 		}
 
-		public void AddNote(DateRange range, ITextItem noteText)
+		public void AddNote(DateRange range, ITextItem noteText, bool userAdded = false)
 		{
-			var newNote = new CommonCalendarNote(this);
+			var newNote = new CommonCalendarNote(this) { UserAdded = userAdded };
 			newNote.StartDay = range.StartDate;
 			newNote.FinishDay = range.FinishDate;
 			newNote.Note = noteText;
@@ -461,16 +439,6 @@ namespace NewBizWiz.Core.Calendar
 		{
 			Notes.Remove(note);
 			UpdateDayAndNoteLinks();
-		}
-
-		public void ImportDays(AdSchedule.Schedule sourceSchedule)
-		{
-			foreach (var day in Days.Where(d => !d.EditedByUser))
-			{
-				var scheduleCalendarDay = sourceSchedule.Calendar.Days.FirstOrDefault(sd => sd.Date.Date == day.Date.Date);
-				if (scheduleCalendarDay == null) continue;
-				day.Comment = scheduleCalendarDay.Comment;
-			}
 		}
 
 		protected void Deserialize<TMonth, TDay, TNote>(XmlNode node, DayOfWeek startDay, DayOfWeek endDay)
@@ -823,7 +791,10 @@ namespace NewBizWiz.Core.Calendar
 		public bool HasNotes { get; set; }
 		public bool EditedByUser { get; private set; }
 		public ImageSource Logo { get; set; }
-		public abstract string ImportedData { get; }
+		public virtual string ImportedData
+		{
+			get { return String.Empty; }
+		}
 
 		public string Comment
 		{
@@ -909,11 +880,6 @@ namespace NewBizWiz.Core.Calendar
 		public CalendarDaySundayBased(Calendar parent)
 			: base(parent) { }
 
-		public override string ImportedData
-		{
-			get { return String.Empty; }
-		}
-
 		public override int WeekDayIndex
 		{
 			get
@@ -945,11 +911,6 @@ namespace NewBizWiz.Core.Calendar
 	{
 		public CalendarDayMondayBased(Calendar parent)
 			: base(parent) { }
-
-		public override string ImportedData
-		{
-			get { return String.Empty; }
-		}
 
 		public override int WeekDayIndex
 		{
@@ -996,6 +957,7 @@ namespace NewBizWiz.Core.Calendar
 		public Calendar Parent { get; private set; }
 		public DateTime StartDay { get; set; }
 		public DateTime FinishDay { get; set; }
+		public bool UserAdded { get; set; }
 
 		public virtual ITextItem Note
 		{
@@ -1158,7 +1120,6 @@ namespace NewBizWiz.Core.Calendar
 		#endregion
 
 		#region Style
-
 		public string SlideColor { get; set; }
 		public bool ApplyForAllThemeColor { get; set; }
 		public bool ShowLogo { get; set; }
@@ -1321,14 +1282,25 @@ namespace NewBizWiz.Core.Calendar
 			get { return 7; }
 		}
 
-		public abstract string TagA { get; }
+		public virtual string TagA
+		{
+			get { return String.Empty; }
+		}
 
-		public abstract string TagB { get; }
+		public virtual string TagB
+		{
+			get { return String.Empty; }
+		}
 
-		public abstract string TagC { get; }
+		public virtual string TagC
+		{
+			get { return String.Empty; }
+		}
 
-		public abstract string TagD { get; }
-
+		public virtual string TagD
+		{
+			get { return String.Empty; }
+		}
 		#endregion
 
 		public virtual string Serialize()

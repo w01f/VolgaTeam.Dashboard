@@ -253,9 +253,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			if (e.HitInfo.Column != bandedGridColumnItemsLogo) return;
 			var sourceItem = advBandedGridViewItems.GetRow(e.HitInfo.RowHandle) as ProgramStrategyItem;
 			if (sourceItem == null || !sourceItem.Enabled) return;
-			ImageSource clipboardImage = null;
-			if (Clipboard.ContainsImage())
-				clipboardImage = ImageSource.FromImage(Clipboard.GetImage());
+			ImageSource imageSource = null;
+			var clipboardImage = Utilities.Instance.GetImageFormClipboard();
+			if (clipboardImage != null)
+				imageSource = ImageSource.FromImage(clipboardImage);
 			else if (Clipboard.ContainsText(TextDataFormat.Html))
 			{
 				var textContent = Clipboard.GetText(TextDataFormat.Html);
@@ -263,19 +264,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				{
 					var doc = new XmlDocument();
 					doc.LoadXml(textContent);
-					clipboardImage = new ImageSource();
-					clipboardImage.Deserialize(doc.FirstChild);
+					imageSource = new ImageSource();
+					imageSource.Deserialize(doc.FirstChild);
 				}
 				catch { }
 			}
 			e.Menu.Items.Add(new DXMenuItem("Paste Image", (o, ea) =>
 			{
-				sourceItem.Logo = clipboardImage.Clone();
+				sourceItem.Logo = imageSource.Clone();
 				advBandedGridViewItems.UpdateCurrentRow();
 				SettingsNotSaved = true;
 			})
 			{
-				Enabled = clipboardImage != null
+				Enabled = imageSource != null
 			});
 
 			e.Menu.Items.Add(new DXMenuItem("Add Image to Favorites...", (o, args) => AddLogoToFavorites(sourceItem.Logo.BigImage.Clone() as Image, sourceItem.Name))

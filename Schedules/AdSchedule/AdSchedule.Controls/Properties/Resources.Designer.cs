@@ -423,16 +423,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap ExportCalendar {
-            get {
-                object obj = ResourceManager.GetObject("ExportCalendar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap FlatRate {
             get {
                 object obj = ResourceManager.GetObject("FlatRate", resourceCulture);

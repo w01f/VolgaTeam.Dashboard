@@ -39,13 +39,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			textEditHeader.Parent = gridControlPublication;
 
 			ColumnsColumns = new ColumnsControl(this);
-			ColumnsColumns.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar1");
-
 			AdNotes = new AdNotesControl(this);
-			AdNotes.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar2");
-
+			
 			SlideBullets = new SlideBulletsControl(this);
-			SlideBullets.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar4");
 			SlideBullets.checkEditColumnInches.Visible = false;
 			SlideBullets.checkEditDimensions.Visible = false;
 			SlideBullets.checkEditPageSize.Visible = false;
@@ -54,7 +50,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SlideBullets.checkEditReadership.Visible = false;
 
 			SlideHeader = new SlideHeaderControl(this);
-			SlideHeader.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar3");
 			SlideHeader.checkEditPublicationName.Visible = false;
 			SlideHeader.checkEditLogo1.Visible = false;
 

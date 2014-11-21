@@ -14,8 +14,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private readonly IGridOutputControl _settingsContainer;
 		private bool _allowToSave;
 
-		public event EventHandler<EventArgs> OnHelp;
-
 		public ColumnsControl(IGridOutputControl settingsContainer)
 		{
 			InitializeComponent();

@@ -28,8 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.labelControlNumber = new DevExpress.XtraEditors.LabelControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnMainExt = new System.Windows.Forms.Panel();
 			this.pnBody = new System.Windows.Forms.Panel();
 			this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
@@ -204,13 +205,14 @@
 			this.pnFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnFooter.Location = new System.Drawing.Point(1, 95);
 			this.pnFooter.Name = "pnFooter";
+			this.pnFooter.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.pnFooter.Size = new System.Drawing.Size(769, 34);
 			this.pnFooter.TabIndex = 0;
 			// 
 			// checkEditTotalCost
 			// 
 			this.checkEditTotalCost.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.checkEditTotalCost.Location = new System.Drawing.Point(605, 0);
+			this.checkEditTotalCost.Location = new System.Drawing.Point(610, 0);
 			this.checkEditTotalCost.Name = "checkEditTotalCost";
 			this.checkEditTotalCost.Properties.AllowFocused = false;
 			this.checkEditTotalCost.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -218,7 +220,7 @@
 			this.checkEditTotalCost.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditTotalCost.Properties.AutoHeight = false;
 			this.checkEditTotalCost.Properties.Caption = "Total Cost: <b>$100.00</b>";
-			this.checkEditTotalCost.Size = new System.Drawing.Size(164, 34);
+			this.checkEditTotalCost.Size = new System.Drawing.Size(159, 34);
 			this.checkEditTotalCost.StyleController = this.styleController;
 			this.checkEditTotalCost.TabIndex = 3;
 			this.checkEditTotalCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -226,7 +228,7 @@
 			// checkEditAvgPCIRate
 			// 
 			this.checkEditAvgPCIRate.Dock = System.Windows.Forms.DockStyle.Left;
-			this.checkEditAvgPCIRate.Location = new System.Drawing.Point(422, 0);
+			this.checkEditAvgPCIRate.Location = new System.Drawing.Point(427, 0);
 			this.checkEditAvgPCIRate.Name = "checkEditAvgPCIRate";
 			this.checkEditAvgPCIRate.Properties.AllowFocused = false;
 			this.checkEditAvgPCIRate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -242,7 +244,7 @@
 			// checkEditTotalDiscounts
 			// 
 			this.checkEditTotalDiscounts.Dock = System.Windows.Forms.DockStyle.Left;
-			this.checkEditTotalDiscounts.Location = new System.Drawing.Point(211, 0);
+			this.checkEditTotalDiscounts.Location = new System.Drawing.Point(216, 0);
 			this.checkEditTotalDiscounts.Name = "checkEditTotalDiscounts";
 			this.checkEditTotalDiscounts.Properties.AllowFocused = false;
 			this.checkEditTotalDiscounts.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -258,7 +260,7 @@
 			// checkEditAvgADRate
 			// 
 			this.checkEditAvgADRate.Dock = System.Windows.Forms.DockStyle.Left;
-			this.checkEditAvgADRate.Location = new System.Drawing.Point(0, 0);
+			this.checkEditAvgADRate.Location = new System.Drawing.Point(5, 0);
 			this.checkEditAvgADRate.Name = "checkEditAvgADRate";
 			this.checkEditAvgADRate.Properties.AllowFocused = false;
 			this.checkEditAvgADRate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;

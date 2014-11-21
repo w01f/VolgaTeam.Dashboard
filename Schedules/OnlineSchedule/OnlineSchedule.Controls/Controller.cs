@@ -44,6 +44,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 
 		public void Init()
 		{
+			Utilities.Instance.Title = "WebPoint Digital Schedules";
+
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
 			#region Schedule Settings

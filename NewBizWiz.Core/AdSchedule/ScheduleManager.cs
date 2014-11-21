@@ -196,7 +196,8 @@ namespace NewBizWiz.Core.AdSchedule
 			CustomSummary = new AdFullSummarySettings(this);
 			ViewSettings = new ScheduleBuilderViewSettings();
 			DigitalProductSummary = new DigitalProductSummary();
-			Calendar = new AdCalendar(this);
+			PublicationCalendar = new PublicationCalendar(this);
+			CustomCalendar = new CustomCalendar(this);
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -233,7 +234,8 @@ namespace NewBizWiz.Core.AdSchedule
 		public List<PrintProduct> PrintProducts { get; set; }
 		public List<DigitalProduct> DigitalProducts { get; set; }
 		public DigitalProductSummary DigitalProductSummary { get; private set; }
-		public AdCalendar Calendar { get; private set; }
+		public PublicationCalendar PublicationCalendar { get; private set; }
+		public CustomCalendar CustomCalendar { get; set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 		public IScheduleViewSettings SharedViewSettings
@@ -381,15 +383,29 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 
 			node = document.SelectSingleNode(@"/Schedule/Calendar");
+			if (node == null)
+				node = document.SelectSingleNode(@"/Schedule/PublicationCalendar");
 			if (node != null)
 			{
-				Calendar.Deserialize(node);
+				PublicationCalendar.Deserialize(node);
 			}
 			else
 			{
-				Calendar.UpdateDaysCollection();
-				Calendar.UpdateMonthCollection();
-				Calendar.UpdateNotesCollection();
+				PublicationCalendar.UpdateDaysCollection();
+				PublicationCalendar.UpdateMonthCollection();
+				PublicationCalendar.UpdateNotesCollection();
+			}
+
+			node = document.SelectSingleNode(@"/Schedule/CustomCalendar");
+			if (node != null)
+			{
+				CustomCalendar.Deserialize(node);
+			}
+			else
+			{
+				CustomCalendar.UpdateDaysCollection();
+				CustomCalendar.UpdateMonthCollection();
+				CustomCalendar.UpdateNotesCollection();
 			}
 		}
 
@@ -430,7 +446,8 @@ namespace NewBizWiz.Core.AdSchedule
 				xml.AppendLine(digitalProduct.Serialize());
 			xml.AppendLine(@"</DigitalProducts>");
 			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
-			xml.AppendLine(@"<Calendar>" + Calendar.Serialize() + @"</Calendar>");
+			xml.AppendLine(@"<PublicationCalendar>" + PublicationCalendar.Serialize() + @"</PublicationCalendar>");
+			xml.AppendLine(@"<CustomCalendar>" + CustomCalendar.Serialize() + @"</CustomCalendar>");
 
 			xml.AppendLine(@"</Schedule>");
 
@@ -1977,21 +1994,6 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		public AdCalendar(ISchedule parent) : base(parent) { }
 
-		public override void Deserialize(XmlNode node)
-		{
-			Deserialize<AdCalendarMonth, AdCalendarDay,CalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
-		}
-
-		public override void UpdateMonthCollection()
-		{
-			UpdateMonthCollection<AdCalendarMonth>();
-		}
-
-		public override void UpdateDaysCollection()
-		{
-			UpdateDaysCollection<AdCalendarDay>(DayOfWeek.Sunday, DayOfWeek.Saturday);
-		}
-
 		public override DateTime[][] GetDaysByWeek(DateTime start, DateTime end)
 		{
 			return GetDaysByWeek(start, end, DayOfWeek.Saturday);
@@ -2011,28 +2013,77 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 	}
 
-	public class AdCalendarMonth : CalendarMonthSundayBased
+	public class PublicationCalendar : AdCalendar
 	{
-		public AdCalendarMonth(Calendar.Calendar parent)
-			: base(parent)
+		public PublicationCalendar(ISchedule parent) : base(parent) { }
+
+		public override void Deserialize(XmlNode node)
 		{
-			OutputData = new AdCalendarOutputData(this);
+			Deserialize<PublicationCalendarMonth, PublicationCalendarDay, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+		}
+
+		public override void UpdateMonthCollection()
+		{
+			UpdateMonthCollection<PublicationCalendarMonth>();
+		}
+
+		public override void UpdateDaysCollection()
+		{
+			UpdateDaysCollection<PublicationCalendarDay>(DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 	}
 
-	public class AdCalendarDay : CalendarDaySundayBased
+	public class CustomCalendar : AdCalendar
+	{
+		public CustomCalendar(ISchedule parent) : base(parent) { }
+
+		public override void Deserialize(XmlNode node)
+		{
+			Deserialize<CustomCalendarMonth, CalendarDaySundayBased, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+		}
+
+		public override void UpdateMonthCollection()
+		{
+			UpdateMonthCollection<CustomCalendarMonth>();
+		}
+
+		public override void UpdateDaysCollection()
+		{
+			UpdateDaysCollection<CalendarDaySundayBased>(DayOfWeek.Sunday, DayOfWeek.Saturday);
+		}
+	}
+
+	public class PublicationCalendarMonth : CalendarMonthSundayBased
+	{
+		public PublicationCalendarMonth(Calendar.Calendar parent)
+			: base(parent)
+		{
+			OutputData = new PublicationCalendarOutputData(this);
+		}
+	}
+
+	public class CustomCalendarMonth : CalendarMonthSundayBased
+	{
+		public CustomCalendarMonth(Calendar.Calendar parent)
+			: base(parent)
+		{
+			OutputData = new CustomCalendarOutputData(this);
+		}
+	}
+
+	public class PublicationCalendarDay : CalendarDaySundayBased
 	{
 		protected Schedule AdSchedule
 		{
 			get { return Parent.Schedule as Schedule; }
 		}
 
-		protected AdCalendarOutputData MonthOutputData
+		protected PublicationCalendarOutputData MonthOutputData
 		{
-			get { return Parent.Months.Where(m => m.DaysRangeBegin <= Date && m.DaysRangeEnd >= Date).Select(m => m.OutputData).OfType<AdCalendarOutputData>().FirstOrDefault(); }
+			get { return Parent.Months.Where(m => m.DaysRangeBegin <= Date && m.DaysRangeEnd >= Date).Select(m => m.OutputData).OfType<PublicationCalendarOutputData>().FirstOrDefault(); }
 		}
 
-		public AdCalendarDay(Calendar.Calendar parent) : base(parent) { }
+		public PublicationCalendarDay(Calendar.Calendar parent) : base(parent) { }
 
 		public override string ImportedData
 		{
@@ -2069,10 +2120,24 @@ namespace NewBizWiz.Core.AdSchedule
 		public AdCalendarOutputData(CalendarMonth parent)
 			: base(parent)
 		{
-			ApplyForAllInfo = true;
-			ApplyForAllDetails = true;
-
 			ResetToDefault();
+		}
+
+		public virtual void ResetToDefault()
+		{
+			ShowBigDate = ListManager.Instance.DefaultCalendarViewSettings.ShowBigDate;
+			ShowCustomComment = ListManager.Instance.DefaultCalendarViewSettings.ShowComments;
+			ShowLogo = ListManager.Instance.DefaultCalendarViewSettings.ShowLogo;
+			SlideColor = ListManager.Instance.DefaultCalendarViewSettings.SlideColor;
+		}
+	}
+
+	public class PublicationCalendarOutputData : AdCalendarOutputData
+	{
+		public PublicationCalendarOutputData(CalendarMonth parent)
+			: base(parent)
+		{
+			ApplyForAllInfo = true;
 		}
 
 		#region Info
@@ -2084,93 +2149,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowPageSize { get; set; }
 		public bool ShowPercentOfPage { get; set; }
 		public bool ApplyForAllInfo { get; set; }
-		#endregion
-
-		#region Details
-		public bool ShowPrintTotalCost { get; set; }
-		public bool ShowDigitalTotalCost { get; set; }
-		public double? PrintTotalCost { get; set; }
-		public double? DigitalTotalCost { get; set; }
-
-		private int? _activeDays;
-		private int? _printAdsNumber;
-		public bool ShowActiveDays { get; set; }
-		public bool ShowPrintAdsNumber { get; set; }
-
-		public bool ApplyForAllDetails { get; set; }
-		#endregion
-
-		#region Calculated Options
-		public int PrintAdsNumber
-		{
-			get { return _printAdsNumber.HasValue ? _printAdsNumber.Value : 0; }
-			set { _printAdsNumber = value; }
-		}
-
-		public int CalculatedActiveDays
-		{
-			get { return Parent.Days.Count(x => x.ContainsData || x.HasNotes); }
-		}
-
-		public int ActiveDays
-		{
-			get { return !_activeDays.HasValue ? CalculatedActiveDays : _activeDays.Value; }
-			set
-			{
-				if (CalculatedActiveDays != value)
-					_activeDays = value;
-				else
-					_activeDays = null;
-			}
-		}
-
-		public override string TagA
-		{
-			get
-			{
-				var result = string.Empty;
-				var tagValues = GetTotalTags();
-				if (tagValues.Length > 0)
-					result = tagValues[0];
-				return result;
-			}
-		}
-
-		public override string TagB
-		{
-			get
-			{
-				var result = string.Empty;
-				var tagValues = GetTotalTags();
-				if (tagValues.Length > 1)
-					result = tagValues[1];
-				return result;
-			}
-		}
-
-		public override string TagC
-		{
-			get
-			{
-				var result = string.Empty;
-				var tagValues = GetTotalTags();
-				if (tagValues.Length > 2)
-					result = tagValues[2];
-				return result;
-			}
-		}
-
-		public override string TagD
-		{
-			get
-			{
-				var result = string.Empty;
-				var tagValues = GetTotalTags();
-				if (tagValues.Length > 3)
-					result = tagValues[3];
-				return result;
-			}
-		}
 		#endregion
 
 		public override string Serialize()
@@ -2188,22 +2166,6 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowPageSize>" + ShowPageSize + @"</ShowPageSize>");
 			result.AppendLine(@"<ShowPercentOfPage>" + ShowPercentOfPage + @"</ShowPercentOfPage>");
 			result.AppendLine(@"<ApplyForAllInfo>" + ApplyForAllInfo + @"</ApplyForAllInfo>");
-			#endregion
-
-			#region Details
-			if (PrintTotalCost.HasValue)
-				result.AppendLine(@"<PrintTotalCost>" + PrintTotalCost.Value + @"</PrintTotalCost>");
-			result.AppendLine(@"<ShowPrintTotalCost>" + ShowPrintTotalCost + @"</ShowPrintTotalCost>");
-			result.AppendLine(@"<ShowDigitalTotalCost>" + ShowDigitalTotalCost + @"</ShowDigitalTotalCost>");
-			if (DigitalTotalCost.HasValue)
-				result.AppendLine(@"<DigitalTotalCost>" + DigitalTotalCost.Value + @"</DigitalTotalCost>");
-			if (_activeDays.HasValue)
-				result.AppendLine(@"<ActiveDays>" + _activeDays.Value + @"</ActiveDays>");
-			if (_printAdsNumber.HasValue)
-				result.AppendLine(@"<PrintAdsNumber>" + _printAdsNumber.Value + @"</PrintAdsNumber>");
-			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays + @"</ShowActiveDays>");
-			result.AppendLine(@"<ShowPrintAdsNumber>" + ShowPrintAdsNumber + @"</ShowPrintAdsNumber>");
-			result.AppendLine(@"<ApplyForAllDetails>" + ApplyForAllDetails + @"</ApplyForAllDetails>");
 			#endregion
 
 			return result.ToString();
@@ -2254,83 +2216,28 @@ namespace NewBizWiz.Core.AdSchedule
 							ApplyForAllInfo = tempBool;
 						break;
 					#endregion
-
-					#region Details
-					case "PrintTotalCost":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							PrintTotalCost = tempDouble;
-						break;
-					case "ShowPrintTotalCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowPrintTotalCost = tempBool;
-						break;
-					case "ShowDigitalTotalCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDigitalTotalCost = tempBool;
-						break;
-					case "DigitalTotalCost":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							DigitalTotalCost = tempDouble;
-						break;
-					case "ActiveDays":
-						if (int.TryParse(childNode.InnerText, out tempInt))
-							_activeDays = tempInt;
-						break;
-					case "PrintAdsNumber":
-						if (int.TryParse(childNode.InnerText, out tempInt))
-							_printAdsNumber = tempInt;
-						break;
-					case "ShowActiveDays":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowActiveDays = tempBool;
-						break;
-					case "ShowPrintAdsNumber":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowPrintAdsNumber = tempBool;
-						break;
-					case "ApplyForAllDetails":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ApplyForAllDetails = tempBool;
-						break;
-					#endregion
 				}
 			}
 		}
 
-		private string[] GetTotalTags()
-		{
-			var tagValues = new List<string>();
-			if (ShowPrintTotalCost)
-				tagValues.Add("Newspaper Investment: " + ((PrintTotalCost.HasValue ? PrintTotalCost.Value.ToString("$#,###.00") : string.Empty)));
-			if (ShowDigitalTotalCost && DigitalTotalCost.HasValue)
-				tagValues.Add("Digital Investment: " + DigitalTotalCost.Value.ToString("$#,###.00"));
-			if (ShowActiveDays)
-				tagValues.Add("# of Active Days: " + ActiveDays.ToString("#,##0"));
-			if (ShowPrintAdsNumber)
-				tagValues.Add("# of Newspaper Ads: " + PrintAdsNumber.ToString("#,##0"));
-			return tagValues.ToArray();
-		}
-
-		public void ResetToDefault()
+		public override void ResetToDefault()
 		{
 			ShowSection = ListManager.Instance.DefaultCalendarViewSettings.ShowSection;
 			ShowCost = ListManager.Instance.DefaultCalendarViewSettings.ShowCost;
-			ShowColor = ListManager.Instance.DefaultCalendarViewSettings.ShowColor;
-			ShowBigDate = ListManager.Instance.DefaultCalendarViewSettings.ShowBigDate;
 			ShowAdSize = ListManager.Instance.DefaultCalendarViewSettings.ShowAdSize;
 			ShowPageSize = ListManager.Instance.DefaultCalendarViewSettings.ShowPageSize;
 			ShowPercentOfPage = ListManager.Instance.DefaultCalendarViewSettings.ShowPercentOfPage;
 			ShowAbbreviationOnly = ListManager.Instance.DefaultCalendarViewSettings.ShowAbbreviationOnly;
-			ShowCustomComment = ListManager.Instance.DefaultCalendarViewSettings.ShowComments;
+		}
+	}
 
-			ShowPrintTotalCost = ListManager.Instance.DefaultCalendarViewSettings.ShowTotalCost;
-			ShowDigitalTotalCost = ListManager.Instance.DefaultCalendarViewSettings.ShowTotalCost;
-			ShowActiveDays = ListManager.Instance.DefaultCalendarViewSettings.ShowActiveDays;
-			ShowPrintAdsNumber = ListManager.Instance.DefaultCalendarViewSettings.ShowTotalAds;
-
-			ShowLogo = ListManager.Instance.DefaultCalendarViewSettings.ShowLogo;
-
-			SlideColor = ListManager.Instance.DefaultCalendarViewSettings.SlideColor;
+	public class CustomCalendarOutputData : AdCalendarOutputData
+	{
+		public CustomCalendarOutputData(CalendarMonth parent)
+			: base(parent)
+		{
+			ApplyForAllCustomComment = false;
+			ShowLogo = false;
 		}
 	}
 

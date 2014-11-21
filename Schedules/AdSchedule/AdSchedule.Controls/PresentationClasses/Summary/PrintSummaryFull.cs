@@ -158,6 +158,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2))); }
 		}
 
+		public override void OpenHelp()
+		{
+			HelpManager.OpenHelpLink("summary2");
+		}
+
 		protected override void Output()
 		{
 			SaveSchedule();

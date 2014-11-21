@@ -148,7 +148,7 @@
 			this.checkEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F);
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPresentationDate.Properties.Caption = "Presentation Date?";
-			this.checkEditPresentationDate.Size = new System.Drawing.Size(227, 19);
+			this.checkEditPresentationDate.Size = new System.Drawing.Size(227, 22);
 			this.checkEditPresentationDate.TabIndex = 5;
 			this.checkEditPresentationDate.CheckedChanged += new System.EventHandler(this.ckPresentationDate_CheckedChanged);
 			// 
@@ -340,7 +340,7 @@
 			this.dateEditPresentationDate.Properties.ShowPopupShadow = false;
 			this.dateEditPresentationDate.Properties.ShowToday = false;
 			this.dateEditPresentationDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditPresentationDate.Size = new System.Drawing.Size(120, 20);
+			this.dateEditPresentationDate.Size = new System.Drawing.Size(120, 22);
 			this.dateEditPresentationDate.TabIndex = 6;
 			// 
 			// laDecisionMaker
@@ -392,7 +392,7 @@
 			this.checkEditSalesRep.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F);
 			this.checkEditSalesRep.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSalesRep.Properties.Caption = "Sales Rep:";
-			this.checkEditSalesRep.Size = new System.Drawing.Size(227, 19);
+			this.checkEditSalesRep.Size = new System.Drawing.Size(227, 22);
 			this.checkEditSalesRep.TabIndex = 3;
 			this.checkEditSalesRep.CheckedChanged += new System.EventHandler(this.checkEditSalesRep_CheckedChanged);
 			// 

@@ -36,6 +36,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 	{
 		private readonly List<BandedGridColumn> _spotColumns = new List<BandedGridColumn>();
 		private bool _allowToSave;
+		private readonly Font _spotColumnFont = new Font("Arial", 14);
 		protected GridDragDropHelper _dragDropHelper;
 		protected Schedule _localSchedule;
 		protected string _helpKey;
@@ -344,12 +345,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			_spotColumns.Clear();
 
 			gridBandSpots.Visible = false;
-
 			foreach (DataColumn column in ScheduleSection.DataSource.Columns)
 			{
 				if (!column.ColumnName.Contains(ScheduleSection.ProgramSpotDataColumnNamePrefix)) continue;
 				var bandedGridColumn = new BandedGridColumn();
+				bandedGridColumn.AppearanceCell.Font = _spotColumnFont;
 				bandedGridColumn.AppearanceCell.Options.UseTextOptions = true;
+				bandedGridColumn.AppearanceCell.Options.UseFont = true;
+				bandedGridColumn.AppearanceCell.Options.HighPriority = true;
 				bandedGridColumn.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
 				bandedGridColumn.AutoFillDown = true;
 				bandedGridColumn.Caption = column.Caption;

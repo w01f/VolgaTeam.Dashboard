@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
@@ -92,6 +93,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			get { return _containedControl as UserControl; }
 		}
 
+		public ISlideInfoControl SlideInfoControl
+		{
+			get { return _containedControl; }
+		}
+
 		public bool SettingsNotSaved
 		{
 			get { return _containedControl.SettingsNotSaved; }
@@ -113,6 +119,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		[Category("Action")]
 		event EventHandler<EventArgs> PropertyChanged;
 
+		IEnumerable<ButtonInfo> GetChapters();
 		void LoadCurrentMonthData();
 		void LoadMonth(CalendarMonth month);
 		void SaveData();

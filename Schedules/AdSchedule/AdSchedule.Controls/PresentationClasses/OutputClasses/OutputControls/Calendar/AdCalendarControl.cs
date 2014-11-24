@@ -20,7 +20,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	{
 		protected Schedule _localSchedule = null;
 
-		public AdCalendarControl()
+		protected AdCalendarControl()
 		{
 			Dock = DockStyle.Fill;
 			laCalendarName.Visible = false;

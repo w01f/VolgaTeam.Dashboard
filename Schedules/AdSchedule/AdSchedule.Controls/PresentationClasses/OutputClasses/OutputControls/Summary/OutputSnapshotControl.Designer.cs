@@ -30,7 +30,6 @@
         {
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OutputSnapshotControl));
 			this.comboBoxEditSchedule = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.checkEditSchedule = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditDate = new DevExpress.XtraEditors.CheckEdit();
@@ -518,7 +517,7 @@
 			// 
 			this.xtraTabPageSlideInfo.Controls.Add(this.pnSlideInfo);
 			this.xtraTabPageSlideInfo.Name = "xtraTabPageSlideInfo";
-			this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(250, 462);
+			this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(250, 487);
 			this.xtraTabPageSlideInfo.Text = "Basic Info";
 			// 
 			// pnSlideInfo
@@ -533,7 +532,7 @@
 			this.pnSlideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnSlideInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnSlideInfo.Name = "pnSlideInfo";
-			this.pnSlideInfo.Size = new System.Drawing.Size(250, 462);
+			this.pnSlideInfo.Size = new System.Drawing.Size(250, 487);
 			this.pnSlideInfo.TabIndex = 0;
 			// 
 			// superTooltip

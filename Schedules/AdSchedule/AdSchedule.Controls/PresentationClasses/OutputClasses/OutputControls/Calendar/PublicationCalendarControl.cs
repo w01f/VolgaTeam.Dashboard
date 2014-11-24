@@ -65,7 +65,5 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			InitSlideInfo<PublicationSlideInfoControl>();
 		}
-
-
 	}
 }

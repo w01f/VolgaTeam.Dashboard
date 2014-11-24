@@ -7,11 +7,13 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Preview;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using NewBizWiz.OnlineSchedule.Controls.Properties;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
@@ -27,6 +29,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			_formContainer = formContainer;
 			Dock = DockStyle.Fill;
 			ProductPages = new List<IAdPlanItem>();
+			retractableBar.AddButtons(new[] { new ButtonInfo { Logo = Resources.AdPlanSettings, Tooltip = "Expand bar" } });
 		}
 
 		public abstract ISchedule Schedule { get; }

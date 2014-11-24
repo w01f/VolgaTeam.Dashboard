@@ -253,6 +253,16 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap CalendarOptionsInfo {
+            get {
+                object obj = ResourceManager.GetObject("CalendarOptionsInfo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap CloneProduct {
             get {
                 object obj = ResourceManager.GetObject("CloneProduct", resourceCulture);
@@ -483,6 +493,46 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap GridColumns {
+            get {
+                object obj = ResourceManager.GetObject("GridColumns", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap GridNotes {
+            get {
+                object obj = ResourceManager.GetObject("GridNotes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap GridSlideInfo {
+            get {
+                object obj = ResourceManager.GetObject("GridSlideInfo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap GridTotals {
+            get {
+                object obj = ResourceManager.GetObject("GridTotals", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
@@ -696,6 +746,26 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap SharePageBig {
             get {
                 object obj = ResourceManager.GetObject("SharePageBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SnapshotBasicInfo {
+            get {
+                object obj = ResourceManager.GetObject("SnapshotBasicInfo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SnapshotSlideOptions {
+            get {
+                object obj = ResourceManager.GetObject("SnapshotSlideOptions", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

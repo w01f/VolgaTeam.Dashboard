@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarSlideInfoControl));
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageComments = new DevExpress.XtraTab.XtraTabPage();
 			this.pnComment = new System.Windows.Forms.Panel();
@@ -40,7 +40,9 @@
 			this.checkEditCommentApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXComment = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageStyle = new DevExpress.XtraTab.XtraTabPage();
-			this.pnStyleTop = new System.Windows.Forms.Panel();
+			this.xtraTabControlStyle = new DevExpress.XtraTab.XtraTabControl();
+			this.xtraTabPageStyleColor = new DevExpress.XtraTab.XtraTabPage();
+			this.pnStyle = new System.Windows.Forms.Panel();
 			this.checkEditStyleBigDate = new DevExpress.XtraEditors.CheckEdit();
 			this.laThemeColor = new System.Windows.Forms.Label();
 			this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
@@ -50,8 +52,8 @@
 			this.buttonXThemeColorBlue = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXThemeColorBlack = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXThemeColorGray = new DevComponents.DotNetBar.ButtonX();
-			this.xtraTabPageLogo = new DevExpress.XtraTab.XtraTabPage();
-			this.pnLogoTop = new System.Windows.Forms.Panel();
+			this.xtraTabPageStyleLogo = new DevExpress.XtraTab.XtraTabPage();
+			this.pnLogo = new System.Windows.Forms.Panel();
 			this.gridControlLogoGallery = new DevExpress.XtraGrid.GridControl();
 			this.layoutViewLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutView();
 			this.gridColumnLogoGallery = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
@@ -71,11 +73,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).BeginInit();
 			this.xtraTabPageStyle.SuspendLayout();
-			this.pnStyleTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlStyle)).BeginInit();
+			this.xtraTabControlStyle.SuspendLayout();
+			this.xtraTabPageStyleColor.SuspendLayout();
+			this.pnStyle.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStyleBigDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).BeginInit();
-			this.xtraTabPageLogo.SuspendLayout();
-			this.pnLogoTop.SuspendLayout();
+			this.xtraTabPageStyleLogo.SuspendLayout();
+			this.pnLogo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -110,15 +115,13 @@
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageComments,
             this.xtraTabPageStyle,
-            this.xtraTabPageLogo,
             this.xtraTabPageFavorites});
-			this.xtraTabControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl_SelectedPageChanged);
 			// 
 			// xtraTabPageComments
 			// 
 			this.xtraTabPageComments.Controls.Add(this.pnComment);
 			this.xtraTabPageComments.Name = "xtraTabPageComments";
-			this.xtraTabPageComments.Size = new System.Drawing.Size(302, 465);
+			this.xtraTabPageComments.Size = new System.Drawing.Size(298, 462);
 			this.xtraTabPageComments.Text = "Comments";
 			// 
 			// pnComment
@@ -131,7 +134,7 @@
 			this.pnComment.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnComment.Location = new System.Drawing.Point(0, 0);
 			this.pnComment.Name = "pnComment";
-			this.pnComment.Size = new System.Drawing.Size(302, 465);
+			this.pnComment.Size = new System.Drawing.Size(298, 462);
 			this.pnComment.TabIndex = 0;
 			// 
 			// memoEditComment
@@ -142,7 +145,7 @@
 			this.memoEditComment.Enabled = false;
 			this.memoEditComment.Location = new System.Drawing.Point(14, 94);
 			this.memoEditComment.Name = "memoEditComment";
-			this.memoEditComment.Size = new System.Drawing.Size(275, 313);
+			this.memoEditComment.Size = new System.Drawing.Size(271, 310);
 			this.memoEditComment.StyleController = this.styleController;
 			this.memoEditComment.TabIndex = 10;
 			this.memoEditComment.UseOptimizedRendering = true;
@@ -168,7 +171,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laCommentMonth.Location = new System.Drawing.Point(14, 70);
 			this.laCommentMonth.Name = "laCommentMonth";
-			this.laCommentMonth.Size = new System.Drawing.Size(275, 21);
+			this.laCommentMonth.Size = new System.Drawing.Size(271, 21);
 			this.laCommentMonth.TabIndex = 9;
 			this.laCommentMonth.Text = "label1";
 			// 
@@ -176,12 +179,12 @@
 			// 
 			this.checkEditCommentApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCommentApplyForAll.Location = new System.Drawing.Point(12, 424);
+			this.checkEditCommentApplyForAll.Location = new System.Drawing.Point(12, 421);
 			this.checkEditCommentApplyForAll.Name = "checkEditCommentApplyForAll";
 			this.checkEditCommentApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditCommentApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditCommentApplyForAll.Properties.Caption = "Show this Comment on all calendar slides";
-			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(277, 19);
+			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(273, 20);
 			this.checkEditCommentApplyForAll.StyleController = this.styleController;
 			this.checkEditCommentApplyForAll.TabIndex = 8;
 			// 
@@ -194,7 +197,7 @@
 			this.buttonXComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXComment.Location = new System.Drawing.Point(14, 18);
 			this.buttonXComment.Name = "buttonXComment";
-			this.buttonXComment.Size = new System.Drawing.Size(275, 29);
+			this.buttonXComment.Size = new System.Drawing.Size(271, 29);
 			this.buttonXComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXComment.TabIndex = 0;
 			this.buttonXComment.Text = "Add a Comment to this slide";
@@ -203,28 +206,61 @@
 			// 
 			// xtraTabPageStyle
 			// 
-			this.xtraTabPageStyle.Controls.Add(this.pnStyleTop);
+			this.xtraTabPageStyle.Controls.Add(this.xtraTabControlStyle);
 			this.xtraTabPageStyle.Name = "xtraTabPageStyle";
-			this.xtraTabPageStyle.Size = new System.Drawing.Size(302, 465);
-			this.xtraTabPageStyle.Text = "Style";
+			this.xtraTabPageStyle.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
+			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 462);
+			this.xtraTabPageStyle.Text = "Slide Style";
 			// 
-			// pnStyleTop
+			// xtraTabControlStyle
 			// 
-			this.pnStyleTop.BackColor = System.Drawing.Color.White;
-			this.pnStyleTop.Controls.Add(this.checkEditStyleBigDate);
-			this.pnStyleTop.Controls.Add(this.laThemeColor);
-			this.pnStyleTop.Controls.Add(this.checkEditThemeColorApplyForAll);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorGreen);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorOrange);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorTeal);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorBlue);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorBlack);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorGray);
-			this.pnStyleTop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnStyleTop.Location = new System.Drawing.Point(0, 0);
-			this.pnStyleTop.Name = "pnStyleTop";
-			this.pnStyleTop.Size = new System.Drawing.Size(302, 465);
-			this.pnStyleTop.TabIndex = 12;
+			this.xtraTabControlStyle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlStyle.Appearance.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlStyle.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.HeaderDisabled.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.PageClient.Options.UseFont = true;
+			this.xtraTabControlStyle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.xtraTabControlStyle.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraTabControlStyle.Location = new System.Drawing.Point(0, 20);
+			this.xtraTabControlStyle.Name = "xtraTabControlStyle";
+			this.xtraTabControlStyle.SelectedTabPage = this.xtraTabPageStyleColor;
+			this.xtraTabControlStyle.Size = new System.Drawing.Size(298, 442);
+			this.xtraTabControlStyle.TabIndex = 106;
+			this.xtraTabControlStyle.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageStyleColor,
+            this.xtraTabPageStyleLogo});
+			// 
+			// xtraTabPageStyleColor
+			// 
+			this.xtraTabPageStyleColor.Controls.Add(this.pnStyle);
+			this.xtraTabPageStyleColor.Name = "xtraTabPageStyleColor";
+			this.xtraTabPageStyleColor.Size = new System.Drawing.Size(292, 411);
+			this.xtraTabPageStyleColor.Text = "Color Theme";
+			// 
+			// pnStyle
+			// 
+			this.pnStyle.BackColor = System.Drawing.Color.White;
+			this.pnStyle.Controls.Add(this.checkEditStyleBigDate);
+			this.pnStyle.Controls.Add(this.laThemeColor);
+			this.pnStyle.Controls.Add(this.checkEditThemeColorApplyForAll);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorGreen);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorOrange);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorTeal);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorBlue);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorBlack);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorGray);
+			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnStyle.Location = new System.Drawing.Point(0, 0);
+			this.pnStyle.Name = "pnStyle";
+			this.pnStyle.Size = new System.Drawing.Size(292, 411);
+			this.pnStyle.TabIndex = 12;
 			// 
 			// checkEditStyleBigDate
 			// 
@@ -235,7 +271,7 @@
 			this.checkEditStyleBigDate.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditStyleBigDate.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditStyleBigDate.Properties.Caption = "Show BIG date numbers";
-			this.checkEditStyleBigDate.Size = new System.Drawing.Size(289, 20);
+			this.checkEditStyleBigDate.Size = new System.Drawing.Size(279, 19);
 			this.checkEditStyleBigDate.StyleController = this.styleController;
 			this.checkEditStyleBigDate.TabIndex = 10;
 			// 
@@ -248,7 +284,7 @@
 			this.laThemeColor.ForeColor = System.Drawing.Color.Black;
 			this.laThemeColor.Location = new System.Drawing.Point(12, 10);
 			this.laThemeColor.Name = "laThemeColor";
-			this.laThemeColor.Size = new System.Drawing.Size(279, 23);
+			this.laThemeColor.Size = new System.Drawing.Size(269, 23);
 			this.laThemeColor.TabIndex = 9;
 			this.laThemeColor.Text = "Style Color Theme Options";
 			this.laThemeColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -262,7 +298,7 @@
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditThemeColorApplyForAll.Properties.Caption = "Use this Color on all calendar slides";
-			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(289, 20);
+			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(279, 19);
 			this.checkEditThemeColorApplyForAll.StyleController = this.styleController;
 			this.checkEditThemeColorApplyForAll.TabIndex = 8;
 			// 
@@ -272,7 +308,7 @@
 			this.buttonXThemeColorGreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXThemeColorGreen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXThemeColorGreen.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorGreen.Image")));
-			this.buttonXThemeColorGreen.Location = new System.Drawing.Point(189, 180);
+			this.buttonXThemeColorGreen.Location = new System.Drawing.Point(179, 180);
 			this.buttonXThemeColorGreen.Name = "buttonXThemeColorGreen";
 			this.buttonXThemeColorGreen.Size = new System.Drawing.Size(102, 35);
 			this.buttonXThemeColorGreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -288,7 +324,7 @@
 			this.buttonXThemeColorOrange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXThemeColorOrange.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXThemeColorOrange.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorOrange.Image")));
-			this.buttonXThemeColorOrange.Location = new System.Drawing.Point(189, 112);
+			this.buttonXThemeColorOrange.Location = new System.Drawing.Point(179, 112);
 			this.buttonXThemeColorOrange.Name = "buttonXThemeColorOrange";
 			this.buttonXThemeColorOrange.Size = new System.Drawing.Size(102, 35);
 			this.buttonXThemeColorOrange.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -304,7 +340,7 @@
 			this.buttonXThemeColorTeal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXThemeColorTeal.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXThemeColorTeal.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorTeal.Image")));
-			this.buttonXThemeColorTeal.Location = new System.Drawing.Point(189, 46);
+			this.buttonXThemeColorTeal.Location = new System.Drawing.Point(179, 46);
 			this.buttonXThemeColorTeal.Name = "buttonXThemeColorTeal";
 			this.buttonXThemeColorTeal.Size = new System.Drawing.Size(102, 35);
 			this.buttonXThemeColorTeal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -359,24 +395,24 @@
 			this.buttonXThemeColorGray.TextColor = System.Drawing.Color.Black;
 			this.buttonXThemeColorGray.Click += new System.EventHandler(this.buttonXThemeColor_Click);
 			// 
-			// xtraTabPageLogo
+			// xtraTabPageStyleLogo
 			// 
-			this.xtraTabPageLogo.Controls.Add(this.pnLogoTop);
-			this.xtraTabPageLogo.Name = "xtraTabPageLogo";
-			this.xtraTabPageLogo.Size = new System.Drawing.Size(302, 465);
-			this.xtraTabPageLogo.Text = "Logo";
+			this.xtraTabPageStyleLogo.Controls.Add(this.pnLogo);
+			this.xtraTabPageStyleLogo.Name = "xtraTabPageStyleLogo";
+			this.xtraTabPageStyleLogo.Size = new System.Drawing.Size(292, 456);
+			this.xtraTabPageStyleLogo.Text = "Header Logo";
 			// 
-			// pnLogoTop
+			// pnLogo
 			// 
-			this.pnLogoTop.BackColor = System.Drawing.Color.White;
-			this.pnLogoTop.Controls.Add(this.gridControlLogoGallery);
-			this.pnLogoTop.Controls.Add(this.buttonXLogo);
-			this.pnLogoTop.Controls.Add(this.checkEditLogoApplyForAll);
-			this.pnLogoTop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnLogoTop.Location = new System.Drawing.Point(0, 0);
-			this.pnLogoTop.Name = "pnLogoTop";
-			this.pnLogoTop.Size = new System.Drawing.Size(302, 465);
-			this.pnLogoTop.TabIndex = 0;
+			this.pnLogo.BackColor = System.Drawing.Color.White;
+			this.pnLogo.Controls.Add(this.gridControlLogoGallery);
+			this.pnLogo.Controls.Add(this.buttonXLogo);
+			this.pnLogo.Controls.Add(this.checkEditLogoApplyForAll);
+			this.pnLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnLogo.Location = new System.Drawing.Point(0, 0);
+			this.pnLogo.Name = "pnLogo";
+			this.pnLogo.Size = new System.Drawing.Size(292, 456);
+			this.pnLogo.TabIndex = 0;
 			// 
 			// gridControlLogoGallery
 			// 
@@ -389,7 +425,7 @@
 			this.gridControlLogoGallery.Name = "gridControlLogoGallery";
 			this.gridControlLogoGallery.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit});
-			this.gridControlLogoGallery.Size = new System.Drawing.Size(302, 365);
+			this.gridControlLogoGallery.Size = new System.Drawing.Size(292, 356);
 			this.gridControlLogoGallery.TabIndex = 37;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewLogoGallery});
@@ -502,7 +538,7 @@
 			this.buttonXLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXLogo.Location = new System.Drawing.Point(14, 13);
 			this.buttonXLogo.Name = "buttonXLogo";
-			this.buttonXLogo.Size = new System.Drawing.Size(275, 29);
+			this.buttonXLogo.Size = new System.Drawing.Size(265, 29);
 			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXLogo.TabIndex = 0;
 			this.buttonXLogo.Text = "   Show Logo at Top of Slide";
@@ -513,7 +549,7 @@
 			// checkEditLogoApplyForAll
 			// 
 			this.checkEditLogoApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(12, 417);
+			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(14, 420);
 			this.checkEditLogoApplyForAll.Name = "checkEditLogoApplyForAll";
 			this.checkEditLogoApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditLogoApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -527,8 +563,8 @@
 			// 
 			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
 			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
-			this.xtraTabPageFavorites.Size = new System.Drawing.Size(302, 465);
-			this.xtraTabPageFavorites.Text = "Favorites";
+			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 487);
+			this.xtraTabPageFavorites.Text = "My Gallery";
 			// 
 			// favoriteImagesControl
 			// 
@@ -538,7 +574,7 @@
 			this.favoriteImagesControl.ImageTooltip = null;
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(302, 465);
+			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 487);
 			this.favoriteImagesControl.TabIndex = 0;
 			// 
 			// hyperLinkEditReset
@@ -558,9 +594,9 @@
 			this.hyperLinkEditReset.Properties.AutoHeight = false;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditReset.Size = new System.Drawing.Size(304, 32);
-			toolTipItem1.Text = "Reset original default data";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditReset.SuperTip = superToolTip1;
+			toolTipItem2.Text = "Reset original default data";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.hyperLinkEditReset.SuperTip = superToolTip2;
 			this.hyperLinkEditReset.TabIndex = 105;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
@@ -581,12 +617,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).EndInit();
 			this.xtraTabPageStyle.ResumeLayout(false);
-			this.pnStyleTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlStyle)).EndInit();
+			this.xtraTabControlStyle.ResumeLayout(false);
+			this.xtraTabPageStyleColor.ResumeLayout(false);
+			this.pnStyle.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStyleBigDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).EndInit();
-			this.xtraTabPageLogo.ResumeLayout(false);
-			this.pnLogoTop.ResumeLayout(false);
-			this.pnLogoTop.PerformLayout();
+			this.xtraTabPageStyleLogo.ResumeLayout(false);
+			this.pnLogo.ResumeLayout(false);
+			this.pnLogo.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
@@ -604,7 +643,7 @@
 		private DevExpress.XtraEditors.StyleController styleController;
         private DevComponents.DotNetBar.ButtonX buttonXLogo;
 		private DevExpress.XtraEditors.CheckEdit checkEditLogoApplyForAll;
-        private System.Windows.Forms.Panel pnStyleTop;
+        private System.Windows.Forms.Panel pnStyle;
         private DevComponents.DotNetBar.ButtonX buttonXThemeColorGray;
         private DevExpress.XtraEditors.CheckEdit checkEditThemeColorApplyForAll;
         private DevComponents.DotNetBar.ButtonX buttonXThemeColorBlack;
@@ -615,8 +654,7 @@
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyle;
 		private System.Windows.Forms.Label laThemeColor;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageLogo;
-		private System.Windows.Forms.Panel pnLogoTop;
+		private System.Windows.Forms.Panel pnLogo;
 		private DevExpress.XtraGrid.GridControl gridControlLogoGallery;
 		private DevExpress.XtraGrid.Views.Layout.LayoutView layoutViewLogoGallery;
 		private DevExpress.XtraGrid.Columns.LayoutViewColumn gridColumnLogoGallery;
@@ -633,5 +671,8 @@
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageFavorites;
 		private CommonGUI.FavoriteImages.FavoriteImagesControl favoriteImagesControl;
+		private DevExpress.XtraTab.XtraTabControl xtraTabControlStyle;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleColor;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleLogo;
     }
 }

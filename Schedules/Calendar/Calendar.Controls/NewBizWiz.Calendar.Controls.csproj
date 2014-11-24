@@ -119,6 +119,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\SelectionManager.cs" />
+    <Compile Include="PresentationClasses\SlideInfo\SlideInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SlideInfo\SlideInfoControl.Designer.cs">
+      <DependentUpon>SlideInfoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Views\IView.cs" />
     <Compile Include="PresentationClasses\Views\MonthView\CalendarNoteControl.cs">
       <SubType>UserControl</SubType>
@@ -168,12 +174,6 @@
     <Compile Include="PresentationClasses\HomeControl.Designer.cs">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SlideInfo\SlideInfoControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\SlideInfo\SlideInfoControl.Designer.cs">
-      <DependentUpon>SlideInfoControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="InteropClasses\CalendarHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="PresentationClasses\SlideInfo\SlideInfoWrapper.cs" />
@@ -211,6 +211,9 @@
     <EmbeddedResource Include="PresentationClasses\Calendars\BaseCalendarControl.resx">
       <DependentUpon>BaseCalendarControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SlideInfo\SlideInfoControl.resx">
+      <DependentUpon>SlideInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Views\MonthView\CalendarNoteControl.resx">
       <DependentUpon>CalendarNoteControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -234,9 +237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SlideInfo\SlideInfoControl.resx">
-      <DependentUpon>SlideInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormDayProperties.resx">
       <DependentUpon>FormDayProperties.cs</DependentUpon>
@@ -405,12 +405,6 @@
     <None Include="Resources\Floater.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HelpSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CloseSlideInfo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Color.png" />
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +427,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarOptionsComments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarOptionsFavorites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarOptionsStyle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

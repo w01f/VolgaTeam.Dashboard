@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridsControl));
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPagePrint = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageAdNotes = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageSlideHeaders = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageSlideBullets = new DevExpress.XtraTab.XtraTabPage();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.pnEmpty = new System.Windows.Forms.Panel();
@@ -83,25 +81,25 @@
 			// xtraTabPagePrint
 			// 
 			this.xtraTabPagePrint.Name = "xtraTabPagePrint";
-			this.xtraTabPagePrint.Size = new System.Drawing.Size(294, 440);
+			this.xtraTabPagePrint.Size = new System.Drawing.Size(290, 437);
 			this.xtraTabPagePrint.Text = "Columns";
 			// 
 			// xtraTabPageAdNotes
 			// 
 			this.xtraTabPageAdNotes.Name = "xtraTabPageAdNotes";
-			this.xtraTabPageAdNotes.Size = new System.Drawing.Size(294, 440);
+			this.xtraTabPageAdNotes.Size = new System.Drawing.Size(290, 462);
 			this.xtraTabPageAdNotes.Text = "Notes";
 			// 
 			// xtraTabPageSlideHeaders
 			// 
 			this.xtraTabPageSlideHeaders.Name = "xtraTabPageSlideHeaders";
-			this.xtraTabPageSlideHeaders.Size = new System.Drawing.Size(294, 440);
+			this.xtraTabPageSlideHeaders.Size = new System.Drawing.Size(290, 462);
 			this.xtraTabPageSlideHeaders.Text = "Slide Info";
 			// 
 			// xtraTabPageSlideBullets
 			// 
 			this.xtraTabPageSlideBullets.Name = "xtraTabPageSlideBullets";
-			this.xtraTabPageSlideBullets.Size = new System.Drawing.Size(294, 440);
+			this.xtraTabPageSlideBullets.Size = new System.Drawing.Size(290, 462);
 			this.xtraTabPageSlideBullets.Text = "Totals";
 			// 
 			// styleController

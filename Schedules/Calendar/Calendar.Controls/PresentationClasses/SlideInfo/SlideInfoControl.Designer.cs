@@ -1,6 +1,6 @@
 ﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 {
-    partial class SlideInfoControl
+	partial class SlideInfoControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,59 +29,30 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideInfoControl));
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-			this.xtraTabPageBasic = new DevExpress.XtraTab.XtraTabPage();
-			this.pnBasicTop = new System.Windows.Forms.Panel();
-			this.xtraScrollableControlBasic = new DevExpress.XtraEditors.XtraScrollableControl();
-			this.labelControlDecisionMaker = new DevExpress.XtraEditors.LabelControl();
+			this.xtraTabPageComments = new DevExpress.XtraTab.XtraTabPage();
+			this.pnComment = new System.Windows.Forms.Panel();
+			this.memoEditComment = new DevExpress.XtraEditors.MemoEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.labelControlAdvertiser = new DevExpress.XtraEditors.LabelControl();
-			this.checkEditNotesCustomCommentApplyFoAll = new DevExpress.XtraEditors.CheckEdit();
-			this.buttonXBasicDecisionMaker = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXNotesCustomComment = new DevComponents.DotNetBar.ButtonX();
-			this.memoEditNotesCustomComment = new DevExpress.XtraEditors.MemoEdit();
-			this.buttonXBasicBusinessName = new DevComponents.DotNetBar.ButtonX();
-			this.comboBoxEditBasicSlideTitle = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.buttonXBasicSlideTitle = new DevComponents.DotNetBar.ButtonX();
-			this.pnBasicBottom = new System.Windows.Forms.Panel();
-			this.checkEditBasicApplyForAll = new DevExpress.XtraEditors.CheckEdit();
-			this.xtraTabPageCost = new DevExpress.XtraTab.XtraTabPage();
-			this.pnCostTop = new System.Windows.Forms.Panel();
-			this.xtraScrollableControlCost = new DevExpress.XtraEditors.XtraScrollableControl();
-			this.spinEditCostDigital = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditCostNewspaper = new DevExpress.XtraEditors.SpinEdit();
-			this.buttonXCostDigital = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXCostNewspaperManual = new DevComponents.DotNetBar.ButtonX();
-			this.pnCostBottom = new System.Windows.Forms.Panel();
-			this.checkEditCostApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.laCommentMonth = new System.Windows.Forms.Label();
+			this.checkEditCommentApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.buttonXComment = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageStyle = new DevExpress.XtraTab.XtraTabPage();
-			this.pnStyleTop = new System.Windows.Forms.Panel();
-			this.buttonXStyleBigDate = new DevComponents.DotNetBar.ButtonX();
-			this.laThemeColor = new System.Windows.Forms.Label();
+			this.xtraTabControlStyle = new DevExpress.XtraTab.XtraTabControl();
+			this.xtraTabPageStyleColor = new DevExpress.XtraTab.XtraTabPage();
+			this.pnStyle = new System.Windows.Forms.Panel();
+			this.checkEditStyleBigDate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.laThemeColor = new System.Windows.Forms.Label();
 			this.buttonXThemeColorGreen = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXThemeColorOrange = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXThemeColorTeal = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXThemeColorBlue = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXThemeColorBlack = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXThemeColorGray = new DevComponents.DotNetBar.ButtonX();
-			this.xtraTabPageNotes = new DevExpress.XtraTab.XtraTabPage();
-			this.pnNotesTop = new System.Windows.Forms.Panel();
-			this.checkEditOtherNumbersApplyForAll = new DevExpress.XtraEditors.CheckEdit();
-			this.spinEditOtherNumbersActiveDays = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditOtherNumbersDigitalCPM = new DevExpress.XtraEditors.SpinEdit();
-			this.buttonXOtherNumbersActiveDays = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXOtherNumbersDigitalCPM = new DevComponents.DotNetBar.ButtonX();
-			this.spinEditOtherNumbersImpressions = new DevExpress.XtraEditors.SpinEdit();
-			this.buttonXOtherNumbersImpressions = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXOtherNumbersNewspaperAdsNumber = new DevComponents.DotNetBar.ButtonX();
-			this.spinEditOtherNumbersNewspaperAdsNumber = new DevExpress.XtraEditors.SpinEdit();
-			this.xtraTabPageLogo = new DevExpress.XtraTab.XtraTabPage();
-			this.pnLogoTop = new System.Windows.Forms.Panel();
+			this.xtraTabPageStyleLogo = new DevExpress.XtraTab.XtraTabPage();
+			this.pnLogo = new System.Windows.Forms.Panel();
 			this.gridControlLogoGallery = new DevExpress.XtraGrid.GridControl();
 			this.layoutViewLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutView();
 			this.gridColumnLogoGallery = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
@@ -92,44 +63,22 @@
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
-			this.barToolbar = new DevExpress.XtraBars.Bar();
-			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
-			this.xtraTabPageBasic.SuspendLayout();
-			this.pnBasicTop.SuspendLayout();
-			this.xtraScrollableControlBasic.SuspendLayout();
+			this.xtraTabPageComments.SuspendLayout();
+			this.pnComment.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.memoEditComment.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditNotesCustomCommentApplyFoAll.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.memoEditNotesCustomComment.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBasicSlideTitle.Properties)).BeginInit();
-			this.pnBasicBottom.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditBasicApplyForAll.Properties)).BeginInit();
-			this.xtraTabPageCost.SuspendLayout();
-			this.pnCostTop.SuspendLayout();
-			this.xtraScrollableControlCost.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditCostDigital.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditCostNewspaper.Properties)).BeginInit();
-			this.pnCostBottom.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditCostApplyForAll.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).BeginInit();
 			this.xtraTabPageStyle.SuspendLayout();
-			this.pnStyleTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlStyle)).BeginInit();
+			this.xtraTabControlStyle.SuspendLayout();
+			this.xtraTabPageStyleColor.SuspendLayout();
+			this.pnStyle.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditStyleBigDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).BeginInit();
-			this.xtraTabPageNotes.SuspendLayout();
-			this.pnNotesTop.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOtherNumbersApplyForAll.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersActiveDays.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersDigitalCPM.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersImpressions.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersNewspaperAdsNumber.Properties)).BeginInit();
-			this.xtraTabPageLogo.SuspendLayout();
-			this.pnLogoTop.SuspendLayout();
+			this.xtraTabPageStyleLogo.SuspendLayout();
+			this.pnLogo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -137,7 +86,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).BeginInit();
 			this.xtraTabPageFavorites.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// xtraTabControl
@@ -155,67 +103,49 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 44);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControl.MultiLine = DevExpress.Utils.DefaultBoolean.True;
 			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.SelectedTabPage = this.xtraTabPageBasic;
-			this.xtraTabControl.Size = new System.Drawing.Size(304, 501);
+			this.xtraTabControl.SelectedTabPage = this.xtraTabPageComments;
+			this.xtraTabControl.Size = new System.Drawing.Size(304, 525);
 			this.xtraTabControl.TabIndex = 10;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPageBasic,
-            this.xtraTabPageCost,
+            this.xtraTabPageComments,
             this.xtraTabPageStyle,
-            this.xtraTabPageNotes,
-            this.xtraTabPageLogo,
             this.xtraTabPageFavorites});
-			this.xtraTabControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl_SelectedPageChanged);
 			// 
-			// xtraTabPageBasic
+			// xtraTabPageComments
 			// 
-			this.xtraTabPageBasic.Controls.Add(this.pnBasicTop);
-			this.xtraTabPageBasic.Controls.Add(this.pnBasicBottom);
-			this.xtraTabPageBasic.Name = "xtraTabPageBasic";
-			this.xtraTabPageBasic.Size = new System.Drawing.Size(302, 447);
-			this.xtraTabPageBasic.Text = "Info";
+			this.xtraTabPageComments.Controls.Add(this.pnComment);
+			this.xtraTabPageComments.Name = "xtraTabPageComments";
+			this.xtraTabPageComments.Size = new System.Drawing.Size(298, 494);
+			this.xtraTabPageComments.Text = "Comments";
 			// 
-			// pnBasicTop
+			// pnComment
 			// 
-			this.pnBasicTop.BackColor = System.Drawing.Color.White;
-			this.pnBasicTop.Controls.Add(this.xtraScrollableControlBasic);
-			this.pnBasicTop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnBasicTop.Location = new System.Drawing.Point(0, 0);
-			this.pnBasicTop.Name = "pnBasicTop";
-			this.pnBasicTop.Size = new System.Drawing.Size(302, 410);
-			this.pnBasicTop.TabIndex = 3;
+			this.pnComment.BackColor = System.Drawing.Color.White;
+			this.pnComment.Controls.Add(this.memoEditComment);
+			this.pnComment.Controls.Add(this.laCommentMonth);
+			this.pnComment.Controls.Add(this.checkEditCommentApplyForAll);
+			this.pnComment.Controls.Add(this.buttonXComment);
+			this.pnComment.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnComment.Location = new System.Drawing.Point(0, 0);
+			this.pnComment.Name = "pnComment";
+			this.pnComment.Size = new System.Drawing.Size(298, 494);
+			this.pnComment.TabIndex = 1;
 			// 
-			// xtraScrollableControlBasic
+			// memoEditComment
 			// 
-			this.xtraScrollableControlBasic.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.xtraScrollableControlBasic.Appearance.Options.UseBackColor = true;
-			this.xtraScrollableControlBasic.Controls.Add(this.labelControlDecisionMaker);
-			this.xtraScrollableControlBasic.Controls.Add(this.labelControlAdvertiser);
-			this.xtraScrollableControlBasic.Controls.Add(this.checkEditNotesCustomCommentApplyFoAll);
-			this.xtraScrollableControlBasic.Controls.Add(this.buttonXBasicDecisionMaker);
-			this.xtraScrollableControlBasic.Controls.Add(this.buttonXNotesCustomComment);
-			this.xtraScrollableControlBasic.Controls.Add(this.memoEditNotesCustomComment);
-			this.xtraScrollableControlBasic.Controls.Add(this.buttonXBasicBusinessName);
-			this.xtraScrollableControlBasic.Controls.Add(this.comboBoxEditBasicSlideTitle);
-			this.xtraScrollableControlBasic.Controls.Add(this.buttonXBasicSlideTitle);
-			this.xtraScrollableControlBasic.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraScrollableControlBasic.Location = new System.Drawing.Point(0, 0);
-			this.xtraScrollableControlBasic.Name = "xtraScrollableControlBasic";
-			this.xtraScrollableControlBasic.Size = new System.Drawing.Size(302, 410);
-			this.xtraScrollableControlBasic.TabIndex = 2;
-			// 
-			// labelControlDecisionMaker
-			// 
-			this.labelControlDecisionMaker.Enabled = false;
-			this.labelControlDecisionMaker.Location = new System.Drawing.Point(43, 223);
-			this.labelControlDecisionMaker.Name = "labelControlDecisionMaker";
-			this.labelControlDecisionMaker.Size = new System.Drawing.Size(75, 16);
-			this.labelControlDecisionMaker.StyleController = this.styleController;
-			this.labelControlDecisionMaker.TabIndex = 10;
-			this.labelControlDecisionMaker.Text = "labelControl1";
+			this.memoEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.memoEditComment.Enabled = false;
+			this.memoEditComment.Location = new System.Drawing.Point(14, 94);
+			this.memoEditComment.Name = "memoEditComment";
+			this.memoEditComment.Size = new System.Drawing.Size(271, 350);
+			this.memoEditComment.StyleController = this.styleController;
+			this.memoEditComment.TabIndex = 10;
+			this.memoEditComment.UseOptimizedRendering = true;
 			// 
 			// styleController
 			// 
@@ -232,338 +162,116 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// labelControlAdvertiser
+			// laCommentMonth
 			// 
-			this.labelControlAdvertiser.Enabled = false;
-			this.labelControlAdvertiser.Location = new System.Drawing.Point(43, 140);
-			this.labelControlAdvertiser.Name = "labelControlAdvertiser";
-			this.labelControlAdvertiser.Size = new System.Drawing.Size(75, 16);
-			this.labelControlAdvertiser.StyleController = this.styleController;
-			this.labelControlAdvertiser.TabIndex = 9;
-			this.labelControlAdvertiser.Text = "labelControl1";
-			// 
-			// checkEditNotesCustomCommentApplyFoAll
-			// 
-			this.checkEditNotesCustomCommentApplyFoAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.laCommentMonth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditNotesCustomCommentApplyFoAll.Location = new System.Drawing.Point(10, 372);
-			this.checkEditNotesCustomCommentApplyFoAll.Name = "checkEditNotesCustomCommentApplyFoAll";
-			this.checkEditNotesCustomCommentApplyFoAll.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditNotesCustomCommentApplyFoAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditNotesCustomCommentApplyFoAll.Properties.Caption = "Show this Comment on all slides";
-			this.checkEditNotesCustomCommentApplyFoAll.Size = new System.Drawing.Size(281, 20);
-			this.checkEditNotesCustomCommentApplyFoAll.StyleController = this.styleController;
-			this.checkEditNotesCustomCommentApplyFoAll.TabIndex = 8;
+			this.laCommentMonth.Location = new System.Drawing.Point(14, 70);
+			this.laCommentMonth.Name = "laCommentMonth";
+			this.laCommentMonth.Size = new System.Drawing.Size(271, 21);
+			this.laCommentMonth.TabIndex = 9;
+			this.laCommentMonth.Text = "label1";
 			// 
-			// buttonXBasicDecisionMaker
+			// checkEditCommentApplyForAll
 			// 
-			this.buttonXBasicDecisionMaker.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXBasicDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.checkEditCommentApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXBasicDecisionMaker.AutoCheckOnClick = true;
-			this.buttonXBasicDecisionMaker.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXBasicDecisionMaker.Location = new System.Drawing.Point(12, 188);
-			this.buttonXBasicDecisionMaker.Name = "buttonXBasicDecisionMaker";
-			this.buttonXBasicDecisionMaker.Size = new System.Drawing.Size(279, 29);
-			this.buttonXBasicDecisionMaker.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXBasicDecisionMaker.TabIndex = 6;
-			this.buttonXBasicDecisionMaker.Text = "   Decision Maker";
-			this.buttonXBasicDecisionMaker.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXBasicDecisionMaker.TextColor = System.Drawing.Color.Black;
-			this.buttonXBasicDecisionMaker.CheckedChanged += new System.EventHandler(this.buttonXBasicDecisionMaker_CheckedChanged);
+			this.checkEditCommentApplyForAll.Location = new System.Drawing.Point(10, 461);
+			this.checkEditCommentApplyForAll.Name = "checkEditCommentApplyForAll";
+			this.checkEditCommentApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditCommentApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditCommentApplyForAll.Properties.Caption = "Show this Comment on all calendar slides";
+			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(273, 20);
+			this.checkEditCommentApplyForAll.StyleController = this.styleController;
+			this.checkEditCommentApplyForAll.TabIndex = 8;
 			// 
-			// buttonXNotesCustomComment
+			// buttonXComment
 			// 
-			this.buttonXNotesCustomComment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXNotesCustomComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.buttonXComment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXNotesCustomComment.AutoCheckOnClick = true;
-			this.buttonXNotesCustomComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXNotesCustomComment.Location = new System.Drawing.Point(12, 275);
-			this.buttonXNotesCustomComment.Name = "buttonXNotesCustomComment";
-			this.buttonXNotesCustomComment.Size = new System.Drawing.Size(279, 29);
-			this.buttonXNotesCustomComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXNotesCustomComment.TabIndex = 0;
-			this.buttonXNotesCustomComment.Text = "   Comment";
-			this.buttonXNotesCustomComment.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXNotesCustomComment.TextColor = System.Drawing.Color.Black;
-			this.buttonXNotesCustomComment.CheckedChanged += new System.EventHandler(this.buttonXCustomComment_CheckedChanged);
-			// 
-			// memoEditNotesCustomComment
-			// 
-			this.memoEditNotesCustomComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditNotesCustomComment.Enabled = false;
-			this.memoEditNotesCustomComment.Location = new System.Drawing.Point(34, 310);
-			this.memoEditNotesCustomComment.Name = "memoEditNotesCustomComment";
-			this.memoEditNotesCustomComment.Size = new System.Drawing.Size(257, 55);
-			this.memoEditNotesCustomComment.StyleController = this.styleController;
-			this.memoEditNotesCustomComment.TabIndex = 1;
-			this.memoEditNotesCustomComment.UseOptimizedRendering = true;
-			// 
-			// buttonXBasicBusinessName
-			// 
-			this.buttonXBasicBusinessName.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXBasicBusinessName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXBasicBusinessName.AutoCheckOnClick = true;
-			this.buttonXBasicBusinessName.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXBasicBusinessName.Location = new System.Drawing.Point(12, 105);
-			this.buttonXBasicBusinessName.Name = "buttonXBasicBusinessName";
-			this.buttonXBasicBusinessName.Size = new System.Drawing.Size(279, 29);
-			this.buttonXBasicBusinessName.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXBasicBusinessName.TabIndex = 4;
-			this.buttonXBasicBusinessName.Text = "   Advertiser";
-			this.buttonXBasicBusinessName.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXBasicBusinessName.TextColor = System.Drawing.Color.Black;
-			this.buttonXBasicBusinessName.CheckedChanged += new System.EventHandler(this.buttonXBasicBusinessName_CheckedChanged);
-			// 
-			// comboBoxEditBasicSlideTitle
-			// 
-			this.comboBoxEditBasicSlideTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBoxEditBasicSlideTitle.Enabled = false;
-			this.comboBoxEditBasicSlideTitle.Location = new System.Drawing.Point(43, 51);
-			this.comboBoxEditBasicSlideTitle.Name = "comboBoxEditBasicSlideTitle";
-			this.comboBoxEditBasicSlideTitle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.comboBoxEditBasicSlideTitle.Properties.NullText = "Monthly Advertising Planner";
-			this.comboBoxEditBasicSlideTitle.Size = new System.Drawing.Size(248, 22);
-			this.comboBoxEditBasicSlideTitle.StyleController = this.styleController;
-			this.comboBoxEditBasicSlideTitle.TabIndex = 3;
-			// 
-			// buttonXBasicSlideTitle
-			// 
-			this.buttonXBasicSlideTitle.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXBasicSlideTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXBasicSlideTitle.AutoCheckOnClick = true;
-			this.buttonXBasicSlideTitle.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXBasicSlideTitle.Location = new System.Drawing.Point(12, 16);
-			this.buttonXBasicSlideTitle.Name = "buttonXBasicSlideTitle";
-			this.buttonXBasicSlideTitle.Size = new System.Drawing.Size(279, 29);
-			this.buttonXBasicSlideTitle.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXBasicSlideTitle.TabIndex = 2;
-			this.buttonXBasicSlideTitle.Text = "   Slide Header Title";
-			this.buttonXBasicSlideTitle.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXBasicSlideTitle.TextColor = System.Drawing.Color.Black;
-			this.buttonXBasicSlideTitle.CheckedChanged += new System.EventHandler(this.buttonXBasicSlideTitle_CheckedChanged);
-			// 
-			// pnBasicBottom
-			// 
-			this.pnBasicBottom.BackColor = System.Drawing.Color.White;
-			this.pnBasicBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pnBasicBottom.Controls.Add(this.checkEditBasicApplyForAll);
-			this.pnBasicBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBasicBottom.Location = new System.Drawing.Point(0, 410);
-			this.pnBasicBottom.Name = "pnBasicBottom";
-			this.pnBasicBottom.Size = new System.Drawing.Size(302, 37);
-			this.pnBasicBottom.TabIndex = 4;
-			// 
-			// checkEditBasicApplyForAll
-			// 
-			this.checkEditBasicApplyForAll.Location = new System.Drawing.Point(10, 6);
-			this.checkEditBasicApplyForAll.Name = "checkEditBasicApplyForAll";
-			this.checkEditBasicApplyForAll.Properties.AutoWidth = true;
-			this.checkEditBasicApplyForAll.Properties.Caption = "Show on ALL Slides";
-			this.checkEditBasicApplyForAll.Size = new System.Drawing.Size(139, 20);
-			this.checkEditBasicApplyForAll.StyleController = this.styleController;
-			this.checkEditBasicApplyForAll.TabIndex = 8;
-			// 
-			// xtraTabPageCost
-			// 
-			this.xtraTabPageCost.Controls.Add(this.pnCostTop);
-			this.xtraTabPageCost.Controls.Add(this.pnCostBottom);
-			this.xtraTabPageCost.Name = "xtraTabPageCost";
-			this.xtraTabPageCost.Size = new System.Drawing.Size(298, 443);
-			this.xtraTabPageCost.Text = "Cost";
-			// 
-			// pnCostTop
-			// 
-			this.pnCostTop.BackColor = System.Drawing.Color.White;
-			this.pnCostTop.Controls.Add(this.xtraScrollableControlCost);
-			this.pnCostTop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnCostTop.Location = new System.Drawing.Point(0, 0);
-			this.pnCostTop.Name = "pnCostTop";
-			this.pnCostTop.Size = new System.Drawing.Size(298, 406);
-			this.pnCostTop.TabIndex = 6;
-			// 
-			// xtraScrollableControlCost
-			// 
-			this.xtraScrollableControlCost.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.xtraScrollableControlCost.Appearance.Options.UseBackColor = true;
-			this.xtraScrollableControlCost.Controls.Add(this.spinEditCostDigital);
-			this.xtraScrollableControlCost.Controls.Add(this.spinEditCostNewspaper);
-			this.xtraScrollableControlCost.Controls.Add(this.buttonXCostDigital);
-			this.xtraScrollableControlCost.Controls.Add(this.buttonXCostNewspaperManual);
-			this.xtraScrollableControlCost.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraScrollableControlCost.Location = new System.Drawing.Point(0, 0);
-			this.xtraScrollableControlCost.Name = "xtraScrollableControlCost";
-			this.xtraScrollableControlCost.Size = new System.Drawing.Size(298, 406);
-			this.xtraScrollableControlCost.TabIndex = 2;
-			// 
-			// spinEditCostDigital
-			// 
-			this.spinEditCostDigital.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditCostDigital.Enabled = false;
-			this.spinEditCostDigital.Location = new System.Drawing.Point(43, 230);
-			this.spinEditCostDigital.Name = "spinEditCostDigital";
-			this.spinEditCostDigital.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditCostDigital.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditCostDigital.Properties.DisplayFormat.FormatString = "$#,###.00";
-			this.spinEditCostDigital.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditCostDigital.Properties.EditFormat.FormatString = "$#,###.00";
-			this.spinEditCostDigital.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditCostDigital.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditCostDigital.Size = new System.Drawing.Size(128, 22);
-			this.spinEditCostDigital.StyleController = this.styleController;
-			this.spinEditCostDigital.TabIndex = 24;
-			// 
-			// spinEditCostNewspaper
-			// 
-			this.spinEditCostNewspaper.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditCostNewspaper.Enabled = false;
-			this.spinEditCostNewspaper.Location = new System.Drawing.Point(43, 82);
-			this.spinEditCostNewspaper.Name = "spinEditCostNewspaper";
-			this.spinEditCostNewspaper.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditCostNewspaper.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditCostNewspaper.Properties.DisplayFormat.FormatString = "$#,###.00";
-			this.spinEditCostNewspaper.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditCostNewspaper.Properties.EditFormat.FormatString = "$#,###.00";
-			this.spinEditCostNewspaper.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditCostNewspaper.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditCostNewspaper.Size = new System.Drawing.Size(128, 22);
-			this.spinEditCostNewspaper.StyleController = this.styleController;
-			this.spinEditCostNewspaper.TabIndex = 23;
-			// 
-			// buttonXCostDigital
-			// 
-			this.buttonXCostDigital.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXCostDigital.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXCostDigital.AutoCheckOnClick = true;
-			this.buttonXCostDigital.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCostDigital.Location = new System.Drawing.Point(12, 195);
-			this.buttonXCostDigital.Name = "buttonXCostDigital";
-			this.buttonXCostDigital.Size = new System.Drawing.Size(275, 29);
-			this.buttonXCostDigital.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXCostDigital.TabIndex = 4;
-			this.buttonXCostDigital.Text = "   Digital Investment";
-			this.buttonXCostDigital.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXCostDigital.TextColor = System.Drawing.Color.Black;
-			this.buttonXCostDigital.CheckedChanged += new System.EventHandler(this.buttonXCostDigital_CheckedChanged);
-			// 
-			// buttonXCostNewspaperManual
-			// 
-			this.buttonXCostNewspaperManual.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXCostNewspaperManual.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXCostNewspaperManual.AutoCheckOnClick = true;
-			this.buttonXCostNewspaperManual.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCostNewspaperManual.Location = new System.Drawing.Point(12, 47);
-			this.buttonXCostNewspaperManual.Name = "buttonXCostNewspaperManual";
-			this.buttonXCostNewspaperManual.Size = new System.Drawing.Size(275, 29);
-			this.buttonXCostNewspaperManual.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXCostNewspaperManual.TabIndex = 2;
-			this.buttonXCostNewspaperManual.Text = "   Newspaper Investment";
-			this.buttonXCostNewspaperManual.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXCostNewspaperManual.TextColor = System.Drawing.Color.Black;
-			this.buttonXCostNewspaperManual.CheckedChanged += new System.EventHandler(this.buttonXCostNewspaperManual_CheckedChanged);
-			// 
-			// pnCostBottom
-			// 
-			this.pnCostBottom.BackColor = System.Drawing.Color.White;
-			this.pnCostBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pnCostBottom.Controls.Add(this.checkEditCostApplyForAll);
-			this.pnCostBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnCostBottom.Location = new System.Drawing.Point(0, 406);
-			this.pnCostBottom.Name = "pnCostBottom";
-			this.pnCostBottom.Size = new System.Drawing.Size(298, 37);
-			this.pnCostBottom.TabIndex = 5;
-			// 
-			// checkEditCostApplyForAll
-			// 
-			this.checkEditCostApplyForAll.Location = new System.Drawing.Point(10, 6);
-			this.checkEditCostApplyForAll.Name = "checkEditCostApplyForAll";
-			this.checkEditCostApplyForAll.Properties.AutoWidth = true;
-			this.checkEditCostApplyForAll.Properties.Caption = "Show on ALL Slides";
-			this.checkEditCostApplyForAll.Size = new System.Drawing.Size(139, 20);
-			this.checkEditCostApplyForAll.StyleController = this.styleController;
-			this.checkEditCostApplyForAll.TabIndex = 8;
+			this.buttonXComment.AutoCheckOnClick = true;
+			this.buttonXComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXComment.Location = new System.Drawing.Point(14, 18);
+			this.buttonXComment.Name = "buttonXComment";
+			this.buttonXComment.Size = new System.Drawing.Size(271, 29);
+			this.buttonXComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXComment.TabIndex = 0;
+			this.buttonXComment.Text = "Add a Comment to this slide";
+			this.buttonXComment.TextColor = System.Drawing.Color.Black;
+			this.buttonXComment.CheckedChanged += new System.EventHandler(this.ShowComment_CheckedChanged);
 			// 
 			// xtraTabPageStyle
 			// 
-			this.xtraTabPageStyle.Controls.Add(this.pnStyleTop);
+			this.xtraTabPageStyle.Controls.Add(this.xtraTabControlStyle);
 			this.xtraTabPageStyle.Name = "xtraTabPageStyle";
-			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 443);
-			this.xtraTabPageStyle.Text = "Style";
+			this.xtraTabPageStyle.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
+			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 494);
+			this.xtraTabPageStyle.Text = "Slide Style";
 			// 
-			// pnStyleTop
+			// xtraTabControlStyle
 			// 
-			this.pnStyleTop.BackColor = System.Drawing.Color.White;
-			this.pnStyleTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnStyleTop.Controls.Add(this.buttonXStyleBigDate);
-			this.pnStyleTop.Controls.Add(this.laThemeColor);
-			this.pnStyleTop.Controls.Add(this.checkEditThemeColorApplyForAll);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorGreen);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorOrange);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorTeal);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorBlue);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorBlack);
-			this.pnStyleTop.Controls.Add(this.buttonXThemeColorGray);
-			this.pnStyleTop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnStyleTop.Location = new System.Drawing.Point(0, 0);
-			this.pnStyleTop.Name = "pnStyleTop";
-			this.pnStyleTop.Size = new System.Drawing.Size(298, 443);
-			this.pnStyleTop.TabIndex = 12;
+			this.xtraTabControlStyle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlStyle.Appearance.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlStyle.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.HeaderDisabled.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+			this.xtraTabControlStyle.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlStyle.AppearancePage.PageClient.Options.UseFont = true;
+			this.xtraTabControlStyle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.xtraTabControlStyle.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraTabControlStyle.Location = new System.Drawing.Point(0, 20);
+			this.xtraTabControlStyle.Name = "xtraTabControlStyle";
+			this.xtraTabControlStyle.SelectedTabPage = this.xtraTabPageStyleColor;
+			this.xtraTabControlStyle.Size = new System.Drawing.Size(298, 474);
+			this.xtraTabControlStyle.TabIndex = 11;
+			this.xtraTabControlStyle.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageStyleColor,
+            this.xtraTabPageStyleLogo});
 			// 
-			// buttonXStyleBigDate
+			// xtraTabPageStyleColor
 			// 
-			this.buttonXStyleBigDate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXStyleBigDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.xtraTabPageStyleColor.Controls.Add(this.pnStyle);
+			this.xtraTabPageStyleColor.Name = "xtraTabPageStyleColor";
+			this.xtraTabPageStyleColor.Size = new System.Drawing.Size(292, 443);
+			this.xtraTabPageStyleColor.Text = "Color Theme";
+			// 
+			// pnStyle
+			// 
+			this.pnStyle.BackColor = System.Drawing.Color.White;
+			this.pnStyle.Controls.Add(this.checkEditStyleBigDate);
+			this.pnStyle.Controls.Add(this.checkEditThemeColorApplyForAll);
+			this.pnStyle.Controls.Add(this.laThemeColor);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorGreen);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorOrange);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorTeal);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorBlue);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorBlack);
+			this.pnStyle.Controls.Add(this.buttonXThemeColorGray);
+			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnStyle.Location = new System.Drawing.Point(0, 0);
+			this.pnStyle.Name = "pnStyle";
+			this.pnStyle.Size = new System.Drawing.Size(292, 443);
+			this.pnStyle.TabIndex = 12;
+			// 
+			// checkEditStyleBigDate
+			// 
+			this.checkEditStyleBigDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXStyleBigDate.AutoCheckOnClick = true;
-			this.buttonXStyleBigDate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXStyleBigDate.Location = new System.Drawing.Point(12, 347);
-			this.buttonXStyleBigDate.Name = "buttonXStyleBigDate";
-			this.buttonXStyleBigDate.Size = new System.Drawing.Size(271, 29);
-			this.buttonXStyleBigDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXStyleBigDate.TabIndex = 8;
-			this.buttonXStyleBigDate.Text = "   Show Large Date Numbers";
-			this.buttonXStyleBigDate.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXStyleBigDate.TextColor = System.Drawing.Color.Black;
-			// 
-			// laThemeColor
-			// 
-			this.laThemeColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laThemeColor.BackColor = System.Drawing.Color.White;
-			this.laThemeColor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laThemeColor.ForeColor = System.Drawing.Color.Black;
-			this.laThemeColor.Location = new System.Drawing.Point(9, 8);
-			this.laThemeColor.Name = "laThemeColor";
-			this.laThemeColor.Size = new System.Drawing.Size(267, 23);
-			this.laThemeColor.TabIndex = 9;
-			this.laThemeColor.Text = "A. Style Color Theme Options";
-			this.laThemeColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.checkEditStyleBigDate.Location = new System.Drawing.Point(10, 267);
+			this.checkEditStyleBigDate.Name = "checkEditStyleBigDate";
+			this.checkEditStyleBigDate.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditStyleBigDate.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditStyleBigDate.Properties.Caption = "Show BIG date numbers";
+			this.checkEditStyleBigDate.Size = new System.Drawing.Size(279, 19);
+			this.checkEditStyleBigDate.StyleController = this.styleController;
+			this.checkEditStyleBigDate.TabIndex = 12;
+			this.checkEditStyleBigDate.CheckedChanged += new System.EventHandler(this.checkEditStyleBigDate_CheckedChanged);
 			// 
 			// checkEditThemeColorApplyForAll
 			// 
@@ -574,17 +282,31 @@
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditThemeColorApplyForAll.Properties.Caption = "Use this Color on all calendar slides";
-			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(281, 19);
+			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(279, 19);
 			this.checkEditThemeColorApplyForAll.StyleController = this.styleController;
-			this.checkEditThemeColorApplyForAll.TabIndex = 8;
+			this.checkEditThemeColorApplyForAll.TabIndex = 11;
+			// 
+			// laThemeColor
+			// 
+			this.laThemeColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.laThemeColor.BackColor = System.Drawing.Color.White;
+			this.laThemeColor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laThemeColor.ForeColor = System.Drawing.Color.Black;
+			this.laThemeColor.Location = new System.Drawing.Point(9, 11);
+			this.laThemeColor.Name = "laThemeColor";
+			this.laThemeColor.Size = new System.Drawing.Size(265, 23);
+			this.laThemeColor.TabIndex = 9;
+			this.laThemeColor.Text = "Style Color Theme Options";
+			this.laThemeColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// buttonXThemeColorGreen
 			// 
 			this.buttonXThemeColorGreen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXThemeColorGreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXThemeColorGreen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXThemeColorGreen.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.GreenColor;
-			this.buttonXThemeColorGreen.Location = new System.Drawing.Point(181, 180);
+			this.buttonXThemeColorGreen.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorGreen.Image")));
+			this.buttonXThemeColorGreen.Location = new System.Drawing.Point(179, 180);
 			this.buttonXThemeColorGreen.Name = "buttonXThemeColorGreen";
 			this.buttonXThemeColorGreen.Size = new System.Drawing.Size(102, 35);
 			this.buttonXThemeColorGreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -599,8 +321,8 @@
 			this.buttonXThemeColorOrange.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXThemeColorOrange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXThemeColorOrange.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXThemeColorOrange.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.OrangeColor;
-			this.buttonXThemeColorOrange.Location = new System.Drawing.Point(181, 112);
+			this.buttonXThemeColorOrange.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorOrange.Image")));
+			this.buttonXThemeColorOrange.Location = new System.Drawing.Point(179, 112);
 			this.buttonXThemeColorOrange.Name = "buttonXThemeColorOrange";
 			this.buttonXThemeColorOrange.Size = new System.Drawing.Size(102, 35);
 			this.buttonXThemeColorOrange.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -615,8 +337,8 @@
 			this.buttonXThemeColorTeal.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXThemeColorTeal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXThemeColorTeal.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXThemeColorTeal.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.TealColor;
-			this.buttonXThemeColorTeal.Location = new System.Drawing.Point(181, 46);
+			this.buttonXThemeColorTeal.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorTeal.Image")));
+			this.buttonXThemeColorTeal.Location = new System.Drawing.Point(179, 46);
 			this.buttonXThemeColorTeal.Name = "buttonXThemeColorTeal";
 			this.buttonXThemeColorTeal.Size = new System.Drawing.Size(102, 35);
 			this.buttonXThemeColorTeal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -630,7 +352,7 @@
 			// 
 			this.buttonXThemeColorBlue.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXThemeColorBlue.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXThemeColorBlue.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.BlueColor;
+			this.buttonXThemeColorBlue.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorBlue.Image")));
 			this.buttonXThemeColorBlue.Location = new System.Drawing.Point(12, 180);
 			this.buttonXThemeColorBlue.Name = "buttonXThemeColorBlue";
 			this.buttonXThemeColorBlue.Size = new System.Drawing.Size(102, 35);
@@ -645,7 +367,7 @@
 			// 
 			this.buttonXThemeColorBlack.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXThemeColorBlack.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXThemeColorBlack.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.BlackColor;
+			this.buttonXThemeColorBlack.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorBlack.Image")));
 			this.buttonXThemeColorBlack.Location = new System.Drawing.Point(12, 112);
 			this.buttonXThemeColorBlack.Name = "buttonXThemeColorBlack";
 			this.buttonXThemeColorBlack.Size = new System.Drawing.Size(102, 35);
@@ -660,7 +382,7 @@
 			// 
 			this.buttonXThemeColorGray.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXThemeColorGray.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXThemeColorGray.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.GrayColor;
+			this.buttonXThemeColorGray.Image = ((System.Drawing.Image)(resources.GetObject("buttonXThemeColorGray.Image")));
 			this.buttonXThemeColorGray.Location = new System.Drawing.Point(12, 46);
 			this.buttonXThemeColorGray.Name = "buttonXThemeColorGray";
 			this.buttonXThemeColorGray.Size = new System.Drawing.Size(102, 35);
@@ -671,249 +393,38 @@
 			this.buttonXThemeColorGray.TextColor = System.Drawing.Color.Black;
 			this.buttonXThemeColorGray.Click += new System.EventHandler(this.buttonXThemeColor_Click);
 			// 
-			// xtraTabPageNotes
+			// xtraTabPageStyleLogo
 			// 
-			this.xtraTabPageNotes.Controls.Add(this.pnNotesTop);
-			this.xtraTabPageNotes.Name = "xtraTabPageNotes";
-			this.xtraTabPageNotes.Size = new System.Drawing.Size(298, 443);
-			this.xtraTabPageNotes.Text = "Notes";
+			this.xtraTabPageStyleLogo.Controls.Add(this.pnLogo);
+			this.xtraTabPageStyleLogo.Name = "xtraTabPageStyleLogo";
+			this.xtraTabPageStyleLogo.Size = new System.Drawing.Size(292, 488);
+			this.xtraTabPageStyleLogo.Text = "Header Logo";
 			// 
-			// pnNotesTop
+			// pnLogo
 			// 
-			this.pnNotesTop.BackColor = System.Drawing.Color.White;
-			this.pnNotesTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnNotesTop.Controls.Add(this.checkEditOtherNumbersApplyForAll);
-			this.pnNotesTop.Controls.Add(this.spinEditOtherNumbersActiveDays);
-			this.pnNotesTop.Controls.Add(this.spinEditOtherNumbersDigitalCPM);
-			this.pnNotesTop.Controls.Add(this.buttonXOtherNumbersActiveDays);
-			this.pnNotesTop.Controls.Add(this.buttonXOtherNumbersDigitalCPM);
-			this.pnNotesTop.Controls.Add(this.spinEditOtherNumbersImpressions);
-			this.pnNotesTop.Controls.Add(this.buttonXOtherNumbersImpressions);
-			this.pnNotesTop.Controls.Add(this.buttonXOtherNumbersNewspaperAdsNumber);
-			this.pnNotesTop.Controls.Add(this.spinEditOtherNumbersNewspaperAdsNumber);
-			this.pnNotesTop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnNotesTop.Location = new System.Drawing.Point(0, 0);
-			this.pnNotesTop.Name = "pnNotesTop";
-			this.pnNotesTop.Size = new System.Drawing.Size(298, 443);
-			this.pnNotesTop.TabIndex = 8;
-			// 
-			// checkEditOtherNumbersApplyForAll
-			// 
-			this.checkEditOtherNumbersApplyForAll.Location = new System.Drawing.Point(10, 410);
-			this.checkEditOtherNumbersApplyForAll.Name = "checkEditOtherNumbersApplyForAll";
-			this.checkEditOtherNumbersApplyForAll.Properties.AutoWidth = true;
-			this.checkEditOtherNumbersApplyForAll.Properties.Caption = "Show on ALL Slides";
-			this.checkEditOtherNumbersApplyForAll.Size = new System.Drawing.Size(139, 20);
-			this.checkEditOtherNumbersApplyForAll.StyleController = this.styleController;
-			this.checkEditOtherNumbersApplyForAll.TabIndex = 8;
-			// 
-			// spinEditOtherNumbersActiveDays
-			// 
-			this.spinEditOtherNumbersActiveDays.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersActiveDays.Enabled = false;
-			this.spinEditOtherNumbersActiveDays.Location = new System.Drawing.Point(43, 51);
-			this.spinEditOtherNumbersActiveDays.Name = "spinEditOtherNumbersActiveDays";
-			this.spinEditOtherNumbersActiveDays.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditOtherNumbersActiveDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditOtherNumbersActiveDays.Properties.DisplayFormat.FormatString = "#,##0";
-			this.spinEditOtherNumbersActiveDays.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersActiveDays.Properties.EditFormat.FormatString = "#,##0";
-			this.spinEditOtherNumbersActiveDays.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersActiveDays.Properties.IsFloatValue = false;
-			this.spinEditOtherNumbersActiveDays.Properties.Mask.EditMask = "N00";
-			this.spinEditOtherNumbersActiveDays.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersActiveDays.Size = new System.Drawing.Size(128, 22);
-			this.spinEditOtherNumbersActiveDays.StyleController = this.styleController;
-			this.spinEditOtherNumbersActiveDays.TabIndex = 26;
-			// 
-			// spinEditOtherNumbersDigitalCPM
-			// 
-			this.spinEditOtherNumbersDigitalCPM.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersDigitalCPM.Enabled = false;
-			this.spinEditOtherNumbersDigitalCPM.Location = new System.Drawing.Point(43, 356);
-			this.spinEditOtherNumbersDigitalCPM.Name = "spinEditOtherNumbersDigitalCPM";
-			this.spinEditOtherNumbersDigitalCPM.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditOtherNumbersDigitalCPM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditOtherNumbersDigitalCPM.Properties.DisplayFormat.FormatString = "$#,###.0";
-			this.spinEditOtherNumbersDigitalCPM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersDigitalCPM.Properties.EditFormat.FormatString = "$#,###.0";
-			this.spinEditOtherNumbersDigitalCPM.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersDigitalCPM.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersDigitalCPM.Size = new System.Drawing.Size(128, 22);
-			this.spinEditOtherNumbersDigitalCPM.StyleController = this.styleController;
-			this.spinEditOtherNumbersDigitalCPM.TabIndex = 25;
-			// 
-			// buttonXOtherNumbersActiveDays
-			// 
-			this.buttonXOtherNumbersActiveDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOtherNumbersActiveDays.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXOtherNumbersActiveDays.AutoCheckOnClick = true;
-			this.buttonXOtherNumbersActiveDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOtherNumbersActiveDays.Location = new System.Drawing.Point(12, 16);
-			this.buttonXOtherNumbersActiveDays.Name = "buttonXOtherNumbersActiveDays";
-			this.buttonXOtherNumbersActiveDays.Size = new System.Drawing.Size(271, 29);
-			this.buttonXOtherNumbersActiveDays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOtherNumbersActiveDays.TabIndex = 0;
-			this.buttonXOtherNumbersActiveDays.Text = "   # of Active Days";
-			this.buttonXOtherNumbersActiveDays.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXOtherNumbersActiveDays.TextColor = System.Drawing.Color.Black;
-			this.buttonXOtherNumbersActiveDays.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersActiveDays_CheckedChanged);
-			// 
-			// buttonXOtherNumbersDigitalCPM
-			// 
-			this.buttonXOtherNumbersDigitalCPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOtherNumbersDigitalCPM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXOtherNumbersDigitalCPM.AutoCheckOnClick = true;
-			this.buttonXOtherNumbersDigitalCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOtherNumbersDigitalCPM.Location = new System.Drawing.Point(12, 321);
-			this.buttonXOtherNumbersDigitalCPM.Name = "buttonXOtherNumbersDigitalCPM";
-			this.buttonXOtherNumbersDigitalCPM.Size = new System.Drawing.Size(271, 29);
-			this.buttonXOtherNumbersDigitalCPM.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOtherNumbersDigitalCPM.TabIndex = 6;
-			this.buttonXOtherNumbersDigitalCPM.Text = "   Digital CPM";
-			this.buttonXOtherNumbersDigitalCPM.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXOtherNumbersDigitalCPM.TextColor = System.Drawing.Color.Black;
-			this.buttonXOtherNumbersDigitalCPM.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersDigitalCPM_CheckedChanged);
-			// 
-			// spinEditOtherNumbersImpressions
-			// 
-			this.spinEditOtherNumbersImpressions.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersImpressions.Enabled = false;
-			this.spinEditOtherNumbersImpressions.Location = new System.Drawing.Point(43, 252);
-			this.spinEditOtherNumbersImpressions.Name = "spinEditOtherNumbersImpressions";
-			this.spinEditOtherNumbersImpressions.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditOtherNumbersImpressions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditOtherNumbersImpressions.Properties.DisplayFormat.FormatString = "#,##0.0";
-			this.spinEditOtherNumbersImpressions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersImpressions.Properties.EditFormat.FormatString = "#,##0.0";
-			this.spinEditOtherNumbersImpressions.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersImpressions.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersImpressions.Size = new System.Drawing.Size(128, 22);
-			this.spinEditOtherNumbersImpressions.StyleController = this.styleController;
-			this.spinEditOtherNumbersImpressions.TabIndex = 24;
-			// 
-			// buttonXOtherNumbersImpressions
-			// 
-			this.buttonXOtherNumbersImpressions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOtherNumbersImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXOtherNumbersImpressions.AutoCheckOnClick = true;
-			this.buttonXOtherNumbersImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOtherNumbersImpressions.Location = new System.Drawing.Point(12, 217);
-			this.buttonXOtherNumbersImpressions.Name = "buttonXOtherNumbersImpressions";
-			this.buttonXOtherNumbersImpressions.Size = new System.Drawing.Size(271, 29);
-			this.buttonXOtherNumbersImpressions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOtherNumbersImpressions.TabIndex = 4;
-			this.buttonXOtherNumbersImpressions.Text = "   Monthly Digital Impressions";
-			this.buttonXOtherNumbersImpressions.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXOtherNumbersImpressions.TextColor = System.Drawing.Color.Black;
-			this.buttonXOtherNumbersImpressions.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersImpressions_CheckedChanged);
-			// 
-			// buttonXOtherNumbersNewspaperAdsNumber
-			// 
-			this.buttonXOtherNumbersNewspaperAdsNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOtherNumbersNewspaperAdsNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXOtherNumbersNewspaperAdsNumber.AutoCheckOnClick = true;
-			this.buttonXOtherNumbersNewspaperAdsNumber.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOtherNumbersNewspaperAdsNumber.Location = new System.Drawing.Point(12, 115);
-			this.buttonXOtherNumbersNewspaperAdsNumber.Name = "buttonXOtherNumbersNewspaperAdsNumber";
-			this.buttonXOtherNumbersNewspaperAdsNumber.Size = new System.Drawing.Size(271, 29);
-			this.buttonXOtherNumbersNewspaperAdsNumber.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOtherNumbersNewspaperAdsNumber.TabIndex = 2;
-			this.buttonXOtherNumbersNewspaperAdsNumber.Text = "   # of Newspaper Ads";
-			this.buttonXOtherNumbersNewspaperAdsNumber.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-			this.buttonXOtherNumbersNewspaperAdsNumber.TextColor = System.Drawing.Color.Black;
-			this.buttonXOtherNumbersNewspaperAdsNumber.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersNewspaperAdsNumber_CheckedChanged);
-			// 
-			// spinEditOtherNumbersNewspaperAdsNumber
-			// 
-			this.spinEditOtherNumbersNewspaperAdsNumber.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersNewspaperAdsNumber.Enabled = false;
-			this.spinEditOtherNumbersNewspaperAdsNumber.Location = new System.Drawing.Point(43, 150);
-			this.spinEditOtherNumbersNewspaperAdsNumber.Name = "spinEditOtherNumbersNewspaperAdsNumber";
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.DisplayFormat.FormatString = "#,##0";
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.EditFormat.FormatString = "#,##0";
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.IsFloatValue = false;
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.Mask.EditMask = "N00";
-			this.spinEditOtherNumbersNewspaperAdsNumber.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditOtherNumbersNewspaperAdsNumber.Size = new System.Drawing.Size(128, 22);
-			this.spinEditOtherNumbersNewspaperAdsNumber.StyleController = this.styleController;
-			this.spinEditOtherNumbersNewspaperAdsNumber.TabIndex = 23;
-			// 
-			// xtraTabPageLogo
-			// 
-			this.xtraTabPageLogo.Controls.Add(this.pnLogoTop);
-			this.xtraTabPageLogo.Name = "xtraTabPageLogo";
-			this.xtraTabPageLogo.Size = new System.Drawing.Size(298, 443);
-			this.xtraTabPageLogo.Text = "Logo";
-			// 
-			// pnLogoTop
-			// 
-			this.pnLogoTop.BackColor = System.Drawing.Color.White;
-			this.pnLogoTop.Controls.Add(this.gridControlLogoGallery);
-			this.pnLogoTop.Controls.Add(this.buttonXLogo);
-			this.pnLogoTop.Controls.Add(this.checkEditLogoApplyForAll);
-			this.pnLogoTop.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnLogoTop.Location = new System.Drawing.Point(0, 0);
-			this.pnLogoTop.Name = "pnLogoTop";
-			this.pnLogoTop.Size = new System.Drawing.Size(298, 443);
-			this.pnLogoTop.TabIndex = 0;
+			this.pnLogo.BackColor = System.Drawing.Color.White;
+			this.pnLogo.Controls.Add(this.gridControlLogoGallery);
+			this.pnLogo.Controls.Add(this.buttonXLogo);
+			this.pnLogo.Controls.Add(this.checkEditLogoApplyForAll);
+			this.pnLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnLogo.Location = new System.Drawing.Point(0, 0);
+			this.pnLogo.Name = "pnLogo";
+			this.pnLogo.Size = new System.Drawing.Size(292, 488);
+			this.pnLogo.TabIndex = 0;
 			// 
 			// gridControlLogoGallery
 			// 
 			this.gridControlLogoGallery.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.gridControlLogoGallery.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlLogoGallery.Enabled = false;
 			this.gridControlLogoGallery.Location = new System.Drawing.Point(0, 53);
 			this.gridControlLogoGallery.MainView = this.layoutViewLogoGallery;
 			this.gridControlLogoGallery.Name = "gridControlLogoGallery";
 			this.gridControlLogoGallery.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit});
-			this.gridControlLogoGallery.Size = new System.Drawing.Size(298, 343);
+			this.gridControlLogoGallery.Size = new System.Drawing.Size(292, 388);
 			this.gridControlLogoGallery.TabIndex = 37;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewLogoGallery});
@@ -969,7 +480,6 @@
 			this.layoutViewLogoGallery.OptionsItemText.TextToControlDistance = 1;
 			this.layoutViewLogoGallery.OptionsMultiRecordMode.MultiColumnScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
 			this.layoutViewLogoGallery.OptionsMultiRecordMode.MultiRowScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
-			this.layoutViewLogoGallery.OptionsView.ContentAlignment = System.Drawing.ContentAlignment.TopCenter;
 			this.layoutViewLogoGallery.OptionsView.ShowCardBorderIfCaptionHidden = false;
 			this.layoutViewLogoGallery.OptionsView.ShowCardCaption = false;
 			this.layoutViewLogoGallery.OptionsView.ShowCardExpandButton = false;
@@ -980,7 +490,6 @@
 			this.layoutViewLogoGallery.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiRow;
 			this.layoutViewLogoGallery.TemplateCard = this.layoutViewCard1;
 			this.layoutViewLogoGallery.CustomFieldValueStyle += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventHandler(this.layoutViewLogoGallery_CustomFieldValueStyle);
-			this.layoutViewLogoGallery.MouseMove += new System.Windows.Forms.MouseEventHandler(this.layoutViewLogoGallery_MouseMove);
 			// 
 			// gridColumnLogoGallery
 			// 
@@ -1026,13 +535,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXLogo.AutoCheckOnClick = true;
 			this.buttonXLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLogo.Location = new System.Drawing.Point(14, 18);
+			this.buttonXLogo.Location = new System.Drawing.Point(14, 13);
 			this.buttonXLogo.Name = "buttonXLogo";
-			this.buttonXLogo.Size = new System.Drawing.Size(271, 29);
+			this.buttonXLogo.Size = new System.Drawing.Size(265, 29);
 			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXLogo.TabIndex = 0;
-			this.buttonXLogo.Text = "   Show a logo on the slide";
-			this.buttonXLogo.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+			this.buttonXLogo.Text = "Show logo at the top of slide";
 			this.buttonXLogo.TextColor = System.Drawing.Color.Black;
 			this.buttonXLogo.CheckedChanged += new System.EventHandler(this.buttonXLogo_CheckedChanged);
 			// 
@@ -1040,12 +548,12 @@
 			// 
 			this.checkEditLogoApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(12, 402);
+			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(10, 455);
 			this.checkEditLogoApplyForAll.Name = "checkEditLogoApplyForAll";
 			this.checkEditLogoApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditLogoApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLogoApplyForAll.Properties.Caption = "Show this LOGO on all calendar slides";
-			this.checkEditLogoApplyForAll.Size = new System.Drawing.Size(273, 19);
+			this.checkEditLogoApplyForAll.Properties.Caption = "Show this logo at the top of all slides";
+			this.checkEditLogoApplyForAll.Size = new System.Drawing.Size(267, 20);
 			this.checkEditLogoApplyForAll.StyleController = this.styleController;
 			this.checkEditLogoApplyForAll.TabIndex = 8;
 			// 
@@ -1053,150 +561,44 @@
 			// 
 			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
 			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
-			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 443);
-			this.xtraTabPageFavorites.Text = "Favorites";
+			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 519);
+			this.xtraTabPageFavorites.Text = "My Gallery";
 			// 
 			// favoriteImagesControl
 			// 
 			this.favoriteImagesControl.BackColor = System.Drawing.Color.White;
 			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.favoriteImagesControl.ImageTooltip = null;
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 443);
+			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 519);
 			this.favoriteImagesControl.TabIndex = 1;
-			// 
-			// barManager
-			// 
-			this.barManager.AllowCustomization = false;
-			this.barManager.AllowMoveBarOnToolbar = false;
-			this.barManager.AllowQuickCustomization = false;
-			this.barManager.AllowShowToolbarsPopup = false;
-			this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.barToolbar});
-			this.barManager.DockControls.Add(this.barDockControlTop);
-			this.barManager.DockControls.Add(this.barDockControlBottom);
-			this.barManager.DockControls.Add(this.barDockControlLeft);
-			this.barManager.DockControls.Add(this.barDockControlRight);
-			this.barManager.Form = this;
-			this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barLargeButtonItemClose,
-            this.barLargeButtonItemHelp});
-			this.barManager.MaxItemId = 11;
-			// 
-			// barToolbar
-			// 
-			this.barToolbar.BarName = "Toolbar";
-			this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
-			this.barToolbar.DockCol = 0;
-			this.barToolbar.DockRow = 0;
-			this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemHelp),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemClose)});
-			this.barToolbar.OptionsBar.AllowQuickCustomization = false;
-			this.barToolbar.OptionsBar.DrawDragBorder = false;
-			this.barToolbar.OptionsBar.UseWholeRow = true;
-			this.barToolbar.Text = "Toolbar";
-			// 
-			// barLargeButtonItemHelp
-			// 
-			this.barLargeButtonItemHelp.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
-			this.barLargeButtonItemHelp.Caption = "Help";
-			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.Calendar.Controls.Properties.Resources.HelpSmall;
-			this.barLargeButtonItemHelp.Id = 10;
-			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipItem1.Text = "Help";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip1;
-			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
-			// 
-			// barLargeButtonItemClose
-			// 
-			this.barLargeButtonItemClose.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-			this.barLargeButtonItemClose.Caption = "Close";
-			this.barLargeButtonItemClose.Glyph = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloseSlideInfo;
-			this.barLargeButtonItemClose.Id = 9;
-			this.barLargeButtonItemClose.Name = "barLargeButtonItemClose";
-			toolTipItem2.Text = "Exit";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.barLargeButtonItemClose.SuperTip = superToolTip2;
-			this.barLargeButtonItemClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemClose_ItemClick);
-			// 
-			// barDockControlTop
-			// 
-			this.barDockControlTop.CausesValidation = false;
-			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(304, 44);
-			// 
-			// barDockControlBottom
-			// 
-			this.barDockControlBottom.CausesValidation = false;
-			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 545);
-			this.barDockControlBottom.Size = new System.Drawing.Size(304, 0);
-			// 
-			// barDockControlLeft
-			// 
-			this.barDockControlLeft.CausesValidation = false;
-			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 44);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 501);
-			// 
-			// barDockControlRight
-			// 
-			this.barDockControlRight.CausesValidation = false;
-			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(304, 44);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 501);
 			// 
 			// SlideInfoControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControl);
-			this.Controls.Add(this.barDockControlLeft);
-			this.Controls.Add(this.barDockControlRight);
-			this.Controls.Add(this.barDockControlBottom);
-			this.Controls.Add(this.barDockControlTop);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "SlideInfoControl";
-			this.Size = new System.Drawing.Size(304, 545);
+			this.Size = new System.Drawing.Size(304, 525);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.xtraTabControl.ResumeLayout(false);
-			this.xtraTabPageBasic.ResumeLayout(false);
-			this.pnBasicTop.ResumeLayout(false);
-			this.xtraScrollableControlBasic.ResumeLayout(false);
-			this.xtraScrollableControlBasic.PerformLayout();
+			this.xtraTabPageComments.ResumeLayout(false);
+			this.pnComment.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.memoEditComment.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditNotesCustomCommentApplyFoAll.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.memoEditNotesCustomComment.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBasicSlideTitle.Properties)).EndInit();
-			this.pnBasicBottom.ResumeLayout(false);
-			this.pnBasicBottom.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditBasicApplyForAll.Properties)).EndInit();
-			this.xtraTabPageCost.ResumeLayout(false);
-			this.pnCostTop.ResumeLayout(false);
-			this.xtraScrollableControlCost.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.spinEditCostDigital.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditCostNewspaper.Properties)).EndInit();
-			this.pnCostBottom.ResumeLayout(false);
-			this.pnCostBottom.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditCostApplyForAll.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).EndInit();
 			this.xtraTabPageStyle.ResumeLayout(false);
-			this.pnStyleTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlStyle)).EndInit();
+			this.xtraTabControlStyle.ResumeLayout(false);
+			this.xtraTabPageStyleColor.ResumeLayout(false);
+			this.pnStyle.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditStyleBigDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).EndInit();
-			this.xtraTabPageNotes.ResumeLayout(false);
-			this.pnNotesTop.ResumeLayout(false);
-			this.pnNotesTop.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOtherNumbersApplyForAll.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersActiveDays.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersDigitalCPM.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersImpressions.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersNewspaperAdsNumber.Properties)).EndInit();
-			this.xtraTabPageLogo.ResumeLayout(false);
-			this.pnLogoTop.ResumeLayout(false);
+			this.xtraTabPageStyleLogo.ResumeLayout(false);
+			this.pnLogo.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
@@ -1204,7 +606,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).EndInit();
 			this.xtraTabPageFavorites.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1212,64 +613,20 @@
         #endregion
 
 		private DevExpress.XtraEditors.StyleController styleController;
-		private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlBasic;
-        private DevComponents.DotNetBar.ButtonX buttonXBasicSlideTitle;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditBasicSlideTitle;
-		private DevComponents.DotNetBar.ButtonX buttonXBasicBusinessName;
-        private DevComponents.DotNetBar.ButtonX buttonXBasicDecisionMaker;
-        private DevExpress.XtraEditors.CheckEdit checkEditBasicApplyForAll;
-        private System.Windows.Forms.Panel pnBasicTop;
-        private System.Windows.Forms.Panel pnBasicBottom;
-        private System.Windows.Forms.Panel pnCostTop;
-		private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlCost;
-        private DevComponents.DotNetBar.ButtonX buttonXCostDigital;
-		private DevComponents.DotNetBar.ButtonX buttonXCostNewspaperManual;
-        private System.Windows.Forms.Panel pnCostBottom;
-        private DevExpress.XtraEditors.CheckEdit checkEditCostApplyForAll;
-        private DevExpress.XtraEditors.SpinEdit spinEditCostNewspaper;
-		private DevExpress.XtraEditors.SpinEdit spinEditCostDigital;
-        private DevExpress.XtraEditors.SpinEdit spinEditOtherNumbersActiveDays;
-        private DevExpress.XtraEditors.SpinEdit spinEditOtherNumbersDigitalCPM;
-        private DevExpress.XtraEditors.SpinEdit spinEditOtherNumbersImpressions;
-        private DevExpress.XtraEditors.SpinEdit spinEditOtherNumbersNewspaperAdsNumber;
-        private DevComponents.DotNetBar.ButtonX buttonXOtherNumbersDigitalCPM;
-        private DevComponents.DotNetBar.ButtonX buttonXOtherNumbersImpressions;
-        private DevComponents.DotNetBar.ButtonX buttonXOtherNumbersNewspaperAdsNumber;
-        private DevComponents.DotNetBar.ButtonX buttonXOtherNumbersActiveDays;
-        private DevExpress.XtraEditors.CheckEdit checkEditOtherNumbersApplyForAll;
-        private DevExpress.XtraEditors.CheckEdit checkEditNotesCustomCommentApplyFoAll;
-        private System.Windows.Forms.Panel pnNotesTop;
-        private DevComponents.DotNetBar.ButtonX buttonXNotesCustomComment;
-        private DevExpress.XtraEditors.MemoEdit memoEditNotesCustomComment;
         private DevComponents.DotNetBar.ButtonX buttonXLogo;
 		private DevExpress.XtraEditors.CheckEdit checkEditLogoApplyForAll;
-        private System.Windows.Forms.Panel pnStyleTop;
-        private DevComponents.DotNetBar.ButtonX buttonXThemeColorGray;
-        private DevExpress.XtraEditors.CheckEdit checkEditThemeColorApplyForAll;
+        private System.Windows.Forms.Panel pnStyle;
+		private DevComponents.DotNetBar.ButtonX buttonXThemeColorGray;
         private DevComponents.DotNetBar.ButtonX buttonXThemeColorBlack;
         private DevComponents.DotNetBar.ButtonX buttonXThemeColorBlue;
         private DevComponents.DotNetBar.ButtonX buttonXThemeColorTeal;
         private DevComponents.DotNetBar.ButtonX buttonXThemeColorGreen;
-        private DevComponents.DotNetBar.ButtonX buttonXThemeColorOrange;
-        private DevComponents.DotNetBar.ButtonX buttonXStyleBigDate;
+		private DevComponents.DotNetBar.ButtonX buttonXThemeColorOrange;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageBasic;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageCost;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageNotes;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageStyle;
-        private DevExpress.XtraBars.BarManager barManager;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
-		private DevExpress.XtraBars.Bar barToolbar;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemClose;
-        private System.Windows.Forms.Label laThemeColor;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
-		private DevExpress.XtraEditors.LabelControl labelControlDecisionMaker;
-		private DevExpress.XtraEditors.LabelControl labelControlAdvertiser;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageLogo;
-		private System.Windows.Forms.Panel pnLogoTop;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageComments;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyle;
+		private System.Windows.Forms.Label laThemeColor;
+		private System.Windows.Forms.Panel pnLogo;
 		private DevExpress.XtraGrid.GridControl gridControlLogoGallery;
 		private DevExpress.XtraGrid.Views.Layout.LayoutView layoutViewLogoGallery;
 		private DevExpress.XtraGrid.Columns.LayoutViewColumn gridColumnLogoGallery;
@@ -1278,5 +635,15 @@
 		private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageFavorites;
 		private CommonGUI.FavoriteImages.FavoriteImagesControl favoriteImagesControl;
+		private System.Windows.Forms.Panel pnComment;
+		private DevExpress.XtraEditors.MemoEdit memoEditComment;
+		private System.Windows.Forms.Label laCommentMonth;
+		private DevExpress.XtraEditors.CheckEdit checkEditCommentApplyForAll;
+		private DevComponents.DotNetBar.ButtonX buttonXComment;
+		private DevExpress.XtraEditors.CheckEdit checkEditStyleBigDate;
+		private DevExpress.XtraEditors.CheckEdit checkEditThemeColorApplyForAll;
+		private DevExpress.XtraTab.XtraTabControl xtraTabControlStyle;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleColor;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleLogo;
     }
 }

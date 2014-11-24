@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraGrid.Views.Layout;
+using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
@@ -92,6 +95,31 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			_month = month;
 			LoadCurrentMonthData();
+		}
+
+		public IEnumerable<ButtonInfo> GetChapters()
+		{
+			return new[]
+			{
+				new ButtonInfo
+				{
+					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
+					Tooltip = "Open My Gallery",
+					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageFavorites; }
+				},
+				new ButtonInfo
+				{
+					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
+					Tooltip = "Open Slide Style",
+					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageStyle; }
+				},
+				new ButtonInfo
+				{
+					Logo = Resources.CalendarOptionsInfo,
+					Tooltip = "Open Info",
+					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageInfo; }
+				},
+			};
 		}
 
 		public void LoadCurrentMonthData()

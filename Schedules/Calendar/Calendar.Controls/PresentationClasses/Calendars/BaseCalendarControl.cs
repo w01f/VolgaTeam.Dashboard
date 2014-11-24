@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
@@ -164,6 +165,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			SlideInfo.InitControl<TControl>();
 			AssignCloseActiveEditorsonOutSideClick(SlideInfo.ContainedControl);
 			retractableBarControl.Content.Controls.Add(SlideInfo.ContainedControl);
+			retractableBarControl.AddButtons(SlideInfo.SlideInfoControl.GetChapters());
 			SlideInfo.PropertyChanged += (sender, e) =>
 			{
 				MonthView.RefreshData();

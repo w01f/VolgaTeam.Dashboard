@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using DevExpress.XtraBars;
 using DevExpress.XtraGrid.Views.Layout;
-using DevExpress.XtraTab;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 {
 	public sealed partial class CalendarSlideInfoControl : UserControl, ISlideInfoControl
 	{
 		private bool _allowToSave;
-		private string _helpKey = "calnavcomment";
 		private CalendarMonth _month;
 
 		public CalendarSlideInfoControl()
@@ -51,7 +49,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			#endregion
 
 			#region Logo
-			xtraTabPageLogo.PageEnabled = MediaMetaData.Instance.ListManager.Images.Any();
+			xtraTabPageStyleLogo.PageEnabled = MediaMetaData.Instance.ListManager.Images.Any();
 			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
 			layoutViewLogoGallery.FocusedRowChanged += propertiesControl_PropertiesChanged;
@@ -86,6 +84,31 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			_month = month;
 			LoadCurrentMonthData();
+		}
+
+		public IEnumerable<ButtonInfo> GetChapters()
+		{
+			return new[]
+			{
+				new ButtonInfo
+				{
+					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
+					Tooltip = "Open My Gallery",
+					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageFavorites; }
+				},
+				new ButtonInfo
+				{
+					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
+					Tooltip = "Open Slide Style",
+					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageStyle; }
+				},
+				new ButtonInfo
+				{
+					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
+					Tooltip = "Open Comments",
+					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageComments; }
+				},
+			};
 		}
 
 		public void LoadCurrentMonthData()
@@ -217,33 +240,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			SettingsNotSaved = false;
 		}
 
-		private void barLargeButtonItemHelp_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(_helpKey);
-		}
-
-		private void barLargeButtonItemClose_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			if (Closed != null)
-				Closed(sender, e);
-		}
-
 		private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			SettingsNotSaved = true;
-		}
-
-		private void xtraTabControl_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
-		{
-			if (xtraTabControl.SelectedTabPage == xtraTabPageStyle)
-				_helpKey = "calnavcomment";
-			else if (xtraTabControl.SelectedTabPage == xtraTabPageStyle)
-				_helpKey = "calnavstyle";
-			else if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
-				_helpKey = "calnavlogo";
-			else
-				_helpKey = string.Empty;
 		}
 
 		#region Comment Event Handlers

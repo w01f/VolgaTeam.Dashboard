@@ -113,6 +113,36 @@ namespace NewBizWiz.Calendar.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap CalendarOptionsComments {
+            get {
+                object obj = ResourceManager.GetObject("CalendarOptionsComments", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CalendarOptionsFavorites {
+            get {
+                object obj = ResourceManager.GetObject("CalendarOptionsFavorites", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CalendarOptionsStyle {
+            get {
+                object obj = ResourceManager.GetObject("CalendarOptionsStyle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Clone {
             get {
                 object obj = ResourceManager.GetObject("Clone", resourceCulture);
@@ -126,16 +156,6 @@ namespace NewBizWiz.Calendar.Controls.Properties {
         public static System.Drawing.Bitmap CloneSmall {
             get {
                 object obj = ResourceManager.GetObject("CloneSmall", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap CloseSlideInfo {
-            get {
-                object obj = ResourceManager.GetObject("CloseSlideInfo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,16 +276,6 @@ namespace NewBizWiz.Calendar.Controls.Properties {
         public static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap HelpSmall {
-            get {
-                object obj = ResourceManager.GetObject("HelpSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

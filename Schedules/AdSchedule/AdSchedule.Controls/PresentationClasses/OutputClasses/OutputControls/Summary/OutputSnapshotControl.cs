@@ -41,6 +41,20 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
+			var buttonInfos = new List<ButtonInfo>
+			{
+				new ButtonInfo { 
+					Logo = Resources.SnapshotBasicInfo, 
+					Tooltip = "Open Basic Info", 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPagePrint; } 
+				}, 
+				new ButtonInfo { 
+					Logo = Resources.SnapshotSlideOptions, 
+					Tooltip = "Open Slide Options", 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideInfo; } 
+				}
+			};
+			retractableBar.AddButtons(buttonInfos);
 			retractableBar.StateChanged += retractableBar_StateChanged;
 		}
 

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
+using NewBizWiz.AdSchedule.Controls.Properties;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -30,6 +33,30 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			MultiGrid = new OutputMultiGridControl();
 			pnMain.Dock = DockStyle.Fill;
 			pnEmpty.Dock = DockStyle.Fill;
+			var buttonInfos = new List<ButtonInfo>
+			{
+				new ButtonInfo { 
+					Logo = Resources.GridTotals, 
+					Tooltip = "Open Totals", 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideBullets; } 
+				}, 
+				new ButtonInfo { 
+					Logo = Resources.GridSlideInfo, 
+					Tooltip = "Open Slide Info", 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideHeaders; } 
+				}, 
+				new ButtonInfo { 
+					Logo = Resources.GridNotes, 
+					Tooltip = "Open Notes", 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageAdNotes; } 
+				}, 
+				new ButtonInfo { 
+					Logo = Resources.GridColumns, 
+					Tooltip = "Open Columns", 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPagePrint; } 
+				}, 
+			};
+			retractableBar.AddButtons(buttonInfos);
 			retractableBar.StateChanged += retractableBar_StateChanged;
 		}
 

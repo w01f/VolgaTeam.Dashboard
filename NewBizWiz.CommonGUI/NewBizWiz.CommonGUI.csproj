@@ -34,7 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=11.7.0.10, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar2, Version=12.0.0.7, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Pdf.v14.1.Core, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
@@ -70,11 +70,9 @@
     <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebBrowser">
+    <Reference Include="EO.WebBrowser, Version=3.0.43.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assemblies\EO.Web\EO.WebBrowser.dll</HintPath>
-    </Reference>
-    <Reference Include="EO.WebBrowser.WinForm">
-      <HintPath>..\Assemblies\EO.Web\EO.WebBrowser.WinForm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -95,6 +93,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\FormStateHelper.cs" />
+    <Compile Include="Common\XtraTabDragDropHelper.cs" />
     <Compile Include="Common\GridDragDropHelper.cs" />
     <Compile Include="Common\TabbedControls.cs">
       <SubType>Component</SubType>

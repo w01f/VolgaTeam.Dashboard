@@ -27,12 +27,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 	{
 		private readonly List<PrintProductControl> _tabPages = new List<PrintProductControl>();
 		private bool _allowToSave;
+		private XtraTabDragDropHelper _tabDragDropHelper;
 
 		public PrintProductContainerControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			xtraTabControlPublications.SelectedPageChanged += xtraTabControlPublications_SelectedPageChanged;
+			_tabDragDropHelper = new XtraTabDragDropHelper(xtraTabControlPublications);
+			_tabDragDropHelper.TabMoved += OnTabMoved;
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
@@ -96,7 +99,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = LocalSchedule.FlightDates;
+			laScheduleWindow.Text = String.Format("{0} ({1} week{2})", LocalSchedule.FlightDates, LocalSchedule.WeeksDuration, LocalSchedule.WeeksDuration > 1 ? "s" : String.Empty);
 			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 			Controller.Instance.UpdateOutputTabs(LocalSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
 			if (!quickLoad)
@@ -286,6 +289,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				xtraTabControlPublications.SelectedTabPage = selectedPage;
 				SettingsNotSaved = true;
 			}
+		}
+
+		private void OnTabMoved(object sender, TabMoveEventArgs e)
+		{
+			LocalSchedule.ChangePublicationPosition(
+				LocalSchedule.PrintProducts.IndexOf(((PrintProductControl)e.MovedPage).PrintProduct),
+				LocalSchedule.PrintProducts.IndexOf(((PrintProductControl)e.TargetPage).PrintProduct) + (1 * e.Offset));
+			SettingsNotSaved = true;
 		}
 		#endregion
 

@@ -26,6 +26,7 @@ namespace NewBizWiz.Core.Common
 		void AddDigital(string categoryName);
 		void UpDigital(int position);
 		void DownDigital(int position);
+		void ChangeDigitalProductPosition(int position, int newPosition);
 		void RebuildDigitalProductIndexes();
 	}
 }

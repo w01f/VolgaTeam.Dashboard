@@ -322,6 +322,11 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 			throw new NotImplementedException();
 		}
 
+		public void ChangeDigitalProductPosition(int position, int newPosition)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void RebuildDigitalProductIndexes()
 		{
 			for (int i = 0; i < DigitalProducts.Count; i++)

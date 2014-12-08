@@ -434,9 +434,18 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			Calendar.CalendarData.AddNote(noteRange, noteText);
 			Calendar.SettingsNotSaved = true;
 
-			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(new DateTime(noteRange.FinishDate.Year, noteRange.FinishDate.Month, 1)));
+			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Date && x.DaysRangeEnd >= noteRange.FinishDate.Date);
 			if (calendarMonth != null)
-				Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
+			{
+				var notes = GetNotesByWeeeks(calendarMonth);
+				Months[calendarMonth.Date].AddNotes(notes);
+				var justAddedNote = notes
+					.SelectMany(array => array.Where(note => note.CalendarNote.StartDay == noteRange.StartDate &&
+						note.CalendarNote.FinishDay == noteRange.FinishDate))
+					.FirstOrDefault();
+				if (justAddedNote != null)
+					justAddedNote.Focus();
+			}
 
 			var options = new Dictionary<string, object>();
 			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
@@ -453,7 +462,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			Calendar.CalendarData.AddNote(noteRange, note);
 			Calendar.SettingsNotSaved = true;
 
-			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(new DateTime(noteRange.FinishDate.Year, noteRange.FinishDate.Month, 1)));
+			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Date && x.DaysRangeEnd >= noteRange.FinishDate.Date);
 			if (calendarMonth != null)
 				Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
 
@@ -475,7 +484,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void DeleteNote(CalendarNote note)
 		{
-			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(new DateTime(note.FinishDay.Year, note.FinishDay.Month, 1)));
+			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= note.FinishDay.Date && x.DaysRangeEnd >= note.FinishDay.Date);
 			if (calendarMonth == null) return;
 			Calendar.CalendarData.DeleteNote(note);
 			Calendar.SettingsNotSaved = true;

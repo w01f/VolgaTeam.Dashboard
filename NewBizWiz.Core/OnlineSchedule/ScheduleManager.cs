@@ -484,6 +484,15 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
+		public void ChangeDigitalProductPosition(int position, int newPosition)
+		{
+			if (position < 0 || position >= DigitalProducts.Count) return;
+			var product = DigitalProducts[position];
+			product.Index = newPosition + 0.5;
+			DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
+			RebuildDigitalProductIndexes();
+		}
+
 		public void RebuildDigitalProductIndexes()
 		{
 			for (int i = 0; i < DigitalProducts.Count; i++)

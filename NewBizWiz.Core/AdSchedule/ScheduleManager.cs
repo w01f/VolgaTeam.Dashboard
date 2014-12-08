@@ -267,6 +267,18 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
+		public int WeeksDuration
+		{
+			get
+			{
+				var result = 0;
+				if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return result;
+				var diff = FlightDateEnd.Value.Subtract(FlightDateStart.Value);
+				result = diff.Days / 7;
+				return result;
+			}
+		}
+
 		public IEnumerable<DateTime> ScheduleDates
 		{
 			get
@@ -483,6 +495,15 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
+		public void ChangePublicationPosition(int position, int newPosition)
+		{
+			if (position < 0 || position >= PrintProducts.Count) return;
+			var product = PrintProducts[position];
+			product.Index = newPosition + 0.5;
+			PrintProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
+			RebuildPublicationIndexes();
+		}
+
 		public void RebuildPublicationIndexes()
 		{
 			for (int i = 0; i < PrintProducts.Count; i++)
@@ -512,6 +533,15 @@ namespace NewBizWiz.Core.AdSchedule
 				DigitalProducts[position + 1].Index--;
 				DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 			}
+		}
+
+		public void ChangeDigitalProductPosition(int position, int newPosition)
+		{
+			if (position < 0 || position >= DigitalProducts.Count) return;
+			var product = DigitalProducts[position];
+			product.Index = newPosition + 0.5;
+			DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
+			RebuildDigitalProductIndexes();
 		}
 
 		public void RebuildDigitalProductIndexes()

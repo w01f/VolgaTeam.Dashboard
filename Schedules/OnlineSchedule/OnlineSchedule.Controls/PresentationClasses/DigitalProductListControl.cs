@@ -7,8 +7,11 @@ using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
@@ -22,6 +25,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		private IDigitalSchedule _schedule;
 		private Action _onDataChanged;
 		private Action<UserActivity> _trackActivity;
+		private GridDragDropHelper _dragDropHelper;
 
 		[Browsable(true), Category("Misc")]
 		public Image Logo
@@ -82,6 +86,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			_onDataChanged();
 
 			LoadView();
+
+			if (_dragDropHelper == null)
+			{
+				_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
+				_dragDropHelper.AfterDrop += DigitalProductsAfterDrop;
+			}
+
 		}
 
 		public void LoadView()
@@ -358,6 +369,20 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					_onDataChanged();
 			}
 			advBandedGridView.CloseEditor();
+		}
+
+		private void DigitalProductsAfterDrop(object sender, DragEventArgs e)
+		{
+			var grid = (GridControl)sender;
+			var view = (GridView)grid.MainView;
+			var hitInfo = view.CalcHitInfo(grid.PointToClient(new Point(e.X, e.Y)));
+			var downHitInfo = (BandedGridHitInfo)e.Data.GetData(typeof(BandedGridHitInfo));
+			var sourceRow = downHitInfo.RowHandle;
+			var targetRow = hitInfo.HitTest == GridHitTest.EmptyRow ? view.DataRowCount : hitInfo.RowHandle;
+			view.CloseEditor();
+			_schedule.ChangeDigitalProductPosition(sourceRow, targetRow);
+			view.RefreshData();
+			_onDataChanged();
 		}
 
 		private void gridToolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)

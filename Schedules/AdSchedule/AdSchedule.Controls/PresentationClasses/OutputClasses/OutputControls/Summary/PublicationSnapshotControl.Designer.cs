@@ -72,9 +72,10 @@
 			this.laTotalInsertsValue = new System.Windows.Forms.Label();
 			this.laTotalInsersTitle = new System.Windows.Forms.Label();
 			this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-			this.pnMainBorder = new System.Windows.Forms.Panel();
+			this.pnSeparatorDark = new System.Windows.Forms.Panel();
 			this.laPublicationName = new System.Windows.Forms.Label();
-			this.pnSeparator = new System.Windows.Forms.Panel();
+			this.pnMainBorder = new System.Windows.Forms.Panel();
+			this.pnSeparatorLight = new System.Windows.Forms.Panel();
 			this.pnMain.SuspendLayout();
 			this.pnDelivery.SuspendLayout();
 			this.pnReadership.SuspendLayout();
@@ -112,7 +113,8 @@
 			this.pnMain.Controls.Add(this.pnPageSize);
 			this.pnMain.Controls.Add(this.pnTotalInserts);
 			this.pnMain.Controls.Add(this.pictureBoxLogo);
-			this.pnMain.Controls.Add(this.pnSeparator);
+			this.pnMain.Controls.Add(this.pnSeparatorLight);
+			this.pnMain.Controls.Add(this.pnSeparatorDark);
 			this.pnMain.Controls.Add(this.laPublicationName);
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMain.Location = new System.Drawing.Point(1, 1);
@@ -126,7 +128,7 @@
 			this.pnDelivery.Controls.Add(this.laDeliveryValue);
 			this.pnDelivery.Controls.Add(this.laDeliveryTitle);
 			this.pnDelivery.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnDelivery.Location = new System.Drawing.Point(0, 379);
+			this.pnDelivery.Location = new System.Drawing.Point(0, 386);
 			this.pnDelivery.Name = "pnDelivery";
 			this.pnDelivery.Size = new System.Drawing.Size(339, 20);
 			this.pnDelivery.TabIndex = 14;
@@ -161,7 +163,7 @@
 			this.pnReadership.Controls.Add(this.laReadershipValue);
 			this.pnReadership.Controls.Add(this.laReadershipTitle);
 			this.pnReadership.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnReadership.Location = new System.Drawing.Point(0, 359);
+			this.pnReadership.Location = new System.Drawing.Point(0, 366);
 			this.pnReadership.Name = "pnReadership";
 			this.pnReadership.Size = new System.Drawing.Size(339, 20);
 			this.pnReadership.TabIndex = 13;
@@ -196,7 +198,7 @@
 			this.pnDiscounts.Controls.Add(this.laDiscountsValue);
 			this.pnDiscounts.Controls.Add(this.laDiscountsTitle);
 			this.pnDiscounts.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnDiscounts.Location = new System.Drawing.Point(0, 339);
+			this.pnDiscounts.Location = new System.Drawing.Point(0, 346);
 			this.pnDiscounts.Name = "pnDiscounts";
 			this.pnDiscounts.Size = new System.Drawing.Size(339, 20);
 			this.pnDiscounts.TabIndex = 12;
@@ -231,7 +233,7 @@
 			this.pnTotalColor.Controls.Add(this.laTotalColorValue);
 			this.pnTotalColor.Controls.Add(this.laTotalColorTitle);
 			this.pnTotalColor.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTotalColor.Location = new System.Drawing.Point(0, 319);
+			this.pnTotalColor.Location = new System.Drawing.Point(0, 326);
 			this.pnTotalColor.Name = "pnTotalColor";
 			this.pnTotalColor.Size = new System.Drawing.Size(339, 20);
 			this.pnTotalColor.TabIndex = 11;
@@ -266,7 +268,7 @@
 			this.pnInvestment.Controls.Add(this.laInvestmentValue);
 			this.pnInvestment.Controls.Add(this.laInvestmentTitle);
 			this.pnInvestment.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnInvestment.Location = new System.Drawing.Point(0, 299);
+			this.pnInvestment.Location = new System.Drawing.Point(0, 306);
 			this.pnInvestment.Name = "pnInvestment";
 			this.pnInvestment.Size = new System.Drawing.Size(339, 20);
 			this.pnInvestment.TabIndex = 10;
@@ -301,7 +303,7 @@
 			this.pnFinalCost.Controls.Add(this.laFinalCostValue);
 			this.pnFinalCost.Controls.Add(this.laFinalCostTitle);
 			this.pnFinalCost.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnFinalCost.Location = new System.Drawing.Point(0, 279);
+			this.pnFinalCost.Location = new System.Drawing.Point(0, 286);
 			this.pnFinalCost.Name = "pnFinalCost";
 			this.pnFinalCost.Size = new System.Drawing.Size(339, 20);
 			this.pnFinalCost.TabIndex = 9;
@@ -336,7 +338,7 @@
 			this.pnCost.Controls.Add(this.laCostValue);
 			this.pnCost.Controls.Add(this.laCostTitle);
 			this.pnCost.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnCost.Location = new System.Drawing.Point(0, 259);
+			this.pnCost.Location = new System.Drawing.Point(0, 266);
 			this.pnCost.Name = "pnCost";
 			this.pnCost.Size = new System.Drawing.Size(339, 20);
 			this.pnCost.TabIndex = 8;
@@ -371,7 +373,7 @@
 			this.pnPCI.Controls.Add(this.laPCIValue);
 			this.pnPCI.Controls.Add(this.laPCITitle);
 			this.pnPCI.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnPCI.Location = new System.Drawing.Point(0, 239);
+			this.pnPCI.Location = new System.Drawing.Point(0, 246);
 			this.pnPCI.Name = "pnPCI";
 			this.pnPCI.Size = new System.Drawing.Size(339, 20);
 			this.pnPCI.TabIndex = 7;
@@ -406,7 +408,7 @@
 			this.pnTotalSquare.Controls.Add(this.laTotalSquareValue);
 			this.pnTotalSquare.Controls.Add(this.laTotalSquareTitle);
 			this.pnTotalSquare.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTotalSquare.Location = new System.Drawing.Point(0, 219);
+			this.pnTotalSquare.Location = new System.Drawing.Point(0, 226);
 			this.pnTotalSquare.Name = "pnTotalSquare";
 			this.pnTotalSquare.Size = new System.Drawing.Size(339, 20);
 			this.pnTotalSquare.TabIndex = 6;
@@ -441,7 +443,7 @@
 			this.pnSquare.Controls.Add(this.laSquareValue);
 			this.pnSquare.Controls.Add(this.laSquareTitle);
 			this.pnSquare.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnSquare.Location = new System.Drawing.Point(0, 199);
+			this.pnSquare.Location = new System.Drawing.Point(0, 206);
 			this.pnSquare.Name = "pnSquare";
 			this.pnSquare.Size = new System.Drawing.Size(339, 20);
 			this.pnSquare.TabIndex = 5;
@@ -476,7 +478,7 @@
 			this.pnDimensions.Controls.Add(this.laDimensionsValue);
 			this.pnDimensions.Controls.Add(this.laDimensionsTitle);
 			this.pnDimensions.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnDimensions.Location = new System.Drawing.Point(0, 179);
+			this.pnDimensions.Location = new System.Drawing.Point(0, 186);
 			this.pnDimensions.Name = "pnDimensions";
 			this.pnDimensions.Size = new System.Drawing.Size(339, 20);
 			this.pnDimensions.TabIndex = 4;
@@ -511,7 +513,7 @@
 			this.pnPercentOfPage.Controls.Add(this.laPercentOfPageValue);
 			this.pnPercentOfPage.Controls.Add(this.laPercentOfPageTitle);
 			this.pnPercentOfPage.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnPercentOfPage.Location = new System.Drawing.Point(0, 159);
+			this.pnPercentOfPage.Location = new System.Drawing.Point(0, 166);
 			this.pnPercentOfPage.Name = "pnPercentOfPage";
 			this.pnPercentOfPage.Size = new System.Drawing.Size(339, 20);
 			this.pnPercentOfPage.TabIndex = 15;
@@ -543,7 +545,7 @@
 			this.pnPageSize.Controls.Add(this.laPageSizeValue);
 			this.pnPageSize.Controls.Add(this.laPageSizeTitle);
 			this.pnPageSize.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnPageSize.Location = new System.Drawing.Point(0, 139);
+			this.pnPageSize.Location = new System.Drawing.Point(0, 146);
 			this.pnPageSize.Name = "pnPageSize";
 			this.pnPageSize.Size = new System.Drawing.Size(339, 20);
 			this.pnPageSize.TabIndex = 3;
@@ -578,7 +580,7 @@
 			this.pnTotalInserts.Controls.Add(this.laTotalInsertsValue);
 			this.pnTotalInserts.Controls.Add(this.laTotalInsersTitle);
 			this.pnTotalInserts.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTotalInserts.Location = new System.Drawing.Point(0, 119);
+			this.pnTotalInserts.Location = new System.Drawing.Point(0, 126);
 			this.pnTotalInserts.Name = "pnTotalInserts";
 			this.pnTotalInserts.Size = new System.Drawing.Size(339, 20);
 			this.pnTotalInserts.TabIndex = 2;
@@ -611,7 +613,7 @@
 			// pictureBoxLogo
 			// 
 			this.pictureBoxLogo.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pictureBoxLogo.Location = new System.Drawing.Point(0, 44);
+			this.pictureBoxLogo.Location = new System.Drawing.Point(0, 51);
 			this.pictureBoxLogo.Name = "pictureBoxLogo";
 			this.pictureBoxLogo.Size = new System.Drawing.Size(339, 75);
 			this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -619,16 +621,14 @@
 			this.pictureBoxLogo.TabStop = false;
 			this.pictureBoxLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.laPageSizeValue_MouseMove);
 			// 
-			// pnMainBorder
+			// pnSeparatorDark
 			// 
-			this.pnMainBorder.BackColor = System.Drawing.Color.DimGray;
-			this.pnMainBorder.Controls.Add(this.pnMain);
-			this.pnMainBorder.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMainBorder.Location = new System.Drawing.Point(20, 20);
-			this.pnMainBorder.Name = "pnMainBorder";
-			this.pnMainBorder.Padding = new System.Windows.Forms.Padding(1);
-			this.pnMainBorder.Size = new System.Drawing.Size(341, 484);
-			this.pnMainBorder.TabIndex = 1;
+			this.pnSeparatorDark.BackColor = System.Drawing.Color.DimGray;
+			this.pnSeparatorDark.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnSeparatorDark.Location = new System.Drawing.Point(0, 43);
+			this.pnSeparatorDark.Name = "pnSeparatorDark";
+			this.pnSeparatorDark.Size = new System.Drawing.Size(339, 1);
+			this.pnSeparatorDark.TabIndex = 17;
 			// 
 			// laPublicationName
 			// 
@@ -643,14 +643,25 @@
 			this.laPublicationName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.laPublicationName.UseMnemonic = false;
 			// 
-			// pnSeparator
+			// pnMainBorder
 			// 
-			this.pnSeparator.BackColor = System.Drawing.Color.DimGray;
-			this.pnSeparator.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnSeparator.Location = new System.Drawing.Point(0, 43);
-			this.pnSeparator.Name = "pnSeparator";
-			this.pnSeparator.Size = new System.Drawing.Size(339, 1);
-			this.pnSeparator.TabIndex = 17;
+			this.pnMainBorder.BackColor = System.Drawing.Color.DimGray;
+			this.pnMainBorder.Controls.Add(this.pnMain);
+			this.pnMainBorder.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMainBorder.Location = new System.Drawing.Point(20, 20);
+			this.pnMainBorder.Name = "pnMainBorder";
+			this.pnMainBorder.Padding = new System.Windows.Forms.Padding(1);
+			this.pnMainBorder.Size = new System.Drawing.Size(341, 484);
+			this.pnMainBorder.TabIndex = 1;
+			// 
+			// pnSeparatorLight
+			// 
+			this.pnSeparatorLight.BackColor = System.Drawing.Color.White;
+			this.pnSeparatorLight.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnSeparatorLight.Location = new System.Drawing.Point(0, 44);
+			this.pnSeparatorLight.Name = "pnSeparatorLight";
+			this.pnSeparatorLight.Size = new System.Drawing.Size(339, 7);
+			this.pnSeparatorLight.TabIndex = 18;
 			// 
 			// PublicationSnapshotControl
 			// 
@@ -729,7 +740,8 @@
         private System.Windows.Forms.Label laPercentOfPageValue;
         private System.Windows.Forms.Label laPercentOfPageTitle;
 		private System.Windows.Forms.Panel pnMainBorder;
-		private System.Windows.Forms.Panel pnSeparator;
+		private System.Windows.Forms.Panel pnSeparatorDark;
 		private System.Windows.Forms.Label laPublicationName;
+		private System.Windows.Forms.Panel pnSeparatorLight;
     }
 }

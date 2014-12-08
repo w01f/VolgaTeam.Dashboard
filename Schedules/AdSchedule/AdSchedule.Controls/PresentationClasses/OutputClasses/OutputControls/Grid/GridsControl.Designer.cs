@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPagePrint = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageAdNotes = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageSlideHeaders = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageSlideBullets = new DevExpress.XtraTab.XtraTabPage();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.pnEmpty = new System.Windows.Forms.Panel();
@@ -87,19 +88,19 @@
 			// xtraTabPageAdNotes
 			// 
 			this.xtraTabPageAdNotes.Name = "xtraTabPageAdNotes";
-			this.xtraTabPageAdNotes.Size = new System.Drawing.Size(290, 462);
+			this.xtraTabPageAdNotes.Size = new System.Drawing.Size(290, 437);
 			this.xtraTabPageAdNotes.Text = "Notes";
 			// 
 			// xtraTabPageSlideHeaders
 			// 
 			this.xtraTabPageSlideHeaders.Name = "xtraTabPageSlideHeaders";
-			this.xtraTabPageSlideHeaders.Size = new System.Drawing.Size(290, 462);
+			this.xtraTabPageSlideHeaders.Size = new System.Drawing.Size(290, 437);
 			this.xtraTabPageSlideHeaders.Text = "Slide Info";
 			// 
 			// xtraTabPageSlideBullets
 			// 
 			this.xtraTabPageSlideBullets.Name = "xtraTabPageSlideBullets";
-			this.xtraTabPageSlideBullets.Size = new System.Drawing.Size(290, 462);
+			this.xtraTabPageSlideBullets.Size = new System.Drawing.Size(290, 437);
 			this.xtraTabPageSlideBullets.Text = "Totals";
 			// 
 			// styleController

@@ -46,12 +46,12 @@ namespace AdBAR
 
     internal class WatchedProcess
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public WatchedProcessBehaviour Behaviour { get; set; }
 
-        public WatchedProcess(string name)
+        public WatchedProcess()
         {
-            Name = name.ToLower();
+            Name = null;
             Behaviour = WatchedProcessBehaviour.HideIfIsActive;
         }
     }

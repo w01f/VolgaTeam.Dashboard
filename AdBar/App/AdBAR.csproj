@@ -42,7 +42,7 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=11.7.0.10, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar2, Version=12.0.0.7, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -115,7 +115,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Plugins\AdBar.Plugins.Core\AdBar.Plugins.Core.csproj">
       <Project>{d506b009-76da-45be-9f1b-c3124fe82eec}</Project>
-      <Name>Plugins.Core</Name>
+      <Name>AdBar.Plugins.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

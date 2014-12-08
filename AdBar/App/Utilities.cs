@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -191,9 +192,11 @@ namespace AdBAR
                 var r = new Regex(@"<Application[\s]*(?<"+_type+">.*?)>(?<"+_name+">.*?)</Application>",
                     RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-                foreach (Match m in r.Matches(File.ReadAllText(path)))
+                foreach (Match m in r.Matches(File.ReadAllText(path, Encoding.Default)))
                 {
-                    var wp = new WatchedProcess(m.Groups[_name].Value);
+                    var name = m.Groups[_name].Value;
+                    var wp = new WatchedProcess();
+                    wp.Name = name.ToLower();
                     var type = m.Groups[_type].Value.ToLower();
 
                     if(!String.IsNullOrEmpty(type))
@@ -220,6 +223,12 @@ namespace AdBAR
                                 case "4":
                                 case "running":
                                     wp.Behaviour = WatchedProcessBehaviour.HideIfProcessIsRunning;
+                                    break;
+
+                                case "5":
+                                case "titlebar":
+                                    wp.Behaviour = WatchedProcessBehaviour.HideIfTitlebarMatches;
+                                    wp.Name = name; // Fix case
                                     break;
                             }
                         }
@@ -248,6 +257,7 @@ namespace AdBAR
         HideIfIsActive,
         HideIfIsActiveAndMaximized,
         SetNotOnTopIfIsActive,
-        HideIfProcessIsRunning
+        HideIfProcessIsRunning,
+        HideIfTitlebarMatches
     }
 }

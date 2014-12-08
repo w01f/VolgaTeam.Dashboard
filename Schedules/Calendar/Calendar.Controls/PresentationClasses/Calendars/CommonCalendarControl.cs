@@ -8,7 +8,6 @@ using DevExpress.XtraEditors;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;

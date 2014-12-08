@@ -38,22 +38,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				new ButtonInfo { 
 					Logo = Resources.GridTotals, 
 					Tooltip = "Open Totals", 
-					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideBullets; } 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideBullets; xtraTabControlOptions.MakePageVisible(xtraTabPagePrint);} 
 				}, 
 				new ButtonInfo { 
 					Logo = Resources.GridSlideInfo, 
 					Tooltip = "Open Slide Info", 
-					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideHeaders; } 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideHeaders; xtraTabControlOptions.MakePageVisible(xtraTabPagePrint);} 
 				}, 
 				new ButtonInfo { 
 					Logo = Resources.GridNotes, 
 					Tooltip = "Open Notes", 
-					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageAdNotes; } 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageAdNotes; xtraTabControlOptions.MakePageVisible(xtraTabPagePrint);} 
 				}, 
 				new ButtonInfo { 
 					Logo = Resources.GridColumns, 
 					Tooltip = "Open Columns", 
-					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPagePrint; } 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPagePrint; xtraTabControlOptions.MakePageVisible(xtraTabPagePrint);} 
 				}, 
 			};
 			retractableBar.AddButtons(buttonInfos);

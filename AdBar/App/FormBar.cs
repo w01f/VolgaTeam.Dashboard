@@ -247,6 +247,15 @@ namespace AdBAR
                 {
                     try
                     {
+                        if (s.Behaviour == WatchedProcessBehaviour.HideIfTitlebarMatches)
+                        {
+                            if (p.MainWindowTitle.Contains(s.Name))
+                            {
+                                _newStatus = BarStatus.Hidden;
+                                break;
+                            }
+                        }
+
                         if (!processName.Equals(s.Name)) continue;
 
                         switch (s.Behaviour)
@@ -398,7 +407,8 @@ namespace AdBAR
         private void FormBar_Load(object sender, EventArgs e)
         {
             _watchedProcesses = Utilities.FilterWatchedProcessesList(_structure.WatchedProcesses, new List<WatchedProcessBehaviour>(new [] { 
-                WatchedProcessBehaviour.HideIfIsActive, WatchedProcessBehaviour.HideIfIsActiveAndMaximized, WatchedProcessBehaviour.SetNotOnTopIfIsActive}));
+                WatchedProcessBehaviour.HideIfIsActive, WatchedProcessBehaviour.HideIfIsActiveAndMaximized, WatchedProcessBehaviour.SetNotOnTopIfIsActive, 
+                WatchedProcessBehaviour.HideIfTitlebarMatches}));
             _hideFromProcesses = Utilities.FilterWatchedProcessesList(_structure.WatchedProcesses, new List<WatchedProcessBehaviour>(new[] { WatchedProcessBehaviour.HideIfProcessIsRunning}));
 
             _wd = WinEventProc;
@@ -592,22 +602,6 @@ namespace AdBAR
                 _multiHorizontalPadding = int.Parse(Utilities.GetValueRegex("<multihorizontalpadding>(.*)</multihorizontalpadding>", f));
                 _multiVerticalPadding = int.Parse(Utilities.GetValueRegex("<multiverticalpadding>(.*)</multiverticalpadding>", f));
                 _disableNonAvailableButtons = Utilities.GetValueRegex("<grayoutnonapproveduser>(.*)</grayoutnonapproveduser>", f) != "false";
-                
-                /*var g = CreateGraphics();
-                try
-                {
-                    if (g.DpiX > 96)
-                    {
-                        Width = int.Parse(Utilities.GetValueRegex("<width120dpi>(.*)</width120dpi>", f));
-                        _uncollapsedHeight = int.Parse(Utilities.GetValueRegex("<height120dpi>(.*)</height120dpi>", f));
-                        _collapsedHeight = int.Parse(Utilities.GetValueRegex("<collapsedheight120dpi>(.*)</collapsedheight120dpi>", f));
-                    }
-                }
-                finally
-                {
-                    g.Dispose();
-                }*/
-
                 Height = _uncollapsedHeight;
 
                 // Theme

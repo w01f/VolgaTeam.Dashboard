@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleSettingsControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -64,7 +63,8 @@
 			this.gridBandDelete = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.gridColumnDelete = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemButtonEditDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.toolTipControllerButtons = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipControllerGrid = new DevExpress.Utils.ToolTipController();
+			this.toolTipControllerButtons = new DevExpress.Utils.ToolTipController();
 			this.buttonXPrintProductLogo = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductCode = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductDelivery = new DevComponents.DotNetBar.ButtonX();
@@ -75,7 +75,6 @@
 			this.pictureBoxPrintProductAppLogo = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigitalProducts = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
-			this.toolTipControllerGrid = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).BeginInit();
@@ -429,6 +428,10 @@
 			this.repositoryItemButtonEditDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDelete_ButtonClick);
 			// 
+			// toolTipControllerGrid
+			// 
+			this.toolTipControllerGrid.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
+			// 
 			// toolTipControllerButtons
 			// 
 			this.toolTipControllerButtons.Rounded = true;
@@ -527,6 +530,7 @@
             this.xtraTabPagePrintProducts,
             this.xtraTabPageDigitalProducts});
 			this.xtraTabControlProducts.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlProducts_SelectedPageChanged);
+			this.xtraTabControlProducts.SelectedPageChanging += new DevExpress.XtraTab.TabPageChangingEventHandler(this.xtraTabControlProducts_SelectedPageChanging);
 			// 
 			// xtraTabPagePrintProducts
 			// 
@@ -577,10 +581,6 @@
 			this.digitalProductListControl.Name = "digitalProductListControl";
 			this.digitalProductListControl.Size = new System.Drawing.Size(822, 399);
 			this.digitalProductListControl.TabIndex = 0;
-			// 
-			// toolTipControllerGrid
-			// 
-			this.toolTipControllerGrid.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
 			// 
 			// ScheduleSettingsControl
 			// 

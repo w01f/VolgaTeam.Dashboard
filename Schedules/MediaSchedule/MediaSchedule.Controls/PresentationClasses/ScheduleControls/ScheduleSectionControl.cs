@@ -292,7 +292,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				laTotalGRPValue.Text = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
 				laTotalCPPValue.Text = ScheduleSection.TotalCPP.ToString("$#,###.00");
 				laAvgRateValue.Text = ScheduleSection.AvgRate.ToString("$#,###.00");
-				laTotalCostValue.Text = ScheduleSection.TotalCost.ToString("$#,##0");
+				laTotalCostValue.Text = ScheduleSection.TotalCost.ToString(ScheduleSection.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 				laNetRateValue.Text = ScheduleSection.NetRate.ToString("$#,###.00");
 				laAgencyDiscountValue.Text = ScheduleSection.Discount.ToString("$#,###.00");
 			}
@@ -316,6 +316,26 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			ThemeButton.Enabled = enabled;
 			EmailButton.Enabled = enabled;
 			PreviewButton.Enabled = enabled;
+		}
+
+		private void UpdateRateFormat()
+		{
+			if (ScheduleSection.UseDecimalRates)
+			{
+				bandedGridColumnCost.DisplayFormat.FormatString = "$#,##0.00";
+				bandedGridColumnCost.SummaryItem.DisplayFormat = "{0:c2}";
+				repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0.00";
+				repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0.00";
+				repositoryItemSpinEditRate.IsFloatValue = true;
+			}
+			else
+			{
+				bandedGridColumnCost.DisplayFormat.FormatString = "$#,##0";
+				bandedGridColumnCost.SummaryItem.DisplayFormat = "{0:c0}";
+				repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0";
+				repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0";
+				repositoryItemSpinEditRate.IsFloatValue = false;
+			}
 		}
 
 		private void CloneSpots(int rowHandle, object valueToClone, int startIndex, bool everyOthere)
@@ -415,6 +435,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				var sourceIndex = targetView.GetDataSourceRowIndex(targetRowHandle);
 				items.Add(new DXMenuItem("Clone this Entire Line", (o, args) => CloneProgram(sourceIndex, true)));
 				items.Add(new DXMenuItem("Clone Just this Program", (o, args) => CloneProgram(sourceIndex, false)));
+				items.Add(new DXMenuItem("Delete this Line", DeleteProgram_Click));
 			}
 			return items;
 		}
@@ -466,6 +487,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
 			checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
 			checkEditOutputNoBrackets.Checked = ScheduleSection.OutputNoBrackets;
+			checkEditUseDecimalRate.Checked = ScheduleSection.UseDecimalRates;
 
 			QuarterButton.Checked = ScheduleSection.ShowSelectedQuarter;
 			quarterSelectorControl.InitControls(ScheduleSection.Parent.Quarters, ScheduleSection.Parent.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
@@ -528,7 +550,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateSpotsStatus();
 			UpdateTotalsValues();
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
-
+			UpdateRateFormat();
 
 			checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
 
@@ -642,6 +664,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
 			ScheduleSection.ShowEmptySpots = !checkEditEmptySports.Checked;
 			ScheduleSection.OutputNoBrackets = checkEditOutputNoBrackets.Checked;
+			ScheduleSection.UseDecimalRates = checkEditUseDecimalRate.Checked;
 
 			ScheduleSection.ShowTotalPeriods = buttonXTotalPeriods.Checked;
 			ScheduleSection.ShowTotalSpots = buttonXTotalSpots.Checked;
@@ -684,6 +707,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateSpotsStatus();
 
 			TrackOptionChanged();
+
+			UpdateRateFormat();
 
 			SettingsNotSaved = true;
 		}
@@ -1060,11 +1085,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 								outputProgram.Days = program.Day;
 								outputProgram.Time = program.Time;
 								outputProgram.Length = program.Length;
-								outputProgram.Rate = buttonXRate.Checked && program.Rate.HasValue ? program.Rate.Value.ToString("$#,##0") : string.Empty;
+								outputProgram.Rate = buttonXRate.Checked && program.Rate.HasValue ? program.Rate.Value.ToString(ScheduleSection.UseDecimalRates ? "$#,##0.00" : "$#,##0") : string.Empty;
 								outputProgram.Rating = buttonXRating.Checked && program.Rating.HasValue ? program.Rating.Value.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
-								outputProgram.CPP = buttonXCPP.Checked ? program.CPP.ToString("$#,###.00") : string.Empty;
-								outputProgram.GRP = buttonXGRP.Checked ? program.GRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
-								outputProgram.TotalRate = buttonXCost.Checked ? program.Cost.ToString("$#,##0") : String.Empty;
+								outputProgram.CPP = buttonXCPP.Checked ? program.CPP.ToString("$#,###.00") : String.Empty;
+								outputProgram.GRP = buttonXGRP.Checked ? program.GRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : String.Empty;
+								outputProgram.TotalRate = buttonXCost.Checked ? program.Cost.ToString(ScheduleSection.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
 								outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
 
 								#region Set Spots Values
@@ -1117,7 +1142,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 							Application.DoEvents();
 						}
 
-						outputPage.TotalCost = ScheduleSection.TotalCost.ToString("$#,##0");
+						outputPage.TotalCost = ScheduleSection.TotalCost.ToString(ScheduleSection.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 						outputPage.TotalSpot = ScheduleSection.TotalSpots.ToString("#,##0");
 						outputPage.TotalCPP = ScheduleSection.TotalCPP.ToString("$#,###.00");
 						outputPage.TotalGRP = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");

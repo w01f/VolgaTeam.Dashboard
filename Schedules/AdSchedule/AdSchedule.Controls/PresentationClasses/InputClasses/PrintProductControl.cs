@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Utils;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors.Calendar;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
@@ -110,15 +111,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void DeleteInsert()
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete selected line?") == DialogResult.Yes)
-			{
-				advBandedGridViewPublication.DeleteSelectedRows();
-				PrintProduct.RebuildInserts();
-				LoadInserts();
-				Controller.Instance.PrintProductContainer.SettingsNotSaved = true;
-				Controller.Instance.PrintProductDelete.Enabled = PrintProduct.Inserts.Count > 0;
-				Controller.Instance.PrintProductClone.Enabled = PrintProduct.Inserts.Count > 0;
-			}
+			var selectedRowIds = advBandedGridViewPublication.GetSelectedRows().ToList();
+			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete selected line{0}?", selectedRowIds.Count > 1 ? "s" : String.Empty) != DialogResult.Yes) return;
+			advBandedGridViewPublication.DeleteSelectedRows();
+			PrintProduct.RebuildInserts();
+			LoadInserts();
+			Controller.Instance.PrintProductContainer.SettingsNotSaved = true;
+			Controller.Instance.PrintProductDelete.Enabled = PrintProduct.Inserts.Count > 0;
+			Controller.Instance.PrintProductClone.Enabled = PrintProduct.Inserts.Count > 0;
 		}
 
 		public void CloneInsert()
@@ -738,6 +738,18 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				!Controller.Instance.PrintProductMechanicalsName.EditorContainsFocus &&
 				!Controller.Instance.PrintProductColor.EditorContainsFocus)
 				advBandedGridViewPublication.Focus();
+		}
+
+		private void advBandedGridViewPublication_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+		{
+			if (!e.HitInfo.InRow) return;
+			if (e.HitInfo.Column != gridColumnID) return;
+			var selectedRowIds = advBandedGridViewPublication.GetSelectedRows().ToList();
+			advBandedGridViewPublication.FocusedRowHandle = e.HitInfo.RowHandle;
+			var menuItem = new DXMenuItem("Clone this line", (o, args) => CloneInsert());
+			menuItem.Enabled = selectedRowIds.Count <= 1;
+			e.Menu.Items.Add(menuItem);
+			e.Menu.Items.Add(new DXMenuItem(String.Format("Delete th{0} line{1}", selectedRowIds.Count > 1 ? "ese" : "is", selectedRowIds.Count > 1 ? "s" : String.Empty), (o, args) => DeleteInsert()));
 		}
 		#endregion
 

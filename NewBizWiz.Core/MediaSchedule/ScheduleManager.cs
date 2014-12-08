@@ -788,6 +788,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 		}
 
+		public void ChangeDigitalProductPosition(int position, int newPosition)
+		{
+			if (position < 0 || position >= DigitalProducts.Count) return;
+			var product = DigitalProducts[position];
+			product.Index = newPosition + 0.5;
+			DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
+			RebuildDigitalProductIndexes();
+		}
+
 		public void RebuildDigitalProductIndexes()
 		{
 			for (int i = 0; i < DigitalProducts.Count; i++)
@@ -958,7 +967,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (OutputMaxPeriods.HasValue)
 				result.AppendLine(@"<OutputMaxPeriods>" + OutputMaxPeriods.Value + @"</OutputMaxPeriods>");
 			result.AppendLine(@"<OutputNoBrackets>" + OutputNoBrackets + @"</OutputNoBrackets>");
-
+			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
 			#endregion
 
 			result.AppendLine(@"<Programs>");
@@ -1080,6 +1089,10 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "OutputNoBrackets":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							OutputNoBrackets = tempBool;
+						break;
+					case "UseDecimalRates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							UseDecimalRates = tempBool;
 						break;
 					case "DigitalLegend":
 						DigitalLegend.Deserialize(childNode);
@@ -1340,6 +1353,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool OutputPerQuater { get; set; }
 		public int? OutputMaxPeriods { get; set; }
 		public bool OutputNoBrackets { get; set; }
+		public bool UseDecimalRates { get; set; }
 		#endregion
 
 		#region Calculated Properies

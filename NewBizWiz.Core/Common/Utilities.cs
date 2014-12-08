@@ -39,9 +39,9 @@ namespace NewBizWiz.Core.Common
 			MessageBox.Show(text, Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 		}
 
-		public DialogResult ShowWarningQuestion(string text)
+		public DialogResult ShowWarningQuestion(string text,params object[] args)
 		{
-			return MessageBox.Show(text, Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+			return MessageBox.Show(String.Format(text, args), Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 		}
 
 		public void ShowInformation(string text)

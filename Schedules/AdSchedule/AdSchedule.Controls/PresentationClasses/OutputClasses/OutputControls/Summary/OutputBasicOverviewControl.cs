@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
@@ -39,6 +40,28 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				laFlightDates.Font = new Font(laFlightDates.Font.FontFamily, laFlightDates.Font.Size - 2, laFlightDates.Font.Style);
 				laAdvertiser.Font = new Font(laAdvertiser.Font.FontFamily, laAdvertiser.Font.Size - 2, laAdvertiser.Font.Style);
 			}
+		}
+
+		private void AssignCloseActiveEditorsonOutSideClick(Control control)
+		{
+			if (control.GetType() != typeof(TextEdit) &&
+				control.GetType() != typeof(MemoEdit) &&
+				control.GetType() != typeof(ComboBoxEdit) &&
+				control.GetType() != typeof(LookUpEdit) &&
+				control.GetType() != typeof(DateEdit) &&
+				control.GetType() != typeof(CheckedListBoxControl) &&
+				control.GetType() != typeof(SpinEdit) &&
+				control.GetType() != typeof(CheckEdit))
+			{
+				control.Click += CloseActiveEditorsonOutSideClick;
+				foreach (Control childControl in control.Controls)
+					AssignCloseActiveEditorsonOutSideClick(childControl);
+			}
+		}
+
+		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
+		{
+			laAdvertiser.Focus();
 		}
 
 		#region ISummaryOutputControl Members
@@ -88,6 +111,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 				var summaryControl = new BasicOverviewSummaryControl(this);
 				summaryControl.UpdateControls(_tabPages.Where(tp => tp.PageEnabled).Select(tp => tp.SummaryControl));
+				AssignCloseActiveEditorsonOutSideClick(summaryControl);
 				xtraTabControlPublications.TabPages.Add(summaryControl);
 
 				Application.DoEvents();

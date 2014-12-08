@@ -66,6 +66,7 @@
 			// 
 			// xtraTabControlPublications
 			// 
+			this.xtraTabControlPublications.AllowDrop = true;
 			this.xtraTabControlPublications.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlPublications.Appearance.Options.UseFont = true;
 			this.xtraTabControlPublications.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

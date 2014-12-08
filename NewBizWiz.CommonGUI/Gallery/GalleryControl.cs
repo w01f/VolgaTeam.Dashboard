@@ -155,7 +155,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 			Controls.Add(_browser);
 			_browser.WebView = new WebView();
 			_browser.Dock = DockStyle.Fill;
-			_browser.WebView.LoadComplete += WebView_LoadComplete;
+			_browser.WebView.LoadCompleted += WebView_LoadComplete;
 			_browser.WebView.BeforeContextMenu += WebView_BeforeContextMenu;
 			_browser.WebView.Command += WebView_Command;
 		}

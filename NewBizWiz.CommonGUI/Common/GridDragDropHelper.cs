@@ -47,6 +47,7 @@ namespace NewBizWiz.CommonGUI.Common
 			view.MouseDown += view_MouseDown;
 			view.MouseMove += view_MouseMove;
 			view.MouseUp += view_MouseUp;
+			view.ShownEditor += view_ShownEditor;
 			view.GridControl.GiveFeedback += GridControl_GiveFeedback;
 			view.GridControl.DragOver += GridControl_DragOver;
 			view.GridControl.DragDrop += GridControl_DragDrop;
@@ -117,16 +118,21 @@ namespace NewBizWiz.CommonGUI.Common
 
 		private void view_MouseMove(object sender, MouseEventArgs e)
 		{
-			var view = sender as GridView;
+			var point = new Point(e.X, e.Y);
+			if (sender is Control)
+			{
+				point = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
+				point = _view.GridControl.PointToClient(point);
+			}
 			if (e.Button != MouseButtons.Left || _downHitInfo == null) return;
 			var dragSize = SystemInformation.DragSize;
 			var dragRect = new Rectangle(new Point(_downHitInfo.HitPoint.X - dragSize.Width / 2,
 				_downHitInfo.HitPoint.Y - dragSize.Height / 2), dragSize);
 
-			if (dragRect.Contains(new Point(e.X, e.Y))) return;
-			_dragRowCursor = GetDragCursor(_downHitInfo.RowHandle, e.Location);
-			if (view != null)
-				view.GridControl.DoDragDrop(_downHitInfo, DragDropEffects.All);
+			if (dragRect.Contains(point)) return;
+			_dragRowCursor = GetDragCursor(_downHitInfo.RowHandle, point);
+			if (_view != null)
+				_view.GridControl.DoDragDrop(_downHitInfo, DragDropEffects.All);
 			_downHitInfo = null;
 		}
 
@@ -149,9 +155,17 @@ namespace NewBizWiz.CommonGUI.Common
 			DropTargetRowHandle = -1;
 		}
 
+		private void view_ShownEditor(object sender, EventArgs eventArgs)
+		{
+			var view = sender as GridView;
+			if (view == null) return;
+			view.ActiveEditor.MouseMove -= view_MouseMove;
+			view.ActiveEditor.MouseMove += view_MouseMove;
+		}
+
 		private Cursor GetDragCursor(int rowHandle, Point e)
 		{
-			var info = _view.GetViewInfo() as GridViewInfo;
+			var info = (GridViewInfo)_view.GetViewInfo();
 			var rowInfo = info.GetGridRowInfo(rowHandle);
 			var imageBounds = new Rectangle(new Point(0, 0), rowInfo.TotalBounds.Size);
 			var totalBounds = new Rectangle(new Point(0, 0), info.Bounds.Size);

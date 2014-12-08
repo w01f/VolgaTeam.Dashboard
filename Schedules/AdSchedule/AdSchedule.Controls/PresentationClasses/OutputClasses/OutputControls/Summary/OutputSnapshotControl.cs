@@ -46,12 +46,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				new ButtonInfo { 
 					Logo = Resources.SnapshotBasicInfo, 
 					Tooltip = "Open Basic Info", 
-					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPagePrint; } 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideInfo; } 
 				}, 
 				new ButtonInfo { 
 					Logo = Resources.SnapshotSlideOptions, 
 					Tooltip = "Open Slide Options", 
-					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageSlideInfo; } 
+					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPagePrint; } 
 				}
 			};
 			retractableBar.AddButtons(buttonInfos);

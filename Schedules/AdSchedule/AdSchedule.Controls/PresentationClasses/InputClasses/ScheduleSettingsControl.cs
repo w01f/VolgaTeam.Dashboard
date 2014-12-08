@@ -8,8 +8,10 @@ using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
@@ -28,6 +30,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 	{
 		private bool _allowToSave;
 		private Schedule _localSchedule;
+		private GridDragDropHelper _dragDropHelper;
 
 		public ScheduleSettingsControl()
 		{
@@ -116,6 +119,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 						propertyEditActivity.Advertiser = Controller.Instance.HomeBusinessName.EditValue as String;
 					BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
 				});
+			if (_dragDropHelper == null)
+			{
+				_dragDropHelper = new GridDragDropHelper(gridViewPrintProducts, true);
+				_dragDropHelper.AfterDrop += PrintProductsAfterDrop;
+			}
 			if (!quickLoad)
 			{
 				LoadView();
@@ -301,6 +309,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			repositoryItemTextEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
 			repositoryItemTextEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
 			AssignCloseActiveEditorsonOutSideClick(Controller.Instance.Ribbon);
+		}
+
+		private void xtraTabControlProducts_SelectedPageChanging(object sender, TabPageChangingEventArgs e)
+		{
+			e.Cancel = !AllowToLeaveControl;
 		}
 
 		private void xtraTabControlProducts_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
@@ -515,7 +528,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void gridViewPrintProducts_MouseMove(object sender, MouseEventArgs e)
 		{
-			var hi = (sender as GridView).CalcHitInfo(new Point(e.X, e.Y));
+			var hi = ((GridView)sender).CalcHitInfo(new Point(e.X, e.Y));
 			if (hi.InRowCell && hi.Column == gridColumnLogo)
 			{
 				Cursor = Cursors.Hand;
@@ -611,6 +624,20 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			{
 				SettingsNotSaved = true;
 			}
+		}
+
+		private void PrintProductsAfterDrop(object sender, DragEventArgs e)
+		{
+			var grid = (GridControl)sender;
+			var view = (GridView)grid.MainView;
+			var hitInfo = view.CalcHitInfo(grid.PointToClient(new Point(e.X, e.Y)));
+			var downHitInfo = (BandedGridHitInfo)e.Data.GetData(typeof(BandedGridHitInfo));
+			var sourceRow = downHitInfo.RowHandle;
+			var targetRow = hitInfo.HitTest == GridHitTest.EmptyRow ? view.DataRowCount : hitInfo.RowHandle;
+			view.CloseEditor();
+			_localSchedule.ChangePublicationPosition(sourceRow, targetRow);
+			view.RefreshData();
+			SettingsNotSaved = true;
 		}
 
 		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)

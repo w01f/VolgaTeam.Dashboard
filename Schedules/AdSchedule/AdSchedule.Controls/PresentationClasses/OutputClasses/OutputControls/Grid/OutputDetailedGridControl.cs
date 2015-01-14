@@ -37,7 +37,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SlideHeader.checkEditLogo1.Text = "Publication Logo";
 
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Help me understand how to use the Detailed Grid", null, null, eTooltipColor.Gray);
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					UpdateOutput(e.QuickSave);

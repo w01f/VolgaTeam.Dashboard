@@ -31,12 +31,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleSectionControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.gridControlSchedule = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewSchedule = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -115,6 +115,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsQuickShare = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageOptionsLine = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsLine = new System.Windows.Forms.Panel();
+			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditOutputNoBrackets = new DevExpress.XtraEditors.CheckEdit();
 			this.spinEditOutputLimitPeriods = new DevExpress.XtraEditors.SpinEdit();
 			this.checkEditOutputLimitPeriods = new DevExpress.XtraEditors.CheckEdit();
@@ -153,7 +154,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlData = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageDataSchedule = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageDataSpecs = new DevExpress.XtraTab.XtraTabPage();
-			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStations)).BeginInit();
@@ -188,6 +188,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageOptionsLine.SuspendLayout();
 			this.pnOptionsLine.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditOutputLimitPeriods.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).BeginInit();
@@ -204,7 +205,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlData)).BeginInit();
 			this.xtraTabControlData.SuspendLayout();
 			this.xtraTabPageDataSchedule.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlSchedule
@@ -825,7 +825,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.repositoryItemSpinEditRate.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRate.AutoHeight = false;
 			this.repositoryItemSpinEditRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0";
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0";
@@ -871,7 +871,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.repositoryItemSpinEditRating.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRating.AutoHeight = false;
 			this.repositoryItemSpinEditRating.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.repositoryItemSpinEditRating.DisplayFormat.FormatString = "#,##0.0";
 			this.repositoryItemSpinEditRating.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditRating.EditFormat.FormatString = "#,##0.0";
@@ -1008,7 +1008,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.repositoryItemSpinEditSpot.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEditSpot.AutoHeight = false;
 			this.repositoryItemSpinEditSpot.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.repositoryItemSpinEditSpot.DisplayFormat.FormatString = "#,##0";
 			this.repositoryItemSpinEditSpot.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditSpot.EditFormat.FormatString = "#,##0";
@@ -1039,7 +1039,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.repositoryItemSpinEdit000s.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEdit000s.AutoHeight = false;
 			this.repositoryItemSpinEdit000s.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.repositoryItemSpinEdit000s.DisplayFormat.FormatString = "#,##0";
 			this.repositoryItemSpinEdit000s.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEdit000s.EditFormat.FormatString = "#,##0";
@@ -1496,6 +1496,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsLine.Size = new System.Drawing.Size(292, 475);
 			this.pnOptionsLine.TabIndex = 0;
 			// 
+			// checkEditUseDecimalRate
+			// 
+			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(15, 426);
+			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
+			this.checkEditUseDecimalRate.Properties.Caption = "Use Decimals with Rates";
+			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(267, 20);
+			this.checkEditUseDecimalRate.StyleController = this.styleController;
+			this.checkEditUseDecimalRate.TabIndex = 115;
+			this.checkEditUseDecimalRate.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
+			// 
 			// checkEditOutputNoBrackets
 			// 
 			this.checkEditOutputNoBrackets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -1503,7 +1515,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(15, 452);
 			this.checkEditOutputNoBrackets.Name = "checkEditOutputNoBrackets";
 			this.checkEditOutputNoBrackets.Properties.Caption = "No Brackets for Station on slide";
-			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(267, 19);
+			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(267, 20);
 			this.checkEditOutputNoBrackets.StyleController = this.styleController;
 			this.checkEditOutputNoBrackets.TabIndex = 114;
 			this.checkEditOutputNoBrackets.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
@@ -1521,7 +1533,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.spinEditOutputLimitPeriods.Name = "spinEditOutputLimitPeriods";
 			this.spinEditOutputLimitPeriods.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditOutputLimitPeriods.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
 			this.spinEditOutputLimitPeriods.Properties.IsFloatValue = false;
 			this.spinEditOutputLimitPeriods.Properties.Mask.EditMask = "N00";
 			this.spinEditOutputLimitPeriods.Properties.MaxValue = new decimal(new int[] {
@@ -1543,7 +1555,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.checkEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 371);
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 366);
 			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
 			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
 			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
@@ -2031,18 +2043,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageDataSpecs.Size = new System.Drawing.Size(826, 544);
 			this.xtraTabPageDataSpecs.Text = "Pre-Buy Specs";
 			// 
-			// checkEditUseDecimalRate
-			// 
-			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(15, 426);
-			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
-			this.checkEditUseDecimalRate.Properties.Caption = "Use Decimals with Rates";
-			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(267, 20);
-			this.checkEditUseDecimalRate.StyleController = this.styleController;
-			this.checkEditUseDecimalRate.TabIndex = 115;
-			this.checkEditUseDecimalRate.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
-			// 
 			// ScheduleSectionControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2089,6 +2089,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsLine.ResumeLayout(false);
 			this.pnOptionsLine.ResumeLayout(false);
 			this.pnOptionsLine.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditOutputLimitPeriods.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).EndInit();
@@ -2106,7 +2107,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlData)).EndInit();
 			this.xtraTabControlData.ResumeLayout(false);
 			this.xtraTabPageDataSchedule.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.MediaSchedule;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
@@ -17,6 +16,13 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 
 		private const string StrategyTemplatesFolderName = @"{0}\{1} Slides\strategy";
 		public const string StrategyTemplateFileName = @"strategy_{0}.pptx";
+
+		private const string SnapshotTemplatesFolderName = @"{0}\{1} Slides\snapshot";
+		public const string SnapshotTemplateFileName = @"{0}\{1}\1s{2}r\{2}rows_{3}.pptx";
+
+		private const string OptionsTemplatesFolderName = @"{0}\{1} Slides\options";
+		public const string OptionsTemplateFileName = @"{0}\options{1}.pptx";
+		public const string OptionsColumnWidthsFileName = @"table_column_widths.txt";
 
 		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_slides";
 		public const string CalendarSlideTemplate = @"Broadcast_{0}_{1}_{2}.pptx";
@@ -34,6 +40,16 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(StrategyTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
 		}
 
+		public string SnapshotTemplatesFolderPath
+		{
+			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(SnapshotTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
+		}
+
+		public string OptionsTemplatesFolderPath
+		{
+			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(OptionsTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
+		}
+
 		public string BroadcastCalendarTemlatesFolderPath
 		{
 			get { return string.Format(CalendarTemlatesFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
@@ -44,27 +60,39 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			get { return string.Format(CalendarBackgroundFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 
-		public List<ColorFolder> AvailableColors { get; private set; }
+		public List<ColorFolder> ScheduleColors { get; private set; }
+		public List<ColorFolder> SnapshotColors { get; private set; }
+		public List<ColorFolder> OptionsColors { get; private set; }
 
 		public OutputManager()
 		{
-			AvailableColors = new List<ColorFolder>();
+			ScheduleColors = new List<ColorFolder>();
+			SnapshotColors = new List<ColorFolder>();
+			OptionsColors = new List<ColorFolder>();
 			LoadColors();
 		}
 
 		private void LoadColors()
 		{
-			var outputTemplatesFolder = OneSheetTableBasedTemplatesFolderPath;
-			if (!Directory.Exists(OneSheetTableBasedTemplatesFolderPath)) return;
-			foreach (var directory in Directory.GetDirectories(outputTemplatesFolder))
+			ScheduleColors.AddRange(LoadColors(OneSheetTableBasedTemplatesFolderPath));
+			SnapshotColors.AddRange(LoadColors(SnapshotTemplatesFolderPath));
+			OptionsColors.AddRange(LoadColors(OptionsTemplatesFolderPath));
+		}
+
+		private static IEnumerable<ColorFolder> LoadColors(string colorFolderPath)
+		{
+			var colorFolders = new List<ColorFolder>();
+			if (!Directory.Exists(colorFolderPath)) return colorFolders;
+			foreach (var directory in Directory.GetDirectories(colorFolderPath))
 			{
 				var colorFolder = new ColorFolder();
 				colorFolder.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Path.GetFileName(directory));
 				var imagePath = Path.Combine(directory, "image.png");
 				if (File.Exists(imagePath))
 					colorFolder.Logo = new Bitmap(imagePath);
-				AvailableColors.Add(colorFolder);
+				colorFolders.Add(colorFolder);
 			}
+			return colorFolders;
 		}
 	}
 

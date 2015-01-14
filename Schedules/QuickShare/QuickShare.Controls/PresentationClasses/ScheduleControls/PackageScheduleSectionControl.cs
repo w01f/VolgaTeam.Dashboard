@@ -71,7 +71,7 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			_parent.PreviewButton.Click += Preview_Click;
 			_parent.ProgramAddButton.Click += AddProgram_Click;
 			_parent.ProgramDeleteButton.Click += DeleteProgram_Click;
-			BusinessWrapper.Instance.PackageManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			BusinessWrapper.Instance.PackageManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -123,9 +123,9 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 				Environment.NewLine);
 			base.LoadSchedule(quickLoad);
 			xtraScrollableControlColors.Controls.Clear();
-			var selectedColor = BusinessWrapper.Instance.OutputManager.AvailableColors.FirstOrDefault(c => c.Name.Equals(MediaMetaData.Instance.SettingsManager.SelectedColor)) ?? BusinessWrapper.Instance.OutputManager.AvailableColors.FirstOrDefault();
+			var selectedColor = BusinessWrapper.Instance.OutputManager.ScheduleColors.FirstOrDefault(c => c.Name.Equals(MediaMetaData.Instance.SettingsManager.SelectedColor)) ?? BusinessWrapper.Instance.OutputManager.ScheduleColors.FirstOrDefault();
 			var topPosition = 20;
-			foreach (var color in BusinessWrapper.Instance.OutputManager.AvailableColors)
+			foreach (var color in BusinessWrapper.Instance.OutputManager.ScheduleColors)
 			{
 				var button = new ButtonX();
 				button.Height = 50;

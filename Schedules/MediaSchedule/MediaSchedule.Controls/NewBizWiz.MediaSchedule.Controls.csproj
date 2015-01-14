@@ -81,6 +81,8 @@
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InteropClasses\CalendarHelper.cs" />
+    <Compile Include="InteropClasses\OptionsHelper.cs" />
+    <Compile Include="InteropClasses\SnapshotHelper.cs" />
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="InteropClasses\StrategyHelper.cs" />
@@ -96,6 +98,25 @@
     <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOptionSetName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOptionSetName.Designer.cs">
+      <DependentUpon>FormOptionSetName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\IOptionsSlide.cs" />
+    <Compile Include="PresentationClasses\OptionsControls\OptionsContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsContainer.Designer.cs">
+      <DependentUpon>OptionsContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsControl.Designer.cs">
+      <DependentUpon>OptionsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +125,31 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormSnapshotName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormSnapshotName.Designer.cs">
+      <DependentUpon>FormSnapshotName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ISnapshotSlide.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotContainer.Designer.cs">
+      <DependentUpon>SnapshotContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotControl.Designer.cs">
+      <DependentUpon>SnapshotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummary.Designer.cs">
+      <DependentUpon>SnapshotSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Summary\MediaSummaryFull.cs">
       <SubType>UserControl</SubType>
@@ -215,6 +261,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\FormOptionSetName.resx">
+      <DependentUpon>FormOptionSetName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsContainer.resx">
+      <DependentUpon>OptionsContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsControl.resx">
+      <DependentUpon>OptionsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\DaypartsControl.resx">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +288,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.resx">
       <DependentUpon>RegularScheduleSectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormSnapshotName.resx">
+      <DependentUpon>FormSnapshotName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotContainer.resx">
+      <DependentUpon>SnapshotContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotControl.resx">
+      <DependentUpon>SnapshotControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotSummary.resx">
+      <DependentUpon>SnapshotSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Strategy\ProgramStrategyControl.resx">
       <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
@@ -370,9 +437,6 @@
     <None Include="Resources\Favorites.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\NoPrograms.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\FavoritesLogo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +465,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SectionSettingsTV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionNoPrograms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotNoRecords.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotsNoPrograms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OptionsNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OptionsNoPrograms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OptionsNoRecords.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -26,7 +26,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public PrintSummaryFull()
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					LoadData(e.QuickSave);

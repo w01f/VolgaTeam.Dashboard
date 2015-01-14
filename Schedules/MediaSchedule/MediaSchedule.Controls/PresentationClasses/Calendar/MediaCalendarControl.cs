@@ -26,7 +26,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			InitSlideInfo<CalendarSlideInfoControl>();
 			var slideInfoControl = (CalendarSlideInfoControl)SlideInfo.ContainedControl;
 			slideInfoControl.Reset += OnReset;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadCalendar(e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged);

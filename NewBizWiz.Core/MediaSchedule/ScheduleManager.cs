@@ -20,7 +20,8 @@ namespace NewBizWiz.Core.MediaSchedule
 	public enum SpotType
 	{
 		Week = 0,
-		Month
+		Month,
+		Total
 	}
 
 	public enum DemoType
@@ -598,6 +599,9 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public ProgramStrategy ProgramStrategy { get; private set; }
 
+		public List<Snapshot> Snapshots { get; private set; }
+		public List<OptionSet> Options { get; private set; }
+
 		public override string Name
 		{
 			get { return _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
@@ -629,6 +633,9 @@ namespace NewBizWiz.Core.MediaSchedule
 			CustomSummary = new MediaFullSummarySettings(this);
 
 			ProgramStrategy = new ProgramStrategy(this);
+
+			Snapshots = new List<Snapshot>();
+			Options = new List<OptionSet>();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -690,6 +697,28 @@ namespace NewBizWiz.Core.MediaSchedule
 			{
 				ProgramStrategy.Deserialize(node);
 			}
+
+			node = rootNode.SelectSingleNode(@"Snapshots");
+			if (node != null)
+			{
+				foreach (XmlNode snapshotNode in node.ChildNodes)
+				{
+					var snapshot = new Snapshot(this);
+					snapshot.Deserialize(snapshotNode);
+					Snapshots.Add(snapshot);
+				}
+			}
+
+			node = rootNode.SelectSingleNode(@"Options");
+			if (node != null)
+			{
+				foreach (XmlNode optionSetNode in node.ChildNodes)
+				{
+					var optionSet = new OptionSet(this);
+					optionSet.Deserialize(optionSetNode);
+					Options.Add(optionSet);
+				}
+			}
 		}
 
 		public override StringBuilder Serialize()
@@ -706,6 +735,16 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
 			result.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
 			result.AppendLine(@"<ProgramStrategy>" + ProgramStrategy.Serialize() + @"</ProgramStrategy>");
+
+			result.AppendLine(@"<Snapshots>");
+			foreach (var snapshot in Snapshots)
+				result.AppendLine(@"<Snapshot>" + snapshot.Serialize() + @"</Snapshot>");
+			result.AppendLine(@"</Snapshots>");
+
+			result.AppendLine(@"<Options>");
+			foreach (var optionSet in Options)
+				result.AppendLine(@"<Option>" + optionSet.Serialize() + @"</Option>");
+			result.AppendLine(@"</Options>");
 			return result;
 		}
 
@@ -854,6 +893,36 @@ namespace NewBizWiz.Core.MediaSchedule
 		public void ApplyDigitalLegendForAllViews(DigitalLegend digitalLegend)
 		{
 			Section.DigitalLegend = digitalLegend.Clone();
+		}
+
+		public void ChangeSnapshotPosition(int position, int newPosition)
+		{
+			if (position < 0 || position >= Snapshots.Count) return;
+			var snapshot = Snapshots[position];
+			snapshot.Index = newPosition - 0.5;
+			Snapshots.Sort((x, y) => x.Index.CompareTo(y.Index));
+			RebuildSnapshotIndexes();
+		}
+
+		public void RebuildSnapshotIndexes()
+		{
+			for (int i = 0; i < Snapshots.Count; i++)
+				Snapshots[i].Index = i;
+		}
+
+		public void ChangeOptionSetPosition(int position, int newPosition)
+		{
+			if (position < 0 || position >= Options.Count) return;
+			var optionSet = Options[position];
+			optionSet.Index = newPosition - 0.5;
+			Options.Sort((x, y) => x.Index.CompareTo(y.Index));
+			RebuildSnapshotIndexes();
+		}
+
+		public void RebuildOptionSetIndexes()
+		{
+			for (int i = 0; i < Options.Count; i++)
+				Options[i].Index = i;
 		}
 	}
 
@@ -1663,7 +1732,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			var source = MediaMetaData.Instance.ListManager.SourcePrograms.Where(x => x.Name.Equals(_name)).ToArray();
 			if (source.Length <= 0) return;
-			Daypart = source[0].Day;
+			Daypart = source[0].Daypart;
 			Day = source[0].Day;
 			Time = source[0].Time;
 		}

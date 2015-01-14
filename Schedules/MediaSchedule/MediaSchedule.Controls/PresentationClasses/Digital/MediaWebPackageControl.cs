@@ -21,7 +21,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 		public MediaWebPackageControl(Form form)
 			: base(form)
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave && !e.UpdateDigital);

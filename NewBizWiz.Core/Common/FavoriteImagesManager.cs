@@ -20,7 +20,7 @@ namespace NewBizWiz.Core.Common
 
 		private FavoriteImagesManager()
 		{
-			_storageFolderPath = Path.Combine(SettingsManager.Instance.OutgoingFolderPath, "image_favorites");
+			_storageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\image_favorites", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			if (!Directory.Exists(_storageFolderPath))
 				Directory.CreateDirectory(_storageFolderPath);
 			Images = new List<ImageSource>();

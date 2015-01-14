@@ -156,6 +156,7 @@
 			this.layoutViewLogoGallery.OptionsItemText.TextToControlDistance = 1;
 			this.layoutViewLogoGallery.OptionsMultiRecordMode.MultiColumnScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
 			this.layoutViewLogoGallery.OptionsMultiRecordMode.MultiRowScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
+			this.layoutViewLogoGallery.OptionsView.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.layoutViewLogoGallery.OptionsView.ShowCardBorderIfCaptionHidden = false;
 			this.layoutViewLogoGallery.OptionsView.ShowCardCaption = false;
 			this.layoutViewLogoGallery.OptionsView.ShowCardExpandButton = false;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -76,7 +77,7 @@ namespace NewBizWiz.Core.Common
 				}
 			}
 			else
-				Utilities.Instance.ShowWarning("Help link for this page was not found");
+				Utilities.Instance.ShowWarning(String.Format("Help link for \"{0}\" was not found", helpKey));
 		}
 
 		public void OpenHelpLink(int tabPageNumber)

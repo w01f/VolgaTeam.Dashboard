@@ -101,6 +101,12 @@ namespace NewBizWiz.Core.Common
 					case "TVMonthlySchedule":
 						slideType = SlideType.TVMonthlySchedule;
 						break;
+					case "TVSnapshot":
+						slideType = SlideType.TVSnapshot;
+						break;
+					case "TVOptions":
+						slideType = SlideType.TVOptions;
+						break;
 					#endregion
 
 					#region Radio Schedule
@@ -115,6 +121,12 @@ namespace NewBizWiz.Core.Common
 						break;
 					case "RadioMonthlySchedule":
 						slideType = SlideType.RadioMonthlySchedule;
+						break;
+					case "RadioSnapshot":
+						slideType = SlideType.RadioSnapshot;
+						break;
+					case "RadioOptions":
+						slideType = SlideType.RadioOptions;
 						break;
 					#endregion
 

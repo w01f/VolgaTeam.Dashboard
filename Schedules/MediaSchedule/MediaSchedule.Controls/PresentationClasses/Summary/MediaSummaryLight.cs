@@ -21,7 +21,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 
 		public MediaSummaryLight()
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					LoadData(e.QuickSave && !e.UpdateDigital);

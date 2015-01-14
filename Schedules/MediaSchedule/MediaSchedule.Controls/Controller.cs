@@ -16,7 +16,9 @@ using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary;
 
@@ -49,8 +51,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabGallery1 { get; set; }
 		public RibbonTabItem TabGallery2 { get; set; }
 		public RibbonTabItem TabRateCard { get; set; }
-		public RibbonTabItem TabMarketing { get; set; }
-		public RibbonTabItem TabProduction { get; set; }
+		public RibbonTabItem TabSnapshot { get; set; }
+		public RibbonTabItem TabOptions { get; set; }
 		public RibbonTabItem TabStrategy { get; set; }
 
 		public void Init()
@@ -193,6 +195,32 @@ namespace NewBizWiz.MediaSchedule.Controls
 			StrategyPreview.Click += Strategy.Preview_Click;
 			#endregion
 
+			#region Snapshot
+			Snapshot = new SnapshotContainer();
+			SnapshotSave.Click += Snapshot.Save_Click;
+			SnapshotSaveAs.Click += Snapshot.SaveAs_Click;
+			SnapshotPowerPoint.Click += Snapshot.PowerPoint_Click;
+			SnapshotPreview.Click += Snapshot.Preview_Click;
+			SnapshotEmail.Click += Snapshot.Email_Click;
+			SnapshotHelp.Click += Snapshot.Help_Click;
+			SnapshotNew.Click += Snapshot.New_Click;
+			SnapshotProgramAdd.Click += Snapshot.AddProgram_Click;
+			SnapshotProgramDelete.Click += Snapshot.DeleteProgram_Click;
+			#endregion
+
+			#region Options
+			Options = new OptionsContainer();
+			OptionsSave.Click += Options.Save_Click;
+			OptionsSaveAs.Click += Options.SaveAs_Click;
+			OptionsPowerPoint.Click += Options.PowerPoint_Click;
+			OptionsPreview.Click += Options.Preview_Click;
+			OptionsEmail.Click += Options.Email_Click;
+			OptionsHelp.Click += Options.Help_Click;
+			OptionsNew.Click += Options.New_Click;
+			OptionsProgramAdd.Click += Options.AddProgram_Click;
+			OptionsProgramDelete.Click += Options.DeleteProgram_Click;
+			#endregion
+
 			#region Rate Card Events
 			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
 			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
@@ -231,6 +259,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 			SummaryLight.Dispose();
 			SummaryFull.Dispose();
 			Strategy.Dispose();
+			Snapshot.Dispose();
+			Options.Dispose();
 			Gallery1.Dispose();
 			Gallery2.Dispose();
 			RateCard.Dispose();
@@ -251,6 +281,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 			SummaryLight.LoadData(false);
 			SummaryFull.LoadData(false);
 			Strategy.LoadSchedule(false);
+			Snapshot.LoadSchedule(false);
+			Options.LoadSchedule(false);
 
 			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
 			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
@@ -304,13 +336,13 @@ namespace NewBizWiz.MediaSchedule.Controls
 						TabRateCard.Text = tabPageConfig.Name;
 						tabPages.Add(TabRateCard);
 						break;
-					case "Marketing":
-						TabMarketing.Text = tabPageConfig.Name;
-						tabPages.Add(TabMarketing);
+					case "Snapshot":
+						TabSnapshot.Text = tabPageConfig.Name;
+						tabPages.Add(TabSnapshot);
 						break;
-					case "Production":
-						TabProduction.Text = tabPageConfig.Name;
-						tabPages.Add(TabProduction);
+					case "Options":
+						TabOptions.Text = tabPageConfig.Name;
+						tabPages.Add(TabOptions);
 						break;
 					case "Summary1":
 						TabSummaryLight.Text = tabPageConfig.Name;
@@ -362,6 +394,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 		{
 			TabWeeklySchedule.Enabled = enable;
 			TabMonthlySchedule.Enabled = enable;
+			TabCalendar2.Enabled = enable;
+			TabSnapshot.Enabled = enable;
+			TabOptions.Enabled = enable;
 		}
 
 		public void UpdateOutputTabs(bool enable)
@@ -369,7 +404,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			TabSummaryLight.Enabled = enable;
 			TabSummaryFull.Enabled = enable;
 			TabStrategy.Enabled = enable;
-			TabCalendar2.Enabled = enable;
 		}
 
 		public void UpdateCalendarTabs(bool enable)
@@ -438,6 +472,20 @@ namespace NewBizWiz.MediaSchedule.Controls
 				(StrategyPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
 				StrategyTheme.Click += (o, e) => themesDisabledHandler();
+
+				SnapshotPowerPoint.Visible = false;
+				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SnapshotEmail.ContainerControl as RibbonBar).Visible = false;
+				(SnapshotPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				SnapshotTheme.Click += (o, e) => themesDisabledHandler();
+
+				OptionsPowerPoint.Visible = false;
+				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(OptionsEmail.ContainerControl as RibbonBar).Visible = false;
+				(OptionsPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
+				OptionsTheme.Click += (o, e) => themesDisabledHandler();
 			}
 			else
 			{
@@ -449,6 +497,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 			}
 
 			Ribbon.SelectedRibbonTabChanged += (o, e) =>
@@ -460,6 +510,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = (SummaryLightTheme.Tag as Theme).Name;
 				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = (SummaryFullTheme.Tag as Theme).Name;
 				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = (StrategyTheme.Tag as Theme).Name;
+				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = (SnapshotTheme.Tag as Theme).Name;
+				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = (OptionsTheme.Tag as Theme).Name;
 			};
 		}
 
@@ -477,6 +529,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 				SummaryLightSpecialButtons,
 				SummaryFullSpecialButtons,
 				StrategySpecialButtons,
+				SnapshotSpecialButtons,
+				OptionsSpecialButtons,
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
 				Gallery2SpecialButtons
@@ -673,6 +727,38 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public CheckEdit StrategyShowDescriptionToggle { get; set; }
 		#endregion
 
+		#region Snapshot
+		public RibbonBar SnapshotSpecialButtons { get; set; }
+		public ButtonItem SnapshotNew { get; set; }
+		public ButtonItem SnapshotProgramAdd { get; set; }
+		public ButtonItem SnapshotProgramDelete { get; set; }
+		public ButtonItem SnapshotPreview { get; set; }
+		public ButtonItem SnapshotPowerPoint { get; set; }
+		public ButtonItem SnapshotEmail { get; set; }
+		public ButtonItem SnapshotTheme { get; set; }
+		public ButtonItem SnapshotSave { get; set; }
+		public ButtonItem SnapshotSaveAs { get; set; }
+		public ButtonItem SnapshotHelp { get; set; }
+		public RibbonBar SnapshotQuarterBar { get; set; }
+		public ButtonItem SnapshotQuarterButton { get; set; }
+		#endregion
+
+		#region Options
+		public RibbonBar OptionsSpecialButtons { get; set; }
+		public ButtonItem OptionsNew { get; set; }
+		public ButtonItem OptionsProgramAdd { get; set; }
+		public ButtonItem OptionsProgramDelete { get; set; }
+		public ButtonItem OptionsPreview { get; set; }
+		public ButtonItem OptionsPowerPoint { get; set; }
+		public ButtonItem OptionsEmail { get; set; }
+		public ButtonItem OptionsTheme { get; set; }
+		public ButtonItem OptionsSave { get; set; }
+		public ButtonItem OptionsSaveAs { get; set; }
+		public ButtonItem OptionsHelp { get; set; }
+		public RibbonBar OptionsQuarterBar { get; set; }
+		public ButtonItem OptionsQuarterButton { get; set; }
+		#endregion
+
 		#region Rate Card
 		public RibbonBar RateCardSpecialButtons { get; set; }
 		public ButtonItem RateCardHelp { get; set; }
@@ -732,6 +818,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public MediaSummaryLight SummaryLight { get; private set; }
 		public MediaSummaryFull SummaryFull { get; private set; }
 		public ProgramStrategyControl Strategy { get; private set; }
+		public SnapshotContainer Snapshot { get; private set; }
+		public OptionsContainer Options { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		public GalleryControl Gallery1 { get; private set; }
 		public GalleryControl Gallery2 { get; private set; }

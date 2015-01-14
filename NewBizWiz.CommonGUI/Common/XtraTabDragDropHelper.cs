@@ -5,7 +5,7 @@ using DevExpress.XtraTab;
 
 namespace NewBizWiz.CommonGUI.Common
 {
-	public class XtraTabDragDropHelper
+	public class XtraTabDragDropHelper<TTabPage> where TTabPage : XtraTabPage
 	{
 		private readonly XtraTabControl _tabControl;
 		private Point _point = Point.Empty;
@@ -46,7 +46,7 @@ namespace NewBizWiz.CommonGUI.Common
 		private void TabControl_DragOver(object sender, DragEventArgs e)
 		{
 			var hi = _tabControl.CalcHitInfo(_tabControl.PointToClient(new Point(e.X, e.Y)));
-			if (hi.Page != null)
+			if (hi.Page is TTabPage)
 			{
 				if (hi.Page != _movedPage)
 				{

@@ -26,7 +26,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			laCalendarName.Visible = false;
 			hyperLinkEditReset.Visible = true;
 			hyperLinkEditReset.OpenLink += hyperLinkEditReset_OpenLink;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadCalendar(e.QuickSave);

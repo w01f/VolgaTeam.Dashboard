@@ -25,7 +25,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		{
 			Dock = DockStyle.Fill;
 			InitSlideInfo<SlideInfoControl>();
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadCalendar(e.QuickSave);

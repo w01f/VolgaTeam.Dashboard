@@ -32,7 +32,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			pbDisabledOutput.SizeMode = PictureBoxSizeMode.Normal;
 			pbDisabledOutput.Image = Resources.DigitalPackageDisabled;
 			scheduleListControl.BringToFront();
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (!e.QuickSave)
 					scheduleListControl.LoadSavedSchedules(LocalSchedule);

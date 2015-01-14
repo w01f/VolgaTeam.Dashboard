@@ -7,11 +7,8 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace NewBizWiz.MediaSchedule.Controls.Properties {
-    using System;
-    
-    
+	using System;
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -302,6 +299,42 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap OptionsNew
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("OptionsNew", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap OptionsNoPrograms
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("OptionsNoPrograms", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap OptionsNoRecords
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("OptionsNoRecords", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -352,6 +385,18 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SectionNoPrograms
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SectionNoPrograms", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
 
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -409,6 +454,42 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
 			get
 			{
 				object obj = ResourceManager.GetObject("SectionSettingsTV", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SnapshotNew
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SnapshotNew", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SnapshotNoRecords
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SnapshotNoRecords", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SnapshotsNoPrograms
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SnapshotsNoPrograms", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

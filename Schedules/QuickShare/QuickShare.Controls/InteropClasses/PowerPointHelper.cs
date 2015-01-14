@@ -10,6 +10,16 @@ namespace NewBizWiz.QuickShare.Controls.InteropClasses
 			get { return BusinessWrapper.Instance.OutputManager.OneSheetTableBasedTemplatesFolderPath; }
 		}
 
+		protected override string OptionsTemplatePath
+		{
+			get { return BusinessWrapper.Instance.OutputManager.OptionsTemplatesFolderPath; }
+		}
+
+		protected override string SnapshotTemplatePath
+		{
+			get { return BusinessWrapper.Instance.OutputManager.SnapshotTemplatesFolderPath; }
+		}
+
 		protected override string CalendarTemplatePath
 		{
 			get { return BusinessWrapper.Instance.OutputManager.BroadcastCalendarTemlatesFolderPath; }

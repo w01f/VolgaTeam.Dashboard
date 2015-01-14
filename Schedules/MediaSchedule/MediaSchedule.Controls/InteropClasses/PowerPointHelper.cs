@@ -25,5 +25,16 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 		{
 			get { return BusinessWrapper.Instance.OutputManager.StrategyTemplatesFolderPath; }
 		}
+
+		protected override string OptionsTemplatePath
+		{
+			get { return BusinessWrapper.Instance.OutputManager.OptionsTemplatesFolderPath; }
+		}
+
+		protected override string SnapshotTemplatePath
+		{
+			get { return BusinessWrapper.Instance.OutputManager.SnapshotTemplatesFolderPath; }
+		}
+
 	}
 }

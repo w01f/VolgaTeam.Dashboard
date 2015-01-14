@@ -27,16 +27,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 	{
 		private readonly List<PrintProductControl> _tabPages = new List<PrintProductControl>();
 		private bool _allowToSave;
-		private XtraTabDragDropHelper _tabDragDropHelper;
+		private XtraTabDragDropHelper<PrintProductControl> _tabDragDropHelper;
 
 		public PrintProductContainerControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			xtraTabControlPublications.SelectedPageChanged += xtraTabControlPublications_SelectedPageChanged;
-			_tabDragDropHelper = new XtraTabDragDropHelper(xtraTabControlPublications);
+			_tabDragDropHelper = new XtraTabDragDropHelper<PrintProductControl>(xtraTabControlPublications);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);

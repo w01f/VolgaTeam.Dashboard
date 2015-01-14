@@ -46,8 +46,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
-			Controller.Instance.TabMarketing = ribbonTabItemMarketing;
-			Controller.Instance.TabProduction = ribbonTabItemProduction;
+			Controller.Instance.TabOptions = ribbonTabItemOptions;
+			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
 
 			#region Command Controls
 
@@ -186,6 +186,34 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
 			Controller.Instance.StrategyShowStationToggle = checkEditStrategyShowStation;
 			Controller.Instance.StrategyShowDescriptionToggle = checkEditStrategyShowDescription;
+			#endregion
+
+			#region Snapshot
+			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
+			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
+			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
+			Controller.Instance.SnapshotSaveAs = buttonItemSnapshotSaveAs;
+			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
+			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
+			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
+			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
+			Controller.Instance.SnapshotNew = buttonItemSnapshotNew;
+			Controller.Instance.SnapshotProgramAdd = buttonItemSnapshotProgramAdd;
+			Controller.Instance.SnapshotProgramDelete = buttonItemSnapshotProgramDelete;
+			#endregion
+
+			#region Options
+			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
+			Controller.Instance.OptionsHelp = buttonItemOptionsHelp;
+			Controller.Instance.OptionsSave = buttonItemOptionsSave;
+			Controller.Instance.OptionsSaveAs = buttonItemOptionsSaveAs;
+			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
+			Controller.Instance.OptionsEmail = buttonItemOptionsEmail;
+			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
+			Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
+			Controller.Instance.OptionsNew = buttonItemOptionsNew;
+			Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
+			Controller.Instance.OptionsProgramDelete = buttonItemOptionsProgramDelete;
 			#endregion
 
 			#region Gallery 1
@@ -430,6 +458,28 @@ namespace NewBizWiz.MediaSchedule.Single
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
+			else if ((_currentControl == Controller.Instance.Snapshot))
+			{
+				if (Controller.Instance.Snapshot.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSnapshot;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
+			else if ((_currentControl == Controller.Instance.Options))
+			{
+				if (Controller.Instance.Options.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemOptions;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
 			else
 				result = true;
 			return result;
@@ -578,6 +628,28 @@ namespace NewBizWiz.MediaSchedule.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSnapshot)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Snapshot;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOptions)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Options;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery1)
 			{
 				if (AllowToLeaveCurrentControl())
@@ -647,6 +719,10 @@ namespace NewBizWiz.MediaSchedule.Single
 				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Strategy)
 				result = Controller.Instance.Strategy.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Snapshot)
+				result = Controller.Instance.Snapshot.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Options)
+				result = Controller.Instance.Options.AllowToLeaveControl;
 			RegularMediaSchedulePowerPointHelper.Instance.Disconnect(false);
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
 		}

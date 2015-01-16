@@ -40,6 +40,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			get { return xtraTabControlSnapshots.SelectedTabPage as SnapshotControl; }
 		}
 
+		private SnapshotSummaryControl ActiveSummary
+		{
+			get { return xtraTabControlSnapshots.SelectedTabPage as SnapshotSummaryControl; }
+		}
+
+		private SnapshotSummaryControl Summary
+		{
+			get { return xtraTabControlSnapshots.TabPages.OfType<SnapshotSummaryControl>().Single(); }
+		}
+
 		public SnapshotContainer()
 		{
 			InitializeComponent();
@@ -96,7 +106,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 			_allowToSave = true;
 
-			LoadActiveSnapshotData();
+			LoadActiveTabData();
 
 			SettingsNotSaved = false;
 		}
@@ -105,6 +115,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		{
 			foreach (var snapshotControl in xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>())
 				snapshotControl.SaveData();
+			Summary.SaveData();
 			SaveColors();
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
@@ -116,11 +127,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private void LoadSnapshots(bool quickLoad)
 		{
-			if (!quickLoad)
+			if (quickLoad)
+			{
+				Summary.LoadData(_localSchedule.SnapshotSummary);
+			}
+			else
 			{
 				xtraTabControlSnapshots.TabPages.Clear();
-				//xtraTabControlSnapshots.TabPages.Add(new SnapshotSummary());
+				xtraTabControlSnapshots.TabPages.Add(new SnapshotSummaryControl(_localSchedule.SnapshotSummary));
+				Summary.DataChanged += (o, e) =>
+				{
+					if (!_allowToSave) return;
+					UpdateTotalsValues();
+					SettingsNotSaved = true;
+				};
 			}
+
 			foreach (var snapshot in _localSchedule.Snapshots.OrderBy(s => s.Index))
 			{
 				if (quickLoad)
@@ -137,25 +159,53 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			UpdateSnapshotSplash();
 		}
 
-		private void LoadActiveSnapshotData()
+		private void LoadActiveTabData(bool activate = false)
 		{
 			_allowToSave = false;
 			if (ActiveSnapshot != null)
 			{
-				buttonXLineId.Checked = ActiveSnapshot.Data.ShowLineId;
-				buttonXStation.Checked = ActiveSnapshot.Data.ShowStation;
-				buttonXLength.Checked = ActiveSnapshot.Data.ShowLenght;
-				buttonXProgram.Checked = ActiveSnapshot.Data.ShowProgram;
-				buttonXDaypart.Checked = ActiveSnapshot.Data.ShowDaypart;
-				buttonXTime.Checked = ActiveSnapshot.Data.ShowTime;
-				buttonXRate.Checked = ActiveSnapshot.Data.ShowRate;
-				buttonXCost.Checked = ActiveSnapshot.Data.ShowCost;
-				buttonXLogo.Checked = ActiveSnapshot.Data.ShowLogo;
-				buttonXTotalSpots.Checked = ActiveSnapshot.Data.ShowTotalSpots;
-				buttonXAvgRate.Checked = ActiveSnapshot.Data.ShowAverageRate;
-				buttonXTotalRow.Checked = ActiveSnapshot.Data.ShowTotalRow;
+				pnSnapshotInfo.Visible = true;
+				pnSummaryInfo.Visible = false;
+
+				buttonXSnapshotLineId.Checked = ActiveSnapshot.Data.ShowLineId;
+				buttonXSnapshotStation.Checked = ActiveSnapshot.Data.ShowStation;
+				buttonXSnapshotLength.Checked = ActiveSnapshot.Data.ShowLenght;
+				buttonXSnapshotProgram.Checked = ActiveSnapshot.Data.ShowProgram;
+				buttonXSnapshotDaypart.Checked = ActiveSnapshot.Data.ShowDaypart;
+				buttonXSnapshotTime.Checked = ActiveSnapshot.Data.ShowTime;
+				buttonXSnapshotRate.Checked = ActiveSnapshot.Data.ShowRate;
+				buttonXSnapshotCost.Checked = ActiveSnapshot.Data.ShowCost;
+				buttonXSnapshotLogo.Checked = ActiveSnapshot.Data.ShowLogo;
+				buttonXSnapshotTotalSpots.Checked = ActiveSnapshot.Data.ShowTotalSpots;
+				buttonXSnapshotAvgRate.Checked = ActiveSnapshot.Data.ShowAverageRate;
+				buttonXSnapshotTotalRow.Checked = ActiveSnapshot.Data.ShowTotalRow;
 				checkEditUseDecimalRate.Checked = ActiveSnapshot.Data.UseDecimalRates;
 				checkEditShowSpotX.Checked = ActiveSnapshot.Data.ShowSpotsX;
+			}
+			else if (ActiveSummary != null)
+			{
+				pnSummaryInfo.Visible = true;
+				pnSnapshotInfo.Visible = false;
+
+				buttonXSummaryLineId.Checked = ActiveSummary.Data.ShowLineId;
+				buttonXSummaryCampaign.Checked = ActiveSummary.Data.ShowCampaign;
+				buttonXSummaryComments.Checked = ActiveSummary.Data.ShowComments;
+				buttonXSummarySpots.Checked = ActiveSummary.Data.ShowSpots;
+				buttonXSummaryCost.Checked = ActiveSummary.Data.ShowCost;
+				buttonXSummaryLogo.Checked = ActiveSummary.Data.ShowLogo;
+				buttonXSummaryTotalWeeks.Checked = ActiveSummary.Data.ShowTotalWeeks;
+				buttonXSummaryTotalCost.Checked = ActiveSummary.Data.ShowTotalCost;
+				buttonXSummaryTallySpots.Checked = ActiveSummary.Data.ShowTallySpots;
+				buttonXSummaryTallyCost.Checked = ActiveSummary.Data.ShowTallyCost;
+				checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
+				checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
+				if(activate)
+					ActiveSummary.UpdateView(true);
+			}
+			else
+			{
+				pnSummaryInfo.Visible = false;
+				pnSnapshotInfo.Visible = false;
 			}
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
@@ -174,6 +224,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				_localSchedule.RebuildSnapshotIndexes();
 				var snapshotControl = AddSnapshotControl(snapshot);
 				xtraTabControlSnapshots.SelectedTabPage = snapshotControl;
+				Summary.UpdateView();
 			}
 		}
 
@@ -183,6 +234,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			_localSchedule.Snapshots.Remove(snapshotControl.Data);
 			_localSchedule.RebuildSnapshotIndexes();
 			xtraTabControlSnapshots.TabPages.Remove(snapshotControl);
+			Summary.UpdateView();
 		}
 
 		private void RenameSnapshot(SnapshotControl snapshotControl)
@@ -194,6 +246,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
 				snapshotControl.Data.Name = form.SnapshotName;
 				snapshotControl.Text = form.SnapshotName;
+				Summary.UpdateView();
 			}
 		}
 
@@ -219,20 +272,46 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				pnBottom.Visible = true;
 				laTotalSpotsValue.Text = ActiveSnapshot.Data.TotalSpots.ToString("#,##0");
 				laAvgRateValue.Text = ActiveSnapshot.Data.AvgRate.ToString(ActiveSnapshot.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				laTotalCostValue.Text = String.Empty;
+			}
+			else if (ActiveSummary != null)
+			{
+				pnBottom.Visible = true;
+				laTotalSpotsValue.Text = ActiveSummary.Data.TotalSpots.ToString("#,##0");
+				laTotalCostValue.Text = ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				laAvgRateValue.Text = String.Empty;
 			}
 			else
 			{
 				pnBottom.Visible = false;
-				laTotalSpotsValue.Text = laAvgRateValue.Text = String.Empty;
+				laTotalSpotsValue.Text = laTotalCostValue.Text = laAvgRateValue.Text = String.Empty;
 			}
 		}
 
 		private void UpdateTotalsVisibility()
 		{
-			pnTotalSpots.Visible = ActiveSnapshot != null && ActiveSnapshot.Data.ShowTotalSpots;
-			pnTotalSpots.SendToBack();
-			pnAvgRate.Visible = ActiveSnapshot != null && ActiveSnapshot.Data.ShowAverageRate;
-			pnAvgRate.BringToFront();
+			if (ActiveSnapshot != null)
+			{
+				pnTotalSpots.Visible = ActiveSnapshot.Data.ShowTotalSpots;
+				pnTotalSpots.SendToBack();
+				pnAvgRate.Visible = ActiveSnapshot.Data.ShowAverageRate;
+				pnAvgRate.BringToFront();
+				pnTotalCost.Visible = false;
+			}
+			else if (ActiveSummary != null)
+			{
+				pnTotalSpots.Visible = ActiveSummary.Data.ShowTallySpots;
+				pnTotalSpots.SendToBack();
+				pnTotalCost.Visible = ActiveSummary.Data.ShowTallyCost;
+				pnTotalCost.BringToFront();
+				pnAvgRate.Visible = false;
+			}
+			else
+			{
+				pnTotalSpots.Visible = false;
+				pnTotalCost.Visible = false;
+				pnAvgRate.Visible = false;
+			}
 		}
 
 		private void UpdateSnapshotSplash()
@@ -369,7 +448,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		private void xtraTabControlSnapshots_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			if (!_allowToSave) return;
-			LoadActiveSnapshotData();
+			LoadActiveTabData(true);
 		}
 
 		private void xtraTabControlSnapshots_MouseDown(object sender, MouseEventArgs e)
@@ -386,6 +465,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			_localSchedule.ChangeSnapshotPosition(
 				_localSchedule.Snapshots.IndexOf(((SnapshotControl)e.MovedPage).Data),
 				_localSchedule.Snapshots.IndexOf(((SnapshotControl)e.TargetPage).Data) + (1 * e.Offset));
+			Summary.UpdateView();
 			SettingsNotSaved = true;
 		}
 
@@ -397,25 +477,44 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
 		{
-			if (!_allowToSave || ActiveSnapshot == null) return;
-			ActiveSnapshot.Data.ShowLineId = buttonXLineId.Checked;
-			ActiveSnapshot.Data.ShowStation = buttonXStation.Checked;
-			ActiveSnapshot.Data.ShowLenght = buttonXLength.Checked;
-			ActiveSnapshot.Data.ShowProgram = buttonXProgram.Checked;
-			ActiveSnapshot.Data.ShowDaypart = buttonXDaypart.Checked;
-			ActiveSnapshot.Data.ShowTime = buttonXTime.Checked;
-			ActiveSnapshot.Data.ShowRate = buttonXRate.Checked;
-			ActiveSnapshot.Data.ShowCost = buttonXCost.Checked;
-			ActiveSnapshot.Data.ShowLogo = buttonXLogo.Checked;
-			ActiveSnapshot.Data.ShowTotalSpots = buttonXTotalSpots.Checked;
-			ActiveSnapshot.Data.ShowAverageRate = buttonXAvgRate.Checked;
-			ActiveSnapshot.Data.ShowTotalRow = buttonXTotalRow.Checked;
-			ActiveSnapshot.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
-			ActiveSnapshot.Data.ShowSpotsX = checkEditShowSpotX.Checked;
-			ActiveSnapshot.UpdateView();
+			if (!_allowToSave) return;
+			if (ActiveSnapshot != null)
+			{
+				ActiveSnapshot.Data.ShowLineId = buttonXSnapshotLineId.Checked;
+				ActiveSnapshot.Data.ShowStation = buttonXSnapshotStation.Checked;
+				ActiveSnapshot.Data.ShowLenght = buttonXSnapshotLength.Checked;
+				ActiveSnapshot.Data.ShowProgram = buttonXSnapshotProgram.Checked;
+				ActiveSnapshot.Data.ShowDaypart = buttonXSnapshotDaypart.Checked;
+				ActiveSnapshot.Data.ShowTime = buttonXSnapshotTime.Checked;
+				ActiveSnapshot.Data.ShowRate = buttonXSnapshotRate.Checked;
+				ActiveSnapshot.Data.ShowCost = buttonXSnapshotCost.Checked;
+				ActiveSnapshot.Data.ShowLogo = buttonXSnapshotLogo.Checked;
+				ActiveSnapshot.Data.ShowTotalSpots = buttonXSnapshotTotalSpots.Checked;
+				ActiveSnapshot.Data.ShowAverageRate = buttonXSnapshotAvgRate.Checked;
+				ActiveSnapshot.Data.ShowTotalRow = buttonXSnapshotTotalRow.Checked;
+				ActiveSnapshot.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
+				ActiveSnapshot.Data.ShowSpotsX = checkEditShowSpotX.Checked;
+				ActiveSnapshot.UpdateView();
+				UpdateOutputStatus();
+			}
+			else if (ActiveSummary != null)
+			{
+				ActiveSummary.Data.ShowLineId = buttonXSummaryLineId.Checked;
+				ActiveSummary.Data.ShowCampaign = buttonXSummaryCampaign.Checked;
+				ActiveSummary.Data.ShowComments = buttonXSummaryComments.Checked;
+				ActiveSummary.Data.ShowSpots = buttonXSummarySpots.Checked;
+				ActiveSummary.Data.ShowCost = buttonXSummaryCost.Checked;
+				ActiveSummary.Data.ShowLogo = buttonXSummaryLogo.Checked;
+				ActiveSummary.Data.ShowTotalWeeks = buttonXSummaryTotalWeeks.Checked;
+				ActiveSummary.Data.ShowTotalCost = buttonXSummaryTotalCost.Checked;
+				ActiveSummary.Data.ShowTallySpots = buttonXSummaryTallySpots.Checked;
+				ActiveSummary.Data.ShowTallyCost = buttonXSummaryTallyCost.Checked;
+				ActiveSummary.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
+				ActiveSummary.Data.ShowSpotsX = checkEditShowSpotX.Checked;
+				ActiveSummary.UpdateView();
+			}
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
-			UpdateOutputStatus();
 			SettingsNotSaved = true;
 		}
 		#endregion
@@ -459,7 +558,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		{
 			Controller.Instance.SnapshotPowerPoint.Enabled =
 				Controller.Instance.SnapshotPreview.Enabled =
-					Controller.Instance.SnapshotEmail.Enabled = ActiveSnapshot != null && ActiveSnapshot.ReadyForOutput;
+					Controller.Instance.SnapshotEmail.Enabled = xtraTabControlSnapshots.TabPages.OfType<ISnapshotSlide>().Any(ss => ss.ReadyForOutput);
 		}
 
 		private void PrintOutput()
@@ -471,7 +570,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Snapshots";
-					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as SnapshotControl;
+					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlide;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -514,7 +613,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Snapshots";
-					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as SnapshotControl;
+					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlide;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -568,7 +667,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Snapshots";
-					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as SnapshotControl;
+					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlide;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);

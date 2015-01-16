@@ -19,6 +19,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 
 		private const string SnapshotTemplatesFolderName = @"{0}\{1} Slides\snapshot";
 		public const string SnapshotTemplateFileName = @"{0}\{1}\1s{2}r\{2}rows_{3}.pptx";
+		public const string SnapshotSummaryTemplateFileName = @"{0}\summary\snapshot_summary_{1}.pptx";
 
 		private const string OptionsTemplatesFolderName = @"{0}\{1} Slides\options";
 		public const string OptionsTemplateFileName = @"{0}\options{1}.pptx";

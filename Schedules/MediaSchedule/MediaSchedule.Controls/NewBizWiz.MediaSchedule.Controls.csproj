@@ -145,11 +145,11 @@
     <Compile Include="PresentationClasses\SnapshotControls\SnapshotControl.Designer.cs">
       <DependentUpon>SnapshotControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummary.cs">
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummary.Designer.cs">
-      <DependentUpon>SnapshotSummary.cs</DependentUpon>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.Designer.cs">
+      <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Summary\MediaSummaryFull.cs">
       <SubType>UserControl</SubType>
@@ -298,8 +298,8 @@
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotControl.resx">
       <DependentUpon>SnapshotControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotSummary.resx">
-      <DependentUpon>SnapshotSummary.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.resx">
+      <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Strategy\ProgramStrategyControl.resx">
       <DependentUpon>ProgramStrategyControl.cs</DependentUpon>

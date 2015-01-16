@@ -69,7 +69,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
 									var key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
 									if (String.IsNullOrEmpty(key)) continue;
-									if (copyOfReplacementList[key].Equals("Merge"))
+									if (copyOfReplacementList[key] == "Merge")
 									{
 										tableShape.TextFrame.TextRange.Text = String.Empty;
 										var nextColumnIndex = j + 1;
@@ -86,15 +86,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									copyOfReplacementList.Remove(key);
 								}
 							}
-							var tableColumnsCount = table.Columns.Count;
-							for (var i = tableColumnsCount; i >= 1; i--)
-							{
-								var tableShape = table.Cell(3, i).Shape;
-								if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
-								var cellText = tableShape.TextFrame.TextRange.Text.Trim();
-								if (!cellText.Equals("Delete Column")) continue;
-								table.Columns[i].Delete();
-							}
 							tableRowsCount = table.Rows.Count;
 							for (var i = tableRowsCount; i >= 1; i--)
 							{
@@ -107,6 +98,15 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									table.Rows[i].Delete();
 									break;
 								}
+							}
+							var tableColumnsCount = table.Columns.Count;
+							for (var i = tableColumnsCount; i >= 1; i--)
+							{
+								var tableShape = table.Cell(3, i).Shape;
+								if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+								var cellText = tableShape.TextFrame.TextRange.Text.Trim();
+								if (!cellText.Equals("Delete Column")) continue;
+								table.Columns[i].Delete();
 							}
 							if (pasteToSlideMaster)
 							{

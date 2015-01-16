@@ -10,10 +10,14 @@ namespace NewBizWiz.Core.MediaSchedule
 {
 	public class Snapshot
 	{
-		public Schedule Parent { get; private set; }
+		public RegularSchedule Parent { get; private set; }
 		public Guid UniqueID { get; set; }
 		public double Index { get; set; }
 		public string Name { get; set; }
+		public ImageSource Logo { get; set; }
+		public string Comment { get; set; }
+		public int? TotalWeeks { get; set; }
+
 		public List<SnapshotProgram> Programs { get; private set; }
 
 		#region Options
@@ -36,9 +40,24 @@ namespace NewBizWiz.Core.MediaSchedule
 		#endregion
 
 		#region Calculated Properies
+		public int DisplayIndex
+		{
+			get { return (Int32)(Index + 1); }
+		}
+
+		public Image SmallLogo
+		{
+			get { return Logo != null ? Logo.TinyImage : null; }
+		}
+
 		public decimal AvgRate
 		{
 			get { return TotalSpots != 0 ? (TotalCost / TotalSpots) : 0; }
+		}
+		
+		public decimal TotalRate
+		{
+			get { return Programs.Any() ? Programs.Select(x => x.Rate != null ? x.Rate.Value : 0).Sum() : 0; }
 		}
 
 		public decimal TotalCost
@@ -46,11 +65,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return Programs.Any() ? (Programs.Select(x => x.TotalCost).Sum()) : 0; }
 		}
 
+		public decimal TotalWeekCost
+		{
+			get { return TotalCost * (decimal)TotalWeeks; }
+		}
+
 		public int TotalSpots
 		{
 			get { return Programs.Any() ? Programs.Select(x => x.TotalSpots).Sum() : 0; }
 		}
-
 		#endregion
 
 		public Snapshot(RegularSchedule parent)
@@ -58,6 +81,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = parent.Snapshots.Any() ? parent.Snapshots.Max(s => s.Index) + 1 : 0;
+			Logo = MediaMetaData.Instance.ListManager.Images.FirstOrDefault(i => i.IsDefault);
+			TotalWeeks = 1;
 			Programs = new List<SnapshotProgram>();
 
 			#region Options
@@ -87,6 +112,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<Index>" + Index + @"</Index>");
 			if (!String.IsNullOrEmpty(Name))
 				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
+			if (Logo != null && Logo.ContainsData)
+				result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
+			if (!String.IsNullOrEmpty(Comment))
+				result.AppendLine(@"<Comment>" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment>");
+			if (TotalWeeks.HasValue)
+				result.AppendLine(@"<TotalWeeks>" + TotalWeeks.Value + @"</TotalWeeks>");
 
 			#region Options
 			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
@@ -137,6 +168,21 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "Name":
 						Name = childNode.InnerText;
 						break;
+					case "Logo":
+						Logo = new ImageSource();
+						Logo.Deserialize(childNode);
+						break;
+					case "Comment":
+						Comment = childNode.InnerText;
+						break;
+					case "TotalWeeks":
+						{
+							int temp;
+							if (Int32.TryParse(childNode.InnerText, out temp))
+								TotalWeeks = temp;
+						}
+						break;
+
 					case "ShowLineId":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowLineId = tempBool;
@@ -476,6 +522,140 @@ namespace NewBizWiz.Core.MediaSchedule
 				clone.SundaySpot = SundaySpot;
 			}
 			return clone;
+		}
+	}
+
+	public class SnapshotSummary
+	{
+		public RegularSchedule Parent { get; private set; }
+
+		#region Options
+		public bool ShowLineId { get; set; }
+		public bool ShowLogo { get; set; }
+		public bool ShowCampaign { get; set; }
+		public bool ShowComments { get; set; }
+		public bool ShowSpots { get; set; }
+		public bool ShowCost { get; set; }
+		public bool ShowTotalWeeks { get; set; }
+		public bool ShowTotalCost { get; set; }
+		public bool ShowTallySpots { get; set; }
+		public bool ShowTallyCost { get; set; }
+		public bool ShowSpotsX { get; set; }
+		public bool UseDecimalRates { get; set; }
+		#endregion
+
+		#region Calculated Properties
+		public decimal TotalCost
+		{
+			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalWeekCost).Sum() : 0; }
+		}
+
+		public int TotalSpots
+		{
+			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalSpots).Sum() : 0; }
+		}
+		#endregion
+
+		public SnapshotSummary(RegularSchedule parent)
+		{
+			Parent = parent;
+
+			#region Options
+			ShowLineId = true;
+			ShowLogo = true;
+			ShowCampaign = true;
+			ShowComments = true;
+			ShowSpots = true;
+			ShowCost = true;
+			ShowTotalWeeks = true;
+			ShowTotalCost = true;
+			ShowTallySpots = true;
+			ShowTallyCost = true;
+			ShowSpotsX = true;
+			UseDecimalRates = false;
+			#endregion
+		}
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+
+			#region Options
+			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
+			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
+			result.AppendLine(@"<ShowCampaign>" + ShowCampaign + @"</ShowCampaign>");
+			result.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
+			result.AppendLine(@"<ShowSpots>" + ShowSpots + @"</ShowSpots>");
+			result.AppendLine(@"<ShowCost>" + ShowCost + @"</ShowCost>");
+			result.AppendLine(@"<ShowTotalWeeks>" + ShowTotalWeeks + @"</ShowTotalWeeks>");
+			result.AppendLine(@"<ShowTotalCost>" + ShowTotalCost + @"</ShowTotalCost>");
+			result.AppendLine(@"<ShowTallySpots>" + ShowTallySpots + @"</ShowTallySpots>");
+			result.AppendLine(@"<ShowTallyCost>" + ShowTallyCost + @"</ShowTallyCost>");
+			result.AppendLine(@"<ShowSpotsX>" + ShowSpotsX + @"</ShowSpotsX>");
+			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
+			#endregion
+
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool;
+
+			foreach (XmlNode childNode in node.ChildNodes)
+				switch (childNode.Name)
+				{
+					#region Options
+					case "ShowLineId":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowLineId = tempBool;
+						break;
+					case "ShowLogo":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowLogo = tempBool;
+						break;
+					case "ShowCampaign":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowCampaign = tempBool;
+						break;
+					case "ShowComments":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowComments = tempBool;
+						break;
+					case "ShowSpots":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSpots = tempBool;
+						break;
+					case "ShowCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowCost = tempBool;
+						break;
+					case "ShowTotalWeeks":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalWeeks = tempBool;
+						break;
+					case "ShowTotalCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalCost = tempBool;
+						break;
+					case "ShowTallySpots":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTallySpots = tempBool;
+						break;
+					case "ShowTallyCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTallyCost = tempBool;
+						break;
+					case "ShowSpotsX":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSpotsX = tempBool;
+						break;
+					case "UseDecimalRates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							UseDecimalRates = tempBool;
+						break;
+					#endregion
+				}
 		}
 	}
 }

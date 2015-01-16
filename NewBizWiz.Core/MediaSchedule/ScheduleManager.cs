@@ -600,6 +600,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public ProgramStrategy ProgramStrategy { get; private set; }
 
 		public List<Snapshot> Snapshots { get; private set; }
+		public SnapshotSummary SnapshotSummary { get; private set; }
 		public List<OptionSet> Options { get; private set; }
 
 		public override string Name
@@ -635,6 +636,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			ProgramStrategy = new ProgramStrategy(this);
 
 			Snapshots = new List<Snapshot>();
+			SnapshotSummary = new SnapshotSummary(this);
 			Options = new List<OptionSet>();
 
 			_scheduleFile = new FileInfo(fileName);
@@ -709,6 +711,12 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 			}
 
+			node = rootNode.SelectSingleNode(@"SnapshotSummary");
+			if (node != null)
+			{
+				SnapshotSummary.Deserialize(node);
+			}
+
 			node = rootNode.SelectSingleNode(@"Options");
 			if (node != null)
 			{
@@ -740,6 +748,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			foreach (var snapshot in Snapshots)
 				result.AppendLine(@"<Snapshot>" + snapshot.Serialize() + @"</Snapshot>");
 			result.AppendLine(@"</Snapshots>");
+			result.AppendLine(@"<SnapshotSummary>" + SnapshotSummary.Serialize() + @"</SnapshotSummary>");
 
 			result.AppendLine(@"<Options>");
 			foreach (var optionSet in Options)

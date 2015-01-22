@@ -8,10 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CommandCentral.CommonClasses;
+using CommandCentral.Entities.Common;
+using CommandCentral.Entities.Media;
 using CommandCentral.InteropClasses;
+using NewBizWiz.Core.MediaSchedule;
 
-namespace CommandCentral.TabMainDashboard
+namespace CommandCentral.TabMainDashboardForms
 {
 	internal class RadioStrategyManager
 	{
@@ -46,7 +48,8 @@ namespace CommandCentral.TabMainDashboard
 						"Date",
 						"Custom Demos",
 						"Sources",
-						"File-Status"
+						"File-Status",
+						"Toggle Defaults"
 					}.Contains(daypart.Name.Trim()))
 						_dayparts.Add(daypart);
 				}
@@ -77,6 +80,14 @@ namespace CommandCentral.TabMainDashboard
 			var statuses = new List<SlideHeader>();
 			var stations = new List<Station>();
 			var broadcastTemplates = new List<BroadcastMonthTemplate>();
+			var defaultWeeklyScheduleSettings = new ScheduleSectionSettings();
+			var defaultMonthlyScheduleSettings = new ScheduleSectionSettings();
+			var defaultSnapshotSettings = new SnapshotSettings();
+			var defaultSnapshotSummarySettings = new SnapshotSummarySettings();
+			var defaultOptionsSettings = new OptionsSettings();
+			var defaultOptionsSummarySettings = new OptionsSummarySettings();
+			var defaultBroadcastCalendarSettings = new CalendarToggleSettings();
+			var defaultCustomCalendarSettings = new CalendarToggleSettings();
 
 			var connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
@@ -342,6 +353,65 @@ namespace CommandCentral.TabMainDashboard
 				dataAdapter.Dispose();
 				dataTable.Dispose();
 			}
+
+			//Load View Settings
+			dataAdapter = new OleDbDataAdapter("SELECT * FROM [Toggle Defaults$]", connection);
+			dataTable = new DataTable();
+			try
+			{
+				dataAdapter.Fill(dataTable);
+				if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 1)
+				{
+					var header = "Weekly Schedule";
+					foreach (DataRow row in dataTable.Rows)
+					{
+						var rowTag = row[0].ToString().Trim();
+						var rowValue = row[1].ToString().Trim();
+						if (rowTag.StartsWith("*"))
+							header = rowTag.Replace("*", String.Empty);
+						else if (!String.IsNullOrEmpty(rowTag))
+						{
+							switch (header)
+							{
+								case "Weekly Schedule":
+									defaultWeeklyScheduleSettings.ApplyValue(rowTag, rowValue);
+									break;
+								case "Monthly Schedule":
+									defaultMonthlyScheduleSettings.ApplyValue(rowTag, rowValue);
+									break;
+								case "Snapshot-Tab":
+									defaultSnapshotSettings.ApplyValue(rowTag, rowValue);
+									break;
+								case "Snapshot-Summary Slide":
+									defaultSnapshotSummarySettings.ApplyValue(rowTag, rowValue);
+									break;
+								case "Options-Tab":
+									defaultOptionsSettings.ApplyValue(rowTag, rowValue);
+									break;
+								case "Options-Summary Slide":
+									defaultOptionsSummarySettings.ApplyValue(rowTag, rowValue);
+									break;
+								case "Calendar1":
+									defaultBroadcastCalendarSettings.ApplyValue(rowTag, rowValue);
+									break;
+								case "Calendar2":
+									defaultCustomCalendarSettings.ApplyValue(rowTag, rowValue);
+									break;
+							}
+						}
+						else
+							break;
+					}
+				}
+			}
+			catch
+			{
+			}
+			finally
+			{
+				dataAdapter.Dispose();
+				dataTable.Dispose();
+			}
 			connection.Close();
 
 			//Load Radio Programs
@@ -480,6 +550,16 @@ namespace CommandCentral.TabMainDashboard
 				xml.AppendLine(@"</Program>");
 			}
 			broadcastTemplates.ForEach(bt => xml.AppendLine(bt.Serialize()));
+
+			xml.AppendLine(@"<DefaultWeeklyScheduleSettings>" + defaultWeeklyScheduleSettings.Serialize() + @"</DefaultWeeklyScheduleSettings>");
+			xml.AppendLine(@"<DefaultMonthlyScheduleSettings>" + defaultMonthlyScheduleSettings.Serialize() + @"</DefaultMonthlyScheduleSettings>");
+			xml.AppendLine(@"<DefaultSnapshotSettings>" + defaultSnapshotSettings.Serialize() + @"</DefaultSnapshotSettings>");
+			xml.AppendLine(@"<DefaultSnapshotSummarySettings>" + defaultSnapshotSummarySettings.Serialize() + @"</DefaultSnapshotSummarySettings>");
+			xml.AppendLine(@"<DefaultOptionsSettings>" + defaultOptionsSettings.Serialize() + @"</DefaultOptionsSettings>");
+			xml.AppendLine(@"<DefaultOptionsSummarySettings>" + defaultOptionsSummarySettings.Serialize() + @"</DefaultOptionsSummarySettings>");
+			xml.AppendLine(@"<DefaultBroadcastCalendarSettings>" + defaultBroadcastCalendarSettings.Serialize() + @"</DefaultBroadcastCalendarSettings>");
+			xml.AppendLine(@"<DefaultCustomCalendarSettings>" + defaultCustomCalendarSettings.Serialize() + @"</DefaultCustomCalendarSettings>");
+
 			xml.AppendLine(@"</RadioStrategy>");
 
 			string xmlPath = Path.Combine(Application.StartupPath, DestinationFileName);

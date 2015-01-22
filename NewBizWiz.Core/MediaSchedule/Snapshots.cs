@@ -29,7 +29,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowLenght { get; set; }
 		public bool ShowTime { get; set; }
 		public bool ShowRate { get; set; }
-		public bool ShowSpots { get; set; }
 		public bool ShowCost { get; set; }
 		public bool ShowSpotsX { get; set; }
 		public bool ShowTotalRow { get; set; }
@@ -53,11 +52,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		public decimal AvgRate
 		{
 			get { return TotalSpots != 0 ? (TotalCost / TotalSpots) : 0; }
-		}
-		
-		public decimal TotalRate
-		{
-			get { return Programs.Any() ? Programs.Select(x => x.Rate != null ? x.Rate.Value : 0).Sum() : 0; }
 		}
 
 		public decimal TotalCost
@@ -86,21 +80,20 @@ namespace NewBizWiz.Core.MediaSchedule
 			Programs = new List<SnapshotProgram>();
 
 			#region Options
-			ShowLogo = true;
-			ShowStation = false;
-			ShowProgram = false;
-			ShowDaypart = false;
-			ShowLenght = true;
-			ShowTime = true;
-			ShowRate = false;
-			ShowSpots = false;
-			ShowCost = false;
-			ShowTotalSpots = false;
-			ShowAverageRate = false;
-			ShowSpotsX = true;
-			ShowLineId = true;
-			ShowTotalRow = true;
-			UseDecimalRates = false;
+			ShowLogo = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowLogo;
+			ShowStation = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowStation;
+			ShowProgram = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowProgram;
+			ShowDaypart = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowDaypart;
+			ShowLenght = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowLenght;
+			ShowTime = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowTime;
+			ShowRate = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowRate;
+			ShowCost = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowCost;
+			ShowTotalSpots = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowTotalSpots;
+			ShowAverageRate = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowAverageRate;
+			ShowSpotsX = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowSpotsX;
+			ShowLineId = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowLineId;
+			ShowTotalRow = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowTotalRow;
+			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.UseDecimalRates;
 			#endregion
 		}
 
@@ -128,7 +121,6 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowLenght>" + ShowLenght + @"</ShowLenght>");
 			result.AppendLine(@"<ShowTime>" + ShowTime + @"</ShowTime>");
 			result.AppendLine(@"<ShowRate>" + ShowRate + @"</ShowRate>");
-			result.AppendLine(@"<ShowSpots>" + ShowSpots + @"</ShowSpots>");
 			result.AppendLine(@"<ShowCost>" + ShowCost + @"</ShowCost>");
 			result.AppendLine(@"<ShowTotalSpots>" + ShowTotalSpots + @"</ShowTotalSpots>");
 			result.AppendLine(@"<ShowAverageRate>" + ShowAverageRate + @"</ShowAverageRate>");
@@ -214,10 +206,6 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "ShowRate":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowRate = tempBool;
-						break;
-					case "ShowSpots":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSpots = tempBool;
 						break;
 					case "ShowCost":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -561,18 +549,18 @@ namespace NewBizWiz.Core.MediaSchedule
 			Parent = parent;
 
 			#region Options
-			ShowLineId = true;
-			ShowLogo = true;
-			ShowCampaign = true;
-			ShowComments = true;
-			ShowSpots = true;
-			ShowCost = true;
-			ShowTotalWeeks = true;
-			ShowTotalCost = true;
-			ShowTallySpots = true;
-			ShowTallyCost = true;
-			ShowSpotsX = true;
-			UseDecimalRates = false;
+			ShowLineId = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowLineId;
+			ShowLogo = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowLogo;
+			ShowCampaign = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowCampaign;
+			ShowComments = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowComments;
+			ShowSpots = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowSpots;
+			ShowCost = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowCost;
+			ShowTotalWeeks = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowTotalWeeks;
+			ShowTotalCost = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowTotalCost;
+			ShowTallySpots = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowTallySpots;
+			ShowTallyCost = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowTallyCost;
+			ShowSpotsX = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowSpotsX;
+			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.UseDecimalRates;
 			#endregion
 		}
 

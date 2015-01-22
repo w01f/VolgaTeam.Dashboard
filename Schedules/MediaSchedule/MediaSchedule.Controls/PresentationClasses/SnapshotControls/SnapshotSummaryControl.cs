@@ -346,7 +346,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 			public override string GetValue(Snapshot snapshot)
 			{
-				return snapshot.TotalRate.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				return snapshot.TotalCost.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 			}
 		}
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommandCentral.CommonClasses
+namespace CommandCentral.Entities.Media
 {
 	public enum DemoType
 	{

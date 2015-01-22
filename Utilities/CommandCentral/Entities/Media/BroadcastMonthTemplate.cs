@@ -5,7 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 
-namespace CommandCentral.CommonClasses
+namespace CommandCentral.Entities.Media
 {
 	public class BroadcastMonthTemplate
 	{

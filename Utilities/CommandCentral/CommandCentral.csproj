@@ -68,39 +68,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\NewBizWiz.Core\MediaSchedule\ViewSettings.cs">
+      <Link>Entities\Media\ViewSettings.cs</Link>
+    </Compile>
     <Compile Include="AppManager.cs" />
-    <Compile Include="CommonClasses\AdSize.cs" />
-    <Compile Include="CommonClasses\BroadcastMonthTemplate.cs" />
-    <Compile Include="CommonClasses\Category.cs" />
-    <Compile Include="CommonClasses\DigitalViewSettings.cs" />
-    <Compile Include="CommonClasses\DigitalProductInfo.cs" />
-    <Compile Include="CommonClasses\NewspaperViewSettings.cs" />
-    <Compile Include="CommonClasses\SalesDepotUserLibraries.cs" />
-    <Compile Include="CommonClasses\SpecialLinkButton.cs" />
-    <Compile Include="CommonClasses\Station.cs" />
-    <Compile Include="CommonClasses\ShareUnit.cs" />
-    <Compile Include="CommonClasses\NameCodePair.cs" />
-    <Compile Include="CommonClasses\DaypartRotation.cs" />
-    <Compile Include="CommonClasses\Demo.cs" />
-    <Compile Include="CommonClasses\MechanicalItem.cs" />
-    <Compile Include="CommonClasses\MechanicalType.cs" />
-    <Compile Include="CommonClasses\Product.cs" />
-    <Compile Include="CommonClasses\Publication.cs" />
-    <Compile Include="CommonClasses\RadioProgram.cs" />
-    <Compile Include="CommonClasses\RadioStation.cs" />
-    <Compile Include="CommonClasses\SearchGroup.cs" />
-    <Compile Include="CommonClasses\Section.cs" />
-    <Compile Include="CommonClasses\Step.cs" />
-    <Compile Include="CommonClasses\TVProgram.cs" />
+    <Compile Include="Entities\Newspaper\AdSize.cs" />
+    <Compile Include="Entities\Media\BroadcastMonthTemplate.cs" />
+    <Compile Include="Entities\Online\Category.cs" />
+    <Compile Include="Entities\Online\DigitalViewSettings.cs" />
+    <Compile Include="Entities\Online\DigitalProductInfo.cs" />
+    <Compile Include="Entities\Newspaper\ViewSettings.cs" />
+    <Compile Include="Entities\SalesDepot\SalesDepotUserLibraries.cs" />
+    <Compile Include="Entities\Online\SpecialLinkButton.cs" />
+    <Compile Include="Entities\Media\Station.cs" />
+    <Compile Include="Entities\Newspaper\ShareUnit.cs" />
+    <Compile Include="Entities\Common\NameCodePair.cs" />
+    <Compile Include="Entities\Media\DaypartRotation.cs" />
+    <Compile Include="Entities\Media\Demo.cs" />
+    <Compile Include="Entities\Newspaper\MechanicalItem.cs" />
+    <Compile Include="Entities\Newspaper\MechanicalType.cs" />
+    <Compile Include="Entities\Online\Product.cs" />
+    <Compile Include="Entities\Newspaper\Publication.cs" />
+    <Compile Include="Entities\Media\RadioProgram.cs" />
+    <Compile Include="Entities\Media\RadioStation.cs" />
+    <Compile Include="Entities\SalesDepot\SearchGroup.cs" />
+    <Compile Include="Entities\Newspaper\Section.cs" />
+    <Compile Include="Entities\Dashboard\Step.cs" />
+    <Compile Include="Entities\Media\TVProgram.cs" />
     <Compile Include="DataControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DataControl.Designer.cs">
       <DependentUpon>DataControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommonClasses\Quote.cs" />
-    <Compile Include="CommonClasses\SlideHeader.cs" />
-    <Compile Include="CommonClasses\User.cs" />
+    <Compile Include="Entities\Dashboard\Quote.cs" />
+    <Compile Include="Entities\Common\SlideHeader.cs" />
+    <Compile Include="Entities\Dashboard\User.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

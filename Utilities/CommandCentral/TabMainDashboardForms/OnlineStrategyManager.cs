@@ -8,11 +8,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CommandCentral.CommonClasses;
-using CommandCentral.CommonClasses.DigitalViewSettings;
+using CommandCentral.Entities.Common;
+using CommandCentral.Entities.Online;
 using CommandCentral.InteropClasses;
 
-namespace CommandCentral.TabMainDashboard
+namespace CommandCentral.TabMainDashboardForms
 {
 	internal class OnlineStrategyManager
 	{

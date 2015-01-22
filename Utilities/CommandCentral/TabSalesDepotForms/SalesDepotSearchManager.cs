@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CommandCentral.CommonClasses;
+using CommandCentral.Entities.SalesDepot;
 
 namespace CommandCentral.TabSalesDepotForms
 {

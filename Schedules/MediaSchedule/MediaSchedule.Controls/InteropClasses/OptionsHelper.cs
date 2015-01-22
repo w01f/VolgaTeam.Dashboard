@@ -88,9 +88,10 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							}
 
 							var tableColumnsCount = table.Columns.Count;
-							for (var i = 0; i < page.ColumnWidths.Length; i++)
-								if ((i + 2) <= tableColumnsCount)
-									table.Columns[i + 2].Width = page.ColumnWidths[i] * 72.27f;
+							if (page.ColumnWidths != null)
+								for (var i = 0; i < page.ColumnWidths.Length; i++)
+									if ((i + 2) <= tableColumnsCount)
+										table.Columns[i + 2].Width = page.ColumnWidths[i] * 72.27f;
 
 							tableColumnsCount = table.Columns.Count;
 							for (var i = tableColumnsCount - 1; i >= 0; i--)

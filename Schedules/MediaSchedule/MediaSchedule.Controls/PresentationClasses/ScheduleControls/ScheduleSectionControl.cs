@@ -502,6 +502,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			checkEditOutputLimitPeriods.Text = String.Format("Max {0}s Per PPT Slide", SpotTitle);
 
 			buttonXTotalPeriods.Checked = ScheduleSection.ShowTotalPeriods;
+			buttonXTotalPeriods.Text = String.Format("Total {0}s", SpotTitle);
 			buttonXTotalSpots.Checked = ScheduleSection.ShowTotalSpots;
 			buttonXTotalGRP.Checked = ScheduleSection.ShowTotalGRP;
 			buttonXTotalCPP.Checked = ScheduleSection.ShowTotalCPP;

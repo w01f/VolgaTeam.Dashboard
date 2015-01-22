@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using CommandCentral.TabMainDashboard;
+using CommandCentral.TabMainDashboardForms;
 using CommandCentral.TabMarketProForms;
 using CommandCentral.TabSalesDepotForms;
 using CommandCentral.TabSalesProForms;

@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using CommandCentral.Entities.Common;
 
 namespace CommandCentral.TabMarketProForms
 {
@@ -204,7 +205,7 @@ namespace CommandCentral.TabMarketProForms
 
         public static void UpdateData()
         {
-            List<CommonClasses.SlideHeader> headers = new List<CommonClasses.SlideHeader>();
+            List<SlideHeader> headers = new List<SlideHeader>();
             List<string> strengths = new List<string>();
             List<string> challenges = new List<string>();
 
@@ -268,7 +269,7 @@ namespace CommandCentral.TabMarketProForms
                             {
                                 if (readHeaders)
                                 {
-                                    CommonClasses.SlideHeader header = new CommonClasses.SlideHeader();
+                                    SlideHeader header = new SlideHeader();
                                     header.Value = rowValue1;
                                     header.IsDefault = rowValue2.ToString().Trim().ToLower().Equals("d");
                                     headers.Add(header);
@@ -302,7 +303,7 @@ namespace CommandCentral.TabMarketProForms
                 //Save XML
                 StringBuilder xml = new StringBuilder();
                 xml.AppendLine("<" + _sheetName + ">");
-                foreach (CommonClasses.SlideHeader header in headers)
+                foreach (SlideHeader header in headers)
                 {
                     xml.Append(@"<SlideHeader ");
                     xml.Append("Value = \"" + header.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CommandCentral.CommonClasses
+namespace CommandCentral.Entities.Online
 {
 	public class DigitalProductInfo
 	{

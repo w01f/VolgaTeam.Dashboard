@@ -1,4 +1,4 @@
-﻿namespace CommandCentral.TabMainDashboard
+﻿namespace CommandCentral.TabMainDashboardForms
 {
     partial class UsersControl
     {

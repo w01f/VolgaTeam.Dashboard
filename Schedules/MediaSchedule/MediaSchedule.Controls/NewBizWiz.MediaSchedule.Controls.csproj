@@ -117,6 +117,12 @@
     <Compile Include="PresentationClasses\OptionsControls\OptionsControl.Designer.cs">
       <DependentUpon>OptionsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsSummaryControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsSummaryControl.Designer.cs">
+      <DependentUpon>OptionsSummaryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsControl.resx">
       <DependentUpon>OptionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsSummaryControl.resx">
+      <DependentUpon>OptionsSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\DaypartsControl.resx">
       <DependentUpon>DaypartsControl.cs</DependentUpon>

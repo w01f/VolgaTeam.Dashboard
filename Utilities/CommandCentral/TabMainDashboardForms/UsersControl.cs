@@ -7,10 +7,10 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using CommandCentral.CommonClasses;
+using CommandCentral.Entities.Dashboard;
 using DevComponents.DotNetBar;
 
-namespace CommandCentral.TabMainDashboard
+namespace CommandCentral.TabMainDashboardForms
 {
 	[ToolboxItem(false)]
 	public partial class UsersControl : UserControl

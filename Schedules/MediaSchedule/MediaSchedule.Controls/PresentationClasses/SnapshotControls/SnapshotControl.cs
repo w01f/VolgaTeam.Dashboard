@@ -114,6 +114,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		public void UpdateView()
 		{
 			gridBandId.Visible = Data.ShowLineId;
+			gridBandLogo.Visible = Data.ShowLogo;
 			gridBandRate.Visible = Data.ShowRate;
 
 			gridBandProgram.Visible = Data.ShowProgram || Data.ShowLenght || Data.ShowTime;
@@ -547,43 +548,43 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 					key = "t1";
 					var totalMonday = Data.Programs.Sum(p => p.MondaySpot);
-					value = totalMonday.HasValue ? String.Format("{0}{1}", totalMonday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = totalMonday.HasValue && totalMonday.Value > 0 ? String.Format("{0}{1}", totalMonday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t2";
 					var totalTuesday = Data.Programs.Sum(p => p.TuesdaySpot);
-					value = totalTuesday.HasValue ? String.Format("{0}{1}", totalTuesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = totalTuesday.HasValue && totalTuesday.Value > 0 ? String.Format("{0}{1}", totalTuesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t3";
 					var totalWednesday = Data.Programs.Sum(p => p.WednesdaySpot);
-					value = totalWednesday.HasValue ? String.Format("{0}{1}", totalWednesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = totalWednesday.HasValue && totalWednesday.Value > 0 ? String.Format("{0}{1}", totalWednesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t4";
 					var totalThursday = Data.Programs.Sum(p => p.ThursdaySpot);
-					value = totalThursday.HasValue ? String.Format("{0}{1}", totalThursday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = totalThursday.HasValue && totalThursday.Value > 0 ? String.Format("{0}{1}", totalThursday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t5";
 					var totalFriday = Data.Programs.Sum(p => p.FridaySpot);
-					value = totalFriday.HasValue ? String.Format("{0}{1}", totalFriday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = totalFriday.HasValue && totalFriday.Value > 0 ? String.Format("{0}{1}", totalFriday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t6";
 					var totalSaturday = Data.Programs.Sum(p => p.SaturdaySpot);
-					value = totalSaturday.HasValue ? String.Format("{0}{1}", totalSaturday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = totalSaturday.HasValue && totalSaturday.Value > 0 ? String.Format("{0}{1}", totalSaturday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t7";
 					var totalSunday = Data.Programs.Sum(p => p.SundaySpot);
-					value = totalSunday.HasValue ? String.Format("{0}{1}", totalSunday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = totalSunday.HasValue && totalSunday.Value > 0 ? String.Format("{0}{1}", totalSunday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 				}

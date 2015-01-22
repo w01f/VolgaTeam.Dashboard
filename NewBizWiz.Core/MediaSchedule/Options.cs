@@ -10,10 +10,13 @@ namespace NewBizWiz.Core.MediaSchedule
 {
 	public class OptionSet
 	{
-		public Schedule Parent { get; private set; }
+		public RegularSchedule Parent { get; private set; }
 		public Guid UniqueID { get; set; }
 		public double Index { get; set; }
 		public string Name { get; set; }
+		public ImageSource Logo { get; set; }
+		public string Comment { get; set; }
+		public int? TotalPeriods { get; set; }
 		public List<OptionProgram> Programs { get; private set; }
 
 		#region Options
@@ -47,6 +50,16 @@ namespace NewBizWiz.Core.MediaSchedule
 		#endregion
 
 		#region Calculated Properies
+		public int DisplayIndex
+		{
+			get { return (Int32)(Index + 1); }
+		}
+
+		public Image SmallLogo
+		{
+			get { return Logo != null ? Logo.TinyImage : null; }
+		}
+
 		public decimal AvgRate
 		{
 			get { return TotalSpots != 0 ? (TotalCost / TotalSpots) : 0; }
@@ -57,47 +70,116 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return Programs.Any() ? (Programs.Select(x => x.Cost ?? 0).Sum()) : 0; }
 		}
 
+		public decimal TotalPeriodCost
+		{
+			get { return TotalCost * (decimal)TotalPeriods; }
+		}
+
 		public int TotalSpots
 		{
 			get { return Programs.Any() ? Programs.Select(x => x.Spot ?? 0).Sum() : 0; }
 		}
 
+		public int TotalPeriodSpots
+		{
+			get { return (int)(TotalSpots * TotalPeriods); }
+		}
 		#endregion
 
 		public OptionSet(RegularSchedule parent)
 		{
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
-			Index = parent.Snapshots.Any() ? parent.Snapshots.Max(s => s.Index) + 1 : 0;
+			Index = parent.Options.Any() ? parent.Options.Max(s => s.Index) + 1 : 0;
+			Logo = MediaMetaData.Instance.ListManager.Images.FirstOrDefault(i => i.IsDefault);
+			TotalPeriods = 1;
 			Programs = new List<OptionProgram>();
 
 			#region Options
-			ShowLineId = true;
-			ShowLogo = false;
-			ShowStation = true;
-			ShowProgram = true;
-			ShowDay = true;
-			ShowTime = true;
-			ShowSpots = true;
-			ShowRate = true;
-			ShowLenght = true;
-			ShowCost = false;
-			ShowTotalSpots = false;
-			ShowTotalCost = false;
-			ShowAverageRate = false;
-			ShowSpotsX = true;
-			UseDecimalRates = false;
+			ShowLineId = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowLineId;
+			ShowLogo = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowLogo;
+			ShowStation = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowStation;
+			ShowProgram = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowProgram;
+			ShowDay = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowDay;
+			ShowTime = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTime;
+			ShowSpots = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowWeeklySpots ||
+				MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowMonthlySpots ||
+				MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTotalSpots;
+			ShowRate = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowRate;
+			ShowLenght = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowLenght;
+			ShowCost = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowCost;
+			ShowTotalSpots = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTallySpots;
+			ShowTotalCost = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTallyCost;
+			ShowAverageRate = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowAverageRate;
+			ShowSpotsX = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowSpotsX;
+			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.UseDecimalRates;
 
-			PositionStation = 0;
-			PositionProgram = 1;
-			PositionDay = 2;
-			PositionTime = 3;
-			PositionSpots = 4;
-			PositionRate = 5;
-			PositionLenght = 6;
-			PositionCost = -1;
+			var position = 0;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowStation)
+			{
+				PositionStation = position;
+				position++;
+			}
+			else
+				PositionStation = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowProgram)
+			{
+				PositionProgram = position;
+				position++;
+			}
+			else
+				PositionProgram = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowDay)
+			{
+				PositionDay = position;
+				position++;
+			}
+			else
+				PositionDay = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTime)
+			{
+				PositionTime = position;
+				position++;
+			}
+			else
+				PositionTime = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowWeeklySpots || MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowMonthlySpots || MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTotalSpots)
+			{
+				PositionSpots = position;
+				position++;
+			}
+			else
+				PositionSpots = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowRate)
+			{
+				PositionRate = position;
+				position++;
+			}
+			else
+				PositionRate = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowLenght)
+			{
+				PositionLenght = position;
+				position++;
+			}
+			else
+				PositionLenght = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowCost)
+			{
+				PositionCost = position;
+				position++;
+			}
+			else
+				PositionCost = -1;
 
-			SpotType = SpotType.Week;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowWeeklySpots)
+				SpotType = SpotType.Week;
+			else if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowMonthlySpots)
+				SpotType = SpotType.Month;
+			else if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTotalSpots)
+				SpotType = SpotType.Total;
+			else
+				SpotType = SpotType.Week;
 			#endregion
 		}
 
@@ -109,6 +191,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<Index>" + Index + @"</Index>");
 			if (!String.IsNullOrEmpty(Name))
 				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
+			if (Logo != null && Logo.ContainsData)
+				result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
+			if (!String.IsNullOrEmpty(Comment))
+				result.AppendLine(@"<Comment>" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment>");
+			if (TotalPeriods.HasValue)
+				result.AppendLine(@"<TotalPeriods>" + TotalPeriods.Value + @"</TotalPeriods>");
 
 			#region Options
 			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
@@ -168,6 +256,21 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "Name":
 						Name = childNode.InnerText;
 						break;
+					case "Logo":
+						Logo = new ImageSource();
+						Logo.Deserialize(childNode);
+						break;
+					case "Comment":
+						Comment = childNode.InnerText;
+						break;
+					case "TotalPeriods":
+						{
+							int temp;
+							if (Int32.TryParse(childNode.InnerText, out temp))
+								TotalPeriods = temp;
+						}
+						break;
+
 					case "ShowLineId":
 						{
 							bool temp;
@@ -529,6 +632,199 @@ namespace NewBizWiz.Core.MediaSchedule
 			clone.Rate = Rate;
 			clone.Spot = Spot;
 			return clone;
+		}
+	}
+
+	public class OptionSummary
+	{
+		public RegularSchedule Parent { get; private set; }
+		public SpotType SpotType { get; set; }
+
+		#region Options
+		public bool ShowLineId { get; set; }
+		public bool ShowLogo { get; set; }
+		public bool ShowCampaign { get; set; }
+		public bool ShowComments { get; set; }
+		public bool ShowSpots { get; set; }
+		public bool ShowCost { get; set; }
+		public bool ShowTotalPeriods { get; set; }
+		public bool ShowTotalCost { get; set; }
+		public bool ShowTallySpots { get; set; }
+		public bool ShowTallyCost { get; set; }
+		public bool ShowSpotsX { get; set; }
+		public bool UseDecimalRates { get; set; }
+		#endregion
+
+		#region Calculated Properties
+		public bool Enabled
+		{
+			get { return Parent.Options.All(o => o.SpotType == SpotType); }
+		}
+
+		public decimal TotalCost
+		{
+			get { return Parent.Options.Any() ? Parent.Options.Select(x => x.TotalPeriodCost).Sum() : 0; }
+		}
+
+		public int TotalSpots
+		{
+			get { return Parent.Options.Any() ? Parent.Options.Select(x => x.TotalPeriodSpots).Sum() : 0; }
+		}
+		#endregion
+
+		public OptionSummary(RegularSchedule parent)
+		{
+			Parent = parent;
+
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowWeeklySpots)
+				SpotType = SpotType.Week;
+			else if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowMonthlySpots)
+				SpotType = SpotType.Month;
+			else if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTotalSpots)
+				SpotType = SpotType.Total;
+			else
+				SpotType = SpotType.Week;
+
+			#region Options
+			ShowLineId = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowLineId;
+			ShowLogo = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowLogo;
+			ShowCampaign = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowCampaign;
+			ShowComments = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowComments;
+			ShowTotalCost = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowTotalCost;
+			ShowTallySpots = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowTallySpots;
+			ShowTallyCost = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowTallyCost;
+			ShowSpotsX = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowSpotsX;
+			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.UseDecimalRates;
+			#endregion
+
+			UpdateSpotType(true);
+		}
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+
+			#region Options
+			result.AppendLine(@"<SpotType>" + (Int32)SpotType + @"</SpotType>");
+			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
+			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
+			result.AppendLine(@"<ShowCampaign>" + ShowCampaign + @"</ShowCampaign>");
+			result.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
+			result.AppendLine(@"<ShowSpots>" + ShowSpots + @"</ShowSpots>");
+			result.AppendLine(@"<ShowCost>" + ShowCost + @"</ShowCost>");
+			result.AppendLine(@"<ShowTotalPeriods>" + ShowTotalPeriods + @"</ShowTotalPeriods>");
+			result.AppendLine(@"<ShowTotalCost>" + ShowTotalCost + @"</ShowTotalCost>");
+			result.AppendLine(@"<ShowTallySpots>" + ShowTallySpots + @"</ShowTallySpots>");
+			result.AppendLine(@"<ShowTallyCost>" + ShowTallyCost + @"</ShowTallyCost>");
+			result.AppendLine(@"<ShowSpotsX>" + ShowSpotsX + @"</ShowSpotsX>");
+			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
+			#endregion
+
+			return result.ToString();
+		}
+
+		public void UpdateSpotType(bool force = false)
+		{
+			var spotType = SpotType;
+			if (Parent.Options.Any())
+			{
+				if (Parent.Options.All(o => o.SpotType == SpotType.Week))
+					spotType = SpotType.Week;
+				else if (Parent.Options.All(o => o.SpotType == SpotType.Month))
+					spotType = SpotType.Month;
+				if (Parent.Options.All(o => o.SpotType == SpotType.Total))
+					spotType = SpotType.Total;
+			}
+			if (spotType != SpotType || force)
+			{
+				SpotType = spotType;
+				switch (SpotType)
+				{
+					case SpotType.Week:
+						ShowSpots = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowWeeklySpots;
+						ShowCost = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowWeeklyCost;
+						ShowTotalPeriods = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowTotalWeeks;
+						break;
+					case SpotType.Month:
+						ShowSpots = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowMonthlySpots;
+						ShowCost = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowMonthlyCost;
+						ShowTotalPeriods = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowTotalMonths;
+						break;
+					case SpotType.Total:
+						ShowSpots = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowTotalSpots;
+						ShowCost = false;
+						ShowTotalPeriods = false;
+						break;
+				}
+			}
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool;
+
+			foreach (XmlNode childNode in node.ChildNodes)
+				switch (childNode.Name)
+				{
+					case "SpotType":
+						{
+							int temp;
+							if (Int32.TryParse(childNode.InnerText, out temp))
+								SpotType = (SpotType)temp;
+						}
+						break;
+
+					#region Options
+					case "ShowLineId":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowLineId = tempBool;
+						break;
+					case "ShowLogo":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowLogo = tempBool;
+						break;
+					case "ShowCampaign":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowCampaign = tempBool;
+						break;
+					case "ShowComments":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowComments = tempBool;
+						break;
+					case "ShowSpots":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSpots = tempBool;
+						break;
+					case "ShowCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowCost = tempBool;
+						break;
+					case "ShowTotalPeriods":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalPeriods = tempBool;
+						break;
+					case "ShowTotalCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalCost = tempBool;
+						break;
+					case "ShowTallySpots":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTallySpots = tempBool;
+						break;
+					case "ShowTallyCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTallyCost = tempBool;
+						break;
+					case "ShowSpotsX":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSpotsX = tempBool;
+						break;
+					case "UseDecimalRates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							UseDecimalRates = tempBool;
+						break;
+					#endregion
+				}
 		}
 	}
 }

@@ -40,6 +40,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			get { return xtraTabControlOptionSets.SelectedTabPage as OptionsControl; }
 		}
 
+		private OptionsSummaryControl ActiveSummary
+		{
+			get { return xtraTabControlOptionSets.SelectedTabPage as OptionsSummaryControl; }
+		}
+
+		private OptionsSummaryControl Summary
+		{
+			get { return xtraTabControlOptionSets.TabPages.OfType<OptionsSummaryControl>().Single(); }
+		}
+
 		public OptionsContainer()
 		{
 			InitializeComponent();
@@ -116,9 +126,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		private void LoadOptionSets(bool quickLoad)
 		{
-			if (!quickLoad)
+			if (quickLoad)
+			{
+				Summary.LoadData(_localSchedule.OptionsSummary);
+			}
+			else
 			{
 				xtraTabControlOptionSets.TabPages.Clear();
+				xtraTabControlOptionSets.TabPages.Add(new OptionsSummaryControl(_localSchedule.OptionsSummary));
+				Summary.DataChanged += (o, e) =>
+				{
+					if (!_allowToSave) return;
+					UpdateTotalsValues();
+					SettingsNotSaved = true;
+				};
 			}
 			foreach (var optionSet in _localSchedule.Options.OrderBy(s => s.Index))
 			{
@@ -136,44 +157,127 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			UpdateOptionsSplash();
 		}
 
-		private void LoadActiveOptionSetData()
+		private void LoadActiveOptionSetData(bool activate = false)
 		{
 			_allowToSave = false;
 			if (ActiveOptionControl != null)
 			{
+				pnSummaryInfo.Visible = false;
+				pnOptionSetInfo.Visible = true;
 
-				buttonXStation.Checked = ActiveOptionControl.Data.ShowStation;
-				buttonXProgram.Checked = ActiveOptionControl.Data.ShowProgram;
-				buttonXDay.Checked = ActiveOptionControl.Data.ShowDay;
-				buttonXTime.Checked = ActiveOptionControl.Data.ShowTime;
-				buttonXRate.Checked = ActiveOptionControl.Data.ShowRate;
-				buttonXLength.Checked = ActiveOptionControl.Data.ShowLenght;
-				buttonXLogo.Checked = ActiveOptionControl.Data.ShowLogo;
-				buttonXWeeklySpots.Checked = false;
-				buttonXMonthlySpots.Checked = false;
-				buttonXTotalSpots.Checked = false;
+				buttonXOptionStation.Checked = ActiveOptionControl.Data.ShowStation;
+				buttonXOptionProgram.Checked = ActiveOptionControl.Data.ShowProgram;
+				buttonXOptionDay.Checked = ActiveOptionControl.Data.ShowDay;
+				buttonXOptionTime.Checked = ActiveOptionControl.Data.ShowTime;
+				buttonXOptionRate.Checked = ActiveOptionControl.Data.ShowRate;
+				buttonXOptionLength.Checked = ActiveOptionControl.Data.ShowLenght;
+				buttonXOptionLogo.Checked = ActiveOptionControl.Data.ShowLogo;
+				buttonXOptionWeeklySpots.Checked = false;
+				buttonXOptionMonthlySpots.Checked = false;
+				buttonXOptionTotalSpots.Checked = false;
 				if (ActiveOptionControl.Data.ShowSpots)
 				{
 					switch (ActiveOptionControl.Data.SpotType)
 					{
 						case SpotType.Week:
-							buttonXWeeklySpots.Checked = true;
+							buttonXOptionWeeklySpots.Checked = true;
 							break;
 						case SpotType.Month:
-							buttonXMonthlySpots.Checked = true;
+							buttonXOptionMonthlySpots.Checked = true;
 							break;
 						case SpotType.Total:
-							buttonXTotalSpots.Checked = true;
+							buttonXOptionTotalSpots.Checked = true;
 							break;
 					}
 				}
-				buttonXLineId.Checked = ActiveOptionControl.Data.ShowLineId;
-				buttonXCost.Checked = ActiveOptionControl.Data.ShowCost;
-				buttonXTallySpots.Checked = ActiveOptionControl.Data.ShowTotalSpots;
-				buttonXTallyCost.Checked = ActiveOptionControl.Data.ShowTotalCost;
-				buttonXAvgRate.Checked = ActiveOptionControl.Data.ShowAverageRate;
+				buttonXOptionLineId.Checked = ActiveOptionControl.Data.ShowLineId;
+				buttonXOptionCost.Checked = ActiveOptionControl.Data.ShowCost;
+				buttonXOptionTallySpots.Checked = ActiveOptionControl.Data.ShowTotalSpots;
+				buttonXOptionTallyCost.Checked = ActiveOptionControl.Data.ShowTotalCost;
+				buttonXOptionAvgRate.Checked = ActiveOptionControl.Data.ShowAverageRate;
 				checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
 				checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
+			}
+			else if (ActiveSummary != null)
+			{
+				pnSummaryInfo.Visible = true;
+				pnOptionSetInfo.Visible = false;
+
+				buttonXSummaryLineId.Checked = ActiveSummary.Data.ShowLineId;
+				buttonXSummaryCampaign.Checked = ActiveSummary.Data.ShowCampaign;
+				buttonXSummaryComments.Checked = ActiveSummary.Data.ShowComments;
+				buttonXSummaryLogo.Checked = ActiveSummary.Data.ShowLogo;
+				buttonXSummaryTotalCost.Checked = ActiveSummary.Data.ShowTotalCost;
+				buttonXSummaryTallySpots.Checked = ActiveSummary.Data.ShowTallySpots;
+				buttonXSummaryTallyCost.Checked = ActiveSummary.Data.ShowTallyCost;
+				checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
+				checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
+
+				switch (ActiveSummary.Data.SpotType)
+				{
+					case SpotType.Week:
+						buttonXSummaryWeeklySpots.Enabled = true;
+						buttonXSummaryWeeklyCost.Enabled = true;
+						buttonXSummaryTotalWeeks.Enabled = true;
+						buttonXSummaryWeeklySpots.Checked = ActiveSummary.Data.ShowSpots;
+						buttonXSummaryWeeklyCost.Checked = ActiveSummary.Data.ShowCost;
+						buttonXSummaryTotalWeeks.Checked = ActiveSummary.Data.ShowTotalPeriods;
+
+						buttonXSummaryMonthlySpots.Enabled = false;
+						buttonXSummaryMonthlyCost.Enabled = false;
+						buttonXSummaryTotalMonths.Enabled = false;
+						buttonXSummaryTotalSpots.Enabled = false;
+
+						buttonXSummaryMonthlySpots.Checked = false;
+						buttonXSummaryMonthlyCost.Checked = false;
+						buttonXSummaryTotalMonths.Checked = false;
+						buttonXSummaryTotalSpots.Checked = false;
+						break;
+					case SpotType.Month:
+						buttonXSummaryMonthlySpots.Enabled = true;
+						buttonXSummaryMonthlyCost.Enabled = true;
+						buttonXSummaryTotalMonths.Enabled = true;
+						buttonXSummaryMonthlySpots.Checked = ActiveSummary.Data.ShowSpots;
+						buttonXSummaryMonthlyCost.Checked = ActiveSummary.Data.ShowCost;
+						buttonXSummaryTotalMonths.Checked = ActiveSummary.Data.ShowTotalPeriods;
+
+						buttonXSummaryWeeklySpots.Enabled = false;
+						buttonXSummaryWeeklyCost.Enabled = false;
+						buttonXSummaryTotalWeeks.Enabled = false;
+						buttonXSummaryTotalSpots.Enabled = false;
+
+						buttonXSummaryWeeklySpots.Checked = false;
+						buttonXSummaryWeeklyCost.Checked = false;
+						buttonXSummaryTotalWeeks.Checked = false;
+						buttonXSummaryTotalSpots.Checked = false;
+						break;
+					case SpotType.Total:
+						buttonXSummaryTotalSpots.Enabled = true;
+						buttonXSummaryTotalSpots.Checked = ActiveSummary.Data.ShowSpots;
+
+						buttonXSummaryWeeklySpots.Enabled = false;
+						buttonXSummaryWeeklyCost.Enabled = false;
+						buttonXSummaryTotalWeeks.Enabled = false;
+						buttonXSummaryMonthlySpots.Enabled = false;
+						buttonXSummaryMonthlyCost.Enabled = false;
+						buttonXSummaryTotalMonths.Enabled = false;
+
+						buttonXSummaryWeeklySpots.Checked = false;
+						buttonXSummaryWeeklyCost.Checked = false;
+						buttonXSummaryTotalWeeks.Checked = false;
+						buttonXSummaryMonthlySpots.Checked = false;
+						buttonXSummaryMonthlyCost.Checked = false;
+						buttonXSummaryTotalMonths.Checked = false;
+						break;
+				}
+
+				if (activate)
+					ActiveSummary.UpdateView(true);
+			}
+			else
+			{
+				pnSummaryInfo.Visible = false;
+				pnOptionSetInfo.Visible = false;
 			}
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
@@ -192,6 +296,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				_localSchedule.RebuildOptionSetIndexes();
 				var optionControl = AddOptionControl(optionSet);
 				xtraTabControlOptionSets.SelectedTabPage = optionControl;
+				Summary.UpdateView();
 			}
 		}
 
@@ -201,6 +306,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			_localSchedule.Options.Remove(optionControl.Data);
 			_localSchedule.RebuildOptionSetIndexes();
 			xtraTabControlOptionSets.TabPages.Remove(optionControl);
+			Summary.UpdateView();
 		}
 
 		private void RenameOptionSet(OptionsControl optionControl)
@@ -212,6 +318,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
 				optionControl.Data.Name = form.OptionSetName;
 				optionControl.Text = form.OptionSetName;
+				Summary.UpdateView();
 			}
 		}
 
@@ -223,6 +330,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				if (!_allowToSave) return;
 				UpdateTotalsValues();
 				UpdateOutputStatus();
+				Summary.UpdateView();
 				SettingsNotSaved = true;
 			};
 			var position = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count();
@@ -254,6 +362,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				laTotalCostValue.Text = ActiveOptionControl.Data.TotalCost.ToString(ActiveOptionControl.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 				laAvgRateValue.Text = ActiveOptionControl.Data.AvgRate.ToString(ActiveOptionControl.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 			}
+			else if (ActiveSummary != null)
+			{
+				pnBottom.Visible = true;
+				laTotalSpotsTitle.Text = "Total Spots";
+				laTotalCostTitle.Text = "Total Cost";
+				laTotalSpotsValue.Text = ActiveSummary.Data.TotalSpots.ToString("#,##0");
+				laTotalCostValue.Text = ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				laAvgRateValue.Text = String.Empty;
+			}
 			else
 			{
 				pnBottom.Visible = false;
@@ -263,12 +380,30 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		private void UpdateTotalsVisibility()
 		{
-			pnTotalSpots.Visible = ActiveOptionControl != null && ActiveOptionControl.Data.ShowTotalSpots;
-			pnTotalSpots.BringToFront();
-			pnTotalCost.Visible = ActiveOptionControl != null && ActiveOptionControl.Data.ShowTotalCost;
-			pnTotalCost.BringToFront();
-			pnAvgRate.Visible = ActiveOptionControl != null && ActiveOptionControl.Data.ShowAverageRate;
-			pnAvgRate.BringToFront();
+
+			if (ActiveOptionControl != null)
+			{
+				pnTotalSpots.Visible = ActiveOptionControl.Data.ShowTotalSpots;
+				pnTotalSpots.BringToFront();
+				pnTotalCost.Visible = ActiveOptionControl.Data.ShowTotalCost;
+				pnTotalCost.BringToFront();
+				pnAvgRate.Visible = ActiveOptionControl.Data.ShowAverageRate;
+				pnAvgRate.BringToFront();
+			}
+			else if (ActiveSummary != null)
+			{
+				pnTotalSpots.Visible = ActiveSummary.Data.ShowTallySpots;
+				pnTotalSpots.SendToBack();
+				pnTotalCost.Visible = ActiveSummary.Data.ShowTallyCost;
+				pnTotalCost.BringToFront();
+				pnAvgRate.Visible = false;
+			}
+			else
+			{
+				pnTotalSpots.Visible = false;
+				pnTotalCost.Visible = false;
+				pnAvgRate.Visible = false;
+			}
 		}
 
 		private void UpdateOptionsSplash()
@@ -405,7 +540,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		private void xtraTabControlOptionSets_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			if (!_allowToSave) return;
-			LoadActiveOptionSetData();
+			LoadActiveOptionSetData(true);
 		}
 
 		private void xtraTabControlOptionSets_MouseDown(object sender, MouseEventArgs e)
@@ -422,6 +557,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			_localSchedule.ChangeOptionSetPosition(
 				_localSchedule.Options.IndexOf(((OptionsControl)e.MovedPage).Data),
 				_localSchedule.Options.IndexOf(((OptionsControl)e.TargetPage).Data) + (1 * e.Offset));
+			Summary.UpdateView();
 			SettingsNotSaved = true;
 		}
 
@@ -441,9 +577,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				return;
 			}
 			_allowToSave = false;
-			buttonXWeeklySpots.Checked = false;
-			buttonXMonthlySpots.Checked = false;
-			buttonXTotalSpots.Checked = false;
+			buttonXOptionWeeklySpots.Checked = false;
+			buttonXOptionMonthlySpots.Checked = false;
+			buttonXOptionTotalSpots.Checked = false;
 			_allowToSave = true;
 			button.Checked = true;
 			UpdateTotalsValues();
@@ -451,32 +587,51 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
 		{
-			if (!_allowToSave || ActiveOptionControl == null) return;
-			ActiveOptionControl.Data.ShowStation = buttonXStation.Checked;
-			ActiveOptionControl.Data.ShowProgram = buttonXProgram.Checked;
-			ActiveOptionControl.Data.ShowDay = buttonXDay.Checked;
-			ActiveOptionControl.Data.ShowTime = buttonXTime.Checked;
-			ActiveOptionControl.Data.ShowRate = buttonXRate.Checked;
-			ActiveOptionControl.Data.ShowLenght = buttonXLength.Checked;
-			ActiveOptionControl.Data.ShowLogo = buttonXLogo.Checked;
-			ActiveOptionControl.Data.ShowSpots = buttonXWeeklySpots.Checked || buttonXMonthlySpots.Checked || buttonXTotalSpots.Checked;
-			ActiveOptionControl.Data.ShowLineId = buttonXLineId.Checked;
-			ActiveOptionControl.Data.ShowCost = buttonXCost.Checked;
-			ActiveOptionControl.Data.ShowTotalSpots = buttonXTallySpots.Checked;
-			ActiveOptionControl.Data.ShowTotalCost = buttonXTallyCost.Checked;
-			ActiveOptionControl.Data.ShowAverageRate = buttonXAvgRate.Checked;
-			ActiveOptionControl.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
-			ActiveOptionControl.Data.ShowSpotsX = checkEditShowSpotX.Checked;
-			if (buttonXWeeklySpots.Checked)
-				ActiveOptionControl.Data.SpotType = SpotType.Week;
-			else if (buttonXMonthlySpots.Checked)
-				ActiveOptionControl.Data.SpotType = SpotType.Month;
-			else if (buttonXTotalSpots.Checked)
-				ActiveOptionControl.Data.SpotType = SpotType.Total;
-			ActiveOptionControl.UpdateView();
+			if (!_allowToSave) return;
+			if (ActiveOptionControl != null)
+			{
+				ActiveOptionControl.Data.ShowStation = buttonXOptionStation.Checked;
+				ActiveOptionControl.Data.ShowProgram = buttonXOptionProgram.Checked;
+				ActiveOptionControl.Data.ShowDay = buttonXOptionDay.Checked;
+				ActiveOptionControl.Data.ShowTime = buttonXOptionTime.Checked;
+				ActiveOptionControl.Data.ShowRate = buttonXOptionRate.Checked;
+				ActiveOptionControl.Data.ShowLenght = buttonXOptionLength.Checked;
+				ActiveOptionControl.Data.ShowLogo = buttonXOptionLogo.Checked;
+				ActiveOptionControl.Data.ShowSpots = buttonXOptionWeeklySpots.Checked || buttonXOptionMonthlySpots.Checked || buttonXOptionTotalSpots.Checked;
+				ActiveOptionControl.Data.ShowLineId = buttonXOptionLineId.Checked;
+				ActiveOptionControl.Data.ShowCost = buttonXOptionCost.Checked;
+				ActiveOptionControl.Data.ShowTotalSpots = buttonXOptionTallySpots.Checked;
+				ActiveOptionControl.Data.ShowTotalCost = buttonXOptionTallyCost.Checked;
+				ActiveOptionControl.Data.ShowAverageRate = buttonXOptionAvgRate.Checked;
+				ActiveOptionControl.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
+				ActiveOptionControl.Data.ShowSpotsX = checkEditShowSpotX.Checked;
+				if (buttonXOptionWeeklySpots.Checked)
+					ActiveOptionControl.Data.SpotType = SpotType.Week;
+				else if (buttonXOptionMonthlySpots.Checked)
+					ActiveOptionControl.Data.SpotType = SpotType.Month;
+				else if (buttonXOptionTotalSpots.Checked)
+					ActiveOptionControl.Data.SpotType = SpotType.Total;
+				ActiveOptionControl.UpdateView();
+				UpdateOutputStatus();
+			}
+			else if (ActiveSummary != null)
+			{
+				ActiveSummary.Data.ShowLineId = buttonXSummaryLineId.Checked;
+				ActiveSummary.Data.ShowCampaign = buttonXSummaryCampaign.Checked;
+				ActiveSummary.Data.ShowComments = buttonXSummaryComments.Checked;
+				ActiveSummary.Data.ShowSpots = buttonXSummaryWeeklySpots.Checked || buttonXSummaryMonthlySpots.Checked || buttonXSummaryTotalSpots.Checked;
+				ActiveSummary.Data.ShowCost = buttonXSummaryWeeklyCost.Checked || buttonXSummaryMonthlyCost.Checked;
+				ActiveSummary.Data.ShowLogo = buttonXSummaryLogo.Checked;
+				ActiveSummary.Data.ShowTotalPeriods = buttonXSummaryTotalWeeks.Checked || buttonXSummaryTotalMonths.Checked;
+				ActiveSummary.Data.ShowTotalCost = buttonXSummaryTotalCost.Checked;
+				ActiveSummary.Data.ShowTallySpots = buttonXSummaryTallySpots.Checked;
+				ActiveSummary.Data.ShowTallyCost = buttonXSummaryTallyCost.Checked;
+				ActiveSummary.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
+				ActiveSummary.Data.ShowSpotsX = checkEditShowSpotX.Checked;
+			}
+			Summary.UpdateView();
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
-			UpdateOutputStatus();
 			SettingsNotSaved = true;
 		}
 		#endregion
@@ -520,7 +675,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		{
 			Controller.Instance.OptionsPowerPoint.Enabled =
 				Controller.Instance.OptionsPreview.Enabled =
-					Controller.Instance.OptionsEmail.Enabled = ActiveOptionControl != null && ActiveOptionControl.ReadyForOutput;
+					Controller.Instance.OptionsEmail.Enabled = xtraTabControlOptionSets.TabPages.OfType<IOptionsSlide>().Any(ss => ss.ReadyForOutput);
 		}
 
 		private void PrintOutput()
@@ -532,7 +687,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Options";
-					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as OptionsControl;
+					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlide;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -575,7 +730,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Options";
-					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as OptionsControl;
+					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlide;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -629,7 +784,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Options";
-					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as OptionsControl;
+					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlide;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);

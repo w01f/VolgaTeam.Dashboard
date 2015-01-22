@@ -134,6 +134,7 @@
     <Compile Include="MediaSchedule\ScheduleSaveEventArgs.cs" />
     <Compile Include="MediaSchedule\SettingsManager.cs" />
     <Compile Include="MediaSchedule\Snapshots.cs" />
+    <Compile Include="MediaSchedule\ViewSettings.cs" />
     <Compile Include="OnlineSchedule\Activities.cs" />
     <Compile Include="OnlineSchedule\DigitalLegend.cs" />
     <Compile Include="OnlineSchedule\ListManager.cs" />

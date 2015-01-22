@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace CommandCentral.CommonClasses
+namespace CommandCentral.Entities.Online
 {
 	public class SpecialLinkButton
 	{

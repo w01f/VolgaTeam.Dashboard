@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
 
-namespace CommandCentral.CommonClasses.NewspaperViewSettings
+namespace CommandCentral.Entities.Newspaper
 {
 	public class HomeViewSettings
 	{

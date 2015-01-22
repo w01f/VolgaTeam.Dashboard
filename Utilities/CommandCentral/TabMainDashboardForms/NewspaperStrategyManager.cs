@@ -5,11 +5,11 @@ using System.Data.OleDb;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using CommandCentral.CommonClasses;
-using CommandCentral.CommonClasses.NewspaperViewSettings;
+using CommandCentral.Entities.Common;
+using CommandCentral.Entities.Newspaper;
 using CommandCentral.InteropClasses;
 
-namespace CommandCentral.TabMainDashboard
+namespace CommandCentral.TabMainDashboardForms
 {
 	internal class NewspaperStrategyManager
 	{

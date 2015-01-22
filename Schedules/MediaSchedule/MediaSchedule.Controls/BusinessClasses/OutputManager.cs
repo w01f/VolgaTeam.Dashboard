@@ -24,6 +24,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		private const string OptionsTemplatesFolderName = @"{0}\{1} Slides\options";
 		public const string OptionsTemplateFileName = @"{0}\options{1}.pptx";
 		public const string OptionsColumnWidthsFileName = @"table_column_widths.txt";
+		public const string OptionsSummaryTemplateFileName = @"{0}\summary\options_summary_{1}.pptx";
 
 		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_slides";
 		public const string CalendarSlideTemplate = @"Broadcast_{0}_{1}_{2}.pptx";

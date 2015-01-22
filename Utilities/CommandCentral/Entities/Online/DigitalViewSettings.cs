@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace CommandCentral.CommonClasses.DigitalViewSettings
+namespace CommandCentral.Entities.Online
 {
 	public class HomeViewSettings
 	{

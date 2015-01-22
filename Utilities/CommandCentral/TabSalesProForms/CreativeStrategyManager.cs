@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using CommandCentral.Entities.Common;
 
 namespace CommandCentral.TabSalesProForms
 {
@@ -27,7 +28,7 @@ namespace CommandCentral.TabSalesProForms
 
         public static void UpdateData()
         {
-            List<CommonClasses.SlideHeader> headers = new List<CommonClasses.SlideHeader>();
+            List<SlideHeader> headers = new List<SlideHeader>();
             List<string> imageBrandings = new List<string>();
             List<string> callToActionPositionings = new List<string>();
             List<string> marketingWarfareStrategies = new List<string>();
@@ -60,7 +61,7 @@ namespace CommandCentral.TabSalesProForms
                     if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
                         foreach (DataRow row in dataTable.Rows)
                         {
-                            CommonClasses.SlideHeader title = new CommonClasses.SlideHeader();
+                            SlideHeader title = new SlideHeader();
                             title.Value = row[0].ToString().Trim();
                             if (dataTable.Columns.Count > 1)
                                 if (row[1] != null)
@@ -161,7 +162,7 @@ namespace CommandCentral.TabSalesProForms
                 //Save XML
                 StringBuilder xml = new StringBuilder();
                 xml.AppendLine("<CreativeStrategy>");
-                foreach (CommonClasses.SlideHeader header in headers)
+                foreach (SlideHeader header in headers)
                 {
                     xml.Append(@"<SlideHeader ");
                     xml.Append("Value = \"" + header.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");

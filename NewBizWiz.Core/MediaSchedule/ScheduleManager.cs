@@ -602,6 +602,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<Snapshot> Snapshots { get; private set; }
 		public SnapshotSummary SnapshotSummary { get; private set; }
 		public List<OptionSet> Options { get; private set; }
+		public OptionSummary OptionsSummary { get; private set; }
 
 		public override string Name
 		{
@@ -638,6 +639,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Snapshots = new List<Snapshot>();
 			SnapshotSummary = new SnapshotSummary(this);
 			Options = new List<OptionSet>();
+			OptionsSummary = new OptionSummary(this);
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -727,6 +729,12 @@ namespace NewBizWiz.Core.MediaSchedule
 					Options.Add(optionSet);
 				}
 			}
+
+			node = rootNode.SelectSingleNode(@"OptionsSummary");
+			if (node != null)
+			{
+				OptionsSummary.Deserialize(node);
+			}
 		}
 
 		public override StringBuilder Serialize()
@@ -754,6 +762,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			foreach (var optionSet in Options)
 				result.AppendLine(@"<Option>" + optionSet.Serialize() + @"</Option>");
 			result.AppendLine(@"</Options>");
+			result.AppendLine(@"<OptionsSummary>" + OptionsSummary.Serialize() + @"</OptionsSummary>");
 			return result;
 		}
 
@@ -962,7 +971,6 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			#region Options
 
-			ShowRate = true;
 			ShowRating = true;
 			ShowTime = true;
 			ShowDaypart = true;
@@ -1494,6 +1502,25 @@ namespace NewBizWiz.Core.MediaSchedule
 			: base(parent)
 		{
 			SpotType = SpotType.Week;
+
+			ShowTime = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTime;
+			ShowDaypart = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDaypart;
+			ShowDay = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDay;
+			ShowStation = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowStation; 
+			ShowLenght  = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowLenght;
+			ShowRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowRate;
+			ShowSpots = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowSpots;
+			ShowCost = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowCost;
+
+			ShowTotalPeriods = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTotalPeriods;
+			ShowTotalSpots = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTotalSpots;
+			ShowAverageRate  = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowAverageRate;
+			ShowTotalRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTotalRate;
+			ShowNetRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowNetRate;
+			ShowDiscount = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDiscount;
+
+			OutputNoBrackets = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.OutputNoBrackets;
+			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.UseDecimalRates;
 		}
 
 		public override int TotalPeriods
@@ -1512,6 +1539,25 @@ namespace NewBizWiz.Core.MediaSchedule
 			: base(parent)
 		{
 			SpotType = SpotType.Month;
+
+			ShowTime = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowTime;
+			ShowDaypart = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowDaypart;
+			ShowDay = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowDay;
+			ShowStation = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowStation;
+			ShowLenght = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowLenght;
+			ShowRate = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowRate;
+			ShowSpots = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowSpots;
+			ShowCost = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowCost;
+
+			ShowTotalPeriods = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowTotalPeriods;
+			ShowTotalSpots = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowTotalSpots;
+			ShowAverageRate = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowAverageRate;
+			ShowTotalRate = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowTotalRate;
+			ShowNetRate = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowNetRate;
+			ShowDiscount = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowDiscount;
+
+			OutputNoBrackets = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.OutputNoBrackets;
+			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.UseDecimalRates;
 		}
 
 		public override int TotalPeriods
@@ -2165,6 +2211,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			return GetDaysByWeek(start, end, _parentSchedule.EndDayOfWeek);
 		}
 
+		protected abstract void ApplyDefaultMonthSettings(CalendarMonth targetMonth);
+
 		public override void UpdateMonthCollection()
 		{
 			if (!Schedule.FlightDateStart.HasValue || !Schedule.FlightDateEnd.HasValue)
@@ -2184,6 +2232,7 @@ namespace NewBizWiz.Core.MediaSchedule
 						month = new CalendarMonthMediaMondayBased(this);
 					else
 						month = new CalendarMonthMediaSundayBased(this);
+					ApplyDefaultMonthSettings(month);
 				}
 				var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
 				if (monthTemplate == null) continue;
@@ -2303,6 +2352,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			Notes.AddRange(notes);
 			UpdateDayAndNoteLinks();
 		}
+
+		protected override void ApplyDefaultMonthSettings(CalendarMonth targetMonth)
+		{
+			targetMonth.OutputData.ShowLogo = MediaMetaData.Instance.ListManager.DefaultBroadcastCalendarSettings.ShowLogo;
+			targetMonth.OutputData.ShowBigDate = MediaMetaData.Instance.ListManager.DefaultBroadcastCalendarSettings.ShowBigDate;
+		}
 	}
 
 	public class CustomCalendar : MediaCalendar
@@ -2320,6 +2375,12 @@ namespace NewBizWiz.Core.MediaSchedule
 				Deserialize<CalendarMonthMediaMondayBased, CalendarDayMondayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
 			else
 				Deserialize<CalendarMonthMediaSundayBased, CalendarDaySundayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+		}
+
+		protected override void ApplyDefaultMonthSettings(CalendarMonth targetMonth)
+		{
+			targetMonth.OutputData.ShowLogo = MediaMetaData.Instance.ListManager.DefaultCustomCalendarSettings.ShowLogo;
+			targetMonth.OutputData.ShowBigDate = MediaMetaData.Instance.ListManager.DefaultCustomCalendarSettings.ShowBigDate;
 		}
 	}
 

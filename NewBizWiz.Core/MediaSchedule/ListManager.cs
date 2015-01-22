@@ -29,6 +29,14 @@ namespace NewBizWiz.Core.MediaSchedule
 			Statuses = new List<string>();
 			MonthTemplatesMondayBased = new List<MediaMonthTemplate>();
 			MonthTemplatesSundayBased = new List<MediaMonthTemplate>();
+			DefaultWeeklyScheduleSettings = new ScheduleSectionSettings();
+			DefaultMonthlyScheduleSettings = new ScheduleSectionSettings();
+			DefaultSnapshotSettings = new SnapshotSettings();
+			DefaultSnapshotSummarySettings = new SnapshotSummarySettings();
+			DefaultOptionsSettings = new OptionsSettings();
+			DefaultOptionsSummarySettings = new OptionsSummarySettings();
+			DefaultBroadcastCalendarSettings = new CalendarToggleSettings();
+			DefaultCustomCalendarSettings = new CalendarToggleSettings();
 
 			var folderPath = Path.Combine(ImageFolderPath, "Big Logos");
 			if (Directory.Exists(folderPath))
@@ -57,7 +65,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		public DirectoryInfo TinyImageFolder { get; set; }
 		public DirectoryInfo XtraTinyImageFolder { get; set; }
 		public List<ImageSource> Images { get; set; }
-
 		public List<string> SlideHeaders { get; set; }
 		public List<string> ClientTypes { get; set; }
 		public List<string> Lengths { get; set; }
@@ -70,10 +77,17 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<string> Statuses { get; set; }
 		public List<MediaMonthTemplate> MonthTemplatesMondayBased { get; set; }
 		public List<MediaMonthTemplate> MonthTemplatesSundayBased { get; set; }
-
 		public ImageSource DefaultStrategyLogo { get; set; }
-
 		public bool FlexFlightDatesAllowed { get; private set; }
+
+		public ScheduleSectionSettings DefaultWeeklyScheduleSettings { get; private set; }
+		public ScheduleSectionSettings DefaultMonthlyScheduleSettings { get; private set; }
+		public SnapshotSettings DefaultSnapshotSettings { get; private set; }
+		public SnapshotSummarySettings DefaultSnapshotSummarySettings { get; private set; }
+		public OptionsSettings DefaultOptionsSettings { get; private set; }
+		public OptionsSummarySettings DefaultOptionsSummarySettings { get; private set; }
+		public CalendarToggleSettings DefaultBroadcastCalendarSettings { get; private set; }
+		public CalendarToggleSettings DefaultCustomCalendarSettings { get; private set; }
 
 		private void LoadStrategy()
 		{
@@ -205,6 +219,30 @@ namespace NewBizWiz.Core.MediaSchedule
 								monthTemplate.Deserialize(childeNode);
 								MonthTemplatesMondayBased.Add(monthTemplate);
 								MonthTemplatesSundayBased.Add(monthTemplate);
+								break;
+							case "DefaultWeeklyScheduleSettings":
+								DefaultWeeklyScheduleSettings.Deserialize(childeNode);
+								break;
+							case "DefaultMonthlyScheduleSettings":
+								DefaultMonthlyScheduleSettings.Deserialize(childeNode);
+								break;
+							case "DefaultSnapshotSettings":
+								DefaultSnapshotSettings.Deserialize(childeNode);
+								break;
+							case "DefaultSnapshotSummarySettings":
+								DefaultSnapshotSummarySettings.Deserialize(childeNode);
+								break;
+							case "DefaultOptionsSettings":
+								DefaultOptionsSettings.Deserialize(childeNode);
+								break;
+							case "DefaultOptionsSummarySettings":
+								DefaultOptionsSummarySettings.Deserialize(childeNode);
+								break;
+							case "DefaultBroadcastCalendarSettings":
+								DefaultBroadcastCalendarSettings.Deserialize(childeNode);
+								break;
+							case "DefaultCustomCalendarSettings":
+								DefaultCustomCalendarSettings.Deserialize(childeNode);
 								break;
 						}
 					}

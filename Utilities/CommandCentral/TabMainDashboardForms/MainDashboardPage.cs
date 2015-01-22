@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 
-namespace CommandCentral.TabMainDashboard
+namespace CommandCentral.TabMainDashboardForms
 {
 	[ToolboxItem(false)]
 	public partial class MainDashboardPage : UserControl

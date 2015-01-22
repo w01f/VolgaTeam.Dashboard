@@ -1,4 +1,4 @@
-﻿namespace CommandCentral.CommonClasses
+﻿namespace CommandCentral.Entities.Newspaper
 {
 	internal class AdSize
 	{

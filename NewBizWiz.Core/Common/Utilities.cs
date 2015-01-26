@@ -39,7 +39,7 @@ namespace NewBizWiz.Core.Common
 			MessageBox.Show(text, Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 		}
 
-		public DialogResult ShowWarningQuestion(string text,params object[] args)
+		public DialogResult ShowWarningQuestion(string text, params object[] args)
 		{
 			return MessageBox.Show(String.Format(text, args), Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 		}
@@ -439,6 +439,23 @@ namespace NewBizWiz.Core.Common
 				xmlDoc.Load(xmlReader);
 				return xmlDoc;
 			}
+		}
+
+		public static bool Compare(this Image firstImage, Image secondImage)
+		{
+			var firstBitmap = firstImage as Bitmap;
+			var secondBitmap = secondImage as Bitmap;
+			if (firstBitmap == null || secondBitmap == null) return false;
+			for (var x = 0; x < firstBitmap.Width; x++)
+			{
+				if (x >= secondBitmap.Width) return false;
+				for (var y = 0; y < firstBitmap.Height; y++)
+				{
+					if (y >= secondBitmap.Height) return false;
+					if (firstBitmap.GetPixel(x, y) != secondBitmap.GetPixel(x, y)) return false;
+				}
+			}
+			return true;
 		}
 	}
 

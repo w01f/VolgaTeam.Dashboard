@@ -453,6 +453,16 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 		}
 
+		public OptionSet Clone()
+		{
+			var newOptionSet = new OptionSet(Parent);
+			var optionSerialized = new XmlDocument();
+			optionSerialized.LoadXml(@"<Option>" + Serialize() + @"</Option>");
+			newOptionSet.Deserialize(optionSerialized.SelectSingleNode("Option"));
+			newOptionSet.UniqueID = Guid.NewGuid();
+			return newOptionSet;
+		}
+
 		public void AddProgram()
 		{
 			var program = new OptionProgram(this);
@@ -488,6 +498,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			Programs.Sort((x, y) => x.Index.CompareTo(y.Index));
 			for (int i = 0; i < Programs.Count; i++)
 				Programs[i].Index = i + 1;
+		}
+
+		public void UpdateLogo()
+		{
+			if (Logo != null && !Logo.IsDefault) return;
+			var defaultProgram = Programs.FirstOrDefault();
+			if (defaultProgram == null || defaultProgram.SmallLogo == null) return;
+			if (!Programs.All(p => p.Logo != null && p.SmallLogo.Compare(defaultProgram.SmallLogo))) return;
+			Logo = defaultProgram.Logo.Clone();
 		}
 	}
 
@@ -639,6 +658,7 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		public RegularSchedule Parent { get; private set; }
 		public SpotType SpotType { get; set; }
+		public bool ApplySettingsForAll { get; set; }
 
 		#region Options
 		public bool ShowLineId { get; set; }
@@ -685,6 +705,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			else
 				SpotType = SpotType.Week;
 
+			ApplySettingsForAll = false;
+
 			#region Options
 			ShowLineId = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowLineId;
 			ShowLogo = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowLogo;
@@ -703,6 +725,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string Serialize()
 		{
 			var result = new StringBuilder();
+
+			result.AppendLine(@"<ApplySettingsForAll>" + ApplySettingsForAll + @"</ApplySettingsForAll>");
 
 			#region Options
 			result.AppendLine(@"<SpotType>" + (Int32)SpotType + @"</SpotType>");
@@ -772,6 +796,10 @@ namespace NewBizWiz.Core.MediaSchedule
 							if (Int32.TryParse(childNode.InnerText, out temp))
 								SpotType = (SpotType)temp;
 						}
+						break;
+					case "ApplySettingsForAll":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ApplySettingsForAll = tempBool;
 						break;
 
 					#region Options

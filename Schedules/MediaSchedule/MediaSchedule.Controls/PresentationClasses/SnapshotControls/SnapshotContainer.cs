@@ -101,6 +101,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 			if (!quickLoad)
 			{
+				checkEditApplySettingsForAll.Checked = _localSchedule.SnapshotSummary.ApplySettingsForAll;
 				LoadColors();
 			}
 
@@ -166,6 +167,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				pnSnapshotInfo.Visible = true;
 				pnSummaryInfo.Visible = false;
+				checkEditApplySettingsForAll.Visible = xtraTabControlSnapshots.TabPages.Count > 2;
 
 				buttonXSnapshotLineId.Checked = ActiveSnapshot.Data.ShowLineId;
 				buttonXSnapshotStation.Checked = ActiveSnapshot.Data.ShowStation;
@@ -186,6 +188,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				pnSummaryInfo.Visible = true;
 				pnSnapshotInfo.Visible = false;
+				checkEditApplySettingsForAll.Visible = false;
 
 				buttonXSummaryLineId.Checked = ActiveSummary.Data.ShowLineId;
 				buttonXSummaryCampaign.Checked = ActiveSummary.Data.ShowCampaign;
@@ -206,11 +209,33 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				pnSummaryInfo.Visible = false;
 				pnSnapshotInfo.Visible = false;
+				checkEditApplySettingsForAll.Visible = false;
 			}
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
 			UpdateOutputStatus();
 			_allowToSave = true;
+		}
+
+		private void ApplySharedSettings(SnapshotControl templateControl)
+		{
+			foreach (var snapshotControl in xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Where(oc => oc.Data.UniqueID != templateControl.Data.UniqueID))
+			{
+				snapshotControl.Data.ShowLineId = templateControl.Data.ShowLineId;
+				snapshotControl.Data.ShowStation = templateControl.Data.ShowStation;
+				snapshotControl.Data.ShowLenght = templateControl.Data.ShowLenght;
+				snapshotControl.Data.ShowProgram = templateControl.Data.ShowProgram;
+				snapshotControl.Data.ShowDaypart = templateControl.Data.ShowDaypart;
+				snapshotControl.Data.ShowTime = templateControl.Data.ShowTime;
+				snapshotControl.Data.ShowRate = templateControl.Data.ShowRate;
+				snapshotControl.Data.ShowCost = templateControl.Data.ShowCost;
+				snapshotControl.Data.ShowLogo = templateControl.Data.ShowLogo;
+				snapshotControl.Data.ShowTotalSpots = templateControl.Data.ShowTotalSpots;
+				snapshotControl.Data.ShowAverageRate = templateControl.Data.ShowAverageRate;
+				snapshotControl.Data.ShowTotalRow = templateControl.Data.ShowTotalRow;
+				snapshotControl.Data.UseDecimalRates = templateControl.Data.UseDecimalRates;
+				snapshotControl.Data.ShowSpotsX = templateControl.Data.ShowSpotsX;
+			}
 		}
 
 		private void AddSnapshot()
@@ -224,6 +249,23 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				_localSchedule.RebuildSnapshotIndexes();
 				var snapshotControl = AddSnapshotControl(snapshot);
 				xtraTabControlSnapshots.SelectedTabPage = snapshotControl;
+				Summary.UpdateView();
+			}
+		}
+
+		private void CloneSnapshot(SnapshotControl snapshotControl)
+		{
+			using (var form = new FormSnapshotName())
+			{
+				form.SnapshotName = String.Format("{0} (Clone)", snapshotControl.Data.Name);
+				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
+				var snapshot = snapshotControl.Data.Clone();
+				snapshot.Name = form.SnapshotName;
+				snapshot.Index += 0.5;
+				_localSchedule.Snapshots.Add(snapshot);
+				_localSchedule.RebuildSnapshotIndexes();
+				var newControl = AddSnapshotControl(snapshot, (Int32)snapshot.Index);
+				xtraTabControlSnapshots.SelectedTabPage = newControl;
 				Summary.UpdateView();
 			}
 		}
@@ -250,17 +292,24 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
-		private SnapshotControl AddSnapshotControl(Snapshot data)
+		private SnapshotControl AddSnapshotControl(Snapshot data, int position = -1)
 		{
 			var snapshotControl = new SnapshotControl(data);
 			snapshotControl.DataChanged += (o, e) =>
 			{
+				var sourceControl = o as SnapshotControl;
+				if (sourceControl == null) return;
 				if (!_allowToSave) return;
+				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+				{
+					ApplySharedSettings(sourceControl);
+					xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Where(oc => oc.Data.UniqueID != sourceControl.Data.UniqueID).ToList().ForEach(oc => oc.UpdateView());
+				}
 				UpdateTotalsValues();
 				UpdateOutputStatus();
 				SettingsNotSaved = true;
 			};
-			var position = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count();
+			position = position == -1 ? xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() : position;
 			xtraTabControlSnapshots.TabPages.Insert(position, snapshotControl);
 			return snapshotControl;
 		}
@@ -475,6 +524,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			SettingsNotSaved = true;
 		}
 
+		private void toolStripMenuItemSnapshotClone_Click(object sender, EventArgs e)
+		{
+			CloneSnapshot(_menuHitInfo.Page as SnapshotControl);
+			SettingsNotSaved = true;
+		}
+
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -494,6 +549,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				ActiveSnapshot.Data.ShowTotalRow = buttonXSnapshotTotalRow.Checked;
 				ActiveSnapshot.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
 				ActiveSnapshot.Data.ShowSpotsX = checkEditShowSpotX.Checked;
+
+				_localSchedule.SnapshotSummary.ApplySettingsForAll = checkEditApplySettingsForAll.Checked;
+				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+				{
+					ApplySharedSettings(ActiveSnapshot);
+					xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().ToList().ForEach(oc => oc.UpdateView());
+				}
+				else
 				ActiveSnapshot.UpdateView();
 				UpdateOutputStatus();
 			}

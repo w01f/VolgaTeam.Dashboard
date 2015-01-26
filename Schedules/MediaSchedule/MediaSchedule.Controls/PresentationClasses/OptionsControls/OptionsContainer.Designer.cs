@@ -36,6 +36,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.xtraTabControlOptionSets = new DevExpress.XtraTab.XtraTabControl();
 			this.pnOptionSets = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
+			this.checkEditApplySettingsForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.laScheduleInfo = new System.Windows.Forms.Label();
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAvgRate = new System.Windows.Forms.Panel();
@@ -83,7 +85,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionLogo = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOptionAvgRate = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
@@ -94,10 +95,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.contextMenuStripOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoOptionSets = new System.Windows.Forms.Panel();
+			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptionSets)).BeginInit();
 			this.pnOptionSets.SuspendLayout();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
 			this.pnAvgRate.SuspendLayout();
 			this.pnTotalCost.SuspendLayout();
@@ -110,7 +114,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnSummaryInfo.SuspendLayout();
 			this.pnOptionSetInfo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
 			this.pnStyle.SuspendLayout();
@@ -168,12 +171,39 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// 
 			// pnTop
 			// 
+			this.pnTop.Controls.Add(this.checkEditApplySettingsForAll);
 			this.pnTop.Controls.Add(this.laScheduleInfo);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(300, 0);
 			this.pnTop.Name = "pnTop";
 			this.pnTop.Size = new System.Drawing.Size(595, 40);
 			this.pnTop.TabIndex = 6;
+			// 
+			// checkEditApplySettingsForAll
+			// 
+			this.checkEditApplySettingsForAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplySettingsForAll.Location = new System.Drawing.Point(299, 11);
+			this.checkEditApplySettingsForAll.Name = "checkEditApplySettingsForAll";
+			this.checkEditApplySettingsForAll.Properties.Caption = "Use the SAME SETTINGS for all Schedules";
+			this.checkEditApplySettingsForAll.Size = new System.Drawing.Size(293, 19);
+			this.checkEditApplySettingsForAll.StyleController = this.styleController;
+			this.checkEditApplySettingsForAll.TabIndex = 123;
+			this.checkEditApplySettingsForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// laScheduleInfo
 			// 
@@ -377,7 +407,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnSummaryInfo.Controls.Add(this.buttonXSummaryTotalWeeks);
 			this.pnSummaryInfo.Controls.Add(this.buttonXSummaryTallyCost);
 			this.pnSummaryInfo.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 426);
+			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 427);
 			this.pnSummaryInfo.Name = "pnSummaryInfo";
 			this.pnSummaryInfo.Size = new System.Drawing.Size(292, 396);
 			this.pnSummaryInfo.TabIndex = 124;
@@ -605,7 +635,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnOptionSetInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnOptionSetInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionSetInfo.Name = "pnOptionSetInfo";
-			this.pnOptionSetInfo.Size = new System.Drawing.Size(292, 426);
+			this.pnOptionSetInfo.Size = new System.Drawing.Size(292, 427);
 			this.pnOptionSetInfo.TabIndex = 123;
 			// 
 			// buttonXOptionStation
@@ -837,21 +867,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.checkEditUseDecimalRate.TabIndex = 122;
 			this.checkEditUseDecimalRate.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
 			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
 			// checkEditShowSpotX
 			// 
 			this.checkEditShowSpotX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -938,14 +953,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// contextMenuStripOptions
 			// 
 			this.contextMenuStripOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSnapshotRename});
+            this.toolStripMenuItemSnapshotRename,
+            this.toolStripMenuItemSnapshotClone});
 			this.contextMenuStripOptions.Name = "contextMenuStripOptions";
-			this.contextMenuStripOptions.Size = new System.Drawing.Size(118, 26);
+			this.contextMenuStripOptions.Size = new System.Drawing.Size(153, 70);
 			// 
 			// toolStripMenuItemSnapshotRename
 			// 
 			this.toolStripMenuItemSnapshotRename.Name = "toolStripMenuItemSnapshotRename";
-			this.toolStripMenuItemSnapshotRename.Size = new System.Drawing.Size(117, 22);
+			this.toolStripMenuItemSnapshotRename.Size = new System.Drawing.Size(152, 22);
 			this.toolStripMenuItemSnapshotRename.Text = "Rename";
 			this.toolStripMenuItemSnapshotRename.Click += new System.EventHandler(this.toolStripMenuItemOptionSetsRename_Click);
 			// 
@@ -957,6 +973,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnNoOptionSets.Padding = new System.Windows.Forms.Padding(40, 20, 20, 20);
 			this.pnNoOptionSets.Size = new System.Drawing.Size(200, 100);
 			this.pnNoOptionSets.TabIndex = 3;
+			// 
+			// toolStripMenuItemSnapshotClone
+			// 
+			this.toolStripMenuItemSnapshotClone.Name = "toolStripMenuItemSnapshotClone";
+			this.toolStripMenuItemSnapshotClone.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItemSnapshotClone.Text = "Clone";
+			this.toolStripMenuItemSnapshotClone.Click += new System.EventHandler(this.toolStripMenuItemOptionSetsClone_Click);
 			// 
 			// OptionsContainer
 			// 
@@ -971,6 +994,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptionSets)).EndInit();
 			this.pnOptionSets.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnBottom.ResumeLayout(false);
 			this.pnAvgRate.ResumeLayout(false);
 			this.pnTotalCost.ResumeLayout(false);
@@ -983,7 +1008,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnSummaryInfo.ResumeLayout(false);
 			this.pnOptionSetInfo.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
 			this.pnStyle.ResumeLayout(false);
@@ -1060,6 +1084,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryTotalWeeks;
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryTallyCost;
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryTotalSpots;
+		private DevExpress.XtraEditors.CheckEdit checkEditApplySettingsForAll;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
 
 	}
 }

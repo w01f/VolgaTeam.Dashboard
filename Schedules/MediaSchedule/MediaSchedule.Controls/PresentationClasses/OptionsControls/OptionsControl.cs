@@ -301,6 +301,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
 				selectedProgram.Logo = form.SelectedImageSource;
+				Data.UpdateLogo();
 				advBandedGridView.UpdateCurrentRow();
 				if (DataChanged != null)
 					DataChanged(this, EventArgs.Empty);

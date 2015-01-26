@@ -735,6 +735,9 @@ namespace NewBizWiz.Core.MediaSchedule
 			{
 				OptionsSummary.Deserialize(node);
 			}
+
+			RebuildSnapshotIndexes();
+			RebuildOptionSetIndexes();
 		}
 
 		public override StringBuilder Serialize()
@@ -918,14 +921,18 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (position < 0 || position >= Snapshots.Count) return;
 			var snapshot = Snapshots[position];
 			snapshot.Index = newPosition - 0.5;
-			Snapshots.Sort((x, y) => x.Index.CompareTo(y.Index));
 			RebuildSnapshotIndexes();
 		}
 
 		public void RebuildSnapshotIndexes()
 		{
-			for (int i = 0; i < Snapshots.Count; i++)
-				Snapshots[i].Index = i;
+			var i = 0;
+			foreach (var snapshot in Snapshots.OrderBy(o => o.Index))
+			{
+				snapshot.Index = i;
+				i++;
+			}
+			Snapshots.Sort((x, y) => x.Index.CompareTo(y.Index));
 		}
 
 		public void ChangeOptionSetPosition(int position, int newPosition)
@@ -933,14 +940,18 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (position < 0 || position >= Options.Count) return;
 			var optionSet = Options[position];
 			optionSet.Index = newPosition - 0.5;
-			Options.Sort((x, y) => x.Index.CompareTo(y.Index));
-			RebuildSnapshotIndexes();
+			RebuildOptionSetIndexes();
 		}
 
 		public void RebuildOptionSetIndexes()
 		{
-			for (int i = 0; i < Options.Count; i++)
-				Options[i].Index = i;
+			var i = 0;
+			foreach (var optionSet in Options.OrderBy(o=>o.Index))
+			{
+				optionSet.Index = i;
+				i++;
+			}
+			Options.Sort((x, y) => x.Index.CompareTo(y.Index));
 		}
 	}
 

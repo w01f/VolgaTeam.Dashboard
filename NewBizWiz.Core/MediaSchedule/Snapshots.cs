@@ -242,6 +242,16 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 		}
 
+		public Snapshot Clone()
+		{
+			var newSnapshot = new Snapshot(Parent);
+			var snapshotSerialized = new XmlDocument();
+			snapshotSerialized.LoadXml(@"<Snapshot>" + Serialize() + @"</Snapshot>");
+			newSnapshot.Deserialize(snapshotSerialized.SelectSingleNode("Snapshot"));
+			newSnapshot.UniqueID = Guid.NewGuid();
+			return newSnapshot;
+		}
+
 		public void AddProgram()
 		{
 			var program = new SnapshotProgram(this);
@@ -277,6 +287,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			Programs.Sort((x, y) => x.Index.CompareTo(y.Index));
 			for (int i = 0; i < Programs.Count; i++)
 				Programs[i].Index = i + 1;
+		}
+
+		public void UpdateLogo()
+		{
+			if (Logo != null && !Logo.IsDefault) return;
+			var defaultProgram = Programs.FirstOrDefault();
+			if (defaultProgram == null || defaultProgram.SmallLogo == null) return;
+			if (!Programs.All(p => p.Logo != null && p.SmallLogo.Compare(defaultProgram.SmallLogo))) return;
+			Logo = defaultProgram.Logo.Clone();
 		}
 	}
 
@@ -517,6 +536,8 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		public RegularSchedule Parent { get; private set; }
 
+		public bool ApplySettingsForAll { get; set; }
+
 		#region Options
 		public bool ShowLineId { get; set; }
 		public bool ShowLogo { get; set; }
@@ -548,6 +569,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			Parent = parent;
 
+			ApplySettingsForAll = false;
+
 			#region Options
 			ShowLineId = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowLineId;
 			ShowLogo = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowLogo;
@@ -567,7 +590,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string Serialize()
 		{
 			var result = new StringBuilder();
-
+			result.AppendLine(@"<ApplySettingsForAll>" + ApplySettingsForAll + @"</ApplySettingsForAll>");
 			#region Options
 			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
@@ -593,6 +616,11 @@ namespace NewBizWiz.Core.MediaSchedule
 			foreach (XmlNode childNode in node.ChildNodes)
 				switch (childNode.Name)
 				{
+					case "ApplySettingsForAll":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ApplySettingsForAll = tempBool;
+						break;
+
 					#region Options
 					case "ShowLineId":
 						if (bool.TryParse(childNode.InnerText, out tempBool))

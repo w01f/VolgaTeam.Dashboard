@@ -346,6 +346,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
 				selectedProgram.Logo = form.SelectedImageSource;
+				Data.UpdateLogo();
 				advBandedGridView.UpdateCurrentRow();
 				if (DataChanged != null)
 					DataChanged(this, EventArgs.Empty);

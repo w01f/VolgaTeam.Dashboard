@@ -36,14 +36,14 @@
 			this.gridColumnLogoGallery = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.layoutViewField_gridColumnLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-			this.layoutViewCardLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
+			this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
 			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumnLogoGallery)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutViewCardLogoGallery)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnBottom
@@ -53,9 +53,9 @@
 			this.pnBottom.Controls.Add(this.buttonXOK);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottom.ForeColor = System.Drawing.Color.Black;
-			this.pnBottom.Location = new System.Drawing.Point(0, 361);
+			this.pnBottom.Location = new System.Drawing.Point(0, 349);
 			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(411, 43);
+			this.pnBottom.Size = new System.Drawing.Size(421, 43);
 			this.pnBottom.TabIndex = 1;
 			// 
 			// buttonXCancel
@@ -64,7 +64,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(324, 6);
+			this.buttonXCancel.Location = new System.Drawing.Point(334, 6);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(75, 31);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -78,7 +78,7 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(241, 6);
+			this.buttonXOK.Location = new System.Drawing.Point(251, 6);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(75, 31);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -99,7 +99,7 @@
 			this.gridControlLogoGallery.Name = "gridControlLogoGallery";
 			this.gridControlLogoGallery.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit});
-			this.gridControlLogoGallery.Size = new System.Drawing.Size(411, 361);
+			this.gridControlLogoGallery.Size = new System.Drawing.Size(421, 349);
 			this.gridControlLogoGallery.TabIndex = 38;
 			this.gridControlLogoGallery.ToolTipController = this.toolTipController;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -110,7 +110,7 @@
 			this.layoutViewLogoGallery.Appearance.SelectionFrame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
 			this.layoutViewLogoGallery.Appearance.SelectionFrame.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
 			this.layoutViewLogoGallery.Appearance.SelectionFrame.Options.UseBackColor = true;
-			this.layoutViewLogoGallery.CardMinSize = new System.Drawing.Size(91, 51);
+			this.layoutViewLogoGallery.CardMinSize = new System.Drawing.Size(131, 55);
 			this.layoutViewLogoGallery.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.gridColumnLogoGallery});
 			this.layoutViewLogoGallery.GridControl = this.gridControlLogoGallery;
@@ -165,15 +165,15 @@
 			this.layoutViewLogoGallery.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
 			this.layoutViewLogoGallery.OptionsView.ShowHeaderPanel = false;
 			this.layoutViewLogoGallery.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiRow;
-			this.layoutViewLogoGallery.TemplateCard = this.layoutViewCardLogoGallery;
+			this.layoutViewLogoGallery.TemplateCard = this.layoutViewCard1;
 			this.layoutViewLogoGallery.CustomFieldValueStyle += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventHandler(this.layoutViewLogoGallery_CustomFieldValueStyle);
 			this.layoutViewLogoGallery.DoubleClick += new System.EventHandler(this.layoutViewLogoGallery_DoubleClick);
 			// 
 			// gridColumnLogoGallery
 			// 
-			this.gridColumnLogoGallery.Caption = "TinyImage";
+			this.gridColumnLogoGallery.Caption = "SmallImage";
 			this.gridColumnLogoGallery.ColumnEdit = this.repositoryItemPictureEdit;
-			this.gridColumnLogoGallery.FieldName = "TinyImage";
+			this.gridColumnLogoGallery.FieldName = "SmallImage";
 			this.gridColumnLogoGallery.LayoutViewField = this.layoutViewField_gridColumnLogoGallery;
 			this.gridColumnLogoGallery.Name = "gridColumnLogoGallery";
 			// 
@@ -185,26 +185,26 @@
 			// 
 			// layoutViewField_gridColumnLogoGallery
 			// 
-			this.layoutViewField_gridColumnLogoGallery.EditorPreferredWidth = 85;
+			this.layoutViewField_gridColumnLogoGallery.EditorPreferredWidth = 121;
 			this.layoutViewField_gridColumnLogoGallery.Location = new System.Drawing.Point(0, 0);
 			this.layoutViewField_gridColumnLogoGallery.Name = "layoutViewField_gridColumnLogoGallery";
-			this.layoutViewField_gridColumnLogoGallery.Size = new System.Drawing.Size(91, 22);
+			this.layoutViewField_gridColumnLogoGallery.Size = new System.Drawing.Size(127, 51);
 			this.layoutViewField_gridColumnLogoGallery.Spacing = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
 			this.layoutViewField_gridColumnLogoGallery.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutViewField_gridColumnLogoGallery.TextToControlDistance = 0;
 			this.layoutViewField_gridColumnLogoGallery.TextVisible = false;
 			// 
-			// layoutViewCardLogoGallery
+			// layoutViewCard1
 			// 
-			this.layoutViewCardLogoGallery.CustomizationFormText = "TemplateCard";
-			this.layoutViewCardLogoGallery.ExpandButtonLocation = DevExpress.Utils.GroupElementLocation.AfterText;
-			this.layoutViewCardLogoGallery.GroupBordersVisible = false;
-			this.layoutViewCardLogoGallery.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+			this.layoutViewCard1.CustomizationFormText = "TemplateCard";
+			this.layoutViewCard1.ExpandButtonLocation = DevExpress.Utils.GroupElementLocation.AfterText;
+			this.layoutViewCard1.GroupBordersVisible = false;
+			this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutViewField_gridColumnLogoGallery});
-			this.layoutViewCardLogoGallery.Name = "layoutViewCard1";
-			this.layoutViewCardLogoGallery.OptionsItemText.TextToControlDistance = 1;
-			this.layoutViewCardLogoGallery.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-			this.layoutViewCardLogoGallery.Text = "TemplateCard";
+			this.layoutViewCard1.Name = "layoutViewCard1";
+			this.layoutViewCard1.OptionsItemText.TextToControlDistance = 1;
+			this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
+			this.layoutViewCard1.Text = "TemplateCard";
 			// 
 			// toolTipController
 			// 
@@ -216,14 +216,14 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(411, 404);
+			this.ClientSize = new System.Drawing.Size(421, 392);
 			this.Controls.Add(this.gridControlLogoGallery);
 			this.Controls.Add(this.pnBottom);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(400, 430);
+			this.MinimumSize = new System.Drawing.Size(437, 430);
 			this.Name = "FormImageGallery";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
@@ -234,7 +234,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumnLogoGallery)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutViewCardLogoGallery)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -248,9 +248,9 @@
 		private DevExpress.XtraGrid.Views.Layout.LayoutView layoutViewLogoGallery;
 		private DevExpress.XtraGrid.Columns.LayoutViewColumn gridColumnLogoGallery;
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
-		private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_gridColumnLogoGallery;
-		private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCardLogoGallery;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_gridColumnLogoGallery;
+		private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
 
 
     }

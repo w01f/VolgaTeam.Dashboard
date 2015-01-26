@@ -101,6 +101,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 			if (!quickLoad)
 			{
+				checkEditApplySettingsForAll.Checked = _localSchedule.OptionsSummary.ApplySettingsForAll;
 				LoadColors();
 			}
 
@@ -164,6 +165,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				pnSummaryInfo.Visible = false;
 				pnOptionSetInfo.Visible = true;
+				checkEditApplySettingsForAll.Visible = xtraTabControlOptionSets.TabPages.Count > 2;
 
 				buttonXOptionStation.Checked = ActiveOptionControl.Data.ShowStation;
 				buttonXOptionProgram.Checked = ActiveOptionControl.Data.ShowProgram;
@@ -202,6 +204,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				pnSummaryInfo.Visible = true;
 				pnOptionSetInfo.Visible = false;
+				checkEditApplySettingsForAll.Visible = false;
 
 				buttonXSummaryLineId.Checked = ActiveSummary.Data.ShowLineId;
 				buttonXSummaryCampaign.Checked = ActiveSummary.Data.ShowCampaign;
@@ -278,11 +281,44 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				pnSummaryInfo.Visible = false;
 				pnOptionSetInfo.Visible = false;
+				checkEditApplySettingsForAll.Visible = false;
 			}
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
 			UpdateOutputStatus();
 			_allowToSave = true;
+		}
+
+		private void ApplySharedSettings(OptionsControl templateControl)
+		{
+			foreach (var optionsControl in xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Where(oc => oc.Data.UniqueID != templateControl.Data.UniqueID))
+			{
+				optionsControl.Data.ShowStation = templateControl.Data.ShowStation;
+				optionsControl.Data.ShowProgram = templateControl.Data.ShowProgram;
+				optionsControl.Data.ShowDay = templateControl.Data.ShowDay;
+				optionsControl.Data.ShowTime = templateControl.Data.ShowTime;
+				optionsControl.Data.ShowRate = templateControl.Data.ShowRate;
+				optionsControl.Data.ShowLenght = templateControl.Data.ShowLenght;
+				optionsControl.Data.ShowLogo = templateControl.Data.ShowLogo;
+				optionsControl.Data.ShowSpots = templateControl.Data.ShowSpots;
+				optionsControl.Data.ShowLineId = templateControl.Data.ShowLineId;
+				optionsControl.Data.ShowCost = templateControl.Data.ShowCost;
+				optionsControl.Data.ShowTotalSpots = templateControl.Data.ShowTotalSpots;
+				optionsControl.Data.ShowTotalCost = templateControl.Data.ShowTotalCost;
+				optionsControl.Data.ShowAverageRate = templateControl.Data.ShowAverageRate;
+				optionsControl.Data.UseDecimalRates = templateControl.Data.UseDecimalRates;
+				optionsControl.Data.ShowSpotsX = templateControl.Data.ShowSpotsX;
+				optionsControl.Data.SpotType = templateControl.Data.SpotType;
+
+				optionsControl.Data.PositionStation = templateControl.Data.PositionStation;
+				optionsControl.Data.PositionProgram = templateControl.Data.PositionProgram;
+				optionsControl.Data.PositionDay = templateControl.Data.PositionDay;
+				optionsControl.Data.PositionTime = templateControl.Data.PositionTime;
+				optionsControl.Data.PositionRate = templateControl.Data.PositionRate;
+				optionsControl.Data.PositionLenght = templateControl.Data.PositionLenght;
+				optionsControl.Data.PositionSpots = templateControl.Data.PositionSpots;
+				optionsControl.Data.PositionCost = templateControl.Data.PositionCost;
+			}
 		}
 
 		private void AddOptionSet()
@@ -296,6 +332,23 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				_localSchedule.RebuildOptionSetIndexes();
 				var optionControl = AddOptionControl(optionSet);
 				xtraTabControlOptionSets.SelectedTabPage = optionControl;
+				Summary.UpdateView();
+			}
+		}
+
+		private void CloneOptionSet(OptionsControl optionControl)
+		{
+			using (var form = new FormOptionSetName())
+			{
+				form.OptionSetName = String.Format("{0} (Clone)", optionControl.Data.Name);
+				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
+				var optionSet = optionControl.Data.Clone();
+				optionSet.Name = form.OptionSetName;
+				optionSet.Index += 0.5;
+				_localSchedule.Options.Add(optionSet);
+				_localSchedule.RebuildOptionSetIndexes();
+				var newControl = AddOptionControl(optionSet, (Int32)optionSet.Index);
+				xtraTabControlOptionSets.SelectedTabPage = newControl;
 				Summary.UpdateView();
 			}
 		}
@@ -322,18 +375,25 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			}
 		}
 
-		private OptionsControl AddOptionControl(OptionSet data)
+		private OptionsControl AddOptionControl(OptionSet data, int position = -1)
 		{
 			var optionControl = new OptionsControl(data);
 			optionControl.DataChanged += (o, e) =>
 			{
+				var sourceControl = o as OptionsControl;
+				if (sourceControl == null) return;
 				if (!_allowToSave) return;
+				if (_localSchedule.OptionsSummary.ApplySettingsForAll)
+				{
+					ApplySharedSettings(sourceControl);
+					xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Where(oc => oc.Data.UniqueID != sourceControl.Data.UniqueID).ToList().ForEach(oc => oc.UpdateView());
+				}
 				UpdateTotalsValues();
 				UpdateOutputStatus();
 				Summary.UpdateView();
 				SettingsNotSaved = true;
 			};
-			var position = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count();
+			position = position == -1 ? xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count() : position;
 			xtraTabControlOptionSets.TabPages.Insert(position, optionControl);
 			return optionControl;
 		}
@@ -567,6 +627,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			SettingsNotSaved = true;
 		}
 
+		private void toolStripMenuItemOptionSetsClone_Click(object sender, EventArgs e)
+		{
+			CloneOptionSet(_menuHitInfo.Page as OptionsControl);
+			SettingsNotSaved = true;
+		}
+
 		private void OnSpotsClick(object sender, EventArgs e)
 		{
 			var button = sender as ButtonX;
@@ -611,7 +677,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					ActiveOptionControl.Data.SpotType = SpotType.Month;
 				else if (buttonXOptionTotalSpots.Checked)
 					ActiveOptionControl.Data.SpotType = SpotType.Total;
-				ActiveOptionControl.UpdateView();
+
+				_localSchedule.OptionsSummary.ApplySettingsForAll = checkEditApplySettingsForAll.Checked;
+				if (_localSchedule.OptionsSummary.ApplySettingsForAll)
+				{
+					ApplySharedSettings(ActiveOptionControl);
+					xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().ToList().ForEach(oc => oc.UpdateView());
+				}
+				else
+					ActiveOptionControl.UpdateView();
 				UpdateOutputStatus();
 			}
 			else if (ActiveSummary != null)

@@ -34,6 +34,8 @@
 			this.xtraTabControlSnapshots = new DevExpress.XtraTab.XtraTabControl();
 			this.pnSnapshots = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
+			this.checkEditApplySettingsForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.laScheduleInfo = new System.Windows.Forms.Label();
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnTotalCost = new System.Windows.Forms.Panel();
@@ -74,7 +76,6 @@
 			this.buttonXSummaryTotalWeeks = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSummaryTallyCost = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
@@ -84,11 +85,14 @@
 			this.xtraScrollableControlColors = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.contextMenuStripSnapshot = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoSnapshots = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).BeginInit();
 			this.pnSnapshots.SuspendLayout();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
 			this.pnTotalCost.SuspendLayout();
 			this.pnAvgRate.SuspendLayout();
@@ -101,7 +105,6 @@
 			this.pnSnapshotInfo.SuspendLayout();
 			this.pnSummaryInfo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
 			this.pnStyle.SuspendLayout();
@@ -159,12 +162,39 @@
 			// 
 			// pnTop
 			// 
+			this.pnTop.Controls.Add(this.checkEditApplySettingsForAll);
 			this.pnTop.Controls.Add(this.laScheduleInfo);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(300, 0);
 			this.pnTop.Name = "pnTop";
 			this.pnTop.Size = new System.Drawing.Size(595, 40);
 			this.pnTop.TabIndex = 6;
+			// 
+			// checkEditApplySettingsForAll
+			// 
+			this.checkEditApplySettingsForAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplySettingsForAll.Location = new System.Drawing.Point(299, 10);
+			this.checkEditApplySettingsForAll.Name = "checkEditApplySettingsForAll";
+			this.checkEditApplySettingsForAll.Properties.Caption = "Use the SAME SETTINGS for all Snapshots";
+			this.checkEditApplySettingsForAll.Size = new System.Drawing.Size(293, 20);
+			this.checkEditApplySettingsForAll.StyleController = this.styleController;
+			this.checkEditApplySettingsForAll.TabIndex = 124;
+			this.checkEditApplySettingsForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// laScheduleInfo
 			// 
@@ -720,21 +750,6 @@
 			this.checkEditUseDecimalRate.TabIndex = 119;
 			this.checkEditUseDecimalRate.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
 			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
 			// checkEditShowSpotX
 			// 
 			this.checkEditShowSpotX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -821,9 +836,10 @@
 			// contextMenuStripSnapshot
 			// 
 			this.contextMenuStripSnapshot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSnapshotRename});
+            this.toolStripMenuItemSnapshotRename,
+            this.toolStripMenuItemSnapshotClone});
 			this.contextMenuStripSnapshot.Name = "contextMenuStripSnapshot";
-			this.contextMenuStripSnapshot.Size = new System.Drawing.Size(118, 26);
+			this.contextMenuStripSnapshot.Size = new System.Drawing.Size(118, 48);
 			// 
 			// toolStripMenuItemSnapshotRename
 			// 
@@ -831,6 +847,13 @@
 			this.toolStripMenuItemSnapshotRename.Size = new System.Drawing.Size(117, 22);
 			this.toolStripMenuItemSnapshotRename.Text = "Rename";
 			this.toolStripMenuItemSnapshotRename.Click += new System.EventHandler(this.toolStripMenuItemSnapshotRename_Click);
+			// 
+			// toolStripMenuItemSnapshotClone
+			// 
+			this.toolStripMenuItemSnapshotClone.Name = "toolStripMenuItemSnapshotClone";
+			this.toolStripMenuItemSnapshotClone.Size = new System.Drawing.Size(117, 22);
+			this.toolStripMenuItemSnapshotClone.Text = "Clone";
+			this.toolStripMenuItemSnapshotClone.Click += new System.EventHandler(this.toolStripMenuItemSnapshotClone_Click);
 			// 
 			// pnNoSnapshots
 			// 
@@ -854,6 +877,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).EndInit();
 			this.pnSnapshots.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnBottom.ResumeLayout(false);
 			this.pnTotalCost.ResumeLayout(false);
 			this.pnAvgRate.ResumeLayout(false);
@@ -866,7 +891,6 @@
 			this.pnSnapshotInfo.ResumeLayout(false);
 			this.pnSummaryInfo.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
 			this.pnStyle.ResumeLayout(false);
@@ -936,6 +960,8 @@
 		private System.Windows.Forms.Panel pnTotalCost;
 		private System.Windows.Forms.Label laTotalCostValue;
 		private System.Windows.Forms.Label laTotalCostTitle;
+		private DevExpress.XtraEditors.CheckEdit checkEditApplySettingsForAll;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
 
 	}
 }

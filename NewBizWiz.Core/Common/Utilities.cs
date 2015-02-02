@@ -431,6 +431,44 @@ namespace NewBizWiz.Core.Common
 			return newImage;
 		}
 
+		public static Byte[] ToByteArray(this Image image)
+		{
+			var bmp = image as Bitmap;
+			if (bmp == null) return null;
+			var m = new MemoryStream();
+			bmp.Save(m, GetImageFormat(bmp));
+			return m.ToArray();
+		}
+
+		public static Image ToImage(this Byte[] array)
+		{
+			return Image.FromStream(new MemoryStream(array));
+		}
+
+		public static ImageFormat GetImageFormat(Bitmap bitmap)
+		{
+			var img = bitmap.RawFormat;
+			if (img.Equals(ImageFormat.Jpeg))
+				return ImageFormat.Jpeg;
+			if (img.Equals(ImageFormat.Bmp))
+				return ImageFormat.Bmp;
+			if (img.Equals(ImageFormat.Png))
+				return ImageFormat.Png;
+			if (img.Equals(ImageFormat.Emf))
+				return ImageFormat.Emf;
+			if (img.Equals(ImageFormat.Exif))
+				return ImageFormat.Exif;
+			if (img.Equals(ImageFormat.Gif))
+				return ImageFormat.Gif;
+			if (img.Equals(ImageFormat.Icon))
+				return ImageFormat.Icon;
+			if (img.Equals(ImageFormat.MemoryBmp))
+				return ImageFormat.MemoryBmp;
+			if (img.Equals(ImageFormat.Tiff))
+				return ImageFormat.Tiff;
+			return ImageFormat.Wmf;
+		}
+
 		public static XmlNode GetXmlNode(this XElement element)
 		{
 			using (var xmlReader = element.CreateReader())

@@ -28,7 +28,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 					var thread = new Thread(delegate()
 					{
 						MessageFilter.Register();
-						var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
 						{
 							foreach (Shape shape in slide.Shapes)

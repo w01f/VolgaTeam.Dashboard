@@ -4,23 +4,28 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Layout;
+using DevExpress.XtraTab;
 using NewBizWiz.Core.Common;
 
-namespace NewBizWiz.CommonGUI.ToolForms
+namespace NewBizWiz.CommonGUI.ImageGallery
 {
-	public partial class FormImageGallery : MetroForm
+	//public partial class ImageGroupPage : UserControl
+	public partial class ImageGroupPage : XtraTabPage
 	{
-		private readonly List<ImageSource> _images = new List<ImageSource>();
+		public List<ImageSource> ImageSources { get; private set; }
 
-		public FormImageGallery(IEnumerable<ImageSource> imageSource)
+		public event EventHandler<EventArgs> DoubleClicked;
+ 		
+		public ImageGroupPage(ImageSourceGroup imageSourceGroup)
 		{
 			InitializeComponent();
-			_images.AddRange(imageSource);
-			gridControlLogoGallery.DataSource = _images;
+			Text = imageSourceGroup.Name;
+			ImageSources = new List<ImageSource>();
+			ImageSources.AddRange(imageSourceGroup.Images);
+			gridControlLogoGallery.DataSource = ImageSources;
 		}
 
 		public Image SelectedImage
@@ -32,13 +37,11 @@ namespace NewBizWiz.CommonGUI.ToolForms
 				{
 					var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
 					var encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(value, typeof(byte[])));
-					var selectedLogo = _images.FirstOrDefault(l => l.EncodedBigImage.Equals(encodedLogo));
-					if (selectedLogo != null)
-					{
-						var index = _images.IndexOf(selectedLogo);
-						layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
-						return;
-					}
+					var selectedLogo = ImageSources.FirstOrDefault(l => l.EncodedBigImage.Equals(encodedLogo));
+					if (selectedLogo == null) return;
+					var index = ImageSources.IndexOf(selectedLogo);
+					layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
+					return;
 				}
 				layoutViewLogoGallery.FocusedRowHandle = 0;
 			}
@@ -63,8 +66,8 @@ namespace NewBizWiz.CommonGUI.ToolForms
 		{
 			var layoutView = sender as LayoutView;
 			var hitInfo = layoutView.CalcHitInfo(layoutView.GridControl.PointToClient(MousePosition));
-			if (hitInfo.InField)
-				DialogResult = DialogResult.OK;
+			if (hitInfo.InField && DoubleClicked != null)
+				DoubleClicked(this, EventArgs.Empty);
 		}
 
 		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)

@@ -33,7 +33,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 							int currentSlideRowsCount = Controller.Instance.Grids.MultiGrid.Grid[k].GetLength(0);
 							if (File.Exists(presentationTemplatePath))
 							{
-								Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+								Presentation presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 								bool hideAdSpecsOnSlide = ((k + 1) < slidesCount && Controller.Instance.Grids.MultiGrid.ShowAdSpecsOnlyOnLastSlide) || Controller.Instance.Grids.MultiGrid.DoNotShowAdSpecs;
 								foreach (Slide slide in presentation.Slides)
 								{

@@ -10,7 +10,6 @@ using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.Properties;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.ToolForms
 {
@@ -31,7 +30,7 @@ namespace NewBizWiz.MediaSchedule.Controls.ToolForms
 			_scheduleList = ScheduleManager.GetShortScheduleList();
 			gridControlSchedules.Visible = true;
 			repositoryItemComboBoxStatus.Items.Clear();
-			repositoryItemComboBoxStatus.Items.AddRange(ListManager.Instance.Statuses);
+			repositoryItemComboBoxStatus.Items.AddRange(MediaMetaData.Instance.ListManager.Statuses);
 			gridControlSchedules.DataSource = new BindingList<ShortSchedule>(_scheduleList);
 			if (gridViewSchedules.RowCount > 0)
 				gridViewSchedules.FocusedRowHandle = 0;

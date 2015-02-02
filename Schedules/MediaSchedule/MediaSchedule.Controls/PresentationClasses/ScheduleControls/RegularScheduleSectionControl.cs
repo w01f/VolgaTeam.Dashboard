@@ -163,7 +163,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 		}
 
-		protected override void PowerPointInternal(IEnumerable<OutputScheduleGridBased> outputPages)
+		protected override void PowerPointInternal(IEnumerable<OutputSchedule> outputPages)
 		{
 			if (outputPages == null || !outputPages.Any()) return;
 			using (var formProgress = new FormProgress())
@@ -173,14 +173,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					RegularMediaSchedulePowerPointHelper.Instance.AppendOneSheetTableBased(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+					RegularMediaSchedulePowerPointHelper.Instance.AppendOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 					TrackOutput();
 					formProgress.Close();
 				});
 			}
 		}
 
-		protected override void PreviewInternal(IEnumerable<OutputScheduleGridBased> outputPages)
+		protected override void PreviewInternal(IEnumerable<OutputSchedule> outputPages)
 		{
 			if (outputPages == null || !outputPages.Any()) return;
 			var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
@@ -189,7 +189,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 			}
@@ -208,7 +208,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 		}
 
-		protected override void EmailInternal(IEnumerable<OutputScheduleGridBased> outputPages)
+		protected override void EmailInternal(IEnumerable<OutputSchedule> outputPages)
 		{
 			if (outputPages == null || !outputPages.Any()) return;
 			var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
@@ -217,7 +217,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 				formProgress.Close();
 			}
 			if (!File.Exists(tempFileName)) return;

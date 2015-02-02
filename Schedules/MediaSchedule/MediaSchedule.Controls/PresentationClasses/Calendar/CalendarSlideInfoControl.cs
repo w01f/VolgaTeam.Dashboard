@@ -53,7 +53,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
 			layoutViewLogoGallery.FocusedRowChanged += propertiesControl_PropertiesChanged;
-			gridControlLogoGallery.DataSource = MediaMetaData.Instance.ListManager.Images;
+			gridControlLogoGallery.DataSource = MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).ToList();
 			#endregion
 
 			#endregion
@@ -166,10 +166,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			#region Logo
 			buttonXLogo.Checked = _month.OutputData.ShowLogo;
 			checkEditLogoApplyForAll.Checked = _month.OutputData.ApplyForAllLogo;
-			var selectedLogo = MediaMetaData.Instance.ListManager.Images.FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo));
+			var selectedLogo = MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo));
 			if (selectedLogo != null)
 			{
-				var index = MediaMetaData.Instance.ListManager.Images.IndexOf(selectedLogo);
+				var index = MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).ToList().IndexOf(selectedLogo);
 				layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
 			}
 			else

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 using Pabo.Calendar;
@@ -35,6 +34,8 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 			monthCalendarClone.ActiveMonth.Month = _day.Date.Month;
 			monthCalendarClone.ActiveMonth.Year = _day.Date.Year;
 			monthCalendarClone.Header.TextColor = Color.Black;
+			if (_day is CalendarDayMondayBased)
+				monthCalendarClone.FirstDayOfWeek = 2;
 
 			UpdateTotals();
 
@@ -66,7 +67,7 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 
 		private void UpdateTotals()
 		{
-			labelControlClonedNumber.Text = string.Format("Cloned Days: <b>{0}</b>", _selectedDates.Count.ToString());
+			labelControlClonedNumber.Text = string.Format("Cloned Days: <b>{0}</b>", _selectedDates.Count);
 		}
 
 		private void AddSelectedDate(DateTime selectedDate)

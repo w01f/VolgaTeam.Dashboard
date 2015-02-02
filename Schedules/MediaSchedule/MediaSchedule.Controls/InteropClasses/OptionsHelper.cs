@@ -33,7 +33,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							var copyOfReplacementList = new Dictionary<string, string>(pageDictionary);
 							var presentationTemplatePath = Path.Combine(OptionsTemplatePath, page.TemplateFileName);
 							if (!File.Exists(presentationTemplatePath)) return;
-							var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							var targedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
 							if (page.Logos != null && slideNumber < page.Logos.Length)

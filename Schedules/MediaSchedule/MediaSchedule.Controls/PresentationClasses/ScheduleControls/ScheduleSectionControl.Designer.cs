@@ -41,6 +41,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.advBandedGridViewSchedule = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnIndex = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridBandLogo = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.bandedGridColumnLogoImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.gridBandStation = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnStation = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxStations = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -76,6 +79,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnGRP = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnCPP = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.bandedGridColumnLogoSource = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditSpot = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEdit000s = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
@@ -115,6 +119,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsQuickShare = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageOptionsLine = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsLine = new System.Windows.Forms.Panel();
+			this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditOutputNoBrackets = new DevExpress.XtraEditors.CheckEdit();
 			this.spinEditOutputLimitPeriods = new DevExpress.XtraEditors.SpinEdit();
@@ -156,6 +161,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageDataSpecs = new DevExpress.XtraTab.XtraTabPage();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStations)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDayparts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditProgram)).BeginInit();
@@ -225,7 +231,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             this.repositoryItemSpinEdit000s,
             this.repositoryItemComboBoxDayparts,
             this.repositoryItemPopupContainerEditProgram,
-            this.repositoryItemTextEditProgram});
+            this.repositoryItemTextEditProgram,
+            this.repositoryItemPictureEdit});
 			this.gridControlSchedule.Size = new System.Drawing.Size(826, 477);
 			this.gridControlSchedule.TabIndex = 0;
 			this.gridControlSchedule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -295,6 +302,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.advBandedGridViewSchedule.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.advBandedGridViewSchedule.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBandId,
+            this.gridBandLogo,
             this.gridBandStation,
             this.gridBandProgram,
             this.gridBandRate,
@@ -302,6 +310,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             this.gridBandTotals});
 			this.advBandedGridViewSchedule.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.bandedGridColumnIndex,
+            this.bandedGridColumnLogoImage,
+            this.bandedGridColumnLogoSource,
             this.bandedGridColumnStation,
             this.bandedGridColumnName,
             this.bandedGridColumnDay,
@@ -347,6 +357,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.advBandedGridViewSchedule.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridViewSchedule.OptionsView.ShowIndicator = false;
 			this.advBandedGridViewSchedule.RowHeight = 30;
+			this.advBandedGridViewSchedule.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.advBandedGridViewSchedule_RowCellClick);
 			this.advBandedGridViewSchedule.CustomDrawColumnHeader += new DevExpress.XtraGrid.Views.Grid.ColumnHeaderCustomDrawEventHandler(this.advBandedGridViewSchedule_CustomDrawColumnHeader);
 			this.advBandedGridViewSchedule.CustomDrawFooter += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.advBandedGridViewSchedule_CustomDrawFooter);
 			this.advBandedGridViewSchedule.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.advBandedGridViewSchedule_CustomRowCellEditForEditing);
@@ -383,6 +394,50 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.bandedGridColumnIndex.Visible = true;
 			this.bandedGridColumnIndex.Width = 35;
 			// 
+			// gridBandLogo
+			// 
+			this.gridBandLogo.Caption = "Logo";
+			this.gridBandLogo.Columns.Add(this.bandedGridColumnLogoImage);
+			this.gridBandLogo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridBandLogo.Name = "gridBandLogo";
+			this.gridBandLogo.OptionsBand.FixedWidth = true;
+			this.gridBandLogo.VisibleIndex = 1;
+			this.gridBandLogo.Width = 120;
+			// 
+			// bandedGridColumnLogoImage
+			// 
+			this.bandedGridColumnLogoImage.AppearanceCell.Options.UseTextOptions = true;
+			this.bandedGridColumnLogoImage.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.bandedGridColumnLogoImage.AutoFillDown = true;
+			this.bandedGridColumnLogoImage.Caption = "Logo";
+			this.bandedGridColumnLogoImage.ColumnEdit = this.repositoryItemPictureEdit;
+			this.bandedGridColumnLogoImage.FieldName = "LogoImage";
+			this.bandedGridColumnLogoImage.Name = "bandedGridColumnLogoImage";
+			this.bandedGridColumnLogoImage.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumnLogoImage.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnLogoImage.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnLogoImage.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumnLogoImage.Visible = true;
+			this.bandedGridColumnLogoImage.Width = 120;
+			// 
+			// repositoryItemPictureEdit
+			// 
+			this.repositoryItemPictureEdit.AllowFocused = false;
+			this.repositoryItemPictureEdit.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.AppearanceDisabled.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.AppearanceFocused.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.Name = "repositoryItemPictureEdit";
+			this.repositoryItemPictureEdit.NullText = "No Logo";
+			this.repositoryItemPictureEdit.ReadOnly = true;
+			this.repositoryItemPictureEdit.ShowMenu = false;
+			this.repositoryItemPictureEdit.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.False;
+			this.repositoryItemPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			// 
 			// gridBandStation
 			// 
 			this.gridBandStation.Caption = "Station";
@@ -392,7 +447,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.gridBandStation.MinWidth = 20;
 			this.gridBandStation.Name = "gridBandStation";
 			this.gridBandStation.OptionsBand.FixedWidth = true;
-			this.gridBandStation.VisibleIndex = 1;
+			this.gridBandStation.VisibleIndex = 2;
 			this.gridBandStation.Width = 73;
 			// 
 			// bandedGridColumnStation
@@ -491,7 +546,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.gridBandProgram.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
 			this.gridBandProgram.MinWidth = 238;
 			this.gridBandProgram.Name = "gridBandProgram";
-			this.gridBandProgram.VisibleIndex = 2;
+			this.gridBandProgram.VisibleIndex = 3;
 			this.gridBandProgram.Width = 240;
 			// 
 			// bandedGridColumnName
@@ -791,7 +846,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.gridBandRate.MinWidth = 20;
 			this.gridBandRate.Name = "gridBandRate";
 			this.gridBandRate.OptionsBand.FixedWidth = true;
-			this.gridBandRate.VisibleIndex = 3;
+			this.gridBandRate.VisibleIndex = 4;
 			this.gridBandRate.Width = 100;
 			// 
 			// bandedGridColumnRate
@@ -888,7 +943,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.gridBandSpots.Caption = "Spots";
 			this.gridBandSpots.MinWidth = 20;
 			this.gridBandSpots.Name = "gridBandSpots";
-			this.gridBandSpots.VisibleIndex = 4;
+			this.gridBandSpots.VisibleIndex = 5;
 			this.gridBandSpots.Width = 793;
 			// 
 			// gridBandTotals
@@ -901,7 +956,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.gridBandTotals.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
 			this.gridBandTotals.Name = "gridBandTotals";
 			this.gridBandTotals.OptionsBand.FixedWidth = true;
-			this.gridBandTotals.VisibleIndex = 5;
+			this.gridBandTotals.VisibleIndex = 6;
 			this.gridBandTotals.Width = 140;
 			// 
 			// bandedGridColumnTotalSpots
@@ -986,6 +1041,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "CPP", "{0:c2}", "")});
 			this.bandedGridColumnCPP.Visible = true;
 			this.bandedGridColumnCPP.Width = 71;
+			// 
+			// bandedGridColumnLogoSource
+			// 
+			this.bandedGridColumnLogoSource.Caption = "Logo Source";
+			this.bandedGridColumnLogoSource.FieldName = "LogoSource";
+			this.bandedGridColumnLogoSource.Name = "bandedGridColumnLogoSource";
 			// 
 			// repositoryItemSpinEditSpot
 			// 
@@ -1473,6 +1534,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// pnOptionsLine
 			// 
 			this.pnOptionsLine.BackColor = System.Drawing.Color.Transparent;
+			this.pnOptionsLine.Controls.Add(this.buttonXLogo);
 			this.pnOptionsLine.Controls.Add(this.checkEditUseDecimalRate);
 			this.pnOptionsLine.Controls.Add(this.checkEditOutputNoBrackets);
 			this.pnOptionsLine.Controls.Add(this.spinEditOutputLimitPeriods);
@@ -1496,6 +1558,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsLine.Size = new System.Drawing.Size(292, 475);
 			this.pnOptionsLine.TabIndex = 0;
 			// 
+			// buttonXLogo
+			// 
+			this.buttonXLogo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXLogo.AutoCheckOnClick = true;
+			this.buttonXLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXLogo.Location = new System.Drawing.Point(158, 256);
+			this.buttonXLogo.Name = "buttonXLogo";
+			this.buttonXLogo.Size = new System.Drawing.Size(113, 27);
+			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXLogo.TabIndex = 116;
+			this.buttonXLogo.Text = "Logo";
+			this.buttonXLogo.TextColor = System.Drawing.Color.Black;
+			this.buttonXLogo.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
+			// 
 			// checkEditUseDecimalRate
 			// 
 			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -1503,7 +1580,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(15, 426);
 			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
 			this.checkEditUseDecimalRate.Properties.Caption = "Use Decimals with Rates";
-			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(267, 20);
+			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(267, 19);
 			this.checkEditUseDecimalRate.StyleController = this.styleController;
 			this.checkEditUseDecimalRate.TabIndex = 115;
 			this.checkEditUseDecimalRate.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
@@ -1515,7 +1592,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(15, 452);
 			this.checkEditOutputNoBrackets.Name = "checkEditOutputNoBrackets";
 			this.checkEditOutputNoBrackets.Properties.Caption = "No Brackets for Station on slide";
-			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(267, 20);
+			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(267, 19);
 			this.checkEditOutputNoBrackets.StyleController = this.styleController;
 			this.checkEditOutputNoBrackets.TabIndex = 114;
 			this.checkEditOutputNoBrackets.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
@@ -1555,7 +1632,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.checkEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 366);
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 362);
 			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
 			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
 			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
@@ -1571,7 +1648,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(15, 399);
 			this.checkEditOutputLimitQuarters.Name = "checkEditOutputLimitQuarters";
 			this.checkEditOutputLimitQuarters.Properties.Caption = "Output each Quarter on a Slide";
-			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(267, 20);
+			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(267, 19);
 			this.checkEditOutputLimitQuarters.StyleController = this.styleController;
 			this.checkEditOutputLimitQuarters.TabIndex = 111;
 			this.checkEditOutputLimitQuarters.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitQuarters_CheckedChanged);
@@ -2056,6 +2133,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.Size = new System.Drawing.Size(1132, 593);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStations)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDayparts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditProgram)).EndInit();
@@ -2218,17 +2296,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 	    protected CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		private DevExpress.XtraEditors.LabelControl labelControlFlexFlightDatesWarning;
-	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsQuickShare;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandStation;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandProgram;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRate;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSpots;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals;
+		protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsQuickShare;
 		private DevExpress.XtraEditors.CheckEdit checkEditOutputNoBrackets;
 	    protected DevExpress.XtraTab.XtraTabControl xtraTabControlData;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageDataSchedule;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageDataSpecs;
 		private DevExpress.XtraEditors.CheckEdit checkEditUseDecimalRate;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnLogoImage;
+		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandStation;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandProgram;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRate;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSpots;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnLogoSource;
+		private DevComponents.DotNetBar.ButtonX buttonXLogo;
     }
 }

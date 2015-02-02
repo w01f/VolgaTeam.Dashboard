@@ -54,7 +54,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
 			layoutViewLogoGallery.FocusedRowChanged += propertiesControl_PropertiesChanged;
-			gridControlLogoGallery.DataSource = ListManager.Instance.Images;
+			gridControlLogoGallery.DataSource = ListManager.Instance.Images.SelectMany(g => g.Images).ToList();
 			#endregion
 
 			#endregion
@@ -172,10 +172,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			buttonXLogo.Enabled = ListManager.Instance.DefaultCalendarViewSettings.EnableLogo; ;
 			buttonXLogo.Checked = OutputData.ShowLogo && buttonXLogo.Enabled;
 			checkEditLogoApplyForAll.Checked = OutputData.ApplyForAllLogo;
-			var selectedLogo = ListManager.Instance.Images.FirstOrDefault(l => l.EncodedBigImage.Equals(OutputData.EncodedLogo));
+			var selectedLogo = ListManager.Instance.Images.SelectMany(g => g.Images).FirstOrDefault(l => l.EncodedBigImage.Equals(OutputData.EncodedLogo));
 			if (selectedLogo != null)
 			{
-				var index = ListManager.Instance.Images.IndexOf(selectedLogo);
+				var index = ListManager.Instance.Images.SelectMany(g => g.Images).ToList().IndexOf(selectedLogo);
 				layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
 			}
 			else

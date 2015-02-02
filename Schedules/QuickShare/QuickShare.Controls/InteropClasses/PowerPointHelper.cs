@@ -7,7 +7,7 @@ namespace NewBizWiz.QuickShare.Controls.InteropClasses
 	{
 		protected override string OneSheetTemplatePath
 		{
-			get { return BusinessWrapper.Instance.OutputManager.OneSheetTableBasedTemplatesFolderPath; }
+			get { return BusinessWrapper.Instance.OutputManager.OneSheetTemplatesFolderPath; }
 		}
 
 		protected override string OptionsTemplatePath

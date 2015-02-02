@@ -17,6 +17,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Common;
+using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;

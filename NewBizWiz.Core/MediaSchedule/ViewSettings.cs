@@ -14,6 +14,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowTime { get; set; }
 		public bool ShowRate { get; set; }
 		public bool ShowCost { get; set; }
+		public bool ShowLogo { get; set; }
 		public bool UseDecimalRates { get; set; }
 		public bool OutputNoBrackets { get; set; }
 		public bool ShowTotalPeriods { get; set; }
@@ -34,6 +35,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowTime>" + ShowTime + @"</ShowTime>");
 			result.AppendLine(@"<ShowRate>" + ShowRate + @"</ShowRate>");
 			result.AppendLine(@"<ShowCost>" + ShowCost + @"</ShowCost>");
+			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
 			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
 			result.AppendLine(@"<OutputNoBrackets>" + OutputNoBrackets + @"</OutputNoBrackets>");
 			result.AppendLine(@"<ShowTotalPeriods>" + ShowTotalPeriods + @"</ShowTotalPeriods>");
@@ -104,6 +106,13 @@ namespace NewBizWiz.Core.MediaSchedule
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
 								ShowCost = temp;
+						}
+						break;
+					case "ShowLogo":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowLogo = temp;
 						}
 						break;
 					case "UseDecimalRates":
@@ -224,6 +233,13 @@ namespace NewBizWiz.Core.MediaSchedule
 						bool temp;
 						if (Boolean.TryParse(value, out temp))
 							ShowCost = temp;
+					}
+					break;
+				case "Logo":
+					{
+						bool temp;
+						if (Boolean.TryParse(value, out temp))
+							ShowLogo = temp;
 					}
 					break;
 				case "Use Decimals with Rates":

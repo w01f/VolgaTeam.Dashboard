@@ -36,7 +36,7 @@ namespace NewBizWiz.Core.Common
 		private void LoadImages()
 		{
 			Images.Clear();
-			foreach (var file in Directory.GetFiles(_storageFolderPath, "*.png"))
+			foreach (var file in Directory.GetFiles(_storageFolderPath, String.Format("*{0}", ImageSource.ImageFileExtension)))
 			{
 				using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
 				{

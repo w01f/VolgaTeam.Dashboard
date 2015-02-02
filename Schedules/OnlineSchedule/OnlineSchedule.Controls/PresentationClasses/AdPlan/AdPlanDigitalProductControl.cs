@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
+using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
@@ -75,7 +76,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				DigitalProduct.FullName;
 			buttonXEditName.Checked = DigitalProduct.AdPlanSettings.EditName;
 
-			var defaultImage = Core.OnlineSchedule.ListManager.Instance.Images.FirstOrDefault(i => i.IsDefault);
+			var defaultImage = Core.OnlineSchedule.ListManager.Instance.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
 			pbLogo.Image = DigitalProduct.AdPlanSettings.Logo ?? (defaultImage != null ? defaultImage.BigImage : null);
 
 			checkEditFlightDates.Text = DigitalProduct.Parent.FlightDates;

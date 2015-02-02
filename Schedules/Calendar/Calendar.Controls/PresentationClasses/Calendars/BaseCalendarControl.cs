@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;

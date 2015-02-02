@@ -45,7 +45,7 @@ namespace NewBizWiz.CommonGUI.Interop
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = _powerPointObject.Presentations.Open(mainPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(mainPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					for (int j = 0; j < (itemsCount - additionalFileTemplateIndex); j += mainFileTemplateIndex)
 					{
 						foreach (Slide slide in presentation.Slides)
@@ -146,7 +146,7 @@ namespace NewBizWiz.CommonGUI.Interop
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = _powerPointObject.Presentations.Open(additionalPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(additionalPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -253,7 +253,7 @@ namespace NewBizWiz.CommonGUI.Interop
 					{
 						var presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryTableFolder, String.Format(MasterWizardManager.SimpleSummaryTableTemplate, summary.ItemsPerTable));
 						if (!File.Exists(presentationTemplatePath)) continue;
-						var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
 						{
 							foreach (Shape shape in slide.Shapes)

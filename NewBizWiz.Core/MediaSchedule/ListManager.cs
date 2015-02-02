@@ -12,7 +12,8 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		protected abstract string StrategyFileName { get; }
 		protected abstract string XmlRootPrefix { get; }
-		protected abstract string ImageFolderPath { get; }
+		protected abstract string MainImageFolderPath { get; }
+		protected abstract string AdditionalImageFolderPath { get; }
 		protected abstract string ProgramStrategyDefaultLogoPath { get; }
 
 		protected MediaListManager()
@@ -37,24 +38,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			DefaultOptionsSummarySettings = new OptionsSummarySettings();
 			DefaultBroadcastCalendarSettings = new CalendarToggleSettings();
 			DefaultCustomCalendarSettings = new CalendarToggleSettings();
-
-			var folderPath = Path.Combine(ImageFolderPath, "Big Logos");
-			if (Directory.Exists(folderPath))
-				BigImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(ImageFolderPath, "Small Logos");
-			if (Directory.Exists(folderPath))
-				SmallImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(ImageFolderPath, "Tiny Logos");
-			if (Directory.Exists(folderPath))
-				TinyImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(ImageFolderPath, "Xtra Tiny Logos");
-			if (Directory.Exists(folderPath))
-				XtraTinyImageFolder = new DirectoryInfo(folderPath);
-			Images = new List<ImageSource>();
-
+			
+			Images = new List<ImageSourceGroup>();
 			LoadImages();
 
 			LoadLists();
@@ -64,7 +49,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public DirectoryInfo SmallImageFolder { get; set; }
 		public DirectoryInfo TinyImageFolder { get; set; }
 		public DirectoryInfo XtraTinyImageFolder { get; set; }
-		public List<ImageSource> Images { get; set; }
+		public List<ImageSourceGroup> Images { get; set; }
 		public List<string> SlideHeaders { get; set; }
 		public List<string> ClientTypes { get; set; }
 		public List<string> Lengths { get; set; }
@@ -258,23 +243,30 @@ namespace NewBizWiz.Core.MediaSchedule
 		private void LoadImages()
 		{
 			Images.Clear();
-			if (BigImageFolder == null || SmallImageFolder == null || TinyImageFolder == null || XtraTinyImageFolder == null) return;
-			foreach (var bigImageFile in BigImageFolder.GetFiles("*.png"))
-			{
-				var imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
-				var imageFileExtension = Path.GetExtension(bigImageFile.FullName);
+			var defaultGroup = new ImageSourceGroup(MainImageFolderPath) { Name = "Gallery", Order = -1 };
+			if (defaultGroup.Images.Any())
+				Images.Add(defaultGroup);
 
-				var smallImageFilePath = Path.Combine(SmallImageFolder.FullName, string.Format("{0}2{1}", new[] { imageFileName, imageFileExtension }));
-				var tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, string.Format("{0}3{1}", new[] { imageFileName, imageFileExtension }));
-				var xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
-				if (!File.Exists(smallImageFilePath) || !File.Exists(tinyImageFilePath) || !File.Exists(xtraTinyImageFilePath)) continue;
-				var imageSource = new ImageSource();
-				imageSource.IsDefault = bigImageFile.Name.ToLower().Contains("default");
-				imageSource.BigImage = new Bitmap(bigImageFile.FullName);
-				imageSource.SmallImage = new Bitmap(smallImageFilePath);
-				imageSource.TinyImage = new Bitmap(tinyImageFilePath);
-				imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
-				Images.Add(imageSource);
+			if (Directory.Exists(AdditionalImageFolderPath))
+			{
+				var contentDescriptionPath = Path.Combine(AdditionalImageFolderPath, "order.txt");
+				if (File.Exists(contentDescriptionPath))
+				{
+					var groupNames = File.ReadAllLines(contentDescriptionPath);
+					var groupIndex = 0;
+					foreach (var groupName in groupNames)
+					{
+						if (String.IsNullOrEmpty(groupName)) continue;
+						var groupFolderPath = Path.Combine(AdditionalImageFolderPath, groupName);
+						if (!Directory.Exists(groupFolderPath)) continue;
+						var imageGroup = new ImageSourceGroup(groupFolderPath);
+						imageGroup.Name = groupName;
+						imageGroup.Order = groupIndex;
+						if (!imageGroup.Images.Any()) continue;
+						Images.Add(imageGroup);
+						groupIndex++;
+					}
+				}
 			}
 
 			DefaultStrategyLogo = ImageSource.FromImage(File.Exists(ProgramStrategyDefaultLogoPath) ? new Bitmap(ProgramStrategyDefaultLogoPath) : null);
@@ -352,9 +344,14 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return "TV"; }
 		}
 
-		protected override string ImageFolderPath
+		protected override string MainImageFolderPath
 		{
 			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+		}
+
+		protected override string AdditionalImageFolderPath
+		{
+			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV_2\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 
 		protected override string ProgramStrategyDefaultLogoPath
@@ -375,9 +372,14 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return "Radio"; }
 		}
 
-		protected override string ImageFolderPath
+		protected override string MainImageFolderPath
 		{
 			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+		}
+
+		protected override string AdditionalImageFolderPath
+		{
+			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio_2\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 
 		protected override string ProgramStrategyDefaultLogoPath

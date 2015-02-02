@@ -21,7 +21,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -83,7 +83,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cover);
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.ThemeFilePath);

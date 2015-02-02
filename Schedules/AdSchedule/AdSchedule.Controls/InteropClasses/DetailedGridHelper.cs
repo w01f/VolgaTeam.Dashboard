@@ -31,7 +31,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 							var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.DetailedGridGridBasedTemlatesFolderPath, string.Format(OutputManager.DetailedGridGridBasedSlideTemplate, new object[] { Controller.Instance.Grids.DetailedGrid.SelectedColumnsCount, (Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? "adnotes" : "no_adnotes"), rowsCount }));
 							var currentSlideRowsCount = outputControl.Grid[k].GetLength(0);
 							if (!File.Exists(presentationTemplatePath)) continue;
-							var presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							bool hideAdSpecsOnSlide = ((k + 1) < slidesCount && outputControl.ShowAdSpecsOnlyOnLastSlide) || outputControl.DoNotShowAdSpecs;
 							foreach (Slide slide in presentation.Slides)
 							{

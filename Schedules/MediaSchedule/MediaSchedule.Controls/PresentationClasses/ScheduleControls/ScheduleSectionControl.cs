@@ -20,6 +20,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.CommonGUI.Common;
+using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
@@ -186,6 +187,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			bandedGridColumnGRP.SummaryItem.FieldName = ScheduleSection.ProgramGRPDataColumnName;
 			bandedGridColumnIndex.FieldName = ScheduleSection.ProgramIndexDataColumnName;
 			bandedGridColumnLength.FieldName = ScheduleSection.ProgramLengthDataColumnName;
+			bandedGridColumnLogoImage.FieldName = ScheduleSection.ProgramLogoImageDataColumnName;
+			bandedGridColumnLogoSource.FieldName = ScheduleSection.ProgramLogoSourceDataColumnName;
 			bandedGridColumnName.FieldName = ScheduleSection.ProgramNameDataColumnName;
 			bandedGridColumnRate.FieldName = ScheduleSection.ProgramRateDataColumnName;
 			bandedGridColumnRating.FieldName = ScheduleSection.ProgramRatingDataColumnName;
@@ -214,7 +217,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			advBandedGridViewSchedule.EndUpdate();
 			if (_dragDropHelper == null && ScheduleSection.Programs.Count > 0)
 			{
-				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, 25);
+				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, 40);
 				_dragDropHelper.AfterDrop += gridControlSchedule_AfterDrop;
 			}
 			if (focussedRow >= 0 && focussedRow < advBandedGridViewSchedule.RowCount)
@@ -428,6 +431,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(targetRowHandle, null, -1, false)));
 			}
 			else if (targetColumn == bandedGridColumnIndex ||
+					 targetColumn == bandedGridColumnLogoImage ||
 					 targetColumn == bandedGridColumnStation ||
 					 targetColumn == bandedGridColumnDaypart ||
 					 targetColumn == bandedGridColumnName)
@@ -480,6 +484,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			buttonXDaypart.Checked = ScheduleSection.ShowDaypart;
 			buttonXGRP.Checked = ScheduleSection.ShowGRP;
 			buttonXLength.Checked = ScheduleSection.ShowLenght;
+			buttonXLogo.Checked = ScheduleSection.ShowLogo;
 			buttonXStation.Checked = ScheduleSection.ShowStation;
 			buttonXTime.Checked = ScheduleSection.ShowTime;
 			buttonXSpots.Text = String.Format("{0}s", SpotTitle);
@@ -524,6 +529,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			bandedGridColumnLength.Visible = ScheduleSection.ShowLenght;
 			bandedGridColumnDay.Visible = ScheduleSection.ShowDay;
 			bandedGridColumnTime.Visible = ScheduleSection.ShowTime;
+			gridBandLogo.Visible = ScheduleSection.ShowLogo;
 
 			bandedGridColumnStation.Visible = ScheduleSection.ShowStation;
 			bandedGridColumnDaypart.Visible = ScheduleSection.ShowDaypart;
@@ -657,6 +663,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			ScheduleSection.ShowDaypart = buttonXDaypart.Checked;
 			ScheduleSection.ShowGRP = buttonXGRP.Checked;
 			ScheduleSection.ShowLenght = buttonXLength.Checked;
+			ScheduleSection.ShowLogo = buttonXLogo.Checked;
 			ScheduleSection.ShowStation = buttonXStation.Checked;
 			ScheduleSection.ShowTime = buttonXTime.Checked;
 
@@ -695,6 +702,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			bandedGridColumnLength.Visible = ScheduleSection.ShowLenght;
 			bandedGridColumnDay.Visible = ScheduleSection.ShowDay;
 			bandedGridColumnTime.Visible = ScheduleSection.ShowTime;
+			gridBandLogo.Visible = ScheduleSection.ShowLogo;
 
 			bandedGridColumnStation.Visible = ScheduleSection.ShowStation;
 			bandedGridColumnDaypart.Visible = ScheduleSection.ShowDaypart;
@@ -943,6 +951,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				e.Menu.Items.Add(menuItem);
 		}
 
+		private void advBandedGridViewSchedule_RowCellClick(object sender, RowCellClickEventArgs e)
+		{
+			if (e.Column != bandedGridColumnLogoImage) return;
+			if (advBandedGridViewSchedule.FocusedRowHandle == GridControl.InvalidRowHandle) return;
+			var logo = ImageSource.FromString(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoSource) as String);
+			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
+			{
+				form.SelectedImage = logo != null ? logo.BigImage : null;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (form.SelectedImageSource == null) return;
+				advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoSource, form.SelectedImageSource.Serialize());
+				advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoImage, form.SelectedImageSource.SmallImage);
+			}
+		}
+
 		private void gridControlSchedule_AfterDrop(object sender, DragEventArgs e)
 		{
 			var grid = sender as GridControl;
@@ -986,9 +1009,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			get { return null; }
 		}
 
-		private IEnumerable<OutputScheduleGridBased> PrepareOutputTableBased()
+		private IEnumerable<OutputSchedule> PrepareOutput()
 		{
-			var outputPages = new List<OutputScheduleGridBased>();
+			var outputPages = new List<OutputSchedule>();
 			if (_localSchedule == null) return outputPages;
 			var defaultProgram = ScheduleSection.Programs.FirstOrDefault();
 			if (defaultProgram == null) return outputPages;
@@ -1023,7 +1046,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				{
 					for (var k = spotInterval.Start; k < (spotInterval.End == 0 ? 1 : spotInterval.End); k += spotsPerSlide)
 					{
-						var outputPage = new OutputScheduleGridBased(ScheduleSection);
+						var outputPage = new OutputSchedule(ScheduleSection);
 
 						outputPage.Advertiser = _localSchedule.BusinessName;
 						outputPage.DecisionMaker = _localSchedule.DecisionMaker;
@@ -1050,6 +1073,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 						outputPage.ShowLength = buttonXLength.Checked;
 						outputPage.ShowTotalSpots = buttonXTotalSpots.Checked;
 						outputPage.ShowSpots = buttonXSpots.Checked;
+						outputPage.ShowLogo = buttonXLogo.Checked;
 
 						#region Set Totals
 
@@ -1079,7 +1103,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 							if ((i + j) < ScheduleSection.Programs.Count)
 							{
 								var program = ScheduleSection.Programs[i + j];
-								var outputProgram = new OutputProgramGridBased(outputPage);
+								var outputProgram = new OutputProgram(outputPage);
 								outputProgram.Name = program.Name + (buttonXDaypart.Checked ? ("-" + program.Daypart) : string.Empty);
 								outputProgram.LineID = program.Index.ToString("00");
 								outputProgram.Station = program.Station;
@@ -1092,6 +1116,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 								outputProgram.GRP = buttonXGRP.Checked ? program.GRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : String.Empty;
 								outputProgram.TotalRate = buttonXCost.Checked ? program.Cost.ToString(ScheduleSection.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
 								outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
+								outputProgram.Logo = program.Logo != null ? program.Logo.Clone() : null;
 
 								#region Set Spots Values
 
@@ -1150,6 +1175,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 						#endregion
 
+						outputPage.GetLogos();
 						outputPage.PopulateScheduleReplacementsList();
 
 						outputPages.Add(outputPage);
@@ -1181,22 +1207,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			AddActivity(new UserActivity("Preview", options));
 		}
 
-		protected virtual void PowerPointInternal(IEnumerable<OutputScheduleGridBased> outputPages) { }
-		protected virtual void EmailInternal(IEnumerable<OutputScheduleGridBased> outputPages) { }
-		protected virtual void PreviewInternal(IEnumerable<OutputScheduleGridBased> outputData) { }
+		protected virtual void PowerPointInternal(IEnumerable<OutputSchedule> outputPages) { }
+		protected virtual void EmailInternal(IEnumerable<OutputSchedule> outputPages) { }
+		protected virtual void PreviewInternal(IEnumerable<OutputSchedule> outputData) { }
 
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
-			IEnumerable<OutputScheduleGridBased> outputPages = null;
+			IEnumerable<OutputSchedule> outputPages = null;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing slides so your presentation can look AWESOME!";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutputTableBased(); }));
+				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
@@ -1210,13 +1236,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SaveSchedule();
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
-			IEnumerable<OutputScheduleGridBased> outputPages = null;
+			IEnumerable<OutputSchedule> outputPages = null;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutputTableBased(); }));
+				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
@@ -1230,13 +1256,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SaveSchedule();
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
-			IEnumerable<OutputScheduleGridBased> outputPages = null;
+			IEnumerable<OutputSchedule> outputPages = null;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutputTableBased(); }));
+				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();

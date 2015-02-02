@@ -11,8 +11,8 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 	public class OutputManager
 	{
 		public static string MasterWizardsRootFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-		private const string OneSheetsTableBasedTemplatesFolderName = @"{0}\{1} Slides\tables";
-		public const string OneSheetTableBasedTemplateFileName = @"{0}\{1}_programs\{1}-{2}.pptx";
+		private const string OneSheetTemplatesFolderName = @"{0}\{1} Slides\tables";
+		public const string OneSheetTemplateFileName = @"{0}\{1}\{2}_programs\{2}-{3}.pptx";
 
 		private const string StrategyTemplatesFolderName = @"{0}\{1} Slides\strategy";
 		public const string StrategyTemplateFileName = @"strategy_{0}.pptx";
@@ -32,9 +32,9 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 
 		public const string BackgroundFilePath = @"{0}\{1}";
 
-		public string OneSheetTableBasedTemplatesFolderPath
+		public string OneSheetTemplatesFolderPath
 		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(OneSheetsTableBasedTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
+			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(OneSheetTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
 		}
 
 		public string StrategyTemplatesFolderPath
@@ -76,7 +76,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 
 		private void LoadColors()
 		{
-			ScheduleColors.AddRange(LoadColors(OneSheetTableBasedTemplatesFolderPath));
+			ScheduleColors.AddRange(LoadColors(OneSheetTemplatesFolderPath));
 			SnapshotColors.AddRange(LoadColors(SnapshotTemplatesFolderPath));
 			OptionsColors.AddRange(LoadColors(OptionsTemplatesFolderPath));
 		}

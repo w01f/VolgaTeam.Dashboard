@@ -75,7 +75,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = parent.Snapshots.Any() ? parent.Snapshots.Max(s => s.Index) + 1 : 0;
-			Logo = MediaMetaData.Instance.ListManager.Images.FirstOrDefault(i => i.IsDefault);
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
 			TotalWeeks = 1;
 			Programs = new List<SnapshotProgram>();
 
@@ -105,7 +105,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<Index>" + Index + @"</Index>");
 			if (!String.IsNullOrEmpty(Name))
 				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
-			if (Logo != null && Logo.ContainsData)
+			if (Logo != null && Logo.ContainsData && !Logo.IsDefault)
 				result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
 			if (!String.IsNullOrEmpty(Comment))
 				result.AppendLine(@"<Comment>" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment>");
@@ -370,7 +370,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			UniqueID = Guid.NewGuid();
 			Index = Parent.Programs.Count + 1;
 			Station = Parent.Parent.Stations.Count(x => x.Available) == 1 ? Parent.Parent.Stations.Where(x => x.Available).Select(x => x.Name).FirstOrDefault() : null;
-			Logo = MediaMetaData.Instance.ListManager.Images.FirstOrDefault(i => i.IsDefault);
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
 		}
 
 		public string Serialize()
@@ -382,7 +382,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				result.AppendLine(@"<Name>" + _name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
 			if (!String.IsNullOrEmpty(Station))
 				result.AppendLine(@"<Station>" + Station.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Station>");
-			if (Logo != null && Logo.ContainsData)
+			if (Logo != null && Logo.ContainsData && !Logo.IsDefault)
 				result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
 			if (!String.IsNullOrEmpty(Daypart))
 				result.AppendLine(@"<Daypart>" + Daypart.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Daypart>");

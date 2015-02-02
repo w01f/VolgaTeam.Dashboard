@@ -46,7 +46,7 @@ namespace NewBizWiz.Core.Interop
 		protected bool _containsPageNumbers = false;
 		private bool _is2003;
 		private bool _isFirstLaunch;
-		protected Application _powerPointObject;
+		private Application _powerPointObject;
 		private int _powerPointProcessId;
 		private IntPtr _windowHandle = IntPtr.Zero;
 		private int previouseSlideIndex;
@@ -65,7 +65,13 @@ namespace NewBizWiz.Core.Interop
 
 		public Application PowerPointObject
 		{
-			get { return _powerPointObject; }
+			get 
+			{
+				if (IsActive) return _powerPointObject;
+				Disconnect();
+				Connect();
+				return _powerPointObject; 
+			}
 		}
 
 		public bool Foreground

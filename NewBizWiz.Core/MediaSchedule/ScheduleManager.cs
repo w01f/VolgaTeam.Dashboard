@@ -946,7 +946,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public void RebuildOptionSetIndexes()
 		{
 			var i = 0;
-			foreach (var optionSet in Options.OrderBy(o=>o.Index))
+			foreach (var optionSet in Options.OrderBy(o => o.Index))
 			{
 				optionSet.Index = i;
 				i++;
@@ -959,6 +959,8 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		public const string ProgramDataTableName = "Programs";
 		public const string ProgramIndexDataColumnName = "Index";
+		public const string ProgramLogoImageDataColumnName = "LogoImage";
+		public const string ProgramLogoSourceDataColumnName = "LogoSource";
 		public const string ProgramStationDataColumnName = "Station";
 		public const string ProgramNameDataColumnName = "Name";
 		public const string ProgramDayDataColumnName = "Day";
@@ -993,6 +995,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			ShowSpots = true;
 			ShowEmptySpots = false;
 			ShowCost = true;
+			ShowLogo = false;
 
 			ShowTotalPeriods = true;
 			ShowTotalSpots = true;
@@ -1048,6 +1051,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowSpots>" + ShowSpots + @"</ShowSpots>");
 			result.AppendLine(@"<ShowEmptySpots>" + ShowEmptySpots + @"</ShowEmptySpots>");
 			result.AppendLine(@"<ShowCost>" + ShowCost + @"</ShowCost>");
+			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
 			result.AppendLine(@"<ShowAverageRate>" + ShowAverageRate + @"</ShowAverageRate>");
 			result.AppendLine(@"<ShowDiscount>" + ShowDiscount + @"</ShowDiscount>");
 			result.AppendLine(@"<ShowNetRate>" + ShowNetRate + @"</ShowNetRate>");
@@ -1112,6 +1116,10 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "ShowLenght":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowLenght = tempBool;
+						break;
+					case "ShowLogo":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowLogo = tempBool;
 						break;
 					case "ShowNetRate":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -1219,6 +1227,10 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			var column = new DataColumn(ProgramIndexDataColumnName, typeof(int));
 			table.Columns.Add(column);
+			column = new DataColumn(ProgramLogoImageDataColumnName, typeof(Image));
+			table.Columns.Add(column);
+			column = new DataColumn(ProgramLogoSourceDataColumnName, typeof(string));
+			table.Columns.Add(column);
 			column = new DataColumn(ProgramStationDataColumnName, typeof(string));
 			table.Columns.Add(column);
 			column = new DataColumn(ProgramNameDataColumnName, typeof(string));
@@ -1293,11 +1305,21 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			#region Fill Programs Data
 
-			foreach (Program program in Programs)
+			foreach (var program in Programs)
 			{
-				DataRow row = table.NewRow();
+				var row = table.NewRow();
 				row.BeginEdit();
 				row[ProgramIndexDataColumnName] = program.Index.ToString();
+				if (program.Logo != null && program.Logo.ContainsData)
+				{
+					row[ProgramLogoImageDataColumnName] = program.SmallLogo;
+					row[ProgramLogoSourceDataColumnName] = program.Logo.Serialize();
+				}
+				else
+				{
+					row[ProgramLogoImageDataColumnName] = DBNull.Value;
+					row[ProgramLogoSourceDataColumnName] = DBNull.Value;
+				}
 				row[ProgramNameDataColumnName] = program.Name;
 				row[ProgramStationDataColumnName] = program.Station;
 				row[ProgramDayDataColumnName] = program.Day;
@@ -1340,6 +1362,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			var program = Programs.FirstOrDefault(x => x.Index == index);
 			if (program != null)
 			{
+				temp = row[ProgramLogoSourceDataColumnName] != DBNull.Value ? row[ProgramLogoSourceDataColumnName].ToString() : string.Empty;
+				program.Logo = ImageSource.FromString(temp);
 				temp = row[ProgramNameDataColumnName] != DBNull.Value ? row[ProgramNameDataColumnName].ToString() : string.Empty;
 				program.Name = temp;
 				temp = row[ProgramStationDataColumnName] != DBNull.Value ? row[ProgramStationDataColumnName].ToString() : string.Empty;
@@ -1435,6 +1459,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowSpots { get; set; }
 		public bool ShowEmptySpots { get; set; }
 		public bool ShowCost { get; set; }
+		public bool ShowLogo { get; set; }
 
 		public bool ShowTotalPeriods { get; set; }
 		public bool ShowTotalSpots { get; set; }
@@ -1517,15 +1542,16 @@ namespace NewBizWiz.Core.MediaSchedule
 			ShowTime = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTime;
 			ShowDaypart = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDaypart;
 			ShowDay = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDay;
-			ShowStation = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowStation; 
-			ShowLenght  = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowLenght;
+			ShowStation = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowStation;
+			ShowLenght = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowLenght;
 			ShowRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowRate;
 			ShowSpots = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowSpots;
 			ShowCost = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowCost;
+			ShowLogo = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowLogo;
 
 			ShowTotalPeriods = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTotalPeriods;
 			ShowTotalSpots = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTotalSpots;
-			ShowAverageRate  = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowAverageRate;
+			ShowAverageRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowAverageRate;
 			ShowTotalRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowTotalRate;
 			ShowNetRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowNetRate;
 			ShowDiscount = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDiscount;
@@ -1591,6 +1617,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public ScheduleSection Parent { get; set; }
 		public Guid UniqueID { get; set; }
 		public decimal Index { get; set; }
+		public ImageSource Logo { get; set; }
 		public string Station { get; set; }
 		public string Daypart { get; set; }
 		public string Time { get; set; }
@@ -1624,6 +1651,11 @@ namespace NewBizWiz.Core.MediaSchedule
 				_day = value;
 				_weekDays = null;
 			}
+		}
+
+		public Image SmallLogo
+		{
+			get { return Logo != null ? Logo.TinyImage : null; }
 		}
 
 		public double CPP
@@ -1700,6 +1732,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = Parent.Programs.Count + 1;
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
 			Station = Parent.Parent.Stations.Count(x => x.Available) == 1 ? Parent.Parent.Stations.Where(x => x.Available).Select(x => x.Name).FirstOrDefault() : string.Empty;
 			Daypart = string.Empty;
 			Day = string.Empty;
@@ -1727,7 +1760,8 @@ namespace NewBizWiz.Core.MediaSchedule
 				if (Rating.HasValue)
 					result.Append("Rating = \"" + Rating.Value + "\" ");
 				result.AppendLine(@">");
-
+				if (Logo != null && Logo.ContainsData && !Logo.IsDefault)
+					result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
 				result.AppendLine(@"<Spots>");
 				foreach (Spot spot in Spots)
 					result.AppendLine(@"<Spot>" + spot.Serialize() + @"</Spot>");
@@ -1791,6 +1825,10 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "SummaryItem":
 						SummaryItem.Deserialize(childNode);
 						break;
+					case "Logo":
+						Logo = new ImageSource();
+						Logo.Deserialize(childNode);
+						break;
 				}
 		}
 
@@ -1821,6 +1859,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			var clone = new Program(Parent);
 			clone.Name = Name;
+			clone.Logo = Logo != null ? Logo.Clone() : null;
 			clone.Station = Station;
 			clone.Daypart = Daypart;
 			clone.Day = Day;

@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessClasses\BusinessWrapper.cs" />
-    <Compile Include="BusinessClasses\OutputGridModel.cs" />
+    <Compile Include="BusinessClasses\OneSheetModel.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InteropClasses\CalendarHelper.cs" />

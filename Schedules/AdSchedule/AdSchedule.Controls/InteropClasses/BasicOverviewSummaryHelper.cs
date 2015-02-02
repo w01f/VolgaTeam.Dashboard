@@ -25,7 +25,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 					{
 						var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.BasicOverviewSummaryTemplatesFolderPath, OutputManager.BasicOverviewSummaryTemplateFileName);
 						if (!File.Exists(presentationTemplatePath)) continue;
-						var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
 						{
 							foreach (Shape shape in slide.Shapes)

@@ -110,6 +110,12 @@
     <Compile Include="FavoriteImages\FormAddFavoriteImage.Designer.cs">
       <DependentUpon>FormAddFavoriteImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageGallery\ImageGroupPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageGallery\ImageGroupPage.Designer.cs">
+      <DependentUpon>ImageGroupPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interop\CommonPowerPointHelper.cs" />
     <Compile Include="Floater\FloaterManager.cs" />
     <Compile Include="Floater\FloaterRequestedEventArgs.cs" />
@@ -281,10 +287,10 @@
     <Compile Include="ToolForms\FormEmailFileName.Designer.cs">
       <DependentUpon>FormEmailFileName.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormImageGallery.cs">
+    <Compile Include="ImageGallery\FormImageGallery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormImageGallery.Designer.cs">
+    <Compile Include="ImageGallery\FormImageGallery.Designer.cs">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
     </Compile>
     <Compile Include="Preview\FormPreview.cs">
@@ -324,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gallery\GalleryControl.resx">
       <DependentUpon>GalleryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGallery\ImageGroupPage.resx">
+      <DependentUpon>ImageGroupPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListEditor\ListContainer.resx">
       <DependentUpon>ListContainer.cs</DependentUpon>
@@ -399,7 +408,7 @@
     <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
       <DependentUpon>FormEmailFileName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormImageGallery.resx">
+    <EmbeddedResource Include="ImageGallery\FormImageGallery.resx">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preview\FormPreview.resx">

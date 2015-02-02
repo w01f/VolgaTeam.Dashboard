@@ -26,7 +26,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 					{
 						var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.DigitalPackageTemplatesFolderPath, String.Format(OutputManager.DigitalPackageTemplateFileName, rowsCount, (digitalPackage.Settings.ShowScreenshot ? "p" : String.Empty)));
 						if (!File.Exists(presentationTemplatePath)) continue;
-						var presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
 						{
 							foreach (Shape shape in slide.Shapes)

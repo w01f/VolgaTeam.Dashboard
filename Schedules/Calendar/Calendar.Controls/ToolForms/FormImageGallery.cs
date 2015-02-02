@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraGrid.Views.Grid;
@@ -29,7 +30,7 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 
 		private void FormImageGallery_Load(object sender, EventArgs e)
 		{
-			_imageSources.AddRange(ListManager.Instance.Images);
+			_imageSources.AddRange(ListManager.Instance.Images.SelectMany(g=>g.Images));
 			gridControlImageGallery.DataSource = _imageSources;
 		}
 

@@ -30,7 +30,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 							if (File.Exists(presentationTemplatePath))
 							{
 
-								Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+								Presentation presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 								foreach (Slide slide in presentation.Slides)
 								{
 									foreach (Shape shape in slide.Shapes)

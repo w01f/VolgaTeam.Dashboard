@@ -48,26 +48,10 @@ namespace NewBizWiz.Core.AdSchedule
 
 			DefaultCalendarViewSettings = new CalendarViewSettings();
 
-			string imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\PRINT\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			string folderPath = Path.Combine(imageFolderPath, "Big Logos");
-			if (Directory.Exists(folderPath))
-				BigImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Small Logos");
-			if (Directory.Exists(folderPath))
-				SmallImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Tiny Logos");
-			if (Directory.Exists(folderPath))
-				TinyImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Xtra Tiny Logos");
-			if (Directory.Exists(folderPath))
-				XtraTinyImageFolder = new DirectoryInfo(folderPath);
-			Images = new List<ImageSource>();
+			Images = new List<ImageSourceGroup>();
+			LoadImages();
 
 			LoadLists();
-			LoadImages();
 
 			if (DefaultPrintScheduleViewSettings.DefaultPCI)
 				DefaultPricingStrategy = AdPricingStrategies.StandartPCI;
@@ -102,7 +86,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public DirectoryInfo SmallImageFolder { get; set; }
 		public DirectoryInfo TinyImageFolder { get; set; }
 		public DirectoryInfo XtraTinyImageFolder { get; set; }
-		public List<ImageSource> Images { get; set; }
+		public List<ImageSourceGroup> Images { get; set; }
 
 		public List<PrintProductSource> PublicationSources { get; set; }
 		public List<PrintProductSource> Readerships { get; set; }
@@ -144,31 +128,28 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private void LoadImages()
 		{
-			Images.Clear();
-			if (BigImageFolder == null || SmallImageFolder == null || TinyImageFolder == null || XtraTinyImageFolder == null) return;
-			foreach (var printProductSource in PublicationSources)
-			{
-				if (String.IsNullOrEmpty(printProductSource.BigLogoFileName)) continue;
-				var imageFileName = Path.GetFileNameWithoutExtension(printProductSource.BigLogoFileName);
-				var imageFileExtension = Path.GetExtension(printProductSource.BigLogoFileName);
+			var imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\PRINT\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
-				var bigImageFilePath = Path.Combine(BigImageFolder.FullName, printProductSource.BigLogoFileName);
-				var smallImageFilePath = Path.Combine(SmallImageFolder.FullName, printProductSource.SmallLogoFileName);
-				var tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, printProductSource.TinyLogoFileName);
-				var xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
-				if (!File.Exists(bigImageFilePath) || !File.Exists(smallImageFilePath) || !File.Exists(tinyImageFilePath) || !File.Exists(xtraTinyImageFilePath)) continue;
-				var imageSource = new ImageSource
-				{
-					IsDefault = imageFileName.ToLower().Contains("default"),
-					Name = printProductSource.Name,
-					BigImage = new Bitmap(bigImageFilePath),
-					SmallImage = new Bitmap(smallImageFilePath),
-					TinyImage = new Bitmap(tinyImageFilePath),
-					XtraTinyImage = new Bitmap(xtraTinyImageFilePath)
-				};
-				if (Images.All(i => i.Name != imageSource.Name))
-					Images.Add(imageSource);
-			}
+			string folderPath = Path.Combine(imageFolderPath, "Big Logos");
+			if (Directory.Exists(folderPath))
+				BigImageFolder = new DirectoryInfo(folderPath);
+
+			folderPath = Path.Combine(imageFolderPath, "Small Logos");
+			if (Directory.Exists(folderPath))
+				SmallImageFolder = new DirectoryInfo(folderPath);
+
+			folderPath = Path.Combine(imageFolderPath, "Tiny Logos");
+			if (Directory.Exists(folderPath))
+				TinyImageFolder = new DirectoryInfo(folderPath);
+
+			folderPath = Path.Combine(imageFolderPath, "Xtra Tiny Logos");
+			if (Directory.Exists(folderPath))
+				XtraTinyImageFolder = new DirectoryInfo(folderPath);
+
+			Images.Clear();
+			var defaultGroup = new ImageSourceGroup(imageFolderPath) { Name = "Gallery", Order = -1 };
+			if (defaultGroup.Images.Any())
+				Images.Add(defaultGroup);
 		}
 
 		private void LoadPrintStrategy()

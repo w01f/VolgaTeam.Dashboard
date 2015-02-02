@@ -17,7 +17,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 	{
 		protected abstract string OneSheetTemplatePath { get; }
 
-		public void AppendOneSheetTableBased(IEnumerable<OutputScheduleGridBased> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
+		public void AppendOneSheet(IEnumerable<OutputSchedule> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
 			if (!Directory.Exists(OneSheetTemplatePath)) return;
 			try
@@ -25,16 +25,38 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
+					var slideNumber = 0;
 					foreach (var page in pages)
 					{
 						var copyOfReplacementList = new Dictionary<string, string>(page.ReplacementsList);
-						var presentationTemplatePath = Path.Combine(OneSheetTemplatePath, string.Format(OutputManager.OneSheetTableBasedTemplateFileName, page.Color, page.ProgramsPerSlide, page.SpotsPerSlide));
+						var presentationTemplatePath = Path.Combine(OneSheetTemplatePath, page.TemplateFileName);
 						if (!File.Exists(presentationTemplatePath)) return;
-						var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-						var tagedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
-						var shape = tagedSlide.Shapes.Cast<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
-						if (shape == null) return;
-						var table = shape.Table;
+						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
+
+						if (page.Logos != null && slideNumber < page.Logos.Length)
+						{
+							var slideLogos = page.Logos[slideNumber];
+							foreach (var shape in taggedSlide.Shapes.OfType<Shape>().Where(s => s.HasTable != MsoTriState.msoTrue))
+							{
+								for (var i = 1; i <= shape.Tags.Count; i++)
+								{
+									var shapeTagName = shape.Tags.Name(i);
+									for (var j = 0; j < slideLogos.Length; j++)
+									{
+										if (!shapeTagName.Equals(string.Format("STATIONLOGO{0}", j + 1))) continue;
+										string fileName = slideLogos[j];
+										if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
+											taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+										shape.Visible = MsoTriState.msoFalse;
+									}
+								}
+							}
+						}
+
+						var tableContainer = taggedSlide.Shapes.Cast<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
+						if (tableContainer == null) return;
+						var table = tableContainer.Table;
 						var tableRowsCount = table.Rows.Count;
 						var tableColumnsCount = table.Columns.Count;
 						for (var i = 1; i <= tableRowsCount; i++)
@@ -82,7 +104,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							}
 							else
 								design = presentation.Designs.Add(DateTime.Now.ToString("MMddyy-hhmmsstt"));
-							shape.Copy();
+							tableContainer.Copy();
 							design.SlideMaster.Shapes.Paste();
 							newSlide.Design = design;
 						}
@@ -90,6 +112,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 						AppendSlide(presentation, 1, destinationPresentation);
 						presentation.Close();
+						slideNumber++;
 					}
 				});
 				thread.Start();
@@ -105,9 +128,9 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareOneSheetEmailTableBased(string fileName, IEnumerable<OutputScheduleGridBased> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareOneSheetEmail(string fileName, IEnumerable<OutputSchedule> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
-			PreparePresentation(fileName, presentation => AppendOneSheetTableBased(pages, selectedTheme, pasteToSlideMaster, presentation));
+			PreparePresentation(fileName, presentation => AppendOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}
 	}
 }

@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraPrinting.Native;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 {
-	public class OutputScheduleGridBased
+	public class OutputSchedule
 	{
 		private readonly ScheduleSection _parent;
 
-		public OutputScheduleGridBased(ScheduleSection parent)
+		public OutputSchedule(ScheduleSection parent)
 		{
 			_parent = parent;
 			Title = string.Empty;
 			Advertiser = string.Empty;
 			DecisionMaker = string.Empty;
-			Programs = new List<OutputProgramGridBased>();
+			Programs = new List<OutputProgram>();
 			TotalSpots = new List<OutputTotalSpot>();
 			Totals = new Dictionary<string, string>();
 			ReplacementsList = new Dictionary<string, string>();
@@ -38,10 +42,23 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public string TotalCPP { get; set; }
 		public string TotalGRP { get; set; }
 
-		public List<OutputProgramGridBased> Programs { get; set; }
+		public List<OutputProgram> Programs { get; set; }
 		public List<OutputTotalSpot> TotalSpots { get; set; }
 		public Dictionary<string, string> Totals { get; set; }
 		public Dictionary<string, string> ReplacementsList { get; set; }
+		public string[][] Logos { get; set; }
+
+		public string TemplateFileName
+		{
+			get
+			{
+				return String.Format(OutputManager.OneSheetTemplateFileName,
+					Color,
+					ShowLogo ? "logos" : "no_logos",
+					ProgramsPerSlide,
+					SpotsPerSlide);
+			}
+		}
 
 		public string FlightDates
 		{
@@ -115,9 +132,38 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public bool ShowCost { get; set; }
 		public bool ShowCPP { get; set; }
 		public bool ShowStation { get; set; }
+		public bool ShowLogo { get; set; }
 		public bool ShowStationInBrackets { get; set; }
 
 		#endregion
+
+		public void GetLogos()
+		{
+			var logos = new List<string[]>();
+			if (!ShowLogo) return;
+			var logosOnSlide = new List<string>();
+			var progarmsCount = Programs.Count;
+			for (var i = 0; i < progarmsCount; i += ProgramsPerSlide)
+			{
+				logosOnSlide.Clear();
+				for (int j = 0; j < ProgramsPerSlide; j++)
+				{
+					var fileName = String.Empty;
+					if ((i + j) < progarmsCount)
+					{
+						var progam = Programs[i + j];
+						if (progam.Logo != null && progam.Logo.ContainsData)
+						{
+							fileName = Path.GetTempFileName();
+							progam.Logo.SmallImage.Save(fileName);
+						}
+					}
+					logosOnSlide.Add(fileName);
+				}
+				logos.Add(logosOnSlide.ToArray());
+			}
+			Logos = logos.ToArray();
+		}
 
 		public void PopulateScheduleReplacementsList()
 		{
@@ -526,9 +572,9 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		}
 	}
 
-	public class OutputProgramGridBased
+	public class OutputProgram
 	{
-		public OutputProgramGridBased(OutputScheduleGridBased parent)
+		public OutputProgram(OutputSchedule parent)
 		{
 			Parent = parent;
 			Name = string.Empty;
@@ -546,7 +592,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			Spots = new List<string>();
 		}
 
-		public OutputScheduleGridBased Parent { get; private set; }
+		public OutputSchedule Parent { get; private set; }
 		public string Name { get; set; }
 		public string LineID { get; set; }
 		public string Station { get; set; }
@@ -559,6 +605,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public string TotalSpots { get; set; }
 		public string CPP { get; set; }
 		public string GRP { get; set; }
+		public ImageSource Logo { get; set; }
 		public List<string> Spots { get; set; }
 	}
 

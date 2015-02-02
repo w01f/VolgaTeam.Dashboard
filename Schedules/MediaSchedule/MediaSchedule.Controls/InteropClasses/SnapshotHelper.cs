@@ -33,13 +33,13 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							var copyOfReplacementList = new Dictionary<string, string>(pageDictionary);
 							var presentationTemplatePath = Path.Combine(SnapshotTemplatePath, page.TemplateFileName);
 							if (!File.Exists(presentationTemplatePath)) return;
-							var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-							var targedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
+							var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
 							if (page.Logos != null && slideNumber < page.Logos.Length)
 							{
 								var slideLogos = page.Logos[slideNumber];
-								foreach (var shape in targedSlide.Shapes.OfType<Shape>().Where(s => s.HasTable != MsoTriState.msoTrue))
+								foreach (var shape in taggedSlide.Shapes.OfType<Shape>().Where(s => s.HasTable != MsoTriState.msoTrue))
 								{
 									for (var i = 1; i <= shape.Tags.Count; i++)
 									{
@@ -49,14 +49,14 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 											if (!shapeTagName.Equals(string.Format("STATIONLOGO{0}", j + 1))) continue;
 											string fileName = slideLogos[j];
 											if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
-												targedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+												taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
 											shape.Visible = MsoTriState.msoFalse;
 										}
 									}
 								}
 							}
 
-							var tableContainer = targedSlide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
+							var tableContainer = taggedSlide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
 							if (tableContainer == null) return;
 							var table = tableContainer.Table;
 							var tableRowsCount = table.Rows.Count;

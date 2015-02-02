@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -9,6 +10,13 @@ namespace NewBizWiz.Core.Common
 {
 	public class ImageSource
 	{
+		public const string ImageFileExtension = ".png";
+
+		public const string BigImageFolderName = "Big Logos";
+		public const string SmallImageFolderName = "Small Logos";
+		public const string TinyImageFolderName = "Tiny Logos";
+		public const string XtraTinyImageFolderName = "Xtra Tiny Logos";
+
 		public const decimal BigHeight = 146;
 		public const decimal SmallHeight = 75;
 		public const decimal TinyHeight = 58;
@@ -103,6 +111,13 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
+		public void Deserialize(string content)
+		{
+			var document = new XmlDocument();
+			document.LoadXml(String.Format("<Source>{0}</Source>", content));
+			Deserialize(document.SelectSingleNode("Source"));
+		}
+
 		public ImageSource Clone()
 		{
 			var result = new ImageSource();
@@ -151,6 +166,83 @@ namespace NewBizWiz.Core.Common
 				imageSource.XtraTinyImage = image.Resize(new Size((Int32)XtraTinyWidth, (Int32)XtraTinyHeight));
 			};
 			return imageSource;
+		}
+
+		public static ImageSource FromString(string encoded)
+		{
+			if (String.IsNullOrEmpty(encoded)) return null;
+			var imageSource = new ImageSource();
+			imageSource.Deserialize(encoded);
+			return imageSource;
+		}
+
+		public static ImageSource FromFolder(string folderPath, string imageName)
+		{
+			var bigImagePath = Path.Combine(folderPath, BigImageFolderName);
+			var smallImagePath = Path.Combine(folderPath, SmallImageFolderName);
+			var tinyImagePath = Path.Combine(folderPath, TinyImageFolderName);
+			var xtraTinyImagePath = Path.Combine(folderPath, XtraTinyImageFolderName);
+
+			if (!Directory.Exists(bigImagePath) ||
+				!Directory.Exists(smallImagePath) ||
+				!Directory.Exists(tinyImagePath) ||
+				!Directory.Exists(xtraTinyImagePath))
+				return null;
+
+			var bigImageFilePath = Path.Combine(bigImagePath, String.Format("{0}{1}", imageName, ImageFileExtension));
+			var smallImageFilePath = Path.Combine(smallImagePath, String.Format("{0}2{1}", imageName, ImageFileExtension));
+			var tinyImageFilePath = Path.Combine(tinyImagePath, String.Format("{0}3.png", imageName));
+			var xtraTinyImageFilePath = Path.Combine(xtraTinyImagePath, String.Format("{0}4{1}", imageName, ImageFileExtension));
+
+			if (!File.Exists(bigImageFilePath) ||
+					!File.Exists(smallImageFilePath) ||
+					!File.Exists(tinyImageFilePath) ||
+					!File.Exists(xtraTinyImageFilePath))
+				return null;
+
+			var imageSource = new ImageSource();
+			imageSource.Name = imageName.ToLower().StartsWith("!default") ? imageName.Substring(1) : imageName;
+			imageSource.FileName = bigImageFilePath;
+			imageSource.IsDefault = imageName.ToLower().Contains("default");
+			imageSource.BigImage = new Bitmap(bigImageFilePath);
+			imageSource.SmallImage = new Bitmap(smallImageFilePath);
+			imageSource.TinyImage = new Bitmap(tinyImageFilePath);
+			imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
+
+			return imageSource;
+		}
+	}
+
+	public class ImageSourceGroup
+	{
+		public string Name { get; set; }
+		public int Order { get; set; }
+
+		public bool IsDefault
+		{
+			get { return Order < 0; }
+		}
+
+		public List<ImageSource> Images { get; private set; }
+
+		public EventHandler<EventArgs> OnDataChanged;
+
+		public ImageSourceGroup(string sourcePath)
+		{
+			Images = new List<ImageSource>();
+			LoadImages(sourcePath);
+		}
+
+		private void LoadImages(string sourcePath)
+		{
+			Images.Clear();
+			var bigImagePath = Path.Combine(sourcePath, ImageSource.BigImageFolderName);
+			if (!Directory.Exists(bigImagePath)) return;
+			foreach (var filePath in Directory.GetFiles(bigImagePath, String.Format("*{0}", ImageSource.ImageFileExtension)))
+			{
+				var imageSource = ImageSource.FromFolder(sourcePath, Path.GetFileNameWithoutExtension(filePath));
+				Images.Add(imageSource);
+			}
 		}
 	}
 }

@@ -1,44 +1,40 @@
-﻿namespace NewBizWiz.CommonGUI.ToolForms
+﻿namespace NewBizWiz.CommonGUI.ImageGallery
 {
-    partial class FormImageGallery
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class ImageGroupPage
+	{
+		/// <summary> 
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			this.pnBottom = new System.Windows.Forms.Panel();
-			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.gridControlLogoGallery = new DevExpress.XtraGrid.GridControl();
 			this.layoutViewLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutView();
 			this.gridColumnLogoGallery = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.layoutViewField_gridColumnLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
 			this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
-			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -46,45 +42,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// pnBottom
+			// toolTipController
 			// 
-			this.pnBottom.BackColor = System.Drawing.Color.Transparent;
-			this.pnBottom.Controls.Add(this.buttonXCancel);
-			this.pnBottom.Controls.Add(this.buttonXOK);
-			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBottom.ForeColor = System.Drawing.Color.Black;
-			this.pnBottom.Location = new System.Drawing.Point(0, 349);
-			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(421, 43);
-			this.pnBottom.TabIndex = 1;
-			// 
-			// buttonXCancel
-			// 
-			this.buttonXCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(334, 6);
-			this.buttonXCancel.Name = "buttonXCancel";
-			this.buttonXCancel.Size = new System.Drawing.Size(75, 31);
-			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXCancel.TabIndex = 1;
-			this.buttonXCancel.Text = "Cancel";
-			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
-			// 
-			// buttonXOK
-			// 
-			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(251, 6);
-			this.buttonXOK.Name = "buttonXOK";
-			this.buttonXOK.Size = new System.Drawing.Size(75, 31);
-			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOK.TabIndex = 0;
-			this.buttonXOK.Text = "OK";
-			this.buttonXOK.TextColor = System.Drawing.Color.Black;
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
 			// 
 			// gridControlLogoGallery
 			// 
@@ -99,8 +61,8 @@
 			this.gridControlLogoGallery.Name = "gridControlLogoGallery";
 			this.gridControlLogoGallery.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit});
-			this.gridControlLogoGallery.Size = new System.Drawing.Size(421, 349);
-			this.gridControlLogoGallery.TabIndex = 38;
+			this.gridControlLogoGallery.Size = new System.Drawing.Size(521, 446);
+			this.gridControlLogoGallery.TabIndex = 39;
 			this.gridControlLogoGallery.ToolTipController = this.toolTipController;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewLogoGallery});
@@ -206,30 +168,13 @@
 			this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
 			this.layoutViewCard1.Text = "TemplateCard";
 			// 
-			// toolTipController
+			// ImageGroupPage
 			// 
-			this.toolTipController.Rounded = true;
-			this.toolTipController.ShowShadow = false;
-			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
-			// 
-			// FormImageGallery
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(421, 392);
 			this.Controls.Add(this.gridControlLogoGallery);
-			this.Controls.Add(this.pnBottom);
-			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(437, 430);
-			this.Name = "FormImageGallery";
-			this.ShowIcon = false;
-			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Select Logo";
-			this.pnBottom.ResumeLayout(false);
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "ImageGroupPage";
+			this.Size = new System.Drawing.Size(521, 446);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
@@ -237,21 +182,16 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
 			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-		private System.Windows.Forms.Panel pnBottom;
-        private DevComponents.DotNetBar.ButtonX buttonXCancel;
-        private DevComponents.DotNetBar.ButtonX buttonXOK;
+		private DevExpress.Utils.ToolTipController toolTipController;
 		private DevExpress.XtraGrid.GridControl gridControlLogoGallery;
-		private DevExpress.XtraGrid.Views.Layout.LayoutView layoutViewLogoGallery;
+		public DevExpress.XtraGrid.Views.Layout.LayoutView layoutViewLogoGallery;
 		private DevExpress.XtraGrid.Columns.LayoutViewColumn gridColumnLogoGallery;
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
-		private DevExpress.Utils.ToolTipController toolTipController;
 		private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_gridColumnLogoGallery;
 		private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
-
-
-    }
+	}
 }

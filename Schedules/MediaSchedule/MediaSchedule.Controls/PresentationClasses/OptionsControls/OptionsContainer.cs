@@ -197,8 +197,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				buttonXOptionTallySpots.Checked = ActiveOptionControl.Data.ShowTotalSpots;
 				buttonXOptionTallyCost.Checked = ActiveOptionControl.Data.ShowTotalCost;
 				buttonXOptionAvgRate.Checked = ActiveOptionControl.Data.ShowAverageRate;
-				checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
-				checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
 			}
 			else if (ActiveSummary != null)
 			{
@@ -213,8 +211,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				buttonXSummaryTotalCost.Checked = ActiveSummary.Data.ShowTotalCost;
 				buttonXSummaryTallySpots.Checked = ActiveSummary.Data.ShowTallySpots;
 				buttonXSummaryTallyCost.Checked = ActiveSummary.Data.ShowTallyCost;
-				checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
-				checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
 
 				switch (ActiveSummary.Data.SpotType)
 				{
@@ -508,14 +504,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				button.Location = new Point(20, topPosition);
 				topPosition += (button.Height + 20);
 			}
-			checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
 		}
 
 		private void SaveColors()
 		{
 			var checkedColorItem = xtraScrollableControlColors.Controls.OfType<ButtonX>().FirstOrDefault(b => b.Checked);
 			MediaMetaData.Instance.SettingsManager.SelectedColor = checkedColorItem != null ? ((ColorFolder)checkedColorItem.Tag).Name : String.Empty;
-			MediaMetaData.Instance.SettingsManager.UseSlideMaster = checkEditLockToMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 		}
 		#endregion
@@ -651,6 +645,43 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			UpdateTotalsValues();
 		}
 
+		private void hyperLinkEditInfoAdvanced_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormOutputSettings())
+			{
+				if (ActiveOptionControl != null)
+				{
+					form.checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
+					form.checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
+				}
+				else if (ActiveSummary != null)
+				{
+					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
+					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
+				}
+				else
+					return;
+				form.checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (ActiveOptionControl != null)
+				{
+					ActiveOptionControl.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+					ActiveOptionControl.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
+					ActiveOptionControl.UpdateView();
+				}
+				else if (ActiveSummary != null)
+				{
+					ActiveSummary.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+					ActiveSummary.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
+					ActiveSummary.UpdateView();
+				}
+				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
+				UpdateTotalsValues();
+				SettingsNotSaved = true;
+			}
+		}
+
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -669,8 +700,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				ActiveOptionControl.Data.ShowTotalSpots = buttonXOptionTallySpots.Checked;
 				ActiveOptionControl.Data.ShowTotalCost = buttonXOptionTallyCost.Checked;
 				ActiveOptionControl.Data.ShowAverageRate = buttonXOptionAvgRate.Checked;
-				ActiveOptionControl.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
-				ActiveOptionControl.Data.ShowSpotsX = checkEditShowSpotX.Checked;
 				if (buttonXOptionWeeklySpots.Checked)
 					ActiveOptionControl.Data.SpotType = SpotType.Week;
 				else if (buttonXOptionMonthlySpots.Checked)
@@ -700,8 +729,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				ActiveSummary.Data.ShowTotalCost = buttonXSummaryTotalCost.Checked;
 				ActiveSummary.Data.ShowTallySpots = buttonXSummaryTallySpots.Checked;
 				ActiveSummary.Data.ShowTallyCost = buttonXSummaryTallyCost.Checked;
-				ActiveSummary.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
-				ActiveSummary.Data.ShowSpotsX = checkEditShowSpotX.Checked;
 			}
 			Summary.UpdateView();
 			UpdateTotalsVisibility();

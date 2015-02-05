@@ -90,6 +90,18 @@ namespace NewBizWiz.Core.Common
 			WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
 		}
 
+		public void RunPowerPointLoader()
+		{
+			if (File.Exists(SettingsManager.Instance.PowerPointLoaderPath))
+			{
+				var process = new Process();
+				process.StartInfo.FileName = SettingsManager.Instance.PowerPointLoaderPath;
+				process.Start();
+			}
+			else
+				ShowWarning("Couldn't find PowerPointLoader app");
+		}
+
 		public void ReleaseComObject(object o)
 		{
 			try

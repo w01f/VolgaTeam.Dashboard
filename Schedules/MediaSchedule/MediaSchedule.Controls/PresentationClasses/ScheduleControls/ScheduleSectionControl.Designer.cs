@@ -36,7 +36,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleSectionControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.gridControlSchedule = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewSchedule = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -119,13 +120,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsQuickShare = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageOptionsLine = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsLine = new System.Windows.Forms.Panel();
+			this.hyperLinkEditLineAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
-			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditOutputNoBrackets = new DevExpress.XtraEditors.CheckEdit();
-			this.spinEditOutputLimitPeriods = new DevExpress.XtraEditors.SpinEdit();
-			this.checkEditOutputLimitPeriods = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditOutputLimitQuarters = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditEmptySports = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXTime = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSpots = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCost = new DevComponents.DotNetBar.ButtonX();
@@ -152,7 +148,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
 			this.laColorsTitle = new System.Windows.Forms.Label();
-			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.pnColors = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlColors = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.retractableBarControl = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
@@ -194,18 +189,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageOptionsLine.SuspendLayout();
 			this.pnOptionsLine.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOutputLimitPeriods.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditLineAdvanced.Properties)).BeginInit();
 			this.xtraTabPageOptionsDigital.SuspendLayout();
 			this.xtraTabPageOptionsTotals.SuspendLayout();
 			this.pnOptionsTotals.SuspendLayout();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
 			this.pnStyle.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			this.pnColors.SuspendLayout();
 			this.retractableBarControl.Content.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlData)).BeginInit();
@@ -1534,13 +1523,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// pnOptionsLine
 			// 
 			this.pnOptionsLine.BackColor = System.Drawing.Color.Transparent;
+			this.pnOptionsLine.Controls.Add(this.hyperLinkEditLineAdvanced);
 			this.pnOptionsLine.Controls.Add(this.buttonXLogo);
-			this.pnOptionsLine.Controls.Add(this.checkEditUseDecimalRate);
-			this.pnOptionsLine.Controls.Add(this.checkEditOutputNoBrackets);
-			this.pnOptionsLine.Controls.Add(this.spinEditOutputLimitPeriods);
-			this.pnOptionsLine.Controls.Add(this.checkEditOutputLimitPeriods);
-			this.pnOptionsLine.Controls.Add(this.checkEditOutputLimitQuarters);
-			this.pnOptionsLine.Controls.Add(this.checkEditEmptySports);
 			this.pnOptionsLine.Controls.Add(this.buttonXTime);
 			this.pnOptionsLine.Controls.Add(this.buttonXSpots);
 			this.pnOptionsLine.Controls.Add(this.buttonXCost);
@@ -1558,6 +1542,29 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsLine.Size = new System.Drawing.Size(292, 475);
 			this.pnOptionsLine.TabIndex = 0;
 			// 
+			// hyperLinkEditLineAdvanced
+			// 
+			this.hyperLinkEditLineAdvanced.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.hyperLinkEditLineAdvanced.EditValue = "Advanced Settings";
+			this.hyperLinkEditLineAdvanced.Location = new System.Drawing.Point(0, 417);
+			this.hyperLinkEditLineAdvanced.Name = "hyperLinkEditLineAdvanced";
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditLineAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.hyperLinkEditLineAdvanced.Properties.AutoHeight = false;
+			this.hyperLinkEditLineAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditLineAdvanced.Size = new System.Drawing.Size(292, 58);
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditLineAdvanced.SuperTip = superToolTip1;
+			this.hyperLinkEditLineAdvanced.TabIndex = 117;
+			this.hyperLinkEditLineAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditLineAdvanced_OpenLink);
+			// 
 			// buttonXLogo
 			// 
 			this.buttonXLogo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -1572,104 +1579,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXLogo.Text = "Logo";
 			this.buttonXLogo.TextColor = System.Drawing.Color.Black;
 			this.buttonXLogo.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
-			// 
-			// checkEditUseDecimalRate
-			// 
-			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(15, 426);
-			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
-			this.checkEditUseDecimalRate.Properties.Caption = "Use Decimals with Rates";
-			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(267, 19);
-			this.checkEditUseDecimalRate.StyleController = this.styleController;
-			this.checkEditUseDecimalRate.TabIndex = 115;
-			this.checkEditUseDecimalRate.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
-			// 
-			// checkEditOutputNoBrackets
-			// 
-			this.checkEditOutputNoBrackets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(15, 452);
-			this.checkEditOutputNoBrackets.Name = "checkEditOutputNoBrackets";
-			this.checkEditOutputNoBrackets.Properties.Caption = "No Brackets for Station on slide";
-			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(267, 19);
-			this.checkEditOutputNoBrackets.StyleController = this.styleController;
-			this.checkEditOutputNoBrackets.TabIndex = 114;
-			this.checkEditOutputNoBrackets.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
-			// 
-			// spinEditOutputLimitPeriods
-			// 
-			this.spinEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.spinEditOutputLimitPeriods.EditValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.spinEditOutputLimitPeriods.Enabled = false;
-			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(227, 370);
-			this.spinEditOutputLimitPeriods.Name = "spinEditOutputLimitPeriods";
-			this.spinEditOutputLimitPeriods.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditOutputLimitPeriods.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
-			this.spinEditOutputLimitPeriods.Properties.IsFloatValue = false;
-			this.spinEditOutputLimitPeriods.Properties.Mask.EditMask = "N00";
-			this.spinEditOutputLimitPeriods.Properties.MaxValue = new decimal(new int[] {
-            26,
-            0,
-            0,
-            0});
-			this.spinEditOutputLimitPeriods.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.spinEditOutputLimitPeriods.Size = new System.Drawing.Size(55, 22);
-			this.spinEditOutputLimitPeriods.StyleController = this.styleController;
-			this.spinEditOutputLimitPeriods.TabIndex = 113;
-			this.spinEditOutputLimitPeriods.EditValueChanged += new System.EventHandler(this.spinEditOutputLimitPeriods_EditValueChanged);
-			// 
-			// checkEditOutputLimitPeriods
-			// 
-			this.checkEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 362);
-			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
-			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
-			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
-			this.checkEditOutputLimitPeriods.Size = new System.Drawing.Size(178, 20);
-			this.checkEditOutputLimitPeriods.StyleController = this.styleController;
-			this.checkEditOutputLimitPeriods.TabIndex = 112;
-			this.checkEditOutputLimitPeriods.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitPeriods_CheckedChanged);
-			// 
-			// checkEditOutputLimitQuarters
-			// 
-			this.checkEditOutputLimitQuarters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(15, 399);
-			this.checkEditOutputLimitQuarters.Name = "checkEditOutputLimitQuarters";
-			this.checkEditOutputLimitQuarters.Properties.Caption = "Output each Quarter on a Slide";
-			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(267, 19);
-			this.checkEditOutputLimitQuarters.StyleController = this.styleController;
-			this.checkEditOutputLimitQuarters.TabIndex = 111;
-			this.checkEditOutputLimitQuarters.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitQuarters_CheckedChanged);
-			// 
-			// checkEditEmptySports
-			// 
-			this.checkEditEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditEmptySports.Location = new System.Drawing.Point(15, 345);
-			this.checkEditEmptySports.Name = "checkEditEmptySports";
-			this.checkEditEmptySports.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
-			this.checkEditEmptySports.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditEmptySports.Properties.Appearance.Options.UseFont = true;
-			this.checkEditEmptySports.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditEmptySports.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.checkEditEmptySports.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditEmptySports.Properties.AutoHeight = false;
-			this.checkEditEmptySports.Properties.Caption = "<b>DO NOT SHOW</b> Hiatus {0}";
-			this.checkEditEmptySports.Size = new System.Drawing.Size(267, 19);
-			this.checkEditEmptySports.TabIndex = 110;
-			this.checkEditEmptySports.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
 			// 
 			// buttonXTime
 			// 
@@ -1999,7 +1908,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.pnStyle.BackColor = System.Drawing.Color.Transparent;
 			this.pnStyle.Controls.Add(this.laColorsTitle);
-			this.pnStyle.Controls.Add(this.checkEditLockToMaster);
 			this.pnStyle.Controls.Add(this.pnColors);
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
@@ -2015,29 +1923,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.laColorsTitle.Size = new System.Drawing.Size(134, 16);
 			this.laColorsTitle.TabIndex = 48;
 			this.laColorsTitle.Text = "Schedule Table Color:";
-			// 
-			// checkEditLockToMaster
-			// 
-			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(5, 428);
-			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
-			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
-			this.checkEditLockToMaster.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AutoHeight = false;
-			this.checkEditLockToMaster.Properties.Caption = "Lock Schedule on Slide Master<br><size=-2>(protect the schedule in PowerPoint)</s" +
-    "ize>";
-			this.checkEditLockToMaster.Size = new System.Drawing.Size(282, 34);
-			this.checkEditLockToMaster.StyleController = this.styleController;
-			this.checkEditLockToMaster.TabIndex = 47;
-			this.checkEditLockToMaster.CheckedChanged += new System.EventHandler(this.buttonXUseSlideMaster_CheckedChanged);
 			// 
 			// pnColors
 			// 
@@ -2166,20 +2051,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.ResumeLayout(false);
 			this.xtraTabPageOptionsLine.ResumeLayout(false);
 			this.pnOptionsLine.ResumeLayout(false);
-			this.pnOptionsLine.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditOutputLimitPeriods.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditLineAdvanced.Properties)).EndInit();
 			this.xtraTabPageOptionsDigital.ResumeLayout(false);
 			this.xtraTabPageOptionsTotals.ResumeLayout(false);
 			this.pnOptionsTotals.ResumeLayout(false);
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
 			this.pnStyle.ResumeLayout(false);
 			this.pnStyle.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			this.pnColors.ResumeLayout(false);
 			this.retractableBarControl.Content.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlData)).EndInit();
@@ -2286,22 +2164,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 	    protected DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlColors;
 		protected System.Windows.Forms.Label laTotalPeriodsTitle;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditProgram;
-		protected DevExpress.XtraEditors.CheckEdit checkEditEmptySports;
 		private QuarterSelectorControl quarterSelectorControl;
-		private DevExpress.XtraEditors.SpinEdit spinEditOutputLimitPeriods;
-		private DevExpress.XtraEditors.CheckEdit checkEditOutputLimitPeriods;
-		private DevExpress.XtraEditors.CheckEdit checkEditOutputLimitQuarters;
 		private System.Windows.Forms.PictureBox pbNoPrograms;
 		private System.Windows.Forms.Label laColorsTitle;
-		private DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 	    protected CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		private DevExpress.XtraEditors.LabelControl labelControlFlexFlightDatesWarning;
 		protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsQuickShare;
-		private DevExpress.XtraEditors.CheckEdit checkEditOutputNoBrackets;
 	    protected DevExpress.XtraTab.XtraTabControl xtraTabControlData;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageDataSchedule;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageDataSpecs;
-		private DevExpress.XtraEditors.CheckEdit checkEditUseDecimalRate;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnLogoImage;
@@ -2313,5 +2184,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnLogoSource;
 		private DevComponents.DotNetBar.ButtonX buttonXLogo;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditLineAdvanced;
     }
 }

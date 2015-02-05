@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
@@ -13,6 +14,7 @@ using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
+using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery;
@@ -101,45 +103,45 @@ namespace NewBizWiz.MediaSchedule.Controls
 			WeeklySchedule = new WeeklyScheduleControl();
 			WeeklyScheduleSave.Click += WeeklySchedule.Save_Click;
 			WeeklyScheduleSaveAs.Click += WeeklySchedule.SaveAs_Click;
-			WeeklySchedulePowerPoint.Click += WeeklySchedule.PowerPoint_Click;
-			WeeklySchedulePreview.Click += WeeklySchedule.Preview_Click;
-			WeeklyScheduleEmail.Click += WeeklySchedule.Email_Click;
 			WeeklyScheduleHelp.Click += WeeklySchedule.Help_Click;
 			WeeklyScheduleProgramAdd.Click += WeeklySchedule.AddProgram_Click;
 			WeeklyScheduleProgramDelete.Click += WeeklySchedule.DeleteProgram_Click;
 			WeeklyScheduleQuarterButton.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
+			WeeklySchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.PowerPoint_Click);
+			WeeklySchedulePreview.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Preview_Click);
+			WeeklyScheduleEmail.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Email_Click);
 			#endregion
 
 			#region Monthly Schedule
 			MonthlySchedule = new MonthlyScheduleControl();
 			MonthlyScheduleSave.Click += MonthlySchedule.Save_Click;
 			MonthlyScheduleSaveAs.Click += MonthlySchedule.SaveAs_Click;
-			MonthlySchedulePowerPoint.Click += MonthlySchedule.PowerPoint_Click;
-			MonthlySchedulePreview.Click += MonthlySchedule.Preview_Click;
-			MonthlyScheduleEmail.Click += MonthlySchedule.Email_Click;
 			MonthlyScheduleHelp.Click += MonthlySchedule.Help_Click;
 			MonthlyScheduleProgramAdd.Click += MonthlySchedule.AddProgram_Click;
 			MonthlyScheduleProgramDelete.Click += MonthlySchedule.DeleteProgram_Click;
 			MonthlyScheduleQuarterButton.CheckedChanged += MonthlySchedule.QuarterCheckedChanged;
+			MonthlySchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.PowerPoint_Click);
+			MonthlySchedulePreview.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Preview_Click);
+			MonthlyScheduleEmail.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Email_Click);
 			#endregion
 
 			#region Digital Product
 			DigitalProductContainer = new DigitalProductContainerControl(FormMain);
 			DigitalProductSave.Click += DigitalProductContainer.Save_Click;
 			DigitalProductSaveAs.Click += DigitalProductContainer.SaveAs_Click;
-			DigitalProductPowerPoint.Click += DigitalProductContainer.PowerPoint_Click;
-			DigitalProductEmail.Click += DigitalProductContainer.Email_Click;
+			DigitalProductPowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.PowerPoint_Click);
+			DigitalProductEmail.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Email_Click);
 			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
-			DigitalProductPreview.Click += DigitalProductContainer.Preview_Click;
+			DigitalProductPreview.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Preview_Click);
 			#endregion
 
 			#region Web Package
 			DigitalPackage = new MediaWebPackageControl(FormMain);
 			DigitalPackageSave.Click += DigitalPackage.Save_Click;
 			DigitalPackageSaveAs.Click += DigitalPackage.SaveAs_Click;
-			DigitalPackagePowerPoint.Click += DigitalPackage.PowerPoint_Click;
-			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
-			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
+			DigitalPackagePowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalPackage.PowerPoint_Click);
+			DigitalPackagePreview.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Preview_Click);
+			DigitalPackageEmail.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Email_Click);
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
 			#endregion
 
@@ -151,9 +153,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Calendar1Clone.Click += BroadcastCalendar.CalendarClone_Click;
 			Calendar1Save.Click += BroadcastCalendar.Save_Click;
 			Calendar1SaveAs.Click += BroadcastCalendar.SaveAs_Click;
-			Calendar1Preview.Click += BroadcastCalendar.Preview_Click;
-			Calendar1PowerPoint.Click += BroadcastCalendar.PowerPoint_Click;
-			Calendar1Email.Click += BroadcastCalendar.Email_Click;
+			Calendar1Preview.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Preview_Click);
+			Calendar1PowerPoint.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.PowerPoint_Click);
+			Calendar1Email.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Email_Click);
 			Calendar1Help.Click += BroadcastCalendar.Help_Click;
 			#endregion
 
@@ -165,9 +167,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Calendar2Clone.Click += CustomCalendar.CalendarClone_Click;
 			Calendar2Save.Click += CustomCalendar.Save_Click;
 			Calendar2SaveAs.Click += CustomCalendar.SaveAs_Click;
-			Calendar2Preview.Click += CustomCalendar.Preview_Click;
-			Calendar2PowerPoint.Click += CustomCalendar.PowerPoint_Click;
-			Calendar2Email.Click += CustomCalendar.Email_Click;
+			Calendar2Preview.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Preview_Click);
+			Calendar2PowerPoint.AddEventHandler(CheckPowerPointRunning, CustomCalendar.PowerPoint_Click);
+			Calendar2Email.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Email_Click);
 			Calendar2Help.Click += CustomCalendar.Help_Click;
 			#endregion
 
@@ -190,18 +192,18 @@ namespace NewBizWiz.MediaSchedule.Controls
 			StrategySave.Click += Strategy.Save_Click;
 			StrategySaveAs.Click += Strategy.SaveAs_Click;
 			StrategyHelp.Click += Strategy.Help_Click;
-			StrategyPowerPoint.Click += Strategy.PowerPoint_Click;
-			StrategyEmail.Click += Strategy.Email_Click;
-			StrategyPreview.Click += Strategy.Preview_Click;
+			StrategyPowerPoint.AddEventHandler(CheckPowerPointRunning, Strategy.PowerPoint_Click);
+			StrategyEmail.AddEventHandler(CheckPowerPointRunning, Strategy.Email_Click);
+			StrategyPreview.AddEventHandler(CheckPowerPointRunning, Strategy.Preview_Click);
 			#endregion
 
 			#region Snapshot
 			Snapshot = new SnapshotContainer();
 			SnapshotSave.Click += Snapshot.Save_Click;
 			SnapshotSaveAs.Click += Snapshot.SaveAs_Click;
-			SnapshotPowerPoint.Click += Snapshot.PowerPoint_Click;
-			SnapshotPreview.Click += Snapshot.Preview_Click;
-			SnapshotEmail.Click += Snapshot.Email_Click;
+			SnapshotPowerPoint.AddEventHandler(CheckPowerPointRunning, Snapshot.PowerPoint_Click);
+			SnapshotPreview.AddEventHandler(CheckPowerPointRunning, Snapshot.Preview_Click);
+			SnapshotEmail.AddEventHandler(CheckPowerPointRunning, Snapshot.Email_Click);
 			SnapshotHelp.Click += Snapshot.Help_Click;
 			SnapshotNew.Click += Snapshot.New_Click;
 			SnapshotProgramAdd.Click += Snapshot.AddProgram_Click;
@@ -212,9 +214,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Options = new OptionsContainer();
 			OptionsSave.Click += Options.Save_Click;
 			OptionsSaveAs.Click += Options.SaveAs_Click;
-			OptionsPowerPoint.Click += Options.PowerPoint_Click;
-			OptionsPreview.Click += Options.Preview_Click;
-			OptionsEmail.Click += Options.Email_Click;
+			OptionsPowerPoint.AddEventHandler(CheckPowerPointRunning, Options.PowerPoint_Click);
+			OptionsPreview.AddEventHandler(CheckPowerPointRunning, Options.Preview_Click);
+			OptionsEmail.AddEventHandler(CheckPowerPointRunning, Options.Email_Click);
 			OptionsHelp.Click += Options.Help_Click;
 			OptionsNew.Click += Options.New_Click;
 			OptionsProgramAdd.Click += Options.AddProgram_Click;
@@ -588,6 +590,15 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
+
+		public bool CheckPowerPointRunning()
+		{
+			if (RegularMediaSchedulePowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+			return false;
+		}
+
 		#region Command Controls
 
 		#region Home

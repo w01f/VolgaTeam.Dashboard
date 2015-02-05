@@ -2341,15 +2341,17 @@ namespace NewBizWiz.Core.MediaSchedule
 				{
 					StartDay = g.Key.StartDate.Value,
 					FinishDay = g.Key.EndDate.Value,
-					MediaData = g.Select(sp => sp.FormattedString).Join()
+					MediaData = g.Select(sp => sp.FormattedString).Join(noteSeparator)
 				}));
 				bool needToSplit;
+				notes.ForEach(n => n.Splitted = false);
 				var splittedNotes = new List<MediaDataNote>(notes);
 				do
 				{
 					needToSplit = false;
 					foreach (var calendarNote in notes.OrderByDescending(n => n.Length))
 					{
+						if (calendarNote.Splitted) continue;
 						var intersectedNote = splittedNotes.Where(sn => sn != calendarNote).OrderBy(n => n.Length).FirstOrDefault(mn =>
 							(mn.StartDay >= calendarNote.StartDay && mn.StartDay <= calendarNote.FinishDay) ||
 							(mn.FinishDay >= calendarNote.StartDay && mn.FinishDay <= calendarNote.FinishDay));
@@ -2360,6 +2362,7 @@ namespace NewBizWiz.Core.MediaSchedule
 						{
 							calendarNote.MediaData = new[] { calendarNote.MediaData, intersectedNote.MediaData }.Join(noteSeparator);
 							splittedNotes.Remove(intersectedNote);
+							intersectedNote.Splitted = true;
 						}
 						else if (intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay)
 						{
@@ -2371,6 +2374,7 @@ namespace NewBizWiz.Core.MediaSchedule
 							});
 							splittedNotes.Remove(calendarNote);
 							splittedNotes.Remove(intersectedNote);
+							intersectedNote.Splitted = true;
 						}
 						else if (intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay)
 						{
@@ -2382,10 +2386,12 @@ namespace NewBizWiz.Core.MediaSchedule
 							});
 							splittedNotes.Remove(calendarNote);
 							splittedNotes.Remove(intersectedNote);
+							intersectedNote.Splitted = true;
 						}
 					}
 					notes.Clear();
 					notes.AddRange(splittedNotes);
+					notes.ForEach(n => n.Splitted = false);
 				}
 				while (needToSplit);
 
@@ -2511,6 +2517,7 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		public TextGroup MediaData { get; set; }
 		public bool EditedByUser { get; private set; }
+		public bool Splitted { get; set; }
 
 		public override ITextItem Note
 		{

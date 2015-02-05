@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Utils;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
@@ -66,9 +67,9 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			_parent.SaveButton.Click += Save_Click;
 			_parent.SaveAsButton.Click += SaveAs_Click;
 			_parent.HelpButton.Click += Help_Click;
-			_parent.PowerPointButton.Click += PowerPoint_Click;
-			_parent.EmailButton.Click += Email_Click;
-			_parent.PreviewButton.Click += Preview_Click;
+			_parent.PowerPointButton.AddEventHandler(Controller.Instance.CheckPowerPointRunning, PowerPoint_Click);
+			_parent.EmailButton.AddEventHandler(Controller.Instance.CheckPowerPointRunning, Email_Click);
+			_parent.PreviewButton.AddEventHandler(Controller.Instance.CheckPowerPointRunning, Preview_Click);
 			_parent.ProgramAddButton.Click += AddProgram_Click;
 			_parent.ProgramDeleteButton.Click += DeleteProgram_Click;
 			BusinessWrapper.Instance.PackageManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate

@@ -500,13 +500,14 @@ namespace NewBizWiz.AdSchedule.Single
 			using (var formStart = new FormStart())
 			{
 				formStart.buttonXOpen.Enabled = ScheduleManager.GetShortScheduleList().Length > 0;
-				DialogResult result = formStart.ShowDialog();
+				var result = formStart.ShowDialog();
 				if (result == DialogResult.Yes || result == DialogResult.No)
 				{
 					if (result == DialogResult.Yes)
 						buttonItemHomeNewSchedule_Click(null, null);
 					else
 						buttonItemHomeOpenSchedule_Click(null, null);
+					Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Application.Exit();

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.CommonGUI.Common;
@@ -32,9 +31,10 @@ namespace NewBizWiz.MediaSchedule.Single
 			Application.Run(FormMain.Instance);
 		}
 
-		public bool RunPowerPoint()
+		public void RunPowerPoint()
 		{
-			return RegularMediaSchedulePowerPointHelper.Instance.Connect() && OnlineSchedulePowerPointHelper.Instance.Connect();
+			RegularMediaSchedulePowerPointHelper.Instance.Connect(false);
+			OnlineSchedulePowerPointHelper.Instance.Connect(false);
 		}
 
 		public void ActivateMainForm()

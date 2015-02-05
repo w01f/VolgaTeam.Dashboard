@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
@@ -14,6 +15,7 @@ using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputCont
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
 using NewBizWiz.AdSchedule.Controls.Properties;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
@@ -160,19 +162,19 @@ namespace NewBizWiz.AdSchedule.Controls
 			DigitalProductContainer = new DigitalProductContainerControl(FormMain);
 			DigitalProductSave.Click += DigitalProductContainer.Save_Click;
 			DigitalProductSaveAs.Click += DigitalProductContainer.SaveAs_Click;
-			DigitalProductPowerPoint.Click += DigitalProductContainer.PowerPoint_Click;
-			DigitalProductEmail.Click += DigitalProductContainer.Email_Click;
+			DigitalProductPowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.PowerPoint_Click);
+			DigitalProductEmail.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Email_Click);
 			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
-			DigitalProductPreview.Click += DigitalProductContainer.Preview_Click;
+			DigitalProductPreview.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Preview_Click);
 			#endregion
 
 			#region Web Package
 			DigitalPackage = new AdWebPackageControl(FormMain);
 			DigitalPackageSave.Click += DigitalPackage.Save_Click;
 			DigitalPackageSaveAs.Click += DigitalPackage.SaveAs_Click;
-			DigitalPackagePowerPoint.Click += DigitalPackage.PowerPoint_Click;
-			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
-			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
+			DigitalPackagePowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalPackage.PowerPoint_Click);
+			DigitalPackagePreview.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Preview_Click);
+			DigitalPackageEmail.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Email_Click);
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
 			#endregion
 
@@ -180,22 +182,22 @@ namespace NewBizWiz.AdSchedule.Controls
 			Summaries = new SummariesControl();
 
 			#region Basic Overview
-			BasicOverviewPreview.Click += Summaries.Preview_Click;
-			BasicOverviewEmail.Click += Summaries.Email_Click;
+			BasicOverviewPreview.AddEventHandler(CheckPowerPointRunning, Summaries.Preview_Click);
+			BasicOverviewEmail.AddEventHandler(CheckPowerPointRunning, Summaries.Email_Click);
 			BasicOverviewHelp.Click += Summaries.Help_Click;
 			BasicOverviewSave.Click += Summaries.Save_Click;
 			BasicOverviewSaveAs.Click += Summaries.SaveAs_Click;
-			BasicOverviewPowerPoint.Click += Summaries.PowerPoint_Click;
+			BasicOverviewPowerPoint.AddEventHandler(CheckPowerPointRunning, Summaries.PowerPoint_Click);
 			BasicOverviewDigitalLegend.Click += Summaries.Digital_Click;
 			#endregion
 
 			#region Multi Summary
-			MultiSummaryPreview.Click += Summaries.Preview_Click;
-			MultiSummaryEmail.Click += Summaries.Email_Click;
+			MultiSummaryPreview.AddEventHandler(CheckPowerPointRunning, Summaries.Preview_Click);
+			MultiSummaryEmail.AddEventHandler(CheckPowerPointRunning, Summaries.Email_Click);
 			MultiSummaryHelp.Click += Summaries.Help_Click;
 			MultiSummarySave.Click += Summaries.Save_Click;
 			MultiSummarySaveAs.Click += Summaries.SaveAs_Click;
-			MultiSummaryPowerPoint.Click += Summaries.PowerPoint_Click;
+			MultiSummaryPowerPoint.AddEventHandler(CheckPowerPointRunning, Summaries.PowerPoint_Click);
 			MultiSummaryDigitalLegend.Click += Summaries.Digital_Click;
 			MultiSummaryHeaderCheck.CheckedChanged += Summaries.ExternalOptionChanged;
 			MultiSummaryHeaderText.EditValueChanged += Summaries.ExternalOptionChanged;
@@ -205,12 +207,12 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Snapshot
-			SnapshotPreview.Click += Summaries.Preview_Click;
-			SnapshotEmail.Click += Summaries.Email_Click;
+			SnapshotPreview.AddEventHandler(CheckPowerPointRunning, Summaries.Preview_Click);
+			SnapshotEmail.AddEventHandler(CheckPowerPointRunning, Summaries.Email_Click);
 			SnapshotHelp.Click += Summaries.Help_Click;
 			SnapshotSave.Click += Summaries.Save_Click;
 			SnapshotSaveAs.Click += Summaries.SaveAs_Click;
-			SnapshotPowerPoint.Click += Summaries.PowerPoint_Click;
+			SnapshotPowerPoint.AddEventHandler(CheckPowerPointRunning, Summaries.PowerPoint_Click);
 			SnapshotDigitalLegend.Click += Summaries.Digital_Click;
 			#endregion
 			#endregion
@@ -222,9 +224,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			DetailedGridHelp.Click += Grids.Help_Click;
 			DetailedGridSave.Click += Grids.Save_Click;
 			DetailedGridSaveAs.Click += Grids.SaveAs_Click;
-			DetailedGridPowerPoint.Click += Grids.PowerPoint_Click;
-			DetailedGridEmail.Click += Grids.Email_Click;
-			DetailedGridPreview.Click += Grids.Preview_Click;
+			DetailedGridPowerPoint.AddEventHandler(CheckPowerPointRunning, Grids.PowerPoint_Click);
+			DetailedGridEmail.AddEventHandler(CheckPowerPointRunning, Grids.Email_Click);
+			DetailedGridPreview.AddEventHandler(CheckPowerPointRunning, Grids.Preview_Click);
 			DetailedGridDigitalLegend.Click += Grids.Digital_Click;
 			#endregion
 
@@ -232,9 +234,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			MultiGridHelp.Click += Grids.Help_Click;
 			MultiGridSave.Click += Grids.Save_Click;
 			MultiGridSaveAs.Click += Grids.SaveAs_Click;
-			MultiGridPowerPoint.Click += Grids.PowerPoint_Click;
-			MultiGridEmail.Click += Grids.Email_Click;
-			MultiGridPreview.Click += Grids.Preview_Click;
+			MultiGridPowerPoint.AddEventHandler(CheckPowerPointRunning, Grids.PowerPoint_Click);
+			MultiGridEmail.AddEventHandler(CheckPowerPointRunning, Grids.Email_Click);
+			MultiGridPreview.AddEventHandler(CheckPowerPointRunning, Grids.Preview_Click);
 			MultiGridDigitalLegend.Click += Grids.Digital_Click;
 			#endregion
 
@@ -248,9 +250,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			Calendar1Clone.Click += Calendar1.CalendarClone_Click;
 			Calendar1Save.Click += Calendar1.Save_Click;
 			Calendar1SaveAs.Click += Calendar1.SaveAs_Click;
-			Calendar1Preview.Click += Calendar1.Preview_Click;
-			Calendar1PowerPoint.Click += Calendar1.PowerPoint_Click;
-			Calendar1Email.Click += Calendar1.Email_Click;
+			Calendar1Preview.AddEventHandler(CheckPowerPointRunning, Calendar1.Preview_Click);
+			Calendar1PowerPoint.AddEventHandler(CheckPowerPointRunning, Calendar1.PowerPoint_Click);
+			Calendar1Email.AddEventHandler(CheckPowerPointRunning, Calendar1.Email_Click);
 			Calendar1Help.Click += Calendar1.Help_Click;
 			#endregion
 
@@ -262,20 +264,20 @@ namespace NewBizWiz.AdSchedule.Controls
 			Calendar2Clone.Click += Calendar2.CalendarClone_Click;
 			Calendar2Save.Click += Calendar2.Save_Click;
 			Calendar2SaveAs.Click += Calendar2.SaveAs_Click;
-			Calendar2Preview.Click += Calendar2.Preview_Click;
-			Calendar2PowerPoint.Click += Calendar2.PowerPoint_Click;
-			Calendar2Email.Click += Calendar2.Email_Click;
+			Calendar2Preview.AddEventHandler(CheckPowerPointRunning, Calendar2.Preview_Click);
+			Calendar2PowerPoint.AddEventHandler(CheckPowerPointRunning, Calendar2.PowerPoint_Click);
+			Calendar2Email.AddEventHandler(CheckPowerPointRunning, Calendar2.Email_Click);
 			Calendar2Help.Click += Calendar2.Help_Click;
 			#endregion
 
 			#region AdPlan
 			AdPlan = new PrintAdPlanControl(FormMain);
-			AdPlanPreview.Click += AdPlan.Preview_Click;
-			AdPlanEmail.Click += AdPlan.Email_Click;
+			AdPlanPreview.AddEventHandler(CheckPowerPointRunning, AdPlan.Preview_Click);
+			AdPlanEmail.AddEventHandler(CheckPowerPointRunning, AdPlan.Email_Click);
 			AdPlanHelp.Click += AdPlan.Help_Click;
 			AdPlanSave.Click += AdPlan.Save_Click;
 			AdPlanSaveAs.Click += AdPlan.SaveAs_Click;
-			AdPlanPowerPoint.Click += AdPlan.PowerPoint_Click;
+			AdPlanPowerPoint.AddEventHandler(CheckPowerPointRunning, AdPlan.PowerPoint_Click);
 			#endregion
 
 			#region Summary Light
@@ -671,6 +673,14 @@ namespace NewBizWiz.AdSchedule.Controls
 				Gallery1.InitControl();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery2)
 				Gallery2.InitControl();
+		}
+
+		public bool CheckPowerPointRunning()
+		{
+			if (AdSchedulePowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?",Environment.NewLine)) == DialogResult.Yes)
+				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+			return false;
 		}
 		#region Command Controls
 

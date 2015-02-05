@@ -15,6 +15,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.CommonGUI.Common;
+using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
@@ -294,6 +295,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				BeginGroup = true,
 				Enabled = !sourceItem.IsDefaultLogo
 			});
+		}
+
+		private void advBandedGridViewItems_RowCellClick(object sender, RowCellClickEventArgs e)
+		{
+			if (e.Column != bandedGridColumnItemsLogo) return;
+			var selectedProgram = advBandedGridViewItems.GetFocusedRow() as ProgramStrategyItem;
+			if (selectedProgram == null) return;
+			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
+			{
+				form.SelectedImage = selectedProgram.Logo != null ? selectedProgram.Logo.BigImage : null;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (form.SelectedImageSource == null) return;
+				selectedProgram.Logo = form.SelectedImageSource;
+				advBandedGridViewItems.UpdateCurrentRow();
+				SettingsNotSaved = true;
+			}
 		}
 
 		private void repositoryItemCheckEdit_CheckedChanged(object sender, EventArgs e)

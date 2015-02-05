@@ -104,6 +104,12 @@
     <Compile Include="PresentationClasses\OptionsControls\FormOptionSetName.Designer.cs">
       <DependentUpon>FormOptionSetName.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOutputSettings.Designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\OptionsControls\IOptionsSlide.cs" />
     <Compile Include="PresentationClasses\OptionsControls\OptionsContainer.cs">
       <SubType>UserControl</SubType>
@@ -129,8 +135,20 @@
     <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.Designer.cs">
       <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormOutputSettings.Designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormOutputSettings.Designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\SnapshotControls\FormSnapshotName.cs">
       <SubType>Form</SubType>
@@ -270,6 +288,9 @@
     <EmbeddedResource Include="PresentationClasses\OptionsControls\FormOptionSetName.resx">
       <DependentUpon>FormOptionSetName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\FormOutputSettings.resx">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsContainer.resx">
       <DependentUpon>OptionsContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +309,9 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.resx">
       <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormOutputSettings.resx">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -297,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.resx">
       <DependentUpon>RegularScheduleSectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormOutputSettings.resx">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormSnapshotName.resx">
       <DependentUpon>FormSnapshotName.cs</DependentUpon>

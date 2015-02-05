@@ -137,6 +137,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		protected override void Output()
 		{
 			SaveSchedule();
+			if (!CheckPowerPointRunning()) return;
 			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
@@ -149,6 +150,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					formProgress.Close();
 				});
 			}
+		}
+
+		protected override bool CheckPowerPointRunning()
+		{
+			return Controller.Instance.CheckPowerPointRunning();
 		}
 
 		protected override void PreparePreview(string tempFileName)

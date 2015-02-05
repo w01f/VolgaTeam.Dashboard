@@ -501,6 +501,7 @@ namespace NewBizWiz.MediaSchedule.Single
 						buttonItemHomeNewSchedule_Click(null, null);
 					else
 						buttonItemHomeOpenSchedule_Click(null, null);
+					Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Application.Exit();

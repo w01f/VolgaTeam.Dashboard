@@ -8,8 +8,6 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 {
 	public class OutputManager
 	{
-		private const string ExcelOutputTemplateFileName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\ExcelOutput{1}\Newspaper Slides\Print Schedule Formats{2}.xls";
-
 		public const int Columns = 12;
 
 		public const int DetailedGridGridBasedRowsCountWithNotes = 8;
@@ -47,11 +45,6 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 		public OutputManager()
 		{
 			TemplatesManager = new CalendarTemplatesManager();
-		}
-
-		public string ExcelOutputTemplateFilePath
-		{
-			get { return string.Format(ExcelOutputTemplateFileName, new object[] { Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), AdSchedulePowerPointHelper.Instance.Is2003 ? "03" : "07", AdSchedulePowerPointHelper.Instance.Is2003 ? "03" : "07" }); }
 		}
 
 		public string BasicOverviewTemlatesFolderPath

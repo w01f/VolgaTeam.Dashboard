@@ -18,7 +18,7 @@ namespace NewBizWiz.Core.Interop
 		bool Foreground { get; }
 		bool IsMinimized { get; }
 		bool IsActive { get; }
-		bool Is2003 { get; }
+		bool IsLinkedWithApplication { get; }
 		string ActiveFileName { get; }
 		string ActiveFilePath { get; }
 		bool Connect(bool run = true);
@@ -43,13 +43,11 @@ namespace NewBizWiz.Core.Interop
 		protected static T _instance;
 
 		protected Presentation _activePresentation;
-		protected bool _containsPageNumbers = false;
-		private bool _is2003;
 		private bool _isFirstLaunch;
 		private Application _powerPointObject;
 		private int _powerPointProcessId;
 		private IntPtr _windowHandle = IntPtr.Zero;
-		private int previouseSlideIndex;
+		private int _previouseSlideIndex;
 
 		protected PowerPointHelper() { }
 
@@ -65,12 +63,11 @@ namespace NewBizWiz.Core.Interop
 
 		public Application PowerPointObject
 		{
-			get 
+			get
 			{
-				if (IsActive) return _powerPointObject;
-				Disconnect();
-				Connect();
-				return _powerPointObject; 
+				if (!IsLinkedWithApplication)
+					Connect(false);
+				return _powerPointObject;
 			}
 		}
 
@@ -122,9 +119,33 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		public bool Is2003
+		public bool IsLinkedWithApplication
 		{
-			get { return _is2003; }
+			get
+			{
+				var isOpened = true;
+				var proc = Process.GetProcessesByName("POWERPNT");
+				if (!(proc.GetLength(0) > 0))
+				{
+					_powerPointObject = null;
+					isOpened = false;
+				}
+				else
+				{
+					try
+					{
+						if (_powerPointObject == null)
+							Connect(false);
+						var caption = _powerPointObject.Caption;
+					}
+					catch
+					{
+						_powerPointObject = null;
+						isOpened = false;
+					}
+				}
+				return isOpened;
+			}
 		}
 
 		public string ActiveFileName
@@ -157,76 +178,9 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		public static string Version
-		{
-			get
-			{
-				string regKey = @"Software\Microsoft\Windows\CurrentVersion\App Paths";
-				string key = "powerpnt.exe";
-				string powerPointPath = string.Empty;
-
-				//looks inside CURRENT_USER:
-				RegistryKey mainKey = Registry.CurrentUser;
-				try
-				{
-					mainKey = mainKey.OpenSubKey(regKey + @"\" + key, false);
-					if (mainKey != null)
-					{
-						powerPointPath = mainKey.GetValue(string.Empty).ToString();
-					}
-				}
-				catch { }
-
-				//if not found, looks inside LOCAL_MACHINE:
-				mainKey = Registry.LocalMachine;
-				if (string.IsNullOrEmpty(powerPointPath))
-				{
-					try
-					{
-						mainKey = mainKey.OpenSubKey(regKey + @"\" + key, false);
-						if (mainKey != null)
-						{
-							powerPointPath = mainKey.GetValue(string.Empty).ToString();
-						}
-					}
-					catch { }
-				}
-
-				//closing the handle:
-				if (mainKey != null)
-					mainKey.Close();
-
-				int majorVersion = 0;
-				try
-				{
-					FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(powerPointPath);
-					majorVersion = fileVersion.FileMajorPart;
-				}
-				catch { }
-
-				switch (majorVersion)
-				{
-					case 11:
-						return "2003";
-					case 12:
-						return "2007";
-					case 14:
-						string bitness = string.Empty;
-						try
-						{
-							bitness = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Office\14.0\Outlook", false).GetValue("Bitness").ToString();
-						}
-						catch { }
-						return string.Format("2010{0}", bitness);
-					default:
-						return "Unknown";
-				}
-			}
-		}
-
 		public bool Connect(bool run = true)
 		{
-			bool result = false;
+			bool result;
 			try
 			{
 				MessageFilter.Register();
@@ -239,18 +193,18 @@ namespace NewBizWiz.Core.Interop
 				catch
 				{
 					if (run)
+					{
 						_powerPointObject = new Application();
-					_powerPointObject.Visible = MsoTriState.msoCTrue;
+						_powerPointObject.Visible = MsoTriState.msoCTrue;
+					}
 					_isFirstLaunch = true;
 				}
-				_is2003 = _powerPointObject.Version.Equals("11.0");
 				_windowHandle = new IntPtr(_powerPointObject.HWND);
-				uint lpdwProcessId = 0;
+				uint lpdwProcessId;
 				WinAPIHelper.GetWindowThreadProcessId(_windowHandle, out lpdwProcessId);
 				_powerPointProcessId = (int)lpdwProcessId;
 				_powerPointObject.DisplayAlerts = PpAlertLevel.ppAlertsNone;
 				GetActivePresentation();
-				SearchPageNumbers();
 				result = true;
 			}
 			catch
@@ -460,10 +414,10 @@ namespace NewBizWiz.Core.Interop
 		public void AppendSlide(Presentation sourcePresentation, int slideIndex, Presentation destinationPresentation = null, bool firstSlide = false, int indexToPaste = 0)
 		{
 			MessageFilter.Register();
-			
+
 			var tempPresentationPath = Path.GetTempFileName();
 			sourcePresentation.SaveAs(tempPresentationPath);
-			
+
 			if (destinationPresentation == null)
 			{
 				GetActivePresentation();
@@ -511,7 +465,7 @@ namespace NewBizWiz.Core.Interop
 			{
 				File.Delete(tempPresentationPath);
 			}
-			catch {}
+			catch { }
 		}
 
 		private Design GetDesignFromSlide(Slide slide, Presentation presentation)
@@ -589,31 +543,6 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		private void SearchPageNumbers()
-		{
-			if (_activePresentation != null)
-			{
-				foreach (Slide slide in _activePresentation.Slides)
-				{
-					foreach (Shape shape in slide.Shapes)
-					{
-						for (int i = 1; i <= shape.Tags.Count && !_containsPageNumbers; i++)
-						{
-							switch (shape.Tags.Name(i))
-							{
-								case "NEWPAGENUMBER":
-								case "PAGE_NUMBER":
-									_containsPageNumbers = true;
-									break;
-							}
-						}
-						if (_containsPageNumbers)
-							break;
-					}
-				}
-			}
-		}
-
 		public void SavePDF(string fileName)
 		{
 			try
@@ -646,12 +575,12 @@ namespace NewBizWiz.Core.Interop
 
 		protected void SavePrevSlideIndex()
 		{
-			previouseSlideIndex = GetActiveSlideIndex();
+			_previouseSlideIndex = GetActiveSlideIndex();
 		}
 
 		protected void RestorePrevSlideIndex()
 		{
-			_powerPointObject.ActivePresentation.Slides[previouseSlideIndex].Select();
+			_powerPointObject.ActivePresentation.Slides[_previouseSlideIndex].Select();
 		}
 
 		public void PreparePresentation(string fileName, Action<Presentation> buildPresentation, bool generateImages = true)

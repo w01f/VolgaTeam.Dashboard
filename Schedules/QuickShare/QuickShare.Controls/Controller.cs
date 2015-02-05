@@ -11,6 +11,7 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.Core.QuickShare;
 using NewBizWiz.QuickShare.Controls.BusinessClasses;
+using NewBizWiz.QuickShare.Controls.InteropClasses;
 using NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls;
 using NewBizWiz.QuickShare.Controls.Properties;
 
@@ -134,6 +135,14 @@ namespace NewBizWiz.QuickShare.Controls
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+		}
+
+		public bool CheckPowerPointRunning()
+		{
+			if (QuickSharePowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+			return false;
 		}
 		#region Command Controls
 

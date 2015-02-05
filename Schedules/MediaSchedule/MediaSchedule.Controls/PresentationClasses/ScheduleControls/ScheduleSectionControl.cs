@@ -99,9 +99,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			repositoryItemSpinEditSpot.Enter += Utilities.Instance.Editor_Enter;
 			repositoryItemSpinEditSpot.MouseDown += Utilities.Instance.Editor_MouseDown;
 			repositoryItemSpinEditSpot.MouseUp += Utilities.Instance.Editor_MouseUp;
-			spinEditOutputLimitPeriods.Enter += Utilities.Instance.Editor_Enter;
-			spinEditOutputLimitPeriods.MouseDown += Utilities.Instance.Editor_MouseDown;
-			spinEditOutputLimitPeriods.MouseUp += Utilities.Instance.Editor_MouseUp;
 			quarterSelectorControl.QuarterSelected += QuarterCheckedChanged;
 			retractableBarControl.Collapse(true);
 		}
@@ -449,7 +446,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			_allowToSave = false;
 			_helpKey = String.Format("{0}ly", SpotTitle.ToLower());
 			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
-			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
 			ScheduleSection.DataChanged += ScheduleSection_DataChanged;
 			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed &&
 				(_localSchedule.FlightDateStart != _localSchedule.UserFlightDateStart || _localSchedule.FlightDateEnd != _localSchedule.UserFlightDateEnd))
@@ -489,22 +485,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			buttonXTime.Checked = ScheduleSection.ShowTime;
 			buttonXSpots.Text = String.Format("{0}s", SpotTitle);
 			buttonXSpots.Checked = ScheduleSection.ShowSpots;
-			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
-			checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
-			checkEditOutputNoBrackets.Checked = ScheduleSection.OutputNoBrackets;
-			checkEditUseDecimalRate.Checked = ScheduleSection.UseDecimalRates;
 
 			QuarterButton.Checked = ScheduleSection.ShowSelectedQuarter;
 			quarterSelectorControl.InitControls(ScheduleSection.Parent.Quarters, ScheduleSection.Parent.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
 			QuarterBar.Enabled =
-			quarterSelectorControl.Visible =
-			checkEditOutputLimitQuarters.Visible =
-				ScheduleSection.Parent.Quarters.Count > 1;
+			quarterSelectorControl.Visible = ScheduleSection.Parent.Quarters.Count > 1;
 
-			checkEditOutputLimitQuarters.Checked = ScheduleSection.OutputPerQuater;
-			checkEditOutputLimitPeriods.Checked = ScheduleSection.OutputMaxPeriods.HasValue;
-			spinEditOutputLimitPeriods.EditValue = ScheduleSection.OutputMaxPeriods;
-			checkEditOutputLimitPeriods.Text = String.Format("Max {0}s Per PPT Slide", SpotTitle);
 
 			buttonXTotalPeriods.Checked = ScheduleSection.ShowTotalPeriods;
 			buttonXTotalPeriods.Text = String.Format("Total {0}s", SpotTitle);
@@ -559,7 +545,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			UpdateRateFormat();
 
-			checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+			
 
 			_allowToSave = true;
 			SettingsNotSaved = false;
@@ -570,7 +556,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			advBandedGridViewSchedule.CloseEditor();
 			var checkedColorItem = xtraScrollableControlColors.Controls.OfType<ButtonX>().FirstOrDefault(b => b.Checked);
 			MediaMetaData.Instance.SettingsManager.SelectedColor = checkedColorItem != null ? ((ColorFolder)checkedColorItem.Tag).Name : String.Empty;
-			MediaMetaData.Instance.SettingsManager.UseSlideMaster = checkEditLockToMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 			SettingsNotSaved = false;
 			return true;
@@ -666,13 +651,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			ScheduleSection.ShowLogo = buttonXLogo.Checked;
 			ScheduleSection.ShowStation = buttonXStation.Checked;
 			ScheduleSection.ShowTime = buttonXTime.Checked;
-
-
 			ScheduleSection.ShowSpots = buttonXSpots.Checked;
-			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
-			ScheduleSection.ShowEmptySpots = !checkEditEmptySports.Checked;
-			ScheduleSection.OutputNoBrackets = checkEditOutputNoBrackets.Checked;
-			ScheduleSection.UseDecimalRates = checkEditUseDecimalRate.Checked;
 
 			ScheduleSection.ShowTotalPeriods = buttonXTotalPeriods.Checked;
 			ScheduleSection.ShowTotalSpots = buttonXTotalSpots.Checked;
@@ -722,33 +701,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SettingsNotSaved = true;
 		}
 
-		private void checkEditOutputLimitQuarters_CheckedChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			if (checkEditOutputLimitQuarters.Checked)
-				checkEditOutputLimitPeriods.Checked = false;
-			ScheduleSection.OutputPerQuater = checkEditOutputLimitQuarters.Checked;
-			TrackOptionChanged();
-			SettingsNotSaved = true;
-		}
-
-		private void checkEditOutputLimitPeriods_CheckedChanged(object sender, EventArgs e)
-		{
-			spinEditOutputLimitPeriods.Enabled = checkEditOutputLimitPeriods.Checked;
-			if (!checkEditOutputLimitPeriods.Checked)
-				spinEditOutputLimitPeriods.EditValue = null;
-			else
-				checkEditOutputLimitQuarters.Checked = false;
-		}
-
-		private void spinEditOutputLimitPeriods_EditValueChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			TrackOptionChanged();
-			ScheduleSection.OutputMaxPeriods = spinEditOutputLimitPeriods.EditValue != null ? (Int32?)spinEditOutputLimitPeriods.Value : null;
-			SettingsNotSaved = true;
-		}
-
 		private void buttonXUseSlideMaster_CheckedChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -783,6 +735,36 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			using (var form = new FormFlexFlightDatesWarning())
 			{
 				form.ShowDialog();
+			}
+		}
+
+		private void hyperLinkEditLineAdvanced_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormOutputSettings())
+			{
+				form.checkEditEmptySports.Text = String.Format(form.checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
+				form.checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
+				form.checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
+				form.checkEditOutputNoBrackets.Checked = ScheduleSection.OutputNoBrackets;
+				form.checkEditUseDecimalRate.Checked = ScheduleSection.UseDecimalRates;
+				form.checkEditOutputLimitQuarters.Visible = ScheduleSection.Parent.Quarters.Count > 1;
+				form.checkEditOutputLimitQuarters.Checked = ScheduleSection.OutputPerQuater;
+				form.checkEditOutputLimitPeriods.Checked = ScheduleSection.OutputMaxPeriods.HasValue;
+				form.spinEditOutputLimitPeriods.EditValue = ScheduleSection.OutputMaxPeriods;
+				form.checkEditOutputLimitPeriods.Text = String.Format("Max {0}s Per PPT Slide", SpotTitle);
+				form.checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
+				form.checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				ScheduleSection.ShowEmptySpots = !form.checkEditEmptySports.Checked;
+				ScheduleSection.OutputNoBrackets = form.checkEditOutputNoBrackets.Checked;
+				ScheduleSection.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+				ScheduleSection.OutputPerQuater = form.checkEditOutputLimitQuarters.Checked;
+				ScheduleSection.OutputMaxPeriods = form.spinEditOutputLimitPeriods.EditValue != null ? (Int32?)form.spinEditOutputLimitPeriods.Value : null;
+				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
+				UpdateRateFormat();
+				TrackOptionChanged();
+				SettingsNotSaved = true;
 			}
 		}
 		#endregion
@@ -1067,7 +1049,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 						outputPage.ShowGRP = buttonXGRP.Checked;
 						outputPage.ShowCost = buttonXCost.Checked;
 						outputPage.ShowStation = buttonXStation.Checked;
-						outputPage.ShowStationInBrackets = !checkEditOutputNoBrackets.Checked;
+						outputPage.ShowStationInBrackets = !ScheduleSection.OutputNoBrackets;
 						outputPage.ShowDay = buttonXDay.Checked;
 						outputPage.ShowTime = buttonXTime.Checked;
 						outputPage.ShowLength = buttonXLength.Checked;

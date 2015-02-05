@@ -732,17 +732,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#endregion
 
 		#region Output Stuff
-		public int OutputFileIndex
-		{
-			get
-			{
-				if (AdSchedulePowerPointHelper.Instance.Is2003)
-					return _showCommentsHeader ? 1 : 2;
-				else
-					return _showCommentsHeader ? 3 : 4;
-			}
-		}
-
 		public Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid))); }

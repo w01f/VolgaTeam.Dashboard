@@ -43,6 +43,14 @@ namespace NewBizWiz.CommonGUI.Preview
 			xtraTabControlGroups.ShowTabHeader = GroupControls.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
 		}
 
+		public bool CheckPowerPointRunning()
+		{
+			if (_powerPointHelper.IsLinkedWithApplication) return true;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+				_showFloater(() => Utilities.Instance.RunPowerPointLoader());
+			return false;
+		}
+
 		#region Form GUI Event Habdlers
 		private void FormPreview_Shown(object sender, EventArgs e)
 		{
@@ -64,20 +72,26 @@ namespace NewBizWiz.CommonGUI.Preview
 
 			RegistryHelper.MaximizeMainForm = _parentForm.WindowState == FormWindowState.Maximized;
 			RegistryHelper.MainFormHandle = _parentForm.Handle;
-			if (_trackOutput != null)
-				_trackOutput();
-			using (var formProgress = new FormProgress())
+
+			if (_powerPointHelper.IsLinkedWithApplication)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				_showFloater(() =>
+				if (_trackOutput != null)
+					_trackOutput();
+				using (var formProgress = new FormProgress())
 				{
-					foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
-						_powerPointHelper.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
-					formProgress.Close();
-				});
+					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+					formProgress.TopMost = true;
+					formProgress.Show();
+					_showFloater(() =>
+					{
+						foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
+							_powerPointHelper.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
+						formProgress.Close();
+					});
+				}
 			}
+			else
+				CheckPowerPointRunning();
 			DialogResult = DialogResult.OK;
 		}
 

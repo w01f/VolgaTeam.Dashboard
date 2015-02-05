@@ -166,6 +166,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		protected override void Output()
 		{
 			SaveSchedule();
+			if (!CheckPowerPointRunning()) return;
 			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
@@ -178,6 +179,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 					formProgress.Close();
 				});
 			}
+		}
+
+		protected override bool CheckPowerPointRunning()
+		{
+			return Controller.Instance.CheckPowerPointRunning();
 		}
 
 		protected override void PreparePreview(string tempFileName)

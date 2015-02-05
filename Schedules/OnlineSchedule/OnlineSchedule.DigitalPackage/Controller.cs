@@ -5,10 +5,12 @@ using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
 using NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses;
 using NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses;
@@ -37,17 +39,17 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 
 		public void Init()
 		{
-			Utilities.Instance.Title = "WebQuick"; 
-			
+			Utilities.Instance.Title = "WebQuick";
+
 			#region Web Package
 			DigitalPackage = new DigitalPackageControl(FormMain);
 			DigitalPackageAdd.Click += DigitalPackage.Add_Click;
 			DigitalPackageDelete.Click += DigitalPackage.Delete_Click;
 			DigitalPackageSave.Click += DigitalPackage.Save_Click;
 			DigitalPackageSaveAs.Click += DigitalPackage.SaveAs_Click;
-			DigitalPackagePowerPoint.Click += DigitalPackage.PowerPoint_Click;
-			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
-			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
+			DigitalPackagePowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalPackage.PowerPoint_Click);
+			DigitalPackagePreview.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Preview_Click);
+			DigitalPackageEmail.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Email_Click);
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
 			#endregion
 
@@ -205,6 +207,13 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 				RateCard.LoadRateCards();
 		}
 
+		public bool CheckPowerPointRunning()
+		{
+			if (OnlineSchedulePowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+			return false;
+		}
 		#region Command Controls
 
 		#region Web Package

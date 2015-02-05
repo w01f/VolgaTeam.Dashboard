@@ -30,6 +30,8 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnapshotContainer));
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pbNoSnapshots = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlSnapshots = new DevExpress.XtraTab.XtraTabControl();
 			this.pnSnapshots = new System.Windows.Forms.Panel();
@@ -75,18 +77,16 @@
 			this.buttonXSummaryComments = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSummaryTotalWeeks = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSummaryTallyCost = new DevComponents.DotNetBar.ButtonX();
-			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
 			this.laColorsTitle = new System.Windows.Forms.Label();
-			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.pnColors = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlColors = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.contextMenuStripSnapshot = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoSnapshots = new System.Windows.Forms.Panel();
+			this.hyperLinkEditInfoAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).BeginInit();
 			this.pnSnapshots.SuspendLayout();
@@ -104,14 +104,12 @@
 			this.pnOptionsInfo.SuspendLayout();
 			this.pnSnapshotInfo.SuspendLayout();
 			this.pnSummaryInfo.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
 			this.pnStyle.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			this.pnColors.SuspendLayout();
 			this.contextMenuStripSnapshot.SuspendLayout();
 			this.pnNoSnapshots.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pbNoSnapshots
@@ -176,7 +174,7 @@
 			this.checkEditApplySettingsForAll.Location = new System.Drawing.Point(299, 10);
 			this.checkEditApplySettingsForAll.Name = "checkEditApplySettingsForAll";
 			this.checkEditApplySettingsForAll.Properties.Caption = "Use the SAME SETTINGS for all Snapshots";
-			this.checkEditApplySettingsForAll.Size = new System.Drawing.Size(293, 20);
+			this.checkEditApplySettingsForAll.Size = new System.Drawing.Size(293, 19);
 			this.checkEditApplySettingsForAll.StyleController = this.styleController;
 			this.checkEditApplySettingsForAll.TabIndex = 124;
 			this.checkEditApplySettingsForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
@@ -371,10 +369,9 @@
 			// pnOptionsInfo
 			// 
 			this.pnOptionsInfo.BackColor = System.Drawing.Color.Transparent;
+			this.pnOptionsInfo.Controls.Add(this.hyperLinkEditInfoAdvanced);
 			this.pnOptionsInfo.Controls.Add(this.pnSnapshotInfo);
 			this.pnOptionsInfo.Controls.Add(this.pnSummaryInfo);
-			this.pnOptionsInfo.Controls.Add(this.checkEditUseDecimalRate);
-			this.pnOptionsInfo.Controls.Add(this.checkEditShowSpotX);
 			this.pnOptionsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsInfo.Name = "pnOptionsInfo";
@@ -738,30 +735,6 @@
 			this.buttonXSummaryTallyCost.TextColor = System.Drawing.Color.Black;
 			this.buttonXSummaryTallyCost.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
 			// 
-			// checkEditUseDecimalRate
-			// 
-			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(18, 486);
-			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
-			this.checkEditUseDecimalRate.Properties.Caption = "Use Decimals with Rates";
-			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(267, 19);
-			this.checkEditUseDecimalRate.StyleController = this.styleController;
-			this.checkEditUseDecimalRate.TabIndex = 119;
-			this.checkEditUseDecimalRate.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
-			// 
-			// checkEditShowSpotX
-			// 
-			this.checkEditShowSpotX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditShowSpotX.Location = new System.Drawing.Point(18, 512);
-			this.checkEditShowSpotX.Name = "checkEditShowSpotX";
-			this.checkEditShowSpotX.Properties.Caption = "Show \"X\" in spot #s";
-			this.checkEditShowSpotX.Size = new System.Drawing.Size(256, 19);
-			this.checkEditShowSpotX.StyleController = this.styleController;
-			this.checkEditShowSpotX.TabIndex = 116;
-			this.checkEditShowSpotX.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
-			// 
 			// xtraTabPageOptionsStyle
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
@@ -773,7 +746,6 @@
 			// 
 			this.pnStyle.BackColor = System.Drawing.Color.Transparent;
 			this.pnStyle.Controls.Add(this.laColorsTitle);
-			this.pnStyle.Controls.Add(this.checkEditLockToMaster);
 			this.pnStyle.Controls.Add(this.pnColors);
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
@@ -789,28 +761,6 @@
 			this.laColorsTitle.Size = new System.Drawing.Size(134, 16);
 			this.laColorsTitle.TabIndex = 48;
 			this.laColorsTitle.Text = "Schedule Table Color:";
-			// 
-			// checkEditLockToMaster
-			// 
-			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(5, 502);
-			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
-			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
-			this.checkEditLockToMaster.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditLockToMaster.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditLockToMaster.Properties.AutoHeight = false;
-			this.checkEditLockToMaster.Properties.Caption = "Lock Schedule on Slide Master<br><size=-2>(protect the schedule in PowerPoint)</s" +
-    "ize>";
-			this.checkEditLockToMaster.Size = new System.Drawing.Size(282, 34);
-			this.checkEditLockToMaster.StyleController = this.styleController;
-			this.checkEditLockToMaster.TabIndex = 47;
 			// 
 			// pnColors
 			// 
@@ -864,6 +814,29 @@
 			this.pnNoSnapshots.Size = new System.Drawing.Size(200, 100);
 			this.pnNoSnapshots.TabIndex = 3;
 			// 
+			// hyperLinkEditInfoAdvanced
+			// 
+			this.hyperLinkEditInfoAdvanced.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.hyperLinkEditInfoAdvanced.EditValue = "Advanced Settings";
+			this.hyperLinkEditInfoAdvanced.Location = new System.Drawing.Point(0, 504);
+			this.hyperLinkEditInfoAdvanced.Name = "hyperLinkEditInfoAdvanced";
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.hyperLinkEditInfoAdvanced.Properties.AutoHeight = false;
+			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(292, 45);
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip1;
+			this.hyperLinkEditInfoAdvanced.TabIndex = 122;
+			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoAdvanced_OpenLink);
+			// 
 			// SnapshotContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -890,15 +863,13 @@
 			this.pnOptionsInfo.ResumeLayout(false);
 			this.pnSnapshotInfo.ResumeLayout(false);
 			this.pnSummaryInfo.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
 			this.pnStyle.ResumeLayout(false);
 			this.pnStyle.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			this.pnColors.ResumeLayout(false);
 			this.contextMenuStripSnapshot.ResumeLayout(false);
 			this.pnNoSnapshots.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -924,7 +895,6 @@
 		protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsStyle;
 		private System.Windows.Forms.Panel pnStyle;
 		private System.Windows.Forms.Label laColorsTitle;
-		private DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 		protected System.Windows.Forms.Panel pnColors;
 		protected DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlColors;
 		private DevComponents.DotNetBar.ButtonX buttonXSnapshotTime;
@@ -940,11 +910,9 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStripSnapshot;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotRename;
 		private System.Windows.Forms.Panel pnNoSnapshots;
-		private DevExpress.XtraEditors.CheckEdit checkEditShowSpotX;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevComponents.DotNetBar.ButtonX buttonXSnapshotLineId;
 		private DevComponents.DotNetBar.ButtonX buttonXSnapshotTotalRow;
-		private DevExpress.XtraEditors.CheckEdit checkEditUseDecimalRate;
 		private System.Windows.Forms.Panel pnSummaryInfo;
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryLineId;
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryTallySpots;
@@ -962,6 +930,7 @@
 		private System.Windows.Forms.Label laTotalCostTitle;
 		private DevExpress.XtraEditors.CheckEdit checkEditApplySettingsForAll;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
 
 	}
 }

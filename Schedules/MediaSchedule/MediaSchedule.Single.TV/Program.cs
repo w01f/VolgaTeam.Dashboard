@@ -25,12 +25,11 @@ namespace NewBizWiz.MediaSchedule.Single.TV
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				MediaMetaData.Instance.Init<TVSettingsManager, TVListManager>(MediaDataType.TV);
-				if (AppManager.Instance.RunPowerPoint())
-					AppManager.Instance.RunForm();
+				AppManager.Instance.RunPowerPoint();
+				AppManager.Instance.RunForm();
 			}
 			else
 			{
-				if (!AppManager.Instance.RunPowerPoint()) return;
 				Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}

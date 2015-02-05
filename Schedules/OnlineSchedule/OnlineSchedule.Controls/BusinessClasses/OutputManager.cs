@@ -24,11 +24,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, String.Format(OneSheetsTemplatesFolderName, SettingsManager.Instance.SlideFolder)); }
 		}
 
-		public string ExcelTemplatesFolderPath
-		{
-			get { return string.Format(ExcelTemplatesFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), OnlineSchedulePowerPointHelper.Instance.Is2003 ? "03" : "07"); }
-		}
-
 		public string DigitalPackageTemplatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, String.Format(DigitalPackageTemplatesFolderName, SettingsManager.Instance.SlideFolder)); }

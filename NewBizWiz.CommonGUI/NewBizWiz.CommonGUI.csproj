@@ -70,9 +70,12 @@
     <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=3.0.43.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+    <Reference Include="EO.WebBrowser, Version=3.0.97.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assemblies\EO.Web\EO.WebBrowser.dll</HintPath>
+      <HintPath>..\packages\EO.WebBrowser.3.0.97\lib\EO.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageListView">
+      <HintPath>..\packages\ImageListView.11.0.1\lib\net35\ImageListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -131,6 +134,7 @@
     <Compile Include="Gallery\GalleryControl.Designer.cs">
       <DependentUpon>GalleryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\PowerPointButtonExtension.cs" />
     <Compile Include="Interop\SummaryHelper.cs" />
     <Compile Include="ListEditor\ListContainer.cs">
       <SubType>Component</SubType>
@@ -340,6 +344,7 @@
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -431,6 +436,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\FloaterHide.png" />
   </ItemGroup>
   <ItemGroup>

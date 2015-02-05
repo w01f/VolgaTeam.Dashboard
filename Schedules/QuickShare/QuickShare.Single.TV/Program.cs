@@ -24,12 +24,11 @@ namespace NewBizWiz.QuickShare.Single.TV
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				MediaMetaData.Instance.Init<TVPackageSettingsManager, TVListManager>(MediaDataType.TV);
-				if (AppManager.Instance.RunPowerPoint())
-					AppManager.Instance.RunForm();
+				AppManager.Instance.RunPowerPoint();
+				AppManager.Instance.RunForm();
 			}
 			else
 			{
-				if (!AppManager.Instance.RunPowerPoint()) return;
 				Utilities.Instance.ActivatePowerPoint(QuickSharePowerPointHelper.Instance.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}

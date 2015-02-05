@@ -40,16 +40,13 @@ namespace NewBizWiz.OnlineSchedule.Single
 						Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 						break;
 				}
-				if (AppManager.Instance.RunPowerPoint())
-					AppManager.Instance.RunForm();
+				AppManager.Instance.RunPowerPoint();
+				AppManager.Instance.RunForm();
 			}
 			else
 			{
-				if (AppManager.Instance.RunPowerPoint())
-				{
-					Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
-					AppManager.Instance.ActivateMainForm();
-				}
+				Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
+				AppManager.Instance.ActivateMainForm();
 			}
 		}
 	}

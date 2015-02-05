@@ -181,8 +181,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				buttonXSnapshotTotalSpots.Checked = ActiveSnapshot.Data.ShowTotalSpots;
 				buttonXSnapshotAvgRate.Checked = ActiveSnapshot.Data.ShowAverageRate;
 				buttonXSnapshotTotalRow.Checked = ActiveSnapshot.Data.ShowTotalRow;
-				checkEditUseDecimalRate.Checked = ActiveSnapshot.Data.UseDecimalRates;
-				checkEditShowSpotX.Checked = ActiveSnapshot.Data.ShowSpotsX;
 			}
 			else if (ActiveSummary != null)
 			{
@@ -200,8 +198,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				buttonXSummaryTotalCost.Checked = ActiveSummary.Data.ShowTotalCost;
 				buttonXSummaryTallySpots.Checked = ActiveSummary.Data.ShowTallySpots;
 				buttonXSummaryTallyCost.Checked = ActiveSummary.Data.ShowTallyCost;
-				checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
-				checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
 				if(activate)
 					ActiveSummary.UpdateView(true);
 			}
@@ -405,14 +401,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				button.Location = new Point(20, topPosition);
 				topPosition += (button.Height + 20);
 			}
-			checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
 		}
 
 		private void SaveColors()
 		{
 			var checkedColorItem = xtraScrollableControlColors.Controls.OfType<ButtonX>().FirstOrDefault(b => b.Checked);
 			MediaMetaData.Instance.SettingsManager.SelectedColor = checkedColorItem != null ? ((ColorFolder)checkedColorItem.Tag).Name : String.Empty;
-			MediaMetaData.Instance.SettingsManager.UseSlideMaster = checkEditLockToMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 		}
 		#endregion
@@ -530,6 +524,43 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			SettingsNotSaved = true;
 		}
 
+		private void hyperLinkEditInfoAdvanced_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormOutputSettings())
+			{
+				if (ActiveSnapshot != null)
+				{
+					form.checkEditUseDecimalRate.Checked = ActiveSnapshot.Data.UseDecimalRates;
+					form.checkEditShowSpotX.Checked = ActiveSnapshot.Data.ShowSpotsX;
+				}
+				else if (ActiveSummary != null)
+				{
+					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
+					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
+				}
+				else 
+					return;
+				form.checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (ActiveSnapshot != null)
+				{
+					ActiveSnapshot.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+					ActiveSnapshot.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
+					ActiveSnapshot.UpdateView();
+				}
+				else if (ActiveSummary != null)
+				{
+					ActiveSummary.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+					ActiveSummary.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
+					ActiveSummary.UpdateView();
+				}
+				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
+				UpdateTotalsValues();
+				SettingsNotSaved = true;
+			}
+		}
+
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -547,8 +578,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				ActiveSnapshot.Data.ShowTotalSpots = buttonXSnapshotTotalSpots.Checked;
 				ActiveSnapshot.Data.ShowAverageRate = buttonXSnapshotAvgRate.Checked;
 				ActiveSnapshot.Data.ShowTotalRow = buttonXSnapshotTotalRow.Checked;
-				ActiveSnapshot.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
-				ActiveSnapshot.Data.ShowSpotsX = checkEditShowSpotX.Checked;
 
 				_localSchedule.SnapshotSummary.ApplySettingsForAll = checkEditApplySettingsForAll.Checked;
 				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
@@ -572,8 +601,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				ActiveSummary.Data.ShowTotalCost = buttonXSummaryTotalCost.Checked;
 				ActiveSummary.Data.ShowTallySpots = buttonXSummaryTallySpots.Checked;
 				ActiveSummary.Data.ShowTallyCost = buttonXSummaryTallyCost.Checked;
-				ActiveSummary.Data.UseDecimalRates = checkEditUseDecimalRate.Checked;
-				ActiveSummary.Data.ShowSpotsX = checkEditShowSpotX.Checked;
 				ActiveSummary.UpdateView();
 			}
 			UpdateTotalsVisibility();

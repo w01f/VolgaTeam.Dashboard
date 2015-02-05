@@ -31,9 +31,9 @@ namespace NewBizWiz.QuickShare.Single
 			Application.Run(FormMain.Instance);
 		}
 
-		public bool RunPowerPoint()
+		public void RunPowerPoint()
 		{
-			return QuickSharePowerPointHelper.Instance.Connect();
+			QuickSharePowerPointHelper.Instance.Connect(false);
 		}
 
 		public void ActivateMainForm()

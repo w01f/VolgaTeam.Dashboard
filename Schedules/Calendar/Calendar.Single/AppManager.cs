@@ -31,9 +31,9 @@ namespace NewBizWiz.Calendar.Single
 			Application.Run(FormMain.Instance);
 		}
 
-		public bool RunPowerPoint()
+		public void RunPowerPoint()
 		{
-			return CalendarPowerPointHelper.Instance.Connect();
+			CalendarPowerPointHelper.Instance.Connect(false);
 		}
 
 		public static void ActivateMainForm()

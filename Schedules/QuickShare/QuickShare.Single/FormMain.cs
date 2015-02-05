@@ -157,6 +157,7 @@ namespace NewBizWiz.QuickShare.Single
 						buttonItemHomeNewPackage_Click(null, null);
 					else
 						buttonItemHomeOpenPackage_Click(null, null);
+					Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Application.Exit();

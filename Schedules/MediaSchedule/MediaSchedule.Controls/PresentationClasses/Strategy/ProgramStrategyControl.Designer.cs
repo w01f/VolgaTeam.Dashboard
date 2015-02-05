@@ -28,9 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramStrategyControl));
+			this.components = new System.ComponentModel.Container();
 			this.gridControlItems = new DevExpress.XtraGrid.GridControl();
-			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
+			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
 			this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.advBandedGridViewItems = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -133,6 +133,7 @@
 			this.advBandedGridViewItems.OptionsView.ShowIndicator = false;
 			this.advBandedGridViewItems.RowHeight = 40;
 			this.advBandedGridViewItems.RowSeparatorHeight = 15;
+			this.advBandedGridViewItems.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.advBandedGridViewItems_RowCellClick);
 			this.advBandedGridViewItems.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.advBandedGridViewItems_RowCellStyle);
 			this.advBandedGridViewItems.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.advBandedGridViewItems_PopupMenuShowing);
 			this.advBandedGridViewItems.ShownEditor += new System.EventHandler(this.advBandedGridViewItems_ShownEditor);
@@ -230,6 +231,7 @@
 			this.favoriteImagesControl.BackColor = System.Drawing.Color.White;
 			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.favoriteImagesControl.ImageTooltip = null;
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
 			this.favoriteImagesControl.Size = new System.Drawing.Size(355, 579);

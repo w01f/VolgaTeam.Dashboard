@@ -6,8 +6,10 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
+using NewBizWiz.Calendar.Controls.InteropClasses;
 using NewBizWiz.Calendar.Controls.PresentationClasses;
 using NewBizWiz.Calendar.Controls.Properties;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
@@ -77,9 +79,9 @@ namespace NewBizWiz.Calendar.Controls
 			CalendarClone.Click += CalendarVisualizer.buttonItemCalendarClone_Click;
 			CalendarSave.Click += CalendarVisualizer.buttonItemCalendarSave_Click;
 			CalendarSaveAs.Click += CalendarVisualizer.buttonItemCalendarSaveAs_Click;
-			CalendarPreview.Click += CalendarVisualizer.buttonItemCalendarPreview_Click;
-			CalendarPowerPoint.Click += CalendarVisualizer.buttonItemCalendarPowerPoint_Click;
-			CalendarEmail.Click += CalendarVisualizer.buttonItemCalendarEmail_Click;
+			CalendarPreview.AddEventHandler(CheckPowerPointRunning, CalendarVisualizer.buttonItemCalendarPreview_Click);
+			CalendarPowerPoint.AddEventHandler(CheckPowerPointRunning, CalendarVisualizer.buttonItemCalendarPowerPoint_Click);
+			CalendarEmail.AddEventHandler(CheckPowerPointRunning, CalendarVisualizer.buttonItemCalendarEmail_Click);
 			CalendarHelp.Click += CalendarVisualizer.buttonItemCalendarHelp_Click;
 
 			GridMonthsList.SelectedIndexChanged += CalendarVisualizer.imageListBoxEditCalendar_SelectedIndexChanged;
@@ -88,9 +90,9 @@ namespace NewBizWiz.Calendar.Controls
 			GridClone.Click += CalendarVisualizer.buttonItemCalendarClone_Click;
 			GridSave.Click += CalendarVisualizer.buttonItemCalendarSave_Click;
 			GridSaveAs.Click += CalendarVisualizer.buttonItemCalendarSaveAs_Click;
-			GridPreview.Click += CalendarVisualizer.buttonItemCalendarPreview_Click;
-			GridPowerPoint.Click += CalendarVisualizer.buttonItemCalendarPowerPoint_Click;
-			GridEmail.Click += CalendarVisualizer.buttonItemCalendarEmail_Click;
+			GridPreview.AddEventHandler(CheckPowerPointRunning, CalendarVisualizer.buttonItemCalendarPreview_Click);
+			GridPowerPoint.AddEventHandler(CheckPowerPointRunning, CalendarVisualizer.buttonItemCalendarPowerPoint_Click);
+			GridEmail.AddEventHandler(CheckPowerPointRunning, CalendarVisualizer.buttonItemCalendarEmail_Click);
 			GridHelp.Click += CalendarVisualizer.buttonItemCalendarHelp_Click;
 
 			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
@@ -252,6 +254,13 @@ namespace NewBizWiz.Calendar.Controls
 				Gallery2.InitControl();
 		}
 
+		public bool CheckPowerPointRunning()
+		{
+			if (CalendarPowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+			return false;
+		}
 		#region Command Controls
 
 		#region Home

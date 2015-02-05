@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.CommonGUI.Floater;
@@ -27,9 +26,9 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			Application.Run(FormMain.Instance);
 		}
 
-		public bool RunPowerPoint()
+		public void RunPowerPoint()
 		{
-			return OnlineSchedulePowerPointHelper.Instance.Connect();
+			OnlineSchedulePowerPointHelper.Instance.Connect(false);
 		}
 
 		public void ActivateMainForm()

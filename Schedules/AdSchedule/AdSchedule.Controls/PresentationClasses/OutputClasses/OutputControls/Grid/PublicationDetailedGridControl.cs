@@ -280,21 +280,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Output Staff
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 
-		public int OutputFileIndex
-		{
-			get
-			{
-				if (AdSchedulePowerPointHelper.Instance.Is2003)
-				{
-					return Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? 1 : 2;
-				}
-				else
-				{
-					return Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? 3 : 4;
-				}
-			}
-		}
-
 		public Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDetailedGrid).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid))); }

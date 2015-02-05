@@ -26,12 +26,11 @@ namespace NewBizWiz.MediaSchedule.Single.Radio
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				MediaMetaData.Instance.Init<RadioSettingsManager, RadioListManager>(MediaDataType.Radio);
-				if (AppManager.Instance.RunPowerPoint())
-					AppManager.Instance.RunForm();
+				AppManager.Instance.RunPowerPoint();
+				AppManager.Instance.RunForm();
 			}
 			else
 			{
-				if (!AppManager.Instance.RunPowerPoint()) return;
 				Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}

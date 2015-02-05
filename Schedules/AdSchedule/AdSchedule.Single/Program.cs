@@ -27,12 +27,11 @@ namespace NewBizWiz.AdSchedule.Single
 				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
 				Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 				Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-				if (AppManager.Instance.RunPowerPoint())
-					AppManager.Instance.RunForm();
+				AppManager.Instance.RunPowerPoint();
+				AppManager.Instance.RunForm();
 			}
 			else
 			{
-				if (!AppManager.Instance.RunPowerPoint()) return;
 				Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}

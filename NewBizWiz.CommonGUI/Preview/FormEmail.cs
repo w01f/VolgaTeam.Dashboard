@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -62,7 +63,6 @@ namespace NewBizWiz.CommonGUI.Preview
 				_mergedGroup = previewGroups.FirstOrDefault();
 			}
 		}
-
 
 		#region Form GUI Event Habdlers
 		private void FormEmail_Shown(object sender, System.EventArgs e)

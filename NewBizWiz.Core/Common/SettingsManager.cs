@@ -22,9 +22,7 @@ namespace NewBizWiz.Core.Common
 			if (!Directory.Exists(TempPath))
 				Directory.CreateDirectory(TempPath);
 			SharedListFolder = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			MinibarApplicationPath = String.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBar.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			OneDomainApplicationPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications\APP_One_Domain\OneDomain.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			SalesDepotApplicationPath = String.Format(@"{0}\newlocaldirect.com\Sales Depot\SalesDepot.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			PowerPointLoaderPath = String.Format(@"{0}\newlocaldirect.com\app\PPTLAUNCHER\PPTLAUNCH.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			ThemeCollectionPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SellerPointThemes", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SlideMastersPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SlidesTab", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			RateCardPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\RateCard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
@@ -51,9 +49,7 @@ namespace NewBizWiz.Core.Common
 
 		public string SettingsPath { get; set; }
 		public string TempPath { get; set; }
-		public string MinibarApplicationPath { get; set; }
-		public string OneDomainApplicationPath { get; set; }
-		public string SalesDepotApplicationPath { get; set; }
+		public string PowerPointLoaderPath { get; set; }
 		public string SharedListFolder { get; set; }
 		public string ThemeCollectionPath { get; set; }
 		public string SlideMastersPath { get; set; }

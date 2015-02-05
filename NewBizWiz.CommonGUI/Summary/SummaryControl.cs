@@ -45,7 +45,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		protected SummaryBaseControl()
 		{
 			SetClickEventHandler(this);
-			
+
 			checkEditBusinessName.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditDecisionMaker.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditTotalInvestment.CheckedChanged += checkEdit_CheckedChanged;
@@ -253,6 +253,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		public abstract ButtonItem EmailButton { get; }
 		public abstract Theme SelectedTheme { get; }
 		protected abstract void Output();
+		protected abstract bool CheckPowerPointRunning();
 		protected abstract void PreparePreview(string tempFileName);
 		protected abstract void ShowEmail(string tempFileName);
 		protected abstract void ShowPreview(string tempFileName);
@@ -448,6 +449,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		protected void Email()
 		{
 			SaveSchedule();
+			if (!CheckPowerPointRunning()) return;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
@@ -464,6 +466,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		protected void Preview()
 		{
 			SaveSchedule();
+			if (!CheckPowerPointRunning()) return;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";

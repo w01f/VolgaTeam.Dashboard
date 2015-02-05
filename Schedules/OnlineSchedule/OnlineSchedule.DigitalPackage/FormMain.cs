@@ -171,6 +171,8 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(BusinessClasses.SettingsManager.Instance.LastOpenSchedule, false);
 
 			LoadData();
+
+			Controller.Instance.CheckPowerPointRunning();
 		}
 
 		public void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)

@@ -30,9 +30,9 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Application.Run(FormMain.Instance);
 		}
 
-		public bool RunPowerPoint()
+		public void RunPowerPoint()
 		{
-			return OnlineSchedulePowerPointHelper.Instance.Connect();
+			OnlineSchedulePowerPointHelper.Instance.Connect(false);
 		}
 
 		public void ActivateMainForm()

@@ -147,14 +147,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (@from.ShowDialog() != DialogResult.OK) return;
-				if (!string.IsNullOrEmpty(@from.ScheduleName))
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (SaveSchedule(@from.ScheduleName))
+					if (SaveSchedule(form.ScheduleName))
 						Utilities.Instance.ShowInformation("Schedule was saved");
 				}
 				else
@@ -205,6 +205,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 			}
+		}
+
+		public override void ShowPdf(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

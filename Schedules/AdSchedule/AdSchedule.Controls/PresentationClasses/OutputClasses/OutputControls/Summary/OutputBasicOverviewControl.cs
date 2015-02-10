@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -35,11 +34,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
-			if ((base.CreateGraphics()).DpiX > 96)
-			{
-				laFlightDates.Font = new Font(laFlightDates.Font.FontFamily, laFlightDates.Font.Size - 2, laFlightDates.Font.Style);
-				laAdvertiser.Font = new Font(laAdvertiser.Font.FontFamily, laAdvertiser.Font.Size - 2, laAdvertiser.Font.Style);
-			}
 		}
 
 		private void AssignCloseActiveEditorsonOutSideClick(Control control)
@@ -61,7 +55,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			laAdvertiser.Focus();
+			labelControlScheduleInfo.Focus();
 		}
 
 		#region ISummaryOutputControl Members
@@ -87,7 +81,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}));
 			if (!quickLoad)
 			{
-				LoadSharedOptions();
+				labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
+					LocalSchedule.BusinessName,
+					LocalSchedule.FlightDates,
+					String.Format("{0} {1}s", LocalSchedule.TotalWeeks, "week"));
 				Application.DoEvents();
 				xtraTabControlPublications.TabPages.Clear();
 				_tabPages.RemoveAll(x => !LocalSchedule.PrintProducts.Select(y => y.UniqueID).Contains(x.PrintProduct.UniqueID));
@@ -139,12 +136,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			xtraTabControlPublications.TabPages.OfType<BasicOverviewSummaryControl>().First().Save();
 		}
 
-		private void LoadSharedOptions()
-		{
-			laAdvertiser.Text = LocalSchedule.BusinessName;
-			laFlightDates.Text = String.Format("Campaign: {0}", LocalSchedule.FlightDates);
-		}
-
 		private void xtraTabControlPublications_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			var page = e.Page as BasicOverviewSummaryControl;
@@ -159,7 +150,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			selectedProduct.OnOptionChanged(sender);
 		}
 
-		public void ResetToDefault()
+		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
 		{
 			foreach (var publication in LocalSchedule.PrintProducts)
 			{

@@ -67,6 +67,7 @@ namespace NewBizWiz.CommonGUI.Preview
 		#region Button Clicks
 		private void barButtonItemOutput_ItemClick(object sender, ItemClickEventArgs e)
 		{
+			WindowState = FormWindowState.Normal;
 			FormBorderStyle = FormBorderStyle.None;
 			Size = new Size(0, 0);
 

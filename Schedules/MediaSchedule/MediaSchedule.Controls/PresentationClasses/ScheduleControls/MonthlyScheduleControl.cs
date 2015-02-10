@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using DevComponents.DotNetBar;
-using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
@@ -15,6 +14,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public override ButtonItem PowerPointButton
 		{
 			get { return Controller.Instance.MonthlySchedulePowerPoint; }
+		}
+		public override ButtonItem PdfButton
+		{
+			get { return Controller.Instance.MonthlySchedulePdf; }
 		}
 		public override ButtonItem EmailButton
 		{

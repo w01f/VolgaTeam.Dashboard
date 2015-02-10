@@ -29,40 +29,22 @@
         private void InitializeComponent()
         {
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.laScheduleWindow = new System.Windows.Forms.Label();
-			this.laAdvertiser = new System.Windows.Forms.Label();
 			this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnHeader
 			// 
-			this.pnHeader.Controls.Add(this.laScheduleWindow);
-			this.pnHeader.Controls.Add(this.laAdvertiser);
+			this.pnHeader.Controls.Add(this.labelControlScheduleInfo);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
 			this.pnHeader.Size = new System.Drawing.Size(785, 30);
 			this.pnHeader.TabIndex = 2;
-			// 
-			// laScheduleWindow
-			// 
-			this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laScheduleWindow.Location = new System.Drawing.Point(300, 0);
-			this.laScheduleWindow.Name = "laScheduleWindow";
-			this.laScheduleWindow.Size = new System.Drawing.Size(485, 30);
-			this.laScheduleWindow.TabIndex = 1;
-			this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// laAdvertiser
-			// 
-			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laAdvertiser.Location = new System.Drawing.Point(0, 0);
-			this.laAdvertiser.Name = "laAdvertiser";
-			this.laAdvertiser.Size = new System.Drawing.Size(300, 30);
-			this.laAdvertiser.TabIndex = 2;
-			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// xtraTabControlPublications
 			// 
@@ -80,6 +62,34 @@
 			this.xtraTabControlPublications.TabIndex = 3;
 			this.xtraTabControlPublications.MouseDown += new System.Windows.Forms.MouseEventHandler(this.xtraTabControlPublications_MouseDown);
 			// 
+			// labelControlScheduleInfo
+			// 
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(785, 30);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 126;
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
 			// PrintProductContainerControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -92,6 +102,7 @@
 			this.Load += new System.EventHandler(this.ScheduleBuilderControl_Load);
 			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -99,9 +110,9 @@
         #endregion
 
 		private System.Windows.Forms.Panel pnHeader;
-		private System.Windows.Forms.Label laScheduleWindow;
-        public DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
-        private System.Windows.Forms.Label laAdvertiser;
+		public DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
+		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
+		private DevExpress.XtraEditors.StyleController styleController;
 
     }
 }

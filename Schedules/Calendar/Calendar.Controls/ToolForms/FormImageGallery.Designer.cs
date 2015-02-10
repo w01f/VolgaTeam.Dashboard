@@ -28,88 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.gridControlImageGallery = new DevExpress.XtraGrid.GridControl();
-			this.gridViewImageGallery = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.gridColumnImage = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormImageGallery));
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
-			((System.ComponentModel.ISupportInitialize)(this.gridControlImageGallery)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridViewImageGallery)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
+			this.imageListView = new Manina.Windows.Forms.ImageListView();
 			this.pnBottom.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// gridControlImageGallery
-			// 
-			this.gridControlImageGallery.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControlImageGallery.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
-			this.gridControlImageGallery.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.gridControlImageGallery.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
-			this.gridControlImageGallery.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
-			this.gridControlImageGallery.Location = new System.Drawing.Point(0, 0);
-			this.gridControlImageGallery.MainView = this.gridViewImageGallery;
-			this.gridControlImageGallery.Name = "gridControlImageGallery";
-			this.gridControlImageGallery.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemPictureEdit});
-			this.gridControlImageGallery.Size = new System.Drawing.Size(392, 361);
-			this.gridControlImageGallery.TabIndex = 0;
-			this.gridControlImageGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewImageGallery});
-			// 
-			// gridViewImageGallery
-			// 
-			this.gridViewImageGallery.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnImage});
-			this.gridViewImageGallery.GridControl = this.gridControlImageGallery;
-			this.gridViewImageGallery.Name = "gridViewImageGallery";
-			this.gridViewImageGallery.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-			this.gridViewImageGallery.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-			this.gridViewImageGallery.OptionsBehavior.AutoPopulateColumns = false;
-			this.gridViewImageGallery.OptionsBehavior.AutoSelectAllInEditor = false;
-			this.gridViewImageGallery.OptionsBehavior.AutoUpdateTotalSummary = false;
-			this.gridViewImageGallery.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
-			this.gridViewImageGallery.OptionsBehavior.Editable = false;
-			this.gridViewImageGallery.OptionsBehavior.ImmediateUpdateRowPosition = false;
-			this.gridViewImageGallery.OptionsBehavior.KeepFocusedRowOnUpdate = false;
-			this.gridViewImageGallery.OptionsCustomization.AllowColumnMoving = false;
-			this.gridViewImageGallery.OptionsCustomization.AllowColumnResizing = false;
-			this.gridViewImageGallery.OptionsCustomization.AllowFilter = false;
-			this.gridViewImageGallery.OptionsCustomization.AllowGroup = false;
-			this.gridViewImageGallery.OptionsCustomization.AllowQuickHideColumns = false;
-			this.gridViewImageGallery.OptionsCustomization.AllowSort = false;
-			this.gridViewImageGallery.OptionsFilter.AllowColumnMRUFilterList = false;
-			this.gridViewImageGallery.OptionsFilter.AllowFilterEditor = false;
-			this.gridViewImageGallery.OptionsFilter.AllowMRUFilterList = false;
-			this.gridViewImageGallery.OptionsSelection.EnableAppearanceFocusedCell = false;
-			this.gridViewImageGallery.OptionsSelection.EnableAppearanceHideSelection = false;
-			this.gridViewImageGallery.OptionsSelection.UseIndicatorForSelection = false;
-			this.gridViewImageGallery.OptionsView.AllowCellMerge = true;
-			this.gridViewImageGallery.OptionsView.RowAutoHeight = true;
-			this.gridViewImageGallery.OptionsView.ShowColumnHeaders = false;
-			this.gridViewImageGallery.OptionsView.ShowDetailButtons = false;
-			this.gridViewImageGallery.OptionsView.ShowGroupExpandCollapseButtons = false;
-			this.gridViewImageGallery.OptionsView.ShowGroupPanel = false;
-			this.gridViewImageGallery.OptionsView.ShowIndicator = false;
-			this.gridViewImageGallery.OptionsView.ShowPreviewRowLines = DevExpress.Utils.DefaultBoolean.False;
-			this.gridViewImageGallery.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewImageGallery_RowClick);
-			// 
-			// gridColumnImage
-			// 
-			this.gridColumnImage.Caption = "Image";
-			this.gridColumnImage.ColumnEdit = this.repositoryItemPictureEdit;
-			this.gridColumnImage.FieldName = "BigImage";
-			this.gridColumnImage.Name = "gridColumnImage";
-			this.gridColumnImage.Visible = true;
-			this.gridColumnImage.VisibleIndex = 0;
-			// 
-			// repositoryItemPictureEdit
-			// 
-			this.repositoryItemPictureEdit.Name = "repositoryItemPictureEdit";
-			this.repositoryItemPictureEdit.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image;
-			this.repositoryItemPictureEdit.ReadOnly = true;
-			this.repositoryItemPictureEdit.ShowMenu = false;
 			// 
 			// pnBottom
 			// 
@@ -151,12 +76,33 @@
 			this.buttonXOK.Text = "OK";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
 			// 
+			// imageListView
+			// 
+			this.imageListView.AllowDrag = true;
+			this.imageListView.BackColor = System.Drawing.Color.White;
+			this.imageListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.imageListView.Colors = new Manina.Windows.Forms.ImageListViewColor(resources.GetString("imageListView.Colors"));
+			this.imageListView.ColumnHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.imageListView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.imageListView.ForeColor = System.Drawing.Color.Black;
+			this.imageListView.GroupHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+			this.imageListView.Location = new System.Drawing.Point(0, 0);
+			this.imageListView.MultiSelect = false;
+			this.imageListView.Name = "imageListView";
+			this.imageListView.PersistentCacheDirectory = "";
+			this.imageListView.PersistentCacheSize = ((long)(100));
+			this.imageListView.Size = new System.Drawing.Size(392, 361);
+			this.imageListView.TabIndex = 41;
+			this.imageListView.ThumbnailSize = new System.Drawing.Size(120, 54);
+			this.imageListView.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageListView_ItemDoubleClick);
+			this.imageListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseMove);
+			// 
 			// FormImageGallery
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(392, 404);
-			this.Controls.Add(this.gridControlImageGallery);
+			this.Controls.Add(this.imageListView);
 			this.Controls.Add(this.pnBottom);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -169,9 +115,6 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Select Logo";
 			this.Load += new System.EventHandler(this.FormImageGallery_Load);
-			((System.ComponentModel.ISupportInitialize)(this.gridControlImageGallery)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridViewImageGallery)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
 			this.pnBottom.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -179,13 +122,10 @@
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl gridControlImageGallery;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewImageGallery;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnImage;
-        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
-        private System.Windows.Forms.Panel pnBottom;
+		private System.Windows.Forms.Panel pnBottom;
         private DevComponents.DotNetBar.ButtonX buttonXCancel;
         private DevComponents.DotNetBar.ButtonX buttonXOK;
+		private Manina.Windows.Forms.ImageListView imageListView;
 
 
     }

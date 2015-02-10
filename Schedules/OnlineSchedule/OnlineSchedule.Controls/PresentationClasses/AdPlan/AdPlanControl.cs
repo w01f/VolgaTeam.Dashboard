@@ -82,6 +82,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected abstract void FillProducts(bool quickLoad);
 		protected abstract void SaveSchedule(string scheduleName = "");
+		protected abstract IEnumerable<string> GetExistedScheduleNames();
 
 		private void xtraTabControlProducts_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
 		{
@@ -129,7 +130,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var from = new FormNewSchedule(GetExistedScheduleNames()))
 			{
 				from.Text = "Save Schedule";
 				from.laLogo.Text = "Please set a new name for your Schedule:";

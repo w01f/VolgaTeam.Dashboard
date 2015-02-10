@@ -58,6 +58,8 @@ namespace NewBizWiz.CommonGUI.Summary
 			PowerPointButton.Click += (o, e) => Output();
 			PreviewButton.Click += (o, e) => Preview();
 			EmailButton.Click += (o, e) => Email();
+			if (PdfButton != null)
+				PdfButton.Click += (o, e) => OutputPdf();
 		}
 
 		public bool AllowToLeaveControl
@@ -213,6 +215,8 @@ namespace NewBizWiz.CommonGUI.Summary
 			PowerPointButton.Enabled = outputEnabled;
 			PreviewButton.Enabled = outputEnabled;
 			EmailButton.Enabled = outputEnabled;
+			if (PdfButton != null)
+				PdfButton.Enabled = outputEnabled;
 		}
 
 		public virtual void OpenHelp()
@@ -251,8 +255,10 @@ namespace NewBizWiz.CommonGUI.Summary
 		public abstract ButtonItem PowerPointButton { get; }
 		public abstract ButtonItem PreviewButton { get; }
 		public abstract ButtonItem EmailButton { get; }
+		public abstract ButtonItem PdfButton { get; }
 		public abstract Theme SelectedTheme { get; }
 		protected abstract void Output();
+		protected abstract void OutputPdf();
 		protected abstract bool CheckPowerPointRunning();
 		protected abstract void PreparePreview(string tempFileName);
 		protected abstract void ShowEmail(string tempFileName);

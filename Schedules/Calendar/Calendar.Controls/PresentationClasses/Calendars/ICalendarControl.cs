@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
@@ -25,6 +24,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		void LeaveCalendar();
 		void ShowCalendar(bool gridView);
 		bool SaveCalendarData(bool byUser, string scheduleName = "");
+		ColorSchema GetColorSchema(string colorName);
 		void UpdateOutputFunctions();
 		void Preview();
 		void Print();

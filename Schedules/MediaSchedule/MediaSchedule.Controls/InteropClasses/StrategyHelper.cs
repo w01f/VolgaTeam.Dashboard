@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy;
@@ -115,6 +114,12 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 		public void PrepareStrategyEmail(string fileName, ProgramStrategyControl strategy)
 		{
 			PreparePresentation(fileName, presentation => AppendStrategy(strategy, presentation));
+		}
+
+		public void PrepareStrategyPdf(string fileName, ProgramStrategyControl strategy)
+		{
+			PreparePresentation(fileName, presentation => AppendStrategy(strategy, presentation));
+			BuildPdf(fileName);
 		}
 	}
 }

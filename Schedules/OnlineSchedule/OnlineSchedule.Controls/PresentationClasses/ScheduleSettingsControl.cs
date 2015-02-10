@@ -269,7 +269,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void ScheduleSettingsSaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";

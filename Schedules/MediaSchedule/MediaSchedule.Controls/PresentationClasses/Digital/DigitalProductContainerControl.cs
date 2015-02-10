@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.CommonGUI.Preview;
@@ -133,15 +135,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (from.ShowDialog() == DialogResult.OK)
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
+					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
-						if (SaveSchedule(from.ScheduleName))
+						if (SaveSchedule(form.ScheduleName))
 							Utilities.Instance.ShowInformation("Schedule was saved");
 					}
 					else
@@ -194,6 +196,30 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				RegistryHelper.MainFormHandle = _formContainer.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+			}
+		}
+
+		public override void ShowPdf(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
+		{
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					var tempFileName = Path.GetTempFileName();
+					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(tempFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+					var extension = Path.GetExtension(tempFileName);
+					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch { }
+					formProgress.Close();
+				});
 			}
 		}
 

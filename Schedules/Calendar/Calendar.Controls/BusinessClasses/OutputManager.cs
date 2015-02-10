@@ -1,5 +1,6 @@
 ﻿using System;
 using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.Calendar.Controls.BusinessClasses
@@ -12,10 +13,12 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 		public static string MasterWizardsRootFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
 		public CalendarTemplatesManager TemplatesManager { get; private set; }
+		public OutputColorList CalendarColors { get; private set; }
 
 		public OutputManager()
 		{
 			TemplatesManager = new CalendarTemplatesManager();
+			CalendarColors = new OutputColorList(CalendarBackgroundFolderPath);
 		}
 
 		public string CalendarTemlatesFolderPath

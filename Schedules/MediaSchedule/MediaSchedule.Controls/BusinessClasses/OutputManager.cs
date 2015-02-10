@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
@@ -62,45 +60,17 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			get { return string.Format(CalendarBackgroundFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 
-		public List<ColorFolder> ScheduleColors { get; private set; }
-		public List<ColorFolder> SnapshotColors { get; private set; }
-		public List<ColorFolder> OptionsColors { get; private set; }
+		public OutputColorList ScheduleColors { get; private set; }
+		public OutputColorList SnapshotColors { get; private set; }
+		public OutputColorList OptionsColors { get; private set; }
+		public OutputColorList CalendarColors { get; private set; }
 
 		public OutputManager()
 		{
-			ScheduleColors = new List<ColorFolder>();
-			SnapshotColors = new List<ColorFolder>();
-			OptionsColors = new List<ColorFolder>();
-			LoadColors();
+			ScheduleColors = new OutputColorList(OneSheetTemplatesFolderPath);
+			SnapshotColors = new OutputColorList(SnapshotTemplatesFolderPath);
+			OptionsColors = new OutputColorList(OptionsTemplatesFolderPath);
+			CalendarColors = new OutputColorList(CalendarBackgroundFolderPath);
 		}
-
-		private void LoadColors()
-		{
-			ScheduleColors.AddRange(LoadColors(OneSheetTemplatesFolderPath));
-			SnapshotColors.AddRange(LoadColors(SnapshotTemplatesFolderPath));
-			OptionsColors.AddRange(LoadColors(OptionsTemplatesFolderPath));
-		}
-
-		private static IEnumerable<ColorFolder> LoadColors(string colorFolderPath)
-		{
-			var colorFolders = new List<ColorFolder>();
-			if (!Directory.Exists(colorFolderPath)) return colorFolders;
-			foreach (var directory in Directory.GetDirectories(colorFolderPath))
-			{
-				var colorFolder = new ColorFolder();
-				colorFolder.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Path.GetFileName(directory));
-				var imagePath = Path.Combine(directory, "image.png");
-				if (File.Exists(imagePath))
-					colorFolder.Logo = new Bitmap(imagePath);
-				colorFolders.Add(colorFolder);
-			}
-			return colorFolders;
-		}
-	}
-
-	public class ColorFolder
-	{
-		public string Name { get; set; }
-		public Image Logo { get; set; }
 	}
 }

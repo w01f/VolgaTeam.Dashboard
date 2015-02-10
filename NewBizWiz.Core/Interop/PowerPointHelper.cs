@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -6,9 +7,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Microsoft.Win32;
 using NewBizWiz.Core.Common;
-using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.Core.Interop
 {
@@ -36,6 +35,8 @@ namespace NewBizWiz.Core.Interop
 		void SavePDF(string fileName);
 		void MergeFiles(string mergedFileName, string[] filesToMerge);
 		void PreparePresentation(string fileName, Action<Presentation> buildPresentation, bool generateImages = true);
+		void BuildPdf(string fileName);
+		void BuildPdf(string fileName, IEnumerable<string> presentationFiles);
 	}
 
 	public class PowerPointHelper<T> : IPowerPointHelper where T : class,new()
@@ -75,10 +76,10 @@ namespace NewBizWiz.Core.Interop
 		{
 			get
 			{
-				if (_powerPointObject != null)
+				if (PowerPointObject != null)
 				{
 					uint _powerPointProcessID = 0;
-					WinAPIHelper.GetWindowThreadProcessId(new IntPtr(_powerPointObject.HWND), out _powerPointProcessID);
+					WinAPIHelper.GetWindowThreadProcessId(new IntPtr(PowerPointObject.HWND), out _powerPointProcessID);
 
 					uint _foregroundWindowProcessID = 0;
 					WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out _foregroundWindowProcessID);
@@ -154,7 +155,7 @@ namespace NewBizWiz.Core.Interop
 			{
 				try
 				{
-					return _powerPointObject.ActivePresentation.Name;
+					return PowerPointObject.ActivePresentation.Name;
 				}
 				catch
 				{
@@ -169,7 +170,7 @@ namespace NewBizWiz.Core.Interop
 			{
 				try
 				{
-					return _powerPointObject.ActivePresentation.FullName;
+					return PowerPointObject.ActivePresentation.FullName;
 				}
 				catch
 				{
@@ -276,16 +277,16 @@ namespace NewBizWiz.Core.Interop
 		{
 			try
 			{
-				_activePresentation = _powerPointObject.ActivePresentation;
+				_activePresentation = PowerPointObject.ActivePresentation;
 			}
 			catch
 			{
 				try
 				{
 					MessageFilter.Register();
-					if (_powerPointObject.Presentations.Count == 0)
+					if (PowerPointObject.Presentations.Count == 0)
 					{
-						var presentations = _powerPointObject.Presentations;
+						var presentations = PowerPointObject.Presentations;
 						_activePresentation = presentations.Add(MsoTriState.msoCTrue);
 						Utilities.Instance.ReleaseComObject(presentations);
 						Slides slides = _activePresentation.Slides;
@@ -294,7 +295,7 @@ namespace NewBizWiz.Core.Interop
 					}
 					else
 					{
-						var presentations = _powerPointObject.Presentations;
+						var presentations = PowerPointObject.Presentations;
 						_activePresentation = presentations[1];
 						Utilities.Instance.ReleaseComObject(presentations);
 					}
@@ -317,8 +318,8 @@ namespace NewBizWiz.Core.Interop
 			try
 			{
 				MessageFilter.Register();
-				_powerPointObject.Activate();
-				var activeWindow = _powerPointObject.ActiveWindow;
+				PowerPointObject.Activate();
+				var activeWindow = PowerPointObject.ActiveWindow;
 				if (activeWindow != null)
 				{
 					var view = activeWindow.View;
@@ -343,7 +344,7 @@ namespace NewBizWiz.Core.Interop
 			{
 				MessageFilter.Register();
 				if (!Directory.Exists(sourceFolderPathName)) return;
-				var presentations = _powerPointObject.Presentations;
+				var presentations = PowerPointObject.Presentations;
 				var presentation = presentations.Add(MsoTriState.msoFalse);
 				Utilities.Instance.ReleaseComObject(presentations);
 				var slides = presentation.Slides;
@@ -374,8 +375,8 @@ namespace NewBizWiz.Core.Interop
 			try
 			{
 				MessageFilter.Register();
-				if (_powerPointObject == null) return;
-				Presentation presentationObject = _powerPointObject.Presentations.Open(originalFileName, MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);
+				if (PowerPointObject == null) return;
+				Presentation presentationObject = PowerPointObject.Presentations.Open(originalFileName, MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);
 				presentationObject.SaveAs(pdfFileName, PpSaveAsFileType.ppSaveAsPDF, MsoTriState.msoCTrue);
 				presentationObject.Close();
 				Utilities.Instance.ReleaseComObject(presentationObject);
@@ -395,7 +396,7 @@ namespace NewBizWiz.Core.Interop
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = _powerPointObject.Presentations.Open(filePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(filePath, WithWindow: MsoTriState.msoFalse);
 					AppendSlide(presentation, -1, null, firstSlide);
 					presentation.Close();
 				});
@@ -411,7 +412,11 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		public void AppendSlide(Presentation sourcePresentation, int slideIndex, Presentation destinationPresentation = null, bool firstSlide = false, int indexToPaste = 0)
+		public void AppendSlide(Presentation sourcePresentation,
+			int slideIndex,
+			Presentation destinationPresentation = null,
+			bool firstSlide = false,
+			int indexToPaste = 0)
 		{
 			MessageFilter.Register();
 
@@ -424,7 +429,7 @@ namespace NewBizWiz.Core.Interop
 				destinationPresentation = _activePresentation;
 				indexToPaste = GetActiveSlideIndex();
 			}
-			else
+			else if (!firstSlide)
 				indexToPaste = destinationPresentation.Slides.Count;
 
 			if (firstSlide)
@@ -478,13 +483,13 @@ namespace NewBizWiz.Core.Interop
 			Slide activeSlide = null;
 			try
 			{
-				if (_powerPointObject.Windows.Count > 0)
+				if (PowerPointObject.Windows.Count > 0)
 				{
-					_powerPointObject.Activate();
-					if (_powerPointObject.ActiveWindow != null)
+					PowerPointObject.Activate();
+					if (PowerPointObject.ActiveWindow != null)
 					{
-						_powerPointObject.ActiveWindow.ViewType = PpViewType.ppViewNormal;
-						activeSlide = (Slide)_powerPointObject.ActiveWindow.View.Slide;
+						PowerPointObject.ActiveWindow.ViewType = PpViewType.ppViewNormal;
+						activeSlide = (Slide)PowerPointObject.ActiveWindow.View.Slide;
 					}
 				}
 			}
@@ -499,7 +504,7 @@ namespace NewBizWiz.Core.Interop
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});
@@ -519,19 +524,19 @@ namespace NewBizWiz.Core.Interop
 			try
 			{
 				MessageFilter.Register();
-				if (_powerPointObject == null) return;
-				if (_powerPointObject.ActivePresentation != null)
+				if (PowerPointObject == null) return;
+				if (PowerPointObject.ActivePresentation != null)
 				{
-					_powerPointObject.ActivePresentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
-					_powerPointObject.ActivePresentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+					PowerPointObject.ActivePresentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+					PowerPointObject.ActivePresentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
 
 					switch (SettingsManager.Instance.Orientation)
 					{
 						case "Landscape":
-							_powerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
+							PowerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
 							break;
 						case "Portrait":
-							_powerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
+							PowerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
 							break;
 					}
 				}
@@ -565,7 +570,7 @@ namespace NewBizWiz.Core.Interop
 			{
 				foreach (var file in filesToMerge)
 				{
-					var presentation = _powerPointObject.Presentations.Open(file, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(file, WithWindow: MsoTriState.msoFalse);
 					AppendSlide(presentation, -1, mergedPresentation);
 					presentation.Close();
 					Utilities.Instance.ReleaseComObject(presentation);
@@ -580,32 +585,32 @@ namespace NewBizWiz.Core.Interop
 
 		protected void RestorePrevSlideIndex()
 		{
-			_powerPointObject.ActivePresentation.Slides[_previouseSlideIndex].Select();
+			PowerPointObject.ActivePresentation.Slides[_previouseSlideIndex].Select();
 		}
 
 		public void PreparePresentation(string fileName, Action<Presentation> buildPresentation, bool generateImages = true)
 		{
 			try
 			{
-				SavePrevSlideIndex();
-				var presentations = _powerPointObject.Presentations;
-				var presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
-				switch (SettingsManager.Instance.Orientation)
-				{
-					case "Landscape":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-						break;
-					case "Portrait":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-						break;
-				}
-				Utilities.Instance.ReleaseComObject(presentations);
-				buildPresentation(presentation);
-				MessageFilter.Register();
 				var thread = new Thread(delegate()
 				{
+					SavePrevSlideIndex();
+					var presentations = PowerPointObject.Presentations;
+					var presentation = presentations.Add(MsoTriState.msoFalse);
+					presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+					presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+					switch (SettingsManager.Instance.Orientation)
+					{
+						case "Landscape":
+							presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
+							break;
+						case "Portrait":
+							presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
+							break;
+					}
+					Utilities.Instance.ReleaseComObject(presentations);
+					buildPresentation(presentation);
+					MessageFilter.Register();
 					presentation.SaveAs(fileName);
 					if (generateImages)
 					{
@@ -616,14 +621,68 @@ namespace NewBizWiz.Core.Interop
 							presentation.Export(destinationFolder, "PNG");
 					}
 					presentation.Close();
+					Utilities.Instance.ReleaseComObject(presentation);
+					RestorePrevSlideIndex();
 				});
 				thread.Start();
-
 				while (thread.IsAlive)
 					System.Windows.Forms.Application.DoEvents();
+			}
+			catch { }
+			finally
+			{
+				MessageFilter.Revoke();
+			}
+		}
 
-				Utilities.Instance.ReleaseComObject(presentation);
-				RestorePrevSlideIndex();
+		public void BuildPdf(string fileName)
+		{
+			BuildPdf(fileName, new[] { fileName });
+		}
+
+		public void BuildPdf(string fileName, IEnumerable<string> presentationFiles)
+		{
+			try
+			{
+				var thread = new Thread(delegate()
+				{
+					MessageFilter.Register();
+					if (presentationFiles == null || !presentationFiles.Any()) return;
+					if (!presentationFiles.All(f => f == fileName))
+					{
+						SavePrevSlideIndex();
+						var presentations = PowerPointObject.Presentations;
+						var presentation = presentations.Add(MsoTriState.msoFalse);
+						presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+						presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+						switch (SettingsManager.Instance.Orientation)
+						{
+							case "Landscape":
+								presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
+								break;
+							case "Portrait":
+								presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
+								break;
+						}
+						var slideIndex = 0;
+						foreach (var presentationFile in presentationFiles)
+						{
+							var sourcePresentation = PowerPointObject.Presentations.Open(presentationFile, WithWindow: MsoTriState.msoFalse);
+							AppendSlide(sourcePresentation, -1, presentation, slideIndex == 0, slideIndex);
+							sourcePresentation.Close();
+							slideIndex++;
+						}
+						presentation.SaveAs(fileName);
+						Utilities.Instance.ReleaseComObject(presentation);
+						Utilities.Instance.ReleaseComObject(presentations);
+						RestorePrevSlideIndex();
+					}
+					var extension = Path.GetExtension(fileName);
+					ConvertToPDF(fileName, fileName.Replace(extension, ".pdf"));
+				});
+				thread.Start();
+				while (thread.IsAlive)
+					System.Windows.Forms.Application.DoEvents();
 			}
 			catch { }
 			finally

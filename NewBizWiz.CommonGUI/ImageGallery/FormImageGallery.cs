@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -33,23 +32,6 @@ namespace NewBizWiz.CommonGUI.ImageGallery
 		public Image SelectedImage
 		{
 			get { return SelectedPage != null ? SelectedPage.SelectedImage : null; }
-			set
-			{
-				if (value == null) return;
-				var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-				var encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(value, typeof(byte[])));
-				foreach (var imageSourceGroup in xtraTabControlGroups.TabPages.OfType<ImageGroupPage>())
-				{
-					var selectedLogo = imageSourceGroup.ImageSources.FirstOrDefault(l => l.EncodedBigImage.Equals(encodedLogo));
-					if (selectedLogo != null)
-					{
-						var index = imageSourceGroup.ImageSources.IndexOf(selectedLogo);
-						imageSourceGroup.layoutViewLogoGallery.FocusedRowHandle = imageSourceGroup.layoutViewLogoGallery.GetRowHandle(index);
-						break;
-					}
-					return;
-				}
-			}
 		}
 
 		public ImageSource SelectedImageSource

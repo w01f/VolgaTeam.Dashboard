@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using ScheduleManager = NewBizWiz.Core.MediaSchedule.ScheduleManager;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
@@ -23,9 +25,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		protected MediaCalendarControl()
 		{
 			Dock = DockStyle.Fill;
+			hyperLinkEditReset.Visible = true;
+			hyperLinkEditReset.OpenLink += OnReset;
 			InitSlideInfo<CalendarSlideInfoControl>();
-			var slideInfoControl = (CalendarSlideInfoControl)SlideInfo.ContainedControl;
-			slideInfoControl.Reset += OnReset;
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
@@ -90,6 +92,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			return result;
 		}
 
+		public override ColorSchema GetColorSchema(string colorName)
+		{
+			return BusinessWrapper.Instance.OutputManager.CalendarColors.Items
+				.Where(color => color.Name.ToLower() == colorName.ToLower())
+				.Select(color => color.Schema)
+				.FirstOrDefault();
+		}
+
 		public override void SaveSettings()
 		{
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
@@ -107,6 +117,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 
 		private void OnReset(object sender, EventArgs e)
 		{
+			if (Utilities.Instance.ShowWarningQuestion("Are you SURE you want to RESET your calendar to the default Information?") != DialogResult.Yes) return;
 			CalendarData.Reset();
 			base.LoadCalendar(false);
 			MonthList_SelectedIndexChanged(MonthList, EventArgs.Empty);
@@ -236,6 +247,45 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			}
 		}
 
+		protected override void PdfInternal(IEnumerable<CalendarOutputData> outputData)
+		{
+			if (outputData == null) return;
+			TrackOutput();
+			var previewGroups = new List<PreviewGroup>();
+			using (var formProgress = new FormProgress())
+			{
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.TopMost = true;
+					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
+					formProgress.Show();
+					Enabled = false;
+					foreach (var outputItem in outputData)
+					{
+						var previewGroup = new PreviewGroup
+						{
+							Name = outputItem.MonthText,
+							PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+						};
+						RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+						previewGroups.Add(previewGroup);
+					}
+					var tempFileName = Path.GetTempFileName();
+					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(tempFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+					var extension = Path.GetExtension(tempFileName);
+					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch { }
+					Enabled = true;
+					formProgress.Close();
+				});
+			}
+		}
+
 		#region Copy-Paste Methods and Event Handlers
 		public void CalendarCopy_Click(object sender, EventArgs e)
 		{
@@ -272,7 +322,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";
@@ -303,6 +353,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		{
 			SaveCalendarData(false);
 			Email();
+		}
+
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			SaveCalendarData(false);
+			PrintPdf();
 		}
 
 		public abstract void Help_Click(object sender, EventArgs e);

@@ -18,7 +18,6 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
@@ -112,9 +111,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public virtual IEnumerable<ProductPackageRecord> PackageRecords { get; private set; }
 		public virtual ButtonItem Preview { get; private set; }
 		public virtual ButtonItem PowerPoint { get; private set; }
+		public virtual ButtonItem Pdf { get; private set; }
 		public virtual ButtonItem Email { get; private set; }
 		public virtual ButtonItem Theme { get; private set; }
-
 
 		public GridControl GridControl
 		{
@@ -173,6 +172,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			SettingsNotSaved = false;
 			return true;
 		}
+
+		protected virtual IEnumerable<string> GetExistedScheduleNames() { throw new NotImplementedException(); }
 
 		private void LoadSettings()
 		{
@@ -403,6 +404,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Preview.Enabled = enableOutput;
 			Theme.Enabled = enableOutput;
 			gridControl.Visible = enableOutput;
+			if (Pdf != null)
+				Pdf.Enabled = enableOutput;
 		}
 
 		public int RowsPerSlide
@@ -650,7 +653,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var from = new FormNewSchedule(GetExistedScheduleNames()))
 			{
 				from.Text = "Save Schedule";
 				from.laLogo.Text = "Please set a new name for your Schedule:";
@@ -688,6 +691,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public virtual void OutputSlides()
 		{
+			throw new NotImplementedException();
 		}
 
 		public void Email_Click(object sender, EventArgs e)
@@ -736,6 +740,19 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public virtual void ShowPreview(string tempFileName)
 		{
+			throw new NotImplementedException();
+		}
+
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			PopulateReplacementsList();
+			PdfSlides();
+		}
+
+		public virtual void PdfSlides()
+		{
+			throw new NotImplementedException();
 		}
 
 		#region Picture Box Clicks Habdlers

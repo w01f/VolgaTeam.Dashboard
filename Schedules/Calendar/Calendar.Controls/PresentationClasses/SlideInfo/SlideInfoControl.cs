@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
-using DevExpress.XtraGrid.Views.Layout;
+using Manina.Windows.Forms;
+using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.Properties;
 using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.Core.Calendar;
@@ -37,12 +36,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			#endregion
 
 			#region Style
-			buttonXThemeColorBlack.CheckedChanged += propertiesControl_PropertiesChanged;
-			buttonXThemeColorBlue.CheckedChanged += propertiesControl_PropertiesChanged;
-			buttonXThemeColorGray.CheckedChanged += propertiesControl_PropertiesChanged;
-			buttonXThemeColorGreen.CheckedChanged += propertiesControl_PropertiesChanged;
-			buttonXThemeColorOrange.CheckedChanged += propertiesControl_PropertiesChanged;
-			buttonXThemeColorTeal.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditStyleBigDate.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditThemeColorApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
 			#endregion
@@ -50,8 +43,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			#region Logo
 			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			layoutViewLogoGallery.FocusedRowChanged += propertiesControl_PropertiesChanged;
-			gridControlLogoGallery.DataSource = Core.AdSchedule.ListManager.Instance.Images.SelectMany(g => g.Images).ToList();
+			imageListViewHeaderLogo.SelectionChanged += propertiesControl_PropertiesChanged;
+			imageListViewHeaderLogo.Items.Clear();
+			imageListViewHeaderLogo.Items.AddRange(Core.AdSchedule.ListManager.Instance.Images.SelectMany(g => g.Images).Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
 			#endregion
 
 			#endregion
@@ -127,39 +121,8 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			#endregion
 
 			#region Style
-			buttonXThemeColorBlack.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableBlack;
-			buttonXThemeColorBlue.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableBlue;
-			buttonXThemeColorGray.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableGray;
-			buttonXThemeColorGreen.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableGreen;
-			buttonXThemeColorOrange.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableOrange;
-			buttonXThemeColorTeal.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableTeal;
-			buttonXThemeColorBlack.Checked = false;
-			buttonXThemeColorBlue.Checked = false;
-			buttonXThemeColorGray.Checked = false;
-			buttonXThemeColorGreen.Checked = false;
-			buttonXThemeColorOrange.Checked = false;
-			buttonXThemeColorTeal.Checked = false;
-			switch (OutputData.SlideColor)
-			{
-				case "black":
-					buttonXThemeColorBlack.Checked = buttonXThemeColorBlack.Enabled;
-					break;
-				case "blue":
-					buttonXThemeColorBlue.Checked = buttonXThemeColorBlue.Enabled;
-					break;
-				case "gray":
-					buttonXThemeColorGray.Checked = buttonXThemeColorGray.Enabled;
-					break;
-				case "green":
-					buttonXThemeColorGreen.Checked = buttonXThemeColorGreen.Enabled;
-					break;
-				case "orange":
-					buttonXThemeColorOrange.Checked = buttonXThemeColorOrange.Enabled;
-					break;
-				case "teal":
-					buttonXThemeColorTeal.Checked = buttonXThemeColorTeal.Enabled;
-					break;
-			}
+			outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.CalendarColors, OutputData.SlideColor);
+			outputColorSelector.ColorChanged += OnColorChanged;
 			checkEditStyleBigDate.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableBigDate;
 			checkEditStyleBigDate.Checked = OutputData.ShowBigDate && checkEditStyleBigDate.Enabled;
 			checkEditThemeColorApplyForAll.Checked = OutputData.ApplyForAllThemeColor;
@@ -170,13 +133,15 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			buttonXLogo.Checked = OutputData.ShowLogo && buttonXLogo.Enabled;
 			checkEditLogoApplyForAll.Checked = OutputData.ApplyForAllLogo;
 			var selectedLogo = Core.AdSchedule.ListManager.Instance.Images.SelectMany(g => g.Images).FirstOrDefault(l => l.EncodedBigImage.Equals(OutputData.EncodedLogo));
+			imageListViewHeaderLogo.ClearSelection();
 			if (selectedLogo != null)
 			{
 				var index = Core.AdSchedule.ListManager.Instance.Images.SelectMany(g => g.Images).ToList().IndexOf(selectedLogo);
-				layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
+				if (index < imageListViewHeaderLogo.Items.Count)
+					imageListViewHeaderLogo.Items[index].Selected = true;
 			}
-			else
-				layoutViewLogoGallery.FocusedRowHandle = 0;
+			else if (imageListViewHeaderLogo.Items.Count > 0)
+				imageListViewHeaderLogo.Items[0].Selected = true;
 			#endregion
 
 			_allowToSave = true;
@@ -202,18 +167,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			#endregion
 
 			#region Style
-			if (buttonXThemeColorBlack.Checked)
-				OutputData.SlideColor = "black";
-			else if (buttonXThemeColorBlue.Checked)
-				OutputData.SlideColor = "blue";
-			else if (buttonXThemeColorGray.Checked)
-				OutputData.SlideColor = "gray";
-			else if (buttonXThemeColorGreen.Checked)
-				OutputData.SlideColor = "green";
-			else if (buttonXThemeColorOrange.Checked)
-				OutputData.SlideColor = "orange";
-			else if (buttonXThemeColorTeal.Checked)
-				OutputData.SlideColor = "teal";
+			OutputData.SlideColor = outputColorSelector.SelectedColor;
 			OutputData.ShowBigDate = checkEditStyleBigDate.Checked;
 			OutputData.ApplyForAllThemeColor = checkEditThemeColorApplyForAll.Checked;
 			foreach (var outputData in _month.Parent.Months.Select(m => m.OutputData).OfType<CommonCalendarOutputData>())
@@ -230,7 +184,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 
 			#region Logo
 			OutputData.ShowLogo = buttonXLogo.Checked;
-			var selecteImageSource = layoutViewLogoGallery.GetFocusedRow() as ImageSource;
+			var selecteImageSource = imageListViewHeaderLogo.SelectedItems.Select(item => item.Tag as ImageSource).FirstOrDefault();
 			OutputData.Logo = OutputData.ShowLogo && selecteImageSource != null ? selecteImageSource.BigImage : null;
 			OutputData.EncodedLogo = null;
 			OutputData.ApplyForAllLogo = checkEditLogoApplyForAll.Checked;
@@ -250,6 +204,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 
 		private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
 		{
+			if (!_allowToSave) return;
 			SettingsNotSaved = true;
 		}
 		#region Info Event Handlers
@@ -266,46 +221,25 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			OutputData.ShowBigDate = checkEditStyleBigDate.Checked;
 		}
 
-		private void buttonXThemeColor_Click(object sender, EventArgs e)
+		private void OnColorChanged(object sender, EventArgs e)
 		{
-			buttonXThemeColorBlack.Checked = false;
-			buttonXThemeColorBlue.Checked = false;
-			buttonXThemeColorGray.Checked = false;
-			buttonXThemeColorGreen.Checked = false;
-			buttonXThemeColorOrange.Checked = false;
-			buttonXThemeColorTeal.Checked = false;
-			(sender as ButtonX).Checked = true;
-
-			if (buttonXThemeColorBlack.Checked)
-				OutputData.SlideColor = "black";
-			else if (buttonXThemeColorBlue.Checked)
-				OutputData.SlideColor = "blue";
-			else if (buttonXThemeColorGray.Checked)
-				OutputData.SlideColor = "gray";
-			else if (buttonXThemeColorGreen.Checked)
-				OutputData.SlideColor = "green";
-			else if (buttonXThemeColorOrange.Checked)
-				OutputData.SlideColor = "orange";
-			else if (buttonXThemeColorTeal.Checked)
-				OutputData.SlideColor = "teal";
-			OnPropertyChanged(EventArgs.Empty);
+			if (!_allowToSave) return;
+			OutputData.SlideColor = outputColorSelector.SelectedColor;
+			SettingsNotSaved = true;
+			if (PropertyChanged != null)
+				PropertyChanged(sender, e);
 		}
 		#endregion
 
 		#region Logo Event Handlers
 		private void buttonXLogo_CheckedChanged(object sender, EventArgs e)
 		{
-			gridControlLogoGallery.Enabled = buttonXLogo.Checked;
+			imageListViewHeaderLogo.Enabled = buttonXLogo.Checked;
 		}
 
-		private void layoutViewLogoGallery_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
+		private void imageListViewHeaderLogo_MouseMove(object sender, MouseEventArgs e)
 		{
-			var view = sender as LayoutView;
-			if (view.FocusedRowHandle == e.RowHandle)
-			{
-				e.Appearance.BackColor = Color.Orange;
-				e.Appearance.BackColor2 = Color.Orange;
-			}
+			imageListViewHeaderLogo.Focus();
 		}
 		#endregion
 	}

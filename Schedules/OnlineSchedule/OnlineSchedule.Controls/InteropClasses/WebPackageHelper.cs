@@ -100,5 +100,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 		{
 			PreparePresentation(fileName, presentation => AppendWebPackage(digitalPackage, presentation));
 		}
+
+		public void PrepareWebPackagePdf(WebPackageControl digitalPackage, string fileName)
+		{
+			PreparePresentation(fileName, presentation => AppendWebPackage(digitalPackage, presentation));
+			BuildPdf(fileName);
+		}
 	}
 }

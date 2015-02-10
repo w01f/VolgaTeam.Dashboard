@@ -5,9 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Utils;
-using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views.Layout;
-using DevExpress.XtraGrid.Views.Layout.ViewInfo;
+using Manina.Windows.Forms;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.Core.Common;
 
@@ -17,8 +15,9 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 	{
 		private FavoriteImagesManager _manager;
 		private Cursor _dragRowCursor;
-		private LayoutViewHitInfo _downHitInfo;
-		private LayoutViewHitInfo _menuHitInfo;
+		private Point _hitPoint;
+		private ImageListView.HitInfo _downHitInfo;
+		private ImageListView.HitInfo _menuHitInfo;
 
 		public string ImageTooltip { get; set; }
 
@@ -30,12 +29,14 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 		public void Init()
 		{
 			_manager = FavoriteImagesManager.Instance;
-			_manager.CollectionChanged += (o, e) =>
-			{
-				gridControlLogoGallery.DataSource = _manager.Images;
-				layoutViewLogoGallery.Refresh();
-			};
-			gridControlLogoGallery.DataSource = _manager.Images;
+			_manager.CollectionChanged += (o, e) => LoadImages();
+			LoadImages();
+		}
+
+		private void LoadImages()
+		{
+			imageListView.Items.Clear();
+			imageListView.Items.AddRange(_manager.Images.Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
 		}
 
 		public void AddToFavorites(Image image, string defaultName)
@@ -52,8 +53,7 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 		private Cursor GetDragCursor(Image image)
 		{
 			if (image == null) return Cursors.Default;
-			var view = layoutViewLogoGallery;
-			image = ResizeImage(view.CardMinSize.Width, image);
+			image = ResizeImage(imageListView.ThumbnailSize.Width, image);
 			var imageBounds = new Rectangle(new Point(0, 0), image.Size);
 			var result = new Bitmap(imageBounds.Width, imageBounds.Height);
 			var resultGraphics = Graphics.FromImage(result);
@@ -91,15 +91,16 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			return originalImage.GetThumbnailImage(newSize, newHeight, null, IntPtr.Zero);
 		}
 
-		private void layoutViewLogoGallery_MouseDown(object sender, MouseEventArgs e)
+		private void OnGalleryMouseDown(object sender, MouseEventArgs e)
 		{
-			var view = sender as LayoutView;
 			_downHitInfo = null;
-			if (view == null) return;
-			var hitInfo = view.CalcHitInfo(new Point(e.X, e.Y));
+			_menuHitInfo = null;
+			_hitPoint = new Point(e.X, e.Y);
+			ImageListView.HitInfo hitInfo;
+			imageListView.HitTest(_hitPoint, out hitInfo);
 			if (ModifierKeys != Keys.None)
 				return;
-			if (!hitInfo.InCard) return;
+			if (!hitInfo.InItemArea) return;
 			switch (e.Button)
 			{
 				case MouseButtons.Left:
@@ -112,45 +113,63 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			}
 		}
 
-		private void layoutViewLogoGallery_MouseMove(object sender, MouseEventArgs e)
+		private void OnGalleryMouseMove(object sender, MouseEventArgs e)
 		{
-			var view = sender as LayoutView;
-			if (view == null) return;
-			view.Focus();
-			if (e.Button != MouseButtons.Left || _downHitInfo == null) return;
-			var sourceItem = view.GetRow(_downHitInfo.RowHandle) as ImageSource;
+			imageListView.Focus();
+			if (e.Button != MouseButtons.Left || _downHitInfo == null || _downHitInfo.ItemIndex < 0) return;
+			var sourceItem = imageListView.Items[_downHitInfo.ItemIndex].Tag as ImageSource;
 			if (sourceItem == null) return;
 			var dragSize = SystemInformation.DragSize;
-			var dragRect = new Rectangle(new Point(_downHitInfo.HitPoint.X - dragSize.Width / 2,
-				_downHitInfo.HitPoint.Y - dragSize.Height / 2), dragSize);
+			var dragRect = new Rectangle(new Point(_hitPoint.X - dragSize.Width / 2,
+				_hitPoint.Y - dragSize.Height / 2), dragSize);
 			if (dragRect.Contains(new Point(e.X, e.Y))) return;
 			_dragRowCursor = GetDragCursor(sourceItem.BigImage);
-			view.GridControl.DoDragDrop(sourceItem, DragDropEffects.All);
+			imageListView.DoDragDrop(sourceItem, DragDropEffects.All);
 			_downHitInfo = null;
 		}
 
-		private void layoutViewLogoGallery_MouseUp(object sender, MouseEventArgs e)
+		private void OnGalleryMouseUp(object sender, MouseEventArgs e)
 		{
 			_downHitInfo = null;
 		}
 
-		private void gridControlLogoGallery_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+		private void OnGalleryItemHover(object sender, ItemHoverEventArgs e)
+		{
+			toolTip.RemoveAll();
+			var sourceItem = e.Item != null ? e.Item.Tag as ImageSource : null;
+			if (sourceItem == null) return;
+			var toolTipText = !String.IsNullOrEmpty(ImageTooltip) ? ImageTooltip : Path.GetFileName(sourceItem.FileName);
+			toolTip.SetToolTip(imageListView, toolTipText);
+		}
+
+		private void OnGalleryMouseLeave(object sender, EventArgs e)
+		{
+			toolTip.RemoveAll();
+		}
+
+		private void OnGalleryGiveFeedback(object sender, GiveFeedbackEventArgs e)
 		{
 			if (_downHitInfo == null) return;
 			e.UseDefaultCursors = false;
 			Cursor.Current = _dragRowCursor;
 		}
 
+		private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			e.Cancel = !(_menuHitInfo != null && _menuHitInfo.InItemArea && _menuHitInfo.ItemIndex >= 0);
+		}
+
 		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
 		{
-			var imageSource = layoutViewLogoGallery.GetRow(_menuHitInfo.RowHandle) as ImageSource;
+			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
 			if (imageSource == null || !imageSource.ContainsData) return;
 			Clipboard.SetText(String.Format("<ImageSource>{0}</ImageSource>", imageSource.Serialize()), TextDataFormat.Html);
+			_menuHitInfo = null;
 		}
 
 		private void toolStripMenuItemRename_Click(object sender, EventArgs e)
 		{
-			var imageSource = layoutViewLogoGallery.GetRow(_menuHitInfo.RowHandle) as ImageSource;
+			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
 			if (imageSource == null) return;
 			var image = imageSource.BigImage.Clone() as Image;
 			using (var form = new FormAddFavoriteImage(image, null, _manager.Images.Select(i => i.Name.ToLower())))
@@ -166,21 +185,12 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 
 		private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
 		{
-			var imageSource = layoutViewLogoGallery.GetRow(_menuHitInfo.RowHandle) as ImageSource;
+			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
 			if (imageSource == null) return;
 			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete image?") != DialogResult.Yes) return;
 			_manager.DeleteImage(imageSource);
 			_menuHitInfo = null;
 		}
 
-		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
-		{
-			var view = gridControlLogoGallery.GetViewAt(e.ControlMousePosition) as LayoutView;
-			if (view == null) return;
-			var hi = view.CalcHitInfo(e.ControlMousePosition);
-			if (!hi.InFieldValue) return;
-			var imageSource = view.GetRow(hi.RowHandle) as ImageSource;
-			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), !String.IsNullOrEmpty(ImageTooltip) ? ImageTooltip : Path.GetFileName(imageSource.FileName));
-		}
 	}
 }

@@ -15,6 +15,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			get { return Controller.Instance.WeeklySchedulePowerPoint; }
 		}
+
+		public override ButtonItem PdfButton
+		{
+			get { return Controller.Instance.WeeklySchedulePdf; }
+		}
+
 		public override ButtonItem EmailButton
 		{
 			get { return Controller.Instance.WeeklyScheduleEmail; }

@@ -25,6 +25,13 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 			get { return pnContent; }
 		}
 
+		[Category("Header")]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+		public Panel Header
+		{
+			get { return pnHeaderContent; }
+		}
+
 		[Browsable(true), DefaultValue(DefaultContentSize), Category("Appearance")]
 		public int ContentSize { get; set; }
 
@@ -81,8 +88,9 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 				};
 				timer.Start();
 			}
-			if (StateChanged != null)
-				StateChanged(this, new StateChangedEventArgs(false));
+			if (!silent)
+				if (StateChanged != null)
+					StateChanged(this, new StateChangedEventArgs(false));
 		}
 
 		public void Expand(bool silent = false)
@@ -114,8 +122,9 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 				};
 				timer.Start();
 			}
-			if (StateChanged != null)
-				StateChanged(this, new StateChangedEventArgs(true));
+			if (!silent)
+				if (StateChanged != null)
+					StateChanged(this, new StateChangedEventArgs(true));
 		}
 
 		private void simpleButtonExpand_Click(object sender, EventArgs e)
@@ -144,6 +153,7 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 			if (Control is RetractableBarControl)
 			{
 				EnableDesignMode(((RetractableBarControl)Control).Content, "Content");
+				EnableDesignMode(((RetractableBarControl)Control).Header, "Header");
 			}
 		}
 	}

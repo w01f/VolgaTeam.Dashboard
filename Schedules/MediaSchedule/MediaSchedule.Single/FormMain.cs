@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -77,6 +78,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.WeeklySchedulePreview = buttonItemWeeklySchedulePreview;
 			Controller.Instance.WeeklyScheduleEmail = buttonItemWeeklyScheduleEmail;
 			Controller.Instance.WeeklySchedulePowerPoint = buttonItemWeeklySchedulePowerPoint;
+			Controller.Instance.WeeklySchedulePdf = buttonItemWeeklySchedulePdf;
 			Controller.Instance.WeeklyScheduleTheme = buttonItemWeeklyScheduleTheme;
 			Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
 			Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
@@ -92,6 +94,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.MonthlySchedulePreview = buttonItemMonthlySchedulePreview;
 			Controller.Instance.MonthlyScheduleEmail = buttonItemMonthlyScheduleEmail;
 			Controller.Instance.MonthlySchedulePowerPoint = buttonItemMonthlySchedulePowerPoint;
+			Controller.Instance.MonthlySchedulePdf = buttonItemMonthlySchedulePdf;
 			Controller.Instance.MonthlyScheduleTheme = buttonItemMonthlyScheduleTheme;
 			Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
 			Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
@@ -103,6 +106,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
+			Controller.Instance.DigitalProductPdf = buttonItemDigitalSchedulePdf;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
@@ -118,6 +122,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
+			Controller.Instance.DigitalPackagePdf = buttonItemDigitalPackagePdf;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
 			#endregion
 
@@ -133,6 +138,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
 			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
 			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
+			Controller.Instance.Calendar1Pdf = buttonItemCalendar1Pdf;
 			#endregion
 
 			#region Calendar 2
@@ -147,6 +153,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
 			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
 			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
+			Controller.Instance.Calendar2Pdf = buttonItemCalendar2Pdf;
 			#endregion
 
 			#region Summary Light
@@ -157,6 +164,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.SummaryLightPreview = buttonItemSummaryLightPreview;
 			Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
 			Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
+			Controller.Instance.SummaryLightPdf = buttonItemSummaryLightPdf;
 			Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
 			Controller.Instance.SummaryLightSlideOutputToggle = checkEditSummaryLightOutputSlide;
 			Controller.Instance.SummaryLightTableOutputToggle = checkEditSummaryLightOutputTable;
@@ -170,6 +178,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.SummaryFullPreview = buttonItemSummaryFullPreview;
 			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
 			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
+			Controller.Instance.SummaryFullPdf = buttonItemSummaryFullPdf;
 			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
 			Controller.Instance.SummaryFullSlideOutputToggle = checkEditSummaryFullOutputSlide;
 			Controller.Instance.SummaryFullTableOutputToggle = checkEditSummaryFullOutputTable;
@@ -183,6 +192,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.StrategyPreview = buttonItemStrategyPreview;
 			Controller.Instance.StrategyEmail = buttonItemStrategyEmail;
 			Controller.Instance.StrategyPowerPoint = buttonItemStrategyPowerPoint;
+			Controller.Instance.StrategyPdf = buttonItemStrategyPdf;
 			Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
 			Controller.Instance.StrategyShowStationToggle = checkEditStrategyShowStation;
 			Controller.Instance.StrategyShowDescriptionToggle = checkEditStrategyShowDescription;
@@ -196,6 +206,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
+			Controller.Instance.SnapshotPdf = buttonItemSnapshotPdf;
 			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
 			Controller.Instance.SnapshotNew = buttonItemSnapshotNew;
 			Controller.Instance.SnapshotProgramAdd = buttonItemSnapshotProgramAdd;
@@ -210,6 +221,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
 			Controller.Instance.OptionsEmail = buttonItemOptionsEmail;
 			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
+			Controller.Instance.OptionsPdf = buttonItemOptionsPdf;
 			Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
 			Controller.Instance.OptionsNew = buttonItemOptionsNew;
 			Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
@@ -343,6 +355,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			ribbonControl_SelectedRibbonTabChanged(null, null);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.Enabled = true;
+			Controller.Instance.CheckPowerPointRunning();
 		}
 
 		private bool AllowToLeaveCurrentControl()
@@ -501,7 +514,6 @@ namespace NewBizWiz.MediaSchedule.Single
 						buttonItemHomeNewSchedule_Click(null, null);
 					else
 						buttonItemHomeOpenSchedule_Click(null, null);
-					Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Application.Exit();
@@ -730,14 +742,14 @@ namespace NewBizWiz.MediaSchedule.Single
 
 		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
-				if (from.ShowDialog() == DialogResult.OK)
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
+					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
-						var fileName = BusinessWrapper.Instance.ScheduleManager.GetScheduleFileName(from.ScheduleName.Trim());
-						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", from.ScheduleName.Trim()));
+						var fileName = BusinessWrapper.Instance.ScheduleManager.GetScheduleFileName(form.ScheduleName.Trim());
+						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
 						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 						LoadData();
 					}

@@ -110,6 +110,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			WeeklySchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.PowerPoint_Click);
 			WeeklySchedulePreview.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Preview_Click);
 			WeeklyScheduleEmail.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Email_Click);
+			WeeklySchedulePdf.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Pdf_Click);
 			#endregion
 
 			#region Monthly Schedule
@@ -123,6 +124,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MonthlySchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.PowerPoint_Click);
 			MonthlySchedulePreview.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Preview_Click);
 			MonthlyScheduleEmail.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Email_Click);
+			MonthlySchedulePdf.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Pdf_Click);
 			#endregion
 
 			#region Digital Product
@@ -133,6 +135,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductEmail.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Email_Click);
 			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
 			DigitalProductPreview.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Preview_Click);
+			DigitalProductPdf.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Pdf_Click);
 			#endregion
 
 			#region Web Package
@@ -142,6 +145,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalPackagePowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalPackage.PowerPoint_Click);
 			DigitalPackagePreview.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Preview_Click);
 			DigitalPackageEmail.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Email_Click);
+			DigitalPackagePdf.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Pdf_Click);
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
 			#endregion
 
@@ -156,6 +160,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Calendar1Preview.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Preview_Click);
 			Calendar1PowerPoint.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.PowerPoint_Click);
 			Calendar1Email.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Email_Click);
+			Calendar1Pdf.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Pdf_Click);
 			Calendar1Help.Click += BroadcastCalendar.Help_Click;
 			#endregion
 
@@ -170,6 +175,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Calendar2Preview.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Preview_Click);
 			Calendar2PowerPoint.AddEventHandler(CheckPowerPointRunning, CustomCalendar.PowerPoint_Click);
 			Calendar2Email.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Email_Click);
+			Calendar2Pdf.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Pdf_Click);
 			Calendar2Help.Click += CustomCalendar.Help_Click;
 			#endregion
 
@@ -195,6 +201,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			StrategyPowerPoint.AddEventHandler(CheckPowerPointRunning, Strategy.PowerPoint_Click);
 			StrategyEmail.AddEventHandler(CheckPowerPointRunning, Strategy.Email_Click);
 			StrategyPreview.AddEventHandler(CheckPowerPointRunning, Strategy.Preview_Click);
+			StrategyPdf.AddEventHandler(CheckPowerPointRunning, Strategy.Pdf_Click);
 			#endregion
 
 			#region Snapshot
@@ -204,6 +211,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			SnapshotPowerPoint.AddEventHandler(CheckPowerPointRunning, Snapshot.PowerPoint_Click);
 			SnapshotPreview.AddEventHandler(CheckPowerPointRunning, Snapshot.Preview_Click);
 			SnapshotEmail.AddEventHandler(CheckPowerPointRunning, Snapshot.Email_Click);
+			SnapshotPdf.AddEventHandler(CheckPowerPointRunning, Snapshot.Pdf_Click);
 			SnapshotHelp.Click += Snapshot.Help_Click;
 			SnapshotNew.Click += Snapshot.New_Click;
 			SnapshotProgramAdd.Click += Snapshot.AddProgram_Click;
@@ -217,6 +225,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			OptionsPowerPoint.AddEventHandler(CheckPowerPointRunning, Options.PowerPoint_Click);
 			OptionsPreview.AddEventHandler(CheckPowerPointRunning, Options.Preview_Click);
 			OptionsEmail.AddEventHandler(CheckPowerPointRunning, Options.Email_Click);
+			OptionsPdf.AddEventHandler(CheckPowerPointRunning, Options.Pdf_Click);
 			OptionsHelp.Click += Options.Help_Click;
 			OptionsNew.Click += Options.New_Click;
 			OptionsProgramAdd.Click += Options.AddProgram_Click;
@@ -626,6 +635,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem WeeklySchedulePreview { get; set; }
 		public ButtonItem WeeklySchedulePowerPoint { get; set; }
 		public ButtonItem WeeklyScheduleEmail { get; set; }
+		public ButtonItem WeeklySchedulePdf { get; set; }
 		public ButtonItem WeeklyScheduleTheme { get; set; }
 		public ButtonItem WeeklyScheduleSave { get; set; }
 		public ButtonItem WeeklyScheduleSaveAs { get; set; }
@@ -641,6 +651,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem MonthlySchedulePreview { get; set; }
 		public ButtonItem MonthlySchedulePowerPoint { get; set; }
 		public ButtonItem MonthlyScheduleEmail { get; set; }
+		public ButtonItem MonthlySchedulePdf { get; set; }
 		public ButtonItem MonthlyScheduleTheme { get; set; }
 		public ButtonItem MonthlyScheduleSave { get; set; }
 		public ButtonItem MonthlyScheduleSaveAs { get; set; }
@@ -654,6 +665,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductEmail { get; set; }
+		public ButtonItem DigitalProductPdf { get; set; }
 		public ButtonItem DigitalProductTheme { get; set; }
 		public ButtonItem DigitalProductSave { get; set; }
 		public ButtonItem DigitalProductSaveAs { get; set; }
@@ -668,6 +680,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem DigitalPackagePreview { get; set; }
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
+		public ButtonItem DigitalPackagePdf { get; set; }
 		public ButtonItem DigitalPackageTheme { get; set; }
 		#endregion
 
@@ -683,6 +696,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem Calendar1Preview { get; set; }
 		public ButtonItem Calendar1Email { get; set; }
 		public ButtonItem Calendar1PowerPoint { get; set; }
+		public ButtonItem Calendar1Pdf { get; set; }
 		#endregion
 
 		#region Calendar 2
@@ -697,6 +711,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem Calendar2Preview { get; set; }
 		public ButtonItem Calendar2Email { get; set; }
 		public ButtonItem Calendar2PowerPoint { get; set; }
+		public ButtonItem Calendar2Pdf { get; set; }
 		#endregion
 
 		#region Summary Light
@@ -707,6 +722,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem SummaryLightPreview { get; set; }
 		public ButtonItem SummaryLightEmail { get; set; }
 		public ButtonItem SummaryLightPowerPoint { get; set; }
+		public ButtonItem SummaryLightPdf { get; set; }
 		public ButtonItem SummaryLightTheme { get; set; }
 		public CheckEdit SummaryLightSlideOutputToggle { get; set; }
 		public CheckEdit SummaryLightTableOutputToggle { get; set; }
@@ -720,6 +736,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem SummaryFullPreview { get; set; }
 		public ButtonItem SummaryFullEmail { get; set; }
 		public ButtonItem SummaryFullPowerPoint { get; set; }
+		public ButtonItem SummaryFullPdf { get; set; }
 		public ButtonItem SummaryFullTheme { get; set; }
 		public CheckEdit SummaryFullSlideOutputToggle { get; set; }
 		public CheckEdit SummaryFullTableOutputToggle { get; set; }
@@ -733,6 +750,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem StrategyPreview { get; set; }
 		public ButtonItem StrategyEmail { get; set; }
 		public ButtonItem StrategyPowerPoint { get; set; }
+		public ButtonItem StrategyPdf { get; set; }
 		public ButtonItem StrategyTheme { get; set; }
 		public CheckEdit StrategyShowStationToggle { get; set; }
 		public CheckEdit StrategyShowDescriptionToggle { get; set; }
@@ -745,6 +763,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem SnapshotProgramDelete { get; set; }
 		public ButtonItem SnapshotPreview { get; set; }
 		public ButtonItem SnapshotPowerPoint { get; set; }
+		public ButtonItem SnapshotPdf { get; set; }
 		public ButtonItem SnapshotEmail { get; set; }
 		public ButtonItem SnapshotTheme { get; set; }
 		public ButtonItem SnapshotSave { get; set; }
@@ -761,6 +780,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem OptionsProgramDelete { get; set; }
 		public ButtonItem OptionsPreview { get; set; }
 		public ButtonItem OptionsPowerPoint { get; set; }
+		public ButtonItem OptionsPdf { get; set; }
 		public ButtonItem OptionsEmail { get; set; }
 		public ButtonItem OptionsTheme { get; set; }
 		public ButtonItem OptionsSave { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -54,32 +55,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
-			laScheduleInfo.Text = String.Format("{0}{3}{1} ({2})",
+			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
 				_localSchedule.BusinessName,
 				_localSchedule.FlightDates,
 				String.Format("{0} {1}s", ScheduleSection.TotalPeriods, SpotTitle),
 				Environment.NewLine);
 			base.LoadSchedule(quickLoad);
-			xtraScrollableControlColors.Controls.Clear();
-			var selectedColor = BusinessWrapper.Instance.OutputManager.ScheduleColors.FirstOrDefault(c => c.Name.Equals(MediaMetaData.Instance.SettingsManager.SelectedColor)) ?? BusinessWrapper.Instance.OutputManager.ScheduleColors.FirstOrDefault();
-			var topPosition = 20;
-			foreach (var color in BusinessWrapper.Instance.OutputManager.ScheduleColors)
+
+			if (!quickLoad)
 			{
-				var button = new ButtonX();
-				button.Height = 50;
-				button.Width = pnColors.Width - 40;
-				button.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-				button.TextAlignment = eButtonTextAlignment.Center;
-				button.ColorTable = eButtonColor.OrangeWithBackground;
-				button.Style = eDotNetBarStyle.StyleManagerControlled;
-				button.Image = color.Logo;
-				button.Tag = color;
-				button.Checked = color.Name.Equals(selectedColor.Name);
-				button.Click += buttonColor_Click;
-				button.CheckedChanged += colorButton_CheckedChanged;
-				xtraScrollableControlColors.Controls.Add(button);
-				button.Location = new Point(20, topPosition);
-				topPosition += (button.Height + 20);
+				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.ScheduleColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
+				outputColorSelector.ColorChanged += OnColorChanged;
 			}
 
 			xtraTabPageOptionsDigital.PageEnabled = LocalSchedule.DigitalProducts.Any();
@@ -125,7 +111,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public override void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";
@@ -205,6 +191,32 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			}
+		}
+
+		protected override void PdfInternal(IEnumerable<OutputSchedule> outputPages)
+		{
+			if (outputPages == null || !outputPages.Any()) return;
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetPdf(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+					var extension = Path.GetExtension(tempFileName);
+					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch { }
+					TrackOutput();
+					formProgress.Close();
+				});
 			}
 		}
 

@@ -32,6 +32,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			get { return Controller.Instance.Calendar1PowerPoint; }
 		}
 
+		public override ButtonItem PdfButton
+		{
+			get { return Controller.Instance.Calendar1Pdf; }
+		}
+
 		public override ButtonItem CopyButton
 		{
 			get { return Controller.Instance.Calendar1Copy; }

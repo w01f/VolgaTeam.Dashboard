@@ -28,9 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.gridControlItems = new DevExpress.XtraGrid.GridControl();
-			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
+			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
 			this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.advBandedGridViewItems = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -44,12 +43,14 @@
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
 			this.retractableBarRight = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarRight();
+			this.labelControlFavTitle = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			this.retractableBarRight.Content.SuspendLayout();
+			this.retractableBarRight.Header.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridControlItems
@@ -240,7 +241,7 @@
 			// retractableBarRight
 			// 
 			this.retractableBarRight.AnimationDelay = 0;
-			this.retractableBarRight.BackColor = System.Drawing.Color.Transparent;
+			this.retractableBarRight.BackColor = System.Drawing.Color.White;
 			// 
 			// retractableBarRight.Content
 			// 
@@ -253,11 +254,33 @@
 			this.retractableBarRight.ContentSize = 300;
 			this.retractableBarRight.Dock = System.Windows.Forms.DockStyle.Right;
 			this.retractableBarRight.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			// 
+			// retractableBarRight.Header
+			// 
+			this.retractableBarRight.Header.BackColor = System.Drawing.Color.White;
+			this.retractableBarRight.Header.Controls.Add(this.labelControlFavTitle);
+			this.retractableBarRight.Header.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.retractableBarRight.Header.Location = new System.Drawing.Point(2, 2);
+			this.retractableBarRight.Header.Name = "Header";
+			this.retractableBarRight.Header.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.retractableBarRight.Header.Size = new System.Drawing.Size(304, 36);
+			this.retractableBarRight.Header.TabIndex = 2;
 			this.retractableBarRight.Location = new System.Drawing.Point(476, 0);
 			this.retractableBarRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarRight.Name = "retractableBarRight";
 			this.retractableBarRight.Size = new System.Drawing.Size(359, 623);
 			this.retractableBarRight.TabIndex = 1;
+			// 
+			// labelControlFavTitle
+			// 
+			this.labelControlFavTitle.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlFavTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlFavTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlFavTitle.Location = new System.Drawing.Point(5, 0);
+			this.labelControlFavTitle.Name = "labelControlFavTitle";
+			this.labelControlFavTitle.Size = new System.Drawing.Size(299, 36);
+			this.labelControlFavTitle.TabIndex = 0;
+			this.labelControlFavTitle.Text = "Favorite Images";
 			// 
 			// ProgramStrategyControl
 			// 
@@ -273,6 +296,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			this.retractableBarRight.Content.ResumeLayout(false);
+			this.retractableBarRight.Header.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -294,5 +318,6 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsInfo;
 		private CommonGUI.RetractableBar.RetractableBarRight retractableBarRight;
+		private DevExpress.XtraEditors.LabelControl labelControlFavTitle;
 	}
 }

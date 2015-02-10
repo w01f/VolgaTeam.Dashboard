@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -147,7 +148,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new defaultName for your Schedule:";
@@ -189,6 +190,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		public void Email_Click(object sender, EventArgs e)
 		{
 			Email();
+		}
+
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			OutputPdf();
 		}
 		#endregion
 
@@ -304,7 +310,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			if (selectedProgram == null) return;
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
 			{
-				form.SelectedImage = selectedProgram.Logo != null ? selectedProgram.Logo.BigImage : null;
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
 				selectedProgram.Logo = form.SelectedImageSource;
@@ -532,6 +537,33 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			}
+		}
+
+		private void OutputPdf()
+		{
+			SaveSchedule();
+			PrepareOutput();
+			TrackOutput();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					var tempFileName = Path.GetTempFileName();
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyPdf(tempFileName, this);
+					var extension = Path.GetExtension(tempFileName);
+					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch { }
+					formProgress.Close();
+				});
 			}
 		}
 		#endregion

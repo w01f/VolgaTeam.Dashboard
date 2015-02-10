@@ -114,6 +114,14 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			return result;
 		}
 
+		public override ColorSchema GetColorSchema(string colorName)
+		{
+			return BusinessWrapper.Instance.OutputManager.CalendarColors.Items
+				.Where(color => color.Name.ToLower() == colorName.ToLower())
+				.Select(color => color.Schema)
+				.FirstOrDefault();
+		}
+
 		public override void OpenHelp(string key)
 		{
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);

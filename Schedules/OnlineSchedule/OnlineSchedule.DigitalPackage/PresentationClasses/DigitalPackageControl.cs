@@ -13,6 +13,7 @@ using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses;
 using NewBizWiz.OnlineSchedule.DigitalPackage.Properties;
+using ScheduleManager = NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses.ScheduleManager;
 
 namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 {
@@ -114,6 +115,11 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 				LocalSchedule.Name = scheduleName;
 			Controller.Instance.SaveSchedule(LocalSchedule, String.IsNullOrEmpty(scheduleName), this);
 			return base.SaveSchedule(scheduleName);
+		}
+
+		protected override IEnumerable<string> GetExistedScheduleNames()
+		{
+			return ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName);
 		}
 
 		public override void OutputSlides()

@@ -13,6 +13,7 @@ using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
+using ScheduleManager = NewBizWiz.Core.AdSchedule.ScheduleManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
 {
@@ -23,7 +24,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		protected AdCalendarControl()
 		{
 			Dock = DockStyle.Fill;
-			laCalendarName.Visible = false;
 			hyperLinkEditReset.Visible = true;
 			hyperLinkEditReset.OpenLink += hyperLinkEditReset_OpenLink;
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
@@ -67,6 +67,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, this);
 			return result;
+		}
+
+		public override ColorSchema GetColorSchema(string colorName)
+		{
+			return BusinessWrapper.Instance.OutputManager.CalendarColors.Items
+				.Where(color => color.Name.ToLower() == colorName.ToLower())
+				.Select(color => color.Schema)
+				.FirstOrDefault();
 		}
 
 		public override void OpenHelp(string key)
@@ -250,7 +258,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s=>s.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";

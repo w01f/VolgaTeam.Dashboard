@@ -135,7 +135,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			using (var form = new FormImageGallery(Core.OnlineSchedule.ListManager.Instance.Images))
 			{
-				form.SelectedImage = pbLogo.Image;
 				if (form.ShowDialog() == DialogResult.OK && form.SelectedImageSource != null)
 				{
 					pbLogo.Image = new Bitmap(form.SelectedImage);

@@ -1,4 +1,5 @@
 ﻿using System;
+using DevComponents.DotNetBar;
 
 namespace NewBizWiz.CommonGUI.Summary
 {

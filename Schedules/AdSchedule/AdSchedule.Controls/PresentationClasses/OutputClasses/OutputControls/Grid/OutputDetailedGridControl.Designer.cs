@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
@@ -65,11 +65,11 @@
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(544, 4);
+			this.hyperLinkEditReset.EditValue = "Reset Defaults";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(479, 4);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
@@ -77,11 +77,12 @@
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
-			toolTipItem2.Text = "Reset original default data";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.hyperLinkEditReset.SuperTip = superToolTip2;
-			this.hyperLinkEditReset.TabIndex = 103;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(126, 22);
+			toolTipItem1.Text = "Reset original default data";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditReset.SuperTip = superToolTip1;
+			this.hyperLinkEditReset.TabIndex = 106;
+			this.hyperLinkEditReset.Visible = false;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// OutputDetailedGridControl
@@ -104,7 +105,7 @@
 
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
 		private System.Windows.Forms.Panel pnHeader;
-		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
+		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 
     }
 }

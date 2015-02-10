@@ -32,15 +32,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsContainer));
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pbNoSnapshots = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlOptionSets = new DevExpress.XtraTab.XtraTabControl();
 			this.pnOptionSets = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.checkEditApplySettingsForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.laScheduleInfo = new System.Windows.Forms.Label();
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAvgRate = new System.Windows.Forms.Panel();
 			this.laAvgRateValue = new System.Windows.Forms.Label();
@@ -88,14 +87,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionAvgRate = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
+			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
 			this.laColorsTitle = new System.Windows.Forms.Label();
-			this.pnColors = new System.Windows.Forms.Panel();
-			this.xtraScrollableControlColors = new DevExpress.XtraEditors.XtraScrollableControl();
+			this.hyperLinkEditInfoAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.contextMenuStripOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoOptionSets = new System.Windows.Forms.Panel();
-			this.hyperLinkEditInfoAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptionSets)).BeginInit();
 			this.pnOptionSets.SuspendLayout();
@@ -115,10 +114,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnOptionSetInfo.SuspendLayout();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
 			this.pnStyle.SuspendLayout();
-			this.pnColors.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).BeginInit();
 			this.contextMenuStripOptions.SuspendLayout();
 			this.pnNoOptionSets.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pbNoSnapshots
@@ -169,8 +167,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// 
 			// pnTop
 			// 
+			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
 			this.pnTop.Controls.Add(this.checkEditApplySettingsForAll);
-			this.pnTop.Controls.Add(this.laScheduleInfo);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(300, 0);
 			this.pnTop.Name = "pnTop";
@@ -202,15 +200,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.styleController.AppearanceFocused.Options.UseFont = true;
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
-			// laScheduleInfo
-			// 
-			this.laScheduleInfo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laScheduleInfo.Location = new System.Drawing.Point(0, 0);
-			this.laScheduleInfo.Name = "laScheduleInfo";
-			this.laScheduleInfo.Size = new System.Drawing.Size(248, 40);
-			this.laScheduleInfo.TabIndex = 4;
-			this.laScheduleInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// pnBottom
 			// 
@@ -328,6 +317,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// retractableBarControl.Content
 			// 
 			this.retractableBarControl.Content.Controls.Add(this.xtraTabControlOptions);
+			this.retractableBarControl.Content.Controls.Add(this.hyperLinkEditInfoAdvanced);
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
@@ -336,6 +326,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
 			this.retractableBarControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			// 
+			// retractableBarControl.Header
+			// 
+			this.retractableBarControl.Header.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.retractableBarControl.Header.Location = new System.Drawing.Point(49, 2);
+			this.retractableBarControl.Header.Name = "Header";
+			this.retractableBarControl.Header.Size = new System.Drawing.Size(245, 36);
+			this.retractableBarControl.Header.TabIndex = 2;
 			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarControl.Name = "retractableBarControl";
@@ -358,11 +356,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.xtraTabControlOptions.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseBackColor = true;
 			this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseFont = true;
-			this.xtraTabControlOptions.Dock = System.Windows.Forms.DockStyle.Left;
+			this.xtraTabControlOptions.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageOptionsInfo;
-			this.xtraTabControlOptions.Size = new System.Drawing.Size(298, 580);
+			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 535);
 			this.xtraTabControlOptions.TabIndex = 1;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageOptionsInfo,
@@ -372,19 +370,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// 
 			this.xtraTabPageOptionsInfo.Controls.Add(this.pnOptionsInfo);
 			this.xtraTabPageOptionsInfo.Name = "xtraTabPageOptionsInfo";
-			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(292, 549);
+			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(290, 504);
 			this.xtraTabPageOptionsInfo.Text = "Info";
 			// 
 			// pnOptionsInfo
 			// 
 			this.pnOptionsInfo.BackColor = System.Drawing.Color.Transparent;
-			this.pnOptionsInfo.Controls.Add(this.hyperLinkEditInfoAdvanced);
 			this.pnOptionsInfo.Controls.Add(this.pnSummaryInfo);
 			this.pnOptionsInfo.Controls.Add(this.pnOptionSetInfo);
 			this.pnOptionsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsInfo.Name = "pnOptionsInfo";
-			this.pnOptionsInfo.Size = new System.Drawing.Size(292, 549);
+			this.pnOptionsInfo.Size = new System.Drawing.Size(290, 504);
 			this.pnOptionsInfo.TabIndex = 1;
 			// 
 			// pnSummaryInfo
@@ -406,7 +403,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnSummaryInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 430);
 			this.pnSummaryInfo.Name = "pnSummaryInfo";
-			this.pnSummaryInfo.Size = new System.Drawing.Size(292, 396);
+			this.pnSummaryInfo.Size = new System.Drawing.Size(290, 396);
 			this.pnSummaryInfo.TabIndex = 124;
 			// 
 			// buttonXSummaryTotalSpots
@@ -443,7 +440,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTotalMonths.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryTotalMonths.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalMonths.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryTotalMonths.Location = new System.Drawing.Point(161, 239);
+			this.buttonXSummaryTotalMonths.Location = new System.Drawing.Point(159, 239);
 			this.buttonXSummaryTotalMonths.Name = "buttonXSummaryTotalMonths";
 			this.buttonXSummaryTotalMonths.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalMonths.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -458,7 +455,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryMonthlySpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryMonthlySpots.AutoCheckOnClick = true;
 			this.buttonXSummaryMonthlySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryMonthlySpots.Location = new System.Drawing.Point(161, 183);
+			this.buttonXSummaryMonthlySpots.Location = new System.Drawing.Point(159, 183);
 			this.buttonXSummaryMonthlySpots.Name = "buttonXSummaryMonthlySpots";
 			this.buttonXSummaryMonthlySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryMonthlySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -501,7 +498,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryLogo.AutoCheckOnClick = true;
 			this.buttonXSummaryLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryLogo.Location = new System.Drawing.Point(161, 15);
+			this.buttonXSummaryLogo.Location = new System.Drawing.Point(159, 15);
 			this.buttonXSummaryLogo.Name = "buttonXSummaryLogo";
 			this.buttonXSummaryLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -544,7 +541,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryTotalCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(161, 295);
+			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(159, 295);
 			this.buttonXSummaryTotalCost.Name = "buttonXSummaryTotalCost";
 			this.buttonXSummaryTotalCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -559,7 +556,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryWeeklyCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryWeeklyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryWeeklyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryWeeklyCost.Location = new System.Drawing.Point(161, 127);
+			this.buttonXSummaryWeeklyCost.Location = new System.Drawing.Point(159, 127);
 			this.buttonXSummaryWeeklyCost.Name = "buttonXSummaryWeeklyCost";
 			this.buttonXSummaryWeeklyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryWeeklyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -574,7 +571,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryComments.AutoCheckOnClick = true;
 			this.buttonXSummaryComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryComments.Location = new System.Drawing.Point(161, 71);
+			this.buttonXSummaryComments.Location = new System.Drawing.Point(159, 71);
 			this.buttonXSummaryComments.Name = "buttonXSummaryComments";
 			this.buttonXSummaryComments.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -603,7 +600,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTallyCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryTallyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(161, 351);
+			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(159, 351);
 			this.buttonXSummaryTallyCost.Name = "buttonXSummaryTallyCost";
 			this.buttonXSummaryTallyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTallyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -632,7 +629,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnOptionSetInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnOptionSetInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionSetInfo.Name = "pnOptionSetInfo";
-			this.pnOptionSetInfo.Size = new System.Drawing.Size(292, 430);
+			this.pnOptionSetInfo.Size = new System.Drawing.Size(290, 430);
 			this.pnOptionSetInfo.TabIndex = 123;
 			// 
 			// buttonXOptionStation
@@ -655,7 +652,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionLength.AutoCheckOnClick = true;
 			this.buttonXOptionLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOptionLength.Location = new System.Drawing.Point(165, 123);
+			this.buttonXOptionLength.Location = new System.Drawing.Point(163, 123);
 			this.buttonXOptionLength.Name = "buttonXOptionLength";
 			this.buttonXOptionLength.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -740,7 +737,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionCost.AutoCheckOnClick = true;
 			this.buttonXOptionCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOptionCost.Location = new System.Drawing.Point(165, 285);
+			this.buttonXOptionCost.Location = new System.Drawing.Point(163, 285);
 			this.buttonXOptionCost.Name = "buttonXOptionCost";
 			this.buttonXOptionCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -754,7 +751,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionWeeklySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXOptionWeeklySpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionWeeklySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOptionWeeklySpots.Location = new System.Drawing.Point(165, 177);
+			this.buttonXOptionWeeklySpots.Location = new System.Drawing.Point(163, 177);
 			this.buttonXOptionWeeklySpots.Name = "buttonXOptionWeeklySpots";
 			this.buttonXOptionWeeklySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionWeeklySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -770,7 +767,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionProgram.AutoCheckOnClick = true;
 			this.buttonXOptionProgram.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOptionProgram.Location = new System.Drawing.Point(165, 15);
+			this.buttonXOptionProgram.Location = new System.Drawing.Point(163, 15);
 			this.buttonXOptionProgram.Name = "buttonXOptionProgram";
 			this.buttonXOptionProgram.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -785,7 +782,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionTallyCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionTallyCost.AutoCheckOnClick = true;
 			this.buttonXOptionTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOptionTallyCost.Location = new System.Drawing.Point(165, 339);
+			this.buttonXOptionTallyCost.Location = new System.Drawing.Point(163, 339);
 			this.buttonXOptionTallyCost.Name = "buttonXOptionTallyCost";
 			this.buttonXOptionTallyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionTallyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -800,7 +797,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionTime.AutoCheckOnClick = true;
 			this.buttonXOptionTime.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOptionTime.Location = new System.Drawing.Point(165, 69);
+			this.buttonXOptionTime.Location = new System.Drawing.Point(163, 69);
 			this.buttonXOptionTime.Name = "buttonXOptionTime";
 			this.buttonXOptionTime.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -814,7 +811,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionTotalSpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXOptionTotalSpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionTotalSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOptionTotalSpots.Location = new System.Drawing.Point(165, 231);
+			this.buttonXOptionTotalSpots.Location = new System.Drawing.Point(163, 231);
 			this.buttonXOptionTotalSpots.Name = "buttonXOptionTotalSpots";
 			this.buttonXOptionTotalSpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionTotalSpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -856,19 +853,31 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(292, 549);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 504);
 			this.xtraTabPageOptionsStyle.Text = "Options";
 			// 
 			// pnStyle
 			// 
 			this.pnStyle.BackColor = System.Drawing.Color.Transparent;
+			this.pnStyle.Controls.Add(this.outputColorSelector);
 			this.pnStyle.Controls.Add(this.laColorsTitle);
-			this.pnStyle.Controls.Add(this.pnColors);
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(292, 549);
+			this.pnStyle.Size = new System.Drawing.Size(290, 504);
 			this.pnStyle.TabIndex = 0;
+			// 
+			// outputColorSelector
+			// 
+			this.outputColorSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.outputColorSelector.BackColor = System.Drawing.Color.White;
+			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.outputColorSelector.Location = new System.Drawing.Point(0, 32);
+			this.outputColorSelector.Name = "outputColorSelector";
+			this.outputColorSelector.Size = new System.Drawing.Size(290, 471);
+			this.outputColorSelector.TabIndex = 50;
 			// 
 			// laColorsTitle
 			// 
@@ -879,26 +888,28 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.laColorsTitle.TabIndex = 48;
 			this.laColorsTitle.Text = "Schedule Table Color:";
 			// 
-			// pnColors
+			// hyperLinkEditInfoAdvanced
 			// 
-			this.pnColors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnColors.Controls.Add(this.xtraScrollableControlColors);
-			this.pnColors.Location = new System.Drawing.Point(6, 32);
-			this.pnColors.Name = "pnColors";
-			this.pnColors.Size = new System.Drawing.Size(281, 464);
-			this.pnColors.TabIndex = 46;
-			// 
-			// xtraScrollableControlColors
-			// 
-			this.xtraScrollableControlColors.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.xtraScrollableControlColors.Appearance.Options.UseBackColor = true;
-			this.xtraScrollableControlColors.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraScrollableControlColors.Location = new System.Drawing.Point(0, 0);
-			this.xtraScrollableControlColors.Name = "xtraScrollableControlColors";
-			this.xtraScrollableControlColors.Size = new System.Drawing.Size(281, 464);
-			this.xtraScrollableControlColors.TabIndex = 45;
+			this.hyperLinkEditInfoAdvanced.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.hyperLinkEditInfoAdvanced.EditValue = "Advanced Settings";
+			this.hyperLinkEditInfoAdvanced.Location = new System.Drawing.Point(0, 535);
+			this.hyperLinkEditInfoAdvanced.Name = "hyperLinkEditInfoAdvanced";
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.hyperLinkEditInfoAdvanced.Properties.AutoHeight = false;
+			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(296, 45);
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip1;
+			this.hyperLinkEditInfoAdvanced.TabIndex = 125;
+			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoAdvanced_OpenLink);
 			// 
 			// contextMenuStripOptions
 			// 
@@ -931,28 +942,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnNoOptionSets.Size = new System.Drawing.Size(200, 100);
 			this.pnNoOptionSets.TabIndex = 3;
 			// 
-			// hyperLinkEditInfoAdvanced
+			// labelControlScheduleInfo
 			// 
-			this.hyperLinkEditInfoAdvanced.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.hyperLinkEditInfoAdvanced.EditValue = "Advanced Settings";
-			this.hyperLinkEditInfoAdvanced.Location = new System.Drawing.Point(0, 504);
-			this.hyperLinkEditInfoAdvanced.Name = "hyperLinkEditInfoAdvanced";
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseTextOptions = true;
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.hyperLinkEditInfoAdvanced.Properties.AutoHeight = false;
-			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(292, 45);
-			toolTipItem2.Text = "Change Slide Output Settings";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip2;
-			this.hyperLinkEditInfoAdvanced.TabIndex = 125;
-			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoAdvanced_OpenLink);
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(252, 40);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 124;
 			// 
 			// OptionsContainer
 			// 
@@ -983,10 +984,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
 			this.pnStyle.ResumeLayout(false);
 			this.pnStyle.PerformLayout();
-			this.pnColors.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).EndInit();
 			this.contextMenuStripOptions.ResumeLayout(false);
 			this.pnNoOptionSets.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1012,8 +1012,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsStyle;
 		private System.Windows.Forms.Panel pnStyle;
 		private System.Windows.Forms.Label laColorsTitle;
-		protected System.Windows.Forms.Panel pnColors;
-		protected DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlColors;
 		private DevComponents.DotNetBar.ButtonX buttonXOptionTime;
 		private DevComponents.DotNetBar.ButtonX buttonXOptionProgram;
 		private DevComponents.DotNetBar.ButtonX buttonXOptionTallyCost;
@@ -1023,7 +1021,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		private DevComponents.DotNetBar.ButtonX buttonXOptionStation;
 		private DevComponents.DotNetBar.ButtonX buttonXOptionLogo;
 		protected System.Windows.Forms.Panel pnTop;
-		protected System.Windows.Forms.Label laScheduleInfo;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStripOptions;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotRename;
 		private System.Windows.Forms.Panel pnNoOptionSets;
@@ -1055,6 +1052,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		private DevExpress.XtraEditors.CheckEdit checkEditApplySettingsForAll;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
+		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;
+		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 
 	}
 }

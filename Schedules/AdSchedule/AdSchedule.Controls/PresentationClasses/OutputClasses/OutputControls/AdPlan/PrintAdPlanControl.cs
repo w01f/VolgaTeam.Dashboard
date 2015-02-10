@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -156,6 +157,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
+		}
+
+		protected override IEnumerable<string> GetExistedScheduleNames()
+		{
+			return ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName);
 		}
 
 		public override Theme SelectedTheme

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using DevExpress.XtraGrid.Views.Grid;
+using Manina.Windows.Forms;
 using NewBizWiz.Core.Common;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
@@ -11,8 +10,6 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 {
 	public partial class FormImageGallery : MetroForm
 	{
-		private readonly List<ImageSource> _imageSources = new List<ImageSource>();
-
 		public FormImageGallery()
 		{
 			InitializeComponent();
@@ -20,27 +17,26 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 
 		public ImageSource SelectedSource
 		{
-			get
-			{
-				if (gridViewImageGallery.FocusedRowHandle >= 0)
-					return _imageSources[gridViewImageGallery.GetFocusedDataSourceRowIndex()];
-				return null;
-			}
+			get { return imageListView.SelectedItems.Select(item => item.Tag as ImageSource).FirstOrDefault(); }
 		}
 
 		private void FormImageGallery_Load(object sender, EventArgs e)
 		{
-			_imageSources.AddRange(ListManager.Instance.Images.SelectMany(g=>g.Images));
-			gridControlImageGallery.DataSource = _imageSources;
+			imageListView.Items.Clear();
+			imageListView.Items.AddRange(ListManager.Instance.Images.SelectMany(g => g.Images).Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
 		}
 
-		private void gridViewImageGallery_RowClick(object sender, RowClickEventArgs e)
+		private void imageListView_ItemDoubleClick(object sender, Manina.Windows.Forms.ItemClickEventArgs e)
 		{
-			if (e.Clicks > 1)
-			{
-				DialogResult = DialogResult.OK;
-				Close();
-			}
+			imageListView.ClearSelection();
+			e.Item.Selected = true;
+			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+		private void imageListView_MouseMove(object sender, MouseEventArgs e)
+		{
+			imageListView.Focus();
 		}
 	}
 }

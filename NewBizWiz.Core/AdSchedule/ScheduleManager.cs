@@ -238,6 +238,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public CustomCalendar CustomCalendar { get; set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
+
 		public IScheduleViewSettings SharedViewSettings
 		{
 			get { return ViewSettings; }
@@ -267,7 +268,7 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
-		public int WeeksDuration
+		public int TotalWeeks
 		{
 			get
 			{

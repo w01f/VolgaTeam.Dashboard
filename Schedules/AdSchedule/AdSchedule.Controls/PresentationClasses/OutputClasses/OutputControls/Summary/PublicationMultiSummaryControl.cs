@@ -15,7 +15,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 {
 	[ToolboxItem(false)]
 	public partial class PublicationMultiSummaryControl : XtraTabPage
-	//public partial class PublicationMultiSummaryControl : System.Windows.Forms.UserControl
+	//public partial class PublicationMultiSummaryControl : UserControl
 	{
 		private bool _allowToSave;
 		private readonly OutputMultiSummaryControl _parent;

@@ -50,10 +50,32 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				}
 		}
 
-		public void RefreshData(Color colorLight, Color colorDark)
+		public void RefreshData(ColorSchema colorSchema)
 		{
 			foreach (var week in _weekControls)
-				week.RefreshData(colorLight, colorDark);
+				week.RefreshData(colorSchema);
+
+			pnMonday.BackColor =
+				pnTuesday.BackColor =
+					pnWednesday.BackColor =
+						pnThursday.BackColor =
+							pnFriday.BackColor =
+								pnSaturday.BackColor =
+									pnSunday.BackColor = colorSchema.LineColor;
+			laMonday.BackColor =
+				laTuesday.BackColor =
+					laWednesday.BackColor =
+						laThursday.BackColor =
+							laFriday.BackColor =
+								laSaturday.BackColor =
+									laSunday.BackColor = colorSchema.HeaderBackColor;
+			laMonday.ForeColor =
+				laTuesday.ForeColor =
+					laWednesday.ForeColor =
+						laThursday.ForeColor =
+							laFriday.ForeColor =
+								laSaturday.ForeColor =
+									laSunday.ForeColor = colorSchema.HeaderForeColor;
 		}
 
 		public void RefreshNotes()

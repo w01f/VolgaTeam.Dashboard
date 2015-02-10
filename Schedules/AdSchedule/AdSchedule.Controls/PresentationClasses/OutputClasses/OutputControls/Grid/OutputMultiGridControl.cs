@@ -40,7 +40,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 			ColumnsColumns = new ColumnsControl(this);
 			AdNotes = new AdNotesControl(this);
-			
+
 			SlideBullets = new SlideBulletsControl(this);
 			SlideBullets.checkEditColumnInches.Visible = false;
 			SlideBullets.checkEditDimensions.Visible = false;
@@ -120,8 +120,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (!quickLoad)
 			{
 				AllowToSave = false;
-				laBusinessName.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
-				laFlightDates.Text = LocalSchedule.FlightDates;
+				labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
+					LocalSchedule.BusinessName,
+					LocalSchedule.FlightDates,
+					String.Format("{0} {1}s", LocalSchedule.TotalWeeks, "week"));
 
 				PrepareInserts();
 				gridControlPublication.DataSource = _inserts;
@@ -293,8 +295,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void SetSlideHeader()
 		{
-			laBusinessName.Enabled = SlideHeaderState.ShowAdvertiser;
-			laFlightDates.Enabled = SlideHeaderState.ShowFlightDates;
+			labelControlScheduleInfo.Enabled = SlideHeaderState.ShowAdvertiser;
 		}
 
 		public void UpdateColumnsAccordingToggles()
@@ -755,7 +756,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				string result = string.Empty;
 				if (SlideHeaderState.ShowAdvertiser)
-					result = laBusinessName.Text.Trim();
+					result = LocalSchedule.BusinessName;
 				return result;
 			}
 		}
@@ -777,7 +778,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				string result = string.Empty;
 				if (SlideHeaderState.ShowFlightDates)
-					result = laFlightDates.Text.Trim();
+					result = LocalSchedule.FlightDates;
 				return result;
 			}
 		}

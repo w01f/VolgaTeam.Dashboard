@@ -142,6 +142,15 @@
     <Compile Include="ListEditor\ListContainer.Designer.cs">
       <DependentUpon>ListContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="OutputColors\OutputColorButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OutputColors\OutputColorSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OutputColors\OutputColorSelector.Designer.cs">
+      <DependentUpon>OutputColorSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Preview\PreviewGroup.cs" />
     <Compile Include="Preview\PreviewGroupControl.cs">
       <SubType>Component</SubType>
@@ -341,10 +350,12 @@
     <EmbeddedResource Include="ListEditor\ListContainer.resx">
       <DependentUpon>ListContainer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OutputColors\OutputColorSelector.resx">
+      <DependentUpon>OutputColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

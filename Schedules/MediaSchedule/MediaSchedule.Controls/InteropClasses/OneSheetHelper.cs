@@ -132,5 +132,11 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 		{
 			PreparePresentation(fileName, presentation => AppendOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}
+
+		public void PrepareOneSheetPdf(string fileName, IEnumerable<OutputSchedule> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		{
+			PreparePresentation(fileName, presentation => AppendOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
+			BuildPdf(fileName);
+		}
 	}
 }

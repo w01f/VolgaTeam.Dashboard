@@ -92,6 +92,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 			return base.SaveSchedule(scheduleName);
 		}
 
+		protected override IEnumerable<string> GetExistedScheduleNames()
+		{
+			return Core.AdSchedule.ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName);
+		}
+
 		public override void Help_Click(object sender, EventArgs e)
 		{
 			HelpManager.OpenHelpLink("digitalpkg");

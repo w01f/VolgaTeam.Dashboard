@@ -88,7 +88,8 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			foreach (var month in Months)
 			{
 				var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(month.Key));
-				month.Value.RefreshData(calendarMonth.OutputData.SlideColorLight, calendarMonth.OutputData.SlideColorDark);
+				if (calendarMonth == null) continue;
+				month.Value.RefreshData(Calendar.GetColorSchema(calendarMonth.OutputData.SlideColor));
 				Calendar.UpdateOutputFunctions();
 			}
 		}
@@ -104,6 +105,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				existedMonth.RaiseEvents(false);
 
 			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(date));
+			if (calendarMonth == null) return;
 			if (Months.ContainsKey(date))
 			{
 				month = Months[date];
@@ -259,7 +261,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 						form.Close();
 					}
 				}
-				month.RefreshData(calendarMonth.OutputData.SlideColorLight, calendarMonth.OutputData.SlideColorDark);
+				month.RefreshData(Calendar.GetColorSchema(calendarMonth.OutputData.SlideColor));
 			}
 			if (month == null) return;
 			if (!pnMain.Controls.Contains(month))

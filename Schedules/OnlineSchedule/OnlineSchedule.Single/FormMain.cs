@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -250,6 +251,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			ribbonControl_SelectedRibbonTabChanged(null, null);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.Enabled = true;
+			Controller.Instance.CheckPowerPointRunning();
 		}
 
 		private bool AllowToLeaveCurrentControl()
@@ -343,7 +345,6 @@ namespace NewBizWiz.OnlineSchedule.Single
 						buttonItemHomeNewSchedule_Click(null, null);
 					else
 						buttonItemHomeOpenSchedule_Click(null, null);
-					Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Application.Exit();
@@ -491,13 +492,13 @@ namespace NewBizWiz.OnlineSchedule.Single
 
 		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
-				if (from.ShowDialog() == DialogResult.OK)
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
+					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
-						var fileName = from.ScheduleName.Trim();
+						var fileName = form.ScheduleName.Trim();
 						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", fileName));
 						BusinessWrapper.Instance.ScheduleManager.CreateSchedule(fileName);
 						LoadData();

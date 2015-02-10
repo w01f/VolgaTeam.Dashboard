@@ -355,5 +355,11 @@ namespace NewBizWiz.CommonGUI.Interop
 		{
 			PreparePresentation(fileName, presentation => AppendSummary(summary, presentation));
 		}
+
+		public void PrepareSummaryPdf(string fileName, ISummaryControl summary)
+		{
+			PreparePresentation(fileName, presentation => AppendSummary(summary, presentation));
+			BuildPdf(fileName);
+		}
 	}
 }

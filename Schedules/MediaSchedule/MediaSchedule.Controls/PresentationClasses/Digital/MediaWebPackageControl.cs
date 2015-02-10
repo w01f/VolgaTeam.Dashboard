@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -13,6 +15,7 @@ using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
+using ScheduleManager = NewBizWiz.Core.MediaSchedule.ScheduleManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 {
@@ -61,6 +64,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 			get { return Controller.Instance.DigitalPackagePowerPoint; }
 		}
 
+		public override ButtonItem Pdf
+		{
+			get { return Controller.Instance.DigitalPackagePdf; }
+		}
+
 		public override ButtonItem Email
 		{
 			get { return Controller.Instance.DigitalPackageEmail; }
@@ -89,6 +97,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				LocalSchedule.Name = scheduleName;
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, false, this);
 			return base.SaveSchedule(scheduleName);
+		}
+
+		protected override IEnumerable<string> GetExistedScheduleNames()
+		{
+			return ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName);
 		}
 
 		public override void Help_Click(object sender, EventArgs e)
@@ -124,6 +137,33 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				RegistryHelper.MainFormHandle = _formContainer.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+			}
+		}
+
+		public override void PdfSlides()
+		{
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+					OnlineSchedulePowerPointHelper.Instance.PrepareWebPackagePdf(this, tempFileName);
+					if (File.Exists(tempFileName))
+					{
+						var extension = Path.GetExtension(tempFileName);
+						var pdfFileName = tempFileName.Replace(extension, ".pdf");
+						if (File.Exists(pdfFileName))
+							try
+							{
+								Process.Start(pdfFileName);
+							}
+							catch { }
+					}
+					formProgress.Close();
+				});
 			}
 		}
 	}

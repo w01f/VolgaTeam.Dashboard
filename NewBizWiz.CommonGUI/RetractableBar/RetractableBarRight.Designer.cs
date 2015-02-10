@@ -32,7 +32,6 @@
 			this.pnClosed.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).BeginInit();
 			this.pnOpened.SuspendLayout();
-			this.pnTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnClosed
@@ -41,7 +40,7 @@
 			this.pnClosed.Appearance.Options.UseBackColor = true;
 			this.pnClosed.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pnClosed.Location = new System.Drawing.Point(304, 0);
-			this.pnClosed.Size = new System.Drawing.Size(55, 655);
+			this.pnClosed.Size = new System.Drawing.Size(55, 388);
 			// 
 			// pnOpened
 			// 
@@ -49,11 +48,12 @@
 			this.pnOpened.Appearance.Options.UseBackColor = true;
 			this.pnOpened.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOpened.Location = new System.Drawing.Point(0, 0);
-			this.pnOpened.Size = new System.Drawing.Size(304, 655);
+			this.pnOpened.Size = new System.Drawing.Size(304, 388);
 			// 
 			// simpleButtonExpand
 			// 
 			this.simpleButtonExpand.Image = global::NewBizWiz.CommonGUI.Properties.Resources.RetractableBarCollapse;
+			this.simpleButtonExpand.Size = new System.Drawing.Size(47, 36);
 			// 
 			// pnTop
 			// 
@@ -61,13 +61,18 @@
 			// 
 			// pnContent
 			// 
-			this.pnContent.Size = new System.Drawing.Size(300, 611);
+			this.pnContent.Size = new System.Drawing.Size(300, 344);
 			// 
 			// simpleButtonCollapse
 			// 
-			this.simpleButtonCollapse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.simpleButtonCollapse.Dock = System.Windows.Forms.DockStyle.Right;
 			this.simpleButtonCollapse.Image = global::NewBizWiz.CommonGUI.Properties.Resources.RetractableBarExpand;
-			this.simpleButtonCollapse.Location = new System.Drawing.Point(249, 3);
+			this.simpleButtonCollapse.Location = new System.Drawing.Point(251, 2);
+			// 
+			// pnHeaderContent
+			// 
+			this.pnHeaderContent.Location = new System.Drawing.Point(2, 2);
+			this.pnHeaderContent.Size = new System.Drawing.Size(249, 36);
 			// 
 			// RetractableBarRight
 			// 
@@ -78,7 +83,6 @@
 			this.pnClosed.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).EndInit();
 			this.pnOpened.ResumeLayout(false);
-			this.pnTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

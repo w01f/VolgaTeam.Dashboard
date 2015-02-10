@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -9,6 +10,7 @@ using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
+using NewBizWiz.Core.QuickShare;
 using NewBizWiz.QuickShare.Controls;
 using NewBizWiz.QuickShare.Controls.BusinessClasses;
 using NewBizWiz.QuickShare.Controls.InteropClasses;
@@ -120,6 +122,7 @@ namespace NewBizWiz.QuickShare.Single
 			ribbonControl_SelectedRibbonTabChanged(null, null);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.Enabled = true;
+			Controller.Instance.CheckPowerPointRunning();
 		}
 
 		private bool AllowToLeaveCurrentControl()
@@ -157,7 +160,6 @@ namespace NewBizWiz.QuickShare.Single
 						buttonItemHomeNewPackage_Click(null, null);
 					else
 						buttonItemHomeOpenPackage_Click(null, null);
-					Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Application.Exit();
@@ -213,15 +215,15 @@ namespace NewBizWiz.QuickShare.Single
 
 		private void buttonItemHomeNewPackage_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(PackageManager.GetShortPackageList().Select(p => p.ShortFileName)))
 			{
-				from.Text = "Build a New Package";
-				if (from.ShowDialog() == DialogResult.OK)
+				form.Text = "Build a New Package";
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
+					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
-						var fileName = BusinessWrapper.Instance.PackageManager.GetPackageFileName(from.ScheduleName.Trim());
-						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", from.ScheduleName.Trim()));
+						var fileName = BusinessWrapper.Instance.PackageManager.GetPackageFileName(form.ScheduleName.Trim());
+						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
 						BusinessWrapper.Instance.PackageManager.OpenPackage(fileName);
 						LoadData();
 					}

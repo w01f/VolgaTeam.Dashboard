@@ -398,7 +398,7 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(PackageManager.GetShortPackageList().Select(p => p.ShortFileName)))
 			{
 				form.Text = "Save Package";
 				form.laLogo.Text = "Please set a new name for your Package:";

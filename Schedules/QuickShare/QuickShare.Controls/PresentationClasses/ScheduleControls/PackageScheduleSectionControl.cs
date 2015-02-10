@@ -116,33 +116,17 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			}));
 			_parent.PowerPointBar.RecalcLayout();
 			_parent.Panel.PerformLayout();
-			laScheduleInfo.Text = String.Format("{0} ({1}){4}{2} ({3})",
+			labelControlScheduleInfo.Text = String.Format("{0} ({1}){4}<color=gray><i>{2} ({3})</i></color>",
 				LocalSchedule.BusinessName,
 				LocalSchedule.Parent.Name,
 				LocalSchedule.FlightDates,
 				String.Format("{0} {1}s", ScheduleSection.TotalPeriods, SpotTitle),
 				Environment.NewLine);
 			base.LoadSchedule(quickLoad);
-			xtraScrollableControlColors.Controls.Clear();
-			var selectedColor = BusinessWrapper.Instance.OutputManager.ScheduleColors.FirstOrDefault(c => c.Name.Equals(MediaMetaData.Instance.SettingsManager.SelectedColor)) ?? BusinessWrapper.Instance.OutputManager.ScheduleColors.FirstOrDefault();
-			var topPosition = 20;
-			foreach (var color in BusinessWrapper.Instance.OutputManager.ScheduleColors)
+			if (!quickLoad)
 			{
-				var button = new ButtonX();
-				button.Height = 50;
-				button.Width = pnColors.Width - 40;
-				button.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-				button.TextAlignment = eButtonTextAlignment.Center;
-				button.ColorTable = eButtonColor.OrangeWithBackground;
-				button.Style = eDotNetBarStyle.StyleManagerControlled;
-				button.Image = color.Logo;
-				button.Tag = color;
-				button.Checked = color.Name.Equals(selectedColor.Name);
-				button.Click += buttonColor_Click;
-				button.CheckedChanged += colorButton_CheckedChanged;
-				xtraScrollableControlColors.Controls.Add(button);
-				button.Location = new Point(20, topPosition);
-				topPosition += (button.Height + 20);
+				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.ScheduleColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
+				outputColorSelector.ColorChanged += OnColorChanged;
 			}
 		}
 
@@ -176,7 +160,7 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 
 		public override void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(PackageManager.GetShortPackageList().Select(p => p.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";

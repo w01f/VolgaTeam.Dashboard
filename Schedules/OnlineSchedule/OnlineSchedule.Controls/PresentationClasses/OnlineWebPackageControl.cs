@@ -89,6 +89,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			return base.SaveSchedule(scheduleName);
 		}
 
+		protected override IEnumerable<string> GetExistedScheduleNames()
+		{
+			return ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName);
+		}
+
 		private void TrackOutput()
 		{
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabDigitalPackage.Text, Schedule.BusinessName, PackageRecords.Sum(pr => pr.InvestmentCalculated)));

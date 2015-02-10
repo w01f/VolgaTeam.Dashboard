@@ -145,9 +145,15 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareSnapshot(string fileName, IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareSnapshotEmail(string fileName, IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendSnapshot(pages, selectedTheme, pasteToSlideMaster, presentation));
+		}
+
+		public void PrepareSnapshotPdf(string fileName, IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		{
+			PreparePresentation(fileName, presentation => AppendSnapshot(pages, selectedTheme, pasteToSlideMaster, presentation));
+			BuildPdf(fileName);
 		}
 	}
 }

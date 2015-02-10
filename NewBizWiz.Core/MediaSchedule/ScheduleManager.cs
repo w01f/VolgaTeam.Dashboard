@@ -333,6 +333,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
+		public int TotalWeeks
+		{
+			get
+			{
+				var datesRange = FlightDateEnd - FlightDateStart;
+				return datesRange.HasValue ? datesRange.Value.Days / 7 + 1 : 0;
+			}
+		}
+
 		public virtual void Deserialize(XmlNode rootNode)
 		{
 			var node = rootNode.SelectSingleNode(@"BusinessName");
@@ -2275,7 +2284,11 @@ namespace NewBizWiz.Core.MediaSchedule
 			var monthTemplates = _parentSchedule.MondayBased ? MediaMetaData.Instance.ListManager.MonthTemplatesMondayBased : MediaMetaData.Instance.ListManager.MonthTemplatesSundayBased;
 			while (startDate <= Schedule.FlightDateEnd.Value)
 			{
-				var month = Months.FirstOrDefault(x => x.Date.Equals(startDate));
+				var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
+				if (monthTemplate == null) continue;
+				
+				startDate = monthTemplate.Month.Value;
+				var month = Months.FirstOrDefault(x => x.Date == startDate);
 				if (month == null)
 				{
 					if (_parentSchedule.MondayBased)
@@ -2284,9 +2297,6 @@ namespace NewBizWiz.Core.MediaSchedule
 						month = new CalendarMonthMediaSundayBased(this);
 					ApplyDefaultMonthSettings(month);
 				}
-				var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
-				if (monthTemplate == null) continue;
-				startDate = monthTemplate.Month.Value;
 				month.Date = monthTemplate.Month.Value;
 				month.DaysRangeBegin = monthTemplate.StartDate.Value;
 				month.DaysRangeEnd = monthTemplate.EndDate.Value;

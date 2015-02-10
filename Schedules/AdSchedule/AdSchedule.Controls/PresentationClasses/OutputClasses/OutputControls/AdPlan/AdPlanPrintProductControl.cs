@@ -162,7 +162,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			using (var form = new FormImageGallery(Core.AdSchedule.ListManager.Instance.Images))
 			{
-				form.SelectedImage = pbLogo.Image;
 				if (form.ShowDialog() == DialogResult.OK && form.SelectedImageSource != null)
 				{
 					pbLogo.Image = new Bitmap(form.SelectedImage);

@@ -423,6 +423,62 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public abstract void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput);
 
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			var previewGroups = new List<PreviewGroup>();
+			var selectedTabPages = new List<IDigitalOutputControl>();
+			if (_tabPages.Count > 1)
+			{
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Digital Products";
+					var currentProduct = xtraTabControlProducts.SelectedTabPage as IDigitalOutputControl;
+					foreach (var tabPage in xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>())
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedTabPages.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<IDigitalOutputControl>());
+				}
+			}
+			else
+				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
+			if (!selectedTabPages.Any()) return;
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Output...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				foreach (var productControl in selectedTabPages)
+				{
+					var previewGroup = productControl.GetPreviewGroup();
+					if (productControl is DigitalProductControl)
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
+					else if (productControl is DigitalSummaryControl)
+					{
+						var summaryControl = productControl as DigitalSummaryControl;
+						summaryControl.PopulateReplacementsList();
+						OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
+					}
+					previewGroups.Add(previewGroup);
+				}
+				formProgress.Close();
+			}
+			if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
+				ShowPdf(previewGroups, () => TrackOutput(selectedTabPages.OfType<DigitalProductControl>()));
+		}
+
+		public abstract void ShowPdf(IEnumerable<PreviewGroup> previewGroups, Action trackOutput);
+
 		#region Picture Box Clicks Habdlers
 		/// <summary>
 		/// Buttonize the PictureBox 

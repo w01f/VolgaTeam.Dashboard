@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
@@ -7,6 +9,7 @@ using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
+using SettingsManager = NewBizWiz.Core.Calendar.SettingsManager;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses
 {
@@ -279,15 +282,15 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void HomeSaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList(new DirectoryInfo(SettingsManager.Instance.SaveFolder)).Select(s => s.ShortFileName)))
 			{
-				from.Text = "Save Calendar";
-				from.laLogo.Text = "Please set a new name for your Calendar:";
-				if (from.ShowDialog() == DialogResult.OK)
+				form.Text = "Save Calendar";
+				form.laLogo.Text = "Please set a new name for your Calendar:";
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
+					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
-						if (SaveCalendar(true, from.ScheduleName))
+						if (SaveCalendar(true, form.ScheduleName))
 							Utilities.Instance.ShowInformation("Calendar was saved");
 					}
 					else

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
@@ -211,12 +210,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 		#endregion
 
-		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
-		{
-			_parent.ResetToDefault();
-			e.Handled = true;
-		}
-
 		#region Output Staff
 		public string LogoFile
 		{
@@ -286,7 +279,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public string FlightDates1
 		{
-			get { return _parent.laFlightDates.Text; }
+			get { return _parent.LocalSchedule.FlightDates; }
 		}
 
 		public string FlightDates2

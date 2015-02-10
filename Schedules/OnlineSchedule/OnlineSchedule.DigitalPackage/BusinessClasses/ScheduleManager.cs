@@ -157,6 +157,15 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 			get { return _scheduleFile; }
 		}
 
+		public int TotalWeeks
+		{
+			get
+			{
+				var datesRange = FlightDateEnd - FlightDateStart;
+				return datesRange.HasValue ? datesRange.Value.Days / 7 + 1 : 0;
+			}
+		}
+
 		public decimal MonthlyInvestment
 		{
 			get { return DigitalProducts.Select(x => (x.MonthlyInvestment.HasValue ? x.MonthlyInvestment.Value : 0)).Sum(); }

@@ -15,15 +15,14 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		private bool _allowToSave;
 		private bool _isCopySource;
 		private bool _isSelected;
-		private Color _colorLight = Color.White;
-		private Color _colorDark = Color.LightGray;
+		private ColorSchema _colorSchema = new ColorSchema();
 
 		public DayControl(CalendarDay day)
 		{
 			InitializeComponent();
 			Day = day;
 			laSmallDayCaption.Text = Day.Date.Day.ToString();
-			RefreshData(_colorLight, _colorDark);
+			RefreshData(_colorSchema);
 
 			memoEditSimpleComment.Enter += Utilities.Instance.Editor_Enter;
 			memoEditSimpleComment.MouseDown += Utilities.Instance.Editor_MouseDown;
@@ -33,11 +32,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		}
 
 		#region Common Methods
-		public void RefreshData(Color colorLight, Color colorDark)
+		public void RefreshData(ColorSchema colorSchema)
 		{
 			_allowToSave = false;
-			_colorLight = colorLight;
-			_colorDark = colorDark;
+			_colorSchema = colorSchema;
 			labelControlData.Text = Day.Summary;
 			pbLogo.Image = Day.Logo.TinyImage;
 			pbLogo.Visible = Day.Logo.ContainsData;
@@ -53,14 +51,14 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		public void RefreshColor()
 		{
-			BackColor = BackColor == Color.Blue || BackColor == Color.Green ? (Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
+			BackColor = _isSelected ? (Day.ContainsData ? Color.Green : Color.Blue) : _colorSchema.LineColor;
 			if (!Day.BelongsToSchedules)
 			{
-				memoEditSimpleComment.BackColor = _colorLight;
-				pnCalendarNoteArea.BackColor = _colorLight;
-				xtraScrollableControl.BackColor = _colorLight;
-				laSmallDayCaption.BackColor = _colorDark;
-				laSmallDayCaption.ForeColor = Color.White;
+				memoEditSimpleComment.BackColor = _colorSchema.InactiveBodyColor;
+				pnCalendarNoteArea.BackColor = _colorSchema.InactiveBodyColor;
+				xtraScrollableControl.BackColor = _colorSchema.InactiveBodyColor;
+				laSmallDayCaption.BackColor = _colorSchema.InactiveBackColor;
+				laSmallDayCaption.ForeColor = _colorSchema.InactiveForeColor;
 			}
 			else if (_isCopySource)
 			{
@@ -72,11 +70,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			}
 			else
 			{
-				memoEditSimpleComment.BackColor = Color.White;
-				pnCalendarNoteArea.BackColor = Color.White;
-				xtraScrollableControl.BackColor = Color.White;
-				laSmallDayCaption.BackColor = _colorLight;
-				laSmallDayCaption.ForeColor = Color.Black;
+				memoEditSimpleComment.BackColor = _colorSchema.ActiveBodyColor;
+				pnCalendarNoteArea.BackColor = _colorSchema.ActiveBodyColor;
+				xtraScrollableControl.BackColor = _colorSchema.ActiveBodyColor;
+				laSmallDayCaption.BackColor = _colorSchema.ActiveBackColor;
+				laSmallDayCaption.ForeColor = _colorSchema.ActiveForeColor;
 			}
 		}
 		#endregion
@@ -87,7 +85,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			_isSelected = select;
 			Padding = new Padding(select ? 5 : 1);
 			pnCalendarNoteArea.Height = select ? 35 : 40;
-			BackColor = _isSelected ? (Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
+			RefreshColor();
 			Refresh();
 		}
 
@@ -170,7 +168,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			var imageSource = e.Data.GetData(typeof(ImageSource)) as ImageSource;
 			if (imageSource == null) return;
 			Day.Logo = imageSource.Clone();
-			RefreshData(_colorLight, _colorDark);
+			RefreshData(_colorSchema);
 			if (DataChanged != null)
 				DataChanged(this, new EventArgs());
 		}
@@ -212,7 +210,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			using (var form = new FormDayProperties(Day))
 			{
 				if (form.ShowDialog() != DialogResult.OK) return;
-				RefreshData(_colorLight, _colorDark);
+				RefreshData(_colorSchema);
 				if (DataChanged != null)
 					DataChanged(this, new EventArgs());
 			}
@@ -266,7 +264,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			if (!_allowToSave) return;
 			Day.Comment = memoEditSimpleComment.EditValue as String;
-			RefreshData(_colorLight, _colorDark);
+			RefreshData(_colorSchema);
 			if (DataChanged != null)
 				DataChanged(this, new EventArgs());
 		}

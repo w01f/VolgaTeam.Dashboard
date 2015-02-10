@@ -30,10 +30,10 @@
         {
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.laFlightDates = new System.Windows.Forms.Label();
-			this.laBusinessName = new System.Windows.Forms.Label();
 			this.textEditHeader = new DevExpress.XtraEditors.TextEdit();
 			this.pnTopHeader = new System.Windows.Forms.Panel();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.gridControlPublication = new DevExpress.XtraGrid.GridControl();
 			this.gridViewPublications = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -65,6 +65,7 @@
 			this.gridColumnPercentOfPage = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.textEditHeader.Properties)).BeginInit();
 			this.pnTopHeader.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPublications)).BeginInit();
@@ -77,28 +78,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// laFlightDates
-			// 
-			this.laFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laFlightDates.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDates.Location = new System.Drawing.Point(304, 5);
-			this.laFlightDates.Name = "laFlightDates";
-			this.laFlightDates.Size = new System.Drawing.Size(185, 20);
-			this.laFlightDates.TabIndex = 50;
-			this.laFlightDates.Text = "Flight Dates Tag";
-			this.laFlightDates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// laBusinessName
-			// 
-			this.laBusinessName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laBusinessName.Location = new System.Drawing.Point(5, 6);
-			this.laBusinessName.Name = "laBusinessName";
-			this.laBusinessName.Size = new System.Drawing.Size(300, 18);
-			this.laBusinessName.TabIndex = 49;
-			this.laBusinessName.Text = "Business Name Tag";
-			this.laBusinessName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// textEditHeader
 			// 
@@ -120,36 +99,64 @@
 			// pnTopHeader
 			// 
 			this.pnTopHeader.BackColor = System.Drawing.Color.White;
-			this.pnTopHeader.Controls.Add(this.laFlightDates);
+			this.pnTopHeader.Controls.Add(this.labelControlScheduleInfo);
 			this.pnTopHeader.Controls.Add(this.hyperLinkEditReset);
-			this.pnTopHeader.Controls.Add(this.laBusinessName);
 			this.pnTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTopHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnTopHeader.Name = "pnTopHeader";
 			this.pnTopHeader.Size = new System.Drawing.Size(792, 30);
 			this.pnTopHeader.TabIndex = 4;
 			// 
+			// labelControlScheduleInfo
+			// 
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(666, 30);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 128;
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
 			// hyperLinkEditReset
 			// 
-			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(728, 4);
+			this.hyperLinkEditReset.Dock = System.Windows.Forms.DockStyle.Right;
+			this.hyperLinkEditReset.EditValue = "Reset Defaults";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(666, 0);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.AllowFocused = false;
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.hyperLinkEditReset.Properties.AutoHeight = false;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(126, 30);
 			toolTipItem1.Text = "Reset original default data";
 			superToolTip1.Items.Add(toolTipItem1);
 			this.hyperLinkEditReset.SuperTip = superToolTip1;
-			this.hyperLinkEditReset.TabIndex = 104;
-			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
+			this.hyperLinkEditReset.TabIndex = 106;
 			// 
 			// gridControlPublication
 			// 
@@ -618,6 +625,7 @@
 			this.Size = new System.Drawing.Size(792, 430);
 			((System.ComponentModel.ISupportInitialize)(this.textEditHeader.Properties)).EndInit();
 			this.pnTopHeader.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPublications)).EndInit();
@@ -665,9 +673,9 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
         public DevExpress.XtraGrid.Columns.GridColumn gridColumnPercentOfPage;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
-        private System.Windows.Forms.Label laBusinessName;
-        private System.Windows.Forms.Label laFlightDates;
-		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
+		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
+		private DevExpress.XtraEditors.StyleController styleController;
+		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 
     }
 }

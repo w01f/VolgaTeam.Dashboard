@@ -134,7 +134,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			if (selectedProgram == null) return;
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
 			{
-				form.SelectedImage = selectedProgram.Logo != null ? selectedProgram.Logo.BigImage : null;
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
 				selectedProgram.Logo = form.SelectedImageSource;
@@ -327,7 +326,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				Name = SlideName,
 				PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptions(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 

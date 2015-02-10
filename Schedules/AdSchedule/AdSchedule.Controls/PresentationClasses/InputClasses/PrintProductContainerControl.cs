@@ -99,8 +99,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = String.Format("{0} ({1} week{2})", LocalSchedule.FlightDates, LocalSchedule.WeeksDuration, LocalSchedule.WeeksDuration > 1 ? "s" : String.Empty);
-			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
+			labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
+				LocalSchedule.BusinessName,
+				LocalSchedule.FlightDates,
+				String.Format("{0} {1}s", LocalSchedule.TotalWeeks, "week"));
 			Controller.Instance.UpdateOutputTabs(LocalSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
 			if (!quickLoad)
 			{
@@ -1143,15 +1145,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void buttonItemPrintScheduleSaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (from.ShowDialog() == DialogResult.OK)
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
+					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
-						if (SaveSchedule(from.ScheduleName))
+						if (SaveSchedule(form.ScheduleName))
 							Utilities.Instance.ShowInformation("Schedule was saved");
 					}
 					else

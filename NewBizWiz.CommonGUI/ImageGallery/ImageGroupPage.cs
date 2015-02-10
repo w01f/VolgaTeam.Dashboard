@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.Utils;
-using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views.Layout;
 using DevExpress.XtraTab;
+using Manina.Windows.Forms;
+using NewBizWiz.CommonGUI.FavoriteImages;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.ImageGallery
@@ -15,81 +15,107 @@ namespace NewBizWiz.CommonGUI.ImageGallery
 	//public partial class ImageGroupPage : UserControl
 	public partial class ImageGroupPage : XtraTabPage
 	{
+		private ImageListView.HitInfo _menuHitInfo;
 		public List<ImageSource> ImageSources { get; private set; }
 
 		public event EventHandler<EventArgs> DoubleClicked;
- 		
+
 		public ImageGroupPage(ImageSourceGroup imageSourceGroup)
 		{
 			InitializeComponent();
 			Text = imageSourceGroup.Name;
 			ImageSources = new List<ImageSource>();
 			ImageSources.AddRange(imageSourceGroup.Images);
-			gridControlLogoGallery.DataSource = ImageSources;
+			LoadImages();
 		}
 
 		public Image SelectedImage
 		{
 			get { return SelectedImageSource != null ? SelectedImageSource.BigImage : null; }
-			set
-			{
-				if (value != null)
-				{
-					var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-					var encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(value, typeof(byte[])));
-					var selectedLogo = ImageSources.FirstOrDefault(l => l.EncodedBigImage.Equals(encodedLogo));
-					if (selectedLogo == null) return;
-					var index = ImageSources.IndexOf(selectedLogo);
-					layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
-					return;
-				}
-				layoutViewLogoGallery.FocusedRowHandle = 0;
-			}
 		}
 
 		public ImageSource SelectedImageSource
 		{
-			get { return layoutViewLogoGallery.GetFocusedRow() as ImageSource; }
-		}
-
-		private void layoutViewLogoGallery_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
-		{
-			var view = sender as LayoutView;
-			if (view.FocusedRowHandle == e.RowHandle)
+			get
 			{
-				e.Appearance.BackColor = Color.Orange;
-				e.Appearance.BackColor2 = Color.Orange;
+				return imageListView.SelectedItems.Count > 0 ?
+					imageListView.SelectedItems.Select(item => item.Tag as ImageSource).FirstOrDefault() :
+					null;
 			}
 		}
 
-		private void layoutViewLogoGallery_DoubleClick(object sender, EventArgs e)
+		private void LoadImages()
 		{
-			var layoutView = sender as LayoutView;
-			var hitInfo = layoutView.CalcHitInfo(layoutView.GridControl.PointToClient(MousePosition));
-			if (hitInfo.InField && DoubleClicked != null)
+			imageListView.Items.Clear();
+			imageListView.Items.AddRange(ImageSources.Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
+		}
+
+		private void imageListView_ItemDoubleClick(object sender, ItemClickEventArgs e)
+		{
+			imageListView.ClearSelection();
+			e.Item.Selected = true;
+			if (DoubleClicked != null)
 				DoubleClicked(this, EventArgs.Empty);
 		}
 
-		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		private void imageListView_ItemHover(object sender, ItemHoverEventArgs e)
 		{
-			if (e.SelectedControl != gridControlLogoGallery) return;
-			ToolTipControlInfo info = null;
-			try
+			toolTip.RemoveAll();
+			var sourceItem = e.Item != null ? e.Item.Tag as ImageSource : null;
+			if (sourceItem == null) return;
+			var toolTipText = Path.GetFileName(sourceItem.FileName);
+			toolTip.SetToolTip(imageListView, toolTipText);
+		}
+
+		private void imageListView_MouseMove(object sender, MouseEventArgs e)
+		{
+			imageListView.Focus();
+		}
+
+		private void imageListView_MouseDown(object sender, MouseEventArgs e)
+		{
+			_menuHitInfo = null;
+			ImageListView.HitInfo hitInfo;
+			imageListView.HitTest(new Point(e.X, e.Y), out hitInfo);
+			if (ModifierKeys != Keys.None) return;
+			if (!hitInfo.InItemArea) return;
+			switch (e.Button)
 			{
-				var view = gridControlLogoGallery.GetViewAt(e.ControlMousePosition) as LayoutView;
-				if (view == null)
-					return;
-				var hi = view.CalcHitInfo(e.ControlMousePosition);
-				if (hi.InFieldValue)
-				{
-					var imageSource = view.GetRow(hi.RowHandle) as ImageSource;
-					info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), imageSource.Name);
-				}
+				case MouseButtons.Right:
+					_menuHitInfo = hitInfo;
+					contextMenuStrip.Show(MousePosition);
+					break;
 			}
-			finally
+		}
+
+		private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+		{
+			e.Cancel = !(_menuHitInfo != null && _menuHitInfo.InItemArea && _menuHitInfo.ItemIndex >= 0);
+		}
+
+		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
+		{
+			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
+			if (imageSource == null || !imageSource.ContainsData) return;
+			Clipboard.SetText(String.Format("<ImageSource>{0}</ImageSource>", imageSource.Serialize()), TextDataFormat.Html);
+			_menuHitInfo = null;
+		}
+
+		private void toolStripMenuItemFavorites_Click(object sender, EventArgs e)
+		{
+			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
+			if (imageSource == null) return;
+			var imageName = imageSource.Name;
+			using (var form = new FormAddFavoriteImage(imageSource.BigImage, imageName, FavoriteImagesManager.Instance.Images.Select(i => i.Name.ToLower())))
 			{
-				e.Info = info;
+				form.Text = "Add Image to Favorites";
+				form.laTitle.Text = "Save this Image in your Favorites folder for future presentations";
+				if (form.ShowDialog() != DialogResult.OK) return;
+				imageName = form.ImageName;
 			}
+			FavoriteImagesManager.Instance.SaveImage(imageSource.BigImage, imageName);
+			Utilities.Instance.ShowInformation("Image successfully added to Favorites");
+			_menuHitInfo = null;
 		}
 	}
 }

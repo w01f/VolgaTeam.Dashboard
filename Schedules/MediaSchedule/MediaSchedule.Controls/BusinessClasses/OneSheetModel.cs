@@ -190,7 +190,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			}
 			if (!ShowLength && SpotsPerSlide < 24)
 			{
-				key = "Length";
+				key = "Lgth";
 				value = "Delete Column";
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
@@ -230,7 +230,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
 			}
-			if (SpotsPerSlide < 16)
+			if (SpotsPerSlide < 15)
 			{
 				key = "Rtg";
 				value = ShowRating ? RtgHeaderTitle : "Delete Column";
@@ -393,7 +393,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 						if (!ReplacementsList.Keys.Contains(key))
 							ReplacementsList.Add(key, value);
 
-						if (SpotsPerSlide >= 16)
+						if (SpotsPerSlide >= 15)
 						{
 							key = String.Format("rtg{0}     pts{0}     cpp{0}", i + 1);
 							temp.Clear();
@@ -408,7 +408,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 								ReplacementsList.Add(key, value);
 						}
 					}
-					if (SpotsPerSlide < 16)
+					if (SpotsPerSlide < 15)
 					{
 						key = String.Format("rtg{0}", (i + 1));
 						value = ShowRating ? program.Rating : String.Empty;

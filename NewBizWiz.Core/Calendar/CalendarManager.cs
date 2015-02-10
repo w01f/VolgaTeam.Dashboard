@@ -227,6 +227,15 @@ namespace NewBizWiz.Core.Calendar
 			}
 		}
 
+		public int TotalWeeks
+		{
+			get
+			{
+				var datesRange = FlightDateEnd - FlightDateStart;
+				return datesRange.HasValue ? datesRange.Value.Days / 7 + 1 : 0;
+			}
+		}
+
 		public string ThemeName { get; set; }
 
 		private void LoadSettings()
@@ -1154,54 +1163,6 @@ namespace NewBizWiz.Core.Calendar
 				return _encodedLogo;
 			}
 			set { _encodedLogo = value; }
-		}
-
-		public Color SlideColorLight
-		{
-			get
-			{
-				switch (SlideColor)
-				{
-					case "black":
-						return Color.White;
-					case "blue":
-						return Color.LightBlue;
-					case "gray":
-						return Color.LightGray;
-					case "green":
-						return Color.LightGreen;
-					case "orange":
-						return Color.FromArgb(255, 224, 192);
-					case "teal":
-						return Color.Cyan;
-					default:
-						return Color.White;
-				}
-			}
-		}
-
-		public Color SlideColorDark
-		{
-			get
-			{
-				switch (SlideColor)
-				{
-					case "black":
-						return Color.Black;
-					case "blue":
-						return Color.Blue;
-					case "gray":
-						return Color.Gray;
-					case "green":
-						return Color.Green;
-					case "orange":
-						return Color.Orange;
-					case "teal":
-						return Color.Teal;
-					default:
-						return Color.Black;
-				}
-			}
 		}
 
 		public int SlideRGB

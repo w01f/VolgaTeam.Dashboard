@@ -121,7 +121,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";
@@ -153,6 +153,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			get { return Controller.Instance.SummaryFullEmail; }
 		}
 
+		public override ButtonItem PdfButton
+		{
+			get { return null; }
+		}
+
 		public override Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2))); }
@@ -179,6 +184,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 					formProgress.Close();
 				});
 			}
+		}
+
+		protected override void OutputPdf()
+		{
+			throw new NotImplementedException();
 		}
 
 		protected override bool CheckPowerPointRunning()

@@ -23,6 +23,7 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
+using ScheduleManager = NewBizWiz.Core.AdSchedule.ScheduleManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 {
@@ -342,15 +343,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void buttonItemPrintScheduleettingsSaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (from.ShowDialog() == DialogResult.OK)
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() == DialogResult.OK)
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
+					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
-						if (SaveSchedule(from.ScheduleName))
+						if (SaveSchedule(form.ScheduleName))
 							Utilities.Instance.ShowInformation("Schedule was saved");
 					}
 					else
@@ -517,7 +518,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (e.Column != gridColumnLogo) return;
 			using (var form = new FormImageGallery(Core.AdSchedule.ListManager.Instance.Images))
 			{
-				form.SelectedImage = _localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].BigLogo;
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
 				_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].BigLogo = new Bitmap(form.SelectedImageSource.BigImage);

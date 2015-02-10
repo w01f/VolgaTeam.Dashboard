@@ -37,7 +37,6 @@
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
 			this.pnTopHeader = new System.Windows.Forms.Panel();
-			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laDescription = new System.Windows.Forms.Label();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.outputSnapshotContainer = new NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.OutputSnapshotContainer();
@@ -64,6 +63,7 @@
 			this.pnSlideInfo = new System.Windows.Forms.Panel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSchedule.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDate.Properties)).BeginInit();
@@ -71,7 +71,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).BeginInit();
 			this.pnTopHeader.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.xtraScrollableControl.SuspendLayout();
 			this.pnMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
@@ -81,6 +80,7 @@
 			this.xtraTabPageSlideInfo.SuspendLayout();
 			this.pnSlideInfo.SuspendLayout();
 			this.retractableBar.Content.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// comboBoxEditSchedule
@@ -176,26 +176,6 @@
 			this.pnTopHeader.Name = "pnTopHeader";
 			this.pnTopHeader.Size = new System.Drawing.Size(532, 42);
 			this.pnTopHeader.TabIndex = 4;
-			// 
-			// hyperLinkEditReset
-			// 
-			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.hyperLinkEditReset.EditValue = "Reset Defaults";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(429, 11);
-			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
-			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(101, 20);
-			toolTipItem1.Text = "Reset original default data";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditReset.SuperTip = superToolTip1;
-			this.hyperLinkEditReset.TabIndex = 105;
-			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// laDescription
 			// 
@@ -517,7 +497,7 @@
 			// 
 			this.xtraTabPageSlideInfo.Controls.Add(this.pnSlideInfo);
 			this.xtraTabPageSlideInfo.Name = "xtraTabPageSlideInfo";
-			this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(250, 487);
+			this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(250, 462);
 			this.xtraTabPageSlideInfo.Text = "Basic Info";
 			// 
 			// pnSlideInfo
@@ -532,7 +512,7 @@
 			this.pnSlideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnSlideInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnSlideInfo.Name = "pnSlideInfo";
-			this.pnSlideInfo.Size = new System.Drawing.Size(250, 487);
+			this.pnSlideInfo.Size = new System.Drawing.Size(250, 462);
 			this.pnSlideInfo.TabIndex = 0;
 			// 
 			// superTooltip
@@ -555,11 +535,41 @@
 			this.retractableBar.ContentSize = 260;
 			this.retractableBar.Dock = System.Windows.Forms.DockStyle.Left;
 			this.retractableBar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			// 
+			// retractableBar.Header
+			// 
+			this.retractableBar.Header.Location = new System.Drawing.Point(49, 2);
+			this.retractableBar.Header.Name = "Header";
+			this.retractableBar.Header.Size = new System.Drawing.Size(200, 100);
+			this.retractableBar.Header.TabIndex = 2;
 			this.retractableBar.Location = new System.Drawing.Point(0, 0);
 			this.retractableBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBar.Name = "retractableBar";
 			this.retractableBar.Size = new System.Drawing.Size(260, 537);
 			this.retractableBar.TabIndex = 9;
+			// 
+			// hyperLinkEditReset
+			// 
+			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.hyperLinkEditReset.EditValue = "Reset Defaults";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(403, 10);
+			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(126, 22);
+			toolTipItem1.Text = "Reset original default data";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditReset.SuperTip = superToolTip1;
+			this.hyperLinkEditReset.TabIndex = 106;
+			this.hyperLinkEditReset.Visible = false;
+			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// OutputSnapshotControl
 			// 
@@ -579,7 +589,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).EndInit();
 			this.pnTopHeader.ResumeLayout(false);
 			this.pnTopHeader.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.xtraScrollableControl.ResumeLayout(false);
 			this.pnMain.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
@@ -589,6 +598,7 @@
 			this.xtraTabPageSlideInfo.ResumeLayout(false);
 			this.pnSlideInfo.ResumeLayout(false);
 			this.retractableBar.Content.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -627,8 +637,8 @@
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideInfo;
 		private System.Windows.Forms.Panel pnSlideInfo;
 		private System.Windows.Forms.Label laDescription;
-		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		private CommonGUI.RetractableBar.RetractableBarLeft retractableBar;
+		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 
     }
 }

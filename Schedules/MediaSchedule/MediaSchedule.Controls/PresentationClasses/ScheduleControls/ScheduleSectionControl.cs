@@ -130,6 +130,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			get { return null; }
 		}
+		public virtual ButtonItem PdfButton
+		{
+			get { return null; }
+		}
 		public virtual ButtonItem EmailButton
 		{
 			get { return null; }
@@ -165,7 +169,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		#region Methods
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			laScheduleInfo.Focus();
+			labelControlScheduleInfo.Focus();
 			advBandedGridViewSchedule.CloseEditor();
 			advBandedGridViewSchedule.FocusedColumn = null;
 		}
@@ -316,6 +320,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			ThemeButton.Enabled = enabled;
 			EmailButton.Enabled = enabled;
 			PreviewButton.Enabled = enabled;
+			if (PdfButton != null)
+				PdfButton.Enabled = enabled;
 		}
 
 		private void UpdateRateFormat()
@@ -545,7 +551,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			UpdateRateFormat();
 
-			
+
 
 			_allowToSave = true;
 			SettingsNotSaved = false;
@@ -554,8 +560,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		protected virtual bool SaveSchedule(string scheduleName = "")
 		{
 			advBandedGridViewSchedule.CloseEditor();
-			var checkedColorItem = xtraScrollableControlColors.Controls.OfType<ButtonX>().FirstOrDefault(b => b.Checked);
-			MediaMetaData.Instance.SettingsManager.SelectedColor = checkedColorItem != null ? ((ColorFolder)checkedColorItem.Tag).Name : String.Empty;
+			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? String.Empty;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 			SettingsNotSaved = false;
 			return true;
@@ -701,29 +706,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SettingsNotSaved = true;
 		}
 
-		private void buttonXUseSlideMaster_CheckedChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			TrackOptionChanged();
-			SettingsNotSaved = true;
-		}
-
-		protected void buttonColor_Click(object sender, EventArgs e)
-		{
-			var button = sender as ButtonX;
-			if (button.Checked) return;
-			foreach (var colorButton in xtraScrollableControlColors.Controls.OfType<ButtonX>())
-				colorButton.Checked = false;
-			button.Checked = true;
-		}
-
-		protected void colorButton_CheckedChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			TrackOptionChanged();
-			SettingsNotSaved = true;
-		}
-
 		public void QuarterCheckedChanged(object sender, EventArgs e)
 		{
 			quarterSelectorControl.Enabled = QuarterButton.Checked;
@@ -766,6 +748,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				TrackOptionChanged();
 				SettingsNotSaved = true;
 			}
+		}
+
+		protected void OnColorChanged(object sender, EventArgs e)
+		{
+			TrackOptionChanged();
+			SettingsNotSaved = true;
 		}
 		#endregion
 
@@ -940,7 +928,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			var logo = ImageSource.FromString(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoSource) as String);
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
 			{
-				form.SelectedImage = logo != null ? logo.BigImage : null;
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
 				advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoSource, form.SelectedImageSource.Serialize());
@@ -1189,9 +1176,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			AddActivity(new UserActivity("Preview", options));
 		}
 
-		protected virtual void PowerPointInternal(IEnumerable<OutputSchedule> outputPages) { }
-		protected virtual void EmailInternal(IEnumerable<OutputSchedule> outputPages) { }
-		protected virtual void PreviewInternal(IEnumerable<OutputSchedule> outputData) { }
+		protected virtual void PowerPointInternal(IEnumerable<OutputSchedule> outputPages) { throw new NotImplementedException(); }
+		protected virtual void EmailInternal(IEnumerable<OutputSchedule> outputPages) { throw new NotImplementedException(); }
+		protected virtual void PreviewInternal(IEnumerable<OutputSchedule> outputPages) { throw new NotImplementedException(); }
+		protected virtual void PdfInternal(IEnumerable<OutputSchedule> outputPages) { throw new NotImplementedException(); }
 
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
@@ -1251,6 +1239,26 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				formProgress.Close();
 			}
 			EmailInternal(outputPages);
+		}
+
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			if (_localSchedule == null) return;
+			if (!ScheduleSection.Programs.Any()) return;
+			IEnumerable<OutputSchedule> outputPages = null;
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+				formProgress.Close();
+			}
+			PdfInternal(outputPages);
 		}
 		#endregion
 	}

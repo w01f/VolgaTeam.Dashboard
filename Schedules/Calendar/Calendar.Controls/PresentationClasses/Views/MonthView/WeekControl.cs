@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
@@ -56,10 +57,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			FitNotes();
 		}
 
-		public void RefreshData(Color colorLight, Color colorDark)
+		public void RefreshData(ColorSchema colorSchema)
 		{
 			foreach (var day in _dayControls)
-				day.RefreshData(colorLight, colorDark);
+				day.RefreshData(colorSchema);
 		}
 
 		public void RaiseEvents(bool enable)

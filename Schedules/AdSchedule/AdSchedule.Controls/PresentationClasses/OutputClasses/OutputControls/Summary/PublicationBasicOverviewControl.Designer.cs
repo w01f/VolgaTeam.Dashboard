@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.checkEditLogo = new DevExpress.XtraEditors.CheckEdit();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.checkEditFlightDates2 = new DevExpress.XtraEditors.CheckEdit();
@@ -63,7 +61,6 @@
 			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
 			this.checkEditDatesPicture = new DevExpress.XtraEditors.CheckEdit();
 			this.laDates = new System.Windows.Forms.Label();
-			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates2.Properties)).BeginInit();
@@ -93,7 +90,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetailsPicture.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDatesPicture.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// checkEditLogo
@@ -127,7 +123,7 @@
 			this.checkEditFlightDates2.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFlightDates2.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFlightDates2.Properties.Caption = "Flight Dates Tag";
-			this.checkEditFlightDates2.Size = new System.Drawing.Size(516, 21);
+			this.checkEditFlightDates2.Size = new System.Drawing.Size(516, 20);
 			this.checkEditFlightDates2.TabIndex = 41;
 			this.checkEditFlightDates2.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditFlightDates2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -141,6 +137,7 @@
 			this.memoEditDates.Properties.ReadOnly = true;
 			this.memoEditDates.Size = new System.Drawing.Size(875, 66);
 			this.memoEditDates.TabIndex = 37;
+			this.memoEditDates.UseOptimizedRendering = true;
 			// 
 			// checkEditRunDatesComment
 			// 
@@ -149,7 +146,7 @@
 			this.checkEditRunDatesComment.Name = "checkEditRunDatesComment";
 			this.checkEditRunDatesComment.Properties.AutoWidth = true;
 			this.checkEditRunDatesComment.Properties.Caption = "";
-			this.checkEditRunDatesComment.Size = new System.Drawing.Size(23, 19);
+			this.checkEditRunDatesComment.Size = new System.Drawing.Size(19, 19);
 			this.checkEditRunDatesComment.TabIndex = 34;
 			this.checkEditRunDatesComment.CheckedChanged += new System.EventHandler(this.checkEditTextEdit_CheckedChanged);
 			this.checkEditRunDatesComment.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -175,7 +172,7 @@
 			this.checkEditDates.Name = "checkEditDates";
 			this.checkEditDates.Properties.AutoWidth = true;
 			this.checkEditDates.Properties.Caption = "";
-			this.checkEditDates.Size = new System.Drawing.Size(23, 19);
+			this.checkEditDates.Size = new System.Drawing.Size(19, 19);
 			this.checkEditDates.TabIndex = 36;
 			this.checkEditDates.CheckedChanged += new System.EventHandler(this.checkEditDates_CheckedChanged);
 			this.checkEditDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -594,29 +591,8 @@
 			this.laDates.TabIndex = 51;
 			this.laDates.Text = "Run Dates:";
 			// 
-			// hyperLinkEditReset
-			// 
-			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.hyperLinkEditReset.EditValue = "Reset Defaults";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(8, 468);
-			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
-			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(101, 20);
-			toolTipItem1.Text = "Reset original default data";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditReset.SuperTip = superToolTip1;
-			this.hyperLinkEditReset.TabIndex = 102;
-			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
-			// 
 			// PublicationBasicOverviewControl
 			// 
-			this.Controls.Add(this.hyperLinkEditReset);
 			this.Controls.Add(this.pbLogo);
 			this.Controls.Add(this.pictureBoxDates);
 			this.Controls.Add(this.checkEditLogo);
@@ -671,7 +647,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetailsPicture.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDatesPicture.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -712,7 +687,6 @@
 		private System.Windows.Forms.PictureBox pictureBoxDates;
 		private DevExpress.XtraEditors.CheckEdit checkEditDatesPicture;
 		private System.Windows.Forms.Label laDates;
-		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 
     }
 }

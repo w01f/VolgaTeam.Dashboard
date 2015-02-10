@@ -14,6 +14,7 @@ using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
+using ScheduleManager = NewBizWiz.Core.MediaSchedule.ScheduleManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
@@ -615,14 +616,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (@from.ShowDialog() != DialogResult.OK) return;
-				if (!string.IsNullOrEmpty(@from.ScheduleName))
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (SaveSchedule(scheduleName: @from.ScheduleName))
+					if (SaveSchedule(scheduleName: form.ScheduleName))
 						Utilities.Instance.ShowInformation("Schedule was saved");
 				}
 				else

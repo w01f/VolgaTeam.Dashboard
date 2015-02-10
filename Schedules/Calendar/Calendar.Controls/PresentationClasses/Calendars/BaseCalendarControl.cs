@@ -67,15 +67,15 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
-			if (control.GetType() == typeof(TextEdit) || 
-				control.GetType() == typeof(MemoEdit) || 
-				control.GetType() == typeof(ComboBoxEdit) || 
-				control.GetType() == typeof(LookUpEdit) || 
-				control.GetType() == typeof(DateEdit) || 
-				control.GetType() == typeof(CheckedListBoxControl) || 
-				control.GetType() == typeof(SpinEdit) || 
-				control.GetType() == typeof(CheckEdit) || 
-				control.GetType() == typeof(ImageListBoxControl)) 
+			if (control.GetType() == typeof(TextEdit) ||
+				control.GetType() == typeof(MemoEdit) ||
+				control.GetType() == typeof(ComboBoxEdit) ||
+				control.GetType() == typeof(LookUpEdit) ||
+				control.GetType() == typeof(DateEdit) ||
+				control.GetType() == typeof(CheckedListBoxControl) ||
+				control.GetType() == typeof(SpinEdit) ||
+				control.GetType() == typeof(CheckEdit) ||
+				control.GetType() == typeof(ImageListBoxControl))
 				return;
 			control.Click += CloseActiveEditorsonOutSideClick;
 			foreach (Control childControl in control.Controls)
@@ -140,20 +140,20 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			SlideInfo.SaveData();
 			if (!string.IsNullOrEmpty(scheduleName))
 				Schedule.Name = scheduleName;
-			laCalendarName.Text = CalendarData.Schedule.Name;
 			SettingsNotSaved = false;
 			return true;
 		}
 
 		public virtual void LoadCalendar(bool quickLoad)
 		{
-			laAdvertiser.Text = CalendarData.Schedule.BusinessName;
-			laCalendarWindow.Text = CalendarData.Schedule.FlightDateStart.HasValue && CalendarData.Schedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { CalendarData.Schedule.FlightDateStart.Value.ToString("MM/dd/yy"), CalendarData.Schedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty;
-			laCalendarName.Text = CalendarData.Schedule.Name;
+			labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
+				CalendarData.Schedule.BusinessName,
+				CalendarData.Schedule.FlightDates,
+				String.Format("{0} {1}s", CalendarData.Schedule.TotalWeeks, "week"));
 
 			MonthView.LoadData(quickLoad);
 			GridView.LoadData(quickLoad);
-			SlideInfo.LoadData();
+			SlideInfo.LoadData(allowToSave: false);
 
 			SettingsNotSaved = false;
 		}
@@ -180,6 +180,8 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			PreviewButton.Enabled = enable;
 			EmailButton.Enabled = enable;
 			PowerPointButton.Enabled = enable;
+			if (PdfButton != null)
+				PdfButton.Enabled = enable;
 		}
 
 		public void Print()
@@ -277,6 +279,38 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			if (!selectedMonths.Any()) return;
 			PreviewInternal(selectedMonths.Select(m => m.OutputData));
 		}
+
+		public void PrintPdf()
+		{
+			if (MonthList.SelectedIndex < 0) return;
+			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var selectedMonths = new List<CalendarMonth>();
+			foreach (var month in CalendarData.Months)
+				month.OutputData.PrepareNotes();
+			if (CalendarData.Months.Count > 1)
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Months";
+					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					{
+						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (month == currentMonth)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<CalendarMonth>());
+				}
+			else
+				selectedMonths.AddRange(CalendarData.Months);
+			if (!selectedMonths.Any()) return;
+			PdfInternal(selectedMonths.Select(m => m.OutputData));
+		}
 		#endregion
 
 		public MonthViewControl MonthView { get; private set; }
@@ -336,6 +370,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			get { return null; }
 		}
 
+		public virtual ButtonItem PdfButton
+		{
+			get { return null; }
+		}
+
 		public virtual ButtonItem ThemeButton
 		{
 			get { return null; }
@@ -356,11 +395,37 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			get { return null; }
 		}
 
-		public virtual void OpenHelp(string key) { }
-		public virtual void SaveSettings() { }
-		public virtual void TrackActivity(UserActivity activity) { }
-		protected virtual void PowerPointInternal(IEnumerable<CalendarOutputData> outputData) { }
-		protected virtual void EmailInternal(IEnumerable<CalendarOutputData> outputData) { }
-		protected virtual void PreviewInternal(IEnumerable<CalendarOutputData> outputData) { }
+		public virtual void OpenHelp(string key)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SaveSettings()
+		{
+			throw new NotImplementedException();
+		}
+		public virtual ColorSchema GetColorSchema(string colorName)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void TrackActivity(UserActivity activity)
+		{
+			throw new NotImplementedException();
+		}
+		protected virtual void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
+		{
+			throw new NotImplementedException();
+		}
+		protected virtual void EmailInternal(IEnumerable<CalendarOutputData> outputData)
+		{
+			throw new NotImplementedException();
+		}
+		protected virtual void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
+		{
+			throw new NotImplementedException();
+		}
+		protected virtual void PdfInternal(IEnumerable<CalendarOutputData> outputData)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

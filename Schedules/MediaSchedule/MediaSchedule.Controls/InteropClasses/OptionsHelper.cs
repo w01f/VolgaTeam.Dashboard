@@ -140,9 +140,15 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareOptions(string fileName, IEnumerable<IOptionsSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareOptionsEmail(string fileName, IEnumerable<IOptionsSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
+		}
+
+		public void PrepareOptionsPdf(string fileName, IEnumerable<IOptionsSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		{
+			PreparePresentation(fileName, presentation => AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
+			BuildPdf(fileName);
 		}
 	}
 }

@@ -103,7 +103,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 			if (!quickLoad)
 			{
-				checkEditApplySettingsForAll.Checked = _localSchedule.OptionsSummary.ApplySettingsForAll;
 				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.OptionsColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 				outputColorSelector.ColorChanged += OnColorChanged;
 			}
@@ -168,8 +167,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				pnSummaryInfo.Visible = false;
 				pnOptionSetInfo.Visible = true;
-				checkEditApplySettingsForAll.Visible = xtraTabControlOptionSets.TabPages.Count > 2;
-
 				buttonXOptionStation.Checked = ActiveOptionControl.Data.ShowStation;
 				buttonXOptionProgram.Checked = ActiveOptionControl.Data.ShowProgram;
 				buttonXOptionDay.Checked = ActiveOptionControl.Data.ShowDay;
@@ -205,7 +202,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				pnSummaryInfo.Visible = true;
 				pnOptionSetInfo.Visible = false;
-				checkEditApplySettingsForAll.Visible = false;
 
 				buttonXSummaryLineId.Checked = ActiveSummary.Data.ShowLineId;
 				buttonXSummaryCampaign.Checked = ActiveSummary.Data.ShowCampaign;
@@ -280,7 +276,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				pnSummaryInfo.Visible = false;
 				pnOptionSetInfo.Visible = false;
-				checkEditApplySettingsForAll.Visible = false;
 			}
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
@@ -625,11 +620,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
+					form.checkEditApplyForAll.Enabled = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count() > 1;
+					form.checkEditApplyForAll.Checked = _localSchedule.OptionsSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
+					form.checkEditApplyForAll.Enabled = false;
 				}
 				else
 					return;
@@ -639,7 +637,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				{
 					ActiveOptionControl.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveOptionControl.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
-					ActiveOptionControl.UpdateView();
+					_localSchedule.OptionsSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
+					if (_localSchedule.OptionsSummary.ApplySettingsForAll)
+					{
+						ApplySharedSettings(ActiveOptionControl);
+						xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().ToList().ForEach(oc => oc.UpdateView());
+					}
+					else
+						ActiveOptionControl.UpdateView();
 				}
 				else if (ActiveSummary != null)
 				{
@@ -683,7 +688,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				else if (buttonXOptionTotalSpots.Checked)
 					ActiveOptionControl.Data.SpotType = SpotType.Total;
 
-				_localSchedule.OptionsSummary.ApplySettingsForAll = checkEditApplySettingsForAll.Checked;
 				if (_localSchedule.OptionsSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveOptionControl);

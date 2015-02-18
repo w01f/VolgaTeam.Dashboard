@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.laSmallDayCaption = new System.Windows.Forms.Label();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,10 +46,11 @@
 			this.pnData = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.memoEditSimpleComment = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.labelControlData = new DevExpress.XtraEditors.LabelControl();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pnCalendarNoteArea = new System.Windows.Forms.Panel();
+			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.contextMenuStrip.SuspendLayout();
 			this.pnData.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -70,6 +72,7 @@
 			this.laSmallDayCaption.Text = "label1";
 			this.laSmallDayCaption.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.laSmallDayCaption.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
+			this.laSmallDayCaption.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.laSmallDayCaption.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.laSmallDayCaption.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -229,6 +232,7 @@
 			this.xtraScrollableControl.TabIndex = 0;
 			this.xtraScrollableControl.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.xtraScrollableControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
+			this.xtraScrollableControl.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.xtraScrollableControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.xtraScrollableControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -247,6 +251,7 @@
 			this.memoEditSimpleComment.EditValueChanged += new System.EventHandler(this.memoEditSimpleComment_EditValueChanged);
 			this.memoEditSimpleComment.Leave += new System.EventHandler(this.memoEditSimpleComment_Leave);
 			this.memoEditSimpleComment.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
+			this.memoEditSimpleComment.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.memoEditSimpleComment.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
 			// styleController
@@ -277,6 +282,7 @@
 			this.labelControlData.Text = "Data";
 			this.labelControlData.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.labelControlData.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
+			this.labelControlData.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.labelControlData.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.labelControlData.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -291,6 +297,7 @@
 			this.pbLogo.TabStop = false;
 			this.pbLogo.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.pbLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
+			this.pbLogo.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.pbLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.pbLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -302,8 +309,15 @@
 			this.pnCalendarNoteArea.Size = new System.Drawing.Size(297, 40);
 			this.pnCalendarNoteArea.TabIndex = 3;
 			this.pnCalendarNoteArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
+			this.pnCalendarNoteArea.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.pnCalendarNoteArea.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.pnCalendarNoteArea.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
+			// 
+			// superTooltip
+			// 
+			this.superTooltip.DefaultFont = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// DayControl
 			// 
@@ -320,6 +334,7 @@
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DayControl_DragDrop);
 			this.DragOver += new System.Windows.Forms.DragEventHandler(this.DayControl_DragOver);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
+			this.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.pnData.ResumeLayout(false);
@@ -354,5 +369,6 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopyImage;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPasteImage;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteImage;
+		private DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

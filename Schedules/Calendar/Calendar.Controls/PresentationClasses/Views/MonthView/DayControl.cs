@@ -3,9 +3,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
+using Padding = System.Windows.Forms.Padding;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
@@ -16,6 +18,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		private bool _isCopySource;
 		private bool _isSelected;
 		private ColorSchema _colorSchema = new ColorSchema();
+		private readonly SuperTooltipInfo _tooltip = new SuperTooltipInfo();
 
 		public DayControl(CalendarDay day)
 		{
@@ -29,6 +32,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			memoEditSimpleComment.MouseUp += Utilities.Instance.Editor_MouseUp;
 
 			toolStripMenuItemAddNote.Visible = toolStripMenuItemPasteNote.Visible = toolStripSeparator1.Visible = Day.Parent.AllowCustomNotes;
+
 		}
 
 		#region Common Methods
@@ -46,6 +50,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			toolStripMenuItemDelete.Enabled = Day.ContainsData;
 			pnCalendarNoteArea.Visible = Day.HasNotes;
 			RefreshColor();
+			UpdateTooltip();
 			_allowToSave = true;
 		}
 
@@ -75,6 +80,29 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				xtraScrollableControl.BackColor = _colorSchema.ActiveBodyColor;
 				laSmallDayCaption.BackColor = _colorSchema.ActiveBackColor;
 				laSmallDayCaption.ForeColor = _colorSchema.ActiveForeColor;
+			}
+		}
+
+		private void UpdateTooltip()
+		{
+			if (Day.ContainsData)
+			{
+				_tooltip.HeaderText = Day.Date.ToString(@"dddd, MM/dd/yy");
+				_tooltip.BodyText = Day.Summary;
+				_tooltip.BodyImage = Day.Logo != null && Day.Logo.ContainsData ? Day.Logo.TinyImage : null;
+				superTooltip.SetSuperTooltip(laSmallDayCaption, _tooltip);
+				superTooltip.SetSuperTooltip(pnCalendarNoteArea, _tooltip);
+				superTooltip.SetSuperTooltip(pbLogo, _tooltip);
+				superTooltip.SetSuperTooltip(labelControlData, _tooltip);
+				superTooltip.SetSuperTooltip(memoEditSimpleComment, _tooltip);
+			}
+			else
+			{
+				superTooltip.SetSuperTooltip(laSmallDayCaption, null);
+				superTooltip.SetSuperTooltip(pnCalendarNoteArea, null);
+				superTooltip.SetSuperTooltip(pbLogo, _tooltip);
+				superTooltip.SetSuperTooltip(labelControlData, null);
+				superTooltip.SetSuperTooltip(memoEditSimpleComment, null);
 			}
 		}
 		#endregion
@@ -133,7 +161,13 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (DayMouseMove != null)
 				DayMouseMove(this, e);
 		}
-
+		private void DayControl_MouseHover(object sender, EventArgs e)
+		{
+			//if(!Day.ContainsData) return;
+			//var control = (Control)sender;
+			//superTooltip.SetSuperTooltip(control, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
+			//superTooltip.ShowTooltip(sender,Cursor.Position);
+		}
 		#endregion
 
 		#region Copy\Paste Methods

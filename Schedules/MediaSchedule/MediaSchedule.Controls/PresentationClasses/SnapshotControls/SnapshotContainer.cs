@@ -103,7 +103,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 			if (!quickLoad)
 			{
-				checkEditApplySettingsForAll.Checked = _localSchedule.SnapshotSummary.ApplySettingsForAll;
 				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.SnapshotColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 				outputColorSelector.ColorChanged += OnColorChanged;
 			}
@@ -170,7 +169,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				pnSnapshotInfo.Visible = true;
 				pnSummaryInfo.Visible = false;
-				checkEditApplySettingsForAll.Visible = xtraTabControlSnapshots.TabPages.Count > 2;
 
 				buttonXSnapshotLineId.Checked = ActiveSnapshot.Data.ShowLineId;
 				buttonXSnapshotStation.Checked = ActiveSnapshot.Data.ShowStation;
@@ -189,7 +187,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				pnSummaryInfo.Visible = true;
 				pnSnapshotInfo.Visible = false;
-				checkEditApplySettingsForAll.Visible = false;
 
 				buttonXSummaryLineId.Checked = ActiveSummary.Data.ShowLineId;
 				buttonXSummaryCampaign.Checked = ActiveSummary.Data.ShowCampaign;
@@ -208,7 +205,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				pnSummaryInfo.Visible = false;
 				pnSnapshotInfo.Visible = false;
-				checkEditApplySettingsForAll.Visible = false;
 			}
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
@@ -504,9 +500,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveSnapshot.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSnapshot.Data.ShowSpotsX;
+					form.checkEditApplyForAll.Enabled = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() > 1;
+					form.checkEditApplyForAll.Checked = _localSchedule.SnapshotSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
+					form.checkEditApplyForAll.Enabled = false;
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
 				}
@@ -518,7 +517,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				{
 					ActiveSnapshot.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveSnapshot.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
-					ActiveSnapshot.UpdateView();
+					_localSchedule.SnapshotSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
+					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+					{
+						ApplySharedSettings(ActiveSnapshot);
+						xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().ToList().ForEach(oc => oc.UpdateView());
+					}
+					else
+						ActiveSnapshot.UpdateView();
 				}
 				else if (ActiveSummary != null)
 				{
@@ -554,8 +560,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				ActiveSnapshot.Data.ShowTotalSpots = buttonXSnapshotTotalSpots.Checked;
 				ActiveSnapshot.Data.ShowAverageRate = buttonXSnapshotAvgRate.Checked;
 				ActiveSnapshot.Data.ShowTotalRow = buttonXSnapshotTotalRow.Checked;
-
-				_localSchedule.SnapshotSummary.ApplySettingsForAll = checkEditApplySettingsForAll.Checked;
 				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveSnapshot);

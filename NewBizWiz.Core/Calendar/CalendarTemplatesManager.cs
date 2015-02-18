@@ -125,7 +125,11 @@ namespace NewBizWiz.Core.Calendar
 		public string GetSlideName(CalendarOutputData outputData)
 		{
 			string result = string.Empty;
-			var template = CalendarTemplates.FirstOrDefault(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower()));
+			var template = CalendarTemplates.FirstOrDefault(t => 
+				t.IsLarge == outputData.ShowBigDate && 
+				t.HasLogo == outputData.ShowLogo && 
+				t.Color.ToLower().Equals(outputData.SlideColor.ToLower()) && 
+				t.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower()));
 			if (template != null)
 				result = template.TemplateName;
 			return result;
@@ -134,7 +138,11 @@ namespace NewBizWiz.Core.Calendar
 		public string GetSlideMasterName(CalendarOutputData outputData)
 		{
 			string result = string.Empty;
-			var template = CalendarTemplates.FirstOrDefault(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower()));
+			var template = CalendarTemplates.FirstOrDefault(t => 
+				t.IsLarge == outputData.ShowBigDate && 
+				t.HasLogo == outputData.ShowLogo && 
+				t.Color.ToLower().Equals(outputData.SlideColor.ToLower()) && 
+				t.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower()));
 			if (template != null)
 				result = template.SlideMaster;
 			return result;

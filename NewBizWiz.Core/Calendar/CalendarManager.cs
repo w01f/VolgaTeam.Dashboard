@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.ApplicationServices;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;

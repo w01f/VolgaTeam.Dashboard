@@ -4,7 +4,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.Utils;
 using Manina.Windows.Forms;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.Core.Common;
@@ -140,11 +139,6 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			if (sourceItem == null) return;
 			var toolTipText = !String.IsNullOrEmpty(ImageTooltip) ? ImageTooltip : Path.GetFileName(sourceItem.FileName);
 			toolTip.SetToolTip(imageListView, toolTipText);
-		}
-
-		private void OnGalleryMouseLeave(object sender, EventArgs e)
-		{
-			toolTip.RemoveAll();
 		}
 
 		private void OnGalleryGiveFeedback(object sender, GiveFeedbackEventArgs e)

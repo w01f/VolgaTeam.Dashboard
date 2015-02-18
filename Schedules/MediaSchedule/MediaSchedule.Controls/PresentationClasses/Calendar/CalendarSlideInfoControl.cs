@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using Manina.Windows.Forms;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
 using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.Core.Calendar;
@@ -43,11 +42,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			#region Logo
 			xtraTabPageStyleLogo.PageEnabled = MediaMetaData.Instance.ListManager.Images.Any();
-			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
+			checkEditShowLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			imageListViewHeaderLogo.SelectionChanged += propertiesControl_PropertiesChanged;
-			imageListViewHeaderLogo.Items.Clear();
-			imageListViewHeaderLogo.Items.AddRange(MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
+			calendarHeaderSelector.SelectionChanged += propertiesControl_PropertiesChanged;
+			calendarHeaderSelector.LoadData(MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images));
 			#endregion
 
 			#endregion
@@ -127,18 +125,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			#endregion
 
 			#region Logo
-			buttonXLogo.Checked = _month.OutputData.ShowLogo;
+			checkEditShowLogo.Checked = _month.OutputData.ShowLogo;
 			checkEditLogoApplyForAll.Checked = _month.OutputData.ApplyForAllLogo;
 			var selectedLogo = MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo));
-			imageListViewHeaderLogo.ClearSelection();
-			if (selectedLogo != null)
-			{
-				var index = MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).ToList().IndexOf(selectedLogo);
-				if (index < imageListViewHeaderLogo.Items.Count)
-					imageListViewHeaderLogo.Items[index].Selected = true;
-			}
-			else if (imageListViewHeaderLogo.Items.Count > 0)
-				imageListViewHeaderLogo.Items[0].Selected = true;
+			calendarHeaderSelector.SelectedImageSource = selectedLogo;
 			#endregion
 
 			_allowToSave = true;
@@ -176,8 +166,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			#endregion
 
 			#region Logo
-			_month.OutputData.ShowLogo = buttonXLogo.Checked;
-			var selecteImageSource = imageListViewHeaderLogo.SelectedItems.Select(item => item.Tag as ImageSource).FirstOrDefault();
+			_month.OutputData.ShowLogo = checkEditShowLogo.Checked;
+			var selecteImageSource = calendarHeaderSelector.SelectedImageSource;
 			_month.OutputData.Logo = _month.OutputData.ShowLogo && selecteImageSource != null ? selecteImageSource.BigImage : null;
 			_month.OutputData.EncodedLogo = null;
 			_month.OutputData.ApplyForAllLogo = checkEditLogoApplyForAll.Checked;
@@ -205,8 +195,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (!_allowToSave) return;
 			_month.OutputData.SlideColor = outputColorSelector.SelectedColor;
 			SettingsNotSaved = true;
-			if (PropertyChanged != null)
-				PropertyChanged(sender, e);
+			OnThemeChanged(EventArgs.Empty);
 		}
 
 		#region Comment Event Handlers
@@ -220,16 +209,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		#endregion
 
 		#region Logo Event Handlers
-		private void buttonXLogo_CheckedChanged(object sender, EventArgs e)
+		private void checkEditShowLogo_CheckedChanged(object sender, EventArgs e)
 		{
-			imageListViewHeaderLogo.Enabled = buttonXLogo.Checked;
-		}
-
-		private void imageListViewHeaderLogo_MouseMove(object sender, MouseEventArgs e)
-		{
-			imageListViewHeaderLogo.Focus();
+			calendarHeaderSelector.Enabled = checkEditShowLogo.Checked;
 		}
 		#endregion
+
 
 
 	}

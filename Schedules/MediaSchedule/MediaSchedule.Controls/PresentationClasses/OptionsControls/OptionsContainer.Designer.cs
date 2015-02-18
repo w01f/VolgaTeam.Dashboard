@@ -38,7 +38,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.xtraTabControlOptionSets = new DevExpress.XtraTab.XtraTabControl();
 			this.pnOptionSets = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
-			this.checkEditApplySettingsForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAvgRate = new System.Windows.Forms.Panel();
@@ -94,12 +94,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoOptionSets = new System.Windows.Forms.Panel();
-			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptionSets)).BeginInit();
 			this.pnOptionSets.SuspendLayout();
 			this.pnTop.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
 			this.pnAvgRate.SuspendLayout();
@@ -168,23 +166,24 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// pnTop
 			// 
 			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
-			this.pnTop.Controls.Add(this.checkEditApplySettingsForAll);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(300, 0);
 			this.pnTop.Name = "pnTop";
 			this.pnTop.Size = new System.Drawing.Size(595, 40);
 			this.pnTop.TabIndex = 6;
 			// 
-			// checkEditApplySettingsForAll
+			// labelControlScheduleInfo
 			// 
-			this.checkEditApplySettingsForAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditApplySettingsForAll.Location = new System.Drawing.Point(299, 11);
-			this.checkEditApplySettingsForAll.Name = "checkEditApplySettingsForAll";
-			this.checkEditApplySettingsForAll.Properties.Caption = "Use the SAME SETTINGS for all Schedules";
-			this.checkEditApplySettingsForAll.Size = new System.Drawing.Size(293, 19);
-			this.checkEditApplySettingsForAll.StyleController = this.styleController;
-			this.checkEditApplySettingsForAll.TabIndex = 123;
-			this.checkEditApplySettingsForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(252, 40);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 124;
 			// 
 			// styleController
 			// 
@@ -854,7 +853,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
 			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 504);
-			this.xtraTabPageOptionsStyle.Text = "Options";
+			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
 			// 
@@ -942,19 +941,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.pnNoOptionSets.Size = new System.Drawing.Size(200, 100);
 			this.pnNoOptionSets.TabIndex = 3;
 			// 
-			// labelControlScheduleInfo
-			// 
-			this.labelControlScheduleInfo.AllowHtmlString = true;
-			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
-			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
-			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(252, 40);
-			this.labelControlScheduleInfo.StyleController = this.styleController;
-			this.labelControlScheduleInfo.TabIndex = 124;
-			// 
 			// OptionsContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -968,7 +954,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptionSets)).EndInit();
 			this.pnOptionSets.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnBottom.ResumeLayout(false);
 			this.pnAvgRate.ResumeLayout(false);
@@ -1049,7 +1034,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryTotalWeeks;
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryTallyCost;
 		private DevComponents.DotNetBar.ButtonX buttonXSummaryTotalSpots;
-		private DevExpress.XtraEditors.CheckEdit checkEditApplySettingsForAll;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
 		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;

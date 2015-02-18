@@ -123,6 +123,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\SelectionManager.cs" />
+    <Compile Include="PresentationClasses\SlideInfo\CalendarHeaderSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SlideInfo\CalendarHeaderSelector.Designer.cs">
+      <DependentUpon>CalendarHeaderSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\SlideInfo\SlideInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationClasses\Calendars\BaseCalendarControl.resx">
       <DependentUpon>BaseCalendarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SlideInfo\CalendarHeaderSelector.resx">
+      <DependentUpon>CalendarHeaderSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SlideInfo\SlideInfoControl.resx">
       <DependentUpon>SlideInfoControl.cs</DependentUpon>

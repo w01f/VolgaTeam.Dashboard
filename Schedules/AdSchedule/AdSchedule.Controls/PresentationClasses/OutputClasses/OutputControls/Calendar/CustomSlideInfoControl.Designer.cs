@@ -40,17 +40,17 @@
 			this.xtraTabControlStyle = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStyleColor = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
+			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
 			this.checkEditStyleBigDate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.laThemeColor = new System.Windows.Forms.Label();
 			this.xtraTabPageStyleLogo = new DevExpress.XtraTab.XtraTabPage();
 			this.pnLogo = new System.Windows.Forms.Panel();
-			this.imageListViewHeaderLogo = new Manina.Windows.Forms.ImageListView();
-			this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
+			this.checkEditShowLogo = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
-			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
+			this.calendarHeaderSelector = new NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
 			this.xtraTabPageComments.SuspendLayout();
@@ -67,6 +67,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).BeginInit();
 			this.xtraTabPageStyleLogo.SuspendLayout();
 			this.pnLogo.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).BeginInit();
 			this.xtraTabPageFavorites.SuspendLayout();
 			this.SuspendLayout();
@@ -240,30 +241,42 @@
 			this.pnStyle.Size = new System.Drawing.Size(292, 443);
 			this.pnStyle.TabIndex = 12;
 			// 
+			// outputColorSelector
+			// 
+			this.outputColorSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.outputColorSelector.BackColor = System.Drawing.Color.White;
+			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.outputColorSelector.Location = new System.Drawing.Point(1, 37);
+			this.outputColorSelector.Name = "outputColorSelector";
+			this.outputColorSelector.Size = new System.Drawing.Size(290, 317);
+			this.outputColorSelector.TabIndex = 51;
+			// 
 			// checkEditStyleBigDate
 			// 
-			this.checkEditStyleBigDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.checkEditStyleBigDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditStyleBigDate.Location = new System.Drawing.Point(12, 420);
+			this.checkEditStyleBigDate.Location = new System.Drawing.Point(12, 409);
 			this.checkEditStyleBigDate.Name = "checkEditStyleBigDate";
 			this.checkEditStyleBigDate.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditStyleBigDate.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditStyleBigDate.Properties.Caption = "Show BIG date numbers";
-			this.checkEditStyleBigDate.Size = new System.Drawing.Size(277, 20);
+			this.checkEditStyleBigDate.Size = new System.Drawing.Size(277, 19);
 			this.checkEditStyleBigDate.StyleController = this.styleController;
 			this.checkEditStyleBigDate.TabIndex = 12;
 			this.checkEditStyleBigDate.CheckedChanged += new System.EventHandler(this.checkEditStyleBigDate_CheckedChanged);
 			// 
 			// checkEditThemeColorApplyForAll
 			// 
-			this.checkEditThemeColorApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.checkEditThemeColorApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditThemeColorApplyForAll.Location = new System.Drawing.Point(12, 383);
+			this.checkEditThemeColorApplyForAll.Location = new System.Drawing.Point(12, 372);
 			this.checkEditThemeColorApplyForAll.Name = "checkEditThemeColorApplyForAll";
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditThemeColorApplyForAll.Properties.Caption = "Use this Color on all calendar slides";
-			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(277, 20);
+			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(277, 19);
 			this.checkEditThemeColorApplyForAll.StyleController = this.styleController;
 			this.checkEditThemeColorApplyForAll.TabIndex = 11;
 			// 
@@ -292,8 +305,8 @@
 			// pnLogo
 			// 
 			this.pnLogo.BackColor = System.Drawing.Color.White;
-			this.pnLogo.Controls.Add(this.imageListViewHeaderLogo);
-			this.pnLogo.Controls.Add(this.buttonXLogo);
+			this.pnLogo.Controls.Add(this.calendarHeaderSelector);
+			this.pnLogo.Controls.Add(this.checkEditShowLogo);
 			this.pnLogo.Controls.Add(this.checkEditLogoApplyForAll);
 			this.pnLogo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnLogo.Location = new System.Drawing.Point(0, 0);
@@ -301,41 +314,18 @@
 			this.pnLogo.Size = new System.Drawing.Size(292, 443);
 			this.pnLogo.TabIndex = 0;
 			// 
-			// imageListViewHeaderLogo
+			// checkEditShowLogo
 			// 
-			this.imageListViewHeaderLogo.AllowDrag = true;
-			this.imageListViewHeaderLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.imageListViewHeaderLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.imageListViewHeaderLogo.ColumnHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.imageListViewHeaderLogo.GroupHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-			this.imageListViewHeaderLogo.IconAlignment = System.Drawing.ContentAlignment.TopCenter;
-			this.imageListViewHeaderLogo.Location = new System.Drawing.Point(0, 49);
-			this.imageListViewHeaderLogo.MultiSelect = false;
-			this.imageListViewHeaderLogo.Name = "imageListViewHeaderLogo";
-			this.imageListViewHeaderLogo.PersistentCacheDirectory = "";
-			this.imageListViewHeaderLogo.PersistentCacheSize = ((long)(100));
-			this.imageListViewHeaderLogo.Size = new System.Drawing.Size(292, 355);
-			this.imageListViewHeaderLogo.TabIndex = 40;
-			this.imageListViewHeaderLogo.ThumbnailSize = new System.Drawing.Size(120, 54);
-			this.imageListViewHeaderLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageListViewHeaderLogo_MouseMove);
-			// 
-			// buttonXLogo
-			// 
-			this.buttonXLogo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXLogo.AutoCheckOnClick = true;
-			this.buttonXLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLogo.Location = new System.Drawing.Point(14, 13);
-			this.buttonXLogo.Name = "buttonXLogo";
-			this.buttonXLogo.Size = new System.Drawing.Size(265, 29);
-			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXLogo.TabIndex = 0;
-			this.buttonXLogo.Text = "Show logo at the top of slide";
-			this.buttonXLogo.TextColor = System.Drawing.Color.Black;
-			this.buttonXLogo.CheckedChanged += new System.EventHandler(this.buttonXLogo_CheckedChanged);
+			this.checkEditShowLogo.Location = new System.Drawing.Point(10, 16);
+			this.checkEditShowLogo.Name = "checkEditShowLogo";
+			this.checkEditShowLogo.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditShowLogo.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowLogo.Properties.AutoWidth = true;
+			this.checkEditShowLogo.Properties.Caption = "Show a Logo at the top of the slide";
+			this.checkEditShowLogo.Size = new System.Drawing.Size(223, 20);
+			this.checkEditShowLogo.StyleController = this.styleController;
+			this.checkEditShowLogo.TabIndex = 43;
+			this.checkEditShowLogo.CheckedChanged += new System.EventHandler(this.buttonXLogo_CheckedChanged);
 			// 
 			// checkEditLogoApplyForAll
 			// 
@@ -369,17 +359,18 @@
 			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 494);
 			this.favoriteImagesControl.TabIndex = 1;
 			// 
-			// outputColorSelector
+			// calendarHeaderSelector
 			// 
-			this.outputColorSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.calendarHeaderSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.outputColorSelector.BackColor = System.Drawing.Color.White;
-			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.outputColorSelector.Location = new System.Drawing.Point(1, 37);
-			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(290, 340);
-			this.outputColorSelector.TabIndex = 51;
+			this.calendarHeaderSelector.Enabled = false;
+			this.calendarHeaderSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.calendarHeaderSelector.Location = new System.Drawing.Point(0, 43);
+			this.calendarHeaderSelector.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.calendarHeaderSelector.Name = "calendarHeaderSelector";
+			this.calendarHeaderSelector.Size = new System.Drawing.Size(292, 360);
+			this.calendarHeaderSelector.TabIndex = 46;
 			// 
 			// CustomSlideInfoControl
 			// 
@@ -405,6 +396,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).EndInit();
 			this.xtraTabPageStyleLogo.ResumeLayout(false);
 			this.pnLogo.ResumeLayout(false);
+			this.pnLogo.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).EndInit();
 			this.xtraTabPageFavorites.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -414,7 +407,6 @@
         #endregion
 
 		private DevExpress.XtraEditors.StyleController styleController;
-        private DevComponents.DotNetBar.ButtonX buttonXLogo;
 		private DevExpress.XtraEditors.CheckEdit checkEditLogoApplyForAll;
 		private System.Windows.Forms.Panel pnStyle;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl;
@@ -434,7 +426,8 @@
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlStyle;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleColor;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleLogo;
-		private Manina.Windows.Forms.ImageListView imageListViewHeaderLogo;
 		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;
+		private DevExpress.XtraEditors.CheckEdit checkEditShowLogo;
+		private NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector calendarHeaderSelector;
     }
 }

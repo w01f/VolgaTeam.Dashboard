@@ -35,10 +35,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -73,7 +75,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(56, 172);
+			this.buttonXOK.Location = new System.Drawing.Point(56, 219);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -86,7 +88,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(197, 172);
+			this.buttonXCancel.Location = new System.Drawing.Point(197, 219);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -95,7 +97,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// 
 			// checkEditLockToMaster
 			// 
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 102);
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 155);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -117,7 +119,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// 
 			// checkEditShowSpotX
 			// 
-			this.checkEditShowSpotX.Location = new System.Drawing.Point(12, 57);
+			this.checkEditShowSpotX.Location = new System.Drawing.Point(12, 52);
 			this.checkEditShowSpotX.Name = "checkEditShowSpotX";
 			this.checkEditShowSpotX.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditShowSpotX.Properties.Appearance.Options.UseForeColor = true;
@@ -126,10 +128,33 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.checkEditShowSpotX.StyleController = this.styleController;
 			this.checkEditShowSpotX.TabIndex = 125;
 			// 
+			// checkEditApplyForAll
+			// 
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 92);
+			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
+			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AutoHeight = false;
+			this.checkEditApplyForAll.Properties.Caption = "Universal Toggle Buttons<br><size=-2>Use the same Toggle buttons for all your sch" +
+    "edules…</size>";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(321, 43);
+			this.checkEditApplyForAll.StyleController = this.styleController;
+			this.checkEditApplyForAll.TabIndex = 127;
+			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(345, 220);
+			this.ClientSize = new System.Drawing.Size(345, 267);
+			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.checkEditLockToMaster);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
@@ -145,10 +170,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Advanced Settings";
+			this.Load += new System.EventHandler(this.FormOutputSettings_Load);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -161,5 +188,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		public DevExpress.XtraEditors.CheckEdit checkEditUseDecimalRate;
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotX;
+		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
 	}
 }

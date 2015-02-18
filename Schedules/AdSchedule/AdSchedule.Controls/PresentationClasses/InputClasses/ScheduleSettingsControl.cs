@@ -524,6 +524,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].SmallLogo = new Bitmap(form.SelectedImageSource.SmallImage);
 				_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].TinyLogo = new Bitmap(form.SelectedImageSource.TinyImage);
 				gridViewPrintProducts.RefreshData();
+				SettingsNotSaved = true;
 			}
 		}
 

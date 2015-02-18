@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using Manina.Windows.Forms;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
@@ -53,11 +52,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			#endregion
 
 			#region Logo
-			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
+			checkEditShowLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			imageListViewHeaderLogo.SelectionChanged += propertiesControl_PropertiesChanged;
-			imageListViewHeaderLogo.Items.Clear();
-			imageListViewHeaderLogo.Items.AddRange(ListManager.Instance.Images.SelectMany(g => g.Images).Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
+			calendarHeaderSelector.SelectionChanged += propertiesControl_PropertiesChanged;
+			calendarHeaderSelector.LoadData(ListManager.Instance.Images.SelectMany(g => g.Images));
 			#endregion
 
 			#endregion
@@ -156,19 +154,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			#endregion
 
 			#region Logo
-			buttonXLogo.Enabled = ListManager.Instance.DefaultCalendarViewSettings.EnableLogo; ;
-			buttonXLogo.Checked = OutputData.ShowLogo && buttonXLogo.Enabled;
+			checkEditShowLogo.Enabled = ListManager.Instance.DefaultCalendarViewSettings.EnableLogo; ;
+			checkEditShowLogo.Checked = OutputData.ShowLogo && checkEditShowLogo.Enabled;
 			checkEditLogoApplyForAll.Checked = OutputData.ApplyForAllLogo;
 			var selectedLogo = ListManager.Instance.Images.SelectMany(g => g.Images).FirstOrDefault(l => l.EncodedBigImage.Equals(OutputData.EncodedLogo));
-			imageListViewHeaderLogo.ClearSelection();
-			if (selectedLogo != null)
-			{
-				var index = ListManager.Instance.Images.SelectMany(g => g.Images).ToList().IndexOf(selectedLogo);
-				if (index < imageListViewHeaderLogo.Items.Count)
-					imageListViewHeaderLogo.Items[index].Selected = true;
-			}
-			else if (imageListViewHeaderLogo.Items.Count > 0)
-				imageListViewHeaderLogo.Items[0].Selected = true;
+			calendarHeaderSelector.SelectedImageSource = selectedLogo;
 			#endregion
 
 			_allowToSave = true;
@@ -231,8 +221,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			#endregion
 
 			#region Logo
-			OutputData.ShowLogo = buttonXLogo.Checked;
-			var selecteImageSource = imageListViewHeaderLogo.SelectedItems.Select(item => item.Tag as ImageSource).FirstOrDefault();
+			OutputData.ShowLogo = checkEditShowLogo.Checked;
+			var selecteImageSource = calendarHeaderSelector.SelectedImageSource;
 			OutputData.Logo = OutputData.ShowLogo && selecteImageSource != null ? selecteImageSource.BigImage : null;
 			OutputData.EncodedLogo = null;
 			OutputData.ApplyForAllLogo = checkEditLogoApplyForAll.Checked;
@@ -261,8 +251,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (!_allowToSave) return;
 			OutputData.SlideColor = outputColorSelector.SelectedColor;
 			SettingsNotSaved = true;
-			if (PropertyChanged != null)
-				PropertyChanged(sender, e);
+			OnPropertyChanged(EventArgs.Empty);
 		}
 
 		#region Info Event Handlers
@@ -289,12 +278,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Logo Event Handlers
 		private void buttonXLogo_CheckedChanged(object sender, EventArgs e)
 		{
-			imageListViewHeaderLogo.Enabled = buttonXLogo.Checked;
-		}
-
-		private void imageListViewHeaderLogo_MouseMove(object sender, MouseEventArgs e)
-		{
-			imageListViewHeaderLogo.Focus();
+			calendarHeaderSelector.Enabled = checkEditShowLogo.Checked;
 		}
 		#endregion
 

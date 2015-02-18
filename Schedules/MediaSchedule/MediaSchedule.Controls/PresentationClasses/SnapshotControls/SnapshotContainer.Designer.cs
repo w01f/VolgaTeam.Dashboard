@@ -30,13 +30,13 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnapshotContainer));
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pbNoSnapshots = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlSnapshots = new DevExpress.XtraTab.XtraTabControl();
 			this.pnSnapshots = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
-			this.checkEditApplySettingsForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnTotalCost = new System.Windows.Forms.Panel();
@@ -85,12 +85,10 @@
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoSnapshots = new System.Windows.Forms.Panel();
-			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).BeginInit();
 			this.pnSnapshots.SuspendLayout();
 			this.pnTop.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
 			this.pnTotalCost.SuspendLayout();
@@ -159,23 +157,24 @@
 			// pnTop
 			// 
 			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
-			this.pnTop.Controls.Add(this.checkEditApplySettingsForAll);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(300, 0);
 			this.pnTop.Name = "pnTop";
 			this.pnTop.Size = new System.Drawing.Size(595, 40);
 			this.pnTop.TabIndex = 6;
 			// 
-			// checkEditApplySettingsForAll
+			// labelControlScheduleInfo
 			// 
-			this.checkEditApplySettingsForAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditApplySettingsForAll.Location = new System.Drawing.Point(299, 10);
-			this.checkEditApplySettingsForAll.Name = "checkEditApplySettingsForAll";
-			this.checkEditApplySettingsForAll.Properties.Caption = "Use the SAME SETTINGS for all Snapshots";
-			this.checkEditApplySettingsForAll.Size = new System.Drawing.Size(293, 19);
-			this.checkEditApplySettingsForAll.StyleController = this.styleController;
-			this.checkEditApplySettingsForAll.TabIndex = 124;
-			this.checkEditApplySettingsForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(252, 40);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 125;
 			// 
 			// styleController
 			// 
@@ -737,7 +736,7 @@
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
 			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 504);
-			this.xtraTabPageOptionsStyle.Text = "Options";
+			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
 			// 
@@ -788,9 +787,9 @@
 			this.hyperLinkEditInfoAdvanced.Properties.AutoHeight = false;
 			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(296, 45);
-			toolTipItem2.Text = "Change Slide Output Settings";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip2;
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip1;
 			this.hyperLinkEditInfoAdvanced.TabIndex = 122;
 			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoAdvanced_OpenLink);
 			// 
@@ -825,19 +824,6 @@
 			this.pnNoSnapshots.Size = new System.Drawing.Size(200, 100);
 			this.pnNoSnapshots.TabIndex = 3;
 			// 
-			// labelControlScheduleInfo
-			// 
-			this.labelControlScheduleInfo.AllowHtmlString = true;
-			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
-			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
-			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(252, 40);
-			this.labelControlScheduleInfo.StyleController = this.styleController;
-			this.labelControlScheduleInfo.TabIndex = 125;
-			// 
 			// SnapshotContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -851,7 +837,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).EndInit();
 			this.pnSnapshots.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplySettingsForAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnBottom.ResumeLayout(false);
 			this.pnTotalCost.ResumeLayout(false);
@@ -925,7 +910,6 @@
 		private System.Windows.Forms.Panel pnTotalCost;
 		private System.Windows.Forms.Label laTotalCostValue;
 		private System.Windows.Forms.Label laTotalCostTitle;
-		private DevExpress.XtraEditors.CheckEdit checkEditApplySettingsForAll;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
 		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;

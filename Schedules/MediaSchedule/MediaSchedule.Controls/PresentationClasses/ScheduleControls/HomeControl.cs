@@ -65,6 +65,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			Controller.Instance.UpdateScheduleTabs(enableSchedules);
 			buttonXWeeklySchedule.Enabled = enableSchedules;
 			buttonXMonthlySchedule.Enabled = enableSchedules;
+			if (enableSchedules)
+				pnMedia.BringToFront();
+			else
+				pbMediaDefault.BringToFront();
 		}
 
 		private void UpdateScheduleType(SpotType selectedScheduleType)
@@ -413,7 +417,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 				if (!quickSave)
 				{
-					_localSchedule.RebuildSectionSpots();
+					_localSchedule.RebuildSpots();
 				}
 			}
 			else

@@ -36,11 +36,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditShowSpotsPerWeek = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotsPerWeek.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -75,7 +77,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(56, 220);
+			this.buttonXOK.Location = new System.Drawing.Point(56, 253);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -88,7 +90,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(197, 220);
+			this.buttonXCancel.Location = new System.Drawing.Point(197, 253);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -97,7 +99,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			// 
 			// checkEditLockToMaster
 			// 
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 152);
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 201);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -119,7 +121,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			// 
 			// checkEditShowSpotX
 			// 
-			this.checkEditShowSpotX.Location = new System.Drawing.Point(12, 51);
+			this.checkEditShowSpotX.Location = new System.Drawing.Point(12, 56);
 			this.checkEditShowSpotX.Name = "checkEditShowSpotX";
 			this.checkEditShowSpotX.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditShowSpotX.Properties.Appearance.Options.UseForeColor = true;
@@ -130,11 +132,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			// 
 			// checkEditApplyForAll
 			// 
-			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 90);
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 145);
 			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
 			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
@@ -150,10 +154,34 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			this.checkEditApplyForAll.StyleController = this.styleController;
 			this.checkEditApplyForAll.TabIndex = 126;
 			// 
+			// checkEditShowSpotsPerWeek
+			// 
+			this.checkEditShowSpotsPerWeek.Location = new System.Drawing.Point(12, 89);
+			this.checkEditShowSpotsPerWeek.Name = "checkEditShowSpotsPerWeek";
+			this.checkEditShowSpotsPerWeek.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditShowSpotsPerWeek.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditShowSpotsPerWeek.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditShowSpotsPerWeek.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditShowSpotsPerWeek.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditShowSpotsPerWeek.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditShowSpotsPerWeek.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowSpotsPerWeek.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditShowSpotsPerWeek.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowSpotsPerWeek.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditShowSpotsPerWeek.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowSpotsPerWeek.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditShowSpotsPerWeek.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowSpotsPerWeek.Properties.AutoHeight = false;
+			this.checkEditShowSpotsPerWeek.Properties.Caption = "Enable “Spots per Week” on output<br><size=-2>< -----spots------ ></size>";
+			this.checkEditShowSpotsPerWeek.Size = new System.Drawing.Size(321, 43);
+			this.checkEditShowSpotsPerWeek.StyleController = this.styleController;
+			this.checkEditShowSpotsPerWeek.TabIndex = 127;
+			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(345, 268);
+			this.ClientSize = new System.Drawing.Size(345, 301);
+			this.Controls.Add(this.checkEditShowSpotsPerWeek);
 			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.checkEditLockToMaster);
 			this.Controls.Add(this.buttonXCancel);
@@ -162,6 +190,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			this.Controls.Add(this.checkEditShowSpotX);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
@@ -176,6 +205,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotsPerWeek.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -189,5 +219,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotX;
 		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
+		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotsPerWeek;
 	}
 }

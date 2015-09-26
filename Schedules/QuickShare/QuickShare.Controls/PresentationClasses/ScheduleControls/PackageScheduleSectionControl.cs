@@ -94,14 +94,16 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 					Logo = MediaSchedule.Controls.Properties.Resources.SectionSettingsInfo, 
 					Tooltip = "Open Schedule Info", 
 					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsTotals; }
-				}, 
-				new ButtonInfo
-				{
-					Logo = MediaSchedule.Controls.Properties.Resources.SectionSettingsOptions, 
-					Tooltip = "Open Options", 
-					Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; }
-				}
+				} 
 			};
+			if (BusinessWrapper.Instance.OutputManager.ScheduleColors.Items.Count > 1)
+				buttonInfos.Add(
+					new ButtonInfo
+					{
+						Logo = MediaSchedule.Controls.Properties.Resources.SectionSettingsOptions,
+						Tooltip = "Open Options",
+						Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; }
+					});
 			retractableBarControl.AddButtons(buttonInfos);
 		}
 
@@ -125,6 +127,7 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			base.LoadSchedule(quickLoad);
 			if (!quickLoad)
 			{
+				xtraTabPageOptionsStyle.PageVisible = BusinessWrapper.Instance.OutputManager.ScheduleColors.Items.Count > 1;
 				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.ScheduleColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 				outputColorSelector.ColorChanged += OnColorChanged;
 			}

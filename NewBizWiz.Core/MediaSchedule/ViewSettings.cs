@@ -23,6 +23,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowTotalRate { get; set; }
 		public bool ShowNetRate { get; set; }
 		public bool ShowDiscount { get; set; }
+		public bool UseGenericDateColumns { get; set; }
 
 		public string Serialize()
 		{
@@ -36,6 +37,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowRate>" + ShowRate + @"</ShowRate>");
 			result.AppendLine(@"<ShowCost>" + ShowCost + @"</ShowCost>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
+			result.AppendLine(@"<UseGenericDateColumns>" + UseGenericDateColumns + @"</UseGenericDateColumns>");
 			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
 			result.AppendLine(@"<OutputNoBrackets>" + OutputNoBrackets + @"</OutputNoBrackets>");
 			result.AppendLine(@"<ShowTotalPeriods>" + ShowTotalPeriods + @"</ShowTotalPeriods>");
@@ -113,6 +115,13 @@ namespace NewBizWiz.Core.MediaSchedule
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
 								ShowLogo = temp;
+						}
+						break;
+					case "UseGenericDateColumns":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								UseGenericDateColumns = temp;
 						}
 						break;
 					case "UseDecimalRates":
@@ -242,6 +251,13 @@ namespace NewBizWiz.Core.MediaSchedule
 							ShowLogo = temp;
 					}
 					break;
+				case "Generic Dates":
+					{
+						bool temp;
+						if (Boolean.TryParse(value, out temp))
+							UseGenericDateColumns = temp;
+					}
+					break;
 				case "Use Decimals with Rates":
 					{
 						bool temp;
@@ -319,6 +335,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowTotalRow { get; set; }
 		public bool UseDecimalRates { get; set; }
 		public bool ShowSpotsX { get; set; }
+		public bool ShowSpotsPerWeek { get; set; }
 
 		public string Serialize()
 		{
@@ -337,6 +354,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowTotalRow>" + ShowTotalRow + @"</ShowTotalRow>");
 			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
 			result.AppendLine(@"<ShowSpotsX>" + ShowSpotsX + @"</ShowSpotsX>");
+			result.AppendLine(@"<ShowSpotsPerWeek>" + ShowSpotsPerWeek + @"</ShowSpotsPerWeek>");
 			return result.ToString();
 		}
 
@@ -441,6 +459,13 @@ namespace NewBizWiz.Core.MediaSchedule
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
 								ShowSpotsX = temp;
+						}
+						break;
+					case "ShowSpotsPerWeek":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowSpotsPerWeek = temp;
 						}
 						break;
 				}

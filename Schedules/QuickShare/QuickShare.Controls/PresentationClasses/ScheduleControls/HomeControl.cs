@@ -238,12 +238,12 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 						endDate = endDate.AddDays(1);
 					targetSchedule.UserFlightDateEnd = endDate;
 				}
-				targetSchedule.RebuildSectionSpots();
+				targetSchedule.RebuildSpots();
 				needFullScheduleUpdate = true;
 			}
 			else if (e.Column == bandedGridColumnScheduleFlightDateEnd)
 			{
-				targetSchedule.RebuildSectionSpots();
+				targetSchedule.RebuildSpots();
 				needFullScheduleUpdate = true;
 			}
 			targetSchedulePage.NeedFullUpdate |= needFullScheduleUpdate;

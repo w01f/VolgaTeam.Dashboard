@@ -121,6 +121,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
+			Controller.Instance.DigitalProductPdf = buttonItemDigitalSchedulePdf;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
@@ -137,6 +138,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
+			Controller.Instance.DigitalPackagePdf = buttonItemDigitalPackagePdf;
 			#endregion
 
 			#region Basic Overview
@@ -148,6 +150,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.BasicOverviewEmail = buttonItemOverviewEmail;
 			Controller.Instance.BasicOverviewPowerPoint = buttonItemOverviewPowerPoint;
 			Controller.Instance.BasicOverviewTheme = buttonItemOverviewTheme;
+			Controller.Instance.BasicOverviewPdf = buttonItemOverviewPdf;
 			Controller.Instance.BasicOverviewDigitalLegend = buttonItemOverviewDigital;
 			#endregion
 
@@ -160,6 +163,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.MultiSummaryEmail = buttonItemMultiSummaryEmail;
 			Controller.Instance.MultiSummaryPowerPoint = buttonItemMultiSummaryPowerPoint;
 			Controller.Instance.MultiSummaryTheme = buttonItemMultiSummaryTheme;
+			Controller.Instance.MultiSummaryPdf = buttonItemMultiSummaryPdf;
 			Controller.Instance.MultiSummaryDigitalLegend = buttonItemMultiSummaryDigital;
 			Controller.Instance.MultiSummaryHeaderCheck = checkBoxItemMultiSummaryHeader;
 			Controller.Instance.MultiSummaryHeaderText = comboBoxEditMultiSummaryHeader;
@@ -180,6 +184,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
 			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
+			Controller.Instance.SnapshotPdf = buttonItemSnapshotPdf;
 			Controller.Instance.SnapshotDigitalLegend = buttonItemSnapshotDigital;
 			#endregion
 
@@ -192,6 +197,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
 			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
 			Controller.Instance.AdPlanTheme = buttonItemAdPlanTheme;
+			Controller.Instance.AdPlanPdf = buttonItemAdPlanPdf;
 			#endregion
 
 			#region Detailed Grid
@@ -203,6 +209,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.DetailedGridEmail = buttonItemDetailedGridEmail;
 			Controller.Instance.DetailedGridPowerPoint = buttonItemDetailedGridPowerPoint;
 			Controller.Instance.DetailedGridTheme = buttonItemDetailedGridTheme;
+			Controller.Instance.DetailedGridPdf = buttonItemDetailedGridPdf;
 			Controller.Instance.DetailedGridDigitalLegend = buttonItemDetailedGridDigital;
 			#endregion
 
@@ -215,6 +222,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.MultiGridEmail = buttonItemMultiGridEmail;
 			Controller.Instance.MultiGridPowerPoint = buttonItemMultiGridPowerPoint;
 			Controller.Instance.MultiGridTheme = buttonItemMultiGridTheme;
+			Controller.Instance.MultiGridPdf = buttonItemMultiGridPdf;
 			Controller.Instance.MultiGridDigitalLegend = buttonItemMultiGridDigital;
 			#endregion
 
@@ -229,6 +237,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
 			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
 			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
+			Controller.Instance.Calendar1Pdf = buttonItemCalendar1Pdf;
 			Controller.Instance.Calendar1MonthList = listBoxControlCalendar1List;
 			#endregion
 
@@ -243,6 +252,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
 			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
 			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
+			Controller.Instance.Calendar2Pdf = buttonItemCalendar2Pdf;
 			Controller.Instance.Calendar2MonthList = listBoxControlCalendar2List;
 			#endregion
 
@@ -255,6 +265,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
 			Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
 			Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
+			Controller.Instance.SummaryLightPdf = buttonItemSummaryLightPdf;
 			Controller.Instance.SummaryLightSlideOutputToggle = checkEditSummaryLightOutputSlide;
 			Controller.Instance.SummaryLightTableOutputToggle = checkEditSummaryLightOutputTable;
 			#endregion
@@ -268,6 +279,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
 			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
 			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
+			Controller.Instance.SummaryFullPdf = buttonItemSummaryFullPdf;
 			Controller.Instance.SummaryFullSlideOutputToggle = checkEditSummaryFullOutputSlide;
 			Controller.Instance.SummaryFullTableOutputToggle = checkEditSummaryFullOutputTable;
 			#endregion
@@ -743,7 +755,11 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
-					Controller.Instance.Calendar1.ShowCalendar(false);
+					if (!Controller.Instance.Calendar1.CalendarInitialized)
+					{
+						Controller.Instance.Calendar1.ShowCalendar(false);
+						Controller.Instance.Calendar1.CalendarInitialized = true;
+					}
 					if (!pnMain.Controls.Contains(Controller.Instance.Calendar1))
 					{
 						Application.DoEvents();
@@ -765,7 +781,11 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
-					Controller.Instance.Calendar2.ShowCalendar(false);
+					if (!Controller.Instance.Calendar2.CalendarInitialized)
+					{
+						Controller.Instance.Calendar2.ShowCalendar(false);
+						Controller.Instance.Calendar2.CalendarInitialized = true;
+					}
 					if (!pnMain.Controls.Contains(Controller.Instance.Calendar2))
 					{
 						Application.DoEvents();

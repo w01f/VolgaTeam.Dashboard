@@ -188,7 +188,7 @@
 		protected System.Windows.Forms.Panel pnMain;
 		protected System.Windows.Forms.PictureBox pictureBoxNoData;
 		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
-		private CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
+		protected CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
     }
 }

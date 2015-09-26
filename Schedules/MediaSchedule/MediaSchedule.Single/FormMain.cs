@@ -588,7 +588,11 @@ namespace NewBizWiz.MediaSchedule.Single
 			{
 				if (AllowToLeaveCurrentControl())
 				{
-					Controller.Instance.BroadcastCalendar.ShowCalendar(false);
+					if (!Controller.Instance.BroadcastCalendar.CalendarInitialized)
+					{
+						Controller.Instance.BroadcastCalendar.ShowCalendar(false);
+						Controller.Instance.BroadcastCalendar.CalendarInitialized = true;
+					}
 					_currentControl = Controller.Instance.BroadcastCalendar;
 					if (!pnMain.Controls.Contains(_currentControl))
 						pnMain.Controls.Add(_currentControl);
@@ -600,7 +604,11 @@ namespace NewBizWiz.MediaSchedule.Single
 			{
 				if (AllowToLeaveCurrentControl())
 				{
-					Controller.Instance.CustomCalendar.ShowCalendar(false);
+					if (!Controller.Instance.CustomCalendar.CalendarInitialized)
+					{
+						Controller.Instance.CustomCalendar.ShowCalendar(false);
+						Controller.Instance.CustomCalendar.CalendarInitialized = true;
+					}
 					_currentControl = Controller.Instance.CustomCalendar;
 					if (!pnMain.Controls.Contains(_currentControl))
 						pnMain.Controls.Add(_currentControl);

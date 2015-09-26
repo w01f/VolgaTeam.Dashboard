@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab.ViewInfo;
 using NewBizWiz.CommonGUI.Common;
@@ -62,10 +61,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
-			var buttonInfos = new List<ButtonInfo>();
-			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsInfo; } });
-			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
-			retractableBarControl.AddButtons(buttonInfos);
 			retractableBarControl.Collapse(true);
 			_tabDragDropHelper = new XtraTabDragDropHelper<SnapshotControl>(xtraTabControlSnapshots);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
@@ -103,9 +98,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 			if (!quickLoad)
 			{
+				xtraTabPageOptionsStyle.PageVisible = BusinessWrapper.Instance.OutputManager.SnapshotColors.Items.Count > 1;
 				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.SnapshotColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 				outputColorSelector.ColorChanged += OnColorChanged;
 			}
+
+			hyperLinkEditInfoContract.Enabled = Directory.Exists(BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath);
 
 			_allowToSave = true;
 
@@ -116,14 +114,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private bool SaveSchedule(string scheduleName = "")
 		{
+			var quickLoad = !SettingsNotSaved && _localSchedule.BroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Schedule;
 			foreach (var snapshotControl in xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>())
 				snapshotControl.SaveData();
 			Summary.SaveData();
 			SaveColors();
+			_localSchedule.BroadcastCalendar.UpdateDataSource();
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				_localSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, false, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickLoad, false, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -182,6 +182,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				buttonXSnapshotTotalSpots.Checked = ActiveSnapshot.Data.ShowTotalSpots;
 				buttonXSnapshotAvgRate.Checked = ActiveSnapshot.Data.ShowAverageRate;
 				buttonXSnapshotTotalRow.Checked = ActiveSnapshot.Data.ShowTotalRow;
+
+				checkedListBoxActiveWeeks.Items.Clear();
+				var scheduleWeekRanges = _localSchedule.GetWeeks();
+				var snapshotWeeks = ActiveSnapshot.Data.ActiveWeeks;
+				checkedListBoxActiveWeeks.Items.AddRange(scheduleWeekRanges.Select(w => new CheckedListBoxItem(w, w.Range, !snapshotWeeks.Any() || snapshotWeeks.Any(sw => sw.StartDate == w.StartDate && sw.FinishDate == w.FinishDate) ? CheckState.Checked : CheckState.Unchecked)).ToArray());
 			}
 			else if (ActiveSummary != null)
 			{
@@ -209,6 +214,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
 			UpdateOutputStatus();
+			LoadBarButtons();
 			_allowToSave = true;
 		}
 
@@ -230,6 +236,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				snapshotControl.Data.ShowTotalRow = templateControl.Data.ShowTotalRow;
 				snapshotControl.Data.UseDecimalRates = templateControl.Data.UseDecimalRates;
 				snapshotControl.Data.ShowSpotsX = templateControl.Data.ShowSpotsX;
+				snapshotControl.Data.ShowSpotsPerWeek = templateControl.Data.ShowSpotsPerWeek;
+			}
+		}
+
+		private void ApplySharedContractSettings(ContractSettings templateSettings)
+		{
+			foreach (var snapshotControl in xtraTabControlSnapshots.TabPages.OfType<ISnapshotSlide>())
+			{
+				snapshotControl.ContractSettings.ShowSignatureLine = templateSettings.ShowSignatureLine;
+				snapshotControl.ContractSettings.ShowDisclaimer = templateSettings.ShowDisclaimer;
+				snapshotControl.ContractSettings.RateExpirationDate = templateSettings.RateExpirationDate;
 			}
 		}
 
@@ -361,15 +378,39 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		private void UpdateSnapshotSplash()
 		{
 			if (_localSchedule.Snapshots.Any())
+			{
 				pnSnapshots.BringToFront();
+				Controller.Instance.SnapshotProgramAdd.Enabled = true;
+				Controller.Instance.SnapshotProgramDelete.Enabled = true;
+			}
 			else
+			{
 				pnNoSnapshots.BringToFront();
+				Controller.Instance.SnapshotProgramAdd.Enabled = false;
+				Controller.Instance.SnapshotProgramDelete.Enabled = false;
+			}
 		}
 
 		private void SaveColors()
 		{
 			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? String.Empty;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
+		}
+
+		private void LoadBarButtons()
+		{
+			var buttonInfos = new List<ButtonInfo>();
+			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsInfo; } });
+			if (BusinessWrapper.Instance.OutputManager.SnapshotColors.Items.Count > 1)
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
+			if (ActiveSnapshot != null)
+			{
+				xtraTabPageOptionsActiveWeeks.PageVisible = true;
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SnapshotSettingsActiveWeeks, Tooltip = "Calendar", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsActiveWeeks; } });
+			}
+			else
+				xtraTabPageOptionsActiveWeeks.PageVisible = false;
+			retractableBarControl.AddButtons(buttonInfos);
 		}
 		#endregion
 
@@ -500,12 +541,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveSnapshot.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSnapshot.Data.ShowSpotsX;
+					form.checkEditShowSpotsPerWeek.Enabled = true;
+					form.checkEditShowSpotsPerWeek.Checked = ActiveSnapshot.Data.ShowSpotsPerWeek;
 					form.checkEditApplyForAll.Enabled = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() > 1;
 					form.checkEditApplyForAll.Checked = _localSchedule.SnapshotSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
 					form.checkEditApplyForAll.Enabled = false;
+					form.checkEditShowSpotsPerWeek.Enabled = false;
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
 				}
@@ -517,6 +561,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				{
 					ActiveSnapshot.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveSnapshot.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
+					ActiveSnapshot.Data.ShowSpotsPerWeek = form.checkEditShowSpotsPerWeek.Checked;
 					_localSchedule.SnapshotSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
 					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
 					{
@@ -538,9 +583,68 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
+		private void hyperLinkEditInfoContract_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormContractSettings())
+			{
+				if (ActiveSnapshot != null)
+				{
+					form.checkEditShowSignatureLine.Checked = ActiveSnapshot.ContractSettings.ShowSignatureLine;
+					form.checkEditShowRatesExpiration.Checked = ActiveSnapshot.ContractSettings.RateExpirationDate.HasValue;
+					form.checkEditShowDisclaimer.Checked = ActiveSnapshot.ContractSettings.ShowDisclaimer;
+					form.dateEditRatesExpirationDate.EditValue = ActiveSnapshot.ContractSettings.RateExpirationDate;
+				}
+				else if (ActiveSummary != null)
+				{
+					form.checkEditShowSignatureLine.Checked = ActiveSummary.ContractSettings.ShowSignatureLine;
+					form.checkEditShowRatesExpiration.Checked = ActiveSummary.ContractSettings.RateExpirationDate.HasValue;
+					form.checkEditShowDisclaimer.Checked = ActiveSummary.ContractSettings.ShowDisclaimer;
+					form.dateEditRatesExpirationDate.EditValue = ActiveSummary.ContractSettings.RateExpirationDate;
+				}
+				else
+					return;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (ActiveSnapshot != null)
+				{
+					ActiveSnapshot.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+					ActiveSnapshot.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+					ActiveSnapshot.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+						ApplySharedContractSettings(ActiveSnapshot.ContractSettings);
+				}
+				else if (ActiveSummary != null)
+				{
+					ActiveSummary.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+					ActiveSummary.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+					ActiveSummary.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+
+					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+						ApplySharedContractSettings(ActiveSummary.ContractSettings);
+				}
+				SettingsNotSaved = true;
+			}
+		}
+
 		private void OnColorChanged(object sender, EventArgs e)
 		{
 			SettingsNotSaved = true;
+		}
+
+		private void checkedListBoxActiveWeeks_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
+		{
+			laActiveWeeksWarning.Visible = checkedListBoxActiveWeeks.CheckedItems.Count == 0;
+			OnInfoSettingsChanged(sender, e);
+		}
+
+		private void buttonXSelectAll_Click(object sender, EventArgs e)
+		{
+			checkedListBoxActiveWeeks.CheckAll();
+		}
+
+		private void buttonXClearAll_Click(object sender, EventArgs e)
+		{
+			checkedListBoxActiveWeeks.UnCheckAll();
 		}
 
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
@@ -560,6 +664,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				ActiveSnapshot.Data.ShowTotalSpots = buttonXSnapshotTotalSpots.Checked;
 				ActiveSnapshot.Data.ShowAverageRate = buttonXSnapshotAvgRate.Checked;
 				ActiveSnapshot.Data.ShowTotalRow = buttonXSnapshotTotalRow.Checked;
+
+				ActiveSnapshot.Data.ActiveWeeks.Clear();
+				if (checkedListBoxActiveWeeks.CheckedItems.Count != checkedListBoxActiveWeeks.ItemCount)
+					ActiveSnapshot.Data.ActiveWeeks.AddRange(checkedListBoxActiveWeeks.CheckedItems.OfType<CheckedListBoxItem>().Select(item => item.Value).OfType<DateRange>());
+
 				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveSnapshot);
@@ -819,10 +928,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 					formProgress.Show();
 					var previewGroups = new List<PreviewGroup>();
 					previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-					var tempFileName = Path.GetTempFileName();
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(tempFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					var extension = Path.GetExtension(tempFileName);
-					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 					if (File.Exists(pdfFileName))
 						try
 						{

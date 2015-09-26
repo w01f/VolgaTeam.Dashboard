@@ -48,6 +48,11 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public Dictionary<string, string> ReplacementsList { get; set; }
 		public string[][] Logos { get; set; }
 
+		public ContractSettings ContractSettings
+		{
+			get { return _parent.ContractSettings; }
+		}
+
 		public string TemplateFileName
 		{
 			get
@@ -134,7 +139,6 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public bool ShowStation { get; set; }
 		public bool ShowLogo { get; set; }
 		public bool ShowStationInBrackets { get; set; }
-
 		#endregion
 
 		public void GetLogos()
@@ -295,7 +299,9 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 				key = string.Format("MO {0}", (i + 1).ToString("00"));
 				if (i < totalSpotsCount && ShowSpots)
 				{
-					if (_parent.SpotType == SpotType.Week)
+					if (_parent.UseGenericDateColumns)
+						value = string.Format("{0}{2}{1}", _parent.SpotType == SpotType.Week ? "wk" : "mo", (i + 1), (char)13);
+					else if (_parent.SpotType == SpotType.Week)
 						value = TotalSpots[i].Month + (char)13 + TotalSpots[i].Day;
 					else if (_parent.SpotType == SpotType.Month)
 						value = TotalSpots[i].Month;

@@ -70,9 +70,15 @@
     <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=3.0.97.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+    <Reference Include="EO.Base">
+      <HintPath>..\packages\EO.WebBrowser.15.2.53.0\lib\EO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=15.2.53.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EO.WebBrowser.3.0.97\lib\EO.WebBrowser.dll</HintPath>
+      <HintPath>..\packages\EO.WebBrowser.15.2.53.0\lib\EO.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine">
+      <HintPath>..\packages\EO.WebBrowser.15.2.53.0\lib\EO.WebEngine.dll</HintPath>
     </Reference>
     <Reference Include="ImageListView">
       <HintPath>..\packages\ImageListView.11.0.1\lib\net35\ImageListView.dll</HintPath>
@@ -318,6 +324,12 @@
     <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormContractSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormContractSettings.Designer.cs">
+      <DependentUpon>FormContractSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -432,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormContractSettings.resx">
+      <DependentUpon>FormContractSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>

@@ -122,6 +122,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Email();
 		}
 
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			PrintPdf();
+		}
+
 		public void Save_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
@@ -335,6 +341,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 		protected abstract void ShowPreview(string tempFileName);
+
+		public void PrintPdf()
+		{
+			PopulateReplacementsList();
+			ShowPdf();
+		}
+
+		protected abstract void ShowPdf();
 		#endregion
 	}
 }

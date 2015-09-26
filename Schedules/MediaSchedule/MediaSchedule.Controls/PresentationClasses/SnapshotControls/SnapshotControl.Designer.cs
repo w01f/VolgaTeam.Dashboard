@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnapshotControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pbNoPrograms = new System.Windows.Forms.PictureBox();
@@ -100,7 +99,7 @@
 			// pbNoPrograms
 			// 
 			this.pbNoPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoPrograms.Image = ((System.Drawing.Image)(resources.GetObject("pbNoPrograms.Image")));
+			this.pbNoPrograms.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.SnapshotsNoPrograms;
 			this.pbNoPrograms.Location = new System.Drawing.Point(40, 20);
 			this.pbNoPrograms.Name = "pbNoPrograms";
 			this.pbNoPrograms.Size = new System.Drawing.Size(510, 55);
@@ -504,6 +503,7 @@
 			this.repositoryItemComboBoxStations.Name = "repositoryItemComboBoxStations";
 			this.repositoryItemComboBoxStations.NullText = "Select";
 			this.repositoryItemComboBoxStations.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.repositoryItemComboBoxStations.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
 			// 
 			// bandedGridColumnDaypart
 			// 
@@ -548,6 +548,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.repositoryItemComboBoxDayparts.Name = "repositoryItemComboBoxDayparts";
 			this.repositoryItemComboBoxDayparts.NullText = "Select or Type";
+			this.repositoryItemComboBoxDayparts.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
 			// 
 			// gridBandProgram
 			// 
@@ -597,7 +598,7 @@
 			this.repositoryItemPopupContainerEditProgram.PopupFormSize = new System.Drawing.Size(550, 200);
 			this.repositoryItemPopupContainerEditProgram.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
 			this.repositoryItemPopupContainerEditProgram.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemPopupContainerEditProgram_CloseUp);
-			this.repositoryItemPopupContainerEditProgram.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemPopupContainerEditProgram_Closed);
+			this.repositoryItemPopupContainerEditProgram.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
 			// 
 			// bandedGridColumnTime
 			// 
@@ -640,6 +641,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.repositoryItemComboBoxTimes.Name = "repositoryItemComboBoxTimes";
 			this.repositoryItemComboBoxTimes.NullText = "Select or Type";
+			this.repositoryItemComboBoxTimes.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
 			// 
 			// bandedGridColumnLength
 			// 
@@ -683,6 +685,7 @@
 			this.repositoryItemComboBoxLengths.Name = "repositoryItemComboBoxLengths";
 			this.repositoryItemComboBoxLengths.NullText = "Select";
 			this.repositoryItemComboBoxLengths.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.repositoryItemComboBoxLengths.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
 			// 
 			// gridBandRate
 			// 
@@ -997,7 +1000,6 @@
 			this.Controls.Add(this.popupContainerControlProgramSource);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "SnapshotControl";
 			this.Size = new System.Drawing.Size(830, 699);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).EndInit();

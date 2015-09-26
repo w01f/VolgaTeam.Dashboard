@@ -40,6 +40,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditUseGenericDates = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).BeginInit();
@@ -48,6 +49,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditUseGenericDates.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -67,7 +69,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditUseDecimalRate
 			// 
-			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(12, 146);
+			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(12, 183);
 			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
 			this.checkEditUseDecimalRate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseDecimalRate.Properties.Appearance.Options.UseForeColor = true;
@@ -78,7 +80,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditOutputNoBrackets
 			// 
-			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(12, 191);
+			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(12, 226);
 			this.checkEditOutputNoBrackets.Name = "checkEditOutputNoBrackets";
 			this.checkEditOutputNoBrackets.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditOutputNoBrackets.Properties.Appearance.Options.UseForeColor = true;
@@ -95,7 +97,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             0,
             0});
 			this.spinEditOutputLimitPeriods.Enabled = false;
-			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(196, 54);
+			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(197, 96);
 			this.spinEditOutputLimitPeriods.Name = "spinEditOutputLimitPeriods";
 			this.spinEditOutputLimitPeriods.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditOutputLimitPeriods.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -122,7 +124,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditOutputLimitPeriods
 			// 
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(12, 56);
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(12, 97);
 			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
 			this.checkEditOutputLimitPeriods.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditOutputLimitPeriods.Properties.Appearance.Options.UseForeColor = true;
@@ -135,7 +137,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditOutputLimitQuarters
 			// 
-			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(12, 101);
+			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(12, 140);
 			this.checkEditOutputLimitQuarters.Name = "checkEditOutputLimitQuarters";
 			this.checkEditOutputLimitQuarters.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditOutputLimitQuarters.Properties.Appearance.Options.UseForeColor = true;
@@ -168,7 +170,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(56, 290);
+			this.buttonXOK.Location = new System.Drawing.Point(56, 325);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -181,7 +183,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(197, 290);
+			this.buttonXCancel.Location = new System.Drawing.Point(197, 325);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -190,7 +192,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditLockToMaster
 			// 
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 236);
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 269);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -210,10 +212,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.checkEditLockToMaster.StyleController = this.styleController;
 			this.checkEditLockToMaster.TabIndex = 124;
 			// 
+			// checkEditUseGenericDates
+			// 
+			this.checkEditUseGenericDates.Location = new System.Drawing.Point(12, 54);
+			this.checkEditUseGenericDates.Name = "checkEditUseGenericDates";
+			this.checkEditUseGenericDates.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditUseGenericDates.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditUseGenericDates.Properties.Caption = "Use Generic Date Columns ";
+			this.checkEditUseGenericDates.Size = new System.Drawing.Size(265, 20);
+			this.checkEditUseGenericDates.StyleController = this.styleController;
+			this.checkEditUseGenericDates.TabIndex = 125;
+			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(345, 338);
+			this.ClientSize = new System.Drawing.Size(345, 373);
+			this.Controls.Add(this.checkEditUseGenericDates);
 			this.Controls.Add(this.checkEditLockToMaster);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
@@ -225,6 +239,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.Controls.Add(this.checkEditEmptySports);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
@@ -241,6 +256,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditUseGenericDates.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -258,5 +274,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public DevExpress.XtraEditors.CheckEdit checkEditOutputLimitQuarters;
 		public DevExpress.XtraEditors.CheckEdit checkEditEmptySports;
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
+		public DevExpress.XtraEditors.CheckEdit checkEditUseGenericDates;
 	}
 }

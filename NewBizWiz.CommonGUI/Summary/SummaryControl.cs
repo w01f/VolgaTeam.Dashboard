@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using EO.Internal;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 
@@ -54,6 +55,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			checkEditMonthlyInvestment.CheckedChanged += checkEdit_CheckedChanged;
 			TableOutputToggle.CheckedChanged += checkEdit_CheckedChanged;
 			comboBoxEditHeader.EditValueChanged += checkEdit_CheckedChanged;
+			hyperLinkEditInfoContract.OpenLink += hyperLinkEditInfoContract_OpenLink;
 
 			PowerPointButton.Click += (o, e) => Output();
 			PreviewButton.Click += (o, e) => Preview();
@@ -126,6 +128,8 @@ namespace NewBizWiz.CommonGUI.Summary
 					var index = comboBoxEditHeader.Properties.Items.IndexOf(Settings.SlideHeader);
 					comboBoxEditHeader.SelectedIndex = index >= 0 ? index : 0;
 				}
+
+				hyperLinkEditInfoContract.Enabled = !String.IsNullOrEmpty(ContractTemplatePath) && Directory.Exists(ContractTemplatePath);
 			}
 			LoadItems(quickLoad);
 			UpdateTotalItems();
@@ -251,6 +255,23 @@ namespace NewBizWiz.CommonGUI.Summary
 			SettingsNotSaved = true;
 		}
 
+		private void hyperLinkEditInfoContract_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormContractSettings())
+			{
+				form.checkEditShowSignatureLine.Checked = ContractSettings.ShowSignatureLine;
+				form.checkEditShowRatesExpiration.Checked = ContractSettings.RateExpirationDate.HasValue;
+				form.checkEditShowDisclaimer.Checked = ContractSettings.ShowDisclaimer;
+				form.dateEditRatesExpirationDate.EditValue = ContractSettings.RateExpirationDate;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+				ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+				ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+				SettingsNotSaved = true;
+			}
+		}
+
 		#region Output Stuff
 		public abstract ButtonItem PowerPointButton { get; }
 		public abstract ButtonItem PreviewButton { get; }
@@ -263,6 +284,15 @@ namespace NewBizWiz.CommonGUI.Summary
 		protected abstract void PreparePreview(string tempFileName);
 		protected abstract void ShowEmail(string tempFileName);
 		protected abstract void ShowPreview(string tempFileName);
+
+		public virtual string ContractTemplatePath
+		{
+			get { return String.Empty; }
+		}
+		public ContractSettings ContractSettings
+		{
+			get { return Settings.ContractSettings; }
+		}
 
 		public int ItemsCount
 		{

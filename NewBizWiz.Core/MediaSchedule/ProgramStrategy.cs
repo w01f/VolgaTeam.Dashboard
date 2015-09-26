@@ -20,6 +20,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public List<ProgramStrategyItem> Items { get; private set; }
 
+		public ContractSettings ContractSettings { get; private set; }
+
 		public IEnumerable<ProgramStrategyItem> EnabledItems
 		{
 			get { return Items.Where(i => i.Enabled).OrderBy(i => i.Order); }
@@ -29,6 +31,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			_parent = parent;
 			Items = new List<ProgramStrategyItem>();
+			ContractSettings = new ContractSettings();
 
 			ShowFavorites = true;
 
@@ -46,6 +49,10 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			foreach (var strategyItem in Items)
 				result.AppendLine(@"<Item>" + strategyItem.Serialize() + @"</Item>");
+
+			if (ContractSettings.IsConfigured)
+				result.AppendLine(String.Format("<ContractSettings>{0}</ContractSettings>", ContractSettings.Serialize()));
+
 			return result.ToString();
 		}
 
@@ -83,6 +90,9 @@ namespace NewBizWiz.Core.MediaSchedule
 							Items.Add(item);
 							break;
 						}
+					case "ContractSettings":
+						ContractSettings.Deserialize(childNode);
+						break;
 				}
 			}
 			UpdateItems();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -211,6 +212,44 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		protected override void PdfInternal(IEnumerable<CalendarOutputData> outputData)
+		{
+			if (outputData == null) return;
+			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
+			TrackOutput();
+			var previewGroups = new List<PreviewGroup>();
+			using (var formProgress = new FormProgress())
+			{
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.TopMost = true;
+					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
+					formProgress.Show();
+					Enabled = false;
+					foreach (var outputItem in commonOutputData)
+					{
+						var previewGroup = new PreviewGroup
+						{
+							Name = outputItem.MonthText,
+							PresentationSourcePath = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+						};
+						AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+						previewGroups.Add(previewGroup);
+					}
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch {}
+					Enabled = true;
+					formProgress.Close();
+				});
+			}
+		}
+
 		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
 		{
 			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to reset data?") == DialogResult.Yes)
@@ -289,6 +328,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			SaveCalendarData(false);
 			Email();
+		}
+
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			SaveCalendarData(false);
+			PrintPdf();
 		}
 
 		public abstract void Help_Click(object sender, EventArgs e);

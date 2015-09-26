@@ -177,5 +177,12 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			PreparePresentation(fileName, AppendMultiSummary);
 		}
+
+		public void PrepareMultiSummaryPdf(string targetFileName)
+		{
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, AppendMultiSummary);
+			BuildPdf(sourceFileName, targetFileName);
+		}
 	}
 }

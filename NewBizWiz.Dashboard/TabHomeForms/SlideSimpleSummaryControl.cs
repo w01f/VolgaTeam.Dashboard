@@ -468,6 +468,16 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return simpleSummaryItemContainer.ShowTotalTotal; }
 		}
 
+		public string ContractTemplatePath
+		{
+			get { return String.Empty; }
+		}
+
+		public ContractSettings ContractSettings
+		{
+			get { return ViewSettingsManager.Instance.SimpleSummaryState.ContractSettings; }
+		}
+
 		public Theme SelectedTheme
 		{
 			get { return Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.SimpleSummary); }
@@ -535,10 +545,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Core.Common.ListManager.Instance.Advertisers.Add(Advertiser);
 			Core.Common.ListManager.Instance.Advertisers.Save();
-		
+
 			Core.Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
 			Core.Common.ListManager.Instance.DecisionMakers.Save();
-		
+
 			if (SettingsNotSaved)
 			{
 				SaveState();

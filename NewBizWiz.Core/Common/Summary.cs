@@ -25,6 +25,8 @@ namespace NewBizWiz.Core.Common
 			ShowTotal = false;
 
 			SlideHeader = string.Empty;
+
+			ContractSettings = new ContractSettings();
 		}
 
 		public bool ShowAdvertiser { get; set; }
@@ -38,6 +40,8 @@ namespace NewBizWiz.Core.Common
 		public string SlideHeader { get; set; }
 		public decimal? MonthlyValue { get; set; }
 		public decimal? TotalValue { get; set; }
+
+		public ContractSettings ContractSettings { get; private set; }
 
 		public virtual string Serialize()
 		{
@@ -57,6 +61,9 @@ namespace NewBizWiz.Core.Common
 				result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
 			if (TotalValue.HasValue)
 				result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
+
+			if (ContractSettings.IsConfigured)
+				result.AppendLine(String.Format("<ContractSettings>{0}</ContractSettings>", ContractSettings.Serialize()));
 
 			return result.ToString();
 		}
@@ -106,6 +113,9 @@ namespace NewBizWiz.Core.Common
 					case "TotalValue":
 						if (decimal.TryParse(childNode.InnerText, out tempDecimal) && tempDecimal > 0)
 							TotalValue = tempDecimal;
+						break;
+					case "ContractSettings":
+						ContractSettings.Deserialize(childNode);
 						break;
 				}
 			}

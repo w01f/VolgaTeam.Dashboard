@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -372,6 +373,69 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			}
+		}
+
+		public void PrintPdf()
+		{
+			Save();
+			var tabPages = xtraTabControlPublications.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IBasicOverviewOutputControl>();
+			var selectedProducts = new List<IBasicOverviewOutputControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Products";
+					var currentProduct = xtraTabControlPublications.SelectedTabPage as IBasicOverviewOutputControl;
+					foreach (var tabPage in tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedProducts.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<IBasicOverviewOutputControl>());
+				}
+			else
+				selectedProducts.AddRange(tabPages);
+			if (!selectedProducts.Any()) return;
+			TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>());
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					var previewGroups = new List<PreviewGroup>();
+					previewGroups.AddRange(selectedProducts.Select(productControl =>
+					{
+						var previewGroup = productControl.GetPreviewGroup();
+						if (productControl is PublicationBasicOverviewControl)
+							AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
+						else if (productControl is BasicOverviewSummaryControl)
+						{
+							var summaryControl = productControl as BasicOverviewSummaryControl;
+							summaryControl.PopulateReplacementsList();
+							AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
+						}
+						return previewGroup;
+					}));
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch { }
+					formProgress.Close();
+				});
 			}
 		}
 		#endregion

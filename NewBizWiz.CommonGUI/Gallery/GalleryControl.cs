@@ -275,7 +275,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 			UpdateBrowseMode();
 		}
 
-		private void WebView_LoadComplete(object sender, NavigationTaskEventArgs e)
+		private void WebView_LoadComplete(object sender, LoadCompletedEventArgs e)
 		{
 			ExtractAllImages();
 			HideProgress();

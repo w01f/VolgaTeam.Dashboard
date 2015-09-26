@@ -10,15 +10,17 @@ namespace NewBizWiz.Core.MediaSchedule
 {
 	public class Snapshot
 	{
+		private int? _totalWeeks;
+
 		public RegularSchedule Parent { get; private set; }
 		public Guid UniqueID { get; set; }
 		public double Index { get; set; }
 		public string Name { get; set; }
 		public ImageSource Logo { get; set; }
 		public string Comment { get; set; }
-		public int? TotalWeeks { get; set; }
 
 		public List<SnapshotProgram> Programs { get; private set; }
+		public List<DateRange> ActiveWeeks { get; private set; }
 
 		#region Options
 		public bool ShowLineId { get; set; }
@@ -33,10 +35,13 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowSpotsX { get; set; }
 		public bool ShowTotalRow { get; set; }
 		public bool UseDecimalRates { get; set; }
+		public bool ShowSpotsPerWeek { get; set; }
 
 		public bool ShowTotalSpots { get; set; }
 		public bool ShowAverageRate { get; set; }
 		#endregion
+
+		public ContractSettings ContractSettings { get; private set; }
 
 		#region Calculated Properies
 		public int DisplayIndex
@@ -59,6 +64,17 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return Programs.Any() ? (Programs.Select(x => x.TotalCost).Sum()) : 0; }
 		}
 
+		public int TotalWeeks
+		{
+			get
+			{
+				if (_totalWeeks.HasValue) return _totalWeeks.Value;
+				if (ActiveWeeks.Any()) return ActiveWeeks.Count;
+				return Parent.GetWeeks().Count();
+			}
+			set { _totalWeeks = value; }
+		}
+
 		public decimal TotalWeekCost
 		{
 			get { return TotalCost * (decimal)TotalWeeks; }
@@ -68,6 +84,11 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			get { return Programs.Any() ? Programs.Select(x => x.TotalSpots).Sum() : 0; }
 		}
+
+		public int TotalWeekSpots
+		{
+			get { return (int)(TotalSpots * TotalWeeks); }
+		}
 		#endregion
 
 		public Snapshot(RegularSchedule parent)
@@ -76,8 +97,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			UniqueID = Guid.NewGuid();
 			Index = parent.Snapshots.Any() ? parent.Snapshots.Max(s => s.Index) + 1 : 0;
 			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
-			TotalWeeks = 1;
 			Programs = new List<SnapshotProgram>();
+			ActiveWeeks = new List<DateRange>();
 
 			#region Options
 			ShowLogo = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowLogo;
@@ -94,7 +115,10 @@ namespace NewBizWiz.Core.MediaSchedule
 			ShowLineId = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowLineId;
 			ShowTotalRow = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowTotalRow;
 			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.UseDecimalRates;
+			ShowSpotsPerWeek = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowSpotsPerWeek;
 			#endregion
+
+			ContractSettings = new ContractSettings();
 		}
 
 		public string Serialize()
@@ -109,8 +133,8 @@ namespace NewBizWiz.Core.MediaSchedule
 				result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
 			if (!String.IsNullOrEmpty(Comment))
 				result.AppendLine(@"<Comment>" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment>");
-			if (TotalWeeks.HasValue)
-				result.AppendLine(@"<TotalWeeks>" + TotalWeeks.Value + @"</TotalWeeks>");
+			if (_totalWeeks.HasValue)
+				result.AppendLine(@"<TotalWeeks>" + _totalWeeks.Value + @"</TotalWeeks>");
 
 			#region Options
 			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
@@ -127,12 +151,22 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowSpotsX>" + ShowSpotsX + @"</ShowSpotsX>");
 			result.AppendLine(@"<ShowTotalRow>" + ShowTotalRow + @"</ShowTotalRow>");
 			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
+			result.AppendLine(@"<ShowSpotsPerWeek>" + ShowSpotsPerWeek + @"</ShowSpotsPerWeek>");
 			#endregion
 
 			result.AppendLine(@"<Programs>");
 			foreach (var program in Programs)
 				result.AppendLine(program.Serialize());
 			result.AppendLine(@"</Programs>");
+
+			result.AppendLine(@"<ActiveWeeks>");
+			foreach (var dateRange in ActiveWeeks)
+				result.AppendLine(dateRange.Serialize());
+			result.AppendLine(@"</ActiveWeeks>");
+
+			if (ContractSettings.IsConfigured)
+				result.AppendLine(String.Format("<ContractSettings>{0}</ContractSettings>", ContractSettings.Serialize()));
+
 			return result.ToString();
 		}
 
@@ -171,7 +205,7 @@ namespace NewBizWiz.Core.MediaSchedule
 						{
 							int temp;
 							if (Int32.TryParse(childNode.InnerText, out temp))
-								TotalWeeks = temp;
+								_totalWeeks = temp;
 						}
 						break;
 
@@ -231,6 +265,10 @@ namespace NewBizWiz.Core.MediaSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							UseDecimalRates = tempBool;
 						break;
+					case "ShowSpotsPerWeek":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSpotsPerWeek = tempBool;
+						break;
 					case "Programs":
 						foreach (XmlNode programNode in childNode.ChildNodes)
 						{
@@ -238,6 +276,17 @@ namespace NewBizWiz.Core.MediaSchedule
 							program.Deserialize(programNode);
 							Programs.Add(program);
 						}
+						break;
+					case "ActiveWeeks":
+						foreach (XmlNode dataRangeNode in childNode.ChildNodes)
+						{
+							var dateRange = new DateRange();
+							dateRange.Deserialize(dataRangeNode);
+							ActiveWeeks.Add(dateRange);
+						}
+						break;
+					case "ContractSettings":
+						ContractSettings.Deserialize(childNode);
 						break;
 				}
 		}
@@ -360,6 +409,54 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 				.Select(v => v ?? 0)
 				.Sum();
+			}
+		}
+
+		public string StartDayLetter
+		{
+			get
+			{
+				if (Parent.Parent.StartDayOfWeek == DayOfWeek.Sunday && SundaySpot.HasValue)
+					return "Su";
+				if (MondaySpot.HasValue)
+					return "M";
+				if (TuesdaySpot.HasValue)
+					return "T";
+				if (WednesdaySpot.HasValue)
+					return "W";
+				if (ThursdaySpot.HasValue)
+					return "Th";
+				if (FridaySpot.HasValue)
+					return "F";
+				if (SaturdaySpot.HasValue)
+					return "Sa";
+				if (SundaySpot.HasValue)
+					return "Su";
+				return "M";
+			}
+		}
+
+		public string EndDayLetter
+		{
+			get
+			{
+				if (Parent.Parent.EndDayOfWeek == DayOfWeek.Sunday && SundaySpot.HasValue)
+					return "Su";
+				if (SaturdaySpot.HasValue)
+					return "Sa";
+				if (FridaySpot.HasValue)
+					return "F";
+				if (ThursdaySpot.HasValue)
+					return "Th";
+				if (WednesdaySpot.HasValue)
+					return "W";
+				if (TuesdaySpot.HasValue)
+					return "T";
+				if (MondaySpot.HasValue)
+					return "M";
+				if (SundaySpot.HasValue)
+					return "Su";
+				return "Su";
 			}
 		}
 		#endregion
@@ -530,6 +627,58 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 			return clone;
 		}
+
+		public DateTime GetStartWeekDayByDate(DateTime startDate)
+		{
+			var initialIncrement = 0;
+			if (startDate.DayOfWeek == DayOfWeek.Sunday)
+				initialIncrement = 1;
+
+			if (startDate.DayOfWeek == DayOfWeek.Sunday && SundaySpot.HasValue)
+				return startDate;
+			if (MondaySpot.HasValue)
+				return startDate.AddDays(initialIncrement);
+			if (TuesdaySpot.HasValue)
+				return startDate.AddDays(initialIncrement + 1);
+			if (WednesdaySpot.HasValue)
+				return startDate.AddDays(initialIncrement + 2);
+			if (ThursdaySpot.HasValue)
+				return startDate.AddDays(initialIncrement + 3);
+			if (FridaySpot.HasValue)
+				return startDate.AddDays(initialIncrement + 4);
+			if (SaturdaySpot.HasValue)
+				return startDate.AddDays(initialIncrement + 5);
+			if (SundaySpot.HasValue)
+				return startDate.AddDays(initialIncrement + 6);
+
+			return startDate;
+		}
+
+		public DateTime GetEndWeekDayByDate(DateTime endDate)
+		{
+			var initialDecrement = 0;
+			if (endDate.DayOfWeek == DayOfWeek.Sunday)
+				initialDecrement = -1;
+
+			if (endDate.DayOfWeek == DayOfWeek.Sunday && SundaySpot.HasValue)
+				return endDate;
+			if (SaturdaySpot.HasValue)
+				return endDate.AddDays(initialDecrement);
+			if (FridaySpot.HasValue)
+				return endDate.AddDays(initialDecrement - 1);
+			if (ThursdaySpot.HasValue)
+				return endDate.AddDays(initialDecrement - 2);
+			if (WednesdaySpot.HasValue)
+				return endDate.AddDays(initialDecrement - 3);
+			if (TuesdaySpot.HasValue)
+				return endDate.AddDays(initialDecrement - 4);
+			if (MondaySpot.HasValue)
+				return endDate.AddDays(initialDecrement - 5);
+			if (SundaySpot.HasValue)
+				return endDate.AddDays(initialDecrement - 6);
+
+			return endDate;
+		}
 	}
 
 	public class SnapshotSummary
@@ -537,6 +686,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		public RegularSchedule Parent { get; private set; }
 
 		public bool ApplySettingsForAll { get; set; }
+
+		public ContractSettings ContractSettings { get; private set; }
 
 		#region Options
 		public bool ShowLineId { get; set; }
@@ -561,7 +712,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public int TotalSpots
 		{
-			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalSpots).Sum() : 0; }
+			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalWeekSpots).Sum() : 0; }
 		}
 		#endregion
 
@@ -570,6 +721,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			Parent = parent;
 
 			ApplySettingsForAll = false;
+
+			ContractSettings = new ContractSettings();
 
 			#region Options
 			ShowLineId = MediaMetaData.Instance.ListManager.DefaultSnapshotSummarySettings.ShowLineId;
@@ -590,7 +743,12 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string Serialize()
 		{
 			var result = new StringBuilder();
+			
 			result.AppendLine(@"<ApplySettingsForAll>" + ApplySettingsForAll + @"</ApplySettingsForAll>");
+
+			if (ContractSettings.IsConfigured)
+				result.AppendLine(String.Format("<ContractSettings>{0}</ContractSettings>", ContractSettings.Serialize()));
+			
 			#region Options
 			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
@@ -619,6 +777,10 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "ApplySettingsForAll":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ApplySettingsForAll = tempBool;
+						break;
+
+					case "ContractSettings":
+						ContractSettings.Deserialize(childNode);
 						break;
 
 					#region Options

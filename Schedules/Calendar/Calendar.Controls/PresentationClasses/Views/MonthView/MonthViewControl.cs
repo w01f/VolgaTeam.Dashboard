@@ -434,7 +434,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			Calendar.CalendarData.AddNote(noteRange, noteText);
 			Calendar.SettingsNotSaved = true;
 
-			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Date && x.DaysRangeEnd >= noteRange.FinishDate.Date);
+			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Value.Date && x.DaysRangeEnd >= noteRange.FinishDate.Value.Date);
 			if (calendarMonth != null)
 			{
 				var notes = GetNotesByWeeeks(calendarMonth);
@@ -462,7 +462,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			Calendar.CalendarData.AddNote(noteRange, note);
 			Calendar.SettingsNotSaved = true;
 
-			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Date && x.DaysRangeEnd >= noteRange.FinishDate.Date);
+			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Value.Date && x.DaysRangeEnd >= noteRange.FinishDate.Value.Date);
 			if (calendarMonth != null)
 				Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
 

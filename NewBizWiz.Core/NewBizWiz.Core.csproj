@@ -88,6 +88,8 @@
     <Compile Include="Calendar\ColorSchema.cs" />
     <Compile Include="Common\ActivityManager.cs" />
     <Compile Include="Common\AdvertisersManager.cs" />
+    <Compile Include="Common\ContractSettings.cs" />
+    <Compile Include="Common\DateRange.cs" />
     <Compile Include="Common\DecisionMakersManager.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\FavoriteImagesManager.cs" />

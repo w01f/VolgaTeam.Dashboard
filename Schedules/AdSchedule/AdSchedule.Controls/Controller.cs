@@ -163,6 +163,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			DigitalProductSave.Click += DigitalProductContainer.Save_Click;
 			DigitalProductSaveAs.Click += DigitalProductContainer.SaveAs_Click;
 			DigitalProductPowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.PowerPoint_Click);
+			DigitalProductPdf.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Pdf_Click);
 			DigitalProductEmail.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Email_Click);
 			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
 			DigitalProductPreview.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Preview_Click);
@@ -173,6 +174,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			DigitalPackageSave.Click += DigitalPackage.Save_Click;
 			DigitalPackageSaveAs.Click += DigitalPackage.SaveAs_Click;
 			DigitalPackagePowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalPackage.PowerPoint_Click);
+			DigitalPackagePdf.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Pdf_Click);
 			DigitalPackagePreview.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Preview_Click);
 			DigitalPackageEmail.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Email_Click);
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
@@ -188,6 +190,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			BasicOverviewSave.Click += Summaries.Save_Click;
 			BasicOverviewSaveAs.Click += Summaries.SaveAs_Click;
 			BasicOverviewPowerPoint.AddEventHandler(CheckPowerPointRunning, Summaries.PowerPoint_Click);
+			BasicOverviewPdf.AddEventHandler(CheckPowerPointRunning, Summaries.Pdf_Click);
 			BasicOverviewDigitalLegend.Click += Summaries.Digital_Click;
 			#endregion
 
@@ -198,6 +201,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			MultiSummarySave.Click += Summaries.Save_Click;
 			MultiSummarySaveAs.Click += Summaries.SaveAs_Click;
 			MultiSummaryPowerPoint.AddEventHandler(CheckPowerPointRunning, Summaries.PowerPoint_Click);
+			MultiSummaryPdf.AddEventHandler(CheckPowerPointRunning, Summaries.Pdf_Click);
 			MultiSummaryDigitalLegend.Click += Summaries.Digital_Click;
 			MultiSummaryHeaderCheck.CheckedChanged += Summaries.ExternalOptionChanged;
 			MultiSummaryHeaderText.EditValueChanged += Summaries.ExternalOptionChanged;
@@ -213,6 +217,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			SnapshotSave.Click += Summaries.Save_Click;
 			SnapshotSaveAs.Click += Summaries.SaveAs_Click;
 			SnapshotPowerPoint.AddEventHandler(CheckPowerPointRunning, Summaries.PowerPoint_Click);
+			SnapshotPdf.AddEventHandler(CheckPowerPointRunning, Summaries.Pdf_Click);
 			SnapshotDigitalLegend.Click += Summaries.Digital_Click;
 			#endregion
 			#endregion
@@ -225,6 +230,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			DetailedGridSave.Click += Grids.Save_Click;
 			DetailedGridSaveAs.Click += Grids.SaveAs_Click;
 			DetailedGridPowerPoint.AddEventHandler(CheckPowerPointRunning, Grids.PowerPoint_Click);
+			DetailedGridPdf.AddEventHandler(CheckPowerPointRunning, Grids.Pdf_Click);
 			DetailedGridEmail.AddEventHandler(CheckPowerPointRunning, Grids.Email_Click);
 			DetailedGridPreview.AddEventHandler(CheckPowerPointRunning, Grids.Preview_Click);
 			DetailedGridDigitalLegend.Click += Grids.Digital_Click;
@@ -235,6 +241,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			MultiGridSave.Click += Grids.Save_Click;
 			MultiGridSaveAs.Click += Grids.SaveAs_Click;
 			MultiGridPowerPoint.AddEventHandler(CheckPowerPointRunning, Grids.PowerPoint_Click);
+			MultiGridPdf.AddEventHandler(CheckPowerPointRunning, Grids.Pdf_Click);
 			MultiGridEmail.AddEventHandler(CheckPowerPointRunning, Grids.Email_Click);
 			MultiGridPreview.AddEventHandler(CheckPowerPointRunning, Grids.Preview_Click);
 			MultiGridDigitalLegend.Click += Grids.Digital_Click;
@@ -252,6 +259,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			Calendar1SaveAs.Click += Calendar1.SaveAs_Click;
 			Calendar1Preview.AddEventHandler(CheckPowerPointRunning, Calendar1.Preview_Click);
 			Calendar1PowerPoint.AddEventHandler(CheckPowerPointRunning, Calendar1.PowerPoint_Click);
+			Calendar1Pdf.AddEventHandler(CheckPowerPointRunning, Calendar1.Pdf_Click);
 			Calendar1Email.AddEventHandler(CheckPowerPointRunning, Calendar1.Email_Click);
 			Calendar1Help.Click += Calendar1.Help_Click;
 			#endregion
@@ -266,6 +274,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			Calendar2SaveAs.Click += Calendar2.SaveAs_Click;
 			Calendar2Preview.AddEventHandler(CheckPowerPointRunning, Calendar2.Preview_Click);
 			Calendar2PowerPoint.AddEventHandler(CheckPowerPointRunning, Calendar2.PowerPoint_Click);
+			Calendar2Pdf.AddEventHandler(CheckPowerPointRunning, Calendar2.Pdf_Click);
 			Calendar2Email.AddEventHandler(CheckPowerPointRunning, Calendar2.Email_Click);
 			Calendar2Help.Click += Calendar2.Help_Click;
 			#endregion
@@ -278,6 +287,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			AdPlanSave.Click += AdPlan.Save_Click;
 			AdPlanSaveAs.Click += AdPlan.SaveAs_Click;
 			AdPlanPowerPoint.AddEventHandler(CheckPowerPointRunning, AdPlan.PowerPoint_Click);
+			AdPlanPdf.AddEventHandler(CheckPowerPointRunning, AdPlan.Pdf_Click);
 			#endregion
 
 			#region Summary Light
@@ -751,6 +761,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductEmail { get; set; }
+		public ButtonItem DigitalProductPdf { get; set; }
 		public ButtonItem DigitalProductTheme { get; set; }
 		public ButtonItem DigitalProductSave { get; set; }
 		public ButtonItem DigitalProductSaveAs { get; set; }
@@ -766,6 +777,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
 		public ButtonItem DigitalPackageTheme { get; set; }
+		public ButtonItem DigitalPackagePdf { get; set; }
 		#endregion
 
 		#region Basic Overview
@@ -777,6 +789,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem BasicOverviewEmail { get; set; }
 		public ButtonItem BasicOverviewPowerPoint { get; set; }
 		public ButtonItem BasicOverviewTheme { get; set; }
+		public ButtonItem BasicOverviewPdf { get; set; }
 		public ButtonItem BasicOverviewDigitalLegend { get; set; }
 		#endregion
 
@@ -789,6 +802,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiSummaryEmail { get; set; }
 		public ButtonItem MultiSummaryPowerPoint { get; set; }
 		public ButtonItem MultiSummaryTheme { get; set; }
+		public ButtonItem MultiSummaryPdf { get; set; }
 		public ButtonItem MultiSummaryDigitalLegend { get; set; }
 		public CheckBoxItem MultiSummaryHeaderCheck { get; set; }
 		public ComboBoxEdit MultiSummaryHeaderText { get; set; }
@@ -809,6 +823,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem SnapshotEmail { get; set; }
 		public ButtonItem SnapshotPowerPoint { get; set; }
 		public ButtonItem SnapshotTheme { get; set; }
+		public ButtonItem SnapshotPdf { get; set; }
 		public ButtonItem SnapshotDigitalLegend { get; set; }
 		#endregion
 
@@ -821,6 +836,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem AdPlanEmail { get; set; }
 		public ButtonItem AdPlanPowerPoint { get; set; }
 		public ButtonItem AdPlanTheme { get; set; }
+		public ButtonItem AdPlanPdf { get; set; }
 		#endregion
 
 		#region Detailed Grid
@@ -832,6 +848,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DetailedGridEmail { get; set; }
 		public ButtonItem DetailedGridPowerPoint { get; set; }
 		public ButtonItem DetailedGridTheme { get; set; }
+		public ButtonItem DetailedGridPdf { get; set; }
 		public ButtonItem DetailedGridDigitalLegend { get; set; }
 		#endregion
 
@@ -844,6 +861,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiGridEmail { get; set; }
 		public ButtonItem MultiGridPowerPoint { get; set; }
 		public ButtonItem MultiGridTheme { get; set; }
+		public ButtonItem MultiGridPdf { get; set; }
 		public ButtonItem MultiGridDigitalLegend { get; set; }
 		#endregion
 
@@ -858,6 +876,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem Calendar1Preview { get; set; }
 		public ButtonItem Calendar1Email { get; set; }
 		public ButtonItem Calendar1PowerPoint { get; set; }
+		public ButtonItem Calendar1Pdf { get; set; }
 		public RibbonBar Calendar1SpecialButtons { get; set; }
 		#endregion
 
@@ -872,6 +891,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem Calendar2Preview { get; set; }
 		public ButtonItem Calendar2Email { get; set; }
 		public ButtonItem Calendar2PowerPoint { get; set; }
+		public ButtonItem Calendar2Pdf { get; set; }
 		public RibbonBar Calendar2SpecialButtons { get; set; }
 		#endregion
 
@@ -884,6 +904,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem SummaryLightEmail { get; set; }
 		public ButtonItem SummaryLightPowerPoint { get; set; }
 		public ButtonItem SummaryLightTheme { get; set; }
+		public ButtonItem SummaryLightPdf { get; set; }
 		public CheckEdit SummaryLightSlideOutputToggle { get; set; }
 		public CheckEdit SummaryLightTableOutputToggle { get; set; }
 		#endregion
@@ -897,6 +918,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem SummaryFullEmail { get; set; }
 		public ButtonItem SummaryFullPowerPoint { get; set; }
 		public ButtonItem SummaryFullTheme { get; set; }
+		public ButtonItem SummaryFullPdf { get; set; }
 		public CheckEdit SummaryFullSlideOutputToggle { get; set; }
 		public CheckEdit SummaryFullTableOutputToggle { get; set; }
 		#endregion

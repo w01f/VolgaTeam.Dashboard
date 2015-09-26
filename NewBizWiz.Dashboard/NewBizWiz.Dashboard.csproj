@@ -140,6 +140,12 @@
     <Compile Include="InteropClasses\LeadoffStatementsHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabHomeForms\Dashboard\DashboardDefault.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardDefault.Designer.cs">
+      <DependentUpon>DashboardDefault.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormSaveTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardDefault.resx">
+      <DependentUpon>DashboardDefault.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardRadio.resx">
       <DependentUpon>DashboardRadio.cs</DependentUpon>

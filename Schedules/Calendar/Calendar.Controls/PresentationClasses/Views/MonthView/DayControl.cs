@@ -126,9 +126,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (selectedDays.Length <= 1) return;
 			var noteDateRange = Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
 			if (noteDateRange == null) return;
-			toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
+			toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.Value.ToString("MM/dd"), noteDateRange.FinishDate.Value.ToString("MM/dd") });
 			toolStripMenuItemAddNote.Enabled = !Day.HasNotes;
-			toolStripMenuItemPasteNote.Text = "Paste Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
+			toolStripMenuItemPasteNote.Text = "Paste Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.Value.ToString("MM/dd"), noteDateRange.FinishDate.Value.ToString("MM/dd") });
 			toolStripMenuItemPasteNote.Enabled = AllowToPasteNote;
 		}
 

@@ -148,9 +148,16 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareMultiGridGridBasedEmail(string fileName)
+		public void PrepareMultiGridGridBasedEmail(string targetFileName)
 		{
-			PreparePresentation(fileName, AppendMultiGridGridBased);
+			PreparePresentation(targetFileName, AppendMultiGridGridBased);
+		}
+
+		public void PrepareMultiGridGridBasedPdf(string targetFileName)
+		{
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, AppendMultiGridGridBased);
+			BuildPdf(sourceFileName, targetFileName);
 		}
 	}
 }

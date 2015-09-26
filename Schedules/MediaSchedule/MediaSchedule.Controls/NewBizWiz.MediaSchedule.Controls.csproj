@@ -93,6 +93,9 @@
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\Calendar\BroadcastSlideInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Calendar\CustomCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -325,6 +328,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.resx">
       <DependentUpon>RegularScheduleSectionControl.cs</DependentUpon>
@@ -533,6 +537,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarOptionsDataSource.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotSettingsActiveWeeks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeDefaultLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

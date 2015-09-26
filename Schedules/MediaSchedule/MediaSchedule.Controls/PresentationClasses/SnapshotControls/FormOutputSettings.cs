@@ -11,6 +11,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private void FormOutputSettings_Load(object sender, System.EventArgs e)
 		{
+			checkEditShowSpotsPerWeek.ForeColor = checkEditShowSpotsPerWeek.Enabled ? Color.Black : Color.Gray;
 			checkEditApplyForAll.ForeColor = checkEditApplyForAll.Enabled ? Color.Black : Color.Gray;
 		}
 	}

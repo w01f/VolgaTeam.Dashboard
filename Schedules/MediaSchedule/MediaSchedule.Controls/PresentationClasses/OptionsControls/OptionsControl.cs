@@ -19,7 +19,6 @@ using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
@@ -418,6 +417,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		public string[][] Logos { get; set; }
 
 		public float[] ColumnWidths { get; set; }
+
+		public ContractSettings ContractSettings
+		{
+			get { return Data.ContractSettings; }
+		}
 
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 

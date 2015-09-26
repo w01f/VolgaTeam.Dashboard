@@ -64,7 +64,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			});
 			var buttonInfos = new List<ButtonInfo>();
 			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsInfo; } });
-			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
+			if (BusinessWrapper.Instance.OutputManager.OptionsColors.Items.Count > 1)
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
 			retractableBarControl.AddButtons(buttonInfos);
 			retractableBarControl.Collapse(true);
 			_tabDragDropHelper = new XtraTabDragDropHelper<OptionsControl>(xtraTabControlOptionSets);
@@ -103,9 +104,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 			if (!quickLoad)
 			{
+				xtraTabPageOptionsStyle.PageVisible = BusinessWrapper.Instance.OutputManager.OptionsColors.Items.Count > 1;
 				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.OptionsColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 				outputColorSelector.ColorChanged += OnColorChanged;
 			}
+
+			hyperLinkEditInfoContract.Enabled = Directory.Exists(BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath);
 
 			_allowToSave = true;
 
@@ -315,6 +319,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			}
 		}
 
+		private void ApplySharedContractSettings(ContractSettings templateSettings)
+		{
+			foreach (var optionsSlide in xtraTabControlOptionSets.TabPages.OfType<IOptionsSlide>())
+			{
+				optionsSlide.ContractSettings.ShowSignatureLine = templateSettings.ShowSignatureLine;
+				optionsSlide.ContractSettings.ShowDisclaimer = templateSettings.ShowDisclaimer;
+				optionsSlide.ContractSettings.RateExpirationDate = templateSettings.RateExpirationDate;
+			}
+		}
+
 		private void AddOptionSet()
 		{
 			using (var form = new FormOptionSetName())
@@ -463,9 +477,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		private void UpdateOptionsSplash()
 		{
 			if (_localSchedule.Options.Any())
+			{
 				pnOptionSets.BringToFront();
+				Controller.Instance.OptionsProgramAdd.Enabled = true;
+				Controller.Instance.OptionsProgramDelete.Enabled = true;
+			}
 			else
+			{
 				pnNoOptionSets.BringToFront();
+				Controller.Instance.OptionsProgramAdd.Enabled = false;
+				Controller.Instance.OptionsProgramDelete.Enabled = false;
+			}
 		}
 
 		private void SaveColors()
@@ -654,6 +676,49 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				}
 				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
 				UpdateTotalsValues();
+				SettingsNotSaved = true;
+			}
+		}
+
+		private void hyperLinkEditInfoContract_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormContractSettings())
+			{
+				if (ActiveOptionControl != null)
+				{
+					form.checkEditShowSignatureLine.Checked = ActiveOptionControl.ContractSettings.ShowSignatureLine;
+					form.checkEditShowRatesExpiration.Checked = ActiveOptionControl.ContractSettings.RateExpirationDate.HasValue;
+					form.checkEditShowDisclaimer.Checked = ActiveOptionControl.ContractSettings.ShowDisclaimer;
+					form.dateEditRatesExpirationDate.EditValue = ActiveOptionControl.ContractSettings.RateExpirationDate;
+				}
+				else if (ActiveSummary != null)
+				{
+					form.checkEditShowSignatureLine.Checked = ActiveSummary.ContractSettings.ShowSignatureLine;
+					form.checkEditShowRatesExpiration.Checked = ActiveSummary.ContractSettings.RateExpirationDate.HasValue;
+					form.checkEditShowDisclaimer.Checked = ActiveSummary.ContractSettings.ShowDisclaimer;
+					form.dateEditRatesExpirationDate.EditValue = ActiveSummary.ContractSettings.RateExpirationDate;
+				}
+				else
+					return;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (ActiveOptionControl != null)
+				{
+					ActiveOptionControl.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+					ActiveOptionControl.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+					ActiveOptionControl.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+						ApplySharedContractSettings(ActiveOptionControl.ContractSettings);
+				}
+				else if (ActiveSummary != null)
+				{
+					ActiveSummary.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+					ActiveSummary.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+					ActiveSummary.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+
+					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+						ApplySharedContractSettings(ActiveSummary.ContractSettings);
+				}
 				SettingsNotSaved = true;
 			}
 		}
@@ -947,10 +1012,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					formProgress.Show();
 					var previewGroups = new List<PreviewGroup>();
 					previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-					var tempFileName = Path.GetTempFileName();
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(tempFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					var extension = Path.GetExtension(tempFileName);
-					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 					if (File.Exists(pdfFileName))
 						try
 						{

@@ -12,40 +12,44 @@ using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 {
-	public sealed partial class CalendarSlideInfoControl : UserControl, ISlideInfoControl
+	public partial class CalendarSlideInfoControl : UserControl, ISlideInfoControl
 	{
-		private bool _allowToSave;
-		private CalendarMonth _month;
+		protected bool _allowToSave;
+		protected CalendarMonth _month;
+		private readonly List<ImageSource> _imageSources = new List<ImageSource>();
 
 		public CalendarSlideInfoControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
+			xtraTabPageData.PageVisible = false;
 
 			favoriteImagesControl.Init();
+
+			_imageSources.AddRange(MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).OrderByDescending(i => i.IsDefault).ThenBy(i => i.Name));
 
 			#region Assign Properties Changed Event To Controls
 
 			#region Comment
-			buttonXComment.CheckedChanged += propertiesControl_PropertiesChanged;
-			memoEditComment.EditValueChanged += propertiesControl_PropertiesChanged;
+			buttonXComment.CheckedChanged += OnPropertiesChanged;
+			memoEditComment.EditValueChanged += OnPropertiesChanged;
 			memoEditComment.Enter += Utilities.Instance.Editor_Enter;
 			memoEditComment.MouseDown += Utilities.Instance.Editor_MouseDown;
 			memoEditComment.MouseUp += Utilities.Instance.Editor_MouseUp;
-			checkEditCommentApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
+			checkEditCommentApplyForAll.CheckedChanged += OnPropertiesChanged;
 			#endregion
 
 			#region Style
-			checkEditThemeColorApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			checkEditStyleBigDate.CheckedChanged += propertiesControl_PropertiesChanged;
+			checkEditThemeColorApplyForAll.CheckedChanged += OnPropertiesChanged;
+			checkEditStyleBigDate.CheckedChanged += OnPropertiesChanged;
 			#endregion
 
 			#region Logo
 			xtraTabPageStyleLogo.PageEnabled = MediaMetaData.Instance.ListManager.Images.Any();
-			checkEditShowLogo.CheckedChanged += propertiesControl_PropertiesChanged;
-			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			calendarHeaderSelector.SelectionChanged += propertiesControl_PropertiesChanged;
-			calendarHeaderSelector.LoadData(MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images));
+			checkEditShowLogo.CheckedChanged += OnPropertiesChanged;
+			checkEditLogoApplyForAll.CheckedChanged += OnPropertiesChanged;
+			calendarHeaderSelector.SelectionChanged += OnPropertiesChanged;
+			calendarHeaderSelector.LoadData(_imageSources);
 			#endregion
 
 			#endregion
@@ -62,7 +66,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		[Category("Action")]
 		public event EventHandler<EventArgs> PropertyChanged;
 
-		public void OnThemeChanged(EventArgs e)
+		public void OnPropertyChanged(EventArgs e)
 		{
 			var handler = PropertyChanged;
 			if (handler != null) handler(this, e);
@@ -74,7 +78,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			LoadCurrentMonthData();
 		}
 
-		public IEnumerable<ButtonInfo> GetChapters()
+		public virtual IEnumerable<ButtonInfo> GetChapters()
 		{
 			return new[]
 			{
@@ -99,7 +103,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			};
 		}
 
-		public void LoadCurrentMonthData()
+		public virtual void LoadCurrentMonthData()
 		{
 			if (_month == null) return;
 			_allowToSave = false;
@@ -127,7 +131,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			#region Logo
 			checkEditShowLogo.Checked = _month.OutputData.ShowLogo;
 			checkEditLogoApplyForAll.Checked = _month.OutputData.ApplyForAllLogo;
-			var selectedLogo = MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images).FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo));
+			var selectedLogo =
+				_imageSources.FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo)) ??
+				_imageSources.FirstOrDefault();
 			calendarHeaderSelector.SelectedImageSource = selectedLogo;
 			#endregion
 
@@ -135,7 +141,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			SettingsNotSaved = false;
 		}
 
-		public void SaveData()
+		public virtual void SaveData()
 		{
 			if (!_allowToSave) return;
 
@@ -184,7 +190,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			SettingsNotSaved = false;
 		}
 
-		private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
+		protected void OnPropertiesChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			SettingsNotSaved = true;
@@ -195,7 +201,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (!_allowToSave) return;
 			_month.OutputData.SlideColor = outputColorSelector.SelectedColor;
 			SettingsNotSaved = true;
-			OnThemeChanged(EventArgs.Empty);
+			OnPropertyChanged(EventArgs.Empty);
 		}
 
 		#region Comment Event Handlers
@@ -214,8 +220,5 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			calendarHeaderSelector.Enabled = checkEditShowLogo.Checked;
 		}
 		#endregion
-
-
-
 	}
 }

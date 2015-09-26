@@ -8,6 +8,7 @@ using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
+using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.Core.Interop
 {
@@ -35,8 +36,8 @@ namespace NewBizWiz.Core.Interop
 		void SavePDF(string fileName);
 		void MergeFiles(string mergedFileName, string[] filesToMerge);
 		void PreparePresentation(string fileName, Action<Presentation> buildPresentation, bool generateImages = true);
-		void BuildPdf(string fileName);
-		void BuildPdf(string fileName, IEnumerable<string> presentationFiles);
+		void BuildPdf(string sourceFileName, string targetFileName);
+		void BuildPdf(string targetFileName, IEnumerable<string> presentationFiles);
 	}
 
 	public class PowerPointHelper<T> : IPowerPointHelper where T : class,new()
@@ -635,12 +636,12 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		public void BuildPdf(string fileName)
+		public void BuildPdf(string sourceFileName, string targetFileName)
 		{
-			BuildPdf(fileName, new[] { fileName });
+			BuildPdf(targetFileName, new[] { sourceFileName });
 		}
 
-		public void BuildPdf(string fileName, IEnumerable<string> presentationFiles)
+		public void BuildPdf(string targetFileName, IEnumerable<string> presentationFiles)
 		{
 			try
 			{
@@ -648,8 +649,10 @@ namespace NewBizWiz.Core.Interop
 				{
 					MessageFilter.Register();
 					if (presentationFiles == null || !presentationFiles.Any()) return;
-					if (!presentationFiles.All(f => f == fileName))
+					var sourceFileName = String.Empty;
+					if (presentationFiles.Count() > 1)
 					{
+						sourceFileName = Path.GetTempFileName();
 						SavePrevSlideIndex();
 						var presentations = PowerPointObject.Presentations;
 						var presentation = presentations.Add(MsoTriState.msoFalse);
@@ -672,13 +675,15 @@ namespace NewBizWiz.Core.Interop
 							sourcePresentation.Close();
 							slideIndex++;
 						}
-						presentation.SaveAs(fileName);
+						presentation.SaveAs(sourceFileName);
 						Utilities.Instance.ReleaseComObject(presentation);
 						Utilities.Instance.ReleaseComObject(presentations);
 						RestorePrevSlideIndex();
 					}
-					var extension = Path.GetExtension(fileName);
-					ConvertToPDF(fileName, fileName.Replace(extension, ".pdf"));
+					else
+						sourceFileName = presentationFiles.FirstOrDefault();
+					if (!String.IsNullOrEmpty(sourceFileName))
+						ConvertToPDF(sourceFileName, targetFileName);
 				});
 				thread.Start();
 				while (thread.IsAlive)
@@ -689,6 +694,57 @@ namespace NewBizWiz.Core.Interop
 			{
 				MessageFilter.Revoke();
 			}
+		}
+
+		protected void FillContractInfo(Slide slide, ContractSettings contractSettings, string templateFolderPath)
+		{
+			var templatePresentation = PowerPointObject.Presentations.Open(Path.Combine(templateFolderPath, contractSettings.TemplateName), WithWindow: MsoTriState.msoFalse);
+			foreach (var shape in GetContractInfoShapes(contractSettings, templatePresentation))
+			{
+				shape.Copy();
+				slide.Shapes.Paste();
+			}
+			templatePresentation.Close();
+		}
+
+		protected void FillContractInfo(Design design, ContractSettings contractSettings, string templateFolderPath)
+		{
+			var templatePresentation = PowerPointObject.Presentations.Open(Path.Combine(templateFolderPath, contractSettings.TemplateName), WithWindow: MsoTriState.msoFalse);
+			foreach (var shape in GetContractInfoShapes(contractSettings, templatePresentation))
+			{
+				shape.Copy();
+				design.SlideMaster.Shapes.Paste();
+			}
+			templatePresentation.Close();
+		}
+
+		private IEnumerable<Shape> GetContractInfoShapes(ContractSettings contractSettings, Presentation templatePresentation)
+		{
+			var shapes = new List<Shape>();
+			foreach (Slide slide in templatePresentation.Slides)
+			{
+				foreach (Shape shape in slide.Shapes)
+				{
+					for (var i = 1; i <= shape.Tags.Count; i++)
+					{
+						var addShape = false;
+						var tagName = shape.Tags.Name(i);
+						if ((tagName == "APPROVAL1" || tagName == "SIGLINE1") && contractSettings.ShowSignatureLine)
+							addShape = true;
+						else if (tagName == "RATESEXPIRE" && contractSettings.RateExpirationDate.HasValue)
+						{
+							shape.TextFrame.TextRange.Text = String.Format("{0} {1}", shape.TextFrame.TextRange.Text, contractSettings.RateExpirationDate.Value.ToString("MM/dd/yy"));
+							addShape = true;
+						}
+						else if (tagName == "DISCLAMIER" && contractSettings.ShowDisclaimer)
+							addShape = true;
+
+						if (addShape)
+							shapes.Add(shape);
+					}
+				}
+			}
+			return shapes;
 		}
 	}
 

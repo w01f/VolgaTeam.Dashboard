@@ -405,6 +405,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		{
 			TabWeeklySchedule.Enabled = enable;
 			TabMonthlySchedule.Enabled = enable;
+			TabCalendar1.Enabled = enable;
 			TabCalendar2.Enabled = enable;
 			TabSnapshot.Enabled = enable;
 			TabOptions.Enabled = enable;
@@ -415,11 +416,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			TabSummaryLight.Enabled = enable;
 			TabSummaryFull.Enabled = enable;
 			TabStrategy.Enabled = enable;
-		}
-
-		public void UpdateCalendarTabs(bool enable)
-		{
-			TabCalendar1.Enabled = enable;
 		}
 
 		public void UpdateDigitalProductTab(bool enable)

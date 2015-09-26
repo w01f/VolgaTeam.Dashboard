@@ -21,6 +21,10 @@ namespace NewBizWiz.CommonGUI.Summary
 		string TotalTotalValue { get; }
 		bool ShowMonthlyHeader { get; }
 		bool ShowTotalHeader { get; }
+
+		string ContractTemplatePath { get; }
+		ContractSettings ContractSettings { get; }
+		
 		Theme SelectedTheme { get; }
 
 		bool TableOutput { get; }

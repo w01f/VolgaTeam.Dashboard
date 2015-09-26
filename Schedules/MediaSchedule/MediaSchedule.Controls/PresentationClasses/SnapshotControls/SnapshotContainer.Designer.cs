@@ -29,9 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnapshotContainer));
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			this.pbNoSnapshots = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlSnapshots = new DevExpress.XtraTab.XtraTabControl();
 			this.pnSnapshots = new System.Windows.Forms.Panel();
@@ -80,6 +81,16 @@
 			this.pnStyle = new System.Windows.Forms.Panel();
 			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
 			this.laColorsTitle = new System.Windows.Forms.Label();
+			this.xtraTabPageOptionsActiveWeeks = new DevExpress.XtraTab.XtraTabPage();
+			this.pnActiveWeeks = new System.Windows.Forms.Panel();
+			this.checkedListBoxActiveWeeks = new DevExpress.XtraEditors.CheckedListBoxControl();
+			this.pnActiveweeksButtons = new System.Windows.Forms.Panel();
+			this.buttonXClearAll = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXSelectAll = new DevComponents.DotNetBar.ButtonX();
+			this.laActiveWeeksWarning = new System.Windows.Forms.Label();
+			this.laActiveWeeks = new System.Windows.Forms.Label();
+			this.pnInfoBottom = new System.Windows.Forms.Panel();
+			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.hyperLinkEditInfoAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.contextMenuStripSnapshot = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,6 +114,12 @@
 			this.pnSummaryInfo.SuspendLayout();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
 			this.pnStyle.SuspendLayout();
+			this.xtraTabPageOptionsActiveWeeks.SuspendLayout();
+			this.pnActiveWeeks.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxActiveWeeks)).BeginInit();
+			this.pnActiveweeksButtons.SuspendLayout();
+			this.pnInfoBottom.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).BeginInit();
 			this.contextMenuStripSnapshot.SuspendLayout();
 			this.pnNoSnapshots.SuspendLayout();
@@ -111,7 +128,7 @@
 			// pbNoSnapshots
 			// 
 			this.pbNoSnapshots.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoSnapshots.Image = ((System.Drawing.Image)(resources.GetObject("pbNoSnapshots.Image")));
+			this.pbNoSnapshots.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.SnapshotNoRecords;
 			this.pbNoSnapshots.Location = new System.Drawing.Point(40, 20);
 			this.pbNoSnapshots.Name = "pbNoSnapshots";
 			this.pbNoSnapshots.Size = new System.Drawing.Size(140, 60);
@@ -307,7 +324,7 @@
 			// retractableBarControl.Content
 			// 
 			this.retractableBarControl.Content.Controls.Add(this.xtraTabControlOptions);
-			this.retractableBarControl.Content.Controls.Add(this.hyperLinkEditInfoAdvanced);
+			this.retractableBarControl.Content.Controls.Add(this.pnInfoBottom);
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
@@ -350,17 +367,18 @@
 			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageOptionsInfo;
-			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 535);
+			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 530);
 			this.xtraTabControlOptions.TabIndex = 1;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageOptionsInfo,
-            this.xtraTabPageOptionsStyle});
+            this.xtraTabPageOptionsStyle,
+            this.xtraTabPageOptionsActiveWeeks});
 			// 
 			// xtraTabPageOptionsInfo
 			// 
 			this.xtraTabPageOptionsInfo.Controls.Add(this.pnOptionsInfo);
 			this.xtraTabPageOptionsInfo.Name = "xtraTabPageOptionsInfo";
-			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(290, 504);
+			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(290, 499);
 			this.xtraTabPageOptionsInfo.Text = "Info";
 			// 
 			// pnOptionsInfo
@@ -371,7 +389,7 @@
 			this.pnOptionsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsInfo.Name = "pnOptionsInfo";
-			this.pnOptionsInfo.Size = new System.Drawing.Size(290, 504);
+			this.pnOptionsInfo.Size = new System.Drawing.Size(290, 499);
 			this.pnOptionsInfo.TabIndex = 1;
 			// 
 			// pnSnapshotInfo
@@ -735,7 +753,7 @@
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 504);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 499);
 			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
@@ -746,7 +764,7 @@
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(290, 504);
+			this.pnStyle.Size = new System.Drawing.Size(290, 499);
 			this.pnStyle.TabIndex = 0;
 			// 
 			// outputColorSelector
@@ -758,7 +776,7 @@
 			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.outputColorSelector.Location = new System.Drawing.Point(0, 34);
 			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(290, 470);
+			this.outputColorSelector.Size = new System.Drawing.Size(290, 465);
 			this.outputColorSelector.TabIndex = 49;
 			// 
 			// laColorsTitle
@@ -770,26 +788,153 @@
 			this.laColorsTitle.TabIndex = 48;
 			this.laColorsTitle.Text = "Schedule Table Color:";
 			// 
+			// xtraTabPageOptionsActiveWeeks
+			// 
+			this.xtraTabPageOptionsActiveWeeks.Controls.Add(this.pnActiveWeeks);
+			this.xtraTabPageOptionsActiveWeeks.Name = "xtraTabPageOptionsActiveWeeks";
+			this.xtraTabPageOptionsActiveWeeks.Size = new System.Drawing.Size(290, 499);
+			this.xtraTabPageOptionsActiveWeeks.Text = "Calendar";
+			// 
+			// pnActiveWeeks
+			// 
+			this.pnActiveWeeks.BackColor = System.Drawing.Color.Transparent;
+			this.pnActiveWeeks.Controls.Add(this.checkedListBoxActiveWeeks);
+			this.pnActiveWeeks.Controls.Add(this.pnActiveweeksButtons);
+			this.pnActiveWeeks.Controls.Add(this.laActiveWeeksWarning);
+			this.pnActiveWeeks.Controls.Add(this.laActiveWeeks);
+			this.pnActiveWeeks.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnActiveWeeks.Location = new System.Drawing.Point(0, 0);
+			this.pnActiveWeeks.Name = "pnActiveWeeks";
+			this.pnActiveWeeks.Size = new System.Drawing.Size(290, 499);
+			this.pnActiveWeeks.TabIndex = 50;
+			// 
+			// checkedListBoxActiveWeeks
+			// 
+			this.checkedListBoxActiveWeeks.Appearance.BackColor = System.Drawing.Color.White;
+			this.checkedListBoxActiveWeeks.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkedListBoxActiveWeeks.Appearance.Options.UseBackColor = true;
+			this.checkedListBoxActiveWeeks.Appearance.Options.UseFont = true;
+			this.checkedListBoxActiveWeeks.CheckOnClick = true;
+			this.checkedListBoxActiveWeeks.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.checkedListBoxActiveWeeks.ItemHeight = 40;
+			this.checkedListBoxActiveWeeks.Location = new System.Drawing.Point(0, 90);
+			this.checkedListBoxActiveWeeks.Name = "checkedListBoxActiveWeeks";
+			this.checkedListBoxActiveWeeks.SelectionMode = System.Windows.Forms.SelectionMode.None;
+			this.checkedListBoxActiveWeeks.Size = new System.Drawing.Size(290, 369);
+			this.checkedListBoxActiveWeeks.TabIndex = 19;
+			this.checkedListBoxActiveWeeks.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxActiveWeeks_ItemCheck);
+			// 
+			// pnActiveweeksButtons
+			// 
+			this.pnActiveweeksButtons.Controls.Add(this.buttonXClearAll);
+			this.pnActiveweeksButtons.Controls.Add(this.buttonXSelectAll);
+			this.pnActiveweeksButtons.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnActiveweeksButtons.Location = new System.Drawing.Point(0, 42);
+			this.pnActiveweeksButtons.Name = "pnActiveweeksButtons";
+			this.pnActiveweeksButtons.Size = new System.Drawing.Size(290, 48);
+			this.pnActiveweeksButtons.TabIndex = 50;
+			// 
+			// buttonXClearAll
+			// 
+			this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXClearAll.Location = new System.Drawing.Point(176, 8);
+			this.buttonXClearAll.Name = "buttonXClearAll";
+			this.buttonXClearAll.Size = new System.Drawing.Size(107, 33);
+			this.buttonXClearAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXClearAll.TabIndex = 11;
+			this.buttonXClearAll.Text = "Clear All";
+			this.buttonXClearAll.TextColor = System.Drawing.Color.Black;
+			this.buttonXClearAll.Click += new System.EventHandler(this.buttonXClearAll_Click);
+			// 
+			// buttonXSelectAll
+			// 
+			this.buttonXSelectAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXSelectAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSelectAll.Location = new System.Drawing.Point(8, 8);
+			this.buttonXSelectAll.Name = "buttonXSelectAll";
+			this.buttonXSelectAll.Size = new System.Drawing.Size(107, 33);
+			this.buttonXSelectAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXSelectAll.TabIndex = 10;
+			this.buttonXSelectAll.Text = "Select All";
+			this.buttonXSelectAll.TextColor = System.Drawing.Color.Black;
+			this.buttonXSelectAll.Click += new System.EventHandler(this.buttonXSelectAll_Click);
+			// 
+			// laActiveWeeksWarning
+			// 
+			this.laActiveWeeksWarning.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.laActiveWeeksWarning.ForeColor = System.Drawing.Color.Red;
+			this.laActiveWeeksWarning.Location = new System.Drawing.Point(0, 459);
+			this.laActiveWeeksWarning.Name = "laActiveWeeksWarning";
+			this.laActiveWeeksWarning.Size = new System.Drawing.Size(290, 40);
+			this.laActiveWeeksWarning.TabIndex = 49;
+			this.laActiveWeeksWarning.Text = "You should select at least 1 week";
+			this.laActiveWeeksWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.laActiveWeeksWarning.Visible = false;
+			// 
+			// laActiveWeeks
+			// 
+			this.laActiveWeeks.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laActiveWeeks.Location = new System.Drawing.Point(0, 0);
+			this.laActiveWeeks.Name = "laActiveWeeks";
+			this.laActiveWeeks.Padding = new System.Windows.Forms.Padding(5);
+			this.laActiveWeeks.Size = new System.Drawing.Size(290, 42);
+			this.laActiveWeeks.TabIndex = 48;
+			this.laActiveWeeks.Text = "Do you want to apply this schedule to specific weeks on the calendar?";
+			// 
+			// pnInfoBottom
+			// 
+			this.pnInfoBottom.BackColor = System.Drawing.Color.White;
+			this.pnInfoBottom.Controls.Add(this.hyperLinkEditInfoContract);
+			this.pnInfoBottom.Controls.Add(this.hyperLinkEditInfoAdvanced);
+			this.pnInfoBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnInfoBottom.Location = new System.Drawing.Point(0, 530);
+			this.pnInfoBottom.Name = "pnInfoBottom";
+			this.pnInfoBottom.Size = new System.Drawing.Size(296, 50);
+			this.pnInfoBottom.TabIndex = 123;
+			// 
+			// hyperLinkEditInfoContract
+			// 
+			this.hyperLinkEditInfoContract.EditValue = "Contract Settings";
+			this.hyperLinkEditInfoContract.Location = new System.Drawing.Point(146, 15);
+			this.hyperLinkEditInfoContract.Name = "hyperLinkEditInfoContract";
+			this.hyperLinkEditInfoContract.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditInfoContract.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.LightGray;
+			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(149, 20);
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
+			this.hyperLinkEditInfoContract.TabIndex = 123;
+			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoContract_OpenLink);
+			// 
 			// hyperLinkEditInfoAdvanced
 			// 
-			this.hyperLinkEditInfoAdvanced.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.hyperLinkEditInfoAdvanced.EditValue = "Advanced Settings";
-			this.hyperLinkEditInfoAdvanced.Location = new System.Drawing.Point(0, 535);
+			this.hyperLinkEditInfoAdvanced.Location = new System.Drawing.Point(1, 15);
 			this.hyperLinkEditInfoAdvanced.Name = "hyperLinkEditInfoAdvanced";
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.BackColor = System.Drawing.Color.White;
-			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseBackColor = true;
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseFont = true;
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseForeColor = true;
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.Options.UseTextOptions = true;
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.hyperLinkEditInfoAdvanced.Properties.AutoHeight = false;
 			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(296, 45);
-			toolTipItem1.Text = "Change Slide Output Settings";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip1;
+			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(149, 20);
+			toolTipItem2.Text = "Change Slide Output Settings";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip2;
 			this.hyperLinkEditInfoAdvanced.TabIndex = 122;
 			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoAdvanced_OpenLink);
 			// 
@@ -818,7 +963,7 @@
 			// pnNoSnapshots
 			// 
 			this.pnNoSnapshots.Controls.Add(this.pbNoSnapshots);
-			this.pnNoSnapshots.Location = new System.Drawing.Point(128, 642);
+			this.pnNoSnapshots.Location = new System.Drawing.Point(151, 644);
 			this.pnNoSnapshots.Name = "pnNoSnapshots";
 			this.pnNoSnapshots.Padding = new System.Windows.Forms.Padding(40, 20, 20, 20);
 			this.pnNoSnapshots.Size = new System.Drawing.Size(200, 100);
@@ -852,6 +997,12 @@
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
 			this.pnStyle.ResumeLayout(false);
 			this.pnStyle.PerformLayout();
+			this.xtraTabPageOptionsActiveWeeks.ResumeLayout(false);
+			this.pnActiveWeeks.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxActiveWeeks)).EndInit();
+			this.pnActiveweeksButtons.ResumeLayout(false);
+			this.pnInfoBottom.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).EndInit();
 			this.contextMenuStripSnapshot.ResumeLayout(false);
 			this.pnNoSnapshots.ResumeLayout(false);
@@ -914,6 +1065,16 @@
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
 		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;
 		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsActiveWeeks;
+		public DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxActiveWeeks;
+		private System.Windows.Forms.Panel pnActiveWeeks;
+		private System.Windows.Forms.Label laActiveWeeks;
+		private System.Windows.Forms.Panel pnActiveweeksButtons;
+		private System.Windows.Forms.Label laActiveWeeksWarning;
+		private DevComponents.DotNetBar.ButtonX buttonXClearAll;
+		private DevComponents.DotNetBar.ButtonX buttonXSelectAll;
+		private System.Windows.Forms.Panel pnInfoBottom;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;
 
 	}
 }

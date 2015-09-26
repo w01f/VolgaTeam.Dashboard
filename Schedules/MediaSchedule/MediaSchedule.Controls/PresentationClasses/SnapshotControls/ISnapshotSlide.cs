@@ -9,7 +9,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		bool ReadyForOutput { get; }
 		string SlideName { get; }
 		string TemplateFileName { get; }
+		string TotalRowValue { get; }
 		string[][] Logos { get; set; }
+		ContractSettings ContractSettings { get; }
 		List<Dictionary<string, string>> ReplacementsList { get; }
 		PreviewGroup GetPreviewGroup(Theme selectedTheme);
 		void Output(Theme selectedTheme);

@@ -2050,7 +2050,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<PublicationCalendarMonth, PublicationCalendarDay, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+			DeserializeInternal<PublicationCalendarMonth, PublicationCalendarDay, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 
 		public override void UpdateMonthCollection()
@@ -2070,7 +2070,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CustomCalendarMonth, CalendarDaySundayBased, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+			DeserializeInternal<CustomCalendarMonth, CalendarDaySundayBased, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 
 		public override void UpdateMonthCollection()

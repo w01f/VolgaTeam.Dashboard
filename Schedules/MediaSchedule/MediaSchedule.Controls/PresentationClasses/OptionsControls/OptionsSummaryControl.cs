@@ -12,7 +12,6 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
@@ -167,6 +166,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		public string[][] Logos { get; set; }
 		public float[] ColumnWidths { get; set; }
+		
+		public ContractSettings ContractSettings
+		{
+			get { return Data.ContractSettings; }
+		}
+
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 
 		private int ProgramsPerSlide
@@ -254,7 +259,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					temp.Clear();
 					if (Data.ShowTallySpots)
 						temp.Add(String.Format("Total Spots: {0}", String.Format("{0}{1}", Data.TotalSpots.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty)));
-					if (Data.ShowTotalCost)
+					if (Data.ShowTallyCost)
 						temp.Add(String.Format("Total Cost: {0}", Data.TotalCost.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
 					value = String.Join("     ", temp);
 				}

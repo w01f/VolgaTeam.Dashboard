@@ -38,7 +38,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
 			Control dashboard = null;
-			switch (Core.Common.SettingsManager.Instance.DashboardCode)
+			switch (SettingsManager.Instance.DashboardCode)
 			{
 				case "newspaper":
 					dashboard = new DashboardPrint();
@@ -51,6 +51,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					break;
 				case "cable":
 					dashboard = new DashboardCable();
+					break;
+				default:
+					dashboard = new DashboardDefault();
+					pnBottom.Visible = false;
 					break;
 			}
 			if (dashboard != null)

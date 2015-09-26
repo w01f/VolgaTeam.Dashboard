@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -59,6 +61,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 		public override ButtonItem PowerPoint
 		{
 			get { return Controller.Instance.DigitalPackagePowerPoint; }
+		}
+
+		public override ButtonItem Pdf
+		{
+			get { return Controller.Instance.DigitalPackagePdf; }
 		}
 
 		public override ButtonItem Email
@@ -136,6 +143,28 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 				RegistryHelper.MainFormHandle = _formContainer.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+			}
+		}
+
+		public override void PdfSlides()
+		{
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					OnlineSchedulePowerPointHelper.Instance.PrepareWebPackagePdf(this, pdfFileName);
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch { }
+					formProgress.Close();
+				});
 			}
 		}
 	}

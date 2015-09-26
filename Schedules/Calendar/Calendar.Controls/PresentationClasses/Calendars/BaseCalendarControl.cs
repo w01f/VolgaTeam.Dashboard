@@ -19,6 +19,8 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 	[ToolboxItem(false)]
 	public partial class BaseCalendarControl : UserControl, ICalendarControl
 	{
+		public bool CalendarInitialized { get; set; }
+
 		public BaseCalendarControl()
 		{
 			InitializeComponent();
@@ -46,9 +48,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 									  };
 			pnMain.Controls.Add(MonthView);
 			pnMain.Controls.Add(GridView);
-			#endregion
-
-			#region Slide Info Initialization
 			#endregion
 		}
 
@@ -93,7 +92,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				SaveCalendarData(false);
 		}
 
-		public void ShowCalendar(bool gridView)
+		public virtual void ShowCalendar(bool gridView)
 		{
 			AllowToSave = false;
 			MonthList.Items.Clear();
@@ -127,9 +126,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				SelectedView.ChangeMonth(CalendarData.Months[MonthList.SelectedIndex].Date);
 				SlideInfo.LoadData(CalendarData.Months[MonthList.SelectedIndex]);
 				SlideInfo.LoadVisibilitySettings();
-				UpdateOutputFunctions();
 				Splash(false);
 			}
+			UpdateOutputFunctions();
 
 			AllowToSave = true;
 		}

@@ -44,7 +44,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Week)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 			}
 		}
 
@@ -54,7 +53,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Week)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 			}
 		}
 
@@ -64,7 +62,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Week)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 			}
 		}
 
@@ -74,7 +71,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Week)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 			}
 		}
 
@@ -84,7 +80,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Week)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 			}
 		}
 	}

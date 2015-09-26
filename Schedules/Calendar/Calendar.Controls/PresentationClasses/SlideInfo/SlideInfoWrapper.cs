@@ -41,7 +41,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		private void OnPropertyChanged(object sender, EventArgs e)
 		{
 			if (PropertyChanged != null)
-				PropertyChanged(this, EventArgs.Empty);
+				PropertyChanged(this, e);
 		}
 		#endregion
 

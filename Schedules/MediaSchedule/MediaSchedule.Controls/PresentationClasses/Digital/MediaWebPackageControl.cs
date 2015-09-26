@@ -149,19 +149,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-					OnlineSchedulePowerPointHelper.Instance.PrepareWebPackagePdf(this, tempFileName);
-					if (File.Exists(tempFileName))
-					{
-						var extension = Path.GetExtension(tempFileName);
-						var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					OnlineSchedulePowerPointHelper.Instance.PrepareWebPackagePdf(this, pdfFileName);
 						if (File.Exists(pdfFileName))
 							try
 							{
 								Process.Start(pdfFileName);
 							}
 							catch { }
-					}
 					formProgress.Close();
 				});
 			}

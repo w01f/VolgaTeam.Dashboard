@@ -34,12 +34,13 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							var presentationTemplatePath = Path.Combine(OptionsTemplatePath, page.TemplateFileName);
 							if (!File.Exists(presentationTemplatePath)) return;
 							var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-							var targedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
+							var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
+							var logoShapes = new List<Shape>();
 							if (page.Logos != null && slideNumber < page.Logos.Length)
 							{
 								var slideLogos = page.Logos[slideNumber];
-								foreach (var shape in targedSlide.Shapes.OfType<Shape>().Where(s => s.HasTable != MsoTriState.msoTrue))
+								foreach (var shape in taggedSlide.Shapes.OfType<Shape>().Where(s => s.HasTable != MsoTriState.msoTrue))
 								{
 									for (var i = 1; i <= shape.Tags.Count; i++)
 									{
@@ -49,14 +50,14 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 											if (!shapeTagName.Equals(string.Format("STATIONLOGO{0}", j + 1))) continue;
 											string fileName = slideLogos[j];
 											if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
-												targedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+												logoShapes.Add(taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height));
 											shape.Visible = MsoTriState.msoFalse;
 										}
 									}
 								}
 							}
 
-							var tableContainer = targedSlide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
+							var tableContainer = taggedSlide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
 							if (tableContainer == null) return;
 							var table = tableContainer.Table;
 							var tableRowsCount = table.Rows.Count;
@@ -117,10 +118,25 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									design = presentation.Designs.Add(DateTime.Now.ToString("MMddyy-hhmmsstt"));
 								tableContainer.Copy();
 								design.SlideMaster.Shapes.Paste();
+								foreach (var logoShape in logoShapes)
+								{
+									logoShape.Copy();
+									design.SlideMaster.Shapes.Paste();
+								}
+
+								if (page.ContractSettings.IsConfigured)
+									FillContractInfo(design, page.ContractSettings, ContractTemplatePath);
+
 								newSlide.Design = design;
 							}
-							else if (selectedTheme != null)
-								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+							else
+							{
+								if (selectedTheme != null)
+									presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+
+								if (page.ContractSettings.IsConfigured)
+									FillContractInfo(taggedSlide, page.ContractSettings, ContractTemplatePath);
+							}
 							AppendSlide(presentation, 1, destinationPresentation);
 							presentation.Close();
 							slideNumber++;
@@ -143,12 +159,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 		public void PrepareOptionsEmail(string fileName, IEnumerable<IOptionsSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
-		}
-
-		public void PrepareOptionsPdf(string fileName, IEnumerable<IOptionsSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
-		{
-			PreparePresentation(fileName, presentation => AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
-			BuildPdf(fileName);
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.Dashboard
 {
@@ -601,6 +602,8 @@ namespace NewBizWiz.Core.Dashboard
 			FlightDatesEnd = DateTime.MinValue;
 
 			ItemsState = new List<SimpleSummaryItemState>();
+
+			ContractSettings = new ContractSettings();
 		}
 
 		public bool ShowAdvertiser { get; set; }
@@ -621,6 +624,8 @@ namespace NewBizWiz.Core.Dashboard
 		public decimal? TotalValue { get; set; }
 
 		public List<SimpleSummaryItemState> ItemsState { get; set; }
+
+		public ContractSettings ContractSettings { get; private set; }
 
 		protected override string Serialize()
 		{
@@ -649,6 +654,10 @@ namespace NewBizWiz.Core.Dashboard
 			foreach (SimpleSummaryItemState item in ItemsState)
 				result.AppendLine(@"<Item>" + item.Serialize() + @"</Item>");
 			result.AppendLine(@"</Items>");
+
+			if (ContractSettings.IsConfigured)
+				result.AppendLine(String.Format("<ContractSettings>{0}</ContractSettings>", ContractSettings.Serialize()));
+
 			return result.ToString();
 		}
 
@@ -732,6 +741,9 @@ namespace NewBizWiz.Core.Dashboard
 							ItemsState.Add(item);
 						}
 						ItemsState.Sort((x, y) => x.Order.CompareTo(y.Order));
+						break;
+					case "ContractSettings":
+						ContractSettings.Deserialize(childNode);
 						break;
 				}
 			}

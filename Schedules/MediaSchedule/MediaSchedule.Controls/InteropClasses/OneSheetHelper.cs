@@ -34,6 +34,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
+						var logoShapes = new List<Shape>();
 						if (page.Logos != null && slideNumber < page.Logos.Length)
 						{
 							var slideLogos = page.Logos[slideNumber];
@@ -47,7 +48,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 										if (!shapeTagName.Equals(string.Format("STATIONLOGO{0}", j + 1))) continue;
 										string fileName = slideLogos[j];
 										if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
-											taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+											logoShapes.Add(taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height));
 										shape.Visible = MsoTriState.msoFalse;
 									}
 								}
@@ -106,10 +107,25 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 								design = presentation.Designs.Add(DateTime.Now.ToString("MMddyy-hhmmsstt"));
 							tableContainer.Copy();
 							design.SlideMaster.Shapes.Paste();
+							foreach (var logoShape in logoShapes)
+							{
+								logoShape.Copy();
+								design.SlideMaster.Shapes.Paste();
+							}
+
+							if (page.ContractSettings.IsConfigured)
+								FillContractInfo(design, page.ContractSettings, ContractTemplatePath);
+
 							newSlide.Design = design;
 						}
-						else if (selectedTheme != null)
-							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+						else
+						{
+							if (selectedTheme != null)
+								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+
+							if (page.ContractSettings.IsConfigured)
+								FillContractInfo(taggedSlide, page.ContractSettings, ContractTemplatePath);
+						}
 						AppendSlide(presentation, 1, destinationPresentation);
 						presentation.Close();
 						slideNumber++;
@@ -133,10 +149,11 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			PreparePresentation(fileName, presentation => AppendOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}
 
-		public void PrepareOneSheetPdf(string fileName, IEnumerable<OutputSchedule> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareOneSheetPdf(string targetFileName, IEnumerable<OutputSchedule> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
-			PreparePresentation(fileName, presentation => AppendOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
-			BuildPdf(fileName);
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, presentation => AppendOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
+			BuildPdf(sourceFileName, targetFileName);
 		}
 	}
 }

@@ -42,7 +42,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
 
@@ -52,7 +51,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
 
@@ -62,7 +60,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
 
@@ -72,7 +69,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
 
@@ -82,7 +78,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
 				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
-				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
 	}

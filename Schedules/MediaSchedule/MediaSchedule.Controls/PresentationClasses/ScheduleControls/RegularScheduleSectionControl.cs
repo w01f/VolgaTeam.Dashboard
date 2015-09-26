@@ -64,6 +64,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			if (!quickLoad)
 			{
+				xtraTabPageOptionsStyle.PageVisible = BusinessWrapper.Instance.OutputManager.ScheduleColors.Items.Count > 1;
 				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.ScheduleColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 				outputColorSelector.ColorChanged += OnColorChanged;
 			}
@@ -76,18 +77,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (LocalSchedule.DigitalProducts.Any())
 				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsDigital, Tooltip = "Open Digital Settings", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsDigital; } });
 			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsTotals; } });
-			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Slide Style", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
+			if (BusinessWrapper.Instance.OutputManager.ScheduleColors.Items.Count > 1)
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Slide Style", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
 			retractableBarControl.AddButtons(buttonInfos);
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
+			var quickLoad = !SettingsNotSaved && LocalSchedule.BroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Snapshots;
+			LocalSchedule.BroadcastCalendar.UpdateDataSource();
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				_localSchedule.Name = scheduleName;
 			var result = base.SaveSchedule(scheduleName);
 			digitalInfoControl.SaveData();
-			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, false, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, quickLoad, false, false, this);
 			return result;
 		}
 
@@ -204,10 +208,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetPdf(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-					var extension = Path.GetExtension(tempFileName);
-					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetPdf(pdfFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 					if (File.Exists(pdfFileName))
 						try
 						{

@@ -2,7 +2,10 @@
 
 namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
-	public abstract partial class MediaSchedulePowerPointHelper<T> : CommonGUI.Interop.CommonPowerPointHelper<T> where T : class, new(){}
+	public abstract partial class MediaSchedulePowerPointHelper<T> : CommonGUI.Interop.CommonPowerPointHelper<T> where T : class, new()
+	{
+		protected abstract string ContractTemplatePath { get; }
+	}
 
 	public class RegularMediaSchedulePowerPointHelper : MediaSchedulePowerPointHelper<RegularMediaSchedulePowerPointHelper>
 	{
@@ -36,5 +39,9 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			get { return BusinessWrapper.Instance.OutputManager.SnapshotTemplatesFolderPath; }
 		}
 
+		protected override string ContractTemplatePath
+		{
+			get { return BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath; }
+		}
 	}
 }

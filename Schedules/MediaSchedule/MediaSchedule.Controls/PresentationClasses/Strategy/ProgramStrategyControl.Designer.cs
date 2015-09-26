@@ -28,8 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.gridControlItems = new DevExpress.XtraGrid.GridControl();
-			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
+			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
 			this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.advBandedGridViewItems = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -44,6 +47,7 @@
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
 			this.retractableBarRight = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarRight();
 			this.labelControlFavTitle = new DevExpress.XtraEditors.LabelControl();
+			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -51,6 +55,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			this.retractableBarRight.Content.SuspendLayout();
 			this.retractableBarRight.Header.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlItems
@@ -235,7 +240,7 @@
 			this.favoriteImagesControl.ImageTooltip = null;
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(355, 579);
+			this.favoriteImagesControl.Size = new System.Drawing.Size(355, 535);
 			this.favoriteImagesControl.TabIndex = 0;
 			// 
 			// retractableBarRight
@@ -246,6 +251,7 @@
 			// retractableBarRight.Content
 			// 
 			this.retractableBarRight.Content.Controls.Add(this.favoriteImagesControl);
+			this.retractableBarRight.Content.Controls.Add(this.hyperLinkEditInfoContract);
 			this.retractableBarRight.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarRight.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarRight.Content.Name = "Content";
@@ -282,6 +288,31 @@
 			this.labelControlFavTitle.TabIndex = 0;
 			this.labelControlFavTitle.Text = "Favorite Images";
 			// 
+			// hyperLinkEditInfoContract
+			// 
+			this.hyperLinkEditInfoContract.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.hyperLinkEditInfoContract.EditValue = "Contract Settings";
+			this.hyperLinkEditInfoContract.Location = new System.Drawing.Point(0, 535);
+			this.hyperLinkEditInfoContract.Name = "hyperLinkEditInfoContract";
+			this.hyperLinkEditInfoContract.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditInfoContract.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.LightGray;
+			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.hyperLinkEditInfoContract.Properties.AutoHeight = false;
+			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(355, 44);
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
+			this.hyperLinkEditInfoContract.TabIndex = 124;
+			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoContract_OpenLink);
+			// 
 			// ProgramStrategyControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -297,6 +328,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			this.retractableBarRight.Content.ResumeLayout(false);
 			this.retractableBarRight.Header.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -319,5 +351,6 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsInfo;
 		private CommonGUI.RetractableBar.RetractableBarRight retractableBarRight;
 		private DevExpress.XtraEditors.LabelControl labelControlFavTitle;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;
 	}
 }

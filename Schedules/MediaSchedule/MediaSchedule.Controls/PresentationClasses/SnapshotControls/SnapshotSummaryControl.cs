@@ -12,7 +12,6 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
@@ -145,7 +144,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
+		public string TotalRowValue
+		{
+			get { return String.Empty; }
+		}
+
 		public string[][] Logos { get; set; }
+		public ContractSettings ContractSettings
+		{
+			get { return Data.ContractSettings; }
+		}
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 
 		private int ProgramsPerSlide
@@ -359,7 +367,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 			public override string GetValue(Snapshot snapshot)
 			{
-				return (snapshot.TotalWeeks.HasValue ? snapshot.TotalWeeks.Value : 0).ToString("#,##0");
+				return snapshot.TotalWeeks.ToString("#,##0");
 			}
 		}
 

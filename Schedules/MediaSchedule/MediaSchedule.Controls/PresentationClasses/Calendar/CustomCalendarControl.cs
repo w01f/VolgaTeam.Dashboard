@@ -6,6 +6,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 {
 	public class CustomCalendarControl : MediaCalendarControl
 	{
+		public CustomCalendarControl()
+		{
+			InitSlideInfo<CalendarSlideInfoControl>();
+		}
+
 		public override Core.Calendar.Calendar CalendarData
 		{
 			get { return _localSchedule.CustomCalendar; }

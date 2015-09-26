@@ -19,7 +19,6 @@ using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
@@ -417,7 +416,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			e.AcceptValue = true;
 		}
 
-		private void repositoryItemPopupContainerEditProgram_Closed(object sender, ClosedEventArgs e)
+		private void OnRepositoryItemClosed(object sender, ClosedEventArgs e)
 		{
 			advBandedGridView.CloseEditor();
 		}
@@ -457,7 +456,41 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
+		public string TotalRowValue
+		{
+			get
+			{
+				const string separator = "        ";
+				var summaryData = Data.Parent.SnapshotSummary;
+				var hasSeveralSnapshots = Data.Parent.Snapshots.Count > 1;
+				var totalCostValue = String.Format("Total Cost: {0}", summaryData.TotalCost.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				var totalSpotsValue = String.Format("Total Spots: {0}x", summaryData.TotalSpots);
+				var values = new List<string>();
+				if (hasSeveralSnapshots)
+				{
+					values.Add(String.Format("Weekly Spots: {0}x", Data.TotalSpots));
+					values.Add(String.Format("Weekly Cost: {0}", Data.TotalCost.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
+					values.Add(String.Format("Weeks: {0}", Data.TotalWeeks));
+					values.Add(String.Format("({0}{2}{1})", totalSpotsValue, totalCostValue, separator));
+				}
+				else
+				{
+					values.Add(totalSpotsValue);
+					values.Add(totalCostValue);
+					values.Add(String.Format("Weekly Spots: {0}x", Data.TotalSpots));
+					values.Add(String.Format("Weekly Cost: {0}", Data.TotalCost.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
+					values.Add(String.Format("Weeks: {0}", Data.TotalWeeks));
+				}
+				return String.Format("{1}{0}", String.Join(separator, values), separator);
+			}
+		}
+
 		public string[][] Logos { get; set; }
+
+		public ContractSettings ContractSettings
+		{
+			get { return Data.ContractSettings; }
+		}
 
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 
@@ -603,20 +636,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 					if ((i + j) < progarmsCount)
 					{
-						var progam = Data.Programs[i + j];
+						var program = Data.Programs[i + j];
 
 						temp.Clear();
-						if (Data.ShowStation && !String.IsNullOrEmpty(progam.Station))
-							temp.Add(progam.Station);
-						if (Data.ShowTime && !String.IsNullOrEmpty(progam.Time))
-							temp.Add(progam.Time);
+						if (Data.ShowStation && !String.IsNullOrEmpty(program.Station))
+							temp.Add(program.Station);
+						if (Data.ShowTime && !String.IsNullOrEmpty(program.Time))
+							temp.Add(program.Time);
 						if (Data.ShowDaypart || Data.ShowProgram)
 						{
 							var temp2 = new List<string>();
-							if (Data.ShowDaypart && !String.IsNullOrEmpty(progam.Daypart))
-								temp2.Add(String.Format("[{0}]", progam.Daypart));
-							if (Data.ShowProgram && !String.IsNullOrEmpty(progam.Name))
-								temp2.Add(String.Format("[{0}]", progam.Name));
+							if (Data.ShowDaypart && !String.IsNullOrEmpty(program.Daypart))
+								temp2.Add(String.Format("[{0}]", program.Daypart));
+							if (Data.ShowProgram && !String.IsNullOrEmpty(program.Name))
+								temp2.Add(String.Format("[{0}]", program.Name));
 							temp.Add(String.Join("  ", temp2));
 						}
 						if (!pageDictionary.Keys.Contains(key))
@@ -626,62 +659,138 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 							pageDictionary.Add(key, String.Join(" - ", temp));
 
 						key = (j + 1).ToString("00");
-						value = progam.Index.ToString(Data.ShowLineId ? "00" : "Merge");
+						value = program.Index.ToString(Data.ShowLineId ? "00" : "Merge");
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("len{0}", j + 1);
-						value = Data.ShowLenght && !String.IsNullOrEmpty(progam.Length) ? progam.Length : String.Empty;
+						value = Data.ShowLenght && !String.IsNullOrEmpty(program.Length) ? program.Length : String.Empty;
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("rt{0}", j + 1);
-						value = Data.ShowRate && progam.Rate.HasValue ? progam.Rate.Value.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
+						value = Data.ShowRate && program.Rate.HasValue ? program.Rate.Value.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("sp{0}", j + 1);
-						value = String.Format("{0}{1}", progam.TotalSpots.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty);
+						value = String.Format("{0}{1}", program.TotalSpots.ToString("#,##0"), Data.ShowSpotsX ? "x" : String.Empty);
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("cs{0}", j + 1);
-						value = progam.TotalCost.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+						value = program.TotalCost.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
+						var mergedWeekDaySpots = new Dictionary<string, string>();
+						if (Data.ShowSpotsPerWeek)
+						{
+							var weekDayValues = new[]
+							{
+								program.MondaySpot,
+								program.TuesdaySpot,
+								program.WednesdaySpot,
+								program.ThursdaySpot,
+								program.FridaySpot,
+								program.SaturdaySpot,
+								program.SundaySpot,
+							};
+							if ((program.MondaySpot.HasValue || mergedWeekDaySpots.Any()) &&
+								weekDayValues.Any(v => v.HasValue))
+								mergedWeekDaySpots.Add(String.Format("{0}a", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+							weekDayValues = weekDayValues.Skip(1).ToArray();
+							if ((program.TuesdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
+								 weekDayValues.Any(v => v.HasValue))
+								mergedWeekDaySpots.Add(String.Format("{0}b", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+							weekDayValues = weekDayValues.Skip(1).ToArray();
+							if ((program.WednesdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
+								 weekDayValues.Any(v => v.HasValue))
+								mergedWeekDaySpots.Add(String.Format("{0}c", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+							weekDayValues = weekDayValues.Skip(1).ToArray();
+							if ((program.ThursdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
+								weekDayValues.Any(v => v.HasValue))
+								mergedWeekDaySpots.Add(String.Format("{0}d", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+							weekDayValues = weekDayValues.Skip(1).ToArray();
+							if ((program.FridaySpot.HasValue || mergedWeekDaySpots.Any()) &&
+								weekDayValues.Any(v => v.HasValue))
+								mergedWeekDaySpots.Add(String.Format("{0}e", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+							weekDayValues = weekDayValues.Skip(1).ToArray();
+							if ((program.SaturdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
+								weekDayValues.Any(v => v.HasValue))
+								mergedWeekDaySpots.Add(String.Format("{0}f", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+							weekDayValues = weekDayValues.Skip(1).ToArray();
+							if ((program.SundaySpot.HasValue || mergedWeekDaySpots.Any()) &&
+								weekDayValues.Any(v => v.HasValue))
+								mergedWeekDaySpots.Add(String.Format("{0}g", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+
+							string mergedSpotValueFormat;
+							switch (mergedWeekDaySpots.Values.Count)
+							{
+								case 1:
+									mergedSpotValueFormat = "< {0} >";
+									break;
+								case 2:
+									mergedSpotValueFormat = "< ----- {0} ----- >";
+									break;
+								default:
+									mergedSpotValueFormat = "< ---------- {0} ---------- >";
+									break;
+							}
+
+							var mergedSpotsValue = String.Format(mergedSpotValueFormat, program.TotalSpots.ToString("#,##0"));
+							foreach (var dictionaryKey in mergedWeekDaySpots.Keys.ToList())
+							{
+								if (mergedWeekDaySpots[dictionaryKey] == "Merge") continue;
+								mergedWeekDaySpots[dictionaryKey] = mergedSpotsValue;
+							}
+						}
 						key = String.Format("{0}a", j + 1);
-						value = progam.MondaySpot.HasValue ? String.Format("{0}{1}", progam.MondaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+						value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							program.MondaySpot.HasValue ? String.Format("{0}{1}", program.MondaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("{0}b", j + 1);
-						value = progam.TuesdaySpot.HasValue ? String.Format("{0}{1}", progam.TuesdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+						value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							program.TuesdaySpot.HasValue ? String.Format("{0}{1}", program.TuesdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("{0}c", j + 1);
-						value = progam.WednesdaySpot.HasValue ? String.Format("{0}{1}", progam.WednesdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+						value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							program.WednesdaySpot.HasValue ? String.Format("{0}{1}", program.WednesdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("{0}d", j + 1);
-						value = progam.ThursdaySpot.HasValue ? String.Format("{0}{1}", progam.ThursdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+						value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							program.ThursdaySpot.HasValue ? String.Format("{0}{1}", program.ThursdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("{0}e", j + 1);
-						value = progam.FridaySpot.HasValue ? String.Format("{0}{1}", progam.FridaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+						value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							program.FridaySpot.HasValue ? String.Format("{0}{1}", program.FridaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("{0}f", j + 1);
-						value = progam.SaturdaySpot.HasValue ? String.Format("{0}{1}", progam.SaturdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+						value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							program.SaturdaySpot.HasValue ? String.Format("{0}{1}", program.SaturdaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("{0}g", j + 1);
-						value = progam.SundaySpot.HasValue ? String.Format("{0}{1}", progam.SundaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+						value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							program.SundaySpot.HasValue ? String.Format("{0}{1}", program.SundaySpot.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 					}
@@ -719,7 +828,5 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 		#endregion
-
-
 	}
 }

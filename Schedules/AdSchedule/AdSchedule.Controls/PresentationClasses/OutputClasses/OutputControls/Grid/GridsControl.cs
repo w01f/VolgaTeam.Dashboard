@@ -203,6 +203,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_selectedOutput.Email();
 		}
 
+		public void Pdf_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			_selectedOutput.PrintPdf();
+		}
+
 		public void Save_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
@@ -357,5 +363,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		void PrintOutput();
 		void Email();
 		void Preview();
+		void PrintPdf();
 	}
 }

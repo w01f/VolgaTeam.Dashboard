@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -533,6 +534,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			repositoryItemComboBoxDayparts.Items.Clear();
 			repositoryItemComboBoxDayparts.Items.AddRange(_localSchedule.Dayparts.Where(x => x.Available).Select(x => x.Code).ToArray());
 
+			hyperLinkEditInfoContract.Enabled = Directory.Exists(BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath);
+
 			if (!quickLoad)
 			{
 				repositoryItemComboBoxLengths.Items.Clear();
@@ -729,6 +732,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				form.checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
 				form.checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
 				form.checkEditOutputNoBrackets.Checked = ScheduleSection.OutputNoBrackets;
+				form.checkEditUseGenericDates.Checked = ScheduleSection.UseGenericDateColumns;
 				form.checkEditUseDecimalRate.Checked = ScheduleSection.UseDecimalRates;
 				form.checkEditOutputLimitQuarters.Visible = ScheduleSection.Parent.Quarters.Count > 1;
 				form.checkEditOutputLimitQuarters.Checked = ScheduleSection.OutputPerQuater;
@@ -740,12 +744,31 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (form.ShowDialog() != DialogResult.OK) return;
 				ScheduleSection.ShowEmptySpots = !form.checkEditEmptySports.Checked;
 				ScheduleSection.OutputNoBrackets = form.checkEditOutputNoBrackets.Checked;
+				ScheduleSection.UseGenericDateColumns = form.checkEditUseGenericDates.Checked;
 				ScheduleSection.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 				ScheduleSection.OutputPerQuater = form.checkEditOutputLimitQuarters.Checked;
 				ScheduleSection.OutputMaxPeriods = form.spinEditOutputLimitPeriods.EditValue != null ? (Int32?)form.spinEditOutputLimitPeriods.Value : null;
 				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
+				UpdateGrid(false);
 				UpdateRateFormat();
 				TrackOptionChanged();
+				SettingsNotSaved = true;
+			}
+		}
+
+		private void hyperLinkEditInfoContract_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormContractSettings())
+			{
+				form.checkEditShowSignatureLine.Checked = ScheduleSection.ContractSettings.ShowSignatureLine;
+				form.checkEditShowRatesExpiration.Checked = ScheduleSection.ContractSettings.RateExpirationDate.HasValue;
+				form.checkEditShowDisclaimer.Checked = ScheduleSection.ContractSettings.ShowDisclaimer;
+				form.dateEditRatesExpirationDate.EditValue = ScheduleSection.ContractSettings.RateExpirationDate;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				ScheduleSection.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+				ScheduleSection.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+				ScheduleSection.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
 				SettingsNotSaved = true;
 			}
 		}

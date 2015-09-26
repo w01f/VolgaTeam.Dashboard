@@ -36,6 +36,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
+							var logoShapes = new List<Shape>();
 							if (page.Logos != null && slideNumber < page.Logos.Length)
 							{
 								var slideLogos = page.Logos[slideNumber];
@@ -49,7 +50,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 											if (!shapeTagName.Equals(string.Format("STATIONLOGO{0}", j + 1))) continue;
 											string fileName = slideLogos[j];
 											if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
-												taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+												logoShapes.Add(taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height));
 											shape.Visible = MsoTriState.msoFalse;
 										}
 									}
@@ -69,19 +70,22 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
 									var key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
 									if (String.IsNullOrEmpty(key)) continue;
-									if (copyOfReplacementList[key] == "Merge")
+									while (copyOfReplacementList[key] == "Merge")
 									{
-										tableShape.TextFrame.TextRange.Text = String.Empty;
+										copyOfReplacementList.Remove(key);
 										var nextColumnIndex = j + 1;
-										if (nextColumnIndex >= table.Columns.Count) continue;
+										tableShape.TextFrame.TextRange.Text = String.Empty;
+										if (nextColumnIndex >= table.Columns.Count) break;
 										table.Cell(i, j).Merge(table.Cell(i, nextColumnIndex));
 
 										tableShape = table.Cell(i, j).Shape;
-										if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+										if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
 										cellText = tableShape.TextFrame.TextRange.Text.Trim();
 										key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
-										if (String.IsNullOrEmpty(key)) continue;
+										if (copyOfReplacementList[key] == "Merge")
+											j++;
 									}
+									if (String.IsNullOrEmpty(key)) continue;
 									tableShape.TextFrame.TextRange.Text = copyOfReplacementList[key];
 									copyOfReplacementList.Remove(key);
 								}
@@ -108,6 +112,33 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 								if (!cellText.Equals("Delete Column")) continue;
 								table.Columns[i].Delete();
 							}
+
+							if (!String.IsNullOrEmpty(page.TotalRowValue))
+							{
+								tableRowsCount = table.Rows.Count;
+
+								table.Rows.Add();
+
+								var addedRow = table.Rows[tableRowsCount + 1];
+								var cellsCount = addedRow.Cells.Count;
+								while (cellsCount > 1)
+								{
+									try
+									{
+										addedRow.Cells[cellsCount - 1].Merge(addedRow.Cells[cellsCount]);
+										cellsCount--;
+									}
+									catch
+									{
+										break;
+									}
+								}
+
+								var textRange = addedRow.Cells[1].Shape.TextFrame.TextRange;
+								textRange.ParagraphFormat.Alignment = PpParagraphAlignment.ppAlignLeft;
+								textRange.Text = page.TotalRowValue;
+							}
+
 							if (pasteToSlideMaster)
 							{
 								var newSlide = presentation.Slides.Add(1, PpSlideLayout.ppLayoutBlank);
@@ -122,10 +153,25 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									design = presentation.Designs.Add(DateTime.Now.ToString("MMddyy-hhmmsstt"));
 								tableContainer.Copy();
 								design.SlideMaster.Shapes.Paste();
+								foreach (var logoShape in logoShapes)
+								{
+									logoShape.Copy();
+									design.SlideMaster.Shapes.Paste();
+								}
+
+								if (page.ContractSettings.IsConfigured)
+									FillContractInfo(design, page.ContractSettings, ContractTemplatePath);
+
 								newSlide.Design = design;
 							}
-							else if (selectedTheme != null)
-								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+							else
+							{
+								if (selectedTheme != null)
+									presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+
+								if (page.ContractSettings.IsConfigured)
+									FillContractInfo(taggedSlide, page.ContractSettings, ContractTemplatePath);
+							}
 							AppendSlide(presentation, 1, destinationPresentation);
 							presentation.Close();
 							slideNumber++;
@@ -148,12 +194,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 		public void PrepareSnapshotEmail(string fileName, IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendSnapshot(pages, selectedTheme, pasteToSlideMaster, presentation));
-		}
-
-		public void PrepareSnapshotPdf(string fileName, IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
-		{
-			PreparePresentation(fileName, presentation => AppendSnapshot(pages, selectedTheme, pasteToSlideMaster, presentation));
-			BuildPdf(fileName);
 		}
 	}
 }

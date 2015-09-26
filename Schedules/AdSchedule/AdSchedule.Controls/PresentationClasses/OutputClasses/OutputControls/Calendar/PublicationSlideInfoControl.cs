@@ -18,6 +18,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	{
 		private bool _allowToSave;
 		private CalendarMonth _month;
+		private readonly List<ImageSource> _imageSources = new List<ImageSource>();
 
 		public PublicationSlideInfoControl()
 		{
@@ -25,6 +26,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Dock = DockStyle.Fill;
 
 			favoriteImagesControl.Init();
+
+			_imageSources.AddRange(ListManager.Instance.Images.SelectMany(g => g.Images).OrderByDescending(i => i.IsDefault).ThenBy(i => i.Name));
 
 			#region Assign Properties Changed Event To Controls
 
@@ -55,7 +58,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditShowLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
 			calendarHeaderSelector.SelectionChanged += propertiesControl_PropertiesChanged;
-			calendarHeaderSelector.LoadData(ListManager.Instance.Images.SelectMany(g => g.Images));
+			calendarHeaderSelector.LoadData(_imageSources);
 			#endregion
 
 			#endregion
@@ -157,7 +160,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditShowLogo.Enabled = ListManager.Instance.DefaultCalendarViewSettings.EnableLogo; ;
 			checkEditShowLogo.Checked = OutputData.ShowLogo && checkEditShowLogo.Enabled;
 			checkEditLogoApplyForAll.Checked = OutputData.ApplyForAllLogo;
-			var selectedLogo = ListManager.Instance.Images.SelectMany(g => g.Images).FirstOrDefault(l => l.EncodedBigImage.Equals(OutputData.EncodedLogo));
+			var selectedLogo =
+				_imageSources.FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo)) ??
+				_imageSources.FirstOrDefault();
 			calendarHeaderSelector.SelectedImageSource = selectedLogo;
 			#endregion
 
@@ -282,6 +287,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 		#endregion
 
-		
+
 	}
 }

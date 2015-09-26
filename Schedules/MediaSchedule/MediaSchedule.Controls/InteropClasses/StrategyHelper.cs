@@ -91,10 +91,15 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									break;
 								}
 							}
+
+							if (strategy.ContractSettings.IsConfigured)
+								FillContractInfo(slide, strategy.ContractSettings, ContractTemplatePath);
 						}
+
 						var selectedTheme = strategy.SelectedTheme;
 						if (selectedTheme != null)
 							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}
@@ -116,10 +121,11 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			PreparePresentation(fileName, presentation => AppendStrategy(strategy, presentation));
 		}
 
-		public void PrepareStrategyPdf(string fileName, ProgramStrategyControl strategy)
+		public void PrepareStrategyPdf(string targetFileName, ProgramStrategyControl strategy)
 		{
-			PreparePresentation(fileName, presentation => AppendStrategy(strategy, presentation));
-			BuildPdf(fileName);
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, presentation => AppendStrategy(strategy, presentation));
+			BuildPdf(sourceFileName, targetFileName);
 		}
 	}
 }

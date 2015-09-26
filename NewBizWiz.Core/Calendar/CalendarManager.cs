@@ -351,7 +351,7 @@ namespace NewBizWiz.Core.Calendar
 		public List<CalendarNote> Notes { get; private set; }
 		public abstract bool AllowCustomNotes { get; }
 
-		public string Serialize()
+		public virtual string Serialize()
 		{
 			var result = new StringBuilder();
 			result.AppendLine(@"<Days>");
@@ -422,8 +422,8 @@ namespace NewBizWiz.Core.Calendar
 		public void AddNote(DateRange range, ITextItem noteText, bool userAdded = false)
 		{
 			var newNote = new CommonCalendarNote(this) { UserAdded = userAdded };
-			newNote.StartDay = range.StartDate;
-			newNote.FinishDay = range.FinishDate;
+			newNote.StartDay = range.StartDate.Value;
+			newNote.FinishDay = range.FinishDate.Value;
 			newNote.Note = noteText;
 			var _notesToDelete = new List<CalendarNote>();
 			foreach (var note in Notes)
@@ -449,7 +449,7 @@ namespace NewBizWiz.Core.Calendar
 			UpdateDayAndNoteLinks();
 		}
 
-		protected void Deserialize<TMonth, TDay, TNote>(XmlNode node, DayOfWeek startDay, DayOfWeek endDay)
+		protected void DeserializeInternal<TMonth, TDay, TNote>(XmlNode node, DayOfWeek startDay, DayOfWeek endDay)
 			where TMonth : CalendarMonth
 			where TDay : CalendarDay
 			where TNote : CalendarNote
@@ -631,7 +631,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthSundayBased, CalendarDaySundayBased, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+			DeserializeInternal<CalendarMonthSundayBased, CalendarDaySundayBased, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 
 		public override void UpdateDaysCollection()
@@ -667,7 +667,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthMondayBased, CalendarDayMondayBased, CalendarNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
+			DeserializeInternal<CalendarMonthMondayBased, CalendarDayMondayBased, CalendarNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 
 		public override void UpdateDaysCollection()
@@ -1058,17 +1058,6 @@ namespace NewBizWiz.Core.Calendar
 	public class CommonCalendarNote : CalendarNote
 	{
 		public CommonCalendarNote(Calendar parent) : base(parent) { }
-	}
-
-	public class DateRange
-	{
-		public DateTime StartDate { get; set; }
-		public DateTime FinishDate { get; set; }
-
-		public string Range
-		{
-			get { return StartDate.ToString("MM/dd/yy") + "-" + FinishDate.ToString("MM/dd/yy"); }
-		}
 	}
 
 	public abstract class CalendarOutputData

@@ -122,5 +122,12 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			PreparePresentation(fileName, AppendSnapshot);
 		}
+
+		public void PrepareSnapshotPdf(string targetFileName)
+		{
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, AppendSnapshot);
+			BuildPdf(sourceFileName, targetFileName);
+		}
 	}
 }

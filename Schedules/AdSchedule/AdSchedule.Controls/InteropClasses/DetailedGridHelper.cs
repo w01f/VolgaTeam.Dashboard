@@ -136,5 +136,12 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			PreparePresentation(fileName, presentation => AppendDetailedGridGridBased(outputControls, presentation));
 		}
+
+		public void PrepareDetailedGridGridBasedPdf(string targetFileName, PublicationDetailedGridControl[] outputControls)
+		{
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, presentation => AppendDetailedGridGridBased(outputControls, presentation));
+			BuildPdf(sourceFileName, targetFileName);
+		}
 	}
 }

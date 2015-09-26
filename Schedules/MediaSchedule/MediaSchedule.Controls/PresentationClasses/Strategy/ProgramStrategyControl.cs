@@ -92,6 +92,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				Controller.Instance.StrategyShowStationToggle.Checked = _localSchedule.ProgramStrategy.ShowStation;
 				Controller.Instance.StrategyShowDescriptionToggle.Checked = _localSchedule.ProgramStrategy.ShowDescription;
 			}
+
+			hyperLinkEditInfoContract.Enabled = Directory.Exists(BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath);
+
 			_allowToSave = true;
 			SettingsNotSaved = false;
 		}
@@ -195,6 +198,24 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		public void Pdf_Click(object sender, EventArgs e)
 		{
 			OutputPdf();
+		}
+
+		private void hyperLinkEditInfoContract_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			using (var form = new FormContractSettings())
+			{
+				form.checkEditShowSignatureLine.Checked = _localSchedule.ProgramStrategy.ContractSettings.ShowSignatureLine;
+				form.checkEditShowRatesExpiration.Checked = _localSchedule.ProgramStrategy.ContractSettings.RateExpirationDate.HasValue;
+				form.checkEditShowDisclaimer.Checked = _localSchedule.ProgramStrategy.ContractSettings.ShowDisclaimer;
+				form.dateEditRatesExpirationDate.EditValue = _localSchedule.ProgramStrategy.ContractSettings.RateExpirationDate;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				_localSchedule.ProgramStrategy.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+				_localSchedule.ProgramStrategy.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+				_localSchedule.ProgramStrategy.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+
+				SettingsNotSaved = true;
+			}
 		}
 		#endregion
 
@@ -382,6 +403,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; private set; }
 		public List<ImageSource> ItemLogos { get; private set; }
 
+		public ContractSettings ContractSettings
+		{
+			get { return _localSchedule.ProgramStrategy.ContractSettings; }
+		}
+
 		public Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Strategy).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy))); }
@@ -552,10 +578,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					var tempFileName = Path.GetTempFileName();
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyPdf(tempFileName, this);
-					var extension = Path.GetExtension(tempFileName);
-					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyPdf(pdfFileName, this);
 					if (File.Exists(pdfFileName))
 						try
 						{

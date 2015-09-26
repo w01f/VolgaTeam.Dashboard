@@ -2,11 +2,26 @@
 using System.Linq;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 {
 	public class BroadcastCalendarControl : MediaCalendarControl
 	{
+		public BroadcastCalendarControl()
+		{
+			InitSlideInfo<BroadcastSlideInfoControl>();
+			SlideInfo.PropertyChanged += (sender, e) =>
+			{
+				if (!(e is DataSourceChangedEventArgs)) return;
+				CalendarData.Reset();
+				SaveCalendarData(false);
+				base.LoadCalendar(false);
+				MonthList_SelectedIndexChanged(MonthList, EventArgs.Empty);
+				SettingsNotSaved = true;
+			};
+		}
+
 		public override Core.Calendar.Calendar CalendarData
 		{
 			get { return _localSchedule.BroadcastCalendar; }
@@ -60,9 +75,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		public override void LoadCalendar(bool quickLoad)
 		{
 			base.LoadCalendar(quickLoad);
-			if (!_localSchedule.Section.Programs.Any()) return;
-			if (!quickLoad)
-				CalendarData.UpdateNotesCollection();
+			if (quickLoad) return;
+			CalendarData.UpdateNotesCollection();
+		}
+
+		public override void ShowCalendar(bool gridView)
+		{
+			base.ShowCalendar(gridView);
+			retractableBarControl.AddButtons(SlideInfo.SlideInfoControl.GetChapters());
 		}
 
 		public override void Help_Click(object sender, EventArgs e)
@@ -73,8 +93,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		public override void UpdateOutputFunctions()
 		{
 			base.UpdateOutputFunctions();
-			var schedueSection = _localSchedule.Section;
-			var enable = schedueSection.Programs.Any();
+			var enable = (_localSchedule.SelectedSpotType == SpotType.Week && _localSchedule.Section.Programs.Any()) || _localSchedule.Snapshots.Any(s => s.Programs.Count > 0);
+			retractableBarControl.Visible = enable;
 			MonthList.Enabled = enable;
 			pnTop.Visible = enable;
 			pnMain.Visible = enable;

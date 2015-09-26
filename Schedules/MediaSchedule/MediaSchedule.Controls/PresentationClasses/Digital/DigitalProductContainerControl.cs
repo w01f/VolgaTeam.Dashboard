@@ -208,10 +208,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					var tempFileName = Path.GetTempFileName();
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(tempFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					var extension = Path.GetExtension(tempFileName);
-					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 					if (File.Exists(pdfFileName))
 						try
 						{

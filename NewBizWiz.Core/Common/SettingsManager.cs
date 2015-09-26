@@ -27,6 +27,7 @@ namespace NewBizWiz.Core.Common
 			SlideMastersPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SlidesTab", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			RateCardPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\RateCard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpBrowserSettingsPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\!Help_Browser.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			DashboardDefaultLogoPath = String.Format(@"{0}\newlocaldirect.com\app\home.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SelectedWizard = String.Empty;
 
 			DashboardName = "6 Minute Seller";
@@ -67,6 +68,7 @@ namespace NewBizWiz.Core.Common
 
 		public string DashboardName { get; set; }
 		public string DashboardCode { get; set; }
+		public string DashboardDefaultLogoPath { get; set; }
 		
 		public string Size
 		{

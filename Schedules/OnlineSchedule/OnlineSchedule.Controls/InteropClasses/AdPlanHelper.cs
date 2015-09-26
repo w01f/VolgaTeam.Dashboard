@@ -101,5 +101,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 		{
 			PreparePresentation(fileName, presentation => AppendAdPlan(adPlanControl, presentation));
 		}
+
+		public void PrepareAdPlanPdf(string targetFileName, AdPlanControl adPlanControl)
+		{
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, presentation => AppendAdPlan(adPlanControl, presentation));
+			BuildPdf(sourceFileName, targetFileName);
+		}
 	}
 }

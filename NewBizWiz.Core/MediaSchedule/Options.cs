@@ -19,6 +19,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		public int? TotalPeriods { get; set; }
 		public List<OptionProgram> Programs { get; private set; }
 
+		public ContractSettings ContractSettings { get; private set; }
+
 		#region Options
 		public bool ShowLineId { get; set; }
 		public bool ShowLogo { get; set; }
@@ -94,6 +96,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
 			TotalPeriods = 1;
 			Programs = new List<OptionProgram>();
+			ContractSettings = new ContractSettings();
 
 			#region Options
 			ShowLineId = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowLineId;
@@ -231,6 +234,10 @@ namespace NewBizWiz.Core.MediaSchedule
 			foreach (var program in Programs)
 				result.AppendLine(program.Serialize());
 			result.AppendLine(@"</Programs>");
+
+			if (ContractSettings.IsConfigured)
+				result.AppendLine(String.Format("<ContractSettings>{0}</ContractSettings>", ContractSettings.Serialize()));
+
 			return result.ToString();
 		}
 
@@ -450,6 +457,10 @@ namespace NewBizWiz.Core.MediaSchedule
 							Programs.Add(program);
 						}
 						break;
+
+					case "ContractSettings":
+						ContractSettings.Deserialize(childNode);
+						break;
 				}
 		}
 
@@ -660,6 +671,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		public SpotType SpotType { get; set; }
 		public bool ApplySettingsForAll { get; set; }
 
+		public ContractSettings ContractSettings { get; private set; }
+
 		#region Options
 		public bool ShowLineId { get; set; }
 		public bool ShowLogo { get; set; }
@@ -707,6 +720,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			ApplySettingsForAll = false;
 
+			ContractSettings = new ContractSettings();
+
 			#region Options
 			ShowLineId = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowLineId;
 			ShowLogo = MediaMetaData.Instance.ListManager.DefaultOptionsSummarySettings.ShowLogo;
@@ -727,6 +742,9 @@ namespace NewBizWiz.Core.MediaSchedule
 			var result = new StringBuilder();
 
 			result.AppendLine(@"<ApplySettingsForAll>" + ApplySettingsForAll + @"</ApplySettingsForAll>");
+
+			if (ContractSettings.IsConfigured)
+				result.AppendLine(String.Format("<ContractSettings>{0}</ContractSettings>", ContractSettings.Serialize()));
 
 			#region Options
 			result.AppendLine(@"<SpotType>" + (Int32)SpotType + @"</SpotType>");
@@ -800,6 +818,9 @@ namespace NewBizWiz.Core.MediaSchedule
 					case "ApplySettingsForAll":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ApplySettingsForAll = tempBool;
+						break;
+					case "ContractSettings":
+						ContractSettings.Deserialize(childNode);
 						break;
 
 					#region Options

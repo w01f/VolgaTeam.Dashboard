@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -155,7 +157,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public override ButtonItem PdfButton
 		{
-			get { return null; }
+			get { return Controller.Instance.SummaryFullPdf; }
 		}
 
 		public override Theme SelectedTheme
@@ -188,7 +190,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		protected override void OutputPdf()
 		{
-			throw new NotImplementedException();
+			SaveSchedule();
+			if (!CheckPowerPointRunning()) return;
+			TrackOutput();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					AdSchedulePowerPointHelper.Instance.PrepareSummaryPdf(pdfFileName, this);
+					if (File.Exists(pdfFileName))
+						try
+						{
+							Process.Start(pdfFileName);
+						}
+						catch { }
+					formProgress.Close();
+				});
+			}
 		}
 
 		protected override bool CheckPowerPointRunning()

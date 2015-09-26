@@ -162,5 +162,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 			}
 		}
+
+		protected override void ShowPdf()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

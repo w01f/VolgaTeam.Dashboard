@@ -1,4 +1,6 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+﻿using System.Windows.Forms;
+
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
     partial class HomeControl
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
 			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
@@ -51,7 +54,7 @@
 			this.labelControlDemosInfo = new DevExpress.XtraEditors.LabelControl();
 			this.pnSelectDemo = new System.Windows.Forms.Panel();
 			this.comboBoxEditDemos = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnSelectSource = new System.Windows.Forms.Panel();
 			this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.pnDemosType = new System.Windows.Forms.Panel();
@@ -69,6 +72,7 @@
 			this.buttonXCalendarTypeMondayBased = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
+			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageMedia.SuspendLayout();
@@ -94,6 +98,7 @@
 			this.xtraTabPageCalendarType.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// stationsControl
@@ -104,7 +109,7 @@
 			this.stationsControl.HasChanged = false;
 			this.stationsControl.Location = new System.Drawing.Point(0, 0);
 			this.stationsControl.Name = "stationsControl";
-			this.stationsControl.Size = new System.Drawing.Size(348, 572);
+			this.stationsControl.Size = new System.Drawing.Size(344, 569);
 			this.stationsControl.TabIndex = 0;
 			// 
 			// xtraTabControlMain
@@ -125,7 +130,7 @@
 			this.xtraTabControlMain.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlMain.Name = "xtraTabControlMain";
 			this.xtraTabControlMain.SelectedTabPage = this.xtraTabPageMedia;
-			this.xtraTabControlMain.Size = new System.Drawing.Size(658, 600);
+			this.xtraTabControlMain.Size = new System.Drawing.Size(665, 600);
 			this.xtraTabControlMain.TabIndex = 18;
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageMedia,
@@ -136,10 +141,12 @@
 			// 
 			this.xtraTabPageMedia.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
 			this.xtraTabPageMedia.Appearance.PageClient.Options.UseBackColor = true;
+			this.xtraTabPageMedia.Controls.Add(this.pbMediaDefault);
 			this.xtraTabPageMedia.Controls.Add(this.pnMedia);
 			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
-			this.xtraTabPageMedia.Size = new System.Drawing.Size(656, 572);
+			this.xtraTabPageMedia.Size = new System.Drawing.Size(659, 569);
 			this.xtraTabPageMedia.Text = "Television Strategy";
+			this.xtraTabPageMedia.Padding = new Padding(10);
 			// 
 			// pnMedia
 			// 
@@ -153,7 +160,7 @@
 			this.pnMedia.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMedia.Location = new System.Drawing.Point(0, 0);
 			this.pnMedia.Name = "pnMedia";
-			this.pnMedia.Size = new System.Drawing.Size(656, 572);
+			this.pnMedia.Size = new System.Drawing.Size(351, 569);
 			this.pnMedia.TabIndex = 0;
 			// 
 			// pbMediaLogo
@@ -171,9 +178,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlexDateWarning.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laFlexDateWarning.ForeColor = System.Drawing.Color.Red;
-			this.laFlexDateWarning.Location = new System.Drawing.Point(18, 395);
+			this.laFlexDateWarning.Location = new System.Drawing.Point(18, 392);
 			this.laFlexDateWarning.Name = "laFlexDateWarning";
-			this.laFlexDateWarning.Size = new System.Drawing.Size(623, 108);
+			this.laFlexDateWarning.Size = new System.Drawing.Size(318, 108);
 			this.laFlexDateWarning.TabIndex = 21;
 			this.laFlexDateWarning.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
@@ -181,9 +188,9 @@
 			// 
 			this.laMediaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.laMediaDescription.Location = new System.Drawing.Point(18, 518);
+			this.laMediaDescription.Location = new System.Drawing.Point(18, 515);
 			this.laMediaDescription.Name = "laMediaDescription";
-			this.laMediaDescription.Size = new System.Drawing.Size(623, 44);
+			this.laMediaDescription.Size = new System.Drawing.Size(318, 44);
 			this.laMediaDescription.TabIndex = 20;
 			this.laMediaDescription.Text = "*Build a Monthly Schedule if you want the most flexibility to deal with preemptio" +
     "ns and makegoods\r\n*The Ad Calendar will only work if you build a Weekly Schedule" +
@@ -232,7 +239,7 @@
 			// 
 			this.xtraTabPageDigital.Controls.Add(this.digitalProductListControl);
 			this.xtraTabPageDigital.Name = "xtraTabPageDigital";
-			this.xtraTabPageDigital.Size = new System.Drawing.Size(656, 572);
+			this.xtraTabPageDigital.Size = new System.Drawing.Size(659, 569);
 			this.xtraTabPageDigital.Text = "Digital Strategy";
 			// 
 			// digitalProductListControl
@@ -243,7 +250,7 @@
 			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalProductListControl.Logo = null;
 			this.digitalProductListControl.Name = "digitalProductListControl";
-			this.digitalProductListControl.Size = new System.Drawing.Size(656, 572);
+			this.digitalProductListControl.Size = new System.Drawing.Size(659, 569);
 			this.digitalProductListControl.TabIndex = 0;
 			// 
 			// daypartsControl
@@ -254,7 +261,7 @@
 			this.daypartsControl.HasChanged = false;
 			this.daypartsControl.Location = new System.Drawing.Point(0, 0);
 			this.daypartsControl.Name = "daypartsControl";
-			this.daypartsControl.Size = new System.Drawing.Size(348, 572);
+			this.daypartsControl.Size = new System.Drawing.Size(344, 569);
 			this.daypartsControl.TabIndex = 17;
 			// 
 			// xtraTabControlOptions
@@ -287,21 +294,21 @@
 			// 
 			this.xtraTabPageStations.Controls.Add(this.stationsControl);
 			this.xtraTabPageStations.Name = "xtraTabPageStations";
-			this.xtraTabPageStations.Size = new System.Drawing.Size(348, 572);
+			this.xtraTabPageStations.Size = new System.Drawing.Size(344, 569);
 			this.xtraTabPageStations.Text = "Stations";
 			// 
 			// xtraTabPageDayparts
 			// 
 			this.xtraTabPageDayparts.Controls.Add(this.daypartsControl);
 			this.xtraTabPageDayparts.Name = "xtraTabPageDayparts";
-			this.xtraTabPageDayparts.Size = new System.Drawing.Size(348, 572);
+			this.xtraTabPageDayparts.Size = new System.Drawing.Size(344, 569);
 			this.xtraTabPageDayparts.Text = "Dayparts";
 			// 
 			// xtraTabPageDemos
 			// 
 			this.xtraTabPageDemos.Controls.Add(this.pnDemos);
 			this.xtraTabPageDemos.Name = "xtraTabPageDemos";
-			this.xtraTabPageDemos.Size = new System.Drawing.Size(348, 572);
+			this.xtraTabPageDemos.Size = new System.Drawing.Size(344, 569);
 			this.xtraTabPageDemos.Text = "Demos";
 			// 
 			// pnDemos
@@ -317,7 +324,7 @@
 			this.pnDemos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnDemos.Location = new System.Drawing.Point(0, 0);
 			this.pnDemos.Name = "pnDemos";
-			this.pnDemos.Size = new System.Drawing.Size(348, 572);
+			this.pnDemos.Size = new System.Drawing.Size(344, 569);
 			this.pnDemos.TabIndex = 0;
 			// 
 			// pnDemosInfo
@@ -327,7 +334,7 @@
 			this.pnDemosInfo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.pnDemosInfo.Location = new System.Drawing.Point(0, 336);
 			this.pnDemosInfo.Name = "pnDemosInfo";
-			this.pnDemosInfo.Size = new System.Drawing.Size(348, 236);
+			this.pnDemosInfo.Size = new System.Drawing.Size(344, 233);
 			this.pnDemosInfo.TabIndex = 12;
 			// 
 			// labelControlDemosInfo
@@ -342,7 +349,7 @@
 			this.labelControlDemosInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlDemosInfo.Location = new System.Drawing.Point(13, 12);
 			this.labelControlDemosInfo.Name = "labelControlDemosInfo";
-			this.labelControlDemosInfo.Size = new System.Drawing.Size(323, 214);
+			this.labelControlDemosInfo.Size = new System.Drawing.Size(319, 211);
 			this.labelControlDemosInfo.TabIndex = 1;
 			this.labelControlDemosInfo.Text = resources.GetString("labelControlDemosInfo.Text");
 			// 
@@ -352,7 +359,7 @@
 			this.pnSelectDemo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSelectDemo.Location = new System.Drawing.Point(0, 301);
 			this.pnSelectDemo.Name = "pnSelectDemo";
-			this.pnSelectDemo.Size = new System.Drawing.Size(348, 35);
+			this.pnSelectDemo.Size = new System.Drawing.Size(344, 35);
 			this.pnSelectDemo.TabIndex = 11;
 			// 
 			// comboBoxEditDemos
@@ -366,7 +373,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditDemos.Properties.NullText = "Select Demo";
 			this.comboBoxEditDemos.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditDemos.Size = new System.Drawing.Size(323, 22);
+			this.comboBoxEditDemos.Size = new System.Drawing.Size(319, 22);
 			this.comboBoxEditDemos.StyleController = this.styleController;
 			this.comboBoxEditDemos.TabIndex = 1;
 			this.comboBoxEditDemos.EditValueChanged += new System.EventHandler(this.comboBoxEditDemos_EditValueChanged);
@@ -392,7 +399,7 @@
 			this.pnSelectSource.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSelectSource.Location = new System.Drawing.Point(0, 266);
 			this.pnSelectSource.Name = "pnSelectSource";
-			this.pnSelectSource.Size = new System.Drawing.Size(348, 35);
+			this.pnSelectSource.Size = new System.Drawing.Size(344, 35);
 			this.pnSelectSource.TabIndex = 10;
 			// 
 			// comboBoxEditSource
@@ -406,7 +413,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditSource.Properties.NullText = "Select Source";
 			this.comboBoxEditSource.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSource.Size = new System.Drawing.Size(323, 22);
+			this.comboBoxEditSource.Size = new System.Drawing.Size(319, 22);
 			this.comboBoxEditSource.StyleController = this.styleController;
 			this.comboBoxEditSource.TabIndex = 5;
 			this.comboBoxEditSource.EditValueChanged += new System.EventHandler(this.comboBoxEditSource_EditValueChanged);
@@ -418,7 +425,7 @@
 			this.pnDemosType.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosType.Location = new System.Drawing.Point(0, 205);
 			this.pnDemosType.Name = "pnDemosType";
-			this.pnDemosType.Size = new System.Drawing.Size(348, 61);
+			this.pnDemosType.Size = new System.Drawing.Size(344, 61);
 			this.pnDemosType.TabIndex = 9;
 			// 
 			// buttonXDemosRtg
@@ -443,7 +450,7 @@
 			this.buttonXDemosImps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDemosImps.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImps.Enabled = false;
-			this.buttonXDemosImps.Location = new System.Drawing.Point(193, 13);
+			this.buttonXDemosImps.Location = new System.Drawing.Point(189, 13);
 			this.buttonXDemosImps.Name = "buttonXDemosImps";
 			this.buttonXDemosImps.Size = new System.Drawing.Size(143, 35);
 			this.buttonXDemosImps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -460,7 +467,7 @@
 			this.pnDemosImport.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosImport.Location = new System.Drawing.Point(0, 146);
 			this.pnDemosImport.Name = "pnDemosImport";
-			this.pnDemosImport.Size = new System.Drawing.Size(348, 59);
+			this.pnDemosImport.Size = new System.Drawing.Size(344, 59);
 			this.pnDemosImport.TabIndex = 8;
 			// 
 			// buttonXDemosImport
@@ -472,7 +479,7 @@
 			this.buttonXDemosImport.Enabled = false;
 			this.buttonXDemosImport.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosImport.Name = "buttonXDemosImport";
-			this.buttonXDemosImport.Size = new System.Drawing.Size(323, 35);
+			this.buttonXDemosImport.Size = new System.Drawing.Size(319, 35);
 			this.buttonXDemosImport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosImport.TabIndex = 2;
 			this.buttonXDemosImport.Text = "Use Imported Estimates?";
@@ -486,7 +493,7 @@
 			this.pnDemosCustom.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosCustom.Location = new System.Drawing.Point(0, 87);
 			this.pnDemosCustom.Name = "pnDemosCustom";
-			this.pnDemosCustom.Size = new System.Drawing.Size(348, 59);
+			this.pnDemosCustom.Size = new System.Drawing.Size(344, 59);
 			this.pnDemosCustom.TabIndex = 7;
 			// 
 			// buttonXDemosCustom
@@ -498,7 +505,7 @@
 			this.buttonXDemosCustom.Enabled = false;
 			this.buttonXDemosCustom.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosCustom.Name = "buttonXDemosCustom";
-			this.buttonXDemosCustom.Size = new System.Drawing.Size(323, 35);
+			this.buttonXDemosCustom.Size = new System.Drawing.Size(319, 35);
 			this.buttonXDemosCustom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosCustom.TabIndex = 1;
 			this.buttonXDemosCustom.Text = "Use your Own Estimates?";
@@ -513,7 +520,7 @@
 			this.pnUseDemos.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnUseDemos.Location = new System.Drawing.Point(0, 0);
 			this.pnUseDemos.Name = "pnUseDemos";
-			this.pnUseDemos.Size = new System.Drawing.Size(348, 87);
+			this.pnUseDemos.Size = new System.Drawing.Size(344, 87);
 			this.pnUseDemos.TabIndex = 6;
 			// 
 			// labelControlDemoTitle
@@ -525,7 +532,7 @@
 			this.labelControlDemoTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlDemoTitle.Location = new System.Drawing.Point(13, 3);
 			this.labelControlDemoTitle.Name = "labelControlDemoTitle";
-			this.labelControlDemoTitle.Size = new System.Drawing.Size(323, 38);
+			this.labelControlDemoTitle.Size = new System.Drawing.Size(319, 38);
 			this.labelControlDemoTitle.TabIndex = 1;
 			this.labelControlDemoTitle.Text = "Are you working with an agency?";
 			// 
@@ -538,7 +545,7 @@
 			this.buttonXUseDemos.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXUseDemos.Location = new System.Drawing.Point(13, 47);
 			this.buttonXUseDemos.Name = "buttonXUseDemos";
-			this.buttonXUseDemos.Size = new System.Drawing.Size(323, 35);
+			this.buttonXUseDemos.Size = new System.Drawing.Size(319, 35);
 			this.buttonXUseDemos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.superTooltip.SetSuperTooltip(this.buttonXUseDemos, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Show Ratings or Impressions", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonXUseDemos.TabIndex = 0;
@@ -552,7 +559,7 @@
 			this.xtraTabPageCalendarType.Controls.Add(this.buttonXCalendarTypeMondayBased);
 			this.xtraTabPageCalendarType.Name = "xtraTabPageCalendarType";
 			this.xtraTabPageCalendarType.PageVisible = false;
-			this.xtraTabPageCalendarType.Size = new System.Drawing.Size(348, 572);
+			this.xtraTabPageCalendarType.Size = new System.Drawing.Size(344, 569);
 			this.xtraTabPageCalendarType.Text = "Calendar";
 			// 
 			// buttonXCalendarTypeSundayBased
@@ -602,6 +609,16 @@
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
+			// pbMediaDefault
+			// 
+			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pbMediaDefault.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.HomeDefaultLogo;
+			this.pbMediaDefault.Location = new System.Drawing.Point(351, 0);
+			this.pbMediaDefault.Name = "pbMediaDefault";
+			this.pbMediaDefault.Size = new System.Drawing.Size(308, 569);
+			this.pbMediaDefault.TabIndex = 23;
+			this.pbMediaDefault.TabStop = false;
+			// 
 			// HomeControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -635,6 +652,7 @@
 			this.xtraTabPageCalendarType.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -681,6 +699,7 @@
 		private DevExpress.XtraEditors.LabelControl labelControlDemosInfo;
 		private DevExpress.XtraEditors.LabelControl labelControlDemoTitle;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
+		private System.Windows.Forms.PictureBox pbMediaDefault;
 
     }
 }

@@ -177,6 +177,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			get { return Controller.Instance.SummaryFullPdf; }
 		}
 
+		public override string ContractTemplatePath
+		{
+			get { return BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath; }
+		}
+
 		public override Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2))); }
@@ -212,10 +217,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					var tempFileName = Path.GetTempFileName();
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryPdf(tempFileName,this);
-					var extension = Path.GetExtension(tempFileName);
-					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryPdf(pdfFileName, this);
 					if (File.Exists(pdfFileName))
 						try
 						{
@@ -226,7 +229,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				});
 			}
 		}
-		
+
 		protected override bool CheckPowerPointRunning()
 		{
 			return Controller.Instance.CheckPowerPointRunning();

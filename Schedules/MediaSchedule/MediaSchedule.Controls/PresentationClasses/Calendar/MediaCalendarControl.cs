@@ -27,11 +27,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			Dock = DockStyle.Fill;
 			hyperLinkEditReset.Visible = true;
 			hyperLinkEditReset.OpenLink += OnReset;
-			InitSlideInfo<CalendarSlideInfoControl>();
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
+				{
 					LoadCalendar(e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged);
+					if (!(e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged))
+						ShowCalendar(false);
+				}
 			});
 		}
 
@@ -270,10 +273,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 						RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 						previewGroups.Add(previewGroup);
 					}
-					var tempFileName = Path.GetTempFileName();
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(tempFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					var extension = Path.GetExtension(tempFileName);
-					var pdfFileName = tempFileName.Replace(extension, ".pdf");
+					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 					if (File.Exists(pdfFileName))
 						try
 						{

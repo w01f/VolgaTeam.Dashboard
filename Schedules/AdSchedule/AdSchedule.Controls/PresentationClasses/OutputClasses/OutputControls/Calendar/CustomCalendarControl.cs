@@ -31,6 +31,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return Controller.Instance.Calendar2PowerPoint; }
 		}
 
+		public override ButtonItem PdfButton
+		{
+			get { return Controller.Instance.Calendar2Pdf; }
+		}
+
 		public override ButtonItem ThemeButton
 		{
 			get { throw new NotImplementedException(); }

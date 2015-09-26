@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using EO.Internal;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.CommonGUI.Summary;
@@ -122,6 +123,11 @@ namespace NewBizWiz.CommonGUI.Interop
 									}
 								}
 							}
+
+							if (summary.ContractSettings.IsConfigured &&
+								!String.IsNullOrEmpty(summary.ContractTemplatePath) &&
+								Directory.Exists(summary.ContractTemplatePath))
+								FillContractInfo(slide, summary.ContractSettings, summary.ContractTemplatePath);
 						}
 						var selectedTheme = summary.SelectedTheme;
 						if (selectedTheme != null)
@@ -356,10 +362,11 @@ namespace NewBizWiz.CommonGUI.Interop
 			PreparePresentation(fileName, presentation => AppendSummary(summary, presentation));
 		}
 
-		public void PrepareSummaryPdf(string fileName, ISummaryControl summary)
+		public void PrepareSummaryPdf(string targetFileName, ISummaryControl summary)
 		{
-			PreparePresentation(fileName, presentation => AppendSummary(summary, presentation));
-			BuildPdf(fileName);
+			var sourceFileName = Path.GetTempFileName();
+			PreparePresentation(sourceFileName, presentation => AppendSummary(summary, presentation));
+			BuildPdf(sourceFileName, targetFileName);
 		}
 	}
 }

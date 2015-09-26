@@ -28,6 +28,8 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public const string CalendarSlideTemplate = @"Broadcast_{0}_{1}_{2}.pptx";
 		public const string CalendarBackgroundFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_images";
 
+		private const string ContractTemplatesFolderName = @"{0}\{1} Slides\legal";
+
 		public const string BackgroundFilePath = @"{0}\{1}";
 
 		public string OneSheetTemplatesFolderPath
@@ -58,6 +60,11 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public string CalendarBackgroundFolderPath
 		{
 			get { return string.Format(CalendarBackgroundFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+		}
+
+		public string ContractTemplatesFolderPath
+		{
+			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(ContractTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
 		}
 
 		public OutputColorList ScheduleColors { get; private set; }

@@ -125,16 +125,6 @@ namespace NewBizWiz.Core.Common
 			get { return Path.Combine(Folder.FullName, string.Format(MasterWizardManager.GenericCoverFileName, SettingsManager.Instance.SlideFolder)); }
 		}
 
-		public string PageNumbersFile
-		{
-			get { return Path.Combine(Folder.FullName, string.Format(MasterWizardManager.ContentsFolderPath, SettingsManager.Instance.SlideFolder), MasterWizardManager.PageNumbersFileName); }
-		}
-
-		public string ContentsFolder
-		{
-			get { return Path.Combine(Folder.FullName, string.Format(MasterWizardManager.ContentsFolderPath, SettingsManager.Instance.SlideFolder)); }
-		}
-
 		public string CoverFile
 		{
 			get { return Path.Combine(Folder.FullName, string.Format(MasterWizardManager.CoverFileName, SettingsManager.Instance.SlideFolder)); }

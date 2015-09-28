@@ -24,13 +24,13 @@ namespace NewBizWiz.Dashboard
 		{
 			_instance = this;
 			InitializeComponent();
-			AppManager.Instance.SetClickEventHandler(ribbonControl);
-			AppManager.Instance.SetClickEventHandler(pnMain);
+			//AppManager.Instance.SetClickEventHandler(ribbonControl);
+			//AppManager.Instance.SetClickEventHandler(pnMain);
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
-			FormStateHelper.Init(this, Core.Common.SettingsManager.Instance.SettingsPath, "Dashboard", false);
+			//FormStateHelper.Init(this, Core.Common.SettingsManager.Instance.SettingsPath, "Dashboard", false);
 		}
 
 		public AppManager.EmptyParametersDelegate OutputClick { get; set; }
@@ -93,26 +93,26 @@ namespace NewBizWiz.Dashboard
 
 		private void FormMain_Load(object sender, EventArgs e)
 		{
-			using (var form = new FormLoadSplash())
-			{
-				form.TopMost = true;
-				form.Show();
-				var thread = new Thread(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				Init();
-				buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
-				buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
-				ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
-				ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				form.Close();
-			}
+			//using (var form = new FormLoadSplash())
+			//{
+			//	form.TopMost = true;
+			//	form.Show();
+			//	var thread = new Thread(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
+			//	thread.Start();
+			//	while (thread.IsAlive)
+			//		Application.DoEvents();
+			//	Init();
+			//	buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
+			//	buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
+			//	ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
+			//	ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+			//	form.Close();
+			//}
 		}
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
-			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
+			//Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
 			RegistryHelper.MainFormHandle = Handle;
 			AppManager.Instance.ActivateMainForm();
 		}
@@ -145,8 +145,8 @@ namespace NewBizWiz.Dashboard
 
 		private void timer_Tick(object sender, EventArgs e)
 		{
-			if (!DashboardPowerPointHelper.Instance.IsActive)
-				Environment.Exit(-1);
+			//if (!DashboardPowerPointHelper.Instance.IsActive)
+			//	Environment.Exit(-1);
 		}
 
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)

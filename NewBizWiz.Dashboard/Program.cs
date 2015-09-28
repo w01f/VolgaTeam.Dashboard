@@ -20,28 +20,24 @@ namespace NewBizWiz.Dashboard
 			const string uniqueIdentifier = "Local\\NewBizWizApplication";
 			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			bool firstRun;
-			SettingsManager.Instance.LoadSettings();
-			Core.Common.SettingsManager.Instance.CheckStaticFolders(out firstRun);
-			if (firstRun)
-			{
-				Utilities.Instance.ShowWarning("Dashboard Unavailable: You do not have any Files....");
-				return;
-			}
+			//SettingsManager.Instance.LoadSettings();
+			//Core.Common.SettingsManager.Instance.CheckStaticFolders(out firstRun);
+			//if (firstRun)
+			//{
+			//	Utilities.Instance.ShowWarning("Dashboard Unavailable: You do not have any Files....");
+			//	return;
+			//}
 			if (firstInstance)
 			{
 				RegistryHelper.MaximizeMainForm = false;
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
-				if (AppManager.Instance.RunPowerPoint())
-					AppManager.Instance.RunForm();
+				AppManager.Instance.RunForm();
 			}
 			else
 			{
-				if (AppManager.Instance.RunPowerPoint())
-				{
-					Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
-					AppManager.Instance.ActivateMainForm();
-				}
+				Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
+				AppManager.Instance.ActivateMainForm();
 			}
 		}
 	}

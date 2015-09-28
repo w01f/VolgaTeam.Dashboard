@@ -42,9 +42,12 @@ namespace NewBizWiz.Dashboard
 
 		public void RunForm()
 		{
-			SetCultureSettings();
-			LicenseHelper.Register();
-			ActivityManager.AddActivity(new UserActivity("Application started"));
+			//SetCultureSettings();
+			//LicenseHelper.Register();
+			//ActivityManager.AddActivity(new UserActivity("Application started"));
+			FileStorageManager.Instance.Init(StorageTypeEnum.Dashboard);
+			AppProfileManager.Instance.LoadProfile();
+			RunPowerPoint();
 			Application.Run(FormMain.Instance);
 		}
 

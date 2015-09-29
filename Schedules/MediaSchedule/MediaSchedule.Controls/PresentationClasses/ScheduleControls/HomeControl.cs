@@ -42,6 +42,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			});
 			stationsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 			daypartsControl.Changed += (o, e) => { SettingsNotSaved = true; };
+
+			xtraTabPageDigital.PageVisible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
 		}
 
 		public bool SettingsNotSaved { get; set; }
@@ -108,7 +110,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private void UpdateProductsCount()
 		{
-			xtraTabPageDigital.Text = String.Format("Digital Strategy({0})", _localSchedule.DigitalProducts.Count);
+			xtraTabPageDigital.Text = String.Format("Digital Strategy  ({0})", _localSchedule.DigitalProducts.Count);
 		}
 
 		private void UpdateFlexFlightDatesWarning()

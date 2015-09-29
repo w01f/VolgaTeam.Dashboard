@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
@@ -43,6 +41,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				SettingsNotSaved = true;
 			};
 			xtraTabPageOptionsQuickShare.PageVisible = false;
+			xtraTabPageOptionsDigital.PageVisible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
 		}
 
 		#region Methods
@@ -74,7 +73,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			var buttonInfos = new List<ButtonInfo>();
 			buttonInfos.Add(new ButtonInfo { Logo = MediaMetaData.Instance.DataType == MediaDataType.TV ? Resources.SectionSettingsTV : Resources.SectionSettingsRadio, Tooltip = String.Format("Open {0} Schedule Settings", MediaMetaData.Instance.DataTypeString), Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsLine; } });
-			if (LocalSchedule.DigitalProducts.Any())
+			if (LocalSchedule.DigitalProducts.Any() && (Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible))
 				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsDigital, Tooltip = "Open Digital Settings", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsDigital; } });
 			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsTotals; } });
 			if (BusinessWrapper.Instance.OutputManager.ScheduleColors.Items.Count > 1)

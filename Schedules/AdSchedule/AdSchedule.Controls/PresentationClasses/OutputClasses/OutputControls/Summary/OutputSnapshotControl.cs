@@ -652,7 +652,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(tempFileName);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
@@ -677,7 +677,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(tempFileName);
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();

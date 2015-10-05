@@ -6,7 +6,7 @@ using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
+using NewBizWiz.Core.Dashboard;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -114,7 +114,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Needs Analysis Slides";
 			laTitle.Text = "Select the Needs Analysis Slide you want to open..";
-			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals");
+			SavedFilesPath = ViewSettingsManager.Instance.ClientGoalsState.SaveFolder.LocalPath;
 			base.InitForm();
 		}
 	}
@@ -125,7 +125,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Cover Slides";
 			laTitle.Text = "Select the Cover Slide you want to open...";
-			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover");
+			SavedFilesPath = ViewSettingsManager.Instance.CoverState.SaveFolder.LocalPath;
 			base.InitForm();
 		}
 	}
@@ -136,7 +136,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Intro Slides";
 			laTitle.Text = "Select the Intro Slide you want to open...";
-			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro");
+			SavedFilesPath = ViewSettingsManager.Instance.LeadoffStatementState.SaveFolder.LocalPath;
 			base.InitForm();
 		}
 	}
@@ -147,7 +147,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Closing Summary Slide";
 			laTitle.Text = "Select the Closing Summary Slide you want to open...";
-			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary");
+			SavedFilesPath = ViewSettingsManager.Instance.SimpleSummaryState.SaveFolder.LocalPath;
 			base.InitForm();
 		}
 	}
@@ -158,7 +158,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Target Customer Slide";
 			laTitle.Text = "Select the Target Customer Slide you want to open...";
-			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target");
+			SavedFilesPath = ViewSettingsManager.Instance.TargetCustomersState.SaveFolder.LocalPath;
 			base.InitForm();
 		}
 	}

@@ -123,10 +123,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			buttonXSalesQuote.Enabled = !checkEditUseEmptyCover.Checked;
 			dateEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked && checkEditPresentationDate.Checked;
 			checkEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked;
-			checkEditSalesRep.Checked = !String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.SalesRep);
+			checkEditSalesRep.Checked = !String.IsNullOrEmpty(Core.Dashboard.SettingsManager.Instance.SalesRep);
 			checkEditSalesRep.Enabled = !checkEditUseEmptyCover.Checked;
 			comboBoxEditSalesRep.Enabled = !checkEditUseEmptyCover.Checked && checkEditSalesRep.Checked;
-			comboBoxEditSalesRep.EditValue = !String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.SalesRep) ? ViewSettingsManager.Instance.CoverState.SalesRep : null;
+			comboBoxEditSalesRep.EditValue = Core.Dashboard.SettingsManager.Instance.SalesRep;
 
 			if (ViewSettingsManager.Instance.CoverState.Quote.IsSet)
 			{
@@ -169,8 +169,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			ViewSettingsManager.Instance.CoverState.Quote.Text = (memoEditSalesQuote.EditValue as String) ?? String.Empty;
 			ViewSettingsManager.Instance.CoverState.Advertiser = (comboBoxEditAdvertiser.EditValue as String) ?? String.Empty;
 			ViewSettingsManager.Instance.CoverState.DecisionMaker = (comboBoxEditDecisionMaker.EditValue as String) ?? String.Empty;
-			ViewSettingsManager.Instance.CoverState.SalesRep = (comboBoxEditSalesRep.EditValue as String) ?? String.Empty;
+			
+			Core.Dashboard.SettingsManager.Instance.SalesRep = (comboBoxEditSalesRep.EditValue as String) ?? String.Empty;
 			Core.Dashboard.SettingsManager.Instance.SaveDashboardSettings();
+			
 			SettingsNotSaved = false;
 		}
 
@@ -386,7 +388,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				if (checkEditUseEmptyCover.Checked)
 					DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName);
 				else

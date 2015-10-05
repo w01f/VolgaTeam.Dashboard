@@ -12,15 +12,15 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 
 		private BusinessWrapper()
 		{
-			OutputManager = new OutputManager();
-			ScheduleManager = new ScheduleManager();
-			HelpManager = new HelpManager(MediaMetaData.Instance.SettingsManager.HelpLinksPath);
-			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), String.Format("{0}_tab_names.xml", MediaMetaData.Instance.DataTypeString)));
-			ThemeManager = new ThemeManager(Path.Combine(SettingsManager.Instance.ThemeCollectionPath, SettingsManager.Instance.SlideMasterFolder));
-			ActivityManager = new ActivityManager(MediaMetaData.Instance.SettingsManager.ActivityTrackName);
-			Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
-			Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
-			RateCardManager = new RateCardManager(SettingsManager.Instance.RateCardPath);
+			//OutputManager = new OutputManager();
+			//ScheduleManager = new ScheduleManager();
+			//HelpManager = new HelpManager(MediaMetaData.Instance.SettingsManager.HelpLinksPath);
+			//TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), String.Format("{0}_tab_names.xml", MediaMetaData.Instance.DataTypeString)));
+			//ThemeManager = new ThemeManager(Path.Combine(SettingsManager.Instance.ThemeCollectionPath, SettingsManager.Instance.SlideMasterFolder));
+			////ActivityManager = new ActivityManager(MediaMetaData.Instance.SettingsManager.ActivityTrackName);
+			//Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
+			//Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
+			//RateCardManager = new RateCardManager(SettingsManager.Instance.RateCardPath);
 		}
 
 		public static BusinessWrapper Instance

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Dashboard;
 
 namespace NewBizWiz.Core.Dashboard
 {
@@ -11,101 +12,82 @@ namespace NewBizWiz.Core.Dashboard
 		private static readonly ListManager _instance = new ListManager();
 		private ListManager()
 		{
-			Init();
 		}
-
-		public Users UsersList { get; set; }
-
-		public CoverLists CoverLists { get; set; }
 
 		public static ListManager Instance
 		{
 			get { return _instance; }
 		}
 
-		#region Home
+		public Users UsersList { get; set; }
+		public CoverLists CoverLists { get; set; }
 		public ClientGoalsLists ClientGoalsLists { get; set; }
 		public LeadoffStatementLists LeadoffStatementLists { get; set; }
 		public TargetCustomersLists TargetCustomersLists { get; set; }
 		public SimpleSummaryLists SimpleSummaryLists { get; set; }
-		#endregion
 
-		private void Init()
+		public void Init()
 		{
-			var listsFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			Common.ListManager.Instance.Init();
 
-			UsersList = new Users(listsFolder);
-
-			CoverLists = new CoverLists(listsFolder);
-
-			#region Home
-			ClientGoalsLists = new ClientGoalsLists(listsFolder);
-			LeadoffStatementLists = new LeadoffStatementLists(listsFolder);
-			TargetCustomersLists = new TargetCustomersLists(listsFolder);
-			SimpleSummaryLists = new SimpleSummaryLists(listsFolder);
-			#endregion
+			UsersList = new Users();
+			CoverLists = new CoverLists();
+			ClientGoalsLists = new ClientGoalsLists();
+			LeadoffStatementLists = new LeadoffStatementLists();
+			TargetCustomersLists = new TargetCustomersLists();
+			SimpleSummaryLists = new SimpleSummaryLists();
 		}
 	}
 
 	#region Users
 	public class Users
 	{
-		private readonly string _listsFileName;
 		private readonly List<User> _users = new List<User>();
 
-		public Users(string folderPath)
+		public Users()
 		{
-			_listsFileName = Path.Combine(folderPath, "Users XML", "Users.xml");
 			Load();
 		}
 
 		private void Load()
 		{
-			bool tempBool;
+			var document = new XmlDocument();
+			document.Load(ResourceManager.Instance.DataUsersFile.LocalPath);
 
-			XmlNode node;
-			if (File.Exists(_listsFileName))
+			var node = document.SelectSingleNode(@"/Users");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
 			{
-				var document = new XmlDocument();
-				document.Load(_listsFileName);
-
-				node = document.SelectSingleNode(@"/Users");
-				if (node != null)
+				if (childNode.Name.Equals("User"))
 				{
-					foreach (XmlNode childNode in node.ChildNodes)
+					var user = new User();
+					foreach (XmlAttribute attribute in childNode.Attributes)
 					{
-						if (childNode.Name.Equals("User"))
+						switch (attribute.Name)
 						{
-							var user = new User();
-							foreach (XmlAttribute attribute in childNode.Attributes)
-							{
-								switch (attribute.Name)
-								{
-									case "Station":
-										user.Station = attribute.Value;
-										break;
-									case "FirstName":
-										user.FirstName = attribute.Value;
-										break;
-									case "LastName":
-										user.LastName = attribute.Value;
-										break;
-									case "Phone":
-										user.Phone = attribute.Value;
-										break;
-									case "Email":
-										user.Email = attribute.Value;
-										break;
-									case "IsAdmin":
-										tempBool = false;
-										bool.TryParse(attribute.Value, out tempBool);
-										user.IsAdmin = tempBool;
-										break;
-								}
-							}
-							_users.Add(user);
+							case "Station":
+								user.Station = attribute.Value;
+								break;
+							case "FirstName":
+								user.FirstName = attribute.Value;
+								break;
+							case "LastName":
+								user.LastName = attribute.Value;
+								break;
+							case "Phone":
+								user.Phone = attribute.Value;
+								break;
+							case "Email":
+								user.Email = attribute.Value;
+								break;
+							case "IsAdmin":
+								bool tempBool;
+								bool.TryParse(attribute.Value, out tempBool);
+								user.IsAdmin = tempBool;
+								break;
 						}
 					}
+					_users.Add(user);
 				}
 			}
 		}
@@ -144,11 +126,8 @@ namespace NewBizWiz.Core.Dashboard
 	#region Cover
 	public class CoverLists
 	{
-		private readonly string _listsFileName;
-
-		public CoverLists(string folderPath)
+		public CoverLists()
 		{
-			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Add Cover.xml");
 			Headers = new List<string>();
 			Quotes = new List<Quote>();
 			Load();
@@ -159,49 +138,43 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void Load()
 		{
-			XmlNode node;
-			if (File.Exists(_listsFileName))
-			{
-				var document = new XmlDocument();
-				document.Load(_listsFileName);
+			var document = new XmlDocument();
+			document.Load(ResourceManager.Instance.DataCoverFile.LocalPath);
 
-				node = document.SelectSingleNode(@"/CoverSlide");
-				if (node != null)
+			var node = document.SelectSingleNode(@"/CoverSlide");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
 				{
-					foreach (XmlNode childNode in node.ChildNodes)
-					{
-						switch (childNode.Name)
+					case "SlideHeader":
+						foreach (XmlAttribute attribute in childNode.Attributes)
 						{
-							case "SlideHeader":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Headers.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "Quote":
-								var quote = new Quote();
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											quote.Text = attribute.Value;
-											break;
-										case "Author":
-											quote.Author = attribute.Value;
-											break;
-									}
-								}
-								Quotes.Add(quote);
-								break;
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Headers.Add(attribute.Value);
+									break;
+							}
 						}
-					}
+						break;
+					case "Quote":
+						var quote = new Quote();
+						foreach (XmlAttribute attribute in childNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									quote.Text = attribute.Value;
+									break;
+								case "Author":
+									quote.Author = attribute.Value;
+									break;
+							}
+						}
+						Quotes.Add(quote);
+						break;
 				}
 			}
 		}
@@ -251,16 +224,11 @@ namespace NewBizWiz.Core.Dashboard
 	}
 	#endregion
 
-	#region Home
-
 	#region Client Goals
 	public class ClientGoalsLists
 	{
-		private readonly string _listsFileName;
-
-		public ClientGoalsLists(string folderPath)
+		public ClientGoalsLists()
 		{
-			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Needs Analysis.xml");
 			Headers = new List<string>();
 			Goals = new List<string>();
 			Load();
@@ -271,45 +239,39 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void Load()
 		{
-			XmlNode node;
-			if (File.Exists(_listsFileName))
-			{
-				var document = new XmlDocument();
-				document.Load(_listsFileName);
+			var document = new XmlDocument();
+			document.Load(ResourceManager.Instance.DataClientGoalsFile.LocalPath);
 
-				node = document.SelectSingleNode(@"/ClientGoals");
-				if (node != null)
+			var node = document.SelectSingleNode(@"/ClientGoals");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
 				{
-					foreach (XmlNode childNode in node.ChildNodes)
-					{
-						switch (childNode.Name)
+					case "SlideHeader":
+						foreach (XmlAttribute attribute in childNode.Attributes)
 						{
-							case "SlideHeader":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Headers.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "Goal":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Goals.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Headers.Add(attribute.Value);
+									break;
+							}
 						}
-					}
+						break;
+					case "Goal":
+						foreach (XmlAttribute attribute in childNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Goals.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
 				}
 			}
 		}
@@ -319,11 +281,8 @@ namespace NewBizWiz.Core.Dashboard
 	#region Leadoff Statement
 	public class LeadoffStatementLists
 	{
-		private readonly string _listsFileName;
-
-		public LeadoffStatementLists(string folderPath)
+		public LeadoffStatementLists()
 		{
-			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Intro Slide.xml");
 			Headers = new List<string>();
 			Statements = new List<string>();
 			Load();
@@ -334,45 +293,39 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void Load()
 		{
-			XmlNode node;
-			if (File.Exists(_listsFileName))
-			{
-				var document = new XmlDocument();
-				document.Load(_listsFileName);
+			var document = new XmlDocument();
+			document.Load(ResourceManager.Instance.DataLeadoffStatementFile.LocalPath);
 
-				node = document.SelectSingleNode(@"/LeadOff");
-				if (node != null)
+			var node = document.SelectSingleNode(@"/LeadOff");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
 				{
-					foreach (XmlNode childNode in node.ChildNodes)
-					{
-						switch (childNode.Name)
+					case "SlideHeader":
+						foreach (XmlAttribute attribute in childNode.Attributes)
 						{
-							case "SlideHeader":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Headers.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "Statement":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Statements.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Headers.Add(attribute.Value);
+									break;
+							}
 						}
-					}
+						break;
+					case "Statement":
+						foreach (XmlAttribute attribute in childNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Statements.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
 				}
 			}
 		}
@@ -382,11 +335,8 @@ namespace NewBizWiz.Core.Dashboard
 	#region Target Customers
 	public class TargetCustomersLists
 	{
-		private readonly string _listsFileName;
-
-		public TargetCustomersLists(string folderPath)
+		public TargetCustomersLists()
 		{
-			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Target Customer.xml");
 			Headers = new List<string>();
 			Demos = new List<string>();
 			HHIs = new List<string>();
@@ -401,69 +351,63 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void Load()
 		{
-			XmlNode node;
-			if (File.Exists(_listsFileName))
-			{
-				var document = new XmlDocument();
-				document.Load(_listsFileName);
+			var document = new XmlDocument();
+			document.Load(ResourceManager.Instance.DataTargetCustomersFile.LocalPath);
 
-				node = document.SelectSingleNode(@"/TargetCustomers");
-				if (node != null)
+			var node = document.SelectSingleNode(@"/TargetCustomers");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
 				{
-					foreach (XmlNode childNode in node.ChildNodes)
-					{
-						switch (childNode.Name)
+					case "SlideHeader":
+						foreach (XmlAttribute attribute in childNode.Attributes)
 						{
-							case "SlideHeader":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Headers.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "Demo":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Demos.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "HHI":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												HHIs.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "Geography":
-								foreach (XmlAttribute attribute in childNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Geographies.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Headers.Add(attribute.Value);
+									break;
+							}
 						}
-					}
+						break;
+					case "Demo":
+						foreach (XmlAttribute attribute in childNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Demos.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
+					case "HHI":
+						foreach (XmlAttribute attribute in childNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										HHIs.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
+					case "Geography":
+						foreach (XmlAttribute attribute in childNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value))
+										Geographies.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
 				}
 			}
 		}
@@ -473,11 +417,8 @@ namespace NewBizWiz.Core.Dashboard
 	#region Simple Summary
 	public class SimpleSummaryLists
 	{
-		private readonly string _listsFileName;
-
-		public SimpleSummaryLists(string folderPath)
+		public SimpleSummaryLists()
 		{
-			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Closing Summary.xml");
 			Headers = new List<string>();
 			Details = new List<string>();
 			Load();
@@ -489,49 +430,44 @@ namespace NewBizWiz.Core.Dashboard
 		private void Load()
 		{
 			XmlNode node;
-			if (File.Exists(_listsFileName))
-			{
-				var document = new XmlDocument();
-				document.Load(_listsFileName);
+			var document = new XmlDocument();
+			document.Load(ResourceManager.Instance.DataSimpleSummaryFile.LocalPath);
 
-				node = document.SelectSingleNode(@"/SimpleSummary");
-				if (node != null)
+			node = document.SelectSingleNode(@"/SimpleSummary");
+			if (node != null)
+			{
+				foreach (XmlNode childNode in node.ChildNodes)
 				{
-					foreach (XmlNode childNode in node.ChildNodes)
+					switch (childNode.Name)
 					{
-						switch (childNode.Name)
-						{
-							case "SlideHeader":
-								foreach (XmlAttribute attribute in childNode.Attributes)
+						case "SlideHeader":
+							foreach (XmlAttribute attribute in childNode.Attributes)
+							{
+								switch (attribute.Name)
 								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Headers.Add(attribute.Value);
-											break;
-									}
+									case "Value":
+										if (!string.IsNullOrEmpty(attribute.Value))
+											Headers.Add(attribute.Value);
+										break;
 								}
-								break;
-							case "Detail":
-								foreach (XmlAttribute attribute in childNode.Attributes)
+							}
+							break;
+						case "Detail":
+							foreach (XmlAttribute attribute in childNode.Attributes)
+							{
+								switch (attribute.Name)
 								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value))
-												Details.Add(attribute.Value);
-											break;
-									}
+									case "Value":
+										if (!string.IsNullOrEmpty(attribute.Value))
+											Details.Add(attribute.Value);
+										break;
 								}
-								break;
-						}
+							}
+							break;
 					}
 				}
 			}
 		}
 	}
-	#endregion
-
 	#endregion
 }

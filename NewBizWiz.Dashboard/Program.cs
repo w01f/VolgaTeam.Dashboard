@@ -3,7 +3,6 @@ using System.Threading;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
-using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard
 {
@@ -19,14 +18,6 @@ namespace NewBizWiz.Dashboard
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\NewBizWizApplication";
 			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
-			bool firstRun;
-			//SettingsManager.Instance.LoadSettings();
-			//Core.Common.SettingsManager.Instance.CheckStaticFolders(out firstRun);
-			//if (firstRun)
-			//{
-			//	Utilities.Instance.ShowWarning("Dashboard Unavailable: You do not have any Files....");
-			//	return;
-			//}
 			if (firstInstance)
 			{
 				RegistryHelper.MaximizeMainForm = false;

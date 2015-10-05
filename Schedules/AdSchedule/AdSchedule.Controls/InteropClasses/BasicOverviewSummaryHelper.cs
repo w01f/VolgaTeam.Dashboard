@@ -61,7 +61,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						}
 						var selectedTheme = basicOverviewSummary.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}

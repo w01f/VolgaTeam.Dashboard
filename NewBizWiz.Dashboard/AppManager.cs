@@ -3,11 +3,14 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
 
@@ -26,8 +29,7 @@ namespace NewBizWiz.Dashboard
 
 		private AppManager()
 		{
-			HelpManager = new HelpManager(Core.Dashboard.SettingsManager.Instance.HelpLinksPath);
-			ActivityManager = new ActivityManager("dashboard");
+			HelpManager = new HelpManager();
 		}
 
 		public static AppManager Instance
@@ -42,34 +44,57 @@ namespace NewBizWiz.Dashboard
 
 		public void RunForm()
 		{
-			//SetCultureSettings();
-			//LicenseHelper.Register();
-			//ActivityManager.AddActivity(new UserActivity("Application started"));
-			FileStorageManager.Instance.Init(StorageTypeEnum.Dashboard);
-			AppProfileManager.Instance.LoadProfile();
+			LicenseHelper.Register();
+			
 			RunPowerPoint();
+			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
+			
+			using (var form = new FormProgress())
+			{
+				form.TopMost = true;
+				form.Show();
+				
+				form.laProgress.Text = "Checking data version...";
+				var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+
+				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
+					form.laProgress.Text = "Loading data from server for the 1st time...";
+				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
+					form.laProgress.Text = "Updating data from server...";
+				else
+					form.laProgress.Text = "Loading data...";
+
+				thread = new Thread(() => AsyncHelper.RunSync(Init));
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+
+				FormMain.Instance.Init();
+
+				form.Close();
+			}
 			Application.Run(FormMain.Instance);
 		}
 
-		public void SetCultureSettings()
+		public async Task Init()
 		{
-			switch (SettingsManager.Instance.DashboardCode)
-			{
-				case "tv":
-				case "radio":
-				case "cable":
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-					break;
-				default:
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-					break;
-			}
+			await AppProfileManager.Instance.LoadProfile(AppTypeEnum.Dashboard);
+			await Core.Dashboard.ResourceManager.Instance.Load();
+			await MasterWizardManager.Instance.Load();
+			await Core.Dashboard.SettingsManager.Instance.LoadSettings();
+
+			Core.Dashboard.ListManager.Instance.Init();
+			HelpManager.LoadHelpLinks();
+
+			ActivityManager = ActivityManager.OpenStorage();
+			await ActivityManager.AddActivity(new UserActivity("Application started"));
+
+			SetCultureSettings();
+
+			await Task.Run(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
 		}
 
 		public bool RunPowerPoint()
@@ -83,7 +108,7 @@ namespace NewBizWiz.Dashboard
 			{
 				Process.Start(path);
 			}
-			catch{}
+			catch { }
 		}
 
 		public void ActivateMainForm()
@@ -121,20 +146,41 @@ namespace NewBizWiz.Dashboard
 		{
 			foreach (Control childControl in control.Controls)
 				SetClickEventHandler(childControl);
-			if (control.GetType() != typeof(TextBoxMaskBox) && 
-				control.GetType() != typeof(TextEdit) && 
-				control.GetType() != typeof(MemoEdit) && 
+			if (control.GetType() != typeof(TextBoxMaskBox) &&
+				control.GetType() != typeof(TextEdit) &&
+				control.GetType() != typeof(MemoEdit) &&
 				control.GetType() != typeof(ComboBoxEdit) &&
-				control.GetType() != typeof(ComboBoxListEdit) && 
-				control.GetType() != typeof(LookUpEdit) && 
-				control.GetType() != typeof(DateEdit) && 
-				control.GetType() != typeof(CheckedListBoxControl) && 
-				control.GetType() != typeof(SpinEdit) && 
+				control.GetType() != typeof(ComboBoxListEdit) &&
+				control.GetType() != typeof(LookUpEdit) &&
+				control.GetType() != typeof(DateEdit) &&
+				control.GetType() != typeof(CheckedListBoxControl) &&
+				control.GetType() != typeof(SpinEdit) &&
 				control.GetType() != typeof(CheckEdit))
 			{
 				control.Click += ControlClick;
 			}
 			Application.DoEvents();
+		}
+
+		private void SetCultureSettings()
+		{
+			switch (SettingsManager.Instance.DashboardCode)
+			{
+				case "tv":
+				case "radio":
+				case "cable":
+					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+					break;
+				default:
+					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+					break;
+			}
 		}
 
 		private void ControlClick(object sender, EventArgs e)

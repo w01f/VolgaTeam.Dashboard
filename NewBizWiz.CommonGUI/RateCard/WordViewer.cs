@@ -43,7 +43,7 @@ namespace NewBizWiz.CommonGUI.RateCard
 					if (word.Connect())
 					{
 						var g = Guid.NewGuid();
-						string newFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, g + ".html");
+						string newFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, g + ".html");
 						word.ConvertToHtml(File.FullName, newFileName);
 						word.Disconnect();
 						webBrowser.Url = new Uri(newFileName);

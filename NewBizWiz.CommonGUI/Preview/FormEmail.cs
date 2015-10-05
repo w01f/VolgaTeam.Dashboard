@@ -43,7 +43,7 @@ namespace NewBizWiz.CommonGUI.Preview
 				_mergedGroup = new PreviewGroup
 				{
 					Name = "Merged Slides",
-					PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+					PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 				};
 				using (var formProgress = new FormProgress())
 				{

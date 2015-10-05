@@ -514,7 +514,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		{
 			SaveSchedule();
 			PrepareOutput();
-			var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
@@ -541,7 +541,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		{
 			SaveSchedule();
 			PrepareOutput();
-			var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";

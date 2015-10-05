@@ -42,7 +42,7 @@ namespace NewBizWiz.CommonGUI.RateCard
 					var excelHelper = new ExcelHelper();
 					if (!excelHelper.Connect()) return;
 					Guid g = Guid.NewGuid();
-					string newFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, g + ".html");
+					string newFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, g + ".html");
 					excelHelper.ConvertToHtml(File.FullName, newFileName);
 					excelHelper.Disconnect();
 					webBrowser.Url = new Uri(newFileName);

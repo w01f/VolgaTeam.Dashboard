@@ -8,10 +8,8 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
 
@@ -62,11 +60,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			_allowToSave = false;
 			laAdvertiser.Text = Schedule.BusinessName + (!string.IsNullOrEmpty(Schedule.AccountNumber) ? (" - " + Schedule.AccountNumber) : string.Empty);
-			FormThemeSelector.Link(Theme, ThemeManager.GetThemes(SlideType.OnlineAdPlan), BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineAdPlan), (t =>
-			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.OnlineAdPlan, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
-			}));
 			if (!quickLoad)
 			{
 				checkEditLessSlides.Checked = !Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides;
@@ -306,7 +299,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareAdPlanEmail(tempFileName, this);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
@@ -332,7 +325,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareAdPlanEmail(tempFileName, this);
 				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();

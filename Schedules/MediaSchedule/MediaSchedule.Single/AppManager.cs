@@ -26,8 +26,11 @@ namespace NewBizWiz.MediaSchedule.Single
 		public void RunForm()
 		{
 			LicenseHelper.Register();
+			
 			MasterWizardManager.Instance.SetMasterWizard();
+			
 			RegularMediaSchedulePowerPointHelper.Instance.SetPresentationSettings();
+			
 			Application.Run(FormMain.Instance);
 		}
 

@@ -26,7 +26,6 @@ namespace NewBizWiz.CommonGUI.Interop
 
 		private void AppendSlideSummary(ISummaryControl summary, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder)) return;
 			var itemsCount = summary.ItemsCount;
 			var mainFileTemplateIndex = itemsCount >= 5 ? 5 : itemsCount;
 
@@ -36,15 +35,11 @@ namespace NewBizWiz.CommonGUI.Interop
 			if (mainFilesCount == 0 && itemsCount > 0)
 				mainFilesCount++;
 
-
-			var mainPresentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder, string.Format(MasterWizardManager.SimpleSummarySlideTemplate, mainFileTemplateIndex));
-			var additionalPresentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder, string.Format(MasterWizardManager.SimpleSummarySlideTemplate, (additionalFileTemplateIndex + mainFileTemplateIndex)));
-
-			if (!File.Exists(mainPresentationTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
 				{
+					var mainPresentationTemplatePath = AsyncHelper.RunSync(() => MasterWizardManager.Instance.SelectedWizard.GetSimpleSummaryTemlateFile(String.Format(MasterWizardManager.SimpleSummarySlideTemplate, mainFileTemplateIndex)));
 					MessageFilter.Register();
 					var presentation = PowerPointObject.Presentations.Open(mainPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					for (int j = 0; j < (itemsCount - additionalFileTemplateIndex); j += mainFileTemplateIndex)
@@ -131,7 +126,7 @@ namespace NewBizWiz.CommonGUI.Interop
 						}
 						var selectedTheme = summary.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 						AppendSlide(presentation, -1, destinationPresentation);
 					}
 					presentation.Close();
@@ -146,11 +141,13 @@ namespace NewBizWiz.CommonGUI.Interop
 				MessageFilter.Revoke();
 			}
 
-			if (additionalFileTemplateIndex == 0 || !File.Exists(additionalPresentationTemplatePath)) return;
+			if (additionalFileTemplateIndex == 0 ) return;
 			try
 			{
 				var thread = new Thread(delegate()
 				{
+					var additionalPresentationTemplatePath = AsyncHelper.RunSync(() => MasterWizardManager.Instance.SelectedWizard.GetSimpleSummaryTemlateFile(String.Format(MasterWizardManager.SimpleSummarySlideTemplate, (additionalFileTemplateIndex + mainFileTemplateIndex))));
+
 					MessageFilter.Register();
 					var presentation = PowerPointObject.Presentations.Open(additionalPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
@@ -231,7 +228,7 @@ namespace NewBizWiz.CommonGUI.Interop
 					}
 					var selectedTheme = summary.SelectedTheme;
 					if (selectedTheme != null)
-						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});
@@ -248,7 +245,6 @@ namespace NewBizWiz.CommonGUI.Interop
 
 		private void AppendTableSummary(ISummaryControl summary, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryTableFolder)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -257,7 +253,7 @@ namespace NewBizWiz.CommonGUI.Interop
 					var slidesCount = summary.OutputReplacementsLists.Count;
 					for (var k = 0; k < slidesCount; k++)
 					{
-						var presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryTableFolder, String.Format(MasterWizardManager.SimpleSummaryTableTemplate, summary.ItemsPerTable));
+						var presentationTemplatePath = AsyncHelper.RunSync(() => MasterWizardManager.Instance.SelectedWizard.GetSimpleSummaryTableFile(String.Format(MasterWizardManager.SimpleSummaryTableTemplate, summary.ItemsPerTable)));
 						if (!File.Exists(presentationTemplatePath)) continue;
 						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
@@ -284,7 +280,7 @@ namespace NewBizWiz.CommonGUI.Interop
 														(j + startIndex) < summary.ItemsCount &&
 														!String.IsNullOrEmpty(summary.TableIcons[j + startIndex]))
 													{
-														var filePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryTableIconFolder, summary.TableIcons[j + startIndex]);
+														var filePath = AsyncHelper.RunSync(() => MasterWizardManager.Instance.SelectedWizard.GetSimpleSummaryIconFile(summary.TableIcons[j + startIndex]));
 														slide.Shapes.AddPicture(filePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
 													}
 													shape.Visible = MsoTriState.msoFalse;
@@ -340,7 +336,7 @@ namespace NewBizWiz.CommonGUI.Interop
 						}
 						var selectedTheme = summary.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}

@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Threading;
+﻿using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
@@ -14,8 +13,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 	{
 		public void AppendCover(bool firstSlide, Presentation destinationPresentation = null)
 		{
-			if (MasterWizardManager.Instance.SelectedWizard.CoverFile == null) return;
-			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.CoverFile;
+			var presentationTemplatePath = AsyncHelper.RunSync(MasterWizardManager.Instance.SelectedWizard.GetCoverFile);
 			try
 			{
 				var thread = new Thread(delegate()
@@ -54,7 +52,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 					}
 					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cover);
 					if (selectedTheme != null)
-						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 					AppendSlide(presentation, -1, destinationPresentation, firstSlide);
 					presentation.Close();
 				});
@@ -76,8 +74,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 
 		public void AppendGenericCover(bool firstSlide, Presentation destinationPresentation = null)
 		{
-			if (!File.Exists(MasterWizardManager.Instance.SelectedWizard.GenericCoverFile)) return;
-			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GenericCoverFile;
+			var presentationTemplatePath = AsyncHelper.RunSync(MasterWizardManager.Instance.SelectedWizard.GetGenericCoverFile);
 			try
 			{
 				var thread = new Thread(delegate()
@@ -86,7 +83,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cover);
 					if (selectedTheme != null)
-						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 					AppendSlide(presentation, -1, destinationPresentation, firstSlide);
 					presentation.Close();
 				});

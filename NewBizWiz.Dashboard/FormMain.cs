@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Common;
@@ -11,7 +10,6 @@ using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
 using NewBizWiz.Dashboard.TabHomeForms;
 using NewBizWiz.Dashboard.TabSlides;
-using NewBizWiz.Dashboard.ToolForms;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard
@@ -24,13 +22,12 @@ namespace NewBizWiz.Dashboard
 		{
 			_instance = this;
 			InitializeComponent();
-			//AppManager.Instance.SetClickEventHandler(ribbonControl);
-			//AppManager.Instance.SetClickEventHandler(pnMain);
+			AppManager.Instance.SetClickEventHandler(ribbonControl);
+			AppManager.Instance.SetClickEventHandler(pnMain);
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
-			//FormStateHelper.Init(this, Core.Common.SettingsManager.Instance.SettingsPath, "Dashboard", false);
 		}
 
 		public AppManager.EmptyParametersDelegate OutputClick { get; set; }
@@ -69,10 +66,15 @@ namespace NewBizWiz.Dashboard
 		#region GUI Event Handlers
 		public void Init()
 		{
+			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "Dashboard", false).LoadState();
+
 			timer.Start();
-			Application.DoEvents();
 			ApplyMasterWizard();
-			Application.DoEvents();
+
+			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
+			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
+			ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
+			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 		}
 
 		public void HideThemeButtons()
@@ -91,28 +93,8 @@ namespace NewBizWiz.Dashboard
 				AppManager.Instance.ActivateMainForm();
 		}
 
-		private void FormMain_Load(object sender, EventArgs e)
+		private async void FormMain_Shown(object sender, EventArgs e)
 		{
-			//using (var form = new FormLoadSplash())
-			//{
-			//	form.TopMost = true;
-			//	form.Show();
-			//	var thread = new Thread(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
-			//	thread.Start();
-			//	while (thread.IsAlive)
-			//		Application.DoEvents();
-			//	Init();
-			//	buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
-			//	buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
-			//	ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
-			//	ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-			//	form.Close();
-			//}
-		}
-
-		private void FormMain_Shown(object sender, EventArgs e)
-		{
-			//Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
 			RegistryHelper.MainFormHandle = Handle;
 			AppManager.Instance.ActivateMainForm();
 		}
@@ -145,8 +127,8 @@ namespace NewBizWiz.Dashboard
 
 		private void timer_Tick(object sender, EventArgs e)
 		{
-			//if (!DashboardPowerPointHelper.Instance.IsActive)
-			//	Environment.Exit(-1);
+			if (!DashboardPowerPointHelper.Instance.IsActive)
+				Environment.Exit(-1);
 		}
 
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)

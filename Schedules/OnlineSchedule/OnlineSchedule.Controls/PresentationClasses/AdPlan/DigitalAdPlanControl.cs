@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Preview;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
@@ -51,6 +52,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			FormThemeSelector.Link(Theme, ThemeManager.GetThemes(SlideType.OnlineAdPlan), BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineAdPlan), (t =>
+			{
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.OnlineAdPlan, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
+			}));
 			base.LoadSchedule(quickLoad);
 		}
 

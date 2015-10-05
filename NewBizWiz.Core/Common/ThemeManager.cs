@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace NewBizWiz.Core.Common
@@ -14,12 +15,20 @@ namespace NewBizWiz.Core.Common
 
 		public Dictionary<SlideType, List<string>> ApprovedThemes { get; private set; }
 
-		private void LoadApprovedThemes(string rootPath)
+		public ThemeManager()
 		{
-			var filePath = Path.Combine(Directory.GetParent(rootPath).FullName, "ApprovedThemes.xml");
-			if (!File.Exists(filePath)) return;
+			ApprovedThemes = new Dictionary<SlideType, List<string>>();
+		}
+
+		private async Task LoadApprovedThemes(StorageDirectory root)
+		{
+			var contentFile = new StorageFile(root.GetParentFolder().RelativePathParts.Merge("ApprovedThemes.xml"));
+
+			if (!await contentFile.Exists(true)) return;
+			await contentFile.Download();
+
 			var document = new XmlDocument();
-			document.Load(filePath);
+			document.Load(contentFile.LocalPath);
 
 			foreach (var slideNode in document.SelectNodes(@"//Root/Slide").OfType<XmlNode>())
 			{
@@ -156,17 +165,17 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
-		public ThemeManager(string rootPath)
+		public async Task Load()
 		{
-			ApprovedThemes = new Dictionary<SlideType, List<string>>();
+			var storageDirectory = new StorageDirectory(ResourceManager.Instance.ThemesFolder.RelativePathParts.Merge(SettingsManager.Instance.SlideMasterFolder));
+			if (!await storageDirectory.Exists(true)) return;
 
-			if (!Directory.Exists(rootPath)) return;
+			await LoadApprovedThemes(storageDirectory);
 
-			LoadApprovedThemes(rootPath);
-
-			foreach (var themeFolder in Directory.GetDirectories(rootPath))
+			foreach (var themeFolder in await storageDirectory.GetFolders())
 			{
 				var theme = new Theme(themeFolder);
+				await theme.Load();
 				foreach (var approvedTheme in ApprovedThemes.Where(approvedTheme => approvedTheme.Value.Any(t => t.Equals(theme.Name))))
 					theme.ApprovedSlides.Add(approvedTheme.Key);
 				_themes.Add(theme);
@@ -182,38 +191,55 @@ namespace NewBizWiz.Core.Common
 
 	public class Theme
 	{
+		private readonly StorageDirectory _root;
+		private StorageFile _themeFile;
+
 		public string Name { get; private set; }
 		public int Order { get; private set; }
 		public Image Logo { get; private set; }
 		public Image BrowseLogo { get; private set; }
 		public Image RibbonLogo { get; private set; }
-		public string PotFilePath { get; private set; }
-		public string ThemeFilePath { get; private set; }
-
 		public List<SlideType> ApprovedSlides { get; private set; }
 
-		public Theme(string rootPath)
+		public Theme(StorageDirectory root)
 		{
-			var titlePath = Path.Combine(rootPath, "title.txt");
-			if (File.Exists(titlePath))
-				Name = File.ReadAllText(titlePath).Trim();
+			_root = root;
+		}
+
+		public async Task Load()
+		{
+			var files = (await _root.GetFiles()).ToList();
+
+			foreach (var file in files.Where(file => new[] { ".txt", ".png" }.Contains(file.Extension)))
+				await file.Download();
+
+			var titleFile = files.First(file => file.Name == "title.txt");
+			Name = File.ReadAllText(titleFile.LocalPath).Trim();
 
 			int tempInt;
-			if (Int32.TryParse(Path.GetFileName(rootPath), out tempInt))
+			if (Int32.TryParse(Path.GetFileName(_root.LocalPath), out tempInt))
 				Order = tempInt;
 
-			var bigLogoPath = Path.Combine(rootPath, "preview.png");
-			if (File.Exists(bigLogoPath))
+			var bigLogoFile = files.FirstOrDefault(file => file.Name == "preview.png");
+			if (bigLogoFile != null)
 			{
-				Logo = new Bitmap(bigLogoPath);
+				Logo = new Bitmap(bigLogoFile.LocalPath);
 				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);
 				var borderedLogo = Logo.DrawBorder();
 				RibbonLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 72) / borderedLogo.Height, 72, null, IntPtr.Zero);
 			}
-			PotFilePath = Directory.GetFiles(rootPath, "*.potx").FirstOrDefault();
-			ThemeFilePath = Directory.GetFiles(rootPath, "*.thmx").FirstOrDefault();
+
+			_themeFile = files.FirstOrDefault(file => file.Extension == ".thmx");
 
 			ApprovedSlides = new List<SlideType>();
+		}
+
+		public async Task<string> GetThemePath()
+		{
+			if (_themeFile == null)
+				_themeFile = (await _root.GetRemoteFiles()).FirstOrDefault(file => file.Extension == ".thmx");
+			await _themeFile.Download();
+			return _themeFile.LocalPath;
 		}
 	}
 

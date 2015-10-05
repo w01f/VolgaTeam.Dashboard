@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Preview;
@@ -66,11 +67,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
-				if (SettingsNotSaved)
-				{
-					SaveState();
-					ViewSettingsManager.Instance.SimpleSummaryState.Save();
-				}
+				if (!SettingsNotSaved) return;
+				SaveState();
+				ViewSettingsManager.Instance.SimpleSummaryState.Save();
 			};
 
 			LoadSavedState();
@@ -589,7 +588,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				DashboardPowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();

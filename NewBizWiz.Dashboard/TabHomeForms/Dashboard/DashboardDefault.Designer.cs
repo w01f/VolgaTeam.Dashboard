@@ -34,8 +34,9 @@
 			// 
 			// pbSellerPoint
 			// 
-			this.pbSellerPoint.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pbSellerPoint.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pbSellerPoint.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pbSellerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeDefault;
 			this.pbSellerPoint.Location = new System.Drawing.Point(10, 10);
 			this.pbSellerPoint.Name = "pbSellerPoint";
 			this.pbSellerPoint.Size = new System.Drawing.Size(711, 438);

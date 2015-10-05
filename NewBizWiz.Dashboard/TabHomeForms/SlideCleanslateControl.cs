@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -60,7 +61,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			if (dashboard != null)
 				pnMain.Controls.Add(dashboard);
 
-			pbVersion.Image = MasterWizardManager.Instance.Version;
+			if (Core.Dashboard.ResourceManager.Instance.VersionLogoFile.ExistsLocal())
+				pbVersion.Image = Image.FromFile(Core.Dashboard.ResourceManager.Instance.VersionLogoFile.LocalPath);
 		}
 
 		protected override void UpdateSavedFilesState()
@@ -95,7 +97,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				DashboardPowerPointHelper.Instance.PrepareCleanslateEmail(tempFileName);
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();

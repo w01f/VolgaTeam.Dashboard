@@ -223,6 +223,16 @@ namespace NewBizWiz.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HomeDefault {
+            get {
+                object obj = ResourceManager.GetObject("HomeDefault", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HomeNewspaper {
             get {
                 object obj = ResourceManager.GetObject("HomeNewspaper", resourceCulture);

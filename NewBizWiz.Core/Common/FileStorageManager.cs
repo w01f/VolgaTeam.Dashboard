@@ -1,105 +1,164 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Xml;
+using NewBizWiz.Core.Interop;
 using WebDAVClient.Helpers;
+using WebDAVClient.Model;
 
 namespace NewBizWiz.Core.Common
 {
-	public enum StorageTypeEnum
+	public enum DataActualityState
 	{
-		None = 0,
-		Dashboard = 0,
+		None,
+		NotExisted,
+		Outdated,
+		Updated
 	}
 
 	public class FileStorageManager
 	{
-		private const string RemoteStorageUrl = "http://adsalescloud.com/remote.php/webdav";
-		private const string RemoteStorageLogin = "apps_apex_destin";
-		private const string RemoteStoragePassword = "q^MrB]'%7Br54yH^";
+		private const string RemoteStorageUrlTemplate = @"{0}/remote.php/webdav";
 
 		private const string LocalAppSettingsFolderName = "adSalesApps Data";
 
 		public const string IncomingFolderName = "outgoing";
 		public const string OutgoingFolderName = "incoming";
+		public const string CommonIncomingFolderName = "common";
+		public const string LocalFilesFolderName = "local";
+
+		private string _url;
+		private string _login;
+		private string _password;
+		private string _dataFolderName;
 
 		private static readonly FileStorageManager _instance = new FileStorageManager();
-
-		private StorageTypeEnum _storageType;
 
 		public static FileStorageManager Instance
 		{
 			get { return _instance; }
 		}
 
-		public string RootFolderName
+		public DataActualityState DataState { get; private set; }
+
+		private string RemoteStorageUrl
 		{
-			get
-			{
-				switch (_storageType)
-				{
-					case StorageTypeEnum.Dashboard:
-						return "app_dashboard";
-				}
-				throw new InvalidEnumArgumentException("Storage Type Undefined");
-			}
+			get { return String.Format(RemoteStorageUrlTemplate, _url); }
 		}
 
 		public string LocalStoragePath
 		{
-			get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LocalAppSettingsFolderName); }
-		}
-
-		public string RemoteStoragePath
-		{
-			get { return RemoteStorageUrl; }
+			get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LocalAppSettingsFolderName, _dataFolderName); }
 		}
 
 		private FileStorageManager() { }
-
-		public void Init(StorageTypeEnum storageType)
-		{
-			_storageType = storageType;
-			if (!Directory.Exists(LocalStoragePath))
-				Directory.CreateDirectory(LocalStoragePath);
-		}
 
 		public WebDAVClient.Client GetClient()
 		{
 			return new WebDAVClient.Client(
 				new NetworkCredential
 				{
-					UserName = RemoteStorageLogin,
-					Password = RemoteStoragePassword
+					UserName = _login,
+					Password = _password
 				})
 			{
 				Server = RemoteStorageUrl
 			};
 		}
+
+		public async Task Init()
+		{
+			InitCredentials();
+			await CheckDataSate();
+		}
+
+		private void InitCredentials()
+		{
+			var credentialsConfigPath = Path.Combine(Path.GetDirectoryName(typeof(FileStorageManager).Assembly.Location), "credentials.txt");
+			if (!File.Exists(credentialsConfigPath))
+				throw new FileNotFoundException("File credentials.txt not found");
+
+			foreach (var configLine in File.ReadAllLines(credentialsConfigPath))
+			{
+				if (configLine.Contains("Site:"))
+					_url = configLine.Replace("Site:", "").Trim();
+				else if (configLine.Contains("Login:"))
+					_login = configLine.Replace("Login:", "").Trim();
+				else if (configLine.Contains("Password:"))
+					_password = configLine.Replace("Password:", "").Trim();
+				else if (configLine.Contains("DataFolderName:"))
+					_dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
+			}
+
+			if (!Directory.Exists(LocalStoragePath))
+				Directory.CreateDirectory(LocalStoragePath);
+		}
+
+		private async Task CheckDataSate()
+		{
+			DataState = DataActualityState.NotExisted;
+
+			var versionFile = new StorageFile(new[] { IncomingFolderName, "version.txt" });
+			if (!versionFile.ExistsLocal())
+			{
+				DataState = DataActualityState.NotExisted;
+				await versionFile.Download();
+				return;
+			}
+			var remoteFile = await GetClient().GetFile(versionFile.RemotePath);
+			if (File.GetLastWriteTime(versionFile.LocalPath) < remoteFile.LastModified)
+			{
+				DataState = DataActualityState.Outdated;
+				await versionFile.Download();
+				return;
+			}
+			DataState = DataActualityState.Updated;
+		}
 	}
 
 	public abstract class StorageItem
 	{
-		private readonly string[] _relativePathParts;
-
+		public string[] RelativePathParts { get; private set; }
 
 		public string LocalPath
 		{
-			get { return Path.Combine(FileStorageManager.Instance.LocalStoragePath, Path.Combine(_relativePathParts)); }
+			get { return Path.Combine(FileStorageManager.Instance.LocalStoragePath, Path.Combine(RelativePathParts)); }
 		}
 
 		public string RemotePath
 		{
-			get { return String.Format("/{0}", String.Join(@"/", _relativePathParts)); }
+			get { return String.Format("/{0}", String.Join(@"/", RelativePathParts)); }
+		}
+
+		public string Name
+		{
+			get { return Path.GetFileName(LocalPath); }
 		}
 
 		protected StorageItem(string[] relativePathParts)
 		{
-			_relativePathParts = relativePathParts;
+			RelativePathParts = relativePathParts;
 		}
 
-		protected abstract bool ExistsLocal();
+		public virtual async Task<bool> Exists(bool checkRemoteToo = false)
+		{
+			if (!checkRemoteToo)
+				return ExistsLocal();
+			return FileStorageManager.Instance.DataState == DataActualityState.Updated ?
+				ExistsLocal() :
+				await ExistsRemote();
+		}
+
+
+		public StorageDirectory GetParentFolder()
+		{
+			return new StorageDirectory(RelativePathParts.Reverse().Skip(1).Reverse().ToArray());
+		}
+
+		public abstract bool ExistsLocal();
 		protected abstract Task<bool> ExistsRemote();
 	}
 
@@ -112,20 +171,16 @@ namespace NewBizWiz.Core.Common
 		public static async Task<bool> Exists(string[] relativePathParts, bool checkRemoteToo = false)
 		{
 			var storageItem = new StorageDirectory(relativePathParts);
-			if (!checkRemoteToo)
-				return storageItem.ExistsLocal();
-			if (!storageItem.ExistsLocal())
-				return false;
-			return await storageItem.ExistsRemote();
+			return await storageItem.Exists(checkRemoteToo);
 		}
 
-		public static async Task CreateSubFolder(string[] relativePathParts, string name)
+		public static async Task CreateSubFolder(string[] relativePathParts, string name, bool remoteToo = false)
 		{
 			var storageItem = new StorageDirectory(relativePathParts);
-			await storageItem.CreateSubFolder(name);
+			await storageItem.CreateSubFolder(name, remoteToo);
 		}
 
-		protected override bool ExistsLocal()
+		public override bool ExistsLocal()
 		{
 			return Directory.Exists(LocalPath);
 		}
@@ -145,32 +200,148 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
-		protected async Task CreateSubFolder(string name)
+		private async Task CreateSubFolder(string name, bool remoteToo = false)
 		{
 			var subFolderLocalPath = Path.Combine(LocalPath, name);
 			if (!Directory.Exists(subFolderLocalPath))
 				Directory.CreateDirectory(subFolderLocalPath);
+			if (remoteToo)
+			{
+				var client = FileStorageManager.Instance.GetClient();
+				await client.CreateDir(RemotePath, String.Format(@"/{0}", name));
+			}
+		}
+
+		private async Task<IEnumerable<Item>> GetRemoteItems(Func<Item, bool> filter = null)
+		{
+			if (filter == null)
+				filter = item => true;
 			var client = FileStorageManager.Instance.GetClient();
-			await client.CreateDir(RemotePath, String.Format(@"/{0}", name));
+			var folderItems = await client.List(RemotePath);
+			return folderItems.Where(filter).ToList();
+		}
+
+		public async Task<IEnumerable<StorageFile>> GetFiles(Func<string, bool> filter = null, bool recursive = false)
+		{
+			if (filter == null)
+				filter = item => true;
+
+			return FileStorageManager.Instance.DataState == DataActualityState.Updated ?
+				GetLocalFiles(filter, recursive) :
+				await GetRemoteFiles(filter, recursive);
+		}
+
+		private IEnumerable<StorageFile> GetLocalFiles(Func<string, bool> filter, bool recursive)
+		{
+			var items = new List<StorageFile>();
+			if (recursive)
+			{
+				foreach (var directoryPath in Directory.GetDirectories(LocalPath))
+				{
+					var subDirectory = new StorageDirectory(RelativePathParts.Merge(Path.GetFileName(directoryPath)));
+					items.AddRange(subDirectory.GetLocalFiles(filter, true));
+				}
+			}
+			items.AddRange(Directory.GetFiles(LocalPath)
+					.Where(filePath => filter(Path.GetFileName(filePath)))
+					.Select(filePath => new StorageFile(RelativePathParts.Merge(Path.GetFileName(filePath)))));
+			return items;
+		}
+
+		public async Task<IEnumerable<StorageFile>> GetRemoteFiles(Func<string, bool> filter = null, bool recursive = false)
+		{
+			if (filter == null)
+				filter = item => true;
+
+			var items = new List<StorageFile>();
+			var subItems = (await GetRemoteItems()).ToList();
+
+			if (recursive)
+			{
+				foreach (var subItem in subItems.Where(subItem => subItem.IsCollection))
+				{
+					var subDirectory = new StorageDirectory(RelativePathParts.Merge(subItem.GetName()));
+					items.AddRange(await subDirectory.GetRemoteFiles(filter, true));
+				}
+			}
+
+			items.AddRange(subItems
+					.Where(item => !item.IsCollection && filter(item.GetName()))
+					.Select(item => new StorageFile(RelativePathParts, item)));
+
+			return items;
+		}
+
+		public async Task<IEnumerable<StorageDirectory>> GetFolders(Func<string, bool> filter = null)
+		{
+			if (filter == null)
+				filter = item => true;
+
+			return FileStorageManager.Instance.DataState == DataActualityState.Updated ?
+				GetLocalFolders(filter) :
+				await GetRemoteFolders(filter);
+		}
+
+		private IEnumerable<StorageDirectory> GetLocalFolders(Func<string, bool> filter)
+		{
+			var items = new List<StorageDirectory>();
+			items.AddRange(Directory.GetDirectories(LocalPath)
+					.Where(directoryPath => filter(Path.GetFileName(directoryPath)))
+					.Select(directoryPath => new StorageDirectory(RelativePathParts.Merge(Path.GetFileName(directoryPath)))));
+			return items;
+		}
+
+		private async Task<IEnumerable<StorageDirectory>> GetRemoteFolders(Func<string, bool> filter)
+		{
+			var items = await GetRemoteItems(item => item.IsCollection);
+			return items
+				.Where(item => filter(item.GetName()))
+				.Select(item =>
+				{
+					var directory = new StorageDirectory(RelativePathParts.Merge(item.GetName()));
+					if (!Directory.Exists(directory.LocalPath))
+						Directory.CreateDirectory(directory.LocalPath);
+					return directory;
+				})
+				.ToList();
+		}
+
+		public async Task Allocate(bool checkRemoteToo)
+		{
+			if (!Directory.Exists(LocalPath))
+				Directory.CreateDirectory(LocalPath);
+			if (checkRemoteToo && !await ExistsRemote())
+			{
+				await GetParentFolder().Allocate(true);
+				await CreateSubFolder(RelativePathParts, String.Empty, true);
+			}
 		}
 	}
 
 	public class StorageFile : StorageItem
 	{
+		private readonly Item _remoteSource;
+
+		public string Extension
+		{
+			get { return Path.GetExtension(LocalPath); }
+		}
+
 		public StorageFile(string[] relativePathParts) : base(relativePathParts) { }
+
+		public StorageFile(string[] parentPathParts, Item remoteSource)
+			: base(parentPathParts.Merge(remoteSource.GetName()))
+		{
+			_remoteSource = remoteSource;
+		}
 
 		public static async Task<bool> Exists(string[] relativePathParts, bool checkRemoteToo = false)
 		{
 			var storageItem = new StorageFile(relativePathParts);
-			if (!checkRemoteToo)
-				return storageItem.ExistsLocal();
-			if (!storageItem.ExistsLocal())
-				return false;
-			return await storageItem.ExistsRemote();
+			return await storageItem.Exists(checkRemoteToo);
 		}
 
-
-		protected override bool ExistsLocal()
+		public override bool ExistsLocal()
 		{
 			return File.Exists(LocalPath);
 		}
@@ -188,6 +359,53 @@ namespace NewBizWiz.Core.Common
 					return false;
 				throw;
 			}
+		}
+
+		public async Task Upload()
+		{
+			var client = FileStorageManager.Instance.GetClient();
+			await AllocateParentFolder(true);
+			await client.Upload(RemotePath, File.OpenRead(LocalPath), String.Empty);
+		}
+
+		public async Task Download()
+		{
+			var client = FileStorageManager.Instance.GetClient();
+			if (ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated)
+				return;
+			var remoteFile = _remoteSource ?? await client.GetFile(RemotePath);
+			if (!(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified))
+			{
+				AllocateParentFolder();
+				using (var remoteStream = await client.Download(RemotePath))
+				{
+					if (remoteStream != null)
+					{
+						using (var localStream = File.Create(LocalPath))
+						{
+							var buffer = new byte[remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 1024];
+							int bytesRead;
+							do
+							{
+								bytesRead = remoteStream.Read(buffer, 0, buffer.Length);
+								localStream.Write(buffer, 0, bytesRead);
+							} while (bytesRead > 0);
+							localStream.Close();
+						}
+						remoteStream.Close();
+					}
+				}
+			}
+		}
+
+		public async Task AllocateParentFolder(bool checkRemoteToo)
+		{
+			await GetParentFolder().Allocate(checkRemoteToo);
+		}
+
+		public void AllocateParentFolder()
+		{
+			AsyncHelper.RunSync(() => GetParentFolder().Allocate(false));
 		}
 	}
 }

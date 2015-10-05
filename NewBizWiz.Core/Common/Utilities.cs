@@ -92,10 +92,11 @@ namespace NewBizWiz.Core.Common
 
 		public void RunPowerPointLoader()
 		{
-			if (File.Exists(SettingsManager.Instance.PowerPointLoaderPath))
+			var path = Path.Combine(Path.GetDirectoryName(typeof(Utilities).Assembly.Location), "PPTLAUNCHER", "PPTLAUNCH.exe");
+			if (File.Exists(path))
 			{
 				var process = new Process();
-				process.StartInfo.FileName = SettingsManager.Instance.PowerPointLoaderPath;
+				process.StartInfo.FileName = path;
 				process.Start();
 			}
 			else
@@ -506,6 +507,25 @@ namespace NewBizWiz.Core.Common
 				}
 			}
 			return true;
+		}
+
+		public static T[] Merge<T>(this T[] first, IEnumerable<T> second) where T : class
+		{
+			var mergedList = new List<T>(first);
+			mergedList.AddRange(second);
+			return mergedList.ToArray();
+		}
+
+		public static T[] Merge<T>(this T[] first, T second) where T : class
+		{
+			var mergedList = new List<T>(first);
+			mergedList.Add(second);
+			return mergedList.ToArray();
+		}
+
+		public static string GetName(this WebDAVClient.Model.Item item)
+		{
+			return item.Href.Split(@"/"[0]).LastOrDefault(part => !String.IsNullOrEmpty(part));
 		}
 	}
 

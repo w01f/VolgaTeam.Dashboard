@@ -175,7 +175,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 					var previewGroup = new PreviewGroup
 					{
 						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 					};
 					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
@@ -226,7 +226,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 					var previewGroup = new PreviewGroup
 					{
 						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 					};
 					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
@@ -268,7 +268,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 						var previewGroup = new PreviewGroup
 						{
 							Name = outputItem.MonthText,
-							PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 						};
 						RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 						previewGroups.Add(previewGroup);

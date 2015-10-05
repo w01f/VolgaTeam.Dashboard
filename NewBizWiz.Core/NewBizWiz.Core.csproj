@@ -113,6 +113,7 @@
     <Compile Include="Common\GalleryManager.cs" />
     <Compile Include="Common\OrderedItem.cs" />
     <Compile Include="Common\OutputColorList.cs" />
+    <Compile Include="Common\ResourceManager.cs" />
     <Compile Include="Common\ScheduleSaveEventArgs.cs" />
     <Compile Include="Common\SlideManager.cs" />
     <Compile Include="Common\SpecialLinkButton.cs" />
@@ -120,6 +121,8 @@
     <Compile Include="Common\TextItem.cs" />
     <Compile Include="Common\ThemeManager.cs" />
     <Compile Include="Dashboard\Activities.cs" />
+    <Compile Include="Dashboard\ResourceManager.cs" />
+    <Compile Include="Interop\AsyncHelper.cs" />
     <Compile Include="Interop\FileIcon.cs" />
     <Compile Include="Interop\ShellLink.cs" />
     <Compile Include="Common\TabPageManager.cs" />

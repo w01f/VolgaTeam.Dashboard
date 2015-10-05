@@ -114,7 +114,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 							}
 						}
 						if (theme != null)
-							presentation.ApplyTheme(theme.ThemeFilePath);
+							presentation.ApplyTheme(AsyncHelper.RunSync(theme.GetThemePath));
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					});

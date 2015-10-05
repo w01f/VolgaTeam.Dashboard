@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
@@ -14,15 +15,14 @@ namespace NewBizWiz.Dashboard.InteropClasses
 	{
 		public void AppendTargetCustomers(Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TargetCustomersFolder)) return;
-			var presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.TargetCustomersFolder, string.Format(MasterWizardManager.TargetCustomersSlideTemplate, 1));
+			var presentationTemplatePath = AsyncHelper.RunSync(() => MasterWizardManager.Instance.SelectedWizard.GetTargetCustomersFile(String.Format(MasterWizardManager.TargetCustomersSlideTemplate, 1)));
 			if (!File.Exists(presentationTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -49,7 +49,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 					}
 					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.TargetCustomers);
 					if (selectedTheme != null)
-						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});

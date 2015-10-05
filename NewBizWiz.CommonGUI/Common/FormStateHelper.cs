@@ -4,41 +4,39 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.Common
 {
 	public class FormStateHelper
 	{
 		private const string StorageName = "Location.xml";
-		private readonly string _storagePath;
-		private readonly string _filePrefix;
 		private readonly Form _form;
 		private readonly bool _showMaximized;
+		private readonly StorageFile _stateStorageFile;
 
-		private FormStateHelper(Form targetForm, string storagePath, string filePrefix, bool showMaximized)
+		private FormStateHelper(Form targetForm, StorageDirectory storagePath, string filePrefix, bool showMaximized)
 		{
 			_form = targetForm;
-			_storagePath = storagePath;
-			_filePrefix = filePrefix;
+			_stateStorageFile = new StorageFile(storagePath.RelativePathParts.Merge(String.Format("{0}-{1}", filePrefix, StorageName)));
 			_showMaximized = showMaximized;
 			_form.WindowState = FormWindowState.Normal;
 			_form.Load += (o, e) => LoadState();
 			_form.FormClosed += (o, e) => SaveState();
 		}
 
-		public static void Init(Form targetForm, string storagePath, string filePrefix, bool showMaximized)
+		public static FormStateHelper Init(Form targetForm, StorageDirectory storagePath, string filePrefix, bool showMaximized)
 		{
-			new FormStateHelper(targetForm, storagePath, filePrefix, showMaximized);
+			return new FormStateHelper(targetForm, storagePath, filePrefix, showMaximized);
 		}
 
-		private void LoadState()
+		public void LoadState()
 		{
-			var filePath = Path.Combine(_storagePath, String.Format("{0}-{1}", _filePrefix, StorageName));
 			int? x = null, y = null;
-			if (File.Exists(filePath))
+			if (_stateStorageFile.ExistsLocal())
 			{
 				var document = new XmlDocument();
-				document.Load(filePath);
+				document.Load(_stateStorageFile.LocalPath);
 
 				var node = document.SelectSingleNode(@"/Location/X");
 				if (node != null)
@@ -71,10 +69,7 @@ namespace NewBizWiz.CommonGUI.Common
 			xml.AppendLine(@"<X>" + _form.Location.X + @"</X>");
 			xml.AppendLine(@"<Y>" + _form.Location.Y + @"</Y>");
 			xml.AppendLine(@"</Location>");
-			var filePath = Path.Combine(_storagePath, String.Format("{0}-{1}", _filePrefix, StorageName));
-			if (!Directory.Exists(_storagePath))
-				Directory.CreateDirectory(_storagePath);
-			using (var sw = new StreamWriter(filePath, false))
+			using (var sw = new StreamWriter(_stateStorageFile.LocalPath, false))
 			{
 				sw.Write(xml);
 				sw.Flush();

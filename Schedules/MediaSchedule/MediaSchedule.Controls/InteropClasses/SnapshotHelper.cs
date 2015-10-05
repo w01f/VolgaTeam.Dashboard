@@ -145,7 +145,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 								Design design;
 								if (selectedTheme != null)
 								{
-									presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+									presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 									design = presentation.Designs[presentation.Designs.Count];
 									design.Name = DateTime.Now.ToString("MMddyy-hhmmsstt");
 								}
@@ -167,7 +167,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							else
 							{
 								if (selectedTheme != null)
-									presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+									presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
 
 								if (page.ContractSettings.IsConfigured)
 									FillContractInfo(taggedSlide, page.ContractSettings, ContractTemplatePath);

@@ -10,16 +10,11 @@ namespace NewBizWiz.Core.Common
 		public const string DefaultBigLogoFileName = @"Default.png";
 		public const string DefaultSmallLogoFileName = @"Default2.png";
 		public const string DefaultTinyLogoFileName = @"Default3.png";
-		private string LocalListFolder { get; set; }
 
 		private ListManager()
 		{
-			LocalListFolder = Path.Combine(SettingsManager.Instance.OutgoingFolderPath, @"User_lists");
-			if (!Directory.Exists(LocalListFolder))
-				Directory.CreateDirectory(LocalListFolder);
-
-			Advertisers = new AdvertisersManager(LocalListFolder);
-			DecisionMakers = new DecisionMakersManager(LocalListFolder);
+			Advertisers = new AdvertisersManager();
+			DecisionMakers = new DecisionMakersManager();
 		}
 
 		public static ListManager Instance
@@ -29,6 +24,12 @@ namespace NewBizWiz.Core.Common
 
 		public AdvertisersManager Advertisers { get; private set; }
 		public DecisionMakersManager DecisionMakers { get; private set; }
+
+		public void Init()
+		{
+			Advertisers.Load();
+			DecisionMakers.Load();
+		}
 	}
 
 	public class NameCodePair

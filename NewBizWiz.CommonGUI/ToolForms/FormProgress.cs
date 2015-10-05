@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 
 namespace NewBizWiz.CommonGUI.ToolForms

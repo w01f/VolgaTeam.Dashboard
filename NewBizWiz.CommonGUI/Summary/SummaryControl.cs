@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -491,7 +492,7 @@ namespace NewBizWiz.CommonGUI.Summary
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				PreparePreview(tempFileName);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
@@ -508,7 +509,7 @@ namespace NewBizWiz.CommonGUI.Summary
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				PreparePreview(tempFileName);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;

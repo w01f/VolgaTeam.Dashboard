@@ -988,7 +988,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.TopMost = true;
 				formProgress.Show();
 				PrepareOutput();
-				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
@@ -1014,7 +1014,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.TopMost = true;
 				formProgress.Show();
 				PrepareOutput();
-				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();

@@ -15,17 +15,17 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 
 		private BusinessWrapper()
 		{
-			ScheduleManager = new ScheduleManager();
-			HelpManager = new HelpManager(Core.OnlineSchedule.SettingsManager.Instance.HelpLinksPath);
-			OutputManager = new OutputManager();
-			RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
-			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "digital_tab_names.xml"));
-			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
-			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
-			ActivityManager = new ActivityManager("web_pro");
-			Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
-			Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
-			LoadLocalSettings();
+			//ScheduleManager = new ScheduleManager();
+			//HelpManager = new HelpManager(Core.OnlineSchedule.SettingsManager.Instance.HelpLinksPath);
+			//OutputManager = new OutputManager();
+			//RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
+			//TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "digital_tab_names.xml"));
+			//ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
+			//_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
+			////ActivityManager = new ActivityManager("web_pro");
+			//Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
+			//Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
+			//LoadLocalSettings();
 		}
 
 		public static BusinessWrapper Instance

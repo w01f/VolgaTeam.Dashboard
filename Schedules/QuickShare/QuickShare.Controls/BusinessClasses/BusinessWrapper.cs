@@ -16,7 +16,7 @@ namespace NewBizWiz.QuickShare.Controls.BusinessClasses
 			PackageManager = new PackageManager();
 			HelpManager = new HelpManager(MediaMetaData.Instance.SettingsManager.HelpLinksPath);
 			ThemeManager = new ThemeManager(Path.Combine(SettingsManager.Instance.ThemeCollectionPath, SettingsManager.Instance.SlideMasterFolder));
-			ActivityManager = new ActivityManager(MediaMetaData.Instance.SettingsManager.ActivityTrackName);
+			//ActivityManager = new ActivityManager(MediaMetaData.Instance.SettingsManager.ActivityTrackName);
 		}
 
 		public static BusinessWrapper Instance

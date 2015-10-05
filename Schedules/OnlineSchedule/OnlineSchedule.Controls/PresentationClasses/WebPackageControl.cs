@@ -679,7 +679,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void pbDisabledOutput_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("pkgdisabled");
+			HelpManager.OpenHelpLink("pkgdisabled");
 		}
 
 		public void PowerPoint_Click(object sender, EventArgs e)
@@ -702,7 +702,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
-				formProgress.Show(); var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				formProgress.Show(); var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
@@ -729,7 +729,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
 				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();

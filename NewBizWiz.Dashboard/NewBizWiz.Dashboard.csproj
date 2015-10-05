@@ -362,6 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\HomeDefault.png" />
     <None Include="Resources\RibbonLogo.png" />
     <None Include="Resources\SaveTemplate.png" />
     <None Include="Resources\SummaryFlightDates.png" />
@@ -401,9 +402,7 @@
     <None Include="Resources\MasterWizardLogo.png" />
     <None Include="Resources\Calendar.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="obj\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

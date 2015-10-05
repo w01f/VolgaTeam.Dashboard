@@ -29,257 +29,257 @@ namespace NewBizWiz.MediaSchedule.Single
 		{
 			InitializeComponent();
 
-			FormStateHelper.Init(this, SettingsManager.Instance.SettingsPath, MediaMetaData.Instance.DataTypeString, true);
+			//FormStateHelper.Init(this, SettingsManager.Instance.SettingsPath, MediaMetaData.Instance.DataTypeString, true);
 
-			Controller.Instance.FormMain = this;
-			Controller.Instance.Supertip = superTooltip;
-			Controller.Instance.Ribbon = ribbonControl;
-			Controller.Instance.TabHome = ribbonTabItemHome;
-			Controller.Instance.TabWeeklySchedule = ribbonTabItemWeeklySchedule;
-			Controller.Instance.TabMonthlySchedule = ribbonTabItemMonthlySchedule;
-			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
-			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
-			Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
-			Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
-			Controller.Instance.TabSummaryLight = ribbonTabItemSummaryLight;
-			Controller.Instance.TabSummaryFull = ribbonTabItemSummaryFull;
-			Controller.Instance.TabStrategy = ribbonTabItemStrategy;
-			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
-			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
-			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
-			Controller.Instance.TabOptions = ribbonTabItemOptions;
-			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
+			//Controller.Instance.FormMain = this;
+			//Controller.Instance.Supertip = superTooltip;
+			//Controller.Instance.Ribbon = ribbonControl;
+			//Controller.Instance.TabHome = ribbonTabItemHome;
+			//Controller.Instance.TabWeeklySchedule = ribbonTabItemWeeklySchedule;
+			//Controller.Instance.TabMonthlySchedule = ribbonTabItemMonthlySchedule;
+			//Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
+			//Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
+			//Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
+			//Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
+			//Controller.Instance.TabSummaryLight = ribbonTabItemSummaryLight;
+			//Controller.Instance.TabSummaryFull = ribbonTabItemSummaryFull;
+			//Controller.Instance.TabStrategy = ribbonTabItemStrategy;
+			//Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
+			//Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
+			//Controller.Instance.TabRateCard = ribbonTabItemRateCard;
+			//Controller.Instance.TabOptions = ribbonTabItemOptions;
+			//Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
 
-			#region Command Controls
+			//#region Command Controls
 
-			#region Home
-			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
-			Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
-			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
-			Controller.Instance.HomePresentationDate = dateEditPresentationDate;
-			Controller.Instance.HomeFlightDatesStart = dateEditFlightDatesStart;
-			Controller.Instance.HomeFlightDatesEnd = dateEditFlightDatesEnd;
-			Controller.Instance.HomeWeeks = labelItemHomeFlightDatesWeeks;
-			Controller.Instance.HomeSave = buttonItemHomeSave;
-			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
-			Controller.Instance.HomeHelp = buttonItemHomeHelp;
-			Controller.Instance.HomeProductAdd = buttonItemHomeDigitalProductAdd;
-			Controller.Instance.HomeProductClone = buttonItemHomeDigitalProductClone;
-			Controller.Instance.HomeClientType = comboBoxEditClientType;
-			Controller.Instance.HomeAccountNumberText = textEditAccountNumber;
-			Controller.Instance.HomeAccountNumberCheck = checkBoxItemHomeAccountNumber;
-			#endregion
+			//#region Home
+			//Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
+			//Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
+			//Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
+			//Controller.Instance.HomePresentationDate = dateEditPresentationDate;
+			//Controller.Instance.HomeFlightDatesStart = dateEditFlightDatesStart;
+			//Controller.Instance.HomeFlightDatesEnd = dateEditFlightDatesEnd;
+			//Controller.Instance.HomeWeeks = labelItemHomeFlightDatesWeeks;
+			//Controller.Instance.HomeSave = buttonItemHomeSave;
+			//Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
+			//Controller.Instance.HomeHelp = buttonItemHomeHelp;
+			//Controller.Instance.HomeProductAdd = buttonItemHomeDigitalProductAdd;
+			//Controller.Instance.HomeProductClone = buttonItemHomeDigitalProductClone;
+			//Controller.Instance.HomeClientType = comboBoxEditClientType;
+			//Controller.Instance.HomeAccountNumberText = textEditAccountNumber;
+			//Controller.Instance.HomeAccountNumberCheck = checkBoxItemHomeAccountNumber;
+			//#endregion
 
-			#region Weekly Schedule
-			Controller.Instance.WeeklyScheduleSpecialButtons = ribbonBarWeeklyScheduleSpecialButtons;
-			Controller.Instance.WeeklyScheduleHelp = buttonItemWeeklyScheduleHelp;
-			Controller.Instance.WeeklyScheduleSave = buttonItemWeeklyScheduleSave;
-			Controller.Instance.WeeklyScheduleSaveAs = buttonItemWeeklyScheduleSaveAs;
-			Controller.Instance.WeeklySchedulePreview = buttonItemWeeklySchedulePreview;
-			Controller.Instance.WeeklyScheduleEmail = buttonItemWeeklyScheduleEmail;
-			Controller.Instance.WeeklySchedulePowerPoint = buttonItemWeeklySchedulePowerPoint;
-			Controller.Instance.WeeklySchedulePdf = buttonItemWeeklySchedulePdf;
-			Controller.Instance.WeeklyScheduleTheme = buttonItemWeeklyScheduleTheme;
-			Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
-			Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
-			Controller.Instance.WeeklyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
-			Controller.Instance.WeeklyScheduleQuarterButton = buttonItemWeeklyScheduleQuarter;
-			#endregion
+			//#region Weekly Schedule
+			//Controller.Instance.WeeklyScheduleSpecialButtons = ribbonBarWeeklyScheduleSpecialButtons;
+			//Controller.Instance.WeeklyScheduleHelp = buttonItemWeeklyScheduleHelp;
+			//Controller.Instance.WeeklyScheduleSave = buttonItemWeeklyScheduleSave;
+			//Controller.Instance.WeeklyScheduleSaveAs = buttonItemWeeklyScheduleSaveAs;
+			//Controller.Instance.WeeklySchedulePreview = buttonItemWeeklySchedulePreview;
+			//Controller.Instance.WeeklyScheduleEmail = buttonItemWeeklyScheduleEmail;
+			//Controller.Instance.WeeklySchedulePowerPoint = buttonItemWeeklySchedulePowerPoint;
+			//Controller.Instance.WeeklySchedulePdf = buttonItemWeeklySchedulePdf;
+			//Controller.Instance.WeeklyScheduleTheme = buttonItemWeeklyScheduleTheme;
+			//Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
+			//Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
+			//Controller.Instance.WeeklyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
+			//Controller.Instance.WeeklyScheduleQuarterButton = buttonItemWeeklyScheduleQuarter;
+			//#endregion
 
-			#region Monthly Schedule
-			Controller.Instance.MonthlyScheduleSpecialButtons = ribbonBarMonthlyScheduleSpecialButtons;
-			Controller.Instance.MonthlyScheduleHelp = buttonItemMonthlyScheduleHelp;
-			Controller.Instance.MonthlyScheduleSave = buttonItemMonthlyScheduleSave;
-			Controller.Instance.MonthlyScheduleSaveAs = buttonItemMonthlyScheduleSaveAs;
-			Controller.Instance.MonthlySchedulePreview = buttonItemMonthlySchedulePreview;
-			Controller.Instance.MonthlyScheduleEmail = buttonItemMonthlyScheduleEmail;
-			Controller.Instance.MonthlySchedulePowerPoint = buttonItemMonthlySchedulePowerPoint;
-			Controller.Instance.MonthlySchedulePdf = buttonItemMonthlySchedulePdf;
-			Controller.Instance.MonthlyScheduleTheme = buttonItemMonthlyScheduleTheme;
-			Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
-			Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
-			Controller.Instance.MonthlyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
-			Controller.Instance.MonthlyScheduleQuarterButton = buttonItemMonthlyScheduleQuarter;
-			#endregion
+			//#region Monthly Schedule
+			//Controller.Instance.MonthlyScheduleSpecialButtons = ribbonBarMonthlyScheduleSpecialButtons;
+			//Controller.Instance.MonthlyScheduleHelp = buttonItemMonthlyScheduleHelp;
+			//Controller.Instance.MonthlyScheduleSave = buttonItemMonthlyScheduleSave;
+			//Controller.Instance.MonthlyScheduleSaveAs = buttonItemMonthlyScheduleSaveAs;
+			//Controller.Instance.MonthlySchedulePreview = buttonItemMonthlySchedulePreview;
+			//Controller.Instance.MonthlyScheduleEmail = buttonItemMonthlyScheduleEmail;
+			//Controller.Instance.MonthlySchedulePowerPoint = buttonItemMonthlySchedulePowerPoint;
+			//Controller.Instance.MonthlySchedulePdf = buttonItemMonthlySchedulePdf;
+			//Controller.Instance.MonthlyScheduleTheme = buttonItemMonthlyScheduleTheme;
+			//Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
+			//Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
+			//Controller.Instance.MonthlyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
+			//Controller.Instance.MonthlyScheduleQuarterButton = buttonItemMonthlyScheduleQuarter;
+			//#endregion
 
-			#region Digital Product
-			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
-			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
-			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
-			Controller.Instance.DigitalProductPdf = buttonItemDigitalSchedulePdf;
-			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
-			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
-			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
-			Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
-			Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
-			#endregion
+			//#region Digital Product
+			//Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
+			//Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
+			//Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
+			//Controller.Instance.DigitalProductPdf = buttonItemDigitalSchedulePdf;
+			//Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
+			//Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
+			//Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
+			//Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
+			//Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
+			//#endregion
 
-			#region Digital Package
-			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
-			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
-			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
-			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
-			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
-			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
-			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
-			Controller.Instance.DigitalPackagePdf = buttonItemDigitalPackagePdf;
-			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			#endregion
+			//#region Digital Package
+			//Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
+			//Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
+			//Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
+			//Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
+			//Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
+			//Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
+			//Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
+			//Controller.Instance.DigitalPackagePdf = buttonItemDigitalPackagePdf;
+			//Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
+			//#endregion
 
-			#region Calendar 1
-			Controller.Instance.Calendar1SpecialButtons = ribbonBarCalendar1SpecialButtons;
-			Controller.Instance.Calendar1MonthsList = listBoxControlCalendar1;
-			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
-			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
-			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
-			Controller.Instance.Calendar1Help = buttonItemCalendar1Help;
-			Controller.Instance.Calendar1Save = buttonItemCalendar1Save;
-			Controller.Instance.Calendar1SaveAs = buttonItemCalendar1SaveAs;
-			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
-			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
-			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
-			Controller.Instance.Calendar1Pdf = buttonItemCalendar1Pdf;
-			#endregion
+			//#region Calendar 1
+			//Controller.Instance.Calendar1SpecialButtons = ribbonBarCalendar1SpecialButtons;
+			//Controller.Instance.Calendar1MonthsList = listBoxControlCalendar1;
+			//Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
+			//Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
+			//Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
+			//Controller.Instance.Calendar1Help = buttonItemCalendar1Help;
+			//Controller.Instance.Calendar1Save = buttonItemCalendar1Save;
+			//Controller.Instance.Calendar1SaveAs = buttonItemCalendar1SaveAs;
+			//Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
+			//Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
+			//Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
+			//Controller.Instance.Calendar1Pdf = buttonItemCalendar1Pdf;
+			//#endregion
 
-			#region Calendar 2
-			Controller.Instance.Calendar2SpecialButtons = ribbonBarCalendar2SpecialButtons;
-			Controller.Instance.Calendar2MonthsList = listBoxControlCalendar2;
-			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
-			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
-			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
-			Controller.Instance.Calendar2Help = buttonItemCalendar2Help;
-			Controller.Instance.Calendar2Save = buttonItemCalendar2Save;
-			Controller.Instance.Calendar2SaveAs = buttonItemCalendar2SaveAs;
-			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
-			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
-			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
-			Controller.Instance.Calendar2Pdf = buttonItemCalendar2Pdf;
-			#endregion
+			//#region Calendar 2
+			//Controller.Instance.Calendar2SpecialButtons = ribbonBarCalendar2SpecialButtons;
+			//Controller.Instance.Calendar2MonthsList = listBoxControlCalendar2;
+			//Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
+			//Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
+			//Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
+			//Controller.Instance.Calendar2Help = buttonItemCalendar2Help;
+			//Controller.Instance.Calendar2Save = buttonItemCalendar2Save;
+			//Controller.Instance.Calendar2SaveAs = buttonItemCalendar2SaveAs;
+			//Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
+			//Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
+			//Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
+			//Controller.Instance.Calendar2Pdf = buttonItemCalendar2Pdf;
+			//#endregion
 
-			#region Summary Light
-			Controller.Instance.SummaryLightSpecialButtons = ribbonBarSummaryLightSpecialButtons;
-			Controller.Instance.SummaryLightHelp = buttonItemSummaryLightHelp;
-			Controller.Instance.SummaryLightSave = buttonItemSummaryLightSave;
-			Controller.Instance.SummaryLightSaveAs = buttonItemSummaryLightSaveAs;
-			Controller.Instance.SummaryLightPreview = buttonItemSummaryLightPreview;
-			Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
-			Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
-			Controller.Instance.SummaryLightPdf = buttonItemSummaryLightPdf;
-			Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
-			Controller.Instance.SummaryLightSlideOutputToggle = checkEditSummaryLightOutputSlide;
-			Controller.Instance.SummaryLightTableOutputToggle = checkEditSummaryLightOutputTable;
-			#endregion
+			//#region Summary Light
+			//Controller.Instance.SummaryLightSpecialButtons = ribbonBarSummaryLightSpecialButtons;
+			//Controller.Instance.SummaryLightHelp = buttonItemSummaryLightHelp;
+			//Controller.Instance.SummaryLightSave = buttonItemSummaryLightSave;
+			//Controller.Instance.SummaryLightSaveAs = buttonItemSummaryLightSaveAs;
+			//Controller.Instance.SummaryLightPreview = buttonItemSummaryLightPreview;
+			//Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
+			//Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
+			//Controller.Instance.SummaryLightPdf = buttonItemSummaryLightPdf;
+			//Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
+			//Controller.Instance.SummaryLightSlideOutputToggle = checkEditSummaryLightOutputSlide;
+			//Controller.Instance.SummaryLightTableOutputToggle = checkEditSummaryLightOutputTable;
+			//#endregion
 
-			#region Summary Full
-			Controller.Instance.SummaryFullSpecialButtons = ribbonBarSummaryFullSpecialButtons;
-			Controller.Instance.SummaryFullHelp = buttonItemSummaryFullHelp;
-			Controller.Instance.SummaryFullSave = buttonItemSummaryFullSave;
-			Controller.Instance.SummaryFullSaveAs = buttonItemSummaryFullSaveAs;
-			Controller.Instance.SummaryFullPreview = buttonItemSummaryFullPreview;
-			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
-			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
-			Controller.Instance.SummaryFullPdf = buttonItemSummaryFullPdf;
-			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
-			Controller.Instance.SummaryFullSlideOutputToggle = checkEditSummaryFullOutputSlide;
-			Controller.Instance.SummaryFullTableOutputToggle = checkEditSummaryFullOutputTable;
-			#endregion
+			//#region Summary Full
+			//Controller.Instance.SummaryFullSpecialButtons = ribbonBarSummaryFullSpecialButtons;
+			//Controller.Instance.SummaryFullHelp = buttonItemSummaryFullHelp;
+			//Controller.Instance.SummaryFullSave = buttonItemSummaryFullSave;
+			//Controller.Instance.SummaryFullSaveAs = buttonItemSummaryFullSaveAs;
+			//Controller.Instance.SummaryFullPreview = buttonItemSummaryFullPreview;
+			//Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
+			//Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
+			//Controller.Instance.SummaryFullPdf = buttonItemSummaryFullPdf;
+			//Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
+			//Controller.Instance.SummaryFullSlideOutputToggle = checkEditSummaryFullOutputSlide;
+			//Controller.Instance.SummaryFullTableOutputToggle = checkEditSummaryFullOutputTable;
+			//#endregion
 
-			#region Strategy
-			Controller.Instance.StrategySpecialButtons = ribbonBarStrategySpecialButtons;
-			Controller.Instance.StrategyHelp = buttonItemStrategyHelp;
-			Controller.Instance.StrategySave = buttonItemStrategySave;
-			Controller.Instance.StrategySaveAs = buttonItemStrategySaveAs;
-			Controller.Instance.StrategyPreview = buttonItemStrategyPreview;
-			Controller.Instance.StrategyEmail = buttonItemStrategyEmail;
-			Controller.Instance.StrategyPowerPoint = buttonItemStrategyPowerPoint;
-			Controller.Instance.StrategyPdf = buttonItemStrategyPdf;
-			Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
-			Controller.Instance.StrategyShowStationToggle = checkEditStrategyShowStation;
-			Controller.Instance.StrategyShowDescriptionToggle = checkEditStrategyShowDescription;
-			#endregion
+			//#region Strategy
+			//Controller.Instance.StrategySpecialButtons = ribbonBarStrategySpecialButtons;
+			//Controller.Instance.StrategyHelp = buttonItemStrategyHelp;
+			//Controller.Instance.StrategySave = buttonItemStrategySave;
+			//Controller.Instance.StrategySaveAs = buttonItemStrategySaveAs;
+			//Controller.Instance.StrategyPreview = buttonItemStrategyPreview;
+			//Controller.Instance.StrategyEmail = buttonItemStrategyEmail;
+			//Controller.Instance.StrategyPowerPoint = buttonItemStrategyPowerPoint;
+			//Controller.Instance.StrategyPdf = buttonItemStrategyPdf;
+			//Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
+			//Controller.Instance.StrategyShowStationToggle = checkEditStrategyShowStation;
+			//Controller.Instance.StrategyShowDescriptionToggle = checkEditStrategyShowDescription;
+			//#endregion
 
-			#region Snapshot
-			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
-			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
-			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
-			Controller.Instance.SnapshotSaveAs = buttonItemSnapshotSaveAs;
-			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
-			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
-			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
-			Controller.Instance.SnapshotPdf = buttonItemSnapshotPdf;
-			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
-			Controller.Instance.SnapshotNew = buttonItemSnapshotNew;
-			Controller.Instance.SnapshotProgramAdd = buttonItemSnapshotProgramAdd;
-			Controller.Instance.SnapshotProgramDelete = buttonItemSnapshotProgramDelete;
-			#endregion
+			//#region Snapshot
+			//Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
+			//Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
+			//Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
+			//Controller.Instance.SnapshotSaveAs = buttonItemSnapshotSaveAs;
+			//Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
+			//Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
+			//Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
+			//Controller.Instance.SnapshotPdf = buttonItemSnapshotPdf;
+			//Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
+			//Controller.Instance.SnapshotNew = buttonItemSnapshotNew;
+			//Controller.Instance.SnapshotProgramAdd = buttonItemSnapshotProgramAdd;
+			//Controller.Instance.SnapshotProgramDelete = buttonItemSnapshotProgramDelete;
+			//#endregion
 
-			#region Options
-			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
-			Controller.Instance.OptionsHelp = buttonItemOptionsHelp;
-			Controller.Instance.OptionsSave = buttonItemOptionsSave;
-			Controller.Instance.OptionsSaveAs = buttonItemOptionsSaveAs;
-			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
-			Controller.Instance.OptionsEmail = buttonItemOptionsEmail;
-			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
-			Controller.Instance.OptionsPdf = buttonItemOptionsPdf;
-			Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
-			Controller.Instance.OptionsNew = buttonItemOptionsNew;
-			Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
-			Controller.Instance.OptionsProgramDelete = buttonItemOptionsProgramDelete;
-			#endregion
+			//#region Options
+			//Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
+			//Controller.Instance.OptionsHelp = buttonItemOptionsHelp;
+			//Controller.Instance.OptionsSave = buttonItemOptionsSave;
+			//Controller.Instance.OptionsSaveAs = buttonItemOptionsSaveAs;
+			//Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
+			//Controller.Instance.OptionsEmail = buttonItemOptionsEmail;
+			//Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
+			//Controller.Instance.OptionsPdf = buttonItemOptionsPdf;
+			//Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
+			//Controller.Instance.OptionsNew = buttonItemOptionsNew;
+			//Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
+			//Controller.Instance.OptionsProgramDelete = buttonItemOptionsProgramDelete;
+			//#endregion
 
-			#region Gallery 1
-			Controller.Instance.Gallery1Panel = ribbonPanelGallery1;
-			Controller.Instance.Gallery1SpecialButtons = ribbonBarGallery1SpecialButtons;
-			Controller.Instance.Gallery1BrowseBar = ribbonBarGallery1Browse;
-			Controller.Instance.Gallery1ImageBar = ribbonBarGallery1Image;
-			Controller.Instance.Gallery1ZoomBar = ribbonBarGallery1Zoom;
-			Controller.Instance.Gallery1CopyBar = ribbonBarGallery1Copy;
-			Controller.Instance.Gallery1BrowseModeContainer = itemContainerGallery1BrowseContentType;
-			Controller.Instance.Gallery1View = buttonItemGallery1View;
-			Controller.Instance.Gallery1Edit = buttonItemGallery1Edit;
-			Controller.Instance.Gallery1ImageSelect = buttonItemGallery1ImageSelect;
-			Controller.Instance.Gallery1ImageCrop = buttonItemGallery1ImageCrop;
-			Controller.Instance.Gallery1ZoomIn = buttonItemGallery1ZoomIn;
-			Controller.Instance.Gallery1ZoomOut = buttonItemGallery1ZoomOut;
-			Controller.Instance.Gallery1Copy = buttonItemGallery1Copy;
-			Controller.Instance.Gallery1Help = buttonItemGallery1Help;
-			Controller.Instance.Gallery1Sections = comboBoxEditGallery1Sections;
-			Controller.Instance.Gallery1Groups = comboBoxEditGallery1Groups;
-			#endregion
+			//#region Gallery 1
+			//Controller.Instance.Gallery1Panel = ribbonPanelGallery1;
+			//Controller.Instance.Gallery1SpecialButtons = ribbonBarGallery1SpecialButtons;
+			//Controller.Instance.Gallery1BrowseBar = ribbonBarGallery1Browse;
+			//Controller.Instance.Gallery1ImageBar = ribbonBarGallery1Image;
+			//Controller.Instance.Gallery1ZoomBar = ribbonBarGallery1Zoom;
+			//Controller.Instance.Gallery1CopyBar = ribbonBarGallery1Copy;
+			//Controller.Instance.Gallery1BrowseModeContainer = itemContainerGallery1BrowseContentType;
+			//Controller.Instance.Gallery1View = buttonItemGallery1View;
+			//Controller.Instance.Gallery1Edit = buttonItemGallery1Edit;
+			//Controller.Instance.Gallery1ImageSelect = buttonItemGallery1ImageSelect;
+			//Controller.Instance.Gallery1ImageCrop = buttonItemGallery1ImageCrop;
+			//Controller.Instance.Gallery1ZoomIn = buttonItemGallery1ZoomIn;
+			//Controller.Instance.Gallery1ZoomOut = buttonItemGallery1ZoomOut;
+			//Controller.Instance.Gallery1Copy = buttonItemGallery1Copy;
+			//Controller.Instance.Gallery1Help = buttonItemGallery1Help;
+			//Controller.Instance.Gallery1Sections = comboBoxEditGallery1Sections;
+			//Controller.Instance.Gallery1Groups = comboBoxEditGallery1Groups;
+			//#endregion
 
-			#region Gallery 2
-			Controller.Instance.Gallery2Panel = ribbonPanelGallery2;
-			Controller.Instance.Gallery2SpecialButtons = ribbonBarGallery2SpecialButtons;
-			Controller.Instance.Gallery2BrowseBar = ribbonBarGallery2Browse;
-			Controller.Instance.Gallery2ImageBar = ribbonBarGallery2Image;
-			Controller.Instance.Gallery2ZoomBar = ribbonBarGallery2Zoom;
-			Controller.Instance.Gallery2CopyBar = ribbonBarGallery2Copy;
-			Controller.Instance.Gallery2BrowseModeContainer = itemContainerGallery2BrowseContentType;
-			Controller.Instance.Gallery2View = buttonItemGallery2View;
-			Controller.Instance.Gallery2Edit = buttonItemGallery2Edit;
-			Controller.Instance.Gallery2ImageSelect = buttonItemGallery2ImageSelect;
-			Controller.Instance.Gallery2ImageCrop = buttonItemGallery2ImageCrop;
-			Controller.Instance.Gallery2ZoomIn = buttonItemGallery2ZoomIn;
-			Controller.Instance.Gallery2ZoomOut = buttonItemGallery2ZoomOut;
-			Controller.Instance.Gallery2Copy = buttonItemGallery2Copy;
-			Controller.Instance.Gallery2Help = buttonItemGallery2Help;
-			Controller.Instance.Gallery2Sections = comboBoxEditGallery2Sections;
-			Controller.Instance.Gallery2Groups = comboBoxEditGallery2Groups;
-			#endregion
+			//#region Gallery 2
+			//Controller.Instance.Gallery2Panel = ribbonPanelGallery2;
+			//Controller.Instance.Gallery2SpecialButtons = ribbonBarGallery2SpecialButtons;
+			//Controller.Instance.Gallery2BrowseBar = ribbonBarGallery2Browse;
+			//Controller.Instance.Gallery2ImageBar = ribbonBarGallery2Image;
+			//Controller.Instance.Gallery2ZoomBar = ribbonBarGallery2Zoom;
+			//Controller.Instance.Gallery2CopyBar = ribbonBarGallery2Copy;
+			//Controller.Instance.Gallery2BrowseModeContainer = itemContainerGallery2BrowseContentType;
+			//Controller.Instance.Gallery2View = buttonItemGallery2View;
+			//Controller.Instance.Gallery2Edit = buttonItemGallery2Edit;
+			//Controller.Instance.Gallery2ImageSelect = buttonItemGallery2ImageSelect;
+			//Controller.Instance.Gallery2ImageCrop = buttonItemGallery2ImageCrop;
+			//Controller.Instance.Gallery2ZoomIn = buttonItemGallery2ZoomIn;
+			//Controller.Instance.Gallery2ZoomOut = buttonItemGallery2ZoomOut;
+			//Controller.Instance.Gallery2Copy = buttonItemGallery2Copy;
+			//Controller.Instance.Gallery2Help = buttonItemGallery2Help;
+			//Controller.Instance.Gallery2Sections = comboBoxEditGallery2Sections;
+			//Controller.Instance.Gallery2Groups = comboBoxEditGallery2Groups;
+			//#endregion
 
-			#region Rate Card
-			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
-			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
-			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
-			#endregion
+			//#region Rate Card
+			//Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
+			//Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
+			//Controller.Instance.RateCardCombo = comboBoxEditRateCards;
+			//#endregion
 
-			#endregion
+			//#endregion
 
-			Controller.Instance.Init();
+			//Controller.Instance.Init();
 
-			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
-			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
+			//Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			//Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -500,24 +500,24 @@ namespace NewBizWiz.MediaSchedule.Single
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
-			UpdateFormTitle();
+			//UpdateFormTitle();
 			Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
 
-			using (var formStart = new FormStart())
-			{
-				formStart.buttonXOpen.Enabled = ScheduleManager.GetShortScheduleList().Length > 0;
-				var result = formStart.ShowDialog();
-				if (result == DialogResult.Yes || result == DialogResult.No)
-				{
-					if (result == DialogResult.Yes)
-						buttonItemHomeNewSchedule_Click(null, null);
-					else
-						buttonItemHomeOpenSchedule_Click(null, null);
-				}
-				else
-					Application.Exit();
-			}
+			//using (var formStart = new FormStart())
+			//{
+			//	formStart.buttonXOpen.Enabled = ScheduleManager.GetShortScheduleList().Length > 0;
+			//	var result = formStart.ShowDialog();
+			//	if (result == DialogResult.Yes || result == DialogResult.No)
+			//	{
+			//		if (result == DialogResult.Yes)
+			//			buttonItemHomeNewSchedule_Click(null, null);
+			//		else
+			//			buttonItemHomeOpenSchedule_Click(null, null);
+			//	}
+			//	else
+			//		Application.Exit();
+			//}
 		}
 
 		private void FormMain_Resize(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace NewBizWiz.Core.Common
@@ -9,43 +9,44 @@ namespace NewBizWiz.Core.Common
 	public class ActivityManager
 	{
 		private XDocument _activityStorage;
-		private readonly string _activityFolder;
+		private readonly StorageDirectory _activityFolder;
+		private readonly StorageFile _activityFile;
 
-		protected string ActivityFilePath
+		private ActivityManager()
 		{
-			get { return Path.Combine(SettingsManager.Instance.ActivityDataPath, _activityFolder, String.Format("{0}.xml", DateTime.Now.ToString("MM-dd-yyyy"))); }
+			_activityFolder = AppProfileManager.Instance.UserDataFolder;
+			_activityFile = new StorageFile(_activityFolder.RelativePathParts.Merge(String.Format("{0}.xml", DateTime.Now.ToString("MM-dd-yyyy"))));
 		}
 
-		public ActivityManager(string activityFolder)
+		public static ActivityManager OpenStorage()
 		{
-			_activityFolder = activityFolder;
-			var folderPath = Path.Combine(SettingsManager.Instance.ActivityDataPath, _activityFolder);
-			if (!Directory.Exists(folderPath))
-				Directory.CreateDirectory(folderPath);
-			OpenStorage();
+			var instance = new ActivityManager();
+			instance.Init();
+			return instance;
 		}
 
-		private void OpenStorage()
+		private void Init()
 		{
-			if (File.Exists(ActivityFilePath))
-				_activityStorage = XDocument.Load(ActivityFilePath);
+			if (_activityFile.ExistsLocal())
+				_activityStorage = XDocument.Load(_activityFile.LocalPath);
 			else
 			{
 				_activityStorage = new XDocument();
 				var root = new XElement("UserActivities");
 				_activityStorage.Add(root);
-			}
+			}			
 		}
 
-		private void SaveStorage()
+		private async Task SaveStorage()
 		{
-			_activityStorage.Save(ActivityFilePath);
+			_activityStorage.Save(_activityFile.LocalPath);
+			await _activityFile.Upload();
 		}
 
-		public void AddActivity(UserActivity activity)
+		public async Task AddActivity(UserActivity activity)
 		{
 			_activityStorage.Root.Add(activity.Serialize());
-			SaveStorage();
+			await SaveStorage();
 		}
 	}
 

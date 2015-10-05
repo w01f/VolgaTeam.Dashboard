@@ -150,7 +150,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			return new PreviewGroup
 			{
 				Name = Text,
-				PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 		}
 

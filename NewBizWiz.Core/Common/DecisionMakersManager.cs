@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using NewBizWiz.Core.Interop;
 
@@ -10,7 +11,8 @@ namespace NewBizWiz.Core.Common
 	public class DecisionMakersManager
 	{
 		private const string DecisionMakersFileName = @"DecisionMakers.xml";
-		private readonly string _localListFolder;
+
+		private StorageFile _contentFile;
 
 		public List<string> Items { get; private set; }
 
@@ -22,20 +24,21 @@ namespace NewBizWiz.Core.Common
 			if (handler != null) handler(this, EventArgs.Empty);
 		}
 
-		public DecisionMakersManager(string localListFolder)
+		public DecisionMakersManager()
 		{
-			_localListFolder = localListFolder;
 			Items = new List<string>();
-			Load();
 		}
 
-		private void Load()
+		public void Load()
 		{
 			Items.Clear();
-			var listPath = Path.Combine(_localListFolder, DecisionMakersFileName);
-			if (!File.Exists(listPath)) return;
+
+			_contentFile = new StorageFile(AppProfileManager.Instance.UserListsFolder.RelativePathParts.Merge(DecisionMakersFileName));
+			_contentFile.AllocateParentFolder();
+
+			if (!_contentFile.ExistsLocal()) return;
 			var document = new XmlDocument();
-			document.Load(listPath);
+			document.Load(_contentFile.LocalPath);
 
 			var node = document.SelectSingleNode(@"/DecisionMakers");
 			if (node == null) return;
@@ -46,7 +49,7 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
-		public void Save()
+		public async Task Save()
 		{
 			var xml = new StringBuilder();
 
@@ -55,12 +58,12 @@ namespace NewBizWiz.Core.Common
 				xml.AppendLine(@"<DecisionMaker>" + decisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
 			xml.AppendLine(@"</DecisionMakers>");
 
-			var userConfigurationPath = Path.Combine(_localListFolder, DecisionMakersFileName);
-			using (var sw = new StreamWriter(userConfigurationPath, false))
+			using (var sw = new StreamWriter(_contentFile.LocalPath, false))
 			{
 				sw.Write(xml);
 				sw.Flush();
 			}
+			await _contentFile.Upload();
 		}
 
 		public void Add(string item)

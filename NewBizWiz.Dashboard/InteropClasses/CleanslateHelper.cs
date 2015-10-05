@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Threading;
+﻿using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
@@ -12,30 +11,27 @@ namespace NewBizWiz.Dashboard.InteropClasses
 	{
 		public void AppendCleanslate(Presentation destinationPresentation = null)
 		{
-			if (File.Exists(MasterWizardManager.Instance.SelectedWizard.CleanslateFile))
+			var presentationTemplatePath = AsyncHelper.RunSync(MasterWizardManager.Instance.SelectedWizard.GetCleanslateFile);
+			try
 			{
-				string presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.CleanslateFile;
-				try
+				var thread = new Thread(delegate()
 				{
-					var thread = new Thread(delegate()
-					{
-						MessageFilter.Register();
-						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-						var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cleanslate);
-						if (selectedTheme != null)
-							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
-						AppendSlide(presentation, -1, destinationPresentation);
-						presentation.Close();
-					});
-					thread.Start();
-					while (thread.IsAlive)
-						Application.DoEvents();
-				}
-				catch { }
-				finally
-				{
-					MessageFilter.Revoke();
-				}
+					MessageFilter.Register();
+					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cleanslate);
+					if (selectedTheme != null)
+						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+					AppendSlide(presentation, -1, destinationPresentation);
+					presentation.Close();
+				});
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+			}
+			catch { }
+			finally
+			{
+				MessageFilter.Revoke();
 			}
 		}
 

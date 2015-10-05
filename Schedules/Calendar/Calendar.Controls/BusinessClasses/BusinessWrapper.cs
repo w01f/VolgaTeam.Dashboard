@@ -12,14 +12,14 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 
 		private BusinessWrapper()
 		{
-			ScheduleManager = new ScheduleManager();
-			HelpManager = new HelpManager(SettingsManager.Instance.HelpLinksPath);
-			OutputManager = new OutputManager();
-			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "cal_tab_names.xml"));
-			ActivityManager = new ActivityManager("calendar");
-			RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
-			Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
-			Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
+			//ScheduleManager = new ScheduleManager();
+			//HelpManager = new HelpManager(SettingsManager.Instance.HelpLinksPath);
+			//OutputManager = new OutputManager();
+			//TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "cal_tab_names.xml"));
+			////ActivityManager = new ActivityManager("calendar");
+			//RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
+			//Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
+			//Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
 		}
 
 		public static BusinessWrapper Instance

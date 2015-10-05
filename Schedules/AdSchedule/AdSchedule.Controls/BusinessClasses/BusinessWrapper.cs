@@ -15,17 +15,17 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 
 		private BusinessWrapper()
 		{
-			ScheduleManager = new ScheduleManager();
-			HelpManager = new HelpManager(Core.AdSchedule.SettingsManager.Instance.HelpLinksPath);
-			OutputManager = new OutputManager();
-			RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
-			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "adsched_tab_names.xml"));
-			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
-			Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
-			Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
-			ActivityManager = new ActivityManager("ad_schedule");
-			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
-			LoadLocalSettings();
+			//ScheduleManager = new ScheduleManager();
+			//HelpManager = new HelpManager(Core.AdSchedule.SettingsManager.Instance.HelpLinksPath);
+			//OutputManager = new OutputManager();
+			//RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
+			//TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "adsched_tab_names.xml"));
+			//ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
+			//Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
+			//Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
+			//ActivityManager = new ActivityManager("ad_schedule");
+			//_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
+			//LoadLocalSettings();
 		}
 
 		public static BusinessWrapper Instance

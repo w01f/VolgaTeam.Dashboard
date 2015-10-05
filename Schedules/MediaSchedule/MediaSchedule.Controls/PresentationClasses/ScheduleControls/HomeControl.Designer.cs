@@ -35,6 +35,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
+			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.pnMedia = new System.Windows.Forms.Panel();
 			this.pbMediaLogo = new System.Windows.Forms.PictureBox();
 			this.laFlexDateWarning = new System.Windows.Forms.Label();
@@ -72,10 +73,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCalendarTypeMondayBased = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageMedia.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
 			this.pnMedia.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).BeginInit();
 			this.xtraTabPageDigital.SuspendLayout();
@@ -98,7 +99,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageCalendarType.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// stationsControl
@@ -141,12 +141,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.xtraTabPageMedia.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
 			this.xtraTabPageMedia.Appearance.PageClient.Options.UseBackColor = true;
-			this.xtraTabPageMedia.Controls.Add(this.pbMediaDefault);
 			this.xtraTabPageMedia.Controls.Add(this.pnMedia);
+			this.xtraTabPageMedia.Controls.Add(this.pbMediaDefault);
 			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
+			this.xtraTabPageMedia.Padding = new System.Windows.Forms.Padding(10);
 			this.xtraTabPageMedia.Size = new System.Drawing.Size(659, 569);
 			this.xtraTabPageMedia.Text = "Television Strategy";
-			this.xtraTabPageMedia.Padding = new Padding(10);
+			// 
+			// pbMediaDefault
+			// 
+			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pbMediaDefault.Image = ((System.Drawing.Image)(resources.GetObject("pbMediaDefault.Image")));
+			this.pbMediaDefault.Location = new System.Drawing.Point(10, 10);
+			this.pbMediaDefault.Name = "pbMediaDefault";
+			this.pbMediaDefault.Size = new System.Drawing.Size(639, 549);
+			this.pbMediaDefault.TabIndex = 23;
+			this.pbMediaDefault.TabStop = false;
 			// 
 			// pnMedia
 			// 
@@ -158,9 +168,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnMedia.Controls.Add(this.buttonXMonthlySchedule);
 			this.pnMedia.Controls.Add(this.buttonXWeeklySchedule);
 			this.pnMedia.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMedia.Location = new System.Drawing.Point(0, 0);
+			this.pnMedia.Location = new System.Drawing.Point(10, 10);
 			this.pnMedia.Name = "pnMedia";
-			this.pnMedia.Size = new System.Drawing.Size(351, 569);
+			this.pnMedia.Size = new System.Drawing.Size(639, 549);
 			this.pnMedia.TabIndex = 0;
 			// 
 			// pbMediaLogo
@@ -178,9 +188,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlexDateWarning.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laFlexDateWarning.ForeColor = System.Drawing.Color.Red;
-			this.laFlexDateWarning.Location = new System.Drawing.Point(18, 392);
+			this.laFlexDateWarning.Location = new System.Drawing.Point(18, 372);
 			this.laFlexDateWarning.Name = "laFlexDateWarning";
-			this.laFlexDateWarning.Size = new System.Drawing.Size(318, 108);
+			this.laFlexDateWarning.Size = new System.Drawing.Size(606, 108);
 			this.laFlexDateWarning.TabIndex = 21;
 			this.laFlexDateWarning.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
@@ -188,13 +198,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.laMediaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.laMediaDescription.Location = new System.Drawing.Point(18, 515);
+			this.laMediaDescription.Location = new System.Drawing.Point(18, 495);
 			this.laMediaDescription.Name = "laMediaDescription";
-			this.laMediaDescription.Size = new System.Drawing.Size(318, 44);
+			this.laMediaDescription.Size = new System.Drawing.Size(606, 44);
 			this.laMediaDescription.TabIndex = 20;
 			this.laMediaDescription.Text = "*Build a Monthly Schedule if you want the most flexibility to deal with preemptio" +
     "ns and makegoods\r\n*The Ad Calendar will only work if you build a Weekly Schedule" +
-    "";
+    " or a Snapshot Schedule…";
 			// 
 			// laMediaTitle
 			// 
@@ -609,16 +619,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
-			// pbMediaDefault
-			// 
-			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbMediaDefault.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.HomeDefaultLogo;
-			this.pbMediaDefault.Location = new System.Drawing.Point(351, 0);
-			this.pbMediaDefault.Name = "pbMediaDefault";
-			this.pbMediaDefault.Size = new System.Drawing.Size(308, 569);
-			this.pbMediaDefault.TabIndex = 23;
-			this.pbMediaDefault.TabStop = false;
-			// 
 			// HomeControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -630,6 +630,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).EndInit();
 			this.xtraTabControlMain.ResumeLayout(false);
 			this.xtraTabPageMedia.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
 			this.pnMedia.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).EndInit();
 			this.xtraTabPageDigital.ResumeLayout(false);
@@ -652,7 +653,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageCalendarType.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
 			this.ResumeLayout(false);
 
         }

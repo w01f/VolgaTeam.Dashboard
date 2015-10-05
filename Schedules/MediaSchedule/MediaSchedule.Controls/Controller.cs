@@ -64,6 +64,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
+			ConfigureTabPages();
+
 			#region Schedule Settings
 			HomeControl = new HomeControl();
 			HomeHelp.Click += HomeControl.Help_Click;
@@ -247,8 +249,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery2");
 			#endregion
 
-			ConfigureTabPages();
-
 			UpdateOutputButtonsAccordingThemeStatus();
 
 			ConfigureSpecialButtons();
@@ -301,6 +301,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void ConfigureTabPages()
 		{
+			TabDigitalPackage.Visible = false;
+			TabDigitalProduct.Visible = false;
+
 			Ribbon.Items.Clear();
 			var tabPages = new List<BaseItem>();
 			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
@@ -321,10 +324,12 @@ namespace NewBizWiz.MediaSchedule.Controls
 						break;
 					case "Digital Slides":
 						TabDigitalProduct.Text = tabPageConfig.Name;
+						TabDigitalProduct.Visible = true;
 						tabPages.Add(TabDigitalProduct);
 						break;
 					case "Digital PKG":
 						TabDigitalPackage.Text = tabPageConfig.Name;
+						TabDigitalPackage.Visible = true;
 						tabPages.Add(TabDigitalPackage);
 						break;
 					case "Calendar":

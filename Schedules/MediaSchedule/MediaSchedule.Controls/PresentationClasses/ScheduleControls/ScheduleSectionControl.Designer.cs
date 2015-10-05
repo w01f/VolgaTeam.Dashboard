@@ -35,6 +35,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleSectionControl));
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
@@ -1476,7 +1477,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// pbNoPrograms
 			// 
 			this.pbNoPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoPrograms.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.SectionNoPrograms;
+			this.pbNoPrograms.Image = ((System.Drawing.Image)(resources.GetObject("pbNoPrograms.Image")));
 			this.pbNoPrograms.Location = new System.Drawing.Point(0, 40);
 			this.pbNoPrograms.Name = "pbNoPrograms";
 			this.pbNoPrograms.Size = new System.Drawing.Size(826, 504);
@@ -1489,18 +1490,28 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.Appearance.Options.UseFont = true;
 			this.xtraTabControlOptions.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlOptions.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlOptions.AppearancePage.Header.Options.UseTextOptions = true;
+			this.xtraTabControlOptions.AppearancePage.Header.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.xtraTabControlOptions.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlOptions.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlOptions.AppearancePage.HeaderActive.Options.UseTextOptions = true;
+			this.xtraTabControlOptions.AppearancePage.HeaderActive.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlOptions.AppearancePage.HeaderDisabled.Options.UseFont = true;
+			this.xtraTabControlOptions.AppearancePage.HeaderDisabled.Options.UseTextOptions = true;
+			this.xtraTabControlOptions.AppearancePage.HeaderDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlOptions.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+			this.xtraTabControlOptions.AppearancePage.HeaderHotTracked.Options.UseTextOptions = true;
+			this.xtraTabControlOptions.AppearancePage.HeaderHotTracked.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.xtraTabControlOptions.AppearancePage.PageClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.xtraTabControlOptions.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseBackColor = true;
 			this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraTabControlOptions.HeaderAutoFill = DevExpress.Utils.DefaultBoolean.True;
 			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 0);
+			this.xtraTabControlOptions.MultiLine = DevExpress.Utils.DefaultBoolean.False;
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageOptionsQuickShare;
 			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 456);

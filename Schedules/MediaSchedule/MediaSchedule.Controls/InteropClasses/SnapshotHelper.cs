@@ -60,6 +60,10 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							var tableContainer = taggedSlide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
 							if (tableContainer == null) return;
 							var table = tableContainer.Table;
+
+							if (!String.IsNullOrEmpty(page.TotalRowValue))
+								table.Rows.Add();
+
 							var tableRowsCount = table.Rows.Count;
 							for (var i = 1; i <= tableRowsCount; i++)
 							{
@@ -116,10 +120,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							if (!String.IsNullOrEmpty(page.TotalRowValue))
 							{
 								tableRowsCount = table.Rows.Count;
-
-								table.Rows.Add();
-
-								var addedRow = table.Rows[tableRowsCount + 1];
+								var addedRow = table.Rows[tableRowsCount];
 								var cellsCount = addedRow.Cells.Count;
 								while (cellsCount > 1)
 								{

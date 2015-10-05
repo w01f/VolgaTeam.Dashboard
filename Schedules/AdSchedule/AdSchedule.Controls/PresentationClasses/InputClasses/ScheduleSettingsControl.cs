@@ -97,8 +97,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void UpdateProductsCount()
 		{
-			xtraTabPagePrintProducts.Text = String.Format("Publications ({0})", _localSchedule.PrintProducts.Count);
-			xtraTabPageDigitalProducts.Text = String.Format("Digital ({0})", _localSchedule.DigitalProducts.Count);
+			xtraTabPagePrintProducts.Text = String.Format("Publications  ({0})", _localSchedule.PrintProducts.Count);
+			xtraTabPageDigitalProducts.Text = String.Format("Digital  ({0})", _localSchedule.DigitalProducts.Count);
 		}
 
 		public void LoadSchedule(bool quickLoad)

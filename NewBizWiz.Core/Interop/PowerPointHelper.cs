@@ -27,7 +27,6 @@ namespace NewBizWiz.Core.Interop
 		bool PowerPointDetected();
 		Presentation GetActivePresentation();
 		int GetActiveSlideIndex();
-		void CreateLockedPresentation(string sourceFolderPathName, string destinationFileName);
 		void ConvertToPDF(string originalFileName, string pdfFileName);
 		void AppendSlidesFromFile(string filePath, bool firstSlide);
 		void AppendSlide(Presentation sourcePresentation, int slideIndex, Presentation destinationPresentation = null, bool firstSlide = false, int indexToPaste = 0);
@@ -337,38 +336,6 @@ namespace NewBizWiz.Core.Interop
 				MessageFilter.Revoke();
 			}
 			return slideIndex;
-		}
-
-		public void CreateLockedPresentation(string sourceFolderPathName, string destinationFileName)
-		{
-			try
-			{
-				MessageFilter.Register();
-				if (!Directory.Exists(sourceFolderPathName)) return;
-				var presentations = PowerPointObject.Presentations;
-				var presentation = presentations.Add(MsoTriState.msoFalse);
-				Utilities.Instance.ReleaseComObject(presentations);
-				var slides = presentation.Slides;
-
-				string[] previewImages = Directory.GetFiles(sourceFolderPathName, "*.png");
-				Array.Sort(previewImages, WinAPIHelper.StrCmpLogicalW);
-
-				for (int i = 0; i < previewImages.Length; i++)
-				{
-					Slide slide = slides.Add(i + 1, PpSlideLayout.ppLayoutBlank);
-					slide.Shapes.AddPicture(previewImages[i], MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
-					Utilities.Instance.ReleaseComObject(slide);
-				}
-				Utilities.Instance.ReleaseComObject(slides);
-				presentation.SaveAs(destinationFileName);
-				presentation.Close();
-				Utilities.Instance.ReleaseComObject(presentation);
-			}
-			catch { }
-			finally
-			{
-				MessageFilter.Revoke();
-			}
 		}
 
 		public void ConvertToPDF(string originalFileName, string pdfFileName)

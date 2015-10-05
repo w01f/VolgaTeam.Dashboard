@@ -105,35 +105,6 @@ namespace NewBizWiz.CommonGUI.Preview
 			}
 		}
 
-		private void barLargeButtonItemLockedEmail_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			using (var form = new FormEmailFileName())
-			{
-				RegistryHelper.MainFormHandle = form.Handle;
-				if (form.ShowDialog() == DialogResult.OK)
-				{
-					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pptx");
-					try
-					{
-						_powerPointHelper.CreateLockedPresentation(_mergedGroup.PresentationSourcePath.Replace(Path.GetExtension(_mergedGroup.PresentationSourcePath), string.Empty), emailFile);
-						if (File.Exists(emailFile))
-						{
-							if (OutlookHelper.Instance.Open())
-							{
-								OutlookHelper.Instance.CreateMessage("Advertising Schedule", emailFile);
-								OutlookHelper.Instance.Close();
-							}
-							else
-								Utilities.Instance.ShowWarning("Cannot open Outlook");
-							File.Delete(emailFile);
-						}
-					}
-					catch { }
-				}
-				RegistryHelper.MainFormHandle = Handle;
-			}
-		}
-
 		private void barLargeButtonItemPDFEmail_ItemClick(object sender, ItemClickEventArgs e)
 		{
 			using (var form = new FormEmailFileName())
@@ -141,7 +112,7 @@ namespace NewBizWiz.CommonGUI.Preview
 				RegistryHelper.MainFormHandle = form.Handle;
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pptx");
+					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pdf");
 					try
 					{
 						_powerPointHelper.ConvertToPDF(_mergedGroup.PresentationSourcePath, emailFile);

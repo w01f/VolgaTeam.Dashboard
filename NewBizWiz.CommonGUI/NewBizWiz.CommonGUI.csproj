@@ -475,9 +475,6 @@
     <None Include="Resources\Help.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LockedEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\PDFEmail.png" />
   </ItemGroup>
   <ItemGroup>

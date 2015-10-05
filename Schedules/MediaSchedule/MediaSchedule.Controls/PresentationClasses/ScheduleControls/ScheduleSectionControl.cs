@@ -734,8 +734,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				form.checkEditOutputNoBrackets.Checked = ScheduleSection.OutputNoBrackets;
 				form.checkEditUseGenericDates.Checked = ScheduleSection.UseGenericDateColumns;
 				form.checkEditUseDecimalRate.Checked = ScheduleSection.UseDecimalRates;
-				form.checkEditOutputLimitQuarters.Visible = ScheduleSection.Parent.Quarters.Count > 1;
-				form.checkEditOutputLimitQuarters.Checked = ScheduleSection.OutputPerQuater;
+				form.checkEditOutputLimitQuarters.Enabled = ScheduleSection.Parent.Quarters.Count > 1;
+				form.checkEditOutputLimitQuarters.Checked = ScheduleSection.Parent.Quarters.Count > 1 && ScheduleSection.OutputPerQuater;
 				form.checkEditOutputLimitPeriods.Checked = ScheduleSection.OutputMaxPeriods.HasValue;
 				form.spinEditOutputLimitPeriods.EditValue = ScheduleSection.OutputMaxPeriods;
 				form.checkEditOutputLimitPeriods.Text = String.Format("Max {0}s Per PPT Slide", SpotTitle);

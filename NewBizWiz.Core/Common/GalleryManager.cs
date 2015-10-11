@@ -17,16 +17,16 @@ namespace NewBizWiz.Core.Common
 		public bool AutoLoad { get; private set; }
 		public List<SourceUrl> SourceUrls { get; private set; }
 
-		public GalleryManager(string settingPath)
+		public GalleryManager(StorageFile settingsFile)
 		{
 			SourceUrls = new List<SourceUrl>();
-			Init(settingPath);
+			Init(settingsFile);
 		}
 
-		private void Init(string settingsPath)
+		private void Init(StorageFile settingsFile)
 		{
-			if (!File.Exists(settingsPath)) return;
-			var settingsDoc = XDocument.Load(settingsPath);
+			if (!settingsFile.ExistsLocal()) return;
+			var settingsDoc = XDocument.Load(settingsFile.LocalPath);
 			foreach (var element in settingsDoc.Descendants("SourceUrl"))
 			{
 				var name = element.Attribute("Name") != null ? element.Attribute("Name").Value : String.Empty;

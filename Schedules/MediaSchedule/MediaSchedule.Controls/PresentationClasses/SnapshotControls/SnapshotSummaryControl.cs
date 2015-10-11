@@ -13,6 +13,7 @@ using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
@@ -134,13 +135,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			get { return "Summary Slide"; }
 		}
 
-		public string TemplateFileName
+		public string TemplateFilePath
 		{
 			get
 			{
-				return String.Format(OutputManager.SnapshotSummaryTemplateFileName,
-						MediaMetaData.Instance.SettingsManager.SelectedColor,
-						GetColumnInfo().Count());
+				return BusinessObjects.Instance.OutputManager.GetSnapshotSummaryFile(MediaMetaData.Instance.SettingsManager.SelectedColor, GetColumnInfo().Count());
 			}
 		}
 
@@ -311,7 +310,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			var previewGroup = new PreviewGroup
 			{
 				Name = SlideName,
-				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;

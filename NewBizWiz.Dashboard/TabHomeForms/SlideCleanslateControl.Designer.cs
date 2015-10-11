@@ -30,13 +30,11 @@
         {
 			this.components = new System.ComponentModel.Container();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-			this.pbVersion = new System.Windows.Forms.PictureBox();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -45,13 +43,8 @@
 			// 
 			// pnBottom
 			// 
-			this.pnBottom.Controls.Add(this.pbVersion);
 			this.pnBottom.Location = new System.Drawing.Point(0, 437);
 			this.pnBottom.Size = new System.Drawing.Size(789, 75);
-			this.pnBottom.Controls.SetChildIndex(this.simpleButtonSaveTemplate, 0);
-			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
-			this.pnBottom.Controls.SetChildIndex(this.pbVersion, 0);
-			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionNew, 0);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -92,14 +85,6 @@
 			// 
 			this.toolTip.IsBalloon = true;
 			// 
-			// pbVersion
-			// 
-			this.pbVersion.Location = new System.Drawing.Point(3, 15);
-			this.pbVersion.Name = "pbVersion";
-			this.pbVersion.Size = new System.Drawing.Size(526, 45);
-			this.pbVersion.TabIndex = 1;
-			this.pbVersion.TabStop = false;
-			// 
 			// SlideCleanslateControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -111,7 +96,6 @@
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -119,6 +103,5 @@
         #endregion
 
 		private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.PictureBox pbVersion;
     }
 }

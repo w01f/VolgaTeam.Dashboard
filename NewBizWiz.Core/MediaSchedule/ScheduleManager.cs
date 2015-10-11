@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.Common;
@@ -61,7 +62,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public string GetScheduleFileName(string scheduleName)
 		{
-			return Path.Combine(MediaMetaData.Instance.SettingsManager.SaveFolder, scheduleName + ".xml");
+			return Path.Combine(AppProfileManager.Instance.AppSaveFolder.LocalPath, scheduleName + ".xml");
 		}
 
 		public RegularSchedule GetLocalSchedule()
@@ -84,7 +85,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public static ShortSchedule[] GetShortScheduleList()
 		{
-			var saveFolder = new DirectoryInfo(MediaMetaData.Instance.SettingsManager.SaveFolder);
+			var saveFolder = new DirectoryInfo(AppProfileManager.Instance.AppSaveFolder.LocalPath);
 			if (saveFolder.Exists)
 				return GetShortScheduleList(saveFolder);
 			return null;
@@ -815,6 +816,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				sw.Write(@"<Schedule>{0}</Schedule>", Serialize());
 				sw.Flush();
 			}
+			AsyncHelper.RunSync(() => new StorageFile(AppProfileManager.Instance.AppSaveFolder.RelativePathParts.Merge(_scheduleFile.Name)).Upload());
 		}
 
 		protected void LoadCalendars()

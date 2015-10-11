@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace NewBizWiz.Core.Common
@@ -29,15 +29,15 @@ namespace NewBizWiz.Core.Common
 
 		public MasterWizard SelectedWizard { get; set; }
 
-		public async Task Load()
+		public void Load()
 		{
-			var storageDirectory = ResourceManager.Instance.SlideTemplatesFolder;
-			if (!await storageDirectory.Exists(true)) return;
+			var storageDirectory = ResourceManager.Instance.BasicSlideTemplatesFolder;
+			if (!storageDirectory.ExistsLocal()) return;
 
-			foreach (var folder in await storageDirectory.GetFolders())
+			foreach (var folder in storageDirectory.GetFolders())
 			{
 				var masterWizard = new MasterWizard(folder);
-				await masterWizard.Init();
+				masterWizard.Init();
 				if (!masterWizard.Hide)
 					MasterWizards.Add(masterWizard.Name, masterWizard);
 			}
@@ -58,56 +58,113 @@ namespace NewBizWiz.Core.Common
 		public string Name { get; private set; }
 		public bool Hide { get; private set; }
 
-		private async Task<string> GetTemplateFile(string[] fileName)
+		private string GetBasicTemplateFile(string[] fileName)
 		{
 			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SettingsManager.Instance.SlideFolder, "Basic Slides" }).Merge(fileName));
-			await file.Download();
 			return file.LocalPath;
 		}
 
-		public async Task<string> GetCleanslateFile()
+		public string GetCleanslateFile()
 		{
-			return await GetTemplateFile(new[] { "CleanSlate.pptx" });
+			return GetBasicTemplateFile(new[] { "CleanSlate.pptx" });
 		}
 
-		public async Task<string> GetCoverFile()
+		public string GetCoverFile()
 		{
-			return await GetTemplateFile(new[] { "WizCover.pptx" });
+			return GetBasicTemplateFile(new[] { "WizCover.pptx" });
 		}
 
-		public async Task<string> GetGenericCoverFile()
+		public string GetGenericCoverFile()
 		{
-			return await GetTemplateFile(new[] { "WizCover2.pptx" });
+			return GetBasicTemplateFile(new[] { "WizCover2.pptx" });
 		}
 
-		public async Task<string> GetLeadoffStatementsFile(string fileName)
+		public string GetLeadoffStatementsFile(string fileName)
 		{
-			return await GetTemplateFile(new[] { "intro slide", fileName });
+			return GetBasicTemplateFile(new[] { "intro slide", fileName });
 		}
 
-		public async Task<string> GetClientGoalsFile(string fileName)
+		public string GetClientGoalsFile(string fileName)
 		{
-			return await GetTemplateFile(new[] { "needs analysis", fileName });
+			return GetBasicTemplateFile(new[] { "needs analysis", fileName });
 		}
 
-		public async Task<string> GetTargetCustomersFile(string fileName)
+		public string GetTargetCustomersFile(string fileName)
 		{
-			return await GetTemplateFile(new[] { "target customer", fileName });
+			return GetBasicTemplateFile(new[] { "target customer", fileName });
 		}
 
-		public async Task<string> GetSimpleSummaryTemlateFile(string fileName)
+		public string GetSimpleSummaryTemlateFile(string fileName)
 		{
-			return await GetTemplateFile(new[] { "closing summary", fileName });
+			return GetBasicTemplateFile(new[] { "closing summary", fileName });
 		}
 
-		public async Task<string> GetSimpleSummaryTableFile(string fileName)
+		public string GetSimpleSummaryTableFile(string fileName)
 		{
-			return await GetTemplateFile(new[] { "closing summary", "tables", fileName });
+			return GetBasicTemplateFile(new[] { "closing summary", "tables", fileName });
 		}
 
-		public async Task<string> GetSimpleSummaryIconFile(string fileName)
+		public string GetSimpleSummaryIconFile(string fileName)
 		{
-			return await GetTemplateFile(new[] { "closing summary", "icons", fileName });
+			return GetBasicTemplateFile(new[] { "closing summary", "tables", "icons", fileName });
+		}
+
+		private string GetOnlineTemplateFile(string[] fileName)
+		{
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SettingsManager.Instance.SlideFolder, "Online Slides" }).Merge(fileName));
+			return file.LocalPath;
+		}
+
+		public string GetOnlineOneSheetFile(string[] fileNameParts)
+		{
+			return GetOnlineTemplateFile(new[] { "onesheets" }.Merge(fileNameParts));
+		}
+
+		public string GetOnlinePackageFile(int rowCount, bool showScreenshot)
+		{
+			return GetOnlineTemplateFile(new[]
+			{
+				"table",
+				String.Format("digitaltable_{0}{1}.pptx", rowCount, (showScreenshot ? "p" : String.Empty))
+			});
+		}
+
+		public string GetAdPlanFile(int totalRecords, bool moreSlides)
+		{
+			string fileName;
+			switch (totalRecords)
+			{
+				case 6:
+				case 7:
+				case 8:
+				case 11:
+				case 12:
+					fileName = moreSlides ? "adplan4.pptx" : "adplan6.pptx";
+					break;
+				case 9:
+				case 10:
+				case 13:
+				case 14:
+				case 15:
+					fileName = moreSlides ? "adplan5.pptx" : "adplan6.pptx";
+					break;
+				default:
+					if (totalRecords < 6)
+						fileName = String.Format("adplan{0}.pptx", totalRecords);
+					else
+						fileName = "adplan5.pptx";
+					break;
+			}
+			return GetOnlineTemplateFile(new[]
+			{
+				"adplan",
+				fileName
+			});
+		}
+
+		public string GetOnlineSummaryFile()
+		{
+			return GetOnlineTemplateFile(new[] { "summary", "digital_summary.pptx" });
 		}
 
 		public MasterWizard(StorageDirectory sourceDirectory)
@@ -116,17 +173,16 @@ namespace NewBizWiz.Core.Common
 			Name = _sourceFolder.Name;
 		}
 
-		public async Task Init()
+		public void Init()
 		{
-			await LoadSettings();
+			LoadSettings();
 		}
 
-		private async Task LoadSettings()
+		private void LoadSettings()
 		{
 			Hide = false;
 			var settingsFile = new StorageFile(_sourceFolder.RelativePathParts.Merge("Settings.xml"));
-			if (!await settingsFile.Exists(true)) return;
-			await settingsFile.Download();
+			if (!settingsFile.ExistsLocal()) return;
 			var document = new XmlDocument();
 			try
 			{

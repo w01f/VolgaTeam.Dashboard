@@ -19,12 +19,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.OnlineWebPackage).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineWebPackage)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineWebPackage))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.OnlineWebPackage).FirstOrDefault(t => t.Name.Equals(BusinessObjects.Instance.GetSelectedTheme(SlideType.OnlineWebPackage)) || String.IsNullOrEmpty(BusinessObjects.Instance.GetSelectedTheme(SlideType.OnlineWebPackage))); }
 		}
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		public override ISchedule Schedule { get { return LocalSchedule; } }
@@ -61,7 +61,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public OnlineWebPackageControl(Form form)
 			: base(form)
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -70,11 +70,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void LoadSchedule(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.OnlineWebPackage), BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineWebPackage), (t =>
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.OnlineWebPackage), BusinessObjects.Instance.GetSelectedTheme(SlideType.OnlineWebPackage), (t =>
 			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.OnlineWebPackage,t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
+				BusinessObjects.Instance.SetSelectedTheme(SlideType.OnlineWebPackage,t.Name);
+				BusinessObjects.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			base.LoadSchedule(quickLoad);
@@ -96,7 +96,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabDigitalPackage.Text, Schedule.BusinessName, PackageRecords.Sum(pr => pr.InvestmentCalculated)));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabDigitalPackage.Text, Schedule.BusinessName, PackageRecords.Sum(pr => pr.InvestmentCalculated)));
 		}
 
 		public override void OutputSlides()
@@ -117,7 +117,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater,TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater,TrackOutput))
 			{
 				formPreview.Text = "Preview Digital Package";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

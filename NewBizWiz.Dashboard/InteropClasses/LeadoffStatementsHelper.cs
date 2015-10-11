@@ -15,7 +15,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 	{
 		public void AppendLeadoffStatements(Presentation destinationPresentation = null)
 		{
-			var presentationTemplatePath = AsyncHelper.RunSync(() => MasterWizardManager.Instance.SelectedWizard.GetLeadoffStatementsFile(String.Format(MasterWizardManager.LeadOffSlideTemplate, TabHomeMainPage.Instance.SlideLeadoff.StatementsCount)));
+			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetLeadoffStatementsFile(String.Format(MasterWizardManager.LeadOffSlideTemplate, TabHomeMainPage.Instance.SlideLeadoff.StatementsCount));
 			if (!File.Exists(presentationTemplatePath)) return;
 			try
 			{
@@ -49,7 +49,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 					}
 					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.LeadoffStatement);
 					if (selectedTheme != null)
-						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+						presentation.ApplyTheme(selectedTheme.GetThemePath());
 					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});

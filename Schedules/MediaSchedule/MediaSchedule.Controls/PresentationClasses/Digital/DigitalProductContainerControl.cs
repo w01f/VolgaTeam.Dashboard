@@ -22,7 +22,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 		public DigitalProductContainerControl(Form formMain)
 			: base(formMain)
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave && !e.UpdateDigital);
@@ -42,10 +42,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public void LoadSchedule(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), (t =>
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), (t =>
 			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct, t.Name);
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 			}));
 			if (!quickLoad || LocalSchedule.DigitalProducts.Count != _tabPages.Count)
@@ -113,7 +113,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct))); }
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
@@ -156,14 +156,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digitalsl");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("digitalsl");
 		}
 
 		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
 		{
 			var activities = base.TrackOutput(tabsForOutput);
 			foreach (var activity in activities)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+				BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 			return activities;
 		}
 
@@ -185,7 +185,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);
@@ -223,7 +223,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		protected override string SlideName

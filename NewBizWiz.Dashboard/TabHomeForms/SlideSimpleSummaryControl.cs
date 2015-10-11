@@ -467,9 +467,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return simpleSummaryItemContainer.ShowTotalTotal; }
 		}
 
-		public string ContractTemplatePath
+		public StorageDirectory ContractTemplateFolder
 		{
-			get { return String.Empty; }
+			get { return null; }
 		}
 
 		public ContractSettings ContractSettings

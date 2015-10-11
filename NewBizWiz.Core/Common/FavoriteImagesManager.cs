@@ -8,7 +8,6 @@ namespace NewBizWiz.Core.Common
 	public class FavoriteImagesManager
 	{
 		private static readonly FavoriteImagesManager _instance = new FavoriteImagesManager();
-		private readonly string _storageFolderPath;
 
 		public List<ImageSource> Images { get; private set; }
 		public event EventHandler<EventArgs> CollectionChanged;
@@ -20,9 +19,6 @@ namespace NewBizWiz.Core.Common
 
 		private FavoriteImagesManager()
 		{
-			_storageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\image_favorites", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			if (!Directory.Exists(_storageFolderPath))
-				Directory.CreateDirectory(_storageFolderPath);
 			Images = new List<ImageSource>();
 			LoadImages();
 		}
@@ -36,7 +32,7 @@ namespace NewBizWiz.Core.Common
 		private void LoadImages()
 		{
 			Images.Clear();
-			foreach (var file in Directory.GetFiles(_storageFolderPath, String.Format("*{0}", ImageSource.ImageFileExtension)))
+			foreach (var file in Directory.GetFiles(ResourceManager.Instance.FavoriteImagesFolder.LocalPath, String.Format("*{0}", ImageSource.ImageFileExtension)))
 			{
 				using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
 				{
@@ -67,7 +63,7 @@ namespace NewBizWiz.Core.Common
 		public void SaveImage(Image image, string fileName)
 		{
 			if (image == null) return;
-			image.Save(Path.Combine(_storageFolderPath, String.Format("{0}.png", fileName)));
+			image.Save(Path.Combine(ResourceManager.Instance.FavoriteImagesFolder.LocalPath, String.Format("{0}.png", fileName)));
 			LoadImages();
 			OnCollectionChanged();
 		}
@@ -75,7 +71,7 @@ namespace NewBizWiz.Core.Common
 		public void SaveImages(Dictionary<string, Image> images)
 		{
 			foreach (var image in images)
-				image.Value.Save(Path.Combine(_storageFolderPath, String.Format("{0}.png", image.Key)));	
+				image.Value.Save(Path.Combine(ResourceManager.Instance.FavoriteImagesFolder.LocalPath, String.Format("{0}.png", image.Key)));	
 			LoadImages();
 			OnCollectionChanged();
 		}

@@ -73,6 +73,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.10.3.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL">
+      <HintPath>..\packages\sharpcompress.0.11.1\lib\net40\SharpCompress.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -155,6 +159,7 @@
     <Compile Include="MediaSchedule\MediaMetaData.cs" />
     <Compile Include="MediaSchedule\Options.cs" />
     <Compile Include="MediaSchedule\ProgramStrategy.cs" />
+    <Compile Include="MediaSchedule\ResourceManager.cs" />
     <Compile Include="MediaSchedule\ScheduleManager.cs" />
     <Compile Include="MediaSchedule\ScheduleSaveEventArgs.cs" />
     <Compile Include="MediaSchedule\SettingsManager.cs" />
@@ -173,7 +178,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="QuickShare\PackageManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

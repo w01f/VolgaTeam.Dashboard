@@ -20,6 +20,7 @@ using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
@@ -404,13 +405,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			get { return Data.Name; }
 		}
 
-		public string TemplateFileName
+		public string TemplateFilePath
 		{
 			get
 			{
-				return String.Format(OutputManager.OptionsTemplateFileName,
-					MediaMetaData.Instance.SettingsManager.SelectedColor,
-					Data.ShowLogo ? "_logo" : String.Empty);
+				return BusinessObjects.Instance.OutputManager.GetOptionsItemFile(
+					MediaMetaData.Instance.SettingsManager.SelectedColor, 
+					Data.ShowLogo);
 			}
 		}
 
@@ -541,7 +542,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		private Dictionary<string, float> GetColumnWidths()
 		{
 			var widths = new Dictionary<string, float>();
-			var widthsPath = Path.Combine(BusinessWrapper.Instance.OutputManager.OptionsTemplatesFolderPath, OutputManager.OptionsColumnWidthsFileName);
+			var widthsPath = BusinessObjects.Instance.OutputManager.GetOptionsColumnsWidthFile();
 			if (File.Exists(widthsPath))
 			{
 				var columnName = String.Empty;
@@ -666,7 +667,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			var previewGroup = new PreviewGroup
 			{
 				Name = SlideName,
-				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.Summary
@@ -23,7 +22,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		bool ShowMonthlyHeader { get; }
 		bool ShowTotalHeader { get; }
 
-		string ContractTemplatePath { get; }
+		StorageDirectory ContractTemplateFolder { get; }
 		ContractSettings ContractSettings { get; }
 		
 		Theme SelectedTheme { get; }

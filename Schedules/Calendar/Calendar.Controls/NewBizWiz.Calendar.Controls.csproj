@@ -101,7 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessClasses\BusinessWrapper.cs" />
+    <Compile Include="BusinessClasses\BusinessObjects.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="PresentationClasses\Calendars\BaseCalendarControl.cs">
       <SubType>UserControl</SubType>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml;
 using NewBizWiz.Core.Common;
 
@@ -10,8 +11,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 {
 	public class ListManager
 	{
-		private const string OnlineStrategyFileName = @"Online XML\Online Strategy.xml";
-
 		private static readonly ListManager _instance = new ListManager();
 
 		private ListManager()
@@ -35,9 +34,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			DefaultDigitalPackageSettings = new DigitalPackageSettings();
 
 			Images = new List<ImageSourceGroup>();
-			LoadImages();
-
-			LoadLists();
 		}
 
 		public List<ImageSourceGroup> Images { get; set; }
@@ -70,26 +66,32 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get { return _instance; }
 		}
 
+		public void Load(StorageFile listsSourceFile)
+		{
+			LoadOnlineStrategy(listsSourceFile);
+			LoadImages();
+		}
+
 		private void LoadImages()
 		{
-			string imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\DIGITAL\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			var imageFolder = new StorageDirectory(Common.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge("DIGITAL"));
 			Images.Clear();
-			var defaultGroup = new ImageSourceGroup(imageFolderPath) { Name = "Gallery", Order = -1 };
+			var defaultGroup = new ImageSourceGroup(imageFolder) { Name = "Gallery", Order = -1 };
+			defaultGroup.LoadImages();
 			if (defaultGroup.Images.Any())
 				Images.Add(defaultGroup);
 		}
 
-		private void LoadOnlineStrategy()
+		private void LoadOnlineStrategy(StorageFile listsSourceFile)
 		{
 			SlideHeaders.Clear();
 			Websites.Clear();
 			Strengths.Clear();
 			Categories.Clear();
 			ProductSources.Clear();
-			var listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, OnlineStrategyFileName);
-			if (!File.Exists(listPath)) return;
+			if (!listsSourceFile.ExistsLocal()) return;
 			var document = new XmlDocument();
-			document.Load(listPath);
+			document.Load(listsSourceFile.LocalPath);
 
 			var node = document.SelectSingleNode(@"/OnlineStrategy");
 			if (node == null) return;
@@ -388,11 +390,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 				}
 			}
-		}
-
-		private void LoadLists()
-		{
-			LoadOnlineStrategy();
 		}
 	}
 }

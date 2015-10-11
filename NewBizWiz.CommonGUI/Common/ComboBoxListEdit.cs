@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Drawing;
@@ -7,6 +8,7 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.ViewInfo;
 using NewBizWiz.CommonGUI.ListEditor;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.CommonGUI.Common
 {
@@ -85,14 +87,14 @@ namespace NewBizWiz.CommonGUI.Common
 			ListManager.Instance.Advertisers.ListChanged += (o, e) =>
 			{
 				if (ListType != ListType.Advertisers) return;
-				Items.Clear();
-				Items.AddRange(ListManager.Instance.Advertisers.Items);
+				//Items.Clear();
+				//Items.AddRange(ListManager.Instance.Advertisers.Items);
 			};
 			ListManager.Instance.DecisionMakers.ListChanged += (o, e) =>
 			{
 				if (ListType != ListType.DecisionMakers) return;
-				Items.Clear();
-				Items.AddRange(ListManager.Instance.DecisionMakers.Items);
+				//Items.Clear();
+				//Items.AddRange(ListManager.Instance.DecisionMakers.Items);
 			};
 		}
 

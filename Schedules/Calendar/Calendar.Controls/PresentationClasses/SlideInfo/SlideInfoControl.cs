@@ -122,7 +122,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			#endregion
 
 			#region Style
-			outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.CalendarColors, OutputData.SlideColor);
+			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.CalendarColors, OutputData.SlideColor);
 			outputColorSelector.ColorChanged += OnColorChanged;
 			checkEditStyleBigDate.Enabled = Core.AdSchedule.ListManager.Instance.DefaultCalendarViewSettings.EnableBigDate;
 			checkEditStyleBigDate.Checked = OutputData.ShowBigDate && checkEditStyleBigDate.Enabled;

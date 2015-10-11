@@ -16,11 +16,11 @@ namespace NewBizWiz.Core.Common
 			Slides = new List<SlideMaster>();
 		}
 
-		public async Task Load()
+		public void Load()
 		{
 			var storageDirectory = ResourceManager.Instance.SlideMastersFolder;
-			if (!await storageDirectory.Exists(true)) return;
-			foreach (var sizeFolder in await storageDirectory.GetFolders())
+			if (!storageDirectory.ExistsLocal()) return;
+			foreach (var sizeFolder in storageDirectory.GetFolders())
 			{
 				double width = 0;
 				double height = 0;
@@ -47,11 +47,11 @@ namespace NewBizWiz.Core.Common
 						height = 10.75;
 						break;
 				}
-				foreach (var groupFolder in await sizeFolder.GetFolders())
-					foreach (var slideFolder in await groupFolder.GetFolders())
+				foreach (var groupFolder in sizeFolder.GetFolders())
+					foreach (var slideFolder in groupFolder.GetFolders())
 					{
 						var slideMaster = new SlideMaster(slideFolder) { Group = groupFolder.Name, SizeWidth = width, SizeHeght = height };
-						await slideMaster.Load();
+						slideMaster.Load();
 						Slides.Add(slideMaster);
 					}
 			}
@@ -79,12 +79,9 @@ namespace NewBizWiz.Core.Common
 			_root = root;
 		}
 
-		public async Task Load()
+		public void Load()
 		{
-			var files = (await _root.GetFiles()).ToList();
-
-			foreach (var file in files.Where(file => new[] { ".txt", ".png" }.Contains(file.Extension)))
-				await file.Download();
+			var files = _root.GetFiles().ToList();
 
 			var titleFile = files.First(file => file.Name == "title.txt");
 			Name = File.ReadAllText(titleFile.LocalPath).Trim();
@@ -107,11 +104,8 @@ namespace NewBizWiz.Core.Common
 			_masterFile = files.FirstOrDefault(file => file.Extension == ".pptx");
 		}
 
-		public async Task<string> GetMasterPath()
+		public string GetMasterPath()
 		{
-			if (_masterFile == null)
-				_masterFile = (await _root.GetRemoteFiles()).FirstOrDefault(file => file.Extension == ".pptx");
-			await _masterFile.Download();
 			return _masterFile.LocalPath;
 		}
 	}

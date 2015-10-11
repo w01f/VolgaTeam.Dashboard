@@ -4,8 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Xml;
 using NewBizWiz.Core.Interop;
+using SharpCompress.Common;
+using SharpCompress.Reader;
 using WebDAVClient.Helpers;
 using WebDAVClient.Model;
 
@@ -37,6 +38,9 @@ namespace NewBizWiz.Core.Common
 
 		private static readonly FileStorageManager _instance = new FileStorageManager();
 
+		public bool Connected { get; private set; }
+		public string Version { get; private set; }
+
 		public static FileStorageManager Instance
 		{
 			get { return _instance; }
@@ -51,71 +55,99 @@ namespace NewBizWiz.Core.Common
 
 		public string LocalStoragePath
 		{
-			get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LocalAppSettingsFolderName, _dataFolderName); }
+			get
+			{
+				if (Connected)
+					return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LocalAppSettingsFolderName, _dataFolderName);
+				return Path.GetTempPath();
+			}
 		}
 
 		private FileStorageManager() { }
 
 		public WebDAVClient.Client GetClient()
 		{
+			return GetClient(RemoteStorageUrl, _login, _password);
+		}
+
+		private WebDAVClient.Client GetClient(string url, string login, string password)
+		{
 			return new WebDAVClient.Client(
 				new NetworkCredential
 				{
-					UserName = _login,
-					Password = _password
+					UserName = login,
+					Password = password
 				})
 			{
-				Server = RemoteStorageUrl
+				Server = url
 			};
 		}
 
 		public async Task Init()
 		{
-			InitCredentials();
-			await CheckDataSate();
+			await InitCredentials();
+			if (Connected)
+				await CheckDataSate();
 		}
 
-		private void InitCredentials()
+		private async Task InitCredentials()
 		{
-			var credentialsConfigPath = Path.Combine(Path.GetDirectoryName(typeof(FileStorageManager).Assembly.Location), "credentials.txt");
-			if (!File.Exists(credentialsConfigPath))
-				throw new FileNotFoundException("File credentials.txt not found");
+			var clientConfigPath = Path.Combine(Path.GetDirectoryName(typeof(FileStorageManager).Assembly.Location), "client.txt");
+			if (!File.Exists(clientConfigPath))
+				throw new FileNotFoundException("File client.txt not found");
 
-			foreach (var configLine in File.ReadAllLines(credentialsConfigPath))
+			var client = File.ReadAllText(clientConfigPath).Trim();
+
+			_url = "https://adsalescloud.com";
+			_login = "acct_cred";
+			_password = "SzwX&4.2QF>~q!^L";
+
+			var credentialsFile = new StorageFile(new[] { client, "credentials.txt" });
+			if (await credentialsFile.Exists(true))
 			{
-				if (configLine.Contains("Site:"))
-					_url = configLine.Replace("Site:", "").Trim();
-				else if (configLine.Contains("Login:"))
-					_login = configLine.Replace("Login:", "").Trim();
-				else if (configLine.Contains("Password:"))
-					_password = configLine.Replace("Password:", "").Trim();
-				else if (configLine.Contains("DataFolderName:"))
-					_dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
-			}
+				await credentialsFile.Download();
 
-			if (!Directory.Exists(LocalStoragePath))
-				Directory.CreateDirectory(LocalStoragePath);
+				foreach (var configLine in File.ReadAllLines(credentialsFile.LocalPath))
+				{
+					if (configLine.Contains("Site:"))
+						_url = configLine.Replace("Site:", "").Trim();
+					else if (configLine.Contains("Login:"))
+						_login = configLine.Replace("Login:", "").Trim();
+					else if (configLine.Contains("Password:"))
+						_password = configLine.Replace("Password:", "").Trim();
+					else if (configLine.Contains("DataFolderName:"))
+						_dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
+				}
+
+				Connected = true;
+
+				if (!Directory.Exists(LocalStoragePath))
+					Directory.CreateDirectory(LocalStoragePath);
+			}
 		}
 
 		private async Task CheckDataSate()
 		{
 			DataState = DataActualityState.NotExisted;
 
-			var versionFile = new StorageFile(new[] { IncomingFolderName, "version.txt" });
+			var versionFile = new StorageFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
 			if (!versionFile.ExistsLocal())
 			{
 				DataState = DataActualityState.NotExisted;
 				await versionFile.Download();
-				return;
 			}
-			var remoteFile = await GetClient().GetFile(versionFile.RemotePath);
-			if (File.GetLastWriteTime(versionFile.LocalPath) < remoteFile.LastModified)
+			else
 			{
-				DataState = DataActualityState.Outdated;
-				await versionFile.Download();
-				return;
+				var remoteFile = await GetClient().GetFile(versionFile.RemotePath);
+				if (File.GetLastWriteTime(versionFile.LocalPath) < remoteFile.LastModified)
+				{
+					DataState = DataActualityState.Outdated;
+					await versionFile.Download();
+				}
+				else
+					DataState = DataActualityState.Updated;
 			}
-			DataState = DataActualityState.Updated;
+			Version = File.ReadAllText(versionFile.LocalPath);
 		}
 	}
 
@@ -151,7 +183,6 @@ namespace NewBizWiz.Core.Common
 				ExistsLocal() :
 				await ExistsRemote();
 		}
-
 
 		public StorageDirectory GetParentFolder()
 		{
@@ -212,34 +243,18 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
-		private async Task<IEnumerable<Item>> GetRemoteItems(Func<Item, bool> filter = null)
-		{
-			if (filter == null)
-				filter = item => true;
-			var client = FileStorageManager.Instance.GetClient();
-			var folderItems = await client.List(RemotePath);
-			return folderItems.Where(filter).ToList();
-		}
-
-		public async Task<IEnumerable<StorageFile>> GetFiles(Func<string, bool> filter = null, bool recursive = false)
+		public IEnumerable<StorageFile> GetFiles(Func<string, bool> filter = null, bool recursive = false)
 		{
 			if (filter == null)
 				filter = item => true;
 
-			return FileStorageManager.Instance.DataState == DataActualityState.Updated ?
-				GetLocalFiles(filter, recursive) :
-				await GetRemoteFiles(filter, recursive);
-		}
-
-		private IEnumerable<StorageFile> GetLocalFiles(Func<string, bool> filter, bool recursive)
-		{
 			var items = new List<StorageFile>();
 			if (recursive)
 			{
 				foreach (var directoryPath in Directory.GetDirectories(LocalPath))
 				{
 					var subDirectory = new StorageDirectory(RelativePathParts.Merge(Path.GetFileName(directoryPath)));
-					items.AddRange(subDirectory.GetLocalFiles(filter, true));
+					items.AddRange(subDirectory.GetFiles(filter, true));
 				}
 			}
 			items.AddRange(Directory.GetFiles(LocalPath)
@@ -248,42 +263,11 @@ namespace NewBizWiz.Core.Common
 			return items;
 		}
 
-		public async Task<IEnumerable<StorageFile>> GetRemoteFiles(Func<string, bool> filter = null, bool recursive = false)
+		public IEnumerable<StorageDirectory> GetFolders(Func<string, bool> filter = null)
 		{
 			if (filter == null)
 				filter = item => true;
 
-			var items = new List<StorageFile>();
-			var subItems = (await GetRemoteItems()).ToList();
-
-			if (recursive)
-			{
-				foreach (var subItem in subItems.Where(subItem => subItem.IsCollection))
-				{
-					var subDirectory = new StorageDirectory(RelativePathParts.Merge(subItem.GetName()));
-					items.AddRange(await subDirectory.GetRemoteFiles(filter, true));
-				}
-			}
-
-			items.AddRange(subItems
-					.Where(item => !item.IsCollection && filter(item.GetName()))
-					.Select(item => new StorageFile(RelativePathParts, item)));
-
-			return items;
-		}
-
-		public async Task<IEnumerable<StorageDirectory>> GetFolders(Func<string, bool> filter = null)
-		{
-			if (filter == null)
-				filter = item => true;
-
-			return FileStorageManager.Instance.DataState == DataActualityState.Updated ?
-				GetLocalFolders(filter) :
-				await GetRemoteFolders(filter);
-		}
-
-		private IEnumerable<StorageDirectory> GetLocalFolders(Func<string, bool> filter)
-		{
 			var items = new List<StorageDirectory>();
 			items.AddRange(Directory.GetDirectories(LocalPath)
 					.Where(directoryPath => filter(Path.GetFileName(directoryPath)))
@@ -291,26 +275,11 @@ namespace NewBizWiz.Core.Common
 			return items;
 		}
 
-		private async Task<IEnumerable<StorageDirectory>> GetRemoteFolders(Func<string, bool> filter)
-		{
-			var items = await GetRemoteItems(item => item.IsCollection);
-			return items
-				.Where(item => filter(item.GetName()))
-				.Select(item =>
-				{
-					var directory = new StorageDirectory(RelativePathParts.Merge(item.GetName()));
-					if (!Directory.Exists(directory.LocalPath))
-						Directory.CreateDirectory(directory.LocalPath);
-					return directory;
-				})
-				.ToList();
-		}
-
-		public async Task Allocate(bool checkRemoteToo)
+		public async Task Allocate(bool remoteToo)
 		{
 			if (!Directory.Exists(LocalPath))
 				Directory.CreateDirectory(LocalPath);
-			if (checkRemoteToo && !await ExistsRemote())
+			if (remoteToo && !await ExistsRemote())
 			{
 				await GetParentFolder().Allocate(true);
 				await CreateSubFolder(RelativePathParts, String.Empty, true);
@@ -318,9 +287,27 @@ namespace NewBizWiz.Core.Common
 		}
 	}
 
+	public class ArchiveDirectory : StorageDirectory
+	{
+		private readonly ArchiveFile _archiveFile;
+
+		public ArchiveDirectory(string[] relativePathParts)
+			: base(relativePathParts)
+		{
+			_archiveFile = new ArchiveFile(GetParentFolder().RelativePathParts.Merge(String.Format("{0}.rar", Name)));
+		}
+
+		public async Task Download()
+		{
+			if (FileStorageManager.Instance.DataState == DataActualityState.Updated) return;
+			await _archiveFile.Download();
+		}
+	}
+
 	public class StorageFile : StorageItem
 	{
 		private readonly Item _remoteSource;
+		protected bool _isOutdated;
 
 		public string Extension
 		{
@@ -363,18 +350,21 @@ namespace NewBizWiz.Core.Common
 
 		public async Task Upload()
 		{
+			var tempFile = Path.GetTempFileName();
+			File.Copy(LocalPath, tempFile, true);
 			var client = FileStorageManager.Instance.GetClient();
 			await AllocateParentFolder(true);
-			await client.Upload(RemotePath, File.OpenRead(LocalPath), String.Empty);
+			await client.Upload(RemotePath, File.OpenRead(tempFile), String.Empty);
 		}
 
-		public async Task Download()
+		public virtual async Task Download()
 		{
 			var client = FileStorageManager.Instance.GetClient();
 			if (ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated)
 				return;
 			var remoteFile = _remoteSource ?? await client.GetFile(RemotePath);
-			if (!(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified))
+			_isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
+			if (_isOutdated)
 			{
 				AllocateParentFolder();
 				using (var remoteStream = await client.Download(RemotePath))
@@ -406,6 +396,28 @@ namespace NewBizWiz.Core.Common
 		public void AllocateParentFolder()
 		{
 			AsyncHelper.RunSync(() => GetParentFolder().Allocate(false));
+		}
+	}
+
+	public class ArchiveFile : StorageFile
+	{
+		public ArchiveFile(string[] relativePathParts) : base(relativePathParts) { }
+
+		public override async Task Download()
+		{
+			await base.Download();
+			if (_isOutdated)
+			{
+				using (Stream stream = File.OpenRead(LocalPath))
+				{
+					var reader = ReaderFactory.Open(stream);
+					while (reader.MoveToNextEntry())
+					{
+						if (!reader.Entry.IsDirectory)
+							reader.WriteEntryToDirectory(GetParentFolder().LocalPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+					}
+				}
+			}
 		}
 	}
 }

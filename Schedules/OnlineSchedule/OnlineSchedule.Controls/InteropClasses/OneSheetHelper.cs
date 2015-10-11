@@ -7,7 +7,6 @@ using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
@@ -17,16 +16,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 	{
 		public void AppendOneSheet(DigitalProduct[] sources, Theme theme, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.OneSheetsTemplatesFolderPath)) return;
 			foreach (var source in sources)
 			{
-				var presentationTemplatePath = source.OutputData.GetSlideSource(BusinessWrapper.Instance.OutputManager.OneSheetsTemplatesFolderPath);
-				if (string.IsNullOrEmpty(presentationTemplatePath)) return;
-				if (!File.Exists(presentationTemplatePath)) return;
 				try
 				{
 					var thread = new Thread(delegate()
 					{
+						var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetOnlineOneSheetFile(source.OutputData.GetSlideSource());
+						if (string.IsNullOrEmpty(presentationTemplatePath)) return;
+						if (!File.Exists(presentationTemplatePath)) return;
+
 						MessageFilter.Register();
 						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
@@ -114,7 +113,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 							}
 						}
 						if (theme != null)
-							presentation.ApplyTheme(AsyncHelper.RunSync(theme.GetThemePath));
+							presentation.ApplyTheme(theme.GetThemePath());
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					});

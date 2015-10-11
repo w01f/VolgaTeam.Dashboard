@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Xml;
 
 namespace NewBizWiz.Core.Common
 {
 	public class TabPageManager
 	{
-		private readonly string _contentPath;
+		private readonly StorageFile _contentFile;
 
-		public TabPageManager(string path)
+		public TabPageManager(StorageFile contentFile)
 		{
-			_contentPath = path;
+			_contentFile = contentFile;
 			TabPageSettings = new List<TabPageConfig>();
 			LoadHelpLinks();
 		}
@@ -21,9 +20,9 @@ namespace NewBizWiz.Core.Common
 		private void LoadHelpLinks()
 		{
 			TabPageSettings.Clear();
-			if (!File.Exists(_contentPath)) return;
+			if (!_contentFile.ExistsLocal()) return;
 			var document = new XmlDocument();
-			document.Load(_contentPath);
+			document.Load(_contentFile.LocalPath);
 			XmlNode node = document.SelectSingleNode(@"/Root");
 			if (node == null) return;
 			foreach (XmlNode childNode in node.ChildNodes)

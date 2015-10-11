@@ -44,10 +44,10 @@ namespace NewBizWiz.CommonGUI.Summary
 			{
 				switch (MediaMetaData.Instance.DataType)
 				{
-					case MediaDataType.TV:
+					case MediaDataType.TVSchedule:
 						pictureBoxLogo.Image = Properties.Resources.SummaryTV;
 						break;
-					case MediaDataType.Radio:
+					case MediaDataType.RadioSchedule:
 						pictureBoxLogo.Image = Properties.Resources.SummaryRadio;
 						break;
 				}
@@ -138,9 +138,9 @@ namespace NewBizWiz.CommonGUI.Summary
 					{
 						switch (MediaMetaData.Instance.DataType)
 						{
-							case MediaDataType.TV:
+							case MediaDataType.TVSchedule:
 								return "tv.png";
-							case MediaDataType.Radio:
+							case MediaDataType.RadioSchedule:
 								return "radio.png";
 						}
 					}

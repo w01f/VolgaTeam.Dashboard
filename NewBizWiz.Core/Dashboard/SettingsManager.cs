@@ -14,21 +14,10 @@ namespace NewBizWiz.Core.Dashboard
 
 		private ThemeSaveHelper _themeSaveHelper;
 
-		private SettingsManager()
-		{
-			AdSchedulePath = String.Format(@"{0}\newlocaldirect.com\app\spadloader\SPADLOAD.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			DigitalSchedulePath = String.Format(@"{0}\newlocaldirect.com\app\spdgloader\SPDGLOAD.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			TVSchedulePath = String.Format(@"{0}\newlocaldirect.com\app\sptvloader\SPTVLOAD.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			RadioSchedulePath = String.Format(@"{0}\newlocaldirect.com\app\sprdloader\SPRDLOAD.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-		}
+		private SettingsManager() { }
 
 		public ThemeManager ThemeManager { get; private set; }
 		public SlideManager SlideManager { get; private set; }
-
-		public string AdSchedulePath { get; private set; }
-		public string DigitalSchedulePath { get; private set; }
-		public string TVSchedulePath { get; private set; }
-		public string RadioSchedulePath { get; private set; }
 
 		public string SalesRep { get; set; }
 
@@ -52,14 +41,13 @@ namespace NewBizWiz.Core.Dashboard
 			Common.SettingsManager.Instance.LoadSharedSettings();
 
 			ThemeManager = new ThemeManager();
-			await ThemeManager.Load();
+			ThemeManager.Load();
 			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
 
 
 			SlideManager = new SlideManager();
-			await SlideManager.Load();
-
-
+			SlideManager.Load();
+			
 			LoadDashboardSettings();
 
 			MasterWizardManager.Instance.SetMasterWizard();

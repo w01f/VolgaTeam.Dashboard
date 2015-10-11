@@ -28,32 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.pnBottom = new System.Windows.Forms.Panel();
-			this.pbVersion = new System.Windows.Forms.PictureBox();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.laSlideSize = new System.Windows.Forms.Label();
-			this.pnBottom.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).BeginInit();
 			this.pnMain.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// pnBottom
-			// 
-			this.pnBottom.BackColor = System.Drawing.Color.Transparent;
-			this.pnBottom.Controls.Add(this.pbVersion);
-			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBottom.Location = new System.Drawing.Point(0, 490);
-			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(894, 70);
-			this.pnBottom.TabIndex = 2;
-			// 
-			// pbVersion
-			// 
-			this.pbVersion.Location = new System.Drawing.Point(3, 10);
-			this.pbVersion.Name = "pbVersion";
-			this.pbVersion.Size = new System.Drawing.Size(526, 45);
-			this.pbVersion.TabIndex = 1;
-			this.pbVersion.TabStop = false;
 			// 
 			// pnMain
 			// 
@@ -62,7 +40,7 @@
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMain.Location = new System.Drawing.Point(0, 0);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(894, 490);
+			this.pnMain.Size = new System.Drawing.Size(894, 560);
 			this.pnMain.TabIndex = 3;
 			// 
 			// laSlideSize
@@ -82,11 +60,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnMain);
-			this.Controls.Add(this.pnBottom);
 			this.Name = "TabSlidesMainPage";
 			this.Size = new System.Drawing.Size(894, 560);
-			this.pnBottom.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).EndInit();
 			this.pnMain.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -94,8 +69,6 @@
 
         #endregion
 
-		private System.Windows.Forms.Panel pnBottom;
-		private System.Windows.Forms.PictureBox pbVersion;
 		private System.Windows.Forms.Panel pnMain;
 		private System.Windows.Forms.Label laSlideSize;
 

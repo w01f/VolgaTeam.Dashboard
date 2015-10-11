@@ -111,7 +111,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			if (!quickLoad)
 			{
 				comboBoxEditHeader.Properties.Items.Clear();
-				comboBoxEditHeader.Properties.Items.AddRange(Core.Dashboard.ListManager.Instance.SimpleSummaryLists.Headers);
+				//comboBoxEditHeader.Properties.Items.AddRange(Core.Dashboard.ListManager.Instance.SimpleSummaryLists.Headers);
 				checkEditBusinessName.Checked = Settings.ShowAdvertiser;
 				checkEditDecisionMaker.Checked = Settings.ShowDecisionMaker;
 				checkEditPresentationDate.Checked = Settings.ShowPresentationDate;
@@ -130,7 +130,7 @@ namespace NewBizWiz.CommonGUI.Summary
 					comboBoxEditHeader.SelectedIndex = index >= 0 ? index : 0;
 				}
 
-				hyperLinkEditInfoContract.Enabled = !String.IsNullOrEmpty(ContractTemplatePath) && Directory.Exists(ContractTemplatePath);
+				hyperLinkEditInfoContract.Enabled = ContractTemplateFolder!= null && ContractTemplateFolder.ExistsLocal();
 			}
 			LoadItems(quickLoad);
 			UpdateTotalItems();
@@ -286,9 +286,9 @@ namespace NewBizWiz.CommonGUI.Summary
 		protected abstract void ShowEmail(string tempFileName);
 		protected abstract void ShowPreview(string tempFileName);
 
-		public virtual string ContractTemplatePath
+		public virtual StorageDirectory ContractTemplateFolder
 		{
-			get { return String.Empty; }
+			get { return null; }
 		}
 		public ContractSettings ContractSettings
 		{

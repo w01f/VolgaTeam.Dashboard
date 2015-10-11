@@ -11,7 +11,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 	{
 		public void AppendCleanslate(Presentation destinationPresentation = null)
 		{
-			var presentationTemplatePath = AsyncHelper.RunSync(MasterWizardManager.Instance.SelectedWizard.GetCleanslateFile);
+			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetCleanslateFile();
 			try
 			{
 				var thread = new Thread(delegate()
@@ -20,7 +20,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cleanslate);
 					if (selectedTheme != null)
-						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+						presentation.ApplyTheme(selectedTheme.GetThemePath());
 					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});

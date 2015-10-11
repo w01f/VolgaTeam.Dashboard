@@ -24,9 +24,7 @@ namespace NewBizWiz.MediaSchedule.Single.TV
 			{
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
-				MediaMetaData.Instance.Init<TVSettingsManager, TVListManager>(MediaDataType.TV);
-				AppManager.Instance.RunPowerPoint();
-				AppManager.Instance.RunForm();
+				AppManager.Instance.RunApplication(MediaDataType.TVSchedule);
 			}
 			else
 			{

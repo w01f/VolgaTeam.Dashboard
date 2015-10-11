@@ -11,7 +11,7 @@ namespace NewBizWiz.MediaSchedule.Controls.ToolForms
 		{
 			InitializeComponent();
 			Text = String.Format(Text, MediaMetaData.Instance.DataTypeString);
-			pbLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TV ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo;
+			pbLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo;
 		}
 	}
 }

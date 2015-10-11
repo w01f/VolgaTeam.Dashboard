@@ -48,7 +48,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				favoriteImagesControl.Init();
 				new ProgramStrategyItemNameFormatHelper(advBandedGridViewItems);
 			};
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -75,8 +75,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		{
 			_allowToSave = false;
 
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.StrategyTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Strategy), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy), (t =>
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			FormThemeSelector.Link(Controller.Instance.StrategyTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Strategy), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy), (t =>
 			{
 				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Strategy, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
@@ -93,7 +93,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				Controller.Instance.StrategyShowDescriptionToggle.Checked = _localSchedule.ProgramStrategy.ShowDescription;
 			}
 
-			hyperLinkEditInfoContract.Enabled = Directory.Exists(BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath);
+			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 
 			_allowToSave = true;
 			SettingsNotSaved = false;
@@ -177,7 +177,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("strategy");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("strategy");
 		}
 
 		public void Preview_Click(object sender, EventArgs e)
@@ -410,7 +410,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Strategy).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Strategy).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy))); }
 		}
 
 		public int ItemsCount
@@ -470,7 +470,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				options.Add("AverageRate", _localSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
 
 		private void TrackPreview()
@@ -484,7 +484,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				options.Add("AverageRate", _localSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
 
 		private void PreparePreview(string tempFileName)
@@ -514,7 +514,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		{
 			SaveSchedule();
 			PrepareOutput();
-			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
@@ -524,7 +524,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				formProgress.Close();
 			}
 			if (!File.Exists(tempFileName)) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Strategy";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -541,7 +541,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 		{
 			SaveSchedule();
 			PrepareOutput();
-			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
@@ -552,7 +552,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			}
 			if (!File.Exists(tempFileName)) return;
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview Strategy";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

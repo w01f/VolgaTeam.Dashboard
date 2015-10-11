@@ -1518,23 +1518,23 @@ namespace NewBizWiz.Core.OnlineSchedule
 				}
 			}
 
-			public string GetSlideSource(string outputTemplateFolderPath)
+			public string[] GetSlideSource()
 			{
 				if (!String.IsNullOrEmpty(Comment))
 				{
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("monthly{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return new[] { "comments", String.Format("monthly{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty) };
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("total{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
-					return Path.Combine(outputTemplateFolderPath, "comments", String.Format("none{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return new[] { "comments", String.Format("total{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty) };
+					return new[] { "comments", String.Format("none{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty) };
 				}
 				else
 				{
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("monthly{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return new[] { "no_comments", String.Format("monthly{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty) };
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("total{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
-					return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("none{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+						return new[] { "no_comments", String.Format("total{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty) };
+					return new[] { "no_comments", String.Format("none{0}.pptx", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty) };
 				}
 			}
 		}

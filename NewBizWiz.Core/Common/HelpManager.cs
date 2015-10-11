@@ -20,6 +20,10 @@ namespace NewBizWiz.Core.Common
 			{
 				case AppTypeEnum.Dashboard:
 					return "DashboardHelp.xml";
+				case AppTypeEnum.TVSchedule:
+					return "TVHelp.xml";
+				case AppTypeEnum.RadioSchedule:
+					return "RadioHelp.xml";
 			}
 			throw new InvalidEnumArgumentException("Help file not found for app");
 		}

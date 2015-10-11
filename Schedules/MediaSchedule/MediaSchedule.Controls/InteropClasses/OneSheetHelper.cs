@@ -15,11 +15,8 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
-		protected abstract string OneSheetTemplatePath { get; }
-
 		public void AppendOneSheet(IEnumerable<OutputSchedule> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(OneSheetTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -29,7 +26,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 					foreach (var page in pages)
 					{
 						var copyOfReplacementList = new Dictionary<string, string>(page.ReplacementsList);
-						var presentationTemplatePath = Path.Combine(OneSheetTemplatePath, page.TemplateFileName);
+						var presentationTemplatePath = page.TemplateFilePath;
 						if (!File.Exists(presentationTemplatePath)) return;
 						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
@@ -99,7 +96,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							Design design;
 							if (selectedTheme != null)
 							{
-								presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+								presentation.ApplyTheme(selectedTheme.GetThemePath());
 								design = presentation.Designs[presentation.Designs.Count];
 								design.Name = DateTime.Now.ToString("MMddyy-hhmmsstt");
 							}
@@ -114,17 +111,17 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							}
 
 							if (page.ContractSettings.IsConfigured)
-								FillContractInfo(design, page.ContractSettings, ContractTemplatePath);
+								FillContractInfo(design, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 
 							newSlide.Design = design;
 						}
 						else
 						{
 							if (selectedTheme != null)
-								presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+								presentation.ApplyTheme(selectedTheme.GetThemePath());
 
 							if (page.ContractSettings.IsConfigured)
-								FillContractInfo(taggedSlide, page.ContractSettings, ContractTemplatePath);
+								FillContractInfo(taggedSlide, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 						}
 						AppendSlide(presentation, 1, destinationPresentation);
 						presentation.Close();

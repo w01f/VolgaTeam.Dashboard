@@ -24,7 +24,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			if ((base.CreateGraphics()).DpiX > 96) { }
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadCalendar(e.QuickSave);
@@ -52,7 +52,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 		#region Calendar Methods
 		public void LoadCalendar(bool quickLoad)
 		{
-			_localCalendar = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localCalendar = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 
 			if (!quickLoad)
 			{
@@ -271,7 +271,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 		#region Ribbon Operations Events
 		public void HomeHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("Home");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("Home");
 		}
 
 		public void HomeSave_Click(object sender, EventArgs e)

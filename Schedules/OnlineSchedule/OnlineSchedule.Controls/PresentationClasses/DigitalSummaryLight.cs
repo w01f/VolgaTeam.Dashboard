@@ -21,7 +21,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public DigitalSummaryLight()
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					LoadData(e.QuickSave);
@@ -30,7 +30,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabSummaryLight.Text, LocalSchedule.BusinessName, null));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabSummaryLight.Text, LocalSchedule.BusinessName, null));
 		}
 
 		public override ISummarySchedule Schedule
@@ -50,7 +50,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		public override CheckEdit TableOutputToggle
@@ -60,15 +60,15 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void LoadData(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			checkEditBusinessName.Text = String.Format("{0}", LocalSchedule.BusinessName);
 			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
-			FormThemeSelector.Link(Controller.Instance.SummaryLightTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1), BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary1), (t =>
+			FormThemeSelector.Link(Controller.Instance.SummaryLightTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary1), BusinessObjects.Instance.GetSelectedTheme(SlideType.Summary1), (t =>
 			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.Summary1, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
+				BusinessObjects.Instance.SetSelectedTheme(SlideType.Summary1, t.Name);
+				BusinessObjects.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			base.LoadData(quickLoad);
@@ -136,7 +136,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary1))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(BusinessObjects.Instance.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(BusinessObjects.Instance.GetSelectedTheme(SlideType.Summary1))); }
 		}
 
 		protected override void Output()
@@ -174,7 +174,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected override void ShowEmail(string tempFileName)
 		{
-			using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Summary";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -190,7 +190,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		protected override void ShowPreview(string tempFileName)
 		{
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview Summary";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

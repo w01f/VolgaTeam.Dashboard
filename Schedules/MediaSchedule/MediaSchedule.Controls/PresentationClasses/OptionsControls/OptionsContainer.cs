@@ -33,7 +33,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		public SlideType SlideType
 		{
-			get { return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVOptions : SlideType.RadioOptions; }
+			get { return MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVOptions : SlideType.RadioOptions; }
 		}
 
 		private OptionsControl ActiveOptionControl
@@ -57,14 +57,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			Dock = DockStyle.Fill;
 			pnNoOptionSets.Dock = DockStyle.Fill;
 			pnOptionSets.Dock = DockStyle.Fill;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
 			var buttonInfos = new List<ButtonInfo>();
 			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsInfo; } });
-			if (BusinessWrapper.Instance.OutputManager.OptionsColors.Items.Count > 1)
+			if (BusinessObjects.Instance.OutputManager.OptionsColors.Items.Count > 1)
 				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
 			retractableBarControl.AddButtons(buttonInfos);
 			retractableBarControl.Collapse(true);
@@ -87,13 +87,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		{
 			_allowToSave = false;
 
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
 				_localSchedule.BusinessName,
 				_localSchedule.FlightDates,
 				String.Format("{0} {1}s", _localSchedule.TotalWeeks, "week"),
 				Environment.NewLine);
-			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
 			{
 				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
@@ -104,12 +104,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 			if (!quickLoad)
 			{
-				xtraTabPageOptionsStyle.PageVisible = BusinessWrapper.Instance.OutputManager.OptionsColors.Items.Count > 1;
-				outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.OptionsColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
+				xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.OptionsColors.Items.Count > 1;
+				outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.OptionsColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 				outputColorSelector.ColorChanged += OnColorChanged;
 			}
 
-			hyperLinkEditInfoContract.Enabled = Directory.Exists(BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath);
+			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 
 			_allowToSave = true;
 
@@ -544,7 +544,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("options");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("options");
 		}
 
 		public void Preview_Click(object sender, EventArgs e)
@@ -785,7 +785,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		#region Output
 		private Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
 		}
 
 		private void TrackOutput()
@@ -799,7 +799,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				options.Add("AverageRate", _localSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
 
 		private void TrackPreview()
@@ -813,7 +813,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				options.Add("AverageRate", _localSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
 
 
@@ -908,7 +908,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			var trackAction = new Action(TrackPreview);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
 			{
 				formPreview.Text = "Preview Options";
 				formPreview.LoadGroups(previewGroups);
@@ -961,7 +961,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email these Options";
 				formEmail.LoadGroups(previewGroups);

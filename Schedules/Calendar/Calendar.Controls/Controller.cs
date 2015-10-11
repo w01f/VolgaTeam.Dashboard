@@ -45,7 +45,7 @@ namespace NewBizWiz.Calendar.Controls
 		{
 			Utilities.Instance.Title = "Ninja Calendar";
 
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
 			HomeControl = new HomeControl();
 			HomeHelp.Click += HomeControl.HomeHelp_Click;
@@ -95,14 +95,14 @@ namespace NewBizWiz.Calendar.Controls
 			GridEmail.AddEventHandler(CheckPowerPointRunning, CalendarVisualizer.buttonItemCalendarEmail_Click);
 			GridHelp.Click += CalendarVisualizer.buttonItemCalendarHelp_Click;
 
-			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
-			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
+			RateCard = new RateCardControl(BusinessObjects.Instance.RateCardManager, RateCardCombo);
+			RateCardHelp.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("ratecard");
 
 			Gallery1 = new CalendarGallery1Control();
-			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			Gallery1Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery");
 
 			Gallery2 = new CalendarGallery2Control();
-			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			Gallery2Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery");
 
 			ConfigureTabPages();
 
@@ -127,8 +127,8 @@ namespace NewBizWiz.Calendar.Controls
 			HomeControl.LoadCalendar(false);
 			CalendarVisualizer.LoadData();
 
-			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
-			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
+			BusinessObjects.Instance.RateCardManager.LoadRateCards();
+			TabRateCard.Enabled = BusinessObjects.Instance.RateCardManager.RateCardFolders.Any();
 		}
 
 		public void UpdateScheduleTabs(bool enable)
@@ -141,7 +141,7 @@ namespace NewBizWiz.Calendar.Controls
 		{
 			Ribbon.Items.Clear();
 			var tabPages = new List<BaseItem>();
-			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			foreach (var tabPageConfig in BusinessObjects.Instance.TabPageManager.TabPageSettings)
 			{
 				switch (tabPageConfig.Id)
 				{
@@ -219,7 +219,7 @@ namespace NewBizWiz.Calendar.Controls
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
 				form.TopMost = true;
-				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
+				var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
 				form.Show();
 				thread.Start();
 				while (thread.IsAlive)
@@ -229,9 +229,9 @@ namespace NewBizWiz.Calendar.Controls
 			var options = new Dictionary<string, object>();
 			options.Add("Advertiser", localSchedule.BusinessName);
 			if (nameChanged)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name, options));
+				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name, options));
 			else if (byUser)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved", localSchedule.Name, options));
+				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved", localSchedule.Name, options));
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
 		}
@@ -245,7 +245,7 @@ namespace NewBizWiz.Calendar.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessWrapper.Instance.ScheduleManager.CurrentAdvertiser));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessObjects.Instance.ScheduleManager.CurrentAdvertiser));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery1)

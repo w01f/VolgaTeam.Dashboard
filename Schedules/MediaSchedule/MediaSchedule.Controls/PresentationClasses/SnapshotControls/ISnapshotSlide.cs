@@ -8,7 +8,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 	{
 		bool ReadyForOutput { get; }
 		string SlideName { get; }
-		string TemplateFileName { get; }
+		string TemplateFilePath { get; }
 		string TotalRowValue { get; }
 		string[][] Logos { get; set; }
 		ContractSettings ContractSettings { get; }

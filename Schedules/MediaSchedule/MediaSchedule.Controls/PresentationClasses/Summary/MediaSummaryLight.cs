@@ -23,7 +23,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 
 		public MediaSummaryLight()
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					LoadData(e.QuickSave && !e.UpdateDigital);
@@ -41,7 +41,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				options.Add("AverageRate", LocalSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", LocalSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
 
 		public override ISummarySchedule Schedule
@@ -61,7 +61,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		public override CheckEdit TableOutputToggle
@@ -71,13 +71,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 
 		public override void LoadData(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			checkEditBusinessName.Text = String.Format("{0}", LocalSchedule.BusinessName);
 			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
 			FormThemeSelector.Link(Controller.Instance.SummaryLightTheme,
-				BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1),
+				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary1),
 				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1),
 				(t =>
 			{
@@ -148,14 +148,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			get { return Controller.Instance.SummaryLightPdf; }
 		}
 
-		public override string ContractTemplatePath
+		public override StorageDirectory ContractTemplateFolder
 		{
-			get { return BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath; }
+			get { return BusinessObjects.Instance.OutputManager.ContractTemplateFolder; }
 		}
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1))); }
 		}
 
 		protected override void Output()
@@ -213,7 +213,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 
 		protected override void ShowEmail(string tempFileName)
 		{
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Summary";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -237,13 +237,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				options.Add("AverageRate", LocalSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", LocalSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
 
 		protected override void ShowPreview(string tempFileName)
 		{
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview Summary";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

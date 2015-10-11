@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
@@ -41,7 +40,7 @@
 			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
 			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barOperations = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemRegularEmail = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemPDFEmail = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -106,7 +105,7 @@
 			this.barLargeButtonItemRegularEmail.Name = "barLargeButtonItemRegularEmail";
 			toolTipTitleItem1.Text = "Email PowerPoint file";
 			toolTipItem1.LeftIndent = 6;
-			toolTipItem1.Text = "Send this Online Schedule as a PowerPoint email attachment";
+			toolTipItem1.Text = "Send this file as a PowerPoint email attachment";
 			superToolTip1.Items.Add(toolTipTitleItem1);
 			superToolTip1.Items.Add(toolTipItem1);
 			this.barLargeButtonItemRegularEmail.SuperTip = superToolTip1;
@@ -122,7 +121,7 @@
 			this.barLargeButtonItemPDFEmail.Name = "barLargeButtonItemPDFEmail";
 			toolTipTitleItem2.Text = "Email as PDF";
 			toolTipItem2.LeftIndent = 6;
-			toolTipItem2.Text = "Send this Online Schedule as a PDF file email attachment";
+			toolTipItem2.Text = "Send this file as a PDF file email attachment";
 			superToolTip2.Items.Add(toolTipTitleItem2);
 			superToolTip2.Items.Add(toolTipItem2);
 			this.barLargeButtonItemPDFEmail.SuperTip = superToolTip2;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml;
 using NewBizWiz.Core.Common;
 
@@ -10,12 +11,7 @@ namespace NewBizWiz.Core.MediaSchedule
 {
 	public abstract class MediaListManager
 	{
-		protected abstract string StrategyFileName { get; }
 		protected abstract string XmlRootPrefix { get; }
-		protected abstract string MainImageFolderPath { get; }
-		protected abstract string AdditionalImageFolderPath { get; }
-		protected abstract string ProgramStrategyDefaultLogoPath { get; }
-
 		protected MediaListManager()
 		{
 			SlideHeaders = new List<string>();
@@ -38,11 +34,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			DefaultOptionsSummarySettings = new OptionsSummarySettings();
 			DefaultBroadcastCalendarSettings = new CalendarToggleSettings();
 			DefaultCustomCalendarSettings = new CalendarToggleSettings();
-			
-			Images = new List<ImageSourceGroup>();
-			LoadImages();
 
-			LoadLists();
+			Images = new List<ImageSourceGroup>();
 		}
 
 		public DirectoryInfo BigImageFolder { get; set; }
@@ -84,11 +77,10 @@ namespace NewBizWiz.Core.MediaSchedule
 			CustomDemos.Clear();
 			Dayparts.Clear();
 			Times.Clear();
-			var listPath = Path.Combine(SettingsManager.Instance.SharedListFolder, StrategyFileName);
-			if (File.Exists(listPath))
+			if (ResourceManager.Instance.MediaListsFile.ExistsLocal())
 			{
 				var document = new XmlDocument();
-				document.Load(listPath);
+				document.Load(ResourceManager.Instance.MediaListsFile.LocalPath);
 
 				XmlNode node = document.SelectSingleNode(String.Format(@"/{0}Strategy", XmlRootPrefix));
 				if (node != null)
@@ -233,6 +225,7 @@ namespace NewBizWiz.Core.MediaSchedule
 					}
 				}
 			}
+
 			if (SourcePrograms.Count > 0)
 			{
 				Times.AddRange(SourcePrograms.Select(x => x.Time).Distinct().ToArray());
@@ -243,23 +236,31 @@ namespace NewBizWiz.Core.MediaSchedule
 		private void LoadImages()
 		{
 			Images.Clear();
-			var defaultGroup = new ImageSourceGroup(MainImageFolderPath) { Name = "Gallery", Order = -1 };
+			var defaultGroup = new ImageSourceGroup(new StorageDirectory(Common.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge(String.Format("{0}", MediaMetaData.Instance.DataTypeString.ToUpper()))))
+			{
+				Name = "Gallery", 
+				Order = -1
+			};
+			defaultGroup.LoadImages();
 			if (defaultGroup.Images.Any())
 				Images.Add(defaultGroup);
 
-			if (Directory.Exists(AdditionalImageFolderPath))
+
+			var additionalImageFolder = new StorageDirectory(Common.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge(String.Format("{0}_2", MediaMetaData.Instance.DataTypeString.ToUpper())));
+			if (additionalImageFolder.ExistsLocal())
 			{
-				var contentDescriptionPath = Path.Combine(AdditionalImageFolderPath, "order.txt");
-				if (File.Exists(contentDescriptionPath))
+				var contentDescriptionFile = new StorageFile(additionalImageFolder.RelativePathParts.Merge("order.txt"));
+				if (contentDescriptionFile.ExistsLocal())
 				{
-					var groupNames = File.ReadAllLines(contentDescriptionPath);
+					var groupNames = File.ReadAllLines(contentDescriptionFile.LocalPath);
 					var groupIndex = 0;
 					foreach (var groupName in groupNames)
 					{
 						if (String.IsNullOrEmpty(groupName)) continue;
-						var groupFolderPath = Path.Combine(AdditionalImageFolderPath, groupName);
-						if (!Directory.Exists(groupFolderPath)) continue;
-						var imageGroup = new ImageSourceGroup(groupFolderPath);
+						var groupFolder = new StorageDirectory(additionalImageFolder.RelativePathParts.Merge(groupName));
+						if (!groupFolder.ExistsLocal()) continue;
+						var imageGroup = new ImageSourceGroup(groupFolder);
+						imageGroup.LoadImages();
 						imageGroup.Name = groupName;
 						imageGroup.Order = groupIndex;
 						if (!imageGroup.Images.Any()) continue;
@@ -269,7 +270,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 			}
 
-			DefaultStrategyLogo = ImageSource.FromImage(File.Exists(ProgramStrategyDefaultLogoPath) ? new Bitmap(ProgramStrategyDefaultLogoPath) : null);
+			DefaultStrategyLogo = ImageSource.FromImage(ResourceManager.Instance.DefaultStrategyLogoFile.ExistsLocal() ? new Bitmap(ResourceManager.Instance.DefaultStrategyLogoFile.LocalPath) : null);
 		}
 
 		private void GetProgramProperties(XmlNode node, ref SourceProgram sourceProgram)
@@ -326,65 +327,26 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 		}
 
-		private void LoadLists()
+		public void Load()
 		{
 			LoadStrategy();
+			LoadImages();
 		}
 	}
 
 	public class TVListManager : MediaListManager
 	{
-		protected override string StrategyFileName
-		{
-			get { return @"TV XML\TV Strategy.xml"; }
-		}
-
 		protected override string XmlRootPrefix
 		{
 			get { return "TV"; }
-		}
-
-		protected override string MainImageFolderPath
-		{
-			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
-		}
-
-		protected override string AdditionalImageFolderPath
-		{
-			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV_2\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
-		}
-
-		protected override string ProgramStrategyDefaultLogoPath
-		{
-			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV\DefaultStrategyImage.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 	}
 
 	public class RadioListManager : MediaListManager
 	{
-		protected override string StrategyFileName
-		{
-			get { return @"Radio XML\Radio Strategy.xml"; }
-		}
-
 		protected override string XmlRootPrefix
 		{
 			get { return "Radio"; }
-		}
-
-		protected override string MainImageFolderPath
-		{
-			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
-		}
-
-		protected override string AdditionalImageFolderPath
-		{
-			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio_2\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
-		}
-
-		protected override string ProgramStrategyDefaultLogoPath
-		{
-			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio\DefaultStrategyImage.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 	}
 }

@@ -163,18 +163,6 @@
     <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardDefault.resx">
       <DependentUpon>DashboardDefault.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardRadio.resx">
-      <DependentUpon>DashboardRadio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCable.resx">
-      <DependentUpon>DashboardCable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardTV.resx">
-      <DependentUpon>DashboardTV.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardPrint.resx">
-      <DependentUpon>DashboardPrint.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\FormSavedStates.resx">
       <DependentUpon>FormSavedStates.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,30 +214,6 @@
       <DependentUpon>FormSaveTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <Compile Include="TabHomeForms\Dashboard\DashboardRadio.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabHomeForms\Dashboard\DashboardRadio.Designer.cs">
-      <DependentUpon>DashboardRadio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabHomeForms\Dashboard\DashboardCable.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabHomeForms\Dashboard\DashboardCable.Designer.cs">
-      <DependentUpon>DashboardCable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabHomeForms\Dashboard\DashboardTV.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabHomeForms\Dashboard\DashboardTV.Designer.cs">
-      <DependentUpon>DashboardTV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabHomeForms\Dashboard\DashboardPrint.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabHomeForms\Dashboard\DashboardPrint.Designer.cs">
-      <DependentUpon>DashboardPrint.cs</DependentUpon>
-    </Compile>
     <Compile Include="TabHomeForms\FormSavedStates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -389,12 +353,7 @@
     <None Include="Resources\RedWarning.png" />
     <None Include="Resources\Help.png" />
     <None Include="Resources\Advertiser.png" />
-    <None Include="Resources\HomeCable.png" />
-    <None Include="Resources\HomeRadio.png" />
-    <None Include="Resources\HomeTV.png" />
     <None Include="Resources\Output.png" />
-    <None Include="Resources\HomeOnline.png" />
-    <None Include="Resources\HomeNewspaper.png" />
     <None Include="Resources\SalesQuotes.png" />
     <None Include="Resources\SalesRep.png" />
     <None Include="Resources\Date.png" />

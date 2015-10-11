@@ -25,7 +25,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		{
 			Dock = DockStyle.Fill;
 			InitSlideInfo<SlideInfoControl>();
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadCalendar(e.QuickSave);
@@ -102,7 +102,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public override void LoadCalendar(bool quickLoad)
 		{
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			base.LoadCalendar(quickLoad);
 		}
 
@@ -116,7 +116,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public override ColorSchema GetColorSchema(string colorName)
 		{
-			return BusinessWrapper.Instance.OutputManager.CalendarColors.Items
+			return BusinessObjects.Instance.OutputManager.CalendarColors.Items
 				.Where(color => color.Name.ToLower() == colorName.ToLower())
 				.Select(color => color.Schema)
 				.FirstOrDefault();
@@ -124,7 +124,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public override void OpenHelp(string key)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);
+			BusinessObjects.Instance.HelpManager.OpenHelpLink(key);
 		}
 
 		public override void SaveSettings()
@@ -134,7 +134,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public override void TrackActivity(UserActivity activity)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 		}
 
 		private void TrackOutput()
@@ -142,7 +142,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", SelectedView.Title);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
 
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
@@ -190,7 +190,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(CalendarPowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Calendar";
 				formEmail.LoadGroups(previewGroups);
@@ -208,7 +208,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", SelectedView.Title);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
 
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
@@ -237,7 +237,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);

@@ -7,6 +7,7 @@ using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
+using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -15,11 +16,8 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
-		protected abstract string SnapshotTemplatePath { get; }
-
 		public void AppendSnapshot(IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(SnapshotTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -31,7 +29,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 						foreach (var pageDictionary in page.ReplacementsList)
 						{
 							var copyOfReplacementList = new Dictionary<string, string>(pageDictionary);
-							var presentationTemplatePath = Path.Combine(SnapshotTemplatePath, page.TemplateFileName);
+							var presentationTemplatePath = page.TemplateFilePath;
 							if (!File.Exists(presentationTemplatePath)) return;
 							var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
@@ -146,7 +144,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 								Design design;
 								if (selectedTheme != null)
 								{
-									presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+									presentation.ApplyTheme(selectedTheme.GetThemePath());
 									design = presentation.Designs[presentation.Designs.Count];
 									design.Name = DateTime.Now.ToString("MMddyy-hhmmsstt");
 								}
@@ -161,17 +159,17 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 								}
 
 								if (page.ContractSettings.IsConfigured)
-									FillContractInfo(design, page.ContractSettings, ContractTemplatePath);
+									FillContractInfo(design, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 
 								newSlide.Design = design;
 							}
 							else
 							{
 								if (selectedTheme != null)
-									presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+									presentation.ApplyTheme(selectedTheme.GetThemePath());
 
 								if (page.ContractSettings.IsConfigured)
-									FillContractInfo(taggedSlide, page.ContractSettings, ContractTemplatePath);
+									FillContractInfo(taggedSlide, page.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 							}
 							AppendSlide(presentation, 1, destinationPresentation);
 							presentation.Close();

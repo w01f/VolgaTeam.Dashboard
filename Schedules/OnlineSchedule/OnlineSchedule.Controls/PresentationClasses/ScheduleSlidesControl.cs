@@ -19,7 +19,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public ScheduleSlidesControl(Form formContainer)
 			: base(formContainer)
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -28,7 +28,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		protected override string SlideName
@@ -55,11 +55,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void LoadSchedule(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalSlidesTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.OnlineDigitalProduct), BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineDigitalProduct), (t =>
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			FormThemeSelector.Link(Controller.Instance.DigitalSlidesTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.OnlineDigitalProduct), BusinessObjects.Instance.GetSelectedTheme(SlideType.OnlineDigitalProduct), (t =>
 			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.OnlineWebPackage, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
+				BusinessObjects.Instance.SetSelectedTheme(SlideType.OnlineWebPackage, t.Name);
+				BusinessObjects.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			if (!quickLoad)
@@ -125,7 +125,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.OnlineDigitalProduct).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineDigitalProduct)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineDigitalProduct))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.OnlineDigitalProduct).FirstOrDefault(t => t.Name.Equals(BusinessObjects.Instance.GetSelectedTheme(SlideType.OnlineDigitalProduct)) || String.IsNullOrEmpty(BusinessObjects.Instance.GetSelectedTheme(SlideType.OnlineDigitalProduct))); }
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
@@ -164,14 +164,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digitalsl");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("digitalsl");
 		}
 
 		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
 		{
 			var activities = base.TrackOutput(tabsForOutput);
 			foreach (var activity in activities)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+				BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 			return activities;
 		}
 
@@ -193,7 +193,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);

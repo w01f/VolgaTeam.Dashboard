@@ -8,7 +8,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 	{
 		bool ReadyForOutput { get; }
 		string SlideName { get; }
-		string TemplateFileName { get; }
+		string TemplateFilePath { get; }
 		string[][] Logos { get; set; }
 		float[] ColumnWidths { get; set; }
 		ContractSettings ContractSettings { get; }

@@ -147,9 +147,9 @@ namespace NewBizWiz.Core.AdSchedule
 				XtraTinyImageFolder = new DirectoryInfo(folderPath);
 
 			Images.Clear();
-			var defaultGroup = new ImageSourceGroup(imageFolderPath) { Name = "Gallery", Order = -1 };
-			if (defaultGroup.Images.Any())
-				Images.Add(defaultGroup);
+			//var defaultGroup = new ImageSourceGroup(imageFolderPath) { Name = "Gallery", Order = -1 };
+			//if (defaultGroup.Images.Any())
+			//	Images.Add(defaultGroup);
 		}
 
 		private void LoadPrintStrategy()

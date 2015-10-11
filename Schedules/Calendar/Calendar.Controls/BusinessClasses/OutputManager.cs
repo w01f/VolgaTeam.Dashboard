@@ -18,7 +18,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 		public OutputManager()
 		{
 			TemplatesManager = new CalendarTemplatesManager();
-			CalendarColors = new OutputColorList(CalendarBackgroundFolderPath);
+			//CalendarColors = new OutputColorList(CalendarBackgroundFolderPath);
 		}
 
 		public string CalendarTemlatesFolderPath

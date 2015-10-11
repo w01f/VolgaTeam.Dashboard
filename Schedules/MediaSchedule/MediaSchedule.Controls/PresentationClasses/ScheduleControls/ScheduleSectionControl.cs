@@ -159,9 +159,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				switch (_localSchedule.SelectedSpotType)
 				{
 					case SpotType.Week:
-						return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWeeklySchedule : SlideType.RadioWeeklySchedule;
+						return MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVWeeklySchedule : SlideType.RadioWeeklySchedule;
 					case SpotType.Month:
-						return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVMonthlySchedule : SlideType.RadioMonthlySchedule;
+						return MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVMonthlySchedule : SlideType.RadioMonthlySchedule;
 					default:
 						return SlideType.None;
 				}
@@ -534,7 +534,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			repositoryItemComboBoxDayparts.Items.Clear();
 			repositoryItemComboBoxDayparts.Items.AddRange(_localSchedule.Dayparts.Where(x => x.Available).Select(x => x.Code).ToArray());
 
-			hyperLinkEditInfoContract.Enabled = Directory.Exists(BusinessWrapper.Instance.OutputManager.ContractTemplatesFolderPath);
+			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 
 			if (!quickLoad)
 			{

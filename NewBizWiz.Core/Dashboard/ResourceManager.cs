@@ -12,18 +12,12 @@ namespace NewBizWiz.Core.Dashboard
 			get { return _instance; }
 		}
 
-		#region Images
-		public StorageFile VersionLogoFile { get; private set; }
-		#endregion
-
-		#region Data
 		public StorageFile DataUsersFile { get; private set; }
 		public StorageFile DataCoverFile { get; private set; }
 		public StorageFile DataClientGoalsFile { get; private set; }
 		public StorageFile DataLeadoffStatementFile { get; private set; }
 		public StorageFile DataTargetCustomersFile { get; private set; }
 		public StorageFile DataSimpleSummaryFile { get; private set; }
-		#endregion
 
 		private ResourceManager(){}
 
@@ -31,18 +25,8 @@ namespace NewBizWiz.Core.Dashboard
 		{
 			await Common.ResourceManager.Instance.Load();
 
-			#region Images
-			VersionLogoFile = new StorageFile(new []
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"AppSettings",
-				"version.png"
-			});
-			await VersionLogoFile.Download();
-			#endregion
+			await Common.ResourceManager.Instance.SlideMastersFolder.Download();
 
-			#region Data
 			DataUsersFile = new StorageFile(new[]
 			{
 				FileStorageManager.IncomingFolderName,
@@ -96,7 +80,6 @@ namespace NewBizWiz.Core.Dashboard
 				"Closing Summary.xml"
 			});
 			await DataSimpleSummaryFile.Download();
-			#endregion
 		}
 	}
 }

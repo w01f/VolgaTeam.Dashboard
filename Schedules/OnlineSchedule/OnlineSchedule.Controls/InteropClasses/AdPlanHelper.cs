@@ -14,7 +14,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 	{
 		public void AppendAdPlan(AdPlanControl adPlanControl, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(adPlanControl.TemplatesFolderPath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -26,7 +25,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 					var productsCount = pagesForOutput.Count;
 					for (var k = 0; k < slidesCount; k++)
 					{
-						var presentationTemplatePath = Path.Combine(adPlanControl.TemplatesFolderPath, adPlanControl.TemplateFileName);
+						var presentationTemplatePath = adPlanControl.TemplateFilePath;
 						if (!File.Exists(presentationTemplatePath)) continue;
 						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
@@ -80,7 +79,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 						}
 						var selectedTheme = adPlanControl.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+							presentation.ApplyTheme(selectedTheme.GetThemePath());
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}

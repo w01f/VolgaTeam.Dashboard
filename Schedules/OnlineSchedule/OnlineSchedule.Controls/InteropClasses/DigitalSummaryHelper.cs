@@ -3,8 +3,8 @@ using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
@@ -14,7 +14,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 	{
 		public void AppendDigitalSummary(DigitalSummaryControl digitalSummary, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.DigitalSummaryTemplatesFolderPath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -23,7 +22,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 					var slidesCount = digitalSummary.OutputReplacementsLists.Count;
 					for (var k = 0; k < slidesCount; k++)
 					{
-						var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.DigitalSummaryTemplatesFolderPath, OutputManager.DigitalSummaryTemplateFileName);
+						var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetOnlineSummaryFile();
 						if (!File.Exists(presentationTemplatePath)) continue;
 						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
@@ -61,7 +60,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 						}
 						var selectedTheme = digitalSummary.Parent.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+							presentation.ApplyTheme(selectedTheme.GetThemePath());
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}

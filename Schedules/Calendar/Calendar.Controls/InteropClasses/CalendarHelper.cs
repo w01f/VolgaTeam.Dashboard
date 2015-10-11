@@ -19,7 +19,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 		{
 			foreach (var monthOutputData in monthOutputDatas)
 			{
-				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath, BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideName(monthOutputData));
+				var presentationTemplatePath = Path.Combine(BusinessObjects.Instance.OutputManager.CalendarTemlatesFolderPath, BusinessObjects.Instance.OutputManager.TemplatesManager.GetSlideName(monthOutputData));
 				if (!File.Exists(presentationTemplatePath)) return;
 				try
 				{
@@ -249,9 +249,9 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 							}
 						}
 
-						var backgroundFilePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarBackgroundFolderPath, String.Format(OutputManager.BackgroundFilePath, monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy")), monthOutputData.BackgroundFileName);
-						if (File.Exists(backgroundFilePath))
-							presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
+						//var backgroundFilePath = Path.Combine(BusinessObjects.Instance.OutputManager.CalendarBackgroundFolderPath, String.Format(OutputManager.BackgroundFilePath, monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy")), monthOutputData.BackgroundFileName);
+						//if (File.Exists(backgroundFilePath))
+							//presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
 						presentation.SlideMaster.Design.Name = GetSlideMasterName(monthOutputData);
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
@@ -269,7 +269,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 
 		private string GetSlideMasterName(CalendarOutputData monthOutputData)
 		{
-			return BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideMasterName(monthOutputData);
+			return BusinessObjects.Instance.OutputManager.TemplatesManager.GetSlideMasterName(monthOutputData);
 		}
 
 		private static void SetDayRecordTagValue(CalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)

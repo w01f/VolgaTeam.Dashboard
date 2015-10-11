@@ -49,7 +49,7 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
-		public async Task Save()
+		public void Save()
 		{
 			var xml = new StringBuilder();
 
@@ -63,7 +63,7 @@ namespace NewBizWiz.Core.Common
 				sw.Write(xml);
 				sw.Flush();
 			}
-			await _contentFile.Upload();
+			_contentFile.Upload();
 		}
 
 		public void Add(string item)

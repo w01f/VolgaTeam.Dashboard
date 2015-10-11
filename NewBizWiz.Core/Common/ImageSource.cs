@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace NewBizWiz.Core.Common
@@ -15,7 +17,7 @@ namespace NewBizWiz.Core.Common
 		public const string BigImageFolderName = "Big Logos";
 		public const string SmallImageFolderName = "Small Logos";
 		public const string TinyImageFolderName = "Tiny Logos";
-		public const string XtraTinyImageFolderName = "Xtra Tiny Logos";
+		public const string XtraTinyImageFolderName = "xtra tiny logos";
 
 		public const decimal BigHeight = 146;
 		public const decimal SmallHeight = 75;
@@ -176,38 +178,27 @@ namespace NewBizWiz.Core.Common
 			return imageSource;
 		}
 
-		public static ImageSource FromFolder(string folderPath, string imageName)
+		public static ImageSource FromFolder(StorageDirectory folder, string imageName)
 		{
-			var bigImagePath = Path.Combine(folderPath, BigImageFolderName);
-			var smallImagePath = Path.Combine(folderPath, SmallImageFolderName);
-			var tinyImagePath = Path.Combine(folderPath, TinyImageFolderName);
-			var xtraTinyImagePath = Path.Combine(folderPath, XtraTinyImageFolderName);
+			var bigImageFile = new StorageFile(folder.RelativePathParts.Merge(new[] { BigImageFolderName, String.Format("{0}{1}", imageName, ImageFileExtension) }));
+			var smallImageFile = new StorageFile(folder.RelativePathParts.Merge(new[] { SmallImageFolderName, String.Format("{0}2{1}", imageName, ImageFileExtension) }));
+			var tinyImageFile = new StorageFile(folder.RelativePathParts.Merge(new[] { TinyImageFolderName, String.Format("{0}3{1}", imageName, ImageFileExtension) }));
+			var xtraTinyImageFile = new StorageFile(folder.RelativePathParts.Merge(new[] { XtraTinyImageFolderName, String.Format("{0}4{1}", imageName, ImageFileExtension) }));
 
-			if (!Directory.Exists(bigImagePath) ||
-				!Directory.Exists(smallImagePath) ||
-				!Directory.Exists(tinyImagePath) ||
-				!Directory.Exists(xtraTinyImagePath))
-				return null;
-
-			var bigImageFilePath = Path.Combine(bigImagePath, String.Format("{0}{1}", imageName, ImageFileExtension));
-			var smallImageFilePath = Path.Combine(smallImagePath, String.Format("{0}2{1}", imageName, ImageFileExtension));
-			var tinyImageFilePath = Path.Combine(tinyImagePath, String.Format("{0}3.png", imageName));
-			var xtraTinyImageFilePath = Path.Combine(xtraTinyImagePath, String.Format("{0}4{1}", imageName, ImageFileExtension));
-
-			if (!File.Exists(bigImageFilePath) ||
-					!File.Exists(smallImageFilePath) ||
-					!File.Exists(tinyImageFilePath) ||
-					!File.Exists(xtraTinyImageFilePath))
+			if (!bigImageFile.ExistsLocal() ||
+				!smallImageFile.ExistsLocal() ||
+				!tinyImageFile.ExistsLocal() ||
+				!xtraTinyImageFile.ExistsLocal())
 				return null;
 
 			var imageSource = new ImageSource();
 			imageSource.Name = imageName.ToLower().StartsWith("!default") ? imageName.Substring(1) : imageName;
-			imageSource.FileName = bigImageFilePath;
+			imageSource.FileName = bigImageFile.LocalPath;
 			imageSource.IsDefault = imageName.ToLower().Contains("default");
-			imageSource.BigImage = new Bitmap(bigImageFilePath);
-			imageSource.SmallImage = new Bitmap(smallImageFilePath);
-			imageSource.TinyImage = new Bitmap(tinyImageFilePath);
-			imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
+			imageSource.BigImage = new Bitmap(bigImageFile.LocalPath);
+			imageSource.SmallImage = new Bitmap(smallImageFile.LocalPath);
+			imageSource.TinyImage = new Bitmap(tinyImageFile.LocalPath);
+			imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFile.LocalPath);
 
 			return imageSource;
 		}
@@ -215,6 +206,8 @@ namespace NewBizWiz.Core.Common
 
 	public class ImageSourceGroup
 	{
+		private readonly StorageDirectory _root;
+
 		public string Name { get; set; }
 		public int Order { get; set; }
 
@@ -227,21 +220,25 @@ namespace NewBizWiz.Core.Common
 
 		public EventHandler<EventArgs> OnDataChanged;
 
-		public ImageSourceGroup(string sourcePath)
+		public ImageSourceGroup(StorageDirectory root)
 		{
+			_root = root;
 			Images = new List<ImageSource>();
-			LoadImages(sourcePath);
 		}
 
-		private void LoadImages(string sourcePath)
+		public void LoadImages()
 		{
 			Images.Clear();
-			var bigImagePath = Path.Combine(sourcePath, ImageSource.BigImageFolderName);
-			if (!Directory.Exists(bigImagePath)) return;
-			foreach (var filePath in Directory.GetFiles(bigImagePath, String.Format("*{0}", ImageSource.ImageFileExtension)))
+
+			var bigImageFolder = new StorageDirectory(_root.RelativePathParts.Merge(ImageSource.BigImageFolderName));
+			if (!bigImageFolder.ExistsLocal()) return;
+
+
+			foreach (var file in bigImageFolder.GetFiles().Where(file => file.Extension == ImageSource.ImageFileExtension))
 			{
-				var imageSource = ImageSource.FromFolder(sourcePath, Path.GetFileNameWithoutExtension(filePath));
-				Images.Add(imageSource);
+				var imageSource = ImageSource.FromFolder(_root, Path.GetFileNameWithoutExtension(file.LocalPath));
+				if (imageSource != null)
+					Images.Add(imageSource);
 			}
 		}
 	}

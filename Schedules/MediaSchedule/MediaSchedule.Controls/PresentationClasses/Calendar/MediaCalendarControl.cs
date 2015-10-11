@@ -14,7 +14,6 @@ using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 using ScheduleManager = NewBizWiz.Core.MediaSchedule.ScheduleManager;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 {
@@ -27,13 +26,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			Dock = DockStyle.Fill;
 			hyperLinkEditReset.Visible = true;
 			hyperLinkEditReset.OpenLink += OnReset;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 				{
 					LoadCalendar(e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged);
-					if (!(e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged))
-						ShowCalendar(false);
+					CalendarUpdated = e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged;
 				}
 			});
 		}
@@ -83,7 +81,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 
 		public override void LoadCalendar(bool quickLoad)
 		{
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			base.LoadCalendar(quickLoad);
 		}
 
@@ -97,7 +95,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 
 		public override ColorSchema GetColorSchema(string colorName)
 		{
-			return BusinessWrapper.Instance.OutputManager.CalendarColors.Items
+			return BusinessObjects.Instance.OutputManager.CalendarColors.Items
 				.Where(color => color.Name.ToLower() == colorName.ToLower())
 				.Select(color => color.Schema)
 				.FirstOrDefault();
@@ -110,12 +108,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 
 		public override void OpenHelp(string key)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);
+			BusinessObjects.Instance.HelpManager.OpenHelpLink(key);
 		}
 
 		public override void TrackActivity(UserActivity activity)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 		}
 
 		private void OnReset(object sender, EventArgs e)
@@ -138,7 +136,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 				options.Add("AverageRate", _localSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
 
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
@@ -175,7 +173,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 					var previewGroup = new PreviewGroup
 					{
 						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+						PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 					};
 					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
@@ -184,7 +182,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Calendar";
 				formEmail.LoadGroups(previewGroups);
@@ -208,7 +206,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 				options.Add("AverageRate", _localSchedule.Section.AvgRate);
 				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
 
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
@@ -226,7 +224,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 					var previewGroup = new PreviewGroup
 					{
 						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+						PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 					};
 					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
@@ -236,7 +234,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);
@@ -268,7 +266,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 						var previewGroup = new PreviewGroup
 						{
 							Name = outputItem.MonthText,
-							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+							PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 						};
 						RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 						previewGroups.Add(previewGroup);

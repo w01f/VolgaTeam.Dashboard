@@ -12,11 +12,8 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
-		protected abstract string StrategyTemplatePath { get; }
-
 		public void AppendStrategy(ProgramStrategyControl strategy, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(StrategyTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -25,7 +22,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 					var slidesCount = strategy.OutputReplacementsLists.Count;
 					for (var k = 0; k < slidesCount; k++)
 					{
-						var presentationTemplatePath = Path.Combine(StrategyTemplatePath, String.Format(OutputManager.StrategyTemplateFileName, strategy.ItemsPerSlide));
+						var presentationTemplatePath = BusinessObjects.Instance.OutputManager.GetStartegyFile(strategy.ItemsPerSlide);
 						if (!File.Exists(presentationTemplatePath)) continue;
 						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
@@ -93,12 +90,12 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							}
 
 							if (strategy.ContractSettings.IsConfigured)
-								FillContractInfo(slide, strategy.ContractSettings, ContractTemplatePath);
+								FillContractInfo(slide, strategy.ContractSettings, BusinessObjects.Instance.OutputManager.ContractTemplateFolder);
 						}
 
 						var selectedTheme = strategy.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+							presentation.ApplyTheme(selectedTheme.GetThemePath());
 
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();

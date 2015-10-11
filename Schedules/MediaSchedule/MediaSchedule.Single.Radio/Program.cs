@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
@@ -25,9 +24,7 @@ namespace NewBizWiz.MediaSchedule.Single.Radio
 			{
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
-				MediaMetaData.Instance.Init<RadioSettingsManager, RadioListManager>(MediaDataType.Radio);
-				AppManager.Instance.RunPowerPoint();
-				AppManager.Instance.RunForm();
+				AppManager.Instance.RunApplication(MediaDataType.RadioSchedule);
 			}
 			else
 			{

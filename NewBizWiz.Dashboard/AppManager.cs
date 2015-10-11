@@ -39,62 +39,72 @@ namespace NewBizWiz.Dashboard
 
 		public static string FormCaption
 		{
-			get { return SettingsManager.Instance.DashboardName + " - " + SettingsManager.Instance.Size; }
+			get
+			{
+				return String.Format("{0} v{1}- {2}",
+					SettingsManager.Instance.DashboardName,
+					FileStorageManager.Instance.Version,
+					SettingsManager.Instance.Size);
+			}
 		}
 
 		public void RunForm()
 		{
 			LicenseHelper.Register();
-			
+
 			RunPowerPoint();
-			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
-			
+
+			AppProfileManager.Instance.InitApplication(AppTypeEnum.Dashboard);
+
 			using (var form = new FormProgress())
 			{
 				form.TopMost = true;
 				form.Show();
-				
+
 				form.laProgress.Text = "Checking data version...";
 				var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
 
-				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
-					form.laProgress.Text = "Loading data from server for the 1st time...";
-				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-					form.laProgress.Text = "Updating data from server...";
-				else
-					form.laProgress.Text = "Loading data...";
+				if (FileStorageManager.Instance.Connected)
+				{
+					if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
+						form.laProgress.Text = "Loading data from server for the 1st time...";
+					else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
+						form.laProgress.Text = "Updating data from server...";
+					else
+						form.laProgress.Text = "Loading data...";
 
-				thread = new Thread(() => AsyncHelper.RunSync(Init));
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
+					thread = new Thread(() => AsyncHelper.RunSync(Init));
+					thread.Start();
+					while (thread.IsAlive)
+						Application.DoEvents();
 
-				FormMain.Instance.Init();
-
+					FormMain.Instance.Init();
+				}
 				form.Close();
 			}
-			Application.Run(FormMain.Instance);
+			if (FileStorageManager.Instance.Connected)
+				Application.Run(FormMain.Instance);
+			else
+				Utilities.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");
 		}
 
 		public async Task Init()
 		{
-			await AppProfileManager.Instance.LoadProfile(AppTypeEnum.Dashboard);
+			await AppProfileManager.Instance.LoadProfile();
 			await Core.Dashboard.ResourceManager.Instance.Load();
-			await MasterWizardManager.Instance.Load();
+			MasterWizardManager.Instance.Load();
 			await Core.Dashboard.SettingsManager.Instance.LoadSettings();
 
 			Core.Dashboard.ListManager.Instance.Init();
 			HelpManager.LoadHelpLinks();
 
 			ActivityManager = ActivityManager.OpenStorage();
-			await ActivityManager.AddActivity(new UserActivity("Application started"));
+			ActivityManager.AddActivity(new UserActivity("Application started"));
 
 			SetCultureSettings();
-
-			await Task.Run(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
 		}
 
 		public bool RunPowerPoint()

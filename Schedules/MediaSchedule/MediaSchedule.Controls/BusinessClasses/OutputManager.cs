@@ -1,83 +1,202 @@
 ﻿using System;
-using System.IO;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 {
 	public class OutputManager
 	{
-		public static string MasterWizardsRootFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-		private const string OneSheetTemplatesFolderName = @"{0}\{1} Slides\tables";
-		public const string OneSheetTemplateFileName = @"{0}\{1}\{2}_programs\{2}-{3}.pptx";
-
-		private const string StrategyTemplatesFolderName = @"{0}\{1} Slides\strategy";
-		public const string StrategyTemplateFileName = @"strategy_{0}.pptx";
-
-		private const string SnapshotTemplatesFolderName = @"{0}\{1} Slides\snapshot";
-		public const string SnapshotTemplateFileName = @"{0}\{1}\1s{2}r\{2}rows_{3}.pptx";
-		public const string SnapshotSummaryTemplateFileName = @"{0}\summary\snapshot_summary_{1}.pptx";
-
-		private const string OptionsTemplatesFolderName = @"{0}\{1} Slides\options";
-		public const string OptionsTemplateFileName = @"{0}\options{1}.pptx";
-		public const string OptionsColumnWidthsFileName = @"table_column_widths.txt";
-		public const string OptionsSummaryTemplateFileName = @"{0}\summary\options_summary_{1}.pptx";
-
-		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_slides";
-		public const string CalendarSlideTemplate = @"Broadcast_{0}_{1}_{2}.pptx";
-		public const string CalendarBackgroundFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_images";
-
-		private const string ContractTemplatesFolderName = @"{0}\{1} Slides\legal";
-
-		public const string BackgroundFilePath = @"{0}\{1}";
-
-		public string OneSheetTemplatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(OneSheetTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
-		}
-
-		public string StrategyTemplatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(StrategyTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
-		}
-
-		public string SnapshotTemplatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(SnapshotTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
-		}
-
-		public string OptionsTemplatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(OptionsTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
-		}
-
-		public string BroadcastCalendarTemlatesFolderPath
-		{
-			get { return string.Format(CalendarTemlatesFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
-		}
-
-		public string CalendarBackgroundFolderPath
-		{
-			get { return string.Format(CalendarBackgroundFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
-		}
-
-		public string ContractTemplatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(ContractTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
-		}
-
 		public OutputColorList ScheduleColors { get; private set; }
 		public OutputColorList SnapshotColors { get; private set; }
 		public OutputColorList OptionsColors { get; private set; }
 		public OutputColorList CalendarColors { get; private set; }
 
-		public OutputManager()
+		public StorageDirectory ContractTemplateFolder
 		{
-			ScheduleColors = new OutputColorList(OneSheetTemplatesFolderPath);
-			SnapshotColors = new OutputColorList(SnapshotTemplatesFolderPath);
-			OptionsColors = new OutputColorList(OptionsTemplatesFolderPath);
-			CalendarColors = new OutputColorList(CalendarBackgroundFolderPath);
+			get
+			{
+				return new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+					.Merge(new[]
+					{
+						SettingsManager.Instance.SlideFolder.ToLower(),
+						String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString),
+						"legal"
+					}));
+			}
+		}
+
+		public void Init()
+		{
+			ScheduleColors = new OutputColorList();
+			ScheduleColors.Load(
+				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+					.Merge(new[]
+					{
+						SettingsManager.Instance.SlideFolder.ToLower(),
+						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
+						"tables"
+					})));
+
+			SnapshotColors = new OutputColorList();
+			SnapshotColors.Load(
+				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+					.Merge(new[]
+					{
+						SettingsManager.Instance.SlideFolder.ToLower(),
+						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
+						"snapshot"
+					})));
+
+			OptionsColors = new OutputColorList();
+			OptionsColors.Load(
+				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+					.Merge(new[]
+					{
+						SettingsManager.Instance.SlideFolder.ToLower(),
+						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
+						"options"
+					})));
+
+			CalendarColors = new OutputColorList();
+			CalendarColors.Load(
+				new StorageDirectory(Core.Common.ResourceManager.Instance.CalendarSlideTemplatesFolder.RelativePathParts
+					.Merge(new[]
+					{
+						"broadcast_cal",
+						"broadcast_images",
+					})));
+		}
+
+		private string GetScheduleTemplateFile(string[] fileName)
+		{
+			var file = new StorageFile(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+				.Merge(new[]
+					{
+						SettingsManager.Instance.SlideFolder.ToLower(),
+						String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString)
+					})
+				.Merge(fileName));
+			return file.LocalPath;
+		}
+
+		public string GetOneSheetFile(
+			string color,
+			bool showLogo,
+			int programsPerSlide,
+			int spotsPerSlide)
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"tables",
+				color,
+				showLogo ? "logos" : "no_logos",
+				String.Format("{0}_programs",programsPerSlide),
+				String.Format("{0}-{1}.pptx",programsPerSlide,spotsPerSlide)
+			});
+		}
+
+		public string GetStartegyFile(int itemsPerSlide)
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"strategy",
+				String.Format("strategy_{0}.pptx",itemsPerSlide)
+			});
+		}
+
+		public string GetSnapshotItemFile(
+			string color,
+			bool showLogo,
+			int programsPerSlide,
+			string slideSuffix
+			)
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"snapshot",
+				color,
+				showLogo ? "logo" : "no_logo",
+				String.Format("1s{0}r",programsPerSlide),
+				String.Format("{0}rows_{1}.pptx",programsPerSlide,slideSuffix)
+			});
+		}
+
+		public string GetSnapshotSummaryFile(string color, int columnsCount)
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"snapshot",
+				color,
+				"summary",
+				String.Format("snapshot_summary_{0}.pptx",columnsCount)
+			});
+		}
+
+		public string GetOptionsItemFile(
+			string color,
+			bool showLogo
+			)
+		{
+			return GetScheduleTemplateFile(new[]
+				{
+					"options",
+					color,
+					String.Format("options{0}.pptx",showLogo ? "_logo" : String.Empty)
+				});
+		}
+
+		public string GetOptionsSummaryFile(string color, int columnsCount)
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"options",
+				color,
+				"summary",
+				String.Format("options_summary_{0}.pptx",columnsCount)
+			});
+		}
+
+		public string GetOptionsColumnsWidthFile()
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"options",
+				"table_column_widths.txt"
+			});
+		}
+
+		private string GetCalendarTemplateFile(string[] fileName)
+		{
+			var file = new StorageFile(Core.Common.ResourceManager.Instance.CalendarSlideTemplatesFolder.RelativePathParts
+				.Merge(new[]
+					{
+						"broadcast_cal"
+					})
+				.Merge(fileName));
+			return file.LocalPath;
+		}
+
+		public string GetCalendarFile(bool showLogo, int daysCount)
+		{
+			return GetCalendarTemplateFile(new[]
+			{
+				"broadcast_slides",
+				String.Format("Broadcast_{0}_{1}_{2}.pptx", 
+					showLogo ? "logo" : "no_logo", 
+					daysCount,
+					Core.Common.SettingsManager.Instance.SlideFolder.Replace("Slides", ""))
+			});
+		}
+
+		public string GetCalendarBackgroundFile(string color, DateTime calendarMonthDate, bool showBigDates)
+		{
+			return GetCalendarTemplateFile(new[]
+			{
+				"broadcast_images",
+				color,
+				calendarMonthDate.ToString("yyyy"),
+				String.Format("{0}{1}.png", calendarMonthDate.ToString("MMM").ToLower(), (showBigDates ? "1" : "2"))
+			});
 		}
 	}
 }

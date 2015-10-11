@@ -1087,9 +1087,6 @@ namespace NewBizWiz.Core.Calendar
 			ApplyForAllThemeColor = true;
 
 			ShowLogo = true;
-			var defaultLogoPath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
-			if (File.Exists(defaultLogoPath))
-				Logo = new Bitmap(defaultLogoPath);
 			ApplyForAllLogo = true;
 
 			ShowBigDate = false;
@@ -1198,11 +1195,6 @@ namespace NewBizWiz.Core.Calendar
 		public string MonthText
 		{
 			get { return Parent.Date.ToString("MMMM yyyy"); }
-		}
-
-		public string BackgroundFileName
-		{
-			get { return String.Format("{0}{1}.png", Parent.Date.ToString("MMM").ToLower(), (ShowBigDate ? "1" : "2")); }
 		}
 
 		public string Comments

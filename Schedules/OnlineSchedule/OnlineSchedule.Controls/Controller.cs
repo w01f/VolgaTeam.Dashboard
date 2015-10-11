@@ -48,7 +48,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		{
 			Utilities.Instance.Title = "WebPoint Digital Schedules";
 
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
 			#region Schedule Settings
 			ScheduleSettings = new ScheduleSettingsControl();
@@ -129,18 +129,18 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			#endregion
 
 			#region Rate Card Events
-			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
-			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
+			RateCard = new RateCardControl(BusinessObjects.Instance.RateCardManager, RateCardCombo);
+			RateCardHelp.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("ratecard");
 			#endregion
 
 			#region Gallery 1
 			Gallery1 = new DigitalGallery1Control();
-			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery1");
+			Gallery1Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery1");
 			#endregion
 
 			#region Gallery 2
 			Gallery2 = new DigitalGallery2Control();
-			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery2");
+			Gallery2Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery2");
 			#endregion
 
 			ConfigureTabPages();
@@ -176,15 +176,15 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			SummaryLight.LoadData(false);
 			SummaryFull.LoadData(false);
 
-			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
-			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
+			BusinessObjects.Instance.RateCardManager.LoadRateCards();
+			TabRateCard.Enabled = BusinessObjects.Instance.RateCardManager.RateCardFolders.Any();
 		}
 
 		private void ConfigureTabPages()
 		{
 			Ribbon.Items.Clear();
 			var tabPages = new List<BaseItem>();
-			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			foreach (var tabPageConfig in BusinessObjects.Instance.TabPageManager.TabPageSettings)
 			{
 				switch (tabPageConfig.Id)
 				{
@@ -235,7 +235,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
 				form.TopMost = true;
-				var thread = new Thread(delegate() { BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender); });
+				var thread = new Thread(delegate() { BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender); });
 				form.Show();
 				thread.Start();
 				while (thread.IsAlive)
@@ -243,7 +243,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 				form.Close();
 			}
 			if (nameChanged)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
+				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
 		}
@@ -251,7 +251,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public void UpdateSimpleOutputTabPageState(bool enable)
 		{
 			TabScheduleSlides.Enabled = enable;
-			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
+			TabDigitalPackage.Enabled = enable;
 			TabAdPlan.Enabled = enable;
 			TabSummaryLight.Enabled = enable;
 			TabSummaryFull.Enabled = enable;
@@ -259,10 +259,10 @@ namespace NewBizWiz.OnlineSchedule.Controls
 
 		public void UpdateOutputButtonsAccordingThemeStatus()
 		{
-			if (!BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.None).Any())
+			if (!BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any())
 			{
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
-				var themesDisabledHandler = new Action(() => BusinessWrapper.Instance.HelpManager.OpenHelpLink("NoTheme"));
+				var themesDisabledHandler = new Action(() => BusinessObjects.Instance.HelpManager.OpenHelpLink("NoTheme"));
 
 				DigitalSlidesPowerPoint.Visible = false;
 				(DigitalSlidesPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
@@ -370,7 +370,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery1)

@@ -35,7 +35,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
 			}
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -148,7 +148,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			_digitalChanged = false;
 			_calendarTypeChanged = false;
 			digitalProductListControl.UpdateData(_localSchedule,
@@ -165,7 +165,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					var propertyEditActivity = activity as PropertyEditActivity;
 					if (propertyEditActivity != null)
 						propertyEditActivity.Advertiser = Controller.Instance.HomeBusinessName.EditValue as String;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+					BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 				}
 			);
 			if (!quickLoad)
@@ -174,7 +174,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.HomeAccountNumberCheck.Enabled = _localSchedule.ViewSettings.SharedHomeViewSettings.EnableAccountNumber;
 
 				xtraTabPageMedia.Text = String.Format("{0} Strategy", MediaMetaData.Instance.DataTypeString);
-				pbMediaLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TV ? Properties.Resources.HomeTVLogo : Properties.Resources.HomeRadioLogo;
+				pbMediaLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Properties.Resources.HomeTVLogo : Properties.Resources.HomeRadioLogo;
 
 				Controller.Instance.HomeClientType.Properties.Items.Clear();
 				Controller.Instance.HomeClientType.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.ClientTypes.ToArray());
@@ -325,7 +325,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (_localSchedule.BusinessName != businessName)
 				{
 					_localSchedule.BusinessName = businessName;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
+					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
 				}
 			}
 			else
@@ -340,7 +340,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (_localSchedule.DecisionMaker != decisionMaker)
 				{
 					_localSchedule.DecisionMaker = decisionMaker;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
+					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
 				}
 			}
 			else
@@ -609,9 +609,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public void Help_Click(object sender, EventArgs e)
 		{
 			if (xtraTabControlMain.SelectedTabPage == xtraTabPageMedia)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", MediaMetaData.Instance.DataType == MediaDataType.TV ? "tv" : "rd"));
+				BusinessObjects.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? "tv" : "rd"));
 			else if (xtraTabControlMain.SelectedTabPage == xtraTabPageDigital)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", "dg"));
+				BusinessObjects.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", "dg"));
 		}
 
 		public void Save_Click(object sender, EventArgs e)

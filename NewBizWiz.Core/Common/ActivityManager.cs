@@ -9,13 +9,12 @@ namespace NewBizWiz.Core.Common
 	public class ActivityManager
 	{
 		private XDocument _activityStorage;
-		private readonly StorageDirectory _activityFolder;
 		private readonly StorageFile _activityFile;
 
 		private ActivityManager()
 		{
-			_activityFolder = AppProfileManager.Instance.UserDataFolder;
-			_activityFile = new StorageFile(_activityFolder.RelativePathParts.Merge(String.Format("{0}.xml", DateTime.Now.ToString("MM-dd-yyyy"))));
+			var activityFolder = AppProfileManager.Instance.UserDataFolder;
+			_activityFile = new StorageFile(activityFolder.RelativePathParts.Merge(String.Format("{0}.xml", DateTime.Now.ToString("MM-dd-yyyy"))));
 		}
 
 		public static ActivityManager OpenStorage()
@@ -37,16 +36,16 @@ namespace NewBizWiz.Core.Common
 			}			
 		}
 
-		private async Task SaveStorage()
+		private void SaveStorage()
 		{
 			_activityStorage.Save(_activityFile.LocalPath);
-			await _activityFile.Upload();
+			_activityFile.Upload();
 		}
 
-		public async Task AddActivity(UserActivity activity)
+		public void AddActivity(UserActivity activity)
 		{
 			_activityStorage.Root.Add(activity.Serialize());
-			await SaveStorage();
+			SaveStorage();
 		}
 	}
 

@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using DevExpress.XtraTab;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.CommonGUI.RateCard
 {
 	public class RateCardManager
 	{
-		private readonly string _contentPath;
-
-		public RateCardManager(string path)
+		private readonly StorageDirectory _rootFolder;
+		public RateCardManager(StorageDirectory rootFolder)
 		{
-			_contentPath = path;
+			_rootFolder = rootFolder;
 			RateCardFolders = new List<RateCardFolder>();
 		}
 
@@ -23,11 +23,10 @@ namespace NewBizWiz.CommonGUI.RateCard
 		public void LoadRateCards()
 		{
 			RateCardFolders.Clear();
-			if (!Directory.Exists(_contentPath)) return;
-			var rateCatdFolders = new List<string>();
-			rateCatdFolders.AddRange(Directory.GetDirectories(_contentPath));
-			rateCatdFolders.Sort(WinAPIHelper.StrCmpLogicalW);
-			foreach (var rateCardFolder in rateCatdFolders.Select(rateCardFolderPath => new RateCardFolder(rateCardFolderPath)))
+			if (!_rootFolder.ExistsLocal()) return;
+			var rateCatdFolders = _rootFolder.GetFolders().ToList();
+			rateCatdFolders.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.Name, y.Name));
+			foreach (var rateCardFolder in rateCatdFolders.Select(rateCardFolder => new RateCardFolder(rateCardFolder)))
 				RateCardFolders.Add(rateCardFolder);
 		}
 
@@ -41,21 +40,21 @@ namespace NewBizWiz.CommonGUI.RateCard
 
 	public class RateCardFolder
 	{
-		public RateCardFolder(string parentFolderPath)
+		private readonly StorageDirectory _rootFolder;
+		public RateCardFolder(StorageDirectory rootFolder)
 		{
-			Folder = new DirectoryInfo(parentFolderPath);
+			_rootFolder = rootFolder;
 			RateCards = new List<IRateCardViewer>();
 			RateCardContainer = new RateFolderControl();
 			RateCardContainer.xtraTabControlRateCards.SelectedPageChanged += SelectRateCard;
 		}
 
-		public DirectoryInfo Folder { get; private set; }
 		public RateFolderControl RateCardContainer { get; private set; }
 		public List<IRateCardViewer> RateCards { get; private set; }
 
 		public string FolderName
 		{
-			get { return Regex.Replace(Folder.Name, @"\d+_", string.Empty); }
+			get { return Regex.Replace(_rootFolder.Name, @"\d+_", string.Empty); }
 		}
 
 		private void SelectRateCard(object sender, TabPageChangedEventArgs e)
@@ -70,7 +69,9 @@ namespace NewBizWiz.CommonGUI.RateCard
 		public void LoadRateCards()
 		{
 			if (RateCards.Any()) return;
-			foreach (var rateCardFile in Folder.GetFiles())
+
+			var files = _rootFolder.GetFiles().ToList();
+			foreach (var rateCardFile in files.Select(f => new FileInfo(f.LocalPath)))
 			{
 				IRateCardViewer rateCard;
 				switch (rateCardFile.Extension.ToLower())

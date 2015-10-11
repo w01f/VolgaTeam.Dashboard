@@ -10,7 +10,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 	{
 		public override GalleryManager Manager
 		{
-			get { return BusinessWrapper.Instance.Gallery1Manager; }
+			get { return BusinessObjects.Instance.Gallery1Manager; }
 		}
 
 		public override RibbonPanel Panel

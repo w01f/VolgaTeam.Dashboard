@@ -28,7 +28,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Dock = DockStyle.Fill;
 			SettingsNotSaved = false;
 			LoadCategories();
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -101,7 +101,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			digitalProductListControl.UpdateData(_localSchedule,
 				() =>
 				{
@@ -115,7 +115,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					var propertyEditActivity = activity as PropertyEditActivity;
 					if (propertyEditActivity != null)
 						propertyEditActivity.Advertiser = Controller.Instance.HomeBusinessName.EditValue as String;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+					BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 				});
 			if (!quickLoad)
 			{
@@ -161,7 +161,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				if (_localSchedule.BusinessName != businessName)
 				{
 					_localSchedule.BusinessName = businessName;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
+					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
 				}
 			}
 			else
@@ -175,7 +175,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				if (_localSchedule.DecisionMaker != decisionMaker)
 				{
 					_localSchedule.DecisionMaker = decisionMaker;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
+					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
 				}
 			}
 			else
@@ -365,7 +365,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void ScheduleSettingsHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("homeweb");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("homeweb");
 		}
 		#endregion
 

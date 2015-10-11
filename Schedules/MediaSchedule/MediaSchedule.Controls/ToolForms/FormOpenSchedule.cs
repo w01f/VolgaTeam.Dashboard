@@ -20,7 +20,7 @@ namespace NewBizWiz.MediaSchedule.Controls.ToolForms
 		public FormOpenSchedule()
 		{
 			InitializeComponent();
-			barStaticItemLogo.Glyph = MediaMetaData.Instance.DataType == MediaDataType.TV ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo;
+			barStaticItemLogo.Glyph = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo;
 		}
 
 		public string ScheduleName { get; set; }

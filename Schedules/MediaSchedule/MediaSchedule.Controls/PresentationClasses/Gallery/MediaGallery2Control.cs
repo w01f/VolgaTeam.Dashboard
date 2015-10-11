@@ -10,7 +10,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery
 	{
 		public override GalleryManager Manager
 		{
-			get { return BusinessWrapper.Instance.Gallery2Manager; }
+			get { return BusinessObjects.Instance.Gallery2Manager; }
 		}
 
 		public override RibbonPanel Panel

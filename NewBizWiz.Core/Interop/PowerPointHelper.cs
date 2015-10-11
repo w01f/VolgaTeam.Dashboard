@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
@@ -663,9 +664,10 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		protected void FillContractInfo(Slide slide, ContractSettings contractSettings, string templateFolderPath)
+		protected void FillContractInfo(Slide slide, ContractSettings contractSettings, StorageDirectory folder)
 		{
-			var templatePresentation = PowerPointObject.Presentations.Open(Path.Combine(templateFolderPath, contractSettings.TemplateName), WithWindow: MsoTriState.msoFalse);
+			var templateFile = new StorageFile(folder.RelativePathParts.Merge(contractSettings.TemplateName));
+			var templatePresentation = PowerPointObject.Presentations.Open(templateFile.LocalPath, WithWindow: MsoTriState.msoFalse);
 			foreach (var shape in GetContractInfoShapes(contractSettings, templatePresentation))
 			{
 				shape.Copy();
@@ -674,9 +676,10 @@ namespace NewBizWiz.Core.Interop
 			templatePresentation.Close();
 		}
 
-		protected void FillContractInfo(Design design, ContractSettings contractSettings, string templateFolderPath)
+		protected void FillContractInfo(Design design, ContractSettings contractSettings, StorageDirectory folder)
 		{
-			var templatePresentation = PowerPointObject.Presentations.Open(Path.Combine(templateFolderPath, contractSettings.TemplateName), WithWindow: MsoTriState.msoFalse);
+			var templateFile = new StorageFile(folder.RelativePathParts.Merge(contractSettings.TemplateName));
+			var templatePresentation = PowerPointObject.Presentations.Open(Path.Combine(templateFile.LocalPath, contractSettings.TemplateName), WithWindow: MsoTriState.msoFalse);
 			foreach (var shape in GetContractInfoShapes(contractSettings, templatePresentation))
 			{
 				shape.Copy();

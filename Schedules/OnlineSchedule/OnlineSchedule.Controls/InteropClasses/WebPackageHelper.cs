@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
@@ -14,7 +15,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 	{
 		public void AppendWebPackage(WebPackageControl digitalPackage, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.DigitalPackageTemplatesFolderPath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -24,7 +24,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 					var rowsCount = digitalPackage.RowsPerSlide;
 					for (var k = 0; k < slidesCount; k++)
 					{
-						var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.DigitalPackageTemplatesFolderPath, String.Format(OutputManager.DigitalPackageTemplateFileName, rowsCount, (digitalPackage.Settings.ShowScreenshot ? "p" : String.Empty)));
+						var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetOnlinePackageFile(rowsCount, digitalPackage.Settings.ShowScreenshot);
 						if (!File.Exists(presentationTemplatePath)) continue;
 						var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
@@ -79,7 +79,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 						}
 						var selectedTheme = digitalPackage.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+							presentation.ApplyTheme(selectedTheme.GetThemePath());
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}

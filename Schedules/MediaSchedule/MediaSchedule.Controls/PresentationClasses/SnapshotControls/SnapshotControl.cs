@@ -20,6 +20,7 @@ using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ImageGallery;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
@@ -433,7 +434,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			get { return Data.Name; }
 		}
 
-		public string TemplateFileName
+		public string TemplateFilePath
 		{
 			get
 			{
@@ -448,11 +449,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 					slideSuffics.Add("c");
 				if (!(Data.ShowLenght || Data.ShowRate || Data.ShowTotalSpots || Data.ShowCost))
 					slideSuffics.Add("no_lrsc");
-				return String.Format(OutputManager.SnapshotTemplateFileName,
-					MediaMetaData.Instance.SettingsManager.SelectedColor,
-					Data.ShowLogo ? "logo" : "no_logo",
-					ProgramsPerSlide,
-					String.Join("", slideSuffics));
+				return BusinessObjects.Instance.OutputManager.GetSnapshotItemFile(MediaMetaData.Instance.SettingsManager.SelectedColor, Data.ShowLogo, ProgramsPerSlide, String.Join("", slideSuffics));
 			}
 		}
 
@@ -815,7 +812,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			var previewGroup = new PreviewGroup
 			{
 				Name = SlideName,
-				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;

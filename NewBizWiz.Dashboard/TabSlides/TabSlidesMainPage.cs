@@ -8,7 +8,6 @@ using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Slides;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.InteropClasses;
 
 namespace NewBizWiz.Dashboard.TabSlides
@@ -25,9 +24,6 @@ namespace NewBizWiz.Dashboard.TabSlides
 			Dock = DockStyle.Fill;
 
 			laSlideSize.Text = String.Format(laSlideSize.Text, SettingsManager.Instance.Size);
-
-			if (Core.Dashboard.ResourceManager.Instance.VersionLogoFile.ExistsLocal())
-				pbVersion.Image = Image.FromFile(Core.Dashboard.ResourceManager.Instance.VersionLogoFile.LocalPath);
 
 			LoadSlides();
 
@@ -66,7 +62,7 @@ namespace NewBizWiz.Dashboard.TabSlides
 				AppManager.Instance.ShowFloater(() =>
 				{
 					form.Show();
-					DashboardPowerPointHelper.Instance.AppendSlideMaster(AsyncHelper.RunSync(selectedSlideMaster.GetMasterPath));
+					DashboardPowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.GetMasterPath());
 					form.Close();
 				});
 			}
@@ -82,7 +78,7 @@ namespace NewBizWiz.Dashboard.TabSlides
 				formProgress.TopMost = true;
 				formProgress.Show();
 				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				DashboardPowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => DashboardPowerPointHelper.Instance.AppendSlideMaster(AsyncHelper.RunSync(selectedSlideMaster.GetMasterPath), presentation));
+				DashboardPowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => DashboardPowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;

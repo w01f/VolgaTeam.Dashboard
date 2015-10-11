@@ -93,8 +93,9 @@ namespace NewBizWiz.Dashboard
 				AppManager.Instance.ActivateMainForm();
 		}
 
-		private async void FormMain_Shown(object sender, EventArgs e)
+		private void FormMain_Shown(object sender, EventArgs e)
 		{
+			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
 			RegistryHelper.MainFormHandle = Handle;
 			AppManager.Instance.ActivateMainForm();
 		}

@@ -14,20 +14,25 @@ namespace NewBizWiz.Core.Common
 		#region Local
 		public StorageDirectory AppSettingsFolder { get; private set; }
 		public StorageDirectory TempFolder { get; private set; }
+		public StorageDirectory FavoriteImagesFolder { get; private set; }
 
 		public StorageFile SharedSettingsFile { get; private set; }
 		public StorageFile AppSettingsFile { get; private set; }
 		#endregion
 
 		#region Remote
-		public StorageDirectory RateCardFolder { get; private set; }
-		public StorageDirectory SlideTemplatesFolder { get; private set; }
-		public StorageDirectory SlideMastersFolder { get; private set; }
-		public StorageDirectory ThemesFolder { get; private set; }
+		public ArchiveDirectory RateCardFolder { get; private set; }
+		public ArchiveDirectory BasicSlideTemplatesFolder { get; private set; }
+		public ArchiveDirectory ScheduleSlideTemplatesFolder { get; private set; }
+		public ArchiveDirectory CalendarSlideTemplatesFolder { get; private set; }
+		public ArchiveDirectory SlideMastersFolder { get; private set; }
+		public ArchiveDirectory ThemesFolder { get; private set; }
+		public ArchiveDirectory ArtworkFolder { get; private set; }
 
 		public StorageFile DashboardCodeFile { get; private set; }
 		public StorageFile HelpFile { get; private set; }
 		public StorageFile HelpBrowserFile { get; private set; }
+		public StorageFile OnlineListsFile { get; private set; }
 		#endregion
 
 		private ResourceManager() { }
@@ -50,6 +55,14 @@ namespace NewBizWiz.Core.Common
 			if (!await AppSettingsFolder.Exists())
 				await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.LocalFilesFolderName }, AppProfileManager.Instance.AppName);
 
+			FavoriteImagesFolder = new StorageDirectory(new[]
+			{
+				FileStorageManager.LocalFilesFolderName,
+				"image_favorites"
+			});
+			if (!await FavoriteImagesFolder.Exists())
+				await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.LocalFilesFolderName }, "image_favorites");
+
 			SharedSettingsFile = new StorageFile(new[]
 			{
 				FileStorageManager.LocalFilesFolderName,
@@ -68,32 +81,57 @@ namespace NewBizWiz.Core.Common
 			#endregion
 
 			#region Remote
-			RateCardFolder = new StorageDirectory(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				FileStorageManager.CommonIncomingFolderName,
-				"RateCard"
-			});
-
-			SlideTemplatesFolder = new StorageDirectory(new[]
+			BasicSlideTemplatesFolder = new ArchiveDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,
 				FileStorageManager.CommonIncomingFolderName,
 				"Slides"
 			});
+			await BasicSlideTemplatesFolder.Download();
 
-			SlideMastersFolder = new StorageDirectory(new[]
+			ThemesFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"SellerPointThemes"
+			});
+			await ThemesFolder.Download();
+
+
+			SlideMastersFolder = new ArchiveDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,
 				FileStorageManager.CommonIncomingFolderName,
 				"SlidesTab"
 			});
 
-			ThemesFolder = new StorageDirectory(new[]
+
+			ScheduleSlideTemplatesFolder = new ArchiveDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,
 				FileStorageManager.CommonIncomingFolderName,
-				"SellerPointThemes"
+				"ScheduleBuilders"
+			});
+
+			CalendarSlideTemplatesFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"Calendar"
+			});
+
+			ArtworkFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"Artwork"
+			});
+
+			RateCardFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"RateCard"
 			});
 
 			DashboardCodeFile = new StorageFile(new[]
@@ -122,6 +160,16 @@ namespace NewBizWiz.Core.Common
 				"!Help_Browser.xml"
 			});
 			await HelpBrowserFile.Download();
+
+			OnlineListsFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Data",
+				"Online Strategy.xml"
+			});
+			if (await OnlineListsFile.Exists(true))
+				await OnlineListsFile.Download();
 			#endregion
 		}
 	}

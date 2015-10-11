@@ -20,12 +20,11 @@ namespace NewBizWiz.Core.Common
 			ApprovedThemes = new Dictionary<SlideType, List<string>>();
 		}
 
-		private async Task LoadApprovedThemes(StorageDirectory root)
+		private void LoadApprovedThemes(StorageDirectory root)
 		{
 			var contentFile = new StorageFile(root.GetParentFolder().RelativePathParts.Merge("ApprovedThemes.xml"));
 
-			if (!await contentFile.Exists(true)) return;
-			await contentFile.Download();
+			if (!contentFile.ExistsLocal()) return;
 
 			var document = new XmlDocument();
 			document.Load(contentFile.LocalPath);
@@ -165,17 +164,17 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
-		public async Task Load()
+		public void Load()
 		{
 			var storageDirectory = new StorageDirectory(ResourceManager.Instance.ThemesFolder.RelativePathParts.Merge(SettingsManager.Instance.SlideMasterFolder));
-			if (!await storageDirectory.Exists(true)) return;
+			if (!storageDirectory.ExistsLocal()) return;
 
-			await LoadApprovedThemes(storageDirectory);
+			LoadApprovedThemes(storageDirectory);
 
-			foreach (var themeFolder in await storageDirectory.GetFolders())
+			foreach (var themeFolder in storageDirectory.GetFolders())
 			{
 				var theme = new Theme(themeFolder);
-				await theme.Load();
+				theme.Load();
 				foreach (var approvedTheme in ApprovedThemes.Where(approvedTheme => approvedTheme.Value.Any(t => t.Equals(theme.Name))))
 					theme.ApprovedSlides.Add(approvedTheme.Key);
 				_themes.Add(theme);
@@ -206,12 +205,9 @@ namespace NewBizWiz.Core.Common
 			_root = root;
 		}
 
-		public async Task Load()
+		public void Load()
 		{
-			var files = (await _root.GetFiles()).ToList();
-
-			foreach (var file in files.Where(file => new[] { ".txt", ".png" }.Contains(file.Extension)))
-				await file.Download();
+			var files = _root.GetFiles().ToList();
 
 			var titleFile = files.First(file => file.Name == "title.txt");
 			Name = File.ReadAllText(titleFile.LocalPath).Trim();
@@ -234,11 +230,8 @@ namespace NewBizWiz.Core.Common
 			ApprovedSlides = new List<SlideType>();
 		}
 
-		public async Task<string> GetThemePath()
+		public string GetThemePath()
 		{
-			if (_themeFile == null)
-				_themeFile = (await _root.GetRemoteFiles()).FirstOrDefault(file => file.Extension == ".thmx");
-			await _themeFile.Download();
 			return _themeFile.LocalPath;
 		}
 	}

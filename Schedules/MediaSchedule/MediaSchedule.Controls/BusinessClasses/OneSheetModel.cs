@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraPrinting.Native;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
@@ -53,15 +54,11 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			get { return _parent.ContractSettings; }
 		}
 
-		public string TemplateFileName
+		public string TemplateFilePath
 		{
 			get
 			{
-				return String.Format(OutputManager.OneSheetTemplateFileName,
-					Color,
-					ShowLogo ? "logos" : "no_logos",
-					ProgramsPerSlide,
-					SpotsPerSlide);
+				return BusinessObjects.Instance.OutputManager.GetOneSheetFile(Color, ShowLogo, ProgramsPerSlide, SpotsPerSlide);
 			}
 		}
 

@@ -19,7 +19,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 	[ToolboxItem(false)]
 	public partial class BaseCalendarControl : UserControl, ICalendarControl
 	{
-		public bool CalendarInitialized { get; set; }
+		public bool CalendarUpdated { get; set; }
 
 		public BaseCalendarControl()
 		{

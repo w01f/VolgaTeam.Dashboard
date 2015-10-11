@@ -10,7 +10,9 @@ namespace NewBizWiz.Core.Common
 	public enum AppTypeEnum
 	{
 		None = 0,
-		Dashboard = 0,
+		Dashboard,
+		TVSchedule,
+		RadioSchedule
 	}
 
 	public class AppProfileManager
@@ -23,7 +25,7 @@ namespace NewBizWiz.Core.Common
 
 		public AppTypeEnum AppType { get; private set; }
 		private Guid _appID;
-		private readonly StorageFile _localAppIdFile;
+		private StorageFile _localAppIdFile;
 
 		public static AppProfileManager Instance
 		{
@@ -38,6 +40,10 @@ namespace NewBizWiz.Core.Common
 				{
 					case AppTypeEnum.Dashboard:
 						return "app_dashboard";
+					case AppTypeEnum.TVSchedule:
+						return "app_sellerpoint_tv";
+					case AppTypeEnum.RadioSchedule:
+						return "app_sellerpoint_radio";
 				}
 				throw new InvalidEnumArgumentException("Storage Type Undefined");
 			}
@@ -55,14 +61,17 @@ namespace NewBizWiz.Core.Common
 		public StorageDirectory AppSaveFolder { get; private set; }
 
 
-		private AppProfileManager()
-		{
-			_localAppIdFile = new StorageFile(new[] { String.Format("{0}_app_id.xml", AppName) });
-		}
+		private AppProfileManager() {}
 
-		public async Task LoadProfile(AppTypeEnum appType)
+		public void InitApplication(AppTypeEnum appType)
 		{
 			AppType = appType;
+		}
+
+		public async Task LoadProfile()
+		{
+			_localAppIdFile = new StorageFile(new[] { String.Format("{0}_app_id.xml", AppName) });
+
 			_appID = Guid.Empty;
 			if (File.Exists(_localAppIdFile.LocalPath))
 			{

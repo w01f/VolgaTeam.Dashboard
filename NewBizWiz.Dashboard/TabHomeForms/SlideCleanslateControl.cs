@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
+﻿using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -38,31 +36,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
-			Control dashboard = null;
-			switch (SettingsManager.Instance.DashboardCode)
-			{
-				case "newspaper":
-					dashboard = new DashboardPrint();
-					break;
-				case "tv":
-					dashboard = new DashboardTV();
-					break;
-				case "radio":
-					dashboard = new DashboardRadio();
-					break;
-				case "cable":
-					dashboard = new DashboardCable();
-					break;
-				default:
-					dashboard = new DashboardDefault();
-					pnBottom.Visible = false;
-					break;
-			}
-			if (dashboard != null)
-				pnMain.Controls.Add(dashboard);
-
-			if (Core.Dashboard.ResourceManager.Instance.VersionLogoFile.ExistsLocal())
-				pbVersion.Image = Image.FromFile(Core.Dashboard.ResourceManager.Instance.VersionLogoFile.LocalPath);
+			Control dashboard = new DashboardDefault();
+			pnBottom.Visible = false;
+			pnMain.Controls.Add(dashboard);
 		}
 
 		protected override void UpdateSavedFilesState()

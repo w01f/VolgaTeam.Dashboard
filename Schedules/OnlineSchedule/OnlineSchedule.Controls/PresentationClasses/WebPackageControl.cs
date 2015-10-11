@@ -144,11 +144,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public bool SlidesAvailable
-		{
-			get { return Directory.Exists(BusinessWrapper.Instance.OutputManager.DigitalPackageTemplatesFolderPath); }
-		}
-
 		public virtual void LoadSchedule(bool quickLoad)
 		{
 			AllowApplyValues = false;

@@ -1,11 +1,14 @@
 ﻿using System;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.MediaSchedule
 {
 	public enum MediaDataType
 	{
-		TV = 0,
-		Radio
+		TVSchedule = 0,
+		RadioSchedule,
+		TVPackage,
+		RadioPackage
 	}
 
 	public class MediaMetaData
@@ -26,15 +29,30 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
+		public AppTypeEnum AppType
+		{
+			get
+			{
+				switch (DataType)
+				{
+					case MediaDataType.TVSchedule:
+						return AppTypeEnum.TVSchedule;
+					case MediaDataType.RadioSchedule:
+						return AppTypeEnum.RadioSchedule;
+				}
+				return AppTypeEnum.None;
+			}
+		}
+
 		public string DataTypeString
 		{
 			get
 			{
 				switch (DataType)
 				{
-					case MediaDataType.TV:
+					case MediaDataType.TVSchedule:
 						return "TV";
-					case MediaDataType.Radio:
+					case MediaDataType.RadioSchedule:
 						return "Radio";
 				}
 				return String.Empty;
@@ -45,13 +63,27 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 		}
 
-		public void Init<TSettingsManager, TListManager>(MediaDataType dataType)
-			where TSettingsManager : IMediaSettingsManager
-			where TListManager : MediaListManager
+		public void Init(MediaDataType dataType)
 		{
 			DataType = dataType;
-			SettingsManager = (TSettingsManager)Activator.CreateInstance(typeof(TSettingsManager));
-			ListManager = (TListManager)Activator.CreateInstance(typeof(TListManager));
+
+			SettingsManager = new MediaSettingsManager();
+
+			switch (dataType)
+			{
+				case MediaDataType.TVSchedule:
+					ListManager = new TVListManager();
+					break;
+				case MediaDataType.TVPackage:
+					//ListManager = new T();
+					break;
+				case MediaDataType.RadioSchedule:
+					ListManager = new RadioListManager();
+					break;
+				case MediaDataType.RadioPackage:
+					//ListManager = new TVListManager();
+					break;
+			}
 		}
 	}
 }

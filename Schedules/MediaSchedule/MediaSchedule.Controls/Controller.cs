@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -57,15 +58,47 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabOptions { get; set; }
 		public RibbonTabItem TabStrategy { get; set; }
 
-		public void Init()
+		public async Task InitBusinessObjects()
 		{
-			SetDefaultCulture();
+			await AppProfileManager.Instance.LoadProfile();
+
+			await Core.MediaSchedule.ResourceManager.Instance.Load();
+
+			MasterWizardManager.Instance.Load();
+			
+			MediaMetaData.Instance.SettingsManager.InitThemeHelper(BusinessObjects.Instance.ThemeManager);
+			MediaMetaData.Instance.SettingsManager.LoadSettings();
+			
+			Core.Common.ListManager.Instance.Init();
+			MediaMetaData.Instance.ListManager.Load();
+			Core.OnlineSchedule.ListManager.Instance.Load(Core.Common.ResourceManager.Instance.OnlineListsFile);
+
+			await BusinessObjects.Instance.Init();
+		}
+	
+		public void InitForm()
+		{
 			Utilities.Instance.Title = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
 
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+			SetDefaultCulture();
 
 			ConfigureTabPages();
 
+			InitControls();
+
+			UpdateOutputButtonsAccordingThemeStatus();
+
+			ConfigureSpecialButtons();
+
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+
+			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
+			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
+			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
+		}
+
+		private void InitControls()
+		{
 			#region Schedule Settings
 			HomeControl = new HomeControl();
 			HomeHelp.Click += HomeControl.Help_Click;
@@ -235,27 +268,19 @@ namespace NewBizWiz.MediaSchedule.Controls
 			#endregion
 
 			#region Rate Card Events
-			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
-			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
+			RateCard = new RateCardControl(BusinessObjects.Instance.RateCardManager, RateCardCombo);
+			RateCardHelp.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("ratecard");
 			#endregion
 
 			#region Gallery 1
 			Gallery1 = new MediaGallery1Control();
-			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery1");
+			Gallery1Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery1");
 			#endregion
 
 			#region Gallery 2
 			Gallery2 = new MediaGallery2Control();
-			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery2");
+			Gallery2Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery2");
 			#endregion
-
-			UpdateOutputButtonsAccordingThemeStatus();
-
-			ConfigureSpecialButtons();
-
-			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
-			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
-			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
 		}
 
 		public void RemoveInstance()
@@ -281,7 +306,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void LoadData()
 		{
-			MediaMetaData.Instance.SettingsManager.InitThemeHelper(BusinessWrapper.Instance.ThemeManager);
 			HomeControl.LoadSchedule(false);
 			WeeklySchedule.LoadSchedule(false);
 			MonthlySchedule.LoadSchedule(false);
@@ -294,9 +318,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Strategy.LoadSchedule(false);
 			Snapshot.LoadSchedule(false);
 			Options.LoadSchedule(false);
-
-			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
-			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
+			TabRateCard.Enabled = BusinessObjects.Instance.RateCardManager.RateCardFolders.Any();
 		}
 
 		private void ConfigureTabPages()
@@ -306,7 +328,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 			Ribbon.Items.Clear();
 			var tabPages = new List<BaseItem>();
-			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			foreach (var tabPageConfig in BusinessObjects.Instance.TabPageManager.TabPageSettings)
 			{
 				switch (tabPageConfig.Id)
 				{
@@ -383,13 +405,14 @@ namespace NewBizWiz.MediaSchedule.Controls
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
 				form.TopMost = true;
-				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, calendarTypeChanged, sender));
+				var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, calendarTypeChanged, sender));
 				form.Show();
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
 				form.Close();
 			}
+			
 			if (nameChanged)
 			{
 				var options = new Dictionary<string, object>();
@@ -400,7 +423,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 					options.Add("AverageRate", localSchedule.Section.AvgRate);
 					options.Add("GrossInvestment", localSchedule.Section.TotalCost);
 				}
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
+				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
 			}
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
@@ -426,15 +449,15 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public void UpdateDigitalProductTab(bool enable)
 		{
 			TabDigitalProduct.Enabled = enable;
-			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
+			TabDigitalPackage.Enabled = enable;
 		}
 
 		public void UpdateOutputButtonsAccordingThemeStatus()
 		{
-			if (!BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.None).Any())
+			if (!BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any())
 			{
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
-				var themesDisabledHandler = new Action(() => BusinessWrapper.Instance.HelpManager.OpenHelpLink("NoTheme"));
+				var themesDisabledHandler = new Action(() => BusinessObjects.Instance.HelpManager.OpenHelpLink("NoTheme"));
 
 				WeeklySchedulePowerPoint.Visible = false;
 				(WeeklySchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
@@ -577,14 +600,14 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = MediaMetaData.Instance.DataType == MediaDataType.TV ? Properties.Resources.TVRibbonLogo : Properties.Resources.RadioRibbonLogo };
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Properties.Resources.TVRibbonLogo : Properties.Resources.RadioRibbonLogo };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessWrapper.Instance.ScheduleManager.CurrentAdvertiser));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessObjects.Instance.ScheduleManager.CurrentAdvertiser));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			if (Ribbon.SelectedRibbonTabItem == TabGallery1)

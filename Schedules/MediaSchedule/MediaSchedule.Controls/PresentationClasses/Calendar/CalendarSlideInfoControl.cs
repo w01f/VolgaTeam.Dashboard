@@ -122,7 +122,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			#endregion
 
 			#region Style
-			outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.CalendarColors, _month.OutputData.SlideColor);
+			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.CalendarColors, _month.OutputData.SlideColor);
 			outputColorSelector.ColorChanged += OnColorChanged;
 			checkEditThemeColorApplyForAll.Checked = _month.OutputData.ApplyForAllThemeColor;
 			checkEditStyleBigDate.Checked = _month.OutputData.ShowBigDate;

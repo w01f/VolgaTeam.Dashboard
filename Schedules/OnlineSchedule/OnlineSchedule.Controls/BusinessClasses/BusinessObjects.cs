@@ -1,0 +1,76 @@
+﻿using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using NewBizWiz.CommonGUI.RateCard;
+using NewBizWiz.Core.Common;
+using NewBizWiz.Core.OnlineSchedule;
+
+namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
+{
+	public class BusinessObjects
+	{
+		private static readonly BusinessObjects _instance = new BusinessObjects();
+		private readonly ThemeSaveHelper _themeSaveHelper;
+
+		private BusinessObjects()
+		{
+			//ScheduleManager = new ScheduleManager();
+			//HelpManager = new HelpManager(Core.OnlineSchedule.SettingsManager.Instance.HelpLinksPath);
+			//RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
+			//TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "digital_tab_names.xml"));
+			//ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
+			//_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
+			////ActivityManager = new ActivityManager("web_pro");
+			//Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
+			//Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
+			//LoadLocalSettings();
+		}
+
+		public static BusinessObjects Instance
+		{
+			get { return _instance; }
+		}
+
+		public ScheduleManager ScheduleManager { get; private set; }
+		public HelpManager HelpManager { get; private set; }
+		public TabPageManager TabPageManager { get; private set; }
+		public ThemeManager ThemeManager { get; private set; }
+		public ActivityManager ActivityManager { get; private set; }
+		public RateCardManager RateCardManager { get; private set; }
+		public GalleryManager Gallery1Manager { get; private set; }
+		public GalleryManager Gallery2Manager { get; private set; }
+
+		public string GetSelectedTheme(SlideType slideType)
+		{
+			return _themeSaveHelper.GetSelectedTheme(slideType).Name;
+		}
+
+		public void SetSelectedTheme(SlideType slideType, string themeName)
+		{
+			_themeSaveHelper.SetSelectedTheme(slideType, themeName);
+		}
+
+		public void LoadLocalSettings()
+		{
+			if (!File.Exists(Core.OnlineSchedule.SettingsManager.Instance.LocalSettingsPath)) return;
+			var document = new XmlDocument();
+			document.Load(Core.OnlineSchedule.SettingsManager.Instance.LocalSettingsPath);
+			_themeSaveHelper.Deserialize(document.SelectNodes(@"//LocalSettings/SelectedTheme").OfType<XmlNode>());
+		}
+
+		public void SaveLocalSettings()
+		{
+			var xml = new StringBuilder();
+			xml.AppendLine(@"<LocalSettings>");
+			xml.AppendLine(_themeSaveHelper.Serialize());
+			xml.AppendLine(@"</LocalSettings>");
+			string userConfigurationPath = Core.OnlineSchedule.SettingsManager.Instance.LocalSettingsPath;
+			using (var sw = new StreamWriter(userConfigurationPath, false))
+			{
+				sw.Write(xml);
+				sw.Flush();
+			}
+		}
+	}
+}

@@ -388,7 +388,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public void UpdateDigitalProductTab(bool enable)
 		{
 			TabDigitalProduct.Enabled = enable;
-			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
+			TabDigitalPackage.Enabled = enable;
 			BasicOverviewDigitalLegend.Enabled = enable;
 			MultiSummaryDigitalLegend.Enabled = enable;
 			SnapshotDigitalLegend.Enabled = enable;

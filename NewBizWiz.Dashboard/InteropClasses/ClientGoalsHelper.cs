@@ -15,7 +15,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 	{
 		public void AppendClientGoals(Presentation destinationPresentation = null)
 		{
-			var presentationTemplatePath = AsyncHelper.RunSync(() => MasterWizardManager.Instance.SelectedWizard.GetClientGoalsFile(String.Format(MasterWizardManager.ClientGoalsSlideTemplate, TabHomeMainPage.Instance.SlideClientGoals.GoalsCount)));
+			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetClientGoalsFile(String.Format(MasterWizardManager.ClientGoalsSlideTemplate, TabHomeMainPage.Instance.SlideClientGoals.GoalsCount));
 			if (!File.Exists(presentationTemplatePath)) return;
 			try
 			{
@@ -55,7 +55,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 					}
 					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.ClientGoals);
 					if (selectedTheme != null)
-						presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+						presentation.ApplyTheme(selectedTheme.GetThemePath());
 					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});

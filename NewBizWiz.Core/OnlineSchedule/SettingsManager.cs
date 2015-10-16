@@ -10,7 +10,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		private SettingsManager()
 		{
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\DigitalHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			SaveFolder = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Online Schedule Builder");
+			//SaveFolder = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Online Schedule Builder");
 			LocalSettingsPath = String.Format(@"{0}\newlocaldirect.com\xml\app\OnlineScheduleSetings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			if (!Directory.Exists(SaveFolder))
 				Directory.CreateDirectory(SaveFolder);

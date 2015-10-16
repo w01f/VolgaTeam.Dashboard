@@ -60,13 +60,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
-			if (control.GetType() != typeof(TextEdit) && 
-				control.GetType() != typeof(MemoEdit) && 
-				control.GetType() != typeof(ComboBoxEdit) && 
-				control.GetType() != typeof(LookUpEdit) && 
-				control.GetType() != typeof(DateEdit) && 
-				control.GetType() != typeof(CheckedListBoxControl) && 
-				control.GetType() != typeof(SpinEdit) && 
+			if (control.GetType() != typeof(TextEdit) &&
+				control.GetType() != typeof(MemoEdit) &&
+				control.GetType() != typeof(ComboBoxEdit) &&
+				control.GetType() != typeof(LookUpEdit) &&
+				control.GetType() != typeof(DateEdit) &&
+				control.GetType() != typeof(CheckedListBoxControl) &&
+				control.GetType() != typeof(SpinEdit) &&
 				control.GetType() != typeof(CheckEdit))
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
@@ -331,26 +331,23 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			else
 				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
 			if (!selectedTabPages.Any()) return;
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			foreach (var productControl in selectedTabPages)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				foreach (var productControl in selectedTabPages)
+				var previewGroup = productControl.GetPreviewGroup();
+				if (productControl is DigitalProductControl)
+					OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
+				else if (productControl is DigitalSummaryControl)
 				{
-					var previewGroup = productControl.GetPreviewGroup();
-					if (productControl is DigitalProductControl)
-						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
-					else if (productControl is DigitalSummaryControl)
-					{
-						var summaryControl = productControl as DigitalSummaryControl;
-						summaryControl.PopulateReplacementsList();
-						OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
-					}
-					previewGroups.Add(previewGroup);
+					var summaryControl = productControl as DigitalSummaryControl;
+					summaryControl.PopulateReplacementsList();
+					OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
 				}
-				formProgress.Close();
+				previewGroups.Add(previewGroup);
 			}
+			FormProgress.CloseProgress();
+
 			if (!previewGroups.Any() || !previewGroups.All(pg => File.Exists(pg.PresentationSourcePath))) return;
 			using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, HelpManager))
 			{
@@ -395,28 +392,24 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			else
 				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
 			if (!selectedTabPages.Any()) return;
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			foreach (var productControl in selectedTabPages)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-
-				foreach (var productControl in selectedTabPages)
+				var previewGroup = productControl.GetPreviewGroup();
+				if (productControl is DigitalProductControl)
+					OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
+				else if (productControl is DigitalSummaryControl)
 				{
-					var previewGroup = productControl.GetPreviewGroup();
-					if (productControl is DigitalProductControl)
-						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
-					else if (productControl is DigitalSummaryControl)
-					{
-						var summaryControl = productControl as DigitalSummaryControl;
-						summaryControl.PopulateReplacementsList();
-						OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
-					}
-					previewGroups.Add(previewGroup);
+					var summaryControl = productControl as DigitalSummaryControl;
+					summaryControl.PopulateReplacementsList();
+					OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
 				}
-				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-				formProgress.Close();
+				previewGroups.Add(previewGroup);
 			}
+			Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+			FormProgress.CloseProgress();
+
 			if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
 				ShowPreview(previewGroups, () => TrackOutput(selectedTabPages.OfType<DigitalProductControl>()));
 		}
@@ -453,26 +446,22 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			else
 				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
 			if (!selectedTabPages.Any()) return;
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Output...");
+			FormProgress.ShowProgress();
+			foreach (var productControl in selectedTabPages)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Output...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				foreach (var productControl in selectedTabPages)
+				var previewGroup = productControl.GetPreviewGroup();
+				if (productControl is DigitalProductControl)
+					OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
+				else if (productControl is DigitalSummaryControl)
 				{
-					var previewGroup = productControl.GetPreviewGroup();
-					if (productControl is DigitalProductControl)
-						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
-					else if (productControl is DigitalSummaryControl)
-					{
-						var summaryControl = productControl as DigitalSummaryControl;
-						summaryControl.PopulateReplacementsList();
-						OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
-					}
-					previewGroups.Add(previewGroup);
+					var summaryControl = productControl as DigitalSummaryControl;
+					summaryControl.PopulateReplacementsList();
+					OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
 				}
-				formProgress.Close();
+				previewGroups.Add(previewGroup);
 			}
+			FormProgress.CloseProgress();
 			if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
 				ShowPdf(previewGroups, () => TrackOutput(selectedTabPages.OfType<DigitalProductControl>()));
 		}

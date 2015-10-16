@@ -73,7 +73,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.OnlineWebPackage), BusinessObjects.Instance.GetSelectedTheme(SlideType.OnlineWebPackage), (t =>
 			{
-				BusinessObjects.Instance.SetSelectedTheme(SlideType.OnlineWebPackage,t.Name);
+				BusinessObjects.Instance.SetSelectedTheme(SlideType.OnlineWebPackage, t.Name);
 				BusinessObjects.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
@@ -102,22 +102,18 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public override void OutputSlides()
 		{
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					OnlineSchedulePowerPointHelper.Instance.AppendWebPackage(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				OnlineSchedulePowerPointHelper.Instance.AppendWebPackage(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater,TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview Digital Package";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

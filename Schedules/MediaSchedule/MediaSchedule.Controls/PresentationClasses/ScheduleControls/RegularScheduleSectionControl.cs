@@ -42,18 +42,26 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			};
 			xtraTabPageOptionsQuickShare.PageVisible = false;
 			xtraTabPageOptionsDigital.PageVisible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
+			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) =>
+			{
+				InitColorControls();
+				LoadBarButtons();
+			};
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.WeeklyScheduleThemeBar.RecalcLayout();
+				Controller.Instance.WeeklySchedulePanel.PerformLayout();
+				Controller.Instance.MonthlyScheduleThemeBar.RecalcLayout();
+				Controller.Instance.MonthlySchedulePanel.PerformLayout();
+			};
 		}
 
 		#region Methods
 		public override void LoadSchedule(bool quickLoad)
 		{
 			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(ThemeButton, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
 				_localSchedule.BusinessName,
 				_localSchedule.FlightDates,
@@ -63,22 +71,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			if (!quickLoad)
 			{
-				xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Count > 1;
-				outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.ScheduleColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
-				outputColorSelector.ColorChanged += OnColorChanged;
+				InitColorControls();
 			}
 
 			xtraTabPageOptionsDigital.PageEnabled = LocalSchedule.DigitalProducts.Any();
 			digitalInfoControl.InitData(ScheduleSection.DigitalLegend);
-
-			var buttonInfos = new List<ButtonInfo>();
-			buttonInfos.Add(new ButtonInfo { Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.SectionSettingsTV : Resources.SectionSettingsRadio, Tooltip = String.Format("Open {0} Schedule Settings", MediaMetaData.Instance.DataTypeString), Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsLine; } });
-			if (LocalSchedule.DigitalProducts.Any() && (Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible))
-				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsDigital, Tooltip = "Open Digital Settings", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsDigital; } });
-			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsTotals; } });
-			if (BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Count > 1)
-				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Slide Style", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
-			retractableBarControl.AddButtons(buttonInfos);
+			LoadBarButtons();
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
@@ -97,6 +95,35 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		protected override void AddActivity(UserActivity activity)
 		{
 			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(ThemeButton, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+		}
+
+		private void InitColorControls()
+		{
+			xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Count > 1;
+			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.ScheduleColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
+			outputColorSelector.ColorChanged += OnColorChanged;
+		}
+
+		private void LoadBarButtons()
+		{
+			var buttonInfos = new List<ButtonInfo>();
+			buttonInfos.Add(new ButtonInfo { Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.SectionSettingsTV : Resources.SectionSettingsRadio, Tooltip = String.Format("Open {0} Schedule Settings", MediaMetaData.Instance.DataTypeString), Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsLine; } });
+			if (LocalSchedule.DigitalProducts.Any() && (Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible))
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsDigital, Tooltip = "Open Digital Settings", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsDigital; } });
+			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsTotals; } });
+			if (BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Count > 1)
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Slide Style", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
+			retractableBarControl.AddButtons(buttonInfos);
 		}
 		#endregion
 
@@ -155,33 +182,25 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		protected override void PowerPointInternal(IEnumerable<OutputSchedule> outputPages)
 		{
 			if (outputPages == null || !outputPages.Any()) return;
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					RegularMediaSchedulePowerPointHelper.Instance.AppendOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-					TrackOutput();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				RegularMediaSchedulePowerPointHelper.Instance.AppendOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+				TrackOutput();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void PreviewInternal(IEnumerable<OutputSchedule> outputPages)
 		{
 			if (outputPages == null || !outputPages.Any()) return;
 			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
@@ -200,39 +219,31 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		protected override void PdfInternal(IEnumerable<OutputSchedule> outputPages)
 		{
 			if (outputPages == null || !outputPages.Any()) return;
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetPdf(pdfFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					TrackOutput();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetPdf(pdfFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				TrackOutput();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void EmailInternal(IEnumerable<OutputSchedule> outputPages)
 		{
 			if (outputPages == null || !outputPages.Any()) return;
 			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-				formProgress.Close();
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Email...");
+			FormProgress.ShowProgress();
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
 			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{

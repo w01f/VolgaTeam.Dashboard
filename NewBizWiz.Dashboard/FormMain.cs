@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.SlideSettingsEditors;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
@@ -28,6 +29,10 @@ namespace NewBizWiz.Dashboard
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
+			PowerPointManager.Instance.SettingsChanged += (o, e) =>
+			{
+				Text = AppManager.FormCaption;
+			};
 		}
 
 		public AppManager.EmptyParametersDelegate OutputClick { get; set; }
@@ -68,7 +73,6 @@ namespace NewBizWiz.Dashboard
 		{
 			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "Dashboard", false).LoadState();
 
-			timer.Start();
 			ApplyMasterWizard();
 
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
@@ -126,12 +130,6 @@ namespace NewBizWiz.Dashboard
 			RegistryHelper.MaximizeMainForm = false;
 		}
 
-		private void timer_Tick(object sender, EventArgs e)
-		{
-			if (!DashboardPowerPointHelper.Instance.IsActive)
-				Environment.Exit(-1);
-		}
-
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
 			OutsideClick = null;
@@ -179,12 +177,14 @@ namespace NewBizWiz.Dashboard
 
 		private void buttonItemPowerPoint_Click(object sender, EventArgs e)
 		{
+			if (!AppManager.Instance.CheckPowerPointRunning()) return;
 			if (OutputClick != null)
 				OutputClick();
 		}
 
 		private void buttonItemPreview_Click(object sender, EventArgs e)
 		{
+			if (!AppManager.Instance.CheckPowerPointRunning()) return;
 			if (PreviewClick != null)
 				PreviewClick();
 		}
@@ -210,6 +210,14 @@ namespace NewBizWiz.Dashboard
 				helpKey = "Slides";
 
 			AppManager.Instance.HelpManager.OpenHelpLink(helpKey);
+		}
+
+		private void buttonItemSlideSettings_Click(object sender, EventArgs e)
+		{
+			using (var form = new FormEditSlideSettings())
+			{
+				form.ShowDialog(this);
+			}
 		}
 
 		#region Home Tab

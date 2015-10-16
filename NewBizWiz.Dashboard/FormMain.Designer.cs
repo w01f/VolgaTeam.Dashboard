@@ -30,10 +30,8 @@ namespace NewBizWiz.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.toolTip = new System.Windows.Forms.ToolTip();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -71,10 +69,11 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemSlidesLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonTabItemHome = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
@@ -84,11 +83,6 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.toolTip.IsBalloon = true;
 			this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-			// 
-			// timer
-			// 
-			this.timer.Interval = 1;
-			this.timer.Tick += new System.EventHandler(this.timer_Tick);
 			// 
 			// ribbonControl
 			// 
@@ -102,11 +96,11 @@ namespace NewBizWiz.Dashboard
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
-			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.ribbonTabItemHome,
-            this.ribbonTabItemSlides});
+            this.ribbonTabItemSlides,
+            this.buttonItemSlideSettings});
 			this.ribbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
 			this.ribbonControl.Location = new System.Drawing.Point(5, 1);
 			this.ribbonControl.MdiSystemItemVisible = false;
@@ -784,6 +778,13 @@ namespace NewBizWiz.Dashboard
 			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
 			this.ribbonTabItemSlides.Text = "Slides";
 			// 
+			// buttonItemSlideSettings
+			// 
+			this.buttonItemSlideSettings.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemSlideSettings.Name = "buttonItemSlideSettings";
+			this.buttonItemSlideSettings.Text = "Slide Settings";
+			this.buttonItemSlideSettings.Click += new System.EventHandler(this.buttonItemSlideSettings_Click);
+			// 
 			// defaultLookAndFeel
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Office 2013";
@@ -836,9 +837,7 @@ namespace NewBizWiz.Dashboard
 
         #endregion
 
-        private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.Timer timer;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelHome;
+		private System.Windows.Forms.ToolTip toolTip;
 		private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemHome;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeOverview;
         private DevComponents.DotNetBar.RibbonBar ribbonBarHomeExit;
@@ -879,6 +878,8 @@ namespace NewBizWiz.Dashboard
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeLoad;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeLoad;
 		private DevComponents.DotNetBar.StyleManager styleManager;
+		private DevComponents.DotNetBar.ButtonItem buttonItemSlideSettings;
+		public DevComponents.DotNetBar.RibbonPanel ribbonPanelHome;
     }
 }
 

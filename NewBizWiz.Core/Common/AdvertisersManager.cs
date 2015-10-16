@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using NewBizWiz.Core.Interop;
 
@@ -33,7 +32,7 @@ namespace NewBizWiz.Core.Common
 		{
 			Items.Clear();
 
-			_contentFile = new StorageFile(AppProfileManager.Instance.UserListsFolder.RelativePathParts.Merge(AdvertisersFileName));
+			_contentFile = new StorageFile(ResourceManager.Instance.UserListsFolder.RelativePathParts.Merge(AdvertisersFileName));
 			_contentFile.AllocateParentFolder();
 
 			if (!_contentFile.ExistsLocal()) return;
@@ -63,7 +62,6 @@ namespace NewBizWiz.Core.Common
 				sw.Write(xml);
 				sw.Flush();
 			}
-			_contentFile.Upload();
 		}
 
 		public void Add(string item)

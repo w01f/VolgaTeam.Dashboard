@@ -17,7 +17,6 @@ namespace NewBizWiz.Core.Dashboard
 		public StorageFile DataClientGoalsFile { get; private set; }
 		public StorageFile DataLeadoffStatementFile { get; private set; }
 		public StorageFile DataTargetCustomersFile { get; private set; }
-		public StorageFile DataSimpleSummaryFile { get; private set; }
 
 		private ResourceManager(){}
 
@@ -71,15 +70,6 @@ namespace NewBizWiz.Core.Dashboard
 				"Target Customer.xml"
 			});
 			await DataTargetCustomersFile.Download();
-
-			DataSimpleSummaryFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"Data",
-				"Closing Summary.xml"
-			});
-			await DataSimpleSummaryFile.Download();
 		}
 	}
 }

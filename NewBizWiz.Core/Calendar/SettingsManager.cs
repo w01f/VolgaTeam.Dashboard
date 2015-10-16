@@ -10,10 +10,10 @@ namespace NewBizWiz.Core.Calendar
 		{
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\NinjaCalHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
-			var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Calendar Builder");
-			if (!Directory.Exists(defaultSaveFolderPath))
-				Directory.CreateDirectory(defaultSaveFolderPath);
-			SaveFolder = defaultSaveFolderPath;
+			//var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Calendar Builder");
+			//if (!Directory.Exists(defaultSaveFolderPath))
+			//	Directory.CreateDirectory(defaultSaveFolderPath);
+			//SaveFolder = defaultSaveFolderPath;
 			ViewSettings = new LocalSettings();
 		}
 

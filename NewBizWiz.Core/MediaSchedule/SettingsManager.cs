@@ -54,8 +54,6 @@ namespace NewBizWiz.Core.MediaSchedule
 					BroadcastCalendarSettings.Deserialize(node);
 				_themeSaveHelper.Deserialize(document.SelectNodes(@"//Settings/SelectedTheme").OfType<XmlNode>());
 			}
-
-			MasterWizardManager.Instance.SetMasterWizard();
 		}
 
 		public void SaveSettings()

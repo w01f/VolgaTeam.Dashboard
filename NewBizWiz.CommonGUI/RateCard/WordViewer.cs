@@ -33,30 +33,26 @@ namespace NewBizWiz.CommonGUI.RateCard
 		public void LoadViewer()
 		{
 			if (Loaded) return;
-			using (var form = new FormProgress())
+			var thread = new Thread(() => Invoke((MethodInvoker)delegate()
 			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Rate Card...";
-				form.TopMost = true;
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate()
+				var word = new WordHelper();
+				if (word.Connect())
 				{
-					var word = new WordHelper();
-					if (word.Connect())
-					{
-						var g = Guid.NewGuid();
-						string newFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, g + ".html");
-						word.ConvertToHtml(File.FullName, newFileName);
-						word.Disconnect();
-						webBrowser.Url = new Uri(newFileName);
-					}
-					Loaded = true;
-				}));
-				form.Show();
+					var g = Guid.NewGuid();
+					string newFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, g + ".html");
+					word.ConvertToHtml(File.FullName, newFileName);
+					word.Disconnect();
+					webBrowser.Url = new Uri(newFileName);
+				}
+				Loaded = true;
+			}));
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Rate Card...");
+			FormProgress.ShowProgress();
+			Application.DoEvents();
+			thread.Start();
+			while (thread.IsAlive)
 				Application.DoEvents();
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
+			FormProgress.CloseProgress();
 		}
 
 		public void Email() { }

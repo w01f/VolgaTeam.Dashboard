@@ -6,6 +6,7 @@ using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.VisualBasic;
 using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using Application = System.Windows.Forms.Application;
@@ -46,7 +47,11 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 									{
 										case "LOGO":
 											if (!string.IsNullOrEmpty(monthOutputData.LogoFile))
-												slide.Shapes.AddPicture(monthOutputData.LogoFile, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+											{
+												var logoShape = slide.Shapes.AddPicture(monthOutputData.LogoFile, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+												if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+													logoShape.Rotation = 90;
+											}
 											shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "HEADERTAG":
@@ -273,7 +278,12 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							}
 							foreach (var note in monthOutputData.Notes)
 							{
-								var noteShape = slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, note.Left, note.Top, note.Right - note.Left, note.Height);
+								Shape noteShape = null;
+								if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+									noteShape = slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationVertical, note.Left, note.Top, note.StaticWidth, note.Bottom - note.Top);
+								else
+									noteShape = slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, note.Left, note.Top, note.Right - note.Left, note.StaticHeight);
+
 								noteShape.Fill.Visible = MsoTriState.msoTrue;
 								noteShape.Fill.Solid();
 								noteShape.Fill.ForeColor.RGB = Information.RGB(note.BackgroundColor.R, note.BackgroundColor.G, note.BackgroundColor.B);
@@ -295,7 +305,23 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 
 						var backgroundFilePath = BusinessObjects.Instance.OutputManager.GetCalendarBackgroundFile(monthOutputData.SlideColor, monthOutputData.Parent.Date, monthOutputData.ShowBigDate);
 						if (!String.IsNullOrEmpty(backgroundFilePath) && File.Exists(backgroundFilePath))
-							presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
+						{
+							var backgroundShape = presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0);
+							if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+							{
+								backgroundShape.Height = presentation.SlideMaster.Width;
+								backgroundShape.Width = presentation.SlideMaster.Height;
+								backgroundShape.Top = (presentation.SlideMaster.Height - backgroundShape.Height) / 2;
+								backgroundShape.Left = (presentation.SlideMaster.Width - backgroundShape.Width) / 2; ;
+								backgroundShape.Rotation = 90;
+							}
+							else
+							{
+								backgroundShape.Top = (presentation.SlideMaster.Height - backgroundShape.Height) / 2;
+								backgroundShape.Left = (presentation.SlideMaster.Width - backgroundShape.Width) / 2;
+							}
+						}
+
 						presentation.SlideMaster.Design.Name = GetSlideMasterName(monthOutputData);
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
@@ -323,24 +349,51 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 				var day = monthOutputData.Parent.Days[dayNumber - 1];
 				var hasNote = false;
 				shape.TextFrame.TextRange.Font.Size = monthOutputData.FontSize;
-				foreach (var note in monthOutputData.Notes.Where(x => x.StartDay.Date == day.Date.Date))
+				foreach (var note in monthOutputData.Notes.Where(note => note.StartDay.Date == day.Date.Date))
 				{
-					note.Left = shape.Left + 5;
-					note.Top = shape.Top + 5;
-					shape.Top += (note.Height + 10);
-					shape.Height -= (note.Height + 10);
+					if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+					{
+						note.Left = shape.Left + shape.Height - 15;
+						note.Top = shape.Top - ((shape.Width - shape.Height) / 2) + 5;
+
+						shape.Left -= (note.StaticWidth + 10);
+						//shape.Height -= (note.StaticWidth + 10);
+					}
+					else
+					{
+						note.Left = shape.Left + 5;
+						note.Top = shape.Top + 5;
+						shape.Top += (note.StaticHeight + 10);
+						shape.Height -= (note.StaticHeight + 10);
+					}
+
 					hasNote = true;
 				}
-				foreach (var note in monthOutputData.Notes.Where(x => x.FinishDay.Date == day.Date.Date))
+				foreach (var note in monthOutputData.Notes.Where(note => note.FinishDay.Date == day.Date.Date))
 				{
-					note.Right = shape.Left + shape.Width - 10;
+					if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+					{
+						note.Bottom = shape.Top - ((shape.Width - shape.Height) / 2) + shape.Width - 10;
+					}
+					else
+					{
+						note.Right = shape.Left + shape.Width - 10;
+					}
 				}
 
-				var middleNote = monthOutputData.Notes.FirstOrDefault(x => x.StartDay.Date < day.Date.Date && x.FinishDay.Date >= day.Date.Date);
+				var middleNote = monthOutputData.Notes.FirstOrDefault(note => note.StartDay.Date < day.Date.Date && note.FinishDay.Date >= day.Date.Date);
 				if (middleNote != null)
 				{
-					shape.Top += (middleNote.Height + 10);
-					shape.Height -= (middleNote.Height + 10);
+					if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+					{
+						shape.Left -= (middleNote.StaticWidth + 10);
+						//shape.Height -= (middleNote.StaticWidth + 10);
+					}
+					else
+					{
+						shape.Top += (middleNote.StaticHeight + 10);
+						shape.Height -= (middleNote.StaticHeight + 10);
+					}
 					hasNote = true;
 				}
 
@@ -349,16 +402,33 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 				var dayLogo = monthOutputData.DayLogoPaths[dayNumber - 1];
 				if (dayLogo.ContainsData)
 				{
-					var heightOffset = ((!String.IsNullOrEmpty(dayText) || hasNote) ? 0 : ((shape.Height - dayLogo.XtraTinyImage.Height)) / 2) + 5;
-					imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + (shape.Width - dayLogo.XtraTinyImage.Width) / 2, shape.Top + heightOffset, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
+					if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+					{
+						//var widthOffset = 5;//((!String.IsNullOrEmpty(dayText) || hasNote) ? 0 : ((shape.Width - dayLogo.XtraTinyImage.Width) / 2)) + 5;
+						imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + shape.Width - ((shape.Width - shape.Height) / 2) - dayLogo.XtraTinyImage.Width + ((dayLogo.XtraTinyImage.Width - dayLogo.XtraTinyImage.Height) / 2), shape.Top + (shape.Height - dayLogo.XtraTinyImage.Height) / 2, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
+						imageShape.Rotation = 90;
+					}
+					else
+					{
+						var heightOffset = ((!String.IsNullOrEmpty(dayText) || hasNote) ? 0 : ((shape.Height - dayLogo.XtraTinyImage.Height) / 2)) + 5;
+						imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + (shape.Width - dayLogo.XtraTinyImage.Width) / 2, shape.Top + heightOffset, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
+					}
 				}
 				if (!String.IsNullOrEmpty(dayText))
 				{
 					shape.TextFrame.TextRange.Text = dayText;
 					if (imageShape != null)
 					{
-						shape.Top = imageShape.Top + imageShape.Height;
-						shape.Height -= imageShape.Height;
+						if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
+						{
+							shape.Left -= imageShape.Height;
+							////shape.Height -= imageShape.Height;
+						}
+						else
+						{
+							shape.Top = imageShape.Top + imageShape.Height;
+							shape.Height -= imageShape.Height;
+						}
 					}
 				}
 				else

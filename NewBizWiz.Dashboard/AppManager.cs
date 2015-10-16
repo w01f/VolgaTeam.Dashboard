@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.SlideSettingsEditors;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
@@ -44,7 +45,7 @@ namespace NewBizWiz.Dashboard
 				return String.Format("{0} v{1}- {2}",
 					SettingsManager.Instance.DashboardName,
 					FileStorageManager.Instance.Version,
-					SettingsManager.Instance.Size);
+					PowerPointManager.Instance.SlideSettings.SizeFormatted);
 			}
 		}
 
@@ -52,41 +53,68 @@ namespace NewBizWiz.Dashboard
 		{
 			LicenseHelper.Register();
 
-			RunPowerPoint();
-
 			AppProfileManager.Instance.InitApplication(AppTypeEnum.Dashboard);
 
-			using (var form = new FormProgress())
-			{
-				form.TopMost = true;
-				form.Show();
+			FormProgress.ShowProgress();
+			FormProgress.SetTitle("Checking data version...");
+			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FileStorageManager.Instance.Downloading += (sender, args) =>
+				FormProgress.SetDetails(args.ProgressPercent < 100 ?
+					String.Format("Loading {0} - {1}%", args.FileName, args.ProgressPercent) :
+					String.Empty);
+			FileStorageManager.Instance.Extracting += (sender, args) =>
+				FormProgress.SetDetails(args.ProgressPercent < 100 ?
+					String.Format("Extracting {0} - {1}%", args.FileName, args.ProgressPercent) :
+					String.Empty);
 
-				form.laProgress.Text = "Checking data version...";
-				var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
+			if (FileStorageManager.Instance.Connected)
+			{
+				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
+					FormProgress.SetTitle("Loading data from server for the 1st time...", true);
+				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
+					FormProgress.SetTitle("Updating data from server...", true);
+				else
+					FormProgress.SetTitle("Loading data...");
+
+				thread = new Thread(() => AsyncHelper.RunSync(Init));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
 
-				if (FileStorageManager.Instance.Connected)
-				{
-					if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
-						form.laProgress.Text = "Loading data from server for the 1st time...";
-					else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-						form.laProgress.Text = "Updating data from server...";
-					else
-						form.laProgress.Text = "Loading data...";
-
-					thread = new Thread(() => AsyncHelper.RunSync(Init));
-					thread.Start();
-					while (thread.IsAlive)
-						Application.DoEvents();
-
-					FormMain.Instance.Init();
-				}
-				form.Close();
+				FormMain.Instance.Init();
 			}
+			FormProgress.CloseProgress();
+
 			if (FileStorageManager.Instance.Connected)
+			{
+				if (PowerPointManager.Instance.SettingsSource == SettingsSourceEnum.PowerPoint &&
+					MasterWizardManager.Instance.SelectedWizard != null &&
+					!MasterWizardManager.Instance.SelectedWizard.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings))
+				{
+					var availableMasterWizards = MasterWizardManager.Instance.MasterWizards.Values.Where(w => w.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings)).ToList();
+					if (availableMasterWizards.Any())
+					{
+						using (var form = new FormSelectMasterWizard())
+						{
+							form.comboBoxEditSlideFormat.Properties.Items.AddRange(availableMasterWizards);
+							form.comboBoxEditSlideFormat.EditValue = availableMasterWizards.FirstOrDefault();
+							if (form.ShowDialog() != DialogResult.OK)
+								return;
+							SettingsManager.Instance.SelectedWizard = ((MasterWizard)form.comboBoxEditSlideFormat.EditValue).Name;
+							MasterWizardManager.Instance.SetMasterWizard();
+						}
+					}
+					else
+					{
+						Utilities.Instance.ShowWarning("Slide pack not found for selected size. Contact adSALESapps Support (help@adSALESapps.com)");
+						return;
+					}
+				}
 				Application.Run(FormMain.Instance);
+			}
 			else
 				Utilities.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");
 		}
@@ -95,6 +123,9 @@ namespace NewBizWiz.Dashboard
 		{
 			await AppProfileManager.Instance.LoadProfile();
 			await Core.Dashboard.ResourceManager.Instance.Load();
+
+			PowerPointManager.Instance.Init(DashboardPowerPointHelper.Instance);
+
 			MasterWizardManager.Instance.Load();
 			await Core.Dashboard.SettingsManager.Instance.LoadSettings();
 
@@ -105,20 +136,6 @@ namespace NewBizWiz.Dashboard
 			ActivityManager.AddActivity(new UserActivity("Application started"));
 
 			SetCultureSettings();
-		}
-
-		public bool RunPowerPoint()
-		{
-			return DashboardPowerPointHelper.Instance.Connect();
-		}
-
-		public void RunProcess(string path)
-		{
-			try
-			{
-				Process.Start(path);
-			}
-			catch { }
 		}
 
 		public void ActivateMainForm()
@@ -134,22 +151,6 @@ namespace NewBizWiz.Dashboard
 				}
 			}
 			Utilities.Instance.ActivateForm(mainFormHandle, RegistryHelper.MaximizeMainForm, false);
-		}
-
-		public void MinimizeMainForm()
-		{
-			var mainFormHandle = RegistryHelper.MainFormHandle;
-			if (mainFormHandle.ToInt32() == 0)
-			{
-				var processList = Process.GetProcesses();
-				foreach (var process in processList.Where(x => x.ProcessName.ToLower().Contains("adsalesapp")))
-				{
-					if (process.MainWindowHandle.ToInt32() == 0) continue;
-					mainFormHandle = process.MainWindowHandle;
-					break;
-				}
-			}
-			Utilities.Instance.MinimizeForm(mainFormHandle);
 		}
 
 		public void SetClickEventHandler(Control control)
@@ -170,6 +171,14 @@ namespace NewBizWiz.Dashboard
 				control.Click += ControlClick;
 			}
 			Application.DoEvents();
+		}
+
+		public bool CheckPowerPointRunning()
+		{
+			if (DashboardPowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a 6 Minute Seller Presentation.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
+			return false;
 		}
 
 		private void SetCultureSettings()

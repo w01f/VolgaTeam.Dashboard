@@ -18,7 +18,6 @@ namespace NewBizWiz.Core.Common
 	public class AppProfileManager
 	{
 		public const string UserDataFolderName = "user_data";
-		public const string UserListsFolderName = "user_lists";
 		public const string SavedFilesFolderName = "saved_files";
 
 		private static readonly AppProfileManager _instance = new AppProfileManager();
@@ -57,9 +56,7 @@ namespace NewBizWiz.Core.Common
 		public StorageDirectory ProfilesRootFolder { get; private set; }
 		public StorageDirectory ProfileFolder { get; private set; }
 		public StorageDirectory UserDataFolder { get; private set; }
-		public StorageDirectory UserListsFolder { get; private set; }
 		public StorageDirectory AppSaveFolder { get; private set; }
-
 
 		private AppProfileManager() {}
 
@@ -98,10 +95,6 @@ namespace NewBizWiz.Core.Common
 			UserDataFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(new[] { UserDataFolderName }));
 			if (!await UserDataFolder.Exists(true))
 				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, UserDataFolderName, true);
-
-			UserListsFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(new[] { UserListsFolderName }));
-			if (!await UserListsFolder.Exists(true))
-				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, UserListsFolderName, true);
 
 			AppSaveFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(SavedFilesFolderName));
 			if (!await AppSaveFolder.Exists(true))

@@ -177,18 +177,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					foreach (var tabPage in tabsForOutput)
-						tabPage.Output();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				foreach (var tabPage in tabsForOutput)
+					tabPage.Output();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)

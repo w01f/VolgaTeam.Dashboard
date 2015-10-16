@@ -35,35 +35,31 @@ namespace NewBizWiz.CommonGUI.RateCard
 
 		public void LoadViewer()
 		{
-			using (var form = new FormProgress())
+			var thread = new Thread(() => Invoke((MethodInvoker)delegate()
 			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Rate Card...";
-				form.TopMost = true;
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate()
-				{
-					//if (this.File.PreviewContainer != null)
-					//{
-					//    laFileInfo.Text = this.File.PropertiesName + Environment.NewLine + "Added: " + this.File.AddDate.ToString("MM/dd/yy h:mm:ss tt") + Environment.NewLine + (this.File.ExpirationDateOptions.EnableExpirationDate && this.File.ExpirationDateOptions.ExpirationDate != DateTime.MinValue ? ("Expires: " + this.File.ExpirationDateOptions.ExpirationDate.ToString("M/dd/yy h:mm:ss tt")) : "No Expiration Date");
-					//    if (this.File.PresentationProperties != null)
-					//        laSlideSize.Text = string.Format("{0} {1} x {2}", new object[] { this.File.PresentationProperties.Orientation, this.File.PresentationProperties.Width.ToString("#.##"), this.File.PresentationProperties.Height.ToString("#.##") });
-					//    comboBoxEditSlides.SelectedIndexChanged -= new EventHandler(comboBoxEditSlides_SelectedIndexChanged);
-					//    comboBoxEditSlides.Properties.Items.Clear();
-					//    comboBoxEditSlides.Properties.Items.AddRange(this.File.PreviewContainer.Slides.Select(x => x.Index + 1).ToArray());
-					//    if (this.File.PreviewContainer.Slides.Count > 0)
-					//        comboBoxEditSlides.SelectedIndex = 0;
-					//    comboBoxEditSlides_SelectedIndexChanged(null, null);
-					//    comboBoxEditSlides.SelectedIndexChanged += new EventHandler(comboBoxEditSlides_SelectedIndexChanged);
-					//}
-					Loaded = true;
-				}));
-				thread.Start();
+				//if (this.File.PreviewContainer != null)
+				//{
+				//    laFileInfo.Text = this.File.PropertiesName + Environment.NewLine + "Added: " + this.File.AddDate.ToString("MM/dd/yy h:mm:ss tt") + Environment.NewLine + (this.File.ExpirationDateOptions.EnableExpirationDate && this.File.ExpirationDateOptions.ExpirationDate != DateTime.MinValue ? ("Expires: " + this.File.ExpirationDateOptions.ExpirationDate.ToString("M/dd/yy h:mm:ss tt")) : "No Expiration Date");
+				//    if (this.File.PresentationProperties != null)
+				//        laSlideSize.Text = string.Format("{0} {1} x {2}", new object[] { this.File.PresentationProperties.Orientation, this.File.PresentationProperties.Width.ToString("#.##"), this.File.PresentationProperties.Height.ToString("#.##") });
+				//    comboBoxEditSlides.SelectedIndexChanged -= new EventHandler(comboBoxEditSlides_SelectedIndexChanged);
+				//    comboBoxEditSlides.Properties.Items.Clear();
+				//    comboBoxEditSlides.Properties.Items.AddRange(this.File.PreviewContainer.Slides.Select(x => x.Index + 1).ToArray());
+				//    if (this.File.PreviewContainer.Slides.Count > 0)
+				//        comboBoxEditSlides.SelectedIndex = 0;
+				//    comboBoxEditSlides_SelectedIndexChanged(null, null);
+				//    comboBoxEditSlides.SelectedIndexChanged += new EventHandler(comboBoxEditSlides_SelectedIndexChanged);
+				//}
+				Loaded = true;
+			}));
+			thread.Start();
 
-				form.Show();
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Rate Card...");
+			FormProgress.ShowProgress();
 
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
 		}
 
 		public void Email() { }

@@ -23,7 +23,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 
 		public string CalendarTemlatesFolderPath
 		{
-			get { return string.Format(CalendarTemlatesFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), SettingsManager.Instance.SlideFolder + "new"); }
+			get { return string.Format(CalendarTemlatesFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), PowerPointManager.Instance.SlideSettings.SlideFolder + "new"); }
 		}
 
 		public string CalendarBackgroundFolderPath

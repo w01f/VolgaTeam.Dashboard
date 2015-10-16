@@ -144,17 +144,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					OnlineSchedulePowerPointHelper.Instance.AppendSummary(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				OnlineSchedulePowerPointHelper.Instance.AppendSummary(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void OutputPdf()

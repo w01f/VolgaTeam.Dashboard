@@ -1210,17 +1210,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
 			IEnumerable<OutputSchedule> outputPages = null;
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing slides so your presentation can look AWESOME!");
+			FormProgress.ShowProgress();
+			var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
 			PowerPointInternal(outputPages);
 		}
 
@@ -1230,17 +1227,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
 			IEnumerable<OutputSchedule> outputPages = null;
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
 			PreviewInternal(outputPages);
 		}
 
@@ -1250,17 +1244,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
 			IEnumerable<OutputSchedule> outputPages = null;
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Email...");
+			FormProgress.ShowProgress();
+			var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
 			EmailInternal(outputPages);
 		}
 
@@ -1270,17 +1261,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
 			IEnumerable<OutputSchedule> outputPages = null;
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing slides so your presentation can look AWESOME!");
+			FormProgress.ShowProgress();
+			var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutput(); }));
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
 			PdfInternal(outputPages);
 		}
 		#endregion

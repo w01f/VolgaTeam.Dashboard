@@ -178,7 +178,7 @@ namespace NewBizWiz.Core.AdSchedule
 			PublicationSources.Add(defaultPublication);
 
 
-			var listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, PrintStrategyFileName);
+			var listPath = "";// Path.Combine(Common.SettingsManager.Instance.SharedListFolder, PrintStrategyFileName);
 			if (File.Exists(listPath))
 			{
 				var document = new XmlDocument();

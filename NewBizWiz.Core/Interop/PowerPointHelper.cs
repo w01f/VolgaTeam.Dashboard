@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
@@ -16,23 +15,18 @@ namespace NewBizWiz.Core.Interop
 	public interface IPowerPointHelper
 	{
 		Application PowerPointObject { get; }
-		bool Foreground { get; }
-		bool IsMinimized { get; }
-		bool IsActive { get; }
 		bool IsLinkedWithApplication { get; }
-		string ActiveFileName { get; }
-		string ActiveFilePath { get; }
 		bool Connect(bool run = true);
 		void Disconnect(bool closeIfFirstLaunch = true);
 		void Close();
-		bool PowerPointDetected();
 		Presentation GetActivePresentation();
 		int GetActiveSlideIndex();
 		void ConvertToPDF(string originalFileName, string pdfFileName);
 		void AppendSlidesFromFile(string filePath, bool firstSlide);
 		void AppendSlide(Presentation sourcePresentation, int slideIndex, Presentation destinationPresentation = null, bool firstSlide = false, int indexToPaste = 0);
 		void AppendSlideMaster(string presentationTemplatePath, Presentation destinationPresentation = null);
-		void SetPresentationSettings();
+		SlideSettings GetSlideSettings();
+		void SetSlideSettings(SlideSettings settings);
 		void SavePDF(string fileName);
 		void MergeFiles(string mergedFileName, string[] filesToMerge);
 		void PreparePresentation(string fileName, Action<Presentation> buildPresentation, bool generateImages = true);
@@ -73,54 +67,6 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		public bool Foreground
-		{
-			get
-			{
-				if (PowerPointObject != null)
-				{
-					uint _powerPointProcessID = 0;
-					WinAPIHelper.GetWindowThreadProcessId(new IntPtr(PowerPointObject.HWND), out _powerPointProcessID);
-
-					uint _foregroundWindowProcessID = 0;
-					WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out _foregroundWindowProcessID);
-
-					return _foregroundWindowProcessID == _powerPointProcessID || _foregroundWindowProcessID == Process.GetCurrentProcess().Id;
-				}
-				return false;
-			}
-		}
-
-		public bool IsMinimized
-		{
-			get
-			{
-				try
-				{
-					return WinAPIHelper.IsIconic(_windowHandle);
-				}
-				catch
-				{
-					return true;
-				}
-			}
-		}
-
-		public bool IsActive
-		{
-			get
-			{
-				try
-				{
-					return WinAPIHelper.IsWindowVisible(_windowHandle) || IsMinimized;
-				}
-				catch
-				{
-					return true;
-				}
-			}
-		}
-
 		public bool IsLinkedWithApplication
 		{
 			get
@@ -147,36 +93,6 @@ namespace NewBizWiz.Core.Interop
 					}
 				}
 				return isOpened;
-			}
-		}
-
-		public string ActiveFileName
-		{
-			get
-			{
-				try
-				{
-					return PowerPointObject.ActivePresentation.Name;
-				}
-				catch
-				{
-					return string.Empty;
-				}
-			}
-		}
-
-		public string ActiveFilePath
-		{
-			get
-			{
-				try
-				{
-					return PowerPointObject.ActivePresentation.FullName;
-				}
-				catch
-				{
-					return string.Empty;
-				}
 			}
 		}
 
@@ -240,38 +156,6 @@ namespace NewBizWiz.Core.Interop
 				Process.GetProcessById(_powerPointProcessId).CloseMainWindow();
 			}
 			catch { }
-		}
-
-		public bool PowerPointDetected()
-		{
-			bool result = false;
-			while (Process.GetProcesses().Any(x => x.ProcessName.Equals("POWERPNT")))
-			{
-				Application powerPoint = null;
-				try
-				{
-					powerPoint = Marshal.GetActiveObject("PowerPoint.Application") as Application;
-					if (powerPoint.Visible == MsoTriState.msoFalse)
-					{
-						uint lpdwProcessId = 0;
-						WinAPIHelper.GetWindowThreadProcessId(new IntPtr(powerPoint.HWND), out lpdwProcessId);
-						Process.GetProcessById((int)lpdwProcessId).Kill();
-					}
-					else
-					{
-						result = true;
-						break;
-					}
-				}
-				catch { }
-				finally
-				{
-					Utilities.Instance.ReleaseComObject(powerPoint);
-				}
-			}
-			if (!result)
-				_powerPointObject = null;
-			return result;
 		}
 
 		public Presentation GetActivePresentation()
@@ -488,26 +372,65 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
-		public void SetPresentationSettings()
+		public SlideSettings GetSlideSettings()
 		{
 			try
 			{
 				MessageFilter.Register();
-				if (PowerPointObject == null) return;
-				if (PowerPointObject.ActivePresentation != null)
+				var settings = new SlideSettings();
+				if (PowerPointObject == null) return null;
+				if (PowerPointObject.ActivePresentation == null) return null;
+				settings.SizeWidth = PowerPointObject.ActivePresentation.PageSetup.SlideWidth / 72;
+				settings.SizeHeght = PowerPointObject.ActivePresentation.PageSetup.SlideHeight / 72;
+				switch (PowerPointObject.ActivePresentation.PageSetup.SlideOrientation)
 				{
-					PowerPointObject.ActivePresentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
-					PowerPointObject.ActivePresentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+					case MsoOrientation.msoOrientationHorizontal:
+						settings.Orientation = SlideOrientationEnum.Landscape;
+						break;
+					case MsoOrientation.msoOrientationVertical:
+						settings.Orientation = SlideOrientationEnum.Portrait;
+						break;
+				}
+				if (settings.SizeWidth == 10 && settings.SizeHeght== 5.625)
+				{
+					settings.SizeWidth = 13;
+					settings.SizeHeght = 7.32;
+				}
+				return settings;
+			}
+			catch
+			{
+				return null;
+			}
+			finally
+			{
+				MessageFilter.Revoke();
+			}
+		}
 
-					switch (SettingsManager.Instance.Orientation)
-					{
-						case "Landscape":
-							PowerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-							break;
-						case "Portrait":
-							PowerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-							break;
-					}
+		public void SetSlideSettings(SlideSettings settings)
+		{
+			if (PowerPointObject == null) return;
+			if (PowerPointObject.ActivePresentation == null) return;
+			SetSlideSettings(PowerPointObject.ActivePresentation, settings);
+		}
+
+		private void SetSlideSettings(Presentation presentation, SlideSettings settings)
+		{
+			try
+			{
+				MessageFilter.Register();
+				presentation.PageSetup.SlideWidth = (float)settings.SizeWidth * 72;
+				presentation.PageSetup.SlideHeight = (float)settings.SizeHeght * 72;
+
+				switch (settings.Orientation)
+				{
+					case SlideOrientationEnum.Landscape:
+						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
+						break;
+					case SlideOrientationEnum.Portrait:
+						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
+						break;
 				}
 			}
 			catch { }
@@ -566,17 +489,7 @@ namespace NewBizWiz.Core.Interop
 					SavePrevSlideIndex();
 					var presentations = PowerPointObject.Presentations;
 					var presentation = presentations.Add(MsoTriState.msoFalse);
-					presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
-					presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
-					switch (SettingsManager.Instance.Orientation)
-					{
-						case "Landscape":
-							presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-							break;
-						case "Portrait":
-							presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-							break;
-					}
+					SetSlideSettings(presentation, PowerPointManager.Instance.SlideSettings);
 					Utilities.Instance.ReleaseComObject(presentations);
 					buildPresentation(presentation);
 					MessageFilter.Register();
@@ -624,17 +537,7 @@ namespace NewBizWiz.Core.Interop
 						SavePrevSlideIndex();
 						var presentations = PowerPointObject.Presentations;
 						var presentation = presentations.Add(MsoTriState.msoFalse);
-						presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
-						presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
-						switch (SettingsManager.Instance.Orientation)
-						{
-							case "Landscape":
-								presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-								break;
-							case "Portrait":
-								presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-								break;
-						}
+						SetSlideSettings(presentation, PowerPointManager.Instance.SlideSettings);
 						var slideIndex = 0;
 						foreach (var presentationFile in presentationFiles)
 						{

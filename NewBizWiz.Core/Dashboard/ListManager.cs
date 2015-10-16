@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Xml;
-using NewBizWiz.Core.Dashboard;
 
 namespace NewBizWiz.Core.Dashboard
 {
 	public class ListManager
 	{
 		private static readonly ListManager _instance = new ListManager();
-		private ListManager()
-		{
-		}
+		private ListManager() { }
 
 		public static ListManager Instance
 		{
@@ -35,6 +30,12 @@ namespace NewBizWiz.Core.Dashboard
 			ClientGoalsLists = new ClientGoalsLists();
 			LeadoffStatementLists = new LeadoffStatementLists();
 			TargetCustomersLists = new TargetCustomersLists();
+
+			InitSummary();
+		}
+
+		public void InitSummary()
+		{
 			SimpleSummaryLists = new SimpleSummaryLists();
 		}
 	}
@@ -429,11 +430,10 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void Load()
 		{
-			XmlNode node;
 			var document = new XmlDocument();
-			document.Load(ResourceManager.Instance.DataSimpleSummaryFile.LocalPath);
+			document.Load(Common.ResourceManager.Instance.DataSimpleSummaryFile.LocalPath);
 
-			node = document.SelectSingleNode(@"/SimpleSummary");
+			var node = document.SelectSingleNode(@"/SimpleSummary");
 			if (node != null)
 			{
 				foreach (XmlNode childNode in node.ChildNodes)

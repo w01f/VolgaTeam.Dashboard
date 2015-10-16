@@ -232,6 +232,18 @@
     <Compile Include="RetractableBar\RetractableBarRight.Designer.cs">
       <DependentUpon>RetractableBarRight.cs</DependentUpon>
     </Compile>
+    <Compile Include="SlideSettingsEditors\FormEditSlideSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SlideSettingsEditors\FormEditSlideSettings.Designer.cs">
+      <DependentUpon>FormEditSlideSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlideSettingsEditors\FormSelectMasterWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SlideSettingsEditors\FormSelectMasterWizard.Designer.cs">
+      <DependentUpon>FormSelectMasterWizard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Slides\FormSlideSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +413,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RetractableBar\RetractableBarRight.resx">
       <DependentUpon>RetractableBarRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlideSettingsEditors\FormEditSlideSettings.resx">
+      <DependentUpon>FormEditSlideSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlideSettingsEditors\FormSelectMasterWizard.resx">
+      <DependentUpon>FormSelectMasterWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Slides\FormSlideSelector.resx">
       <DependentUpon>FormSlideSelector.cs</DependentUpon>

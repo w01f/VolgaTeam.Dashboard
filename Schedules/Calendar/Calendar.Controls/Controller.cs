@@ -215,17 +215,14 @@ namespace NewBizWiz.Calendar.Controls
 
 		public void SaveSchedule(Schedule localSchedule, bool byUser, bool nameChanged, bool quickSave, Control sender)
 		{
-			using (var form = new FormProgress())
-			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
-				form.TopMost = true;
-				var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
-				form.Show();
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nSaving settings...");
+			var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
+			FormProgress.ShowProgress();
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
+
 			var options = new Dictionary<string, object>();
 			options.Add("Advertiser", localSchedule.BusinessName);
 			if (nameChanged)
@@ -258,7 +255,7 @@ namespace NewBizWiz.Calendar.Controls
 		{
 			if (CalendarPowerPointHelper.Instance.IsLinkedWithApplication) return true;
 			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+				PowerPointManager.Instance.RunPowerPointLoader();
 			return false;
 		}
 		#region Command Controls

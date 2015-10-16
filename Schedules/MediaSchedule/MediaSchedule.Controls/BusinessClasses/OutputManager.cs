@@ -11,6 +11,8 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public OutputColorList OptionsColors { get; private set; }
 		public OutputColorList CalendarColors { get; private set; }
 
+		public event EventHandler<EventArgs> ColorsChanged; 
+
 		public StorageDirectory ContractTemplateFolder
 		{
 			get
@@ -18,7 +20,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 				return new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
-						SettingsManager.Instance.SlideFolder.ToLower(),
+						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString),
 						"legal"
 					}));
@@ -28,36 +30,39 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public void Init()
 		{
 			ScheduleColors = new OutputColorList();
+			SnapshotColors = new OutputColorList();
+			OptionsColors = new OutputColorList();
+			CalendarColors = new OutputColorList();
+
+			UpdateColors();
+		}
+
+		public void UpdateColors()
+		{
 			ScheduleColors.Load(
 				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
-						SettingsManager.Instance.SlideFolder.ToLower(),
+						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
 						"tables"
 					})));
-
-			SnapshotColors = new OutputColorList();
 			SnapshotColors.Load(
 				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
-						SettingsManager.Instance.SlideFolder.ToLower(),
+						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
 						"snapshot"
 					})));
-
-			OptionsColors = new OutputColorList();
 			OptionsColors.Load(
 				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
-						SettingsManager.Instance.SlideFolder.ToLower(),
+						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
 						"options"
 					})));
-
-			CalendarColors = new OutputColorList();
 			CalendarColors.Load(
 				new StorageDirectory(Core.Common.ResourceManager.Instance.CalendarSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
@@ -65,6 +70,8 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 						"broadcast_cal",
 						"broadcast_images",
 					})));
+			if (ColorsChanged != null)
+				ColorsChanged(this, EventArgs.Empty);
 		}
 
 		private string GetScheduleTemplateFile(string[] fileName)
@@ -72,7 +79,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			var file = new StorageFile(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 				.Merge(new[]
 					{
-						SettingsManager.Instance.SlideFolder.ToLower(),
+						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString)
 					})
 				.Merge(fileName));
@@ -184,7 +191,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 				String.Format("Broadcast_{0}_{1}_{2}.pptx", 
 					showLogo ? "logo" : "no_logo", 
 					daysCount,
-					Core.Common.SettingsManager.Instance.SlideFolder.Replace("Slides", ""))
+					PowerPointManager.Instance.SlideSettings.SlideFolder.Replace("Slides", ""))
 			});
 		}
 

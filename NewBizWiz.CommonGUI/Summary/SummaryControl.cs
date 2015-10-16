@@ -111,7 +111,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			if (!quickLoad)
 			{
 				comboBoxEditHeader.Properties.Items.Clear();
-				//comboBoxEditHeader.Properties.Items.AddRange(Core.Dashboard.ListManager.Instance.SimpleSummaryLists.Headers);
+				comboBoxEditHeader.Properties.Items.AddRange(Core.Dashboard.ListManager.Instance.SimpleSummaryLists.Headers);
 				checkEditBusinessName.Checked = Settings.ShowAdvertiser;
 				checkEditDecisionMaker.Checked = Settings.ShowDecisionMaker;
 				checkEditPresentationDate.Checked = Settings.ShowPresentationDate;
@@ -130,7 +130,7 @@ namespace NewBizWiz.CommonGUI.Summary
 					comboBoxEditHeader.SelectedIndex = index >= 0 ? index : 0;
 				}
 
-				hyperLinkEditInfoContract.Enabled = ContractTemplateFolder!= null && ContractTemplateFolder.ExistsLocal();
+				hyperLinkEditInfoContract.Enabled = ContractTemplateFolder != null && ContractTemplateFolder.ExistsLocal();
 			}
 			LoadItems(quickLoad);
 			UpdateTotalItems();
@@ -487,34 +487,26 @@ namespace NewBizWiz.CommonGUI.Summary
 		{
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				PreparePreview(tempFileName);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				ShowEmail(tempFileName);
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			PreparePreview(tempFileName);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			ShowEmail(tempFileName);
 		}
 
 		protected void Preview()
 		{
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				PreparePreview(tempFileName);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				ShowPreview(tempFileName);
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			PreparePreview(tempFileName);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			ShowPreview(tempFileName);
 		}
 		#endregion
 	}

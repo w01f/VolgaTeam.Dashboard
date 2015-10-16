@@ -42,15 +42,13 @@ namespace NewBizWiz.Core.Dashboard
 
 			ThemeManager = new ThemeManager();
 			ThemeManager.Load();
+			PowerPointManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
 			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
-
 
 			SlideManager = new SlideManager();
 			SlideManager.Load();
 			
 			LoadDashboardSettings();
-
-			MasterWizardManager.Instance.SetMasterWizard();
 		}
 
 		public void LoadDashboardSettings()

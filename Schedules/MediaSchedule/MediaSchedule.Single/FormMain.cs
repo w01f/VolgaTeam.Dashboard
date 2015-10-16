@@ -100,6 +100,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
 
 			#region Command Controls
+			Controller.Instance.SlideSettingsButton = buttonItemSlideSettings;
 
 			#region Home
 			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
@@ -120,6 +121,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Weekly Schedule
+			Controller.Instance.WeeklySchedulePanel = ribbonPanelWeeklySchedule;
+			Controller.Instance.WeeklyScheduleThemeBar = ribbonBarWeeklySchedulePowerPoint;
 			Controller.Instance.WeeklyScheduleSpecialButtons = ribbonBarWeeklyScheduleSpecialButtons;
 			Controller.Instance.WeeklyScheduleHelp = buttonItemWeeklyScheduleHelp;
 			Controller.Instance.WeeklyScheduleSave = buttonItemWeeklyScheduleSave;
@@ -136,6 +139,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Monthly Schedule
+			Controller.Instance.MonthlySchedulePanel = ribbonPanelMonthlySchedule;
+			Controller.Instance.MonthlyScheduleThemeBar = ribbonBarMonthlySchedulePowerPoint;
 			Controller.Instance.MonthlyScheduleSpecialButtons = ribbonBarMonthlyScheduleSpecialButtons;
 			Controller.Instance.MonthlyScheduleHelp = buttonItemMonthlyScheduleHelp;
 			Controller.Instance.MonthlyScheduleSave = buttonItemMonthlyScheduleSave;
@@ -152,6 +157,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Digital Product
+			Controller.Instance.DigitalProductPanel = ribbonPanelDigitalSlides;
+			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
@@ -164,6 +171,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Digital Package
+			Controller.Instance.DigitalPackagePanel = ribbonPanelDigitalPackage;
+			Controller.Instance.DigitalPackageThemeBar = ribbonBarDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
 			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
 			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
@@ -206,6 +215,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Summary Light
+			Controller.Instance.SummaryLightPanel = ribbonPanelSummaryLight;
+			Controller.Instance.SummaryLightThemeBar = ribbonBarSummaryLightPowerPoint;
 			Controller.Instance.SummaryLightSpecialButtons = ribbonBarSummaryLightSpecialButtons;
 			Controller.Instance.SummaryLightHelp = buttonItemSummaryLightHelp;
 			Controller.Instance.SummaryLightSave = buttonItemSummaryLightSave;
@@ -220,6 +231,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Summary Full
+			Controller.Instance.SummaryFullPanel = ribbonPanelSummaryFull;
+			Controller.Instance.SummaryFullThemeBar = ribbonBarSummaryFullPowerPoint;
 			Controller.Instance.SummaryFullSpecialButtons = ribbonBarSummaryFullSpecialButtons;
 			Controller.Instance.SummaryFullHelp = buttonItemSummaryFullHelp;
 			Controller.Instance.SummaryFullSave = buttonItemSummaryFullSave;
@@ -234,6 +247,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Strategy
+			Controller.Instance.StrategyPanel = ribbonPanelStrategy;
+			Controller.Instance.StrategyThemeBar = ribbonBarStrategyPowerPoint;
 			Controller.Instance.StrategySpecialButtons = ribbonBarStrategySpecialButtons;
 			Controller.Instance.StrategyHelp = buttonItemStrategyHelp;
 			Controller.Instance.StrategySave = buttonItemStrategySave;
@@ -248,6 +263,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Snapshot
+			Controller.Instance.SnapshotPanel = ribbonPanelSnapshot;
+			Controller.Instance.SnapshotThemeBar = ribbonBarSnapshotPowerPoint;
 			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
 			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
 			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
@@ -263,6 +280,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			#endregion
 
 			#region Options
+			Controller.Instance.OptionsPanel = ribbonPanelOptions;
+			Controller.Instance.OptionsThemeBar = ribbonBarOptionsPowerPoint;
 			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
 			Controller.Instance.OptionsHelp = buttonItemOptionsHelp;
 			Controller.Instance.OptionsSave = buttonItemOptionsSave;
@@ -329,6 +348,7 @@ namespace NewBizWiz.MediaSchedule.Single
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
 			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
+			PowerPointManager.Instance.SettingsChanged += (o, e) => UpdateFormTitle();
 		}
 
 		private void UpdateFormTitle()
@@ -339,7 +359,7 @@ namespace NewBizWiz.MediaSchedule.Single
 				Utilities.Instance.Title,
 				FileStorageManager.Instance.Version,
 				MasterWizardManager.Instance.SelectedWizard.Name,
-				SettingsManager.Instance.Size,
+				PowerPointManager.Instance.SlideSettings.SizeFormatted,
 				shortSchedule != null ? String.Format("({0})", shortSchedule.ShortFileName) : String.Empty
 				);
 		}
@@ -348,17 +368,13 @@ namespace NewBizWiz.MediaSchedule.Single
 		{
 			UpdateFormTitle();
 			ribbonControl.Enabled = false;
-			using (var form = new FormProgress())
-			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Schedule...";
-				form.TopMost = true;
-				form.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker)(() => Controller.Instance.LoadData())));
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Schedule...");
+			FormProgress.ShowProgress();
+			var thread = new Thread(() => Invoke((MethodInvoker)(() => Controller.Instance.LoadData())));
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
 			ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
 			ribbonControl_SelectedRibbonTabChanged(null, null);
@@ -509,6 +525,7 @@ namespace NewBizWiz.MediaSchedule.Single
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
+			Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 			UpdateFormTitle();
 			AppManager.Instance.ActivateMainForm();
 

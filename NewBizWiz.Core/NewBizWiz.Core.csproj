@@ -117,6 +117,7 @@
     <Compile Include="Common\GalleryManager.cs" />
     <Compile Include="Common\OrderedItem.cs" />
     <Compile Include="Common\OutputColorList.cs" />
+    <Compile Include="Common\PowerPointManager.cs" />
     <Compile Include="Common\ResourceManager.cs" />
     <Compile Include="Common\ScheduleSaveEventArgs.cs" />
     <Compile Include="Common\SlideManager.cs" />

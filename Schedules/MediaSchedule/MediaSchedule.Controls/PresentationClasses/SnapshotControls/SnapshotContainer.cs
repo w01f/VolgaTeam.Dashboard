@@ -64,6 +64,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			retractableBarControl.Collapse(true);
 			_tabDragDropHelper = new XtraTabDragDropHelper<SnapshotControl>(xtraTabControlSnapshots);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
+			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) =>
+			{
+				InitColorsControl();
+				LoadBarButtons();
+			};
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.SnapshotThemeBar.RecalcLayout();
+				Controller.Instance.SnapshotPanel.PerformLayout();
+			};
 		}
 
 		#region Methods
@@ -87,20 +98,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				_localSchedule.FlightDates,
 				String.Format("{0} {1}s", _localSchedule.TotalWeeks, "week"),
 				Environment.NewLine);
-			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
-
+			InitThemeSelector();
 			LoadSnapshots(quickLoad);
 
 			if (!quickLoad)
 			{
-				xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.SnapshotColors.Items.Count > 1;
-				outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.SnapshotColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
-				outputColorSelector.ColorChanged += OnColorChanged;
+				InitColorsControl();
 			}
 
 			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
@@ -389,6 +392,23 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				Controller.Instance.SnapshotProgramAdd.Enabled = false;
 				Controller.Instance.SnapshotProgramDelete.Enabled = false;
 			}
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+		}
+		
+		private void InitColorsControl()
+		{
+			xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.SnapshotColors.Items.Count > 1;
+			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.SnapshotColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
+			outputColorSelector.ColorChanged += OnColorChanged;
 		}
 
 		private void SaveColors()
@@ -770,18 +790,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				selectedSnapshots.AddRange(tabPages);
 			if (!selectedSnapshots.Any()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					foreach (var snapshotSlide in selectedSnapshots)
-						snapshotSlide.Output(SelectedTheme);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				foreach (var snapshotSlide in selectedSnapshots)
+					snapshotSlide.Output(SelectedTheme);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		private void Preview()
@@ -813,15 +830,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				selectedSnapshots.AddRange(tabPages);
 			if (!selectedSnapshots.Any()) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			var trackAction = new Action(TrackPreview);
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
@@ -867,15 +881,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				selectedSnapshots.AddRange(tabPages);
 			if (!selectedSnapshots.Any()) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
@@ -919,26 +930,23 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				selectedSnapshots.AddRange(tabPages);
 			if (!selectedSnapshots.Any()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var previewGroups = new List<PreviewGroup>();
-					previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var previewGroups = new List<PreviewGroup>();
+				previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 		#endregion
 	}

@@ -19,7 +19,7 @@ namespace NewBizWiz.CommonGUI.Slides
 		public FormSlideSelector()
 		{
 			InitializeComponent();
-			laSlideSize.Text = String.Format(laSlideSize.Text, SettingsManager.Instance.Size);
+			laSlideSize.Text = String.Format(laSlideSize.Text, PowerPointManager.Instance.SlideSettings.SizeFormatted);
 		}
 
 		public void LoadSlides(SlideManager slideManager)

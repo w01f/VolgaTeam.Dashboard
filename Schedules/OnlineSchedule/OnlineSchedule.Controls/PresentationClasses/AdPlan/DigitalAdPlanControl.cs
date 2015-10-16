@@ -136,17 +136,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		protected override void OutputSlides()
 		{
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					OnlineSchedulePowerPointHelper.Instance.AppendAdPlan(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				OnlineSchedulePowerPointHelper.Instance.AppendAdPlan(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void ShowPreview(string tempFileName)

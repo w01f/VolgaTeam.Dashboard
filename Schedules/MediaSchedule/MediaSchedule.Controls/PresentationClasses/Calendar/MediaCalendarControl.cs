@@ -143,44 +143,37 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		{
 			if (outputData == null) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			Controller.Instance.ShowFloater(() =>
 			{
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.TopMost = true;
-					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
-					formProgress.Show();
-					Enabled = false;
-					RegularMediaSchedulePowerPointHelper.Instance.AppendCalendar(outputData.ToArray());
-					Enabled = true;
-					formProgress.Close();
-				});
-			}
+				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+				FormProgress.ShowProgress();
+				Enabled = false;
+				RegularMediaSchedulePowerPointHelper.Instance.AppendCalendar(outputData.ToArray());
+				Enabled = true;
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void EmailInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Email...");
+			FormProgress.ShowProgress();
+			Enabled = false;
+			foreach (var outputItem in outputData)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Calendar for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				Enabled = false;
-				foreach (var outputItem in outputData)
+				var previewGroup = new PreviewGroup
 				{
-					var previewGroup = new PreviewGroup
-					{
-						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-					};
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-					previewGroups.Add(previewGroup);
-				}
-				Enabled = true;
-				formProgress.Close();
+					Name = outputItem.MonthText,
+					PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				};
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				previewGroups.Add(previewGroup);
 			}
+			Enabled = true;
+			FormProgress.CloseProgress();
+
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
@@ -213,26 +206,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		{
 			if (outputData == null) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Preview...");
+			FormProgress.ShowProgress();
+			Enabled = false;
+			foreach (var outputItem in outputData)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Calendar for Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				Enabled = false;
-				foreach (var outputItem in outputData)
+				var previewGroup = new PreviewGroup
 				{
-					var previewGroup = new PreviewGroup
-					{
-						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-					};
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-					previewGroups.Add(previewGroup);
-				}
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				Enabled = true;
-				formProgress.Close();
+					Name = outputItem.MonthText,
+					PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				};
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				previewGroups.Add(previewGroup);
 			}
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Enabled = true;
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
@@ -253,36 +242,32 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			if (outputData == null) return;
 			TrackOutput();
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			Controller.Instance.ShowFloater(() =>
 			{
-				Controller.Instance.ShowFloater(() =>
+				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+				FormProgress.ShowProgress();
+				Enabled = false;
+				foreach (var outputItem in outputData)
 				{
-					formProgress.TopMost = true;
-					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
-					formProgress.Show();
-					Enabled = false;
-					foreach (var outputItem in outputData)
+					var previewGroup = new PreviewGroup
 					{
-						var previewGroup = new PreviewGroup
-						{
-							Name = outputItem.MonthText,
-							PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-						};
-						RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-						previewGroups.Add(previewGroup);
+						Name = outputItem.MonthText,
+						PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+					};
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					previewGroups.Add(previewGroup);
+				}
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
 					}
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					Enabled = true;
-					formProgress.Close();
-				});
-			}
+					catch { }
+				Enabled = true;
+				FormProgress.CloseProgress();
+			});
 		}
 
 		#region Copy-Paste Methods and Event Handlers

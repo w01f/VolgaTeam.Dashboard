@@ -169,10 +169,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			ViewSettingsManager.Instance.CoverState.Quote.Text = (memoEditSalesQuote.EditValue as String) ?? String.Empty;
 			ViewSettingsManager.Instance.CoverState.Advertiser = (comboBoxEditAdvertiser.EditValue as String) ?? String.Empty;
 			ViewSettingsManager.Instance.CoverState.DecisionMaker = (comboBoxEditDecisionMaker.EditValue as String) ?? String.Empty;
-			
+
 			Core.Dashboard.SettingsManager.Instance.SalesRep = (comboBoxEditSalesRep.EditValue as String) ?? String.Empty;
 			Core.Dashboard.SettingsManager.Instance.SaveDashboardSettings();
-			
+
 			SettingsNotSaved = false;
 		}
 
@@ -359,55 +359,47 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			SaveChanges();
 			TrackOutput();
-			using (var form = new FormProgress())
-			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				form.TopMost = true;
-				form.Show();
-				if (checkEditUseEmptyCover.Checked)
-					AppManager.Instance.ShowFloater(() =>
-					{
-						DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked);
-						form.Close();
-					});
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowProgress();
+			if (checkEditUseEmptyCover.Checked)
+				AppManager.Instance.ShowFloater(() =>
+				{
+					DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked);
+					FormProgress.CloseProgress();
+				});
 
-				else
-					AppManager.Instance.ShowFloater(() =>
-					{
-						DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked);
-						form.Close();
-					});
-			}
+			else
+				AppManager.Instance.ShowFloater(() =>
+				{
+					DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked);
+					FormProgress.CloseProgress();
+				});
 		}
 
 		public void Preview()
 		{
 			SaveChanges();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			if (checkEditUseEmptyCover.Checked)
+				DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName);
+			else
+				DashboardPowerPointHelper.Instance.PrepareCover(tempFileName);
+			Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				if (checkEditUseEmptyCover.Checked)
-					DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName);
-				else
-					DashboardPowerPointHelper.Instance.PrepareCover(tempFileName);
-				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
-				{
-					formPreview.Text = "Preview Slides";
-					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName, InsertOnTop = checkEditFirstSlide.Checked } });
-					RegistryHelper.MainFormHandle = formPreview.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					var previewResult = formPreview.ShowDialog();
-					RegistryHelper.MaximizeMainForm = false;
-					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-					if (previewResult != DialogResult.OK)
-						AppManager.Instance.ActivateMainForm();
-				}
+				formPreview.Text = "Preview Slides";
+				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName, InsertOnTop = checkEditFirstSlide.Checked } });
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				var previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = false;
+				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+				if (previewResult != DialogResult.OK)
+					AppManager.Instance.ActivateMainForm();
 			}
 		}
 		#endregion

@@ -33,7 +33,7 @@ namespace NewBizWiz.Core.Common
 		{
 			Items.Clear();
 
-			_contentFile = new StorageFile(AppProfileManager.Instance.UserListsFolder.RelativePathParts.Merge(DecisionMakersFileName));
+			_contentFile = new StorageFile(ResourceManager.Instance.UserListsFolder.RelativePathParts.Merge(DecisionMakersFileName));
 			_contentFile.AllocateParentFolder();
 
 			if (!_contentFile.ExistsLocal()) return;
@@ -63,7 +63,6 @@ namespace NewBizWiz.Core.Common
 				sw.Write(xml);
 				sw.Flush();
 			}
-			_contentFile.Upload();
 		}
 
 		public void Add(string item)

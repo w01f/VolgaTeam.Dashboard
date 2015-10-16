@@ -35,8 +35,13 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public async Task Init()
 		{
 			OutputManager.Init();
+			PowerPointManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();
+
 			HelpManager.LoadHelpLinks();
+			
 			ThemeManager.Load();
+			PowerPointManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
+			
 			TabPageManager = new TabPageManager(Core.MediaSchedule.ResourceManager.Instance.TabsConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();
 			Gallery1Manager = new GalleryManager(Core.MediaSchedule.ResourceManager.Instance.Gallery1ConfigFile);

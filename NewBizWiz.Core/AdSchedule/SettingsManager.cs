@@ -9,14 +9,14 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private SettingsManager()
 		{
-			var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Ad Schedule Builder");
-			if (!Directory.Exists(defaultSaveFolderPath))
-				Directory.CreateDirectory(defaultSaveFolderPath);
-			SaveFolder = defaultSaveFolderPath;
+			//var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Ad Schedule Builder");
+			//if (!Directory.Exists(defaultSaveFolderPath))
+			//	Directory.CreateDirectory(defaultSaveFolderPath);
+			//SaveFolder = defaultSaveFolderPath;
 
-			ViewSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleViewSetings.xml");
-			LocalSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleSetings.xml");
-			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\AdScheduleHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			//ViewSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleViewSetings.xml");
+			//LocalSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleSetings.xml");
+			//HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\AdScheduleHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 		}
 
 		public static SettingsManager Instance

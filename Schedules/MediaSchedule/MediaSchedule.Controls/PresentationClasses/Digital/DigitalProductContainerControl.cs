@@ -27,6 +27,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				if (sender != this)
 					LoadSchedule(e.QuickSave && !e.UpdateDigital);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.DigitalProductThemeBar.RecalcLayout();
+				Controller.Instance.DigitalProductPanel.PerformLayout();
+			};
 		}
 
 		public bool AllowToLeaveControl
@@ -43,11 +49,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-			}));
+			InitThemeSelector();
 			if (!quickLoad || LocalSchedule.DigitalProducts.Count != _tabPages.Count)
 			{
 				checkEditShowFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
@@ -111,6 +113,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 			SettingsNotSaved = false;
 		}
 
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+			}));
+		}
+
 		public override Theme SelectedTheme
 		{
 			get { return BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct))); }
@@ -169,18 +180,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					foreach (var tabPage in tabsForOutput)
-						tabPage.Output();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				foreach (var tabPage in tabsForOutput)
+					tabPage.Output();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
@@ -201,24 +208,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override void ShowPdf(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override HelpManager HelpManager

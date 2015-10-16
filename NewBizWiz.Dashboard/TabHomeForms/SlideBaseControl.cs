@@ -69,7 +69,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			var themes = SettingsManager.Instance.ThemeManager.GetThemes(slideType);
 			FormMain.Instance.HideThemeButtons();
 			ThemeButton.Visible = true;
-			FormThemeSelector.Link(ThemeButton, themes, SettingsManager.Instance.GetSelectedTheme(slideType).Name, (t =>
+			FormThemeSelector.Link(ThemeButton, themes, (SettingsManager.Instance.GetSelectedTheme(slideType) ?? new Theme(null)).Name, (t =>
 			{
 				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.Cleanslate).Any(slideTheme => slideTheme.Name == t.Name))
 					SettingsManager.Instance.SetSelectedTheme(SlideType.Cleanslate, t.Name);
@@ -94,10 +94,12 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 			else
 			{
+				FormMain.Instance.buttonItemPowerPoint.Visible = true;
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
 				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeThemeCleanslate, selectorToolTip);
 			}
 			FormMain.Instance.ribbonBarPowerPoint.RecalcLayout();
+			FormMain.Instance.ribbonPanelHome.PerformLayout();
 		}
 
 		protected virtual void SaveChanges(string fileName = "") { }

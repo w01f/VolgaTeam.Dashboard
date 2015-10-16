@@ -44,6 +44,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			daypartsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 
 			xtraTabPageDigital.PageVisible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
+			(Controller.Instance.HomeProductAdd.ContainerControl as RibbonBar).Visible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
 		}
 
 		public bool SettingsNotSaved { get; set; }

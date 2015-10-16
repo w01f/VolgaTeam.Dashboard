@@ -33,6 +33,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				if (sender != this)
 					LoadData(e.QuickSave && !e.UpdateDigital);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.SummaryFullThemeBar.RecalcLayout();
+				Controller.Instance.SummaryFullPanel.PerformLayout();
+			};
 		}
 
 		private void TrackOutput()
@@ -81,15 +87,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
-			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme,
-				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary2),
-				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2),
-				(t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Summary2, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			base.LoadData(quickLoad);
 		}
 
@@ -101,6 +99,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, false, this);
 			SettingsNotSaved = false;
 			return true;
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme,
+				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary2),
+				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2),
+				(t =>
+				{
+					MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Summary2, t.Name);
+					MediaMetaData.Instance.SettingsManager.SaveSettings();
+					SettingsNotSaved = true;
+				}));
 		}
 
 		protected override void InitItem(SummaryCustomItemControl item)
@@ -192,17 +203,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					RegularMediaSchedulePowerPointHelper.Instance.AppendSummary(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				RegularMediaSchedulePowerPointHelper.Instance.AppendSummary(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void OutputPdf()
@@ -210,24 +217,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryPdf(pdfFileName, this);
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryPdf(pdfFileName, this);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override bool CheckPowerPointRunning()

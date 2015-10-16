@@ -331,6 +331,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			LoadStrategy();
 			LoadImages();
+			Dashboard.ListManager.Instance.InitSummary();
 		}
 	}
 

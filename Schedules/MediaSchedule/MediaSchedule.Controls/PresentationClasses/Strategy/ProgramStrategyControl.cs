@@ -58,6 +58,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			retractableBarRight.StateChanged += Favorites_StateChanged;
 			retractableBarRight.AddButtons(new[] { new ButtonInfo { Logo = Resources.FavoritesLogo, Tooltip = "Expand bar" } });
 			favoriteImagesControl.ImageTooltip = "Drag and Drop this image to a program on the left";
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.StrategyThemeBar.RecalcLayout();
+				Controller.Instance.StrategyPanel.PerformLayout();
+			};
 		}
 
 		#region Methods
@@ -76,12 +82,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			_allowToSave = false;
 
 			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.StrategyTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Strategy), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Strategy, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			SetDataSource();
 			if (!quickLoad)
 			{
@@ -107,6 +108,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, false, this);
 			SettingsNotSaved = false;
 			return true;
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.StrategyTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Strategy), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Strategy, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				SettingsNotSaved = true;
+			}));
 		}
 
 		private void SetDataSource()
@@ -497,17 +508,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			SaveSchedule();
 			PrepareOutput();
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					RegularMediaSchedulePowerPointHelper.Instance.AppendStrategy(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				RegularMediaSchedulePowerPointHelper.Instance.AppendStrategy(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		private void Email()
@@ -515,14 +522,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			SaveSchedule();
 			PrepareOutput();
 			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				PreparePreview(tempFileName);
-				formProgress.Close();
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			PreparePreview(tempFileName);
+			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
 			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
@@ -542,14 +545,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			SaveSchedule();
 			PrepareOutput();
 			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				PreparePreview(tempFileName);
-				formProgress.Close();
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			PreparePreview(tempFileName);
+			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
@@ -571,24 +570,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			SaveSchedule();
 			PrepareOutput();
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyPdf(pdfFileName, this);
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyPdf(pdfFileName, this);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 		#endregion
 	}

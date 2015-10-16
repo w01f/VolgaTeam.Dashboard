@@ -62,14 +62,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
-			var buttonInfos = new List<ButtonInfo>();
-			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsInfo; } });
-			if (BusinessObjects.Instance.OutputManager.OptionsColors.Items.Count > 1)
-				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
-			retractableBarControl.AddButtons(buttonInfos);
+			LoadBarButtons();
 			retractableBarControl.Collapse(true);
 			_tabDragDropHelper = new XtraTabDragDropHelper<OptionsControl>(xtraTabControlOptionSets);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
+			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) =>
+			{
+				InitColorControls();
+				LoadBarButtons();
+			};
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.OptionsThemeBar.RecalcLayout();
+				Controller.Instance.OptionsPanel.PerformLayout();
+			};
 		}
 
 		#region Methods
@@ -93,20 +100,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				_localSchedule.FlightDates,
 				String.Format("{0} {1}s", _localSchedule.TotalWeeks, "week"),
 				Environment.NewLine);
-			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 
 			LoadOptionSets(quickLoad);
 
 			if (!quickLoad)
 			{
-				xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.OptionsColors.Items.Count > 1;
-				outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.OptionsColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
-				outputColorSelector.ColorChanged += OnColorChanged;
+				InitColorControls();
 			}
 
 			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
@@ -490,6 +490,32 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			}
 		}
 
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+		}
+
+		private void InitColorControls()
+		{
+			xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.OptionsColors.Items.Count > 1;
+			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.OptionsColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
+			outputColorSelector.ColorChanged += OnColorChanged;
+		}
+
+		private void LoadBarButtons()
+		{
+			var buttonInfos = new List<ButtonInfo>();
+			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsInfo; } });
+			if (BusinessObjects.Instance.OutputManager.OptionsColors.Items.Count > 1)
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
+			retractableBarControl.AddButtons(buttonInfos);
+		}
+
 		private void SaveColors()
 		{
 			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? String.Empty;
@@ -854,18 +880,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					foreach (var optionsSlide in optionsSlides)
-						optionsSlide.Output(SelectedTheme);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				foreach (var optionsSlide in optionsSlides)
+					optionsSlide.Output(SelectedTheme);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		private void Preview()
@@ -897,15 +920,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			var trackAction = new Action(TrackPreview);
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
@@ -951,15 +971,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-			}
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
@@ -1003,26 +1020,23 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var previewGroups = new List<PreviewGroup>();
-					previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var previewGroups = new List<PreviewGroup>();
+				previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 		#endregion
 	}

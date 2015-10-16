@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace NewBizWiz.Core.Common
@@ -14,6 +13,8 @@ namespace NewBizWiz.Core.Common
 		private readonly List<Theme> _themes = new List<Theme>();
 
 		public Dictionary<SlideType, List<string>> ApprovedThemes { get; private set; }
+
+		public event EventHandler<EventArgs> ThemesChanged;
 
 		public ThemeManager()
 		{
@@ -166,7 +167,8 @@ namespace NewBizWiz.Core.Common
 
 		public void Load()
 		{
-			var storageDirectory = new StorageDirectory(ResourceManager.Instance.ThemesFolder.RelativePathParts.Merge(SettingsManager.Instance.SlideMasterFolder));
+			_themes.Clear();
+			var storageDirectory = new StorageDirectory(ResourceManager.Instance.ThemesFolder.RelativePathParts.Merge(PowerPointManager.Instance.SlideSettings.SlideMasterFolder));
 			if (!storageDirectory.ExistsLocal()) return;
 
 			LoadApprovedThemes(storageDirectory);
@@ -180,6 +182,9 @@ namespace NewBizWiz.Core.Common
 				_themes.Add(theme);
 			}
 			_themes.Sort((x, y) => x.Order.CompareTo(y.Order));
+
+			if (ThemesChanged != null)
+				ThemesChanged(this, EventArgs.Empty);
 		}
 
 		public IEnumerable<Theme> GetThemes(SlideType slideType)
@@ -205,6 +210,11 @@ namespace NewBizWiz.Core.Common
 			_root = root;
 		}
 
+		public override string ToString()
+		{
+			return Name;
+		}
+
 		public void Load()
 		{
 			var files = _root.GetFiles().ToList();
@@ -220,9 +230,9 @@ namespace NewBizWiz.Core.Common
 			if (bigLogoFile != null)
 			{
 				Logo = new Bitmap(bigLogoFile.LocalPath);
-				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);
+				BrowseLogo = Logo.GetThumbnailImage(((Logo.Width * 144) / Logo.Height) + 10, 144, null, IntPtr.Zero);
 				var borderedLogo = Logo.DrawBorder();
-				RibbonLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 72) / borderedLogo.Height, 72, null, IntPtr.Zero);
+				RibbonLogo = borderedLogo.GetThumbnailImage(((borderedLogo.Width * 72) / borderedLogo.Height) + 10, 72, null, IntPtr.Zero);
 			}
 
 			_themeFile = files.FirstOrDefault(file => file.Extension == ".thmx");

@@ -693,44 +693,38 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			SaveSchedule();
 			PopulateReplacementsList();
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show(); var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
-				formProgress.Close();
-				if (File.Exists(tempFileName))
-					using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, HelpManager))
-					{
-						formEmail.Text = "Email this Online Schedule";
-						formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-						Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-						RegistryHelper.MainFormHandle = formEmail.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						formEmail.ShowDialog();
-						RegistryHelper.MaximizeMainForm = true;
-						RegistryHelper.MainFormHandle = _formContainer.Handle;
-					}
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
+			FormProgress.CloseProgress();
+			if (File.Exists(tempFileName))
+				using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, HelpManager))
+				{
+					formEmail.Text = "Email this Online Schedule";
+					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+					RegistryHelper.MainFormHandle = formEmail.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					formEmail.ShowDialog();
+					RegistryHelper.MaximizeMainForm = true;
+					RegistryHelper.MainFormHandle = _formContainer.Handle;
+				}
+
 		}
 
 		public void Preview_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
 			PopulateReplacementsList();
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
-				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-				formProgress.Close();
-				if (File.Exists(tempFileName))
-					ShowPreview(tempFileName);
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Preview...");
+			FormProgress.ShowProgress();
+			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
+			Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+			FormProgress.CloseProgress();
+			if (File.Exists(tempFileName))
+				ShowPreview(tempFileName);
 		}
 
 		public virtual void ShowPreview(string tempFileName)

@@ -567,44 +567,36 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			SaveChanges();
 			TrackOutput();
-			using (var form = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowProgress();
+			AppManager.Instance.ShowFloater(() =>
 			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				form.TopMost = true;
-				form.Show();
-				AppManager.Instance.ShowFloater(() =>
-				{
-					DashboardPowerPointHelper.Instance.AppendSummary(this);
-					form.Close();
-				});
-			}
+				DashboardPowerPointHelper.Instance.AppendSummary(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public void Preview()
 		{
 			SaveChanges();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			DashboardPowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
+			Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				DashboardPowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
-				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
-				{
-					formPreview.Text = "Preview Slides";
-					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-					RegistryHelper.MainFormHandle = formPreview.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					var previewResult = formPreview.ShowDialog();
-					RegistryHelper.MaximizeMainForm = false;
-					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-					if (previewResult != DialogResult.OK)
-						AppManager.Instance.ActivateMainForm();
-				}
+				formPreview.Text = "Preview Slides";
+				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				var previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = false;
+				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+				if (previewResult != DialogResult.OK)
+					AppManager.Instance.ActivateMainForm();
 			}
 		}
 		#endregion

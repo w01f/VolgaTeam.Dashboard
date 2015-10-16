@@ -29,6 +29,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				if (sender != this)
 					LoadSchedule(e.QuickSave && !e.UpdateDigital);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.DigitalPackageThemeBar.RecalcLayout();
+				Controller.Instance.DigitalPackagePanel.PerformLayout();
+			};
 		}
 
 		public RegularSchedule LocalSchedule { get; set; }
@@ -82,11 +88,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVWebPackage : SlideType.RadioWebPackage), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVWebPackage : SlideType.RadioWebPackage), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVWebPackage : SlideType.RadioWebPackage, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-			}));
+			InitThemeSelector();
 			base.LoadSchedule(quickLoad);
 		}
 
@@ -97,6 +99,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				LocalSchedule.Name = scheduleName;
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, false, this);
 			return base.SaveSchedule(scheduleName);
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVWebPackage : SlideType.RadioWebPackage), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVWebPackage : SlideType.RadioWebPackage), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVWebPackage : SlideType.RadioWebPackage, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+			}));
 		}
 
 		protected override IEnumerable<string> GetExistedScheduleNames()
@@ -111,17 +122,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override void OutputSlides()
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					OnlineSchedulePowerPointHelper.Instance.AppendWebPackage(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				OnlineSchedulePowerPointHelper.Instance.AppendWebPackage(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override void ShowPreview(string tempFileName)
@@ -142,24 +149,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override void PdfSlides()
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					OnlineSchedulePowerPointHelper.Instance.PrepareWebPackagePdf(this, pdfFileName);
-						if (File.Exists(pdfFileName))
-							try
-							{
-								Process.Start(pdfFileName);
-							}
-							catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackagePdf(this, pdfFileName);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 	}
 }

@@ -111,155 +111,152 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				month = Months[date];
 				if (!month.HasData)
 				{
-					using (var form = new FormProgress())
+					FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading month data...");
+					var thread = new Thread(() => Invoke((MethodInvoker)delegate()
 					{
-						form.laProgress.Text = "Chill-Out for a few seconds...\nLoading month data...";
-						form.TopMost = true;
-						var thread = new Thread(() => Invoke((MethodInvoker)delegate()
+						var weeks = new List<DayControl[]>();
+						var datesByWeeks = Calendar.CalendarData.GetDaysByWeek(calendarMonth.DaysRangeBegin, calendarMonth.DaysRangeEnd);
+						foreach (var weekDays in datesByWeeks)
 						{
-							var weeks = new List<DayControl[]>();
-							var datesByWeeks = Calendar.CalendarData.GetDaysByWeek(calendarMonth.DaysRangeBegin, calendarMonth.DaysRangeEnd);
-							foreach (var weekDays in datesByWeeks)
+							var week = new List<DayControl>();
+							foreach (var calendarDay in weekDays.Select(weekDay => Calendar.CalendarData.Days.FirstOrDefault(x => x.Date.Equals(weekDay))))
 							{
-								var week = new List<DayControl>();
-								foreach (var calendarDay in weekDays.Select(weekDay => Calendar.CalendarData.Days.FirstOrDefault(x => x.Date.Equals(weekDay))))
+								if (calendarDay != null)
 								{
-									if (calendarDay != null)
+									var dayControl = new DayControl(calendarDay);
+									dayControl.AllowToPasteNote = CopyPasteManager.SourceNote != null;
+									dayControl.DaySelected += (sender, e) =>
 									{
-										var dayControl = new DayControl(calendarDay);
-										dayControl.AllowToPasteNote = CopyPasteManager.SourceNote != null;
-										dayControl.DaySelected += (sender, e) =>
+										SelectionManager.SelectDay(e.SelectedDay.Day, e.ModifierKeys);
+										CopyPasteManager.SetCopyDay();
+									};
+									dayControl.DayCopied += (sender, e) => CopyDay();
+									dayControl.DayPasted += (sender, e) => PasteDay();
+									dayControl.DayCloned += (sender, e) => CloneDay();
+									dayControl.DayDataDeleted += (sender, e) =>
+									{
+										foreach (var day in SelectionManager.SelectedDays)
 										{
-											SelectionManager.SelectDay(e.SelectedDay.Day, e.ModifierKeys);
-											CopyPasteManager.SetCopyDay();
-										};
-										dayControl.DayCopied += (sender, e) => CopyDay();
-										dayControl.DayPasted += (sender, e) => PasteDay();
-										dayControl.DayCloned += (sender, e) => CloneDay();
-										dayControl.DayDataDeleted += (sender, e) =>
-										{
-											foreach (var day in SelectionManager.SelectedDays)
-											{
-												day.ClearData();
-												RefreshData();
-											}
-											Calendar.SettingsNotSaved = true;
-											Calendar.SelectedView.RefreshData();
-											Calendar.SlideInfo.LoadData();
-											Calendar.UpdateOutputFunctions();
-										};
-										dayControl.DataChanged += (sender, e) =>
-										{
-											var day = sender as DayControl;
-											if (day == null) return;
-											Calendar.UpdateOutputFunctions();
-											Calendar.SettingsNotSaved = true;
-											var options = new Dictionary<string, object>();
-											options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-											options.Add("Day", day.Day.Date);
-											options.Add("Text", day.Day.Summary);
-											Calendar.TrackActivity(new UserActivity("Edit Data", options));
-										};
-
-										dayControl.SelectionStateRequested += (sender, e) => SelectionManager.ProcessSelectionStateRequest();
-										dayControl.DayMouseMove += (sender, e) =>
-										{
-											foreach (var day in _days)
-												if (day.Day.BelongsToSchedules && day.ClientRectangle.Contains(day.PointToClient(Cursor.Position)) && day.RaiseEvents)
-													SelectionManager.SelectDay(day.Day, Keys.Control);
-										};
-										dayControl.NoteAdded += (sender, e) =>
-										{
-											var noteDateRange = Calendar.CalendarData.CalculateDateRange(SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
-											AddNote(noteDateRange);
+											day.ClearData();
 											RefreshData();
-											Calendar.UpdateOutputFunctions();
-										};
-										dayControl.NotePasted += (sender, e) =>
+										}
+										Calendar.SettingsNotSaved = true;
+										Calendar.SelectedView.RefreshData();
+										Calendar.SlideInfo.LoadData();
+										Calendar.UpdateOutputFunctions();
+									};
+									dayControl.DataChanged += (sender, e) =>
+									{
+										var day = sender as DayControl;
+										if (day == null) return;
+										Calendar.UpdateOutputFunctions();
+										Calendar.SettingsNotSaved = true;
+										var options = new Dictionary<string, object>();
+										options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+										options.Add("Day", day.Day.Date);
+										options.Add("Text", day.Day.Summary);
+										Calendar.TrackActivity(new UserActivity("Edit Data", options));
+									};
+
+									dayControl.SelectionStateRequested += (sender, e) => SelectionManager.ProcessSelectionStateRequest();
+									dayControl.DayMouseMove += (sender, e) =>
+									{
+										foreach (var day in _days)
+											if (day.Day.BelongsToSchedules && day.ClientRectangle.Contains(day.PointToClient(Cursor.Position)) && day.RaiseEvents)
+												SelectionManager.SelectDay(day.Day, Keys.Control);
+									};
+									dayControl.NoteAdded += (sender, e) =>
+									{
+										var noteDateRange = Calendar.CalendarData.CalculateDateRange(SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
+										AddNote(noteDateRange);
+										RefreshData();
+										Calendar.UpdateOutputFunctions();
+									};
+									dayControl.NotePasted += (sender, e) =>
+									{
+										PasteNote();
+										RefreshData();
+									};
+									dayControl.ImageCopied += (sender, e) => CopyImage();
+									dayControl.ImagePasted += (sender, e) =>
+									{
+										ImageSource imageSource = null;
+										var clipboardImage = Utilities.Instance.GetImageFormClipboard();
+										if (clipboardImage != null)
+											imageSource = ImageSource.FromImage(clipboardImage);
+										else if (Clipboard.ContainsText(TextDataFormat.Html))
 										{
-											PasteNote();
+											var textContent = Clipboard.GetText(TextDataFormat.Html);
+											try
+											{
+												var doc = new XmlDocument();
+												doc.LoadXml(textContent);
+												imageSource = new ImageSource();
+												imageSource.Deserialize(doc.FirstChild);
+											}
+											catch { }
+										}
+										PasteImage(imageSource);
+
+									};
+									dayControl.ImageDeleted += (sender, e) =>
+									{
+										foreach (var day in SelectionManager.SelectedDays)
+										{
+											day.Logo = new ImageSource();
 											RefreshData();
-										};
-										dayControl.ImageCopied += (sender, e) => CopyImage();
-										dayControl.ImagePasted += (sender, e) =>
-										{
-											ImageSource imageSource = null;
-											var clipboardImage = Utilities.Instance.GetImageFormClipboard();
-											if (clipboardImage != null)
-												imageSource = ImageSource.FromImage(clipboardImage);
-											else if (Clipboard.ContainsText(TextDataFormat.Html))
-											{
-												var textContent = Clipboard.GetText(TextDataFormat.Html);
-												try
-												{
-													var doc = new XmlDocument();
-													doc.LoadXml(textContent);
-													imageSource = new ImageSource();
-													imageSource.Deserialize(doc.FirstChild);
-												}
-												catch { }
-											}
-											PasteImage(imageSource);
+										}
+										Calendar.SettingsNotSaved = true;
+										Calendar.SelectedView.RefreshData();
+										Calendar.UpdateOutputFunctions();
+									};
 
-										};
-										dayControl.ImageDeleted += (sender, e) =>
-										{
-											foreach (var day in SelectionManager.SelectedDays)
-											{
-												day.Logo = new ImageSource();
-												RefreshData();
-											}
-											Calendar.SettingsNotSaved = true;
-											Calendar.SelectedView.RefreshData();
-											Calendar.UpdateOutputFunctions();
-										};
+									SelectionManager.SelectionStateResponse += (sender, e) => dayControl.UpdateNoteMenuAccordingSelection(SelectionManager.SelectedDays.OrderBy(x => x.Date).ToArray());
 
-										SelectionManager.SelectionStateResponse += (sender, e) => dayControl.UpdateNoteMenuAccordingSelection(SelectionManager.SelectedDays.OrderBy(x => x.Date).ToArray());
-
-										CopyPasteManager.OnSetCopyDay += (sender, e) =>
-										{
-											dayControl.toolStripMenuItemCopy.Enabled = true;
-											dayControl.toolStripMenuItemClone.Enabled = true;
-										};
-										CopyPasteManager.OnResetCopy += (sender, e) =>
-										{
-											dayControl.toolStripMenuItemCopy.Enabled = false;
-											dayControl.toolStripMenuItemClone.Enabled = false;
-											dayControl.ChangeCopySource(false);
-										};
-										CopyPasteManager.OnResetPaste += (sender, e) =>
-										{
-											dayControl.toolStripMenuItemPaste.Enabled = false;
-											dayControl.AllowToPasteNote = false;
-										};
-										CopyPasteManager.DayCopied += (sender, e) =>
-										{
-											dayControl.toolStripMenuItemPaste.Enabled = true;
-											dayControl.ChangeCopySource(dayControl.Day.Date.Equals(CopyPasteManager.SourceDay.Date));
-										};
-										CopyPasteManager.NoteCopied += (sender, e) => { dayControl.AllowToPasteNote = true; };
-										Calendar.AssignCloseActiveEditorsonOutSideClick(dayControl);
-										week.Add(dayControl);
-										_days.Add(dayControl);
-									}
-									Application.DoEvents();
+									CopyPasteManager.OnSetCopyDay += (sender, e) =>
+									{
+										dayControl.toolStripMenuItemCopy.Enabled = true;
+										dayControl.toolStripMenuItemClone.Enabled = true;
+									};
+									CopyPasteManager.OnResetCopy += (sender, e) =>
+									{
+										dayControl.toolStripMenuItemCopy.Enabled = false;
+										dayControl.toolStripMenuItemClone.Enabled = false;
+										dayControl.ChangeCopySource(false);
+									};
+									CopyPasteManager.OnResetPaste += (sender, e) =>
+									{
+										dayControl.toolStripMenuItemPaste.Enabled = false;
+										dayControl.AllowToPasteNote = false;
+									};
+									CopyPasteManager.DayCopied += (sender, e) =>
+									{
+										dayControl.toolStripMenuItemPaste.Enabled = true;
+										dayControl.ChangeCopySource(dayControl.Day.Date.Equals(CopyPasteManager.SourceDay.Date));
+									};
+									CopyPasteManager.NoteCopied += (sender, e) => { dayControl.AllowToPasteNote = true; };
+									Calendar.AssignCloseActiveEditorsonOutSideClick(dayControl);
+									week.Add(dayControl);
+									_days.Add(dayControl);
 								}
-								weeks.Add(week.ToArray());
 								Application.DoEvents();
 							}
-							month.AddDays(weeks.ToArray());
-							month.AddNotes(GetNotesByWeeeks(calendarMonth));
-						}));
-
-						form.Show();
-						Application.DoEvents();
-
-						thread.Start();
-
-						while (thread.IsAlive)
+							weeks.Add(week.ToArray());
 							Application.DoEvents();
-						form.Close();
-					}
+						}
+						month.AddDays(weeks.ToArray());
+						month.AddNotes(GetNotesByWeeeks(calendarMonth));
+					}));
+
+					FormProgress.ShowProgress();
+					Application.DoEvents();
+
+					thread.Start();
+
+					while (thread.IsAlive)
+						Application.DoEvents();
+					FormProgress.CloseProgress();
+
 				}
 				month.RefreshData(Calendar.GetColorSchema(calendarMonth.OutputData.SlideColor));
 			}

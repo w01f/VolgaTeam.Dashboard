@@ -22,7 +22,7 @@ namespace NewBizWiz.CommonGUI.Themes
 		public FormThemeSelector()
 		{
 			InitializeComponent();
-			laSlideSize.Text = String.Format(laSlideSize.Text, SettingsManager.Instance.Size);
+			laSlideSize.Text = String.Format(laSlideSize.Text, PowerPointManager.Instance.SlideSettings.SizeFormatted);
 		}
 
 		public void LoadThemes(IEnumerable<Theme> themes)

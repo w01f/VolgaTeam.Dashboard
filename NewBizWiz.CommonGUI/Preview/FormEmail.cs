@@ -45,17 +45,14 @@ namespace NewBizWiz.CommonGUI.Preview
 					Name = "Merged Slides",
 					PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 				};
-				using (var formProgress = new FormProgress())
-				{
-					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nLoading slides...";
-					formProgress.TopMost = true;
-					formProgress.Show();
-					var thread = new Thread(() => _powerPointHelper.MergeFiles(_mergedGroup.PresentationSourcePath, previewGroups.Select(pg => pg.PresentationSourcePath).ToArray()));
-					thread.Start();
-					while (thread.IsAlive)
-						Application.DoEvents();
-					formProgress.Close();
-				}
+
+				FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading slides...");
+				FormProgress.ShowProgress();
+				var thread = new Thread(() => _powerPointHelper.MergeFiles(_mergedGroup.PresentationSourcePath, previewGroups.Select(pg => pg.PresentationSourcePath).ToArray()));
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+				FormProgress.CloseProgress();
 			}
 			else
 			{

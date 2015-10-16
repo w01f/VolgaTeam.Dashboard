@@ -229,7 +229,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 							}
 							foreach (var note in monthOutputData.Notes)
 							{
-								var noteShape = slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, note.Left, note.Top, note.Right - note.Left, note.Height);
+								var noteShape = slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, note.Left, note.Top, note.Right - note.Left, note.StaticHeight);
 								noteShape.Fill.Visible = MsoTriState.msoTrue;
 								noteShape.Fill.Solid();
 								noteShape.Fill.ForeColor.RGB = Information.RGB(note.BackgroundColor.R, note.BackgroundColor.G, note.BackgroundColor.B);
@@ -281,8 +281,8 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 				{
 					note.Left = shape.Left + 10;
 					note.Top = shape.Top + 10;
-					shape.Top += (note.Height + 15);
-					shape.Height -= (note.Height + 15);
+					shape.Top += (note.StaticHeight + 15);
+					shape.Height -= (note.StaticHeight + 15);
 				}
 				foreach (var note in monthOutputData.Notes.Where(x => x.FinishDay.Date == day.Date.Date))
 				{
@@ -292,8 +292,8 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 				var middleNote = monthOutputData.Notes.FirstOrDefault(x => x.StartDay.Date < day.Date.Date && x.FinishDay.Date >= day.Date.Date);
 				if (middleNote != null)
 				{
-					shape.Top += (middleNote.Height + 15);
-					shape.Height -= (middleNote.Height + 15);
+					shape.Top += (middleNote.StaticHeight + 15);
+					shape.Height -= (middleNote.StaticHeight + 15);
 				}
 
 				Shape imageShape = null;

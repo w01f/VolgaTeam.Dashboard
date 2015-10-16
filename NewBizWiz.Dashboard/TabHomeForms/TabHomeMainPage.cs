@@ -85,6 +85,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SlideTargetCustomers.SlideChanged += OnSlideChanged;
 			SlideSimpleSummary = new SlideSimpleSummaryControl();
 			SlideSimpleSummary.SlideChanged += OnSlideChanged;
+			Core.Dashboard.SettingsManager.Instance.ThemeManager.ThemesChanged += (o, e) => UpdatePageAccordingToggledButton();
 
 			AppManager.Instance.SetClickEventHandler(this);
 		}
@@ -102,6 +103,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					_instance = new TabHomeMainPage();
 				return _instance;
 			}
+		}
+
+		private void UpdatePageAccordingToggledButton()
+		{
+			UpdatePageAccordingToggledButton(_selectedSlide);
 		}
 
 		public void UpdatePageAccordingToggledButton(SlideType selectedSlide)

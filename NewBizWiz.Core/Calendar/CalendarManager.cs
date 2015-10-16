@@ -954,14 +954,6 @@ namespace NewBizWiz.Core.Calendar
 		protected ITextItem _note;
 		protected Color _backgroundColor;
 
-		protected CalendarNote(Calendar parent)
-		{
-			Parent = parent;
-			_backgroundColor = DefaultBackgroundColor;
-
-			Height = 25f;
-		}
-
 		public Calendar Parent { get; private set; }
 		public DateTime StartDay { get; set; }
 		public DateTime FinishDay { get; set; }
@@ -998,11 +990,21 @@ namespace NewBizWiz.Core.Calendar
 		#region Output Data
 
 		public float Top { get; set; }
+		public float Bottom { get; set; }
 		public float Left { get; set; }
 		public float Right { get; set; }
-		public float Height { get; set; }
+		public float StaticHeight { get; set; }
+		public float StaticWidth { get; set; }
 
 		#endregion
+
+		protected CalendarNote(Calendar parent)
+		{
+			Parent = parent;
+			_backgroundColor = DefaultBackgroundColor;
+
+			StaticWidth = StaticHeight = 25f;
+		}
 
 		public virtual string Serialize()
 		{

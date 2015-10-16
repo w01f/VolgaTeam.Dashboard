@@ -49,6 +49,10 @@ namespace NewBizWiz.Core.Common
 						}
 					}
 				}
+				else if (Paths.Any(p => p.Contains("%SpecialApps%")))
+				{
+					process.StartInfo.FileName = Paths.First().Replace("%SpecialApps%",ResourceManager.Instance.SpecialAppsFolder.LocalPath);
+				}
 				else
 					process.StartInfo.FileName = Paths.FirstOrDefault(p => File.Exists(p));
 				process.Start();

@@ -34,10 +34,10 @@ namespace NewBizWiz.CommonGUI.Slides
 		{
 			_slideManager = slideManager;
 			xtraTabControlSlides.TabPages.Clear();
-			foreach (var group in _slideManager.Slides.Where(s => s.SizeWidth == SettingsManager.Instance.SizeWidth && s.SizeHeght == SettingsManager.Instance.SizeHeght).Select(s => s.Group).Distinct())
+			foreach (var group in _slideManager.Slides.Where(s => s.SizeWidth == PowerPointManager.Instance.SlideSettings.SizeWidth && s.SizeHeght == PowerPointManager.Instance.SlideSettings.SizeHeght).Select(s => s.Group).Distinct())
 			{
 				var groupPage = new SlideGroupControl();
-				groupPage.LoadSlides(group, _slideManager.Slides.Where(s => s.Group.Equals(group) && s.SizeWidth == SettingsManager.Instance.SizeWidth && s.SizeHeght == SettingsManager.Instance.SizeHeght));
+				groupPage.LoadSlides(group, _slideManager.Slides.Where(s => s.Group.Equals(group) && s.SizeWidth == PowerPointManager.Instance.SlideSettings.SizeWidth && s.SizeHeght == PowerPointManager.Instance.SlideSettings.SizeHeght));
 				groupPage.SlideChanged += (o, e) =>
 				{
 					var selectedGroup = o as SlideGroupControl;

@@ -11,6 +11,7 @@ using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
+using NewBizWiz.CommonGUI.SlideSettingsEditors;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
@@ -24,6 +25,7 @@ using NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary;
+using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 
 namespace NewBizWiz.MediaSchedule.Controls
 {
@@ -64,18 +66,21 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 			await Core.MediaSchedule.ResourceManager.Instance.Load();
 
+			PowerPointManager.Instance.Init(RegularMediaSchedulePowerPointHelper.Instance);
+
 			MasterWizardManager.Instance.Load();
-			
+
 			MediaMetaData.Instance.SettingsManager.InitThemeHelper(BusinessObjects.Instance.ThemeManager);
 			MediaMetaData.Instance.SettingsManager.LoadSettings();
-			
+
 			Core.Common.ListManager.Instance.Init();
 			MediaMetaData.Instance.ListManager.Load();
 			Core.OnlineSchedule.ListManager.Instance.Load(Core.Common.ResourceManager.Instance.OnlineListsFile);
 
 			await BusinessObjects.Instance.Init();
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => UpdateOutputButtonsAccordingThemeStatus();
 		}
-	
+
 		public void InitForm()
 		{
 			Utilities.Instance.Title = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
@@ -86,7 +91,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 			InitControls();
 
-			UpdateOutputButtonsAccordingThemeStatus();
+			ConfigureThemeButtons();
 
 			ConfigureSpecialButtons();
 
@@ -99,6 +104,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void InitControls()
 		{
+			SlideSettingsButton.Click += OnSlideSettingsClick;
+
 			#region Schedule Settings
 			HomeControl = new HomeControl();
 			HomeHelp.Click += HomeControl.Help_Click;
@@ -397,22 +404,19 @@ namespace NewBizWiz.MediaSchedule.Controls
 				}
 			}
 			Ribbon.Items.AddRange(tabPages.ToArray());
+			Ribbon.Items.Add(SlideSettingsButton);
 		}
 
 		public void SaveSchedule(RegularSchedule localSchedule, bool nameChanged, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
 		{
-			using (var form = new FormProgress())
-			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
-				form.TopMost = true;
-				var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, calendarTypeChanged, sender));
-				form.Show();
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
-			
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nSaving settings...");
+			var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, calendarTypeChanged, sender));
+			FormProgress.ShowProgress();
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
+
 			if (nameChanged)
 			{
 				var options = new Dictionary<string, object>();
@@ -452,90 +456,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 			TabDigitalPackage.Enabled = enable;
 		}
 
-		public void UpdateOutputButtonsAccordingThemeStatus()
+		public void ConfigureThemeButtons()
 		{
-			if (!BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any())
-			{
-				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
-				var themesDisabledHandler = new Action(() => BusinessObjects.Instance.HelpManager.OpenHelpLink("NoTheme"));
-
-				WeeklySchedulePowerPoint.Visible = false;
-				(WeeklySchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(WeeklyScheduleEmail.ContainerControl as RibbonBar).Visible = false;
-				(WeeklySchedulePreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(WeeklyScheduleTheme, selectorToolTip);
-				WeeklyScheduleTheme.Click += (o, e) => themesDisabledHandler();
-
-				MonthlySchedulePowerPoint.Visible = false;
-				(MonthlySchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(MonthlyScheduleEmail.ContainerControl as RibbonBar).Visible = false;
-				(MonthlySchedulePreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(MonthlyScheduleTheme, selectorToolTip);
-				MonthlyScheduleTheme.Click += (o, e) => themesDisabledHandler();
-
-				DigitalProductPowerPoint.Visible = false;
-				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = false;
-				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
-				DigitalProductTheme.Click += (o, e) => themesDisabledHandler();
-
-				DigitalPackagePowerPoint.Visible = false;
-				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = false;
-				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
-				DigitalPackageTheme.Click += (o, e) => themesDisabledHandler();
-
-				SummaryLightPowerPoint.Visible = false;
-				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = false;
-				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
-				SummaryLightTheme.Click += (o, e) => themesDisabledHandler();
-
-				SummaryFullPowerPoint.Visible = false;
-				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = false;
-				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
-				SummaryFullTheme.Click += (o, e) => themesDisabledHandler();
-
-				StrategyPowerPoint.Visible = false;
-				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(StrategyEmail.ContainerControl as RibbonBar).Visible = false;
-				(StrategyPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
-				StrategyTheme.Click += (o, e) => themesDisabledHandler();
-
-				SnapshotPowerPoint.Visible = false;
-				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SnapshotEmail.ContainerControl as RibbonBar).Visible = false;
-				(SnapshotPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
-				SnapshotTheme.Click += (o, e) => themesDisabledHandler();
-
-				OptionsPowerPoint.Visible = false;
-				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(OptionsEmail.ContainerControl as RibbonBar).Visible = false;
-				(OptionsPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
-				OptionsTheme.Click += (o, e) => themesDisabledHandler();
-			}
-			else
-			{
-				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
-				Supertip.SetSuperTooltip(WeeklyScheduleTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(MonthlyScheduleTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
-			}
-
+			UpdateOutputButtonsAccordingThemeStatus();
 			Ribbon.SelectedRibbonTabChanged += (o, e) =>
 			{
 				(WeeklySchedulePowerPoint.ContainerControl as RibbonBar).Text = (WeeklyScheduleTheme.Tag as Theme).Name;
@@ -547,7 +470,177 @@ namespace NewBizWiz.MediaSchedule.Controls
 				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = (StrategyTheme.Tag as Theme).Name;
 				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = (SnapshotTheme.Tag as Theme).Name;
 				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = (OptionsTheme.Tag as Theme).Name;
+
+				WeeklyScheduleThemeBar.RecalcLayout();
+				WeeklySchedulePanel.PerformLayout();
+
+				MonthlyScheduleThemeBar.RecalcLayout();
+				MonthlySchedulePanel.PerformLayout();
+
+				DigitalProductThemeBar.RecalcLayout();
+				DigitalProductPanel.PerformLayout();
+
+				DigitalPackageThemeBar.RecalcLayout();
+				DigitalPackagePanel.PerformLayout();
+
+				SummaryLightThemeBar.RecalcLayout();
+				SummaryLightPanel.PerformLayout();
+
+				SummaryFullThemeBar.RecalcLayout();
+				SummaryFullPanel.PerformLayout();
+
+				StrategyThemeBar.RecalcLayout();
+				StrategyPanel.PerformLayout();
+
+				SnapshotThemeBar.RecalcLayout();
+				SnapshotPanel.PerformLayout();
+
+				OptionsThemeBar.RecalcLayout();
+				OptionsPanel.PerformLayout();
 			};
+		}
+
+		private void UpdateOutputButtonsAccordingThemeStatus()
+		{
+			if (!BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any())
+			{
+				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
+
+				WeeklySchedulePowerPoint.Visible = false;
+				(WeeklySchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(WeeklyScheduleEmail.ContainerControl as RibbonBar).Visible = false;
+				(WeeklySchedulePreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(WeeklyScheduleTheme, selectorToolTip);
+				WeeklyScheduleTheme.Click -= OnThemeClick;
+				WeeklyScheduleTheme.Click += OnThemeClick;
+
+				MonthlySchedulePowerPoint.Visible = false;
+				(MonthlySchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(MonthlyScheduleEmail.ContainerControl as RibbonBar).Visible = false;
+				(MonthlySchedulePreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(MonthlyScheduleTheme, selectorToolTip);
+				MonthlyScheduleTheme.Click -= OnThemeClick;
+				MonthlyScheduleTheme.Click += OnThemeClick;
+
+				DigitalProductPowerPoint.Visible = false;
+				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = false;
+				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
+				DigitalProductTheme.Click -= OnThemeClick;
+				DigitalProductTheme.Click += OnThemeClick;
+
+				DigitalPackagePowerPoint.Visible = false;
+				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = false;
+				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+				DigitalPackageTheme.Click -= OnThemeClick;
+				DigitalPackageTheme.Click += OnThemeClick;
+
+				SummaryLightPowerPoint.Visible = false;
+				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = false;
+				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
+				SummaryLightTheme.Click -= OnThemeClick;
+				SummaryLightTheme.Click += OnThemeClick;
+
+				SummaryFullPowerPoint.Visible = false;
+				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = false;
+				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
+				SummaryFullTheme.Click -= OnThemeClick;
+				SummaryFullTheme.Click += OnThemeClick;
+
+				StrategyPowerPoint.Visible = false;
+				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(StrategyEmail.ContainerControl as RibbonBar).Visible = false;
+				(StrategyPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
+				StrategyTheme.Click -= OnThemeClick;
+				StrategyTheme.Click += OnThemeClick;
+
+				SnapshotPowerPoint.Visible = false;
+				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SnapshotEmail.ContainerControl as RibbonBar).Visible = false;
+				(SnapshotPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				SnapshotTheme.Click -= OnThemeClick;
+				SnapshotTheme.Click += OnThemeClick;
+
+				OptionsPowerPoint.Visible = false;
+				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(OptionsEmail.ContainerControl as RibbonBar).Visible = false;
+				(OptionsPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
+				OptionsTheme.Click -= OnThemeClick;
+				OptionsTheme.Click += OnThemeClick;
+			}
+			else
+			{
+				WeeklySchedulePowerPoint.Visible = true;
+				(WeeklyScheduleEmail.ContainerControl as RibbonBar).Visible = true;
+				(WeeklySchedulePreview.ContainerControl as RibbonBar).Visible = true;
+				WeeklyScheduleTheme.Click -= OnThemeClick;
+
+				MonthlySchedulePowerPoint.Visible = true;
+				(MonthlyScheduleEmail.ContainerControl as RibbonBar).Visible = true;
+				(MonthlySchedulePreview.ContainerControl as RibbonBar).Visible = true;
+				MonthlyScheduleTheme.Click -= OnThemeClick;
+
+				DigitalProductPowerPoint.Visible = true;
+				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = true;
+				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = true;
+				DigitalProductTheme.Click -= OnThemeClick;
+
+				DigitalPackagePowerPoint.Visible = true;
+				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = true;
+				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = true;
+				DigitalPackageTheme.Click -= OnThemeClick;
+
+				SummaryLightPowerPoint.Visible = true;
+				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = true;
+				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = true;
+				SummaryLightTheme.Click -= OnThemeClick;
+
+				SummaryFullPowerPoint.Visible = true;
+				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = true;
+				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = true;
+				SummaryFullTheme.Click -= OnThemeClick;
+
+				StrategyPowerPoint.Visible = true;
+				(StrategyEmail.ContainerControl as RibbonBar).Visible = true;
+				(StrategyPreview.ContainerControl as RibbonBar).Visible = true;
+				StrategyTheme.Click -= OnThemeClick;
+
+				SnapshotPowerPoint.Visible = true;
+				(SnapshotEmail.ContainerControl as RibbonBar).Visible = true;
+				(SnapshotPreview.ContainerControl as RibbonBar).Visible = true;
+				SnapshotTheme.Click -= OnThemeClick;
+
+				OptionsPowerPoint.Visible = true;
+				(OptionsEmail.ContainerControl as RibbonBar).Visible = true;
+				(OptionsPreview.ContainerControl as RibbonBar).Visible = true;
+				OptionsTheme.Click -= OnThemeClick;
+
+				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
+				Supertip.SetSuperTooltip(WeeklyScheduleTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(MonthlyScheduleTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
+			}
+		}
+
+		private void OnThemeClick(object sender, EventArgs args)
+		{
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("NoTheme");
 		}
 
 		private void ConfigureSpecialButtons()
@@ -626,13 +719,26 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public bool CheckPowerPointRunning()
 		{
-			if (RegularMediaSchedulePowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (RegularMediaSchedulePowerPointHelper.Instance.IsLinkedWithApplication)
+			{
+				OnlineSchedulePowerPointHelper.Instance.Connect(false);
+				return true;
+			}
 			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
 			return false;
 		}
 
+		private void OnSlideSettingsClick(object sender, EventArgs e)
+		{
+			using (var form = new FormEditSlideSettings())
+			{
+				form.ShowDialog(FormMain);
+			}
+		}
+
 		#region Command Controls
+		public ButtonItem SlideSettingsButton { get; set; }
 
 		#region Home
 		public RibbonBar HomeSpecialButtons { get; set; }
@@ -653,6 +759,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Weekly Schedule
+		public RibbonPanel WeeklySchedulePanel { get; set; }
+		public RibbonBar WeeklyScheduleThemeBar { get; set; }
 		public RibbonBar WeeklyScheduleSpecialButtons { get; set; }
 		public ButtonItem WeeklyScheduleProgramAdd { get; set; }
 		public ButtonItem WeeklyScheduleProgramDelete { get; set; }
@@ -669,6 +777,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Monthly Schedule
+		public RibbonPanel MonthlySchedulePanel { get; set; }
+		public RibbonBar MonthlyScheduleThemeBar { get; set; }
 		public RibbonBar MonthlyScheduleSpecialButtons { get; set; }
 		public ButtonItem MonthlyScheduleProgramAdd { get; set; }
 		public ButtonItem MonthlyScheduleProgramDelete { get; set; }
@@ -685,6 +795,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Digital Product
+		public RibbonPanel DigitalProductPanel { get; set; }
+		public RibbonBar DigitalProductThemeBar { get; set; }
 		public RibbonBar DigitalProductSpecialButtons { get; set; }
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
@@ -697,6 +809,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Digital Package
+		public RibbonPanel DigitalPackagePanel { get; set; }
+		public RibbonBar DigitalPackageThemeBar { get; set; }
 		public RibbonBar DigitalPackageSpecialButtons { get; set; }
 		public ButtonItem DigitalPackageHelp { get; set; }
 		public ButtonItem DigitalPackageSave { get; set; }
@@ -739,6 +853,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Summary Light
+		public RibbonPanel SummaryLightPanel { get; set; }
+		public RibbonBar SummaryLightThemeBar { get; set; }
 		public RibbonBar SummaryLightSpecialButtons { get; set; }
 		public ButtonItem SummaryLightHelp { get; set; }
 		public ButtonItem SummaryLightSave { get; set; }
@@ -753,6 +869,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Summary Full
+		public RibbonPanel SummaryFullPanel { get; set; }
+		public RibbonBar SummaryFullThemeBar { get; set; }
 		public RibbonBar SummaryFullSpecialButtons { get; set; }
 		public ButtonItem SummaryFullHelp { get; set; }
 		public ButtonItem SummaryFullSave { get; set; }
@@ -767,6 +885,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Strategy
+		public RibbonPanel StrategyPanel { get; set; }
+		public RibbonBar StrategyThemeBar { get; set; }
 		public RibbonBar StrategySpecialButtons { get; set; }
 		public ButtonItem StrategyHelp { get; set; }
 		public ButtonItem StrategySave { get; set; }
@@ -781,6 +901,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Snapshot
+		public RibbonPanel SnapshotPanel { get; set; }
+		public RibbonBar SnapshotThemeBar { get; set; }
 		public RibbonBar SnapshotSpecialButtons { get; set; }
 		public ButtonItem SnapshotNew { get; set; }
 		public ButtonItem SnapshotProgramAdd { get; set; }
@@ -798,6 +920,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Options
+		public RibbonPanel OptionsPanel { get; set; }
+		public RibbonBar OptionsThemeBar { get; set; }
 		public RibbonBar OptionsSpecialButtons { get; set; }
 		public ButtonItem OptionsNew { get; set; }
 		public ButtonItem OptionsProgramAdd { get; set; }

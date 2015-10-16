@@ -47,7 +47,7 @@ namespace NewBizWiz.CommonGUI.Preview
 		{
 			if (_powerPointHelper.IsLinkedWithApplication) return true;
 			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
-				_showFloater(() => Utilities.Instance.RunPowerPointLoader());
+				_showFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
 			return false;
 		}
 
@@ -78,18 +78,15 @@ namespace NewBizWiz.CommonGUI.Preview
 			{
 				if (_trackOutput != null)
 					_trackOutput();
-				using (var formProgress = new FormProgress())
+
+				FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+				FormProgress.ShowProgress();
+				_showFloater(() =>
 				{
-					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-					formProgress.TopMost = true;
-					formProgress.Show();
-					_showFloater(() =>
-					{
-						foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
-							_powerPointHelper.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
-						formProgress.Close();
-					});
-				}
+					foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
+						_powerPointHelper.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
+					FormProgress.CloseProgress();
+				});
 			}
 			else
 				CheckPowerPointRunning();

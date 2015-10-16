@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 
@@ -58,9 +59,51 @@ namespace NewBizWiz.Core.Common
 		public string Name { get; private set; }
 		public bool Hide { get; private set; }
 
-		private string GetBasicTemplateFile(string[] fileName)
+		public MasterWizard(StorageDirectory sourceDirectory)
 		{
-			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SettingsManager.Instance.SlideFolder, "Basic Slides" }).Merge(fileName));
+			_sourceFolder = sourceDirectory;
+			Name = _sourceFolder.Name;
+		}
+
+		public override string ToString()
+		{
+			return Name;
+		}
+
+		public void Init()
+		{
+			LoadSettings();
+		}
+
+		public bool HasSlideConfiguration(SlideSettings slideSettings)
+		{
+			return new StorageDirectory(_sourceFolder.RelativePathParts.Merge(slideSettings.SlideFolder)).ExistsLocal();
+		}
+
+		private void LoadSettings()
+		{
+			Hide = false;
+			var settingsFile = new StorageFile(_sourceFolder.RelativePathParts.Merge("Settings.xml"));
+			if (!settingsFile.ExistsLocal()) return;
+			var document = new XmlDocument();
+			try
+			{
+				document.Load(settingsFile.LocalPath);
+				var node = document.SelectSingleNode(@"/settings/hide");
+				if (node != null)
+				{
+					bool tempBool = false;
+					if (bool.TryParse(node.InnerText, out tempBool))
+						Hide = tempBool;
+				}
+			}
+			catch { }
+		}
+
+		#region Slide Template Getters
+		private string GetBasicTemplateFile(IEnumerable<string> fileName)
+		{
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Basic Slides" }).Merge(fileName));
 			return file.LocalPath;
 		}
 
@@ -109,9 +152,9 @@ namespace NewBizWiz.Core.Common
 			return GetBasicTemplateFile(new[] { "closing summary", "tables", "icons", fileName });
 		}
 
-		private string GetOnlineTemplateFile(string[] fileName)
+		private string GetOnlineTemplateFile(IEnumerable<string> fileName)
 		{
-			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SettingsManager.Instance.SlideFolder, "Online Slides" }).Merge(fileName));
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Online Slides" }).Merge(fileName));
 			return file.LocalPath;
 		}
 
@@ -166,36 +209,6 @@ namespace NewBizWiz.Core.Common
 		{
 			return GetOnlineTemplateFile(new[] { "summary", "digital_summary.pptx" });
 		}
-
-		public MasterWizard(StorageDirectory sourceDirectory)
-		{
-			_sourceFolder = sourceDirectory;
-			Name = _sourceFolder.Name;
-		}
-
-		public void Init()
-		{
-			LoadSettings();
-		}
-
-		private void LoadSettings()
-		{
-			Hide = false;
-			var settingsFile = new StorageFile(_sourceFolder.RelativePathParts.Merge("Settings.xml"));
-			if (!settingsFile.ExistsLocal()) return;
-			var document = new XmlDocument();
-			try
-			{
-				document.Load(settingsFile.LocalPath);
-				var node = document.SelectSingleNode(@"/settings/hide");
-				if (node != null)
-				{
-					bool tempBool = false;
-					if (bool.TryParse(node.InnerText, out tempBool))
-						Hide = tempBool;
-				}
-			}
-			catch { }
-		}
+		#endregion
 	}
 }

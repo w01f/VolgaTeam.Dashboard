@@ -41,6 +41,9 @@ namespace NewBizWiz.Core.Common
 		public bool Connected { get; private set; }
 		public string Version { get; private set; }
 
+		public event EventHandler<FileProcessingProgressEventArgs> Downloading;
+		public event EventHandler<FileProcessingProgressEventArgs> Extracting;
+
 		public static FileStorageManager Instance
 		{
 			get { return _instance; }
@@ -149,6 +152,18 @@ namespace NewBizWiz.Core.Common
 			}
 			Version = File.ReadAllText(versionFile.LocalPath);
 		}
+
+		public void ShowDownloadProgress(FileProcessingProgressEventArgs eventArgs)
+		{
+			if (Downloading != null)
+				Downloading(this, eventArgs);
+		}
+
+		public void ShowExtractionProgress(FileProcessingProgressEventArgs eventArgs)
+		{
+			if (Extracting != null)
+				Extracting(this, eventArgs);
+		}
 	}
 
 	public abstract class StorageItem
@@ -168,6 +183,11 @@ namespace NewBizWiz.Core.Common
 		public string Name
 		{
 			get { return Path.GetFileName(LocalPath); }
+		}
+
+		public string NameOnly
+		{
+			get { return Path.GetFileNameWithoutExtension(LocalPath); }
 		}
 
 		protected StorageItem(string[] relativePathParts)
@@ -302,6 +322,11 @@ namespace NewBizWiz.Core.Common
 			if (FileStorageManager.Instance.DataState == DataActualityState.Updated) return;
 			await _archiveFile.Download();
 		}
+
+		protected async override Task<bool> ExistsRemote()
+		{
+			return await _archiveFile.Exists(true);
+		}
 	}
 
 	public class StorageFile : StorageItem
@@ -373,13 +398,18 @@ namespace NewBizWiz.Core.Common
 					{
 						using (var localStream = File.Create(LocalPath))
 						{
-							var buffer = new byte[remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 1024];
+							var contentLenght = remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 0;
+							var buffer = new byte[1024];
 							int bytesRead;
+							int alreadyRead = 0;
 							do
 							{
 								bytesRead = remoteStream.Read(buffer, 0, buffer.Length);
+								alreadyRead += bytesRead;
+								FileStorageManager.Instance.ShowDownloadProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
 								localStream.Write(buffer, 0, bytesRead);
-							} while (bytesRead > 0);
+							}
+							while (bytesRead > 0);
 							localStream.Close();
 						}
 						remoteStream.Close();
@@ -408,16 +438,40 @@ namespace NewBizWiz.Core.Common
 			await base.Download();
 			if (_isOutdated)
 			{
+				var contentLenght = new FileInfo(LocalPath).Length;
+				Int64 alreadyRead = 0;
 				using (Stream stream = File.OpenRead(LocalPath))
 				{
 					var reader = ReaderFactory.Open(stream);
 					while (reader.MoveToNextEntry())
 					{
-						if (!reader.Entry.IsDirectory)
-							reader.WriteEntryToDirectory(GetParentFolder().LocalPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+						if (reader.Entry.IsDirectory) continue;
+						alreadyRead += reader.Entry.CompressedSize;
+						reader.WriteEntryToDirectory(GetParentFolder().LocalPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+						FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
 					}
+					FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, 100, 100));
 				}
 			}
+		}
+	}
+
+	public class FileProcessingProgressEventArgs : EventArgs
+	{
+		public string FileName { get; private set; }
+		public decimal TotalSize { get; private set; }
+		public decimal DownloadedSize { get; private set; }
+
+		public int ProgressPercent
+		{
+			get { return (Int32)((DownloadedSize / TotalSize) * 100); }
+		}
+
+		public FileProcessingProgressEventArgs(string fileName, decimal totalSize, decimal downloadedSize)
+		{
+			FileName = fileName;
+			TotalSize = totalSize;
+			DownloadedSize = downloadedSize;
 		}
 	}
 }

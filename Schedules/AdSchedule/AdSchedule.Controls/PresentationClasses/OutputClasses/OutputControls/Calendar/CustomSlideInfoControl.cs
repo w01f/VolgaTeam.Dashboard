@@ -52,6 +52,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			#endregion
 
 			#endregion
+
+			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) => InitColorControls();
 		}
 
 		public string MonthTitle { get; set; }
@@ -124,8 +126,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			#endregion
 
 			#region Style
-			outputColorSelector.InitData(BusinessWrapper.Instance.OutputManager.CalendarColors, OutputData.SlideColor);
-			outputColorSelector.ColorChanged += OnColorChanged;
+			InitColorControls();
 			checkEditStyleBigDate.Enabled = ListManager.Instance.DefaultCalendarViewSettings.EnableBigDate;
 			checkEditStyleBigDate.Checked = OutputData.ShowBigDate && checkEditStyleBigDate.Enabled;
 			checkEditThemeColorApplyForAll.Checked = OutputData.ApplyForAllThemeColor;
@@ -197,6 +198,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			#endregion
 
 			SettingsNotSaved = false;
+		}
+
+		private void InitColorControls()
+		{
+			if (_month == null) return;
+			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.CalendarColors, OutputData.SlideColor);
+			outputColorSelector.ColorChanged += OnColorChanged;
 		}
 
 		private void propertiesControl_PropertiesChanged(object sender, EventArgs e)

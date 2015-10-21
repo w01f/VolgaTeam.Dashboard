@@ -30,11 +30,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Learn more about the Basic Overview Slide", null, null, eTooltipColor.Gray);
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.BasicOverviewThemeBar.RecalcLayout();
+				Controller.Instance.BasicOverviewPanel.PerformLayout();
+			};
 		}
 
 		private void AssignCloseActiveEditorsonOutSideClick(Control control)
@@ -67,19 +73,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void UpdateOutput(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.BasicOverviewDigitalLegend.Image = Controller.Instance.BasicOverviewDigitalLegend.Enabled && !LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.BasicOverviewDigitalLegend, new SuperTooltipInfo("Digital Products", "",
 				Controller.Instance.BasicOverviewDigitalLegend.Enabled && LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled ?
 				"Digital Products are Enabled for this slide" :
 				"Digital Products are Disabled for this slide"
 				, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.BasicOverviewTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview), (t =>
-			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintBasicOverview, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			if (!quickLoad)
 			{
 				labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
@@ -137,6 +138,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			xtraTabControlPublications.TabPages.OfType<BasicOverviewSummaryControl>().First().Save();
 		}
 
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.BasicOverviewTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview), Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintBasicOverview), (t =>
+			{
+				Core.AdSchedule.SettingsManager.Instance.SetSelectedTheme(SlideType.PrintBasicOverview, t.Name);
+				Core.AdSchedule.SettingsManager.Instance.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+		}
+
 		private void xtraTabControlPublications_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			var page = e.Page as BasicOverviewSummaryControl;
@@ -168,7 +179,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void OpenHelp()
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("overview");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("overview");
 		}
 		#endregion
 
@@ -201,7 +212,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private void TrackOutput(IEnumerable<PublicationBasicOverviewControl> publications)
 		{
 			foreach (var publication in publications)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
+				BusinessObjects.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
 		}
 
 		public void PrintOutput()
@@ -233,18 +244,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
 			TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>());
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					foreach (var product in selectedProducts)
-						product.Output();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				foreach (var product in selectedProducts)
+					product.Output();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public void Email()
@@ -276,28 +283,24 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			foreach (var productControl in selectedProducts)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				foreach (var productControl in selectedProducts)
+				var previewGroup = productControl.GetPreviewGroup();
+				if (productControl is PublicationBasicOverviewControl)
+					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
+				else if (productControl is BasicOverviewSummaryControl)
 				{
-					var previewGroup = productControl.GetPreviewGroup();
-					if (productControl is PublicationBasicOverviewControl)
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
-					else if (productControl is BasicOverviewSummaryControl)
-					{
-						var summaryControl = productControl as BasicOverviewSummaryControl;
-						summaryControl.PopulateReplacementsList();
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
-					}
-					previewGroups.Add(previewGroup);
+					var summaryControl = productControl as BasicOverviewSummaryControl;
+					summaryControl.PopulateReplacementsList();
+					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
 				}
-				formProgress.Close();
+				previewGroups.Add(previewGroup);
 			}
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Basic Overview";
 				formEmail.LoadGroups(previewGroups);
@@ -339,30 +342,26 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			foreach (var productControl in selectedProducts)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				foreach (var productControl in selectedProducts)
+				var previewGroup = productControl.GetPreviewGroup();
+				if (productControl is PublicationBasicOverviewControl)
+					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
+				else if (productControl is BasicOverviewSummaryControl)
 				{
-					var previewGroup = productControl.GetPreviewGroup();
-					if (productControl is PublicationBasicOverviewControl)
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
-					else if (productControl is BasicOverviewSummaryControl)
-					{
-						var summaryControl = productControl as BasicOverviewSummaryControl;
-						summaryControl.PopulateReplacementsList();
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
-					}
-					previewGroups.Add(previewGroup);
+					var summaryControl = productControl as BasicOverviewSummaryControl;
+					summaryControl.PopulateReplacementsList();
+					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
 				}
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
+				previewGroups.Add(previewGroup);
 			}
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			var trackAction = new Action(() => TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>()));
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
 			{
 				formPreview.Text = "Preview Basic Overview";
 				formPreview.LoadGroups(previewGroups);
@@ -405,38 +404,34 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
 			TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>());
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
+				FormProgress.ShowProgress();
+				var previewGroups = new List<PreviewGroup>();
+				previewGroups.AddRange(selectedProducts.Select(productControl =>
 				{
-					formProgress.Show();
-					var previewGroups = new List<PreviewGroup>();
-					previewGroups.AddRange(selectedProducts.Select(productControl =>
+					var previewGroup = productControl.GetPreviewGroup();
+					if (productControl is PublicationBasicOverviewControl)
+						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
+					else if (productControl is BasicOverviewSummaryControl)
 					{
-						var previewGroup = productControl.GetPreviewGroup();
-						if (productControl is PublicationBasicOverviewControl)
-							AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
-						else if (productControl is BasicOverviewSummaryControl)
-						{
-							var summaryControl = productControl as BasicOverviewSummaryControl;
-							summaryControl.PopulateReplacementsList();
-							AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
-						}
-						return previewGroup;
-					}));
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+						var summaryControl = productControl as BasicOverviewSummaryControl;
+						summaryControl.PopulateReplacementsList();
+						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
+					}
+					return previewGroup;
+				}));
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 		#endregion
 	}

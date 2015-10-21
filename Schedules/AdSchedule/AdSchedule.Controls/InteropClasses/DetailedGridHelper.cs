@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -16,7 +16,6 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 	{
 		public void AppendDetailedGridGridBased(PublicationDetailedGridControl[] outputControls, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.DetailedGridGridBasedTemlatesFolderPath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -28,7 +27,10 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						var rowsCount = slidesCount > 0 ? outputControl.Grid[0].GetLength(0) : 0;
 						for (int k = 0; k < slidesCount; k++)
 						{
-							var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.DetailedGridGridBasedTemlatesFolderPath, string.Format(OutputManager.DetailedGridGridBasedSlideTemplate, new object[] { Controller.Instance.Grids.DetailedGrid.SelectedColumnsCount, (Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? "adnotes" : "no_adnotes"), rowsCount }));
+							var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetDetailedGridFile(
+								Controller.Instance.Grids.DetailedGrid.SelectedColumnsCount, 
+								rowsCount ,
+								Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader);
 							var currentSlideRowsCount = outputControl.Grid[k].GetLength(0);
 							if (!File.Exists(presentationTemplatePath)) continue;
 							var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
@@ -114,7 +116,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 							}
 							var selectedTheme = outputControl.SelectedTheme;
 							if (selectedTheme != null)
-								presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+								presentation.ApplyTheme(selectedTheme.GetThemePath());
 							AppendSlide(presentation, -1, destinationPresentation);
 							presentation.Close();
 						}

@@ -28,16 +28,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public PrintSummaryFull()
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					LoadData(e.QuickSave);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.SummaryFullThemeBar.RecalcLayout();
+				Controller.Instance.SummaryFullPanel.PerformLayout();
+			};
 		}
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabSummaryFull.Text, LocalSchedule.BusinessName, null));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabSummaryFull.Text, LocalSchedule.BusinessName, null));
 		}
 
 		public override ISummarySchedule Schedule
@@ -57,7 +63,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		public override CheckEdit TableOutputToggle
@@ -67,17 +73,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public override void LoadData(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			checkEditBusinessName.Text = String.Format("{0}", LocalSchedule.BusinessName);
 			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
-			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2), BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2), (t =>
-			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.Summary2, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			base.LoadData(quickLoad);
 		}
 
@@ -89,6 +90,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary2), Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.Summary2), (t =>
+			{
+				Core.AdSchedule.SettingsManager.Instance.SetSelectedTheme(SlideType.Summary2, t.Name);
+				Core.AdSchedule.SettingsManager.Instance.SaveSettings();
+				SettingsNotSaved = true;
+			}));
 		}
 
 		protected override void InitItem(SummaryCustomItemControl item)
@@ -162,7 +173,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.Summary2))); }
 		}
 
 		public override void OpenHelp()
@@ -175,17 +186,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					AdSchedulePowerPointHelper.Instance.AppendSummary(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				AdSchedulePowerPointHelper.Instance.AppendSummary(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void OutputPdf()
@@ -193,24 +200,20 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					AdSchedulePowerPointHelper.Instance.PrepareSummaryPdf(pdfFileName, this);
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				AdSchedulePowerPointHelper.Instance.PrepareSummaryPdf(pdfFileName, this);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override bool CheckPowerPointRunning()
@@ -225,7 +228,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		protected override void ShowEmail(string tempFileName)
 		{
-			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Summary";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -241,7 +244,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		protected override void ShowPreview(string tempFileName)
 		{
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview Summary";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

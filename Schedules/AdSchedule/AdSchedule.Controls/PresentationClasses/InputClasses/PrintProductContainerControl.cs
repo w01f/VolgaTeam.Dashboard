@@ -36,7 +36,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			xtraTabControlPublications.SelectedPageChanged += xtraTabControlPublications_SelectedPageChanged;
 			_tabDragDropHelper = new XtraTabDragDropHelper<PrintProductControl>(xtraTabControlPublications);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -98,7 +98,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void LoadSchedule(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
 				LocalSchedule.BusinessName,
 				LocalSchedule.FlightDates,
@@ -1131,7 +1131,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void buttonItemPrintScheduleHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("schedules");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("schedules");
 		}
 
 		public void buttonItemPrintScheduleSave_Click(object sender, EventArgs e)

@@ -55,7 +55,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (nameChanged)
 				_selectedOutput.LocalSchedule.Name = newName;
 			_selectedOutput.SettingsNotSaved = false;
-			_selectedOutput.LocalSchedule.ViewSettings.SaveDefaultViewSettings(SettingsManager.Instance.ViewSettingsPath);
+			_selectedOutput.LocalSchedule.ViewSettings.SaveDefaultViewSettings(Core.AdSchedule.ResourceManager.Instance.ViewSettingsFile.LocalPath);
 			Controller.Instance.SaveSchedule(_selectedOutput.LocalSchedule, nameChanged, false, this);
 			_selectedOutput.UpdateOutput(true);
 		}

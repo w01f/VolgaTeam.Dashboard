@@ -357,7 +357,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 						note.Top = shape.Top - ((shape.Width - shape.Height) / 2) + 5;
 
 						shape.Left -= (note.StaticWidth + 10);
-						//shape.Height -= (note.StaticWidth + 10);
 					}
 					else
 					{
@@ -387,7 +386,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 					if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
 					{
 						shape.Left -= (middleNote.StaticWidth + 10);
-						//shape.Height -= (middleNote.StaticWidth + 10);
 					}
 					else
 					{
@@ -404,7 +402,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 				{
 					if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
 					{
-						//var widthOffset = 5;//((!String.IsNullOrEmpty(dayText) || hasNote) ? 0 : ((shape.Width - dayLogo.XtraTinyImage.Width) / 2)) + 5;
 						imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + shape.Width - ((shape.Width - shape.Height) / 2) - dayLogo.XtraTinyImage.Width + ((dayLogo.XtraTinyImage.Width - dayLogo.XtraTinyImage.Height) / 2), shape.Top + (shape.Height - dayLogo.XtraTinyImage.Height) / 2, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
 						imageShape.Rotation = 90;
 					}
@@ -422,7 +419,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 						if (PowerPointManager.Instance.SlideSettings.Orientation == SlideOrientationEnum.Portrait)
 						{
 							shape.Left -= imageShape.Height;
-							////shape.Height -= imageShape.Height;
 						}
 						else
 						{

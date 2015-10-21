@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using NewBizWiz.CommonGUI.RateCard;
+﻿using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 
@@ -32,7 +31,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			ThemeManager = new ThemeManager();
 		}
 
-		public async Task Init()
+		public void Init()
 		{
 			OutputManager.Init();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();

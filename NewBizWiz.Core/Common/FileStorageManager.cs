@@ -384,37 +384,44 @@ namespace NewBizWiz.Core.Common
 
 		public virtual async Task Download()
 		{
-			var client = FileStorageManager.Instance.GetClient();
-			if (ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated)
-				return;
-			var remoteFile = _remoteSource ?? await client.GetFile(RemotePath);
-			_isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
-			if (_isOutdated)
+			try
 			{
-				AllocateParentFolder();
-				using (var remoteStream = await client.Download(RemotePath))
+				var client = FileStorageManager.Instance.GetClient();
+				if (ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated)
+					return;
+				var remoteFile = _remoteSource ?? await client.GetFile(RemotePath);
+				_isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
+				if (_isOutdated)
 				{
-					if (remoteStream != null)
+					AllocateParentFolder();
+					using (var remoteStream = await client.Download(RemotePath))
 					{
-						using (var localStream = File.Create(LocalPath))
+						if (remoteStream != null)
 						{
-							var contentLenght = remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 0;
-							var buffer = new byte[1024];
-							int bytesRead;
-							int alreadyRead = 0;
-							do
+							using (var localStream = File.Create(LocalPath))
 							{
-								bytesRead = remoteStream.Read(buffer, 0, buffer.Length);
-								alreadyRead += bytesRead;
-								FileStorageManager.Instance.ShowDownloadProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
-								localStream.Write(buffer, 0, bytesRead);
+								var contentLenght = remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 0;
+								var buffer = new byte[1024];
+								int bytesRead;
+								int alreadyRead = 0;
+								do
+								{
+									bytesRead = remoteStream.Read(buffer, 0, buffer.Length);
+									alreadyRead += bytesRead;
+									FileStorageManager.Instance.ShowDownloadProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
+									localStream.Write(buffer, 0, bytesRead);
+								}
+								while (bytesRead > 0);
+								localStream.Close();
 							}
-							while (bytesRead > 0);
-							localStream.Close();
+							remoteStream.Close();
 						}
-						remoteStream.Close();
 					}
 				}
+			}
+			catch (WebDAVException exception)
+			{
+				throw new FileNotFoundException(String.Format("Error downloading file {0}", LocalPath));
 			}
 		}
 

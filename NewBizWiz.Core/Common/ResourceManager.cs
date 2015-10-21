@@ -23,7 +23,7 @@ namespace NewBizWiz.Core.Common
 
 		#region Remote
 		public ArchiveDirectory RateCardFolder { get; private set; }
-		public ArchiveDirectory BasicSlideTemplatesFolder { get; private set; }
+		public ArchiveDirectory MasterWizardsFolder { get; private set; }
 		public ArchiveDirectory ScheduleSlideTemplatesFolder { get; private set; }
 		public ArchiveDirectory CalendarSlideTemplatesFolder { get; private set; }
 		public ArchiveDirectory SlideMastersFolder { get; private set; }
@@ -94,13 +94,13 @@ namespace NewBizWiz.Core.Common
 			#endregion
 
 			#region Remote
-			BasicSlideTemplatesFolder = new ArchiveDirectory(new[]
+			MasterWizardsFolder = new ArchiveDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,
 				FileStorageManager.CommonIncomingFolderName,
 				"Slides"
 			});
-			await BasicSlideTemplatesFolder.Download();
+			await MasterWizardsFolder.Download();
 
 			ThemesFolder = new ArchiveDirectory(new[]
 			{

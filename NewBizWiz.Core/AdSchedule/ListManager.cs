@@ -10,8 +10,6 @@ namespace NewBizWiz.Core.AdSchedule
 {
 	public class ListManager
 	{
-		private const string PrintStrategyFileName = @"Newspaper XML\Print Strategy.xml";
-
 		private static readonly ListManager _instance = new ListManager();
 
 		private ListManager()
@@ -49,32 +47,6 @@ namespace NewBizWiz.Core.AdSchedule
 			DefaultCalendarViewSettings = new CalendarViewSettings();
 
 			Images = new List<ImageSourceGroup>();
-			LoadImages();
-
-			LoadLists();
-
-			if (DefaultPrintScheduleViewSettings.DefaultPCI)
-				DefaultPricingStrategy = AdPricingStrategies.StandartPCI;
-			else if (DefaultPrintScheduleViewSettings.DefaultFlat)
-				DefaultPricingStrategy = AdPricingStrategies.FlatModular;
-			else if (DefaultPrintScheduleViewSettings.DefaultShare)
-				DefaultPricingStrategy = AdPricingStrategies.SharePage;
-
-			if (DefaultPrintScheduleViewSettings.DefaultBlackWhite)
-				DefaultColor = ColorOptions.BlackWhite;
-			else if (DefaultPrintScheduleViewSettings.DefaultSpotColor)
-				DefaultColor = ColorOptions.SpotColor;
-			else if (DefaultPrintScheduleViewSettings.DefaultFullColor)
-				DefaultColor = ColorOptions.FullColor;
-
-			if (DefaultPrintScheduleViewSettings.DefaultCostPerAd)
-				DefaultColorPricing = ColorPricingType.CostPerAd;
-			else if (DefaultPrintScheduleViewSettings.DefaultPercentOfAd)
-				DefaultColorPricing = ColorPricingType.PercentOfAdRate;
-			else if (DefaultPrintScheduleViewSettings.DefaultColorIncluded)
-				DefaultColorPricing = ColorPricingType.ColorIncluded;
-			else if (DefaultPrintScheduleViewSettings.DefaultCostPerInch)
-				DefaultColorPricing = ColorPricingType.CostPerInch;
 		}
 
 		public static ListManager Instance
@@ -82,10 +54,6 @@ namespace NewBizWiz.Core.AdSchedule
 			get { return _instance; }
 		}
 
-		public DirectoryInfo BigImageFolder { get; set; }
-		public DirectoryInfo SmallImageFolder { get; set; }
-		public DirectoryInfo TinyImageFolder { get; set; }
-		public DirectoryInfo XtraTinyImageFolder { get; set; }
 		public List<ImageSourceGroup> Images { get; set; }
 
 		public List<PrintProductSource> PublicationSources { get; set; }
@@ -128,34 +96,19 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private void LoadImages()
 		{
-			var imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\PRINT\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-
-			string folderPath = Path.Combine(imageFolderPath, "Big Logos");
-			if (Directory.Exists(folderPath))
-				BigImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Small Logos");
-			if (Directory.Exists(folderPath))
-				SmallImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Tiny Logos");
-			if (Directory.Exists(folderPath))
-				TinyImageFolder = new DirectoryInfo(folderPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Xtra Tiny Logos");
-			if (Directory.Exists(folderPath))
-				XtraTinyImageFolder = new DirectoryInfo(folderPath);
-
 			Images.Clear();
-			//var defaultGroup = new ImageSourceGroup(imageFolderPath) { Name = "Gallery", Order = -1 };
-			//if (defaultGroup.Images.Any())
-			//	Images.Add(defaultGroup);
+			var defaultGroup = new ImageSourceGroup(new StorageDirectory(Common.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge("PRINT")))
+			{
+				Name = "Gallery",
+				Order = -1
+			};
+			defaultGroup.LoadImages();
+			if (defaultGroup.Images.Any())
+				Images.Add(defaultGroup);
 		}
 
-		private void LoadPrintStrategy()
+		private void LoadStrategy()
 		{
-			var filePath = string.Empty;
-
 			PublicationSources.Clear();
 			Readerships.Clear();
 			PageSizes.Clear();
@@ -168,21 +121,18 @@ namespace NewBizWiz.Core.AdSchedule
 			Statuses.Clear();
 
 			var defaultPublication = new PrintProductSource();
-			filePath = Path.Combine(BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
+			var defaultImageSource = Images.Where(g => g.IsDefault).SelectMany(g => g.Images).FirstOrDefault(i => i.IsDefault);
+
 			defaultPublication.Name = "Default";
-			defaultPublication.BigLogo = File.Exists(filePath) ? new Bitmap(filePath) : null;
-			filePath = Path.Combine(SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
-			defaultPublication.SmallLogo = File.Exists(filePath) ? new Bitmap(filePath) : null;
-			filePath = Path.Combine(TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
-			defaultPublication.TinyLogo = File.Exists(filePath) ? new Bitmap(filePath) : null;
+			defaultPublication.BigLogo = defaultImageSource.BigImage;
+			defaultPublication.SmallLogo = defaultImageSource.SmallImage;
+			defaultPublication.TinyLogo = defaultImageSource.TinyImage;
 			PublicationSources.Add(defaultPublication);
 
-
-			var listPath = "";// Path.Combine(Common.SettingsManager.Instance.SharedListFolder, PrintStrategyFileName);
-			if (File.Exists(listPath))
+			if (ResourceManager.Instance.PrintListsFile.ExistsLocal())
 			{
 				var document = new XmlDocument();
-				document.Load(listPath);
+				document.Load(ResourceManager.Instance.PrintListsFile.LocalPath);
 
 				var node = document.SelectSingleNode(@"/PrintStrategy");
 				if (node != null)
@@ -214,33 +164,21 @@ namespace NewBizWiz.Core.AdSchedule
 										case "BigLogo":
 											dailySource.BigLogo = null;
 											dailySource.BigLogoFileName = attribute.Value;
-											filePath = Path.Combine(BigImageFolder.FullName, attribute.Value);
-											if (!File.Exists(filePath))
-												filePath = Path.Combine(BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
-											if (File.Exists(filePath))
-												dailySource.BigLogo = new Bitmap(filePath);
+											dailySource.BigLogo = (Images.Where(g => g.IsDefault).SelectMany(g => g.Images).FirstOrDefault(i => i.Name == Path.GetFileNameWithoutExtension(attribute.Value)) ?? defaultImageSource).BigImage;
 											sundaySource.BigLogo = dailySource.BigLogo;
 											sundaySource.BigLogoFileName = dailySource.BigLogoFileName;
 											break;
 										case "LittleLogo":
 											dailySource.SmallLogo = null;
 											dailySource.SmallLogoFileName = attribute.Value;
-											filePath = Path.Combine(SmallImageFolder.FullName, attribute.Value);
-											if (!File.Exists(filePath))
-												filePath = Path.Combine(SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
-											if (File.Exists(filePath))
-												dailySource.SmallLogo = new Bitmap(filePath);
+											dailySource.SmallLogo = (Images.Where(g => g.IsDefault).SelectMany(g => g.Images).FirstOrDefault(i => i.Name == Path.GetFileNameWithoutExtension(attribute.Value).Replace("2", "")) ?? defaultImageSource).SmallImage;
 											sundaySource.SmallLogo = dailySource.SmallLogo;
 											sundaySource.SmallLogoFileName = dailySource.SmallLogoFileName;
 											break;
 										case "TinyLogo":
 											dailySource.TinyLogo = null;
 											dailySource.TinyLogoFileName = attribute.Value;
-											filePath = Path.Combine(TinyImageFolder.FullName, attribute.Value);
-											if (!File.Exists(filePath))
-												filePath = Path.Combine(TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
-											if (File.Exists(filePath))
-												dailySource.TinyLogo = new Bitmap(filePath);
+											dailySource.TinyLogo = (Images.Where(g => g.IsDefault).SelectMany(g => g.Images).FirstOrDefault(i => i.Name == Path.GetFileNameWithoutExtension(attribute.Value).Replace("3", "")) ?? defaultImageSource).TinyImage;
 											sundaySource.TinyLogo = dailySource.TinyLogo;
 											sundaySource.TinyLogoFileName = dailySource.TinyLogoFileName;
 											break;
@@ -505,12 +443,38 @@ namespace NewBizWiz.Core.AdSchedule
 					}
 				}
 			}
+
 			Readerships.AddRange(PublicationSources.Select(x => x.Clone() as PrintProductSource));
+
+			if (DefaultPrintScheduleViewSettings.DefaultPCI)
+				DefaultPricingStrategy = AdPricingStrategies.StandartPCI;
+			else if (DefaultPrintScheduleViewSettings.DefaultFlat)
+				DefaultPricingStrategy = AdPricingStrategies.FlatModular;
+			else if (DefaultPrintScheduleViewSettings.DefaultShare)
+				DefaultPricingStrategy = AdPricingStrategies.SharePage;
+
+			if (DefaultPrintScheduleViewSettings.DefaultBlackWhite)
+				DefaultColor = ColorOptions.BlackWhite;
+			else if (DefaultPrintScheduleViewSettings.DefaultSpotColor)
+				DefaultColor = ColorOptions.SpotColor;
+			else if (DefaultPrintScheduleViewSettings.DefaultFullColor)
+				DefaultColor = ColorOptions.FullColor;
+
+			if (DefaultPrintScheduleViewSettings.DefaultCostPerAd)
+				DefaultColorPricing = ColorPricingType.CostPerAd;
+			else if (DefaultPrintScheduleViewSettings.DefaultPercentOfAd)
+				DefaultColorPricing = ColorPricingType.PercentOfAdRate;
+			else if (DefaultPrintScheduleViewSettings.DefaultColorIncluded)
+				DefaultColorPricing = ColorPricingType.ColorIncluded;
+			else if (DefaultPrintScheduleViewSettings.DefaultCostPerInch)
+				DefaultColorPricing = ColorPricingType.CostPerInch;
 		}
 
-		private void LoadLists()
+		public void Load()
 		{
-			LoadPrintStrategy();
+			LoadImages();
+			LoadStrategy();
+			Dashboard.ListManager.Instance.InitSummary();
 		}
 	}
 

@@ -69,7 +69,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public string GetScheduleFileName(string scheduleName)
 		{
-			return Path.Combine(SettingsManager.Instance.SaveFolder, scheduleName + ".xml");
+			return Path.Combine(AppProfileManager.Instance.AppSaveFolder.LocalPath, scheduleName + ".xml");
 		}
 
 		public Schedule GetLocalSchedule()
@@ -79,7 +79,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public ShortSchedule GetShortSchedule()
 		{
-			return new ShortSchedule(_currentSchedule.ScheduleFile);
+			return _currentSchedule != null ? new ShortSchedule(_currentSchedule.ScheduleFile) : null;
 		}
 
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
@@ -92,7 +92,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public static ShortSchedule[] GetShortScheduleList()
 		{
-			var saveFolder = new DirectoryInfo(SettingsManager.Instance.SaveFolder);
+			var saveFolder = new DirectoryInfo(AppProfileManager.Instance.AppSaveFolder.LocalPath);
 			if (saveFolder.Exists)
 				return GetShortScheduleList(saveFolder);
 			return null;
@@ -469,6 +469,8 @@ namespace NewBizWiz.Core.AdSchedule
 				sw.Write(xml);
 				sw.Flush();
 			}
+
+			AsyncHelper.RunSync(() => new StorageFile(AppProfileManager.Instance.AppSaveFolder.RelativePathParts.Merge(_scheduleFile.Name)).Upload());
 		}
 
 		public void AddPublication()
@@ -1183,21 +1185,13 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 			else
 			{
-				string filePath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
-				if (File.Exists(filePath))
-					BigLogo = new Bitmap(filePath);
-				else
-					BigLogo = null;
-				filePath = Path.Combine(ListManager.Instance.SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
-				if (File.Exists(filePath))
-					SmallLogo = new Bitmap(filePath);
-				else
-					SmallLogo = null;
-				filePath = Path.Combine(ListManager.Instance.TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
-				if (File.Exists(filePath))
-					TinyLogo = new Bitmap(filePath);
-				else
-					TinyLogo = null;
+				var defaultImageSource = ListManager.Instance.Images.Where(g => g.IsDefault).SelectMany(g => g.Images).FirstOrDefault(i => i.IsDefault);
+				if (defaultImageSource != null)
+				{
+					BigLogo = defaultImageSource.BigImage;
+					SmallLogo = defaultImageSource.SmallImage;
+					TinyLogo = defaultImageSource.TinyImage;
+				}
 				Abbreviation = _name.Substring(0, 3).ToUpper();
 			}
 		}

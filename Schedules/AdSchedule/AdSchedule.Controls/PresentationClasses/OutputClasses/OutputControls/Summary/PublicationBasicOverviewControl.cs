@@ -472,7 +472,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintBasicOverview)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintBasicOverview))); }
 		}
 
 		public string SlideName
@@ -485,7 +485,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			return new PreviewGroup
 			{
 				Name = PrintProduct.Name,
-				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 		}
 

@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
@@ -34,26 +33,24 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			Common.SettingsManager.Instance.LoadSharedSettings();
 
-			if (Common.ResourceManager.Instance.AppSettingsFile.ExistsLocal())
-			{
-				var document = new XmlDocument();
-				document.Load(Common.ResourceManager.Instance.AppSettingsFile.LocalPath);
+			if (!Common.ResourceManager.Instance.AppSettingsFile.ExistsLocal()) return;
+			var document = new XmlDocument();
+			document.Load(Common.ResourceManager.Instance.AppSettingsFile.LocalPath);
 
-				var node = document.SelectSingleNode(@"/Settings/SelectedColor");
-				if (node != null)
-					SelectedColor = node.InnerText;
-				node = document.SelectSingleNode(@"/Settings/UseSlideMaster");
-				if (node != null)
-				{
-					bool tempBool;
-					if (Boolean.TryParse(node.InnerText, out tempBool))
-						UseSlideMaster = tempBool;
-				}
-				node = document.SelectSingleNode(@"/Settings/BroadcastCalendarSettings");
-				if (node != null)
-					BroadcastCalendarSettings.Deserialize(node);
-				_themeSaveHelper.Deserialize(document.SelectNodes(@"//Settings/SelectedTheme").OfType<XmlNode>());
+			var node = document.SelectSingleNode(@"/Settings/SelectedColor");
+			if (node != null)
+				SelectedColor = node.InnerText;
+			node = document.SelectSingleNode(@"/Settings/UseSlideMaster");
+			if (node != null)
+			{
+				bool tempBool;
+				if (Boolean.TryParse(node.InnerText, out tempBool))
+					UseSlideMaster = tempBool;
 			}
+			node = document.SelectSingleNode(@"/Settings/BroadcastCalendarSettings");
+			if (node != null)
+				BroadcastCalendarSettings.Deserialize(node);
+			_themeSaveHelper.Deserialize(document.SelectNodes(@"//Settings/SelectedTheme").OfType<XmlNode>());
 		}
 
 		public void SaveSettings()

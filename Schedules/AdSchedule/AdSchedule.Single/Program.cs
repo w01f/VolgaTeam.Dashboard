@@ -17,7 +17,7 @@ namespace NewBizWiz.AdSchedule.Single
 		private static void Main()
 		{
 			bool firstInstance;
-			string uniqueIdentifier = "Local\\AdSellerApplication";
+			const string uniqueIdentifier = "Local\\AdSellerApplication";
 			new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
@@ -27,8 +27,7 @@ namespace NewBizWiz.AdSchedule.Single
 				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
 				Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 				Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-				AppManager.Instance.RunPowerPoint();
-				AppManager.Instance.RunForm();
+				AppManager.Instance.RunApplication();
 			}
 			else
 			{

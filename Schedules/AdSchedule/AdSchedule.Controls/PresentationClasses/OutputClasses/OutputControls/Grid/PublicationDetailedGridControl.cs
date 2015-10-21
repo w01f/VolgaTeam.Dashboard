@@ -282,7 +282,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDetailedGrid).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintDetailedGrid).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid))); }
 		}
 
 		public string Header

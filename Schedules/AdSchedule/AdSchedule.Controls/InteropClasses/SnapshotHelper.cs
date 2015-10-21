@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using Application = System.Windows.Forms.Application;
@@ -15,7 +14,6 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 	{
 		public void AppendSnapshot(Presentation destinationPresentation = null)
 		{
-			if (Directory.Exists(BusinessWrapper.Instance.OutputManager.SnapshotTemlatesFolderPath))
 			{
 				try
 				{
@@ -26,7 +24,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						var publicationsCount = Controller.Instance.Summaries.Snapshot.PublicationNames.Length;
 						for (var k = 0; k < publicationsCount; k += recordsPeSlide)
 						{
-							string presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.SnapshotTemlatesFolderPath, Controller.Instance.Summaries.Snapshot.GetOutputTemplatePath(k));
+							string presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetSnapshotFile(Controller.Instance.Summaries.Snapshot.GetOutputTemplatePath(k));
 							if (!File.Exists(presentationTemplatePath)) continue;
 							var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							foreach (Slide slide in presentation.Slides)
@@ -100,7 +98,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 							}
 							var selectedTheme = Controller.Instance.Summaries.Snapshot.SelectedTheme;
 							if (selectedTheme != null)
-								presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+								presentation.ApplyTheme(selectedTheme.GetThemePath());
 							AppendSlide(presentation, -1, destinationPresentation);
 							presentation.Close();
 						}

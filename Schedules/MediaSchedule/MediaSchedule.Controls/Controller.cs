@@ -77,7 +77,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MediaMetaData.Instance.ListManager.Load();
 			Core.OnlineSchedule.ListManager.Instance.Load(Core.Common.ResourceManager.Instance.OnlineListsFile);
 
-			await BusinessObjects.Instance.Init();
+			BusinessObjects.Instance.Init();
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => UpdateOutputButtonsAccordingThemeStatus();
 		}
 

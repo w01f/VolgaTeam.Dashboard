@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace NewBizWiz.Core.Common
@@ -24,6 +22,8 @@ namespace NewBizWiz.Core.Common
 					return "TVHelp.xml";
 				case AppTypeEnum.RadioSchedule:
 					return "RadioHelp.xml";
+				case AppTypeEnum.PrintSchedule:
+					return "AdScheduleHelp.xml";
 			}
 			throw new InvalidEnumArgumentException("Help file not found for app");
 		}

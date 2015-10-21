@@ -161,7 +161,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintBasicOverview)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintBasicOverview))); }
 		}
 
 		public void Output()

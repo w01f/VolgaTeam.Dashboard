@@ -27,10 +27,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Dock = DockStyle.Fill;
 			hyperLinkEditReset.Visible = true;
 			hyperLinkEditReset.OpenLink += hyperLinkEditReset_OpenLink;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
+				{
 					LoadCalendar(e.QuickSave);
+					CalendarUpdated = e.QuickSave;
+				}
 			});
 		}
 
@@ -58,7 +61,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void LoadCalendar(bool quickLoad)
 		{
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			base.LoadCalendar(quickLoad);
 		}
 
@@ -72,7 +75,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override ColorSchema GetColorSchema(string colorName)
 		{
-			return BusinessWrapper.Instance.OutputManager.CalendarColors.Items
+			return BusinessObjects.Instance.OutputManager.CalendarColors.Items
 				.Where(color => color.Name.ToLower() == colorName.ToLower())
 				.Select(color => color.Schema)
 				.FirstOrDefault();
@@ -80,7 +83,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void OpenHelp(string key)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);
+			BusinessObjects.Instance.HelpManager.OpenHelpLink(key);
 		}
 
 		public override void SaveSettings()
@@ -90,7 +93,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void TrackActivity(UserActivity activity)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 		}
 
 		public bool AllowToLeaveControl
@@ -111,7 +114,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(CalendarTab.Text, _localSchedule.BusinessName, (decimal)_localSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(CalendarTab.Text, _localSchedule.BusinessName, (decimal)_localSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
 		}
 
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
@@ -119,19 +122,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (outputData == null) return;
 			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			Controller.Instance.ShowFloater(() =>
 			{
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.TopMost = true;
-					formProgress.laProgress.Text = commonOutputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
-					formProgress.Show();
-					Enabled = false;
-					AdSchedulePowerPointHelper.Instance.AppendCalendar(commonOutputData.ToArray());
-					Enabled = true;
-					formProgress.Close();
-				});
-			}
+				FormProgress.SetTitle(commonOutputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+				FormProgress.ShowProgress();
+				Enabled = false;
+				AdSchedulePowerPointHelper.Instance.AppendCalendar(commonOutputData.ToArray());
+				Enabled = true;
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void EmailInternal(IEnumerable<CalendarOutputData> outputData)
@@ -139,27 +138,23 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (outputData == null) return;
 			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Email...");
+			FormProgress.ShowProgress();
+			Enabled = false;
+			foreach (var outputItem in commonOutputData)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Calendar for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				Enabled = false;
-				foreach (var outputItem in commonOutputData)
+				var previewGroup = new PreviewGroup
 				{
-					var previewGroup = new PreviewGroup
-					{
-						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-					};
-					AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-					previewGroups.Add(previewGroup);
-				}
-				Enabled = true;
-				formProgress.Close();
+					Name = outputItem.MonthText,
+					PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				};
+				AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				previewGroups.Add(previewGroup);
 			}
+			Enabled = true;
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Calendar";
 				formEmail.LoadGroups(previewGroups);
@@ -177,28 +172,24 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (outputData == null) return;
 			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Preview...");
+			FormProgress.ShowProgress();
+			Enabled = false;
+			foreach (var outputItem in commonOutputData)
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Calendar for Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				Enabled = false;
-				foreach (var outputItem in commonOutputData)
+				var previewGroup = new PreviewGroup
 				{
-					var previewGroup = new PreviewGroup
-					{
-						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-					};
-					AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-					previewGroups.Add(previewGroup);
-				}
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				Enabled = true;
-				formProgress.Close();
+					Name = outputItem.MonthText,
+					PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				};
+				AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				previewGroups.Add(previewGroup);
 			}
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Enabled = true;
+			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);
@@ -218,36 +209,32 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
 			TrackOutput();
 			var previewGroups = new List<PreviewGroup>();
-			using (var formProgress = new FormProgress())
+			Controller.Instance.ShowFloater(() =>
 			{
-				Controller.Instance.ShowFloater(() =>
+				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+				FormProgress.ShowProgress();
+				Enabled = false;
+				foreach (var outputItem in commonOutputData)
 				{
-					formProgress.TopMost = true;
-					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
-					formProgress.Show();
-					Enabled = false;
-					foreach (var outputItem in commonOutputData)
+					var previewGroup = new PreviewGroup
 					{
-						var previewGroup = new PreviewGroup
-						{
-							Name = outputItem.MonthText,
-							PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-						};
-						AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-						previewGroups.Add(previewGroup);
+						Name = outputItem.MonthText,
+						PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+					};
+					AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					previewGroups.Add(previewGroup);
+				}
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
 					}
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch {}
-					Enabled = true;
-					formProgress.Close();
-				});
-			}
+					catch { }
+				Enabled = true;
+				FormProgress.CloseProgress();
+			});
 		}
 
 		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
@@ -297,7 +284,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s=>s.ShortFileName)))
+			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
 			{
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";

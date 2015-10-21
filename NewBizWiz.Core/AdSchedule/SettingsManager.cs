@@ -1,23 +1,17 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.AdSchedule
 {
 	public class SettingsManager
 	{
 		private static SettingsManager _instance;
+		private ThemeSaveHelper _themeSaveHelper;
 
-		private SettingsManager()
-		{
-			//var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Ad Schedule Builder");
-			//if (!Directory.Exists(defaultSaveFolderPath))
-			//	Directory.CreateDirectory(defaultSaveFolderPath);
-			//SaveFolder = defaultSaveFolderPath;
-
-			//ViewSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleViewSetings.xml");
-			//LocalSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleSetings.xml");
-			//HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\AdScheduleHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-		}
+		private SettingsManager() { }
 
 		public static SettingsManager Instance
 		{
@@ -29,9 +23,42 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
-		public string SaveFolder { get; set; }
-		public string ViewSettingsPath { get; set; }
-		public string LocalSettingsPath { get; set; }
-		public string HelpLinksPath { get; set; }
+		public void LoadSettings()
+		{
+			Common.SettingsManager.Instance.LoadSharedSettings();
+
+			if (!Common.ResourceManager.Instance.AppSettingsFile.ExistsLocal()) return;
+			var document = new XmlDocument();
+			document.Load(Common.ResourceManager.Instance.AppSettingsFile.LocalPath);
+			_themeSaveHelper.Deserialize(document.SelectNodes(@"//LocalSettings/SelectedTheme").OfType<XmlNode>());
+		}
+
+		public void SaveSettings()
+		{
+			var xml = new StringBuilder();
+			xml.AppendLine(@"<LocalSettings>");
+			xml.AppendLine(_themeSaveHelper.Serialize());
+			xml.AppendLine(@"</LocalSettings>");
+			using (var sw = new StreamWriter(Common.ResourceManager.Instance.AppSettingsFile.LocalPath, false))
+			{
+				sw.Write(xml);
+				sw.Flush();
+			}
+		}
+
+		public void InitThemeHelper(ThemeManager themeManager)
+		{
+			_themeSaveHelper = new ThemeSaveHelper(themeManager);
+		}
+
+		public string GetSelectedTheme(SlideType slideType)
+		{
+			return _themeSaveHelper.GetSelectedTheme(slideType).Name;
+		}
+
+		public void SetSelectedTheme(SlideType slideType, string themeName)
+		{
+			_themeSaveHelper.SetSelectedTheme(slideType, themeName);
+		}
 	}
 }

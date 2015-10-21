@@ -35,11 +35,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Learn more about the Schedule Analysis", null, null, eTooltipColor.Gray);
 
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.MultiSummaryThemeBar.RecalcLayout();
+				Controller.Instance.MultiSummaryPanel.PerformLayout();
+			};
 		}
 
 		#region ISummaryOutputControl Members
@@ -50,19 +56,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void UpdateOutput(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.MultiSummaryDigitalLegend.Image = Controller.Instance.MultiSummaryDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.MultiSummaryDigitalLegend, new SuperTooltipInfo("Digital Products", "",
 				Controller.Instance.MultiSummaryDigitalLegend.Enabled && LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Enabled ?
 				"Digital Products are Enabled for this slide" :
 				"Digital Products are Disabled for this slide"
 				, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.MultiSummaryTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiSummary), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiSummary), (t =>
-			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintMultiSummary, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			if (!quickLoad)
 			{
 				LoadSharedOptions();
@@ -110,6 +111,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 
 		public void Save() { }
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.MultiSummaryTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintMultiSummary), Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintMultiSummary), (t =>
+			{
+				Core.AdSchedule.SettingsManager.Instance.SetSelectedTheme(SlideType.PrintMultiSummary, t.Name);
+				Core.AdSchedule.SettingsManager.Instance.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+		}
 
 		private void LoadSharedOptions()
 		{
@@ -176,7 +187,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void OpenHelp()
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("analysis");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("analysis");
 		}
 		#endregion
 
@@ -227,7 +238,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiSummary).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiSummary)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiSummary))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintMultiSummary).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintMultiSummary)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintMultiSummary))); }
 		}
 
 		public string Header
@@ -459,98 +470,82 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabMultiSummary.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabMultiSummary.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
 		}
 
 		public void PrintOutput()
 		{
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					AdSchedulePowerPointHelper.Instance.AppendMultiSummary();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				AdSchedulePowerPointHelper.Instance.AppendMultiSummary();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public void Email()
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
-				{
-					formEmail.Text = "Email this Multi-Publication Analysis";
-					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					RegistryHelper.MainFormHandle = formEmail.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					formEmail.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				}
+				formEmail.Text = "Email this Multi-Publication Analysis";
+				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 			}
 		}
 
 		public void Preview()
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			string tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
-				{
-					formPreview.Text = "Preview Multi-Publication Analysis";
-					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-					RegistryHelper.MainFormHandle = formPreview.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					DialogResult previewResult = formPreview.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					if (previewResult != DialogResult.OK)
-						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				}
+				formPreview.Text = "Preview Multi-Publication Analysis";
+				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				DialogResult previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			}
 		}
 
 		public void PrintPdf()
 		{
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryPdf(pdfFileName);
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryPdf(pdfFileName);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 		#endregion
 	}

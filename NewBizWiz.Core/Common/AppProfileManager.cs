@@ -12,7 +12,8 @@ namespace NewBizWiz.Core.Common
 		None = 0,
 		Dashboard,
 		TVSchedule,
-		RadioSchedule
+		RadioSchedule,
+		PrintSchedule
 	}
 
 	public class AppProfileManager
@@ -43,6 +44,8 @@ namespace NewBizWiz.Core.Common
 						return "app_sellerpoint_tv";
 					case AppTypeEnum.RadioSchedule:
 						return "app_sellerpoint_radio";
+					case AppTypeEnum.PrintSchedule:
+						return "app_sellerpoint_np";
 				}
 				throw new InvalidEnumArgumentException("Storage Type Undefined");
 			}

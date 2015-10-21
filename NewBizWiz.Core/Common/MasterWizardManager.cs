@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml;
 
@@ -32,7 +31,7 @@ namespace NewBizWiz.Core.Common
 
 		public void Load()
 		{
-			var storageDirectory = ResourceManager.Instance.BasicSlideTemplatesFolder;
+			var storageDirectory = ResourceManager.Instance.MasterWizardsFolder;
 			if (!storageDirectory.ExistsLocal()) return;
 
 			foreach (var folder in storageDirectory.GetFolders())
@@ -101,6 +100,8 @@ namespace NewBizWiz.Core.Common
 		}
 
 		#region Slide Template Getters
+
+		#region Dashboard Slides
 		private string GetBasicTemplateFile(IEnumerable<string> fileName)
 		{
 			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Basic Slides" }).Merge(fileName));
@@ -151,7 +152,9 @@ namespace NewBizWiz.Core.Common
 		{
 			return GetBasicTemplateFile(new[] { "closing summary", "tables", "icons", fileName });
 		}
+		#endregion
 
+		#region Online Slides
 		private string GetOnlineTemplateFile(IEnumerable<string> fileName)
 		{
 			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Online Slides" }).Merge(fileName));
@@ -209,6 +212,73 @@ namespace NewBizWiz.Core.Common
 		{
 			return GetOnlineTemplateFile(new[] { "summary", "digital_summary.pptx" });
 		}
+		#endregion
+
+		#region Newspapaer Slides
+		private string GetNewspaperTemplateFile(IEnumerable<string> fileName)
+		{
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Newspaper Slides" }).Merge(fileName));
+			return file.LocalPath;
+		}
+
+		public string GetBasicOverviewSlideFile(string fileSuffix)
+		{
+			return GetNewspaperTemplateFile(new[]
+			{
+				"basic overview",
+				String.Format("basic-{0}.pptx", fileSuffix)
+			});
+		}
+
+		public string GetBasicOverviewSummaryFile()
+		{
+			return GetNewspaperTemplateFile(new[]
+			{
+				"product summary",
+				"product_summary.pptx"
+			});
+		}
+
+		public string GetMultiSummaryFile(string fileSuffix)
+		{
+			return GetNewspaperTemplateFile(new[]
+			{
+				"multi summary",
+				String.Format("summary-{0}.pptx", fileSuffix)
+			});
+		}
+
+		public string GetSnapshotFile(string fileName)
+		{
+			return GetNewspaperTemplateFile(new[]
+			{
+				"snapshotnew",
+				fileName
+			});
+		}
+
+		public string GetDetailedGridFile(int columnsCount, int rowCount, bool showNotes)
+		{
+			return GetNewspaperTemplateFile(new[]
+			{
+				"tables",
+				String.Format("{0} columns_detailed",columnsCount),
+				String.Format("tables_{0}",showNotes?"adnotes":"no_adnotes"),
+				String.Format("table{0}_{1}.pptx",rowCount,showNotes?"adnotes":"no_adnotes")
+			});
+		}
+
+		public string GetMultiGridFile(int columnsCount, int rowCount, bool showNotes)
+		{
+			return GetNewspaperTemplateFile(new[]
+			{
+				"tables",
+				String.Format("{0} columns_multi",columnsCount),
+				String.Format("tables_{0}_logos",showNotes?"adnotes":"no_adnotes"),
+				String.Format("table{0}_{1}.pptx",rowCount,showNotes?"adnotes":"no_adnotes")
+			});
+		}
+		#endregion
 		#endregion
 	}
 }

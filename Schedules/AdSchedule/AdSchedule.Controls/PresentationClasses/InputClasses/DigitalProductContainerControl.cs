@@ -23,11 +23,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public DigitalProductContainerControl(Form formMain)
 			: base(formMain)
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.DigitalProductThemeBar.RecalcLayout();
+				Controller.Instance.DigitalProductPanel.PerformLayout();
+			};
 		}
 
 		public bool AllowToLeaveControl
@@ -43,13 +49,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void LoadSchedule(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDigitalProduct), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct), (t =>
-			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintDigitalProduct, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
-				SettingsNotSaved = true;
-			}));
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			InitThemeSelector();
 			if (!quickLoad)
 			{
 				checkEditShowFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
@@ -115,7 +116,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDigitalProduct).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintDigitalProduct).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct))); }
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
@@ -127,6 +128,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintDigitalProduct), Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct), (t =>
+			{
+				Core.AdSchedule.SettingsManager.Instance.SetSelectedTheme(SlideType.PrintDigitalProduct, t.Name);
+				Core.AdSchedule.SettingsManager.Instance.SaveSettings();
+				SettingsNotSaved = true;
+			}));
 		}
 
 		public void Save_Click(object sender, EventArgs e)
@@ -158,36 +169,32 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digitalslides");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("digitalslides");
 		}
 
 		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
 		{
 			var activities = base.TrackOutput(tabsForOutput);
 			foreach (var activity in activities)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+				BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 			return activities;
 		}
 
 		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					foreach (var tabPage in tabsForOutput)
-						tabPage.Output();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				foreach (var tabPage in tabsForOutput)
+					tabPage.Output();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);
@@ -203,29 +210,25 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public override void ShowPdf(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				AdSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		protected override string SlideName

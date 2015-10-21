@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -19,6 +19,7 @@ using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
+using NewBizWiz.CommonGUI.SlideSettingsEditors;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
@@ -58,11 +59,50 @@ namespace NewBizWiz.AdSchedule.Controls
 		public RibbonTabItem TabGallery1 { get; set; }
 		public RibbonTabItem TabGallery2 { get; set; }
 
-		public void Init()
+		public async Task InitBusinessObjects()
+		{
+			await AppProfileManager.Instance.LoadProfile();
+
+			await Core.AdSchedule.ResourceManager.Instance.Load();
+
+			PowerPointManager.Instance.Init(AdSchedulePowerPointHelper.Instance);
+
+			MasterWizardManager.Instance.Load();
+
+			Core.AdSchedule.SettingsManager.Instance.InitThemeHelper(BusinessObjects.Instance.ThemeManager);
+			Core.AdSchedule.SettingsManager.Instance.LoadSettings();
+
+			Core.Common.ListManager.Instance.Init();
+			Core.AdSchedule.ListManager.Instance.Load();
+			Core.OnlineSchedule.ListManager.Instance.Load(Core.Common.ResourceManager.Instance.OnlineListsFile);
+
+			BusinessObjects.Instance.Init();
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => UpdateOutputButtonsAccordingThemeStatus();
+		}
+
+
+		public void InitForm()
 		{
 			Utilities.Instance.Title = "SellerPoint for Newspaper";
 
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+			ConfigureTabPages();
+
+			InitControls();
+
+			ConfigureThemeButtons();
+
+			ConfigureSpecialButtons();
+
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+
+			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
+			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
+			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
+		}
+
+		private void InitControls()
+		{
+			SlideSettingsButton.Click += OnSlideSettingsClick;
 
 			#region Schedule Settings
 			ScheduleSettings = new ScheduleSettingsControl();
@@ -305,29 +345,19 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Rate Card Events
-			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
-			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
+			RateCard = new RateCardControl(BusinessObjects.Instance.RateCardManager, RateCardCombo);
+			RateCardHelp.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("ratecard");
 			#endregion
 
 			#region Gallery 1
 			Gallery1 = new PrintGallery1Control();
-			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery1");
+			Gallery1Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery1");
 			#endregion
 
 			#region Gallery 2
 			Gallery2 = new PrintGallery2Control();
-			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery2");
+			Gallery2Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery2");
 			#endregion
-
-			ConfigureTabPages();
-
-			UpdateOutputButtonsAccordingThemeStatus();
-
-			ConfigureSpecialButtons();
-
-			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
-			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
-			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
 		}
 
 		public void RemoveInstance()
@@ -370,9 +400,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			SummaryFull.LoadData(false);
 			Calendar1.LoadCalendar(false);
 			Calendar2.LoadCalendar(false);
-
-			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
-			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
+			TabRateCard.Enabled = BusinessObjects.Instance.RateCardManager.RateCardFolders.Any();
 		}
 
 		public void UpdatePrintProductTab(bool enable)
@@ -401,7 +429,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabBasicOverview.Enabled = enable;
 			TabMultiSummary.Enabled = enable;
 			TabSnapshot.Enabled = enable;
-			TabAdPlan.Enabled = enable && Directory.Exists(BusinessWrapper.Instance.OutputManager.AdPlanTemlatesFolderPath);
+			TabAdPlan.Enabled = enable;
 			TabDetailedGrid.Enabled = enable;
 			TabMultiGrid.Enabled = enable;
 			TabCalendar1.Enabled = enable;
@@ -409,86 +437,193 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabSummaryFull.Enabled = enable;
 		}
 
-		public void UpdateOutputButtonsAccordingThemeStatus()
+		public void ConfigureThemeButtons()
 		{
-			var themesExisted = BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.None).Any();
+			UpdateOutputButtonsAccordingThemeStatus();
+			Ribbon.SelectedRibbonTabChanged += (o, e) =>
+			{
+				DigitalProductThemeBar.Text = (DigitalProductTheme.Tag as Theme).Name;
+				DigitalPackageThemeBar.Text = (DigitalPackageTheme.Tag as Theme).Name;
+				BasicOverviewThemeBar.Text = (BasicOverviewTheme.Tag as Theme).Name;
+				MultiSummaryThemeBar.Text = (MultiSummaryTheme.Tag as Theme).Name;
+				SnapshotThemeBar.Text = (SnapshotTheme.Tag as Theme).Name;
+				AdPlanThemeBar.Text = (AdPlanTheme.Tag as Theme).Name;
+				DetailedGridThemeBar.Text = (DetailedGridTheme.Tag as Theme).Name;
+				MultiGridThemeBar.Text = (MultiGridTheme.Tag as Theme).Name;
+				SummaryLightThemeBar.Text = (SummaryLightTheme.Tag as Theme).Name;
+				SummaryFullThemeBar.Text = (SummaryFullTheme.Tag as Theme).Name;
+
+				DigitalProductThemeBar.RecalcLayout();
+				DigitalProductPanel.PerformLayout();
+
+				DigitalPackageThemeBar.RecalcLayout();
+				DigitalPackagePanel.PerformLayout();
+
+				BasicOverviewThemeBar.RecalcLayout();
+				BasicOverviewPanel.PerformLayout();
+
+				MultiSummaryThemeBar.RecalcLayout();
+				MultiSummaryPanel.PerformLayout();
+
+				SnapshotThemeBar.RecalcLayout();
+				SnapshotPanel.PerformLayout();
+
+				AdPlanThemeBar.RecalcLayout();
+				AdPlanPanel.PerformLayout();
+
+				DetailedGridThemeBar.RecalcLayout();
+				DetailedGridPanel.PerformLayout();
+
+				MultiGridThemeBar.RecalcLayout();
+				MultiGridPanel.PerformLayout();
+
+				SummaryLightThemeBar.RecalcLayout();
+				SummaryLightPanel.PerformLayout();
+
+				SummaryFullThemeBar.RecalcLayout();
+				SummaryFullPanel.PerformLayout();
+			};
+		}
+
+		private void UpdateOutputButtonsAccordingThemeStatus()
+		{
+			var themesExisted = BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any();
 			if (!themesExisted)
 			{
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
-				var themesDisabledHandler = new Action(() => BusinessWrapper.Instance.HelpManager.OpenHelpLink("NoTheme"));
 
 				DigitalProductPowerPoint.Visible = false;
 				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = false;
 				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
-				DigitalProductTheme.Click += (o, e) => themesDisabledHandler();
+				DigitalProductTheme.Click -= OnThemeClick;
+				DigitalProductTheme.Click += OnThemeClick;
 
 				DigitalPackagePowerPoint.Visible = false;
 				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = false;
 				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
-				DigitalPackageTheme.Click += (o, e) => themesDisabledHandler();
+				DigitalPackageTheme.Click -= OnThemeClick;
+				DigitalPackageTheme.Click += OnThemeClick;
 
 				BasicOverviewPowerPoint.Visible = false;
 				(BasicOverviewPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(BasicOverviewEmail.ContainerControl as RibbonBar).Visible = false;
 				(BasicOverviewPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(BasicOverviewTheme, selectorToolTip);
-				BasicOverviewTheme.Click += (o, e) => themesDisabledHandler();
+				BasicOverviewTheme.Click -= OnThemeClick;
+				BasicOverviewTheme.Click += OnThemeClick;
 
 				MultiSummaryPowerPoint.Visible = false;
 				(MultiSummaryPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(MultiSummaryEmail.ContainerControl as RibbonBar).Visible = false;
 				(MultiSummaryPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(MultiSummaryTheme, selectorToolTip);
-				MultiSummaryTheme.Click += (o, e) => themesDisabledHandler();
+				MultiSummaryTheme.Click -= OnThemeClick;
+				MultiSummaryTheme.Click += OnThemeClick;
 
 				SnapshotPowerPoint.Visible = false;
 				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(SnapshotEmail.ContainerControl as RibbonBar).Visible = false;
 				(SnapshotPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
-				SnapshotTheme.Click += (o, e) => themesDisabledHandler();
+				SnapshotTheme.Click -= OnThemeClick;
+				SnapshotTheme.Click += OnThemeClick;
 
 				AdPlanPowerPoint.Visible = false;
 				(AdPlanPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(AdPlanEmail.ContainerControl as RibbonBar).Visible = false;
 				(AdPlanPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(AdPlanTheme, selectorToolTip);
-				AdPlanTheme.Click += (o, e) => themesDisabledHandler();
+				AdPlanTheme.Click -= OnThemeClick;
+				AdPlanTheme.Click += OnThemeClick;
 
 				DetailedGridPowerPoint.Visible = false;
 				(DetailedGridPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(DetailedGridEmail.ContainerControl as RibbonBar).Visible = false;
 				(DetailedGridPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(DetailedGridTheme, selectorToolTip);
-				DetailedGridTheme.Click += (o, e) => themesDisabledHandler();
+				DetailedGridTheme.Click -= OnThemeClick;
+				DetailedGridTheme.Click += OnThemeClick;
 
 				MultiGridPowerPoint.Visible = false;
 				(MultiGridPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(MultiGridEmail.ContainerControl as RibbonBar).Visible = false;
 				(MultiGridPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(MultiGridTheme, selectorToolTip);
-				MultiGridTheme.Click += (o, e) => themesDisabledHandler();
+				MultiGridTheme.Click -= OnThemeClick;
+				MultiGridTheme.Click += OnThemeClick;
 
 				SummaryLightPowerPoint.Visible = false;
 				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = false;
 				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
-				SummaryLightTheme.Click += (o, e) => themesDisabledHandler();
+				SummaryLightTheme.Click -= OnThemeClick;
+				SummaryLightTheme.Click += OnThemeClick;
 
 				SummaryFullPowerPoint.Visible = false;
 				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
 				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = false;
 				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
-				SummaryFullTheme.Click += (o, e) => themesDisabledHandler();
+				SummaryFullTheme.Click -= OnThemeClick;
+				SummaryFullTheme.Click += OnThemeClick;
 			}
 			else
 			{
+				DigitalProductPowerPoint.Visible = true;
+				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = true;
+				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = true;
+				DigitalProductTheme.Click -= OnThemeClick;
+
+				DigitalPackagePowerPoint.Visible = true;
+				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = true;
+				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = true;
+				DigitalPackageTheme.Click -= OnThemeClick;
+
+				BasicOverviewPowerPoint.Visible = true;
+				(BasicOverviewEmail.ContainerControl as RibbonBar).Visible = true;
+				(BasicOverviewPreview.ContainerControl as RibbonBar).Visible = true;
+				BasicOverviewTheme.Click -= OnThemeClick;
+
+				MultiSummaryPowerPoint.Visible = true;
+				(MultiSummaryEmail.ContainerControl as RibbonBar).Visible = true;
+				(MultiSummaryPreview.ContainerControl as RibbonBar).Visible = true;
+				MultiSummaryTheme.Click -= OnThemeClick;
+
+				SnapshotPowerPoint.Visible = true;
+				(SnapshotEmail.ContainerControl as RibbonBar).Visible = true;
+				(SnapshotPreview.ContainerControl as RibbonBar).Visible = true;
+				SnapshotTheme.Click -= OnThemeClick;
+
+				AdPlanPowerPoint.Visible = true;
+				(AdPlanEmail.ContainerControl as RibbonBar).Visible = true;
+				(AdPlanPreview.ContainerControl as RibbonBar).Visible = true;
+				AdPlanTheme.Click -= OnThemeClick;
+
+				DetailedGridPowerPoint.Visible = true;
+				(DetailedGridEmail.ContainerControl as RibbonBar).Visible = true;
+				(DetailedGridPreview.ContainerControl as RibbonBar).Visible = true;
+				DetailedGridTheme.Click -= OnThemeClick;
+
+				MultiGridPowerPoint.Visible = true;
+				(MultiGridEmail.ContainerControl as RibbonBar).Visible = true;
+				(MultiGridPreview.ContainerControl as RibbonBar).Visible = true;
+				MultiGridTheme.Click -= OnThemeClick;
+
+				SummaryLightPowerPoint.Visible = true;
+				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = true;
+				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = true;
+				SummaryLightTheme.Click -= OnThemeClick;
+
+				SummaryFullPowerPoint.Visible = true;
+				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = true;
+				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = true;
+				SummaryFullTheme.Click -= OnThemeClick;
+
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
@@ -501,27 +636,21 @@ namespace NewBizWiz.AdSchedule.Controls
 				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
 			}
+		}
 
-			Ribbon.SelectedRibbonTabChanged += (o, e) =>
-			{
-				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = (DigitalProductTheme.Tag as Theme).Name;
-				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
-				(BasicOverviewPowerPoint.ContainerControl as RibbonBar).Text = (BasicOverviewTheme.Tag as Theme).Name;
-				(MultiSummaryPowerPoint.ContainerControl as RibbonBar).Text = (MultiSummaryTheme.Tag as Theme).Name;
-				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = (SnapshotTheme.Tag as Theme).Name;
-				(AdPlanPowerPoint.ContainerControl as RibbonBar).Text = (AdPlanTheme.Tag as Theme).Name;
-				(DetailedGridPowerPoint.ContainerControl as RibbonBar).Text = (DetailedGridTheme.Tag as Theme).Name;
-				(MultiGridPowerPoint.ContainerControl as RibbonBar).Text = (MultiGridTheme.Tag as Theme).Name;
-				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = (SummaryLightTheme.Tag as Theme).Name;
-				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = (SummaryFullTheme.Tag as Theme).Name;
-			};
+		private void OnThemeClick(object sender, EventArgs args)
+		{
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("NoTheme");
 		}
 
 		private void ConfigureTabPages()
 		{
+			TabDigitalPackage.Visible = false;
+			TabDigitalProduct.Visible = false;
+
 			Ribbon.Items.Clear();
 			var tabPages = new List<BaseItem>();
-			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			foreach (var tabPageConfig in BusinessObjects.Instance.TabPageManager.TabPageSettings)
 			{
 				switch (tabPageConfig.Id)
 				{
@@ -535,10 +664,12 @@ namespace NewBizWiz.AdSchedule.Controls
 						break;
 					case "Digital Slides":
 						TabDigitalProduct.Text = tabPageConfig.Name;
+						TabDigitalProduct.Visible = true;
 						tabPages.Add(TabDigitalProduct);
 						break;
 					case "Digital PKG":
 						TabDigitalPackage.Text = tabPageConfig.Name;
+						TabDigitalPackage.Visible = true;
 						tabPages.Add(TabDigitalPackage);
 						break;
 					case "AdPlan":
@@ -596,6 +727,7 @@ namespace NewBizWiz.AdSchedule.Controls
 				}
 			}
 			Ribbon.Items.AddRange(tabPages.ToArray());
+			Ribbon.Items.Add(SlideSettingsButton);
 		}
 
 		private void ConfigureSpecialButtons()
@@ -650,19 +782,15 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		public void SaveSchedule(Schedule localSchedule, bool nameChanged, bool quickSave, Control sender)
 		{
-			using (var form = new FormProgress())
-			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
-				form.TopMost = true;
-				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
-				form.Show();
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nSaving settings...");
+			var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
+			FormProgress.ShowProgress();
+			thread.Start();
+			while (thread.IsAlive)
+				Application.DoEvents();
+			FormProgress.CloseProgress();
 			if (nameChanged)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
+				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
 		}
@@ -676,7 +804,7 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery1)
@@ -689,10 +817,21 @@ namespace NewBizWiz.AdSchedule.Controls
 		{
 			if (AdSchedulePowerPointHelper.Instance.IsLinkedWithApplication) return true;
 			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?",Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => Utilities.Instance.RunPowerPointLoader());
+				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
 			return false;
 		}
+
+		private void OnSlideSettingsClick(object sender, EventArgs e)
+		{
+			using (var form = new FormEditSlideSettings())
+			{
+				form.ShowDialog(FormMain);
+			}
+		}
+
 		#region Command Controls
+
+		public ButtonItem SlideSettingsButton { get; set; }
 
 		#region Home
 		public RibbonPanel HomePanel { get; set; }
@@ -757,6 +896,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Digital Product
+		public RibbonPanel DigitalProductPanel { get; set; }
+		public RibbonBar DigitalProductThemeBar { get; set; }
 		public RibbonBar DigitalProductSpecialButtons { get; set; }
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
@@ -769,6 +910,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Digital Package
+		public RibbonPanel DigitalPackagePanel { get; set; }
+		public RibbonBar DigitalPackageThemeBar { get; set; }
 		public RibbonBar DigitalPackageSpecialButtons { get; set; }
 		public ButtonItem DigitalPackageHelp { get; set; }
 		public ButtonItem DigitalPackageSave { get; set; }
@@ -781,6 +924,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Basic Overview
+		public RibbonPanel BasicOverviewPanel { get; set; }
+		public RibbonBar BasicOverviewThemeBar { get; set; }
 		public RibbonBar BasicOverviewSpecialButtons { get; set; }
 		public ButtonItem BasicOverviewHelp { get; set; }
 		public ButtonItem BasicOverviewSave { get; set; }
@@ -794,6 +939,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Multi Summary
+		public RibbonPanel MultiSummaryPanel { get; set; }
+		public RibbonBar MultiSummaryThemeBar { get; set; }
 		public RibbonBar MultiSummarySpecialButtons { get; set; }
 		public ButtonItem MultiSummaryHelp { get; set; }
 		public ButtonItem MultiSummarySave { get; set; }
@@ -815,6 +962,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Snapshot
+		public RibbonPanel SnapshotPanel { get; set; }
+		public RibbonBar SnapshotThemeBar { get; set; }
 		public RibbonBar SnapshotSpecialButtons { get; set; }
 		public ButtonItem SnapshotHelp { get; set; }
 		public ButtonItem SnapshotSave { get; set; }
@@ -828,6 +977,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region AdPlan
+		public RibbonPanel AdPlanPanel { get; set; }
+		public RibbonBar AdPlanThemeBar { get; set; }
 		public RibbonBar AdPlanSpecialButtons { get; set; }
 		public ButtonItem AdPlanHelp { get; set; }
 		public ButtonItem AdPlanSave { get; set; }
@@ -840,6 +991,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Detailed Grid
+		public RibbonPanel DetailedGridPanel { get; set; }
+		public RibbonBar DetailedGridThemeBar { get; set; }
 		public RibbonBar DetailedGridSpecialButtons { get; set; }
 		public ButtonItem DetailedGridHelp { get; set; }
 		public ButtonItem DetailedGridSave { get; set; }
@@ -853,6 +1006,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Multi Grid
+		public RibbonPanel MultiGridPanel { get; set; }
+		public RibbonBar MultiGridThemeBar { get; set; }
 		public RibbonBar MultiGridSpecialButtons { get; set; }
 		public ButtonItem MultiGridHelp { get; set; }
 		public ButtonItem MultiGridSave { get; set; }
@@ -896,6 +1051,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Summary Light
+		public RibbonPanel SummaryLightPanel { get; set; }
+		public RibbonBar SummaryLightThemeBar { get; set; }
 		public RibbonBar SummaryLightSpecialButtons { get; set; }
 		public ButtonItem SummaryLightHelp { get; set; }
 		public ButtonItem SummaryLightSave { get; set; }
@@ -910,6 +1067,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Summary Full
+		public RibbonPanel SummaryFullPanel { get; set; }
+		public RibbonBar SummaryFullThemeBar { get; set; }
 		public RibbonBar SummaryFullSpecialButtons { get; set; }
 		public ButtonItem SummaryFullHelp { get; set; }
 		public ButtonItem SummaryFullSave { get; set; }

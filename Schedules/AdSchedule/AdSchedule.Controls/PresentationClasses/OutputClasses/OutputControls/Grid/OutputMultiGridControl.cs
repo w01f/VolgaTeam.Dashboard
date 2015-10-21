@@ -56,11 +56,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Learn more about the Logo Grid", null, null, eTooltipColor.Gray);
 
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.MultiGridThemeBar.RecalcLayout();
+				Controller.Instance.MultiGridPanel.PerformLayout();
+			};
 		}
 
 		public SlideBulletsState SlideBulletsState
@@ -105,19 +111,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void UpdateOutput(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.MultiGridDigitalLegend.Image = Controller.Instance.MultiGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.MultiGridDigitalLegend, new SuperTooltipInfo("Digital Products", "",
 							Controller.Instance.MultiGridDigitalLegend.Enabled && LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend.Enabled ?
 							"Digital Products are Enabled for this slide" :
 							"Digital Products are Disabled for this slide"
 							, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.MultiGridTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid), (t =>
-			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintMultiGrid, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			if (!quickLoad)
 			{
 				AllowToSave = false;
@@ -151,9 +152,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Controller.Instance.SaveSchedule(LocalSchedule, false, true, this);
 		}
 
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.MultiGridTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid), Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintMultiGrid), (t =>
+			{
+				Core.AdSchedule.SettingsManager.Instance.SetSelectedTheme(SlideType.PrintMultiGrid, t.Name);
+				Core.AdSchedule.SettingsManager.Instance.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+		}
+
 		public void OpenHelp()
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("logogrid");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("logogrid");
 		}
 
 		private void UpdateSlideBullets()
@@ -736,7 +747,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Output Stuff
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid))); }
+			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintMultiGrid)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintMultiGrid))); }
 		}
 
 
@@ -960,102 +971,86 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabMultiGrid.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabMultiGrid.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
 		}
 
 		public void PrintOutput()
 		{
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					PrepareOutput();
-					AdSchedulePowerPointHelper.Instance.AppendMultiGridGridBased();
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				PrepareOutput();
+				AdSchedulePowerPointHelper.Instance.AppendMultiGridGridBased();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public void Email()
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			PrepareOutput();
+			string tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				PrepareOutput();
-				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
-				{
-					formEmail.Text = "Email this Logo Grid";
-					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					RegistryHelper.MainFormHandle = formEmail.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					formEmail.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				}
+				formEmail.Text = "Email this Logo Grid";
+				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 			}
 		}
 
 		public void Preview()
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			PrepareOutput();
+			string tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
+			if (!File.Exists(tempFileName)) return;
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				PrepareOutput();
-				string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-				AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
-				{
-					formPreview.Text = "Preview Logo Grid";
-					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-					RegistryHelper.MainFormHandle = formPreview.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					DialogResult previewResult = formPreview.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					if (previewResult != DialogResult.OK)
-						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				}
+				formPreview.Text = "Preview Logo Grid";
+				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				DialogResult previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			}
 		}
 
 		public void PrintPdf()
 		{
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					PrepareOutput();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedPdf(pdfFileName);
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				PrepareOutput();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedPdf(pdfFileName);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 
 		private string[][] GetPublicationLogos()

@@ -178,7 +178,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 
 		private void pbHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("clone");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("clone");
 		}
 
 		#region Picture Box Clicks Habdlers

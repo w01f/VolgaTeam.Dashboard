@@ -23,29 +23,31 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public PrintAdPlanControl(Form formContainer)
 			: base(formContainer)
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.AdPlanThemeBar.RecalcLayout();
+				Controller.Instance.AdPlanPanel.PerformLayout();
+			};
 		}
 
 		public Schedule LocalSchedule { get; set; }
 
 		public override ISchedule Schedule { get { return LocalSchedule; } }
-		public override string TemplatesFolderPath
-		{
-			get { return BusinessWrapper.Instance.OutputManager.AdPlanTemlatesFolderPath; }
-		}
 
 		public override ThemeManager ThemeManager
 		{
-			get { return BusinessWrapper.Instance.ThemeManager; }
+			get { return BusinessObjects.Instance.ThemeManager; }
 		}
 
 		public override HelpManager HelpManager
 		{
-			get { return BusinessWrapper.Instance.HelpManager; }
+			get { return BusinessObjects.Instance.HelpManager; }
 		}
 
 		public override ButtonItem Theme
@@ -55,15 +57,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void LoadSchedule(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Theme, ThemeManager.GetThemes(SlideType.PrintAdPlan), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan), (t =>
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			InitThemeSelector();
+			base.LoadSchedule(quickLoad);
+		}
+
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Theme, ThemeManager.GetThemes(SlideType.PrintAdPlan), Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintAdPlan), (t =>
 			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintAdPlan, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
+				Core.AdSchedule.SettingsManager.Instance.SetSelectedTheme(SlideType.PrintAdPlan, t.Name);
+				Core.AdSchedule.SettingsManager.Instance.SaveSettings();
 				SettingsNotSaved = true;
 			}));
-
-			base.LoadSchedule(quickLoad);
 		}
 
 		protected override void FillProducts(bool quickLoad)
@@ -168,33 +174,29 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override Theme SelectedTheme
 		{
-			get { return ThemeManager.GetThemes(SlideType.PrintAdPlan).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan))); }
+			get { return ThemeManager.GetThemes(SlideType.PrintAdPlan).FirstOrDefault(t => t.Name.Equals(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintAdPlan)) || String.IsNullOrEmpty(Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintAdPlan))); }
 		}
 
 		private void TrackOutput()
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabAdPlan.Text, LocalSchedule.BusinessName, ProductPages.Select(p => p.Investment).Sum()));
+			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabAdPlan.Text, LocalSchedule.BusinessName, ProductPages.Select(p => p.Investment).Sum()));
 		}
 
 		protected override void OutputSlides()
 		{
 			TrackOutput();
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					OnlineSchedulePowerPointHelper.Instance.AppendAdPlan(this);
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				OnlineSchedulePowerPointHelper.Instance.AppendAdPlan(this);
+				FormProgress.CloseProgress();
+			});
 		}
 
 		protected override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview AdPlan";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -210,24 +212,20 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		protected override void ShowPdf()
 		{
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					OnlineSchedulePowerPointHelper.Instance.PrepareAdPlanPdf(pdfFileName,this);
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				OnlineSchedulePowerPointHelper.Instance.PrepareAdPlanPdf(pdfFileName, this);
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 	}
 }

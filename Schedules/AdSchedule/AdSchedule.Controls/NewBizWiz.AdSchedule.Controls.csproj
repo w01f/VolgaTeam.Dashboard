@@ -108,7 +108,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessClasses\BusinessWrapper.cs" />
+    <Compile Include="BusinessClasses\BusinessObjects.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InteropClasses\BasicOverviewSummaryHelper.cs" />

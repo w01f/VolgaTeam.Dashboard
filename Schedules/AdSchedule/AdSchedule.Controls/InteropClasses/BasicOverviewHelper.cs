@@ -2,8 +2,8 @@
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -14,10 +14,9 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 	{
 		public void AppendBasicOverview(PublicationBasicOverviewControl[] outputControls, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.BasicOverviewTemlatesFolderPath)) return;
 			foreach (var outputControl in outputControls)
 			{
-				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.BasicOverviewTemlatesFolderPath, string.Format(OutputManager.BasicOverviewSlideTemplate, outputControl.OutputFileIndex));
+				var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetBasicOverviewSlideFile(outputControl.OutputFileIndex);
 				if (!File.Exists(presentationTemplatePath)) return;
 				try
 				{
@@ -107,7 +106,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						}
 						var selectedTheme = outputControl.SelectedTheme;
 						if (selectedTheme != null)
-							presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+							presentation.ApplyTheme(selectedTheme.GetThemePath());
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					});

@@ -5,6 +5,7 @@ using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -15,7 +16,6 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 	{
 		public void AppendMultiGridGridBased(Presentation destinationPresentation = null)
 		{
-			if (Directory.Exists(BusinessWrapper.Instance.OutputManager.MultiGridGridBasedTemlatesFolderPath))
 			{
 				try
 				{
@@ -29,7 +29,10 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						var rowsCount = slidesCount > 0 ? Controller.Instance.Grids.MultiGrid.Grid[0].GetLength(0) : 0;
 						for (var k = 0; k < slidesCount; k++)
 						{
-							string presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.MultiGridGridBasedTemlatesFolderPath, string.Format(OutputManager.MultiGridGridBasedSlideTemplate, new object[] { Controller.Instance.Grids.MultiGrid.SelectedColumnsCount, (Controller.Instance.Grids.MultiGrid.ShowCommentsHeader ? "adnotes" : "no_adnotes"), rowsCount }));
+							string presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetMultiGridFile(
+								Controller.Instance.Grids.MultiGrid.SelectedColumnsCount,
+								rowsCount,
+								Controller.Instance.Grids.MultiGrid.ShowCommentsHeader);
 							int currentSlideRowsCount = Controller.Instance.Grids.MultiGrid.Grid[k].GetLength(0);
 							if (File.Exists(presentationTemplatePath))
 							{
@@ -129,7 +132,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 								}
 								var selectedTheme = Controller.Instance.Grids.MultiGrid.SelectedTheme;
 								if (selectedTheme != null)
-									presentation.ApplyTheme(AsyncHelper.RunSync(selectedTheme.GetThemePath));
+									presentation.ApplyTheme(selectedTheme.GetThemePath());
 								AppendSlide(presentation, -1, destinationPresentation);
 								presentation.Close();
 							}

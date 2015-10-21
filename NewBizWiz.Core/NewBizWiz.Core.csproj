@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdSchedule\Activities.cs" />
+    <Compile Include="AdSchedule\ResourceManager.cs" />
     <Compile Include="Calendar\CalendarTemplatesManager.cs" />
     <Compile Include="Calendar\ColorSchema.cs" />
     <Compile Include="Common\ActivityManager.cs" />

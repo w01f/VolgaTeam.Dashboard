@@ -38,11 +38,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SlideHeader.checkEditLogo1.Text = "Publication Logo";
 
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Help me understand how to use the Detailed Grid", null, null, eTooltipColor.Gray);
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				InitThemeSelector();
+				Controller.Instance.DetailedGridThemeBar.RecalcLayout();
+				Controller.Instance.DetailedGridPanel.PerformLayout();
+			};
 		}
 
 		#region IGridOutputControl Members
@@ -277,19 +283,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void UpdateOutput(bool quickLoad)
 		{
-			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			LocalSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.DetailedGridDigitalLegend.Image = Controller.Instance.DetailedGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.DetailedGridDigitalLegend, new SuperTooltipInfo("Digital Products", "",
 				Controller.Instance.DetailedGridDigitalLegend.Enabled && LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend.Enabled ?
 				"Digital Products are Enabled for this slide" :
 				"Digital Products are Disabled for this slide"
 				, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.DetailedGridTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDetailedGrid), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid), (t =>
-			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintDetailedGrid, t.Name);
-				BusinessWrapper.Instance.SaveLocalSettings();
-				SettingsNotSaved = true;
-			}));
+			InitThemeSelector();
 			if (!quickLoad)
 			{
 				xtraTabControlPublications.SuspendLayout();
@@ -341,6 +342,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
+		private void InitThemeSelector()
+		{
+			FormThemeSelector.Link(Controller.Instance.DetailedGridTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.PrintDetailedGrid), Core.AdSchedule.SettingsManager.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid), (t =>
+			{
+				Core.AdSchedule.SettingsManager.Instance.SetSelectedTheme(SlideType.PrintDetailedGrid, t.Name);
+				Core.AdSchedule.SettingsManager.Instance.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+		}
+
 		private void ResetToDefault()
 		{
 			LocalSchedule.ViewSettings.DetailedGridViewSettings.ResetToDefault();
@@ -350,12 +361,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			UpdateSlideBullets();
 			AllowToSave = true;
 			SettingsNotSaved = false;
-			Controller.Instance.SaveSchedule(LocalSchedule,false, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, false, true, this);
 		}
 
 		public void OpenHelp()
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailedgrid");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("detailedgrid");
 		}
 		#endregion
 
@@ -956,7 +967,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private void TrackOutput(IEnumerable<PublicationDetailedGridControl> publications)
 		{
 			foreach (var publication in publications)
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
+				BusinessObjects.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
 		}
 
 		public void PrintOutput()
@@ -987,17 +998,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
 			TrackOutput(selectedProducts);
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					foreach (var product in selectedProducts)
-						product.PrintOutput();
-					formProgress.Close();
-				});
-			}
+				foreach (var product in selectedProducts)
+					product.PrintOutput();
+				FormProgress.CloseProgress();
+			});
 		}
 
 		public void Email()
@@ -1027,19 +1034,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
-			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				foreach (var product in selectedProducts)
-					product.PrepareOutput();
-				AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, selectedProducts.ToArray());
-				formProgress.Close();
-			}
+			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Presentation for Email...");
+			FormProgress.ShowProgress();
+			foreach (var product in selectedProducts)
+				product.PrepareOutput();
+			AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, selectedProducts.ToArray());
+			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Detailed Advertising Grid";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -1079,21 +1082,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
-			var tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				foreach (var product in selectedProducts)
-					product.PrepareOutput();
-				AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, selectedProducts.ToArray());
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				formProgress.Close();
-			}
+			var tempFileName = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			foreach (var product in selectedProducts)
+				product.PrepareOutput();
+			AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, selectedProducts.ToArray());
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
 			var trackAction = new Action(() => TrackOutput(selectedProducts));
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
 			{
 				formPreview.Text = "Preview Detailed Advertising Grid";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -1135,26 +1134,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
 			TrackOutput(selectedProducts);
-			using (var formProgress = new FormProgress())
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
 			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					foreach (var product in selectedProducts)
-						product.PrepareOutput();
-					var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-					AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedPdf(pdfFileName, selectedProducts.ToArray());
-					if (File.Exists(pdfFileName))
-						try
-						{
-							Process.Start(pdfFileName);
-						}
-						catch { }
-					formProgress.Close();
-				});
-			}
+				FormProgress.ShowProgress();
+				foreach (var product in selectedProducts)
+					product.PrepareOutput();
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", LocalSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedPdf(pdfFileName, selectedProducts.ToArray());
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
 		}
 		#endregion
 	}

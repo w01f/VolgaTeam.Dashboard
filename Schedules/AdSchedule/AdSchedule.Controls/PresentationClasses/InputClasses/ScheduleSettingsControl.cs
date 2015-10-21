@@ -40,11 +40,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Dock = DockStyle.Fill;
 			SettingsNotSaved = false;
 			LoadDigitalCategories();
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
+			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
+			xtraTabPageDigitalProducts.PageVisible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
 		}
 
 		public bool SettingsNotSaved { get; set; }
@@ -104,7 +105,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
 			gridControlPrintProducts.DataSource = new BindingList<PrintProduct>(_localSchedule.PrintProducts);
 			digitalProductListControl.UpdateData(_localSchedule,
 				() =>
@@ -119,7 +120,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					var propertyEditActivity = activity as PropertyEditActivity;
 					if (propertyEditActivity != null)
 						propertyEditActivity.Advertiser = Controller.Instance.HomeBusinessName.EditValue as String;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+					BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 				});
 			if (_dragDropHelper == null)
 			{
@@ -200,7 +201,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				if (_localSchedule.BusinessName != businessName)
 				{
 					_localSchedule.BusinessName = businessName;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
+					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
 				}
 			}
 			else
@@ -214,7 +215,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				if (_localSchedule.DecisionMaker != decisionMaker)
 				{
 					_localSchedule.DecisionMaker = decisionMaker;
-					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
+					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
 				}
 			}
 			else
@@ -439,7 +440,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void buttonItemPrintScheduleettingsHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(xtraTabControlProducts.SelectedTabPage == xtraTabPageDigitalProducts ? "homedigital" : "home");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink(xtraTabControlProducts.SelectedTabPage == xtraTabPageDigitalProducts ? "homedigital" : "home");
 		}
 		#endregion
 
@@ -503,7 +504,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					var printProductSource = Core.AdSchedule.ListManager.Instance.PublicationSources.FirstOrDefault(x => x.Name.Equals(value));
 					if (printProductSource != null)
 					{
-						BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Publication Name", printProductSource.Name, advertiser: Controller.Instance.HomeBusinessName.EditValue as String));
+						BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Publication Name", printProductSource.Name, advertiser: Controller.Instance.HomeBusinessName.EditValue as String));
 						_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].ApplyDefaultValues();
 						gridViewPrintProducts.RefreshData();
 					}

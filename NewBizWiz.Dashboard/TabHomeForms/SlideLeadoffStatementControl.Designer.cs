@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabHomeForms
+﻿namespace Asa.Dashboard.TabHomeForms
 {
 	sealed partial class SlideLeadoffStatementControl
     {
@@ -81,7 +81,7 @@
 			// 
 			// pbDescription
 			// 
-			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionLeadoff;
+			this.pbDescription.Image = global::Asa.Dashboard.Properties.Resources.DescriptionLeadoff;
 			// 
 			// simpleButtonSaveTemplate
 			// 

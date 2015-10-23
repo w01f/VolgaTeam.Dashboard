@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace NewBizWiz.Core.Interop
+namespace Asa.Core.Interop
 {
 	public interface IPowerPointHelper
 	{

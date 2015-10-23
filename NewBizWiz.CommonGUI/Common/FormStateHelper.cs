@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Common
+namespace Asa.CommonGUI.Common
 {
 	public class FormStateHelper
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.MediaSchedule
+namespace Asa.Core.MediaSchedule
 {
 	public enum MediaDataType
 	{

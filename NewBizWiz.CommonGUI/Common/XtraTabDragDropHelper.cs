@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
 
-namespace NewBizWiz.CommonGUI.Common
+namespace Asa.CommonGUI.Common
 {
 	public class XtraTabDragDropHelper<TTabPage> where TTabPage : XtraTabPage
 	{

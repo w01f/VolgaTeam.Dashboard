@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.Floater
+namespace Asa.CommonGUI.Floater
 {
 	public partial class FormFloater : Form
 	{

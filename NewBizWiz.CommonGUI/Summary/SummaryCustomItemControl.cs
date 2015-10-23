@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Summary
+namespace Asa.CommonGUI.Summary
 {
 	[ToolboxItem(false)]
 	public partial class SummaryCustomItemControl : UserControl, ISummaryItemControl

@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Text;
 using System.Xml;
-using NewBizWiz.CommonGUI.RateCard;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.CommonGUI.RateCard;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
+namespace Asa.OnlineSchedule.Controls.BusinessClasses
 {
 	public class BusinessObjects
 	{

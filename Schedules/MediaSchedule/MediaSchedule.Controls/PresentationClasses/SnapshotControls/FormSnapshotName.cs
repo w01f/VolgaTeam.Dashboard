@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 {
 	public partial class FormSnapshotName : MetroForm
 	{

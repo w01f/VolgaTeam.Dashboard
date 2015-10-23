@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 {
 	partial class SnapshotContainer
 	{
@@ -49,7 +49,7 @@
 			this.pnTotalSpots = new System.Windows.Forms.Panel();
 			this.laTotalSpotsValue = new System.Windows.Forms.Label();
 			this.laTotalSpotsTitle = new System.Windows.Forms.Label();
-			this.retractableBarControl = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBarControl = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageOptionsInfo = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsInfo = new System.Windows.Forms.Panel();
@@ -79,7 +79,7 @@
 			this.buttonXSummaryTallyCost = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
-			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
+			this.outputColorSelector = new Asa.CommonGUI.OutputColors.OutputColorSelector();
 			this.laColorsTitle = new System.Windows.Forms.Label();
 			this.xtraTabPageOptionsActiveWeeks = new DevExpress.XtraTab.XtraTabPage();
 			this.pnActiveWeeks = new System.Windows.Forms.Panel();
@@ -128,7 +128,7 @@
 			// pbNoSnapshots
 			// 
 			this.pbNoSnapshots.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoSnapshots.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.SnapshotNoRecords;
+			this.pbNoSnapshots.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.SnapshotNoRecords;
 			this.pbNoSnapshots.Location = new System.Drawing.Point(40, 20);
 			this.pbNoSnapshots.Name = "pbNoSnapshots";
 			this.pbNoSnapshots.Size = new System.Drawing.Size(140, 60);

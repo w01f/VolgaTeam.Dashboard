@@ -1,11 +1,11 @@
 ﻿using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.Calendar.Controls.PresentationClasses.Views;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
+namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	public interface ICalendarControl
 	{

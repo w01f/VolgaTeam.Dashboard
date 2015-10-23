@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	partial class WebPackageControl
     {
@@ -98,7 +98,7 @@
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBar = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnButtons.SuspendLayout();
 			this.pnFormula.SuspendLayout();
@@ -317,7 +317,7 @@
 			// 
 			// pbFormualHelp
 			// 
-			this.pbFormualHelp.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
+			this.pbFormualHelp.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
 			this.pbFormualHelp.Location = new System.Drawing.Point(187, 5);
 			this.pbFormualHelp.Name = "pbFormualHelp";
 			this.pbFormualHelp.Size = new System.Drawing.Size(34, 34);
@@ -332,7 +332,7 @@
 			// 
 			// pbFormula
 			// 
-			this.pbFormula.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
+			this.pbFormula.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
 			this.pbFormula.Location = new System.Drawing.Point(12, 5);
 			this.pbFormula.Name = "pbFormula";
 			this.pbFormula.Size = new System.Drawing.Size(34, 34);
@@ -849,8 +849,8 @@
 			this.repositoryItemCheckEditFormula.Caption = "Check";
 			this.repositoryItemCheckEditFormula.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined;
 			this.repositoryItemCheckEditFormula.Name = "repositoryItemCheckEditFormula";
-			this.repositoryItemCheckEditFormula.PictureChecked = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
-			this.repositoryItemCheckEditFormula.PictureUnchecked = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogoDisabled;
+			this.repositoryItemCheckEditFormula.PictureChecked = global::Asa.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
+			this.repositoryItemCheckEditFormula.PictureUnchecked = global::Asa.OnlineSchedule.Controls.Properties.Resources.FormulaLogoDisabled;
 			this.repositoryItemCheckEditFormula.CheckedChanged += new System.EventHandler(this.repositoryItemCheckEditFormula_CheckedChanged);
 			// 
 			// toolTipController
@@ -863,7 +863,7 @@
 			// 
 			this.pbDisabledOutput.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pbDisabledOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbDisabledOutput.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.DigitalPackageDisabled;
+			this.pbDisabledOutput.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.DigitalPackageDisabled;
 			this.pbDisabledOutput.Location = new System.Drawing.Point(0, 0);
 			this.pbDisabledOutput.Name = "pbDisabledOutput";
 			this.pbDisabledOutput.Size = new System.Drawing.Size(803, 545);

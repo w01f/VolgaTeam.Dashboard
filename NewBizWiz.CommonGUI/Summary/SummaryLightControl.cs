@@ -1,7 +1,7 @@
 ﻿using System;
 using DevComponents.DotNetBar;
 
-namespace NewBizWiz.CommonGUI.Summary
+namespace Asa.CommonGUI.Summary
 {
 	public abstract class SummaryLightControl : SummaryBaseControl<SummaryProductItemControl>
 	{

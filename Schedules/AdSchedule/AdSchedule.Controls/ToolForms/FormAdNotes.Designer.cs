@@ -1,6 +1,6 @@
-﻿using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
+﻿using Asa.AdSchedule.Controls.PresentationClasses.InputClasses;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace Asa.AdSchedule.Controls.ToolForms
 {
     partial class FormAdNotes
     {
@@ -38,24 +38,24 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.buttonXClearSection = new DevComponents.DotNetBar.ButtonX();
 			this.tabControlAdNotes = new DevComponents.DotNetBar.TabControl();
 			this.tabControlPanelComments = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesDaysSelectorComments = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
+			this.adNotesDaysSelectorComments = new Asa.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.buttonXClearComment = new DevComponents.DotNetBar.ButtonX();
 			this.tabItemComments = new DevComponents.DotNetBar.TabItem();
 			this.tabControlPanelSections = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesDaysSelectorSections = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
+			this.adNotesDaysSelectorSections = new Asa.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.textEditSection = new DevExpress.XtraEditors.TextEdit();
 			this.ckSection = new DevExpress.XtraEditors.CheckEdit();
 			this.checkedListBoxControlSections = new DevExpress.XtraEditors.CheckedListBoxControl();
 			this.tabItemSections = new DevComponents.DotNetBar.TabItem();
 			this.tabControlPanelDeadlines = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesDaysSelectorDeadlines = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
+			this.adNotesDaysSelectorDeadlines = new Asa.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.textEditDeadline = new DevExpress.XtraEditors.TextEdit();
 			this.ckDeadline = new DevExpress.XtraEditors.CheckEdit();
 			this.checkedListBoxControlDeadline = new DevExpress.XtraEditors.CheckedListBoxControl();
 			this.buttonXClearDeadline = new DevComponents.DotNetBar.ButtonX();
 			this.tabItemDeadlines = new DevComponents.DotNetBar.TabItem();
 			this.tabControlPanelMechanicals = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesDaysSelectorMechanicals = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
+			this.adNotesDaysSelectorMechanicals = new Asa.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.buttonXClearMechanicals = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabControlMechanicals = new DevExpress.XtraTab.XtraTabControl();
 			this.textEditMechanicals = new DevExpress.XtraEditors.TextEdit();
@@ -296,7 +296,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// tabItemComments
 			// 
 			this.tabItemComments.AttachedControl = this.tabControlPanelComments;
-			this.tabItemComments.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Unselected;
+			this.tabItemComments.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Unselected;
 			this.tabItemComments.Name = "tabItemComments";
 			this.tabItemComments.Text = "Comments && Publications";
 			// 
@@ -390,7 +390,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// tabItemSections
 			// 
 			this.tabItemSections.AttachedControl = this.tabControlPanelSections;
-			this.tabItemSections.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Unselected;
+			this.tabItemSections.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Unselected;
 			this.tabItemSections.Name = "tabItemSections";
 			this.tabItemSections.Text = "Sections";
 			// 
@@ -499,7 +499,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// tabItemDeadlines
 			// 
 			this.tabItemDeadlines.AttachedControl = this.tabControlPanelDeadlines;
-			this.tabItemDeadlines.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Unselected;
+			this.tabItemDeadlines.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Unselected;
 			this.tabItemDeadlines.Name = "tabItemDeadlines";
 			this.tabItemDeadlines.Text = "Deadlines";
 			// 
@@ -598,7 +598,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// tabItemMechanicals
 			// 
 			this.tabItemMechanicals.AttachedControl = this.tabControlPanelMechanicals;
-			this.tabItemMechanicals.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Unselected;
+			this.tabItemMechanicals.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Unselected;
 			this.tabItemMechanicals.Name = "tabItemMechanicals";
 			this.tabItemMechanicals.Text = "Mechanicals";
 			this.tabItemMechanicals.TextColor = System.Drawing.Color.Black;
@@ -662,7 +662,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbHelp.BackColor = System.Drawing.Color.White;
 			this.pbHelp.ForeColor = System.Drawing.Color.Black;
-			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
+			this.pbHelp.Image = global::Asa.AdSchedule.Controls.Properties.Resources.HelpSmall;
 			this.pbHelp.Location = new System.Drawing.Point(575, 3);
 			this.pbHelp.Name = "pbHelp";
 			this.pbHelp.Size = new System.Drawing.Size(30, 30);
@@ -731,7 +731,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AdNoteNormal;
+			this.pbLogo.Image = global::Asa.AdSchedule.Controls.Properties.Resources.AdNoteNormal;
 			this.pbLogo.Location = new System.Drawing.Point(9, 7);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(64, 68);

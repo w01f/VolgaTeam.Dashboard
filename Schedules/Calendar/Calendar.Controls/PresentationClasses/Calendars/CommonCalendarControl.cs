@@ -5,16 +5,16 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
-using NewBizWiz.Calendar.Controls.InteropClasses;
-using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.Calendar.SettingsManager;
+using Asa.Calendar.Controls.BusinessClasses;
+using Asa.Calendar.Controls.InteropClasses;
+using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using SettingsManager = Asa.Core.Calendar.SettingsManager;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
+namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	public sealed class CommonCalendarControl : BaseCalendarControl
 	{

@@ -8,18 +8,18 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab.ViewInfo;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.Properties;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.RetractableBar;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.MediaSchedule.Controls.Properties;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 {
 	[ToolboxItem(false)]
 	public partial class SnapshotContainer : UserControl

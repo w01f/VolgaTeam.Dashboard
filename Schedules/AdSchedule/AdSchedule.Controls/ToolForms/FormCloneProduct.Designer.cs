@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.ToolForms
+﻿namespace Asa.AdSchedule.Controls.ToolForms
 {
     partial class FormCloneProduct
     {
@@ -79,7 +79,7 @@
 			// 
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.CloneProductBig;
+			this.pbLogo.Image = global::Asa.AdSchedule.Controls.Properties.Resources.CloneProductBig;
 			this.pbLogo.Location = new System.Drawing.Point(3, 2);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(82, 76);

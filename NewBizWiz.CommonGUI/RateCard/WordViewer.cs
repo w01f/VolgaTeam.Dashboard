@@ -4,10 +4,10 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Interop;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.RateCard
+namespace Asa.CommonGUI.RateCard
 {
 	[ToolboxItem(false)]
 	public partial class WordViewer : XtraTabPage, IRateCardViewer

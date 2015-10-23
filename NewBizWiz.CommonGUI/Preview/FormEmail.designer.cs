@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Preview
+﻿namespace Asa.CommonGUI.Preview
 {
     partial class FormEmail
     {
@@ -100,7 +100,7 @@
 			this.barLargeButtonItemRegularEmail.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
 			this.barLargeButtonItemRegularEmail.Caption = "Send\r\nPowerPoint";
 			this.barLargeButtonItemRegularEmail.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-			this.barLargeButtonItemRegularEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.RegularEmail;
+			this.barLargeButtonItemRegularEmail.Glyph = global::Asa.CommonGUI.Properties.Resources.RegularEmail;
 			this.barLargeButtonItemRegularEmail.Id = 4;
 			this.barLargeButtonItemRegularEmail.Name = "barLargeButtonItemRegularEmail";
 			toolTipTitleItem1.Text = "Email PowerPoint file";
@@ -116,7 +116,7 @@
 			this.barLargeButtonItemPDFEmail.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
 			this.barLargeButtonItemPDFEmail.Caption = "Send\r\nAdobe PDF";
 			this.barLargeButtonItemPDFEmail.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-			this.barLargeButtonItemPDFEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.PDFEmail;
+			this.barLargeButtonItemPDFEmail.Glyph = global::Asa.CommonGUI.Properties.Resources.PDFEmail;
 			this.barLargeButtonItemPDFEmail.Id = 14;
 			this.barLargeButtonItemPDFEmail.Name = "barLargeButtonItemPDFEmail";
 			toolTipTitleItem2.Text = "Email as PDF";
@@ -131,7 +131,7 @@
 			// 
 			this.barLargeButtonItemHelp.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
 			this.barLargeButtonItemHelp.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Help;
+			this.barLargeButtonItemHelp.Glyph = global::Asa.CommonGUI.Properties.Resources.Help;
 			this.barLargeButtonItemHelp.Id = 6;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
 			toolTipTitleItem3.Text = "HELP";
@@ -146,7 +146,7 @@
 			// 
 			this.barLargeButtonItemExit.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
 			this.barLargeButtonItemExit.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-			this.barLargeButtonItemExit.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Exit;
+			this.barLargeButtonItemExit.Glyph = global::Asa.CommonGUI.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 7;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
 			toolTipTitleItem4.Text = "EXIT";

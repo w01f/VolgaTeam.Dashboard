@@ -1,7 +1,7 @@
 ﻿using System;
 using DevComponents.DotNetBar;
 
-namespace NewBizWiz.CommonGUI.Common
+namespace Asa.CommonGUI.Common
 {
 	public static class PowerPointButtonExtension
 	{

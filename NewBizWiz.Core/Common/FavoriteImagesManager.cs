@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class FavoriteImagesManager
 	{

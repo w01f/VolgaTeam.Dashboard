@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.Core.Calendar;
+using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.CommonGUI.RetractableBar;
+using Asa.Core.Calendar;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
+namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 {
 	public class SlideInfoWrapper
 	{

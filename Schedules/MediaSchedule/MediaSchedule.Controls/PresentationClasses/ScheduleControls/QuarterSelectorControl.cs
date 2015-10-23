@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class QuarterSelectorControl : UserControl
 	{

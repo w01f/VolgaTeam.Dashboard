@@ -2,7 +2,7 @@
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
 {
 	public class CustomCalendarControl: AdCalendarControl
 	{

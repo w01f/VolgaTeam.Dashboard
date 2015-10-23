@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.Core.Calendar;
+using Asa.Core.Calendar;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
 	public partial class WeekControl : UserControl

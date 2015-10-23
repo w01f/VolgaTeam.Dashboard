@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Dashboard.ToolForms
+namespace Asa.Dashboard.ToolForms
 {
 	public partial class FormSaveTemplate : MetroForm
 	{

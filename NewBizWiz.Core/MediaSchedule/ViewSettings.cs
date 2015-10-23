@@ -2,7 +2,7 @@
 using System.Text;
 using System.Xml;
 
-namespace NewBizWiz.Core.MediaSchedule
+namespace Asa.Core.MediaSchedule
 {
 	public class ScheduleSectionSettings
 	{

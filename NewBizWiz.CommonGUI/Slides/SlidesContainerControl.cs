@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Slides
+namespace Asa.CommonGUI.Slides
 {
 	[ToolboxItem(false)]
 	public partial class SlidesContainerControl : UserControl

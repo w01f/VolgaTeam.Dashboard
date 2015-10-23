@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
+﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 {
 	sealed partial class OptionsSummaryControl
 	{

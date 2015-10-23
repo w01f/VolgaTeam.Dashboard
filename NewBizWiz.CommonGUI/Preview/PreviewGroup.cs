@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NewBizWiz.CommonGUI.Preview
+namespace Asa.CommonGUI.Preview
 {
 	public class PreviewGroup
 	{

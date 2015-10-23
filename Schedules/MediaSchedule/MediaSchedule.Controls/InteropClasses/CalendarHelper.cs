@@ -5,14 +5,14 @@ using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.VisualBasic;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.MediaSchedule.Controls.BusinessClasses;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
+namespace Asa.MediaSchedule.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{

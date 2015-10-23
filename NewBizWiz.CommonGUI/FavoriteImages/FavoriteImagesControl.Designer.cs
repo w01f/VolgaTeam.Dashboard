@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.FavoriteImages
+﻿namespace Asa.CommonGUI.FavoriteImages
 {
 	partial class FavoriteImagesControl
 	{

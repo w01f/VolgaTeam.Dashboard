@@ -5,10 +5,10 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.CommonGUI.Properties;
-using NewBizWiz.Core.Common;
+using Asa.CommonGUI.Properties;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Themes
+namespace Asa.CommonGUI.Themes
 {
 	public partial class FormThemeSelector : MetroForm
 	{

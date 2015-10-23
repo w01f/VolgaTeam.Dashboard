@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	partial class DigitalProductListControl
 	{
@@ -197,7 +197,7 @@
 			// pictureBoxDigitalProductAppLogo
 			// 
 			this.pictureBoxDigitalProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pictureBoxDigitalProductAppLogo.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.AppLogo;
+			this.pictureBoxDigitalProductAppLogo.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.AppLogo;
 			this.pictureBoxDigitalProductAppLogo.Location = new System.Drawing.Point(659, 0);
 			this.pictureBoxDigitalProductAppLogo.Name = "pictureBoxDigitalProductAppLogo";
 			this.pictureBoxDigitalProductAppLogo.Size = new System.Drawing.Size(160, 38);

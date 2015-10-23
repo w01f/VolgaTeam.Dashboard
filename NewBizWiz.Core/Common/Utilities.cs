@@ -11,11 +11,11 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using DevExpress.XtraEditors;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Interop;
 using Application = Microsoft.Office.Interop.PowerPoint.Application;
 using Point = System.Drawing.Point;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class Utilities
 	{
@@ -36,17 +36,32 @@ namespace NewBizWiz.Core.Common
 
 		public void ShowWarning(string text)
 		{
-			MessageBox.Show(text, Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			ShowWarning(text, Title);
 		}
 
 		public DialogResult ShowWarningQuestion(string text, params object[] args)
 		{
-			return MessageBox.Show(String.Format(text, args), Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+			return ShowWarningQuestion(text, Title, args);
 		}
 
 		public void ShowInformation(string text)
 		{
-			MessageBox.Show(text, Title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			ShowInformation(text, Title);
+		}
+
+		public void ShowWarning(string text, string title)
+		{
+			MessageBox.Show(text, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+		}
+
+		public DialogResult ShowWarningQuestion(string text, string title, params object[] args)
+		{
+			return MessageBox.Show(String.Format(text, args), title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+		}
+
+		public void ShowInformation(string text, string title)
+		{
+			MessageBox.Show(text, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		public void ActivateForm(IntPtr handle, bool maximized, bool topMost)

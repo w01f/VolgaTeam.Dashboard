@@ -13,19 +13,19 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.ImageGallery;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
-using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
-using ScheduleManager = NewBizWiz.Core.AdSchedule.ScheduleManager;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.ToolForms;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.ImageGallery;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using ListManager = Asa.Core.OnlineSchedule.ListManager;
+using Schedule = Asa.Core.AdSchedule.Schedule;
+using ScheduleManager = Asa.Core.AdSchedule.ScheduleManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
 	[ToolboxItem(false)]
 	public partial class ScheduleSettingsControl : UserControl

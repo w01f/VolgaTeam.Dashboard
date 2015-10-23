@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Preview
+﻿namespace Asa.CommonGUI.Preview
 {
 	partial class PreviewGroupControl
 	{

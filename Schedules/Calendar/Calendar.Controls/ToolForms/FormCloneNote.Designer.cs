@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.ToolForms
+﻿namespace Asa.Calendar.Controls.ToolForms
 {
     partial class FormCloneNote
     {
@@ -135,7 +135,7 @@
 			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbHelp.BackColor = System.Drawing.Color.White;
 			this.pbHelp.ForeColor = System.Drawing.Color.Black;
-			this.pbHelp.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.Help;
+			this.pbHelp.Image = global::Asa.Calendar.Controls.Properties.Resources.Help;
 			this.pbHelp.Location = new System.Drawing.Point(521, 2);
 			this.pbHelp.Name = "pbHelp";
 			this.pbHelp.Size = new System.Drawing.Size(76, 81);
@@ -165,7 +165,7 @@
 			// 
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.Clone;
+			this.pbLogo.Image = global::Asa.Calendar.Controls.Properties.Resources.Clone;
 			this.pbLogo.Location = new System.Drawing.Point(3, 5);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(87, 75);
@@ -357,7 +357,7 @@
 			// repositoryItemButtonEdit
 			// 
 			this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::NewBizWiz.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
 			this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";

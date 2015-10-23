@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.ToolForms
+﻿namespace Asa.AdSchedule.Controls.ToolForms
 {
     partial class FormChangeAdStrategyWarning
     {
@@ -84,7 +84,7 @@
 			// 
 			this.pictureBoxImage.BackColor = System.Drawing.Color.White;
 			this.pictureBoxImage.ForeColor = System.Drawing.Color.Black;
-			this.pictureBoxImage.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.SharePageBig;
+			this.pictureBoxImage.Image = global::Asa.AdSchedule.Controls.Properties.Resources.SharePageBig;
 			this.pictureBoxImage.Location = new System.Drawing.Point(12, 12);
 			this.pictureBoxImage.Name = "pictureBoxImage";
 			this.pictureBoxImage.Size = new System.Drawing.Size(47, 50);

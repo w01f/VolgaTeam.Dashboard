@@ -5,9 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Layout;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Themes
+namespace Asa.CommonGUI.Themes
 {
 	[ToolboxItem(false)]
 	public partial class ThemeContainerControl : UserControl

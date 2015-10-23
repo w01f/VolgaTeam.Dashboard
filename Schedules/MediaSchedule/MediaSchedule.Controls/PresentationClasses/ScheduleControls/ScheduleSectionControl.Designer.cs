@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
     partial class ScheduleSectionControl
     {
@@ -87,7 +87,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.repositoryItemSpinEdit000s = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.pnTop = new System.Windows.Forms.Panel();
-			this.quarterSelectorControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
+			this.quarterSelectorControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
 			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
@@ -135,7 +135,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXLength = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXStation = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageOptionsDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalInfoControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl();
+			this.digitalInfoControl = new Asa.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl();
 			this.xtraTabPageOptionsTotals = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsTotals = new System.Windows.Forms.Panel();
 			this.buttonXDiscount = new DevComponents.DotNetBar.ButtonX();
@@ -148,9 +148,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalPeriods = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
-			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
+			this.outputColorSelector = new Asa.CommonGUI.OutputColors.OutputColorSelector();
 			this.laColorsTitle = new System.Windows.Forms.Label();
-			this.retractableBarControl = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBarControl = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.pnInfoBottom = new System.Windows.Forms.Panel();
 			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.hyperLinkEditInfoAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
@@ -2206,7 +2206,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private DevComponents.DotNetBar.ButtonX buttonXAvgRate;
 		private DevComponents.DotNetBar.ButtonX buttonXTotalPeriods;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsDigital;
-	    protected NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl digitalInfoControl;
+	    protected Asa.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl digitalInfoControl;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsStyle;
 		private System.Windows.Forms.Panel pnStyle;
 		protected System.Windows.Forms.Label laTotalPeriodsTitle;

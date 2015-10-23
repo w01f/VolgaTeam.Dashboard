@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
     partial class DigitalProductControl
     {
@@ -709,7 +709,7 @@
 			this.buttonXShowDescriptionTargeting.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowDescriptionTargeting.AutoCheckOnClick = true;
 			this.buttonXShowDescriptionTargeting.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowDescriptionTargeting.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.TargetButton;
+			this.buttonXShowDescriptionTargeting.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.TargetButton;
 			this.buttonXShowDescriptionTargeting.Location = new System.Drawing.Point(217, 3);
 			this.buttonXShowDescriptionTargeting.Name = "buttonXShowDescriptionTargeting";
 			this.buttonXShowDescriptionTargeting.Size = new System.Drawing.Size(32, 32);
@@ -723,7 +723,7 @@
 			this.buttonXShowDescriptionRichMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowDescriptionRichMedia.AutoCheckOnClick = true;
 			this.buttonXShowDescriptionRichMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowDescriptionRichMedia.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.RichMediaButton;
+			this.buttonXShowDescriptionRichMedia.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.RichMediaButton;
 			this.buttonXShowDescriptionRichMedia.Location = new System.Drawing.Point(255, 3);
 			this.buttonXShowDescriptionRichMedia.Name = "buttonXShowDescriptionRichMedia";
 			this.buttonXShowDescriptionRichMedia.Size = new System.Drawing.Size(32, 32);
@@ -771,7 +771,7 @@
 			this.buttonXShowCommentTargeting.AutoCheckOnClick = true;
 			this.buttonXShowCommentTargeting.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXShowCommentTargeting.Enabled = false;
-			this.buttonXShowCommentTargeting.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.TargetButton;
+			this.buttonXShowCommentTargeting.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.TargetButton;
 			this.buttonXShowCommentTargeting.Location = new System.Drawing.Point(322, 3);
 			this.buttonXShowCommentTargeting.Name = "buttonXShowCommentTargeting";
 			this.buttonXShowCommentTargeting.Size = new System.Drawing.Size(32, 32);
@@ -786,7 +786,7 @@
 			this.buttonXShowCommentRichMedia.AutoCheckOnClick = true;
 			this.buttonXShowCommentRichMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXShowCommentRichMedia.Enabled = false;
-			this.buttonXShowCommentRichMedia.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.RichMediaButton;
+			this.buttonXShowCommentRichMedia.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.RichMediaButton;
 			this.buttonXShowCommentRichMedia.Location = new System.Drawing.Point(360, 3);
 			this.buttonXShowCommentRichMedia.Name = "buttonXShowCommentRichMedia";
 			this.buttonXShowCommentRichMedia.Size = new System.Drawing.Size(32, 32);

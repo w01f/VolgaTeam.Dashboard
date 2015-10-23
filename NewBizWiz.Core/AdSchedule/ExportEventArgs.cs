@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NewBizWiz.Core.AdSchedule
+namespace Asa.Core.AdSchedule
 {
 	public class ExportEventArgs : EventArgs
 	{

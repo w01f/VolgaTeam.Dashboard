@@ -8,14 +8,14 @@ using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using SettingsManager = Asa.Core.Common.SettingsManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	public partial class PublicationBasicOverviewControl : XtraTabPage, IBasicOverviewOutputControl
 	//public partial class PublicationBasicOverviewControl : System.Windows.Forms.UserControl

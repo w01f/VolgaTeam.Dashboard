@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.ToolForms
+﻿namespace Asa.AdSchedule.Controls.ToolForms
 {
     partial class FormCloneInsert
     {
@@ -252,7 +252,7 @@
 			// 
 			this.pbHelp.BackColor = System.Drawing.Color.White;
 			this.pbHelp.ForeColor = System.Drawing.Color.Black;
-			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
+			this.pbHelp.Image = global::Asa.AdSchedule.Controls.Properties.Resources.HelpSmall;
 			this.pbHelp.Location = new System.Drawing.Point(568, 3);
 			this.pbHelp.Name = "pbHelp";
 			this.pbHelp.Size = new System.Drawing.Size(30, 30);
@@ -268,7 +268,7 @@
 			// 
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.CloneProductBig;
+			this.pbLogo.Image = global::Asa.AdSchedule.Controls.Properties.Resources.CloneProductBig;
 			this.pbLogo.Location = new System.Drawing.Point(3, 3);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(87, 79);

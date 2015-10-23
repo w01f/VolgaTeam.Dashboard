@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	//public partial class DigitalProductInfoGroup : UserControl
 	public partial class DigitalProductInfoGroup : XtraTabPage

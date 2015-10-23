@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class SpecialLinkButton
 	{

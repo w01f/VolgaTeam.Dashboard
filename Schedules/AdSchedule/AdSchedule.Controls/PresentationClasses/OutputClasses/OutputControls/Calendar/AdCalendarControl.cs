@@ -5,18 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
-using ScheduleManager = NewBizWiz.Core.AdSchedule.ScheduleManager;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using Schedule = Asa.Core.AdSchedule.Schedule;
+using ScheduleManager = Asa.Core.AdSchedule.ScheduleManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
 {
 	public abstract class AdCalendarControl : BaseCalendarControl
 	{

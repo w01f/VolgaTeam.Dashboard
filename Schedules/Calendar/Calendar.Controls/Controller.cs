@@ -5,19 +5,19 @@ using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
-using NewBizWiz.Calendar.Controls.InteropClasses;
-using NewBizWiz.Calendar.Controls.PresentationClasses;
-using NewBizWiz.Calendar.Controls.Properties;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.CommonGUI.RateCard;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.BusinessClasses;
+using Asa.Calendar.Controls.InteropClasses;
+using Asa.Calendar.Controls.PresentationClasses;
+using Asa.Calendar.Controls.Properties;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.Gallery;
+using Asa.CommonGUI.RateCard;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls
+namespace Asa.Calendar.Controls
 {
 	public class Controller
 	{

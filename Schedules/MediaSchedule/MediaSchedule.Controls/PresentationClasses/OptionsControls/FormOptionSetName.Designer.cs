@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
+﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 {
 	partial class FormOptionSetName
     {
@@ -94,7 +94,7 @@
 			// 
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.OptionsNew;
+			this.pbLogo.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.OptionsNew;
 			this.pbLogo.Location = new System.Drawing.Point(12, 12);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(72, 75);

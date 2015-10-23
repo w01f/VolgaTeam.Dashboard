@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.SlideSettingsEditors
+﻿namespace Asa.CommonGUI.SlideSettingsEditors
 {
 	partial class FormEditSlideSettings
 	{

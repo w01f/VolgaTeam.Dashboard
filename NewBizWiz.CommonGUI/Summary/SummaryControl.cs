@@ -9,10 +9,10 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using EO.Internal;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Summary
+namespace Asa.CommonGUI.Summary
 {
 	[ToolboxItem(false)]
 	public abstract partial class SummaryControl : UserControl

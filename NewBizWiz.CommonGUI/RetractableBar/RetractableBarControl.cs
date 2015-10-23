@@ -6,9 +6,9 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using DevExpress.XtraEditors;
-using NewBizWiz.CommonGUI.Properties;
+using Asa.CommonGUI.Properties;
 
-namespace NewBizWiz.CommonGUI.RetractableBar
+namespace Asa.CommonGUI.RetractableBar
 {
 	[Designer(typeof(RetractableBarDesigner))]
 	public partial class RetractableBarControl : UserControl

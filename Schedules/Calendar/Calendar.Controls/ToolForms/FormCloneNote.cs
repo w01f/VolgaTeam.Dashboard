@@ -6,11 +6,11 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 using Pabo.Calendar;
 
-namespace NewBizWiz.Calendar.Controls.ToolForms
+namespace Asa.Calendar.Controls.ToolForms
 {
 	public partial class FormCloneNote : MetroForm
 	{

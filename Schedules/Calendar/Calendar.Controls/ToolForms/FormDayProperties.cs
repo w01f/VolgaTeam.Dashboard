@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.Calendar;
+using Asa.Core.Calendar;
 
-namespace NewBizWiz.Calendar.Controls.ToolForms
+namespace Asa.Calendar.Controls.ToolForms
 {
 	public partial class FormDayProperties : MetroForm
 	{

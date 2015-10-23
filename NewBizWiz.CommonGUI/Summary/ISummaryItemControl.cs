@@ -1,7 +1,7 @@
 ﻿using System;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Summary
+namespace Asa.CommonGUI.Summary
 {
 	public interface ISummaryItemControl
 	{

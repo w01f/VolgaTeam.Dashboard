@@ -5,19 +5,19 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.Properties;
-using NewBizWiz.MediaSchedule.Controls.ToolForms;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.MediaSchedule.Controls.Properties;
+using Asa.MediaSchedule.Controls.ToolForms;
+using Asa.OnlineSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Single
+namespace Asa.MediaSchedule.Single
 {
 	public partial class FormMain : RibbonForm
 	{

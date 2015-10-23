@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.Core.Common;
+using Asa.CommonGUI.Preview;
+using Asa.Core.Common;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 {
 	public interface ISnapshotSlide
 	{

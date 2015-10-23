@@ -8,7 +8,7 @@ using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	public partial class DigitalProductSummaryControl : UserControl

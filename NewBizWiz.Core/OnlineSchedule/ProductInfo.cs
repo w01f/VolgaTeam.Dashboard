@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace NewBizWiz.Core.OnlineSchedule
+namespace Asa.Core.OnlineSchedule
 {
 	public enum ProductInfoType
 	{

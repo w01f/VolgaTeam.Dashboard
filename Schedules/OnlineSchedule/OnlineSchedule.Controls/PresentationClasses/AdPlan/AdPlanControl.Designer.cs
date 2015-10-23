@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	abstract partial class AdPlanControl
     {
@@ -36,7 +36,7 @@
 			this.labelOutputOptionsTitle = new System.Windows.Forms.Label();
 			this.laAdvertiser = new System.Windows.Forms.Label();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
-			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBar = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.pnTopHeader.SuspendLayout();
 			this.pnOutputOptions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLessSlides.Properties)).BeginInit();

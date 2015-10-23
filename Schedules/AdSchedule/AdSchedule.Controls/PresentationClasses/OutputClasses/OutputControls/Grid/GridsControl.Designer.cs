@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
     partial class GridsControl
     {
@@ -37,7 +37,7 @@
 			this.xtraTabPageSlideBullets = new DevExpress.XtraTab.XtraTabPage();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBar = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.pnEmpty = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
 			this.xtraTabControlOptions.SuspendLayout();

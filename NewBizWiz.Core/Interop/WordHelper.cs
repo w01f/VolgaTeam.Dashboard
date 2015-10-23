@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Word;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.Interop
+namespace Asa.Core.Interop
 {
 	public class WordHelper
 	{

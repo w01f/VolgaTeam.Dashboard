@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.Core.OnlineSchedule
+namespace Asa.Core.OnlineSchedule
 {
 	public enum FormulaType
 	{

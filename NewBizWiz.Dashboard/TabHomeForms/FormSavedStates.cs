@@ -5,10 +5,10 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Dashboard;
+using Asa.Core.Common;
+using Asa.Core.Dashboard;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	public partial class FormSavedStates : MetroForm
 	{

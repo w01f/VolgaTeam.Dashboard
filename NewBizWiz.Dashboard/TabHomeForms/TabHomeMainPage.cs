@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Dashboard;
+using Asa.Core.Common;
+using Asa.Core.Dashboard;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
 	public sealed partial class TabHomeMainPage : UserControl

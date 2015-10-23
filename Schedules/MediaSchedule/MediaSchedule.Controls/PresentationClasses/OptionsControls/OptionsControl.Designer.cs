@@ -1,6 +1,6 @@
-﻿using NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
+﻿using Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 {
 	sealed partial class OptionsControl
 	{
@@ -90,7 +90,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			// pbNoPrograms
 			// 
 			this.pbNoPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoPrograms.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.OptionsNoPrograms;
+			this.pbNoPrograms.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.OptionsNoPrograms;
 			this.pbNoPrograms.Location = new System.Drawing.Point(40, 20);
 			this.pbNoPrograms.Name = "pbNoPrograms";
 			this.pbNoPrograms.Size = new System.Drawing.Size(510, 55);

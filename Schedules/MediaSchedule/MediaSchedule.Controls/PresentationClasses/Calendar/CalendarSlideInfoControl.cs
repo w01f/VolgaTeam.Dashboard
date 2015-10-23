@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
+using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.CommonGUI.RetractableBar;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace Asa.MediaSchedule.Controls.PresentationClasses
 {
 	public partial class CalendarSlideInfoControl : UserControl, ISlideInfoControl
 	{
@@ -86,19 +86,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			{
 				new ButtonInfo
 				{
-					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
+					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
 					Tooltip = "Open My Gallery",
 					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageFavorites; }
 				},
 				new ButtonInfo
 				{
-					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
+					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
 					Tooltip = "Open Slide Style",
 					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageStyle; }
 				},
 				new ButtonInfo
 				{
-					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
+					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
 					Tooltip = "Open Comments",
 					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageComments; }
 				},

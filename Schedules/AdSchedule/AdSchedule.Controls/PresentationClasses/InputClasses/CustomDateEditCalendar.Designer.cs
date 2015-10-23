@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
     partial class CustomDateEditCalendar
     {

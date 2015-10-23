@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
+﻿namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 {
 	partial class CalendarHeaderSelector
 	{

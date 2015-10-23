@@ -4,7 +4,7 @@ using DevComponents.DotNetBar.Metro;
 using EO.Internal;
 using Font = System.Drawing.Font;
 
-namespace NewBizWiz.CommonGUI.ToolForms
+namespace Asa.CommonGUI.ToolForms
 {
 	public partial class FormProgress : MetroForm
 	{
@@ -36,9 +36,19 @@ namespace NewBizWiz.CommonGUI.ToolForms
 
 		public static void CloseProgress()
 		{
-			_queueCount--;
-			if (_queueCount == 0)
-				_instance.Hide();
+			if (_queueCount <= 1)
+			{
+				if (_instance.InvokeRequired)
+					_instance.Invoke(new MethodInvoker(() =>
+					{
+						_instance.Hide();
+						Application.DoEvents();
+					}));
+				else
+					_instance.Hide();
+			}
+			if (_queueCount > 0)
+				_queueCount--;
 			Application.DoEvents();
 		}
 

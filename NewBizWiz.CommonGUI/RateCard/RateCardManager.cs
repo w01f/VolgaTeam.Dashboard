@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DevExpress.XtraTab;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Common;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.RateCard
+namespace Asa.CommonGUI.RateCard
 {
 	public class RateCardManager
 	{

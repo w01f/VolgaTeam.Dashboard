@@ -8,7 +8,7 @@ using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
 	public partial class PublicationSummaryControl : UserControl

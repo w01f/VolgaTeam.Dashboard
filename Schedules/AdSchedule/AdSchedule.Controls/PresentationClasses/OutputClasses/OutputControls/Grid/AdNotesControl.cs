@@ -5,11 +5,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
 	public partial class AdNotesControl : UserControl

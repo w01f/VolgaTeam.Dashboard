@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Themes
+﻿namespace Asa.CommonGUI.Themes
 {
 	partial class ThemeContainerControl
 	{

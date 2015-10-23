@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.Dashboard
+namespace Asa.Core.Dashboard
 {
 	public class SectionActivity : UserActivity
 	{

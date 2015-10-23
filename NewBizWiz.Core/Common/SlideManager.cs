@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class SlideManager
 	{

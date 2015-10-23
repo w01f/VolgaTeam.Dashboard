@@ -1,5 +1,5 @@
 ﻿
-namespace NewBizWiz.Dashboard
+namespace Asa.Dashboard
 {
     partial class FormMain
     {
@@ -190,7 +190,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemHomeExit
 			// 
-			this.buttonItemHomeExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemHomeExit.Image = global::Asa.Dashboard.Properties.Resources.Exit;
 			this.buttonItemHomeExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemHomeExit.Name = "buttonItemHomeExit";
 			this.buttonItemHomeExit.SubItemsExpandWidth = 14;
@@ -231,7 +231,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemHomeFloater
 			// 
-			this.buttonItemHomeFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemHomeFloater.Image = global::Asa.Dashboard.Properties.Resources.Floater;
 			this.buttonItemHomeFloater.Name = "buttonItemHomeFloater";
 			this.buttonItemHomeFloater.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemHomeFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
@@ -272,7 +272,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemHomeHelp
 			// 
-			this.buttonItemHomeHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemHomeHelp.Image = global::Asa.Dashboard.Properties.Resources.Help;
 			this.buttonItemHomeHelp.Name = "buttonItemHomeHelp";
 			this.buttonItemHomeHelp.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemHomeHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
@@ -313,7 +313,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemHomeLoad
 			// 
-			this.buttonItemHomeLoad.Image = global::NewBizWiz.Dashboard.Properties.Resources.Load;
+			this.buttonItemHomeLoad.Image = global::Asa.Dashboard.Properties.Resources.Load;
 			this.buttonItemHomeLoad.Name = "buttonItemHomeLoad";
 			this.buttonItemHomeLoad.SubItemsExpandWidth = 14;
 			this.buttonItemHomeLoad.Text = "buttonItem1";
@@ -359,7 +359,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemPowerPoint
 			// 
-			this.buttonItemPowerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
+			this.buttonItemPowerPoint.Image = global::Asa.Dashboard.Properties.Resources.Output;
 			this.buttonItemPowerPoint.Name = "buttonItemPowerPoint";
 			this.buttonItemPowerPoint.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
@@ -441,7 +441,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemPreview
 			// 
-			this.buttonItemPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
+			this.buttonItemPreview.Image = global::Asa.Dashboard.Properties.Resources.Preview;
 			this.buttonItemPreview.Name = "buttonItemPreview";
 			this.buttonItemPreview.SubItemsExpandWidth = 14;
 			this.buttonItemPreview.Text = "buttonItem1";
@@ -484,7 +484,7 @@ namespace NewBizWiz.Dashboard
 			// buttonItemHomeOverview
 			// 
 			this.buttonItemHomeOverview.Checked = true;
-			this.buttonItemHomeOverview.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemHomeOverview.Image = global::Asa.Dashboard.Properties.Resources.MasterWizardLogo;
 			this.buttonItemHomeOverview.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemHomeOverview.Name = "buttonItemHomeOverview";
 			this.buttonItemHomeOverview.SubItemsExpandWidth = 14;
@@ -555,7 +555,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemSlidesExit
 			// 
-			this.buttonItemSlidesExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemSlidesExit.Image = global::Asa.Dashboard.Properties.Resources.Exit;
 			this.buttonItemSlidesExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemSlidesExit.Name = "buttonItemSlidesExit";
 			this.buttonItemSlidesExit.SubItemsExpandWidth = 14;
@@ -596,7 +596,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemSlidesFloater
 			// 
-			this.buttonItemSlidesFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemSlidesFloater.Image = global::Asa.Dashboard.Properties.Resources.Floater;
 			this.buttonItemSlidesFloater.Name = "buttonItemSlidesFloater";
 			this.buttonItemSlidesFloater.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
@@ -637,7 +637,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemSlidesHelp
 			// 
-			this.buttonItemSlidesHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemSlidesHelp.Image = global::Asa.Dashboard.Properties.Resources.Help;
 			this.buttonItemSlidesHelp.Name = "buttonItemSlidesHelp";
 			this.buttonItemSlidesHelp.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
@@ -678,7 +678,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemSlidesPowerPoint
 			// 
-			this.buttonItemSlidesPowerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
+			this.buttonItemSlidesPowerPoint.Image = global::Asa.Dashboard.Properties.Resources.Output;
 			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
 			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
@@ -717,7 +717,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemSlidesPreview
 			// 
-			this.buttonItemSlidesPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
+			this.buttonItemSlidesPreview.Image = global::Asa.Dashboard.Properties.Resources.Preview;
 			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
 			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
 			this.buttonItemSlidesPreview.Text = "buttonItem1";
@@ -758,7 +758,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			// buttonItemSlidesLogo
 			// 
-			this.buttonItemSlidesLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemSlidesLogo.Image = global::Asa.Dashboard.Properties.Resources.MasterWizardLogo;
 			this.buttonItemSlidesLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemSlidesLogo.Name = "buttonItemSlidesLogo";
 			this.buttonItemSlidesLogo.SubItemsExpandWidth = 14;

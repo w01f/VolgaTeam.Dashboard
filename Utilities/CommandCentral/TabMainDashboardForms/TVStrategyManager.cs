@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using CommandCentral.Entities.Common;
 using CommandCentral.Entities.Media;
 using CommandCentral.InteropClasses;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.MediaSchedule;
 
 namespace CommandCentral.TabMainDashboardForms
 {

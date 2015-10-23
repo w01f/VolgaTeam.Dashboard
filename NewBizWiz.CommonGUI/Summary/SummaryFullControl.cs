@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 
-namespace NewBizWiz.CommonGUI.Summary
+namespace Asa.CommonGUI.Summary
 {
 	public abstract class SummaryFullControl : SummaryBaseControl<SummaryCustomItemControl>
 	{

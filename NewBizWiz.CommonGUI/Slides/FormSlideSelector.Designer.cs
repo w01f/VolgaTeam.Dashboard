@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Slides
+﻿namespace Asa.CommonGUI.Slides
 {
 	partial class FormSlideSelector
 	{

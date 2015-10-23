@@ -1,7 +1,7 @@
 ﻿using EO.WebBrowser;
 using Vintasoft.Imaging;
 
-namespace NewBizWiz.CommonGUI.Common
+namespace Asa.CommonGUI.Common
 {
 	public static class LicenseHelper
 	{

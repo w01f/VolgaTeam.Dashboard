@@ -1,10 +1,10 @@
 ﻿using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.CommonGUI.Gallery;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses
 {
 	public class PrintGallery2Control : GalleryControl
 	{

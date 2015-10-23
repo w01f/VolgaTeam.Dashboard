@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabHomeForms
+﻿namespace Asa.Dashboard.TabHomeForms
 {
     partial class SlideCleanslateControl
     {

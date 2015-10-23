@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
+﻿namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	public partial class BaseCalendarControl
     {
@@ -36,7 +36,7 @@
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.pnEmpty = new System.Windows.Forms.Panel();
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.retractableBarControl = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBarControl = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.pictureBoxNoData = new System.Windows.Forms.PictureBox();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();

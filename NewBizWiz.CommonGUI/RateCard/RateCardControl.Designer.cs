@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.RateCard
+﻿namespace Asa.CommonGUI.RateCard
 {
     partial class RateCardControl
     {

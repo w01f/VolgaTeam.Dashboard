@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Dashboard.InteropClasses;
+using Asa.Core.Common;
+using Asa.Dashboard.InteropClasses;
 
-namespace NewBizWiz.Dashboard
+namespace Asa.Dashboard
 {
 	internal static class Program
 	{

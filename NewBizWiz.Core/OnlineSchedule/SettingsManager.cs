@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NewBizWiz.Core.OnlineSchedule
+namespace Asa.Core.OnlineSchedule
 {
 	public class SettingsManager
 	{

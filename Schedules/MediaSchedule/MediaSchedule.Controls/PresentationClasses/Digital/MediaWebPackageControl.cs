@@ -5,19 +5,19 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
-using ScheduleManager = NewBizWiz.Core.MediaSchedule.ScheduleManager;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.Core.OnlineSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.OnlineSchedule.Controls.InteropClasses;
+using Asa.OnlineSchedule.Controls.PresentationClasses;
+using ScheduleManager = Asa.Core.MediaSchedule.ScheduleManager;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
 {
 	public class MediaWebPackageControl : WebPackageControl
 	{

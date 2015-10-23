@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabHomeForms
+﻿namespace Asa.Dashboard.TabHomeForms
 {
 	sealed partial class SlideTargetCustomersControl
     {
@@ -86,7 +86,7 @@
 			// 
 			// pbDescription
 			// 
-			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionTargetCustomers;
+			this.pbDescription.Image = global::Asa.Dashboard.Properties.Resources.DescriptionTargetCustomers;
 			// 
 			// simpleButtonSaveTemplate
 			// 

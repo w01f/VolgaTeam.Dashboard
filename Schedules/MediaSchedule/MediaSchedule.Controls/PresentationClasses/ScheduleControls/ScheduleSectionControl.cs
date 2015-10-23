@@ -20,18 +20,18 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.ImageGallery;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.ImageGallery;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
 using Application = System.Windows.Forms.Application;
 using Font = System.Drawing.Font;
 using Point = System.Drawing.Point;
-using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
+using Schedule = Asa.Core.MediaSchedule.Schedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
 	public partial class ScheduleSectionControl : UserControl

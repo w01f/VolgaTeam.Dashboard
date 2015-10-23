@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.Core.Dashboard;
+using Asa.Core.Dashboard;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	public partial class SimpleSummaryItemContainer : UserControl
 	{

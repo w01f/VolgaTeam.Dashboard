@@ -2,10 +2,10 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Single
+namespace Asa.AdSchedule.Single
 {
 	internal static class Program
 	{

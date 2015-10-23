@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class ResourceManager
 	{

@@ -12,15 +12,15 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.Properties;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.BusinessClasses;
+using Asa.OnlineSchedule.Controls.InteropClasses;
+using Asa.OnlineSchedule.Controls.Properties;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	[Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]

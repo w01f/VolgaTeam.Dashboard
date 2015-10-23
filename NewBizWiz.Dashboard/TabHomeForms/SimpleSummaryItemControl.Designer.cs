@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabHomeForms
+﻿namespace Asa.Dashboard.TabHomeForms
 {
     partial class SimpleSummaryItemControl
     {
@@ -228,7 +228,7 @@
 			// pbUp
 			// 
 			this.pbUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbUp.Image = global::NewBizWiz.Dashboard.Properties.Resources.UpArrow;
+			this.pbUp.Image = global::Asa.Dashboard.Properties.Resources.UpArrow;
 			this.pbUp.Location = new System.Drawing.Point(530, 70);
 			this.pbUp.Name = "pbUp";
 			this.pbUp.Size = new System.Drawing.Size(32, 32);
@@ -241,7 +241,7 @@
 			// pbDown
 			// 
 			this.pbDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbDown.Image = global::NewBizWiz.Dashboard.Properties.Resources.DownArrow;
+			this.pbDown.Image = global::Asa.Dashboard.Properties.Resources.DownArrow;
 			this.pbDown.Location = new System.Drawing.Point(530, 104);
 			this.pbDown.Name = "pbDown";
 			this.pbDown.Size = new System.Drawing.Size(32, 32);
@@ -254,7 +254,7 @@
 			// pbDelete
 			// 
 			this.pbDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteButton;
+			this.pbDelete.Image = global::Asa.Dashboard.Properties.Resources.DeleteButton;
 			this.pbDelete.Location = new System.Drawing.Point(530, 36);
 			this.pbDelete.Name = "pbDelete";
 			this.pbDelete.Size = new System.Drawing.Size(32, 32);

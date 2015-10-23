@@ -10,13 +10,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.Core.Calendar;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.Core.OnlineSchedule;
+using Asa.Core.Calendar;
 using DataTable = System.Data.DataTable;
 
-namespace NewBizWiz.Core.MediaSchedule
+namespace Asa.Core.MediaSchedule
 {
 	public enum SpotType
 	{

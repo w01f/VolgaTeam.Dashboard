@@ -4,16 +4,16 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Summary;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.Summary;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.BusinessClasses;
+using Asa.OnlineSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	public class DigitalSummaryLight : SummaryLightControl
 	{

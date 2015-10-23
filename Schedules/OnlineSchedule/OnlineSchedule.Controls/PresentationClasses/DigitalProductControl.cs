@@ -6,15 +6,15 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.InteropClasses;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
-using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
+using ListManager = Asa.Core.OnlineSchedule.ListManager;
+using SettingsManager = Asa.Core.Common.SettingsManager;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	//public partial class DigitalProductControl : UserControl, IDigitalOutputControl

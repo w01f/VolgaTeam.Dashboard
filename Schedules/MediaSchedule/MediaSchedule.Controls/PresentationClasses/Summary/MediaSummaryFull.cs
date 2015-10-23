@@ -6,16 +6,16 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Summary;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.Summary;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 {
 	public class MediaSummaryFull : SummaryFullControl
 	{

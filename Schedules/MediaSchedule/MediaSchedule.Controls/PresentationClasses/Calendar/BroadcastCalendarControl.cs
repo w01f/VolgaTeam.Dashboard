@@ -2,9 +2,9 @@
 using System.Linq;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 {
 	public class BroadcastCalendarControl : MediaCalendarControl
 	{

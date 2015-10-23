@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
+﻿namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 {
 	partial class SlideInfoControl
     {
@@ -41,7 +41,7 @@
 			this.xtraTabControlStyle = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStyleColor = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
-			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
+			this.outputColorSelector = new Asa.CommonGUI.OutputColors.OutputColorSelector();
 			this.checkEditStyleBigDate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.laThemeColor = new System.Windows.Forms.Label();
@@ -49,9 +49,9 @@
 			this.pnLogo = new System.Windows.Forms.Panel();
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
-			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
+			this.favoriteImagesControl = new Asa.CommonGUI.FavoriteImages.FavoriteImagesControl();
 			this.checkEditShowLogo = new DevExpress.XtraEditors.CheckEdit();
-			this.calendarHeaderSelector = new NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector();
+			this.calendarHeaderSelector = new Asa.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
 			this.xtraTabPageComments.SuspendLayout();

@@ -3,17 +3,17 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.SlideSettingsEditors;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.Properties;
-using NewBizWiz.Dashboard.TabHomeForms;
-using NewBizWiz.Dashboard.TabSlides;
-using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.SlideSettingsEditors;
+using Asa.Core.Common;
+using Asa.Dashboard.InteropClasses;
+using Asa.Dashboard.Properties;
+using Asa.Dashboard.TabHomeForms;
+using Asa.Dashboard.TabSlides;
+using SettingsManager = Asa.Core.Dashboard.SettingsManager;
 
-namespace NewBizWiz.Dashboard
+namespace Asa.Dashboard
 {
 	public partial class FormMain : RibbonForm
 	{

@@ -5,14 +5,14 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
-using NewBizWiz.AdSchedule.Controls.Properties;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.AdSchedule.SettingsManager;
+using Asa.AdSchedule.Controls.Properties;
+using Asa.CommonGUI.RetractableBar;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using SettingsManager = Asa.Core.AdSchedule.SettingsManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
 	public partial class GridsControl : UserControl

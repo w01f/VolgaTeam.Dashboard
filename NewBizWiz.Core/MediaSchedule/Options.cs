@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.MediaSchedule
+namespace Asa.Core.MediaSchedule
 {
 	public class OptionSet
 	{

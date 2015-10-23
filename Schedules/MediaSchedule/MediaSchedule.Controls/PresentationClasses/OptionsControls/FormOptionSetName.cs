@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 {
 	public partial class FormOptionSetName : MetroForm
 	{

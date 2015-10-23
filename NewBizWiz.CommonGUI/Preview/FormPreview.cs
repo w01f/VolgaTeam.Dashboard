@@ -6,11 +6,11 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
 using DevExpress.XtraBars;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.Preview
+namespace Asa.CommonGUI.Preview
 {
 	public partial class FormPreview : MetroForm
 	{

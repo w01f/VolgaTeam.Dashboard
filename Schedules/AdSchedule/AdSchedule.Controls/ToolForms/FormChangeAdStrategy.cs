@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.BusinessClasses;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace Asa.AdSchedule.Controls.ToolForms
 {
 	public partial class FormChangeAdStrategy : MetroForm
 	{

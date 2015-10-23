@@ -6,12 +6,12 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
 using Pabo.Calendar;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace Asa.AdSchedule.Controls.ToolForms
 {
 	public partial class FormCloneInsert : MetroForm
 	{

@@ -5,20 +5,20 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.AdSchedule.Controls;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
-using NewBizWiz.AdSchedule.Controls.Properties;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using Asa.AdSchedule.Controls;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
+using Asa.AdSchedule.Controls.Properties;
+using Asa.AdSchedule.Controls.ToolForms;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using Asa.OnlineSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.AdSchedule.Single
+namespace Asa.AdSchedule.Single
 {
 	public partial class FormMain : RibbonForm
 	{

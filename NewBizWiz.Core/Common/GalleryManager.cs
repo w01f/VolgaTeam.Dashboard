@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class GalleryManager
 	{

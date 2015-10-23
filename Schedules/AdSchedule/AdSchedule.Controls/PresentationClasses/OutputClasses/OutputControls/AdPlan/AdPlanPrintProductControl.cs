@@ -10,13 +10,13 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.ImageGallery;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
+using Asa.CommonGUI.ImageGallery;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using Asa.OnlineSchedule.Controls.PresentationClasses;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan
 {
 	[ToolboxItem(false)]
 	public partial class AdPlanPrintProductControl : XtraTabPage, IAdPlanItem

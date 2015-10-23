@@ -4,14 +4,14 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.Calendar.SettingsManager;
+using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.Calendar.Controls.PresentationClasses.Views.GridView;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using SettingsManager = Asa.Core.Calendar.SettingsManager;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses
+namespace Asa.Calendar.Controls.PresentationClasses
 {
 	public class CalendarVisualizer
 	{

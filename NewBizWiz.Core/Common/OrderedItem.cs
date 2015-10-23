@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Core.Common
+﻿namespace Asa.Core.Common
 {
 	public class OrderedItem
 	{

@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Floater
+﻿namespace Asa.CommonGUI.Floater
 {
     partial class FormFloater
     {
@@ -48,7 +48,7 @@
 			this.buttonXHide.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXHide.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXHide.FocusCuesEnabled = false;
-			this.buttonXHide.Image = global::NewBizWiz.CommonGUI.Properties.Resources.FloaterHide;
+			this.buttonXHide.Image = global::Asa.CommonGUI.Properties.Resources.FloaterHide;
 			this.buttonXHide.Location = new System.Drawing.Point(267, 5);
 			this.buttonXHide.Name = "buttonXHide";
 			this.buttonXHide.Size = new System.Drawing.Size(68, 106);

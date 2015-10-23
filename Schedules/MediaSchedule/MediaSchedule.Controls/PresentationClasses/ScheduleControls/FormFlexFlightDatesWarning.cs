@@ -1,4 +1,4 @@
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class FormFlexFlightDatesWarning : DevComponents.DotNetBar.Metro.MetroForm
 	{

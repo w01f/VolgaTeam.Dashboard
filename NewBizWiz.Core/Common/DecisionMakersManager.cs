@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class DecisionMakersManager
 	{

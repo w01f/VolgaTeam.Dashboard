@@ -3,10 +3,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using Asa.Core.Common;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
 	public sealed partial class ColumnsControl : UserControl

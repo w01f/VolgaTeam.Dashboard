@@ -16,16 +16,16 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.ImageGallery;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.ImageGallery;
+using Asa.CommonGUI.Preview;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 {
 	[ToolboxItem(false)]
 	//public partial class OptionsControl : UserControl, IOptionsSlide

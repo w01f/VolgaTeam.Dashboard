@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.ToolForms
+﻿namespace Asa.CommonGUI.ToolForms
 {
     partial class FormEmailFileName
     {
@@ -41,7 +41,7 @@
 			// 
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.CommonGUI.Properties.Resources.Email;
+			this.pbLogo.Image = global::Asa.CommonGUI.Properties.Resources.Email;
 			this.pbLogo.Location = new System.Drawing.Point(12, 12);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(72, 65);

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.OnlineSchedule
+namespace Asa.Core.OnlineSchedule
 {
 	public class ScheduleBuilderViewSettings : IScheduleViewSettings
 	{

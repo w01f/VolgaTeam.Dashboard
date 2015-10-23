@@ -7,9 +7,9 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.Common
+namespace Asa.CommonGUI.Common
 {
 	public class GridDragDropHelper : GridPainter
 	{

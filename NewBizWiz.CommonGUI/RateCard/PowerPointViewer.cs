@@ -4,9 +4,9 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.CommonGUI.ToolForms;
+using Asa.CommonGUI.ToolForms;
 
-namespace NewBizWiz.CommonGUI.RateCard
+namespace Asa.CommonGUI.RateCard
 {
 	[ToolboxItem(false)]
 	public partial class PowerPointViewer : UserControl, IRateCardViewer

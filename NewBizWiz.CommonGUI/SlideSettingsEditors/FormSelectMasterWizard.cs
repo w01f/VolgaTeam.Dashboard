@@ -1,6 +1,6 @@
 ﻿using DevComponents.DotNetBar.Metro;
 
-namespace NewBizWiz.CommonGUI.SlideSettingsEditors
+namespace Asa.CommonGUI.SlideSettingsEditors
 {
 	public partial class FormSelectMasterWizard : MetroForm
 	{

@@ -1,13 +1,13 @@
 ﻿using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.Dashboard.TabHomeForms;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.Dashboard.TabHomeForms;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace NewBizWiz.Dashboard.InteropClasses
+namespace Asa.Dashboard.InteropClasses
 {
 	public partial class DashboardPowerPointHelper
 	{

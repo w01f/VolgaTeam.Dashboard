@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace NewBizWiz.CommonGUI.RateCard
+namespace Asa.CommonGUI.RateCard
 {
 	[ToolboxItem(false)]
 	public partial class RateCardControl : UserControl

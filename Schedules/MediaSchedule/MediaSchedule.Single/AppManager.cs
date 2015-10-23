@@ -3,17 +3,17 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.SlideSettingsEditors;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.SlideSettingsEditors;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls;
+using Asa.MediaSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Single
+namespace Asa.MediaSchedule.Single
 {
 	public class AppManager
 	{
@@ -29,10 +29,30 @@ namespace NewBizWiz.MediaSchedule.Single
 
 		public void RunApplication(MediaDataType mediaType)
 		{
-			LicenseHelper.Register();
+			bool stopRun = false;
 
+			LicenseHelper.Register();
+			
 			MediaMetaData.Instance.Init(mediaType);
 			AppProfileManager.Instance.InitApplication(MediaMetaData.Instance.AppType);
+
+			FileStorageManager.Instance.UsingLocalMode += (o, e) =>
+			{
+				if (FileStorageManager.Instance.UseLocalMode) return;
+				FormProgress.CloseProgress();
+				if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
+				{
+					Utilities.Instance.ShowWarning("Server is not available. Application will be closed", "adSALESapps.com ");
+					stopRun = true;
+					Application.Exit();
+					return;
+				}
+				if (Utilities.Instance.ShowWarningQuestion("Server is not available. Do you want to continue to work in local mode?", "adSALESapps.com ") != DialogResult.Yes)
+				{
+					stopRun = true;
+					Application.Exit();
+				}
+			};
 
 			FormProgress.ShowProgress();
 			FormProgress.SetTitle("Checking data version...");
@@ -40,6 +60,9 @@ namespace NewBizWiz.MediaSchedule.Single
 			thread.Start();
 			while (thread.IsAlive)
 				Application.DoEvents();
+
+			if (stopRun) return;
+
 			FileStorageManager.Instance.Downloading += (sender, args) =>
 				FormProgress.SetDetails(args.ProgressPercent < 100 ?
 					String.Format("Loading {0} - {1}%", args.FileName, args.ProgressPercent) :
@@ -49,7 +72,7 @@ namespace NewBizWiz.MediaSchedule.Single
 					String.Format("Extracting {0} - {1}%", args.FileName, args.ProgressPercent) :
 					String.Empty);
 
-			if (FileStorageManager.Instance.Connected)
+			if (FileStorageManager.Instance.Activated)
 			{
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
 					FormProgress.SetTitle("Loading data from server for the 1st time...", true);
@@ -58,7 +81,11 @@ namespace NewBizWiz.MediaSchedule.Single
 				else
 					FormProgress.SetTitle("Loading data...");
 
-				thread = new Thread(() => AsyncHelper.RunSync(() => Controller.Instance.InitBusinessObjects()));
+				thread = new Thread(() =>
+				{
+					AsyncHelper.RunSync(() => Controls.Controller.Instance.InitBusinessObjects());
+					FileStorageManager.Instance.DataState = DataActualityState.Updated;
+				});
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
@@ -67,7 +94,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			}
 
 			FormProgress.CloseProgress();
-			if (FileStorageManager.Instance.Connected)
+			if (FileStorageManager.Instance.Activated)
 			{
 				if (PowerPointManager.Instance.SettingsSource == SettingsSourceEnum.PowerPoint &&
 				MasterWizardManager.Instance.SelectedWizard != null &&

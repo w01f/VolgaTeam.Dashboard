@@ -5,16 +5,16 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.OnlineSchedule.Controls.PresentationClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
 {
 	[ToolboxItem(false)]
 	public class DigitalProductContainerControl : DigitalProductContainer

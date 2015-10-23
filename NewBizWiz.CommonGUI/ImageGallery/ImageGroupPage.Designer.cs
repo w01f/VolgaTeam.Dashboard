@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.ImageGallery
+﻿namespace Asa.CommonGUI.ImageGallery
 {
 	partial class ImageGroupPage
 	{

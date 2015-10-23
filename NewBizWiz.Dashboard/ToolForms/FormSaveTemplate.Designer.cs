@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.ToolForms
+﻿namespace Asa.Dashboard.ToolForms
 {
 	partial class FormSaveTemplate
     {

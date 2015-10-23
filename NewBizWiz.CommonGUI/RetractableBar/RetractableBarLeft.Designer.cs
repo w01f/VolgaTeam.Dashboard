@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.RetractableBar
+﻿namespace Asa.CommonGUI.RetractableBar
 {
 	partial class RetractableBarLeft
 	{

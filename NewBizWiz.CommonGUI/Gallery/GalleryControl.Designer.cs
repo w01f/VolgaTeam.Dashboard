@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Gallery
+﻿namespace Asa.CommonGUI.Gallery
 {
 	abstract partial class GalleryControl
 	{

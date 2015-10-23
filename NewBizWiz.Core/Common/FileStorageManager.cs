@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Interop;
+using DevExpress.XtraSplashScreen;
 using SharpCompress.Common;
 using SharpCompress.Reader;
 using WebDAVClient.Helpers;
 using WebDAVClient.Model;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public enum DataActualityState
 	{
@@ -38,18 +40,20 @@ namespace NewBizWiz.Core.Common
 
 		private static readonly FileStorageManager _instance = new FileStorageManager();
 
-		public bool Connected { get; private set; }
+		public bool Activated { get; private set; }
 		public string Version { get; private set; }
+		public bool UseLocalMode { get; private set; }
 
 		public event EventHandler<FileProcessingProgressEventArgs> Downloading;
 		public event EventHandler<FileProcessingProgressEventArgs> Extracting;
+		public event EventHandler<EventArgs> UsingLocalMode;
 
 		public static FileStorageManager Instance
 		{
 			get { return _instance; }
 		}
 
-		public DataActualityState DataState { get; private set; }
+		public DataActualityState DataState { get; set; }
 
 		private string RemoteStorageUrl
 		{
@@ -60,7 +64,7 @@ namespace NewBizWiz.Core.Common
 		{
 			get
 			{
-				if (Connected)
+				if (Activated)
 					return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LocalAppSettingsFolderName, _dataFolderName);
 				return Path.GetTempPath();
 			}
@@ -89,7 +93,7 @@ namespace NewBizWiz.Core.Common
 		public async Task Init()
 		{
 			await InitCredentials();
-			if (Connected)
+			if (Activated)
 				await CheckDataSate();
 		}
 
@@ -105,35 +109,32 @@ namespace NewBizWiz.Core.Common
 			_login = "acct_cred";
 			_password = "SzwX&4.2QF>~q!^L";
 
-			var credentialsFile = new StorageFile(new[] { client, "credentials.txt" });
-			if (await credentialsFile.Exists(true))
+			var credentialsFile = new ConfigFile(new[] { client, "credentials.txt" });
+			await credentialsFile.Download();
+			if (!credentialsFile.ExistsLocal()) return;
+			foreach (var configLine in File.ReadAllLines(credentialsFile.LocalPath))
 			{
-				await credentialsFile.Download();
-
-				foreach (var configLine in File.ReadAllLines(credentialsFile.LocalPath))
-				{
-					if (configLine.Contains("Site:"))
-						_url = configLine.Replace("Site:", "").Trim();
-					else if (configLine.Contains("Login:"))
-						_login = configLine.Replace("Login:", "").Trim();
-					else if (configLine.Contains("Password:"))
-						_password = configLine.Replace("Password:", "").Trim();
-					else if (configLine.Contains("DataFolderName:"))
-						_dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
-				}
-
-				Connected = true;
-
-				if (!Directory.Exists(LocalStoragePath))
-					Directory.CreateDirectory(LocalStoragePath);
+				if (configLine.Contains("Site:"))
+					_url = configLine.Replace("Site:", "").Trim();
+				else if (configLine.Contains("Login:"))
+					_login = configLine.Replace("Login:", "").Trim();
+				else if (configLine.Contains("Password:"))
+					_password = configLine.Replace("Password:", "").Trim();
+				else if (configLine.Contains("DataFolderName:"))
+					_dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
 			}
+
+			Activated = true;
+
+			if (!Directory.Exists(LocalStoragePath))
+				Directory.CreateDirectory(LocalStoragePath);
 		}
 
 		private async Task CheckDataSate()
 		{
 			DataState = DataActualityState.NotExisted;
 
-			var versionFile = new StorageFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
+			var versionFile = new ConfigFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
 			if (!versionFile.ExistsLocal())
 			{
 				DataState = DataActualityState.NotExisted;
@@ -141,16 +142,27 @@ namespace NewBizWiz.Core.Common
 			}
 			else
 			{
-				var remoteFile = await GetClient().GetFile(versionFile.RemotePath);
-				if (File.GetLastWriteTime(versionFile.LocalPath) < remoteFile.LastModified)
+				try
 				{
-					DataState = DataActualityState.Outdated;
-					await versionFile.Download();
+					var remoteFile = await GetClient().GetFile(versionFile.RemotePath);
+					if (File.GetLastWriteTime(versionFile.LocalPath) < remoteFile.LastModified)
+					{
+						DataState = DataActualityState.Outdated;
+						await versionFile.Download();
+					}
+					else
+						DataState = DataActualityState.Updated;
 				}
-				else
+				catch (HttpRequestException e)
+				{
 					DataState = DataActualityState.Updated;
+					SwitchToLocalMode();
+				}
 			}
-			Version = File.ReadAllText(versionFile.LocalPath);
+			if (versionFile.ExistsLocal())
+				Version = File.ReadAllText(versionFile.LocalPath);
+			else
+				Activated = false;
 		}
 
 		public void ShowDownloadProgress(FileProcessingProgressEventArgs eventArgs)
@@ -163,6 +175,13 @@ namespace NewBizWiz.Core.Common
 		{
 			if (Extracting != null)
 				Extracting(this, eventArgs);
+		}
+
+		public void SwitchToLocalMode()
+		{
+			if (UsingLocalMode != null)
+				UsingLocalMode(this, EventArgs.Empty);
+			UseLocalMode = true;
 		}
 	}
 
@@ -197,7 +216,7 @@ namespace NewBizWiz.Core.Common
 
 		public virtual async Task<bool> Exists(bool checkRemoteToo = false)
 		{
-			if (!checkRemoteToo)
+			if (!checkRemoteToo || FileStorageManager.Instance.UseLocalMode)
 				return ExistsLocal();
 			return FileStorageManager.Instance.DataState == DataActualityState.Updated ?
 				ExistsLocal() :
@@ -240,14 +259,18 @@ namespace NewBizWiz.Core.Common
 		{
 			try
 			{
+				if (FileStorageManager.Instance.UseLocalMode) return false;
 				await FileStorageManager.Instance.GetClient().GetFolder(RemotePath);
 				return true;
 			}
 			catch (WebDAVException exception)
 			{
-				if (exception.Message.Contains("Status Code: NotFound"))
-					return false;
-				throw;
+				return false;
+			}
+			catch (HttpRequestException e)
+			{
+				FileStorageManager.Instance.SwitchToLocalMode();
+				return FileStorageManager.Instance.UseLocalMode;
 			}
 		}
 
@@ -256,10 +279,17 @@ namespace NewBizWiz.Core.Common
 			var subFolderLocalPath = Path.Combine(LocalPath, name);
 			if (!Directory.Exists(subFolderLocalPath))
 				Directory.CreateDirectory(subFolderLocalPath);
-			if (remoteToo)
+			if (remoteToo && FileStorageManager.Instance.UseLocalMode)
 			{
 				var client = FileStorageManager.Instance.GetClient();
-				await client.CreateDir(RemotePath, String.Format(@"/{0}", name));
+				try
+				{
+					await client.CreateDir(RemotePath, String.Format(@"/{0}", name));
+				}
+				catch (HttpRequestException e)
+				{
+					FileStorageManager.Instance.SwitchToLocalMode();
+				}
 			}
 		}
 
@@ -314,7 +344,7 @@ namespace NewBizWiz.Core.Common
 		public ArchiveDirectory(string[] relativePathParts)
 			: base(relativePathParts)
 		{
-			_archiveFile = new ArchiveFile(GetParentFolder().RelativePathParts.Merge(String.Format("{0}.rar", Name)));
+			_archiveFile = new ArchiveFile(GetParentFolder().RelativePathParts.Merge(String.Format("{0}.rar", Name)), this);
 		}
 
 		public async Task Download()
@@ -362,24 +392,37 @@ namespace NewBizWiz.Core.Common
 		{
 			try
 			{
+				if (FileStorageManager.Instance.UseLocalMode) return false;
 				await FileStorageManager.Instance.GetClient().GetFile(RemotePath);
 				return true;
 			}
 			catch (WebDAVException exception)
 			{
-				if (exception.Message.Contains("Status Code: NotFound"))
-					return false;
-				throw;
+				return false;
+			}
+			catch (HttpRequestException e)
+			{
+				FileStorageManager.Instance.SwitchToLocalMode();
+				return FileStorageManager.Instance.UseLocalMode;
 			}
 		}
 
 		public async Task Upload()
 		{
+			if (FileStorageManager.Instance.UseLocalMode) return;
 			var tempFile = Path.GetTempFileName();
 			File.Copy(LocalPath, tempFile, true);
 			var client = FileStorageManager.Instance.GetClient();
 			await AllocateParentFolder(true);
-			await client.Upload(RemotePath, File.OpenRead(tempFile), String.Empty);
+			try
+			{
+				await client.Upload(RemotePath, File.OpenRead(tempFile), String.Empty);
+			}
+			catch (HttpRequestException e)
+			{
+				FileStorageManager.Instance.SwitchToLocalMode();
+			}
+			catch { }
 		}
 
 		public virtual async Task Download()
@@ -387,7 +430,7 @@ namespace NewBizWiz.Core.Common
 			try
 			{
 				var client = FileStorageManager.Instance.GetClient();
-				if (ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated)
+				if ((ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated) || FileStorageManager.Instance.UseLocalMode)
 					return;
 				var remoteFile = _remoteSource ?? await client.GetFile(RemotePath);
 				_isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
@@ -423,6 +466,10 @@ namespace NewBizWiz.Core.Common
 			{
 				throw new FileNotFoundException(String.Format("Error downloading file {0}", LocalPath));
 			}
+			catch (HttpRequestException e)
+			{
+				FileStorageManager.Instance.SwitchToLocalMode();
+			}
 		}
 
 		public async Task AllocateParentFolder(bool checkRemoteToo)
@@ -438,12 +485,18 @@ namespace NewBizWiz.Core.Common
 
 	public class ArchiveFile : StorageFile
 	{
-		public ArchiveFile(string[] relativePathParts) : base(relativePathParts) { }
+		private readonly ArchiveDirectory _asociatedDirectory;
+
+		public ArchiveFile(string[] relativePathParts, ArchiveDirectory asociatedDirectory)
+			: base(relativePathParts)
+		{
+			_asociatedDirectory = asociatedDirectory;
+		}
 
 		public override async Task Download()
 		{
 			await base.Download();
-			if (_isOutdated)
+			if (_isOutdated || !_asociatedDirectory.ExistsLocal())
 			{
 				var contentLenght = new FileInfo(LocalPath).Length;
 				Int64 alreadyRead = 0;
@@ -459,6 +512,64 @@ namespace NewBizWiz.Core.Common
 					}
 					FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, 100, 100));
 				}
+			}
+		}
+	}
+
+	public class ConfigFile : StorageFile
+	{
+		public ConfigFile(string[] relativePathParts) : base(relativePathParts) { }
+
+		protected override async Task<bool> ExistsRemote()
+		{
+			try
+			{
+				await FileStorageManager.Instance.GetClient().GetFile(RemotePath);
+				return true;
+			}
+			catch
+			{
+				return ExistsLocal();
+			}
+		}
+
+		public override async Task Download()
+		{
+			try
+			{
+				var client = FileStorageManager.Instance.GetClient();
+				var remoteFile = await client.GetFile(RemotePath);
+				_isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
+				if (_isOutdated)
+				{
+					AllocateParentFolder();
+					using (var remoteStream = await client.Download(RemotePath))
+					{
+						if (remoteStream != null)
+						{
+							using (var localStream = File.Create(LocalPath))
+							{
+								var contentLenght = remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 0;
+								var buffer = new byte[1024];
+								int bytesRead;
+								int alreadyRead = 0;
+								do
+								{
+									bytesRead = remoteStream.Read(buffer, 0, buffer.Length);
+									alreadyRead += bytesRead;
+									FileStorageManager.Instance.ShowDownloadProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
+									localStream.Write(buffer, 0, bytesRead);
+								}
+								while (bytesRead > 0);
+								localStream.Close();
+							}
+							remoteStream.Close();
+						}
+					}
+				}
+			}
+			catch
+			{
 			}
 		}
 	}

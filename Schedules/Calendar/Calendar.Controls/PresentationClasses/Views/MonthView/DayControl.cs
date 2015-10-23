@@ -4,12 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.Calendar.Controls.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 using Padding = System.Windows.Forms.Padding;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
 	public partial class DayControl : UserControl

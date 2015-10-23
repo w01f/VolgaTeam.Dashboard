@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
 {
 	public partial class DigitalInfoControl : UserControl
 	{

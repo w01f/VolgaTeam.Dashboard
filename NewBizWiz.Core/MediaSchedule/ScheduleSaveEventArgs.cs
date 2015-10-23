@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NewBizWiz.Core.MediaSchedule
+namespace Asa.Core.MediaSchedule
 {
 	public class ScheduleSaveEventArgs : Common.ScheduleSaveEventArgs
 	{

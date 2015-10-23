@@ -1,6 +1,6 @@
 ﻿using DevComponents.DotNetBar.Metro;
 
-namespace NewBizWiz.CommonGUI.ToolForms
+namespace Asa.CommonGUI.ToolForms
 {
 	public partial class FormEmailFileName : MetroForm
 	{

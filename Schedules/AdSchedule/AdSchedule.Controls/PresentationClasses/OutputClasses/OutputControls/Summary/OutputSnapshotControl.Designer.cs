@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
     partial class OutputSnapshotControl
     {
@@ -39,7 +39,7 @@
 			this.pnTopHeader = new System.Windows.Forms.Panel();
 			this.laDescription = new System.Windows.Forms.Label();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
-			this.outputSnapshotContainer = new NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.OutputSnapshotContainer();
+			this.outputSnapshotContainer = new Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.OutputSnapshotContainer();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPagePrint = new DevExpress.XtraTab.XtraTabPage();
@@ -62,7 +62,7 @@
 			this.xtraTabPageSlideInfo = new DevExpress.XtraTab.XtraTabPage();
 			this.pnSlideInfo = new System.Windows.Forms.Panel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.retractableBar = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBar = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSchedule.Properties)).BeginInit();

@@ -5,13 +5,13 @@ using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.VisualBasic;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Interop;
+using Asa.Calendar.Controls.BusinessClasses;
+using Asa.Core.Calendar;
+using Asa.Core.Interop;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace NewBizWiz.Calendar.Controls.InteropClasses
+namespace Asa.Calendar.Controls.InteropClasses
 {
 	public partial class CalendarPowerPointHelper
 	{

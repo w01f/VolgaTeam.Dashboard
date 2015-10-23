@@ -1,10 +1,10 @@
 ﻿using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.Core.Common;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
+using Asa.CommonGUI.Gallery;
+using Asa.Core.Common;
+using Asa.MediaSchedule.Controls.BusinessClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Gallery
 {
 	public class MediaGallery1Control : GalleryControl
 	{

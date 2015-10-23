@@ -1,7 +1,7 @@
 ﻿using System;
 using DevExpress.XtraEditors.Controls;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
 	public partial class CustomDateEditCalendar : DateEditCalendar
 	{

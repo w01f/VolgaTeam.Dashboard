@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class ActivityManager
 	{

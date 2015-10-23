@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabHomeForms
+﻿namespace Asa.Dashboard.TabHomeForms
 {
 	public partial class SlideBaseControl
 	{
@@ -102,7 +102,7 @@
 			// 
 			this.simpleButtonSaveTemplate.AllowFocus = false;
 			this.simpleButtonSaveTemplate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-			this.simpleButtonSaveTemplate.Image = global::NewBizWiz.Dashboard.Properties.Resources.SaveTemplate;
+			this.simpleButtonSaveTemplate.Image = global::Asa.Dashboard.Properties.Resources.SaveTemplate;
 			this.simpleButtonSaveTemplate.Location = new System.Drawing.Point(712, 11);
 			this.simpleButtonSaveTemplate.Name = "simpleButtonSaveTemplate";
 			this.simpleButtonSaveTemplate.Size = new System.Drawing.Size(75, 48);
@@ -151,7 +151,7 @@
 			this.buttonXLeadoff.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXLeadoff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXLeadoff.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLeadoff.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideLeadoff;
+			this.buttonXLeadoff.Image = global::Asa.Dashboard.Properties.Resources.SlideLeadoff;
 			this.buttonXLeadoff.Location = new System.Drawing.Point(42, 116);
 			this.buttonXLeadoff.Name = "buttonXLeadoff";
 			this.buttonXLeadoff.Size = new System.Drawing.Size(80, 72);
@@ -165,7 +165,7 @@
 			this.buttonXCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCover.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCover.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideCover;
+			this.buttonXCover.Image = global::Asa.Dashboard.Properties.Resources.SlideCover;
 			this.buttonXCover.Location = new System.Drawing.Point(42, 12);
 			this.buttonXCover.Name = "buttonXCover";
 			this.buttonXCover.Size = new System.Drawing.Size(80, 72);
@@ -179,7 +179,7 @@
 			this.buttonXClientGoals.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXClientGoals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClientGoals.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXClientGoals.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideClientGoals;
+			this.buttonXClientGoals.Image = global::Asa.Dashboard.Properties.Resources.SlideClientGoals;
 			this.buttonXClientGoals.Location = new System.Drawing.Point(42, 220);
 			this.buttonXClientGoals.Name = "buttonXClientGoals";
 			this.buttonXClientGoals.Size = new System.Drawing.Size(80, 72);
@@ -193,7 +193,7 @@
 			this.buttonXTargetCustomers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTargetCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTargetCustomers.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTargetCustomers.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideTargetCustomers;
+			this.buttonXTargetCustomers.Image = global::Asa.Dashboard.Properties.Resources.SlideTargetCustomers;
 			this.buttonXTargetCustomers.Location = new System.Drawing.Point(42, 324);
 			this.buttonXTargetCustomers.Name = "buttonXTargetCustomers";
 			this.buttonXTargetCustomers.Size = new System.Drawing.Size(80, 72);
@@ -207,7 +207,7 @@
 			this.buttonXSummary.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummary.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummary.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideSummary;
+			this.buttonXSummary.Image = global::Asa.Dashboard.Properties.Resources.SlideSummary;
 			this.buttonXSummary.Location = new System.Drawing.Point(42, 428);
 			this.buttonXSummary.Name = "buttonXSummary";
 			this.buttonXSummary.Size = new System.Drawing.Size(80, 72);

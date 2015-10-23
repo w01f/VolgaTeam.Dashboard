@@ -1,8 +1,8 @@
 ﻿using System;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
+namespace Asa.AdSchedule.Controls.BusinessClasses
 {
 	public class OutputManager
 	{

@@ -4,12 +4,12 @@ using System.Threading;
 using EO.Internal;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.CommonGUI.Summary;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using Asa.CommonGUI.Summary;
+using Asa.Core.Common;
+using Asa.Core.Interop;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace NewBizWiz.CommonGUI.Interop
+namespace Asa.CommonGUI.Interop
 {
 	public partial class CommonPowerPointHelper<T> where T : class, new()
 	{

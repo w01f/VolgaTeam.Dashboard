@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
 	public partial class MonthControl : UserControl

@@ -7,11 +7,11 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.Properties;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.Properties;
 
-namespace NewBizWiz.MediaSchedule.Controls.ToolForms
+namespace Asa.MediaSchedule.Controls.ToolForms
 {
 	public partial class FormOpenSchedule : MetroForm
 	{

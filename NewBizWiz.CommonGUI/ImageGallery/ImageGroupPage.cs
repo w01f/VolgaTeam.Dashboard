@@ -7,10 +7,10 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
 using Manina.Windows.Forms;
-using NewBizWiz.CommonGUI.FavoriteImages;
-using NewBizWiz.Core.Common;
+using Asa.CommonGUI.FavoriteImages;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.ImageGallery
+namespace Asa.CommonGUI.ImageGallery
 {
 	//public partial class ImageGroupPage : UserControl
 	public partial class ImageGroupPage : XtraTabPage

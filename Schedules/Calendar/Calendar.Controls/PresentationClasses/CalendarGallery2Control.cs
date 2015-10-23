@@ -1,10 +1,10 @@
 ﻿using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.BusinessClasses;
+using Asa.CommonGUI.Gallery;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses
+namespace Asa.Calendar.Controls.PresentationClasses
 {
 	public class CalendarGallery2Control : GalleryControl
 	{

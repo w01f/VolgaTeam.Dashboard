@@ -5,19 +5,19 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	public partial class PublicationDetailedGridControl : XtraTabPage
 	//public partial class PublicationDetailedGridControl : System.Windows.Forms.UserControl

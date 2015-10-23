@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
     partial class ScheduleSettingsControl
     {
@@ -74,7 +74,7 @@
 			this.pnPrintProductBottomBar = new System.Windows.Forms.Panel();
 			this.pictureBoxPrintProductAppLogo = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigitalProducts = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
+			this.digitalProductListControl = new Asa.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).BeginInit();
@@ -557,7 +557,7 @@
 			// pictureBoxPrintProductAppLogo
 			// 
 			this.pictureBoxPrintProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pictureBoxPrintProductAppLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
+			this.pictureBoxPrintProductAppLogo.Image = global::Asa.AdSchedule.Controls.Properties.Resources.AppLogo;
 			this.pictureBoxPrintProductAppLogo.Location = new System.Drawing.Point(662, 0);
 			this.pictureBoxPrintProductAppLogo.Name = "pictureBoxPrintProductAppLogo";
 			this.pictureBoxPrintProductAppLogo.Size = new System.Drawing.Size(160, 38);
@@ -577,7 +577,7 @@
 			this.digitalProductListControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.digitalProductListControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
-			this.digitalProductListControl.Logo = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
+			this.digitalProductListControl.Logo = global::Asa.AdSchedule.Controls.Properties.Resources.AppLogo;
 			this.digitalProductListControl.Name = "digitalProductListControl";
 			this.digitalProductListControl.Size = new System.Drawing.Size(822, 399);
 			this.digitalProductListControl.TabIndex = 0;

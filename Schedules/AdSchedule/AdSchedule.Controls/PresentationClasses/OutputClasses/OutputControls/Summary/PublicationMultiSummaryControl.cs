@@ -8,10 +8,10 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
 	public partial class PublicationMultiSummaryControl : XtraTabPage

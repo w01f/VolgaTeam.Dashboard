@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.OutputColors
+namespace Asa.CommonGUI.OutputColors
 {
 	public partial class OutputColorSelector : UserControl
 	{

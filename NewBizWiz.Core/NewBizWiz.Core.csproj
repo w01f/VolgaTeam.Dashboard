@@ -8,8 +8,8 @@
     <ProjectGuid>{164AB808-DBD3-4D71-9431-5A5B44B70593}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.Core</RootNamespace>
-    <AssemblyName>NewBizWiz.Core</AssemblyName>
+    <RootNamespace>Asa.Core</RootNamespace>
+    <AssemblyName>Asa.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>

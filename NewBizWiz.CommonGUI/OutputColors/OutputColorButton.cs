@@ -1,6 +1,6 @@
 ﻿using DevComponents.DotNetBar;
 
-namespace NewBizWiz.CommonGUI.OutputColors
+namespace Asa.CommonGUI.OutputColors
 {
 	public class OutputColorButton : ButtonX
 	{

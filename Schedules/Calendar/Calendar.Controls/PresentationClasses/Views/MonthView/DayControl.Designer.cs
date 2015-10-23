@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+﻿namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
     partial class DayControl
     {
@@ -101,7 +101,7 @@
 			// 
 			this.toolStripMenuItemCopy.Enabled = false;
 			this.toolStripMenuItemCopy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemCopy.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CopySmall;
+			this.toolStripMenuItemCopy.Image = global::Asa.Calendar.Controls.Properties.Resources.CopySmall;
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
 			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemCopy.Text = "Copy Data";
@@ -111,7 +111,7 @@
 			// 
 			this.toolStripMenuItemPaste.Enabled = false;
 			this.toolStripMenuItemPaste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemPaste.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
+			this.toolStripMenuItemPaste.Image = global::Asa.Calendar.Controls.Properties.Resources.PasteSmall;
 			this.toolStripMenuItemPaste.Name = "toolStripMenuItemPaste";
 			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemPaste.Text = "Paste Data";
@@ -121,7 +121,7 @@
 			// 
 			this.toolStripMenuItemClone.Enabled = false;
 			this.toolStripMenuItemClone.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemClone.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloneSmall;
+			this.toolStripMenuItemClone.Image = global::Asa.Calendar.Controls.Properties.Resources.CloneSmall;
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
 			this.toolStripMenuItemClone.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemClone.Text = "Clone Day...";
@@ -131,7 +131,7 @@
 			// 
 			this.toolStripMenuItemEdit.Enabled = false;
 			this.toolStripMenuItemEdit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemEdit.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.EditData;
+			this.toolStripMenuItemEdit.Image = global::Asa.Calendar.Controls.Properties.Resources.EditData;
 			this.toolStripMenuItemEdit.Name = "toolStripMenuItemEdit";
 			this.toolStripMenuItemEdit.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemEdit.Text = "Edit Data...";
@@ -141,7 +141,7 @@
 			// 
 			this.toolStripMenuItemDelete.Enabled = false;
 			this.toolStripMenuItemDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemDelete.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.DeleteData;
+			this.toolStripMenuItemDelete.Image = global::Asa.Calendar.Controls.Properties.Resources.DeleteData;
 			this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
 			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemDelete.Text = "Delete Data";
@@ -188,7 +188,7 @@
 			// 
 			this.toolStripMenuItemAddNote.Enabled = false;
 			this.toolStripMenuItemAddNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemAddNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.FloaterNote;
+			this.toolStripMenuItemAddNote.Image = global::Asa.Calendar.Controls.Properties.Resources.FloaterNote;
 			this.toolStripMenuItemAddNote.Name = "toolStripMenuItemAddNote";
 			this.toolStripMenuItemAddNote.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemAddNote.Text = "Add Note";
@@ -198,7 +198,7 @@
 			// 
 			this.toolStripMenuItemPasteNote.Enabled = false;
 			this.toolStripMenuItemPasteNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemPasteNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
+			this.toolStripMenuItemPasteNote.Image = global::Asa.Calendar.Controls.Properties.Resources.PasteSmall;
 			this.toolStripMenuItemPasteNote.Name = "toolStripMenuItemPasteNote";
 			this.toolStripMenuItemPasteNote.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemPasteNote.Text = "Paste Note";

@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.Core.Common;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.Core.Common;
+using Asa.OnlineSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	//public partial class DigitalSummaryControl : UserControl, IDigitalOutputControl

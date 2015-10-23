@@ -2,11 +2,11 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Single.TV
+namespace Asa.MediaSchedule.Single.TV
 {
 	static class Program
 	{

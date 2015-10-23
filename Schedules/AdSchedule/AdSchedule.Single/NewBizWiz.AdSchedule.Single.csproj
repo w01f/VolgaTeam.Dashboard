@@ -8,7 +8,7 @@
     <ProjectGuid>{E9EC47A0-0791-4EEA-BADC-AF8615F553F3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.AdSchedule.Single</RootNamespace>
+    <RootNamespace>Asa.AdSchedule.Single</RootNamespace>
     <AssemblyName>AdSeller</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
@@ -52,7 +52,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>Asa.AdSchedule.Single.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=12.0.0.7, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">

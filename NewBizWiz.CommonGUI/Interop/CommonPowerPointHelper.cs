@@ -1,6 +1,6 @@
-﻿using NewBizWiz.Core.Interop;
+﻿using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.Interop
+namespace Asa.CommonGUI.Interop
 {
 	public partial class CommonPowerPointHelper<T> : PowerPointHelper<T> where T : class,new() { }
 }

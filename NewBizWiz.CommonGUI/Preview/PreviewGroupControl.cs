@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Common;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.Preview
+namespace Asa.CommonGUI.Preview
 {
 	//public partial class PreviewGroupControl : UserControl
 	public partial class PreviewGroupControl : XtraTabPage

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Base;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class DaypartsControl : UserControl
 	{

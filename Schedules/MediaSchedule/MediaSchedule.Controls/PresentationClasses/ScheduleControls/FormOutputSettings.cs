@@ -1,7 +1,7 @@
 using System;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class FormOutputSettings : DevComponents.DotNetBar.Metro.MetroForm
 	{

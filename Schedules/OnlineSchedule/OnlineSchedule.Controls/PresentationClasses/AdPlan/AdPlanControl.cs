@@ -6,15 +6,15 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.Properties;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.RetractableBar;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.OnlineSchedule.Controls.InteropClasses;
+using Asa.OnlineSchedule.Controls.Properties;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	public abstract partial class AdPlanControl : UserControl

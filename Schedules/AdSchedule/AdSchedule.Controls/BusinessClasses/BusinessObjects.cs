@@ -1,8 +1,8 @@
-﻿using NewBizWiz.CommonGUI.RateCard;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
+﻿using Asa.CommonGUI.RateCard;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
+namespace Asa.AdSchedule.Controls.BusinessClasses
 {
 	public class BusinessObjects
 	{

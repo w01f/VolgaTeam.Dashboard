@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using DevExpress.XtraTab;
 
-namespace NewBizWiz.CommonGUI.RateCard
+namespace Asa.CommonGUI.RateCard
 {
 	[ToolboxItem(false)]
 	//public partial class PDFViewer : UserControl, IRateCardViewer

@@ -8,8 +8,8 @@
     <ProjectGuid>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.OnlineSchedule.Controls</RootNamespace>
-    <AssemblyName>NewBizWiz.OnlineSchedule.Controls</AssemblyName>
+    <RootNamespace>Asa.OnlineSchedule.Controls</RootNamespace>
+    <AssemblyName>Asa.OnlineSchedule.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

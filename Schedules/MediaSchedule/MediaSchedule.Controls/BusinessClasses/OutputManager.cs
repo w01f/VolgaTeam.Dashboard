@@ -1,8 +1,8 @@
 ﻿using System;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
+namespace Asa.MediaSchedule.Controls.BusinessClasses
 {
 	public class OutputManager
 	{

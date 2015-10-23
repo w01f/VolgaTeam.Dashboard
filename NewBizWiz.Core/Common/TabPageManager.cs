@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class TabPageManager
 	{

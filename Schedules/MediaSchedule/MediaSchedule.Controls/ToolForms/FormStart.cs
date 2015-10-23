@@ -1,9 +1,9 @@
 ﻿using System;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.Properties;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.Properties;
 
-namespace NewBizWiz.MediaSchedule.Controls.ToolForms
+namespace Asa.MediaSchedule.Controls.ToolForms
 {
 	public partial class FormStart : MetroForm
 	{

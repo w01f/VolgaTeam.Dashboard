@@ -5,9 +5,9 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.ImageGallery
+namespace Asa.CommonGUI.ImageGallery
 {
 	public partial class FormImageGallery : MetroForm
 	{

@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
     partial class SlideHeaderControl
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace NewBizWiz.Core.Calendar
+namespace Asa.Core.Calendar
 {
 	public class LocalSettings
 	{

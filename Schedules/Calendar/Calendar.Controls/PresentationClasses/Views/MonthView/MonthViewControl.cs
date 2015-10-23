@@ -5,13 +5,13 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
-using NewBizWiz.Calendar.Controls.ToolForms;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.Calendar.Controls.ToolForms;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
 	public partial class MonthViewControl : UserControl, IView

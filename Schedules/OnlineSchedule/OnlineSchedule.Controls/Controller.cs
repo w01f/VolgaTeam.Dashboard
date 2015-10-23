@@ -5,19 +5,19 @@ using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.CommonGUI.RateCard;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
-using NewBizWiz.OnlineSchedule.Controls.Properties;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.Gallery;
+using Asa.CommonGUI.RateCard;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.BusinessClasses;
+using Asa.OnlineSchedule.Controls.InteropClasses;
+using Asa.OnlineSchedule.Controls.PresentationClasses;
+using Asa.OnlineSchedule.Controls.Properties;
 
-namespace NewBizWiz.OnlineSchedule.Controls
+namespace Asa.OnlineSchedule.Controls
 {
 	public class Controller
 	{

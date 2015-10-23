@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
 	public partial class AdNotesDaysSelector : UserControl
 	{

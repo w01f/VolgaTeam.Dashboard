@@ -5,15 +5,15 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
-using NewBizWiz.AdSchedule.Controls.Properties;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.PresentationClasses.InputClasses;
+using Asa.AdSchedule.Controls.Properties;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace Asa.AdSchedule.Controls.ToolForms
 {
 	public partial class FormAdNotes : MetroForm
 	{

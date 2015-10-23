@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Xml.Linq;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.OnlineSchedule
+namespace Asa.Core.OnlineSchedule
 {
 	public class DigitalProductEditActivity : PropertyEditActivity
 	{

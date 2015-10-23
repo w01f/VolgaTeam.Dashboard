@@ -1,8 +1,8 @@
-﻿using NewBizWiz.CommonGUI.RateCard;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+﻿using Asa.CommonGUI.RateCard;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.BusinessClasses
+namespace Asa.Calendar.Controls.BusinessClasses
 {
 	public class BusinessObjects
 	{

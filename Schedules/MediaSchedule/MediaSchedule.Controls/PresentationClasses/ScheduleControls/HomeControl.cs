@@ -8,15 +8,15 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
-using ScheduleManager = NewBizWiz.Core.MediaSchedule.ScheduleManager;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.Core.OnlineSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using ListManager = Asa.Core.OnlineSchedule.ListManager;
+using ScheduleManager = Asa.Core.MediaSchedule.ScheduleManager;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
 	public partial class HomeControl : UserControl

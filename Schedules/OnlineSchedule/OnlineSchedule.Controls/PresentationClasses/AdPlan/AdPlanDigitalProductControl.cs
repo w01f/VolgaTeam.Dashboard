@@ -10,12 +10,12 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.ImageGallery;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.CommonGUI.ImageGallery;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	public partial class AdPlanDigitalProductControl : XtraTabPage, IAdPlanItem

@@ -10,17 +10,17 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.Properties;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.Properties;
+using Asa.AdSchedule.Controls.ToolForms;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
 	[ToolboxItem(false)]
 	public partial class PrintProductContainerControl : UserControl

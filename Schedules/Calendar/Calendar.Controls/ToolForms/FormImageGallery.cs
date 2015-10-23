@@ -3,10 +3,10 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using Manina.Windows.Forms;
-using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using Asa.Core.Common;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.Calendar.Controls.ToolForms
+namespace Asa.Calendar.Controls.ToolForms
 {
 	public partial class FormImageGallery : MetroForm
 	{

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.MediaSchedule
+namespace Asa.Core.MediaSchedule
 {
 	public class ResourceManager
 	{

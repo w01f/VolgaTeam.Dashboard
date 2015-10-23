@@ -1,4 +1,4 @@
-namespace NewBizWiz.CommonGUI.ToolForms
+namespace Asa.CommonGUI.ToolForms
 {
 	public partial class FormContractSettings : DevComponents.DotNetBar.Metro.MetroForm
 	{

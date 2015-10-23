@@ -3,12 +3,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Dashboard.ToolForms;
-using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
+using Asa.CommonGUI.Themes;
+using Asa.Core.Common;
+using Asa.Dashboard.ToolForms;
+using SettingsManager = Asa.Core.Dashboard.SettingsManager;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
 	public partial class SlideBaseControl : UserControl

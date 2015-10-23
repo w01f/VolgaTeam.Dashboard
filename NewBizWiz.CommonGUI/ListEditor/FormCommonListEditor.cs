@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.ListEditor
+namespace Asa.CommonGUI.ListEditor
 {
 	public partial class FormCommonListEditor : DevComponents.DotNetBar.Metro.MetroForm
 	{

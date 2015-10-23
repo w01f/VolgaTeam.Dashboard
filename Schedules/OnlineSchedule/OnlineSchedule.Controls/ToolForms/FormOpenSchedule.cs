@@ -7,11 +7,11 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.OnlineSchedule.Controls.ToolForms
+namespace Asa.OnlineSchedule.Controls.ToolForms
 {
 	public partial class FormOpenSchedule : MetroForm
 	{

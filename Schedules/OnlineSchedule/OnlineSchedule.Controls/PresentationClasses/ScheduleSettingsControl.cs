@@ -6,15 +6,15 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
-using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
-using Schedule = NewBizWiz.Core.OnlineSchedule.Schedule;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.BusinessClasses;
+using ListManager = Asa.Core.OnlineSchedule.ListManager;
+using Schedule = Asa.Core.OnlineSchedule.Schedule;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	public partial class ScheduleSettingsControl : UserControl

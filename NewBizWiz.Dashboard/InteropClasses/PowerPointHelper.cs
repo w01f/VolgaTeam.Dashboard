@@ -1,6 +1,6 @@
-﻿using NewBizWiz.CommonGUI.Interop;
+﻿using Asa.CommonGUI.Interop;
 
-namespace NewBizWiz.Dashboard.InteropClasses
+namespace Asa.Dashboard.InteropClasses
 {
 	public partial class DashboardPowerPointHelper : CommonPowerPointHelper<DashboardPowerPointHelper>
 	{

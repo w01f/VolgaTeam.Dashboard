@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
 	public partial class WeekEmptySpaceControl : UserControl

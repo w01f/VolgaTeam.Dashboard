@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.OutputColors
+﻿namespace Asa.CommonGUI.OutputColors
 {
 	partial class OutputColorSelector
 	{

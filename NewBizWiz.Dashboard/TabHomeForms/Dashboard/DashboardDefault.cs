@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NewBizWiz.Dashboard.TabHomeForms.Dashboard
+namespace Asa.Dashboard.TabHomeForms.Dashboard
 {
 	[ToolboxItem(false)]
 	public partial class DashboardDefault : UserControl

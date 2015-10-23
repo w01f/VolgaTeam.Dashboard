@@ -13,12 +13,12 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
-using NewBizWiz.CommonGUI.FavoriteImages;
-using NewBizWiz.Core.Common;
+using Asa.CommonGUI.FavoriteImages;
+using Asa.Core.Common;
 using Vintasoft.Imaging;
 using Vintasoft.Imaging.VisualTools;
 
-namespace NewBizWiz.CommonGUI.Gallery
+namespace Asa.CommonGUI.Gallery
 {
 	[ToolboxItem(false)]
 	public abstract partial class GalleryControl : UserControl

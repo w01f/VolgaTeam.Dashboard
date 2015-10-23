@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NewBizWiz.Core.Interop
+namespace Asa.Core.Interop
 {
 	public class AsyncHelper
 	{

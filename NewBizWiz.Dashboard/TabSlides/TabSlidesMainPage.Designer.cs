@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabSlides
+﻿namespace Asa.Dashboard.TabSlides
 {
     partial class TabSlidesMainPage
     {

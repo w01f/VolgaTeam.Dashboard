@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan
 {
 	partial class AdPlanPrintProductControl
     {
@@ -539,7 +539,7 @@
 			// pbProductTypeLogo
 			// 
 			this.pbProductTypeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbProductTypeLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AdPlanPrintProduct;
+			this.pbProductTypeLogo.Image = global::Asa.AdSchedule.Controls.Properties.Resources.AdPlanPrintProduct;
 			this.pbProductTypeLogo.Location = new System.Drawing.Point(864, 385);
 			this.pbProductTypeLogo.Name = "pbProductTypeLogo";
 			this.pbProductTypeLogo.Size = new System.Drawing.Size(72, 72);
@@ -604,7 +604,7 @@
 			// 
 			// pbInvestment
 			// 
-			this.pbInvestment.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.InvestmentDetails;
+			this.pbInvestment.Image = global::Asa.AdSchedule.Controls.Properties.Resources.InvestmentDetails;
 			this.pbInvestment.Location = new System.Drawing.Point(38, 364);
 			this.pbInvestment.Name = "pbInvestment";
 			this.pbInvestment.Size = new System.Drawing.Size(41, 41);
@@ -725,7 +725,7 @@
 			// 
 			// pbComments
 			// 
-			this.pbComments.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Notes;
+			this.pbComments.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Notes;
 			this.pbComments.Location = new System.Drawing.Point(38, 229);
 			this.pbComments.Name = "pbComments";
 			this.pbComments.Size = new System.Drawing.Size(41, 41);
@@ -758,7 +758,7 @@
 			// 
 			// pictureBoxDates
 			// 
-			this.pictureBoxDates.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
+			this.pictureBoxDates.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Calendar;
 			this.pictureBoxDates.Location = new System.Drawing.Point(38, 93);
 			this.pictureBoxDates.Name = "pictureBoxDates";
 			this.pictureBoxDates.Size = new System.Drawing.Size(41, 41);

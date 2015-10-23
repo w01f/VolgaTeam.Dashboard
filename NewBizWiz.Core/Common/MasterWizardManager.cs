@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class MasterWizardManager
 	{

@@ -3,13 +3,13 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Slides;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Dashboard.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.Slides;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Dashboard.InteropClasses;
 
-namespace NewBizWiz.Dashboard.TabSlides
+namespace Asa.Dashboard.TabSlides
 {
 	[ToolboxItem(false)]
 	public partial class TabSlidesMainPage : UserControl

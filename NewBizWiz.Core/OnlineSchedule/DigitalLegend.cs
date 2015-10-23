@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml;
 using DevExpress.XtraEditors;
 
-namespace NewBizWiz.Core.OnlineSchedule
+namespace Asa.Core.OnlineSchedule
 {
 	public class DigitalLegend
 	{

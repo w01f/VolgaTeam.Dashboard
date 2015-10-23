@@ -6,15 +6,15 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.Calendar.Controls.PresentationClasses.Views;
+using Asa.Calendar.Controls.PresentationClasses.Views.GridView;
+using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
+namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	[ToolboxItem(false)]
 	public partial class BaseCalendarControl : UserControl, ICalendarControl

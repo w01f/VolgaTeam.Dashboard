@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Summary
+﻿namespace Asa.CommonGUI.Summary
 {
 	partial class SummaryProductItemControl
     {

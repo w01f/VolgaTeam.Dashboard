@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.ToolForms
+namespace Asa.CommonGUI.ToolForms
 {
 	public partial class FormNewSchedule : MetroForm
 	{

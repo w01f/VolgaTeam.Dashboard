@@ -7,11 +7,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Manina.Windows.Forms;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.FavoriteImages;
-using NewBizWiz.Core.Common;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.FavoriteImages;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
+namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 {
 	public partial class CalendarHeaderSelector : UserControl
 	{

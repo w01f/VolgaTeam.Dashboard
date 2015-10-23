@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
-using NewBizWiz.Calendar.Controls.Properties;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.BusinessClasses;
+using Asa.Calendar.Controls.Properties;
+using Asa.CommonGUI.RetractableBar;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
+namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 {
 	public partial class SlideInfoControl : UserControl, ISlideInfoControl
 	{

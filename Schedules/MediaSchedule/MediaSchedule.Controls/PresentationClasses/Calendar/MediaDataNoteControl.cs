@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace Asa.MediaSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	[IntendForClass(typeof(MediaDataNote))]

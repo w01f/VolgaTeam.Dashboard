@@ -2,7 +2,7 @@
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 
-namespace NewBizWiz.CommonGUI.ToolForms
+namespace Asa.CommonGUI.ToolForms
 {
 	public partial class FormSelectOutputItems : MetroForm
 	{

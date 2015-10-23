@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace NewBizWiz.CommonGUI.Floater
+namespace Asa.CommonGUI.Floater
 {
 	public class FloaterRequestedEventArgs : EventArgs
 	{

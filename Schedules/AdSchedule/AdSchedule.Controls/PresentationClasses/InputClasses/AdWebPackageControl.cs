@@ -5,18 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
-using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.InteropClasses;
+using Asa.OnlineSchedule.Controls.PresentationClasses;
+using Schedule = Asa.Core.AdSchedule.Schedule;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses
 {
 	public class AdWebPackageControl : WebPackageControl
 	{

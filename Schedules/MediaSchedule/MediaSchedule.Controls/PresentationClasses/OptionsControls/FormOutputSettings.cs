@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 {
 	public partial class FormOutputSettings : DevComponents.DotNetBar.Metro.MetroForm
 	{

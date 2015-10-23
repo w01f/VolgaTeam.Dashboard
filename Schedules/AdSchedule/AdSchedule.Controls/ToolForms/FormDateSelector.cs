@@ -1,7 +1,7 @@
 ﻿using System;
 using DevComponents.DotNetBar.Metro;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace Asa.AdSchedule.Controls.ToolForms
 {
 	public partial class FormDateSelector : MetroForm
 	{

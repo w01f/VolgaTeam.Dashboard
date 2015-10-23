@@ -3,9 +3,9 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.SlideSettingsEditors
+namespace Asa.CommonGUI.SlideSettingsEditors
 {
 	public partial class FormEditSlideSettings : MetroForm
 	{

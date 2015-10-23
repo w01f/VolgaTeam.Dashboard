@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabHomeForms
+﻿namespace Asa.Dashboard.TabHomeForms
 {
 	sealed partial class SlideClientGoalsControl
     {
@@ -90,7 +90,7 @@
 			// 
 			// pbDescription
 			// 
-			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionClientGoals;
+			this.pbDescription.Image = global::Asa.Dashboard.Properties.Resources.DescriptionClientGoals;
 			// 
 			// simpleButtonSaveTemplate
 			// 

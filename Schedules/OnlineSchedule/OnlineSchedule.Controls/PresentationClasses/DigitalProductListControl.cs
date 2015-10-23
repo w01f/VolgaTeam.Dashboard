@@ -11,14 +11,14 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.Properties;
-using NewBizWiz.OnlineSchedule.Controls.ToolForms;
-using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
+using Asa.CommonGUI.Common;
+using Asa.Core.Common;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.Properties;
+using Asa.OnlineSchedule.Controls.ToolForms;
+using ListManager = Asa.Core.OnlineSchedule.ListManager;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	public partial class DigitalProductListControl : UserControl
 	{

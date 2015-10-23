@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using DevComponents.DotNetBar.Metro;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace Asa.AdSchedule.Controls.ToolForms
 {
 	public partial class FormCloneProduct : MetroForm
 	{

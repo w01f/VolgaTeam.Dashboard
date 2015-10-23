@@ -5,9 +5,9 @@ using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace Asa.AdSchedule.Controls.ToolForms
 {
 	public partial class FormDigital : MetroForm
 	{

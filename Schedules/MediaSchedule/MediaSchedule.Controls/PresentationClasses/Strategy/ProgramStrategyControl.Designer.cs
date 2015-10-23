@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
+﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.Strategy
 {
 	sealed partial class ProgramStrategyControl
 	{
@@ -44,8 +44,8 @@
 			this.bandedGridColumnItemsName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnItemsDescription = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
-			this.retractableBarRight = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarRight();
+			this.favoriteImagesControl = new Asa.CommonGUI.FavoriteImages.FavoriteImagesControl();
+			this.retractableBarRight = new Asa.CommonGUI.RetractableBar.RetractableBarRight();
 			this.labelControlFavTitle = new DevExpress.XtraEditors.LabelControl();
 			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).BeginInit();

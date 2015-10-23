@@ -5,15 +5,15 @@ using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Dashboard;
-using NewBizWiz.Dashboard.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.Dashboard;
+using Asa.Dashboard.InteropClasses;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
-using ListManager = NewBizWiz.Core.Dashboard.ListManager;
+using ListManager = Asa.Core.Dashboard.ListManager;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
 	public sealed partial class SlideTargetCustomersControl : SlideBaseControl

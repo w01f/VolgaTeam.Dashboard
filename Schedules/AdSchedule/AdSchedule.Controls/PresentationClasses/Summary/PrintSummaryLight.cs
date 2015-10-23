@@ -6,16 +6,16 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Summary;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.Summary;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
+namespace Asa.AdSchedule.Controls.PresentationClasses.Summary
 {
 	public class PrintSummaryLight : SummaryLightControl
 	{

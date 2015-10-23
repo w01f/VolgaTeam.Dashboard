@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.TabHomeForms
+﻿namespace Asa.Dashboard.TabHomeForms
 {
 	sealed partial class SlideCoverControl
     {
@@ -34,8 +34,8 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideCoverControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.checkEditPresentationDate = new DevExpress.XtraEditors.CheckEdit();
-			this.comboBoxEditDecisionMaker = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
-			this.comboBoxEditAdvertiser = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditDecisionMaker = new Asa.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditAdvertiser = new Asa.CommonGUI.Common.ComboBoxListEdit();
 			this.buttonXSalesQuote = new DevComponents.DotNetBar.ButtonX();
 			this.memoEditSalesQuote = new DevExpress.XtraEditors.MemoEdit();
 			this.textEditSalesQuoteAuthor = new DevExpress.XtraEditors.TextEdit();
@@ -128,7 +128,7 @@
 			// 
 			// pbDescription
 			// 
-			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionCover;
+			this.pbDescription.Image = global::Asa.Dashboard.Properties.Resources.DescriptionCover;
 			this.pbDescription.Size = new System.Drawing.Size(255, 48);
 			// 
 			// simpleButtonSaveTemplate
@@ -176,7 +176,7 @@
             "Coding",
             "Fred Jones",
             "Mike Jones"});
-			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
+			this.comboBoxEditDecisionMaker.Properties.ListType = Asa.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(344, 22);
 			this.comboBoxEditDecisionMaker.TabIndex = 2;
@@ -207,7 +207,7 @@
             "Fred\'s Rib Shack",
             "Fred\'s Used Cars",
             "Mike\'s Automotive"});
-			this.comboBoxEditAdvertiser.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
+			this.comboBoxEditAdvertiser.Properties.ListType = Asa.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(344, 22);
 			this.comboBoxEditAdvertiser.TabIndex = 1;
@@ -218,7 +218,7 @@
 			this.buttonXSalesQuote.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSalesQuote.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSalesQuote.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXSalesQuote.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesQuotes;
+			this.buttonXSalesQuote.Image = global::Asa.Dashboard.Properties.Resources.SalesQuotes;
 			this.buttonXSalesQuote.Location = new System.Drawing.Point(11, 285);
 			this.buttonXSalesQuote.Name = "buttonXSalesQuote";
 			this.buttonXSalesQuote.Size = new System.Drawing.Size(181, 48);
@@ -309,7 +309,7 @@
 			// 
 			this.pbSalesRep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbSalesRep.BackColor = System.Drawing.Color.White;
-			this.pbSalesRep.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesRep;
+			this.pbSalesRep.Image = global::Asa.Dashboard.Properties.Resources.SalesRep;
 			this.pbSalesRep.Location = new System.Drawing.Point(443, 30);
 			this.pbSalesRep.Name = "pbSalesRep";
 			this.pbSalesRep.Size = new System.Drawing.Size(50, 51);
@@ -357,7 +357,7 @@
 			// 
 			this.pbPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbPresentationDate.BackColor = System.Drawing.Color.White;
-			this.pbPresentationDate.Image = global::NewBizWiz.Dashboard.Properties.Resources.Date;
+			this.pbPresentationDate.Image = global::Asa.Dashboard.Properties.Resources.Date;
 			this.pbPresentationDate.Location = new System.Drawing.Point(443, 170);
 			this.pbPresentationDate.Name = "pbPresentationDate";
 			this.pbPresentationDate.Size = new System.Drawing.Size(50, 51);
@@ -367,7 +367,7 @@
 			// pbDecisionMaker
 			// 
 			this.pbDecisionMaker.BackColor = System.Drawing.Color.White;
-			this.pbDecisionMaker.Image = global::NewBizWiz.Dashboard.Properties.Resources.DecisionMaker;
+			this.pbDecisionMaker.Image = global::Asa.Dashboard.Properties.Resources.DecisionMaker;
 			this.pbDecisionMaker.Location = new System.Drawing.Point(11, 170);
 			this.pbDecisionMaker.Name = "pbDecisionMaker";
 			this.pbDecisionMaker.Size = new System.Drawing.Size(50, 51);
@@ -377,7 +377,7 @@
 			// pbAdvertiser
 			// 
 			this.pbAdvertiser.BackColor = System.Drawing.Color.White;
-			this.pbAdvertiser.Image = global::NewBizWiz.Dashboard.Properties.Resources.Advertiser;
+			this.pbAdvertiser.Image = global::Asa.Dashboard.Properties.Resources.Advertiser;
 			this.pbAdvertiser.Location = new System.Drawing.Point(11, 30);
 			this.pbAdvertiser.Name = "pbAdvertiser";
 			this.pbAdvertiser.Size = new System.Drawing.Size(50, 51);

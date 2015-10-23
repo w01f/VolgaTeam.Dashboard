@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Manina.Windows.Forms;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.Core.Common;
+using Asa.CommonGUI.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.FavoriteImages
+namespace Asa.CommonGUI.FavoriteImages
 {
 	public partial class FavoriteImagesControl : UserControl
 	{

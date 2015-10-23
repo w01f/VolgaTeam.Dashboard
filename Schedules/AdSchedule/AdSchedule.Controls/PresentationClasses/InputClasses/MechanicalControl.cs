@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
-using NewBizWiz.Core.AdSchedule;
+using Asa.Core.AdSchedule;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
 	[ToolboxItem(false)]
 	//public partial class MechanicalControl : UserControl

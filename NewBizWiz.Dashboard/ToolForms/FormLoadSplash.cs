@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using DevComponents.DotNetBar.Metro;
 
-namespace NewBizWiz.Dashboard.ToolForms
+namespace Asa.Dashboard.ToolForms
 {
 	public partial class FormLoadSplash : MetroForm
 	{

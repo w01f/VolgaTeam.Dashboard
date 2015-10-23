@@ -5,17 +5,17 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using ScheduleManager = NewBizWiz.Core.MediaSchedule.ScheduleManager;
+using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
+using ScheduleManager = Asa.Core.MediaSchedule.ScheduleManager;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 {
 	public abstract class MediaCalendarControl : BaseCalendarControl
 	{

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.CommonGUI.RetractableBar;
+using Asa.Core.AdSchedule;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
 {
 	public partial class CustomSlideInfoControl : UserControl, ISlideInfoControl
 	{
@@ -90,19 +90,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				new ButtonInfo
 				{
-					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
+					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
 					Tooltip = "Open My Gallery",
 					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageFavorites; }
 				},
 				new ButtonInfo
 				{
-					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
+					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
 					Tooltip = "Open Slide Style",
 					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageStyle; }
 				},
 				new ButtonInfo
 				{
-					Logo = NewBizWiz.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
+					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
 					Tooltip = "Open Comments",
 					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageComments; }
 				},

@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
     partial class AdNotesDaysSelector
     {
@@ -36,7 +36,7 @@
 			this.buttonXApplyOtherDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXApplyOtherDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXApplyOtherDays.Dock = System.Windows.Forms.DockStyle.Right;
-			this.buttonXApplyOtherDays.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AdNotesOtherDays;
+			this.buttonXApplyOtherDays.Image = global::Asa.AdSchedule.Controls.Properties.Resources.AdNotesOtherDays;
 			this.buttonXApplyOtherDays.Location = new System.Drawing.Point(179, 0);
 			this.buttonXApplyOtherDays.Name = "buttonXApplyOtherDays";
 			this.buttonXApplyOtherDays.Size = new System.Drawing.Size(263, 61);

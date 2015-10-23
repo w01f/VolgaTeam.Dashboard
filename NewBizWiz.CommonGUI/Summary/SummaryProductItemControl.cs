@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.CommonGUI.Summary
+namespace Asa.CommonGUI.Summary
 {
 	[ToolboxItem(false)]
 	public partial class SummaryProductItemControl : UserControl, ISummaryItemControl

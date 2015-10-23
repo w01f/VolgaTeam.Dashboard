@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses
+﻿namespace Asa.Calendar.Controls.PresentationClasses
 {
     partial class HomeControl
     {
@@ -34,7 +34,7 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.HomePicture1;
+			this.pictureBox1.Image = global::Asa.Calendar.Controls.Properties.Resources.HomePicture1;
 			this.pictureBox1.Location = new System.Drawing.Point(18, 22);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(858, 243);

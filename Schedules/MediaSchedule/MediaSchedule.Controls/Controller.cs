@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.CommonGUI.RateCard;
-using NewBizWiz.CommonGUI.SlideSettingsEditors;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.OptionsControls;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.Gallery;
+using Asa.CommonGUI.RateCard;
+using Asa.CommonGUI.SlideSettingsEditors;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.MediaSchedule.Controls.PresentationClasses.Calendar;
+using Asa.MediaSchedule.Controls.PresentationClasses.Digital;
+using Asa.MediaSchedule.Controls.PresentationClasses.Gallery;
+using Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls;
+using Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
+using Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
+using Asa.MediaSchedule.Controls.PresentationClasses.Strategy;
+using Asa.MediaSchedule.Controls.PresentationClasses.Summary;
+using Asa.OnlineSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls
+namespace Asa.MediaSchedule.Controls
 {
 	public class Controller
 	{

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public interface ISchedule
 	{

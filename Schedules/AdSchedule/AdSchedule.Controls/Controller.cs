@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
-using NewBizWiz.AdSchedule.Controls.Properties;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.CommonGUI.RateCard;
-using NewBizWiz.CommonGUI.SlideSettingsEditors;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.AdSchedule.Controls.PresentationClasses;
+using Asa.AdSchedule.Controls.PresentationClasses.InputClasses;
+using Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
+using Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan;
+using Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar;
+using Asa.AdSchedule.Controls.PresentationClasses.Summary;
+using Asa.AdSchedule.Controls.Properties;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.Floater;
+using Asa.CommonGUI.Gallery;
+using Asa.CommonGUI.RateCard;
+using Asa.CommonGUI.SlideSettingsEditors;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Schedule = Asa.Core.AdSchedule.Schedule;
 
-namespace NewBizWiz.AdSchedule.Controls
+namespace Asa.AdSchedule.Controls
 {
 	public class Controller
 	{

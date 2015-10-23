@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.ToolForms
+﻿namespace Asa.Calendar.Controls.ToolForms
 {
 	partial class FormDayProperties
 	{

@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+﻿namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
     partial class WeekControl
     {

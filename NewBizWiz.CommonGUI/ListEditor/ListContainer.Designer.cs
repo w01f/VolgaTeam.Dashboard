@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.ListEditor
+﻿namespace Asa.CommonGUI.ListEditor
 {
 	partial class ListContainer<T>
 	{
@@ -122,7 +122,7 @@
 			// 
 			this.repositoryItemButtonEditButtons.AutoHeight = false;
 			this.repositoryItemButtonEditButtons.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::NewBizWiz.CommonGUI.Properties.Resources.DeleteButton, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.CommonGUI.Properties.Resources.DeleteButton, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.repositoryItemButtonEditButtons.Name = "repositoryItemButtonEditButtons";
 			this.repositoryItemButtonEditButtons.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditButtons.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditButtons_ButtonClick);

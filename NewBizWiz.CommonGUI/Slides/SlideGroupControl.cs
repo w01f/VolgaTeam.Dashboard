@@ -5,9 +5,9 @@ using System.Drawing;
 using System.Linq;
 using DevExpress.XtraGrid.Views.Layout;
 using DevExpress.XtraTab;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Slides
+namespace Asa.CommonGUI.Slides
 {
 	[ToolboxItem(false)]
 	//public partial class SlideGroupControl : UserControl

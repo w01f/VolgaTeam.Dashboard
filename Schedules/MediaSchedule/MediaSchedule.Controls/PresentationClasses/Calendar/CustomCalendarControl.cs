@@ -2,7 +2,7 @@
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 {
 	public class CustomCalendarControl : MediaCalendarControl
 	{

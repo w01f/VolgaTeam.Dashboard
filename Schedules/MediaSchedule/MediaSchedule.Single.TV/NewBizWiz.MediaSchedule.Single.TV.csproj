@@ -8,7 +8,7 @@
     <ProjectGuid>{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.MediaSchedule.Single.TV</RootNamespace>
+    <RootNamespace>Asa.MediaSchedule.Single.TV</RootNamespace>
     <AssemblyName>TVSeller</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Asa.MediaSchedule.Single.TV.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=12.0.0.7, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">

@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.RetractableBar
+﻿namespace Asa.CommonGUI.RetractableBar
 {
 	partial class RetractableBarRight
 	{
@@ -52,7 +52,7 @@
 			// 
 			// simpleButtonExpand
 			// 
-			this.simpleButtonExpand.Image = global::NewBizWiz.CommonGUI.Properties.Resources.RetractableBarCollapse;
+			this.simpleButtonExpand.Image = global::Asa.CommonGUI.Properties.Resources.RetractableBarCollapse;
 			this.simpleButtonExpand.Size = new System.Drawing.Size(47, 36);
 			// 
 			// pnTop
@@ -66,7 +66,7 @@
 			// simpleButtonCollapse
 			// 
 			this.simpleButtonCollapse.Dock = System.Windows.Forms.DockStyle.Right;
-			this.simpleButtonCollapse.Image = global::NewBizWiz.CommonGUI.Properties.Resources.RetractableBarExpand;
+			this.simpleButtonCollapse.Image = global::Asa.CommonGUI.Properties.Resources.RetractableBarExpand;
 			this.simpleButtonCollapse.Location = new System.Drawing.Point(251, 2);
 			// 
 			// pnHeaderContent

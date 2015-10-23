@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
+﻿namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
     partial class CalendarNoteControl
     {
@@ -91,7 +91,7 @@
 			// toolStripMenuItemCopy
 			// 
 			this.toolStripMenuItemCopy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemCopy.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CopySmall;
+			this.toolStripMenuItemCopy.Image = global::Asa.Calendar.Controls.Properties.Resources.CopySmall;
 			this.toolStripMenuItemCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
 			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(169, 40);
@@ -101,7 +101,7 @@
 			// toolStripMenuItemClone
 			// 
 			this.toolStripMenuItemClone.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemClone.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloneSmall;
+			this.toolStripMenuItemClone.Image = global::Asa.Calendar.Controls.Properties.Resources.CloneSmall;
 			this.toolStripMenuItemClone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
 			this.toolStripMenuItemClone.Size = new System.Drawing.Size(169, 40);
@@ -111,7 +111,7 @@
 			// toolStripMenuItemColor
 			// 
 			this.toolStripMenuItemColor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemColor.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.Color;
+			this.toolStripMenuItemColor.Image = global::Asa.Calendar.Controls.Properties.Resources.Color;
 			this.toolStripMenuItemColor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemColor.Name = "toolStripMenuItemColor";
 			this.toolStripMenuItemColor.Size = new System.Drawing.Size(169, 40);
@@ -134,7 +134,7 @@
 			// pbClose
 			// 
 			this.pbClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbClose.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.DeleteData;
+			this.pbClose.Image = global::Asa.Calendar.Controls.Properties.Resources.DeleteData;
 			this.pbClose.Location = new System.Drawing.Point(473, 4);
 			this.pbClose.Name = "pbClose";
 			this.pbClose.Size = new System.Drawing.Size(24, 24);

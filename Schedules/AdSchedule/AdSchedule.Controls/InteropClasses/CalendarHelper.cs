@@ -5,13 +5,13 @@ using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.VisualBasic;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
+using Asa.Core.Interop;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace NewBizWiz.AdSchedule.Controls.InteropClasses
+namespace Asa.AdSchedule.Controls.InteropClasses
 {
 	public partial class AdSchedulePowerPointHelper
 	{

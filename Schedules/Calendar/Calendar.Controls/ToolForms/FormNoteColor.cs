@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 
-namespace NewBizWiz.Calendar.Controls.ToolForms
+namespace Asa.Calendar.Controls.ToolForms
 {
 	public partial class FormNoteColor : MetroForm
 	{

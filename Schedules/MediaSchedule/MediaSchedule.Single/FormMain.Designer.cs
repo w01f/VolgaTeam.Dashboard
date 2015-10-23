@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Single
+﻿namespace Asa.MediaSchedule.Single
 {
     partial class FormMain
     {
@@ -62,9 +62,9 @@
 			this.buttonItemHomeDigitalProductAdd = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeDigitalProductClone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
-			this.dateEditFlightDatesStart = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
+			this.dateEditFlightDatesStart = new Asa.CommonGUI.Common.TabbedDateEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.dateEditFlightDatesEnd = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
+			this.dateEditFlightDatesEnd = new Asa.CommonGUI.Common.TabbedDateEdit();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerHomeFlightDatesStartLogo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeFlightDatesStart = new DevComponents.DotNetBar.LabelItem();
@@ -76,10 +76,10 @@
 			this.controlContainerItemFlightDatesEnd = new DevComponents.DotNetBar.ControlContainerItem();
 			this.labelItemHomeFlightDatesWeeks = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
-			this.comboBoxEditBusinessName = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
-			this.comboBoxEditDecisionMaker = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
-			this.comboBoxEditClientType = new NewBizWiz.CommonGUI.Common.TabbedCombobox();
-			this.dateEditPresentationDate = new NewBizWiz.CommonGUI.Common.TabbedDateEdit();
+			this.comboBoxEditBusinessName = new Asa.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditDecisionMaker = new Asa.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditClientType = new Asa.CommonGUI.Common.TabbedCombobox();
+			this.dateEditPresentationDate = new Asa.CommonGUI.Common.TabbedDateEdit();
 			this.textEditAccountNumber = new DevExpress.XtraEditors.TextEdit();
 			this.itemContainerHomeAdvertiser = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeAdvertiserTitle = new DevComponents.DotNetBar.LabelItem();
@@ -1090,7 +1090,7 @@
 			this.comboBoxEditBusinessName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditBusinessName.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
+			this.comboBoxEditBusinessName.Properties.ListType = Asa.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
 			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(180, 20);
 			this.comboBoxEditBusinessName.StyleController = this.styleController;
@@ -1105,7 +1105,7 @@
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
+			this.comboBoxEditDecisionMaker.Properties.ListType = Asa.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(180, 20);
 			this.comboBoxEditDecisionMaker.StyleController = this.styleController;

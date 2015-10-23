@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using DevExpress.XtraGrid;
 using DevExpress.XtraTab;
 
-namespace NewBizWiz.CommonGUI.ListEditor
+namespace Asa.CommonGUI.ListEditor
 {
 	//public partial class ListContainer<T> : UserControl where T : class
 	public partial class ListContainer<T> : XtraTabPage where T : class

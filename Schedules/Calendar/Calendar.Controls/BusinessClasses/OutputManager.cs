@@ -1,9 +1,9 @@
 ﻿using System;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using SettingsManager = Asa.Core.Common.SettingsManager;
 
-namespace NewBizWiz.Calendar.Controls.BusinessClasses
+namespace Asa.Calendar.Controls.BusinessClasses
 {
 	public class OutputManager
 	{

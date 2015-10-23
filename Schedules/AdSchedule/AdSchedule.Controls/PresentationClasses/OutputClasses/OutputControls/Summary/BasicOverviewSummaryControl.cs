@@ -5,12 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.BusinessClasses;
+using Asa.AdSchedule.Controls.InteropClasses;
+using Asa.CommonGUI.Preview;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
 	//public partial class BasicOverviewSummaryControl : UserControl

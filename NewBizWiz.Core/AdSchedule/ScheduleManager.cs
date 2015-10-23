@@ -8,12 +8,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.Core.OnlineSchedule;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.Core.AdSchedule
+namespace Asa.Core.AdSchedule
 {
 	public enum AdPricingStrategies
 	{

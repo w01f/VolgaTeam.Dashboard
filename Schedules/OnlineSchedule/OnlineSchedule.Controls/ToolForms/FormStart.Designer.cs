@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.OnlineSchedule.Controls.ToolForms
+﻿namespace Asa.OnlineSchedule.Controls.ToolForms
 {
     partial class FormStart
     {
@@ -96,7 +96,7 @@
 			// 
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.RibbonLogo;
+			this.pbLogo.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.RibbonLogo;
 			this.pbLogo.Location = new System.Drawing.Point(14, 12);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(419, 65);

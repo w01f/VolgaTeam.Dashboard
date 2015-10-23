@@ -8,8 +8,8 @@
     <ProjectGuid>{167BC40B-C87E-4972-B8A2-903F6F160B6B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.Calendar.Controls</RootNamespace>
-    <AssemblyName>NewBizWiz.Calendar.Controls</AssemblyName>
+    <RootNamespace>Asa.Calendar.Controls</RootNamespace>
+    <AssemblyName>Asa.Calendar.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

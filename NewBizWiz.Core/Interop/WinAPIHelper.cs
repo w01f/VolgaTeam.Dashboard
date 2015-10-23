@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace NewBizWiz.Core.Interop
+namespace Asa.Core.Interop
 {
 	public enum WM
 	{

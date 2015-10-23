@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.InteropClasses
+﻿namespace Asa.Calendar.Controls.InteropClasses
 {
 	public partial class CalendarPowerPointHelper : CommonGUI.Interop.CommonPowerPointHelper<CalendarPowerPointHelper> { }
 }

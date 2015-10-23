@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NewBizWiz.Core.Calendar
+namespace Asa.Core.Calendar
 {
 	public class SettingsManager
 	{

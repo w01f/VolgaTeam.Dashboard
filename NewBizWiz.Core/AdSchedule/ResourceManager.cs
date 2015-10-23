@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.AdSchedule
+namespace Asa.Core.AdSchedule
 {
 	public class ResourceManager
 	{

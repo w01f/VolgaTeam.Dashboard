@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
+using Asa.Calendar.Controls.PresentationClasses.Views;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses
+namespace Asa.Calendar.Controls.PresentationClasses
 {
 	public class CopyPasteManager
 	{

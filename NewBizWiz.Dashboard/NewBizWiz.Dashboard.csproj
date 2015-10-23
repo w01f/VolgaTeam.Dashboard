@@ -8,8 +8,8 @@
     <ProjectGuid>{26FC7464-A2AC-4555-A8AD-8C91211749FE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.Dashboard</RootNamespace>
-    <AssemblyName>adSALESapp</AssemblyName>
+    <RootNamespace>Asa.Dashboard</RootNamespace>
+    <AssemblyName>6ms</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>NewBizWiz.ico</ApplicationIcon>
@@ -58,7 +58,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>NewBizWiz.Dashboard.Program</StartupObject>
+    <StartupObject>Asa.Dashboard.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
@@ -397,7 +397,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy “$(ProjectDir)bin\Release\*.dll” “d:\WorkingFiles\NewBizWiz\NewBizWiz.exe” /Y
-copy “$(ProjectDir)bin\Release\adSALESapp.exe” “d:\WorkingFiles\NewBizWiz\NewBizWiz.exe” /Y</PostBuildEvent>
+copy “$(ProjectDir)bin\Release\6ms.exe” “d:\WorkingFiles\NewBizWiz\NewBizWiz.exe” /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

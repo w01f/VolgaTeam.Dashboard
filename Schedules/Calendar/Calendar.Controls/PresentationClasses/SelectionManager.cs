@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
-using NewBizWiz.Core.Calendar;
+using Asa.Calendar.Controls.PresentationClasses.Views;
+using Asa.Core.Calendar;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses
+namespace Asa.Calendar.Controls.PresentationClasses
 {
 	public class SelectionManager
 	{

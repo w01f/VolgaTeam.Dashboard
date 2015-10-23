@@ -15,19 +15,19 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using NewBizWiz.CommonGUI.Common;
-using NewBizWiz.CommonGUI.ImageGallery;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.CommonGUI.Themes;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.Properties;
+using Asa.CommonGUI.Common;
+using Asa.CommonGUI.ImageGallery;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.RetractableBar;
+using Asa.CommonGUI.Themes;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
+using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.MediaSchedule.Controls.Properties;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Strategy
 {
 	[ToolboxItem(false)]
 	public sealed partial class ProgramStrategyControl : UserControl

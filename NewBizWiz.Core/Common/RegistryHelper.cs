@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Win32;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public static class RegistryHelper
 	{

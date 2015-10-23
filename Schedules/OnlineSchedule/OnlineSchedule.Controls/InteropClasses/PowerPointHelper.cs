@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
+﻿namespace Asa.OnlineSchedule.Controls.InteropClasses
 {
 	public partial class OnlineSchedulePowerPointHelper : CommonGUI.Interop.CommonPowerPointHelper<OnlineSchedulePowerPointHelper>
 	{

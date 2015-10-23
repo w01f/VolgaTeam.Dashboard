@@ -1,4 +1,4 @@
-namespace NewBizWiz.CommonGUI.ListEditor
+namespace Asa.CommonGUI.ListEditor
 {
 	partial class FormCommonListEditor
 	{

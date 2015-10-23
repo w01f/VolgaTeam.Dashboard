@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class ThemeManager
 	{

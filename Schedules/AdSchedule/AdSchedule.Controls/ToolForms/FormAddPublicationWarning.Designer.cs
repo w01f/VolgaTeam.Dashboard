@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.ToolForms
+﻿namespace Asa.AdSchedule.Controls.ToolForms
 {
     partial class FormAddPublicationWarning
     {
@@ -98,7 +98,7 @@
 			// 
 			this.pbAdCampaign.BackColor = System.Drawing.Color.White;
 			this.pbAdCampaign.ForeColor = System.Drawing.Color.Black;
-			this.pbAdCampaign.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
+			this.pbAdCampaign.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Calendar;
 			this.pbAdCampaign.Location = new System.Drawing.Point(10, 148);
 			this.pbAdCampaign.Name = "pbAdCampaign";
 			this.pbAdCampaign.Size = new System.Drawing.Size(40, 40);
@@ -110,7 +110,7 @@
 			// 
 			this.pbAdvertiserProfile.BackColor = System.Drawing.Color.White;
 			this.pbAdvertiserProfile.ForeColor = System.Drawing.Color.Black;
-			this.pbAdvertiserProfile.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.BasicInfo;
+			this.pbAdvertiserProfile.Image = global::Asa.AdSchedule.Controls.Properties.Resources.BasicInfo;
 			this.pbAdvertiserProfile.Location = new System.Drawing.Point(10, 86);
 			this.pbAdvertiserProfile.Name = "pbAdvertiserProfile";
 			this.pbAdvertiserProfile.Size = new System.Drawing.Size(40, 40);
@@ -122,7 +122,7 @@
 			// 
 			this.pbWarning.BackColor = System.Drawing.Color.White;
 			this.pbWarning.ForeColor = System.Drawing.Color.Black;
-			this.pbWarning.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Warning;
+			this.pbWarning.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Warning;
 			this.pbWarning.Location = new System.Drawing.Point(2, 12);
 			this.pbWarning.Name = "pbWarning";
 			this.pbWarning.Size = new System.Drawing.Size(48, 48);

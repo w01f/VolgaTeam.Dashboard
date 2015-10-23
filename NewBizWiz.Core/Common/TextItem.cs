@@ -6,7 +6,7 @@ using System.Xml;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public interface ITextItem
 	{

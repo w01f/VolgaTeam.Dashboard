@@ -1,10 +1,10 @@
 ﻿using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using NewBizWiz.CommonGUI.Gallery;
-using NewBizWiz.Core.Common;
-using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
+using Asa.CommonGUI.Gallery;
+using Asa.Core.Common;
+using Asa.OnlineSchedule.Controls.BusinessClasses;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	public class DigitalGallery1Control : GalleryControl
 	{

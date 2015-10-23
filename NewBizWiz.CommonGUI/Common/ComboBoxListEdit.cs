@@ -6,11 +6,11 @@ using DevExpress.XtraEditors.Drawing;
 using DevExpress.XtraEditors.Registrator;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.ViewInfo;
-using NewBizWiz.CommonGUI.ListEditor;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using Asa.CommonGUI.ListEditor;
+using Asa.Core.Common;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.CommonGUI.Common
+namespace Asa.CommonGUI.Common
 {
 	public class ComboBoxListEdit : TabbedCombobox
 	{

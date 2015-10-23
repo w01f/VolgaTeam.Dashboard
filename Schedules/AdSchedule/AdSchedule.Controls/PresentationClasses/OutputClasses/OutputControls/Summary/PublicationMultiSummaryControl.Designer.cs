@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
     partial class PublicationMultiSummaryControl
     {
@@ -516,7 +516,7 @@
 			// 
 			// pictureBoxDates
 			// 
-			this.pictureBoxDates.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
+			this.pictureBoxDates.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Calendar;
 			this.pictureBoxDates.Location = new System.Drawing.Point(338, 11);
 			this.pictureBoxDates.Name = "pictureBoxDates";
 			this.pictureBoxDates.Size = new System.Drawing.Size(41, 41);
@@ -611,7 +611,7 @@
 			// 
 			// pbComments
 			// 
-			this.pbComments.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Notes;
+			this.pbComments.Image = global::Asa.AdSchedule.Controls.Properties.Resources.Notes;
 			this.pbComments.Location = new System.Drawing.Point(338, 195);
 			this.pbComments.Name = "pbComments";
 			this.pbComments.Size = new System.Drawing.Size(41, 41);

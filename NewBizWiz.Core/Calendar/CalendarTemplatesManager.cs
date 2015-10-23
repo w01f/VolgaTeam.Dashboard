@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.Calendar
+namespace Asa.Core.Calendar
 {
 	public class CalendarTemplatesManager
 	{

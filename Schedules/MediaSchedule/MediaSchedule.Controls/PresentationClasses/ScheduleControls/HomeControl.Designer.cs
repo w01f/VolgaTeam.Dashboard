@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
     partial class HomeControl
     {
@@ -32,7 +32,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
-			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
+			this.stationsControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
 			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
@@ -44,8 +44,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXMonthlySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
-			this.daypartsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.DaypartsControl();
+			this.digitalProductListControl = new Asa.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
+			this.daypartsControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.DaypartsControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStations = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageDayparts = new DevExpress.XtraTab.XtraTabPage();

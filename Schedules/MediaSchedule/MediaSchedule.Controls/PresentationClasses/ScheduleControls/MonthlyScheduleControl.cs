@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using DevComponents.DotNetBar;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public class MonthlyScheduleControl : RegularScheduleSectionControl
 	{

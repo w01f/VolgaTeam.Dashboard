@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {
 	public interface IAdPlanItem
 	{

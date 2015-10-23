@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.CommonGUI.Slides
+namespace Asa.CommonGUI.Slides
 {
 	public partial class FormSlideSelector : MetroForm
 	{

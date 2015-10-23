@@ -2,13 +2,13 @@
 using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.TabHomeForms.Dashboard;
+using Asa.CommonGUI.Preview;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Common;
+using Asa.Dashboard.InteropClasses;
+using Asa.Dashboard.TabHomeForms.Dashboard;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
 	public partial class SlideCleanslateControl : SlideBaseControl

@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Outlook;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 using Exception = System.Exception;
 
-namespace NewBizWiz.Core.Interop
+namespace Asa.Core.Interop
 {
 	public class OutlookHelper
 	{

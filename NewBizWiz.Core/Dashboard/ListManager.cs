@@ -2,7 +2,7 @@
 using System.Text;
 using System.Xml;
 
-namespace NewBizWiz.Core.Dashboard
+namespace Asa.Core.Dashboard
 {
 	public class ListManager
 	{

@@ -4,11 +4,11 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Xml;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.Core.Common;
+using Asa.Core.Calendar;
+using Asa.Core.OnlineSchedule;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.AdSchedule
+namespace Asa.Core.AdSchedule
 {
 	public class ScheduleBuilderViewSettings : IScheduleViewSettings
 	{

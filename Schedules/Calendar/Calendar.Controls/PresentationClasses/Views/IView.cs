@@ -1,8 +1,8 @@
 ﻿using System;
-using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
-using NewBizWiz.Core.Calendar;
+using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.Core.Calendar;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views
+namespace Asa.Calendar.Controls.PresentationClasses.Views
 {
 	public interface IView
 	{

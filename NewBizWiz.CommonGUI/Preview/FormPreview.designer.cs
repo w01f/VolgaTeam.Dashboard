@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.Preview
+﻿namespace Asa.CommonGUI.Preview
 {
     partial class FormPreview
     {
@@ -95,7 +95,7 @@
 			this.barLargeButtonItemOutput.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
 			this.barLargeButtonItemOutput.Caption = "Send to\r\nPowerPoint";
 			this.barLargeButtonItemOutput.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-			this.barLargeButtonItemOutput.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.PowerPoint;
+			this.barLargeButtonItemOutput.Glyph = global::Asa.CommonGUI.Properties.Resources.PowerPoint;
 			this.barLargeButtonItemOutput.Id = 4;
 			this.barLargeButtonItemOutput.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Black;
 			this.barLargeButtonItemOutput.ItemAppearance.Normal.Options.UseForeColor = true;
@@ -112,7 +112,7 @@
 			// 
 			this.barLargeButtonItemHelp.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
 			this.barLargeButtonItemHelp.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Help;
+			this.barLargeButtonItemHelp.Glyph = global::Asa.CommonGUI.Properties.Resources.Help;
 			this.barLargeButtonItemHelp.Id = 6;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
 			toolTipTitleItem5.Text = "HELP";
@@ -127,7 +127,7 @@
 			// 
 			this.barLargeButtonItemExit.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
 			this.barLargeButtonItemExit.Caption = "Exit";
-			this.barLargeButtonItemExit.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Exit;
+			this.barLargeButtonItemExit.Glyph = global::Asa.CommonGUI.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 15;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
 			toolTipTitleItem6.Text = "EXIT";

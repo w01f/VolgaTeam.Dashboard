@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Microsoft.Office.Interop.Excel;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace NewBizWiz.Core.Interop
+namespace Asa.Core.Interop
 {
 	public class ExcelHelper
 	{

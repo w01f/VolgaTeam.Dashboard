@@ -14,12 +14,12 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
-using NewBizWiz.AdSchedule.Controls.Properties;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
-using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
+using Asa.AdSchedule.Controls.Properties;
+using Asa.AdSchedule.Controls.ToolForms;
+using Asa.Core.AdSchedule;
+using Asa.Core.Common;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 {
 	[ToolboxItem(false)]
 	//public partial class PrintProductControl : UserControl

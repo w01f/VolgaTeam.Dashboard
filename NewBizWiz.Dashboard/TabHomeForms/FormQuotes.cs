@@ -4,10 +4,10 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.Core.Dashboard;
+using Asa.Core.Dashboard;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	public partial class FormQuotes : MetroForm
 	{

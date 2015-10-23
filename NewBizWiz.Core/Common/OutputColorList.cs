@@ -4,9 +4,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using NewBizWiz.Core.Calendar;
+using Asa.Core.Calendar;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class OutputColorList
 	{

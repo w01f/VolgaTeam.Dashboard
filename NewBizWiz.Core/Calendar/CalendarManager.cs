@@ -8,11 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Microsoft.VisualBasic;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using ListManager = Asa.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.Core.Calendar
+namespace Asa.Core.Calendar
 {
 	public enum ColorOption
 	{

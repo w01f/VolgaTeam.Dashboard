@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.ToolForms
+﻿namespace Asa.MediaSchedule.Controls.ToolForms
 {
     partial class FormOpenSchedule
     {
@@ -97,7 +97,7 @@
 			// 
 			this.barLargeButtonItemOpen.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemOpen.Caption = "Open";
-			this.barLargeButtonItemOpen.Glyph = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.OpenSchedule;
+			this.barLargeButtonItemOpen.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.OpenSchedule;
 			this.barLargeButtonItemOpen.Id = 15;
 			this.barLargeButtonItemOpen.Name = "barLargeButtonItemOpen";
 			this.barLargeButtonItemOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemOpen_ItemClick);
@@ -106,7 +106,7 @@
 			// 
 			this.barLargeButtonItemDelete.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemDelete.Caption = "Delete";
-			this.barLargeButtonItemDelete.Glyph = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.DeleteSchedule;
+			this.barLargeButtonItemDelete.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.DeleteSchedule;
 			this.barLargeButtonItemDelete.Id = 16;
 			this.barLargeButtonItemDelete.Name = "barLargeButtonItemDelete";
 			this.barLargeButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemDelete_ItemClick);
@@ -115,7 +115,7 @@
 			// 
 			this.barLargeButtonItemExit.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemExit.Caption = "Exit";
-			this.barLargeButtonItemExit.Glyph = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.Exit;
+			this.barLargeButtonItemExit.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 18;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
 			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemExit_ItemClick);
@@ -297,7 +297,7 @@
 			// 
 			this.barStaticItemLogo.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
 			this.barStaticItemLogo.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-			this.barStaticItemLogo.Glyph = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.TVRibbonLogo;
+			this.barStaticItemLogo.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.TVRibbonLogo;
 			this.barStaticItemLogo.Id = 20;
 			this.barStaticItemLogo.Name = "barStaticItemLogo";
 			this.barStaticItemLogo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;

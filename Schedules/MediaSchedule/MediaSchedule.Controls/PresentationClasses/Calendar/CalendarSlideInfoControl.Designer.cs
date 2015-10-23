@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+﻿namespace Asa.MediaSchedule.Controls.PresentationClasses
 {
 	partial class CalendarSlideInfoControl
     {
@@ -41,17 +41,17 @@
 			this.xtraTabControlStyle = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStyleColor = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
-			this.outputColorSelector = new NewBizWiz.CommonGUI.OutputColors.OutputColorSelector();
+			this.outputColorSelector = new Asa.CommonGUI.OutputColors.OutputColorSelector();
 			this.checkEditStyleBigDate = new DevExpress.XtraEditors.CheckEdit();
 			this.laThemeColor = new System.Windows.Forms.Label();
 			this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageStyleLogo = new DevExpress.XtraTab.XtraTabPage();
 			this.pnLogo = new System.Windows.Forms.Panel();
-			this.calendarHeaderSelector = new NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector();
+			this.calendarHeaderSelector = new Asa.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector();
 			this.checkEditShowLogo = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
-			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
+			this.favoriteImagesControl = new Asa.CommonGUI.FavoriteImages.FavoriteImagesControl();
 			this.xtraTabPageData = new DevExpress.XtraTab.XtraTabPage();
 			this.laDataSource = new System.Windows.Forms.Label();
 			this.checkEditDataSourceSchedule = new DevExpress.XtraEditors.CheckEdit();
@@ -485,7 +485,7 @@
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleLogo;
 		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;
 		private DevExpress.XtraEditors.CheckEdit checkEditShowLogo;
-		private NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector calendarHeaderSelector;
+		private Asa.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector calendarHeaderSelector;
 		protected DevExpress.XtraEditors.CheckEdit checkEditDataSourceSnapshots;
 		protected DevExpress.XtraEditors.CheckEdit checkEditDataSourceSchedule;
 		private System.Windows.Forms.Label laDataSource;

@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
-using NewBizWiz.OnlineSchedule.Controls.Properties;
+using Asa.Core.OnlineSchedule;
+using Asa.OnlineSchedule.Controls.PresentationClasses;
+using Asa.OnlineSchedule.Controls.Properties;
 
-namespace NewBizWiz.OnlineSchedule.Controls.ToolForms
+namespace Asa.OnlineSchedule.Controls.ToolForms
 {
 	public partial class FormProductInfo : MetroForm
 	{

@@ -8,8 +8,8 @@
     <ProjectGuid>{B096C96B-E96F-4223-AE01-B32D3730DC82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.AdSchedule.Controls</RootNamespace>
-    <AssemblyName>NewBizWiz.AdSchedule.Controls</AssemblyName>
+    <RootNamespace>Asa.AdSchedule.Controls</RootNamespace>
+    <AssemblyName>Asa.AdSchedule.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

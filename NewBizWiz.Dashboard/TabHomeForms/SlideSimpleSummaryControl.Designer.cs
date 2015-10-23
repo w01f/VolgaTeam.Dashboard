@@ -1,6 +1,6 @@
-﻿using NewBizWiz.CommonGUI.Common;
+﻿using Asa.CommonGUI.Common;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	sealed partial class SlideSimpleSummaryControl
     {
@@ -48,13 +48,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			this.laFlightDatesStart = new System.Windows.Forms.Label();
 			this.laFlightDatesEnd = new System.Windows.Forms.Label();
 			this.tabItemCampaign = new DevComponents.DotNetBar.TabItem(this.components);
-			this.comboBoxEditDecisionMaker = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
-			this.comboBoxEditAdvertiser = new NewBizWiz.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditDecisionMaker = new Asa.CommonGUI.Common.ComboBoxListEdit();
+			this.comboBoxEditAdvertiser = new Asa.CommonGUI.Common.ComboBoxListEdit();
 			this.dateEditDate = new DevExpress.XtraEditors.DateEdit();
 			this.ckDate = new System.Windows.Forms.CheckBox();
 			this.ckDecisionMaker = new System.Windows.Forms.CheckBox();
 			this.ckAdvertiser = new System.Windows.Forms.CheckBox();
-			this.simpleSummaryItemContainer = new NewBizWiz.Dashboard.TabHomeForms.SimpleSummaryItemContainer();
+			this.simpleSummaryItemContainer = new Asa.Dashboard.TabHomeForms.SimpleSummaryItemContainer();
 			this.spinEditTotal = new DevExpress.XtraEditors.SpinEdit();
 			this.spinEditMonthly = new DevExpress.XtraEditors.SpinEdit();
 			this.buttonXAddItem = new DevComponents.DotNetBar.ButtonX();
@@ -144,7 +144,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			// 
 			// pbDescription
 			// 
-			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionSummary;
+			this.pbDescription.Image = global::Asa.Dashboard.Properties.Resources.DescriptionSummary;
 			this.pbDescription.Size = new System.Drawing.Size(279, 48);
 			// 
 			// simpleButtonSaveTemplate
@@ -273,7 +273,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
             "Coding",
             "Fred Jones",
             "Mike Jones"});
-			this.comboBoxEditDecisionMaker.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.DecisionMakers;
+			this.comboBoxEditDecisionMaker.Properties.ListType = Asa.CommonGUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(275, 20);
 			this.comboBoxEditDecisionMaker.TabIndex = 4;
@@ -303,7 +303,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
             "Fred\'s Rib Shack",
             "Fred\'s Used Cars",
             "Mike\'s Automotive"});
-			this.comboBoxEditAdvertiser.Properties.ListType = NewBizWiz.CommonGUI.Common.ListType.Advertisers;
+			this.comboBoxEditAdvertiser.Properties.ListType = Asa.CommonGUI.Common.ListType.Advertisers;
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(257, 22);
 			this.comboBoxEditAdvertiser.TabIndex = 2;
@@ -534,7 +534,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			// pbFlightDates
 			// 
 			this.pbFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbFlightDates.Image = global::NewBizWiz.Dashboard.Properties.Resources.SummaryFlightDates;
+			this.pbFlightDates.Image = global::Asa.Dashboard.Properties.Resources.SummaryFlightDates;
 			this.pbFlightDates.Location = new System.Drawing.Point(476, 179);
 			this.pbFlightDates.Name = "pbFlightDates";
 			this.pbFlightDates.Size = new System.Drawing.Size(64, 64);
@@ -554,7 +554,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			// 
 			// pbDate
 			// 
-			this.pbDate.Image = global::NewBizWiz.Dashboard.Properties.Resources.SummaryPresentationDate;
+			this.pbDate.Image = global::Asa.Dashboard.Properties.Resources.SummaryPresentationDate;
 			this.pbDate.Location = new System.Drawing.Point(38, 179);
 			this.pbDate.Name = "pbDate";
 			this.pbDate.Size = new System.Drawing.Size(64, 64);
@@ -574,7 +574,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			// pbDecisionMaker
 			// 
 			this.pbDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbDecisionMaker.Image = global::NewBizWiz.Dashboard.Properties.Resources.SummaryDecisionMaker;
+			this.pbDecisionMaker.Image = global::Asa.Dashboard.Properties.Resources.SummaryDecisionMaker;
 			this.pbDecisionMaker.Location = new System.Drawing.Point(476, 32);
 			this.pbDecisionMaker.Name = "pbDecisionMaker";
 			this.pbDecisionMaker.Size = new System.Drawing.Size(64, 64);
@@ -604,7 +604,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			// 
 			// pbAdvertiser
 			// 
-			this.pbAdvertiser.Image = global::NewBizWiz.Dashboard.Properties.Resources.SummaryBusinessName;
+			this.pbAdvertiser.Image = global::Asa.Dashboard.Properties.Resources.SummaryBusinessName;
 			this.pbAdvertiser.Location = new System.Drawing.Point(38, 32);
 			this.pbAdvertiser.Name = "pbAdvertiser";
 			this.pbAdvertiser.Size = new System.Drawing.Size(64, 64);

@@ -1,7 +1,7 @@
-﻿using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.OnlineSchedule;
+﻿using Asa.Core.AdSchedule;
+using Asa.Core.OnlineSchedule;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses
+namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses
 {
 	public interface ISettingsContainer
 	{

@@ -3,12 +3,12 @@ using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.OnlineSchedule.Controls.PresentationClasses;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
+namespace Asa.OnlineSchedule.Controls.InteropClasses
 {
 	public partial class OnlineSchedulePowerPointHelper
 	{

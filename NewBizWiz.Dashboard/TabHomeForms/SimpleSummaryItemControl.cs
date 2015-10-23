@@ -2,10 +2,10 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Dashboard;
+using Asa.Core.Common;
+using Asa.Core.Dashboard;
 
-namespace NewBizWiz.Dashboard.TabHomeForms
+namespace Asa.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
 	public partial class SimpleSummaryItemControl : UserControl

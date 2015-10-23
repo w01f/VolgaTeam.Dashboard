@@ -8,8 +8,8 @@
     <ProjectGuid>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.MediaSchedule.Controls</RootNamespace>
-    <AssemblyName>NewBizWiz.MediaSchedule.Controls</AssemblyName>
+    <RootNamespace>Asa.MediaSchedule.Controls</RootNamespace>
+    <AssemblyName>Asa.MediaSchedule.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -275,7 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">
-      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
+      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
       <Name>NewBizWiz.CommonGUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\NewBizWiz.Core\NewBizWiz.Core.csproj">

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
-using NewBizWiz.Core.Interop;
+using Asa.Core.Interop;
 
-namespace NewBizWiz.Core.Common
+namespace Asa.Core.Common
 {
 	public class PowerPointManager
 	{

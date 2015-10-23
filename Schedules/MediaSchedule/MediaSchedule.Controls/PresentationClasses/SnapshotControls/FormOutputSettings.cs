@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 {
 	public partial class FormOutputSettings : DevComponents.DotNetBar.Metro.MetroForm
 	{

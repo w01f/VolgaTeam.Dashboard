@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.CommonGUI.RetractableBar;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.CommonGUI.RetractableBar;
+using Asa.Core.Common;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 {
 	class BroadcastSlideInfoControl : CalendarSlideInfoControl
 	{

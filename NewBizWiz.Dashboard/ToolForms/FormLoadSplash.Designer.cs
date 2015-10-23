@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Dashboard.ToolForms
+﻿namespace Asa.Dashboard.ToolForms
 {
     partial class FormLoadSplash
     {
@@ -66,7 +66,7 @@
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
+			this.pbLogo.Image = global::Asa.Dashboard.Properties.Resources.Output;
 			this.pbLogo.Location = new System.Drawing.Point(12, 23);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(72, 72);

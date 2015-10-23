@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.ToolForms
+﻿namespace Asa.AdSchedule.Controls.ToolForms
 {
 	partial class FormDigital
 	{

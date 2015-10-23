@@ -8,8 +8,8 @@
     <ProjectGuid>{B8FA28E9-7142-42D1-9C69-780B71D3940D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NewBizWiz.MediaSchedule.Single</RootNamespace>
-    <AssemblyName>NewBizWiz.MediaSchedule.Single</AssemblyName>
+    <RootNamespace>Asa.MediaSchedule.Single</RootNamespace>
+    <AssemblyName>Asa.MediaSchedule.Single</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

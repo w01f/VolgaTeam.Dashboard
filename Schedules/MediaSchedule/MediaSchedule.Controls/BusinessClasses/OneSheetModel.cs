@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraPrinting.Native;
-using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using NewBizWiz.Core.MediaSchedule;
+using Asa.Core.Common;
+using Asa.Core.Interop;
+using Asa.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
+namespace Asa.MediaSchedule.Controls.BusinessClasses
 {
 	public class OutputSchedule
 	{

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
-using NewBizWiz.CommonGUI.ToolForms;
-using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.Calendar.SettingsManager;
+using Asa.Calendar.Controls.BusinessClasses;
+using Asa.CommonGUI.ToolForms;
+using Asa.Core.Calendar;
+using Asa.Core.Common;
+using SettingsManager = Asa.Core.Calendar.SettingsManager;
 
-namespace NewBizWiz.Calendar.Controls.PresentationClasses
+namespace Asa.Calendar.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	public partial class HomeControl : UserControl

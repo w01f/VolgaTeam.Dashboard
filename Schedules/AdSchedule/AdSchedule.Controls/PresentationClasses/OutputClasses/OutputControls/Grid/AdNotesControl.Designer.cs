@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+﻿namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
     partial class AdNotesControl
     {
@@ -81,7 +81,7 @@
 			this.buttonXDown.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDown.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDown.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.NudgeDown;
+			this.buttonXDown.Image = global::Asa.AdSchedule.Controls.Properties.Resources.NudgeDown;
 			this.buttonXDown.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonXDown.Location = new System.Drawing.Point(232, 110);
 			this.buttonXDown.Name = "buttonXDown";
@@ -95,7 +95,7 @@
 			this.buttonXUp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXUp.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXUp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.NudgeUp;
+			this.buttonXUp.Image = global::Asa.AdSchedule.Controls.Properties.Resources.NudgeUp;
 			this.buttonXUp.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonXUp.Location = new System.Drawing.Point(232, 62);
 			this.buttonXUp.Name = "buttonXUp";

@@ -302,15 +302,15 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 		#region Schedule Event Handlers
 		private void ScheduleSettingsControl_Load(object sender, EventArgs e)
 		{
-			repositoryItemComboBox.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemComboBox.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemComboBox.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemSpinEdit.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemSpinEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemSpinEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemTextEdit.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemTextEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemTextEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemComboBox.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemComboBox.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemComboBox.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			repositoryItemSpinEdit.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemSpinEdit.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemSpinEdit.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			repositoryItemTextEdit.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemTextEdit.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemTextEdit.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			AssignCloseActiveEditorsonOutSideClick(Controller.Instance.Ribbon);
 		}
 

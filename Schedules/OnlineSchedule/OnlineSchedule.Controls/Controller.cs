@@ -68,12 +68,12 @@ namespace Asa.OnlineSchedule.Controls
 			HomeFlightDatesStart.CloseUp += ScheduleSettings.dateEditFlightDatesStart_CloseUp;
 			HomeFlightDatesEnd.CloseUp += ScheduleSettings.dateEditFlightDatesEnd_CloseUp;
 			HomeProductClone.Click += ScheduleSettings.DigitalProductClone;
-			HomeBusinessName.Enter += Utilities.Instance.Editor_Enter;
-			HomeBusinessName.MouseDown += Utilities.Instance.Editor_MouseDown;
-			HomeBusinessName.MouseUp += Utilities.Instance.Editor_MouseUp;
-			HomeDecisionMaker.Enter += Utilities.Instance.Editor_Enter;
-			HomeDecisionMaker.MouseDown += Utilities.Instance.Editor_MouseDown;
-			HomeDecisionMaker.MouseUp += Utilities.Instance.Editor_MouseUp;
+			HomeBusinessName.Enter += TextEditorsHelper.Editor_Enter;
+			HomeBusinessName.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			HomeBusinessName.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			HomeDecisionMaker.Enter += TextEditorsHelper.Editor_Enter;
+			HomeDecisionMaker.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			HomeDecisionMaker.MouseUp += TextEditorsHelper.Editor_MouseUp;
 
 			HomeBusinessName.TabIndex = 0;
 			HomeBusinessName.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;

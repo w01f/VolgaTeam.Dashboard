@@ -23,9 +23,9 @@ namespace Asa.Core.Common
 
 			if (!colorListFolder.ExistsLocal()) return;
 
-			foreach (var folder in colorListFolder.GetFolders())
+			foreach (var folder in colorListFolder.GetLocalFolders())
 			{
-				var files = folder.GetFiles().ToList();
+				var files = folder.GetLocalFiles().ToList();
 
 				var colorFolder = new ColorFolder();
 				colorFolder.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(folder.Name);

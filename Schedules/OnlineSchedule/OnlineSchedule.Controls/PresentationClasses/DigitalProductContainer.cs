@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
@@ -43,9 +44,9 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 				checkEditMonths.Font = font;
 				checkEditWeeks.Font = font;
 			}
-			spinEditDuration.Enter += Utilities.Instance.Editor_Enter;
-			spinEditDuration.MouseDown += Utilities.Instance.Editor_MouseDown;
-			spinEditDuration.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditDuration.Enter += TextEditorsHelper.Editor_Enter;
+			spinEditDuration.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			spinEditDuration.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			AssignCloseActiveEditorsonOutSideClick(pnHeader);
 		}
 

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevComponents.DotNetBar;
 using Asa.Calendar.Controls.ToolForms;
 using Asa.Core.Calendar;
@@ -27,9 +28,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			laSmallDayCaption.Text = Day.Date.Day.ToString();
 			RefreshData(_colorSchema);
 
-			memoEditSimpleComment.Enter += Utilities.Instance.Editor_Enter;
-			memoEditSimpleComment.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditSimpleComment.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditSimpleComment.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditSimpleComment.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditSimpleComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
 
 			toolStripMenuItemAddNote.Visible = toolStripMenuItemPasteNote.Visible = toolStripSeparator1.Visible = Day.Parent.AllowCustomNotes;
 

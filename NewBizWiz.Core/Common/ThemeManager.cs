@@ -173,7 +173,7 @@ namespace Asa.Core.Common
 
 			LoadApprovedThemes(storageDirectory);
 
-			foreach (var themeFolder in storageDirectory.GetFolders())
+			foreach (var themeFolder in storageDirectory.GetLocalFolders())
 			{
 				var theme = new Theme(themeFolder);
 				theme.Load();
@@ -217,7 +217,7 @@ namespace Asa.Core.Common
 
 		public void Load()
 		{
-			var files = _root.GetFiles().ToList();
+			var files = _root.GetLocalFiles().ToList();
 
 			var titleFile = files.First(file => file.Name == "title.txt");
 			Name = File.ReadAllText(titleFile.LocalPath).Trim();

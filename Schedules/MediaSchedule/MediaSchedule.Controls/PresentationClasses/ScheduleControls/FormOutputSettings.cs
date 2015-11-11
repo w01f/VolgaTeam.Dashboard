@@ -1,5 +1,5 @@
 using System;
-using Asa.Core.Common;
+using Asa.CommonGUI.Common;
 
 namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
@@ -8,9 +8,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public FormOutputSettings()
 		{
 			InitializeComponent();
-			spinEditOutputLimitPeriods.Enter += Utilities.Instance.Editor_Enter;
-			spinEditOutputLimitPeriods.MouseDown += Utilities.Instance.Editor_MouseDown;
-			spinEditOutputLimitPeriods.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditOutputLimitPeriods.Enter += TextEditorsHelper.Editor_Enter;
+			spinEditOutputLimitPeriods.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			spinEditOutputLimitPeriods.MouseUp += TextEditorsHelper.Editor_MouseUp;
 		}
 
 		private void checkEditOutputLimitQuarters_CheckedChanged(object sender, EventArgs e)

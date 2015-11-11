@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
-using DevExpress.XtraEditors;
 
 namespace Asa.Core.OnlineSchedule
 {
@@ -199,7 +198,7 @@ namespace Asa.Core.OnlineSchedule
 
 	public class RequestDigitalInfoEventArgs : EventArgs
 	{
-		public RequestDigitalInfoEventArgs(BaseEdit editor, bool showWebsites, bool showProduct, bool showDimensions, bool showDates, bool showImpressions, bool showCPM, bool showInvestmenst, string separator = "")
+		public RequestDigitalInfoEventArgs(object editor, bool showWebsites, bool showProduct, bool showDimensions, bool showDates, bool showImpressions, bool showCPM, bool showInvestmenst, string separator = "")
 		{
 			Editor = editor;
 			ShowWebsites = showWebsites;
@@ -221,6 +220,6 @@ namespace Asa.Core.OnlineSchedule
 		public bool ShowInvestment { get; private set; }
 		public string Separator { get; set; }
 
-		public BaseEdit Editor { get; private set; }
+		public object Editor { get; private set; }
 	}
 }

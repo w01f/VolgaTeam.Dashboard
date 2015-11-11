@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DevComponents.DotNetBar;
 
-namespace AdBar.Plugins.Core
+namespace Asa.Bar.Plugins.Core
 {
 	public interface IAdBarControl
 	{

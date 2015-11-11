@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
@@ -93,8 +94,8 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 				form.ShowOutputOnce = false;
 				form.RequestDefaultInfo += (o, e) =>
 				{
-					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
-					e.Editor.Tag = e.Editor.EditValue;
+					((BaseEdit)e.Editor).EditValue = LocalSchedule.GetDigitalInfo(e);
+					((BaseEdit)e.Editor).Tag = ((BaseEdit)e.Editor).EditValue;
 				};
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (digitalLegend.ApplyForAll)

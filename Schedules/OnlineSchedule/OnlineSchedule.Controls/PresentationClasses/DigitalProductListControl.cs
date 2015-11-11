@@ -45,15 +45,15 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			if (ListManager.Instance.Placeholders.Count > 2)
 				repositoryItemComboBoxLocation.NullText = ListManager.Instance.Placeholders[2];
 
-			repositoryItemComboBoxProductType.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemComboBoxProductType.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemComboBoxProductType.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemComboBoxProductName.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemComboBoxProductName.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemComboBoxProductName.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemSpinEditSize.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemSpinEditSize.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemSpinEditSize.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemComboBoxProductType.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemComboBoxProductType.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemComboBoxProductType.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			repositoryItemComboBoxProductName.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemComboBoxProductName.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemComboBoxProductName.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			repositoryItemSpinEditSize.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemSpinEditSize.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemSpinEditSize.MouseUp += TextEditorsHelper.Editor_MouseUp;
 		}
 
 		public void UpdateData(IDigitalSchedule schedule, Action onDataChanged, Action<UserActivity> trackActivity)

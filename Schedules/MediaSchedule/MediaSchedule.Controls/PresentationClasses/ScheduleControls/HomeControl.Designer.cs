@@ -35,7 +35,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.stationsControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
-			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.pnMedia = new System.Windows.Forms.Panel();
 			this.pbMediaLogo = new System.Windows.Forms.PictureBox();
 			this.laFlexDateWarning = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.laMediaTitle = new System.Windows.Forms.Label();
 			this.buttonXMonthlySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
+			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new Asa.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
 			this.daypartsControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.DaypartsControl();
@@ -73,12 +73,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCalendarTypeMondayBased = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
+			this.pnMediaDefault = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageMedia.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
 			this.pnMedia.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
 			this.xtraTabPageDigital.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
 			this.xtraTabControlOptions.SuspendLayout();
@@ -99,6 +100,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageCalendarType.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
+			this.pnMediaDefault.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// stationsControl
@@ -141,22 +143,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.xtraTabPageMedia.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
 			this.xtraTabPageMedia.Appearance.PageClient.Options.UseBackColor = true;
+			this.xtraTabPageMedia.Controls.Add(this.pnMediaDefault);
 			this.xtraTabPageMedia.Controls.Add(this.pnMedia);
-			this.xtraTabPageMedia.Controls.Add(this.pbMediaDefault);
 			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
 			this.xtraTabPageMedia.Padding = new System.Windows.Forms.Padding(10);
 			this.xtraTabPageMedia.Size = new System.Drawing.Size(659, 569);
 			this.xtraTabPageMedia.Text = "Television Strategy";
-			// 
-			// pbMediaDefault
-			// 
-			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbMediaDefault.Image = ((System.Drawing.Image)(resources.GetObject("pbMediaDefault.Image")));
-			this.pbMediaDefault.Location = new System.Drawing.Point(10, 10);
-			this.pbMediaDefault.Name = "pbMediaDefault";
-			this.pbMediaDefault.Size = new System.Drawing.Size(639, 549);
-			this.pbMediaDefault.TabIndex = 23;
-			this.pbMediaDefault.TabStop = false;
 			// 
 			// pnMedia
 			// 
@@ -244,6 +236,16 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXWeeklySchedule.TextColor = System.Drawing.Color.Black;
 			this.buttonXWeeklySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
 			this.buttonXWeeklySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
+			// 
+			// pbMediaDefault
+			// 
+			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pbMediaDefault.Image = ((System.Drawing.Image)(resources.GetObject("pbMediaDefault.Image")));
+			this.pbMediaDefault.Location = new System.Drawing.Point(0, 0);
+			this.pbMediaDefault.Name = "pbMediaDefault";
+			this.pbMediaDefault.Size = new System.Drawing.Size(639, 549);
+			this.pbMediaDefault.TabIndex = 23;
+			this.pbMediaDefault.TabStop = false;
 			// 
 			// xtraTabPageDigital
 			// 
@@ -619,6 +621,16 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
+			// pnMediaDefault
+			// 
+			this.pnMediaDefault.Controls.Add(this.pbMediaDefault);
+			this.pnMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMediaDefault.Location = new System.Drawing.Point(10, 10);
+			this.pnMediaDefault.Name = "pnMediaDefault";
+			this.pnMediaDefault.Size = new System.Drawing.Size(639, 549);
+			this.pnMediaDefault.TabIndex = 24;
+			this.pnMediaDefault.Resize += new System.EventHandler(this.pnMediaDefault_Resize);
+			// 
 			// HomeControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -630,9 +642,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).EndInit();
 			this.xtraTabControlMain.ResumeLayout(false);
 			this.xtraTabPageMedia.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
 			this.pnMedia.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
 			this.xtraTabPageDigital.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
 			this.xtraTabControlOptions.ResumeLayout(false);
@@ -653,6 +665,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageCalendarType.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
+			this.pnMediaDefault.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -700,6 +713,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private DevExpress.XtraEditors.LabelControl labelControlDemoTitle;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
 		private System.Windows.Forms.PictureBox pbMediaDefault;
+		private Panel pnMediaDefault;
 
     }
 }

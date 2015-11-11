@@ -71,6 +71,8 @@ namespace Asa.Dashboard
 		#region GUI Event Handlers
 		public void Init()
 		{
+			Utilities.Instance.Title = "6 Minute Seller";
+
 			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "Dashboard", false).LoadState();
 
 			ApplyMasterWizard();

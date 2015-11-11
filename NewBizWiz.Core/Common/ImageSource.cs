@@ -234,7 +234,7 @@ namespace Asa.Core.Common
 			if (!bigImageFolder.ExistsLocal()) return;
 
 
-			foreach (var file in bigImageFolder.GetFiles().Where(file => file.Extension == ImageSource.ImageFileExtension))
+			foreach (var file in bigImageFolder.GetLocalFiles().Where(file => file.Extension == ImageSource.ImageFileExtension))
 			{
 				var imageSource = ImageSource.FromFolder(_root, Path.GetFileNameWithoutExtension(file.LocalPath));
 				if (imageSource != null)

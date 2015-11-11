@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevExpress.XtraEditors;
 using Asa.Core.Common;
 using Asa.Core.OnlineSchedule;
@@ -16,21 +17,21 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
 		public DigitalInfoControl()
 		{
 			InitializeComponent();
-			memoEditAuto1.Enter += Utilities.Instance.Editor_Enter;
-			memoEditAuto1.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditAuto1.MouseUp += Utilities.Instance.Editor_MouseUp;
-			memoEditAuto2.Enter += Utilities.Instance.Editor_Enter;
-			memoEditAuto2.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditAuto2.MouseUp += Utilities.Instance.Editor_MouseUp;
-			memoEditAuto3.Enter += Utilities.Instance.Editor_Enter;
-			memoEditAuto3.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditAuto3.MouseUp += Utilities.Instance.Editor_MouseUp;
-			spinEditMonthly.Enter += Utilities.Instance.Editor_Enter;
-			spinEditMonthly.MouseDown += Utilities.Instance.Editor_MouseDown;
-			spinEditMonthly.MouseUp += Utilities.Instance.Editor_MouseUp;
-			spinEditTotal.Enter += Utilities.Instance.Editor_Enter;
-			spinEditTotal.MouseDown += Utilities.Instance.Editor_MouseDown;
-			spinEditTotal.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditAuto1.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditAuto1.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditAuto1.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditAuto2.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditAuto2.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditAuto2.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditAuto3.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditAuto3.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditAuto3.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			spinEditMonthly.Enter += TextEditorsHelper.Editor_Enter;
+			spinEditMonthly.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			spinEditMonthly.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			spinEditTotal.Enter += TextEditorsHelper.Editor_Enter;
+			spinEditTotal.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			spinEditTotal.MouseUp += TextEditorsHelper.Editor_MouseUp;
 		}
 
 		public void InitData(DigitalLegend digitalLegend)

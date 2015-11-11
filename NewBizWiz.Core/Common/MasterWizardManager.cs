@@ -34,7 +34,7 @@ namespace Asa.Core.Common
 			var storageDirectory = ResourceManager.Instance.MasterWizardsFolder;
 			if (!storageDirectory.ExistsLocal()) return;
 
-			foreach (var folder in storageDirectory.GetFolders())
+			foreach (var folder in storageDirectory.GetLocalFolders())
 			{
 				var masterWizard = new MasterWizard(folder);
 				masterWizard.Init();

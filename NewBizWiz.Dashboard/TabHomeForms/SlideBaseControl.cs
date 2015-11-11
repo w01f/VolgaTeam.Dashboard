@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevComponents.DotNetBar;
 using Asa.CommonGUI.Themes;
 using Asa.Core.Common;
@@ -46,9 +47,9 @@ namespace Asa.Dashboard.TabHomeForms
 		{
 			InitializeComponent();
 			if ((CreateGraphics()).DpiX > 96) { }
-			comboBoxEditSlideHeader.MouseUp += Utilities.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += Utilities.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditSlideHeader.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			comboBoxEditSlideHeader.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			comboBoxEditSlideHeader.Enter += TextEditorsHelper.Editor_Enter;
 		}
 
 		protected void SetLoadState(bool enable)

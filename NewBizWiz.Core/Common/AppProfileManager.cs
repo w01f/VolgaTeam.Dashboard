@@ -10,6 +10,7 @@ namespace Asa.Core.Common
 	public enum AppTypeEnum
 	{
 		None = 0,
+		AdBar,
 		Dashboard,
 		TVSchedule,
 		RadioSchedule,
@@ -38,6 +39,8 @@ namespace Asa.Core.Common
 			{
 				switch (AppType)
 				{
+					case AppTypeEnum.AdBar:
+						return "app_adsalesapps";
 					case AppTypeEnum.Dashboard:
 						return "app_dashboard";
 					case AppTypeEnum.TVSchedule:

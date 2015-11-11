@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using Asa.Core.Common;
 
 namespace Asa.CommonGUI.Summary
@@ -21,18 +22,18 @@ namespace Asa.CommonGUI.Summary
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
-			textEditItem.MouseUp += Utilities.Instance.Editor_MouseUp;
-			textEditItem.MouseDown += Utilities.Instance.Editor_MouseDown;
-			textEditItem.Enter += Utilities.Instance.Editor_Enter;
-			spinEditMonthly.MouseUp += Utilities.Instance.Editor_MouseUp;
-			spinEditMonthly.MouseDown += Utilities.Instance.Editor_MouseDown;
-			spinEditMonthly.Enter += Utilities.Instance.Editor_Enter;
-			spinEditTotal.MouseUp += Utilities.Instance.Editor_MouseUp;
-			spinEditTotal.MouseDown += Utilities.Instance.Editor_MouseDown;
-			spinEditTotal.Enter += Utilities.Instance.Editor_Enter;
-			memoEditDetails.MouseUp += Utilities.Instance.Editor_MouseUp;
-			memoEditDetails.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditDetails.Enter += Utilities.Instance.Editor_Enter;
+			textEditItem.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			textEditItem.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			textEditItem.Enter += TextEditorsHelper.Editor_Enter;
+			spinEditMonthly.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			spinEditMonthly.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			spinEditMonthly.Enter += TextEditorsHelper.Editor_Enter;
+			spinEditTotal.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			spinEditTotal.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			spinEditTotal.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditDetails.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditDetails.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditDetails.Enter += TextEditorsHelper.Editor_Enter;
 
 			if ((CreateGraphics()).DpiX > 96)
 			{

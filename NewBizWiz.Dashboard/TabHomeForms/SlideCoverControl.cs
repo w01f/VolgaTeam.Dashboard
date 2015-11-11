@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevComponents.DotNetBar;
 using Asa.CommonGUI.Preview;
 using Asa.CommonGUI.ToolForms;
@@ -42,15 +43,15 @@ namespace Asa.Dashboard.TabHomeForms
 				textEditSalesQuoteAuthor.Font = new Font(textEditSalesQuoteAuthor.Font.FontFamily, textEditSalesQuoteAuthor.Font.Size - 2, textEditSalesQuoteAuthor.Font.Style);
 				memoEditSalesQuote.Font = new Font(memoEditSalesQuote.Font.FontFamily, memoEditSalesQuote.Font.Size - 2, memoEditSalesQuote.Font.Style);
 			}
-			comboBoxEditSlideHeader.MouseUp += Utilities.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += Utilities.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += Utilities.Instance.Editor_Enter;
-			comboBoxEditAdvertiser.MouseUp += Utilities.Instance.Editor_MouseUp;
-			comboBoxEditAdvertiser.MouseDown += Utilities.Instance.Editor_MouseDown;
-			comboBoxEditAdvertiser.Enter += Utilities.Instance.Editor_Enter;
-			comboBoxEditDecisionMaker.MouseUp += Utilities.Instance.Editor_MouseUp;
-			comboBoxEditDecisionMaker.MouseDown += Utilities.Instance.Editor_MouseDown;
-			comboBoxEditDecisionMaker.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditSlideHeader.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			comboBoxEditSlideHeader.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			comboBoxEditSlideHeader.Enter += TextEditorsHelper.Editor_Enter;
+			comboBoxEditAdvertiser.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			comboBoxEditAdvertiser.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			comboBoxEditAdvertiser.Enter += TextEditorsHelper.Editor_Enter;
+			comboBoxEditDecisionMaker.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			comboBoxEditDecisionMaker.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			comboBoxEditDecisionMaker.Enter += TextEditorsHelper.Editor_Enter;
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.CoverLists.Headers);
@@ -321,10 +322,7 @@ namespace Asa.Dashboard.TabHomeForms
 
 		public void UpdateOutputState()
 		{
-			var result = false;
-			if (comboBoxEditAdvertiser.EditValue != null && comboBoxEditDecisionMaker.EditValue != null)
-				if (!string.IsNullOrEmpty(comboBoxEditAdvertiser.EditValue.ToString().Trim()) && !string.IsNullOrEmpty(comboBoxEditDecisionMaker.EditValue.ToString().Trim()))
-					result = true;
+			var result = comboBoxEditAdvertiser.EditValue != null && !string.IsNullOrEmpty(comboBoxEditAdvertiser.EditValue.ToString().Trim());
 			result = result | checkEditUseEmptyCover.Checked;
 			SetOutputState(result);
 		}

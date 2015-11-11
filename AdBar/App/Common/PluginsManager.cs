@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using AdBar.Plugins.Core;
+using Asa.Bar.Plugins.Core;
 
-namespace AdBAR.App
+namespace Asa.Bar.App.Common
 {
 	public class PluginsManager
 	{

@@ -125,18 +125,18 @@ namespace Asa.AdSchedule.Controls
 			HomeFlightDatesEnd.EditValueChanged += ScheduleSettings.CalcWeeksOnFlightDatesChange;
 			HomeFlightDatesStart.CloseUp += ScheduleSettings.dateEditFlightDatesStart_CloseUp;
 			HomeFlightDatesEnd.CloseUp += ScheduleSettings.dateEditFlightDatesEnd_CloseUp;
-			HomeBusinessName.Enter += Utilities.Instance.Editor_Enter;
-			HomeBusinessName.MouseDown += Utilities.Instance.Editor_MouseDown;
-			HomeBusinessName.MouseUp += Utilities.Instance.Editor_MouseUp;
-			HomeDecisionMaker.Enter += Utilities.Instance.Editor_Enter;
-			HomeDecisionMaker.MouseDown += Utilities.Instance.Editor_MouseDown;
-			HomeDecisionMaker.MouseUp += Utilities.Instance.Editor_MouseUp;
-			HomeClientType.Enter += Utilities.Instance.Editor_Enter;
-			HomeClientType.MouseDown += Utilities.Instance.Editor_MouseDown;
-			HomeClientType.MouseUp += Utilities.Instance.Editor_MouseUp;
-			HomeAccountNumberText.Enter += Utilities.Instance.Editor_Enter;
-			HomeAccountNumberText.MouseDown += Utilities.Instance.Editor_MouseDown;
-			HomeAccountNumberText.MouseUp += Utilities.Instance.Editor_MouseUp;
+			HomeBusinessName.Enter += TextEditorsHelper.Editor_Enter;
+			HomeBusinessName.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			HomeBusinessName.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			HomeDecisionMaker.Enter += TextEditorsHelper.Editor_Enter;
+			HomeDecisionMaker.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			HomeDecisionMaker.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			HomeClientType.Enter += TextEditorsHelper.Editor_Enter;
+			HomeClientType.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			HomeClientType.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			HomeAccountNumberText.Enter += TextEditorsHelper.Editor_Enter;
+			HomeAccountNumberText.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			HomeAccountNumberText.MouseUp += TextEditorsHelper.Editor_MouseUp;
 
 			HomeBusinessName.TabIndex = 0;
 			HomeBusinessName.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
@@ -184,18 +184,18 @@ namespace Asa.AdSchedule.Controls
 			PrintProductAdd.Click += PrintProductContainer.buttonItemAddInsert_Click;
 			PrintProductClone.Click += PrintProductContainer.buttonItemCloneInsert_Click;
 			PrintProductDelete.Click += PrintProductContainer.buttonItemDeleteInsert_Click;
-			PrintProductStandartHeight.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductStandartHeight.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductStandartHeight.MouseUp += Utilities.Instance.Editor_MouseUp;
-			PrintProductStandartWidth.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductStandartWidth.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductStandartWidth.MouseUp += Utilities.Instance.Editor_MouseUp;
-			PrintProductPageSizeName.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductPageSizeName.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductPageSizeName.MouseUp += Utilities.Instance.Editor_MouseUp;
-			PrintProductMechanicalsName.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductMechanicalsName.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductMechanicalsName.MouseUp += Utilities.Instance.Editor_MouseUp;
+			PrintProductStandartHeight.Enter += TextEditorsHelper.Editor_Enter;
+			PrintProductStandartHeight.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			PrintProductStandartHeight.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			PrintProductStandartWidth.Enter += TextEditorsHelper.Editor_Enter;
+			PrintProductStandartWidth.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			PrintProductStandartWidth.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			PrintProductPageSizeName.Enter += TextEditorsHelper.Editor_Enter;
+			PrintProductPageSizeName.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			PrintProductPageSizeName.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			PrintProductMechanicalsName.Enter += TextEditorsHelper.Editor_Enter;
+			PrintProductMechanicalsName.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			PrintProductMechanicalsName.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			#endregion
 
 			#region Digital Product

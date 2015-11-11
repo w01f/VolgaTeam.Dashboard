@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using Asa.Core.AdSchedule;
 using Asa.Core.Common;
 using Asa.Core.MediaSchedule;
@@ -27,9 +28,9 @@ namespace Asa.CommonGUI.Summary
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
-			memoEditDetails.MouseUp += Utilities.Instance.Editor_MouseUp;
-			memoEditDetails.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditDetails.Enter += Utilities.Instance.Editor_Enter;
+			memoEditDetails.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditDetails.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditDetails.Enter += TextEditorsHelper.Editor_Enter;
 			DataChanged += (o, e) => { Data.Commited = true; };
 		}
 

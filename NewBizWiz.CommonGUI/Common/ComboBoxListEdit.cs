@@ -87,14 +87,32 @@ namespace Asa.CommonGUI.Common
 			ListManager.Instance.Advertisers.ListChanged += (o, e) =>
 			{
 				if (ListType != ListType.Advertisers) return;
-				//Items.Clear();
-				//Items.AddRange(ListManager.Instance.Advertisers.Items);
+				if (OwnerEdit.Parent != null && OwnerEdit.Parent.InvokeRequired)
+					OwnerEdit.Parent.Invoke(new MethodInvoker(() =>
+					{
+						Items.Clear();
+						Items.AddRange(ListManager.Instance.Advertisers.Items);
+					}));
+				else
+				{
+					Items.Clear();
+					Items.AddRange(ListManager.Instance.Advertisers.Items);
+				}
 			};
 			ListManager.Instance.DecisionMakers.ListChanged += (o, e) =>
 			{
 				if (ListType != ListType.DecisionMakers) return;
-				//Items.Clear();
-				//Items.AddRange(ListManager.Instance.DecisionMakers.Items);
+				if (OwnerEdit.Parent != null && OwnerEdit.Parent.InvokeRequired)
+					OwnerEdit.Parent.Invoke(new MethodInvoker(() =>
+					{
+						Items.Clear();
+						Items.AddRange(ListManager.Instance.DecisionMakers.Items);
+					}));
+				else
+				{
+					Items.Clear();
+					Items.AddRange(ListManager.Instance.DecisionMakers.Items);
+				}
 			};
 		}
 

@@ -20,7 +20,7 @@ namespace Asa.Core.Common
 		{
 			var storageDirectory = ResourceManager.Instance.SlideMastersFolder;
 			if (!storageDirectory.ExistsLocal()) return;
-			foreach (var sizeFolder in storageDirectory.GetFolders())
+			foreach (var sizeFolder in storageDirectory.GetLocalFolders())
 			{
 				double width = 0;
 				double height = 0;
@@ -47,8 +47,8 @@ namespace Asa.Core.Common
 						height = 10.75;
 						break;
 				}
-				foreach (var groupFolder in sizeFolder.GetFolders())
-					foreach (var slideFolder in groupFolder.GetFolders())
+				foreach (var groupFolder in sizeFolder.GetLocalFolders())
+					foreach (var slideFolder in groupFolder.GetLocalFolders())
 					{
 						var slideMaster = new SlideMaster(slideFolder) { Group = groupFolder.Name, SizeWidth = width, SizeHeght = height };
 						slideMaster.Load();
@@ -81,7 +81,7 @@ namespace Asa.Core.Common
 
 		public void Load()
 		{
-			var files = _root.GetFiles().ToList();
+			var files = _root.GetLocalFiles().ToList();
 
 			var titleFile = files.First(file => file.Name == "title.txt");
 			Name = File.ReadAllText(titleFile.LocalPath).Trim();

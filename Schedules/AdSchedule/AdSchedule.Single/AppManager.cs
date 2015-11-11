@@ -39,12 +39,12 @@ namespace Asa.AdSchedule.Single
 				FormProgress.CloseProgress();
 				if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
 				{
-					Utilities.Instance.ShowWarning("Server is not available. Application will be closed", "adSALESapps.com ");
+					Utilities.Instance.ShowWarning("Server is not available. Application will be closed");
 					stopRun = true;
 					Application.Exit();
 					return;
 				}
-				if (Utilities.Instance.ShowWarningQuestion("Server is not available. Do you want to continue to work in local mode?", "adSALESapps.com ") != DialogResult.Yes)
+				if (Utilities.Instance.ShowWarningQuestion("Server is not available. Do you want to continue to work in local mode?") != DialogResult.Yes)
 				{
 					stopRun = true;
 					Application.Exit();

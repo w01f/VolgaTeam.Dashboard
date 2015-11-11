@@ -102,6 +102,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\FormStateHelper.cs" />
+    <Compile Include="Common\TextEditorsHelper.cs" />
     <Compile Include="Common\XtraTabDragDropHelper.cs" />
     <Compile Include="Common\GridDragDropHelper.cs" />
     <Compile Include="Common\TabbedControls.cs">

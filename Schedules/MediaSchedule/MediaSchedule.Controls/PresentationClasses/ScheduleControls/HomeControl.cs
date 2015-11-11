@@ -71,7 +71,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (enableSchedules)
 				pnMedia.BringToFront();
 			else
-				pbMediaDefault.BringToFront();
+				pnMediaDefault.BringToFront();
 		}
 
 		private void UpdateScheduleType(SpotType selectedScheduleType)
@@ -480,6 +480,24 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			splitContainerControl.PanelVisibility = e.Page == xtraTabPageDigital ? SplitPanelVisibility.Panel1 : SplitPanelVisibility.Both;
 		}
 
+		private void pnMediaDefault_Resize(object sender, EventArgs e)
+		{
+			if (pnMediaDefault.Width > pbMediaDefault.Image.Width)
+			{
+				pbMediaDefault.SizeMode = PictureBoxSizeMode.Normal;
+				pbMediaDefault.Dock = DockStyle.Fill;
+			}
+			else
+			{
+				pbMediaDefault.SizeMode = PictureBoxSizeMode.Zoom;
+				pbMediaDefault.Dock = DockStyle.None;
+				pbMediaDefault.Top = 0;
+				pbMediaDefault.Left = 0;
+				pbMediaDefault.Width = pnMediaDefault.Width;
+				pbMediaDefault.Height = (Int32)(pbMediaDefault.Image.Height * ((decimal)pbMediaDefault.Width / pbMediaDefault.Image.Width));
+			}
+		}
+
 		#region Editors Events
 
 		public void SchedulePropertyEditValueChanged(object sender, EventArgs e)
@@ -812,7 +830,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		}
 		#endregion
 
-		#region Picture Box Clicks Habdlers
+		#region Picture Box Clicks Handlers
 		/// <summary>
 		/// Buttonize the PictureBox 
 		/// </summary>

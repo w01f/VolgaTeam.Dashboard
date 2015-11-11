@@ -193,8 +193,8 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 				form.OutputOnlyFirstSlide = true;
 				form.RequestDefaultInfo += (o, e) =>
 				{
-					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
-					e.Editor.Tag = e.Editor.EditValue;
+					((BaseEdit)e.Editor).EditValue = LocalSchedule.GetDigitalInfo(e);
+					((BaseEdit)e.Editor).Tag = ((BaseEdit)e.Editor).EditValue;
 				};
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (digitalLegend.ApplyForAll)

@@ -13,6 +13,7 @@ using Asa.Core.MediaSchedule;
 using Asa.MediaSchedule.Controls.BusinessClasses;
 using Asa.MediaSchedule.Controls.InteropClasses;
 using Asa.MediaSchedule.Controls.Properties;
+using DevExpress.XtraEditors;
 
 namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
@@ -30,10 +31,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
-			digitalInfoControl.RequestDefaultInfo += (o, args) =>
+			digitalInfoControl.RequestDefaultInfo += (o, e) =>
 			{
-				args.Editor.EditValue = LocalSchedule.GetDigitalInfo(args);
-				args.Editor.Tag = args.Editor.EditValue;
+				((BaseEdit)e.Editor).EditValue = LocalSchedule.GetDigitalInfo(e);
+				((BaseEdit)e.Editor).Tag = ((BaseEdit)e.Editor).EditValue;
 			};
 			digitalInfoControl.SettingsChanged += (o, args) =>
 			{

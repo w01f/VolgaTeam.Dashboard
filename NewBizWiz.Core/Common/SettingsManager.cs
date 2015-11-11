@@ -12,7 +12,7 @@ namespace Asa.Core.Common
 		private SettingsManager()
 		{
 			SelectedWizard = String.Empty;
-			DashboardName = "6 Minute Seller";
+			DashboardName = "adSALESapps.com";
 			DashboardCode = String.Empty;
 		}
 

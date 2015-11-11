@@ -8,8 +8,8 @@
     <ProjectGuid>{D506B009-76DA-45BE-9F1B-C3124FE82EEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdBar.Plugins.Core</RootNamespace>
-    <AssemblyName>AdBar.Plugins.Core</AssemblyName>
+    <RootNamespace>Asa.Bar.Plugins.Core</RootNamespace>
+    <AssemblyName>Asa.Bar.Plugins.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.AdSchedule.Controls.BusinessClasses;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.CommonGUI.Common;
 using Asa.CommonGUI.RetractableBar;
 using Asa.Core.AdSchedule;
 using Asa.Core.Calendar;
@@ -34,9 +35,9 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			buttonXComment.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditCommentApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
 			memoEditComment.EditValueChanged += propertiesControl_PropertiesChanged;
-			memoEditComment.Enter += Utilities.Instance.Editor_Enter;
-			memoEditComment.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditComment.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditComment.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditComment.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			#endregion
 
 			#region Style

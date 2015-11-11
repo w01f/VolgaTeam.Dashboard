@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Asa.AdSchedule.Controls.BusinessClasses;
 using Asa.AdSchedule.Controls.Properties;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.CommonGUI.Common;
 using Asa.CommonGUI.RetractableBar;
 using Asa.Core.AdSchedule;
 using Asa.Core.Calendar;
@@ -45,9 +46,9 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			checkEditShowComment.CheckedChanged += propertiesControl_PropertiesChanged;
 			memoEditNotesCustomComment.EditValueChanged += propertiesControl_PropertiesChanged;
 			checkEditNotesCustomCommentApplyFoAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			memoEditNotesCustomComment.Enter += Utilities.Instance.Editor_Enter;
-			memoEditNotesCustomComment.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditNotesCustomComment.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditNotesCustomComment.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditNotesCustomComment.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditNotesCustomComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			#endregion
 
 			#region Style

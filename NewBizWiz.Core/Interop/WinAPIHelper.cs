@@ -190,9 +190,9 @@ namespace Asa.Core.Interop
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool IsWindowVisible(IntPtr hWnd);
 
-		[DllImport("user32.dll", SetLastError = true)]
+		[DllImport("user32.dll")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool GetWindowPlacement(IntPtr hWnd, out WINDOWPLACEMENT lpwndpl);
+		public static extern bool GetWindowPlacement(IntPtr hWnd, ref WindowPlacement lpwndpl);
 
 		[DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -216,6 +216,13 @@ namespace Asa.Core.Interop
 
 		[DllImport("User32.dll")]
 		public static extern bool ReleaseCapture();
+
+		[DllImport("user32.dll")]
+		public static extern bool UnhookWinEvent(IntPtr hWinEventHook);
+
+		[DllImport("user32.dll")]
+		public static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
+		public delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
 		#endregion
 
 		public static void MakeTopMost(IntPtr handle)
@@ -369,5 +376,15 @@ namespace Asa.Core.Interop
 
 		SM_CONVERTABLESLATEMODE = 0x2003,
 		SM_SYSTEMDOCKED = 0x2004,
+	}
+
+	public struct WindowPlacement
+	{
+		public int length;
+		public int flags;
+		public int showCmd;
+		public Point ptMinPosition;
+		public Point ptMaxPosition;
+		public Rectangle rcNormalPosition;
 	}
 }

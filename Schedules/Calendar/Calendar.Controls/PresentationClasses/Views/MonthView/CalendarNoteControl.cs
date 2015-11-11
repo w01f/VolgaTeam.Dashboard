@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevExpress.XtraEditors.Controls;
 using Asa.Core.Calendar;
 using Asa.Core.Common;
@@ -30,9 +31,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 			RefreshColor();
 
-			memoEdit.Enter += Utilities.Instance.Editor_Enter;
-			memoEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEdit.Enter += TextEditorsHelper.Editor_Enter;
+			memoEdit.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEdit.MouseUp += TextEditorsHelper.Editor_MouseUp;
 
 			if (calendarNote.UserAdded)
 			{

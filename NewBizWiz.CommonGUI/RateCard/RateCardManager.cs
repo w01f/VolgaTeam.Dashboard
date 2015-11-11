@@ -24,7 +24,7 @@ namespace Asa.CommonGUI.RateCard
 		{
 			RateCardFolders.Clear();
 			if (!_rootFolder.ExistsLocal()) return;
-			var rateCatdFolders = _rootFolder.GetFolders().ToList();
+			var rateCatdFolders = _rootFolder.GetLocalFolders().ToList();
 			rateCatdFolders.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.Name, y.Name));
 			foreach (var rateCardFolder in rateCatdFolders.Select(rateCardFolder => new RateCardFolder(rateCardFolder)))
 				RateCardFolders.Add(rateCardFolder);
@@ -70,7 +70,7 @@ namespace Asa.CommonGUI.RateCard
 		{
 			if (RateCards.Any()) return;
 
-			var files = _rootFolder.GetFiles().ToList();
+			var files = _rootFolder.GetLocalFiles().ToList();
 			foreach (var rateCardFile in files.Select(f => new FileInfo(f.LocalPath)))
 			{
 				IRateCardViewer rateCard;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevExpress.Data;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.BandedGrid;
@@ -11,7 +12,6 @@ using DevExpress.XtraGrid.Views.Grid;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
 using Asa.Calendar.Controls.ToolForms;
 using Asa.Core.Calendar;
-using Asa.Core.Common;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.GridView
 {
@@ -63,12 +63,12 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.GridView
 			};
 			#endregion
 
-			repositoryItemTextEditCustomComment.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemTextEditCustomComment.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemTextEditCustomComment.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemButtonEditCustomCommentFirstRow.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemButtonEditCustomCommentFirstRow.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemButtonEditCustomCommentFirstRow.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemTextEditCustomComment.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemTextEditCustomComment.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemTextEditCustomComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			repositoryItemButtonEditCustomCommentFirstRow.Enter += TextEditorsHelper.Editor_Enter;
+			repositoryItemButtonEditCustomCommentFirstRow.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			repositoryItemButtonEditCustomCommentFirstRow.MouseUp += TextEditorsHelper.Editor_MouseUp;
 		}
 
 		#region Interface Methods

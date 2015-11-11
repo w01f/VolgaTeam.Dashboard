@@ -1,6 +1,6 @@
-﻿using NewBizWiz.Core.Interop;
+﻿using Asa.Core.Interop;
 
-namespace NewBizWiz.MiniBar.InteropClasses
+namespace Asa.Bar.Plugins.Common.InteropClasses
 {
 	public class AdBarPowerPointHelper : PowerPointHelper<AdBarPowerPointHelper> { }
 }

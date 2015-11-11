@@ -42,7 +42,7 @@ namespace Asa.MediaSchedule.Single
 				FormProgress.CloseProgress();
 				if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
 				{
-					Utilities.Instance.ShowWarning("Server is not available. Application will be closed", "adSALESapps.com ");
+					Utilities.Instance.ShowWarning("Server is not available. Application will be closed");
 					stopRun = true;
 					Application.Exit();
 					return;

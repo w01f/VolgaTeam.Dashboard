@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Asa.CommonGUI.Common;
 using DevComponents.DotNetBar;
 using Asa.CommonGUI.Preview;
 using Asa.CommonGUI.ToolForms;
@@ -33,18 +34,18 @@ namespace Asa.Dashboard.TabHomeForms
 				ckC.Font = new Font(ckC.Font.FontFamily, ckC.Font.Size - 3, ckC.Font.Style);
 			}
 			UpdateEditState();
-			comboBoxEditSlideHeader.MouseUp += Utilities.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += Utilities.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += Utilities.Instance.Editor_Enter;
-			memoEditA.MouseUp += Utilities.Instance.Editor_MouseUp;
-			memoEditA.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditA.Enter += Utilities.Instance.Editor_Enter;
-			memoEditB.MouseUp += Utilities.Instance.Editor_MouseUp;
-			memoEditB.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditB.Enter += Utilities.Instance.Editor_Enter;
-			memoEditC.MouseUp += Utilities.Instance.Editor_MouseUp;
-			memoEditC.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditC.Enter += Utilities.Instance.Editor_Enter;
+			comboBoxEditSlideHeader.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			comboBoxEditSlideHeader.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			comboBoxEditSlideHeader.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditA.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditA.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditA.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditB.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditB.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditB.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditC.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditC.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditC.Enter += TextEditorsHelper.Editor_Enter;
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);

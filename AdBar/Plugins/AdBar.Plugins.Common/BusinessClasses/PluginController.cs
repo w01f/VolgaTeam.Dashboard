@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
+using Asa.Core.Common;
 
-namespace AdBar.Plugins.Common.BusinessClasses
+namespace Asa.Bar.Plugins.Common.BusinessClasses
 {
 	public class PluginController
 	{

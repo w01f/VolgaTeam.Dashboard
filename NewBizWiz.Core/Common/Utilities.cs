@@ -10,7 +10,6 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using DevExpress.XtraEditors;
 using Asa.Core.Interop;
 using Application = Microsoft.Office.Interop.PowerPoint.Application;
 using Point = System.Drawing.Point;
@@ -49,17 +48,17 @@ namespace Asa.Core.Common
 			ShowInformation(text, Title);
 		}
 
-		public void ShowWarning(string text, string title)
+		private void ShowWarning(string text, string title)
 		{
 			MessageBox.Show(text, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 		}
 
-		public DialogResult ShowWarningQuestion(string text, string title, params object[] args)
+		private DialogResult ShowWarningQuestion(string text, string title, params object[] args)
 		{
 			return MessageBox.Show(String.Format(text, args), title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 		}
 
-		public void ShowInformation(string text, string title)
+		private void ShowInformation(string text, string title)
 		{
 			MessageBox.Show(text, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
@@ -177,35 +176,6 @@ namespace Asa.Core.Common
 				return Screen.PrimaryScreen.Bounds.Width <= 1024;
 			}
 		}
-
-		#region Select All in Editor Handlers
-		private bool enter;
-		private bool needSelect;
-
-		public void Editor_Enter(object sender, EventArgs e)
-		{
-			enter = true;
-		}
-
-		public void Editor_MouseUp(object sender, MouseEventArgs e)
-		{
-			if (needSelect)
-			{
-				(sender as BaseEdit).SelectAll();
-			}
-			ResetEnterFlag();
-		}
-
-		public void Editor_MouseDown(object sender, MouseEventArgs e)
-		{
-			needSelect = enter;
-		}
-
-		private void ResetEnterFlag()
-		{
-			enter = false;
-		}
-		#endregion
 
 		#region Picture Box Clicks Habdlers
 		/// <summary>

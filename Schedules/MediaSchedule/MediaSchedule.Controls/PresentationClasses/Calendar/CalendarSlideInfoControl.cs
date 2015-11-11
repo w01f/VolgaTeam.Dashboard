@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
+using Asa.CommonGUI.Common;
 using Asa.CommonGUI.RetractableBar;
 using Asa.Core.Calendar;
 using Asa.Core.Common;
@@ -33,9 +34,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses
 			#region Comment
 			buttonXComment.CheckedChanged += OnPropertiesChanged;
 			memoEditComment.EditValueChanged += OnPropertiesChanged;
-			memoEditComment.Enter += Utilities.Instance.Editor_Enter;
-			memoEditComment.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditComment.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditComment.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditComment.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			checkEditCommentApplyForAll.CheckedChanged += OnPropertiesChanged;
 			#endregion
 

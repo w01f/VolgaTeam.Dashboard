@@ -1,0 +1,97 @@
+﻿using System.Threading.Tasks;
+using Asa.Core.Common;
+
+namespace Asa.Bar.App.Configuration
+{
+	public class ResourceManager
+	{
+		private static readonly ResourceManager _instance = new ResourceManager();
+
+		public static ResourceManager Instance
+		{
+			get { return _instance; }
+		}
+
+		#region Local
+		public StorageDirectory AppSettingsFolder { get; private set; }
+		public StorageFile AppSettingsFile { get; private set; }
+		#endregion
+
+		#region Remote
+		public StorageFile AppConfigFile { get; private set; }
+		public StorageFile TabsConfigFile { get; private set; }
+		public StorageFile WatchedProcessesFile { get; private set; }
+		public ArchiveDirectory SpecialAppsFolder { get; private set; }
+		public StorageDirectory DataFolder { get; private set; }
+		#endregion
+
+		private ResourceManager() { }
+
+		public async Task Load()
+		{
+			#region Local
+			AppSettingsFolder = new StorageDirectory(new[]
+			{
+				FileStorageManager.LocalFilesFolderName,
+				AppProfileManager.Instance.AppName,
+			});
+			if (!await AppSettingsFolder.Exists())
+				await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.LocalFilesFolderName }, AppProfileManager.Instance.AppName);
+
+			AppSettingsFile = new StorageFile(new[]
+			{
+				FileStorageManager.LocalFilesFolderName,
+				AppProfileManager.Instance.AppName,
+				"Settings.xml"
+			});
+			AppSettingsFile.AllocateParentFolder();
+			#endregion
+
+			#region Remote
+			AppConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"Config.xml"
+			});
+			await AppConfigFile.Download();
+
+			TabsConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"TabNames.xml"
+			});
+			await TabsConfigFile.Download();
+
+			WatchedProcessesFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"HideList.xml"
+			});
+			await WatchedProcessesFile.Download();
+
+			SpecialAppsFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"SpecialApps"
+			});
+			if (await SpecialAppsFolder.Exists(true))
+				await SpecialAppsFolder.Download();
+
+			DataFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Data",
+			});
+
+			#endregion
+		}
+	}
+}

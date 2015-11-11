@@ -1,4 +1,4 @@
-﻿namespace AdBAR
+﻿namespace Asa.Bar.App
 {
     partial class FormPassword
     {

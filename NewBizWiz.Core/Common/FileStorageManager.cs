@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Asa.Core.Interop;
-using DevExpress.XtraSplashScreen;
 using SharpCompress.Common;
 using SharpCompress.Reader;
 using WebDAVClient.Helpers;
@@ -279,7 +278,7 @@ namespace Asa.Core.Common
 			var subFolderLocalPath = Path.Combine(LocalPath, name);
 			if (!Directory.Exists(subFolderLocalPath))
 				Directory.CreateDirectory(subFolderLocalPath);
-			if (remoteToo && FileStorageManager.Instance.UseLocalMode)
+			if (remoteToo && !FileStorageManager.Instance.UseLocalMode)
 			{
 				var client = FileStorageManager.Instance.GetClient();
 				try
@@ -292,8 +291,17 @@ namespace Asa.Core.Common
 				}
 			}
 		}
+		
+		private async Task<IEnumerable<Item>> GetRemoteItems(Func<Item, bool> filter = null)
+		{
+			if (filter == null)
+				filter = item => true;
+			var client = FileStorageManager.Instance.GetClient();
+			var folderItems = await client.List(RemotePath);
+			return folderItems.Where(filter).ToList();
+		}
 
-		public IEnumerable<StorageFile> GetFiles(Func<string, bool> filter = null, bool recursive = false)
+		public IEnumerable<StorageFile> GetLocalFiles(Func<string, bool> filter = null, bool recursive = false)
 		{
 			if (filter == null)
 				filter = item => true;
@@ -304,7 +312,7 @@ namespace Asa.Core.Common
 				foreach (var directoryPath in Directory.GetDirectories(LocalPath))
 				{
 					var subDirectory = new StorageDirectory(RelativePathParts.Merge(Path.GetFileName(directoryPath)));
-					items.AddRange(subDirectory.GetFiles(filter, true));
+					items.AddRange(subDirectory.GetLocalFiles(filter, true));
 				}
 			}
 			items.AddRange(Directory.GetFiles(LocalPath)
@@ -313,7 +321,31 @@ namespace Asa.Core.Common
 			return items;
 		}
 
-		public IEnumerable<StorageDirectory> GetFolders(Func<string, bool> filter = null)
+		public async Task<IEnumerable<StorageFile>> GetRemoteFiles(Func<string, bool> filter = null, bool recursive = false)
+		{
+			if (filter == null)
+				filter = item => true;
+
+			var items = new List<StorageFile>();
+			var subItems = (await GetRemoteItems()).ToList();
+
+			if (recursive)
+			{
+				foreach (var subItem in subItems.Where(subItem => subItem.IsCollection))
+				{
+					var subDirectory = new StorageDirectory(RelativePathParts.Merge(subItem.GetName()));
+					items.AddRange(await subDirectory.GetRemoteFiles(filter, true));
+				}
+			}
+
+			items.AddRange(subItems
+					.Where(item => !item.IsCollection && filter(item.GetName()))
+					.Select(item => new StorageFile(RelativePathParts, item)));
+
+			return items;
+		}
+
+		public IEnumerable<StorageDirectory> GetLocalFolders(Func<string, bool> filter = null)
 		{
 			if (filter == null)
 				filter = item => true;
@@ -325,6 +357,21 @@ namespace Asa.Core.Common
 			return items;
 		}
 
+		public async Task<IEnumerable<StorageDirectory>> GetRemoteFolders(Func<string, bool> filter)
+		{
+			var items = await GetRemoteItems(item => item.IsCollection);
+			return items
+				.Where(item => filter(item.GetName()))
+				.Select(item =>
+				{
+					var directory = new StorageDirectory(RelativePathParts.Merge(item.GetName()));
+					if (!Directory.Exists(directory.LocalPath))
+						Directory.CreateDirectory(directory.LocalPath);
+					return directory;
+				})
+				.ToList();
+		}
+		
 		public async Task Allocate(bool remoteToo)
 		{
 			if (!Directory.Exists(LocalPath))

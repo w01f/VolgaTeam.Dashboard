@@ -42,7 +42,7 @@ namespace Asa.Core.Common
 					case AppTypeEnum.AdBar:
 						return "app_adsalesapps";
 					case AppTypeEnum.Dashboard:
-						return "app_dashboard";
+						return "app_6ms";
 					case AppTypeEnum.TVSchedule:
 						return "app_sellerpoint_tv";
 					case AppTypeEnum.RadioSchedule:

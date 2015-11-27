@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using Asa.CommonGUI.Common;
@@ -23,7 +24,6 @@ using Asa.MediaSchedule.Controls.PresentationClasses.Gallery;
 using Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls;
 using Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
 using Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
-using Asa.MediaSchedule.Controls.PresentationClasses.Strategy;
 using Asa.MediaSchedule.Controls.PresentationClasses.Summary;
 using Asa.OnlineSchedule.Controls.InteropClasses;
 
@@ -45,20 +45,17 @@ namespace Asa.MediaSchedule.Controls
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
 		public RibbonTabItem TabHome { get; set; }
-		public RibbonTabItem TabWeeklySchedule { get; set; }
-		public RibbonTabItem TabMonthlySchedule { get; set; }
+		public RibbonTabItem TabProgramSchedule { get; set; }
 		public RibbonTabItem TabDigitalProduct { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabCalendar1 { get; set; }
 		public RibbonTabItem TabCalendar2 { get; set; }
-		public RibbonTabItem TabSummaryLight { get; set; }
-		public RibbonTabItem TabSummaryFull { get; set; }
+		public RibbonTabItem TabSummary { get; set; }
 		public RibbonTabItem TabGallery1 { get; set; }
 		public RibbonTabItem TabGallery2 { get; set; }
 		public RibbonTabItem TabRateCard { get; set; }
 		public RibbonTabItem TabSnapshot { get; set; }
 		public RibbonTabItem TabOptions { get; set; }
-		public RibbonTabItem TabStrategy { get; set; }
 
 		public async Task InitBusinessObjects()
 		{
@@ -94,6 +91,10 @@ namespace Asa.MediaSchedule.Controls
 			ConfigureThemeButtons();
 
 			ConfigureSpecialButtons();
+
+			SlideSettingsButton.Visible =
+				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
+				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
 
 			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
@@ -141,32 +142,18 @@ namespace Asa.MediaSchedule.Controls
 			HomeFlightDatesEnd.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
 			#endregion
 
-			#region Weekly Schedule
-			WeeklySchedule = new WeeklyScheduleControl();
-			WeeklyScheduleSave.Click += WeeklySchedule.Save_Click;
-			WeeklyScheduleSaveAs.Click += WeeklySchedule.SaveAs_Click;
-			WeeklyScheduleHelp.Click += WeeklySchedule.Help_Click;
-			WeeklyScheduleProgramAdd.Click += WeeklySchedule.AddProgram_Click;
-			WeeklyScheduleProgramDelete.Click += WeeklySchedule.DeleteProgram_Click;
-			WeeklyScheduleQuarterButton.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
-			WeeklySchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.PowerPoint_Click);
-			WeeklySchedulePreview.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Preview_Click);
-			WeeklyScheduleEmail.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Email_Click);
-			WeeklySchedulePdf.AddEventHandler(CheckPowerPointRunning, WeeklySchedule.Pdf_Click);
-			#endregion
-
-			#region Monthly Schedule
-			MonthlySchedule = new MonthlyScheduleControl();
-			MonthlyScheduleSave.Click += MonthlySchedule.Save_Click;
-			MonthlyScheduleSaveAs.Click += MonthlySchedule.SaveAs_Click;
-			MonthlyScheduleHelp.Click += MonthlySchedule.Help_Click;
-			MonthlyScheduleProgramAdd.Click += MonthlySchedule.AddProgram_Click;
-			MonthlyScheduleProgramDelete.Click += MonthlySchedule.DeleteProgram_Click;
-			MonthlyScheduleQuarterButton.CheckedChanged += MonthlySchedule.QuarterCheckedChanged;
-			MonthlySchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.PowerPoint_Click);
-			MonthlySchedulePreview.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Preview_Click);
-			MonthlyScheduleEmail.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Email_Click);
-			MonthlySchedulePdf.AddEventHandler(CheckPowerPointRunning, MonthlySchedule.Pdf_Click);
+			#region Program Schedule
+			ProgramSchedule = new ScheduleContainer();
+			ProgramScheduleSave.Click += ProgramSchedule.Save_Click;
+			ProgramScheduleSaveAs.Click += ProgramSchedule.SaveAs_Click;
+			ProgramScheduleHelp.Click += ProgramSchedule.Help_Click;
+			ProgramScheduleNew.Click += ProgramSchedule.OnAddSection;
+			ProgramScheduleProgramAdd.Click += ProgramSchedule.OnAddProgram;
+			ProgramScheduleProgramDelete.Click += ProgramSchedule.OnDeleteProgram;
+			ProgramSchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnPowerPointOutput);
+			ProgramSchedulePreview.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnOutputPreview);
+			ProgramScheduleEmail.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnEmailOutput);
+			ProgramSchedulePdf.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnPdfOutput);
 			#endregion
 
 			#region Digital Product
@@ -222,28 +209,15 @@ namespace Asa.MediaSchedule.Controls
 			#endregion
 
 			#region Summary Light
-			SummaryLight = new MediaSummaryLight();
-			SummaryLightSave.Click += SummaryLight.Save_Click;
-			SummaryLightSaveAs.Click += SummaryLight.SaveAs_Click;
-			SummaryLightHelp.Click += (o, e) => SummaryLight.OpenHelp();
-			#endregion
+			Summary = new SummaryContainer();
 
-			#region Summary Full
-			SummaryFull = new MediaSummaryFull();
-			SummaryFullSave.Click += SummaryFull.Save_Click;
-			SummaryFullSaveAs.Click += SummaryFull.SaveAs_Click;
-			SummaryFullHelp.Click += (o, e) => SummaryFull.OpenHelp();
-			#endregion
-
-			#region Strategy
-			Strategy = new ProgramStrategyControl();
-			StrategySave.Click += Strategy.Save_Click;
-			StrategySaveAs.Click += Strategy.SaveAs_Click;
-			StrategyHelp.Click += Strategy.Help_Click;
-			StrategyPowerPoint.AddEventHandler(CheckPowerPointRunning, Strategy.PowerPoint_Click);
-			StrategyEmail.AddEventHandler(CheckPowerPointRunning, Strategy.Email_Click);
-			StrategyPreview.AddEventHandler(CheckPowerPointRunning, Strategy.Preview_Click);
-			StrategyPdf.AddEventHandler(CheckPowerPointRunning, Strategy.Pdf_Click);
+			SummarySave.Click += Summary.Save_Click;
+			SummarySaveAs.Click += Summary.SaveAs_Click;
+			SummaryHelp.Click += Summary.Help_Click;
+			SummaryPowerPoint.AddEventHandler(CheckPowerPointRunning, Summary.OnPowerPointOutput);
+			SummaryPreview.AddEventHandler(CheckPowerPointRunning, Summary.OnOutputPreview);
+			SummaryEmail.AddEventHandler(CheckPowerPointRunning, Summary.OnEmailOutput);
+			SummaryPdf.AddEventHandler(CheckPowerPointRunning, Summary.OnPdfOutput);
 			#endregion
 
 			#region Snapshot
@@ -293,15 +267,12 @@ namespace Asa.MediaSchedule.Controls
 		public void RemoveInstance()
 		{
 			HomeControl.Dispose();
-			WeeklySchedule.Dispose();
-			MonthlySchedule.Dispose();
+			ProgramSchedule.Dispose();
 			DigitalProductContainer.Dispose();
 			DigitalPackage.Dispose();
 			BroadcastCalendar.Dispose();
 			CustomCalendar.Dispose();
-			SummaryLight.Dispose();
-			SummaryFull.Dispose();
-			Strategy.Dispose();
+			Summary.Dispose();
 			Snapshot.Dispose();
 			Options.Dispose();
 			Gallery1.Dispose();
@@ -314,15 +285,12 @@ namespace Asa.MediaSchedule.Controls
 		public void LoadData()
 		{
 			HomeControl.LoadSchedule(false);
-			WeeklySchedule.LoadSchedule(false);
-			MonthlySchedule.LoadSchedule(false);
+			ProgramSchedule.LoadSchedule(false);
 			DigitalProductContainer.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
 			BroadcastCalendar.LoadCalendar(false);
 			CustomCalendar.LoadCalendar(false);
-			SummaryLight.LoadData(false);
-			SummaryFull.LoadData(false);
-			Strategy.LoadSchedule(false);
+			Summary.LoadSchedule(false);
 			Snapshot.LoadSchedule(false);
 			Options.LoadSchedule(false);
 			TabRateCard.Enabled = BusinessObjects.Instance.RateCardManager.RateCardFolders.Any();
@@ -344,12 +312,9 @@ namespace Asa.MediaSchedule.Controls
 						tabPages.Add(TabHome);
 						break;
 					case "Weekly Schedule":
-						TabWeeklySchedule.Text = tabPageConfig.Name;
-						tabPages.Add(TabWeeklySchedule);
-						break;
 					case "Monthly Schedule":
-						TabMonthlySchedule.Text = tabPageConfig.Name;
-						tabPages.Add(TabMonthlySchedule);
+						if (!tabPages.Contains(TabProgramSchedule))
+							tabPages.Add(TabProgramSchedule);
 						break;
 					case "Digital Slides":
 						TabDigitalProduct.Text = tabPageConfig.Name;
@@ -389,17 +354,9 @@ namespace Asa.MediaSchedule.Controls
 						TabOptions.Text = tabPageConfig.Name;
 						tabPages.Add(TabOptions);
 						break;
-					case "Summary1":
-						TabSummaryLight.Text = tabPageConfig.Name;
-						tabPages.Add(TabSummaryLight);
-						break;
-					case "Summary2":
-						TabSummaryFull.Text = tabPageConfig.Name;
-						tabPages.Add(TabSummaryFull);
-						break;
-					case "Strategy":
-						TabStrategy.Text = tabPageConfig.Name;
-						tabPages.Add(TabStrategy);
+					case "Summaries":
+						TabSummary.Text = tabPageConfig.Name;
+						tabPages.Add(TabSummary);
 						break;
 				}
 			}
@@ -421,11 +378,11 @@ namespace Asa.MediaSchedule.Controls
 			{
 				var options = new Dictionary<string, object>();
 				options.Add("Advertiser", localSchedule.BusinessName);
-				if (localSchedule.Section.Programs.Any())
+				if (localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
 				{
-					options.Add("TotalSpots", localSchedule.Section.TotalSpots);
-					options.Add("AverageRate", localSchedule.Section.AvgRate);
-					options.Add("GrossInvestment", localSchedule.Section.TotalCost);
+					options.Add("TotalSpots", localSchedule.ProgramSchedule.TotalSpots);
+					options.Add("AverageRate", localSchedule.ProgramSchedule.AvgRate);
+					options.Add("GrossInvestment", localSchedule.ProgramSchedule.TotalCost);
 				}
 				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
 			}
@@ -435,8 +392,7 @@ namespace Asa.MediaSchedule.Controls
 
 		public void UpdateScheduleTabs(bool enable)
 		{
-			TabWeeklySchedule.Enabled = enable;
-			TabMonthlySchedule.Enabled = enable;
+			TabProgramSchedule.Enabled = enable;
 			TabCalendar1.Enabled = enable;
 			TabCalendar2.Enabled = enable;
 			TabSnapshot.Enabled = enable;
@@ -445,9 +401,7 @@ namespace Asa.MediaSchedule.Controls
 
 		public void UpdateOutputTabs(bool enable)
 		{
-			TabSummaryLight.Enabled = enable;
-			TabSummaryFull.Enabled = enable;
-			TabStrategy.Enabled = enable;
+			TabSummary.Enabled = enable;
 		}
 
 		public void UpdateDigitalProductTab(bool enable)
@@ -461,21 +415,15 @@ namespace Asa.MediaSchedule.Controls
 			UpdateOutputButtonsAccordingThemeStatus();
 			Ribbon.SelectedRibbonTabChanged += (o, e) =>
 			{
-				(WeeklySchedulePowerPoint.ContainerControl as RibbonBar).Text = (WeeklyScheduleTheme.Tag as Theme).Name;
-				(MonthlySchedulePowerPoint.ContainerControl as RibbonBar).Text = (MonthlyScheduleTheme.Tag as Theme).Name;
+				(ProgramSchedulePowerPoint.ContainerControl as RibbonBar).Text = (ProgramScheduleTheme.Tag as Theme).Name;
 				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = (DigitalProductTheme.Tag as Theme).Name;
 				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
-				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = (SummaryLightTheme.Tag as Theme).Name;
-				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = (SummaryFullTheme.Tag as Theme).Name;
-				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = (StrategyTheme.Tag as Theme).Name;
+				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = (SummaryTheme.Tag as Theme).Name;
 				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = (SnapshotTheme.Tag as Theme).Name;
 				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = (OptionsTheme.Tag as Theme).Name;
 
-				WeeklyScheduleThemeBar.RecalcLayout();
-				WeeklySchedulePanel.PerformLayout();
-
-				MonthlyScheduleThemeBar.RecalcLayout();
-				MonthlySchedulePanel.PerformLayout();
+				ProgramScheduleThemeBar.RecalcLayout();
+				ProgramSchedulePanel.PerformLayout();
 
 				DigitalProductThemeBar.RecalcLayout();
 				DigitalProductPanel.PerformLayout();
@@ -483,14 +431,8 @@ namespace Asa.MediaSchedule.Controls
 				DigitalPackageThemeBar.RecalcLayout();
 				DigitalPackagePanel.PerformLayout();
 
-				SummaryLightThemeBar.RecalcLayout();
-				SummaryLightPanel.PerformLayout();
-
-				SummaryFullThemeBar.RecalcLayout();
-				SummaryFullPanel.PerformLayout();
-
-				StrategyThemeBar.RecalcLayout();
-				StrategyPanel.PerformLayout();
+				SummaryThemeBar.RecalcLayout();
+				SummaryPanel.PerformLayout();
 
 				SnapshotThemeBar.RecalcLayout();
 				SnapshotPanel.PerformLayout();
@@ -506,21 +448,13 @@ namespace Asa.MediaSchedule.Controls
 			{
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
 
-				WeeklySchedulePowerPoint.Visible = false;
-				(WeeklySchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(WeeklyScheduleEmail.ContainerControl as RibbonBar).Visible = false;
-				(WeeklySchedulePreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(WeeklyScheduleTheme, selectorToolTip);
-				WeeklyScheduleTheme.Click -= OnThemeClick;
-				WeeklyScheduleTheme.Click += OnThemeClick;
-
-				MonthlySchedulePowerPoint.Visible = false;
-				(MonthlySchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(MonthlyScheduleEmail.ContainerControl as RibbonBar).Visible = false;
-				(MonthlySchedulePreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(MonthlyScheduleTheme, selectorToolTip);
-				MonthlyScheduleTheme.Click -= OnThemeClick;
-				MonthlyScheduleTheme.Click += OnThemeClick;
+				ProgramSchedulePowerPoint.Visible = false;
+				(ProgramSchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(ProgramScheduleEmail.ContainerControl as RibbonBar).Visible = false;
+				(ProgramSchedulePreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
+				ProgramScheduleTheme.Click -= OnThemeClick;
+				ProgramScheduleTheme.Click += OnThemeClick;
 
 				DigitalProductPowerPoint.Visible = false;
 				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
@@ -538,29 +472,13 @@ namespace Asa.MediaSchedule.Controls
 				DigitalPackageTheme.Click -= OnThemeClick;
 				DigitalPackageTheme.Click += OnThemeClick;
 
-				SummaryLightPowerPoint.Visible = false;
-				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = false;
-				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
-				SummaryLightTheme.Click -= OnThemeClick;
-				SummaryLightTheme.Click += OnThemeClick;
-
-				SummaryFullPowerPoint.Visible = false;
-				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = false;
-				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
-				SummaryFullTheme.Click -= OnThemeClick;
-				SummaryFullTheme.Click += OnThemeClick;
-
-				StrategyPowerPoint.Visible = false;
-				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(StrategyEmail.ContainerControl as RibbonBar).Visible = false;
-				(StrategyPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
-				StrategyTheme.Click -= OnThemeClick;
-				StrategyTheme.Click += OnThemeClick;
+				SummaryPowerPoint.Visible = false;
+				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SummaryEmail.ContainerControl as RibbonBar).Visible = false;
+				(SummaryPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
+				SummaryTheme.Click -= OnThemeClick;
+				SummaryTheme.Click += OnThemeClick;
 
 				SnapshotPowerPoint.Visible = false;
 				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
@@ -580,15 +498,10 @@ namespace Asa.MediaSchedule.Controls
 			}
 			else
 			{
-				WeeklySchedulePowerPoint.Visible = true;
-				(WeeklyScheduleEmail.ContainerControl as RibbonBar).Visible = true;
-				(WeeklySchedulePreview.ContainerControl as RibbonBar).Visible = true;
-				WeeklyScheduleTheme.Click -= OnThemeClick;
-
-				MonthlySchedulePowerPoint.Visible = true;
-				(MonthlyScheduleEmail.ContainerControl as RibbonBar).Visible = true;
-				(MonthlySchedulePreview.ContainerControl as RibbonBar).Visible = true;
-				MonthlyScheduleTheme.Click -= OnThemeClick;
+				ProgramSchedulePowerPoint.Visible = true;
+				(ProgramScheduleEmail.ContainerControl as RibbonBar).Visible = true;
+				(ProgramSchedulePreview.ContainerControl as RibbonBar).Visible = true;
+				ProgramScheduleTheme.Click -= OnThemeClick;
 
 				DigitalProductPowerPoint.Visible = true;
 				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = true;
@@ -600,20 +513,10 @@ namespace Asa.MediaSchedule.Controls
 				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = true;
 				DigitalPackageTheme.Click -= OnThemeClick;
 
-				SummaryLightPowerPoint.Visible = true;
-				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = true;
-				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = true;
-				SummaryLightTheme.Click -= OnThemeClick;
-
-				SummaryFullPowerPoint.Visible = true;
-				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = true;
-				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = true;
-				SummaryFullTheme.Click -= OnThemeClick;
-
-				StrategyPowerPoint.Visible = true;
-				(StrategyEmail.ContainerControl as RibbonBar).Visible = true;
-				(StrategyPreview.ContainerControl as RibbonBar).Visible = true;
-				StrategyTheme.Click -= OnThemeClick;
+				SummaryPowerPoint.Visible = true;
+				(SummaryEmail.ContainerControl as RibbonBar).Visible = true;
+				(SummaryPreview.ContainerControl as RibbonBar).Visible = true;
+				SummaryTheme.Click -= OnThemeClick;
 
 				SnapshotPowerPoint.Visible = true;
 				(SnapshotEmail.ContainerControl as RibbonBar).Visible = true;
@@ -626,13 +529,10 @@ namespace Asa.MediaSchedule.Controls
 				OptionsTheme.Click -= OnThemeClick;
 
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
-				Supertip.SetSuperTooltip(WeeklyScheduleTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(MonthlyScheduleTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 			}
@@ -648,15 +548,12 @@ namespace Asa.MediaSchedule.Controls
 			var specialLinkContainers = new[]
 			{
 				HomeSpecialButtons,
-				WeeklyScheduleSpecialButtons,
-				MonthlyScheduleSpecialButtons,
+				ProgramScheduleSpecialButtons,
 				DigitalProductSpecialButtons,
 				DigitalPackageSpecialButtons,
 				Calendar1SpecialButtons,
 				Calendar2SpecialButtons,
-				SummaryLightSpecialButtons,
-				SummaryFullSpecialButtons,
-				StrategySpecialButtons,
+				SummarySpecialButtons,
 				SnapshotSpecialButtons,
 				OptionsSpecialButtons,
 				RateCardSpecialButtons,
@@ -758,40 +655,21 @@ namespace Asa.MediaSchedule.Controls
 		public LabelItem HomeWeeks { get; set; }
 		#endregion
 
-		#region Weekly Schedule
-		public RibbonPanel WeeklySchedulePanel { get; set; }
-		public RibbonBar WeeklyScheduleThemeBar { get; set; }
-		public RibbonBar WeeklyScheduleSpecialButtons { get; set; }
-		public ButtonItem WeeklyScheduleProgramAdd { get; set; }
-		public ButtonItem WeeklyScheduleProgramDelete { get; set; }
-		public ButtonItem WeeklySchedulePreview { get; set; }
-		public ButtonItem WeeklySchedulePowerPoint { get; set; }
-		public ButtonItem WeeklyScheduleEmail { get; set; }
-		public ButtonItem WeeklySchedulePdf { get; set; }
-		public ButtonItem WeeklyScheduleTheme { get; set; }
-		public ButtonItem WeeklyScheduleSave { get; set; }
-		public ButtonItem WeeklyScheduleSaveAs { get; set; }
-		public ButtonItem WeeklyScheduleHelp { get; set; }
-		public RibbonBar WeeklyScheduleQuarterBar { get; set; }
-		public ButtonItem WeeklyScheduleQuarterButton { get; set; }
-		#endregion
-
-		#region Monthly Schedule
-		public RibbonPanel MonthlySchedulePanel { get; set; }
-		public RibbonBar MonthlyScheduleThemeBar { get; set; }
-		public RibbonBar MonthlyScheduleSpecialButtons { get; set; }
-		public ButtonItem MonthlyScheduleProgramAdd { get; set; }
-		public ButtonItem MonthlyScheduleProgramDelete { get; set; }
-		public ButtonItem MonthlySchedulePreview { get; set; }
-		public ButtonItem MonthlySchedulePowerPoint { get; set; }
-		public ButtonItem MonthlyScheduleEmail { get; set; }
-		public ButtonItem MonthlySchedulePdf { get; set; }
-		public ButtonItem MonthlyScheduleTheme { get; set; }
-		public ButtonItem MonthlyScheduleSave { get; set; }
-		public ButtonItem MonthlyScheduleSaveAs { get; set; }
-		public ButtonItem MonthlyScheduleHelp { get; set; }
-		public RibbonBar MonthlyScheduleQuarterBar { get; set; }
-		public ButtonItem MonthlyScheduleQuarterButton { get; set; }
+		#region Program Schedule
+		public RibbonPanel ProgramSchedulePanel { get; set; }
+		public RibbonBar ProgramScheduleThemeBar { get; set; }
+		public RibbonBar ProgramScheduleSpecialButtons { get; set; }
+		public ButtonItem ProgramScheduleNew { get; set; }
+		public ButtonItem ProgramScheduleProgramAdd { get; set; }
+		public ButtonItem ProgramScheduleProgramDelete { get; set; }
+		public ButtonItem ProgramSchedulePreview { get; set; }
+		public ButtonItem ProgramSchedulePowerPoint { get; set; }
+		public ButtonItem ProgramScheduleEmail { get; set; }
+		public ButtonItem ProgramSchedulePdf { get; set; }
+		public ButtonItem ProgramScheduleTheme { get; set; }
+		public ButtonItem ProgramScheduleSave { get; set; }
+		public ButtonItem ProgramScheduleSaveAs { get; set; }
+		public ButtonItem ProgramScheduleHelp { get; set; }
 		#endregion
 
 		#region Digital Product
@@ -852,52 +730,18 @@ namespace Asa.MediaSchedule.Controls
 		public ButtonItem Calendar2Pdf { get; set; }
 		#endregion
 
-		#region Summary Light
-		public RibbonPanel SummaryLightPanel { get; set; }
-		public RibbonBar SummaryLightThemeBar { get; set; }
-		public RibbonBar SummaryLightSpecialButtons { get; set; }
-		public ButtonItem SummaryLightHelp { get; set; }
-		public ButtonItem SummaryLightSave { get; set; }
-		public ButtonItem SummaryLightSaveAs { get; set; }
-		public ButtonItem SummaryLightPreview { get; set; }
-		public ButtonItem SummaryLightEmail { get; set; }
-		public ButtonItem SummaryLightPowerPoint { get; set; }
-		public ButtonItem SummaryLightPdf { get; set; }
-		public ButtonItem SummaryLightTheme { get; set; }
-		public CheckEdit SummaryLightSlideOutputToggle { get; set; }
-		public CheckEdit SummaryLightTableOutputToggle { get; set; }
-		#endregion
-
-		#region Summary Full
-		public RibbonPanel SummaryFullPanel { get; set; }
-		public RibbonBar SummaryFullThemeBar { get; set; }
-		public RibbonBar SummaryFullSpecialButtons { get; set; }
-		public ButtonItem SummaryFullHelp { get; set; }
-		public ButtonItem SummaryFullSave { get; set; }
-		public ButtonItem SummaryFullSaveAs { get; set; }
-		public ButtonItem SummaryFullPreview { get; set; }
-		public ButtonItem SummaryFullEmail { get; set; }
-		public ButtonItem SummaryFullPowerPoint { get; set; }
-		public ButtonItem SummaryFullPdf { get; set; }
-		public ButtonItem SummaryFullTheme { get; set; }
-		public CheckEdit SummaryFullSlideOutputToggle { get; set; }
-		public CheckEdit SummaryFullTableOutputToggle { get; set; }
-		#endregion
-
-		#region Strategy
-		public RibbonPanel StrategyPanel { get; set; }
-		public RibbonBar StrategyThemeBar { get; set; }
-		public RibbonBar StrategySpecialButtons { get; set; }
-		public ButtonItem StrategyHelp { get; set; }
-		public ButtonItem StrategySave { get; set; }
-		public ButtonItem StrategySaveAs { get; set; }
-		public ButtonItem StrategyPreview { get; set; }
-		public ButtonItem StrategyEmail { get; set; }
-		public ButtonItem StrategyPowerPoint { get; set; }
-		public ButtonItem StrategyPdf { get; set; }
-		public ButtonItem StrategyTheme { get; set; }
-		public CheckEdit StrategyShowStationToggle { get; set; }
-		public CheckEdit StrategyShowDescriptionToggle { get; set; }
+		#region Summary
+		public RibbonPanel SummaryPanel { get; set; }
+		public RibbonBar SummaryThemeBar { get; set; }
+		public RibbonBar SummarySpecialButtons { get; set; }
+		public ButtonItem SummaryHelp { get; set; }
+		public ButtonItem SummarySave { get; set; }
+		public ButtonItem SummarySaveAs { get; set; }
+		public ButtonItem SummaryPreview { get; set; }
+		public ButtonItem SummaryEmail { get; set; }
+		public ButtonItem SummaryPowerPoint { get; set; }
+		public ButtonItem SummaryPdf { get; set; }
+		public ButtonItem SummaryTheme { get; set; }
 		#endregion
 
 		#region Snapshot
@@ -988,15 +832,12 @@ namespace Asa.MediaSchedule.Controls
 
 		#region Forms
 		public HomeControl HomeControl { get; private set; }
-		public WeeklyScheduleControl WeeklySchedule { get; private set; }
-		public MonthlyScheduleControl MonthlySchedule { get; private set; }
+		public ScheduleContainer ProgramSchedule { get; private set; }
 		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
 		public MediaWebPackageControl DigitalPackage { get; private set; }
 		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
 		public CustomCalendarControl CustomCalendar { get; private set; }
-		public MediaSummaryLight SummaryLight { get; private set; }
-		public MediaSummaryFull SummaryFull { get; private set; }
-		public ProgramStrategyControl Strategy { get; private set; }
+		public SummaryContainer Summary { get; private set; }
 		public SnapshotContainer Snapshot { get; private set; }
 		public OptionsContainer Options { get; private set; }
 		public RateCardControl RateCard { get; private set; }

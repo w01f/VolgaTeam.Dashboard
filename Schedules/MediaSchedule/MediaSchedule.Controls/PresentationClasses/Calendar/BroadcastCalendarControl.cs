@@ -93,7 +93,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 		public override void UpdateOutputFunctions()
 		{
 			base.UpdateOutputFunctions();
-			var enable = (_localSchedule.SelectedSpotType == SpotType.Week && _localSchedule.Section.Programs.Any()) || _localSchedule.Snapshots.Any(s => s.Programs.Count > 0);
+			var enable = (_localSchedule.SelectedSpotType == SpotType.Week && 
+				_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any()) || 
+				_localSchedule.Snapshots.Any(s => s.Programs.Count > 0);
 			retractableBarControl.Visible = enable;
 			MonthList.Enabled = enable;
 			pnTop.Visible = enable;

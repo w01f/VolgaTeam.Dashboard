@@ -22,7 +22,6 @@ namespace Asa.MediaSchedule.Controls.InteropClasses
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var slideNumber = 0;
 					foreach (var page in pages)
 					{
 						var copyOfReplacementList = new Dictionary<string, string>(page.ReplacementsList);
@@ -32,18 +31,17 @@ namespace Asa.MediaSchedule.Controls.InteropClasses
 						var taggedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
 
 						var logoShapes = new List<Shape>();
-						if (page.Logos != null && slideNumber < page.Logos.Length)
+						if (page.Logos != null)
 						{
-							var slideLogos = page.Logos[slideNumber];
 							foreach (var shape in taggedSlide.Shapes.OfType<Shape>().Where(s => s.HasTable != MsoTriState.msoTrue))
 							{
 								for (var i = 1; i <= shape.Tags.Count; i++)
 								{
 									var shapeTagName = shape.Tags.Name(i);
-									for (var j = 0; j < slideLogos.Length; j++)
+									for (var j = 0; j < page.Logos.Length; j++)
 									{
 										if (!shapeTagName.Equals(string.Format("STATIONLOGO{0}", j + 1))) continue;
-										string fileName = slideLogos[j];
+										string fileName = page.Logos[j];
 										if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
 											logoShapes.Add(taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height));
 										shape.Visible = MsoTriState.msoFalse;
@@ -125,7 +123,6 @@ namespace Asa.MediaSchedule.Controls.InteropClasses
 						}
 						AppendSlide(presentation, 1, destinationPresentation);
 						presentation.Close();
-						slideNumber++;
 					}
 				});
 				thread.Start();

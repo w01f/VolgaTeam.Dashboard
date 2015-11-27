@@ -145,13 +145,16 @@
     <Compile Include="Interop\PowerPointHelper.cs" />
     <Compile Include="Interop\WinAPIHelper.cs" />
     <Compile Include="Interop\WordHelper.cs" />
+    <Compile Include="MediaSchedule\Calendars.cs" />
+    <Compile Include="MediaSchedule\Enums.cs" />
     <Compile Include="MediaSchedule\ListManager.cs" />
     <Compile Include="MediaSchedule\MediaMetaData.cs" />
     <Compile Include="MediaSchedule\Options.cs" />
-    <Compile Include="MediaSchedule\ProgramStrategy.cs" />
     <Compile Include="MediaSchedule\ResourceManager.cs" />
     <Compile Include="MediaSchedule\ScheduleManager.cs" />
     <Compile Include="MediaSchedule\ScheduleSaveEventArgs.cs" />
+    <Compile Include="MediaSchedule\ScheduleSections.cs" />
+    <Compile Include="MediaSchedule\SectionSummary.cs" />
     <Compile Include="MediaSchedule\SettingsManager.cs" />
     <Compile Include="MediaSchedule\Snapshots.cs" />
     <Compile Include="MediaSchedule\ViewSettings.cs" />

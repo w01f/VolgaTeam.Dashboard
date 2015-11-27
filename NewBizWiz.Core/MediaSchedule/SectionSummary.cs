@@ -9,12 +9,198 @@ using Asa.Core.Common;
 
 namespace Asa.Core.MediaSchedule
 {
-	public class ProgramStrategy
+	public enum SectionSummaryTypeEnum
 	{
-		private readonly Schedule _parent;
+		None,
+		Product,
+		Strategy,
+		Custom
+	}
 
-		public bool ShowFavorites { get; set; }
+	public class SectionSummary
+	{
+		public ScheduleSection Parent { get; private set; }
+		public SectionSummaryTypeEnum SummaryType { get; private set; }
+		public ISectionSummaryContent Content { get; private set; }
 
+		public SectionSummary(ScheduleSection parent)
+		{
+			Parent = parent;
+			SummaryType = SectionSummaryTypeEnum.Product;
+			Content = CreateContentBySummaryType();
+		}
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(@"<SummaryType>" + SummaryType + @"</SummaryType>");
+			result.AppendLine(@"<Content>" + Content.Serialize() + @"</Content>");
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			foreach (XmlNode childNode in node.ChildNodes)
+				switch (childNode.Name)
+				{
+					case "SummaryType":
+						{
+							SectionSummaryTypeEnum temp;
+							if (Enum.TryParse(childNode.InnerText, out temp))
+								SummaryType = temp;
+						}
+						break;
+				}
+
+			Content = CreateContentBySummaryType();
+			var contentNode = node.SelectSingleNode("Content");
+			if (contentNode != null)
+				Content.Deserialize(contentNode);
+			Content.SynchronizeSectionContent();
+		}
+
+		public void ChangeSummaryType(SectionSummaryTypeEnum newType)
+		{
+			if (newType == SummaryType) return;
+			SummaryType = newType;
+			Content = CreateContentBySummaryType();
+			Content.SynchronizeSectionContent();
+		}
+
+		private ISectionSummaryContent CreateContentBySummaryType()
+		{
+			switch (SummaryType)
+			{
+				case SectionSummaryTypeEnum.Product:
+					return new ProductSummaryContent(this);
+				case SectionSummaryTypeEnum.Custom:
+					{
+						var content = new CustomSummaryContent(this);
+						return content;
+					}
+				case SectionSummaryTypeEnum.Strategy:
+					{
+						var content = new StrategySummaryContent(this);
+						return content;
+					}
+			}
+			throw new ArgumentOutOfRangeException("Summary Type is undefined");
+		}
+
+	}
+
+	public interface ISectionSummaryContent
+	{
+		SectionSummary Parent { get; }
+		string Serialize();
+		void Deserialize(XmlNode node);
+		void SynchronizeSectionContent();
+	}
+
+	public class ProductSummaryContent : BaseSummarySettings, ISectionSummaryContent
+	{
+		public SectionSummary Parent { get; private set; }
+		public List<ISummaryProduct> Items
+		{
+			get
+			{
+				var result = new List<ISummaryProduct>();
+				result.AddRange(Parent.Parent.Programs);
+				result.AddRange(Parent.Parent.ParentSchedule.DigitalProducts);
+				return result;
+			}
+		}
+
+		public ProductSummaryContent(SectionSummary parent)
+		{
+			Parent = parent;
+		}
+
+		public void SynchronizeSectionContent()
+		{
+		}
+	}
+
+	public class CustomSummaryContent : CustomSummarySettings, ISectionSummaryContent
+	{
+		public SectionSummary Parent { get; private set; }
+		public bool IsDefaultSate { get; set; }
+
+		public CustomSummaryContent(SectionSummary parent)
+		{
+			Parent = parent;
+			IsDefaultSate = true;
+		}
+
+		public override string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(base.Serialize());
+			result.AppendLine(@"<IsDefaultSate>" + IsDefaultSate + @"</IsDefaultSate>");
+			return result.ToString();
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			base.Deserialize(node);
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "IsDefaultSate":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								IsDefaultSate = temp;
+						}
+						break;
+				}
+			}
+		}
+
+		public void SynchronizeSectionContent()
+		{
+			if (!IsDefaultSate) return;
+			if (Items.Count != 2) return;
+			{
+				var mediaSummaryItem = Items[0];
+				mediaSummaryItem.ShowValue = true;
+				mediaSummaryItem.Value = String.Format("Local {0} Campaign", MediaMetaData.Instance.DataTypeString);
+				var description = new List<string>();
+				var programs = Parent.Parent.Programs.ToList();
+				description.Add(String.Format("Stations: {0}", String.Join(", ", programs.Select(p => p.Station).Distinct())));
+				description.Add(String.Format("Dayparts: {0}", String.Join(", ", programs.Select(p => p.Daypart).Distinct())));
+				description.Add(String.Format("Total Spots: {0}x", programs.Sum(p => p.Spots.Sum(sp => sp.Count))));
+				if (programs.Any(p => p.Rate.HasValue))
+					description.Add(String.Format("Avg Rate: {0}", programs.Where(p => p.Rate.HasValue).Average(p => p.Rate.Value).ToString("$#,##0")));
+				mediaSummaryItem.Description = String.Join("  ", description);
+				mediaSummaryItem.ShowDescription = true;
+				mediaSummaryItem.ShowMonthly = false;
+				mediaSummaryItem.Monthly = null;
+				mediaSummaryItem.ShowTotal = false;
+				mediaSummaryItem.Total = null;
+			}
+			{
+				var digitalSummaryItem = Items[1];
+				digitalSummaryItem.ShowValue = true;
+				digitalSummaryItem.Value = "Digital Campaign";
+				digitalSummaryItem.Description = String.Join(", ", Parent.Parent.ParentSchedule.DigitalProducts.Select(dp =>
+					String.Format("({0}){1} - {2}",
+					dp.Category,
+					!String.IsNullOrEmpty(dp.SubCategory) ? (String.Format(" {0}", dp.SubCategory)) : String.Empty,
+					dp.Name)));
+				digitalSummaryItem.ShowDescription = true;
+				digitalSummaryItem.ShowMonthly = false;
+				digitalSummaryItem.Monthly = null;
+				digitalSummaryItem.ShowTotal = false;
+				digitalSummaryItem.Total = null;
+			}
+		}
+	}
+
+	public class StrategySummaryContent : ISectionSummaryContent
+	{
+		public SectionSummary Parent { get; private set; }
 		public bool ShowStation { get; set; }
 		public bool ShowDescription { get; set; }
 
@@ -27,13 +213,11 @@ namespace Asa.Core.MediaSchedule
 			get { return Items.Where(i => i.Enabled).OrderBy(i => i.Order); }
 		}
 
-		public ProgramStrategy(Schedule parent)
+		public StrategySummaryContent(SectionSummary parent)
 		{
-			_parent = parent;
+			Parent = parent;
 			Items = new List<ProgramStrategyItem>();
 			ContractSettings = new ContractSettings();
-
-			ShowFavorites = true;
 
 			ShowStation = true;
 			ShowDescription = true;
@@ -42,7 +226,6 @@ namespace Asa.Core.MediaSchedule
 		public string Serialize()
 		{
 			var result = new StringBuilder();
-			result.AppendLine(@"<ShowFavorites>" + ShowFavorites + @"</ShowFavorites>");
 
 			result.AppendLine(@"<ShowStation>" + ShowStation + @"</ShowStation>");
 			result.AppendLine(@"<ShowDescription>" + ShowDescription + @"</ShowDescription>");
@@ -62,13 +245,6 @@ namespace Asa.Core.MediaSchedule
 			{
 				switch (childNode.Name)
 				{
-					case "ShowFavorites":
-						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
-								ShowFavorites = temp;
-							break;
-						}
 					case "ShowStation":
 						{
 							bool temp;
@@ -95,12 +271,11 @@ namespace Asa.Core.MediaSchedule
 						break;
 				}
 			}
-			UpdateItems();
 		}
 
-		private void UpdateItems()
+		public void SynchronizeSectionContent()
 		{
-			var sourceCollection = _parent.Section.Programs;
+			var sourceCollection = Parent.Parent.Programs.ToList();
 			var maxOrder = Items.Any() ? Items.Max(i => i.Order) : 0;
 			var groupedPrograms = sourceCollection.GroupBy(p => p.Name, (key, g) => new { Name = key, Station = String.Join(", ", g.Select(i => i.Station)), Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count) });
 			foreach (var program in groupedPrograms)
@@ -146,7 +321,7 @@ namespace Asa.Core.MediaSchedule
 
 	public class ProgramStrategyItem
 	{
-		private readonly ProgramStrategy _parent;
+		private readonly StrategySummaryContent _parent;
 
 		public bool Enabled { get; set; }
 		public string Name { get; set; }
@@ -173,7 +348,7 @@ namespace Asa.Core.MediaSchedule
 
 		private ImageSource _disabledLogo;
 
-		public ProgramStrategyItem(ProgramStrategy programStrategy)
+		public ProgramStrategyItem(StrategySummaryContent programStrategy)
 		{
 			_parent = programStrategy;
 			_logo = new ImageSource();
@@ -265,4 +440,5 @@ namespace Asa.Core.MediaSchedule
 			}
 		}
 	}
+
 }

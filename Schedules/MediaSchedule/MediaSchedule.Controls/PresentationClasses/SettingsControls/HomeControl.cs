@@ -4,19 +4,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraTab;
 using Asa.CommonGUI.ToolForms;
 using Asa.Core.Common;
 using Asa.Core.MediaSchedule;
 using Asa.Core.OnlineSchedule;
 using Asa.MediaSchedule.Controls.BusinessClasses;
+using DevComponents.DotNetBar;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraTab;
 using ListManager = Asa.Core.OnlineSchedule.ListManager;
 using ScheduleManager = Asa.Core.MediaSchedule.ScheduleManager;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 {
 	[ToolboxItem(false)]
 	public partial class HomeControl : UserControl
@@ -79,12 +79,16 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			switch (selectedScheduleType)
 			{
 				case SpotType.Week:
-					Controller.Instance.TabWeeklySchedule.Visible = true;
-					Controller.Instance.TabMonthlySchedule.Visible = false;
+					Controller.Instance.TabProgramSchedule.Text = BusinessObjects.Instance.TabPageManager.TabPageSettings
+						.Where(tc => tc.Id == "Weekly Schedule")
+						.Select(tc=>tc.Name)
+						.FirstOrDefault();
 					break;
 				case SpotType.Month:
-					Controller.Instance.TabWeeklySchedule.Visible = false;
-					Controller.Instance.TabMonthlySchedule.Visible = true;
+					Controller.Instance.TabProgramSchedule.Text = BusinessObjects.Instance.TabPageManager.TabPageSettings
+						.Where(tc => tc.Id == "Monthly Schedule")
+						.Select(tc => tc.Name)
+						.FirstOrDefault();
 					break;
 			}
 			Controller.Instance.Ribbon.Refresh();
@@ -313,7 +317,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			_allowToSave = true;
 		}
 
-		private bool SaveSchedule(bool quiet = false, string scheduleName = "")
+		private bool SaveSchedule(bool quick = false, string scheduleName = "")
 		{
 			bool quickSave = true;
 			digitalProductListControl.CloseEditors();
@@ -331,7 +335,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 			else
 			{
-				if (!quiet)
+				if (!quick)
 					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Business Name before you proceed.");
 				return false;
 			}
@@ -346,7 +350,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 			else
 			{
-				if (!quiet)
+				if (!quick)
 					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
 				return false;
 			}
@@ -355,7 +359,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				_localSchedule.ClientType = Controller.Instance.HomeClientType.EditValue.ToString();
 			else
 			{
-				if (!quiet)
+				if (!quick)
 					Utilities.Instance.ShowWarning("You must set Client type before save");
 				return false;
 			}
@@ -369,7 +373,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				_localSchedule.PresentationDate = Controller.Instance.HomePresentationDate.DateTime;
 			else
 			{
-				if (!quiet)
+				if (!quick)
 					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Presentation Date before you proceed.");
 				return false;
 			}
@@ -383,7 +387,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				{
 					if (_localSchedule.FlightDateStart.Value != startDate || _localSchedule.FlightDateEnd.Value != endDate)
 					{
-						if (!quiet)
+						if (!quick)
 						{
 							if (Utilities.Instance.ShowWarningQuestion("Flight Dates have been changed and all Spots will be recreated\nDo you want to proceed?") == DialogResult.Yes)
 								quickSave = false;
@@ -420,28 +424,31 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 				if (!quickSave)
 				{
-					_localSchedule.RebuildSpots();
+					_localSchedule.ProgramSchedule.RebuildSpots();
 				}
 			}
 			else
 			{
-				if (!quiet)
+				if (!quick)
 					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Flight Dates before you proceed.");
 				return false;
 			}
 
 			if (_localSchedule.SelectedSpotType != _loadedScheduleType)
 			{
-				_localSchedule.ResetSection();
 				_loadedScheduleType = _localSchedule.SelectedSpotType;
+				_localSchedule.InitProgramSchedule();
 				quickSave = false;
 			}
 
-			_localSchedule.Section.ShowRating = _localSchedule.Section.ShowRating & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			_localSchedule.Section.ShowCPP = _localSchedule.Section.ShowCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			_localSchedule.Section.ShowGRP = _localSchedule.Section.ShowGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			_localSchedule.Section.ShowTotalCPP = _localSchedule.Section.ShowTotalCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			_localSchedule.Section.ShowTotalGRP = _localSchedule.Section.ShowTotalGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+			foreach (var scheduleSection in _localSchedule.ProgramSchedule.Sections)
+			{
+				scheduleSection.ShowRating = scheduleSection.ShowRating & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				scheduleSection.ShowCPP = scheduleSection.ShowCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				scheduleSection.ShowGRP = scheduleSection.ShowGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				scheduleSection.ShowTotalCPP = scheduleSection.ShowTotalCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				scheduleSection.ShowTotalGRP = scheduleSection.ShowTotalGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);	
+			}
 
 			if (stationsControl.HasChanged)
 			{
@@ -457,7 +464,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			if (_localSchedule.DigitalProducts.Any(product => String.IsNullOrEmpty(product.Name)))
 			{
-				if (!quiet)
+				if (!quick)
 					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Web Product in each line before you proceed.");
 				return false;
 			}

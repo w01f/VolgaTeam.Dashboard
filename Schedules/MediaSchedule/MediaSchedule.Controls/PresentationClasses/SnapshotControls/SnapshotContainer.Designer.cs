@@ -378,7 +378,7 @@
 			// 
 			this.xtraTabPageOptionsInfo.Controls.Add(this.pnOptionsInfo);
 			this.xtraTabPageOptionsInfo.Name = "xtraTabPageOptionsInfo";
-			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(290, 499);
+			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(294, 502);
 			this.xtraTabPageOptionsInfo.Text = "Info";
 			// 
 			// pnOptionsInfo
@@ -389,7 +389,7 @@
 			this.pnOptionsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsInfo.Name = "pnOptionsInfo";
-			this.pnOptionsInfo.Size = new System.Drawing.Size(290, 499);
+			this.pnOptionsInfo.Size = new System.Drawing.Size(294, 502);
 			this.pnOptionsInfo.TabIndex = 1;
 			// 
 			// pnSnapshotInfo
@@ -409,7 +409,7 @@
 			this.pnSnapshotInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSnapshotInfo.Location = new System.Drawing.Point(0, 278);
 			this.pnSnapshotInfo.Name = "pnSnapshotInfo";
-			this.pnSnapshotInfo.Size = new System.Drawing.Size(290, 333);
+			this.pnSnapshotInfo.Size = new System.Drawing.Size(294, 333);
 			this.pnSnapshotInfo.TabIndex = 121;
 			// 
 			// buttonXSnapshotStation
@@ -432,7 +432,7 @@
 			this.buttonXSnapshotAvgRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotAvgRate.AutoCheckOnClick = true;
 			this.buttonXSnapshotAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSnapshotAvgRate.Location = new System.Drawing.Point(159, 239);
+			this.buttonXSnapshotAvgRate.Location = new System.Drawing.Point(163, 239);
 			this.buttonXSnapshotAvgRate.Name = "buttonXSnapshotAvgRate";
 			this.buttonXSnapshotAvgRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotAvgRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -475,7 +475,7 @@
 			this.buttonXSnapshotLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotLength.AutoCheckOnClick = true;
 			this.buttonXSnapshotLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSnapshotLength.Location = new System.Drawing.Point(159, 15);
+			this.buttonXSnapshotLength.Location = new System.Drawing.Point(163, 15);
 			this.buttonXSnapshotLength.Name = "buttonXSnapshotLength";
 			this.buttonXSnapshotLength.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -490,7 +490,7 @@
 			this.buttonXSnapshotTotalRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotTotalRow.AutoCheckOnClick = true;
 			this.buttonXSnapshotTotalRow.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSnapshotTotalRow.Location = new System.Drawing.Point(159, 295);
+			this.buttonXSnapshotTotalRow.Location = new System.Drawing.Point(163, 295);
 			this.buttonXSnapshotTotalRow.Name = "buttonXSnapshotTotalRow";
 			this.buttonXSnapshotTotalRow.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotTotalRow.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -505,7 +505,7 @@
 			this.buttonXSnapshotDaypart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotDaypart.AutoCheckOnClick = true;
 			this.buttonXSnapshotDaypart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSnapshotDaypart.Location = new System.Drawing.Point(159, 71);
+			this.buttonXSnapshotDaypart.Location = new System.Drawing.Point(163, 71);
 			this.buttonXSnapshotDaypart.Name = "buttonXSnapshotDaypart";
 			this.buttonXSnapshotDaypart.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotDaypart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -520,7 +520,7 @@
 			this.buttonXSnapshotRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotRate.AutoCheckOnClick = true;
 			this.buttonXSnapshotRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSnapshotRate.Location = new System.Drawing.Point(159, 127);
+			this.buttonXSnapshotRate.Location = new System.Drawing.Point(163, 127);
 			this.buttonXSnapshotRate.Name = "buttonXSnapshotRate";
 			this.buttonXSnapshotRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -535,7 +535,7 @@
 			this.buttonXSnapshotLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotLogo.AutoCheckOnClick = true;
 			this.buttonXSnapshotLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSnapshotLogo.Location = new System.Drawing.Point(159, 183);
+			this.buttonXSnapshotLogo.Location = new System.Drawing.Point(163, 183);
 			this.buttonXSnapshotLogo.Name = "buttonXSnapshotLogo";
 			this.buttonXSnapshotLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -601,7 +601,7 @@
 			this.pnSummaryInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnSummaryInfo.Name = "pnSummaryInfo";
-			this.pnSummaryInfo.Size = new System.Drawing.Size(290, 278);
+			this.pnSummaryInfo.Size = new System.Drawing.Size(294, 278);
 			this.pnSummaryInfo.TabIndex = 120;
 			// 
 			// buttonXSummaryLineId
@@ -638,7 +638,7 @@
 			this.buttonXSummaryLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryLogo.AutoCheckOnClick = true;
 			this.buttonXSummaryLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryLogo.Location = new System.Drawing.Point(159, 15);
+			this.buttonXSummaryLogo.Location = new System.Drawing.Point(163, 15);
 			this.buttonXSummaryLogo.Name = "buttonXSummaryLogo";
 			this.buttonXSummaryLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -681,7 +681,7 @@
 			this.buttonXSummaryTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryTotalCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(159, 183);
+			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(163, 183);
 			this.buttonXSummaryTotalCost.Name = "buttonXSummaryTotalCost";
 			this.buttonXSummaryTotalCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -696,7 +696,7 @@
 			this.buttonXSummaryCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryCost.AutoCheckOnClick = true;
 			this.buttonXSummaryCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryCost.Location = new System.Drawing.Point(159, 126);
+			this.buttonXSummaryCost.Location = new System.Drawing.Point(163, 126);
 			this.buttonXSummaryCost.Name = "buttonXSummaryCost";
 			this.buttonXSummaryCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -711,7 +711,7 @@
 			this.buttonXSummaryComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryComments.AutoCheckOnClick = true;
 			this.buttonXSummaryComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryComments.Location = new System.Drawing.Point(159, 70);
+			this.buttonXSummaryComments.Location = new System.Drawing.Point(163, 70);
 			this.buttonXSummaryComments.Name = "buttonXSummaryComments";
 			this.buttonXSummaryComments.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -740,7 +740,7 @@
 			this.buttonXSummaryTallyCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryTallyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(159, 238);
+			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(163, 238);
 			this.buttonXSummaryTallyCost.Name = "buttonXSummaryTallyCost";
 			this.buttonXSummaryTallyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTallyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;

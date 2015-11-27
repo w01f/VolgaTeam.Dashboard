@@ -41,6 +41,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditUseGenericDates = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).BeginInit();
@@ -50,6 +51,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseGenericDates.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -170,7 +172,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(56, 325);
+			this.buttonXOK.Location = new System.Drawing.Point(56, 367);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -183,7 +185,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(197, 325);
+			this.buttonXCancel.Location = new System.Drawing.Point(197, 367);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -223,10 +225,35 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.checkEditUseGenericDates.StyleController = this.styleController;
 			this.checkEditUseGenericDates.TabIndex = 125;
 			// 
+			// checkEditApplyForAll
+			// 
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 309);
+			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
+			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AutoHeight = false;
+			this.checkEditApplyForAll.Properties.Caption = "Universal Toggle Buttons<br><size=-2>Use the same Toggle buttons for all your sch" +
+    "edules…</size>";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(321, 43);
+			this.checkEditApplyForAll.StyleController = this.styleController;
+			this.checkEditApplyForAll.TabIndex = 127;
+			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(345, 373);
+			this.ClientSize = new System.Drawing.Size(345, 415);
+			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.checkEditUseGenericDates);
 			this.Controls.Add(this.checkEditLockToMaster);
 			this.Controls.Add(this.buttonXCancel);
@@ -239,7 +266,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.Controls.Add(this.checkEditEmptySports);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
@@ -257,6 +283,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseGenericDates.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -275,5 +302,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public DevExpress.XtraEditors.CheckEdit checkEditEmptySports;
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 		public DevExpress.XtraEditors.CheckEdit checkEditUseGenericDates;
+		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
 	}
 }

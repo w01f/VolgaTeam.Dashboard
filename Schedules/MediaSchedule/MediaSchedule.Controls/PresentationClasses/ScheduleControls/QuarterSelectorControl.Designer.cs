@@ -28,25 +28,26 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.label1 = new System.Windows.Forms.Label();
+			this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
 			this.SuspendLayout();
 			// 
-			// label1
+			// buttonX2
 			// 
-			this.label1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.label1.ForeColor = System.Drawing.Color.Black;
-			this.label1.Location = new System.Drawing.Point(433, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(55, 41);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Q1 14";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonX2.Dock = System.Windows.Forms.DockStyle.Right;
+			this.buttonX2.Location = new System.Drawing.Point(428, 0);
+			this.buttonX2.Name = "buttonX2";
+			this.buttonX2.Size = new System.Drawing.Size(60, 41);
+			this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonX2.TabIndex = 1;
+			this.buttonX2.Text = "Q1 14";
 			// 
 			// QuarterSelectorControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.Transparent;
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.buttonX2);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "QuarterSelectorControl";
 			this.Size = new System.Drawing.Size(488, 41);
@@ -56,6 +57,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label label1;
+		private DevComponents.DotNetBar.ButtonX buttonX2;
+
 	}
 }

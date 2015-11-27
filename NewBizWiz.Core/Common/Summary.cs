@@ -15,20 +15,6 @@ namespace Asa.Core.Common
 
 	public class BaseSummarySettings
 	{
-		public BaseSummarySettings()
-		{
-			ShowAdvertiser = true;
-			ShowDecisionMaker = true;
-			ShowPresentationDate = true;
-			ShowFlightDates = true;
-			ShowMonthly = false;
-			ShowTotal = false;
-
-			SlideHeader = string.Empty;
-
-			ContractSettings = new ContractSettings();
-		}
-
 		public bool ShowAdvertiser { get; set; }
 		public bool ShowDecisionMaker { get; set; }
 		public bool ShowPresentationDate { get; set; }
@@ -42,6 +28,20 @@ namespace Asa.Core.Common
 		public decimal? TotalValue { get; set; }
 
 		public ContractSettings ContractSettings { get; private set; }
+
+		public BaseSummarySettings()
+		{
+			ShowAdvertiser = true;
+			ShowDecisionMaker = true;
+			ShowPresentationDate = true;
+			ShowFlightDates = true;
+			ShowMonthly = false;
+			ShowTotal = false;
+
+			SlideHeader = string.Empty;
+
+			ContractSettings = new ContractSettings();
+		}
 
 		public virtual string Serialize()
 		{

@@ -73,7 +73,7 @@ namespace Asa.Dashboard
 		{
 			Utilities.Instance.Title = "6 Minute Seller";
 
-			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "Dashboard", false).LoadState();
+			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "6ms", false).LoadState();
 
 			ApplyMasterWizard();
 

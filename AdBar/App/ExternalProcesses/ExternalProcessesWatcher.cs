@@ -66,13 +66,13 @@ namespace Asa.Bar.App.ExternalProcesses
 			var r = new Regex(@"<Application[\s]*(?<" + TagType + ">.*?)>(?<" + TagName + ">.*?)</Application>",
 				RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-			foreach (Match m in r.Matches(
+			foreach (Match match in r.Matches(
 				File.ReadAllText(ResourceManager.Instance.WatchedProcessesFile.LocalPath, Encoding.Default)))
 			{
-				var name = m.Groups[TagName].Value;
-				var wp = new ExternalProcessConfiguration();
-				wp.Name = name.ToLower();
-				var type = m.Groups[TagType].Value.ToLower();
+				var name = match.Groups[TagName].Value;
+				var processConfiguration = new ExternalProcessConfiguration();
+				processConfiguration.Name = name.ToLower();
+				var type = match.Groups[TagType].Value.ToLower();
 
 				if (!String.IsNullOrEmpty(type))
 				{
@@ -82,33 +82,33 @@ namespace Asa.Bar.App.ExternalProcesses
 						{
 							case "1":
 							case "active":
-								wp.Behaviour = ExternalProcessBehaviour.HideIfIsActive;
+								processConfiguration.Behaviour = ExternalProcessBehaviour.HideIfIsActive;
 								break;
 
 							case "2":
 							case "maximized":
-								wp.Behaviour = ExternalProcessBehaviour.HideIfIsActiveAndMaximized;
+								processConfiguration.Behaviour = ExternalProcessBehaviour.HideIfIsActiveAndMaximized;
 								break;
 
 							case "3":
 							case "notontop":
-								wp.Behaviour = ExternalProcessBehaviour.SetNotOnTopIfIsActive;
+								processConfiguration.Behaviour = ExternalProcessBehaviour.SetNotOnTopIfIsActive;
 								break;
 
 							case "4":
 							case "running":
-								wp.Behaviour = ExternalProcessBehaviour.HideIfProcessIsRunning;
+								processConfiguration.Behaviour = ExternalProcessBehaviour.HideIfProcessIsRunning;
 								break;
 
 							case "5":
 							case "titlebar":
-								wp.Behaviour = ExternalProcessBehaviour.HideIfTitlebarMatches;
-								wp.Name = name; // Fix case
+								processConfiguration.Behaviour = ExternalProcessBehaviour.HideIfTitlebarMatches;
+								processConfiguration.Name = name; // Fix case
 								break;
 						}
 					}
 				}
-				_processConfiguration.Add(wp);
+				_processConfiguration.Add(processConfiguration);
 			}
 		}
 

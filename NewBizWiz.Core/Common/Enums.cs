@@ -33,29 +33,27 @@
 		#region TV Schedule
 		TVWebPackage = 301,
 		TVDigitalProduct = 302,
-		TVMonthlySchedule = 303,
-		TVWeeklySchedule = 304,
-		TVSnapshot = 305,
-		TVOptions = 306,
+		TVProgramSchedule = 303,
+		TVSnapshot = 304,
+		TVOptions = 305,
 		#endregion
 
 		#region Radio Schedule
 		RadioWebPackage = 401,
 		RadioDigitalProduct = 402,
-		RadioMonthlySchedule = 403,
-		RadioWeeklySchedule = 404,
-		RadioSnapshot = 405,
-		RadioOptions = 406,
+		RadioProgramSchedule = 403,
+		RadioSnapshot = 404,
+		RadioOptions = 405,
 		#endregion
 
 		WebQuick = 501,
 
 		#region Common
-		Summary1 = 901,
-		Summary2 = 902,
-		Strategy = 903,
+		Summaries = 901,
+		Summary1 = 902,
+		Summary2 = 903,
+		Strategy = 904,
 		#endregion
-
 	}
 
 	public enum BrowserType

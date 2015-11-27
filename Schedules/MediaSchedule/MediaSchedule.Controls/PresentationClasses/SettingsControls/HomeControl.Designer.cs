@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
+using Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 {
     partial class HomeControl
     {
@@ -45,7 +46,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new Asa.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
-			this.daypartsControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.DaypartsControl();
+			this.daypartsControl = new DaypartsControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStations = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageDayparts = new DevExpress.XtraTab.XtraTabPage();

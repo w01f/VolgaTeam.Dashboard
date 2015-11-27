@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using Asa.Core.MediaSchedule;
+using DevComponents.DotNetBar;
+using Padding = System.Windows.Forms.Padding;
 
 namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class QuarterSelectorControl : UserControl
 	{
-		private readonly List<Label> _quarterLabels = new List<Label>();
+		private readonly List<ButtonX> _quarterButtons = new List<ButtonX>();
 
 		public Quarter SelectedQuarter { get; private set; }
 		public event EventHandler<EventArgs> QuarterSelected;
@@ -22,58 +23,48 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			SelectedQuarter = selectedQuarter;
 			Controls.Clear();
-			_quarterLabels.Clear();
+			_quarterButtons.Clear();
 			foreach (var quarter in quarters)
 			{
-				var label = new Label
+				var panel = new Panel
 				{
 					Dock = DockStyle.Right,
-					Width = 55,
-					TextAlign = ContentAlignment.MiddleCenter,
+					Width = 60,
+					Padding = new Padding(5)
+				};
+				var button = new ButtonX
+				{
+					Dock = DockStyle.Fill,
+					ColorTable = eButtonColor.OrangeWithBackground,
+					Style = eDotNetBarStyle.StyleManagerControlled,
 					Text = quarter.ToString(),
 					Cursor = Cursors.Hand,
-					Tag = quarter
+					Tag = quarter,
+					Checked = quarter == SelectedQuarter
 				};
-				label.Click += OnQuarterSelect;
-				if (quarter == SelectedQuarter)
-					SelectQuarter(label);
-				else
-					UnelectQuarter(label);
-				_quarterLabels.Add(label);
+				button.Click += OnQuarterClick;
+				_quarterButtons.Add(button);
+				panel.Controls.Add(button);
+				Controls.Add(panel);
 			}
-			Controls.AddRange(_quarterLabels.ToArray());
 		}
 
-		private void OnQuarterSelect(object sender, EventArgs e)
+		private void OnQuarterClick(object sender, EventArgs e)
 		{
-			var label = sender as Label;
-			if (label == null) return;
-			var quarter = label.Tag as Quarter;
-			if (quarter == null) return;
-			if (IsQuarterSelected(label)) return;
-			foreach (var quarterLabel in _quarterLabels)
-				UnelectQuarter(quarterLabel);
-			SelectQuarter(label);
-			SelectedQuarter = quarter;
+			var button = (ButtonX)sender;
+			if (button.Checked)
+			{
+				button.Checked = false;
+				SelectedQuarter = null;
+			}
+			else
+			{
+				_quarterButtons.ForEach(b => b.Checked = false);
+				button.Checked = true;
+				SelectedQuarter = (Quarter)button.Tag;
+			}
 			if (QuarterSelected != null)
 				QuarterSelected(this, EventArgs.Empty);
-		}
-
-		private static void SelectQuarter(Label label)
-		{
-			label.ForeColor = Color.Black;
-			label.Font = new Font(label.Font.Name, label.Font.Size, FontStyle.Bold | FontStyle.Underline);
-		}
-
-		private static void UnelectQuarter(Label label)
-		{
-			label.ForeColor = Color.FromArgb(4, 34, 196);
-			label.Font = new Font(label.Font.Name, label.Font.Size, FontStyle.Regular);
-		}
-
-		private static bool IsQuarterSelected(Label label)
-		{
-			return label.ForeColor == Color.Black;
 		}
 	}
 }

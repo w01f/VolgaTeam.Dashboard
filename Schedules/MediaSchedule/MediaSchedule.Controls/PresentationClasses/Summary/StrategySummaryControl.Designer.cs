@@ -1,6 +1,6 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.Strategy
+﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 {
-	sealed partial class ProgramStrategyControl
+	sealed partial class StrategySummaryControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -29,8 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.gridControlItems = new DevExpress.XtraGrid.GridControl();
 			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
 			this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -44,18 +42,11 @@
 			this.bandedGridColumnItemsName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnItemsDescription = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.favoriteImagesControl = new Asa.CommonGUI.FavoriteImages.FavoriteImagesControl();
-			this.retractableBarRight = new Asa.CommonGUI.RetractableBar.RetractableBarRight();
-			this.labelControlFavTitle = new DevExpress.XtraEditors.LabelControl();
-			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-			this.retractableBarRight.Content.SuspendLayout();
-			this.retractableBarRight.Header.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlItems
@@ -66,7 +57,7 @@
 			this.gridControlItems.Location = new System.Drawing.Point(0, 0);
 			this.gridControlItems.MainView = this.advBandedGridViewItems;
 			this.gridControlItems.Name = "gridControlItems";
-			this.gridControlItems.Size = new System.Drawing.Size(476, 623);
+			this.gridControlItems.Size = new System.Drawing.Size(835, 623);
 			this.gridControlItems.TabIndex = 0;
 			this.gridControlItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewItems,
@@ -232,103 +223,18 @@
 			this.gridView1.GridControl = this.gridControlItems;
 			this.gridView1.Name = "gridView1";
 			// 
-			// favoriteImagesControl
-			// 
-			this.favoriteImagesControl.BackColor = System.Drawing.Color.White;
-			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.favoriteImagesControl.ImageTooltip = null;
-			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
-			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(355, 535);
-			this.favoriteImagesControl.TabIndex = 0;
-			// 
-			// retractableBarRight
-			// 
-			this.retractableBarRight.AnimationDelay = 0;
-			this.retractableBarRight.BackColor = System.Drawing.Color.White;
-			// 
-			// retractableBarRight.Content
-			// 
-			this.retractableBarRight.Content.Controls.Add(this.favoriteImagesControl);
-			this.retractableBarRight.Content.Controls.Add(this.hyperLinkEditInfoContract);
-			this.retractableBarRight.Content.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.retractableBarRight.Content.Location = new System.Drawing.Point(2, 42);
-			this.retractableBarRight.Content.Name = "Content";
-			this.retractableBarRight.Content.Size = new System.Drawing.Size(355, 579);
-			this.retractableBarRight.Content.TabIndex = 1;
-			this.retractableBarRight.ContentSize = 300;
-			this.retractableBarRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.retractableBarRight.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			// 
-			// retractableBarRight.Header
-			// 
-			this.retractableBarRight.Header.BackColor = System.Drawing.Color.White;
-			this.retractableBarRight.Header.Controls.Add(this.labelControlFavTitle);
-			this.retractableBarRight.Header.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.retractableBarRight.Header.Location = new System.Drawing.Point(2, 2);
-			this.retractableBarRight.Header.Name = "Header";
-			this.retractableBarRight.Header.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.retractableBarRight.Header.Size = new System.Drawing.Size(304, 36);
-			this.retractableBarRight.Header.TabIndex = 2;
-			this.retractableBarRight.Location = new System.Drawing.Point(476, 0);
-			this.retractableBarRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.retractableBarRight.Name = "retractableBarRight";
-			this.retractableBarRight.Size = new System.Drawing.Size(359, 623);
-			this.retractableBarRight.TabIndex = 1;
-			// 
-			// labelControlFavTitle
-			// 
-			this.labelControlFavTitle.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlFavTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlFavTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlFavTitle.Location = new System.Drawing.Point(5, 0);
-			this.labelControlFavTitle.Name = "labelControlFavTitle";
-			this.labelControlFavTitle.Size = new System.Drawing.Size(299, 36);
-			this.labelControlFavTitle.TabIndex = 0;
-			this.labelControlFavTitle.Text = "Favorite Images";
-			// 
-			// hyperLinkEditInfoContract
-			// 
-			this.hyperLinkEditInfoContract.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.hyperLinkEditInfoContract.EditValue = "Contract Settings";
-			this.hyperLinkEditInfoContract.Location = new System.Drawing.Point(0, 535);
-			this.hyperLinkEditInfoContract.Name = "hyperLinkEditInfoContract";
-			this.hyperLinkEditInfoContract.Properties.Appearance.BackColor = System.Drawing.Color.White;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditInfoContract.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseTextOptions = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.LightGray;
-			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.hyperLinkEditInfoContract.Properties.AutoHeight = false;
-			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(355, 44);
-			toolTipItem1.Text = "Change Slide Output Settings";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
-			this.hyperLinkEditInfoContract.TabIndex = 124;
-			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoContract_OpenLink);
-			// 
-			// ProgramStrategyControl
+			// StrategySummaryControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.gridControlItems);
-			this.Controls.Add(this.retractableBarRight);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "ProgramStrategyControl";
+			this.Name = "StrategySummaryControl";
 			this.Size = new System.Drawing.Size(835, 623);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-			this.retractableBarRight.Content.ResumeLayout(false);
-			this.retractableBarRight.Header.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -345,12 +251,8 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnItemsLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnItemsName;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnItemsDescription;
-		private CommonGUI.FavoriteImages.FavoriteImagesControl favoriteImagesControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsEnabled;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsInfo;
-		private CommonGUI.RetractableBar.RetractableBarRight retractableBarRight;
-		private DevExpress.XtraEditors.LabelControl labelControlFavTitle;
-		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;
 	}
 }

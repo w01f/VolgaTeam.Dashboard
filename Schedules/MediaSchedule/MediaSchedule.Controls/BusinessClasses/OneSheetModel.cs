@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraPrinting.Native;
 using Asa.Core.Common;
-using Asa.Core.Interop;
 using Asa.Core.MediaSchedule;
 
 namespace Asa.MediaSchedule.Controls.BusinessClasses
@@ -47,7 +44,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 		public List<OutputTotalSpot> TotalSpots { get; set; }
 		public Dictionary<string, string> Totals { get; set; }
 		public Dictionary<string, string> ReplacementsList { get; set; }
-		public string[][] Logos { get; set; }
+		public string[] Logos { get; set; }
 
 		public ContractSettings ContractSettings
 		{
@@ -64,7 +61,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 
 		public string FlightDates
 		{
-			get { return _parent.Parent.FlightDates; }
+			get { return _parent.ParentSchedule.FlightDates; }
 		}
 
 		public string RtgHeaderTitle
@@ -72,7 +69,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			get
 			{
 				string result = string.Empty;
-				switch (_parent.Parent.DemoType)
+				switch (_parent.ParentSchedule.DemoType)
 				{
 					case DemoType.Rtg:
 						result = "Rtg";
@@ -81,7 +78,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 						result = "(000s)";
 						break;
 				}
-				return String.Format("{0}{1}", (!String.IsNullOrEmpty(_parent.Parent.Demo) ? String.Format("{0}{1}", _parent.Parent.Demo, (char)13) : String.Empty), result);
+				return String.Format("{0}{1}", (!String.IsNullOrEmpty(_parent.ParentSchedule.Demo) ? String.Format("{0}{1}", _parent.ParentSchedule.Demo, (char)13) : String.Empty), result);
 			}
 		}
 
@@ -90,7 +87,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			get
 			{
 				string result = string.Empty;
-				switch (_parent.Parent.DemoType)
+				switch (_parent.ParentSchedule.DemoType)
 				{
 					case DemoType.Rtg:
 						result = "CPP";
@@ -108,7 +105,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			get
 			{
 				string result = string.Empty;
-				switch (_parent.Parent.DemoType)
+				switch (_parent.ParentSchedule.DemoType)
 				{
 					case DemoType.Rtg:
 						result = "GRP";
@@ -140,30 +137,25 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 
 		public void GetLogos()
 		{
-			var logos = new List<string[]>();
 			if (!ShowLogo) return;
 			var logosOnSlide = new List<string>();
 			var progarmsCount = Programs.Count;
-			for (var i = 0; i < progarmsCount; i += ProgramsPerSlide)
+			logosOnSlide.Clear();
+			for (int i = 0; i < ProgramsPerSlide; i++)
 			{
-				logosOnSlide.Clear();
-				for (int j = 0; j < ProgramsPerSlide; j++)
+				var fileName = String.Empty;
+				if (i < progarmsCount)
 				{
-					var fileName = String.Empty;
-					if ((i + j) < progarmsCount)
+					var progam = Programs[i];
+					if (progam.Logo != null && progam.Logo.ContainsData)
 					{
-						var progam = Programs[i + j];
-						if (progam.Logo != null && progam.Logo.ContainsData)
-						{
-							fileName = Path.GetTempFileName();
-							progam.Logo.SmallImage.Save(fileName);
-						}
+						fileName = Path.GetTempFileName();
+						progam.Logo.SmallImage.Save(fileName);
 					}
-					logosOnSlide.Add(fileName);
 				}
-				logos.Add(logosOnSlide.ToArray());
+				logosOnSlide.Add(fileName);
 			}
-			Logos = logos.ToArray();
+			Logos = logosOnSlide.ToArray();
 		}
 
 		public void PopulateScheduleReplacementsList()

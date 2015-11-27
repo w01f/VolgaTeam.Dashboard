@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -134,41 +135,6 @@ namespace Asa.Core.Common
 					return "";
 			}
 		}
-
-		public Bitmap MakeGrayscale(Bitmap original)
-		{
-			var newBitmap = new Bitmap(original.Width, original.Height);
-
-			//get a graphics object from the new image
-			var g = Graphics.FromImage(newBitmap);
-
-			//create the grayscale ColorMatrix
-			var colorMatrix = new ColorMatrix(
-				new[]
-				{
-					new[] { .3f, .3f, .3f, 0, 0 },
-					new[] { .59f, .59f, .59f, 0, 0 },
-					new[] { .11f, .11f, .11f, 0, 0 },
-					new float[] { 0, 0, 0, 1, 0 },
-					new float[] { 0, 0, 0, 0, 1 }
-				});
-
-			//create some image attributes
-			var attributes = new ImageAttributes();
-
-			//set the color matrix attribute
-			attributes.SetColorMatrix(colorMatrix);
-
-			//draw the original image on the new image
-			//using the grayscale color matrix
-			g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
-						0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
-
-			//dispose the Graphics object
-			g.Dispose();
-			return newBitmap;
-		}
-
 		public bool IsSmallScreen
 		{
 			get
@@ -342,6 +308,40 @@ namespace Asa.Core.Common
 		}
 		#endregion
 
+		public Bitmap MakeGrayscale(Bitmap original)
+		{
+			var newBitmap = new Bitmap(original.Width, original.Height);
+
+			//get a graphics object from the new image
+			var g = Graphics.FromImage(newBitmap);
+
+			//create the grayscale ColorMatrix
+			var colorMatrix = new ColorMatrix(
+				new[]
+				{
+					new[] { .3f, .3f, .3f, 0, 0 },
+					new[] { .59f, .59f, .59f, 0, 0 },
+					new[] { .11f, .11f, .11f, 0, 0 },
+					new float[] { 0, 0, 0, 1, 0 },
+					new float[] { 0, 0, 0, 0, 1 }
+				});
+
+			//create some image attributes
+			var attributes = new ImageAttributes();
+
+			//set the color matrix attribute
+			attributes.SetColorMatrix(colorMatrix);
+
+			//draw the original image on the new image
+			//using the grayscale color matrix
+			g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
+						0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+
+			//dispose the Graphics object
+			g.Dispose();
+			return newBitmap;
+		}
+
 		public void PutImageToClipboard(Image imageData)
 		{
 			if (imageData == null) return;
@@ -358,6 +358,69 @@ namespace Asa.Core.Common
 		{
 			if (!Clipboard.ContainsData("PNG")) return null;
 			return Image.FromStream((Stream)Clipboard.GetData("PNG"));
+		}
+
+		public void DeleteFolder(string folderPath, string filter = "")
+		{
+			DeleteFolder(new DirectoryInfo(folderPath), filter);
+		}
+
+		public void MakeFolderAvailable(DirectoryInfo folder)
+		{
+			try
+			{
+				foreach (var subFolder in folder.GetDirectories())
+					MakeFolderAvailable(subFolder);
+				foreach (FileInfo file in folder.GetFiles())
+					if (File.Exists(file.FullName))
+						File.SetAttributes(file.FullName, FileAttributes.Normal);
+			}
+			catch { }
+		}
+
+		public void DeleteFolder(DirectoryInfo folder, string filter = "")
+		{
+			try
+			{
+				if (!folder.Exists) return;
+				MakeFolderAvailable(folder);
+				foreach (var subFolder in folder.GetDirectories())
+					DeleteFolder(subFolder, filter);
+				foreach (var file in folder.GetFiles())
+				{
+					try
+					{
+						if (File.Exists(file.FullName) && (folder.Name.Contains(filter) || string.IsNullOrEmpty(filter)))
+							File.Delete(file.FullName);
+					}
+					catch
+					{
+						try
+						{
+							Thread.Sleep(100);
+							if (File.Exists(file.FullName) && (folder.Name.Contains(filter) || string.IsNullOrEmpty(filter)))
+								File.Delete(file.FullName);
+						}
+						catch { }
+					}
+				}
+				try
+				{
+					if (Directory.Exists(folder.FullName) && (folder.Name.Contains(filter) || string.IsNullOrEmpty(filter)))
+						Directory.Delete(folder.FullName, false);
+				}
+				catch
+				{
+					try
+					{
+						Thread.Sleep(100);
+						if (Directory.Exists(folder.FullName) && (folder.Name.Contains(filter) || string.IsNullOrEmpty(filter)))
+							Directory.Delete(folder.FullName, false);
+					}
+					catch { }
+				}
+			}
+			catch { }
 		}
 	}
 

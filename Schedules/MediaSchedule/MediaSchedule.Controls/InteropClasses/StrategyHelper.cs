@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using Asa.MediaSchedule.Controls.PresentationClasses.Summary;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Asa.Core.Interop;
 using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.PresentationClasses.Strategy;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.MediaSchedule.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
-		public void AppendStrategy(ProgramStrategyControl strategy, Presentation destinationPresentation = null)
+		public void AppendStrategy(StrategySummaryControl strategy, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -113,12 +113,12 @@ namespace Asa.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareStrategyEmail(string fileName, ProgramStrategyControl strategy)
+		public void PrepareStrategyEmail(string fileName, StrategySummaryControl strategy)
 		{
 			PreparePresentation(fileName, presentation => AppendStrategy(strategy, presentation));
 		}
 
-		public void PrepareStrategyPdf(string targetFileName, ProgramStrategyControl strategy)
+		public void PrepareStrategyPdf(string targetFileName, StrategySummaryControl strategy)
 		{
 			var sourceFileName = Path.GetTempFileName();
 			PreparePresentation(sourceFileName, presentation => AppendStrategy(strategy, presentation));

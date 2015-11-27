@@ -545,6 +545,8 @@ namespace Asa.Core.Common
 			await base.Download();
 			if (_isOutdated || !_asociatedDirectory.ExistsLocal())
 			{
+				if (_asociatedDirectory.ExistsLocal())
+					Utilities.Instance.DeleteFolder(_asociatedDirectory.LocalPath);
 				var contentLenght = new FileInfo(LocalPath).Length;
 				Int64 alreadyRead = 0;
 				using (Stream stream = File.OpenRead(LocalPath))

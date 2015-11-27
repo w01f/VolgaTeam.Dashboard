@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using DevExpress.XtraGrid.Views.Base;
 using Asa.Core.MediaSchedule;
+using DevExpress.XtraGrid.Views.Base;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 {
 	public partial class DaypartsControl : UserControl
 	{

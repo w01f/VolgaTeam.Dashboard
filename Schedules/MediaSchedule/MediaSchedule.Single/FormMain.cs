@@ -84,15 +84,12 @@ namespace Asa.MediaSchedule.Single
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
 			Controller.Instance.TabHome = ribbonTabItemHome;
-			Controller.Instance.TabWeeklySchedule = ribbonTabItemWeeklySchedule;
-			Controller.Instance.TabMonthlySchedule = ribbonTabItemMonthlySchedule;
+			Controller.Instance.TabProgramSchedule = ribbonTabItemProgramSchedule;
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
 			Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
-			Controller.Instance.TabSummaryLight = ribbonTabItemSummaryLight;
-			Controller.Instance.TabSummaryFull = ribbonTabItemSummaryFull;
-			Controller.Instance.TabStrategy = ribbonTabItemStrategy;
+			Controller.Instance.TabSummary = ribbonTabItemSummary;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
@@ -120,40 +117,21 @@ namespace Asa.MediaSchedule.Single
 			Controller.Instance.HomeAccountNumberCheck = checkBoxItemHomeAccountNumber;
 			#endregion
 
-			#region Weekly Schedule
-			Controller.Instance.WeeklySchedulePanel = ribbonPanelWeeklySchedule;
-			Controller.Instance.WeeklyScheduleThemeBar = ribbonBarWeeklySchedulePowerPoint;
-			Controller.Instance.WeeklyScheduleSpecialButtons = ribbonBarWeeklyScheduleSpecialButtons;
-			Controller.Instance.WeeklyScheduleHelp = buttonItemWeeklyScheduleHelp;
-			Controller.Instance.WeeklyScheduleSave = buttonItemWeeklyScheduleSave;
-			Controller.Instance.WeeklyScheduleSaveAs = buttonItemWeeklyScheduleSaveAs;
-			Controller.Instance.WeeklySchedulePreview = buttonItemWeeklySchedulePreview;
-			Controller.Instance.WeeklyScheduleEmail = buttonItemWeeklyScheduleEmail;
-			Controller.Instance.WeeklySchedulePowerPoint = buttonItemWeeklySchedulePowerPoint;
-			Controller.Instance.WeeklySchedulePdf = buttonItemWeeklySchedulePdf;
-			Controller.Instance.WeeklyScheduleTheme = buttonItemWeeklyScheduleTheme;
-			Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
-			Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
-			Controller.Instance.WeeklyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
-			Controller.Instance.WeeklyScheduleQuarterButton = buttonItemWeeklyScheduleQuarter;
-			#endregion
-
-			#region Monthly Schedule
-			Controller.Instance.MonthlySchedulePanel = ribbonPanelMonthlySchedule;
-			Controller.Instance.MonthlyScheduleThemeBar = ribbonBarMonthlySchedulePowerPoint;
-			Controller.Instance.MonthlyScheduleSpecialButtons = ribbonBarMonthlyScheduleSpecialButtons;
-			Controller.Instance.MonthlyScheduleHelp = buttonItemMonthlyScheduleHelp;
-			Controller.Instance.MonthlyScheduleSave = buttonItemMonthlyScheduleSave;
-			Controller.Instance.MonthlyScheduleSaveAs = buttonItemMonthlyScheduleSaveAs;
-			Controller.Instance.MonthlySchedulePreview = buttonItemMonthlySchedulePreview;
-			Controller.Instance.MonthlyScheduleEmail = buttonItemMonthlyScheduleEmail;
-			Controller.Instance.MonthlySchedulePowerPoint = buttonItemMonthlySchedulePowerPoint;
-			Controller.Instance.MonthlySchedulePdf = buttonItemMonthlySchedulePdf;
-			Controller.Instance.MonthlyScheduleTheme = buttonItemMonthlyScheduleTheme;
-			Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
-			Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
-			Controller.Instance.MonthlyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
-			Controller.Instance.MonthlyScheduleQuarterButton = buttonItemMonthlyScheduleQuarter;
+			#region Program Schedule
+			Controller.Instance.ProgramSchedulePanel = ribbonPanelProgramSchedule;
+			Controller.Instance.ProgramScheduleThemeBar = ribbonBarProgramSchedulePowerPoint;
+			Controller.Instance.ProgramScheduleSpecialButtons = ribbonBarProgramScheduleSpecialButtons;
+			Controller.Instance.ProgramScheduleHelp = buttonItemProgramScheduleHelp;
+			Controller.Instance.ProgramScheduleSave = buttonItemProgramScheduleSave;
+			Controller.Instance.ProgramScheduleSaveAs = buttonItemProgramScheduleSaveAs;
+			Controller.Instance.ProgramSchedulePreview = buttonItemProgramSchedulePreview;
+			Controller.Instance.ProgramScheduleEmail = buttonItemProgramScheduleEmail;
+			Controller.Instance.ProgramSchedulePowerPoint = buttonItemProgramSchedulePowerPoint;
+			Controller.Instance.ProgramSchedulePdf = buttonItemProgramSchedulePdf;
+			Controller.Instance.ProgramScheduleTheme = buttonItemProgramScheduleTheme;
+			Controller.Instance.ProgramScheduleNew = buttonItemProgramScheduleNew;
+			Controller.Instance.ProgramScheduleProgramAdd = buttonItemProgramScheduleProgramAdd;
+			Controller.Instance.ProgramScheduleProgramDelete = buttonItemProgramScheduleProgramDelete;
 			#endregion
 
 			#region Digital Product
@@ -215,51 +193,17 @@ namespace Asa.MediaSchedule.Single
 			#endregion
 
 			#region Summary Light
-			Controller.Instance.SummaryLightPanel = ribbonPanelSummaryLight;
-			Controller.Instance.SummaryLightThemeBar = ribbonBarSummaryLightPowerPoint;
-			Controller.Instance.SummaryLightSpecialButtons = ribbonBarSummaryLightSpecialButtons;
-			Controller.Instance.SummaryLightHelp = buttonItemSummaryLightHelp;
-			Controller.Instance.SummaryLightSave = buttonItemSummaryLightSave;
-			Controller.Instance.SummaryLightSaveAs = buttonItemSummaryLightSaveAs;
-			Controller.Instance.SummaryLightPreview = buttonItemSummaryLightPreview;
-			Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
-			Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
-			Controller.Instance.SummaryLightPdf = buttonItemSummaryLightPdf;
-			Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
-			Controller.Instance.SummaryLightSlideOutputToggle = checkEditSummaryLightOutputSlide;
-			Controller.Instance.SummaryLightTableOutputToggle = checkEditSummaryLightOutputTable;
-			#endregion
-
-			#region Summary Full
-			Controller.Instance.SummaryFullPanel = ribbonPanelSummaryFull;
-			Controller.Instance.SummaryFullThemeBar = ribbonBarSummaryFullPowerPoint;
-			Controller.Instance.SummaryFullSpecialButtons = ribbonBarSummaryFullSpecialButtons;
-			Controller.Instance.SummaryFullHelp = buttonItemSummaryFullHelp;
-			Controller.Instance.SummaryFullSave = buttonItemSummaryFullSave;
-			Controller.Instance.SummaryFullSaveAs = buttonItemSummaryFullSaveAs;
-			Controller.Instance.SummaryFullPreview = buttonItemSummaryFullPreview;
-			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
-			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
-			Controller.Instance.SummaryFullPdf = buttonItemSummaryFullPdf;
-			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
-			Controller.Instance.SummaryFullSlideOutputToggle = checkEditSummaryFullOutputSlide;
-			Controller.Instance.SummaryFullTableOutputToggle = checkEditSummaryFullOutputTable;
-			#endregion
-
-			#region Strategy
-			Controller.Instance.StrategyPanel = ribbonPanelStrategy;
-			Controller.Instance.StrategyThemeBar = ribbonBarStrategyPowerPoint;
-			Controller.Instance.StrategySpecialButtons = ribbonBarStrategySpecialButtons;
-			Controller.Instance.StrategyHelp = buttonItemStrategyHelp;
-			Controller.Instance.StrategySave = buttonItemStrategySave;
-			Controller.Instance.StrategySaveAs = buttonItemStrategySaveAs;
-			Controller.Instance.StrategyPreview = buttonItemStrategyPreview;
-			Controller.Instance.StrategyEmail = buttonItemStrategyEmail;
-			Controller.Instance.StrategyPowerPoint = buttonItemStrategyPowerPoint;
-			Controller.Instance.StrategyPdf = buttonItemStrategyPdf;
-			Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
-			Controller.Instance.StrategyShowStationToggle = checkEditStrategyShowStation;
-			Controller.Instance.StrategyShowDescriptionToggle = checkEditStrategyShowDescription;
+			Controller.Instance.SummaryPanel = ribbonPanelSummary;
+			Controller.Instance.SummaryThemeBar = ribbonBarSummaryPowerPoint;
+			Controller.Instance.SummarySpecialButtons = ribbonBarSummarySpecialButtons;
+			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
+			Controller.Instance.SummarySave = buttonItemSummarySave;
+			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
+			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
+			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
+			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
+			Controller.Instance.SummaryPdf = buttonItemSummaryPdf;
+			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
 			#endregion
 
 			#region Snapshot
@@ -397,25 +341,14 @@ namespace Asa.MediaSchedule.Single
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
-			else if ((_currentControl == Controller.Instance.WeeklySchedule))
+			else if ((_currentControl == Controller.Instance.ProgramSchedule))
 			{
-				if (Controller.Instance.WeeklySchedule.AllowToLeaveControl)
+				if (Controller.Instance.ProgramSchedule.AllowToLeaveControl)
 					result = true;
 				else
 				{
 					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemWeeklySchedule;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.MonthlySchedule))
-			{
-				if (Controller.Instance.MonthlySchedule.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemMonthlySchedule;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemProgramSchedule;
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
@@ -463,36 +396,14 @@ namespace Asa.MediaSchedule.Single
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
-			else if ((_currentControl == Controller.Instance.SummaryLight))
+			else if ((_currentControl == Controller.Instance.Summary))
 			{
-				if (Controller.Instance.SummaryLight.AllowToLeaveControl)
+				if (Controller.Instance.Summary.AllowToLeaveControl)
 					result = true;
 				else
 				{
 					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSummaryLight;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.SummaryFull))
-			{
-				if (Controller.Instance.SummaryFull.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSummaryFull;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.Strategy))
-			{
-				if (Controller.Instance.Strategy.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemStrategy;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSummary;
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
@@ -565,22 +476,11 @@ namespace Asa.MediaSchedule.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemWeeklySchedule)
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemProgramSchedule)
 			{
 				if (AllowToLeaveCurrentControl())
 				{
-					_currentControl = Controller.Instance.WeeklySchedule;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMonthlySchedule)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.MonthlySchedule;
+					_currentControl = Controller.Instance.ProgramSchedule;
 					if (!pnMain.Controls.Contains(_currentControl))
 						pnMain.Controls.Add(_currentControl);
 				}
@@ -641,33 +541,11 @@ namespace Asa.MediaSchedule.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummaryLight)
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
 			{
 				if (AllowToLeaveCurrentControl())
 				{
-					_currentControl = Controller.Instance.SummaryLight;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummaryFull)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.SummaryFull;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemStrategy)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.Strategy;
+					_currentControl = Controller.Instance.Summary;
 					if (!pnMain.Controls.Contains(_currentControl))
 						pnMain.Controls.Add(_currentControl);
 				}
@@ -747,10 +625,8 @@ namespace Asa.MediaSchedule.Single
 			bool result = true;
 			if (_currentControl == Controller.Instance.HomeControl)
 				result = Controller.Instance.HomeControl.AllowToLeaveControl();
-			else if (_currentControl == Controller.Instance.WeeklySchedule)
-				result = Controller.Instance.WeeklySchedule.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.MonthlySchedule)
-				result = Controller.Instance.MonthlySchedule.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.ProgramSchedule)
+				result = Controller.Instance.ProgramSchedule.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.DigitalProductContainer)
 				result = Controller.Instance.DigitalProductContainer.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.DigitalPackage)
@@ -759,12 +635,8 @@ namespace Asa.MediaSchedule.Single
 				result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.CustomCalendar)
 				result = Controller.Instance.CustomCalendar.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.SummaryLight)
-				result = Controller.Instance.SummaryLight.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.SummaryFull)
-				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Strategy)
-				result = Controller.Instance.Strategy.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Summary)
+				result = Controller.Instance.Summary.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Snapshot)
 				result = Controller.Instance.Snapshot.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Options)

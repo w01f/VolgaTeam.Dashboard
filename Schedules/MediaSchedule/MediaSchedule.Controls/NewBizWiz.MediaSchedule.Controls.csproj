@@ -148,8 +148,23 @@
     <Compile Include="PresentationClasses\ScheduleControls\FormOutputSettings.Designer.cs">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\FormSectionName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormSectionName.Designer.cs">
+      <DependentUpon>FormSectionName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleContainer.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleContainer.Designer.cs">
+      <DependentUpon>ScheduleContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\SectionControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\SectionControl.Designer.cs">
+      <DependentUpon>SectionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\SnapshotControls\FormOutputSettings.cs">
       <SubType>Form</SubType>
@@ -182,8 +197,53 @@
     <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.Designer.cs">
       <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Summary\MediaSummaryFull.cs">
+    <Compile Include="PresentationClasses\Summary\CustomSummaryControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\IContentSettingsEditorControl.cs" />
+    <Compile Include="PresentationClasses\Summary\ISectionSummaryControl.cs" />
+    <Compile Include="PresentationClasses\Summary\ISummarySettingsEditorControl.cs" />
+    <Compile Include="PresentationClasses\Summary\ProductSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategySummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategySummaryControl.Designer.cs">
+      <DependentUpon>StrategySummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyImageControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyImageControl.Designer.cs">
+      <DependentUpon>StrategyImageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyInfoControl.Designer.cs">
+      <DependentUpon>StrategyInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SectionSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SectionSummaryControl.Designer.cs">
+      <DependentUpon>SectionSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryTypeSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryTypeSettingsControl.Designer.cs">
+      <DependentUpon>SummaryTypeSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\BaseSummaryInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\BaseSummaryInfoControl.Designer.cs">
+      <DependentUpon>BaseSummaryInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\CustomSummaryInfoControl.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\Gallery\MediaGallery2Control.cs">
       <SubType>UserControl</SubType>
@@ -197,25 +257,22 @@
     <Compile Include="PresentationClasses\Digital\DigitalInfoControl.Designer.cs">
       <DependentUpon>DigitalInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\MonthlyScheduleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="PresentationClasses\Digital\MediaWebPackageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\DaypartsControl.cs">
+    <Compile Include="PresentationClasses\SettingsControls\DaypartsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\DaypartsControl.Designer.cs">
+    <Compile Include="PresentationClasses\SettingsControls\DaypartsControl.Designer.cs">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Digital\DigitalProductContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\HomeControl.cs">
+    <Compile Include="PresentationClasses\SettingsControls\HomeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\HomeControl.Designer.cs">
+    <Compile Include="PresentationClasses\SettingsControls\HomeControl.Designer.cs">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.cs">
@@ -224,35 +281,32 @@
     <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.Designer.cs">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Summary\MediaSummaryLight.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Strategy\ProgramStrategyControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Strategy\ProgramStrategyControl.Designer.cs">
-      <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.Designer.cs">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\StationsControl.cs">
+    <Compile Include="PresentationClasses\SettingsControls\StationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\StationsControl.Designer.cs">
+    <Compile Include="PresentationClasses\SettingsControls\StationsControl.Designer.cs">
       <DependentUpon>StationsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.cs">
+    <Compile Include="PresentationClasses\Summary\ProductSummaryInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.Designer.cs">
-      <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\Summary\SummaryContainer.Designer.cs">
+      <DependentUpon>SummaryContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\WeeklyScheduleControl.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="PresentationClasses\Summary\SummaryTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryTab.Designer.cs">
+      <DependentUpon>SummaryTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -310,7 +364,18 @@
     <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsSummaryControl.resx">
       <DependentUpon>OptionsSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\DaypartsControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormSectionName.resx">
+      <DependentUpon>FormSectionName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleContainer.resx">
+      <DependentUpon>ScheduleContainer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\SectionControl.resx">
+      <DependentUpon>SectionControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\DaypartsControl.resx">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfoControl.resx">
@@ -322,16 +387,13 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\HomeControl.resx">
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.resx">
-      <DependentUpon>RegularScheduleSectionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
@@ -348,19 +410,37 @@
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.resx">
       <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Strategy\ProgramStrategyControl.resx">
-      <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.resx">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\StationsControl.resx">
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\StationsControl.resx">
       <DependentUpon>StationsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.resx">
-      <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Summary\StrategySummaryControl.resx">
+      <DependentUpon>StrategySummaryControl.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\StrategyImageControl.resx">
+      <DependentUpon>StrategyImageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\StrategyInfoControl.resx">
+      <DependentUpon>StrategyInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SectionSummaryControl.resx">
+      <DependentUpon>SectionSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryTypeSettingsControl.resx">
+      <DependentUpon>SummaryTypeSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\BaseSummaryInfoControl.resx">
+      <DependentUpon>BaseSummaryInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryContainer.resx">
+      <DependentUpon>SummaryContainer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryTab.resx">
+      <DependentUpon>SummaryTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -546,6 +626,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HomeDefaultLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionNoRecords.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryOptionsFavorites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryOptionsInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryOptionsType.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

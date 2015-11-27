@@ -4,11 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using EO.Internal;
 using Asa.CommonGUI.ToolForms;
 using Asa.Core.Common;
 

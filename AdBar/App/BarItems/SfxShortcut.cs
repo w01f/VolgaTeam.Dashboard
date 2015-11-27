@@ -6,7 +6,7 @@ using Asa.Bar.App.Configuration;
 
 namespace Asa.Bar.App.BarItems
 {
-	class SfxShortcut:TabGroupItem
+	class SfxShortcut : TabGroupItem
 	{
 		private string _sfxFilePath;
 
@@ -15,7 +15,7 @@ namespace Asa.Bar.App.BarItems
 			get { return LinkType.Sfx; }
 		}
 
-		public SfxShortcut(string configPath) : base(configPath) {}
+		public SfxShortcut(string configPath) : base(configPath) { }
 
 		protected override void Init(string configContent)
 		{

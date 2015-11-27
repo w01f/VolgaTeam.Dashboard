@@ -105,10 +105,8 @@ namespace Asa.Core.Common
 						slideType = SlideType.TVWebPackage;
 						break;
 					case "TVWeeklySchedule":
-						slideType = SlideType.TVWeeklySchedule;
-						break;
 					case "TVMonthlySchedule":
-						slideType = SlideType.TVMonthlySchedule;
+						slideType = SlideType.TVProgramSchedule;
 						break;
 					case "TVSnapshot":
 						slideType = SlideType.TVSnapshot;
@@ -126,10 +124,8 @@ namespace Asa.Core.Common
 						slideType = SlideType.RadioWebPackage;
 						break;
 					case "RadioWeeklySchedule":
-						slideType = SlideType.RadioWeeklySchedule;
-						break;
 					case "RadioMonthlySchedule":
-						slideType = SlideType.RadioMonthlySchedule;
+						slideType = SlideType.RadioProgramSchedule;
 						break;
 					case "RadioSnapshot":
 						slideType = SlideType.RadioSnapshot;

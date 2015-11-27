@@ -729,11 +729,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", Controller.Instance.TabSnapshot.Text);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.Section.Programs.Any())
+			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
 			{
-				options.Add("TotalSpots", _localSchedule.Section.TotalSpots);
-				options.Add("AverageRate", _localSchedule.Section.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
+				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
+				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
+				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
 			}
 			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
@@ -743,11 +743,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", Controller.Instance.TabSnapshot.Text);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.Section.Programs.Any())
+			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
 			{
-				options.Add("TotalSpots", _localSchedule.Section.TotalSpots);
-				options.Add("AverageRate", _localSchedule.Section.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
+				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
+				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
+				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
 			}
 			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}

@@ -12,9 +12,9 @@ namespace Asa.Core.MediaSchedule
 	public enum SectionSummaryTypeEnum
 	{
 		None,
+		Custom,
 		Product,
-		Strategy,
-		Custom
+		Strategy
 	}
 
 	public class SectionSummary
@@ -26,7 +26,7 @@ namespace Asa.Core.MediaSchedule
 		public SectionSummary(ScheduleSection parent)
 		{
 			Parent = parent;
-			SummaryType = SectionSummaryTypeEnum.Product;
+			SummaryType = SectionSummaryTypeEnum.Custom;
 			Content = CreateContentBySummaryType();
 		}
 

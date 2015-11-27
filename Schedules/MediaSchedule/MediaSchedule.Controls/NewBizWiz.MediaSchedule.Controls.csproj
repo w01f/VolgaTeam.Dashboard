@@ -442,6 +442,7 @@
     <EmbeddedResource Include="PresentationClasses\Summary\SummaryTab.resx">
       <DependentUpon>SummaryTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

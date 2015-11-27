@@ -59,7 +59,7 @@
 			this.buttonXTypeCustom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTypeCustom.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTypeCustom.Location = new System.Drawing.Point(24, 106);
+			this.buttonXTypeCustom.Location = new System.Drawing.Point(24, 15);
 			this.buttonXTypeCustom.Name = "buttonXTypeCustom";
 			this.buttonXTypeCustom.Size = new System.Drawing.Size(249, 27);
 			this.buttonXTypeCustom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -75,7 +75,7 @@
 			this.buttonXTypeProduct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTypeProduct.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTypeProduct.Location = new System.Drawing.Point(24, 14);
+			this.buttonXTypeProduct.Location = new System.Drawing.Point(24, 107);
 			this.buttonXTypeProduct.Name = "buttonXTypeProduct";
 			this.buttonXTypeProduct.Size = new System.Drawing.Size(249, 27);
 			this.buttonXTypeProduct.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -94,14 +94,14 @@
 			this.checkEditTableOutput.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTableOutput.Properties.AutoWidth = true;
 			this.checkEditTableOutput.Properties.Caption = "Use PowerPoint Slide Tables";
-			this.checkEditTableOutput.Size = new System.Drawing.Size(190, 20);
+			this.checkEditTableOutput.Size = new System.Drawing.Size(190, 19);
 			this.checkEditTableOutput.TabIndex = 122;
 			this.checkEditTableOutput.CheckedChanged += new System.EventHandler(this.OnTableOutputCheckedChanged);
 			// 
 			// laProductSlideCount
 			// 
 			this.laProductSlideCount.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laProductSlideCount.Location = new System.Drawing.Point(21, 44);
+			this.laProductSlideCount.Location = new System.Drawing.Point(21, 137);
 			this.laProductSlideCount.Name = "laProductSlideCount";
 			this.laProductSlideCount.Size = new System.Drawing.Size(249, 19);
 			this.laProductSlideCount.TabIndex = 123;
@@ -111,7 +111,7 @@
 			// laCustomSlideCount
 			// 
 			this.laCustomSlideCount.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laCustomSlideCount.Location = new System.Drawing.Point(21, 136);
+			this.laCustomSlideCount.Location = new System.Drawing.Point(21, 45);
 			this.laCustomSlideCount.Name = "laCustomSlideCount";
 			this.laCustomSlideCount.Size = new System.Drawing.Size(249, 22);
 			this.laCustomSlideCount.TabIndex = 124;

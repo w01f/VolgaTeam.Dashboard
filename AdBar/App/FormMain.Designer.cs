@@ -44,6 +44,8 @@
 			this.buttonItemScreen4 = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemScreen5 = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemScreen6 = new DevComponents.DotNetBar.ButtonItem();
+			this.itemContainer5 = new DevComponents.DotNetBar.ItemContainer();
+			this.checkBoxItemLoadAtStartup = new DevComponents.DotNetBar.CheckBoxItem();
 			this.ribbonBarBrowsers = new DevComponents.DotNetBar.RibbonBar();
 			this.itemContainer1 = new DevComponents.DotNetBar.ItemContainer();
 			this.buttonItemBrowserCh = new DevComponents.DotNetBar.ButtonItem();
@@ -130,7 +132,8 @@
 			this.ribbonBarSettings.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSettings.Location = new System.Drawing.Point(172, 16);
 			this.ribbonBarSettings.Name = "ribbonBarSettings";
-			this.ribbonBarSettings.Size = new System.Drawing.Size(89, 145);
+			this.ribbonBarSettings.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.ribbonBarSettings.Size = new System.Drawing.Size(140, 145);
 			this.ribbonBarSettings.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSettings.TabIndex = 2;
 			this.ribbonBarSettings.Text = "Extras";
@@ -150,12 +153,13 @@
 			// 
 			this.itemContainer3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainer3.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-			this.itemContainer3.ItemSpacing = 5;
+			this.itemContainer3.ItemSpacing = 10;
 			this.itemContainer3.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.itemContainer3.Name = "itemContainer3";
 			this.itemContainer3.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.itemContainer4,
-            this.itemContainerMonitors});
+            this.itemContainerMonitors,
+            this.itemContainer5});
 			// 
 			// 
 			// 
@@ -181,7 +185,7 @@
 			this.colorPickerDropDownInterface.Name = "colorPickerDropDownInterface";
 			this.colorPickerDropDownInterface.PopupAnimation = DevComponents.DotNetBar.ePopupAnimation.None;
 			this.colorPickerDropDownInterface.SplitButton = true;
-			this.colorPickerDropDownInterface.Text = "AdBar Color";
+			this.colorPickerDropDownInterface.Text = "     AdBar Color";
 			this.colorPickerDropDownInterface.SelectedColorChanged += new System.EventHandler(this.OnSelectedColorChanged);
 			this.colorPickerDropDownInterface.ColorPreview += new DevComponents.DotNetBar.ColorPreviewEventHandler(this.OnColorPreview);
 			this.colorPickerDropDownInterface.PopupClose += new System.EventHandler(this.OnColorPopupClose);
@@ -209,7 +213,7 @@
 			// labelItem2
 			// 
 			this.labelItem2.Name = "labelItem2";
-			this.labelItem2.Text = "Screen:";
+			this.labelItem2.Text = "     Screen:";
 			// 
 			// buttonItemScreen1
 			// 
@@ -252,6 +256,27 @@
 			this.buttonItemScreen6.Tag = "5";
 			this.buttonItemScreen6.Text = "6";
 			this.buttonItemScreen6.Click += new System.EventHandler(this.OnMonitorSelectorClick);
+			// 
+			// itemContainer5
+			// 
+			// 
+			// 
+			// 
+			this.itemContainer5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainer5.Name = "itemContainer5";
+			this.itemContainer5.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.checkBoxItemLoadAtStartup});
+			// 
+			// 
+			// 
+			this.itemContainer5.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// checkBoxItemLoadAtStartup
+			// 
+			this.checkBoxItemLoadAtStartup.CheckBoxPosition = DevComponents.DotNetBar.eCheckBoxPosition.Right;
+			this.checkBoxItemLoadAtStartup.Name = "checkBoxItemLoadAtStartup";
+			this.checkBoxItemLoadAtStartup.Text = "     Load at Startup";
+			this.checkBoxItemLoadAtStartup.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(this.OnLoadAtStartupCheckedChanged);
 			// 
 			// ribbonBarBrowsers
 			// 
@@ -437,6 +462,8 @@
         private DevComponents.DotNetBar.ItemContainer itemContainer4;
 		private DevComponents.DotNetBar.ColorPickerDropDown colorPickerDropDownInterface;
 		private DevComponents.DotNetBar.LabelItem labelItem2;
+		private DevComponents.DotNetBar.ItemContainer itemContainer5;
+		private DevComponents.DotNetBar.CheckBoxItem checkBoxItemLoadAtStartup;
     }
 }
 

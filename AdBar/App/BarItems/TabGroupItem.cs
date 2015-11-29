@@ -3,14 +3,18 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using Asa.Bar.App.Common;
 using Asa.Bar.App.Configuration;
 
 namespace Asa.Bar.App.BarItems
 {
 	abstract class TabGroupItem
 	{
+		private int _splashDelay;
+		private string _splashText;
+
 		protected readonly string _configPath;
 		protected abstract LinkType Type { get; }
 		public string Title { get; private set; }
@@ -18,6 +22,11 @@ namespace Asa.Bar.App.BarItems
 		public string Tooltip { get; private set; }
 		public string Password { get; private set; }
 		public bool UserGranted { get; private set; }
+
+		private bool SplashEnabled
+		{
+			get { return !String.IsNullOrEmpty(_splashText); }
+		}
 
 		protected TabGroupItem(string configPath)
 		{
@@ -28,10 +37,6 @@ namespace Asa.Bar.App.BarItems
 
 		protected virtual void Init(string configContent)
 		{
-
-			//var t = new TabGroupItem(,
-			//	type == "url" ? LinkType.Url : (type == "exe" ? LinkType.Exe : LinkType.Any), configFile);
-
 			Title = ConfigHelper.GetValueRegex("<title>(.*?)</title>", configContent);
 
 			var imagePath = Path.ChangeExtension(_configPath, "png");
@@ -40,6 +45,10 @@ namespace Asa.Bar.App.BarItems
 			Tooltip = ConfigHelper.GetValueRegex("<tooltip>(.*?)</tooltip>", configContent);
 
 			Password = ConfigHelper.GetValueRegex("<pincode>(.*?)</pincode>", configContent);
+
+			_splashText = ConfigHelper.GetValueRegex("<splash_text>(.*?)</splash_text>", configContent);
+			if (SplashEnabled)
+				_splashDelay = Int32.Parse(ConfigHelper.GetValueRegex("<splash_delay>(.*)</splash_delay>", configContent));
 
 			UserGranted = !configContent.Contains("approveduser") ||
 						  ConfigHelper.GetValuesRegex("<approveduser>(.*?)</approveduser>", configContent)
@@ -67,21 +76,25 @@ namespace Asa.Bar.App.BarItems
 		{
 			var stotedCursor = Cursor.Current;
 			Cursor.Current = Cursors.WaitCursor;
+			ShowSplash();
 			OpenLinkInternal();
 			Cursor.Current = stotedCursor;
 		}
 
 		protected abstract void OpenLinkInternal();
 
-		private static void Start(string path, string args = "", bool useShellExecute = false)
+		private void ShowSplash()
 		{
-			try
+			if (!SplashEnabled) return;
+			var formSplash = new FormSplash();
+			formSplash.laTitle.Text = _splashText;
+			formSplash.Shown += async (o, args) =>
 			{
-				Process.Start(new ProcessStartInfo(path, args) { UseShellExecute = useShellExecute });
-			}
-			catch
-			{
-			}
+				await Task.Run(() => Thread.Sleep(_splashDelay * 1000));
+				formSplash.Close();
+			};
+			formSplash.Show();
+			GC.KeepAlive(formSplash);
 		}
 	}
 }

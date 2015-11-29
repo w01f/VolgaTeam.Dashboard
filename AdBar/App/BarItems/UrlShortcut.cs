@@ -6,10 +6,10 @@ using Asa.Bar.App.Configuration;
 
 namespace Asa.Bar.App.BarItems
 {
-	class UrlShortcut:TabGroupItem
+	class UrlShortcut : TabGroupItem
 	{
 		private string _url;
-		
+
 		protected override LinkType Type
 		{
 			get { return LinkType.Url; }
@@ -28,7 +28,7 @@ namespace Asa.Bar.App.BarItems
 			var browserPath = AppManager.Instance.Settings.UserSettings.SelectedBrowser;
 			try
 			{
-				if (!String.IsNullOrEmpty(browserPath) && 
+				if (!String.IsNullOrEmpty(browserPath) &&
 					AppManager.Instance.WebBrowserManager.AvailableBrowsers.ContainsKey(AppManager.Instance.Settings.UserSettings.SelectedBrowser))
 				{
 					Process.Start(
@@ -41,7 +41,7 @@ namespace Asa.Bar.App.BarItems
 					Process.Start(browserPath);
 				AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _url + " (" + Type + ")"));
 			}
-			catch{}
+			catch { }
 		}
 	}
 }

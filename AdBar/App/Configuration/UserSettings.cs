@@ -11,6 +11,7 @@ namespace Asa.Bar.App.Configuration
 		public string SelectedBrowser { get; set; }
 		public int PreferedMonitor { get; set; }
 		public ColorEx AccentColor { get; set; }
+		public bool LoadAtStartup { get; set; }
 
 		public UserSettings()
 		{
@@ -57,6 +58,7 @@ namespace Asa.Bar.App.Configuration
 			PreferedMonitor = 0;
 			AccentColor = Color.Transparent;
 			SelectedBrowser = null;
+			LoadAtStartup = true;
 		}
 	}
 }

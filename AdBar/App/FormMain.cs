@@ -408,6 +408,33 @@ namespace Asa.Bar.App
 		}
 		#endregion
 
+		#region Load at Startup Setting Management
+		private void InitLoadAtStartupSettings()
+		{
+			if (AppManager.Instance.Settings.UserSettings.LoadAtStartup &&
+				!LoadAtStartupHelper.IsLoadAtStartupEnabled())
+				LoadAtStartupHelper.SetLoadAtStartup();
+
+			if (!AppManager.Instance.Settings.UserSettings.LoadAtStartup &&
+				LoadAtStartupHelper.IsLoadAtStartupEnabled())
+				LoadAtStartupHelper.UnsetLoadAtStartup();
+
+			checkBoxItemLoadAtStartup.Checked = LoadAtStartupHelper.IsLoadAtStartupEnabled();
+			checkBoxItemLoadAtStartup.CheckedChanged += OnLoadAtStartupCheckedChanged;
+		}
+
+		private void OnLoadAtStartupCheckedChanged(object sender, CheckBoxChangeEventArgs e)
+		{
+			if (checkBoxItemLoadAtStartup.Checked)
+				LoadAtStartupHelper.SetLoadAtStartup();
+			else
+				LoadAtStartupHelper.UnsetLoadAtStartup();
+
+			AppManager.Instance.Settings.UserSettings.LoadAtStartup = checkBoxItemLoadAtStartup.Checked;
+			AppManager.Instance.Settings.UserSettings.Save();
+		}
+		#endregion
+
 		#region Form Event Handlers
 		private void OnFormLoad(object sender, EventArgs e)
 		{
@@ -420,6 +447,8 @@ namespace Asa.Bar.App
 			AppManager.Instance.MonitorConfigurationWatcher.ConfigurationChanged += OnMonitorConfigurationChanged;
 
 			UpdateMonitorControls();
+
+			InitLoadAtStartupSettings();
 
 			LoadBarContent();
 

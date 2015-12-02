@@ -13,6 +13,7 @@ namespace Asa.Bar.App.Configuration
 		}
 
 		#region Local
+		public StorageDirectory TempFolder { get; private set; }
 		public StorageDirectory AppSettingsFolder { get; private set; }
 		public StorageFile AppSettingsFile { get; private set; }
 		#endregion
@@ -23,6 +24,8 @@ namespace Asa.Bar.App.Configuration
 		public StorageFile WatchedProcessesFile { get; private set; }
 		public ArchiveDirectory SpecialAppsFolder { get; private set; }
 		public StorageDirectory DataFolder { get; private set; }
+		public ArchiveDirectory SyncFilesFolder { get; private set; }
+		public StorageDirectory CloudFilesFolder { get; private set; }
 		#endregion
 
 		private ResourceManager() { }
@@ -30,6 +33,13 @@ namespace Asa.Bar.App.Configuration
 		public async Task Load()
 		{
 			#region Local
+			TempFolder = new StorageDirectory(new[]
+			{
+				"Temp"
+			});
+			if (!await TempFolder.Exists())
+				await StorageDirectory.CreateSubFolder(new string[] { }, "Temp");
+
 			AppSettingsFolder = new StorageDirectory(new[]
 			{
 				FileStorageManager.LocalFilesFolderName,
@@ -91,6 +101,22 @@ namespace Asa.Bar.App.Configuration
 				"Data",
 			});
 
+			SyncFilesFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Data",
+				"SyncFiles"
+			});
+			if (await SyncFilesFolder.Exists(true))
+				await SyncFilesFolder.Download();
+
+			CloudFilesFolder = new StorageDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"CloudFiles",
+			});
 			#endregion
 		}
 	}

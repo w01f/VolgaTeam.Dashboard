@@ -16,6 +16,7 @@ using Asa.MediaSchedule.Controls.InteropClasses;
 using Asa.MediaSchedule.Controls.Properties;
 using Asa.MediaSchedule.Controls.ToolForms;
 using Asa.OnlineSchedule.Controls.InteropClasses;
+using FormStart = Asa.MediaSchedule.Controls.ToolForms.FormStart;
 
 namespace Asa.MediaSchedule.Single
 {

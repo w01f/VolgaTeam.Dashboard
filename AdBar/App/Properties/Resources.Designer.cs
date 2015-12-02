@@ -73,6 +73,16 @@ namespace Asa.Bar.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EmailLogo {
+            get {
+                object obj = ResourceManager.GetObject("EmailLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ff {
             get {
                 object obj = ResourceManager.GetObject("ff", resourceCulture);
@@ -93,6 +103,16 @@ namespace Asa.Bar.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LoginLogo {
+            get {
+                object obj = ResourceManager.GetObject("LoginLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap op {
             get {
                 object obj = ResourceManager.GetObject("op", resourceCulture);
@@ -103,9 +123,29 @@ namespace Asa.Bar.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PasswordLogo {
+            get {
+                object obj = ResourceManager.GetObject("PasswordLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SplashLogo {
             get {
                 object obj = ResourceManager.GetObject("SplashLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UserLogo {
+            get {
+                object obj = ResourceManager.GetObject("UserLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

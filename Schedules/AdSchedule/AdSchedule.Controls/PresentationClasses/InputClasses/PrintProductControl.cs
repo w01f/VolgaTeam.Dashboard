@@ -744,7 +744,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.InputClasses
 		private void advBandedGridViewPublication_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
 		{
 			if (!e.HitInfo.InRow) return;
-			if (e.HitInfo.Column != gridColumnID) return;
 			var selectedRowIds = advBandedGridViewPublication.GetSelectedRows().ToList();
 			advBandedGridViewPublication.FocusedRowHandle = e.HitInfo.RowHandle;
 			var menuItem = new DXMenuItem("Clone this line", (o, args) => CloneInsert());

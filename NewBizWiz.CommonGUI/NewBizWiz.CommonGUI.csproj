@@ -355,6 +355,12 @@
     <Compile Include="ToolForms\FormSelectOutputItems.Designer.cs">
       <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FavoriteImages\FavoriteImagesControl.resx">
@@ -473,6 +479,9 @@
     <EmbeddedResource Include="ToolForms\FormSelectOutputItems.resx">
       <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewBizWiz.Core\NewBizWiz.Core.csproj">
@@ -589,6 +598,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RetractableBarCollapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

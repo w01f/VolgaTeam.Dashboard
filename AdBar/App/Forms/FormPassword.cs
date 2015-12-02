@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 
-namespace Asa.Bar.App
+namespace Asa.Bar.App.Forms
 {
 	public partial class FormPassword : MetroForm
 	{

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -36,7 +35,7 @@ namespace Asa.AdSchedule.Single
 			FileStorageManager.Instance.UsingLocalMode += (o, e) =>
 			{
 				if (FileStorageManager.Instance.UseLocalMode) return;
-				FormProgress.CloseProgress();
+				FormStart.CloseProgress();
 				if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
 				{
 					Utilities.Instance.ShowWarning("Server is not available. Application will be closed");
@@ -51,8 +50,8 @@ namespace Asa.AdSchedule.Single
 				}
 			};
 
-			FormProgress.ShowProgress();
-			FormProgress.SetTitle("Checking data version...");
+			FormStart.ShowProgress();
+			FormStart.SetTitle("Checking data version...", "*This should not take long…");
 			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
 			thread.Start();
 			while (thread.IsAlive)
@@ -61,22 +60,22 @@ namespace Asa.AdSchedule.Single
 			if (stopRun) return;
 
 			FileStorageManager.Instance.Downloading += (sender, args) =>
-				FormProgress.SetDetails(args.ProgressPercent < 100 ?
+				FormStart.SetDetails(args.ProgressPercent < 100 ?
 					String.Format("Loading {0} - {1}%", args.FileName, args.ProgressPercent) :
 					String.Empty);
 			FileStorageManager.Instance.Extracting += (sender, args) =>
-				FormProgress.SetDetails(args.ProgressPercent < 100 ?
+				FormStart.SetDetails(args.ProgressPercent < 100 ?
 					String.Format("Extracting {0} - {1}%", args.FileName, args.ProgressPercent) :
 					String.Empty);
 
 			if (FileStorageManager.Instance.Activated)
 			{
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
-					FormProgress.SetTitle("Loading data from server for the 1st time...", true);
+					FormStart.SetTitle("Loading data from server for the 1st time...", "*This may take a few minutes…");
 				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-					FormProgress.SetTitle("Updating data from server...", true);
+					FormStart.SetTitle("Updating data from server...", "*This may take a few minutes…");
 				else
-					FormProgress.SetTitle("Loading data...");
+					FormStart.SetTitle("Loading application data...", "*This should not take long…");
 
 				thread = new Thread(() =>
 				{
@@ -90,7 +89,7 @@ namespace Asa.AdSchedule.Single
 				FormMain.Instance.Init();
 			}
 
-			FormProgress.CloseProgress();
+			FormStart.CloseProgress();
 			if (FileStorageManager.Instance.Activated)
 			{
 				if (PowerPointManager.Instance.SettingsSource == SettingsSourceEnum.PowerPoint &&

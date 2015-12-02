@@ -1,14 +1,14 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 using Asa.Bar.App.BarItems;
 using Asa.Bar.App.Common;
 using Asa.Bar.App.ExternalProcesses;
 using DevComponents.DotNetBar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 
-namespace Asa.Bar.App
+namespace Asa.Bar.App.Forms
 {
 	public partial class FormMain : Form
 	{

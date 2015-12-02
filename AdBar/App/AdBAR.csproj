@@ -48,7 +48,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -58,14 +61,21 @@
     <Compile Include="BarItems\BarItemsManager.cs" />
     <Compile Include="BarItems\Enums.cs" />
     <Compile Include="BarItems\ExecutableShortcut.cs" />
+    <Compile Include="BarItems\CloudFileShortcut.cs" />
+    <Compile Include="BarItems\SyncFileShortcut.cs" />
+    <Compile Include="BarItems\LocalFileShortcut.cs" />
     <Compile Include="BarItems\SfxShortcut.cs" />
     <Compile Include="BarItems\TabPage.cs" />
     <Compile Include="BarItems\TabGroup.cs" />
     <Compile Include="BarItems\TabGroupItem.cs" />
     <Compile Include="BarItems\UrlShortcut.cs" />
     <Compile Include="Common\AdBarActivity.cs" />
+    <Compile Include="Authorization\AuthManager.cs" />
     <Compile Include="Common\LoadAtStartupHelper.cs" />
     <Compile Include="Common\MonitorConfigurationWatcher.cs" />
+    <Compile Include="Configuration\SettingsSerializeHelper.cs" />
+    <Compile Include="Configuration\SuportEmailConfig.cs" />
+    <Compile Include="Authorization\AuthSettings.cs" />
     <Compile Include="ExternalProcesses\ProcessStatusEventArgs.cs" />
     <Compile Include="ExternalProcesses\Enums.cs" />
     <Compile Include="ExternalProcesses\ExternalProcessConfiguration.cs" />
@@ -77,45 +87,73 @@
     <Compile Include="Configuration\ResourceManager.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
     <Compile Include="Configuration\UserSettings.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="Forms\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Forms\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPassword.cs">
+    <Compile Include="Forms\FormPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPassword.Designer.cs">
+    <Compile Include="Forms\FormPassword.Designer.cs">
       <DependentUpon>FormPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\PluginsManager.cs" />
-    <Compile Include="FormProgress.cs">
+    <Compile Include="Forms\FormStart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProgress.designer.cs">
+    <Compile Include="Forms\FormStart.designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormProgress.designer.cs">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSplash.cs">
+    <Compile Include="Forms\FormSplash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSplash.designer.cs">
+    <Compile Include="Forms\FormSplash.designer.cs">
       <DependentUpon>FormSplash.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\TaskBarHelper.cs" />
-    <EmbeddedResource Include="FormMain.resx">
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AdSalesResourcesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPassword.resx">
+    <EmbeddedResource Include="Forms\FormPassword.resx">
       <DependentUpon>FormPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProgress.resx">
+    <EmbeddedResource Include="Forms\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSplash.resx">
+    <EmbeddedResource Include="Forms\FormSplash.resx">
       <DependentUpon>FormSplash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -130,10 +168,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\ch.png" />
     <None Include="Resources\op.png" />
     <None Include="Resources\ie.png" />
     <None Include="Resources\ff.png" />
+    <None Include="Web References\AdSalesResourcesService\AdSalesDataController.wsdl" />
+    <None Include="Web References\AdSalesResourcesService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NewBizWiz.Core\NewBizWiz.Core.csproj">
@@ -147,6 +195,37 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SplashLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoginLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmailLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PasswordLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/SalesLibraries/AdSalesData/quote">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AdSalesResourcesService\</RelPath>
+      <UpdateFromURL>http://localhost/SalesLibraries/AdSalesData/quote</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>adsalesapps_AdSalesResourcesService_AdSalesDataControllerService</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

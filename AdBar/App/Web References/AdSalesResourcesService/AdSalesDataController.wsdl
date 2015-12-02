@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:AdSalesDataControllerwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="AdSalesDataController" targetNamespace="urn:AdSalesDataControllerwsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="getMetaDataRequest">
+    <wsdl:part name="sessionKey" type="xsd:string" />
+    <wsdl:part name="dataTag" type="xsd:string" />
+    <wsdl:part name="propertyName" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getMetaDataResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getSessionKeyRequest">
+    <wsdl:part name="login" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getSessionKeyResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="AdSalesDataControllerPortType">
+    <wsdl:operation name="getMetaData">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:getMetaDataRequest" />
+      <wsdl:output message="tns:getMetaDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getSessionKey">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:getSessionKeyRequest" />
+      <wsdl:output message="tns:getSessionKeyResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdSalesDataControllerBinding" type="tns:AdSalesDataControllerPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getMetaData">
+      <soap:operation soapAction="urn:AdSalesDataControllerwsdl#getMetaData" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:AdSalesDataControllerwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:AdSalesDataControllerwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSessionKey">
+      <soap:operation soapAction="urn:AdSalesDataControllerwsdl#getSessionKey" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:AdSalesDataControllerwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:AdSalesDataControllerwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdSalesDataControllerService">
+    <wsdl:port name="AdSalesDataControllerPort" binding="tns:AdSalesDataControllerBinding">
+      <soap:address location="http://localhost/SalesLibraries/adSalesData/quote?ws=1" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

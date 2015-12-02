@@ -17,6 +17,7 @@ using Asa.CommonGUI.ToolForms;
 using Asa.Core.AdSchedule;
 using Asa.Core.Common;
 using Asa.OnlineSchedule.Controls.InteropClasses;
+using FormStart = Asa.AdSchedule.Controls.ToolForms.FormStart;
 
 namespace Asa.AdSchedule.Single
 {

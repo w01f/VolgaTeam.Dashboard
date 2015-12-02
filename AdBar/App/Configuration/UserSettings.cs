@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
-using System.Xml.Serialization;
 
 namespace Asa.Bar.App.Configuration
 {
@@ -20,37 +18,12 @@ namespace Asa.Bar.App.Configuration
 
 		public static UserSettings Load()
 		{
-			var defaultSettings = new UserSettings();
-			if (ResourceManager.Instance.AppSettingsFile.ExistsLocal())
-			{
-				try
-				{
-					using (var stream = File.OpenRead(ResourceManager.Instance.AppSettingsFile.LocalPath))
-					{
-						var bf = new XmlSerializer(typeof(UserSettings));
-						return (UserSettings)bf.Deserialize(stream);
-					}
-				}
-				catch
-				{
-				}
-			}
-			return defaultSettings;
+			return SettingsSerializeHelper.Load<UserSettings>(ResourceManager.Instance.AppSettingsFile);
 		}
 
 		public void Save()
 		{
-			try
-			{
-				using (var stream = File.CreateText(ResourceManager.Instance.AppSettingsFile.LocalPath))
-				{
-					var bf = new XmlSerializer(typeof(UserSettings));
-					bf.Serialize(stream, this);
-				}
-			}
-			catch
-			{
-			}
+			this.Save(ResourceManager.Instance.AppSettingsFile);
 		}
 
 		private void Reset()

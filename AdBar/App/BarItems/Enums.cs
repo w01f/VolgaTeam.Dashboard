@@ -5,7 +5,10 @@
 		None,
 		Url, 
 		Exe,
-		Sfx
+		Sfx,
+		LocalFile,
+		CloudFile,
+		SyncFile
 	}
 
 	enum TabGroupType

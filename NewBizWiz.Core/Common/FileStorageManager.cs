@@ -32,12 +32,15 @@ namespace Asa.Core.Common
 		public const string CommonIncomingFolderName = "common";
 		public const string LocalFilesFolderName = "local";
 
+		private static readonly FileStorageManager _instance = new FileStorageManager();
+
 		private string _url;
 		private string _login;
 		private string _password;
 		private string _dataFolderName;
+		private string _authServer;
 
-		private static readonly FileStorageManager _instance = new FileStorageManager();
+		private StorageFile _versionFile;
 
 		public bool Activated { get; private set; }
 		public string Version { get; private set; }
@@ -46,6 +49,7 @@ namespace Asa.Core.Common
 		public event EventHandler<FileProcessingProgressEventArgs> Downloading;
 		public event EventHandler<FileProcessingProgressEventArgs> Extracting;
 		public event EventHandler<EventArgs> UsingLocalMode;
+		public event EventHandler<AuthorizingEventArgs> Authorizing;
 
 		public static FileStorageManager Instance
 		{
@@ -91,9 +95,12 @@ namespace Asa.Core.Common
 
 		public async Task Init()
 		{
+			_versionFile = new ConfigFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
 			await InitCredentials();
 			if (Activated)
 				await CheckDataSate();
+			if (Activated)
+				Authorize();
 		}
 
 		private async Task InitCredentials()
@@ -121,6 +128,8 @@ namespace Asa.Core.Common
 					_password = configLine.Replace("Password:", "").Trim();
 				else if (configLine.Contains("DataFolderName:"))
 					_dataFolderName = configLine.Replace("DataFolderName:", "").Trim();
+				else if (configLine.Contains("AuthService:"))
+					_authServer = configLine.Replace("AuthService:", "").Trim();
 			}
 
 			Activated = true;
@@ -129,25 +138,36 @@ namespace Asa.Core.Common
 				Directory.CreateDirectory(LocalStoragePath);
 		}
 
+		private void Authorize()
+		{
+			if (Authorizing == null) return;
+			var args = new AuthorizingEventArgs(_authServer);
+			Authorizing(this, args);
+			if (!args.Authorized &&
+				DataState == DataActualityState.NotExisted &&
+				_versionFile.ExistsLocal())
+				File.Delete(_versionFile.LocalPath);
+			Activated = args.Authorized;
+		}
+
 		private async Task CheckDataSate()
 		{
 			DataState = DataActualityState.NotExisted;
 
-			var versionFile = new ConfigFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
-			if (!versionFile.ExistsLocal())
+			if (!_versionFile.ExistsLocal())
 			{
 				DataState = DataActualityState.NotExisted;
-				await versionFile.Download();
+				await _versionFile.Download();
 			}
 			else
 			{
 				try
 				{
-					var remoteFile = await GetClient().GetFile(versionFile.RemotePath);
-					if (File.GetLastWriteTime(versionFile.LocalPath) < remoteFile.LastModified)
+					var remoteFile = await GetClient().GetFile(_versionFile.RemotePath);
+					if (File.GetLastWriteTime(_versionFile.LocalPath) < remoteFile.LastModified)
 					{
 						DataState = DataActualityState.Outdated;
-						await versionFile.Download();
+						await _versionFile.Download();
 					}
 					else
 						DataState = DataActualityState.Updated;
@@ -158,8 +178,8 @@ namespace Asa.Core.Common
 					SwitchToLocalMode();
 				}
 			}
-			if (versionFile.ExistsLocal())
-				Version = File.ReadAllText(versionFile.LocalPath);
+			if (_versionFile.ExistsLocal())
+				Version = File.ReadAllText(_versionFile.LocalPath);
 			else
 				Activated = false;
 		}
@@ -213,11 +233,11 @@ namespace Asa.Core.Common
 			RelativePathParts = relativePathParts;
 		}
 
-		public virtual async Task<bool> Exists(bool checkRemoteToo = false)
+		public virtual async Task<bool> Exists(bool checkRemoteToo = false, bool force= false)
 		{
 			if (!checkRemoteToo || FileStorageManager.Instance.UseLocalMode)
 				return ExistsLocal();
-			return FileStorageManager.Instance.DataState == DataActualityState.Updated ?
+			return FileStorageManager.Instance.DataState == DataActualityState.Updated && !force ?
 				ExistsLocal() :
 				await ExistsRemote();
 		}
@@ -291,7 +311,7 @@ namespace Asa.Core.Common
 				}
 			}
 		}
-		
+
 		private async Task<IEnumerable<Item>> GetRemoteItems(Func<Item, bool> filter = null)
 		{
 			if (filter == null)
@@ -371,7 +391,7 @@ namespace Asa.Core.Common
 				})
 				.ToList();
 		}
-		
+
 		public async Task Allocate(bool remoteToo)
 		{
 			if (!Directory.Exists(LocalPath))
@@ -472,12 +492,12 @@ namespace Asa.Core.Common
 			catch { }
 		}
 
-		public virtual async Task Download()
+		public virtual async Task Download(bool force = false)
 		{
 			try
 			{
 				var client = FileStorageManager.Instance.GetClient();
-				if ((ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated) || FileStorageManager.Instance.UseLocalMode)
+				if ((ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated && !force) || FileStorageManager.Instance.UseLocalMode)
 					return;
 				var remoteFile = _remoteSource ?? await client.GetFile(RemotePath);
 				_isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
@@ -540,9 +560,9 @@ namespace Asa.Core.Common
 			_asociatedDirectory = asociatedDirectory;
 		}
 
-		public override async Task Download()
+		public override async Task Download(bool force = false)
 		{
-			await base.Download();
+			await base.Download(force);
 			if (_isOutdated || !_asociatedDirectory.ExistsLocal())
 			{
 				if (_asociatedDirectory.ExistsLocal())
@@ -582,7 +602,7 @@ namespace Asa.Core.Common
 			}
 		}
 
-		public override async Task Download()
+		public override async Task Download(bool force = false)
 		{
 			try
 			{
@@ -639,6 +659,18 @@ namespace Asa.Core.Common
 			FileName = fileName;
 			TotalSize = totalSize;
 			DownloadedSize = downloadedSize;
+		}
+	}
+
+	public class AuthorizingEventArgs : EventArgs
+	{
+		public bool Authorized { get; set; }
+		public string AuthServer { get; private set; }
+
+		public AuthorizingEventArgs(string authService)
+		{
+			Authorized = true;
+			AuthServer = authService;
 		}
 	}
 }

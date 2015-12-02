@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Asa.Bar.App.Configuration;
+using Asa.Bar.App.Forms;
 
 namespace Asa.Bar.App.BarItems
 {
@@ -67,6 +67,12 @@ namespace Asa.Bar.App.BarItems
 					return new ExecutableShortcut(configPath);
 				case "sfx":
 					return new SfxShortcut(configPath);
+				case "lanfile":
+					return new LocalFileShortcut(configPath);
+				case "syncdir":
+					return new SyncFileShortcut(configPath);
+				case "cloudfile":
+					return new CloudFileShortcut(configPath);
 				default:
 					throw new ArgumentOutOfRangeException("Link type is not recognized");
 			}

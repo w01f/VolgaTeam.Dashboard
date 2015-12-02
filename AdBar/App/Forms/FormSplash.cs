@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Asa.Bar.App
+namespace Asa.Bar.App.Forms
 {
 	public partial class FormSplash : Form
 	{

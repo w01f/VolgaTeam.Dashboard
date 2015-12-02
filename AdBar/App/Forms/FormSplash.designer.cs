@@ -1,4 +1,4 @@
-﻿namespace Asa.Bar.App
+﻿namespace Asa.Bar.App.Forms
 {
 	partial class FormSplash
 	{

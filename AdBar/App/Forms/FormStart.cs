@@ -3,14 +3,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 
-namespace Asa.Bar.App
+namespace Asa.Bar.App.Forms
 {
-	public partial class FormProgress : MetroForm
+	public partial class FormStart : MetroForm
 	{
-		private readonly static FormProgress _instance = new FormProgress();
+		private readonly static FormStart _instance = new FormStart();
 		private static int _queueCount;
+		private const string GrayTextFormat = "<font color=\"#8C8C8C\">{0}</font>";
 
-		private FormProgress()
+		private FormStart()
 		{
 			InitializeComponent();
 			TopMost = true;
@@ -28,7 +29,14 @@ namespace Asa.Bar.App
 
 		public static void ShowProgress()
 		{
-			_instance.Show();
+			if (_instance.InvokeRequired)
+				_instance.Invoke(new MethodInvoker(() =>
+				{
+					_instance.Show();
+					Application.DoEvents();
+				}));
+			else
+				_instance.Show();
 			_queueCount++;
 			Application.DoEvents();
 		}
@@ -51,12 +59,12 @@ namespace Asa.Bar.App
 			Application.DoEvents();
 		}
 
-		public static void SetTitle(string text, bool withDetails = false)
+		public static void SetTitle(string text, string description)
 		{
 			_instance.Invoke(new MethodInvoker(() =>
 			{
 				_instance.laTitle.Text = text;
-				_instance.laDetails.Visible = withDetails;
+				_instance.labelXDescription.Text = String.Format(GrayTextFormat, description);
 				SetDetails(String.Empty);
 				Application.DoEvents();
 			}));
@@ -66,7 +74,7 @@ namespace Asa.Bar.App
 		{
 			_instance.Invoke(new MethodInvoker(() =>
 			{
-				_instance.laDetails.Text = text;
+				_instance.labelXDetails.Text = String.Format(GrayTextFormat, text);
 				Application.DoEvents();
 			}));
 		}

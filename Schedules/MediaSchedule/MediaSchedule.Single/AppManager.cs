@@ -10,8 +10,6 @@ using Asa.CommonGUI.ToolForms;
 using Asa.Core.Common;
 using Asa.Core.Interop;
 using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls;
-using Asa.MediaSchedule.Controls.InteropClasses;
 
 namespace Asa.MediaSchedule.Single
 {
@@ -52,6 +50,14 @@ namespace Asa.MediaSchedule.Single
 					stopRun = true;
 					Application.Exit();
 				}
+			};
+
+			FileStorageManager.Instance.Authorizing += (o, e) =>
+			{
+				var authManager = new AuthManager();
+				authManager.Init();
+				FormStart.SetTitle("Checking credentials...", "*This should not take long…");
+				authManager.Auth(e);
 			};
 
 			FormStart.ShowProgress();

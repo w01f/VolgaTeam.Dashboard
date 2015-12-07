@@ -50,6 +50,14 @@ namespace Asa.AdSchedule.Single
 				}
 			};
 
+			FileStorageManager.Instance.Authorizing += (o, e) =>
+			{
+				var authManager = new AuthManager();
+				authManager.Init();
+				FormStart.SetTitle("Checking credentials...", "*This should not take long…");
+				authManager.Auth(e);
+			};
+
 			FormStart.ShowProgress();
 			FormStart.SetTitle("Checking data version...", "*This should not take long…");
 			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));

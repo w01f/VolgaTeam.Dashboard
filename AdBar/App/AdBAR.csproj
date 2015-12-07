@@ -70,12 +70,10 @@
     <Compile Include="BarItems\TabGroupItem.cs" />
     <Compile Include="BarItems\UrlShortcut.cs" />
     <Compile Include="Common\AdBarActivity.cs" />
-    <Compile Include="Authorization\AuthManager.cs" />
+    <Compile Include="Authorization\AdBarAuthManager.cs" />
     <Compile Include="Common\LoadAtStartupHelper.cs" />
     <Compile Include="Common\MonitorConfigurationWatcher.cs" />
-    <Compile Include="Configuration\SettingsSerializeHelper.cs" />
     <Compile Include="Configuration\SuportEmailConfig.cs" />
-    <Compile Include="Authorization\AuthSettings.cs" />
     <Compile Include="ExternalProcesses\ProcessStatusEventArgs.cs" />
     <Compile Include="ExternalProcesses\Enums.cs" />
     <Compile Include="ExternalProcesses\ExternalProcessConfiguration.cs" />
@@ -132,11 +130,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Web References\AdSalesResourcesService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,11 +170,6 @@
     <None Include="Resources\op.png" />
     <None Include="Resources\ie.png" />
     <None Include="Resources\ff.png" />
-    <None Include="Web References\AdSalesResourcesService\AdSalesDataController.wsdl" />
-    <None Include="Web References\AdSalesResourcesService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NewBizWiz.Core\NewBizWiz.Core.csproj">
@@ -213,19 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost/SalesLibraries/AdSalesData/quote">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\AdSalesResourcesService\</RelPath>
-      <UpdateFromURL>http://localhost/SalesLibraries/AdSalesData/quote</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>adsalesapps_AdSalesResourcesService_AdSalesDataControllerService</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

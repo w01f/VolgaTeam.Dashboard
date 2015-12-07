@@ -7,6 +7,7 @@ namespace Asa.Core.MediaSchedule
 	public class ScheduleSectionSettings
 	{
 		public bool ShowStation { get; set; }
+		public bool ShowProgram { get; set; }
 		public bool ShowLenght { get; set; }
 		public bool ShowDaypart { get; set; }
 		public bool ShowSpots { get; set; }
@@ -29,6 +30,7 @@ namespace Asa.Core.MediaSchedule
 		{
 			var result = new StringBuilder();
 			result.AppendLine(@"<ShowStation>" + ShowStation + @"</ShowStation>");
+			result.AppendLine(@"<ShowProgram>" + ShowProgram + @"</ShowProgram>");
 			result.AppendLine(@"<ShowLenght>" + ShowLenght + @"</ShowLenght>");
 			result.AppendLine(@"<ShowDaypart>" + ShowDaypart + @"</ShowDaypart>");
 			result.AppendLine(@"<ShowSpots>" + ShowSpots + @"</ShowSpots>");
@@ -59,6 +61,13 @@ namespace Asa.Core.MediaSchedule
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
 								ShowStation = temp;
+						}
+						break;
+					case "ShowProgram":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowProgram = temp;
 						}
 						break;
 					case "ShowLenght":
@@ -192,6 +201,13 @@ namespace Asa.Core.MediaSchedule
 						bool temp;
 						if (Boolean.TryParse(value, out temp))
 							ShowStation = temp;
+					}
+					break;
+				case "Program":
+					{
+						bool temp;
+						if (Boolean.TryParse(value, out temp))
+							ShowProgram = temp;
 					}
 					break;
 				case "Length":

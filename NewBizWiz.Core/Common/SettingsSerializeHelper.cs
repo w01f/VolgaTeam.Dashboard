@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using Asa.Core.Common;
 
-namespace Asa.Bar.App.Configuration
+namespace Asa.Core.Common
 {
-	static class SettingsSerializeHelper
+	public static class SettingsSerializeHelper
 	{
 		public static TSettings Load<TSettings>(StorageFile settingsFile) where TSettings : class
 		{

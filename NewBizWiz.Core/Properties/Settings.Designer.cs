@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Asa.Bar.App.Properties {
+namespace Asa.Core.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,6 +20,16 @@ namespace Asa.Bar.App.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/SalesLibraries/adSalesData/quote?ws=1")]
+        public string Asa_Core_AdSalesDataControllerService_AdSalesDataControllerService {
+            get {
+                return ((string)(this["Asa_Core_AdSalesDataControllerService_AdSalesDataControllerService"]));
             }
         }
     }

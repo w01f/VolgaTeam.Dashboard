@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using Asa.Core.Common;
 
 namespace Asa.Bar.App.Configuration
 {

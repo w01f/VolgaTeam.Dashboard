@@ -22,7 +22,6 @@ namespace Asa.Bar.App
 
 		public SettingsManager Settings { get; private set; }
 
-		public AuthManager AuthManager { get; private set; }
 		public ActivityManager ActivityManager { get; private set; }
 
 		public BarItemsManager BarItemsManager { get; private set; }
@@ -39,7 +38,6 @@ namespace Asa.Bar.App
 		private AppManager()
 		{
 			Settings = new SettingsManager();
-			AuthManager = new AuthManager();
 			BarItemsManager = new BarItemsManager();
 			ExternalProcessesWatcher = new ExternalProcessesWatcher();
 			MonitorConfigurationWatcher = new MonitorConfigurationWatcher();
@@ -74,8 +72,10 @@ namespace Asa.Bar.App
 
 			FileStorageManager.Instance.Authorizing += (o, e) =>
 			{
-				AuthManager.Init();
-				AuthManager.Auth(e);
+				var authManager = new AdBarAuthManager();
+				authManager.Init();
+				FormStart.SetTitle("Checking credentials...", "*This should not take long…");
+				authManager.Auth(e);
 			};
 
 			FormStart.ShowProgress();

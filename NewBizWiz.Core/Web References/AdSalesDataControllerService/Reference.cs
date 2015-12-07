@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace Asa.Bar.App.AdSalesResourcesService {
+namespace Asa.Core.AdSalesDataControllerService {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -37,7 +37,7 @@ namespace Asa.Bar.App.AdSalesResourcesService {
         
         /// <remarks/>
         public AdSalesDataControllerService() {
-            this.Url = global::Asa.Bar.App.Properties.Settings.Default.adsalesapps_AdSalesResourcesService_AdSalesDataControllerService;
+            this.Url = global::Asa.Core.Properties.Settings.Default.Asa_Core_AdSalesDataControllerService_AdSalesDataControllerService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

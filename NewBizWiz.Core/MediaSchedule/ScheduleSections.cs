@@ -231,6 +231,7 @@ namespace Asa.Core.MediaSchedule
 		public bool ShowDay { get; set; }
 		public bool ShowDaypart { get; set; }
 		public bool ShowStation { get; set; }
+		public bool ShowProgram { get; set; }
 		public bool ShowLenght { get; set; }
 		public bool ShowCPP { get; set; }
 		public bool ShowGRP { get; set; }
@@ -321,6 +322,7 @@ namespace Asa.Core.MediaSchedule
 			ShowDaypart = true;
 			ShowDay = true;
 			ShowStation = true;
+			ShowProgram = true;
 			ShowLenght = false;
 			ShowCPP = ParentSchedule.UseDemo & !String.IsNullOrEmpty(ParentSchedule.Demo);
 			ShowGRP = ParentSchedule.UseDemo & !String.IsNullOrEmpty(ParentSchedule.Demo);
@@ -356,6 +358,7 @@ namespace Asa.Core.MediaSchedule
 			result.AppendLine(@"<ShowTime>" + ShowTime + @"</ShowTime>");
 			result.AppendLine(@"<ShowDaypart>" + ShowDaypart + @"</ShowDaypart>");
 			result.AppendLine(@"<ShowStation>" + ShowStation + @"</ShowStation>");
+			result.AppendLine(@"<ShowProgram>" + ShowProgram + @"</ShowProgram>");
 			result.AppendLine(@"<ShowLenght>" + ShowLenght + @"</ShowLenght>");
 			result.AppendLine(@"<ShowCPP>" + ShowCPP + @"</ShowCPP>");
 			result.AppendLine(@"<ShowGRP>" + ShowGRP + @"</ShowGRP>");
@@ -468,6 +471,10 @@ namespace Asa.Core.MediaSchedule
 					case "ShowStation":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowStation = tempBool;
+						break;
+					case "ShowProgram":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowProgram = tempBool;
 						break;
 					case "ShowTime":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -790,6 +797,7 @@ namespace Asa.Core.MediaSchedule
 			ShowDaypart = templateData.ShowDaypart;
 			ShowDay = templateData.ShowDay;
 			ShowStation = templateData.ShowStation;
+			ShowProgram = templateData.ShowProgram;
 			ShowLenght = templateData.ShowLenght;
 			ShowCPP = templateData.ShowCPP;
 			ShowGRP = templateData.ShowGRP;
@@ -827,6 +835,7 @@ namespace Asa.Core.MediaSchedule
 			ShowDaypart = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDaypart;
 			ShowDay = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowDay;
 			ShowStation = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowStation;
+			ShowProgram = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowProgram;
 			ShowLenght = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowLenght;
 			ShowRate = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowRate;
 			ShowSpots = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.ShowSpots;
@@ -857,6 +866,7 @@ namespace Asa.Core.MediaSchedule
 			ShowDaypart = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowDaypart;
 			ShowDay = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowDay;
 			ShowStation = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowStation;
+			ShowProgram = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowProgram;
 			ShowLenght = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowLenght;
 			ShowRate = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowRate;
 			ShowSpots = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowSpots;
@@ -1013,30 +1023,28 @@ namespace Asa.Core.MediaSchedule
 		public string Serialize()
 		{
 			var result = new StringBuilder();
-			if (!string.IsNullOrEmpty(_name))
-			{
-				result.Append(@"<Program ");
-				result.Append("UniqueID = \"" + UniqueID + "\" ");
+			result.Append(@"<Program ");
+			result.Append("UniqueID = \"" + UniqueID + "\" ");
+			if (!String.IsNullOrEmpty(_name))
 				result.Append("Name = \"" + _name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-				result.Append("Station = \"" + Station.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-				result.Append("Daypart = \"" + Daypart.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-				result.Append("Day = \"" + Day.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-				result.Append("Time = \"" + Time.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-				result.Append("Length = \"" + Length.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-				if (Rate.HasValue)
-					result.Append("Rate = \"" + Rate.Value + "\" ");
-				if (Rating.HasValue)
-					result.Append("Rating = \"" + Rating.Value + "\" ");
-				result.AppendLine(@">");
-				if (Logo != null && Logo.ContainsData && !Logo.IsDefault)
-					result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
-				result.AppendLine(@"<Spots>");
-				foreach (Spot spot in Spots)
-					result.AppendLine(@"<Spot>" + spot.Serialize() + @"</Spot>");
-				result.AppendLine(@"</Spots>");
-				result.AppendLine(@"<SummaryItem>" + SummaryItem.Serialize() + @"</SummaryItem>");
-				result.AppendLine(@"</Program>");
-			}
+			result.Append("Station = \"" + Station.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			result.Append("Daypart = \"" + Daypart.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			result.Append("Day = \"" + Day.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			result.Append("Time = \"" + Time.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			result.Append("Length = \"" + Length.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			if (Rate.HasValue)
+				result.Append("Rate = \"" + Rate.Value + "\" ");
+			if (Rating.HasValue)
+				result.Append("Rating = \"" + Rating.Value + "\" ");
+			result.AppendLine(@">");
+			if (Logo != null && Logo.ContainsData && !Logo.IsDefault)
+				result.AppendLine(@"<Logo>" + Logo.Serialize() + @"</Logo>");
+			result.AppendLine(@"<Spots>");
+			foreach (Spot spot in Spots)
+				result.AppendLine(@"<Spot>" + spot.Serialize() + @"</Spot>");
+			result.AppendLine(@"</Spots>");
+			result.AppendLine(@"<SummaryItem>" + SummaryItem.Serialize() + @"</SummaryItem>");
+			result.AppendLine(@"</Program>");
 			return result.ToString();
 		}
 

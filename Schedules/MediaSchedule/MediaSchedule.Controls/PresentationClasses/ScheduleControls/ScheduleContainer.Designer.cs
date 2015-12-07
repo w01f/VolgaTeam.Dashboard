@@ -30,14 +30,15 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.quarterSelectorControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
 			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAgencyDiscount = new System.Windows.Forms.Panel();
 			this.laAgencyDiscountValue = new System.Windows.Forms.Label();
@@ -103,9 +104,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.hyperLinkEditInfoAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.pnSections = new System.Windows.Forms.Panel();
 			this.pnNoSections = new System.Windows.Forms.Panel();
-			this.contextMenuStripSections = new System.Windows.Forms.ContextMenuStrip();
+			this.contextMenuStripSections = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
+			this.buttonXProgram = new DevComponents.DotNetBar.ButtonX();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
@@ -151,7 +153,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.quarterSelectorControl.BackColor = System.Drawing.Color.Transparent;
 			this.quarterSelectorControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.quarterSelectorControl.Enabled = true;
 			this.quarterSelectorControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.quarterSelectorControl.Location = new System.Drawing.Point(252, 0);
 			this.quarterSelectorControl.Name = "quarterSelectorControl";
@@ -197,7 +198,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnBottom.Controls.Add(this.pnTotalSpots);
 			this.pnBottom.Controls.Add(this.pnTotalPeriods);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBottom.Location = new System.Drawing.Point(0, 413);
+			this.pnBottom.Location = new System.Drawing.Point(0, 460);
 			this.pnBottom.Name = "pnBottom";
 			this.pnBottom.Size = new System.Drawing.Size(1002, 43);
 			this.pnBottom.TabIndex = 2;
@@ -497,7 +498,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlSections.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlSections.Location = new System.Drawing.Point(300, 67);
 			this.xtraTabControlSections.Name = "xtraTabControlSections";
-			this.xtraTabControlSections.Size = new System.Drawing.Size(702, 346);
+			this.xtraTabControlSections.Size = new System.Drawing.Size(702, 393);
 			this.xtraTabControlSections.TabIndex = 5;
 			this.xtraTabControlSections.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlSections_SelectedPageChanged);
 			this.xtraTabControlSections.CloseButtonClick += new System.EventHandler(this.xtraTabControlSections_CloseButtonClick);
@@ -543,7 +544,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.MultiLine = DevExpress.Utils.DefaultBoolean.False;
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageOptionsLine;
-			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 319);
+			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 366);
 			this.xtraTabControlOptions.TabIndex = 0;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageOptionsLine,
@@ -557,12 +558,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsLine.Appearance.PageClient.Options.UseBackColor = true;
 			this.xtraTabPageOptionsLine.Controls.Add(this.pnOptionsLine);
 			this.xtraTabPageOptionsLine.Name = "xtraTabPageOptionsLine";
-			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(294, 291);
+			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(290, 335);
 			this.xtraTabPageOptionsLine.Text = "Radio";
 			// 
 			// pnOptionsLine
 			// 
 			this.pnOptionsLine.BackColor = System.Drawing.Color.Transparent;
+			this.pnOptionsLine.Controls.Add(this.buttonXProgram);
 			this.pnOptionsLine.Controls.Add(this.buttonXLogo);
 			this.pnOptionsLine.Controls.Add(this.buttonXTime);
 			this.pnOptionsLine.Controls.Add(this.buttonXSpots);
@@ -578,7 +580,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsLine.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsLine.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsLine.Name = "pnOptionsLine";
-			this.pnOptionsLine.Size = new System.Drawing.Size(294, 291);
+			this.pnOptionsLine.Size = new System.Drawing.Size(290, 335);
 			this.pnOptionsLine.TabIndex = 0;
 			// 
 			// buttonXLogo
@@ -587,7 +589,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXLogo.AutoCheckOnClick = true;
 			this.buttonXLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLogo.Location = new System.Drawing.Point(160, 256);
+			this.buttonXLogo.Location = new System.Drawing.Point(156, 256);
 			this.buttonXLogo.Name = "buttonXLogo";
 			this.buttonXLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -602,7 +604,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTime.AutoCheckOnClick = true;
 			this.buttonXTime.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTime.Location = new System.Drawing.Point(160, 158);
+			this.buttonXTime.Location = new System.Drawing.Point(156, 158);
 			this.buttonXTime.Name = "buttonXTime";
 			this.buttonXTime.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -631,7 +633,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCost.AutoCheckOnClick = true;
 			this.buttonXCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCost.Location = new System.Drawing.Point(160, 207);
+			this.buttonXCost.Location = new System.Drawing.Point(156, 207);
 			this.buttonXCost.Name = "buttonXCost";
 			this.buttonXCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -645,7 +647,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXRate.AutoCheckOnClick = true;
 			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRate.Location = new System.Drawing.Point(20, 207);
+			this.buttonXRate.Location = new System.Drawing.Point(20, 256);
 			this.buttonXRate.Name = "buttonXRate";
 			this.buttonXRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -659,7 +661,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXGRP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXGRP.AutoCheckOnClick = true;
 			this.buttonXGRP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXGRP.Location = new System.Drawing.Point(20, 256);
+			this.buttonXGRP.Location = new System.Drawing.Point(20, 305);
 			this.buttonXGRP.Name = "buttonXGRP";
 			this.buttonXGRP.Size = new System.Drawing.Size(113, 27);
 			this.buttonXGRP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -674,7 +676,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXRating.AutoCheckOnClick = true;
 			this.buttonXRating.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRating.Location = new System.Drawing.Point(160, 109);
+			this.buttonXRating.Location = new System.Drawing.Point(156, 109);
 			this.buttonXRating.Name = "buttonXRating";
 			this.buttonXRating.Size = new System.Drawing.Size(113, 27);
 			this.buttonXRating.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -703,7 +705,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXDaypart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDaypart.AutoCheckOnClick = true;
 			this.buttonXDaypart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDaypart.Location = new System.Drawing.Point(160, 60);
+			this.buttonXDaypart.Location = new System.Drawing.Point(156, 60);
 			this.buttonXDaypart.Name = "buttonXDaypart";
 			this.buttonXDaypart.Size = new System.Drawing.Size(113, 27);
 			this.buttonXDaypart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -732,7 +734,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXLength.AutoCheckOnClick = true;
 			this.buttonXLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLength.Location = new System.Drawing.Point(160, 11);
+			this.buttonXLength.Location = new System.Drawing.Point(156, 11);
 			this.buttonXLength.Name = "buttonXLength";
 			this.buttonXLength.Size = new System.Drawing.Size(113, 27);
 			this.buttonXLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -759,7 +761,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.xtraTabPageOptionsDigital.Controls.Add(this.digitalInfoControl);
 			this.xtraTabPageOptionsDigital.Name = "xtraTabPageOptionsDigital";
-			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(294, 291);
+			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(290, 288);
 			this.xtraTabPageOptionsDigital.Text = "Digital";
 			// 
 			// digitalInfoControl
@@ -770,14 +772,14 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.digitalInfoControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalInfoControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.digitalInfoControl.Name = "digitalInfoControl";
-			this.digitalInfoControl.Size = new System.Drawing.Size(294, 291);
+			this.digitalInfoControl.Size = new System.Drawing.Size(290, 288);
 			this.digitalInfoControl.TabIndex = 0;
 			// 
 			// xtraTabPageOptionsTotals
 			// 
 			this.xtraTabPageOptionsTotals.Controls.Add(this.pnOptionsTotals);
 			this.xtraTabPageOptionsTotals.Name = "xtraTabPageOptionsTotals";
-			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(294, 291);
+			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(290, 288);
 			this.xtraTabPageOptionsTotals.Text = "Info";
 			// 
 			// pnOptionsTotals
@@ -794,7 +796,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsTotals.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsTotals.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsTotals.Name = "pnOptionsTotals";
-			this.pnOptionsTotals.Size = new System.Drawing.Size(294, 291);
+			this.pnOptionsTotals.Size = new System.Drawing.Size(290, 288);
 			this.pnOptionsTotals.TabIndex = 1;
 			// 
 			// buttonXDiscount
@@ -803,7 +805,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDiscount.AutoCheckOnClick = true;
 			this.buttonXDiscount.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDiscount.Location = new System.Drawing.Point(162, 158);
+			this.buttonXDiscount.Location = new System.Drawing.Point(158, 158);
 			this.buttonXDiscount.Name = "buttonXDiscount";
 			this.buttonXDiscount.Size = new System.Drawing.Size(113, 27);
 			this.buttonXDiscount.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -832,7 +834,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXNetRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXNetRate.AutoCheckOnClick = true;
 			this.buttonXNetRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXNetRate.Location = new System.Drawing.Point(162, 109);
+			this.buttonXNetRate.Location = new System.Drawing.Point(158, 109);
 			this.buttonXNetRate.Name = "buttonXNetRate";
 			this.buttonXNetRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXNetRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -861,7 +863,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTotalCost.AutoCheckOnClick = true;
 			this.buttonXTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalCost.Location = new System.Drawing.Point(162, 60);
+			this.buttonXTotalCost.Location = new System.Drawing.Point(158, 60);
 			this.buttonXTotalCost.Name = "buttonXTotalCost";
 			this.buttonXTotalCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -890,7 +892,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXAvgRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAvgRate.AutoCheckOnClick = true;
 			this.buttonXAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAvgRate.Location = new System.Drawing.Point(162, 11);
+			this.buttonXAvgRate.Location = new System.Drawing.Point(158, 11);
 			this.buttonXAvgRate.Name = "buttonXAvgRate";
 			this.buttonXAvgRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXAvgRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -917,7 +919,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(294, 291);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 288);
 			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
@@ -928,7 +930,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(294, 291);
+			this.pnStyle.Size = new System.Drawing.Size(290, 288);
 			this.pnStyle.TabIndex = 0;
 			// 
 			// outputColorSelector
@@ -940,7 +942,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.outputColorSelector.Location = new System.Drawing.Point(0, 32);
 			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(294, 259);
+			this.outputColorSelector.Size = new System.Drawing.Size(290, 256);
 			this.outputColorSelector.TabIndex = 50;
 			// 
 			// laColorsTitle
@@ -964,7 +966,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
-			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 369);
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 416);
 			this.retractableBarControl.Content.TabIndex = 1;
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -980,7 +982,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarControl.Name = "retractableBarControl";
-			this.retractableBarControl.Size = new System.Drawing.Size(300, 413);
+			this.retractableBarControl.Size = new System.Drawing.Size(300, 460);
 			this.retractableBarControl.TabIndex = 4;
 			// 
 			// pnInfoBottom
@@ -989,7 +991,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnInfoBottom.Controls.Add(this.hyperLinkEditInfoContract);
 			this.pnInfoBottom.Controls.Add(this.hyperLinkEditInfoAdvanced);
 			this.pnInfoBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnInfoBottom.Location = new System.Drawing.Point(0, 319);
+			this.pnInfoBottom.Location = new System.Drawing.Point(0, 366);
 			this.pnInfoBottom.Name = "pnInfoBottom";
 			this.pnInfoBottom.Size = new System.Drawing.Size(296, 50);
 			this.pnInfoBottom.TabIndex = 124;
@@ -1011,9 +1013,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(149, 20);
-			toolTipItem2.Text = "Change Slide Output Settings";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.hyperLinkEditInfoContract.SuperTip = superToolTip2;
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
 			this.hyperLinkEditInfoContract.TabIndex = 123;
 			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnContractSettingsOpenLink);
 			// 
@@ -1032,9 +1034,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(149, 20);
-			toolTipItem3.Text = "Change Slide Output Settings";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip3;
+			toolTipItem2.Text = "Change Slide Output Settings";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip2;
 			this.hyperLinkEditInfoAdvanced.TabIndex = 122;
 			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnAdvancedSettingsOpenLink);
 			// 
@@ -1047,13 +1049,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnSections.Controls.Add(this.pnBottom);
 			this.pnSections.Location = new System.Drawing.Point(3, 3);
 			this.pnSections.Name = "pnSections";
-			this.pnSections.Size = new System.Drawing.Size(1002, 456);
+			this.pnSections.Size = new System.Drawing.Size(1002, 503);
 			this.pnSections.TabIndex = 6;
 			// 
 			// pnNoSections
 			// 
 			this.pnNoSections.Controls.Add(this.pbNoSections);
-			this.pnNoSections.Location = new System.Drawing.Point(247, 477);
+			this.pnNoSections.Location = new System.Drawing.Point(246, 530);
 			this.pnNoSections.Name = "pnNoSections";
 			this.pnNoSections.Padding = new System.Windows.Forms.Padding(40, 20, 20, 20);
 			this.pnNoSections.Size = new System.Drawing.Size(200, 100);
@@ -1065,21 +1067,35 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             this.toolStripMenuItemSnapshotRename,
             this.toolStripMenuItemSnapshotClone});
 			this.contextMenuStripSections.Name = "contextMenuStripSnapshot";
-			this.contextMenuStripSections.Size = new System.Drawing.Size(153, 70);
+			this.contextMenuStripSections.Size = new System.Drawing.Size(118, 48);
 			// 
 			// toolStripMenuItemSnapshotRename
 			// 
 			this.toolStripMenuItemSnapshotRename.Name = "toolStripMenuItemSnapshotRename";
-			this.toolStripMenuItemSnapshotRename.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItemSnapshotRename.Size = new System.Drawing.Size(117, 22);
 			this.toolStripMenuItemSnapshotRename.Text = "Rename";
 			this.toolStripMenuItemSnapshotRename.Click += new System.EventHandler(this.toolStripMenuItemSectionsRename_Click);
 			// 
 			// toolStripMenuItemSnapshotClone
 			// 
 			this.toolStripMenuItemSnapshotClone.Name = "toolStripMenuItemSnapshotClone";
-			this.toolStripMenuItemSnapshotClone.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItemSnapshotClone.Size = new System.Drawing.Size(117, 22);
 			this.toolStripMenuItemSnapshotClone.Text = "Clone";
 			this.toolStripMenuItemSnapshotClone.Click += new System.EventHandler(this.toolStripMenuItemSectionsClone_Click);
+			// 
+			// buttonXProgram
+			// 
+			this.buttonXProgram.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXProgram.AutoCheckOnClick = true;
+			this.buttonXProgram.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXProgram.Location = new System.Drawing.Point(20, 207);
+			this.buttonXProgram.Name = "buttonXProgram";
+			this.buttonXProgram.Size = new System.Drawing.Size(113, 27);
+			this.buttonXProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXProgram.TabIndex = 117;
+			this.buttonXProgram.Text = "Program";
+			this.buttonXProgram.TextColor = System.Drawing.Color.Black;
+			this.buttonXProgram.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
 			// ScheduleContainer
 			// 
@@ -1198,5 +1214,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private ContextMenuStrip contextMenuStripSections;
 		private ToolStripMenuItem toolStripMenuItemSnapshotRename;
 		private ToolStripMenuItem toolStripMenuItemSnapshotClone;
+		private DevComponents.DotNetBar.ButtonX buttonXProgram;
     }
 }

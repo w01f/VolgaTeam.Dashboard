@@ -253,6 +253,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				buttonXLength.Checked = ActiveSection.SectionData.ShowLenght;
 				buttonXLogo.Checked = ActiveSection.SectionData.ShowLogo;
 				buttonXStation.Checked = ActiveSection.SectionData.ShowStation;
+				buttonXProgram.Checked = ActiveSection.SectionData.ShowProgram;
 				buttonXTime.Checked = ActiveSection.SectionData.ShowTime;
 				buttonXSpots.Text = String.Format("{0}s", SpotTitle);
 				buttonXSpots.Checked = ActiveSection.SectionData.ShowSpots;
@@ -553,6 +554,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			ActiveSection.SectionData.ShowLenght = buttonXLength.Checked;
 			ActiveSection.SectionData.ShowLogo = buttonXLogo.Checked;
 			ActiveSection.SectionData.ShowStation = buttonXStation.Checked;
+			ActiveSection.SectionData.ShowProgram = buttonXProgram.Checked;
 			ActiveSection.SectionData.ShowTime = buttonXTime.Checked;
 			ActiveSection.SectionData.ShowSpots = buttonXSpots.Checked;
 
@@ -568,10 +570,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
 			{
 				ApplySharedSettings(ActiveSection);
-				xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc => oc.UpdateView());
+				xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc => oc.UpdateGridView());
 			}
 			else
-				ActiveSection.UpdateView();
+				ActiveSection.UpdateGridView();
 
 			UpdateQuarterSelectorControl();
 			UpdateTotalsVisibility();
@@ -614,10 +616,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveSection);
-					xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc => oc.UpdateView());
+					xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc => oc.UpdateGridView());
 				}
 				else
-					ActiveSection.UpdateView();
+					ActiveSection.UpdateGridView();
 
 				TrackOptionChanged();
 				SettingsNotSaved = true;

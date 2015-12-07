@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Core.MediaSchedule;
 using DevComponents.DotNetBar;
@@ -21,6 +22,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public void InitControls(IEnumerable<Quarter> quarters, Quarter selectedQuarter)
 		{
+			Visible = quarters.Count() > 1;
 			SelectedQuarter = selectedQuarter;
 			Controls.Clear();
 			_quarterButtons.Clear();

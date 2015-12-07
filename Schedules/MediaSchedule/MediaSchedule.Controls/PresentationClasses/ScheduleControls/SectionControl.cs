@@ -30,7 +30,7 @@ using DevExpress.XtraTab;
 namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
-	//public partial class SectionTabControl : UserControl
+	//public partial class SectionControl : UserControl
 	public partial class SectionControl : XtraTabPage
 	{
 		private readonly List<BandedGridColumn> _spotColumns = new List<BandedGridColumn>();
@@ -168,7 +168,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			bandedGridColumnGRP.ColumnEdit = SectionData.ParentSchedule.DemoType == DemoType.Rtg ? repositoryItemSpinEditRating : repositoryItemSpinEdit000s;
 			bandedGridColumnGRP.SummaryItem.DisplayFormat = SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "{0:n1}" : "{0:n0}";
 
-
 			repositoryItemComboBoxStations.Items.Clear();
 			repositoryItemComboBoxStations.Items.AddRange(SectionData.ParentSchedule.Stations.Where(x => x.Available).OfType<object>().ToArray());
 			repositoryItemComboBoxDayparts.Items.Clear();
@@ -180,8 +179,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			repositoryItemComboBoxTimes.Items.Clear();
 			repositoryItemComboBoxTimes.Items.AddRange(MediaMetaData.Instance.ListManager.Times);
 
-			UpdateGrid(true);
-			UpdateView();
+			UpdateGridData(true);
+			UpdateGridView();
 		}
 
 		public void SaveData()
@@ -197,7 +196,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public void AddProgram()
 		{
 			SectionData.AddProgram();
-			UpdateGrid(true);
+			UpdateGridData(true);
 			UpdateSpotsByQuarter();
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
@@ -215,7 +214,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void CloneProgram(int sourceIndex, bool fullClone)
 		{
 			SectionData.CloneProgram(sourceIndex, fullClone);
-			UpdateGrid(true);
+			UpdateGridData(true);
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
 
@@ -237,7 +236,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (Utilities.Instance.ShowWarningQuestion(String.Format("Delete Line ID {0}?", selectedProgramIndex)) != DialogResult.Yes)
 				return;
 			SectionData.DeleteProgram(advBandedGridViewSchedule.GetDataSourceRowIndex(advBandedGridViewSchedule.FocusedRowHandle));
-			UpdateGrid(true);
+			UpdateGridData(true);
 
 			var options = new Dictionary<string, object>();
 			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
@@ -249,29 +248,72 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			OnScheduleSectionDataChanged(this, EventArgs.Empty);
 		}
 
-		public void UpdateView()
+		public void UpdateGridView()
 		{
+			gridBandRate.Visible = SectionData.ShowRate | SectionData.ShowRating;
 			bandedGridColumnRate.Visible = SectionData.ShowRate;
 			bandedGridColumnRating.Visible = SectionData.ShowRating;
-			gridBandRate.Visible = SectionData.ShowRate | SectionData.ShowRating;
 			if (SectionData.ShowRate)
 				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnRate, 0, 0);
 			if (SectionData.ShowRating)
 				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnRating, 1, 0);
+			
 			bandedGridColumnCPP.Visible = SectionData.ShowCPP;
 			bandedGridColumnGRP.Visible = SectionData.ShowGRP;
 			bandedGridColumnCost.Visible = SectionData.ShowCost;
+
+			gridBandProgram.Visible = SectionData.ShowProgram || SectionData.ShowLenght || SectionData.ShowDay || SectionData.ShowTime;
+			bandedGridColumnName.Visible = SectionData.ShowProgram;
 			bandedGridColumnLength.Visible = SectionData.ShowLenght;
 			bandedGridColumnDay.Visible = SectionData.ShowDay;
 			bandedGridColumnTime.Visible = SectionData.ShowTime;
+			if (SectionData.ShowProgram)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnName, 0, 0);
+			var secondRowIndex = SectionData.ShowProgram ? 1 : 0;
+			var columnIndex = 0;
+			if (SectionData.ShowDay)
+			{
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDay, secondRowIndex, columnIndex);
+				columnIndex++;
+			}
+			if (SectionData.ShowTime)
+			{
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnTime, secondRowIndex, columnIndex);
+				columnIndex++;
+			}
+			if (SectionData.ShowLenght)
+			{
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnLength, secondRowIndex, columnIndex);
+				columnIndex++;
+			}
+
 			gridBandLogo.Visible = SectionData.ShowLogo;
 
 			bandedGridColumnStation.Visible = SectionData.ShowStation;
 			bandedGridColumnDaypart.Visible = SectionData.ShowDaypart;
 
-			UpdateSpotsByQuarter();
 			UpdateColumnsAccordingScreenSize();
+			UpdateSpotsByQuarter();
 			UpdateRateFormat();
+		}
+
+		private void UpdateColumnsAccordingScreenSize()
+		{
+			gridBandStation.Visible = SectionData.ShowStation || SectionData.ShowDaypart;
+			if (SectionData.ShowStation)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnStation, 0, 0);
+			if (SectionData.ShowDaypart)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDaypart, 1, 0);
+			gridBandTotals.Visible = SectionData.ShowTotalSpots || SectionData.ShowCost || SectionData.ShowGRP || SectionData.ShowCPP;
+			if (SectionData.ShowTotalSpots)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnTotalSpots, 0, 0);
+			if (SectionData.ShowGRP)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnGRP, 1, 0);
+			var secondColumnIndex = SectionData.ShowTotalSpots || SectionData.ShowGRP ? 1 : 0;
+			if (SectionData.ShowCost)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCost, 0, secondColumnIndex);
+			if (SectionData.ShowCPP)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCPP, 1, secondColumnIndex);
 		}
 
 		public void UpdateSpotsByQuarter(Quarter selectedQuarter)
@@ -301,7 +343,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				gridBandSpots.Visible = false;
 		}
 
-		private void UpdateGrid(bool rebuildColumns)
+		private void UpdateGridData(bool rebuildColumns)
 		{
 			int focussedRow = advBandedGridViewSchedule.FocusedRowHandle;
 			advBandedGridViewSchedule.BeginUpdate();
@@ -401,25 +443,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				gridBandSpots.Columns.Add(bandedGridColumn);
 			}
 			gridBandSpots.Visible = _spotColumns.Count > 0 && SectionData.ShowSpots;
-		}
-
-		private void UpdateColumnsAccordingScreenSize()
-		{
-			gridBandStation.Visible = SectionData.ShowStation || SectionData.ShowDaypart;
-			if (SectionData.ShowStation)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnStation, 0, 0);
-			if (SectionData.ShowDaypart)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDaypart, 1, 0);
-			gridBandTotals.Visible = SectionData.ShowTotalSpots || SectionData.ShowCost || SectionData.ShowGRP || SectionData.ShowCPP;
-			if (SectionData.ShowTotalSpots)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnTotalSpots, 0, 0);
-			if (SectionData.ShowGRP)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnGRP, 1, 0);
-			var secondColumnIndex = SectionData.ShowTotalSpots || SectionData.ShowGRP ? 1 : 0;
-			if (SectionData.ShowCost)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCost, 0, secondColumnIndex);
-			if (SectionData.ShowCPP)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCPP, 1, secondColumnIndex);
 		}
 
 		private void UpdateRateFormat()
@@ -696,7 +719,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			var sourceRow = downHitInfo.RowHandle;
 			var targetRow = hitInfo.HitTest == GridHitTest.EmptyRow ? view.DataRowCount : hitInfo.RowHandle;
 			SectionData.ChangeProgramPosition(sourceRow, targetRow);
-			UpdateGrid(false);
+			UpdateGridData(false);
 			UpdateSpotsByQuarter();
 			advBandedGridViewSchedule.FocusedRowHandle = targetRow;
 
@@ -799,6 +822,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 						outputPage.ShowGRP = SectionData.ShowGRP;
 						outputPage.ShowCost = SectionData.ShowCost;
 						outputPage.ShowStation = SectionData.ShowStation;
+						outputPage.ShowProgram = SectionData.ShowProgram;
 						outputPage.ShowStationInBrackets = !SectionData.OutputNoBrackets;
 						outputPage.ShowDay = SectionData.ShowDay;
 						outputPage.ShowTime = SectionData.ShowTime;

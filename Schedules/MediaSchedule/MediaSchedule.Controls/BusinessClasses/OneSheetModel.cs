@@ -131,6 +131,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 		public bool ShowCost { get; set; }
 		public bool ShowCPP { get; set; }
 		public bool ShowStation { get; set; }
+		public bool ShowProgram { get; set; }
 		public bool ShowLogo { get; set; }
 		public bool ShowStationInBrackets { get; set; }
 		#endregion
@@ -177,7 +178,17 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			if (!String.IsNullOrEmpty(Quarter))
 			{
 				key = "Program";
-				value = String.Format("Program  ({0})", Quarter);
+				value = String.Format(ShowProgram ?
+						"Program  ({0})" :
+						"Day-Time  ({0})",
+					Quarter);
+				if (!ReplacementsList.Keys.Contains(key))
+					ReplacementsList.Add(key, value);
+			}
+			else if (!ShowProgram)
+			{
+				key = "Program";
+				value = "Day-Time";
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
 			}
@@ -188,14 +199,14 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
 			}
-			if (!ShowDay && SpotsPerSlide < 20)
+			if ((!ShowDay || !ShowProgram) && SpotsPerSlide < 20)
 			{
 				key = "Day";
 				value = "Delete Column";
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
 			}
-			if (!ShowTime && SpotsPerSlide < 20)
+			if ((!ShowTime || !ShowProgram) && SpotsPerSlide < 20)
 			{
 				key = "Time";
 				value = "Delete Column";
@@ -321,7 +332,9 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 					temp.Clear();
 					if (ShowStation)
 						temp.Add(ShowStationInBrackets ? String.Format("[{0}]", program.Station) : String.Format("{0} ", program.Station));
-					temp.Add(program.Name);
+					temp.Add(ShowProgram ?
+						program.Name :
+						String.Format("{0} {1}", program.Days, program.Time));
 					value = String.Join(" ", temp);
 					if (!ReplacementsList.Keys.Contains(key))
 						ReplacementsList.Add(key, value);
@@ -337,9 +350,9 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 						temp.Clear();
 						if (ShowLength)
 							temp.Add(String.Format("{0}", program.Length));
-						if (ShowDay)
+						if (ShowDay && ShowProgram)
 							temp.Add(String.Format("{0}", program.Days));
-						if (ShowTime)
+						if (ShowTime && ShowProgram)
 							temp.Add(String.Format("{0}", program.Time));
 						if (ShowRating)
 							temp.Add(String.Format("{0}: {1}", RtgHeaderTitle.Replace(((char)13).ToString(), " "), program.Rating));
@@ -362,9 +375,9 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 						{
 							key = String.Format("day{0}     time{0}     rtg{0}     pts{0}     cpp{0}", i + 1);
 							temp.Clear();
-							if (ShowDay)
+							if (ShowDay && ShowProgram)
 								temp.Add(String.Format("{0}", program.Days));
-							if (ShowTime)
+							if (ShowTime && ShowProgram)
 								temp.Add(String.Format("{0}", program.Time));
 							if (ShowRating)
 								temp.Add(String.Format("{0}: {1}", RtgHeaderTitle.Replace(((char)13).ToString(), " "), program.Rating));
@@ -380,11 +393,11 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 					if (SpotsPerSlide < 20)
 					{
 						key = String.Format("day{0}", (i + 1));
-						value = ShowDay ? program.Days : String.Empty;
+						value = ShowDay && ShowProgram ? program.Days : String.Empty;
 						if (!ReplacementsList.Keys.Contains(key))
 							ReplacementsList.Add(key, value);
 						key = String.Format("time{0}", (i + 1));
-						value = ShowTime ? program.Time : String.Empty;
+						value = ShowTime && ShowProgram ? program.Time : String.Empty;
 						if (!ReplacementsList.Keys.Contains(key))
 							ReplacementsList.Add(key, value);
 

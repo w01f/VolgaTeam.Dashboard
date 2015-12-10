@@ -23,6 +23,7 @@ namespace Asa.Bar.App.Forms
 
 		private void FormProgress_Shown(object sender, EventArgs e)
 		{
+			BackColor = Color.Green;
 			laTitle.Focus();
 			circularProgress.IsRunning = true;
 		}

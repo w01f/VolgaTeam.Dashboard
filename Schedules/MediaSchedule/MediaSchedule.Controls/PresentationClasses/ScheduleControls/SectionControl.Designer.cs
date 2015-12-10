@@ -1044,7 +1044,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pbNoPrograms.TabIndex = 1;
 			this.pbNoPrograms.TabStop = false;
 			// 
-			// SectionTabControl
+			// SectionControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.gridControlSchedule);

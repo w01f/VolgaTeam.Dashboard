@@ -89,6 +89,12 @@ namespace Asa.Bar.App.Forms
 			circularProgress.IsRunning = true;
 			labelXErrorText.Text = String.Empty;
 		}
+
+		private void OnEnterKeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)Keys.Return)
+				OnOKClick(sender, e);
+		}
 	}
 
 	public class LoginEventArgs : EventArgs

@@ -76,10 +76,12 @@ namespace Asa.Bar.App
 				authManager.Init();
 				FormStart.SetTitle("Checking credentials...", "*This should not take long…");
 				authManager.Auth(e);
+				if (!e.Authorized)
+					LoadAtStartupHelper.UnsetLoadAtStartup();
 			};
 
 			FormStart.ShowProgress();
-			FormStart.SetTitle("Checking data version...", "*This should not take long…");
+			FormStart.SetTitle("Connecting to adSALEScloud…", "*This should not take long…");
 			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
 			thread.Start();
 			while (thread.IsAlive)
@@ -101,7 +103,7 @@ namespace Asa.Bar.App
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
 					FormStart.SetTitle("Loading data from server for the 1st time...", "*This may take a few minutes…");
 				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-					FormStart.SetTitle("Updating data from server...", "*This may take a few minutes…");
+					FormStart.SetTitle("Refreshing data from adSALEScloud…", "*This may take a few minutes…");
 				else
 					FormStart.SetTitle("Loading application data...", "*This should not take long…");
 

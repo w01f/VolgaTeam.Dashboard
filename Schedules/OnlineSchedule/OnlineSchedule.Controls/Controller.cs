@@ -378,7 +378,7 @@ namespace Asa.OnlineSchedule.Controls
 		public bool CheckPowerPointRunning()
 		{
 			if (OnlineSchedulePowerPointHelper.Instance.IsLinkedWithApplication) return true;
-			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a SellerPoint Schedule.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
 				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
 			return false;
 		}

@@ -81,6 +81,10 @@ namespace Asa.Dashboard
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
 			ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+
+			buttonItemSlideSettings.Visible =
+				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
+				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
 		}
 
 		public void HideThemeButtons()

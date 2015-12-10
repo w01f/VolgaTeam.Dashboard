@@ -252,6 +252,15 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
 			}
+
+			if (!(ShowSpots || ShowTotalSpots || ShowCPP || ShowGRP || ShowCost))
+			{
+				key = "Total";
+				value = "Delete Row";
+				if (!ReplacementsList.Keys.Contains(key))
+					ReplacementsList.Add(key, value);
+			}
+
 			key = "tspot";
 			value = TotalSpot;
 			if (!ReplacementsList.Keys.Contains(key))

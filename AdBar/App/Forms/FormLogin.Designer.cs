@@ -86,6 +86,7 @@
 			this.textBoxXPassword.Size = new System.Drawing.Size(350, 22);
 			this.textBoxXPassword.TabIndex = 2;
 			this.textBoxXPassword.UseSystemPasswordChar = true;
+			this.textBoxXPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnEnterKeyPress);
 			// 
 			// labelXUserDescription
 			// 
@@ -136,6 +137,7 @@
 			this.textBoxXUser.Name = "textBoxXUser";
 			this.textBoxXUser.Size = new System.Drawing.Size(350, 22);
 			this.textBoxXUser.TabIndex = 1;
+			this.textBoxXUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnEnterKeyPress);
 			// 
 			// labelXPasswordDescription
 			// 
@@ -343,6 +345,7 @@
 			this.Controls.Add(this.pictureBoxMainLogo);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;

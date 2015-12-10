@@ -250,6 +250,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public void UpdateGridView()
 		{
+			advBandedGridViewSchedule.OptionsView.ShowFooter = SectionData.ShowSpots ||
+				SectionData.ShowTotalSpots ||                                               
+				SectionData.ShowCost ||
+			    SectionData.ShowGRP ||
+			    SectionData.ShowGRP;
+
 			gridBandRate.Visible = SectionData.ShowRate | SectionData.ShowRating;
 			bandedGridColumnRate.Visible = SectionData.ShowRate;
 			bandedGridColumnRating.Visible = SectionData.ShowRating;
@@ -257,7 +263,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnRate, 0, 0);
 			if (SectionData.ShowRating)
 				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnRating, 1, 0);
-			
+
+			bandedGridColumnTotalSpots.Visible = SectionData.ShowTotalSpots;
 			bandedGridColumnCPP.Visible = SectionData.ShowCPP;
 			bandedGridColumnGRP.Visible = SectionData.ShowGRP;
 			bandedGridColumnCost.Visible = SectionData.ShowCost;

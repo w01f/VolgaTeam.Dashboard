@@ -288,6 +288,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (!_allowToSave) return;
 				if (_localSchedule.ProgramSchedule.ApplySettingsForAll)
 					ApplySharedSettings(sourceControl);
+				UpdateTotalsVisibility();
 				UpdateTotalsValues();
 				UpdateOutputStatus();
 				SettingsNotSaved = true;
@@ -380,6 +381,17 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void UpdateTotalsVisibility()
 		{
 			if (ActiveSection == null) return;
+
+			pnBottom.Visible = ActiveSection.SectionData.Programs.Any() &&
+				(ActiveSection.SectionData.ShowTotalCPP ||
+				ActiveSection.SectionData.ShowTotalGRP ||
+				ActiveSection.SectionData.ShowTotalSpots ||
+				ActiveSection.SectionData.ShowTotalPeriods ||
+				ActiveSection.SectionData.ShowAverageRate ||
+				ActiveSection.SectionData.ShowTotalRate ||
+				ActiveSection.SectionData.ShowNetRate ||
+				ActiveSection.SectionData.ShowDiscount);
+
 			pnTotalCPP.Visible = ActiveSection.SectionData.ShowTotalCPP;
 			pnTotalCPP.SendToBack();
 			pnTotalGRP.Visible = ActiveSection.SectionData.ShowTotalGRP;
@@ -402,7 +414,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			if (ActiveSection != null && ActiveSection.SectionData.Programs.Any())
 			{
-				pnBottom.Visible = true;
 				laTotalPeriodsValue.Text = ActiveSection.TotalPeriodsValueFormatted;
 				laTotalSpotsValue.Text = ActiveSection.TotalSpotsValueFormatted;
 				laTotalGRPValue.Text = ActiveSection.TotalGRPValueFormatted;
@@ -414,8 +425,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 			else
 			{
-				pnBottom.Visible = false;
-
 				laTotalPeriodsValue.Text =
 				laTotalSpotsValue.Text =
 				laTotalGRPValue.Text =

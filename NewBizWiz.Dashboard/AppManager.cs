@@ -84,7 +84,7 @@ namespace Asa.Dashboard
 			};
 
 			FormStart.ShowProgress();
-			FormStart.SetTitle("Checking data version...", "*This should not take long…");
+			FormStart.SetTitle("Connecting to adSALEScloud…", "*This should not take long…");
 			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
 			thread.Start();
 			while (thread.IsAlive)
@@ -106,7 +106,7 @@ namespace Asa.Dashboard
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
 					FormStart.SetTitle("Loading data from server for the 1st time...", "*This may take a few minutes…");
 				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-					FormStart.SetTitle("Updating data from server...", "*This may take a few minutes…");
+					FormStart.SetTitle("Refreshing data from adSALEScloud…", "*This may take a few minutes…");
 				else
 					FormStart.SetTitle("Loading application data...", "*This should not take long…");
 
@@ -211,7 +211,7 @@ namespace Asa.Dashboard
 		public bool CheckPowerPointRunning()
 		{
 			if (DashboardPowerPointHelper.Instance.IsLinkedWithApplication) return true;
-			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint must be open if you want to build a 6 Minute Seller Presentation.{0}Do you want to open PowerPoint now?", Environment.NewLine)) == DialogResult.Yes)
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
 				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
 			return false;
 		}

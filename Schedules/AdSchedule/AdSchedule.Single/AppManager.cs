@@ -79,7 +79,7 @@ namespace Asa.AdSchedule.Single
 			if (FileStorageManager.Instance.Activated)
 			{
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
-					FormStart.SetTitle("Loading data from server for the 1st time...", "*This may take a few minutes…");
+					FormStart.SetTitle("Syncing with adSALEScloud for the 1st time…", "*This may take a few minutes…");
 				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
 					FormStart.SetTitle("Refreshing data from adSALEScloud…", "*This may take a few minutes…");
 				else

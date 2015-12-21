@@ -51,7 +51,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=12.0.0.7, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -60,10 +60,11 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="SharpCompress, Version=0.10.3.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL">
       <HintPath>..\packages\sharpcompress.0.11.1\lib\net40\SharpCompress.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,7 +89,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WebDAVClient, Version=1.0.21.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WebDAVClient.1.0.21\lib\net45\WebDAVClient.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +114,7 @@
     <Compile Include="Common\ResourceManager.cs" />
     <Compile Include="Common\ScheduleSaveEventArgs.cs" />
     <Compile Include="Common\SettingsSerializeHelper.cs" />
+    <Compile Include="Common\SharedAssemblyHelper.cs" />
     <Compile Include="Common\SlideManager.cs" />
     <Compile Include="Common\SpecialLinkButton.cs" />
     <Compile Include="Common\Summary.cs" />

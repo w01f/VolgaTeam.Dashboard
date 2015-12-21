@@ -23,6 +23,7 @@ namespace Asa.Bar.App.Configuration
 		public StorageFile TabsConfigFile { get; private set; }
 		public StorageFile WatchedProcessesFile { get; private set; }
 		public ArchiveDirectory SpecialAppsFolder { get; private set; }
+		public ArchiveDirectory SharedAssembliesFolder { get; private set; }
 		public StorageDirectory DataFolder { get; private set; }
 		public ArchiveDirectory SyncFilesFolder { get; private set; }
 		public StorageDirectory CloudFilesFolder { get; private set; }
@@ -84,6 +85,15 @@ namespace Asa.Bar.App.Configuration
 				"HideList.xml"
 			});
 			await WatchedProcessesFile.Download();
+
+			SharedAssembliesFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"SharedAssemblies"
+			});
+			if (await SharedAssembliesFolder.Exists(true))
+				await SharedAssembliesFolder.DownloadTo(SharedAssemblyHelper.SharedAssemblyLocationPath);
 
 			SpecialAppsFolder = new ArchiveDirectory(new[]
 			{

@@ -321,7 +321,7 @@
 			this.labelXSiteCheck.Name = "labelXSiteCheck";
 			this.labelXSiteCheck.Size = new System.Drawing.Size(509, 23);
 			this.labelXSiteCheck.TabIndex = 19;
-			this.labelXSiteCheck.Text = "I need to check my account at:<a href=\"http://{0}\">{0}</a>";
+			this.labelXSiteCheck.Text = "I need to check my account at:<a href=\"{0}\">{0}</a>";
 			this.labelXSiteCheck.MarkupLinkClick += new DevComponents.DotNetBar.MarkupLinkClickEventHandler(this.OnUrlLabelClick);
 			// 
 			// FormLogin

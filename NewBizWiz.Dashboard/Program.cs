@@ -20,6 +20,8 @@ namespace Asa.Dashboard
 			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
+				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
+
 				RegistryHelper.MaximizeMainForm = false;
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);

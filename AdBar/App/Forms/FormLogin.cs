@@ -17,6 +17,17 @@ namespace Asa.Bar.App.Forms
 		public FormLogin()
 		{
 			InitializeComponent();
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				labelXErrorText.Font = new Font(labelXErrorText.Font.FontFamily, labelXErrorText.Font.Size - 2, labelXErrorText.Font.Style);
+				labelXForgotPassword.Font = new Font(labelXForgotPassword.Font.FontFamily, labelXForgotPassword.Font.Size - 2, labelXForgotPassword.Font.Style);
+				labelXMainTitle.Font = new Font(labelXMainTitle.Font.FontFamily, labelXMainTitle.Font.Size - 2, labelXMainTitle.Font.Style);
+				labelXPasswordDescription.Font = new Font(labelXPasswordDescription.Font.FontFamily, labelXPasswordDescription.Font.Size - 2, labelXPasswordDescription.Font.Style);
+				labelXPasswordTitle.Font = new Font(labelXPasswordTitle.Font.FontFamily, labelXPasswordTitle.Font.Size - 2, labelXPasswordTitle.Font.Style);
+				labelXSiteCheck.Font = new Font(labelXSiteCheck.Font.FontFamily, labelXSiteCheck.Font.Size - 2, labelXSiteCheck.Font.Style);
+				labelXUserDescription.Font = new Font(labelXUserDescription.Font.FontFamily, labelXUserDescription.Font.Size - 2, labelXUserDescription.Font.Style);
+				labelXUserTitle.Font = new Font(labelXUserTitle.Font.FontFamily, labelXUserTitle.Font.Size - 2, labelXUserTitle.Font.Style);
+			}
 		}
 
 		public void SetSiteUrl(string siteUrl)

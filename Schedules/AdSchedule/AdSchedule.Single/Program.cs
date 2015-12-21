@@ -21,6 +21,8 @@ namespace Asa.AdSchedule.Single
 			new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
+				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
+
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");

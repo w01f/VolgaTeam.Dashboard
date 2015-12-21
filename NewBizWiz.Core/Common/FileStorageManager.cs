@@ -233,7 +233,7 @@ namespace Asa.Core.Common
 			RelativePathParts = relativePathParts;
 		}
 
-		public virtual async Task<bool> Exists(bool checkRemoteToo = false, bool force= false)
+		public virtual async Task<bool> Exists(bool checkRemoteToo = false, bool force = false)
 		{
 			if (!checkRemoteToo || FileStorageManager.Instance.UseLocalMode)
 				return ExistsLocal();
@@ -420,6 +420,12 @@ namespace Asa.Core.Common
 			await _archiveFile.Download();
 		}
 
+		public async Task DownloadTo(string targetPath)
+		{
+			if (FileStorageManager.Instance.DataState == DataActualityState.Updated) return;
+			await _archiveFile.DownloadTo(targetPath);
+		}
+
 		protected async override Task<bool> ExistsRemote()
 		{
 			return await _archiveFile.Exists(true);
@@ -577,6 +583,30 @@ namespace Asa.Core.Common
 						if (reader.Entry.IsDirectory) continue;
 						alreadyRead += reader.Entry.CompressedSize;
 						reader.WriteEntryToDirectory(GetParentFolder().LocalPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+						FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
+					}
+					FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, 100, 100));
+				}
+			}
+		}
+
+		public async Task DownloadTo(string targetPath, bool force = false)
+		{
+			await base.Download(force);
+			if (_isOutdated || !Directory.Exists(targetPath))
+			{
+				if (Directory.Exists(targetPath))
+					Utilities.Instance.DeleteFolder(targetPath);
+				var contentLenght = new FileInfo(LocalPath).Length;
+				Int64 alreadyRead = 0;
+				using (Stream stream = File.OpenRead(LocalPath))
+				{
+					var reader = ReaderFactory.Open(stream);
+					while (reader.MoveToNextEntry())
+					{
+						if (reader.Entry.IsDirectory) continue;
+						alreadyRead += reader.Entry.CompressedSize;
+						reader.WriteEntryToDirectory(targetPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
 						FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
 					}
 					FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, 100, 100));

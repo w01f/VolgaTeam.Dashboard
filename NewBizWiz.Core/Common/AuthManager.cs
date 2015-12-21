@@ -41,7 +41,7 @@ namespace Asa.Core.Common
 				{
 					var client = new AdSalesDataControllerService.AdSalesDataControllerService
 					{
-						Url = String.Format("http://{0}/AdSalesData/quote?ws=1", url)
+						Url = String.Format("{0}/AdSalesData/quote?ws=1", url)
 					};
 					var sessionKey = client.getSessionKey(login, password);
 					authorized = !String.IsNullOrEmpty(sessionKey);

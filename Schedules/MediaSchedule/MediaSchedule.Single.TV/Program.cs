@@ -22,6 +22,8 @@ namespace Asa.MediaSchedule.Single.TV
 			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
+				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
+
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				AppManager.Instance.RunApplication(MediaDataType.TVSchedule);

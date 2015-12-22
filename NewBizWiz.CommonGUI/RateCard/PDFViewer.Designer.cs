@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.pdfViewerControl = new DevExpress.XtraPdfViewer.PdfViewer();
 			this.SuspendLayout();
 			// 
@@ -36,6 +37,7 @@
 			this.pdfViewerControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pdfViewerControl.Location = new System.Drawing.Point(0, 0);
 			this.pdfViewerControl.Name = "pdfViewerControl";
+			this.pdfViewerControl.NavigationPaneInitialVisibility = DevExpress.XtraPdfViewer.PdfNavigationPaneVisibility.Hidden;
 			this.pdfViewerControl.Size = new System.Drawing.Size(407, 332);
 			this.pdfViewerControl.TabIndex = 0;
 			this.pdfViewerControl.DoubleClick += new System.EventHandler(this.pdfViewerControl_DoubleClick);
@@ -44,7 +46,6 @@
 			// PDFViewer
 			// 
 			this.Controls.Add(this.pdfViewerControl);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Size = new System.Drawing.Size(407, 332);
 			this.ResumeLayout(false);

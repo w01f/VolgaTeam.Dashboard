@@ -9,6 +9,7 @@ using DevExpress.XtraEditors.Controls;
 using Asa.Core.Calendar;
 using Asa.Core.Common;
 using Pabo.Calendar;
+using DateRange = Asa.Core.Common.DateRange;
 
 namespace Asa.Calendar.Controls.ToolForms
 {

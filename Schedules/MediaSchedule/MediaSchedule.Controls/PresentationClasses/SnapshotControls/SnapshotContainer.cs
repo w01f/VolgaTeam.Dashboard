@@ -18,6 +18,7 @@ using Asa.Core.MediaSchedule;
 using Asa.MediaSchedule.Controls.BusinessClasses;
 using Asa.MediaSchedule.Controls.InteropClasses;
 using Asa.MediaSchedule.Controls.Properties;
+using DateRange = Asa.Core.Common.DateRange;
 
 namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 {

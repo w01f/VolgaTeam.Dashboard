@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.laTitle = new System.Windows.Forms.Label();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
@@ -83,7 +83,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(499, 11);
+			this.buttonXCancel.Location = new System.Drawing.Point(499, 10);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(98, 35);
 			this.buttonXCancel.TabIndex = 9;
@@ -96,7 +96,7 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(387, 11);
+			this.buttonXOK.Location = new System.Drawing.Point(387, 10);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(98, 35);
 			this.buttonXOK.TabIndex = 8;
@@ -108,7 +108,8 @@
 			this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXClearAll.Location = new System.Drawing.Point(264, 53);
+			this.buttonXClearAll.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXClearAll.Location = new System.Drawing.Point(268, 53);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
 			this.buttonXClearAll.TabIndex = 12;
@@ -183,7 +184,7 @@
 			this.pnMain.ForeColor = System.Drawing.Color.Black;
 			this.pnMain.Location = new System.Drawing.Point(0, 89);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(605, 249);
+			this.pnMain.Size = new System.Drawing.Size(605, 254);
 			this.pnMain.TabIndex = 17;
 			// 
 			// xtraTabControlClone
@@ -207,7 +208,7 @@
 			this.xtraTabControlClone.Name = "xtraTabControlClone";
 			this.xtraTabControlClone.SelectedTabPage = this.xtraTabPageDays;
 			this.xtraTabControlClone.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-			this.xtraTabControlClone.Size = new System.Drawing.Size(432, 214);
+			this.xtraTabControlClone.Size = new System.Drawing.Size(432, 219);
 			this.xtraTabControlClone.TabIndex = 5;
 			this.xtraTabControlClone.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageDays});
@@ -221,7 +222,7 @@
 			this.xtraTabPageDays.Controls.Add(this.buttonXClearAll);
 			this.xtraTabPageDays.Name = "xtraTabPageDays";
 			this.xtraTabPageDays.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.xtraTabPageDays.Size = new System.Drawing.Size(426, 208);
+			this.xtraTabPageDays.Size = new System.Drawing.Size(430, 217);
 			this.xtraTabPageDays.Text = "Days";
 			// 
 			// labelControlTooltip
@@ -235,7 +236,7 @@
 			this.labelControlTooltip.Dock = System.Windows.Forms.DockStyle.Top;
 			this.labelControlTooltip.Location = new System.Drawing.Point(5, 0);
 			this.labelControlTooltip.Name = "labelControlTooltip";
-			this.labelControlTooltip.Size = new System.Drawing.Size(421, 47);
+			this.labelControlTooltip.Size = new System.Drawing.Size(425, 47);
 			this.labelControlTooltip.TabIndex = 19;
 			this.labelControlTooltip.Text = "Add Date Ranges selecting first and last days in week \r\nby Mouse Click holding Ct" +
     "rl or Shift Key";
@@ -311,7 +312,7 @@
 			this.gridControlDays.Name = "gridControlDays";
 			this.gridControlDays.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit});
-			this.gridControlDays.Size = new System.Drawing.Size(171, 247);
+			this.gridControlDays.Size = new System.Drawing.Size(171, 252);
 			this.gridControlDays.TabIndex = 4;
 			this.gridControlDays.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDays});
@@ -357,7 +358,7 @@
 			// repositoryItemButtonEdit
 			// 
 			this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
 			this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";
@@ -374,9 +375,9 @@
 			this.pnBottom.Controls.Add(this.buttonXCancel);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottom.ForeColor = System.Drawing.Color.Black;
-			this.pnBottom.Location = new System.Drawing.Point(0, 338);
+			this.pnBottom.Location = new System.Drawing.Point(0, 343);
 			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(605, 60);
+			this.pnBottom.Size = new System.Drawing.Size(605, 55);
 			this.pnBottom.TabIndex = 18;
 			// 
 			// labelControlClonedNumber
@@ -389,7 +390,7 @@
 			this.labelControlClonedNumber.Dock = System.Windows.Forms.DockStyle.Left;
 			this.labelControlClonedNumber.Location = new System.Drawing.Point(0, 0);
 			this.labelControlClonedNumber.Name = "labelControlClonedNumber";
-			this.labelControlClonedNumber.Size = new System.Drawing.Size(374, 60);
+			this.labelControlClonedNumber.Size = new System.Drawing.Size(374, 55);
 			this.labelControlClonedNumber.TabIndex = 10;
 			this.labelControlClonedNumber.Text = "Cloned Notes: <b>{0}</b>";
 			// 

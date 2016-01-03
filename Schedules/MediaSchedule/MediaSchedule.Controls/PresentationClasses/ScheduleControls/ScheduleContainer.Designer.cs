@@ -70,6 +70,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageOptionsLine = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsLine = new System.Windows.Forms.Panel();
+			this.buttonXProgram = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXTime = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSpots = new DevComponents.DotNetBar.ButtonX();
@@ -107,7 +108,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.contextMenuStripSections = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
-			this.buttonXProgram = new DevComponents.DotNetBar.ButtonX();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
@@ -558,7 +558,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsLine.Appearance.PageClient.Options.UseBackColor = true;
 			this.xtraTabPageOptionsLine.Controls.Add(this.pnOptionsLine);
 			this.xtraTabPageOptionsLine.Name = "xtraTabPageOptionsLine";
-			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(290, 335);
+			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(294, 338);
 			this.xtraTabPageOptionsLine.Text = "Radio";
 			// 
 			// pnOptionsLine
@@ -580,8 +580,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsLine.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsLine.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsLine.Name = "pnOptionsLine";
-			this.pnOptionsLine.Size = new System.Drawing.Size(290, 335);
+			this.pnOptionsLine.Size = new System.Drawing.Size(294, 338);
 			this.pnOptionsLine.TabIndex = 0;
+			// 
+			// buttonXProgram
+			// 
+			this.buttonXProgram.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXProgram.AutoCheckOnClick = true;
+			this.buttonXProgram.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXProgram.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXProgram.Location = new System.Drawing.Point(20, 207);
+			this.buttonXProgram.Name = "buttonXProgram";
+			this.buttonXProgram.Size = new System.Drawing.Size(113, 27);
+			this.buttonXProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXProgram.TabIndex = 117;
+			this.buttonXProgram.Text = "Program";
+			this.buttonXProgram.TextColor = System.Drawing.Color.Black;
+			this.buttonXProgram.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
 			// buttonXLogo
 			// 
@@ -589,7 +604,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXLogo.AutoCheckOnClick = true;
 			this.buttonXLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLogo.Location = new System.Drawing.Point(156, 256);
+			this.buttonXLogo.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXLogo.Location = new System.Drawing.Point(160, 256);
 			this.buttonXLogo.Name = "buttonXLogo";
 			this.buttonXLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -604,7 +620,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTime.AutoCheckOnClick = true;
 			this.buttonXTime.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTime.Location = new System.Drawing.Point(156, 158);
+			this.buttonXTime.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXTime.Location = new System.Drawing.Point(160, 158);
 			this.buttonXTime.Name = "buttonXTime";
 			this.buttonXTime.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -618,6 +635,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXSpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSpots.AutoCheckOnClick = true;
 			this.buttonXSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSpots.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSpots.Location = new System.Drawing.Point(20, 109);
 			this.buttonXSpots.Name = "buttonXSpots";
 			this.buttonXSpots.Size = new System.Drawing.Size(113, 27);
@@ -633,7 +651,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCost.AutoCheckOnClick = true;
 			this.buttonXCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCost.Location = new System.Drawing.Point(156, 207);
+			this.buttonXCost.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXCost.Location = new System.Drawing.Point(160, 207);
 			this.buttonXCost.Name = "buttonXCost";
 			this.buttonXCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -647,6 +666,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXRate.AutoCheckOnClick = true;
 			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXRate.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXRate.Location = new System.Drawing.Point(20, 256);
 			this.buttonXRate.Name = "buttonXRate";
 			this.buttonXRate.Size = new System.Drawing.Size(113, 27);
@@ -661,6 +681,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXGRP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXGRP.AutoCheckOnClick = true;
 			this.buttonXGRP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXGRP.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXGRP.Location = new System.Drawing.Point(20, 305);
 			this.buttonXGRP.Name = "buttonXGRP";
 			this.buttonXGRP.Size = new System.Drawing.Size(113, 27);
@@ -676,7 +697,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXRating.AutoCheckOnClick = true;
 			this.buttonXRating.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRating.Location = new System.Drawing.Point(156, 109);
+			this.buttonXRating.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXRating.Location = new System.Drawing.Point(160, 109);
 			this.buttonXRating.Name = "buttonXRating";
 			this.buttonXRating.Size = new System.Drawing.Size(113, 27);
 			this.buttonXRating.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -690,6 +712,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXDay.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDay.AutoCheckOnClick = true;
 			this.buttonXDay.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXDay.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXDay.Location = new System.Drawing.Point(20, 158);
 			this.buttonXDay.Name = "buttonXDay";
 			this.buttonXDay.Size = new System.Drawing.Size(113, 27);
@@ -705,7 +728,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXDaypart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDaypart.AutoCheckOnClick = true;
 			this.buttonXDaypart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDaypart.Location = new System.Drawing.Point(156, 60);
+			this.buttonXDaypart.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXDaypart.Location = new System.Drawing.Point(160, 60);
 			this.buttonXDaypart.Name = "buttonXDaypart";
 			this.buttonXDaypart.Size = new System.Drawing.Size(113, 27);
 			this.buttonXDaypart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -719,6 +743,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCPP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCPP.AutoCheckOnClick = true;
 			this.buttonXCPP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCPP.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXCPP.Location = new System.Drawing.Point(20, 60);
 			this.buttonXCPP.Name = "buttonXCPP";
 			this.buttonXCPP.Size = new System.Drawing.Size(113, 27);
@@ -734,7 +759,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXLength.AutoCheckOnClick = true;
 			this.buttonXLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLength.Location = new System.Drawing.Point(156, 11);
+			this.buttonXLength.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXLength.Location = new System.Drawing.Point(160, 11);
 			this.buttonXLength.Name = "buttonXLength";
 			this.buttonXLength.Size = new System.Drawing.Size(113, 27);
 			this.buttonXLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -748,6 +774,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXStation.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXStation.AutoCheckOnClick = true;
 			this.buttonXStation.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStation.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXStation.Location = new System.Drawing.Point(20, 11);
 			this.buttonXStation.Name = "buttonXStation";
 			this.buttonXStation.Size = new System.Drawing.Size(113, 27);
@@ -761,7 +788,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.xtraTabPageOptionsDigital.Controls.Add(this.digitalInfoControl);
 			this.xtraTabPageOptionsDigital.Name = "xtraTabPageOptionsDigital";
-			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(290, 288);
+			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(294, 338);
 			this.xtraTabPageOptionsDigital.Text = "Digital";
 			// 
 			// digitalInfoControl
@@ -772,14 +799,14 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.digitalInfoControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalInfoControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.digitalInfoControl.Name = "digitalInfoControl";
-			this.digitalInfoControl.Size = new System.Drawing.Size(290, 288);
+			this.digitalInfoControl.Size = new System.Drawing.Size(294, 338);
 			this.digitalInfoControl.TabIndex = 0;
 			// 
 			// xtraTabPageOptionsTotals
 			// 
 			this.xtraTabPageOptionsTotals.Controls.Add(this.pnOptionsTotals);
 			this.xtraTabPageOptionsTotals.Name = "xtraTabPageOptionsTotals";
-			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(290, 288);
+			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(294, 338);
 			this.xtraTabPageOptionsTotals.Text = "Info";
 			// 
 			// pnOptionsTotals
@@ -796,7 +823,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsTotals.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsTotals.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsTotals.Name = "pnOptionsTotals";
-			this.pnOptionsTotals.Size = new System.Drawing.Size(290, 288);
+			this.pnOptionsTotals.Size = new System.Drawing.Size(294, 338);
 			this.pnOptionsTotals.TabIndex = 1;
 			// 
 			// buttonXDiscount
@@ -805,7 +832,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDiscount.AutoCheckOnClick = true;
 			this.buttonXDiscount.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDiscount.Location = new System.Drawing.Point(158, 158);
+			this.buttonXDiscount.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXDiscount.Location = new System.Drawing.Point(162, 158);
 			this.buttonXDiscount.Name = "buttonXDiscount";
 			this.buttonXDiscount.Size = new System.Drawing.Size(113, 27);
 			this.buttonXDiscount.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -819,6 +847,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalGRP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalGRP.AutoCheckOnClick = true;
 			this.buttonXTotalGRP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTotalGRP.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXTotalGRP.Location = new System.Drawing.Point(20, 109);
 			this.buttonXTotalGRP.Name = "buttonXTotalGRP";
 			this.buttonXTotalGRP.Size = new System.Drawing.Size(113, 27);
@@ -834,7 +863,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXNetRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXNetRate.AutoCheckOnClick = true;
 			this.buttonXNetRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXNetRate.Location = new System.Drawing.Point(158, 109);
+			this.buttonXNetRate.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXNetRate.Location = new System.Drawing.Point(162, 109);
 			this.buttonXNetRate.Name = "buttonXNetRate";
 			this.buttonXNetRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXNetRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -848,6 +878,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalCPP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalCPP.AutoCheckOnClick = true;
 			this.buttonXTotalCPP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTotalCPP.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXTotalCPP.Location = new System.Drawing.Point(20, 158);
 			this.buttonXTotalCPP.Name = "buttonXTotalCPP";
 			this.buttonXTotalCPP.Size = new System.Drawing.Size(113, 27);
@@ -863,7 +894,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTotalCost.AutoCheckOnClick = true;
 			this.buttonXTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalCost.Location = new System.Drawing.Point(158, 60);
+			this.buttonXTotalCost.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXTotalCost.Location = new System.Drawing.Point(162, 60);
 			this.buttonXTotalCost.Name = "buttonXTotalCost";
 			this.buttonXTotalCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -877,6 +909,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalSpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalSpots.AutoCheckOnClick = true;
 			this.buttonXTotalSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTotalSpots.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXTotalSpots.Location = new System.Drawing.Point(20, 60);
 			this.buttonXTotalSpots.Name = "buttonXTotalSpots";
 			this.buttonXTotalSpots.Size = new System.Drawing.Size(113, 27);
@@ -892,7 +925,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXAvgRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAvgRate.AutoCheckOnClick = true;
 			this.buttonXAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAvgRate.Location = new System.Drawing.Point(158, 11);
+			this.buttonXAvgRate.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXAvgRate.Location = new System.Drawing.Point(162, 11);
 			this.buttonXAvgRate.Name = "buttonXAvgRate";
 			this.buttonXAvgRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXAvgRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -906,6 +940,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalPeriods.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalPeriods.AutoCheckOnClick = true;
 			this.buttonXTotalPeriods.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTotalPeriods.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXTotalPeriods.Location = new System.Drawing.Point(20, 11);
 			this.buttonXTotalPeriods.Name = "buttonXTotalPeriods";
 			this.buttonXTotalPeriods.Size = new System.Drawing.Size(113, 27);
@@ -919,7 +954,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 288);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(294, 338);
 			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
@@ -930,7 +965,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(290, 288);
+			this.pnStyle.Size = new System.Drawing.Size(294, 338);
 			this.pnStyle.TabIndex = 0;
 			// 
 			// outputColorSelector
@@ -942,12 +977,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.outputColorSelector.Location = new System.Drawing.Point(0, 32);
 			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(290, 256);
+			this.outputColorSelector.Size = new System.Drawing.Size(294, 306);
 			this.outputColorSelector.TabIndex = 50;
 			// 
 			// laColorsTitle
 			// 
 			this.laColorsTitle.AutoSize = true;
+			this.laColorsTitle.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laColorsTitle.Location = new System.Drawing.Point(3, 13);
 			this.laColorsTitle.Name = "laColorsTitle";
 			this.laColorsTitle.Size = new System.Drawing.Size(134, 16);
@@ -1082,20 +1118,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.toolStripMenuItemSnapshotClone.Size = new System.Drawing.Size(117, 22);
 			this.toolStripMenuItemSnapshotClone.Text = "Clone";
 			this.toolStripMenuItemSnapshotClone.Click += new System.EventHandler(this.toolStripMenuItemSectionsClone_Click);
-			// 
-			// buttonXProgram
-			// 
-			this.buttonXProgram.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXProgram.AutoCheckOnClick = true;
-			this.buttonXProgram.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXProgram.Location = new System.Drawing.Point(20, 207);
-			this.buttonXProgram.Name = "buttonXProgram";
-			this.buttonXProgram.Size = new System.Drawing.Size(113, 27);
-			this.buttonXProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXProgram.TabIndex = 117;
-			this.buttonXProgram.Text = "Program";
-			this.buttonXProgram.TextColor = System.Drawing.Color.Black;
-			this.buttonXProgram.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
 			// ScheduleContainer
 			// 

@@ -36,6 +36,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.stationsControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
+			this.pnMediaDefault = new System.Windows.Forms.Panel();
+			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.pnMedia = new System.Windows.Forms.Panel();
 			this.pbMediaLogo = new System.Windows.Forms.PictureBox();
 			this.laFlexDateWarning = new System.Windows.Forms.Label();
@@ -43,10 +45,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.laMediaTitle = new System.Windows.Forms.Label();
 			this.buttonXMonthlySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
-			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new Asa.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
-			this.daypartsControl = new DaypartsControl();
+			this.daypartsControl = new Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls.DaypartsControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStations = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageDayparts = new DevExpress.XtraTab.XtraTabPage();
@@ -74,13 +75,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.buttonXCalendarTypeMondayBased = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.pnMediaDefault = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageMedia.SuspendLayout();
+			this.pnMediaDefault.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
 			this.pnMedia.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
 			this.xtraTabPageDigital.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
 			this.xtraTabControlOptions.SuspendLayout();
@@ -101,7 +102,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageCalendarType.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
-			this.pnMediaDefault.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// stationsControl
@@ -150,6 +150,26 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageMedia.Padding = new System.Windows.Forms.Padding(10);
 			this.xtraTabPageMedia.Size = new System.Drawing.Size(659, 569);
 			this.xtraTabPageMedia.Text = "Television Strategy";
+			// 
+			// pnMediaDefault
+			// 
+			this.pnMediaDefault.Controls.Add(this.pbMediaDefault);
+			this.pnMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMediaDefault.Location = new System.Drawing.Point(10, 10);
+			this.pnMediaDefault.Name = "pnMediaDefault";
+			this.pnMediaDefault.Size = new System.Drawing.Size(639, 549);
+			this.pnMediaDefault.TabIndex = 24;
+			this.pnMediaDefault.Resize += new System.EventHandler(this.pnMediaDefault_Resize);
+			// 
+			// pbMediaDefault
+			// 
+			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pbMediaDefault.Image = ((System.Drawing.Image)(resources.GetObject("pbMediaDefault.Image")));
+			this.pbMediaDefault.Location = new System.Drawing.Point(0, 0);
+			this.pbMediaDefault.Name = "pbMediaDefault";
+			this.pbMediaDefault.Size = new System.Drawing.Size(639, 549);
+			this.pbMediaDefault.TabIndex = 23;
+			this.pbMediaDefault.TabStop = false;
 			// 
 			// pnMedia
 			// 
@@ -237,16 +257,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.buttonXWeeklySchedule.TextColor = System.Drawing.Color.Black;
 			this.buttonXWeeklySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
 			this.buttonXWeeklySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
-			// 
-			// pbMediaDefault
-			// 
-			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbMediaDefault.Image = ((System.Drawing.Image)(resources.GetObject("pbMediaDefault.Image")));
-			this.pbMediaDefault.Location = new System.Drawing.Point(0, 0);
-			this.pbMediaDefault.Name = "pbMediaDefault";
-			this.pbMediaDefault.Size = new System.Drawing.Size(639, 549);
-			this.pbMediaDefault.TabIndex = 23;
-			this.pbMediaDefault.TabStop = false;
 			// 
 			// xtraTabPageDigital
 			// 
@@ -446,6 +456,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosRtg.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDemosRtg.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosRtg.Enabled = false;
+			this.buttonXDemosRtg.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXDemosRtg.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosRtg.Name = "buttonXDemosRtg";
 			this.buttonXDemosRtg.Size = new System.Drawing.Size(143, 35);
@@ -463,6 +474,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosImps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDemosImps.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImps.Enabled = false;
+			this.buttonXDemosImps.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXDemosImps.Location = new System.Drawing.Point(189, 13);
 			this.buttonXDemosImps.Name = "buttonXDemosImps";
 			this.buttonXDemosImps.Size = new System.Drawing.Size(143, 35);
@@ -490,6 +502,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDemosImport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImport.Enabled = false;
+			this.buttonXDemosImport.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXDemosImport.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosImport.Name = "buttonXDemosImport";
 			this.buttonXDemosImport.Size = new System.Drawing.Size(319, 35);
@@ -516,6 +529,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDemosCustom.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosCustom.Enabled = false;
+			this.buttonXDemosCustom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXDemosCustom.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosCustom.Name = "buttonXDemosCustom";
 			this.buttonXDemosCustom.Size = new System.Drawing.Size(319, 35);
@@ -556,6 +570,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXUseDemos.AutoCheckOnClick = true;
 			this.buttonXUseDemos.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXUseDemos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXUseDemos.Location = new System.Drawing.Point(13, 47);
 			this.buttonXUseDemos.Name = "buttonXUseDemos";
 			this.buttonXUseDemos.Size = new System.Drawing.Size(319, 35);
@@ -579,6 +594,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			// 
 			this.buttonXCalendarTypeSundayBased.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCalendarTypeSundayBased.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCalendarTypeSundayBased.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXCalendarTypeSundayBased.Location = new System.Drawing.Point(24, 131);
 			this.buttonXCalendarTypeSundayBased.Name = "buttonXCalendarTypeSundayBased";
 			this.buttonXCalendarTypeSundayBased.Size = new System.Drawing.Size(296, 55);
@@ -592,6 +608,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			// 
 			this.buttonXCalendarTypeMondayBased.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCalendarTypeMondayBased.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCalendarTypeMondayBased.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXCalendarTypeMondayBased.Location = new System.Drawing.Point(24, 24);
 			this.buttonXCalendarTypeMondayBased.Name = "buttonXCalendarTypeMondayBased";
 			this.buttonXCalendarTypeMondayBased.Size = new System.Drawing.Size(296, 55);
@@ -622,16 +639,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
-			// pnMediaDefault
-			// 
-			this.pnMediaDefault.Controls.Add(this.pbMediaDefault);
-			this.pnMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMediaDefault.Location = new System.Drawing.Point(10, 10);
-			this.pnMediaDefault.Name = "pnMediaDefault";
-			this.pnMediaDefault.Size = new System.Drawing.Size(639, 549);
-			this.pnMediaDefault.TabIndex = 24;
-			this.pnMediaDefault.Resize += new System.EventHandler(this.pnMediaDefault_Resize);
-			// 
 			// HomeControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -643,9 +650,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).EndInit();
 			this.xtraTabControlMain.ResumeLayout(false);
 			this.xtraTabPageMedia.ResumeLayout(false);
+			this.pnMediaDefault.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
 			this.pnMedia.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
 			this.xtraTabPageDigital.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
 			this.xtraTabControlOptions.ResumeLayout(false);
@@ -666,7 +674,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageCalendarType.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
-			this.pnMediaDefault.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }

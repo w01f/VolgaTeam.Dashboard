@@ -28,19 +28,20 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SummaryControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageInput = new DevExpress.XtraTab.XtraTabPage();
 			this.pnInputBorder = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlInput = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.pnInputSummary = new System.Windows.Forms.Panel();
+			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.buttonXAddItem = new DevComponents.DotNetBar.ButtonX();
 			this.laFlightDates = new System.Windows.Forms.Label();
 			this.laPresentationDate = new System.Windows.Forms.Label();
@@ -58,13 +59,13 @@
 			this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
 			this.laSlideCount = new System.Windows.Forms.Label();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
 			this.xtraTabPageInput.SuspendLayout();
 			this.pnInputBorder.SuspendLayout();
 			this.pnInputSummary.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestment.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).BeginInit();
@@ -74,7 +75,6 @@
 			this.pnInputHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditHeader.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// checkEditBusinessName
@@ -160,6 +160,28 @@
 			this.pnInputSummary.Size = new System.Drawing.Size(230, 419);
 			this.pnInputSummary.TabIndex = 1;
 			// 
+			// hyperLinkEditInfoContract
+			// 
+			this.hyperLinkEditInfoContract.EditValue = "Contract Settings";
+			this.hyperLinkEditInfoContract.Location = new System.Drawing.Point(41, 300);
+			this.hyperLinkEditInfoContract.Name = "hyperLinkEditInfoContract";
+			this.hyperLinkEditInfoContract.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditInfoContract.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditInfoContract.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.LightGray;
+			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(149, 20);
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
+			this.hyperLinkEditInfoContract.TabIndex = 124;
+			// 
 			// buttonXAddItem
 			// 
 			this.buttonXAddItem.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -167,7 +189,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(23, 379);
+			this.buttonXAddItem.Location = new System.Drawing.Point(23, 377);
 			this.buttonXAddItem.Name = "buttonXAddItem";
 			this.buttonXAddItem.Size = new System.Drawing.Size(187, 40);
 			this.buttonXAddItem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -323,7 +345,7 @@
 			this.label1.ForeColor = System.Drawing.Color.Black;
 			this.label1.Location = new System.Drawing.Point(315, 17);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(73, 16);
+			this.label1.Size = new System.Drawing.Size(60, 13);
 			this.label1.TabIndex = 72;
 			this.label1.Text = "(Slide Title)";
 			// 
@@ -385,28 +407,6 @@
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
-			// hyperLinkEditInfoContract
-			// 
-			this.hyperLinkEditInfoContract.EditValue = "Contract Settings";
-			this.hyperLinkEditInfoContract.Location = new System.Drawing.Point(41, 300);
-			this.hyperLinkEditInfoContract.Name = "hyperLinkEditInfoContract";
-			this.hyperLinkEditInfoContract.Properties.Appearance.BackColor = System.Drawing.Color.White;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditInfoContract.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.Options.UseTextOptions = true;
-			this.hyperLinkEditInfoContract.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.LightGray;
-			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(149, 20);
-			toolTipItem1.Text = "Change Slide Output Settings";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
-			this.hyperLinkEditInfoContract.TabIndex = 124;
-			// 
 			// SummaryControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -424,6 +424,7 @@
 			this.xtraTabPageInput.ResumeLayout(false);
 			this.pnInputBorder.ResumeLayout(false);
 			this.pnInputSummary.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestment.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
@@ -434,7 +435,6 @@
 			this.pnInputHeader.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditHeader.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoContract.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}

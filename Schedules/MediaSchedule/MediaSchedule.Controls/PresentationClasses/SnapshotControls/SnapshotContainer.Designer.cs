@@ -417,6 +417,7 @@
 			this.buttonXSnapshotStation.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSnapshotStation.AutoCheckOnClick = true;
 			this.buttonXSnapshotStation.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotStation.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotStation.Location = new System.Drawing.Point(18, 15);
 			this.buttonXSnapshotStation.Name = "buttonXSnapshotStation";
 			this.buttonXSnapshotStation.Size = new System.Drawing.Size(113, 27);
@@ -432,6 +433,7 @@
 			this.buttonXSnapshotAvgRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotAvgRate.AutoCheckOnClick = true;
 			this.buttonXSnapshotAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotAvgRate.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotAvgRate.Location = new System.Drawing.Point(163, 239);
 			this.buttonXSnapshotAvgRate.Name = "buttonXSnapshotAvgRate";
 			this.buttonXSnapshotAvgRate.Size = new System.Drawing.Size(113, 27);
@@ -446,6 +448,7 @@
 			this.buttonXSnapshotTotalSpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSnapshotTotalSpots.AutoCheckOnClick = true;
 			this.buttonXSnapshotTotalSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotTotalSpots.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotTotalSpots.Location = new System.Drawing.Point(18, 239);
 			this.buttonXSnapshotTotalSpots.Name = "buttonXSnapshotTotalSpots";
 			this.buttonXSnapshotTotalSpots.Size = new System.Drawing.Size(113, 27);
@@ -460,6 +463,7 @@
 			this.buttonXSnapshotLineId.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSnapshotLineId.AutoCheckOnClick = true;
 			this.buttonXSnapshotLineId.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotLineId.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotLineId.Location = new System.Drawing.Point(18, 295);
 			this.buttonXSnapshotLineId.Name = "buttonXSnapshotLineId";
 			this.buttonXSnapshotLineId.Size = new System.Drawing.Size(113, 27);
@@ -475,6 +479,7 @@
 			this.buttonXSnapshotLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotLength.AutoCheckOnClick = true;
 			this.buttonXSnapshotLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotLength.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotLength.Location = new System.Drawing.Point(163, 15);
 			this.buttonXSnapshotLength.Name = "buttonXSnapshotLength";
 			this.buttonXSnapshotLength.Size = new System.Drawing.Size(113, 27);
@@ -490,6 +495,7 @@
 			this.buttonXSnapshotTotalRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotTotalRow.AutoCheckOnClick = true;
 			this.buttonXSnapshotTotalRow.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotTotalRow.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotTotalRow.Location = new System.Drawing.Point(163, 295);
 			this.buttonXSnapshotTotalRow.Name = "buttonXSnapshotTotalRow";
 			this.buttonXSnapshotTotalRow.Size = new System.Drawing.Size(113, 27);
@@ -505,6 +511,7 @@
 			this.buttonXSnapshotDaypart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotDaypart.AutoCheckOnClick = true;
 			this.buttonXSnapshotDaypart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotDaypart.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotDaypart.Location = new System.Drawing.Point(163, 71);
 			this.buttonXSnapshotDaypart.Name = "buttonXSnapshotDaypart";
 			this.buttonXSnapshotDaypart.Size = new System.Drawing.Size(113, 27);
@@ -520,6 +527,7 @@
 			this.buttonXSnapshotRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotRate.AutoCheckOnClick = true;
 			this.buttonXSnapshotRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotRate.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotRate.Location = new System.Drawing.Point(163, 127);
 			this.buttonXSnapshotRate.Name = "buttonXSnapshotRate";
 			this.buttonXSnapshotRate.Size = new System.Drawing.Size(113, 27);
@@ -535,6 +543,7 @@
 			this.buttonXSnapshotLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSnapshotLogo.AutoCheckOnClick = true;
 			this.buttonXSnapshotLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotLogo.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotLogo.Location = new System.Drawing.Point(163, 183);
 			this.buttonXSnapshotLogo.Name = "buttonXSnapshotLogo";
 			this.buttonXSnapshotLogo.Size = new System.Drawing.Size(113, 27);
@@ -549,6 +558,7 @@
 			this.buttonXSnapshotCost.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSnapshotCost.AutoCheckOnClick = true;
 			this.buttonXSnapshotCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotCost.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotCost.Location = new System.Drawing.Point(18, 183);
 			this.buttonXSnapshotCost.Name = "buttonXSnapshotCost";
 			this.buttonXSnapshotCost.Size = new System.Drawing.Size(113, 27);
@@ -563,6 +573,7 @@
 			this.buttonXSnapshotTime.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSnapshotTime.AutoCheckOnClick = true;
 			this.buttonXSnapshotTime.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotTime.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotTime.Location = new System.Drawing.Point(18, 127);
 			this.buttonXSnapshotTime.Name = "buttonXSnapshotTime";
 			this.buttonXSnapshotTime.Size = new System.Drawing.Size(113, 27);
@@ -577,6 +588,7 @@
 			this.buttonXSnapshotProgram.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSnapshotProgram.AutoCheckOnClick = true;
 			this.buttonXSnapshotProgram.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshotProgram.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSnapshotProgram.Location = new System.Drawing.Point(18, 71);
 			this.buttonXSnapshotProgram.Name = "buttonXSnapshotProgram";
 			this.buttonXSnapshotProgram.Size = new System.Drawing.Size(113, 27);
@@ -609,6 +621,7 @@
 			this.buttonXSummaryLineId.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSummaryLineId.AutoCheckOnClick = true;
 			this.buttonXSummaryLineId.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryLineId.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryLineId.Location = new System.Drawing.Point(18, 15);
 			this.buttonXSummaryLineId.Name = "buttonXSummaryLineId";
 			this.buttonXSummaryLineId.Size = new System.Drawing.Size(113, 27);
@@ -623,6 +636,7 @@
 			this.buttonXSummaryTallySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSummaryTallySpots.AutoCheckOnClick = true;
 			this.buttonXSummaryTallySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryTallySpots.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryTallySpots.Location = new System.Drawing.Point(18, 238);
 			this.buttonXSummaryTallySpots.Name = "buttonXSummaryTallySpots";
 			this.buttonXSummaryTallySpots.Size = new System.Drawing.Size(113, 27);
@@ -638,6 +652,7 @@
 			this.buttonXSummaryLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryLogo.AutoCheckOnClick = true;
 			this.buttonXSummaryLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryLogo.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryLogo.Location = new System.Drawing.Point(163, 15);
 			this.buttonXSummaryLogo.Name = "buttonXSummaryLogo";
 			this.buttonXSummaryLogo.Size = new System.Drawing.Size(113, 27);
@@ -652,6 +667,7 @@
 			this.buttonXSummarySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSummarySpots.AutoCheckOnClick = true;
 			this.buttonXSummarySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummarySpots.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummarySpots.Location = new System.Drawing.Point(18, 126);
 			this.buttonXSummarySpots.Name = "buttonXSummarySpots";
 			this.buttonXSummarySpots.Size = new System.Drawing.Size(113, 27);
@@ -666,6 +682,7 @@
 			this.buttonXSummaryCampaign.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSummaryCampaign.AutoCheckOnClick = true;
 			this.buttonXSummaryCampaign.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryCampaign.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryCampaign.Location = new System.Drawing.Point(18, 70);
 			this.buttonXSummaryCampaign.Name = "buttonXSummaryCampaign";
 			this.buttonXSummaryCampaign.Size = new System.Drawing.Size(113, 27);
@@ -681,6 +698,7 @@
 			this.buttonXSummaryTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryTotalCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryTotalCost.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(163, 183);
 			this.buttonXSummaryTotalCost.Name = "buttonXSummaryTotalCost";
 			this.buttonXSummaryTotalCost.Size = new System.Drawing.Size(113, 27);
@@ -696,6 +714,7 @@
 			this.buttonXSummaryCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryCost.AutoCheckOnClick = true;
 			this.buttonXSummaryCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryCost.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryCost.Location = new System.Drawing.Point(163, 126);
 			this.buttonXSummaryCost.Name = "buttonXSummaryCost";
 			this.buttonXSummaryCost.Size = new System.Drawing.Size(113, 27);
@@ -711,6 +730,7 @@
 			this.buttonXSummaryComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryComments.AutoCheckOnClick = true;
 			this.buttonXSummaryComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryComments.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryComments.Location = new System.Drawing.Point(163, 70);
 			this.buttonXSummaryComments.Name = "buttonXSummaryComments";
 			this.buttonXSummaryComments.Size = new System.Drawing.Size(113, 27);
@@ -725,6 +745,7 @@
 			this.buttonXSummaryTotalWeeks.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSummaryTotalWeeks.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalWeeks.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryTotalWeeks.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryTotalWeeks.Location = new System.Drawing.Point(18, 183);
 			this.buttonXSummaryTotalWeeks.Name = "buttonXSummaryTotalWeeks";
 			this.buttonXSummaryTotalWeeks.Size = new System.Drawing.Size(113, 27);
@@ -740,6 +761,7 @@
 			this.buttonXSummaryTallyCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSummaryTallyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummaryTallyCost.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(163, 238);
 			this.buttonXSummaryTallyCost.Name = "buttonXSummaryTallyCost";
 			this.buttonXSummaryTallyCost.Size = new System.Drawing.Size(113, 27);
@@ -753,7 +775,7 @@
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 499);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(294, 502);
 			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
@@ -764,7 +786,7 @@
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(290, 499);
+			this.pnStyle.Size = new System.Drawing.Size(294, 502);
 			this.pnStyle.TabIndex = 0;
 			// 
 			// outputColorSelector
@@ -776,12 +798,13 @@
 			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.outputColorSelector.Location = new System.Drawing.Point(0, 34);
 			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(290, 465);
+			this.outputColorSelector.Size = new System.Drawing.Size(294, 468);
 			this.outputColorSelector.TabIndex = 49;
 			// 
 			// laColorsTitle
 			// 
 			this.laColorsTitle.AutoSize = true;
+			this.laColorsTitle.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laColorsTitle.Location = new System.Drawing.Point(3, 13);
 			this.laColorsTitle.Name = "laColorsTitle";
 			this.laColorsTitle.Size = new System.Drawing.Size(134, 16);
@@ -792,7 +815,7 @@
 			// 
 			this.xtraTabPageOptionsActiveWeeks.Controls.Add(this.pnActiveWeeks);
 			this.xtraTabPageOptionsActiveWeeks.Name = "xtraTabPageOptionsActiveWeeks";
-			this.xtraTabPageOptionsActiveWeeks.Size = new System.Drawing.Size(290, 499);
+			this.xtraTabPageOptionsActiveWeeks.Size = new System.Drawing.Size(294, 502);
 			this.xtraTabPageOptionsActiveWeeks.Text = "Calendar";
 			// 
 			// pnActiveWeeks
@@ -805,7 +828,7 @@
 			this.pnActiveWeeks.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnActiveWeeks.Location = new System.Drawing.Point(0, 0);
 			this.pnActiveWeeks.Name = "pnActiveWeeks";
-			this.pnActiveWeeks.Size = new System.Drawing.Size(290, 499);
+			this.pnActiveWeeks.Size = new System.Drawing.Size(294, 502);
 			this.pnActiveWeeks.TabIndex = 50;
 			// 
 			// checkedListBoxActiveWeeks
@@ -820,7 +843,7 @@
 			this.checkedListBoxActiveWeeks.Location = new System.Drawing.Point(0, 90);
 			this.checkedListBoxActiveWeeks.Name = "checkedListBoxActiveWeeks";
 			this.checkedListBoxActiveWeeks.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxActiveWeeks.Size = new System.Drawing.Size(290, 369);
+			this.checkedListBoxActiveWeeks.Size = new System.Drawing.Size(294, 372);
 			this.checkedListBoxActiveWeeks.TabIndex = 19;
 			this.checkedListBoxActiveWeeks.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxActiveWeeks_ItemCheck);
 			// 
@@ -831,7 +854,7 @@
 			this.pnActiveweeksButtons.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnActiveweeksButtons.Location = new System.Drawing.Point(0, 42);
 			this.pnActiveweeksButtons.Name = "pnActiveweeksButtons";
-			this.pnActiveweeksButtons.Size = new System.Drawing.Size(290, 48);
+			this.pnActiveweeksButtons.Size = new System.Drawing.Size(294, 48);
 			this.pnActiveweeksButtons.TabIndex = 50;
 			// 
 			// buttonXClearAll
@@ -839,7 +862,8 @@
 			this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXClearAll.Location = new System.Drawing.Point(176, 8);
+			this.buttonXClearAll.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXClearAll.Location = new System.Drawing.Point(180, 8);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(107, 33);
 			this.buttonXClearAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -852,6 +876,7 @@
 			// 
 			this.buttonXSelectAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSelectAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSelectAll.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXSelectAll.Location = new System.Drawing.Point(8, 8);
 			this.buttonXSelectAll.Name = "buttonXSelectAll";
 			this.buttonXSelectAll.Size = new System.Drawing.Size(107, 33);
@@ -864,10 +889,11 @@
 			// laActiveWeeksWarning
 			// 
 			this.laActiveWeeksWarning.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.laActiveWeeksWarning.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laActiveWeeksWarning.ForeColor = System.Drawing.Color.Red;
-			this.laActiveWeeksWarning.Location = new System.Drawing.Point(0, 459);
+			this.laActiveWeeksWarning.Location = new System.Drawing.Point(0, 462);
 			this.laActiveWeeksWarning.Name = "laActiveWeeksWarning";
-			this.laActiveWeeksWarning.Size = new System.Drawing.Size(290, 40);
+			this.laActiveWeeksWarning.Size = new System.Drawing.Size(294, 40);
 			this.laActiveWeeksWarning.TabIndex = 49;
 			this.laActiveWeeksWarning.Text = "You should select at least 1 week";
 			this.laActiveWeeksWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -876,10 +902,11 @@
 			// laActiveWeeks
 			// 
 			this.laActiveWeeks.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laActiveWeeks.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laActiveWeeks.Location = new System.Drawing.Point(0, 0);
 			this.laActiveWeeks.Name = "laActiveWeeks";
 			this.laActiveWeeks.Padding = new System.Windows.Forms.Padding(5);
-			this.laActiveWeeks.Size = new System.Drawing.Size(290, 42);
+			this.laActiveWeeks.Size = new System.Drawing.Size(294, 42);
 			this.laActiveWeeks.TabIndex = 48;
 			this.laActiveWeeks.Text = "Do you want to apply this schedule to specific weeks on the calendar?";
 			// 

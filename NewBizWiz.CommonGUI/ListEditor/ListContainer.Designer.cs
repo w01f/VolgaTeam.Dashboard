@@ -141,6 +141,7 @@
 			this.buttonXAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXAdd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXAdd.Location = new System.Drawing.Point(332, 8);
 			this.buttonXAdd.Name = "buttonXAdd";
 			this.buttonXAdd.Size = new System.Drawing.Size(115, 36);
@@ -153,7 +154,6 @@
 			// 
 			this.Controls.Add(this.gridControl);
 			this.Controls.Add(this.pnHeader);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Size = new System.Drawing.Size(459, 478);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();

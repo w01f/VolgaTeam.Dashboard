@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.laOriginalDate = new System.Windows.Forms.Label();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
@@ -115,7 +115,8 @@
 			this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXClearAll.Location = new System.Drawing.Point(264, 148);
+			this.buttonXClearAll.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXClearAll.Location = new System.Drawing.Point(268, 148);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
 			this.buttonXClearAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -216,7 +217,7 @@
 			this.xtraTabPageDays.Controls.Add(this.monthCalendarClone);
 			this.xtraTabPageDays.Controls.Add(this.buttonXClearAll);
 			this.xtraTabPageDays.Name = "xtraTabPageDays";
-			this.xtraTabPageDays.Size = new System.Drawing.Size(426, 220);
+			this.xtraTabPageDays.Size = new System.Drawing.Size(430, 223);
 			this.xtraTabPageDays.Text = "Days";
 			// 
 			// buttonXSelectFirstDays
@@ -224,7 +225,8 @@
 			this.buttonXSelectFirstDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSelectFirstDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSelectFirstDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSelectFirstDays.Location = new System.Drawing.Point(264, 70);
+			this.buttonXSelectFirstDays.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXSelectFirstDays.Location = new System.Drawing.Point(268, 70);
 			this.buttonXSelectFirstDays.Name = "buttonXSelectFirstDays";
 			this.buttonXSelectFirstDays.Size = new System.Drawing.Size(159, 33);
 			this.buttonXSelectFirstDays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -238,7 +240,8 @@
 			this.buttonXSelectAllDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSelectAllDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSelectAllDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSelectAllDays.Location = new System.Drawing.Point(264, 31);
+			this.buttonXSelectAllDays.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXSelectAllDays.Location = new System.Drawing.Point(268, 31);
 			this.buttonXSelectAllDays.Name = "buttonXSelectAllDays";
 			this.buttonXSelectAllDays.Size = new System.Drawing.Size(159, 33);
 			this.buttonXSelectAllDays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -257,7 +260,7 @@
 			this.labelControlDayTitle.Dock = System.Windows.Forms.DockStyle.Top;
 			this.labelControlDayTitle.Location = new System.Drawing.Point(0, 0);
 			this.labelControlDayTitle.Name = "labelControlDayTitle";
-			this.labelControlDayTitle.Size = new System.Drawing.Size(426, 28);
+			this.labelControlDayTitle.Size = new System.Drawing.Size(430, 28);
 			this.labelControlDayTitle.TabIndex = 19;
 			this.labelControlDayTitle.Text = "  <b>DOUBLE-CLICK</b> the DAY you want to Add:";
 			// 
@@ -266,7 +269,8 @@
 			this.buttonXAddAllWeekdays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXAddAllWeekdays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddAllWeekdays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(264, 109);
+			this.buttonXAddAllWeekdays.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(268, 109);
 			this.buttonXAddAllWeekdays.Name = "buttonXAddAllWeekdays";
 			this.buttonXAddAllWeekdays.Size = new System.Drawing.Size(159, 33);
 			this.buttonXAddAllWeekdays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -338,7 +342,7 @@
 			this.xtraTabPageOptions.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
 			this.xtraTabPageOptions.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageOptions.Name = "xtraTabPageOptions";
-			this.xtraTabPageOptions.Size = new System.Drawing.Size(426, 220);
+			this.xtraTabPageOptions.Size = new System.Drawing.Size(430, 223);
 			this.xtraTabPageOptions.Text = "Options";
 			// 
 			// labelControlFlightDates
@@ -414,7 +418,7 @@
 			// repositoryItemButtonEdit
 			// 
 			this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
 			this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";

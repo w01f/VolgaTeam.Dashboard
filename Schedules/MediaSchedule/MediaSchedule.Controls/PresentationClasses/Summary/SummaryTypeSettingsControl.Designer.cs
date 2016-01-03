@@ -43,6 +43,7 @@
 			this.buttonXTypeStrategy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTypeStrategy.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTypeStrategy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXTypeStrategy.Location = new System.Drawing.Point(24, 199);
 			this.buttonXTypeStrategy.Name = "buttonXTypeStrategy";
 			this.buttonXTypeStrategy.Size = new System.Drawing.Size(249, 27);
@@ -59,6 +60,7 @@
 			this.buttonXTypeCustom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTypeCustom.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTypeCustom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXTypeCustom.Location = new System.Drawing.Point(24, 15);
 			this.buttonXTypeCustom.Name = "buttonXTypeCustom";
 			this.buttonXTypeCustom.Size = new System.Drawing.Size(249, 27);
@@ -75,6 +77,7 @@
 			this.buttonXTypeProduct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTypeProduct.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTypeProduct.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXTypeProduct.Location = new System.Drawing.Point(24, 107);
 			this.buttonXTypeProduct.Name = "buttonXTypeProduct";
 			this.buttonXTypeProduct.Size = new System.Drawing.Size(249, 27);
@@ -120,16 +123,15 @@
 			// 
 			// SummaryTypeSettingsControl
 			// 
-			this.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.Options.UseBackColor = true;
 			this.Controls.Add(this.laCustomSlideCount);
 			this.Controls.Add(this.laProductSlideCount);
 			this.Controls.Add(this.checkEditTableOutput);
 			this.Controls.Add(this.buttonXTypeStrategy);
 			this.Controls.Add(this.buttonXTypeCustom);
 			this.Controls.Add(this.buttonXTypeProduct);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "SummaryTypeSettingsControl";
 			this.Size = new System.Drawing.Size(296, 457);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTableOutput.Properties)).EndInit();
 			this.ResumeLayout(false);

@@ -23,7 +23,6 @@ namespace Asa.MediaSchedule.Single.Radio
 			if (firstInstance)
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
-
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				AppManager.Instance.RunApplication(MediaDataType.RadioSchedule);

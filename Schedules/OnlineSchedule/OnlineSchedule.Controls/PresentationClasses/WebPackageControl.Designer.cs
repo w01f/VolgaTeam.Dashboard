@@ -161,6 +161,7 @@
 			this.buttonXCategory.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCategory.AutoCheckOnClick = true;
 			this.buttonXCategory.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCategory.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXCategory.Location = new System.Drawing.Point(12, 8);
 			this.buttonXCategory.Name = "buttonXCategory";
 			this.buttonXCategory.Size = new System.Drawing.Size(95, 27);
@@ -176,6 +177,7 @@
 			this.buttonXInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXInfo.AutoCheckOnClick = true;
 			this.buttonXInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXInfo.Location = new System.Drawing.Point(122, 155);
 			this.buttonXInfo.Name = "buttonXInfo";
 			this.buttonXInfo.Size = new System.Drawing.Size(95, 27);
@@ -191,6 +193,7 @@
 			this.buttonXGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXGroup.AutoCheckOnClick = true;
 			this.buttonXGroup.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXGroup.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXGroup.Location = new System.Drawing.Point(122, 8);
 			this.buttonXGroup.Name = "buttonXGroup";
 			this.buttonXGroup.Size = new System.Drawing.Size(95, 27);
@@ -205,6 +208,7 @@
 			this.buttonXCPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCPM.AutoCheckOnClick = true;
 			this.buttonXCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCPM.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXCPM.Location = new System.Drawing.Point(12, 106);
 			this.buttonXCPM.Name = "buttonXCPM";
 			this.buttonXCPM.Size = new System.Drawing.Size(95, 27);
@@ -219,6 +223,7 @@
 			this.buttonXProduct.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXProduct.AutoCheckOnClick = true;
 			this.buttonXProduct.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXProduct.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXProduct.Location = new System.Drawing.Point(12, 57);
 			this.buttonXProduct.Name = "buttonXProduct";
 			this.buttonXProduct.Size = new System.Drawing.Size(95, 27);
@@ -234,6 +239,7 @@
 			this.buttonXScreenshot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXScreenshot.AutoCheckOnClick = true;
 			this.buttonXScreenshot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXScreenshot.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXScreenshot.Location = new System.Drawing.Point(122, 204);
 			this.buttonXScreenshot.Name = "buttonXScreenshot";
 			this.buttonXScreenshot.Size = new System.Drawing.Size(95, 27);
@@ -249,6 +255,7 @@
 			this.buttonXImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXImpressions.AutoCheckOnClick = true;
 			this.buttonXImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXImpressions.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXImpressions.Location = new System.Drawing.Point(122, 57);
 			this.buttonXImpressions.Name = "buttonXImpressions";
 			this.buttonXImpressions.Size = new System.Drawing.Size(95, 27);
@@ -263,6 +270,7 @@
 			this.buttonXComments.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXComments.AutoCheckOnClick = true;
 			this.buttonXComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXComments.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXComments.Location = new System.Drawing.Point(12, 204);
 			this.buttonXComments.Name = "buttonXComments";
 			this.buttonXComments.Size = new System.Drawing.Size(95, 27);
@@ -277,6 +285,7 @@
 			this.buttonXInvestment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXInvestment.AutoCheckOnClick = true;
 			this.buttonXInvestment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXInvestment.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXInvestment.Location = new System.Drawing.Point(12, 155);
 			this.buttonXInvestment.Name = "buttonXInvestment";
 			this.buttonXInvestment.Size = new System.Drawing.Size(95, 27);
@@ -292,6 +301,7 @@
 			this.buttonXRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXRate.AutoCheckOnClick = true;
 			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXRate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXRate.Location = new System.Drawing.Point(122, 106);
 			this.buttonXRate.Name = "buttonXRate";
 			this.buttonXRate.Size = new System.Drawing.Size(95, 27);
@@ -534,7 +544,7 @@
 			this.advBandedGridView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
 			this.advBandedGridView.OptionsBehavior.AutoPopulateColumns = false;
 			this.advBandedGridView.OptionsBehavior.AutoUpdateTotalSummary = false;
-			this.advBandedGridView.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
+			this.advBandedGridView.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
 			this.advBandedGridView.OptionsCustomization.AllowFilter = false;
 			this.advBandedGridView.OptionsCustomization.AllowGroup = false;
 			this.advBandedGridView.OptionsCustomization.AllowQuickHideColumns = false;
@@ -932,6 +942,13 @@
 			this.retractableBar.ContentSize = 230;
 			this.retractableBar.Dock = System.Windows.Forms.DockStyle.Left;
 			this.retractableBar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			// 
+			// retractableBar.Header
+			// 
+			this.retractableBar.Header.Location = new System.Drawing.Point(49, 2);
+			this.retractableBar.Header.Name = "Header";
+			this.retractableBar.Header.Size = new System.Drawing.Size(200, 100);
+			this.retractableBar.Header.TabIndex = 2;
 			this.retractableBar.Location = new System.Drawing.Point(0, 0);
 			this.retractableBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBar.Name = "retractableBar";

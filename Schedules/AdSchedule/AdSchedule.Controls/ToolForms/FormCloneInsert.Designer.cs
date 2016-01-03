@@ -186,6 +186,7 @@
 			this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXClearAll.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXClearAll.Location = new System.Drawing.Point(264, 70);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
@@ -361,6 +362,7 @@
 			this.buttonXAddAllWeekdays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXAddAllWeekdays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddAllWeekdays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXAddAllWeekdays.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(264, 31);
 			this.buttonXAddAllWeekdays.Name = "buttonXAddAllWeekdays";
 			this.buttonXAddAllWeekdays.Size = new System.Drawing.Size(159, 33);
@@ -447,6 +449,7 @@
 			// laOptionsTitle
 			// 
 			this.laOptionsTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laOptionsTitle.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laOptionsTitle.ForeColor = System.Drawing.Color.Black;
 			this.laOptionsTitle.Location = new System.Drawing.Point(0, 0);
 			this.laOptionsTitle.Name = "laOptionsTitle";

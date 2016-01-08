@@ -470,7 +470,7 @@ namespace Asa.Core.AdSchedule
 				sw.Flush();
 			}
 
-			AsyncHelper.RunSync(() => new StorageFile(AppProfileManager.Instance.AppSaveFolder.RelativePathParts.Merge(_scheduleFile.Name)).Upload());
+			RemoteUploadManager.Upload(new StorageFile(AppProfileManager.Instance.AppSaveFolder.RelativePathParts.Merge(_scheduleFile.Name)));
 		}
 
 		public void AddPublication()

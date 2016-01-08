@@ -778,12 +778,24 @@ namespace Asa.Core.OnlineSchedule
 
 		public bool TargetingAvailable
 		{
-			get { return EnableTarget && AddtionalInfo.Any(productInfo => productInfo.Type == ProductInfoType.Targeting && productInfo.Selected); }
+			get
+			{
+				return Parent.SharedViewSettings.SharedHomeViewSettings.EnableDigitalTargeting &&
+					EnableTarget &&
+					AddtionalInfo.Any(productInfo => productInfo.Type == ProductInfoType.Targeting &&
+						productInfo.Selected);
+			}
 		}
 
 		public bool RichMediaAvailable
 		{
-			get { return EnableRichMedia && AddtionalInfo.Any(productInfo => productInfo.Type == ProductInfoType.RichMedia && productInfo.Selected); }
+			get
+			{
+				return Parent.SharedViewSettings.SharedHomeViewSettings.EnableDigitalRichMedia &&
+					EnableRichMedia &&
+					AddtionalInfo.Any(productInfo => productInfo.Type == ProductInfoType.RichMedia &&
+						productInfo.Selected);
+			}
 		}
 		#endregion
 

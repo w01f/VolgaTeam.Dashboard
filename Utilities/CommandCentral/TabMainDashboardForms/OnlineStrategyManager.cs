@@ -198,7 +198,7 @@ namespace CommandCentral.TabMainDashboardForms
 							site.Value = row[0].ToString().Trim();
 							if (dataTable.Columns.Count > 1)
 								if (row[1] != null)
-									site.IsDefault = row[1].ToString().Trim().ToLower().Equals("d");
+									site.IsDefault = row[1].ToString().Trim().Equals("d", StringComparison.OrdinalIgnoreCase);
 							if (!string.IsNullOrEmpty(site.Value))
 								sites.Add(site);
 						}

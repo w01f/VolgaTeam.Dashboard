@@ -16,6 +16,8 @@ namespace Asa.Core.Common
 		bool EnableDigitalDimensions { get; set; }
 		bool EnableDigitalStrategy { get; set; }
 		bool EnableDigitalLocation { get; set; }
+		bool EnableDigitalTargeting { get; set; }
+		bool EnableDigitalRichMedia { get; set; }
 
 		bool ShowAccountNumber { get; set; }
 		bool ShowDigitalDimensions { get; set; }

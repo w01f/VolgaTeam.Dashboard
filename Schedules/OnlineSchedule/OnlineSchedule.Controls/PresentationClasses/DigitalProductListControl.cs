@@ -97,6 +97,12 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 
 		public void LoadView()
 		{
+			buttonXDimensions.Enabled = _schedule.SharedViewSettings.SharedHomeViewSettings.EnableDigitalDimensions;
+			buttonXStrategy.Enabled = _schedule.SharedViewSettings.SharedHomeViewSettings.EnableDigitalStrategy;
+			buttonXLocation.Enabled = _schedule.SharedViewSettings.SharedHomeViewSettings.EnableDigitalLocation;
+			buttonXTargeting.Enabled = _schedule.SharedViewSettings.SharedHomeViewSettings.EnableDigitalTargeting;
+			buttonXRichMedia.Enabled = _schedule.SharedViewSettings.SharedHomeViewSettings.EnableDigitalRichMedia;
+
 			buttonXDimensions.Checked = _schedule.SharedViewSettings.SharedHomeViewSettings.ShowDigitalDimensions;
 			buttonXStrategy.Checked = _schedule.SharedViewSettings.SharedHomeViewSettings.ShowDigitalStrategy;
 			buttonXLocation.Checked = _schedule.SharedViewSettings.SharedHomeViewSettings.ShowDigitalLocation;

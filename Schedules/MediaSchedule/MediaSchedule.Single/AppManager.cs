@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -28,6 +29,9 @@ namespace Asa.MediaSchedule.Single
 		public void RunApplication(MediaDataType mediaType)
 		{
 			bool stopRun = false;
+
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
 
 			LicenseHelper.Register();
 			

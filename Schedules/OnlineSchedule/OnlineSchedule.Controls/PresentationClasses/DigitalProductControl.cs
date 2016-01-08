@@ -6,14 +6,13 @@ using System.Windows.Forms;
 using Asa.CommonGUI.Common;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraTab;
 using Asa.CommonGUI.Preview;
 using Asa.Core.Common;
 using Asa.Core.OnlineSchedule;
 using Asa.OnlineSchedule.Controls.InteropClasses;
+using DevExpress.XtraTab;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 using ListManager = Asa.Core.OnlineSchedule.ListManager;
-using SettingsManager = Asa.Core.Common.SettingsManager;
 
 namespace Asa.OnlineSchedule.Controls.PresentationClasses
 {

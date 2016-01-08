@@ -970,6 +970,7 @@ namespace Asa.AdSchedule.Single
 				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
 			AdSchedulePowerPointHelper.Instance.Disconnect(false);
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
+			Application.Exit();
 		}
 
 		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)

@@ -644,6 +644,7 @@ namespace Asa.MediaSchedule.Single
 				result = Controller.Instance.Options.AllowToLeaveControl;
 			RegularMediaSchedulePowerPointHelper.Instance.Disconnect(false);
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
+			Application.Exit();
 		}
 
 		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)

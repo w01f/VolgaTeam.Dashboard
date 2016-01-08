@@ -87,9 +87,11 @@ namespace Asa.Core.Common
 				{
 					UserName = login,
 					Password = password
-				})
+				},
+				new TimeSpan(1, 0, 0)
+				)
 			{
-				Server = url
+				Server = url,
 			};
 		}
 
@@ -510,36 +512,48 @@ namespace Asa.Core.Common
 				if (_isOutdated)
 				{
 					AllocateParentFolder();
-					using (var remoteStream = await client.Download(RemotePath))
+					var fullyLoaded = false;
+					do
 					{
-						if (remoteStream != null)
+						try
 						{
 							using (var localStream = File.Create(LocalPath))
 							{
-								var contentLenght = remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 0;
-								var buffer = new byte[1024];
-								int bytesRead;
-								int alreadyRead = 0;
-								do
+								using (var remoteStream = await client.Download(RemotePath))
 								{
-									bytesRead = remoteStream.Read(buffer, 0, buffer.Length);
-									alreadyRead += bytesRead;
-									FileStorageManager.Instance.ShowDownloadProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
-									localStream.Write(buffer, 0, bytesRead);
+									if (remoteStream != null)
+									{
+										var alreadyRead = 0;
+										var contentLenght = remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 0;
+										var bufferSize = contentLenght / 10;
+										var buffer = new byte[bufferSize];
+										int bytesRead;
+										do
+										{
+											bytesRead = remoteStream.Read(buffer, 0, buffer.Length);
+											alreadyRead += bytesRead;
+											FileStorageManager.Instance.ShowDownloadProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght, alreadyRead));
+											localStream.Write(buffer, 0, bytesRead);
+										} while (bytesRead > 0);
+									}
+									remoteStream.Close();
+									fullyLoaded = true;
 								}
-								while (bytesRead > 0);
 								localStream.Close();
 							}
-							remoteStream.Close();
+						}
+						catch (IOException)
+						{
 						}
 					}
+					while (!fullyLoaded);
 				}
 			}
-			catch (WebDAVException exception)
+			catch (WebDAVException)
 			{
 				throw new FileNotFoundException(String.Format("Error downloading file {0}", LocalPath));
 			}
-			catch (HttpRequestException e)
+			catch (HttpRequestException)
 			{
 				FileStorageManager.Instance.SwitchToLocalMode();
 			}

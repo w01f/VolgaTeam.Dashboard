@@ -723,7 +723,8 @@ namespace Asa.Core.MediaSchedule
 				sw.Write(@"<Schedule>{0}</Schedule>", Serialize());
 				sw.Flush();
 			}
-			AsyncHelper.RunSync(() => new StorageFile(AppProfileManager.Instance.AppSaveFolder.RelativePathParts.Merge(_scheduleFile.Name)).Upload());
+			RemoteUploadManager.Upload(new StorageFile(AppProfileManager.Instance.AppSaveFolder.RelativePathParts.Merge(_scheduleFile.Name)));
+			//AsyncHelper.RunSync(() => new StorageFile(AppProfileManager.Instance.AppSaveFolder.RelativePathParts.Merge(_scheduleFile.Name)).Upload());
 		}
 
 		protected void LoadCalendars()

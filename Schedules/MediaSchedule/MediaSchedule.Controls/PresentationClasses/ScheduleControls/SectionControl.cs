@@ -747,7 +747,19 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private string DigitalLegend
 		{
-			get { return String.Empty; }
+			get
+			{
+				if (!SectionData.Parent.DigitalLegend.Enabled) return String.Empty;
+				var requestOptions = SectionData.Parent.DigitalLegend.RequestOptions;
+				if (!SectionData.Parent.DigitalLegend.AllowEdit)
+				{
+					requestOptions.Separator = " ";
+					return String.Format("Digital Product Info: {0}{1}{2}", SectionData.ParentSchedule.GetDigitalInfo(requestOptions), requestOptions.Separator, SectionData.Parent.DigitalLegend.GetAdditionalData(" "));
+				}
+				if (!String.IsNullOrEmpty(SectionData.Parent.DigitalLegend.CompiledInfo))
+					return String.Format("Digital Product Info: {0}{1}{2}", SectionData.Parent.DigitalLegend.CompiledInfo, requestOptions.Separator, SectionData.Parent.DigitalLegend.GetAdditionalData(" "));
+				return String.Empty;
+			}
 		}
 
 		private SlideType SlideType

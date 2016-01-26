@@ -52,7 +52,7 @@
 			this.laTitle.BackColor = System.Drawing.Color.Transparent;
 			this.laTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.laTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laTitle.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTitle.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTitle.ForeColor = System.Drawing.Color.White;
 			this.laTitle.Location = new System.Drawing.Point(26, 0);
 			this.laTitle.Name = "laTitle";
@@ -91,7 +91,7 @@
 			this.laDetails.BackColor = System.Drawing.Color.Transparent;
 			this.laDetails.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.laDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laDetails.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laDetails.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laDetails.ForeColor = System.Drawing.Color.White;
 			this.laDetails.Location = new System.Drawing.Point(26, 0);
 			this.laDetails.Name = "laDetails";

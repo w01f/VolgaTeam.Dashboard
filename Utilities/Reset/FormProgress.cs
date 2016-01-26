@@ -25,6 +25,11 @@ namespace Asa.Reset
 			
 			laTitle.BackColor = Color.SandyBrown;
 			laTitle.ForeColor = Color.White;
+
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 6, laTitle.Font.Style);
+			}
 		}
 
 		#region Drag and Move Form Processing

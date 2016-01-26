@@ -42,7 +42,7 @@
 			// 
 			// styleManager
 			// 
-			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2013;
+			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
 			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
 			// 
 			// pbLogo

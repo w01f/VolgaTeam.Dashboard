@@ -25,6 +25,12 @@ namespace Asa.Reset
 			
 			laDescription.BackColor = Color.SandyBrown;
 			laDescription.ForeColor = Color.White;
+
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 6, laTitle.Font.Style);
+				laDescription.Font = new Font(laDescription.Font.FontFamily, laDescription.Font.Size - 2, laDescription.Font.Style);
+			}
 		}
 	}
 }

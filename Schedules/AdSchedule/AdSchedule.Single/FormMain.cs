@@ -945,6 +945,7 @@ namespace Asa.AdSchedule.Single
 
 		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Closed"));
 			bool result = true;
 			if (_currentControl != null && _currentControl == Controller.Instance.ScheduleSettings)
 				result = Controller.Instance.ScheduleSettings.AllowToLeaveControl;
@@ -970,7 +971,7 @@ namespace Asa.AdSchedule.Single
 				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
 			AdSchedulePowerPointHelper.Instance.Disconnect(false);
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
-			Application.Exit();
+			FormProgress.Destroy();
 		}
 
 		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)
@@ -982,7 +983,6 @@ namespace Asa.AdSchedule.Single
 					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
 						var fileName = BusinessObjects.Instance.ScheduleManager.GetScheduleFileName(form.ScheduleName.Trim());
-						BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
 						BusinessObjects.Instance.ScheduleManager.OpenSchedule(fileName);
 						LoadData();
 					}
@@ -1005,7 +1005,6 @@ namespace Asa.AdSchedule.Single
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
 						string fileName = from.ScheduleName.Trim();
-						BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
 						BusinessObjects.Instance.ScheduleManager.OpenSchedule(fileName, false);
 						LoadData();
 					}

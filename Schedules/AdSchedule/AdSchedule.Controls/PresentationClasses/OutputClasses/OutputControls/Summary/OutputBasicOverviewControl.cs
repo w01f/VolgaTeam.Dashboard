@@ -209,12 +209,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			}
 		}
 
-		private void TrackOutput(IEnumerable<PublicationBasicOverviewControl> publications)
-		{
-			foreach (var publication in publications)
-				BusinessObjects.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
-		}
-
 		public void PrintOutput()
 		{
 			Save();
@@ -243,7 +237,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
-			TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>());
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
@@ -360,8 +353,7 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			var trackAction = new Action(() => TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>()));
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Basic Overview";
 				formPreview.LoadGroups(previewGroups);
@@ -403,7 +395,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
-			TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>());
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{

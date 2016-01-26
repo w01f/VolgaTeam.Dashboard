@@ -200,14 +200,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateSpotsByQuarter();
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("New Program Added", options));
-
 			OnScheduleSectionDataChanged(this, EventArgs.Empty);
 		}
 
@@ -217,14 +209,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateGridData(true);
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("New Program Added", options));
-
 			OnScheduleSectionDataChanged(this, EventArgs.Empty);
 		}
 
@@ -237,14 +221,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				return;
 			SectionData.DeleteProgram(advBandedGridViewSchedule.GetDataSourceRowIndex(advBandedGridViewSchedule.FocusedRowHandle));
 			UpdateGridData(true);
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("Program Deleted", options));
-
 			OnScheduleSectionDataChanged(this, EventArgs.Empty);
 		}
 
@@ -528,11 +504,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			return items;
 		}
 
-		private void AddActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-		}
-
 		private void OnScheduleSectionDataChanged(object sender, EventArgs e)
 		{
 			if (DataChanged != null)
@@ -551,14 +522,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			advBandedGridViewSchedule.CloseEditor();
 			advBandedGridViewSchedule.UpdateCurrentRow();
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add("Program", advBandedGridViewSchedule.GetRowCellValue(e.RowHandle, bandedGridColumnName));
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("Program Line Updated", options));
 		}
 
 		private void advBandedGridViewSchedule_CustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)
@@ -729,13 +692,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateGridData(false);
 			UpdateSpotsByQuarter();
 			advBandedGridViewSchedule.FocusedRowHandle = targetRow;
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("Change Program Position", options));
 		}
 		#endregion
 

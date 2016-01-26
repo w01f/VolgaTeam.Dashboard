@@ -104,7 +104,6 @@ namespace Asa.Core.Common
 			if (Activated)
 				Authorize();
 		}
-
 		private async Task InitCredentials()
 		{
 			var clientConfigPath = Path.Combine(Path.GetDirectoryName(typeof(FileStorageManager).Assembly.Location), "client.txt");
@@ -710,6 +709,7 @@ namespace Asa.Core.Common
 	{
 		public bool Authorized { get; set; }
 		public string AuthServer { get; private set; }
+		public bool LightCheck { get; set; }
 
 		public AuthorizingEventArgs(string authService)
 		{

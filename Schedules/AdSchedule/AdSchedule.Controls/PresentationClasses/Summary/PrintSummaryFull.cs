@@ -41,11 +41,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.Summary
 			};
 		}
 
-		private void TrackOutput()
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabSummaryFull.Text, LocalSchedule.BusinessName, null));
-		}
-
 		public override ISummarySchedule Schedule
 		{
 			get { return LocalSchedule; }
@@ -185,7 +180,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
-			TrackOutput();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
@@ -199,7 +193,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			SaveSchedule();
 			if (!CheckPowerPointRunning()) return;
-			TrackOutput();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
@@ -244,7 +237,7 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.Summary
 		protected override void ShowPreview(string tempFileName)
 		{
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Summary";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

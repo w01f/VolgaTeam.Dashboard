@@ -109,13 +109,6 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 					Controller.Instance.UpdateSimpleOutputTabPageState(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 					if (_allowToSave)
 						SettingsNotSaved = true;
-				},
-				activity =>
-				{
-					var propertyEditActivity = activity as PropertyEditActivity;
-					if (propertyEditActivity != null)
-						propertyEditActivity.Advertiser = Controller.Instance.HomeBusinessName.EditValue as String;
-					BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 				});
 			if (!quickLoad)
 			{
@@ -159,10 +152,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			if (!String.IsNullOrEmpty(businessName))
 			{
 				if (_localSchedule.BusinessName != businessName)
-				{
 					_localSchedule.BusinessName = businessName;
-					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
-				}
 			}
 			else
 			{
@@ -173,10 +163,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			if (!String.IsNullOrEmpty(decisionMaker))
 			{
 				if (_localSchedule.DecisionMaker != decisionMaker)
-				{
 					_localSchedule.DecisionMaker = decisionMaker;
-					BusinessObjects.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
-				}
 			}
 			else
 			{

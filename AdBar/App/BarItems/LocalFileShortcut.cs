@@ -77,7 +77,6 @@ namespace Asa.Bar.App.BarItems
 			try
 			{
 				Process.Start(destinationPath);
-				AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _path + " (" + Type + ")"));
 			}
 			catch { }
 		}

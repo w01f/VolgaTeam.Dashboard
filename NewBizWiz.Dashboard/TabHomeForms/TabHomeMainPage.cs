@@ -113,7 +113,6 @@ namespace Asa.Dashboard.TabHomeForms
 		public void UpdatePageAccordingToggledButton(SlideType selectedSlide)
 		{
 			_selectedSlide = selectedSlide;
-			AppManager.Instance.ActivityManager.AddActivity(new SectionActivity(SelectedSlideName));
 			switch (_selectedSlide)
 			{
 				case SlideType.Cleanslate:

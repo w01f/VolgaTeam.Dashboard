@@ -38,7 +38,7 @@ namespace Asa.Core.Common
 		private void SaveStorage()
 		{
 			_activityStorage.Save(_activityFile.LocalPath);
-			_activityFile.Upload();
+			//_activityFile.Upload();
 		}
 
 		public void AddActivity(UserActivity activity)
@@ -84,76 +84,6 @@ namespace Asa.Core.Common
 					activityElement.Add(new XAttribute(otherOption.Key, otherOption.Value));
 			}
 			return activityElement;
-		}
-	}
-
-	public class TabActivity : UserActivity
-	{
-		public string TabName { get; private set; }
-		public string Advertiser { get; private set; }
-
-		public TabActivity(string tabName, string advertiser = "")
-			: base("Tab Selected")
-		{
-			TabName = tabName;
-			Advertiser = advertiser;
-		}
-
-		public override XElement Serialize()
-		{
-			var element = base.Serialize();
-			element.Add(new XAttribute("Tab", TabName));
-			if (!String.IsNullOrEmpty(Advertiser))
-				element.Add(new XAttribute("Advertiser", Advertiser));
-			return element;
-		}
-	}
-
-	public class PropertyEditActivity : UserActivity
-	{
-		public string Value { get; private set; }
-		public string Advertiser { get; set; }
-
-		public PropertyEditActivity(string propertName, string value, string editType = "", string advertiser = "")
-			: base(String.Format("{0} {1}", propertName, !String.IsNullOrEmpty(editType) ? editType : "Changed"))
-		{
-			Value = value;
-			Advertiser = advertiser;
-		}
-
-		public override XElement Serialize()
-		{
-			var element = base.Serialize();
-			element.Add(new XAttribute("Value", Value));
-			if (!String.IsNullOrEmpty(Advertiser))
-				element.Add(new XAttribute("Advertiser", Advertiser));
-			return element;
-		}
-	}
-
-	public class OutputActivity : UserActivity
-	{
-		public string SlideName { get; private set; }
-		public string Advertiser { get; private set; }
-		public decimal? DollarValue { get; private set; }
-
-		public OutputActivity(string slideName, string advertiser, decimal? dollarValue, Dictionary<string, object> otherOptions = null)
-			: base("Output", otherOptions)
-		{
-			SlideName = slideName;
-			Advertiser = advertiser;
-			DollarValue = dollarValue;
-		}
-
-		public override XElement Serialize()
-		{
-			var element = base.Serialize();
-			element.Add(new XAttribute("Slide", SlideName));
-			if (!String.IsNullOrEmpty(Advertiser))
-				element.Add(new XAttribute("Advertiser", Advertiser));
-			if (DollarValue.HasValue)
-				element.Add(new XAttribute("Dollars", DollarValue));
-			return element;
 		}
 	}
 

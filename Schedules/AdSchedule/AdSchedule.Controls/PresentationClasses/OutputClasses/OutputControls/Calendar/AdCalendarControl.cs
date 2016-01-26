@@ -91,11 +91,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			SettingsNotSaved = true;
 		}
 
-		public override void TrackActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-		}
-
 		public bool AllowToLeaveControl
 		{
 			get
@@ -112,16 +107,10 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			}
 		}
 
-		private void TrackOutput()
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(CalendarTab.Text, _localSchedule.BusinessName, (decimal)_localSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
-		}
-
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
 			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
-			TrackOutput();
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.SetTitle(commonOutputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
@@ -189,7 +178,7 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			Enabled = true;
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);
@@ -207,7 +196,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 		{
 			if (outputData == null) return;
 			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
-			TrackOutput();
 			var previewGroups = new List<PreviewGroup>();
 			Controller.Instance.ShowFloater(() =>
 			{

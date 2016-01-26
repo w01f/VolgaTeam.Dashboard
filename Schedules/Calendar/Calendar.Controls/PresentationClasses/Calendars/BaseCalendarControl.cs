@@ -406,10 +406,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		{
 			throw new NotImplementedException();
 		}
-		public virtual void TrackActivity(UserActivity activity)
-		{
-			throw new NotImplementedException();
-		}
 		protected virtual void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			throw new NotImplementedException();

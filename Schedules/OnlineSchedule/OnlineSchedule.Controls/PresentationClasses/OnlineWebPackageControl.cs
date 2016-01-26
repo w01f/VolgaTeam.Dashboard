@@ -94,14 +94,8 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			return ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName);
 		}
 
-		private void TrackOutput()
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabDigitalPackage.Text, Schedule.BusinessName, PackageRecords.Sum(pr => pr.InvestmentCalculated)));
-		}
-
 		public override void OutputSlides()
 		{
-			TrackOutput();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
@@ -113,7 +107,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Package";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

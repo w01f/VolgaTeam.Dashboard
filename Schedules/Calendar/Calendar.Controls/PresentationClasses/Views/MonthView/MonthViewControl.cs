@@ -151,11 +151,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 										if (day == null) return;
 										Calendar.UpdateOutputFunctions();
 										Calendar.SettingsNotSaved = true;
-										var options = new Dictionary<string, object>();
-										options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-										options.Add("Day", day.Day.Date);
-										options.Add("Text", day.Day.Summary);
-										Calendar.TrackActivity(new UserActivity("Edit Data", options));
 									};
 
 									dayControl.SelectionStateRequested += (sender, e) => SelectionManager.ProcessSelectionStateRequest();
@@ -282,26 +277,12 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			var selectedDay = SelectionManager.SelectedDays.FirstOrDefault();
 			if (selectedDay == null) return;
 			CopyPasteManager.CopyDay(selectedDay);
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-			options.Add("Day", CopyPasteManager.SourceDay.Date);
-			options.Add("Text", selectedDay.Summary);
-			Calendar.TrackActivity(new UserActivity("Copy Data", options));
 		}
 
 		public void PasteDay()
 		{
 			var selectedDays = SelectionManager.SelectedDays.ToArray();
 			CopyPasteManager.PasteDay(selectedDays);
-			if (CopyPasteManager.SourceDay == null) return;
-			foreach (var day in selectedDays)
-			{
-				var options = new Dictionary<string, object>();
-				options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-				options.Add("Day", day.Date);
-				options.Add("Text", CopyPasteManager.SourceDay.Summary);
-				Calendar.TrackActivity(new UserActivity("Paste Data", options));
-			}
 		}
 
 		public void CopyImage()
@@ -309,26 +290,12 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			var selectedDay = SelectionManager.SelectedDays.FirstOrDefault();
 			if (selectedDay == null || !selectedDay.Logo.ContainsData) return;
 			Clipboard.SetText(String.Format("<ImageSource>{0}</ImageSource>", selectedDay.Logo.Serialize()), TextDataFormat.Html);
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-			options.Add("Day", selectedDay.Date);
-			options.Add("Text", selectedDay.Summary);
-			Calendar.TrackActivity(new UserActivity("Copy Image", options));
 		}
 
 		public void PasteImage(ImageSource imageSource)
 		{
 			var selectedDays = SelectionManager.SelectedDays.ToArray();
 			CopyPasteManager.PasteImage(selectedDays, imageSource);
-			if (CopyPasteManager.SourceDay == null || imageSource == null) return;
-			foreach (var day in selectedDays)
-			{
-				var options = new Dictionary<string, object>();
-				options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-				options.Add("Day", day.Date);
-				options.Add("Text", CopyPasteManager.SourceDay.Summary);
-				Calendar.TrackActivity(new UserActivity("Paste Image", options));
-			}
 		}
 
 		public void CloneDay()
@@ -342,13 +309,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				{
 					var clonedDays = Calendar.CalendarData.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToList();
 					CopyPasteManager.CloneDay(selectedDay, clonedDays);
-
-					var options = new Dictionary<string, object>();
-					options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-					options.Add("SourceDay", selectedDay.Date);
-					options.Add("DestinationDay", clonedDays.Select(cd => cd.Date));
-					options.Add("Text", selectedDay.Summary);
-					Calendar.TrackActivity(new UserActivity("Clone Data", options));
 				}
 			}
 		}
@@ -374,13 +334,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 						var targetNoteControl = sender as CalendarNoteControl;
 						if (targetNoteControl == null) return;
 						Calendar.SettingsNotSaved = true;
-
-						var options = new Dictionary<string, object>();
-						options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-						options.Add("StartDay", targetNoteControl.CalendarNote.StartDay);
-						options.Add("EndDay", targetNoteControl.CalendarNote.FinishDay);
-						options.Add("Text", targetNoteControl.CalendarNote.Note);
-						Calendar.TrackActivity(new UserActivity("Edit Note", options));
 					};
 					noteControl.NoteDeleted += (sender, e) =>
 					{
@@ -443,14 +396,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				if (justAddedNote != null)
 					justAddedNote.Focus();
 			}
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-			options.Add("StartDay", noteRange.StartDate);
-			options.Add("EndDay", noteRange.FinishDate);
-			if (!String.IsNullOrEmpty(noteText))
-				options.Add("Text", noteText);
-			Calendar.TrackActivity(new UserActivity("Add Note", options));
 		}
 
 		private void AddNote(DateRange noteRange, ITextItem note)
@@ -462,14 +407,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Value.Date && x.DaysRangeEnd >= noteRange.FinishDate.Value.Date);
 			if (calendarMonth != null)
 				Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
-			options.Add("StartDay", noteRange.StartDate);
-			options.Add("EndDay", noteRange.FinishDate);
-			if (!String.IsNullOrEmpty(note.SimpleText))
-				options.Add("Text", note.SimpleText);
-			Calendar.TrackActivity(new UserActivity("Add Note", options));
 		}
 
 		private void PasteNote()

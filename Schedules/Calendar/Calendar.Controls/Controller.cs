@@ -225,10 +225,6 @@ namespace Asa.Calendar.Controls
 
 			var options = new Dictionary<string, object>();
 			options.Add("Advertiser", localSchedule.BusinessName);
-			if (nameChanged)
-				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name, options));
-			else if (byUser)
-				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved", localSchedule.Name, options));
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
 		}
@@ -242,7 +238,6 @@ namespace Asa.Calendar.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessObjects.Instance.ScheduleManager.CurrentAdvertiser));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery1)

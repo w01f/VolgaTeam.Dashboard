@@ -170,14 +170,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
 			BusinessObjects.Instance.HelpManager.OpenHelpLink("digitalsl");
 		}
 
-		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
-		{
-			var activities = base.TrackOutput(tabsForOutput);
-			foreach (var activity in activities)
-				BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-			return activities;
-		}
-
 		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)
 		{
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
@@ -190,9 +182,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
 			});
 		}
 
-		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
+		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);
@@ -206,7 +198,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
 			}
 		}
 
-		public override void ShowPdf(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
+		public override void ShowPdf(IEnumerable<PreviewGroup> previewGroups)
 		{
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>

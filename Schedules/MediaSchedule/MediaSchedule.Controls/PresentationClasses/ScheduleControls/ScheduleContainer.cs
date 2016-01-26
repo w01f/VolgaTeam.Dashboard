@@ -113,7 +113,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			};
 			digitalInfoControl.SettingsChanged += (o, args) =>
 			{
-				TrackOptionChanged();
 				SettingsNotSaved = true;
 			};
 
@@ -537,18 +536,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			retractableBarControl.AddButtons(buttonInfos);
 		}
 
-		private void TrackOptionChanged()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			AddActivity(new UserActivity("Navbar Schedule Cleanup", options));
-		}
-
-		private void AddActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-		}
-
 		private void OnSettingsChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -587,7 +574,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateQuarterSelectorControl();
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
-			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 
@@ -630,7 +616,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				else
 					ActiveSection.UpdateGridView();
 
-				TrackOptionChanged();
 				SettingsNotSaved = true;
 			}
 		}
@@ -661,7 +646,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			_localSchedule.ProgramSchedule.SelectedQuarter = selectedQuarter != null ? selectedQuarter.DateAnchor : (DateTime?)null;
 			foreach (var sectionTabControl in xtraTabControlSections.TabPages.OfType<SectionControl>())
 				sectionTabControl.UpdateSpotsByQuarter(selectedQuarter);
-			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 
@@ -675,7 +659,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private void OnColorChanged(object sender, EventArgs e)
 		{
-			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 		#endregion
@@ -758,28 +741,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 		}
 
-		private void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", String.Format("{0}ly Schedule", SpotTitle));
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), _localSchedule.ProgramSchedule.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), _localSchedule.ProgramSchedule.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), _localSchedule.ProgramSchedule.TotalCost);
-			AddActivity(new UserActivity("Output", options));
-		}
-
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", String.Format("{0}ly Schedule", SlideType));
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), _localSchedule.ProgramSchedule.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), _localSchedule.ProgramSchedule.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), _localSchedule.ProgramSchedule.TotalCost);
-			AddActivity(new UserActivity("Preview", options));
-		}
-
 		private IEnumerable<SectionControl> SelectSectionsForOutput()
 		{
 			var tabPages = xtraTabControlSections.TabPages.OfType<SectionControl>().Where(ss => ss.ReadyForOutput).ToList();
@@ -814,7 +775,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SaveSchedule();
 			var selectedSections = new List<SectionControl>(SelectSectionsForOutput());
 			if (!selectedSections.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
@@ -822,7 +782,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				FormProgress.ShowProgress();
 				foreach (var sectionTabControl in selectedSections)
 					sectionTabControl.GenerateOutput();
-				TrackOutput();
 				FormProgress.CloseProgress();
 			});
 		}
@@ -841,7 +800,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Schedule";
 				formPreview.LoadGroups(previewGroups);
@@ -900,7 +859,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 						Process.Start(pdfFileName);
 					}
 					catch { }
-				TrackOutput();
 				FormProgress.CloseProgress();
 			});
 		}

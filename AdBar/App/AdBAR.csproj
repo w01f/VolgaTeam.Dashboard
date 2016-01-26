@@ -198,6 +198,9 @@
   <ItemGroup>
     <None Include="Resources\PasswordLogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressCancel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

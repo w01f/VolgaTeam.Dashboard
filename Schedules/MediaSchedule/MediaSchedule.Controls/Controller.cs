@@ -80,8 +80,6 @@ namespace Asa.MediaSchedule.Controls
 
 		public void InitForm()
 		{
-			Utilities.Instance.Title = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
-
 			SetDefaultCulture();
 
 			ConfigureTabPages();
@@ -384,7 +382,6 @@ namespace Asa.MediaSchedule.Controls
 					options.Add("AverageRate", localSchedule.ProgramSchedule.AvgRate);
 					options.Add("GrossInvestment", localSchedule.ProgramSchedule.TotalCost);
 				}
-				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
 			}
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
@@ -597,7 +594,6 @@ namespace Asa.MediaSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessObjects.Instance.ScheduleManager.CurrentAdvertiser));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			if (Ribbon.SelectedRibbonTabItem == TabGallery1)

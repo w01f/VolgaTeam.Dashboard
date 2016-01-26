@@ -71,8 +71,6 @@ namespace Asa.Dashboard
 		#region GUI Event Handlers
 		public void Init()
 		{
-			Utilities.Instance.Title = "6 Minute Seller";
-
 			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "6ms", false).LoadState();
 
 			ApplyMasterWizard();
@@ -112,7 +110,7 @@ namespace Asa.Dashboard
 
 		private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			Application.Exit();
+			AppManager.Instance.ActivityManager.AddActivity(new UserActivity("Application Closed"));
 		}
 
 		private void FormMain_Resize(object sender, EventArgs e)
@@ -122,24 +120,9 @@ namespace Asa.Dashboard
 				Opacity = 1;
 		}
 
-		public void FormScheduleResize(object sender, EventArgs e)
-		{
-			var f = sender as Form;
-			if (f == null || f.IsDisposed) return;
-			f.Opacity = f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker ? 1 : f.Opacity;
-		}
-
-		public void FormScheduleClosed(object sender, EventArgs e)
-		{
-			Opacity = 1;
-			RegistryHelper.MainFormHandle = Handle;
-			RegistryHelper.MaximizeMainForm = false;
-		}
-
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
 			OutsideClick = null;
-			AppManager.Instance.ActivityManager.AddActivity(new TabActivity(ribbonControl.SelectedRibbonTabItem.Text));
 			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemHome)
 			{
 				TabHomeMainPage.Instance.UpdatePageAccordingToggledButton(SlideType.Cleanslate);
@@ -178,7 +161,7 @@ namespace Asa.Dashboard
 
 		public void buttonItemExit_Click(object sender, EventArgs e)
 		{
-			Application.Exit();
+			Close();
 		}
 
 		private void buttonItemPowerPoint_Click(object sender, EventArgs e)

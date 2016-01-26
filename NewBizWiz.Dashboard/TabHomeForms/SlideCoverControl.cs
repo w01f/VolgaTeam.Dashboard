@@ -346,17 +346,9 @@ namespace Asa.Dashboard.TabHomeForms
 			UpdateSavedFilesState();
 		}
 
-		public void TrackOutput()
-		{
-			var otherOptions = new Dictionary<string, object>();
-			otherOptions.Add("IsNewSolution", ViewSettingsManager.Instance.CoverState.IsNewSolution);
-			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity(SlideName, Advertiser, null, otherOptions));
-		}
-
 		public void Output()
 		{
 			SaveChanges();
-			TrackOutput();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			FormProgress.ShowProgress();
 			if (checkEditUseEmptyCover.Checked)
@@ -387,7 +379,7 @@ namespace Asa.Dashboard.TabHomeForms
 			Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Slides";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName, InsertOnTop = checkEditFirstSlide.Checked } });

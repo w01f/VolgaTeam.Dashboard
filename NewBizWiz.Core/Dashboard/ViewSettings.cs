@@ -204,7 +204,7 @@ namespace Asa.Core.Dashboard
 				sw.Write("<CoverState>" + Serialize() + " </CoverState>");
 				sw.Flush();
 			}
-			await file.Upload();
+			//await file.Upload();
 		}
 	}
 
@@ -305,7 +305,7 @@ namespace Asa.Core.Dashboard
 				sw.Write("<LeadoffStatementState>" + Serialize() + " </LeadoffStatementState> ");
 				sw.Flush();
 			}
-			await file.Upload();
+			//await file.Upload();
 		}
 	}
 
@@ -395,7 +395,7 @@ namespace Asa.Core.Dashboard
 				sw.Write("<ClientGoalsState>" + Serialize() + " </ClientGoalsState> ");
 				sw.Flush();
 			}
-			await file.Upload();
+			//await file.Upload();
 		}
 	}
 
@@ -489,7 +489,7 @@ namespace Asa.Core.Dashboard
 				sw.Write("<TargetCustomersState>" + Serialize() + " </TargetCustomersState> ");
 				sw.Flush();
 			}
-			await file.Upload();
+			//await file.Upload();
 		}
 	}
 
@@ -684,7 +684,7 @@ namespace Asa.Core.Dashboard
 				sw.Write("<SimpleSummaryState>" + Serialize() + " </SimpleSummaryState>");
 				sw.Flush();
 			}
-			await file.Upload();
+			//await file.Upload();
 		}
 	}
 

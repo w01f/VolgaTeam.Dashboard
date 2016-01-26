@@ -22,14 +22,13 @@ namespace Asa.CommonGUI.Preview
 
 		public List<PreviewGroupControl> GroupControls { get; private set; }
 
-		public FormPreview(Form parentForm, IPowerPointHelper powerPointHelper, HelpManager helpManager, Action<Action> showFloater, Action trackOutput = null)
+		public FormPreview(Form parentForm, IPowerPointHelper powerPointHelper, HelpManager helpManager, Action<Action> showFloater)
 		{
 			InitializeComponent();
 			_parentForm = parentForm;
 			_powerPointHelper = powerPointHelper;
 			_helpManager = helpManager;
 			_showFloater = showFloater;
-			_trackOutput = trackOutput;
 			GroupControls = new List<PreviewGroupControl>();
 		}
 

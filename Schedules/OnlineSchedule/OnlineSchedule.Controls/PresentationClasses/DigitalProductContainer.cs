@@ -257,16 +257,6 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			checkEditShowFlightDates.Left = (Width - checkEditShowFlightDates.Width) / 2;
 		}
 
-		protected virtual IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
-		{
-			return tabsForOutput.Select(outputControl => new DigitalProductOutputActivity(
-					SlideName,
-					LocalSchedule.BusinessName,
-					outputControl.SlideName,
-					outputControl.Product.OutputData.Investments))
-				.ToList();
-		}
-
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
@@ -296,7 +286,6 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			else
 				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
 			if (!selectedTabPages.Any()) return;
-			TrackOutput(selectedTabPages.OfType<DigitalProductControl>());
 			OutputSlides(selectedTabPages);
 		}
 
@@ -412,10 +401,10 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			FormProgress.CloseProgress();
 
 			if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
-				ShowPreview(previewGroups, () => TrackOutput(selectedTabPages.OfType<DigitalProductControl>()));
+				ShowPreview(previewGroups);
 		}
 
-		public abstract void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput);
+		public abstract void ShowPreview(IEnumerable<PreviewGroup> previewGroups);
 
 		public void Pdf_Click(object sender, EventArgs e)
 		{
@@ -464,10 +453,10 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			}
 			FormProgress.CloseProgress();
 			if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
-				ShowPdf(previewGroups, () => TrackOutput(selectedTabPages.OfType<DigitalProductControl>()));
+				ShowPdf(previewGroups);
 		}
 
-		public abstract void ShowPdf(IEnumerable<PreviewGroup> previewGroups, Action trackOutput);
+		public abstract void ShowPdf(IEnumerable<PreviewGroup> previewGroups);
 
 		#region Picture Box Clicks Habdlers
 		/// <summary>

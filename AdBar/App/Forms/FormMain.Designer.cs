@@ -120,15 +120,10 @@
 			// 
 			// 
 			// 
-			this.ribbonBarSettings.BackgroundMouseOverStyle.BorderColor = System.Drawing.Color.Transparent;
 			this.ribbonBarSettings.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
-			this.ribbonBarSettings.BackgroundStyle.BorderColor = System.Drawing.Color.Transparent;
-			this.ribbonBarSettings.BackgroundStyle.BorderColor2 = System.Drawing.Color.Transparent;
-			this.ribbonBarSettings.BackgroundStyle.BorderColorLight = System.Drawing.Color.Transparent;
-			this.ribbonBarSettings.BackgroundStyle.BorderColorLight2 = System.Drawing.Color.Transparent;
 			this.ribbonBarSettings.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSettings.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSettings.DragDropSupport = true;

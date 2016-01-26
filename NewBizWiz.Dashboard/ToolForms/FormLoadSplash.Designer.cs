@@ -93,14 +93,13 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(466, 119);
-			this.ControlBox = false;
+			this.ClientSize = new System.Drawing.Size(462, 115);
 			this.Controls.Add(this.circularProgress1);
 			this.Controls.Add(this.pbLogo);
 			this.Controls.Add(this.laTopCaption);
 			this.Controls.Add(this.laBottomCaption);
 			this.DoubleBuffered = true;
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "FormLoadSplash";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

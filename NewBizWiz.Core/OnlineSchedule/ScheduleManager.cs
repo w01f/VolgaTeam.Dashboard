@@ -388,12 +388,6 @@ namespace Asa.Core.OnlineSchedule
 				ViewSettings.Deserialize(node);
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/ViewSettings");
-			if (node != null)
-			{
-				ViewSettings.Deserialize(node);
-			}
-
 			node = document.SelectSingleNode(@"/Schedule/Products");
 			if (node != null)
 			{

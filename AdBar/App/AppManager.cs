@@ -60,28 +60,27 @@ namespace Asa.Bar.App
 				{
 					Utilities.Instance.ShowWarning("Server is not available. Application will be closed");
 					stopRun = true;
-					Application.Exit();
-					return;
 				}
-				if (Utilities.Instance.ShowWarningQuestion("Server is not available. Do you want to continue to work in local mode?") != DialogResult.Yes)
+				else if (Utilities.Instance.ShowWarningQuestion("Server is not available. Do you want to continue to work in local mode?") != DialogResult.Yes)
 				{
 					stopRun = true;
-					Application.Exit();
 				}
+				if (stopRun)
+					FormStart.Destroy();
 			};
 
 			FileStorageManager.Instance.Authorizing += (o, e) =>
 			{
 				var authManager = new AdBarAuthManager();
 				authManager.Init();
-				FormStart.SetTitle("Checking credentials...", "*This should not take long…");
+				FormStart.SetTitle("Checking credentials...");
 				authManager.Auth(e);
 				if (!e.Authorized)
 					LoadAtStartupHelper.UnsetLoadAtStartup();
 			};
 
 			FormStart.ShowProgress();
-			FormStart.SetTitle("Connecting to adSALEScloud…", "*This should not take long…");
+			FormStart.SetTitle("Connecting to adSALEScloud…");
 			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
 			thread.Start();
 			while (thread.IsAlive)
@@ -101,11 +100,11 @@ namespace Asa.Bar.App
 			if (FileStorageManager.Instance.Activated)
 			{
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
-					FormStart.SetTitle("Syncing adSALEScloud for the 1st time…", "*This may take a few minutes…");
+					FormStart.SetTitle("Syncing adSALEScloud for the 1st time…");
 				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-					FormStart.SetTitle("Refreshing data from adSALEScloud…", "*This may take a few minutes…");
+					FormStart.SetTitle("Refreshing data from adSALEScloud…");
 				else
-					FormStart.SetTitle("Loading application data...", "*This should not take long…");
+					FormStart.SetTitle("Loading application data...");
 
 				thread = new Thread(() =>
 				{
@@ -116,7 +115,9 @@ namespace Asa.Bar.App
 				while (thread.IsAlive)
 					Application.DoEvents();
 			}
+
 			FormStart.CloseProgress();
+			FormStart.Destroy();
 
 			if (FileStorageManager.Instance.Activated)
 			{

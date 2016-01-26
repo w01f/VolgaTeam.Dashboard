@@ -970,14 +970,8 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 
-		private void TrackOutput()
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabMultiGrid.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
-		}
-
 		public void PrintOutput()
 		{
-			TrackOutput();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
@@ -1020,7 +1014,7 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Logo Grid";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -1036,7 +1030,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 
 		public void PrintPdf()
 		{
-			TrackOutput();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{

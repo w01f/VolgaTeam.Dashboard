@@ -132,24 +132,10 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			SettingsManager.Instance.ViewSettings.Save();
 		}
 
-		public override void TrackActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-		}
-
-		private void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", SelectedView.Title);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
-		}
-
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
 			var commonOutputData = outputData.OfType<CommonCalendarOutputData>();
-			TrackOutput();
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
@@ -195,14 +181,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			}
 		}
 
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", SelectedView.Title);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
-		}
-
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
@@ -225,7 +203,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			Enabled = true;
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);

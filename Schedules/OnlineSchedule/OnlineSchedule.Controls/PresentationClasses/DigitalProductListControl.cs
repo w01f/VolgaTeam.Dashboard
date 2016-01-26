@@ -24,7 +24,6 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 	{
 		private IDigitalSchedule _schedule;
 		private Action _onDataChanged;
-		private Action<UserActivity> _trackActivity;
 		private GridDragDropHelper _dragDropHelper;
 
 		[Browsable(true), Category("Misc")]
@@ -56,11 +55,10 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			repositoryItemSpinEditSize.MouseUp += TextEditorsHelper.Editor_MouseUp;
 		}
 
-		public void UpdateData(IDigitalSchedule schedule, Action onDataChanged, Action<UserActivity> trackActivity)
+		public void UpdateData(IDigitalSchedule schedule, Action onDataChanged)
 		{
 			_schedule = schedule;
 			_onDataChanged = onDataChanged;
-			_trackActivity = trackActivity;
 			gridControl.DataSource = new BindingList<DigitalProduct>(_schedule.DigitalProducts);
 
 			if (ListManager.Instance.ProductSources.All(productSource => String.IsNullOrEmpty(productSource.SubCategory)))
@@ -130,8 +128,6 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 		public void AddProduct(Category category)
 		{
 			_schedule.AddDigital(category.Name);
-			if (_trackActivity != null)
-				_trackActivity(new PropertyEditActivity("Digital Category", category.Name, "Added"));
 			RefreshDigitalAfterAddProduct();
 		}
 
@@ -192,8 +188,6 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 					var productSource = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(product.Name));
 					if (productSource != null)
 					{
-						if (_trackActivity != null)
-							_trackActivity(new DigitalProductEditActivity(product.Category, product.SubCategory, productSource.Name));
 						product.ApplyDefaultValues();
 						advBandedGridView.RefreshData();
 					}

@@ -27,8 +27,9 @@ namespace Asa.Core.Common
 
 		public virtual void Auth(AuthorizingEventArgs authArgs)
 		{
-			authArgs.Authorized = Settings.HasCredentials && 
-				(FileStorageManager.Instance.UseLocalMode || 
+			authArgs.Authorized = Settings.HasCredentials &&
+				(authArgs.LightCheck ||
+					FileStorageManager.Instance.UseLocalMode ||
 					IsAuthorized(authArgs.AuthServer, Settings.Login, Settings.GetPassword()));
 		}
 

@@ -111,11 +111,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			BusinessObjects.Instance.HelpManager.OpenHelpLink(key);
 		}
 
-		public override void TrackActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-		}
-
 		private void OnReset(object sender, EventArgs e)
 		{
 			if (Utilities.Instance.ShowWarningQuestion("Are you SURE you want to RESET your calendar to the default Information?") != DialogResult.Yes) return;
@@ -125,24 +120,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			SettingsNotSaved = true;
 		}
 
-		protected void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", CalendarTab.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
-		}
-
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			TrackOutput();
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
@@ -188,20 +168,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			}
 		}
 
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", CalendarTab.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
-		}
-
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
@@ -223,7 +189,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			Enabled = true;
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);
@@ -240,7 +206,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 		protected override void PdfInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			TrackOutput();
 			var previewGroups = new List<PreviewGroup>();
 			Controller.Instance.ShowFloater(() =>
 			{

@@ -965,12 +965,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			}
 		}
 
-		private void TrackOutput(IEnumerable<PublicationDetailedGridControl> publications)
-		{
-			foreach (var publication in publications)
-				BusinessObjects.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
-		}
-
 		public void PrintOutput()
 		{
 			var tabPages = _tabPages;
@@ -998,7 +992,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
-			TrackOutput(selectedProducts);
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
@@ -1092,8 +1085,7 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			var trackAction = new Action(() => TrackOutput(selectedProducts));
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Detailed Advertising Grid";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -1134,7 +1126,6 @@ namespace Asa.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputContro
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
-			TrackOutput(selectedProducts);
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{

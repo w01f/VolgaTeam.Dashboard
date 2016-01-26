@@ -58,7 +58,6 @@ namespace Asa.Bar.App.BarItems
 			}
 			else
 				Utilities.Instance.ShowWarning("File not found");
-			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _file.LocalPath + " (" + Type + ")"));
 		}
 	}
 }

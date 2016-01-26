@@ -313,38 +313,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			}
 		}
 
-		private string SpotTitle
-		{
-			get { return _localSchedule.SelectedSpotType.ToString(); }
-		}
-
-		private void AddActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-		}
-
-		private void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", "Summary");
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), _localSchedule.ProgramSchedule.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), _localSchedule.ProgramSchedule.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), _localSchedule.ProgramSchedule.TotalCost);
-			AddActivity(new UserActivity("Output", options));
-		}
-
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", "Summary");
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), _localSchedule.ProgramSchedule.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), _localSchedule.ProgramSchedule.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), _localSchedule.ProgramSchedule.TotalCost);
-			AddActivity(new UserActivity("Preview", options));
-		}
-
 		private IEnumerable<SummaryTab> SelectSectionsForOutput()
 		{
 			var tabPages = xtraTabControlSections.TabPages.OfType<SummaryTab>().Where(ss => ss.Content.ReadyForOutput).ToList();
@@ -379,14 +347,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			SaveSchedule();
 			var selectedSections = new List<SummaryTab>(SelectSectionsForOutput());
 			if (!selectedSections.Any()) return;
-			TrackOutput();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
 				foreach (var selectedSection in selectedSections)
 					selectedSection.Content.GeneratePowerPointOutput();
-				TrackOutput();
 				FormProgress.CloseProgress();
 			});
 		}
@@ -406,7 +372,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Summary";
 				formPreview.LoadGroups(previewGroups);
@@ -468,7 +434,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 						Process.Start(pdfFileName);
 					}
 					catch { }
-				TrackOutput();
 				FormProgress.CloseProgress();
 			});
 		}

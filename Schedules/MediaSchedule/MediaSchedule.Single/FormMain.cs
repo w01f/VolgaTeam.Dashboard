@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -15,7 +14,6 @@ using Asa.MediaSchedule.Controls.BusinessClasses;
 using Asa.MediaSchedule.Controls.InteropClasses;
 using Asa.MediaSchedule.Controls.Properties;
 using Asa.MediaSchedule.Controls.ToolForms;
-using Asa.OnlineSchedule.Controls.InteropClasses;
 using FormStart = Asa.MediaSchedule.Controls.ToolForms.FormStart;
 
 namespace Asa.MediaSchedule.Single
@@ -453,7 +451,7 @@ namespace Asa.MediaSchedule.Single
 						buttonItemHomeOpenSchedule_Click(null, null);
 				}
 				else
-					Application.Exit();
+					Application.Exit(); 
 			}
 		}
 
@@ -623,6 +621,7 @@ namespace Asa.MediaSchedule.Single
 
 		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Closed"));
 			bool result = true;
 			if (_currentControl == Controller.Instance.HomeControl)
 				result = Controller.Instance.HomeControl.AllowToLeaveControl();
@@ -642,9 +641,7 @@ namespace Asa.MediaSchedule.Single
 				result = Controller.Instance.Snapshot.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Options)
 				result = Controller.Instance.Options.AllowToLeaveControl;
-			RegularMediaSchedulePowerPointHelper.Instance.Disconnect(false);
-			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
-			Application.Exit();
+			FormProgress.Destroy();
 		}
 
 		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)
@@ -656,7 +653,6 @@ namespace Asa.MediaSchedule.Single
 					if (!string.IsNullOrEmpty(form.ScheduleName))
 					{
 						var fileName = BusinessObjects.Instance.ScheduleManager.GetScheduleFileName(form.ScheduleName.Trim());
-						BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
 						BusinessObjects.Instance.ScheduleManager.OpenSchedule(fileName);
 						LoadData();
 					}
@@ -679,7 +675,6 @@ namespace Asa.MediaSchedule.Single
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
 						var fileName = from.ScheduleName.Trim();
-						BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
 						BusinessObjects.Instance.ScheduleManager.OpenSchedule(fileName, false);
 						LoadData();
 					}

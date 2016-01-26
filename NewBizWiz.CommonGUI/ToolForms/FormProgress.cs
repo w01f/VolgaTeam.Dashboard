@@ -52,6 +52,11 @@ namespace Asa.CommonGUI.ToolForms
 			Application.DoEvents();
 		}
 
+		public static void Destroy()
+		{
+			_instance.Dispose();
+		}
+
 		public static void SetTitle(string text, bool withDetails = false)
 		{
 			_instance.Invoke(new MethodInvoker(() =>

@@ -80,11 +80,8 @@ namespace Asa.AdSchedule.Controls
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => UpdateOutputButtonsAccordingThemeStatus();
 		}
 
-
 		public void InitForm()
 		{
-			Utilities.Instance.Title = "SellerPoint for Newspaper";
-
 			ConfigureTabPages();
 
 			InitControls();
@@ -793,8 +790,6 @@ namespace Asa.AdSchedule.Controls
 			while (thread.IsAlive)
 				Application.DoEvents();
 			FormProgress.CloseProgress();
-			if (nameChanged)
-				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
 		}
@@ -808,7 +803,6 @@ namespace Asa.AdSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery1)

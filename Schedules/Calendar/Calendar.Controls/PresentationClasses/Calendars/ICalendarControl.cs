@@ -32,6 +32,5 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		void OpenHelp(string key);
 		void Splash(bool show);
 		void SaveSettings();
-		void TrackActivity(UserActivity activity);
 	}
 }

@@ -814,35 +814,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
 		}
 
-		private void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabOptions.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
-		}
-
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabOptions.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
-		}
-
-
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.OptionsPowerPoint.Enabled =
@@ -879,7 +850,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			else
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
@@ -927,8 +897,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			var trackAction = new Action(TrackPreview);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Options";
 				formPreview.LoadGroups(previewGroups);
@@ -1019,7 +988,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			else
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>

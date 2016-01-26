@@ -85,7 +85,6 @@ namespace Asa.Core.Interop
 		ForceMinimized = 11
 	}
 
-
 	public class WinAPIHelper
 	{
 		#region Public constants

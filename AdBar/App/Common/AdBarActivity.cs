@@ -8,11 +8,6 @@ namespace Asa.Bar.App.Common
 	{
 		ApplicationOpen,
 		ApplicationClose,
-		ApplicationError,
-		ApplicationOpenLink,
-		ApplicationSwitchTab,
-		BrowserSwitch,
-		ApplicationSync
 	}
 
 	class AdBarActivity : UserActivity

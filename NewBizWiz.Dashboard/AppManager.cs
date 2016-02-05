@@ -213,7 +213,8 @@ namespace Asa.Dashboard
 
 		public bool CheckPowerPointRunning()
 		{
-			if (DashboardPowerPointHelper.Instance.IsLinkedWithApplication) return true;
+			if (DashboardPowerPointHelper.Instance.Connect(false))
+				return true;
 			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
 				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
 			return false;

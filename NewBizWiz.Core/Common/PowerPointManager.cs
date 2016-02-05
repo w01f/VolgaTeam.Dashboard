@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using Asa.Core.Interop;
 
@@ -31,13 +32,14 @@ namespace Asa.Core.Common
 		public void Init(IPowerPointHelper powerPointHelper)
 		{
 			_powerPointHelper = powerPointHelper;
-			if (_powerPointHelper.IsLinkedWithApplication)
+			if (_powerPointHelper.Connect(false))
 			{
 				SettingsSource = SettingsSourceEnum.PowerPoint;
 				GetActiveSettings();
 			}
 			else
 			{
+				KillPowerPoint();
 				SettingsSource = SettingsSourceEnum.Application;
 				GetDefaultSettings();
 			}
@@ -57,6 +59,8 @@ namespace Asa.Core.Common
 
 		public void RunPowerPointLoader()
 		{
+			KillPowerPoint();
+
 			var launcherTemplate = new StorageFile(ResourceManager.Instance.LauncherTemplatesFolder.RelativePathParts.Merge(SlideSettings.LauncherTemplateName));
 			if (!launcherTemplate.ExistsLocal())
 				throw new FileNotFoundException(String.Format("There is no {0} found", launcherTemplate.Name));
@@ -64,7 +68,13 @@ namespace Asa.Core.Common
 			var process = new Process();
 			process.StartInfo.FileName = launcherTemplate.LocalPath;
 			process.StartInfo.UseShellExecute = true;
+			process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
 			process.Start();
+		}
+
+		public void KillPowerPoint()
+		{
+			Process.GetProcesses().Where(p => p.ProcessName.ToUpper().Contains("POWERPNT")).ToList().ForEach(p => p.Kill());
 		}
 
 		private void GetDefaultSettings()

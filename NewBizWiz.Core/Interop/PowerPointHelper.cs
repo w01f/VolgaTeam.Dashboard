@@ -18,8 +18,7 @@ namespace Asa.Core.Interop
 		bool IsLinkedWithApplication { get; }
 		bool Connect(bool run = true);
 		void Disconnect(bool closeIfFirstLaunch = true);
-		void Close();
-		Presentation GetActivePresentation();
+		Presentation GetActivePresentation(bool create = true);
 		int GetActiveSlideIndex();
 		void ConvertToPDF(string originalFileName, string pdfFileName);
 		void AppendSlidesFromFile(string filePath, bool firstSlide);
@@ -39,10 +38,7 @@ namespace Asa.Core.Interop
 		protected static T _instance;
 
 		protected Presentation _activePresentation;
-		private bool _isFirstLaunch;
 		private Application _powerPointObject;
-		private int _powerPointProcessId;
-		private IntPtr _windowHandle = IntPtr.Zero;
 		private int _previouseSlideIndex;
 
 		protected PowerPointHelper() { }
@@ -71,28 +67,22 @@ namespace Asa.Core.Interop
 		{
 			get
 			{
-				var isOpened = true;
-				var proc = Process.GetProcessesByName("POWERPNT");
-				if (!(proc.GetLength(0) > 0))
+				if (!Process.GetProcessesByName("POWERPNT").Any())
 				{
 					_powerPointObject = null;
-					isOpened = false;
+					return false;
 				}
-				else
+				try
 				{
-					try
-					{
-						if (_powerPointObject == null)
-							Connect(false);
-						var caption = _powerPointObject.Caption;
-					}
-					catch
-					{
-						_powerPointObject = null;
-						isOpened = false;
-					}
+					if (_powerPointObject == null)
+						Connect(false);
+					return _powerPointObject.Caption != "";
 				}
-				return isOpened;
+				catch
+				{
+					_powerPointObject = null;
+					return false;
+				}
 			}
 		}
 
@@ -104,9 +94,7 @@ namespace Asa.Core.Interop
 				MessageFilter.Register();
 				try
 				{
-					if (_powerPointObject == null || run)
-						_powerPointObject =
-							Marshal.GetActiveObject("PowerPoint.Application") as Application;
+					_powerPointObject = Marshal.GetActiveObject("PowerPoint.Application") as Application;
 				}
 				catch
 				{
@@ -115,15 +103,9 @@ namespace Asa.Core.Interop
 						_powerPointObject = new Application();
 						_powerPointObject.Visible = MsoTriState.msoCTrue;
 					}
-					_isFirstLaunch = true;
 				}
-				_windowHandle = new IntPtr(_powerPointObject.HWND);
-				uint lpdwProcessId;
-				WinAPIHelper.GetWindowThreadProcessId(_windowHandle, out lpdwProcessId);
-				_powerPointProcessId = (int)lpdwProcessId;
 				_powerPointObject.DisplayAlerts = PpAlertLevel.ppAlertsNone;
-				GetActivePresentation();
-				result = true;
+				result = GetActivePresentation(run) != null;
 			}
 			catch
 			{
@@ -139,26 +121,12 @@ namespace Asa.Core.Interop
 
 		public void Disconnect(bool closeIfFirstLaunch = true)
 		{
-			if (_isFirstLaunch && closeIfFirstLaunch)
-			{
-				Close();
-				_isFirstLaunch = false;
-			}
 			Utilities.Instance.ReleaseComObject(_powerPointObject);
 			_powerPointObject = null;
 			GC.Collect();
 		}
 
-		public void Close()
-		{
-			try
-			{
-				Process.GetProcessById(_powerPointProcessId).CloseMainWindow();
-			}
-			catch { }
-		}
-
-		public Presentation GetActivePresentation()
+		public Presentation GetActivePresentation(bool create = true)
 		{
 			try
 			{
@@ -166,32 +134,36 @@ namespace Asa.Core.Interop
 			}
 			catch
 			{
-				try
+				_activePresentation = null;
+				if (create)
 				{
-					MessageFilter.Register();
-					if (PowerPointObject.Presentations.Count == 0)
+					try
 					{
-						var presentations = PowerPointObject.Presentations;
-						_activePresentation = presentations.Add(MsoTriState.msoCTrue);
-						Utilities.Instance.ReleaseComObject(presentations);
-						Slides slides = _activePresentation.Slides;
-						slides.Add(1, PpSlideLayout.ppLayoutTitle);
-						Utilities.Instance.ReleaseComObject(slides);
+						MessageFilter.Register();
+						if (PowerPointObject.Presentations.Count == 0)
+						{
+							var presentations = PowerPointObject.Presentations;
+							_activePresentation = presentations.Add(MsoTriState.msoCTrue);
+							Utilities.Instance.ReleaseComObject(presentations);
+							Slides slides = _activePresentation.Slides;
+							slides.Add(1, PpSlideLayout.ppLayoutTitle);
+							Utilities.Instance.ReleaseComObject(slides);
+						}
+						else
+						{
+							var presentations = PowerPointObject.Presentations;
+							_activePresentation = presentations[1];
+							Utilities.Instance.ReleaseComObject(presentations);
+						}
 					}
-					else
+					catch
 					{
-						var presentations = PowerPointObject.Presentations;
-						_activePresentation = presentations[1];
-						Utilities.Instance.ReleaseComObject(presentations);
+						_activePresentation = null;
 					}
-				}
-				catch
-				{
-					_activePresentation = null;
-				}
-				finally
-				{
-					MessageFilter.Revoke();
+					finally
+					{
+						MessageFilter.Revoke();
+					}
 				}
 			}
 			return _activePresentation;

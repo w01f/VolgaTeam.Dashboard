@@ -7,7 +7,7 @@ namespace Asa.Bar.App.Forms
 {
 	public partial class FormStart : Form
 	{
-		private readonly static FormStart _instance = new FormStart();
+		private static FormStart _instance;
 		private static int _queueCount;
 
 		private FormStart()
@@ -41,6 +41,8 @@ namespace Asa.Bar.App.Forms
 
 		public static void ShowProgress()
 		{
+			if (_instance == null)
+				_instance = new FormStart();
 			if (_instance.InvokeRequired)
 				_instance.Invoke(new MethodInvoker(() =>
 				{
@@ -68,6 +70,8 @@ namespace Asa.Bar.App.Forms
 				{
 					_instance.Hide();
 					_instance.HideTrayIcon();
+					_instance.Dispose();
+					_instance = null;
 				}
 			}
 			if (_queueCount > 0)
@@ -77,7 +81,7 @@ namespace Asa.Bar.App.Forms
 
 		public static void Destroy()
 		{
-			_instance.Dispose();
+			//_instance.Dispose();
 		}
 
 		public static void SetTitle(string text)
@@ -108,7 +112,7 @@ namespace Asa.Bar.App.Forms
 			Opacity = 0;
 			notifyIcon.Visible = true;
 			notifyIcon.BalloonTipText = laTitle.Text;
-			notifyIcon.ShowBalloonTip(1);			
+			notifyIcon.ShowBalloonTip(1);
 		}
 
 		private void HideTrayIcon()

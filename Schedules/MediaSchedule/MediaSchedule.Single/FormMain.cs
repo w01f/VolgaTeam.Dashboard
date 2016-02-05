@@ -328,6 +328,7 @@ namespace Asa.MediaSchedule.Single
 
 		private bool AllowToLeaveCurrentControl()
 		{
+			if (_currentControl == null) return true;
 			bool result = false;
 			if ((_currentControl == Controller.Instance.HomeControl))
 			{
@@ -451,7 +452,7 @@ namespace Asa.MediaSchedule.Single
 						buttonItemHomeOpenSchedule_Click(null, null);
 				}
 				else
-					Application.Exit(); 
+					Application.Exit();
 			}
 		}
 
@@ -623,24 +624,27 @@ namespace Asa.MediaSchedule.Single
 		{
 			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Closed"));
 			bool result = true;
-			if (_currentControl == Controller.Instance.HomeControl)
-				result = Controller.Instance.HomeControl.AllowToLeaveControl();
-			else if (_currentControl == Controller.Instance.ProgramSchedule)
-				result = Controller.Instance.ProgramSchedule.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.DigitalProductContainer)
-				result = Controller.Instance.DigitalProductContainer.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.DigitalPackage)
-				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.BroadcastCalendar)
-				result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.CustomCalendar)
-				result = Controller.Instance.CustomCalendar.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Summary)
-				result = Controller.Instance.Summary.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Snapshot)
-				result = Controller.Instance.Snapshot.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Options)
-				result = Controller.Instance.Options.AllowToLeaveControl;
+			if (_currentControl != null)
+			{
+				if (_currentControl == Controller.Instance.HomeControl)
+					result = Controller.Instance.HomeControl.AllowToLeaveControl();
+				else if (_currentControl == Controller.Instance.ProgramSchedule)
+					result = Controller.Instance.ProgramSchedule.AllowToLeaveControl;
+				else if (_currentControl == Controller.Instance.DigitalProductContainer)
+					result = Controller.Instance.DigitalProductContainer.AllowToLeaveControl;
+				else if (_currentControl == Controller.Instance.DigitalPackage)
+					result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
+				else if (_currentControl == Controller.Instance.BroadcastCalendar)
+					result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
+				else if (_currentControl == Controller.Instance.CustomCalendar)
+					result = Controller.Instance.CustomCalendar.AllowToLeaveControl;
+				else if (_currentControl == Controller.Instance.Summary)
+					result = Controller.Instance.Summary.AllowToLeaveControl;
+				else if (_currentControl == Controller.Instance.Snapshot)
+					result = Controller.Instance.Snapshot.AllowToLeaveControl;
+				else if (_currentControl == Controller.Instance.Options)
+					result = Controller.Instance.Options.AllowToLeaveControl;
+			}
 			FormProgress.Destroy();
 		}
 

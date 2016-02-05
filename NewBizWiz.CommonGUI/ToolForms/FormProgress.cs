@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using EO.Internal;
-using Font = System.Drawing.Font;
 
 namespace Asa.CommonGUI.ToolForms
 {
 	public partial class FormProgress : MetroForm
 	{
-		private readonly static FormProgress _instance = new FormProgress();
+		private static FormProgress _instance;
 		private static int _queueCount;
 
 		private FormProgress()
@@ -29,6 +28,8 @@ namespace Asa.CommonGUI.ToolForms
 
 		public static void ShowProgress()
 		{
+			if (_instance == null)
+				_instance = new FormProgress();
 			_instance.Show();
 			_queueCount++;
 			Application.DoEvents();
@@ -41,11 +42,12 @@ namespace Asa.CommonGUI.ToolForms
 				if (_instance.InvokeRequired)
 					_instance.Invoke(new MethodInvoker(() =>
 					{
-						_instance.Hide();
+						_instance.Close();
 						Application.DoEvents();
 					}));
 				else
-					_instance.Hide();
+					_instance.Close();
+				_instance = null;
 			}
 			if (_queueCount > 0)
 				_queueCount--;
@@ -54,11 +56,13 @@ namespace Asa.CommonGUI.ToolForms
 
 		public static void Destroy()
 		{
-			_instance.Dispose();
+			//_instance.Dispose();
 		}
 
 		public static void SetTitle(string text, bool withDetails = false)
 		{
+			if (_instance == null)
+				_instance = new FormProgress();
 			_instance.Invoke(new MethodInvoker(() =>
 			{
 				_instance.laTitle.Text = text;
@@ -70,6 +74,8 @@ namespace Asa.CommonGUI.ToolForms
 
 		public static void SetDetails(string text)
 		{
+			if (_instance == null)
+				_instance = new FormProgress();
 			_instance.Invoke(new MethodInvoker(() =>
 			{
 				_instance.laDetails.Text = text;

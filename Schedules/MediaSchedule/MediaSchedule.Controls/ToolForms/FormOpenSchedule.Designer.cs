@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.ToolForms
+﻿namespace Asa.Media.Controls.ToolForms
 {
     partial class FormOpenSchedule
     {
@@ -30,6 +30,7 @@
         {
 			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barToolButtons = new DevExpress.XtraBars.Bar();
+			this.barStaticItemLogo = new DevExpress.XtraBars.BarStaticItem();
 			this.barLargeButtonItemOpen = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemDelete = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemExit = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -45,7 +46,6 @@
 			this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridColumnStatus = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemComboBoxStatus = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.barStaticItemLogo = new DevExpress.XtraBars.BarStaticItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewSchedules)).BeginInit();
@@ -93,32 +93,42 @@
 			this.barToolButtons.OptionsBar.UseWholeRow = true;
 			this.barToolButtons.Text = "Tools";
 			// 
+			// barStaticItemLogo
+			// 
+			this.barStaticItemLogo.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
+			this.barStaticItemLogo.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+			this.barStaticItemLogo.Glyph = global::Asa.Media.Controls.Properties.Resources.TVRibbonLogo;
+			this.barStaticItemLogo.Id = 20;
+			this.barStaticItemLogo.Name = "barStaticItemLogo";
+			this.barStaticItemLogo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+			this.barStaticItemLogo.TextAlignment = System.Drawing.StringAlignment.Near;
+			// 
 			// barLargeButtonItemOpen
 			// 
 			this.barLargeButtonItemOpen.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemOpen.Caption = "Open";
-			this.barLargeButtonItemOpen.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.OpenSchedule;
+			this.barLargeButtonItemOpen.Glyph = global::Asa.Media.Controls.Properties.Resources.OpenSchedule;
 			this.barLargeButtonItemOpen.Id = 15;
 			this.barLargeButtonItemOpen.Name = "barLargeButtonItemOpen";
-			this.barLargeButtonItemOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemOpen_ItemClick);
+			this.barLargeButtonItemOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.OnScheduleOpenItemClick);
 			// 
 			// barLargeButtonItemDelete
 			// 
 			this.barLargeButtonItemDelete.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemDelete.Caption = "Delete";
-			this.barLargeButtonItemDelete.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.DeleteSchedule;
+			this.barLargeButtonItemDelete.Glyph = global::Asa.Media.Controls.Properties.Resources.DeleteSchedule;
 			this.barLargeButtonItemDelete.Id = 16;
 			this.barLargeButtonItemDelete.Name = "barLargeButtonItemDelete";
-			this.barLargeButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemDelete_ItemClick);
+			this.barLargeButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.OnScheduleDeleteDeleteItemClick);
 			// 
 			// barLargeButtonItemExit
 			// 
 			this.barLargeButtonItemExit.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemExit.Caption = "Exit";
-			this.barLargeButtonItemExit.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.Exit;
+			this.barLargeButtonItemExit.Glyph = global::Asa.Media.Controls.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 18;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
-			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemExit_ItemClick);
+			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.OnExitItemClick);
 			// 
 			// barDockControlTop
 			// 
@@ -209,15 +219,15 @@
 			this.gridViewSchedules.OptionsView.ShowGroupPanel = false;
 			this.gridViewSchedules.OptionsView.ShowIndicator = false;
 			this.gridViewSchedules.RowHeight = 40;
-			this.gridViewSchedules.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewSchedules_RowClick);
-			this.gridViewSchedules.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewSchedules_CellValueChanged);
+			this.gridViewSchedules.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.OnSchedulesViewRowClick);
+			this.gridViewSchedules.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.OnScheduleStatusChanged);
 			// 
 			// gridColumnBusinessName
 			// 
 			this.gridColumnBusinessName.AppearanceCell.Options.UseTextOptions = true;
 			this.gridColumnBusinessName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.gridColumnBusinessName.Caption = "Advertiser";
-			this.gridColumnBusinessName.FieldName = "BusinessName";
+			this.gridColumnBusinessName.FieldName = "Advertiser";
 			this.gridColumnBusinessName.Name = "gridColumnBusinessName";
 			this.gridColumnBusinessName.OptionsColumn.AllowEdit = false;
 			this.gridColumnBusinessName.OptionsColumn.ReadOnly = true;
@@ -230,7 +240,7 @@
 			this.gridColumnScheduleFile.AppearanceCell.Options.UseTextOptions = true;
 			this.gridColumnScheduleFile.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.gridColumnScheduleFile.Caption = "Schedule File";
-			this.gridColumnScheduleFile.FieldName = "ShortFileName";
+			this.gridColumnScheduleFile.FieldName = "Name";
 			this.gridColumnScheduleFile.Name = "gridColumnScheduleFile";
 			this.gridColumnScheduleFile.OptionsColumn.AllowEdit = false;
 			this.gridColumnScheduleFile.OptionsColumn.ReadOnly = true;
@@ -242,7 +252,7 @@
 			// 
 			this.gridColumnLastModifiedDate.Caption = "Last Modified";
 			this.gridColumnLastModifiedDate.ColumnEdit = this.repositoryItemButtonEdit;
-			this.gridColumnLastModifiedDate.FieldName = "LastModifiedDate";
+			this.gridColumnLastModifiedDate.FieldName = "LastModified";
 			this.gridColumnLastModifiedDate.Name = "gridColumnLastModifiedDate";
 			this.gridColumnLastModifiedDate.OptionsColumn.AllowEdit = false;
 			this.gridColumnLastModifiedDate.OptionsColumn.ReadOnly = true;
@@ -291,17 +301,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.repositoryItemComboBoxStatus.Name = "repositoryItemComboBoxStatus";
 			this.repositoryItemComboBoxStatus.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemComboBoxStatus.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBoxStatus_Closed);
-			// 
-			// barStaticItemLogo
-			// 
-			this.barStaticItemLogo.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
-			this.barStaticItemLogo.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-			this.barStaticItemLogo.Glyph = global::Asa.MediaSchedule.Controls.Properties.Resources.TVRibbonLogo;
-			this.barStaticItemLogo.Id = 20;
-			this.barStaticItemLogo.Name = "barStaticItemLogo";
-			this.barStaticItemLogo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-			this.barStaticItemLogo.TextAlignment = System.Drawing.StringAlignment.Near;
+			this.repositoryItemComboBoxStatus.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnStatusComboBoxClosed);
 			// 
 			// FormOpenSchedule
 			// 
@@ -329,6 +329,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 

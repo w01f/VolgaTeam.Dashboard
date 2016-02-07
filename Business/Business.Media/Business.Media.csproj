@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8248763F-1B88-43C4-BB98-30BEDEEF6434}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Asa.Business.Media</RootNamespace>
+    <AssemblyName>Asa.Business.Media</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\MediaMetaData.cs" />
+    <Compile Include="Configuration\MediaSettingsManager.cs" />
+    <Compile Include="Configuration\ResourceManager.cs" />
+    <Compile Include="Contexts\MediaContext.cs" />
+    <Compile Include="Contexts\MediaScheduleManager.cs" />
+    <Compile Include="Dictionaries\MediaListManager.cs" />
+    <Compile Include="Dictionaries\RadioListManager.cs" />
+    <Compile Include="Dictionaries\TVListManager.cs" />
+    <Compile Include="Configuration\CalendarToggleSettings.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\BroadcastCalendar.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\CalendarMonthMedia.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\CalendarMonthMediaMondayBased.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\CalendarMonthMediaSundayBased.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\CustomCalendar.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\MediaCalendar.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\MediaCalendarOutputData.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\MediaDataNote.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\MediaMonthTemplate.cs" />
+    <Compile Include="Configuration\OptionsSettings.cs" />
+    <Compile Include="Entities\NonPersistent\Common\MediaScheduleContent.cs" />
+    <Compile Include="Configuration\OptionsSummarySettings.cs" />
+    <Compile Include="Entities\NonPersistent\Digital\DigitalMediaProductsContent.cs" />
+    <Compile Include="Entities\NonPersistent\Option\OptionProgram.cs" />
+    <Compile Include="Entities\NonPersistent\Option\OptionsContent.cs" />
+    <Compile Include="Entities\NonPersistent\Option\OptionSet.cs" />
+    <Compile Include="Entities\NonPersistent\Option\OptionSummary.cs" />
+    <Compile Include="Entities\NonPersistent\Schedule\Daypart.cs" />
+    <Compile Include="Entities\NonPersistent\Schedule\Demo.cs" />
+    <Compile Include="Entities\NonPersistent\Schedule\MediaScheduleModel.cs" />
+    <Compile Include="Entities\NonPersistent\Schedule\MediaScheduleSettings.cs" />
+    <Compile Include="Entities\NonPersistent\Schedule\MediaScheduleChangeInfo.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\MonthlySection.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\Program.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\ProgramScheduleContent.cs" />
+    <Compile Include="Entities\NonPersistent\Schedule\Quarter.cs" />
+    <Compile Include="Configuration\ScheduleSectionSettings.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\ScheduleSection.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\WeeklySection.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\CustomSummaryContent.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\ProductSummaryContent.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\ProgramStrategyItem.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\SectionSummary.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\SourceProgram.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\Spot.cs" />
+    <Compile Include="Entities\NonPersistent\Schedule\Station.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\MonthlyScheduleContent.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Content\WeeklyScheduleContent.cs" />
+    <Compile Include="Configuration\SnapshotSettings.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\StrategySummaryContent.cs" />
+    <Compile Include="Configuration\SnapshotSummarySettings.cs" />
+    <Compile Include="Entities\NonPersistent\Snapshot\Snapshot.cs" />
+    <Compile Include="Entities\NonPersistent\Snapshot\SnapshotContent.cs" />
+    <Compile Include="Entities\NonPersistent\Snapshot\SnapshotProgram.cs" />
+    <Compile Include="Entities\NonPersistent\Snapshot\SnapshotSummary.cs" />
+    <Compile Include="Entities\Persistent\CustomCalendarPartition.cs" />
+    <Compile Include="Entities\Persistent\BroadcastCalendarPartition.cs" />
+    <Compile Include="Entities\Persistent\DigitalProductsPartition.cs" />
+    <Compile Include="Entities\Persistent\MediaPartition.cs" />
+    <Compile Include="Entities\Persistent\OptionsPartition.cs" />
+    <Compile Include="Entities\Persistent\SnapshotPartition.cs" />
+    <Compile Include="Entities\Persistent\MonthlySchedulePartition.cs" />
+    <Compile Include="Entities\Persistent\WeeklySchedulePartition.cs" />
+    <Compile Include="Entities\Persistent\MediaSchedule.cs" />
+    <Compile Include="Enums\BroadcastDataType.cs" />
+    <Compile Include="Enums\DemoType.cs" />
+    <Compile Include="Enums\MediaDataType.cs" />
+    <Compile Include="Enums\SectionSummaryType.cs" />
+    <Compile Include="Enums\SpotType.cs" />
+    <Compile Include="Interfaces\IMediaPartition.cs" />
+    <Compile Include="Interfaces\IMediaSettingsManager.cs" />
+    <Compile Include="Interfaces\ISectionSummaryContent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Calendar\Business.Calendar.csproj">
+      <Project>{d8982923-ed22-4102-a228-6bb5111f07e4}</Project>
+      <Name>Business.Calendar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Common\Business.Common.csproj">
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Online\Business.Online.csproj">
+      <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
+      <Name>Business.Online</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

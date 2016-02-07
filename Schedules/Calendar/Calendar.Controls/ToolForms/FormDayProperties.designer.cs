@@ -1,4 +1,6 @@
-﻿namespace Asa.Calendar.Controls.ToolForms
+﻿using Asa.Business.Common.Interfaces;
+
+namespace Asa.Calendar.Controls.ToolForms
 {
 	partial class FormDayProperties
 	{
@@ -58,8 +60,8 @@
 			// 
 			// checkEditComment
 			// 
-			this.checkEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditComment.Location = new System.Drawing.Point(4, 9);
 			this.checkEditComment.Name = "checkEditComment";
 			this.checkEditComment.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -72,8 +74,8 @@
 			// 
 			// memoEditComment
 			// 
-			this.memoEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.memoEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditComment.Enabled = false;
 			this.memoEditComment.Location = new System.Drawing.Point(5, 36);
 			this.memoEditComment.Name = "memoEditComment";
@@ -89,8 +91,8 @@
 			// 
 			// labelControlCommentDisclaimer
 			// 
-			this.labelControlCommentDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlCommentDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.labelControlCommentDisclaimer.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlCommentDisclaimer.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlCommentDisclaimer.Appearance.ForeColor = System.Drawing.Color.Black;

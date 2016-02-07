@@ -6,30 +6,57 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Entities.NonPersistent.Snapshot;
+using Asa.Business.Media.Entities.Persistent;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ContentEditors.Controls;
+using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.RetractableBar;
+using Asa.Common.GUI.Themes;
+using Asa.Common.GUI.ToolForms;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab.ViewInfo;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.Preview;
-using Asa.CommonGUI.RetractableBar;
-using Asa.CommonGUI.Themes;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using Asa.MediaSchedule.Controls.Properties;
-using DateRange = Asa.Core.Common.DateRange;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.Properties;
+using DateRange = Asa.Business.Common.Entities.NonPersistent.Common.DateRange;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	[ToolboxItem(false)]
-	public partial class SnapshotContainer : UserControl
+	public partial class SnapshotContainer : BasePartitionEditControl<SnapshotContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
 	{
 		private bool _allowToSave;
-		private RegularSchedule _localSchedule;
 		private XtraTabHitInfo _menuHitInfo;
 		private XtraTabDragDropHelper<SnapshotControl> _tabDragDropHelper;
-		public bool SettingsNotSaved { get; set; }
+
+		private MediaSchedule Schedule
+		{
+			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
+		}
+
+		private MediaScheduleSettings ScheduleSettings
+		{
+			get { return Schedule.Settings; }
+		}
+
+		public override string Identifier
+		{
+			get { return ContentIdentifiers.Snapshots; }
+		}
+
+		public override RibbonTabItem TabPage
+		{
+			get { return Controller.Instance.TabSnapshot; }
+		}
 
 		public SlideType SlideType
 		{
@@ -54,94 +81,105 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		public SnapshotContainer()
 		{
 			InitializeComponent();
-			Dock = DockStyle.Fill;
+		}
+
+		#region BasePartitionEditControl Override
+		public override void InitControl()
+		{
+			base.InitControl();
 			pnNoSnapshots.Dock = DockStyle.Fill;
 			pnSnapshots.Dock = DockStyle.Fill;
-			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
-			{
-				if (sender != this)
-					LoadSchedule(e.QuickSave);
-			});
 			retractableBarControl.Collapse(true);
 			_tabDragDropHelper = new XtraTabDragDropHelper<SnapshotControl>(xtraTabControlSnapshots);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
+			InitColorsControl();
 			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) =>
 			{
 				InitColorsControl();
 				LoadBarButtons();
 			};
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
-			{
-				InitThemeSelector();
-				Controller.Instance.SnapshotThemeBar.RecalcLayout();
-				Controller.Instance.SnapshotPanel.PerformLayout();
-			};
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
+			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
+
+			Controller.Instance.SnapshotNew.Click += OnAddSnapshotClick;
+			Controller.Instance.SnapshotProgramAdd.Click += OnAddProgramClick;
+			Controller.Instance.SnapshotProgramDelete.Click += OnDeleteProgramClick;
 		}
 
-		#region Methods
-		public bool AllowToLeaveControl
-		{
-			get
-			{
-				if (SettingsNotSaved)
-					SaveSchedule();
-				return true;
-			}
-		}
-
-		public void LoadSchedule(bool quickLoad)
+		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;
 
-			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			var quickLoad = EditedContent != null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
+				ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
+				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
+
+			if (EditedContent != null)
+				EditedContent.Dispose();
+			EditedContent = Schedule.SnapshotContent.Clone<SnapshotContent, SnapshotContent>();
+
 			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
-				_localSchedule.BusinessName,
-				_localSchedule.FlightDates,
-				String.Format("{0} {1}s", _localSchedule.TotalWeeks, "week"),
+				ScheduleSettings.BusinessName,
+				ScheduleSettings.FlightDates,
+				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"),
 				Environment.NewLine);
-			InitThemeSelector();
+
 			LoadSnapshots(quickLoad);
-
-			if (!quickLoad)
-			{
-				InitColorsControl();
-			}
-
-			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 
 			_allowToSave = true;
 
 			LoadActiveTabData();
-
-			SettingsNotSaved = false;
 		}
 
-		private bool SaveSchedule(string scheduleName = "")
+		protected override void ApplyChanges()
 		{
-			var quickLoad = !SettingsNotSaved && _localSchedule.BroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Schedule;
 			foreach (var snapshotControl in xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>())
 				snapshotControl.SaveData();
 			Summary.SaveData();
 			SaveColors();
-			_localSchedule.BroadcastCalendar.UpdateDataSource();
-			var nameChanged = !string.IsNullOrEmpty(scheduleName);
-			if (nameChanged)
-				_localSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickLoad, false, false, this);
-			SettingsNotSaved = false;
-			return true;
+
+			ChangeInfo.SnapshotsChanged = ChangeInfo.SnapshotsChanged || SettingsNotSaved;
 		}
 
+		protected override void SaveData()
+		{
+			Schedule.SnapshotContent = EditedContent.Clone<SnapshotContent, SnapshotContent>();
+		}
+
+		public override void GetHelp()
+		{
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("snapshot");
+		}
+
+		protected override void LoadThemes()
+		{
+			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				IsThemeChanged = true;
+			}));
+			Controller.Instance.SnapshotThemeBar.RecalcLayout();
+			Controller.Instance.SnapshotPanel.PerformLayout();
+		}
+		#endregion
+
+		#region Snapshots Processing
 		private void LoadSnapshots(bool quickLoad)
 		{
 			if (quickLoad)
 			{
-				Summary.LoadData(_localSchedule.SnapshotSummary);
+				Summary.LoadData(EditedContent.SnapshotSummary);
 			}
 			else
 			{
+				xtraTabControlSnapshots.TabPages
+					.OfType<ISnapshotSlideControl>()
+					.ToList()
+					.ForEach(sc => sc.Release());
 				xtraTabControlSnapshots.TabPages.Clear();
-				xtraTabControlSnapshots.TabPages.Add(new SnapshotSummaryControl(_localSchedule.SnapshotSummary));
+				xtraTabControlSnapshots.TabPages.Add(new SnapshotSummaryControl(EditedContent.SnapshotSummary));
 				Summary.DataChanged += (o, e) =>
 				{
 					if (!_allowToSave) return;
@@ -150,7 +188,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				};
 			}
 
-			foreach (var snapshot in _localSchedule.Snapshots.OrderBy(s => s.Index))
+			foreach (var snapshot in EditedContent.Snapshots.OrderBy(s => s.Index))
 			{
 				if (quickLoad)
 				{
@@ -188,7 +226,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				buttonXSnapshotTotalRow.Checked = ActiveSnapshot.Data.ShowTotalRow;
 
 				checkedListBoxActiveWeeks.Items.Clear();
-				var scheduleWeekRanges = _localSchedule.GetWeeks();
+				var scheduleWeekRanges = ScheduleSettings.GetWeeks();
 				var snapshotWeeks = ActiveSnapshot.Data.ActiveWeeks;
 				checkedListBoxActiveWeeks.Items.AddRange(scheduleWeekRanges.Select(w => new CheckedListBoxItem(w, w.Range, !snapshotWeeks.Any() || snapshotWeeks.Any(sw => sw.StartDate == w.StartDate && sw.FinishDate == w.FinishDate) ? CheckState.Checked : CheckState.Unchecked)).ToArray());
 			}
@@ -246,7 +284,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private void ApplySharedContractSettings(ContractSettings templateSettings)
 		{
-			foreach (var snapshotControl in xtraTabControlSnapshots.TabPages.OfType<ISnapshotSlide>())
+			foreach (var snapshotControl in xtraTabControlSnapshots.TabPages.OfType<ISnapshotSlideControl>())
 			{
 				snapshotControl.ContractSettings.ShowSignatureLine = templateSettings.ShowSignatureLine;
 				snapshotControl.ContractSettings.ShowDisclaimer = templateSettings.ShowDisclaimer;
@@ -259,10 +297,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			using (var form = new FormSnapshotName())
 			{
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var snapshot = new Snapshot(_localSchedule);
+				var snapshot = new Snapshot(EditedContent);
 				snapshot.Name = form.SnapshotName;
-				_localSchedule.Snapshots.Add(snapshot);
-				_localSchedule.RebuildSnapshotIndexes();
+				EditedContent.Snapshots.Add(snapshot);
+				EditedContent.RebuildSnapshotIndexes();
 				var snapshotControl = AddSnapshotControl(snapshot);
 				xtraTabControlSnapshots.SelectedTabPage = snapshotControl;
 				Summary.UpdateView();
@@ -275,11 +313,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				form.SnapshotName = String.Format("{0} (Clone)", snapshotControl.Data.Name);
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var snapshot = snapshotControl.Data.Clone();
+				var snapshot = snapshotControl.Data.Clone<Snapshot, Snapshot>();
 				snapshot.Name = form.SnapshotName;
 				snapshot.Index += 0.5;
-				_localSchedule.Snapshots.Add(snapshot);
-				_localSchedule.RebuildSnapshotIndexes();
+				EditedContent.Snapshots.Add(snapshot);
+				EditedContent.RebuildSnapshotIndexes();
 				var newControl = AddSnapshotControl(snapshot, (Int32)snapshot.Index);
 				xtraTabControlSnapshots.SelectedTabPage = newControl;
 				Summary.UpdateView();
@@ -288,9 +326,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private void DeleteSnapshot(SnapshotControl snapshotControl)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", snapshotControl.Data.Name) != DialogResult.Yes) return;
-			_localSchedule.Snapshots.Remove(snapshotControl.Data);
-			_localSchedule.RebuildSnapshotIndexes();
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", snapshotControl.Data.Name) != DialogResult.Yes) return;
+			EditedContent.Snapshots.Remove(snapshotControl.Data);
+			EditedContent.RebuildSnapshotIndexes();
 			xtraTabControlSnapshots.TabPages.Remove(snapshotControl);
 			Summary.UpdateView();
 		}
@@ -316,7 +354,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				var sourceControl = o as SnapshotControl;
 				if (sourceControl == null) return;
 				if (!_allowToSave) return;
-				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+				if (EditedContent.SnapshotSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(sourceControl);
 					xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Where(oc => oc.Data.UniqueID != sourceControl.Data.UniqueID).ToList().ForEach(oc => oc.UpdateView());
@@ -381,7 +419,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private void UpdateSnapshotSplash()
 		{
-			if (_localSchedule.Snapshots.Any())
+			if (EditedContent.Snapshots.Any())
 			{
 				pnSnapshots.BringToFront();
 				Controller.Instance.SnapshotProgramAdd.Enabled = true;
@@ -395,16 +433,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
-		private void InitThemeSelector()
-		{
-			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
-		}
-		
 		private void InitColorsControl()
 		{
 			xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.SnapshotColors.Items.Count > 1;
@@ -436,73 +464,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		#endregion
 
 		#region Ribbon Button Clicks
-		public void New_Click(object sender, EventArgs e)
+		private void OnAddSnapshotClick(object sender, EventArgs e)
 		{
 			AddSnapshot();
 			UpdateSnapshotSplash();
 			SettingsNotSaved = true;
 		}
 
-		public void AddProgram_Click(object sender, EventArgs e)
+		private void OnAddProgramClick(object sender, EventArgs e)
 		{
 			if (ActiveSnapshot == null) return;
 			ActiveSnapshot.AddProgram();
 		}
 
-		public void DeleteProgram_Click(object sender, EventArgs e)
+		private void OnDeleteProgramClick(object sender, EventArgs e)
 		{
 			if (ActiveSnapshot == null) return;
 			ActiveSnapshot.DeleteProgram();
-		}
-
-		public void Save_Click(object sender, EventArgs e)
-		{
-			SaveSchedule();
-			Utilities.Instance.ShowInformation("Schedule Saved");
-		}
-
-		public void SaveAs_Click(object sender, EventArgs e)
-		{
-			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
-			{
-				form.Text = "Save Schedule";
-				form.laLogo.Text = "Please set a new defaultName for your Schedule:";
-				if (form.ShowDialog() != DialogResult.OK) return;
-				if (!string.IsNullOrEmpty(form.ScheduleName))
-				{
-					if (SaveSchedule(form.ScheduleName))
-						Utilities.Instance.ShowInformation("Schedule was saved");
-				}
-				else
-				{
-					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-				}
-			}
-		}
-
-		public void Help_Click(object sender, EventArgs e)
-		{
-			BusinessObjects.Instance.HelpManager.OpenHelpLink("snapshot");
-		}
-
-		public void Preview_Click(object sender, EventArgs e)
-		{
-			Preview();
-		}
-
-		public void PowerPoint_Click(object sender, EventArgs e)
-		{
-			PrintOutput();
-		}
-
-		public void Email_Click(object sender, EventArgs e)
-		{
-			Email();
-		}
-
-		public void Pdf_Click(object sender, EventArgs e)
-		{
-			PrintPdf();
 		}
 		#endregion
 
@@ -534,9 +512,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
 		{
-			_localSchedule.ChangeSnapshotPosition(
-				_localSchedule.Snapshots.IndexOf(((SnapshotControl)e.MovedPage).Data),
-				_localSchedule.Snapshots.IndexOf(((SnapshotControl)e.TargetPage).Data) + (1 * e.Offset));
+			EditedContent.ChangeSnapshotPosition(
+				EditedContent.Snapshots.IndexOf(((SnapshotControl)e.MovedPage).Data),
+				EditedContent.Snapshots.IndexOf(((SnapshotControl)e.TargetPage).Data) + (1 * e.Offset));
 			Summary.UpdateView();
 			SettingsNotSaved = true;
 		}
@@ -565,7 +543,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 					form.checkEditShowSpotsPerWeek.Enabled = true;
 					form.checkEditShowSpotsPerWeek.Checked = ActiveSnapshot.Data.ShowSpotsPerWeek;
 					form.checkEditApplyForAll.Enabled = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() > 1;
-					form.checkEditApplyForAll.Checked = _localSchedule.SnapshotSummary.ApplySettingsForAll;
+					form.checkEditApplyForAll.Checked = EditedContent.SnapshotSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
@@ -583,8 +561,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 					ActiveSnapshot.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveSnapshot.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
 					ActiveSnapshot.Data.ShowSpotsPerWeek = form.checkEditShowSpotsPerWeek.Checked;
-					_localSchedule.SnapshotSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
-					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+					EditedContent.SnapshotSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
+					if (EditedContent.SnapshotSummary.ApplySettingsForAll)
 					{
 						ApplySharedSettings(ActiveSnapshot);
 						xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().ToList().ForEach(oc => oc.UpdateView());
@@ -631,7 +609,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 					ActiveSnapshot.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
 					ActiveSnapshot.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
 					ActiveSnapshot.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
-					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+					if (EditedContent.SnapshotSummary.ApplySettingsForAll)
 						ApplySharedContractSettings(ActiveSnapshot.ContractSettings);
 				}
 				else if (ActiveSummary != null)
@@ -640,7 +618,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 					ActiveSummary.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
 					ActiveSummary.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
 
-					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+					if (EditedContent.SnapshotSummary.ApplySettingsForAll)
 						ApplySharedContractSettings(ActiveSummary.ContractSettings);
 				}
 				SettingsNotSaved = true;
@@ -688,9 +666,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 
 				ActiveSnapshot.Data.ActiveWeeks.Clear();
 				if (checkedListBoxActiveWeeks.CheckedItems.Count != checkedListBoxActiveWeeks.ItemCount)
-					ActiveSnapshot.Data.ActiveWeeks.AddRange(checkedListBoxActiveWeeks.CheckedItems.OfType<CheckedListBoxItem>().Select(item => item.Value).OfType<DateRange>());
+					ActiveSnapshot.Data.ActiveWeeks.AddRange(checkedListBoxActiveWeeks.CheckedItems
+						.OfType<CheckedListBoxItem>()
+						.Select(item => item.Value).OfType<DateRange>());
 
-				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+				if (EditedContent.SnapshotSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveSnapshot);
 					xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().ToList().ForEach(oc => oc.UpdateView());
@@ -725,53 +705,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
 		}
 
-		private void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabSnapshot.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
-		}
-
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabSnapshot.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
-		}
-
-
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.SnapshotPowerPoint.Enabled =
 				Controller.Instance.SnapshotPdf.Enabled =
 				Controller.Instance.SnapshotPreview.Enabled =
-				Controller.Instance.SnapshotEmail.Enabled = xtraTabControlSnapshots.TabPages.OfType<ISnapshotSlide>().Any(ss => ss.ReadyForOutput);
+				Controller.Instance.SnapshotEmail.Enabled = xtraTabControlSnapshots.TabPages.OfType<ISnapshotSlideControl>().Any(ss => ss.ReadyForOutput);
 		}
 
-		private void PrintOutput()
+		public override void OutputPowerPoint()
 		{
-			SaveSchedule();
-			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlide>().Where(ss => ss.ReadyForOutput);
-			var selectedSnapshots = new List<ISnapshotSlide>();
+			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlideControl>().Where(ss => ss.ReadyForOutput);
+			var selectedSnapshots = new List<ISnapshotSlideControl>();
 			if (tabPages.Count() > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Snapshots";
-					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlide;
+					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlideControl;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -785,12 +735,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<ISnapshotSlide>());
+							OfType<ISnapshotSlideControl>());
 				}
 			else
 				selectedSnapshots.AddRange(tabPages);
 			if (!selectedSnapshots.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
@@ -802,16 +751,15 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			});
 		}
 
-		private void Preview()
+		public override void OutputPdf()
 		{
-			SaveSchedule();
-			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlide>().Where(ss => ss.ReadyForOutput);
-			var selectedSnapshots = new List<ISnapshotSlide>();
+			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlideControl>().Where(ss => ss.ReadyForOutput);
+			var selectedSnapshots = new List<ISnapshotSlideControl>();
 			if (tabPages.Count() > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Snapshots";
-					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlide;
+					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlideControl;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -825,112 +773,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<ISnapshotSlide>());
+							OfType<ISnapshotSlideControl>());
 				}
 			else
 				selectedSnapshots.AddRange(tabPages);
 			if (!selectedSnapshots.Any()) return;
-			var previewGroups = new List<PreviewGroup>();
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			FormProgress.CloseProgress();
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			var trackAction = new Action(TrackPreview);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
-			{
-				formPreview.Text = "Preview Snapshots";
-				formPreview.LoadGroups(previewGroups);
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			}
-		}
-
-		private void Email()
-		{
-			SaveSchedule();
-			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlide>().Where(ss => ss.ReadyForOutput);
-			var selectedSnapshots = new List<ISnapshotSlide>();
-			if (tabPages.Count() > 1)
-				using (var form = new FormSelectOutputItems())
-				{
-					form.Text = "Select Snapshots";
-					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlide;
-					foreach (var tabPage in tabPages)
-					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (tabPage == currentSnapshots)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
-					if (form.ShowDialog() == DialogResult.OK)
-						selectedSnapshots.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<ISnapshotSlide>());
-				}
-			else
-				selectedSnapshots.AddRange(tabPages);
-			if (!selectedSnapshots.Any()) return;
-			var previewGroups = new List<PreviewGroup>();
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			FormProgress.CloseProgress();
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
-			{
-				formEmail.Text = "Email these Snapshots";
-				formEmail.LoadGroups(previewGroups);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-			}
-		}
-
-		private void PrintPdf()
-		{
-			SaveSchedule();
-			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlide>().Where(ss => ss.ReadyForOutput);
-			var selectedSnapshots = new List<ISnapshotSlide>();
-			if (tabPages.Count() > 1)
-				using (var form = new FormSelectOutputItems())
-				{
-					form.Text = "Select Snapshots";
-					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlide;
-					foreach (var tabPage in tabPages)
-					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (tabPage == currentSnapshots)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
-					if (form.ShowDialog() == DialogResult.OK)
-						selectedSnapshots.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<ISnapshotSlide>());
-				}
-			else
-				selectedSnapshots.AddRange(tabPages);
-			if (!selectedSnapshots.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
@@ -938,7 +785,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 				FormProgress.ShowProgress();
 				var previewGroups = new List<PreviewGroup>();
 				previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				var pdfFileName = Path.Combine(
+					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+					String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
 				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try
@@ -948,6 +797,103 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 					catch { }
 				FormProgress.CloseProgress();
 			});
+		}
+
+		public override void Preview()
+		{
+			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlideControl>().Where(ss => ss.ReadyForOutput);
+			var selectedSnapshots = new List<ISnapshotSlideControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Snapshots";
+					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlideControl;
+					foreach (var tabPage in tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentSnapshots)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedSnapshots.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<ISnapshotSlideControl>());
+				}
+			else
+				selectedSnapshots.AddRange(tabPages);
+			if (!selectedSnapshots.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
+			{
+				formPreview.Text = "Preview Snapshots";
+				formPreview.LoadGroups(previewGroups);
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				var previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			}
+		}
+
+		public override void Email()
+		{
+			var tabPages = xtraTabControlSnapshots.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<ISnapshotSlideControl>().Where(ss => ss.ReadyForOutput);
+			var selectedSnapshots = new List<ISnapshotSlideControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Snapshots";
+					var currentSnapshots = xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlideControl;
+					foreach (var tabPage in tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentSnapshots)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedSnapshots.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<ISnapshotSlideControl>());
+				}
+			else
+				selectedSnapshots.AddRange(tabPages);
+			if (!selectedSnapshots.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
+			{
+				formEmail.Text = "Email these Snapshots";
+				formEmail.LoadGroups(previewGroups);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+			}
 		}
 		#endregion
 	}

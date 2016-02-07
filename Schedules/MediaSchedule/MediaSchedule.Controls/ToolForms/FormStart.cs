@@ -1,9 +1,10 @@
 ﻿using System;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Enums;
 using DevComponents.DotNetBar.Metro;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.Properties;
+using Asa.Media.Controls.Properties;
 
-namespace Asa.MediaSchedule.Controls.ToolForms
+namespace Asa.Media.Controls.ToolForms
 {
 	public partial class FormStart : MetroForm
 	{

@@ -4,17 +4,22 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.CommonGUI.Preview;
-using Asa.CommonGUI.RetractableBar;
-using Asa.CommonGUI.Summary;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using Asa.MediaSchedule.Controls.Properties;
-using DevExpress.XtraTab;
+using Asa.Business.Common.Dictionaries;
+using Asa.Business.Common.Entities.NonPersistent.Summary;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.RemoteStorage;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.RetractableBar;
+using Asa.Common.GUI.Summary;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.Properties;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	public partial class SectionSummaryControl : UserControl
@@ -29,7 +34,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 	[ToolboxItem(false)]
 	public abstract class SectionSummaryBaseControl<TItemControl, TSettingsControl> : SectionSummaryControl, ISummaryControl, ISectionSummaryControl
 		where TItemControl : ISummaryItemControl
-		where TSettingsControl : BaseSummaryInfoControl
+		where TSettingsControl : BaseSummaryInfoControl, ISummaryInfoControl
 	{
 		private bool _allowToSave;
 		protected readonly List<TItemControl> _inputControls = new List<TItemControl>();
@@ -38,7 +43,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 		public abstract List<CustomSummaryItem> Items { get; }
 
 		public SectionSummary SectionData { get; private set; }
-		public List<XtraTabPage> SettingsPages { get; private set; }
+		public List<ISummaryInfoControl> SettingsPages { get; private set; }
 		public List<ButtonInfo> BarButtons { get; private set; }
 		public event EventHandler<EventArgs> DataChanged;
 		public event EventHandler<EventArgs> TotalsUpdated;
@@ -57,13 +62,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 
 		protected SectionSummaryBaseControl()
 		{
-			SettingsPages = new List<XtraTabPage>();
+			SettingsPages = new List<ISummaryInfoControl>();
 			BarButtons = new List<ButtonInfo>();
 
 			InitSettingsControls();
 
 			comboBoxEditHeader.Properties.Items.Clear();
-			comboBoxEditHeader.Properties.Items.AddRange(Core.Dashboard.ListManager.Instance.SimpleSummaryLists.Headers);
+			comboBoxEditHeader.Properties.Items.AddRange(ListManager.Instance.SimpleSummaryLists.Headers);
 			comboBoxEditHeader.EditValueChanged += OnSettingsChanged;
 		}
 
@@ -73,7 +78,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			Text = SectionData.Parent.Name;
 
 			comboBoxEditHeader.EditValue = String.IsNullOrEmpty(SummarySettings.SlideHeader) ?
-				Core.Dashboard.ListManager.Instance.SimpleSummaryLists.Headers.FirstOrDefault() :
+				ListManager.Instance.SimpleSummaryLists.Headers.FirstOrDefault() :
 				SummarySettings.SlideHeader;
 
 			LoadItems(quickLoad);
@@ -85,6 +90,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 		public void SaveData()
 		{
 			SummarySettings.SlideHeader = comboBoxEditHeader.EditValue as String;
+		}
+
+		public virtual void Release()
+		{
+			_inputControls.ForEach(i => i.Release());
+			_inputControls.Clear();
+			xtraScrollableControlInput.Controls.Clear();
+
+			SettingsPages.ForEach(p => p.Release());
+			SettingsPages.Clear();
+
+			BarButtons.Clear();
+
+			DataChanged = null;
+			TotalsUpdated = null;
+
+			SectionData = null;
 		}
 
 		protected void RaiseDataChanged()
@@ -247,7 +269,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			get
 			{
 				return SummarySettings.ShowAdvertiser ?
-					SectionData.Parent.ParentSchedule.BusinessName :
+					SectionData.Parent.ParentScheduleSettings.BusinessName :
 					String.Empty;
 			}
 		}
@@ -257,7 +279,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			get
 			{
 				return SummarySettings.ShowDecisionMaker ?
-					SectionData.Parent.ParentSchedule.DecisionMaker :
+					SectionData.Parent.ParentScheduleSettings.DecisionMaker :
 					String.Empty;
 			}
 		}
@@ -267,7 +289,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			get
 			{
 				return SummarySettings.ShowPresentationDate ?
-					SectionData.Parent.ParentSchedule.PresentationDate.Value.ToString("MM/dd/yy") :
+					SectionData.Parent.ParentScheduleSettings.PresentationDate.Value.ToString("MM/dd/yy") :
 					String.Empty;
 			}
 		}
@@ -277,7 +299,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			get
 			{
 				return SummarySettings.ShowFlightDates ?
-					SectionData.Parent.ParentSchedule.FlightDates :
+					SectionData.Parent.ParentScheduleSettings.FlightDates :
 					String.Empty;
 			}
 		}
@@ -418,7 +440,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			var previewGroup = new PreviewGroup
 			{
 				Name = SectionData.Parent.Name.Replace("&", "&&"),
-				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryEmail(previewGroup.PresentationSourcePath, this);
 			return previewGroup;

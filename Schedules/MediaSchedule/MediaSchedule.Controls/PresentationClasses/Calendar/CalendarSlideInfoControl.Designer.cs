@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses
+﻿namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	partial class CalendarSlideInfoControl
     {
@@ -41,7 +41,7 @@
 			this.xtraTabControlStyle = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStyleColor = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
-			this.outputColorSelector = new Asa.CommonGUI.OutputColors.OutputColorSelector();
+			this.outputColorSelector = new Asa.Common.GUI.OutputColors.OutputColorSelector();
 			this.checkEditStyleBigDate = new DevExpress.XtraEditors.CheckEdit();
 			this.laThemeColor = new System.Windows.Forms.Label();
 			this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
@@ -51,7 +51,7 @@
 			this.checkEditShowLogo = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
-			this.favoriteImagesControl = new Asa.CommonGUI.FavoriteImages.FavoriteImagesControl();
+			this.favoriteImagesControl = new Asa.Common.GUI.FavoriteImages.FavoriteImagesControl();
 			this.xtraTabPageData = new DevExpress.XtraTab.XtraTabPage();
 			this.checkEditDataSourceSnapshots = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditDataSourceSchedule = new DevExpress.XtraEditors.CheckEdit();
@@ -111,7 +111,7 @@
 			// 
 			this.xtraTabPageComments.Controls.Add(this.pnComment);
 			this.xtraTabPageComments.Name = "xtraTabPageComments";
-			this.xtraTabPageComments.Size = new System.Drawing.Size(302, 497);
+			this.xtraTabPageComments.Size = new System.Drawing.Size(298, 494);
 			this.xtraTabPageComments.Text = "Comments";
 			this.xtraTabPageComments.Tooltip = "Show more info on your calendar";
 			// 
@@ -125,7 +125,7 @@
 			this.pnComment.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnComment.Location = new System.Drawing.Point(0, 0);
 			this.pnComment.Name = "pnComment";
-			this.pnComment.Size = new System.Drawing.Size(302, 497);
+			this.pnComment.Size = new System.Drawing.Size(298, 494);
 			this.pnComment.TabIndex = 0;
 			// 
 			// memoEditComment
@@ -136,7 +136,7 @@
 			this.memoEditComment.Enabled = false;
 			this.memoEditComment.Location = new System.Drawing.Point(14, 94);
 			this.memoEditComment.Name = "memoEditComment";
-			this.memoEditComment.Size = new System.Drawing.Size(275, 345);
+			this.memoEditComment.Size = new System.Drawing.Size(271, 342);
 			this.memoEditComment.StyleController = this.styleController;
 			this.memoEditComment.TabIndex = 10;
 			// 
@@ -159,9 +159,10 @@
 			// 
 			this.laCommentMonth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laCommentMonth.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laCommentMonth.Location = new System.Drawing.Point(14, 70);
 			this.laCommentMonth.Name = "laCommentMonth";
-			this.laCommentMonth.Size = new System.Drawing.Size(275, 21);
+			this.laCommentMonth.Size = new System.Drawing.Size(271, 21);
 			this.laCommentMonth.TabIndex = 9;
 			this.laCommentMonth.Text = "label1";
 			// 
@@ -169,12 +170,12 @@
 			// 
 			this.checkEditCommentApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCommentApplyForAll.Location = new System.Drawing.Point(12, 456);
+			this.checkEditCommentApplyForAll.Location = new System.Drawing.Point(12, 453);
 			this.checkEditCommentApplyForAll.Name = "checkEditCommentApplyForAll";
 			this.checkEditCommentApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditCommentApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditCommentApplyForAll.Properties.Caption = "Show this Comment on all calendar slides";
-			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(277, 20);
+			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(273, 20);
 			this.checkEditCommentApplyForAll.StyleController = this.styleController;
 			this.checkEditCommentApplyForAll.TabIndex = 8;
 			// 
@@ -188,7 +189,7 @@
 			this.buttonXComment.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXComment.Location = new System.Drawing.Point(14, 18);
 			this.buttonXComment.Name = "buttonXComment";
-			this.buttonXComment.Size = new System.Drawing.Size(275, 29);
+			this.buttonXComment.Size = new System.Drawing.Size(271, 29);
 			this.buttonXComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXComment.TabIndex = 0;
 			this.buttonXComment.Text = "Add a Comment to this slide";
@@ -200,7 +201,7 @@
 			this.xtraTabPageStyle.Controls.Add(this.xtraTabControlStyle);
 			this.xtraTabPageStyle.Name = "xtraTabPageStyle";
 			this.xtraTabPageStyle.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
-			this.xtraTabPageStyle.Size = new System.Drawing.Size(302, 497);
+			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 494);
 			this.xtraTabPageStyle.Text = "Style";
 			this.xtraTabPageStyle.Tooltip = "Change the Style Of your calendar";
 			// 
@@ -223,7 +224,7 @@
 			this.xtraTabControlStyle.Location = new System.Drawing.Point(0, 20);
 			this.xtraTabControlStyle.Name = "xtraTabControlStyle";
 			this.xtraTabControlStyle.SelectedTabPage = this.xtraTabPageStyleColor;
-			this.xtraTabControlStyle.Size = new System.Drawing.Size(302, 477);
+			this.xtraTabControlStyle.Size = new System.Drawing.Size(298, 474);
 			this.xtraTabControlStyle.TabIndex = 106;
 			this.xtraTabControlStyle.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageStyleColor,
@@ -233,7 +234,7 @@
 			// 
 			this.xtraTabPageStyleColor.Controls.Add(this.pnStyle);
 			this.xtraTabPageStyleColor.Name = "xtraTabPageStyleColor";
-			this.xtraTabPageStyleColor.Size = new System.Drawing.Size(300, 449);
+			this.xtraTabPageStyleColor.Size = new System.Drawing.Size(292, 443);
 			this.xtraTabPageStyleColor.Text = "Color Theme";
 			this.xtraTabPageStyleColor.Tooltip = "Change the Color Style Of your calendar";
 			// 
@@ -247,7 +248,7 @@
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(300, 449);
+			this.pnStyle.Size = new System.Drawing.Size(292, 443);
 			this.pnStyle.TabIndex = 12;
 			// 
 			// outputColorSelector
@@ -259,19 +260,19 @@
 			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.outputColorSelector.Location = new System.Drawing.Point(1, 36);
 			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(298, 342);
+			this.outputColorSelector.Size = new System.Drawing.Size(290, 336);
 			this.outputColorSelector.TabIndex = 50;
 			// 
 			// checkEditStyleBigDate
 			// 
 			this.checkEditStyleBigDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditStyleBigDate.Location = new System.Drawing.Point(10, 421);
+			this.checkEditStyleBigDate.Location = new System.Drawing.Point(10, 415);
 			this.checkEditStyleBigDate.Name = "checkEditStyleBigDate";
 			this.checkEditStyleBigDate.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditStyleBigDate.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditStyleBigDate.Properties.Caption = "Show BIG date numbers";
-			this.checkEditStyleBigDate.Size = new System.Drawing.Size(287, 20);
+			this.checkEditStyleBigDate.Size = new System.Drawing.Size(279, 20);
 			this.checkEditStyleBigDate.StyleController = this.styleController;
 			this.checkEditStyleBigDate.TabIndex = 10;
 			// 
@@ -284,7 +285,7 @@
 			this.laThemeColor.ForeColor = System.Drawing.Color.Black;
 			this.laThemeColor.Location = new System.Drawing.Point(12, 10);
 			this.laThemeColor.Name = "laThemeColor";
-			this.laThemeColor.Size = new System.Drawing.Size(277, 23);
+			this.laThemeColor.Size = new System.Drawing.Size(269, 23);
 			this.laThemeColor.TabIndex = 9;
 			this.laThemeColor.Text = "Style Color Theme Options";
 			this.laThemeColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -293,12 +294,12 @@
 			// 
 			this.checkEditThemeColorApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditThemeColorApplyForAll.Location = new System.Drawing.Point(10, 384);
+			this.checkEditThemeColorApplyForAll.Location = new System.Drawing.Point(10, 378);
 			this.checkEditThemeColorApplyForAll.Name = "checkEditThemeColorApplyForAll";
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditThemeColorApplyForAll.Properties.Caption = "Use this Color on all calendar slides";
-			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(287, 20);
+			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(279, 20);
 			this.checkEditThemeColorApplyForAll.StyleController = this.styleController;
 			this.checkEditThemeColorApplyForAll.TabIndex = 8;
 			// 
@@ -306,7 +307,7 @@
 			// 
 			this.xtraTabPageStyleLogo.Controls.Add(this.pnLogo);
 			this.xtraTabPageStyleLogo.Name = "xtraTabPageStyleLogo";
-			this.xtraTabPageStyleLogo.Size = new System.Drawing.Size(300, 449);
+			this.xtraTabPageStyleLogo.Size = new System.Drawing.Size(292, 443);
 			this.xtraTabPageStyleLogo.Text = "Header Logo";
 			this.xtraTabPageStyleLogo.Tooltip = "Show a logo at the TOP of your calendar";
 			// 
@@ -319,7 +320,7 @@
 			this.pnLogo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnLogo.Location = new System.Drawing.Point(0, 0);
 			this.pnLogo.Name = "pnLogo";
-			this.pnLogo.Size = new System.Drawing.Size(300, 449);
+			this.pnLogo.Size = new System.Drawing.Size(292, 443);
 			this.pnLogo.TabIndex = 0;
 			// 
 			// calendarHeaderSelector
@@ -333,7 +334,7 @@
 			this.calendarHeaderSelector.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.calendarHeaderSelector.Name = "calendarHeaderSelector";
 			this.calendarHeaderSelector.SelectedImageSource = null;
-			this.calendarHeaderSelector.Size = new System.Drawing.Size(300, 366);
+			this.calendarHeaderSelector.Size = new System.Drawing.Size(292, 360);
 			this.calendarHeaderSelector.TabIndex = 46;
 			// 
 			// checkEditShowLogo
@@ -352,7 +353,7 @@
 			// checkEditLogoApplyForAll
 			// 
 			this.checkEditLogoApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(14, 413);
+			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(14, 407);
 			this.checkEditLogoApplyForAll.Name = "checkEditLogoApplyForAll";
 			this.checkEditLogoApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditLogoApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -366,7 +367,7 @@
 			// 
 			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
 			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
-			this.xtraTabPageFavorites.Size = new System.Drawing.Size(302, 497);
+			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 494);
 			this.xtraTabPageFavorites.Text = "My Gallery";
 			this.xtraTabPageFavorites.Tooltip = "Add Product Logos to your Calendar";
 			// 
@@ -378,7 +379,7 @@
 			this.favoriteImagesControl.ImageTooltip = null;
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(302, 497);
+			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 494);
 			this.favoriteImagesControl.TabIndex = 0;
 			// 
 			// xtraTabPageData
@@ -387,7 +388,7 @@
 			this.xtraTabPageData.Controls.Add(this.checkEditDataSourceSchedule);
 			this.xtraTabPageData.Controls.Add(this.laDataSource);
 			this.xtraTabPageData.Name = "xtraTabPageData";
-			this.xtraTabPageData.Size = new System.Drawing.Size(302, 497);
+			this.xtraTabPageData.Size = new System.Drawing.Size(298, 494);
 			this.xtraTabPageData.Text = "Data";
 			// 
 			// checkEditDataSourceSnapshots
@@ -423,7 +424,7 @@
 			this.laDataSource.ForeColor = System.Drawing.Color.Black;
 			this.laDataSource.Location = new System.Drawing.Point(3, 8);
 			this.laDataSource.Name = "laDataSource";
-			this.laDataSource.Size = new System.Drawing.Size(296, 26);
+			this.laDataSource.Size = new System.Drawing.Size(292, 26);
 			this.laDataSource.TabIndex = 10;
 			this.laDataSource.Text = "Select Data Source:";
 			this.laDataSource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -481,11 +482,11 @@
 		private DevComponents.DotNetBar.ButtonX buttonXComment;
 		private DevExpress.XtraEditors.CheckEdit checkEditStyleBigDate;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageFavorites;
-		private CommonGUI.FavoriteImages.FavoriteImagesControl favoriteImagesControl;
+		private Common.GUI.FavoriteImages.FavoriteImagesControl favoriteImagesControl;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlStyle;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleColor;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyleLogo;
-		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;
+		private Common.GUI.OutputColors.OutputColorSelector outputColorSelector;
 		private DevExpress.XtraEditors.CheckEdit checkEditShowLogo;
 		private Asa.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector calendarHeaderSelector;
 		protected DevExpress.XtraEditors.CheckEdit checkEditDataSourceSnapshots;

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Asa.CommonGUI.Summary;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Common.Entities.NonPersistent.Summary;
+using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
+using Asa.Common.GUI.Summary;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	class ProductSummaryControl : SectionSummaryBaseControl<SummaryProductItemControl, ProductSummaryInfoControl>

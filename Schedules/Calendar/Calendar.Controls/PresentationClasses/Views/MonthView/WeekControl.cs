@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Core.Calendar;
+using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
-	public partial class WeekControl : UserControl
+	public partial class WeekControl: UserControl
 	{
 		private readonly List<DayControl> _dayControls = new List<DayControl>();
-		private readonly WeekEmptySpaceControl _footer;
-		private readonly WeekEmptySpaceControl _header;
+		private WeekEmptySpaceControl _footer;
+		private WeekEmptySpaceControl _header;
 
 		private readonly int _maxWeekDayIndex;
 		private readonly int _minWeekDayIndex;
@@ -23,7 +22,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
-			Resize += WeekControl_Resize;
+			Resize += OnResize;
 
 			if (days.Length > 0)
 			{
@@ -61,6 +60,20 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			foreach (var day in _dayControls)
 				day.RefreshData(colorSchema);
+		}
+
+		public void Release()
+		{
+			Controls.Clear();
+
+			_notes.ForEach(control => control.Release());
+			_notes.Clear();
+
+			_dayControls.ForEach(control => control.Release());
+			_dayControls.Clear();
+
+			_footer = null;
+			_header = null;
 		}
 
 		public void RaiseEvents(bool enable)
@@ -119,7 +132,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			}
 		}
 
-		private void WeekControl_Resize(object sender, EventArgs e)
+		private void OnResize(object sender, EventArgs e)
 		{
 			FitControls();
 		}

@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Asa.Media.Controls</RootNamespace>
+    <AssemblyName>Asa.Media.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.6.0.6, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageListView, Version=11.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ImageListView.11.0.4.0\lib\net35\ImageListView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessClasses\BusinessObjects.cs" />
+    <Compile Include="BusinessClasses\ContentController.cs" />
+    <Compile Include="BusinessClasses\ContentIdentifiers.cs" />
+    <Compile Include="BusinessClasses\OneSheetModel.cs" />
+    <Compile Include="BusinessClasses\OutputManager.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="InteropClasses\CalendarHelper.cs" />
+    <Compile Include="InteropClasses\OneSheetHelper.cs" />
+    <Compile Include="InteropClasses\OptionsHelper.cs" />
+    <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="InteropClasses\SnapshotHelper.cs" />
+    <Compile Include="InteropClasses\StrategyHelper.cs" />
+    <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendar\BroadcastSlideInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.Designer.cs">
+      <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendar\CustomCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendar\MediaCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\DigitalInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\DigitalInfoControl.Designer.cs">
+      <DependentUpon>DigitalInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\DigitalProductContainerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\MediaWebPackageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Gallery\MediaGallery2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Gallery\MediaGallery1Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOptionSetName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOptionSetName.Designer.cs">
+      <DependentUpon>FormOptionSetName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\FormOutputSettings.Designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\IOptionsSlideControl.cs" />
+    <Compile Include="PresentationClasses\OptionsControls\OptionsContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsContainer.Designer.cs">
+      <DependentUpon>OptionsContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsControl.Designer.cs">
+      <DependentUpon>OptionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsSummaryControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\OptionsSummaryControl.Designer.cs">
+      <DependentUpon>OptionsSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\RateCard\MediaRateCardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.Designer.cs">
+      <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormOutputSettings.Designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormSectionName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormSectionName.Designer.cs">
+      <DependentUpon>FormSectionName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.Designer.cs">
+      <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleContainer.Designer.cs">
+      <DependentUpon>ScheduleContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\SectionControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\SectionControl.Designer.cs">
+      <DependentUpon>SectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\DaypartsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\DaypartsControl.Designer.cs">
+      <DependentUpon>DaypartsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\HomeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\HomeControl.Designer.cs">
+      <DependentUpon>HomeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\StationsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\StationsControl.Designer.cs">
+      <DependentUpon>StationsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormOutputSettings.Designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormSnapshotName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\FormSnapshotName.Designer.cs">
+      <DependentUpon>FormSnapshotName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ISnapshotSlideControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotContainer.Designer.cs">
+      <DependentUpon>SnapshotContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotControl.Designer.cs">
+      <DependentUpon>SnapshotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.Designer.cs">
+      <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\BaseSummaryInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\BaseSummaryInfoControl.Designer.cs">
+      <DependentUpon>BaseSummaryInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\CustomSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\CustomSummaryInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\IContentSettingsEditorControl.cs" />
+    <Compile Include="PresentationClasses\Summary\ISectionSummaryControl.cs" />
+    <Compile Include="PresentationClasses\Summary\ISummaryInfoControl.cs" />
+    <Compile Include="PresentationClasses\Summary\ISummarySettingsEditorControl.cs" />
+    <Compile Include="PresentationClasses\Summary\ProductSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\ProductSummaryInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SectionSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SectionSummaryControl.Designer.cs">
+      <DependentUpon>SectionSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyImageControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyImageControl.Designer.cs">
+      <DependentUpon>StrategyImageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategyInfoControl.Designer.cs">
+      <DependentUpon>StrategyInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategySummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\StrategySummaryControl.Designer.cs">
+      <DependentUpon>StrategySummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryContainer.Designer.cs">
+      <DependentUpon>SummaryContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryTab.Designer.cs">
+      <DependentUpon>SummaryTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryTypeSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryTypeSettingsControl.Designer.cs">
+      <DependentUpon>SummaryTypeSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormOpenSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormOpenSchedule.Designer.cs">
+      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.Designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
+      <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Calendar\MediaCalendarControl.resx">
+      <DependentUpon>MediaCalendarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfoControl.resx">
+      <DependentUpon>DigitalInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\FormOptionSetName.resx">
+      <DependentUpon>FormOptionSetName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\FormOutputSettings.resx">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsContainer.resx">
+      <DependentUpon>OptionsContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsControl.resx">
+      <DependentUpon>OptionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsSummaryControl.resx">
+      <DependentUpon>OptionsSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.resx">
+      <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormOutputSettings.resx">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormSectionName.resx">
+      <DependentUpon>FormSectionName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.resx">
+      <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleContainer.resx">
+      <DependentUpon>ScheduleContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\SectionControl.resx">
+      <DependentUpon>SectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\DaypartsControl.resx">
+      <DependentUpon>DaypartsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\HomeControl.resx">
+      <DependentUpon>HomeControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\StationsControl.resx">
+      <DependentUpon>StationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormOutputSettings.resx">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormSnapshotName.resx">
+      <DependentUpon>FormSnapshotName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotContainer.resx">
+      <DependentUpon>SnapshotContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotControl.resx">
+      <DependentUpon>SnapshotControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.resx">
+      <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\BaseSummaryInfoControl.resx">
+      <DependentUpon>BaseSummaryInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SectionSummaryControl.resx">
+      <DependentUpon>SectionSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\StrategyImageControl.resx">
+      <DependentUpon>StrategyImageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\StrategyInfoControl.resx">
+      <DependentUpon>StrategyInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\StrategySummaryControl.resx">
+      <DependentUpon>StrategySummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryContainer.resx">
+      <DependentUpon>SummaryContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryTab.resx">
+      <DependentUpon>SummaryTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryTypeSettingsControl.resx">
+      <DependentUpon>SummaryTypeSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormOpenSchedule.resx">
+      <DependentUpon>FormOpenSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\EmailBig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HelpSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NudgeDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NudgeUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloneProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>10</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddProgram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteProgram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewScheduleRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenScheduleRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WeeklySchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonthlySchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quarter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Favorites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FavoritesLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeTVLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeRadioLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioRibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TVRibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsOptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsRadio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsTV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionNoPrograms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotNoRecords.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotsNoPrograms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OptionsNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OptionsNoPrograms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OptionsNoRecords.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarOptionsDataSource.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnapshotSettingsActiveWeeks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeDefaultLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionNoRecords.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryOptionsFavorites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryOptionsInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryOptionsType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Business\Business.Calendar\Business.Calendar.csproj">
+      <Project>{d8982923-ed22-4102-a228-6bb5111f07e4}</Project>
+      <Name>Business.Calendar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
+      <Project>{8248763f-1b88-43c4-bb98-30bedeef6434}</Project>
+      <Name>Business.Media</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Online\Business.Online.csproj">
+      <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
+      <Name>Business.Online</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
+      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
+      <Name>Common.GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Calendar\Calendar.Controls\Calendar.Controls.csproj">
+      <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>
+      <Name>Calendar.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OnlineSchedule\OnlineSchedule.Controls\Online.Controls.csproj">
+      <Project>{1c9b33cd-0fe1-431c-bbc4-88463568f891}</Project>
+      <Name>Online.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

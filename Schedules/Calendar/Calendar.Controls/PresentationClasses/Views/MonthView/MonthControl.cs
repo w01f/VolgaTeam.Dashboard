@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Media.Entities.NonPersistent.Calendar;
+using Asa.Common.Core.Attributes;
+using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
@@ -14,14 +14,14 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 	{
 		private readonly List<CalendarNoteControl> _noteControls = new List<CalendarNoteControl>();
 		private readonly List<WeekControl> _weekControls = new List<WeekControl>();
-		protected bool _weekSundayStarted;
+		protected bool WeekSundayStarted { get; set; }
 
 		protected MonthControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			HasData = false;
-			pnMain.Resize += MonthViewControl_Resize;
+			pnMain.Resize += OnResize;
 		}
 
 		public bool HasData { get; private set; }
@@ -83,6 +83,16 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			foreach (var note in _noteControls)
 				note.RefreshColor();
 		}
+		public void Release()
+		{
+			pnMain.Controls.Clear();
+
+			_noteControls.ForEach(control => control.Release());
+			_noteControls.Clear();
+
+			_weekControls.ForEach(control => control.Release());
+			_weekControls.Clear();
+		}
 
 		public void RaiseEvents(bool enable)
 		{
@@ -93,7 +103,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		private void FitHeader()
 		{
 			double width = Width / 7;
-			if (_weekSundayStarted)
+			if (WeekSundayStarted)
 			{
 				pnSunday.BringToFront();
 				pnMonday.BringToFront();
@@ -142,7 +152,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			}
 		}
 
-		private void MonthViewControl_Resize(object sender, EventArgs e)
+		private void OnResize(object sender, EventArgs e)
 		{
 			pnEmpty.BringToFront();
 			FitWeekControls();
@@ -156,9 +166,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 	public class MonthControlSundayBased : MonthControl
 	{
 		public MonthControlSundayBased()
-			: base()
 		{
-			_weekSundayStarted = true;
+			WeekSundayStarted = true;
 		}
 	}
 
@@ -167,9 +176,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 	public class MonthControlMondayBased : MonthControl
 	{
 		public MonthControlMondayBased()
-			: base()
 		{
-			_weekSundayStarted = false;
+			WeekSundayStarted = false;
 		}
 	}
 }

@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Business.Online.Enums;
+using Asa.Online.Controls.PresentationClasses.Products;
 using DevComponents.DotNetBar.Metro;
-using Asa.Core.OnlineSchedule;
-using Asa.OnlineSchedule.Controls.PresentationClasses;
-using Asa.OnlineSchedule.Controls.Properties;
+using Asa.Online.Controls.Properties;
 
-namespace Asa.OnlineSchedule.Controls.ToolForms
+namespace Asa.Online.Controls.ToolForms
 {
 	public partial class FormProductInfo : MetroForm
 	{

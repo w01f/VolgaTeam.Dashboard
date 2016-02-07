@@ -1,6 +1,4 @@
-﻿using Asa.CommonGUI.Summary;
-
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+﻿namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	partial class SectionSummaryControl
 	{

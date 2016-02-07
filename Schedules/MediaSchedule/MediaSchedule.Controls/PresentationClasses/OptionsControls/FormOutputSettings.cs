@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 {
 	public partial class FormOutputSettings : DevComponents.DotNetBar.Metro.MetroForm
 	{

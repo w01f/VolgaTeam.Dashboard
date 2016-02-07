@@ -2,11 +2,12 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Asa.CommonGUI.Common;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Common.Core.Attributes;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.GUI.Common;
 using DevExpress.XtraEditors.Controls;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
-using Asa.Core.Interop;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
@@ -15,6 +16,14 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 	public partial class CalendarNoteControl : UserControl
 	{
 		private readonly bool _allowToSave;
+
+		public CalendarNote CalendarNote { get; private set; }
+
+		public event EventHandler<EventArgs> NoteChanged;
+		public event EventHandler<EventArgs> NoteDeleted;
+		public event EventHandler<EventArgs> NoteCopied;
+		public event EventHandler<EventArgs> NoteCloned;
+		public event EventHandler<EventArgs> ColorChanging;
 
 		public CalendarNoteControl(CalendarNote calendarNote)
 		{
@@ -40,15 +49,19 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				labelControl_Click(null, EventArgs.Empty);
 				calendarNote.UserAdded = false;
 			}
+
+			pbClose.Buttonize();
 		}
 
-		public CalendarNote CalendarNote { get; private set; }
-
-		public event EventHandler<EventArgs> NoteChanged;
-		public event EventHandler<EventArgs> NoteDeleted;
-		public event EventHandler<EventArgs> NoteCopied;
-		public event EventHandler<EventArgs> NoteCloned;
-		public event EventHandler<EventArgs> ColorChanging;
+		public void Release()
+		{
+			NoteChanged = null;
+			NoteDeleted = null;
+			NoteCopied = null;
+			NoteCloned = null;
+			ColorChanging = null;
+			CalendarNote = null;
+		}
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
@@ -112,7 +125,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void pbClose_Click(object sender, EventArgs e)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Do you want to delete note?") != DialogResult.Yes) return;
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Do you want to delete note?") != DialogResult.Yes) return;
 			if (NoteDeleted != null)
 				NoteDeleted(sender, new EventArgs());
 		}
@@ -134,24 +147,5 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (ColorChanging != null)
 				ColorChanging(sender, new EventArgs());
 		}
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
 	}
 }

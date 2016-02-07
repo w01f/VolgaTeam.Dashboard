@@ -1,6 +1,6 @@
-﻿using Asa.Core.Common;
+﻿using Asa.Business.Common.Entities.NonPersistent.Summary;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	public interface ISummarySettingsEditorControl : IContentSettingsEditorControl
 	{

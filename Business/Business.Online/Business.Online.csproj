@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{886DC89E-77E0-438E-9FB0-A5D76063C93A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Asa.Business.Online</RootNamespace>
+    <AssemblyName>Asa.Business.Online</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ProdutInfoHelper.cs" />
+    <Compile Include="Common\RequestDigitalInfoEventArgs.cs" />
+    <Compile Include="Configuration\AdPlanViewSettings.cs" />
+    <Compile Include="Configuration\DigitalPackageSettings.cs" />
+    <Compile Include="Configuration\DigitalProductAdPlanSettings.cs" />
+    <Compile Include="Configuration\DigitalProductListViewSettings.cs" />
+    <Compile Include="Configuration\DigitalProductSettings.cs" />
+    <Compile Include="Dictionaries\ListManager.cs" />
+    <Compile Include="Entities\NonPersistent\Category.cs" />
+    <Compile Include="Entities\NonPersistent\DigitalLegend.cs" />
+    <Compile Include="Entities\NonPersistent\DigitalProduct.cs" />
+    <Compile Include="Entities\NonPersistent\DigitalProductOutputData.cs" />
+    <Compile Include="Entities\NonPersistent\DigitalProductsContent.cs" />
+    <Compile Include="Entities\NonPersistent\DigitalProductSummary.cs" />
+    <Compile Include="Entities\NonPersistent\DigitalScheduleChangeInfo.cs" />
+    <Compile Include="Entities\NonPersistent\DigitalScheduleContent.cs" />
+    <Compile Include="Entities\NonPersistent\ProductInfo.cs" />
+    <Compile Include="Entities\NonPersistent\ProductPackageRecord.cs" />
+    <Compile Include="Entities\NonPersistent\ProductSource.cs" />
+    <Compile Include="Entities\NonPersistent\SpecialLinkButton.cs" />
+    <Compile Include="Enums\FormulaType.cs" />
+    <Compile Include="Enums\ProductInfoType.cs" />
+    <Compile Include="Interfaces\IDigitalProductsContent.cs" />
+    <Compile Include="Interfaces\IDigitalSchedule.cs" />
+    <Compile Include="Interfaces\IDigitalScheduleSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Common\Business.Common.csproj">
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

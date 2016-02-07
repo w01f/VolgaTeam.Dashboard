@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Common.Entities.NonPersistent.Summary;
+using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
+using Asa.Business.Media.Enums;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	//public partial class SummaryTypeSettingsControl : UserControl

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using Asa.Common.Core.OfficeInterops;
+using Asa.Online.Controls.PresentationClasses.AdPlan;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Core.Interop;
-using Asa.OnlineSchedule.Controls.PresentationClasses;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace Asa.OnlineSchedule.Controls.InteropClasses
+namespace Asa.Online.Controls.InteropClasses
 {
 	public partial class OnlineSchedulePowerPointHelper
 	{

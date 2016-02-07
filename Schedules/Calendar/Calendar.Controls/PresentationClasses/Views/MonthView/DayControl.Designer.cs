@@ -1,6 +1,8 @@
-﻿namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
+﻿using Asa.Business.Common.Interfaces;
+
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
-    partial class DayControl
+	partial class DayControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -72,7 +74,6 @@
 			this.laSmallDayCaption.Text = "label1";
 			this.laSmallDayCaption.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.laSmallDayCaption.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
-			this.laSmallDayCaption.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.laSmallDayCaption.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.laSmallDayCaption.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -232,7 +233,6 @@
 			this.xtraScrollableControl.TabIndex = 0;
 			this.xtraScrollableControl.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.xtraScrollableControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
-			this.xtraScrollableControl.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.xtraScrollableControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.xtraScrollableControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -251,7 +251,6 @@
 			this.memoEditSimpleComment.EditValueChanged += new System.EventHandler(this.memoEditSimpleComment_EditValueChanged);
 			this.memoEditSimpleComment.Leave += new System.EventHandler(this.memoEditSimpleComment_Leave);
 			this.memoEditSimpleComment.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
-			this.memoEditSimpleComment.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.memoEditSimpleComment.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
 			// styleController
@@ -282,7 +281,6 @@
 			this.labelControlData.Text = "Data";
 			this.labelControlData.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.labelControlData.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
-			this.labelControlData.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.labelControlData.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.labelControlData.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -297,7 +295,6 @@
 			this.pbLogo.TabStop = false;
 			this.pbLogo.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
 			this.pbLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
-			this.pbLogo.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.pbLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.pbLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -309,7 +306,6 @@
 			this.pnCalendarNoteArea.Size = new System.Drawing.Size(297, 40);
 			this.pnCalendarNoteArea.TabIndex = 3;
 			this.pnCalendarNoteArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
-			this.pnCalendarNoteArea.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.pnCalendarNoteArea.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.pnCalendarNoteArea.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
@@ -334,7 +330,6 @@
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DayControl_DragDrop);
 			this.DragOver += new System.Windows.Forms.DragEventHandler(this.DayControl_DragOver);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
-			this.MouseHover += new System.EventHandler(this.DayControl_MouseHover);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.pnData.ResumeLayout(false);

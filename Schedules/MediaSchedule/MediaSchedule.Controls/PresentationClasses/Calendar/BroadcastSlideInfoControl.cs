@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Asa.Business.Media.Entities.NonPersistent.Calendar;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.RetractableBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using Asa.CommonGUI.RetractableBar;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	class BroadcastSlideInfoControl : CalendarSlideInfoControl
 	{
@@ -24,7 +25,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 		public override IEnumerable<ButtonInfo> GetChapters()
 		{
 			var chapters = new List<ButtonInfo>();
-			if (_month != null && ((BroadcastCalendar)_month.Parent).AllowSelectDataSource)
+			if (Month != null && ((BroadcastCalendar)Month.Parent).AllowSelectDataSource)
 				chapters.Add(
 					new ButtonInfo
 					{
@@ -40,13 +41,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 		{
 			base.LoadCurrentMonthData();
 
-			if (_month == null) return;
+			if (Month == null) return;
 			_allowToSave = false;
 
 			#region Data Source
-			xtraTabPageData.PageVisible = ((BroadcastCalendar)_month.Parent).AllowSelectDataSource;
+			xtraTabPageData.PageVisible = ((BroadcastCalendar)Month.Parent).AllowSelectDataSource;
 
-			var broadcastCalendar = (BroadcastCalendar)_month.Parent;
+			var broadcastCalendar = (BroadcastCalendar)Month.Parent;
 
 			checkEditDataSourceSchedule.Checked = false;
 			checkEditDataSourceSnapshots.Checked = false;
@@ -70,7 +71,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			if (!_allowToSave) return;
 			var value = (bool)e.NewValue;
 			if (!value) return;
-			if (Utilities.Instance.ShowWarningQuestion("Are you SURE you want to change Data Source and RESET your calendar to the default Information?") == DialogResult.Yes) return;
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you SURE you want to change Data Source and RESET your calendar to the default Information?") == DialogResult.Yes) return;
 			e.Cancel = true;
 		}
 
@@ -79,7 +80,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			if (!_allowToSave) return;
 			var editor = sender as CheckEdit;
 			if (editor == null || !editor.Checked) return;
-			var broadcastCalendar = (BroadcastCalendar)_month.Parent;
+			var broadcastCalendar = (BroadcastCalendar)Month.Parent;
 			if (checkEditDataSourceSchedule.Checked)
 				broadcastCalendar.DataSourceType = BroadcastDataTypeEnum.Schedule;
 			else if (checkEditDataSourceSnapshots.Checked)

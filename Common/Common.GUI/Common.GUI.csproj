@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Asa.Common.GUI</RootNamespace>
+    <AssemblyName>Asa.Common.GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.6.0.6, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v15.2.Drawing, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPdfViewer.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.Base, Version=15.3.78.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.15.3.78.0\lib\EO.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=15.3.78.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.15.3.78.0\lib\EO.WebBrowser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=15.3.78.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.15.3.78.0\lib\EO.WebEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageListView, Version=11.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ImageListView.11.0.4.0\lib\net35\ImageListView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vintasoft.Imaging">
+      <HintPath>..\..\Assemblies\Vintasoft.Imaging\Vintasoft.Imaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ComboBoxListEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\FormStateHelper.cs" />
+    <Compile Include="Common\PictureBoxButtonizer.cs" />
+    <Compile Include="Common\TextEditorsHelper.cs" />
+    <Compile Include="Common\XtraTabDragDropHelper.cs" />
+    <Compile Include="Common\GridDragDropHelper.cs" />
+    <Compile Include="Common\TabbedControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContentEditors\Helpers\ContentEditManager.cs" />
+    <Compile Include="ContentEditors\Interfaces\IPartitionEditControl.cs" />
+    <Compile Include="ContentEditors\Objects\ContentEditorRelation.cs" />
+    <Compile Include="ContentEditors\Helpers\ContentRibbonManager.cs" />
+    <Compile Include="ContentEditors\Events\ContentSavingEventArgs.cs" />
+    <Compile Include="ContentEditors\Enums\ContentSavingReason.cs" />
+    <Compile Include="ContentEditors\Objects\ContentUpdateInfo.cs" />
+    <Compile Include="ContentEditors\Interfaces\IContentController.cs" />
+    <Compile Include="ContentEditors\Interfaces\IContentControl.cs" />
+    <Compile Include="ContentEditors\Interfaces\IOutputControl.cs" />
+    <Compile Include="ContentEditors\Events\ScheduleSavingEventArgs.cs" />
+    <Compile Include="ContentEditors\Objects\ThemeUpdateInfo.cs" />
+    <Compile Include="FavoriteImages\FavoriteImagesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FavoriteImages\FavoriteImagesControl.Designer.cs">
+      <DependentUpon>FavoriteImagesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FavoriteImages\FormAddFavoriteImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FavoriteImages\FormAddFavoriteImage.Designer.cs">
+      <DependentUpon>FormAddFavoriteImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageGallery\ImageGroupPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageGallery\ImageGroupPage.Designer.cs">
+      <DependentUpon>ImageGroupPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interop\CommonPowerPointHelper.cs" />
+    <Compile Include="Floater\FloaterManager.cs" />
+    <Compile Include="Floater\FloaterRequestedEventArgs.cs" />
+    <Compile Include="Floater\FormFloater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Floater\FormFloater.designer.cs">
+      <DependentUpon>FormFloater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gallery\GalleryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gallery\GalleryControl.Designer.cs">
+      <DependentUpon>GalleryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interop\SummaryHelper.cs" />
+    <Compile Include="ListEditor\ListContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListEditor\ListContainer.Designer.cs">
+      <DependentUpon>ListContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutputColors\OutputColorButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OutputColors\OutputColorSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OutputColors\OutputColorSelector.Designer.cs">
+      <DependentUpon>OutputColorSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preview\PreviewGroup.cs" />
+    <Compile Include="Preview\PreviewGroupControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Preview\PreviewGroupControl.Designer.cs">
+      <DependentUpon>PreviewGroupControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\DefaultViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\DefaultViewer.Designer.cs">
+      <DependentUpon>DefaultViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\ExcelViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\ExcelViewer.Designer.cs">
+      <DependentUpon>ExcelViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\PDFViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\PDFViewer.Designer.cs">
+      <DependentUpon>PDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\PowerPointViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RateCard\PowerPointViewer.Designer.cs">
+      <DependentUpon>PowerPointViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\RateCardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RateCard\RateCardControl.Designer.cs">
+      <DependentUpon>RateCardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\RateCardManager.cs" />
+    <Compile Include="RateCard\RateFolderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RateCard\RateFolderControl.Designer.cs">
+      <DependentUpon>RateFolderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\WordViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\WordViewer.Designer.cs">
+      <DependentUpon>WordViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\LicenseHelper.cs" />
+    <Compile Include="RetractableBar\RetractableBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarControl.Designer.cs">
+      <DependentUpon>RetractableBarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarLeft.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarLeft.Designer.cs">
+      <DependentUpon>RetractableBarLeft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarRight.Designer.cs">
+      <DependentUpon>RetractableBarRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContentEditors\Controls\BaseContentEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContentEditors\Controls\BaseScheduleSettingsEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContentEditors\Controls\BasePartitionEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContentEditors\Events\ContentSavedEventArgs.cs" />
+    <Compile Include="ContentEditors\Interfaces\IContentEditControl.cs" />
+    <Compile Include="ContentEditors\Controls\PartitionEditTemplateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContentEditors\Controls\PartitionEditTemplateControl.Designer.cs">
+      <DependentUpon>PartitionEditTemplateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlideSettingsEditors\FormEditSlideSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SlideSettingsEditors\FormEditSlideSettings.Designer.cs">
+      <DependentUpon>FormEditSlideSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlideSettingsEditors\FormSelectMasterWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SlideSettingsEditors\FormSelectMasterWizard.Designer.cs">
+      <DependentUpon>FormSelectMasterWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Slides\FormSlideSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Slides\FormSlideSelector.Designer.cs">
+      <DependentUpon>FormSlideSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Slides\SlideGroupControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Slides\SlideGroupControl.Designer.cs">
+      <DependentUpon>SlideGroupControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Slides\SlidesContainerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Slides\SlidesContainerControl.Designer.cs">
+      <DependentUpon>SlidesContainerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Summary\SummaryCustomItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryCustomItemControl.Designer.cs">
+      <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Summary\SummaryFullControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\ISummaryControl.cs" />
+    <Compile Include="Summary\ISummaryItemControl.cs" />
+    <Compile Include="Summary\SummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryControl.Designer.cs">
+      <DependentUpon>SummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Summary\SummaryLightControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryProductItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryProductItemControl.Designer.cs">
+      <DependentUpon>SummaryProductItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\FormThemeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Themes\FormThemeSelector.Designer.cs">
+      <DependentUpon>FormThemeSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\ThemeContainerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Themes\ThemeContainerControl.Designer.cs">
+      <DependentUpon>ThemeContainerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preview\FormEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Preview\FormEmail.designer.cs">
+      <DependentUpon>FormEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListEditor\FormCommonListEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListEditor\FormCommonListEditor.Designer.cs">
+      <DependentUpon>FormCommonListEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormEmailFileName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormEmailFileName.Designer.cs">
+      <DependentUpon>FormEmailFileName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageGallery\FormImageGallery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageGallery\FormImageGallery.Designer.cs">
+      <DependentUpon>FormImageGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preview\FormPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Preview\FormPreview.designer.cs">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormScheduleName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormScheduleName.Designer.cs">
+      <DependentUpon>FormScheduleName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormContractSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormContractSettings.Designer.cs">
+      <DependentUpon>FormContractSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormProgress.Designer.cs">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormSelectOutputItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormSelectOutputItems.Designer.cs">
+      <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormStart.designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FavoriteImages\FavoriteImagesControl.resx">
+      <DependentUpon>FavoriteImagesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FavoriteImages\FormAddFavoriteImage.resx">
+      <DependentUpon>FormAddFavoriteImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Floater\FormFloater.resx">
+      <DependentUpon>FormFloater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gallery\GalleryControl.resx">
+      <DependentUpon>GalleryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGallery\ImageGroupPage.resx">
+      <DependentUpon>ImageGroupPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListEditor\ListContainer.resx">
+      <DependentUpon>ListContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutputColors\OutputColorSelector.resx">
+      <DependentUpon>OutputColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
+      <DependentUpon>PreviewGroupControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\DefaultViewer.resx">
+      <DependentUpon>DefaultViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\ExcelViewer.resx">
+      <DependentUpon>ExcelViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\PDFViewer.resx">
+      <DependentUpon>PDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\PowerPointViewer.resx">
+      <DependentUpon>PowerPointViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\RateCardControl.resx">
+      <DependentUpon>RateCardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\RateFolderControl.resx">
+      <DependentUpon>RateFolderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\WordViewer.resx">
+      <DependentUpon>WordViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetractableBar\RetractableBarControl.resx">
+      <DependentUpon>RetractableBarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetractableBar\RetractableBarLeft.resx">
+      <DependentUpon>RetractableBarLeft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetractableBar\RetractableBarRight.resx">
+      <DependentUpon>RetractableBarRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContentEditors\Controls\PartitionEditTemplateControl.resx">
+      <DependentUpon>PartitionEditTemplateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlideSettingsEditors\FormEditSlideSettings.resx">
+      <DependentUpon>FormEditSlideSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlideSettingsEditors\FormSelectMasterWizard.resx">
+      <DependentUpon>FormSelectMasterWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Slides\FormSlideSelector.resx">
+      <DependentUpon>FormSlideSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Slides\SlideGroupControl.resx">
+      <DependentUpon>SlideGroupControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Slides\SlidesContainerControl.resx">
+      <DependentUpon>SlidesContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Summary\SummaryCustomItemControl.resx">
+      <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Summary\SummaryControl.resx">
+      <DependentUpon>SummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Summary\SummaryProductItemControl.resx">
+      <DependentUpon>SummaryProductItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Themes\FormThemeSelector.resx">
+      <DependentUpon>FormThemeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Themes\ThemeContainerControl.resx">
+      <DependentUpon>ThemeContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preview\FormEmail.resx">
+      <DependentUpon>FormEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListEditor\FormCommonListEditor.resx">
+      <DependentUpon>FormCommonListEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
+      <DependentUpon>FormEmailFileName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGallery\FormImageGallery.resx">
+      <DependentUpon>FormImageGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preview\FormPreview.resx">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormScheduleName.resx">
+      <DependentUpon>FormScheduleName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormContractSettings.resx">
+      <DependentUpon>FormContractSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormProgress.resx">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormSelectOutputItems.resx">
+      <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\FloaterHide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OutputDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDFEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RegularEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>10</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryCopy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryCrop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryZoomIn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GallerySelect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryPrint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryRadio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryTV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DownArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UpArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RetractableBarExpand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RetractableBarLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RetractableBarCollapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\Business.Common\Business.Common.csproj">
+      <Project>{CCFAD4DA-48C4-454B-930D-6A81D2626E76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\Business.Media\Business.Media.csproj">
+      <Project>{8248763F-1B88-43C4-BB98-30BEDEEF6434}</Project>
+      <Name>Business.Media</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\Business.Online\Business.Online.csproj">
+      <Project>{886DC89E-77E0-438E-9FB0-A5D76063C93A}</Project>
+      <Name>Business.Online</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Core\Common.Core.csproj">
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressCancel.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

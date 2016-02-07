@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	public interface IContentSettingsEditorControl
 	{

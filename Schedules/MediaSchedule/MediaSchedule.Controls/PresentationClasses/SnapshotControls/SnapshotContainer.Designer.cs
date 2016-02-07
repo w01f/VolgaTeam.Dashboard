@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+﻿namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	partial class SnapshotContainer
 	{
@@ -49,7 +49,7 @@
 			this.pnTotalSpots = new System.Windows.Forms.Panel();
 			this.laTotalSpotsValue = new System.Windows.Forms.Label();
 			this.laTotalSpotsTitle = new System.Windows.Forms.Label();
-			this.retractableBarControl = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageOptionsInfo = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsInfo = new System.Windows.Forms.Panel();
@@ -79,7 +79,7 @@
 			this.buttonXSummaryTallyCost = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
-			this.outputColorSelector = new Asa.CommonGUI.OutputColors.OutputColorSelector();
+			this.outputColorSelector = new Asa.Common.GUI.OutputColors.OutputColorSelector();
 			this.laColorsTitle = new System.Windows.Forms.Label();
 			this.xtraTabPageOptionsActiveWeeks = new DevExpress.XtraTab.XtraTabPage();
 			this.pnActiveWeeks = new System.Windows.Forms.Panel();
@@ -128,7 +128,7 @@
 			// pbNoSnapshots
 			// 
 			this.pbNoSnapshots.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoSnapshots.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.SnapshotNoRecords;
+			this.pbNoSnapshots.Image = global::Asa.Media.Controls.Properties.Resources.SnapshotNoRecords;
 			this.pbNoSnapshots.Location = new System.Drawing.Point(40, 20);
 			this.pbNoSnapshots.Name = "pbNoSnapshots";
 			this.pbNoSnapshots.Size = new System.Drawing.Size(140, 60);
@@ -1049,7 +1049,7 @@
 		private System.Windows.Forms.Panel pnTotalSpots;
 		private System.Windows.Forms.Label laTotalSpotsValue;
 		private System.Windows.Forms.Label laTotalSpotsTitle;
-		protected CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
+		protected Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		protected DevExpress.XtraTab.XtraTabControl xtraTabControlOptions;
 		protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsInfo;
 		private System.Windows.Forms.Panel pnOptionsInfo;
@@ -1090,7 +1090,7 @@
 		private System.Windows.Forms.Label laTotalCostTitle;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
-		private CommonGUI.OutputColors.OutputColorSelector outputColorSelector;
+		private Common.GUI.OutputColors.OutputColorSelector outputColorSelector;
 		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsActiveWeeks;
 		public DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxActiveWeeks;

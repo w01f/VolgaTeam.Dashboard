@@ -4,72 +4,34 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
+using Asa.Business.Calendar.Configuration;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Calendar;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Entities.Persistent;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.ToolForms;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
-using Asa.CommonGUI.Preview;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using ScheduleManager = Asa.Core.MediaSchedule.ScheduleManager;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
-	public abstract class MediaCalendarControl : BaseCalendarControl
+	public abstract class MediaCalendarControl : BaseCalendarControl<MediaCalendar, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
 	{
-		protected RegularSchedule _localSchedule;
+		protected abstract bool IsContentChanged { get; }
 
-		protected MediaCalendarControl()
+		protected MediaSchedule Schedule
 		{
-			Dock = DockStyle.Fill;
-			hyperLinkEditReset.Visible = true;
-			hyperLinkEditReset.OpenLink += OnReset;
-			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
-			{
-				if (sender != this)
-				{
-					LoadCalendar(e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged);
-					CalendarUpdated = e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged;
-				}
-			});
+			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
 		}
 
-		public bool AllowToLeaveControl
-		{
-			get
-			{
-				bool result;
-				if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
-				{
-					SaveCalendarData(false);
-					result = true;
-				}
-				else
-					result = true;
-				return result;
-			}
-		}
-
-		public override ISchedule Schedule
-		{
-			get { return _localSchedule; }
-		}
-
-		public override Form FormMain
+		protected override Form FormMain
 		{
 			get { return Controller.Instance.FormMain; }
-		}
-
-		public override RibbonControl Ribbon
-		{
-			get { return Controller.Instance.Ribbon; }
-		}
-
-		public override ButtonItem ThemeButton
-		{
-			get { throw new NotImplementedException(); }
 		}
 
 		public override CalendarSettings CalendarSettings
@@ -77,22 +39,45 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			get { return MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings; }
 		}
 
-		protected abstract RibbonTabItem CalendarTab { get; }
-
-		public override void LoadCalendar(bool quickLoad)
+		#region BasePartitionEditControl Override
+		public override void InitControl()
 		{
-			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
-			base.LoadCalendar(quickLoad);
+			base.InitControl();
+			hyperLinkEditReset.Visible = true;
+			hyperLinkEditReset.OpenLink += OnReset;
 		}
 
-		public override bool SaveCalendarData(bool byUser, string scheduleName = "")
+		protected override void UpdateEditedContet()
 		{
-			var result = base.SaveCalendarData(byUser, scheduleName);
-			var nameChanged = !string.IsNullOrEmpty(scheduleName);
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, false, this);
-			return result;
+			if (IsContentChanged)
+			{
+				if (EditedContent != null)
+				{
+					ReleaseControls();
+					EditedContent.Dispose();
+				}
+				EditedContent = GetEditedCalendar();
+				base.UpdateEditedContet();
+			}
 		}
 
+		public abstract MediaCalendar GetEditedCalendar();
+
+		protected void Reset()
+		{
+			Splash(true);
+			FormProgress.ShowProgress("Loading Data...", () =>
+			{
+				ReleaseControls();
+				EditedContent.Reset();
+				base.UpdateEditedContet();
+			});
+			Splash(false);
+			SettingsNotSaved = true;
+		}
+		#endregion
+
+		#region ICalendarControl Members
 		public override ColorSchema GetColorSchema(string colorName)
 		{
 			return BusinessObjects.Instance.OutputManager.CalendarColors.Items
@@ -110,39 +95,20 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 		{
 			BusinessObjects.Instance.HelpManager.OpenHelpLink(key);
 		}
+		#endregion
 
-		public override void TrackActivity(UserActivity activity)
+		#region Event Handlers
+		protected void OnReset(object sender, EventArgs e)
 		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you SURE you want to RESET your calendar to the default Information?") != DialogResult.Yes) return;
+			Reset();
 		}
+		#endregion
 
-		private void OnReset(object sender, EventArgs e)
-		{
-			if (Utilities.Instance.ShowWarningQuestion("Are you SURE you want to RESET your calendar to the default Information?") != DialogResult.Yes) return;
-			CalendarData.Reset();
-			base.LoadCalendar(false);
-			MonthList_SelectedIndexChanged(MonthList, EventArgs.Empty);
-			SettingsNotSaved = true;
-		}
-
-		protected void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", CalendarTab.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
-		}
-
-		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
+		#region Output Staff
+		protected override void OutpuPowerPointSlides(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			TrackOutput();
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
@@ -154,93 +120,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			});
 		}
 
-		protected override void EmailInternal(IEnumerable<CalendarOutputData> outputData)
+		protected override void OutputPdfSlides(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			var previewGroups = new List<PreviewGroup>();
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Email...");
-			FormProgress.ShowProgress();
-			Enabled = false;
-			foreach (var outputItem in outputData)
-			{
-				var previewGroup = new PreviewGroup
-				{
-					Name = outputItem.MonthText,
-					PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-				};
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-				previewGroups.Add(previewGroup);
-			}
-			Enabled = true;
-			FormProgress.CloseProgress();
-
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
-			{
-				formEmail.Text = "Email this Calendar";
-				formEmail.LoadGroups(previewGroups);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-			}
-		}
-
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", CalendarTab.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
-		}
-
-		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
-		{
-			if (outputData == null) return;
-			var previewGroups = new List<PreviewGroup>();
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Preview...");
-			FormProgress.ShowProgress();
-			Enabled = false;
-			foreach (var outputItem in outputData)
-			{
-				var previewGroup = new PreviewGroup
-				{
-					Name = outputItem.MonthText,
-					PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-				};
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
-				previewGroups.Add(previewGroup);
-			}
-			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			Enabled = true;
-			FormProgress.CloseProgress();
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
-			{
-				formPreview.Text = "Preview this Calendar";
-				formPreview.LoadGroups(previewGroups);
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			}
-		}
-
-		protected override void PdfInternal(IEnumerable<CalendarOutputData> outputData)
-		{
-			if (outputData == null) return;
-			TrackOutput();
 			var previewGroups = new List<PreviewGroup>();
 			Controller.Instance.ShowFloater(() =>
 			{
@@ -252,12 +134,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 					var previewGroup = new PreviewGroup
 					{
 						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 					};
 					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
 				}
-				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
 				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try
@@ -270,82 +152,74 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			});
 		}
 
-		#region Copy-Paste Methods and Event Handlers
-		public void CalendarCopy_Click(object sender, EventArgs e)
+		protected override void PreviewSlides(IEnumerable<CalendarOutputData> outputData)
 		{
-			SelectedView.CopyDay();
-		}
-
-		public void CalendarPaste_Click(object sender, EventArgs e)
-		{
-			SelectedView.PasteDay();
-		}
-
-		public void CalendarClone_Click(object sender, EventArgs e)
-		{
-			SelectedView.CloneDay();
-		}
-		#endregion
-
-		#region Ribbon Operations Events
-		public void MonthList_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (MonthList.SelectedIndex < 0 || !AllowToSave) return;
-			SlideInfo.LoadData(CalendarData.Months[MonthList.SelectedIndex]);
-			Splash(true);
-			SelectedView.ChangeMonth(CalendarData.Months[MonthList.SelectedIndex].Date);
-			Splash(false);
-			CalendarSettings.SelectedMonth = CalendarData.Months[MonthList.SelectedIndex].Date;
-		}
-
-		public void Save_Click(object sender, EventArgs e)
-		{
-			if (SaveCalendarData(true))
-				Utilities.Instance.ShowInformation("Calendar Saved");
-		}
-
-		public void SaveAs_Click(object sender, EventArgs e)
-		{
-			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
+			if (outputData == null) return;
+			var previewGroups = new List<PreviewGroup>();
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Preview...");
+			FormProgress.ShowProgress();
+			Enabled = false;
+			foreach (var outputItem in outputData)
 			{
-				form.Text = "Save Schedule";
-				form.laLogo.Text = "Please set a new name for your Schedule:";
-				if (form.ShowDialog() != DialogResult.OK) return;
-				if (!string.IsNullOrEmpty(form.ScheduleName))
+				var previewGroup = new PreviewGroup
 				{
-					if (SaveCalendarData(true, form.ScheduleName))
-						Utilities.Instance.ShowInformation("Schedule was saved");
-				}
-				else
-					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
+					Name = outputItem.MonthText,
+					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				};
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				previewGroups.Add(previewGroup);
+			}
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Enabled = true;
+			FormProgress.CloseProgress();
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
+			{
+				formPreview.Text = "Preview this Calendar";
+				formPreview.LoadGroups(previewGroups);
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				var previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			}
 		}
 
-		public void Preview_Click(object sender, EventArgs e)
+		protected override void EmailSlides(IEnumerable<CalendarOutputData> outputData)
 		{
-			SaveCalendarData(false);
-			Preview();
-		}
+			if (outputData == null) return;
+			var previewGroups = new List<PreviewGroup>();
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Email...");
+			FormProgress.ShowProgress();
+			Enabled = false;
+			foreach (var outputItem in outputData)
+			{
+				var previewGroup = new PreviewGroup
+				{
+					Name = outputItem.MonthText,
+					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				};
+				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				previewGroups.Add(previewGroup);
+			}
+			Enabled = true;
+			FormProgress.CloseProgress();
 
-		public void PowerPoint_Click(object sender, EventArgs e)
-		{
-			SaveCalendarData(false);
-			Print();
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
+			{
+				formEmail.Text = "Email this Calendar";
+				formEmail.LoadGroups(previewGroups);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+			}
 		}
-
-		public void Email_Click(object sender, EventArgs e)
-		{
-			SaveCalendarData(false);
-			Email();
-		}
-
-		public void Pdf_Click(object sender, EventArgs e)
-		{
-			SaveCalendarData(false);
-			PrintPdf();
-		}
-
-		public abstract void Help_Click(object sender, EventArgs e);
 		#endregion
 	}
 }

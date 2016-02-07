@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Media.Controls.InteropClasses;
 
-namespace Asa.MediaSchedule.Single.TV
+namespace Asa.Media.Single.TV
 {
 	static class Program
 	{
-		private static Mutex _mutex;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -18,7 +17,7 @@ namespace Asa.MediaSchedule.Single.TV
 		{
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\TVSellerApplication";
-			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			var mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
@@ -28,9 +27,10 @@ namespace Asa.MediaSchedule.Single.TV
 			}
 			else
 			{
-				Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
+				Utilities.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}
+			GC.KeepAlive(mutex);
 		}
 	}
 }

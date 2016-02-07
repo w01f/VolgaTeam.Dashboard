@@ -1,4 +1,4 @@
-﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses
+﻿namespace Asa.Online.Controls.PresentationClasses.AdPlan
 {
 	abstract partial class AdPlanControl
     {
@@ -36,7 +36,7 @@
 			this.labelOutputOptionsTitle = new System.Windows.Forms.Label();
 			this.laAdvertiser = new System.Windows.Forms.Label();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
-			this.retractableBar = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBar = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.pnTopHeader.SuspendLayout();
 			this.pnOutputOptions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLessSlides.Properties)).BeginInit();
@@ -177,7 +177,7 @@
 		private DevExpress.XtraEditors.CheckEdit checkEditLessSlides;
 		private DevExpress.XtraEditors.CheckEdit checkEditMoreSlides;
 		private System.Windows.Forms.Label labelOutputOptionsTitle;
-		private CommonGUI.RetractableBar.RetractableBarLeft retractableBar;
+		private Asa.Common.GUI.RetractableBar.RetractableBarLeft retractableBar;
 
     }
 }

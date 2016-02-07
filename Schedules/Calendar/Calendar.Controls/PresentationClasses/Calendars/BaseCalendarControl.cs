@@ -3,65 +3,127 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Calendar.Configuration;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Calendar.Interfaces;
+using Asa.Business.Common.Entities.NonPersistent.Schedule;
+using Asa.Business.Common.Interfaces;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.GUI.ContentEditors.Controls;
+using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
 using Asa.Calendar.Controls.PresentationClasses.Views;
-using Asa.Calendar.Controls.PresentationClasses.Views.GridView;
 using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	[ToolboxItem(false)]
-	public partial class BaseCalendarControl : UserControl, ICalendarControl
+	public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>, ICalendarControl
+		where TPartitionContet : BaseSchedulePartitionContent<TSchedule, TScheduleSettings>, ICalendarContent
+		where TSchedule : ISchedule<TScheduleSettings>
+		where TScheduleSettings : IBaseScheduleSettings
+		where TChangeInfo : BaseScheduleChangeInfo
 	{
-		public bool CalendarUpdated { get; set; }
+		protected abstract Form FormMain { get; }
+		protected abstract RibbonControl Ribbon { get; }
+		protected abstract ImageListBoxControl MonthList { get; }
 
-		public BaseCalendarControl()
+		#region ICalendarControl Members
+		public bool AllowToSave { get; set; }
+		public abstract CalendarSettings CalendarSettings { get; }
+		public ICalendarContent CalendarContent
+		{
+			get { return EditedContent; }
+		}
+		public IView CalendarView { get; private set; }
+		public SlideInfoWrapper SlideInfo { get; private set; }
+
+		public abstract ButtonItem CopyButton { get; }
+		public abstract ButtonItem PasteButton { get; }
+		public abstract ButtonItem CloneButton { get; }
+		#endregion
+
+		protected BaseCalendarControl()
 		{
 			InitializeComponent();
+		}
+
+		#region BasePartitionEditControl Override
+		public override void InitControl()
+		{
+			base.InitControl();
+
 			pnEmpty.Dock = DockStyle.Fill;
 			pnMain.Dock = DockStyle.Fill;
 			pictureBoxNoData.Dock = DockStyle.Fill;
+
+			CalendarView = new MonthViewControl(this);
+			CalendarView.DataSaved += OnDataChanged;
+			pnMain.Controls.Add((Control)CalendarView);
+
 			if ((CreateGraphics()).DpiX > 96) { }
-			Splash(true);
 
-			#region Month View Initialization
-			MonthView = new MonthViewControl(this);
-			MonthView.DataSaved += (sender, e) =>
-									   {
-										   GridView.RefreshData();
-										   SettingsNotSaved = true;
-									   };
-			#endregion
-
-			#region Grid  View Initialization
-			GridView = new GridViewControl(this);
-			GridView.DataSaved += (sender, e) =>
-									  {
-										  MonthView.RefreshData();
-										  SettingsNotSaved = true;
-									  };
-			pnMain.Controls.Add(MonthView);
-			pnMain.Controls.Add(GridView);
-			#endregion
+			MonthList.SelectedIndexChanged += OnMonthListSelectedIndexChanged;
+			CopyButton.Click += OnCalendarCopyClick;
+			PasteButton.Click += OnCalendarPasteClick;
+			CloneButton.Click += OnCalendarCloneClick;
 		}
+
+		protected override void UpdateEditedContet()
+		{
+			AllowToSave = false;
+
+			labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
+				CalendarContent.Settings.BusinessName,
+				CalendarContent.Settings.FlightDates,
+				String.Format("{0} {1}s", CalendarContent.Settings.TotalWeeks, "week"));
+
+			if (!CalendarContent.Months.Any()) return;
+
+			MonthList.Items.AddRange(CalendarContent.Months.Select(x => new ImageListBoxItem(x.Date.ToString("MMM, yyyy"), 0)).ToArray());
+			var selectedIndex = CalendarContent.Months
+				.Select(m => m.Date)
+				.ToList()
+				.IndexOf(CalendarSettings.SelectedMonth);
+			MonthList.SelectedIndex = selectedIndex > 0 ? selectedIndex : 0;
+
+			CalendarView.LoadData();
+			CalendarView = CalendarView;
+			CalendarView.ChangeMonth(CalendarContent.Months[MonthList.SelectedIndex].Date);
+			((Control)CalendarView).BringToFront();
+
+			SlideInfo.LoadVisibilitySettings();
+			SlideInfo.LoadData(CalendarContent.Months[MonthList.SelectedIndex], false);
+
+			UpdateOutputFunctions();
+
+			AllowToSave = true;
+		}
+
+		protected override void ApplyChanges()
+		{
+			CalendarView.Save();
+			SlideInfo.SaveData();
+		}
+		#endregion
+
+		#region ICalendarControl Members
+		public abstract void OpenHelp(string key);
+		public abstract void SaveSettings();
+		public abstract ColorSchema GetColorSchema(string colorName);
+		#endregion
 
 		#region Common Methods
 		public void Splash(bool show)
 		{
-			if (show)
-			{
-				pnEmpty.BringToFront();
-			}
-			else
-			{
-				pnMain.BringToFront();
-			}
+			if (show) { pnEmpty.BringToFront(); }
+			else { pnMain.BringToFront(); }
+			Ribbon.Enabled = !show;
+			SlideInfo.ContainedControl.Enabled = !show;
 		}
 
 		public void AssignCloseActiveEditorsonOutSideClick(Control control)
@@ -83,78 +145,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			Ribbon.Focus();
-		}
-
-		public void LeaveCalendar()
-		{
-			if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
-				SaveCalendarData(false);
-		}
-
-		public virtual void ShowCalendar(bool gridView)
-		{
-			AllowToSave = false;
-			MonthList.Items.Clear();
-			MonthList.Items.AddRange(CalendarData.Months.Select(x => new ImageListBoxItem(x.Date.ToString("MMM, yyyy"), 0)).ToArray());
-			var selectedIndex = CalendarData.Months.Select(m => m.Date).ToList().IndexOf(CalendarSettings.SelectedMonth);
-			selectedIndex = selectedIndex > 0 ? selectedIndex : 0;
-			if (MonthList.Items.Count > 0)
-				MonthList.SelectedIndex = selectedIndex;
-
-			if (SelectedView != null)
-			{
-				if (SelectedView.SettingsNotSaved)
-					SelectedView.Save();
-				SelectedView.CopyPasteManager.ResetCopy();
-				SelectedView.CopyPasteManager.ResetPaste();
-			}
-			if (gridView)
-			{
-				SelectedView = GridView;
-				GridView.BringToFront();
-			}
-			else
-			{
-				SelectedView = MonthView;
-				MonthView.BringToFront();
-			}
-
-			if (CalendarData.Months.Count > 0)
-			{
-				Splash(true);
-				SelectedView.ChangeMonth(CalendarData.Months[MonthList.SelectedIndex].Date);
-				SlideInfo.LoadData(CalendarData.Months[MonthList.SelectedIndex]);
-				SlideInfo.LoadVisibilitySettings();
-				Splash(false);
-			}
-			UpdateOutputFunctions();
-
-			AllowToSave = true;
-		}
-
-		public virtual bool SaveCalendarData(bool byUser, string scheduleName = "")
-		{
-			SelectedView.Save();
-			SlideInfo.SaveData();
-			if (!string.IsNullOrEmpty(scheduleName))
-				Schedule.Name = scheduleName;
-			SettingsNotSaved = false;
-			return true;
-		}
-
-		public virtual void LoadCalendar(bool quickLoad)
-		{
-			labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
-				CalendarData.Schedule.BusinessName,
-				CalendarData.Schedule.FlightDates,
-				String.Format("{0} {1}s", CalendarData.Schedule.TotalWeeks, "week"));
-
-			MonthView.LoadData(quickLoad);
-			GridView.LoadData(quickLoad);
-			SlideInfo.LoadData(allowToSave: false);
-
-			SettingsNotSaved = false;
+			MonthList.Focus();
 		}
 
 		protected void InitSlideInfo<TControl>() where TControl : ISlideInfoControl
@@ -166,35 +157,74 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			retractableBarControl.AddButtons(SlideInfo.SlideInfoControl.GetChapters());
 			SlideInfo.PropertyChanged += (sender, e) =>
 			{
-				MonthView.RefreshData();
+				CalendarView.RefreshData();
 				SettingsNotSaved = true;
 			};
+		}
+
+		protected void OnDataChanged(object sender, EventArgs e)
+		{
+			SettingsNotSaved = true;
+		}
+
+		protected void ReleaseControls()
+		{
+			MonthList.Items.Clear();
+			CalendarView.Release();
+			SlideInfo.Release();
+		}
+
+		protected void OnMonthListSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (MonthList.SelectedIndex < 0 || !AllowToSave) return;
+			SlideInfo.LoadData(CalendarContent.Months[MonthList.SelectedIndex]);
+			Splash(true);
+			Application.DoEvents();
+			FormProgress.ShowProgress("Loading Data...", () => CalendarView.ChangeMonth(CalendarContent.Months[MonthList.SelectedIndex].Date));
+			Splash(false);
+			CalendarSettings.SelectedMonth = CalendarContent.Months[MonthList.SelectedIndex].Date;
+		}
+		protected void OnCalendarCopyClick(object sender, EventArgs e)
+		{
+			CalendarView.CopyDay();
+		}
+
+		protected void OnCalendarPasteClick(object sender, EventArgs e)
+		{
+			CalendarView.PasteDay();
+		}
+
+		protected void OnCalendarCloneClick(object sender, EventArgs e)
+		{
+			CalendarView.CloneDay();
 		}
 		#endregion
 
 		#region Output Staff
-		public virtual void UpdateOutputFunctions()
+		protected abstract void OutpuPowerPointSlides(IEnumerable<CalendarOutputData> outputData);
+		protected abstract void EmailSlides(IEnumerable<CalendarOutputData> outputData);
+		protected abstract void PreviewSlides(IEnumerable<CalendarOutputData> outputData);
+		protected abstract void OutputPdfSlides(IEnumerable<CalendarOutputData> outputData);
+
+		public abstract void UpdateOutputFunctions();
+
+		protected virtual bool IsOutputEnabled
 		{
-			var enable = CalendarData.Months.SelectMany(m => m.Days).Any(d => d.ContainsData || d.HasNotes);
-			PreviewButton.Enabled = enable;
-			EmailButton.Enabled = enable;
-			PowerPointButton.Enabled = enable;
-			if (PdfButton != null)
-				PdfButton.Enabled = enable;
+			get { return CalendarContent.Months.SelectMany(m => m.Days).Any(d => d.ContainsData || d.HasNotes); }
 		}
 
-		public void Print()
+		public override void OutputPowerPoint()
 		{
 			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarData.Months)
+			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarData.Months.Count > 1)
+			if (CalendarContent.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -210,23 +240,23 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarData.Months);
+				selectedMonths.AddRange(CalendarContent.Months);
 			if (!selectedMonths.Any()) return;
-			PowerPointInternal(selectedMonths.Select(m => m.OutputData));
+			OutpuPowerPointSlides(selectedMonths.Select(m => m.OutputData));
 		}
 
-		public void Email()
+		public override void OutputPdf()
 		{
 			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarData.Months)
+			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarData.Months.Count > 1)
+			if (CalendarContent.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -242,23 +272,23 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarData.Months);
+				selectedMonths.AddRange(CalendarContent.Months);
 			if (!selectedMonths.Any()) return;
-			EmailInternal(selectedMonths.Select(m => m.OutputData));
+			OutputPdfSlides(selectedMonths.Select(m => m.OutputData));
 		}
 
-		public void Preview()
+		public override void Preview()
 		{
 			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarData.Months)
+			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarData.Months.Count > 1)
+			if (CalendarContent.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -274,23 +304,23 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarData.Months);
+				selectedMonths.AddRange(CalendarContent.Months);
 			if (!selectedMonths.Any()) return;
-			PreviewInternal(selectedMonths.Select(m => m.OutputData));
+			PreviewSlides(selectedMonths.Select(m => m.OutputData));
 		}
 
-		public void PrintPdf()
+		public override void Email()
 		{
 			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarData.Months)
+			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarData.Months.Count > 1)
+			if (CalendarContent.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -306,125 +336,10 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarData.Months);
+				selectedMonths.AddRange(CalendarContent.Months);
 			if (!selectedMonths.Any()) return;
-			PdfInternal(selectedMonths.Select(m => m.OutputData));
+			EmailSlides(selectedMonths.Select(m => m.OutputData));
 		}
 		#endregion
-
-		public MonthViewControl MonthView { get; private set; }
-		public GridViewControl GridView { get; private set; }
-
-		#region ICalendarControl Members
-		public IView SelectedView { get; private set; }
-
-		public SlideInfoWrapper SlideInfo { get; private set; }
-
-		public bool AllowToSave { get; set; }
-		public bool SettingsNotSaved { get; set; }
-
-		public virtual Core.Calendar.Calendar CalendarData
-		{
-			get { return null; }
-		}
-
-		public virtual CalendarSettings CalendarSettings
-		{
-			get { return null; }
-		}
-		#endregion
-
-		public virtual ISchedule Schedule
-		{
-			get { return null; }
-		}
-
-		public virtual Form FormMain
-		{
-			get { return null; }
-		}
-
-		public virtual RibbonControl Ribbon
-		{
-			get { return null; }
-		}
-
-		public virtual ImageListBoxControl MonthList
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem PreviewButton
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem EmailButton
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem PowerPointButton
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem PdfButton
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem ThemeButton
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem CopyButton
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem PasteButton
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem CloneButton
-		{
-			get { return null; }
-		}
-
-		public virtual void OpenHelp(string key)
-		{
-			throw new NotImplementedException();
-		}
-		public virtual void SaveSettings()
-		{
-			throw new NotImplementedException();
-		}
-		public virtual ColorSchema GetColorSchema(string colorName)
-		{
-			throw new NotImplementedException();
-		}
-		public virtual void TrackActivity(UserActivity activity)
-		{
-			throw new NotImplementedException();
-		}
-		protected virtual void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
-		{
-			throw new NotImplementedException();
-		}
-		protected virtual void EmailInternal(IEnumerable<CalendarOutputData> outputData)
-		{
-			throw new NotImplementedException();
-		}
-		protected virtual void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
-		{
-			throw new NotImplementedException();
-		}
-		protected virtual void PdfInternal(IEnumerable<CalendarOutputData> outputData)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

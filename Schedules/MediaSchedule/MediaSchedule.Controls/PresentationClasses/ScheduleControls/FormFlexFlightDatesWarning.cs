@@ -1,4 +1,4 @@
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class FormFlexFlightDatesWarning : DevComponents.DotNetBar.Metro.MetroForm
 	{

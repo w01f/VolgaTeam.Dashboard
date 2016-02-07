@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.CommonGUI.Common;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.GUI.Common;
 using DevComponents.DotNetBar;
 using Asa.Calendar.Controls.ToolForms;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
 using Padding = System.Windows.Forms.Padding;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
@@ -19,7 +22,29 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		private bool _isCopySource;
 		private bool _isSelected;
 		private ColorSchema _colorSchema = new ColorSchema();
-		private readonly SuperTooltipInfo _tooltip = new SuperTooltipInfo();
+		private SuperTooltipInfo _tooltip = new SuperTooltipInfo();
+
+		public CalendarDay Day { get; set; }
+
+		public bool RaiseEvents { get; set; }
+		public bool AllowToPasteNote { get; set; }
+		public bool MultiSelectEnabled { get; set; }
+		public event EventHandler<SelectDayEventArgs> DaySelected;
+		public event EventHandler<EventArgs> DayCopied;
+		public event EventHandler<EventArgs> DayPasted;
+		public event EventHandler<EventArgs> DayCloned;
+		public event EventHandler<EventArgs> DayDataDeleted;
+		public event EventHandler<EventArgs> DataChanged;
+
+		public event EventHandler<EventArgs> SelectionStateRequested;
+		public event EventHandler<MouseEventArgs> DayMouseMove;
+
+		public event EventHandler<EventArgs> NoteAdded;
+		public event EventHandler<EventArgs> NotePasted;
+
+		public event EventHandler<EventArgs> ImageCopied;
+		public event EventHandler<EventArgs> ImagePasted;
+		public event EventHandler<EventArgs> ImageDeleted;
 
 		public DayControl(CalendarDay day)
 		{
@@ -33,7 +58,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			memoEditSimpleComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
 
 			toolStripMenuItemAddNote.Visible = toolStripMenuItemPasteNote.Visible = toolStripSeparator1.Visible = Day.Parent.AllowCustomNotes;
-
 		}
 
 		#region Common Methods
@@ -53,6 +77,29 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			RefreshColor();
 			UpdateTooltip();
 			_allowToSave = true;
+		}
+
+		public void Release()
+		{
+			DaySelected = null;
+			DayCopied = null;
+			DayPasted = null;
+			DayCloned = null;
+			DayDataDeleted = null;
+			DataChanged = null;
+
+			SelectionStateRequested = null;
+			DayMouseMove = null;
+
+			NoteAdded = null;
+			NotePasted = null;
+
+			ImageCopied = null;
+			ImagePasted = null;
+			ImageDeleted = null;
+
+			_tooltip = null;
+			Day = null;
 		}
 
 		public void RefreshColor()
@@ -118,13 +165,13 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			Refresh();
 		}
 
-		public void UpdateNoteMenuAccordingSelection(CalendarDay[] selectedDays)
+		public void UpdateNoteMenuAccordingSelection(IEnumerable<CalendarDay> selectedDays)
 		{
 			toolStripMenuItemAddNote.Text = "Add Note";
 			toolStripMenuItemAddNote.Enabled = false;
 			toolStripMenuItemPasteNote.Text = "Paste Note";
 			toolStripMenuItemPasteNote.Enabled = false;
-			if (selectedDays.Length <= 1) return;
+			if (selectedDays.Count() <= 1) return;
 			var noteDateRange = Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
 			if (noteDateRange == null) return;
 			toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.Value.ToString("MM/dd"), noteDateRange.FinishDate.Value.ToString("MM/dd") });
@@ -162,13 +209,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (DayMouseMove != null)
 				DayMouseMove(this, e);
 		}
-		private void DayControl_MouseHover(object sender, EventArgs e)
-		{
-			//if(!Day.ContainsData) return;
-			//var control = (Control)sender;
-			//superTooltip.SetSuperTooltip(control, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
-			//superTooltip.ShowTooltip(sender,Cursor.Position);
-		}
 		#endregion
 
 		#region Copy\Paste Methods
@@ -202,7 +242,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			var imageSource = e.Data.GetData(typeof(ImageSource)) as ImageSource;
 			if (imageSource == null) return;
-			Day.Logo = imageSource.Clone();
+			Day.Logo = imageSource.Clone<ImageSource, ImageSource>();
 			RefreshData(_colorSchema);
 			if (DataChanged != null)
 				DataChanged(this, new EventArgs());
@@ -218,7 +258,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				SelectionStateRequested(sender, new EventArgs());
 			toolStripMenuItemCopyImage.Enabled = Day.Logo.ContainsData;
 			toolStripMenuItemDeleteImage.Enabled = Day.Logo.ContainsData;
-			var clipBoardImage = Utilities.Instance.GetImageFormClipboard();
+			var clipBoardImage = ClipboardHelper.GetImageFormClipboard();
 			toolStripMenuItemPasteImage.Enabled = clipBoardImage != null || Clipboard.ContainsText(TextDataFormat.Html);
 		}
 
@@ -311,28 +351,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			labelControlData.Visible = true;
 		}
 		#endregion
-
-		public CalendarDay Day { get; set; }
-
-		public bool RaiseEvents { get; set; }
-		public bool AllowToPasteNote { get; set; }
-		public bool MultiSelectEnabled { get; set; }
-		public event EventHandler<SelectDayEventArgs> DaySelected;
-		public event EventHandler<EventArgs> DayCopied;
-		public event EventHandler<EventArgs> DayPasted;
-		public event EventHandler<EventArgs> DayCloned;
-		public event EventHandler<EventArgs> DayDataDeleted;
-		public event EventHandler<EventArgs> DataChanged;
-
-		public event EventHandler<EventArgs> SelectionStateRequested;
-		public event EventHandler<MouseEventArgs> DayMouseMove;
-
-		public event EventHandler<EventArgs> NoteAdded;
-		public event EventHandler<EventArgs> NotePasted;
-
-		public event EventHandler<EventArgs> ImageCopied;
-		public event EventHandler<EventArgs> ImagePasted;
-		public event EventHandler<EventArgs> ImageDeleted;
 	}
 
 	public class SelectDayEventArgs : EventArgs

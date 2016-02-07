@@ -1,7 +1,7 @@
 using System;
-using Asa.CommonGUI.Common;
+using Asa.Common.GUI.Common;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class FormOutputSettings : DevComponents.DotNetBar.Metro.MetroForm
 	{

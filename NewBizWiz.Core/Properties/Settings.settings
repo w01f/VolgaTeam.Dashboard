@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Asa.Core.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="Asa_Core_AdSalesDataControllerService_AdSalesDataControllerService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost/SalesLibraries/adSalesData/quote?ws=1</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>

@@ -1,6 +1,8 @@
-﻿namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
+﻿using Asa.Business.Common.Interfaces;
+
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
-    partial class MonthControl
+	partial class MonthControl
     {
         /// <summary> 
         /// Required designer variable.

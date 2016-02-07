@@ -5,18 +5,18 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.Core.OfficeInterops;
 
-namespace Asa.MediaSchedule.Controls.InteropClasses
+namespace Asa.Media.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
-		public void AppendSnapshot(IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
+		public void AppendSnapshot(IEnumerable<ISnapshotSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -190,7 +190,7 @@ namespace Asa.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareSnapshotEmail(string fileName, IEnumerable<ISnapshotSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareSnapshotEmail(string fileName, IEnumerable<ISnapshotSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendSnapshot(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}

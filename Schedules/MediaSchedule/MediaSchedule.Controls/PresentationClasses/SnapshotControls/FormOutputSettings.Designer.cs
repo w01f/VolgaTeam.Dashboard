@@ -1,4 +1,4 @@
-namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	partial class FormOutputSettings
 	{

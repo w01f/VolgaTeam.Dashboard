@@ -5,18 +5,18 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.PresentationClasses.OptionsControls;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.Core.OfficeInterops;
 
-namespace Asa.MediaSchedule.Controls.InteropClasses
+namespace Asa.Media.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
-		public void AppendOptions(IEnumerable<IOptionsSlide> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
+		public void AppendOptions(IEnumerable<IOptionsSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -154,7 +154,7 @@ namespace Asa.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareOptionsEmail(string fileName, IEnumerable<IOptionsSlide> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareOptionsEmail(string fileName, IEnumerable<IOptionsSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}

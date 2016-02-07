@@ -6,10 +6,11 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.FavoriteImages;
 using Manina.Windows.Forms;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.FavoriteImages;
-using Asa.Core.Common;
 
 namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 {
@@ -177,7 +178,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 		{
 			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
 			if (imageSource == null || !imageSource.ContainsData) return;
-			Clipboard.SetText(String.Format("<ImageSource>{0}</ImageSource>", imageSource.Serialize()), TextDataFormat.Html);
+			Clipboard.SetText(imageSource.Serialize(), TextDataFormat.Html);
 			_menuHitInfo = null;
 		}
 
@@ -194,7 +195,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 				imageName = form.ImageName;
 			}
 			FavoriteImagesManager.Instance.SaveImage(imageSource.BigImage, imageName);
-			Utilities.Instance.ShowInformation("Image successfully added to Favorites");
+			PopupMessageHelper.Instance.ShowInformation("Image successfully added to Favorites");
 			_menuHitInfo = null;
 		}
 	}

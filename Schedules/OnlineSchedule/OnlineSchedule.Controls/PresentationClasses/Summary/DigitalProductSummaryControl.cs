@@ -4,18 +4,19 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Online.Controls.PresentationClasses.Products;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 
-namespace Asa.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.Online.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
-	public partial class DigitalProductSummaryControl : UserControl
+	public partial class DigitalProductSummaryControl: UserControl
 	{
-		private readonly DigitalProductControl _parent;
+		private IDigitalProductControl _parent;
 
-		public DigitalProductSummaryControl(DigitalProductControl parent)
+		public DigitalProductSummaryControl(IDigitalProductControl parent)
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
@@ -88,6 +89,11 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 				checkEditInvDetails.Visible = false;
 				checkEditInvDetails.Checked = false;
 			}
+		}
+
+		public void Release()
+		{
+			_parent = null;
 		}
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)

@@ -1,44 +1,32 @@
-﻿using System;
+﻿using Asa.Business.Common.Enums;
+using Asa.Business.Media.Entities.NonPersistent.Calendar;
+using Asa.Common.Core.Helpers;
+using Asa.Media.Controls.BusinessClasses;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	public class CustomCalendarControl : MediaCalendarControl
 	{
-		public CustomCalendarControl()
+		public override string Identifier
 		{
-			InitSlideInfo<CalendarSlideInfoControl>();
+			get { return ContentIdentifiers.CustomCalendar; }
 		}
 
-		public override Core.Calendar.Calendar CalendarData
+		public override RibbonTabItem TabPage
 		{
-			get { return _localSchedule.CustomCalendar; }
+			get { return Controller.Instance.TabCalendar2; }
 		}
 
-		public override ImageListBoxControl MonthList
+		protected override RibbonControl Ribbon
+		{
+			get { return Controller.Instance.Ribbon; }
+		}
+
+		protected override ImageListBoxControl MonthList
 		{
 			get { return Controller.Instance.Calendar2MonthsList; }
-		}
-
-		public override ButtonItem PreviewButton
-		{
-			get { return Controller.Instance.Calendar2Preview; }
-		}
-
-		public override ButtonItem EmailButton
-		{
-			get { return Controller.Instance.Calendar2Email; }
-		}
-
-		public override ButtonItem PowerPointButton
-		{
-			get { return Controller.Instance.Calendar2PowerPoint; }
-		}
-
-		public override ButtonItem PdfButton
-		{
-			get { return Controller.Instance.Calendar2Pdf; }
 		}
 
 		public override ButtonItem CopyButton
@@ -56,14 +44,60 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			get { return Controller.Instance.Calendar2Clone; }
 		}
 
-		protected override RibbonTabItem CalendarTab
+		#region BasePartitionEditControl Override
+		protected override bool IsContentChanged
 		{
-			get { return Controller.Instance.TabCalendar2; }
+			get
+			{
+				return EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
+					ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+					ContentUpdateInfo.ChangeInfo.CalendarTypeChanged);
+			}
 		}
 
-		public override void Help_Click(object sender, EventArgs e)
+		public override void InitControl()
+		{
+			base.InitControl();
+			InitSlideInfo<CalendarSlideInfoControl>();
+		}
+
+		protected override void SaveData()
+		{
+			base.SaveData();
+			Schedule.ApplySchedulePartitionContent(
+				SchedulePartitionType.CustomCalendar,
+				((CustomCalendar)EditedContent).Clone<CustomCalendar, CustomCalendar>());
+		}
+
+		public override MediaCalendar GetEditedCalendar()
+		{
+			return Schedule.GetSchedulePartitionContent<CustomCalendar>(
+				SchedulePartitionType.CustomCalendar)
+				.Clone<CustomCalendar, CustomCalendar>();
+		}
+
+		public override void GetHelp()
 		{
 			OpenHelp("calendar2");
 		}
+		#endregion
+
+		#region Output Stuff
+		public override void UpdateOutputFunctions()
+		{
+			var enable = IsOutputEnabled;
+
+			retractableBarControl.Visible = true;
+			MonthList.Enabled = true;
+			pnTop.Visible = true;
+			pnMain.Visible = true;
+			pictureBoxNoData.Visible = false;
+
+			Controller.Instance.Calendar1PowerPoint.Enabled = enable;
+			Controller.Instance.Calendar1Pdf.Enabled = enable;
+			Controller.Instance.Calendar1Preview.Enabled = enable;
+			Controller.Instance.Calendar1Email.Enabled = enable;
+		}
+		#endregion
 	}
 }

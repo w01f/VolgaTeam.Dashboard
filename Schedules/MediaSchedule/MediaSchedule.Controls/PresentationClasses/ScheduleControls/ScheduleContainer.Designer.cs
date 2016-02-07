@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	partial class ScheduleContainer
     {
@@ -36,7 +36,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			this.pnTop = new System.Windows.Forms.Panel();
-			this.quarterSelectorControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
+			this.quarterSelectorControl = new Asa.Media.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
 			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
@@ -84,7 +84,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXLength = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXStation = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageOptionsDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalInfoControl = new Asa.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl();
+			this.digitalInfoControl = new Asa.Media.Controls.PresentationClasses.Digital.DigitalInfoControl();
 			this.xtraTabPageOptionsTotals = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsTotals = new System.Windows.Forms.Panel();
 			this.buttonXDiscount = new DevComponents.DotNetBar.ButtonX();
@@ -97,9 +97,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.buttonXTotalPeriods = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
-			this.outputColorSelector = new Asa.CommonGUI.OutputColors.OutputColorSelector();
+			this.outputColorSelector = new Asa.Common.GUI.OutputColors.OutputColorSelector();
 			this.laColorsTitle = new System.Windows.Forms.Label();
-			this.retractableBarControl = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.pnInfoBottom = new System.Windows.Forms.Panel();
 			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.hyperLinkEditInfoAdvanced = new DevExpress.XtraEditors.HyperLinkEdit();
@@ -507,7 +507,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// pbNoSections
 			// 
 			this.pbNoSections.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoSections.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.SectionNoRecords;
+			this.pbNoSections.Image = global::Asa.Media.Controls.Properties.Resources.SectionNoRecords;
 			this.pbNoSections.Location = new System.Drawing.Point(40, 20);
 			this.pbNoSections.Name = "pbNoSections";
 			this.pbNoSections.Size = new System.Drawing.Size(140, 60);
@@ -1215,16 +1215,16 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private DevComponents.DotNetBar.ButtonX buttonXAvgRate;
 		private DevComponents.DotNetBar.ButtonX buttonXTotalPeriods;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsDigital;
-	    protected Asa.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl digitalInfoControl;
+	    protected Asa.Media.Controls.PresentationClasses.Digital.DigitalInfoControl digitalInfoControl;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsStyle;
 		private System.Windows.Forms.Panel pnStyle;
 		protected System.Windows.Forms.Label laTotalPeriodsTitle;
 		private QuarterSelectorControl quarterSelectorControl;
 		private System.Windows.Forms.Label laColorsTitle;
-	    protected CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
+	    protected Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		private DevExpress.XtraEditors.LabelControl labelControlFlexFlightDatesWarning;
 		private DevComponents.DotNetBar.ButtonX buttonXLogo;
-	    protected CommonGUI.OutputColors.OutputColorSelector outputColorSelector;
+	    protected Common.GUI.OutputColors.OutputColorSelector outputColorSelector;
 	    protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 		private Panel pnInfoBottom;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;

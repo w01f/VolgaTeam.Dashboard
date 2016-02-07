@@ -1,4 +1,4 @@
-﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses
+﻿namespace Asa.Online.Controls.PresentationClasses.AdPlan
 {
 	partial class AdPlanDigitalProductControl
     {
@@ -398,7 +398,7 @@
 			// pbProductTypeLogo
 			// 
 			this.pbProductTypeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbProductTypeLogo.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.AdPlanDigitalProduct;
+			this.pbProductTypeLogo.Image = global::Asa.Online.Controls.Properties.Resources.AdPlanDigitalProduct;
 			this.pbProductTypeLogo.Location = new System.Drawing.Point(864, 385);
 			this.pbProductTypeLogo.Name = "pbProductTypeLogo";
 			this.pbProductTypeLogo.Size = new System.Drawing.Size(72, 72);
@@ -460,7 +460,7 @@
 			// 
 			// pbInvestment
 			// 
-			this.pbInvestment.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.InvestmentDetails;
+			this.pbInvestment.Image = global::Asa.Online.Controls.Properties.Resources.InvestmentDetails;
 			this.pbInvestment.Location = new System.Drawing.Point(38, 364);
 			this.pbInvestment.Name = "pbInvestment";
 			this.pbInvestment.Size = new System.Drawing.Size(41, 41);
@@ -567,7 +567,7 @@
 			// 
 			// pbComments
 			// 
-			this.pbComments.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.Notes;
+			this.pbComments.Image = global::Asa.Online.Controls.Properties.Resources.Notes;
 			this.pbComments.Location = new System.Drawing.Point(38, 194);
 			this.pbComments.Name = "pbComments";
 			this.pbComments.Size = new System.Drawing.Size(41, 41);
@@ -600,7 +600,7 @@
 			// 
 			// pictureBoxDates
 			// 
-			this.pictureBoxDates.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.Calendar;
+			this.pictureBoxDates.Image = global::Asa.Online.Controls.Properties.Resources.Calendar;
 			this.pictureBoxDates.Location = new System.Drawing.Point(38, 93);
 			this.pictureBoxDates.Name = "pictureBoxDates";
 			this.pictureBoxDates.Size = new System.Drawing.Size(41, 41);

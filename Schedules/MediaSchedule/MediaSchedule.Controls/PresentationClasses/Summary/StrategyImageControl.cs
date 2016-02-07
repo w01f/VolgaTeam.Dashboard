@@ -2,11 +2,11 @@
 using System.Drawing;
 using DevExpress.XtraTab;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	//public partial class StrategyImageControl : UserControl
-	public partial class StrategyImageControl : XtraTabPage
+	public partial class StrategyImageControl : XtraTabPage, ISummaryInfoControl
 	{
 		public StrategyImageControl()
 		{
@@ -19,6 +19,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 		public void AddLogoToFavorites(Image logo, string defaultName)
 		{
 			favoriteImagesControl.AddToFavorites(logo, defaultName);
+		}
+
+		public void Release()
+		{
+			favoriteImagesControl.Release();
+			favoriteImagesControl.Dispose();
 		}
 	}
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using DevExpress.XtraGrid.Views.Base;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
+namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 {
 	public partial class DaypartsControl : UserControl
 	{
@@ -19,10 +19,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 		public bool HasChanged { get; set; }
 		public EventHandler<EventArgs> Changed;
 
-		public void LoadData(Schedule schedule)
+		public void LoadData(MediaScheduleSettings scheduleSettings)
 		{
 			_dayparts.Clear();
-			_dayparts.AddRange(schedule.Dayparts);
+			_dayparts.AddRange(scheduleSettings.Dayparts);
 			gridControlItems.DataSource = new BindingList<Daypart>(_dayparts);
 			HasChanged = false;
 		}

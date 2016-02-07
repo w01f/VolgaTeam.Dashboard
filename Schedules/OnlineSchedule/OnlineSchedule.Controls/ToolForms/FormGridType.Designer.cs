@@ -1,4 +1,4 @@
-﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses.ToolForms
+﻿namespace Asa.Online.Controls.ToolForms
 {
     partial class FormGridType
     {
@@ -51,7 +51,7 @@
 			this.buttonXImage.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXImage.DialogResult = System.Windows.Forms.DialogResult.No;
 			this.buttonXImage.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXImage.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.Image;
+			this.buttonXImage.Image = global::Asa.Online.Controls.Properties.Resources.Image;
 			this.buttonXImage.Location = new System.Drawing.Point(18, 146);
 			this.buttonXImage.Name = "buttonXImage";
 			this.buttonXImage.Size = new System.Drawing.Size(314, 55);
@@ -68,7 +68,7 @@
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.buttonXCancel.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXCancel.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.Exit;
+			this.buttonXCancel.Image = global::Asa.Online.Controls.Properties.Resources.Exit;
 			this.buttonXCancel.ImageFixedSize = new System.Drawing.Size(42, 42);
 			this.buttonXCancel.Location = new System.Drawing.Point(18, 216);
 			this.buttonXCancel.Name = "buttonXCancel";
@@ -86,7 +86,7 @@
 			this.buttonXExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXExcel.DialogResult = System.Windows.Forms.DialogResult.Yes;
 			this.buttonXExcel.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXExcel.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.Excel;
+			this.buttonXExcel.Image = global::Asa.Online.Controls.Properties.Resources.Excel;
 			this.buttonXExcel.Location = new System.Drawing.Point(18, 77);
 			this.buttonXExcel.Name = "buttonXExcel";
 			this.buttonXExcel.Size = new System.Drawing.Size(314, 55);

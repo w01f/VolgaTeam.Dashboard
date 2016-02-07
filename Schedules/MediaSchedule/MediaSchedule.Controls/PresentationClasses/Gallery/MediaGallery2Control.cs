@@ -1,10 +1,10 @@
-﻿using DevComponents.DotNetBar;
+﻿using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.Gallery;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using Asa.CommonGUI.Gallery;
-using Asa.Core.Common;
-using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Gallery
+namespace Asa.Media.Controls.PresentationClasses.Gallery
 {
 	public class MediaGallery2Control : GalleryControl
 	{
@@ -86,6 +86,21 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Gallery
 		public override ComboBoxEdit GroupsList
 		{
 			get { return Controller.Instance.Gallery2Groups; }
+		}
+
+		public override string Identifier
+		{
+			get { return ContentIdentifiers.Gallery2; }
+		}
+
+		public override RibbonTabItem TabPage
+		{
+			get { return Controller.Instance.TabGallery2; }
+		}
+
+		public override void GetHelp()
+		{
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery2");
 		}
 	}
 }

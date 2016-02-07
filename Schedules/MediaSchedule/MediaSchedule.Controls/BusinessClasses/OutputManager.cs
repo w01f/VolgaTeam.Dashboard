@@ -1,8 +1,11 @@
 ﻿using System;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Media.Configuration;
+using Asa.Common.Core.Extensions;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.RemoteStorage;
 
-namespace Asa.MediaSchedule.Controls.BusinessClasses
+namespace Asa.Media.Controls.BusinessClasses
 {
 	public class OutputManager
 	{
@@ -17,7 +20,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 		{
 			get
 			{
-				return new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+				return new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
 						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
@@ -40,7 +43,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 		public void UpdateColors()
 		{
 			ScheduleColors.Load(
-				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+				new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
 						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
@@ -48,7 +51,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 						"tables"
 					})));
 			SnapshotColors.Load(
-				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+				new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
 						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
@@ -56,7 +59,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 						"snapshot"
 					})));
 			OptionsColors.Load(
-				new StorageDirectory(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+				new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
 						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
@@ -64,7 +67,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 						"options"
 					})));
 			CalendarColors.Load(
-				new StorageDirectory(Core.Common.ResourceManager.Instance.CalendarSlideTemplatesFolder.RelativePathParts
+				new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.CalendarSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
 						"broadcast_cal",
@@ -76,7 +79,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 
 		private string GetScheduleTemplateFile(string[] fileName)
 		{
-			var file = new StorageFile(Core.Common.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+			var file = new StorageFile(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 				.Merge(new[]
 					{
 						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
@@ -174,7 +177,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 
 		private string GetCalendarTemplateFile(string[] fileName)
 		{
-			var file = new StorageFile(Core.Common.ResourceManager.Instance.CalendarSlideTemplatesFolder.RelativePathParts
+			var file = new StorageFile(Common.Core.Configuration.ResourceManager.Instance.CalendarSlideTemplatesFolder.RelativePathParts
 				.Merge(new[]
 					{
 						"broadcast_cal"

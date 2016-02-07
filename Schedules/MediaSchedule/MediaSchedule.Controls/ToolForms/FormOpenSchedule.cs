@@ -1,21 +1,29 @@
 ﻿using System;
-using System.ComponentModel;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Media.Controls.BusinessClasses;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.Properties;
+using Asa.Media.Controls.Properties;
 
-namespace Asa.MediaSchedule.Controls.ToolForms
+namespace Asa.Media.Controls.ToolForms
 {
 	public partial class FormOpenSchedule : MetroForm
 	{
-		private ShortSchedule[] _scheduleList;
+		private readonly List<MediaScheduleModel> _scheduleList = new List<MediaScheduleModel>();
+
+		private MediaScheduleModel SelectedScheduleModel
+		{
+			get { return gridViewSchedules.GetFocusedRow() as MediaScheduleModel; }
+		}
 
 		public FormOpenSchedule()
 		{
@@ -23,15 +31,14 @@ namespace Asa.MediaSchedule.Controls.ToolForms
 			barStaticItemLogo.Glyph = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo;
 		}
 
-		public string ScheduleName { get; set; }
-
 		public void LoadSchedules()
 		{
-			_scheduleList = ScheduleManager.GetShortScheduleList();
+			_scheduleList.AddRange(BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>()
+				.Where(scheduleModel => scheduleModel.Parent != BusinessObjects.Instance.ScheduleManager.ActiveSchedule));
 			gridControlSchedules.Visible = true;
 			repositoryItemComboBoxStatus.Items.Clear();
 			repositoryItemComboBoxStatus.Items.AddRange(MediaMetaData.Instance.ListManager.Statuses);
-			gridControlSchedules.DataSource = new BindingList<ShortSchedule>(_scheduleList);
+			gridControlSchedules.DataSource = _scheduleList;
 			if (gridViewSchedules.RowCount > 0)
 				gridViewSchedules.FocusedRowHandle = 0;
 		}
@@ -41,55 +48,52 @@ namespace Asa.MediaSchedule.Controls.ToolForms
 			LoadSchedules();
 		}
 
-		private void barLargeButtonItemOpen_ItemClick(object sender, ItemClickEventArgs e)
+		private void OnScheduleOpenItemClick(object sender, ItemClickEventArgs e)
 		{
-			if (gridViewSchedules.FocusedRowHandle >= 0)
+			var schedule = SelectedScheduleModel;
+			if (schedule == null)
 			{
-				ScheduleName = _scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].ShortFileName;
-				DialogResult = DialogResult.OK;
-				Close();
+				PopupMessageHelper.Instance.ShowWarning("Please select schedule in list");
+				return;
 			}
-			else
-				Utilities.Instance.ShowWarning("Please select schedule in list");
+			DialogResult = DialogResult.OK;
+			Close();
+			BusinessObjects.Instance.ScheduleManager.OpenSchedule(schedule.Parent);
 		}
 
-		private void barLargeButtonItemDelete_ItemClick(object sender, ItemClickEventArgs e)
+		private void OnScheduleDeleteDeleteItemClick(object sender, ItemClickEventArgs e)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Delete this Schedule?") == DialogResult.Yes)
+			var schedule = SelectedScheduleModel;
+			if (schedule == null)
 			{
-				string fileName = _scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName;
-				try
-				{
-					if (File.Exists(fileName))
-						File.Delete(fileName);
-				}
-				catch
-				{
-					Utilities.Instance.ShowWarning("Couldn't delete selected schedule.");
-				}
-				LoadSchedules();
+				PopupMessageHelper.Instance.ShowWarning("Please select schedule in list");
+				return;
 			}
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Delete this Schedule?") != DialogResult.Yes) return;
+			_scheduleList.Remove(schedule);
+			BusinessObjects.Instance.ScheduleManager.DeleteSchedule(schedule.Parent);
+			gridViewSchedules.RefreshData();
 		}
 
-		private void barLargeButtonItemExit_ItemClick(object sender, ItemClickEventArgs e)
+		private void OnExitItemClick(object sender, ItemClickEventArgs e)
 		{
 			DialogResult = DialogResult.None;
 			Close();
 		}
 
-		private void gridViewSchedules_RowClick(object sender, RowClickEventArgs e)
+		private void OnSchedulesViewRowClick(object sender, RowClickEventArgs e)
 		{
 			if (e.Clicks == 2)
-				barLargeButtonItemOpen_ItemClick(null, null);
+				OnScheduleOpenItemClick(null, null);
 		}
 
-		private void gridViewSchedules_CellValueChanged(object sender, CellValueChangedEventArgs e)
+		private void OnScheduleStatusChanged(object sender, CellValueChangedEventArgs e)
 		{
-			ShortSchedule schedule = _scheduleList[gridViewSchedules.GetDataSourceRowIndex(e.RowHandle)];
-			schedule.Save();
+			var schedule = SelectedScheduleModel;
+			BusinessObjects.Instance.ScheduleManager.SaveScheduleModel(schedule);
 		}
 
-		private void repositoryItemComboBoxStatus_Closed(object sender, ClosedEventArgs e)
+		private void OnStatusComboBoxClosed(object sender, ClosedEventArgs e)
 		{
 			gridViewSchedules.CloseEditor();
 		}

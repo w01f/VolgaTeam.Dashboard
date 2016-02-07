@@ -1,36 +1,36 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ContentEditors.Enums;
+using Asa.Common.GUI.ContentEditors.Events;
+using Asa.Common.GUI.ContentEditors.Helpers;
+using Asa.Common.GUI.Floater;
+using Asa.Common.GUI.ToolForms;
+using Asa.Media.Controls;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.Properties;
+using Asa.Media.Controls.ToolForms;
 using DevComponents.DotNetBar;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.Floater;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using Asa.MediaSchedule.Controls.Properties;
-using Asa.MediaSchedule.Controls.ToolForms;
-using Asa.OnlineSchedule.Controls.InteropClasses;
-using FormStart = Asa.MediaSchedule.Controls.ToolForms.FormStart;
+using FormStart = Asa.Media.Controls.ToolForms.FormStart;
 
-namespace Asa.MediaSchedule.Single
+namespace Asa.Media.Single
 {
 	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
-		private Control _currentControl;
-		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		private FormMain()
 		{
 			InitializeComponent();
 
-			if ((base.CreateGraphics()).DpiX > 96)
+			if ((CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
 				ribbonControl.Font = font;
@@ -79,9 +79,11 @@ namespace Asa.MediaSchedule.Single
 
 		public void Init()
 		{
-			FormStateHelper.Init(this, Core.Common.ResourceManager.Instance.AppSettingsFolder, MediaMetaData.Instance.DataTypeString, false).LoadState();
+			FormStateHelper.Init(this, Common.Core.Configuration.ResourceManager.Instance.AppSettingsFolder, MediaMetaData.Instance.DataTypeString, false).LoadState();
 
 			Controller.Instance.FormMain = this;
+			Controller.Instance.MainPanel = pnMain;
+			Controller.Instance.EmptyPanel = pnEmpty;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
 			Controller.Instance.TabHome = ribbonTabItemHome;
@@ -96,6 +98,8 @@ namespace Asa.MediaSchedule.Single
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 			Controller.Instance.TabOptions = ribbonTabItemOptions;
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
+
+			FormProgress.Init(this);
 
 			#region Command Controls
 			Controller.Instance.SlideSettingsButton = buttonItemSlideSettings;
@@ -291,7 +295,8 @@ namespace Asa.MediaSchedule.Single
 
 			Controller.Instance.InitForm();
 
-			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			BusinessObjects.Instance.ScheduleManager.ScheduleOpened += (o, e) => UpdateFormTitle();
+			BusinessObjects.Instance.ScheduleManager.ScheduleNameChanged += (o, e) => UpdateFormTitle();
 			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
 			PowerPointManager.Instance.SettingsChanged += (o, e) => UpdateFormTitle();
 		}
@@ -299,161 +304,62 @@ namespace Asa.MediaSchedule.Single
 		private void UpdateFormTitle()
 		{
 			if (MasterWizardManager.Instance.SelectedWizard == null) return;
-			var shortSchedule = BusinessObjects.Instance.ScheduleManager.GetShortSchedule();
+			var schedule = BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
 			Text = String.Format("{0} v{1} - {2} - {3} {4}",
-				Utilities.Instance.Title,
+				PopupMessageHelper.Instance.Title,
 				FileStorageManager.Instance.Version,
 				MasterWizardManager.Instance.SelectedWizard.Name,
 				PowerPointManager.Instance.SlideSettings.SizeFormatted,
-				shortSchedule != null ? String.Format("({0})", shortSchedule.ShortFileName) : String.Empty
+				schedule != null ? String.Format("({0})", schedule.Name) : String.Empty
 				);
 		}
 
 		private void LoadData()
 		{
 			UpdateFormTitle();
-			ribbonControl.Enabled = false;
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Schedule...");
-			FormProgress.ShowProgress();
-			var thread = new Thread(() => Invoke((MethodInvoker)(() => Controller.Instance.LoadData())));
-			thread.Start();
-			while (thread.IsAlive)
-				Application.DoEvents();
-			FormProgress.CloseProgress();
-			ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
-			ribbonControl_SelectedRibbonTabChanged(null, null);
-			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-			ribbonControl.Enabled = true;
+			ContentRibbonManager<MediaScheduleChangeInfo>.RaiseTabChanged();
 			Controller.Instance.CheckPowerPointRunning();
 		}
 
-		private bool AllowToLeaveCurrentControl()
+		private void AddNewSchedule()
 		{
-			bool result = false;
-			if ((_currentControl == Controller.Instance.HomeControl))
+			using (var form = new FormScheduleName())
 			{
-				if (Controller.Instance.HomeControl.AllowToLeaveControl())
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
+				if (form.ShowDialog() != DialogResult.OK) return;
+				BusinessObjects.Instance.ScheduleManager.AddSchedule(form.ScheduleName);
 			}
-			else if ((_currentControl == Controller.Instance.ProgramSchedule))
-			{
-				if (Controller.Instance.ProgramSchedule.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemProgramSchedule;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.DigitalProductContainer))
-			{
-				if (Controller.Instance.DigitalProductContainer.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemDigitalSlides;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.DigitalPackage))
-			{
-				if (Controller.Instance.DigitalPackage.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemDigitalPackage;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.BroadcastCalendar))
-			{
-				if (Controller.Instance.BroadcastCalendar.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemCalendar1;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.CustomCalendar))
-			{
-				if (Controller.Instance.CustomCalendar.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemCalendar2;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.Summary))
-			{
-				if (Controller.Instance.Summary.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSummary;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.Snapshot))
-			{
-				if (Controller.Instance.Snapshot.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSnapshot;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else if ((_currentControl == Controller.Instance.Options))
-			{
-				if (Controller.Instance.Options.AllowToLeaveControl)
-					result = true;
-				else
-				{
-					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemOptions;
-					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-				}
-			}
-			else
-				result = true;
-			return result;
 		}
 
-		private void FormMain_Shown(object sender, EventArgs e)
+		private void OpenSchedule()
 		{
-			Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
+			using (var from = new FormOpenSchedule())
+			{
+				from.ShowDialog();
+			}
+		}
+
+		private void OnFormMainShown(object sender, EventArgs e)
+		{
+			Utilities.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 			UpdateFormTitle();
 			AppManager.Instance.ActivateMainForm();
 
 			using (var formStart = new FormStart())
 			{
-				formStart.buttonXOpen.Enabled = ScheduleManager.GetShortScheduleList().Length > 0;
+				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any();
 				var result = formStart.ShowDialog();
 				if (result == DialogResult.Yes || result == DialogResult.No)
 				{
 					if (result == DialogResult.Yes)
-						buttonItemHomeNewSchedule_Click(null, null);
+						AddNewSchedule();
 					else
-						buttonItemHomeOpenSchedule_Click(null, null);
+						OpenSchedule();
 				}
+				if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule != null)
+					LoadData();
 				else
-					Application.Exit();
+					Close();
 			}
 		}
 
@@ -464,241 +370,41 @@ namespace Asa.MediaSchedule.Single
 				Opacity = 1;
 		}
 
-		public void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
+		private void OnFormMainClosing(object sender, FormClosingEventArgs e)
 		{
-			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemHome)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.HomeControl;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemProgramSchedule)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.ProgramSchedule;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalSlides)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.DigitalProductContainer;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalPackage)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.DigitalPackage;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar1)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					if (!Controller.Instance.BroadcastCalendar.CalendarUpdated)
-					{
-						Controller.Instance.BroadcastCalendar.ShowCalendar(false);
-						Controller.Instance.BroadcastCalendar.CalendarUpdated = true;
-					}
-					_currentControl = Controller.Instance.BroadcastCalendar;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar2)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					if (!Controller.Instance.CustomCalendar.CalendarUpdated)
-					{
-						Controller.Instance.CustomCalendar.ShowCalendar(false);
-						Controller.Instance.CustomCalendar.CalendarUpdated = true;
-					}
-					_currentControl = Controller.Instance.CustomCalendar;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.Summary;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSnapshot)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.Snapshot;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOptions)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.Options;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery1)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.Gallery1;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery2)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.Gallery2;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
-			{
-				if (AllowToLeaveCurrentControl())
-				{
-					_currentControl = Controller.Instance.RateCard;
-					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(_currentControl);
-				}
-				_currentControl.BringToFront();
-				pnMain.BringToFront();
-			}
-			else
-			{
-				pnEmpty.Visible = true;
-				_currentControl = null;
-				pnEmpty.BringToFront();
-			}
-			if (WindowState == FormWindowState.Normal)
-			{
-				Width++;
-				Width--;
-			}
+			var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.AppClosing };
+			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
+				Controller.Instance.ContentController.ActiveEditor,
+				savingArgs);
+			e.Cancel = savingArgs.Cancel;
 		}
 
-		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+		private void OnNewScheduleClick(object sender, EventArgs e)
 		{
-			bool result = true;
-			if (_currentControl == Controller.Instance.HomeControl)
-				result = Controller.Instance.HomeControl.AllowToLeaveControl();
-			else if (_currentControl == Controller.Instance.ProgramSchedule)
-				result = Controller.Instance.ProgramSchedule.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.DigitalProductContainer)
-				result = Controller.Instance.DigitalProductContainer.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.DigitalPackage)
-				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.BroadcastCalendar)
-				result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.CustomCalendar)
-				result = Controller.Instance.CustomCalendar.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Summary)
-				result = Controller.Instance.Summary.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Snapshot)
-				result = Controller.Instance.Snapshot.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Options)
-				result = Controller.Instance.Options.AllowToLeaveControl;
-			RegularMediaSchedulePowerPointHelper.Instance.Disconnect(false);
-			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
-			Application.Exit();
+			var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.ScheduleChanging };
+			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
+				Controller.Instance.ContentController.ActiveEditor,
+				savingArgs);
+			if (!savingArgs.Cancel)
+				AddNewSchedule();
 		}
 
-		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)
+		private void OnOpenSchedule_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
-			{
-				if (form.ShowDialog() == DialogResult.OK)
-				{
-					if (!string.IsNullOrEmpty(form.ScheduleName))
-					{
-						var fileName = BusinessObjects.Instance.ScheduleManager.GetScheduleFileName(form.ScheduleName.Trim());
-						BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
-						BusinessObjects.Instance.ScheduleManager.OpenSchedule(fileName);
-						LoadData();
-					}
-					else
-					{
-						Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-					}
-				}
-				else if (!BusinessObjects.Instance.ScheduleManager.ScheduleLoaded)
-					Close();
-			}
+			var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.ScheduleChanging };
+			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
+				Controller.Instance.ContentController.ActiveEditor,
+				savingArgs);
+			if (!savingArgs.Cancel)
+				OpenSchedule();
 		}
 
-		private void buttonItemHomeOpenSchedule_Click(object sender, EventArgs e)
-		{
-			using (var from = new FormOpenSchedule())
-			{
-				if (from.ShowDialog() == DialogResult.OK)
-				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
-					{
-						var fileName = from.ScheduleName.Trim();
-						BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
-						BusinessObjects.Instance.ScheduleManager.OpenSchedule(fileName, false);
-						LoadData();
-					}
-					else
-					{
-						Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-					}
-				}
-				else if (!BusinessObjects.Instance.ScheduleManager.ScheduleLoaded)
-					Close();
-			}
-		}
-
-		private void buttonItemHomeExit_Click(object sender, EventArgs e)
+		private void OnExitClick(object sender, EventArgs e)
 		{
 			Close();
 		}
 
-		private void buttonItemFloater_Click(object sender, EventArgs e)
+		private void OnFloaterClick(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
 			AppManager.Instance.ShowFloater(formSender ?? this, new FloaterRequestedEventArgs { Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo });

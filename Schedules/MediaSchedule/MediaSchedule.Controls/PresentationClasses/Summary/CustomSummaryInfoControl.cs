@@ -1,8 +1,8 @@
 ﻿using System;
-using Asa.Core.Common;
+using Asa.Business.Common.Entities.NonPersistent.Summary;
 using DevExpress.XtraEditors.Controls;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	class CustomSummaryInfoControl : BaseSummaryInfoControl
 	{
@@ -33,6 +33,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 
 			_customSummarySettings.MonthlyValue = _customSummarySettings.TotalMonthly != spinEditMonthly.Value ? spinEditMonthly.Value : (Decimal?)null;
 			_customSummarySettings.TotalValue = _customSummarySettings.TotalTotal != spinEditTotal.Value ? spinEditTotal.Value : (Decimal?)null;
+		}
+
+		public override void Release()
+		{
+			_customSummarySettings = null;
+			base.Release();
 		}
 
 		public override void UpdateTotals()

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using Asa.MediaSchedule.Controls.PresentationClasses.Summary;
+using Asa.Common.Core.OfficeInterops;
+using Asa.Media.Controls.PresentationClasses.Summary;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Core.Interop;
-using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace Asa.MediaSchedule.Controls.InteropClasses
+namespace Asa.Media.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{

@@ -1,33 +1,35 @@
-﻿namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
+﻿using Asa.Business.Common.Interfaces;
+
+namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
-    partial class CalendarNoteControl
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class CalendarNoteControl
+	{
+		/// <summary> 
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.memoEdit = new DevExpress.XtraEditors.MemoEdit();
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
@@ -60,9 +62,9 @@
 			// 
 			// memoEdit
 			// 
-			this.memoEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.memoEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEdit.EditValue = "test";
 			this.memoEdit.Location = new System.Drawing.Point(4, 4);
 			this.memoEdit.Name = "memoEdit";
@@ -120,9 +122,9 @@
 			// 
 			// textBox
 			// 
-			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBox.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textBox.Location = new System.Drawing.Point(4, 4);
@@ -142,15 +144,13 @@
 			this.pbClose.TabIndex = 1;
 			this.pbClose.TabStop = false;
 			this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
-			this.pbClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbClose.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// labelControl
 			// 
 			this.labelControl.AllowHtmlString = true;
-			this.labelControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.labelControl.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControl.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
 			this.labelControl.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -182,18 +182,18 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-	    protected System.Windows.Forms.PictureBox pbClose;
+		protected System.Windows.Forms.PictureBox pbClose;
 		private DevExpress.XtraEditors.StyleController styleController;
-	    protected DevExpress.XtraEditors.MemoEdit memoEdit;
-	    protected System.Windows.Forms.TextBox textBox;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
-        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClone;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemColor;
+		protected DevExpress.XtraEditors.MemoEdit memoEdit;
+		protected System.Windows.Forms.TextBox textBox;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
+		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClone;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemColor;
 		protected DevExpress.XtraEditors.LabelControl labelControl;
-    }
+	}
 }

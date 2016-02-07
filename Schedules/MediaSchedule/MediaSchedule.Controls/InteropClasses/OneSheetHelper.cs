@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Asa.Common.Core.Objects.Themes;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using Asa.Common.Core.OfficeInterops;
 
-namespace Asa.MediaSchedule.Controls.InteropClasses
+namespace Asa.Media.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{

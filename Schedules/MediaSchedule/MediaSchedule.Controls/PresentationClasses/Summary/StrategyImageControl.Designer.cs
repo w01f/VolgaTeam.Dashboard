@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+﻿namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	partial class StrategyImageControl
 	{
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.favoriteImagesControl = new Asa.CommonGUI.FavoriteImages.FavoriteImagesControl();
+			this.favoriteImagesControl = new Asa.Common.GUI.FavoriteImages.FavoriteImagesControl();
 			this.SuspendLayout();
 			// 
 			// favoriteImagesControl
@@ -56,9 +56,6 @@
 
 		#endregion
 
-		private CommonGUI.FavoriteImages.FavoriteImagesControl favoriteImagesControl;
-
-
-
+		private Common.GUI.FavoriteImages.FavoriteImagesControl favoriteImagesControl;
 	}
 }

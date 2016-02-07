@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using DevComponents.DotNetBar;
 using Padding = System.Windows.Forms.Padding;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class QuarterSelectorControl : UserControl
 	{

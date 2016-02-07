@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Media.Entities.NonPersistent.Section.Content;
+using Asa.Business.Media.Enums;
 using DevExpress.XtraTab;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	//public partial class SummaryTab : UserControl
@@ -35,11 +36,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			Content.SaveData();
 		}
 
+		public void Release()
+		{
+			SummaryTypeChanged = null;
+			DataChanged = null;
+			Content.Release();
+			Content = null;
+			Section = null;
+		}
+
 		public void ResetContent()
 		{
 			Controls.Clear();
 			if (Content != null)
+			{
+				Content.Release();
 				((Control)Content).Dispose();
+			}
 			switch (Section.Summary.SummaryType)
 			{
 				case SectionSummaryTypeEnum.Product:

@@ -6,8 +6,18 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.CommonGUI.Preview;
-using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Entities.NonPersistent.Section.Content;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ImageGallery;
+using Asa.Common.GUI.Preview;
+using Asa.Media.Controls.InteropClasses;
 using DevExpress.Data;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -20,14 +30,10 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.ImageGallery;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses;
 using DevExpress.XtraTab;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
 	//public partial class SectionControl : UserControl
@@ -64,7 +70,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		}
 		public string TotalGRPValueFormatted
 		{
-			get { return SectionData.TotalGRP.ToString(SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0"); }
+			get { return SectionData.TotalGRP.ToString(SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0"); }
 		}
 		public string TotalCPPTag
 		{
@@ -150,7 +156,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		}
 		protected string SpotTitle
 		{
-			get { return SectionData.ParentSchedule.SelectedSpotType.ToString(); }
+			get { return SectionData.ParentScheduleSettings.SelectedSpotType.ToString(); }
 		}
 
 		#region Methods
@@ -160,18 +166,18 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			Text = SectionData.Name.Replace("&", "&&");
 			SectionData.DataChanged += OnScheduleSectionDataChanged;
 			bandedGridColumnRating.Caption = String.Format("{0}{1}",
-				(!String.IsNullOrEmpty(SectionData.ParentSchedule.Demo) ? String.Format("{0} ", SectionData.ParentSchedule.Demo) : String.Empty),
-				SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "Rtg" : "(000)");
-			bandedGridColumnRating.ColumnEdit = SectionData.ParentSchedule.DemoType == DemoType.Rtg ? repositoryItemSpinEditRating : repositoryItemSpinEdit000s;
-			bandedGridColumnCPP.Caption = SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "CPP" : "CPM";
-			bandedGridColumnGRP.Caption = SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "GRPs" : "Impr";
-			bandedGridColumnGRP.ColumnEdit = SectionData.ParentSchedule.DemoType == DemoType.Rtg ? repositoryItemSpinEditRating : repositoryItemSpinEdit000s;
-			bandedGridColumnGRP.SummaryItem.DisplayFormat = SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "{0:n1}" : "{0:n0}";
+				(!String.IsNullOrEmpty(SectionData.ParentScheduleSettings.Demo) ? String.Format("{0} ", SectionData.ParentScheduleSettings.Demo) : String.Empty),
+				SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "Rtg" : "(000)");
+			bandedGridColumnRating.ColumnEdit = SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? repositoryItemSpinEditRating : repositoryItemSpinEdit000s;
+			bandedGridColumnCPP.Caption = SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "CPP" : "CPM";
+			bandedGridColumnGRP.Caption = SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "GRPs" : "Impr";
+			bandedGridColumnGRP.ColumnEdit = SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? repositoryItemSpinEditRating : repositoryItemSpinEdit000s;
+			bandedGridColumnGRP.SummaryItem.DisplayFormat = SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "{0:n1}" : "{0:n0}";
 
 			repositoryItemComboBoxStations.Items.Clear();
-			repositoryItemComboBoxStations.Items.AddRange(SectionData.ParentSchedule.Stations.Where(x => x.Available).OfType<object>().ToArray());
+			repositoryItemComboBoxStations.Items.AddRange(SectionData.ParentScheduleSettings.Stations.Where(x => x.Available).OfType<object>().ToArray());
 			repositoryItemComboBoxDayparts.Items.Clear();
-			repositoryItemComboBoxDayparts.Items.AddRange(SectionData.ParentSchedule.Dayparts.Where(x => x.Available).OfType<object>().ToArray());
+			repositoryItemComboBoxDayparts.Items.AddRange(SectionData.ParentScheduleSettings.Dayparts.Where(x => x.Available).OfType<object>().ToArray());
 			repositoryItemComboBoxLengths.Items.Clear();
 			repositoryItemComboBoxLengths.Items.AddRange(MediaMetaData.Instance.ListManager.Lengths);
 			repositoryItemComboBoxDays.Items.Clear();
@@ -188,6 +194,16 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			advBandedGridViewSchedule.CloseEditor();
 		}
 
+		public void Release()
+		{
+			DataChanged = null;
+			_spotColumns.Clear();
+			gridControlProgramSource.DataSource = null;
+			gridControlSchedule.DataSource = null;
+			_selectedQuarter = null;
+			SectionData = null;
+		}
+
 		public void ApplyDataFromTemplate(SectionControl templateControl)
 		{
 			SectionData.ApplyFromTemplate(templateControl.SectionData);
@@ -201,13 +217,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
 
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("New Program Added", options));
-
 			OnScheduleSectionDataChanged(this, EventArgs.Empty);
 		}
 
@@ -218,13 +227,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
 
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("New Program Added", options));
-
 			OnScheduleSectionDataChanged(this, EventArgs.Empty);
 		}
 
@@ -233,17 +235,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			var selectedProgramRow = advBandedGridViewSchedule.GetFocusedDataRow();
 			if (selectedProgramRow == null) return;
 			var selectedProgramIndex = selectedProgramRow[0].ToString();
-			if (Utilities.Instance.ShowWarningQuestion(String.Format("Delete Line ID {0}?", selectedProgramIndex)) != DialogResult.Yes)
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("Delete Line ID {0}?", selectedProgramIndex)) != DialogResult.Yes)
 				return;
 			SectionData.DeleteProgram(advBandedGridViewSchedule.GetDataSourceRowIndex(advBandedGridViewSchedule.FocusedRowHandle));
 			UpdateGridData(true);
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("Program Deleted", options));
 
 			OnScheduleSectionDataChanged(this, EventArgs.Empty);
 		}
@@ -251,10 +246,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public void UpdateGridView()
 		{
 			advBandedGridViewSchedule.OptionsView.ShowFooter = SectionData.ShowSpots ||
-				SectionData.ShowTotalSpots ||                                               
+				SectionData.ShowTotalSpots ||
 				SectionData.ShowCost ||
-			    SectionData.ShowGRP ||
-			    SectionData.ShowGRP;
+				SectionData.ShowCPP ||
+				SectionData.ShowGRP;
 
 			gridBandRate.Visible = SectionData.ShowRate | SectionData.ShowRating;
 			bandedGridColumnRate.Visible = SectionData.ShowRate;
@@ -528,11 +523,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			return items;
 		}
 
-		private void AddActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
-		}
-
 		private void OnScheduleSectionDataChanged(object sender, EventArgs e)
 		{
 			if (DataChanged != null)
@@ -551,14 +541,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			advBandedGridViewSchedule.CloseEditor();
 			advBandedGridViewSchedule.UpdateCurrentRow();
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add("Program", advBandedGridViewSchedule.GetRowCellValue(e.RowHandle, bandedGridColumnName));
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("Program Line Updated", options));
 		}
 
 		private void advBandedGridViewSchedule_CustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)
@@ -661,9 +643,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnTime, program.Time);
 					if (string.IsNullOrEmpty(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLength).ToString()))
 						advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLength, MediaMetaData.Instance.ListManager.Lengths.FirstOrDefault());
-					if (SectionData.ParentSchedule.ImportDemo && SectionData.ParentSchedule.UseDemo)
+					if (SectionData.ParentScheduleSettings.ImportDemo && SectionData.ParentScheduleSettings.UseDemo)
 					{
-						var demo = program.Demos.FirstOrDefault(d => d.Name.Equals(SectionData.ParentSchedule.Demo) && d.Source.Equals(SectionData.ParentSchedule.Source) && d.DemoType == SectionData.ParentSchedule.DemoType);
+						var demo = program.Demos.FirstOrDefault(d => d.Name.Equals(SectionData.ParentScheduleSettings.Demo) && d.Source.Equals(SectionData.ParentScheduleSettings.Source) && d.DemoType == SectionData.ParentScheduleSettings.DemoType);
 						if (demo != null)
 							advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnRating, demo.Value);
 					}
@@ -729,13 +711,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateGridData(false);
 			UpdateSpotsByQuarter();
 			advBandedGridViewSchedule.FocusedRowHandle = targetRow;
-
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", SectionData.ParentSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), SectionData.Parent.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), SectionData.Parent.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), SectionData.Parent.TotalCost);
-			AddActivity(new UserActivity("Change Program Position", options));
 		}
 		#endregion
 
@@ -754,7 +729,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (!SectionData.Parent.DigitalLegend.AllowEdit)
 				{
 					requestOptions.Separator = " ";
-					return String.Format("Digital Product Info: {0}{1}{2}", SectionData.ParentSchedule.GetDigitalInfo(requestOptions), requestOptions.Separator, SectionData.Parent.DigitalLegend.GetAdditionalData(" "));
+					return String.Format("Digital Product Info: {0}{1}{2}", SectionData.ParentSchedule.DigitalProductsContent.GetDigitalInfo(requestOptions), requestOptions.Separator, SectionData.Parent.DigitalLegend.GetAdditionalData(" "));
 				}
 				if (!String.IsNullOrEmpty(SectionData.Parent.DigitalLegend.CompiledInfo))
 					return String.Format("Digital Product Info: {0}{1}{2}", SectionData.Parent.DigitalLegend.CompiledInfo, requestOptions.Separator, SectionData.Parent.DigitalLegend.GetAdditionalData(" "));
@@ -800,7 +775,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (SectionData.OutputPerQuater)
 			{
 				var spots = SectionData.ShowEmptySpots ? defaultProgram.Spots.ToArray() : defaultSpotsNotEmpy;
-				foreach (var quarter in SectionData.ParentSchedule.Quarters)
+				foreach (var quarter in SectionData.ParentScheduleSettings.Quarters)
 				{
 					var spotInterval = new SpotInterval();
 					spotInterval.Start = spotInterval.End = spotIntervals.Any() ? spotIntervals.Last().End : 0;
@@ -820,11 +795,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					{
 						var outputPage = new OutputSchedule(SectionData);
 
-						outputPage.Advertiser = SectionData.ParentSchedule.BusinessName;
-						outputPage.DecisionMaker = SectionData.ParentSchedule.DecisionMaker;
+						outputPage.Advertiser = SectionData.ParentScheduleSettings.BusinessName;
+						outputPage.DecisionMaker = SectionData.ParentScheduleSettings.DecisionMaker;
 						outputPage.Demo = String.Format("{0}{1}",
-								SectionData.ParentSchedule.Demo,
-								!String.IsNullOrEmpty(SectionData.ParentSchedule.Source) ? (" (" + SectionData.ParentSchedule.Source + ")") : String.Empty);
+								SectionData.ParentScheduleSettings.Demo,
+								!String.IsNullOrEmpty(SectionData.ParentScheduleSettings.Source) ? (" (" + SectionData.ParentScheduleSettings.Source + ")") : String.Empty);
 						outputPage.DigitalInfo = !SectionData.Parent.DigitalLegend.OutputOnlyOnce ||
 												 ((i + programsPerSlide) >= SectionData.Programs.Count &&
 												  (k + spotsPerSlide) >= totalSpotsCount) ?
@@ -886,12 +861,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 								outputProgram.Time = program.Time;
 								outputProgram.Length = program.Length;
 								outputProgram.Rate = SectionData.ShowRate && program.Rate.HasValue ? program.Rate.Value.ToString(SectionData.UseDecimalRates ? "$#,##0.00" : "$#,##0") : string.Empty;
-								outputProgram.Rating = SectionData.ShowRating && program.Rating.HasValue ? program.Rating.Value.ToString(SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
+								outputProgram.Rating = SectionData.ShowRating && program.Rating.HasValue ? program.Rating.Value.ToString(SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
 								outputProgram.CPP = SectionData.ShowCPP ? program.CPP.ToString("$#,###.00") : String.Empty;
-								outputProgram.GRP = SectionData.ShowGRP ? program.GRP.ToString(SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : String.Empty;
+								outputProgram.GRP = SectionData.ShowGRP ? program.GRP.ToString(SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : String.Empty;
 								outputProgram.TotalRate = SectionData.ShowCost ? program.Cost.ToString(SectionData.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
 								outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
-								outputProgram.Logo = program.Logo != null ? program.Logo.Clone() : null;
+								outputProgram.Logo = program.Logo != null ? program.Logo.Clone<ImageSource, ImageSource>() : null;
 
 								#region Set Spots Values
 
@@ -946,7 +921,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 						outputPage.TotalCost = SectionData.TotalCost.ToString(SectionData.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 						outputPage.TotalSpot = SectionData.TotalSpots.ToString("#,##0");
 						outputPage.TotalCPP = SectionData.TotalCPP.ToString("$#,###.00");
-						outputPage.TotalGRP = SectionData.TotalGRP.ToString(SectionData.ParentSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
+						outputPage.TotalGRP = SectionData.TotalGRP.ToString(SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
 
 						#endregion
 
@@ -972,7 +947,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			var previewGroup = new PreviewGroup
 			{
 				Name = SectionData.Name.Replace("&", "&&"),
-				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(previewGroup.PresentationSourcePath, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;

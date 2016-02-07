@@ -1,6 +1,7 @@
-﻿namespace Asa.Calendar.Controls.PresentationClasses.Calendars
+﻿
+namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
-	public partial class BaseCalendarControl
+	public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>
     {
         /// <summary> 
         /// Required designer variable.
@@ -36,7 +37,7 @@
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.pnEmpty = new System.Windows.Forms.Panel();
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.retractableBarControl = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.pictureBoxNoData = new System.Windows.Forms.PictureBox();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
@@ -188,7 +189,7 @@
 		protected System.Windows.Forms.Panel pnMain;
 		protected System.Windows.Forms.PictureBox pictureBoxNoData;
 		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
-		protected CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
+		protected Asa.Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
     }
 }

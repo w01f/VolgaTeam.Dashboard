@@ -1,13 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using DevExpress.XtraTab;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	//public partial class StrategyInfoControl : UserControl
-	public partial class StrategyInfoControl : XtraTabPage
+	public partial class StrategyInfoControl : XtraTabPage, ISummaryInfoControl
 	{
 		private bool _allowToSave;
 
@@ -36,6 +36,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 		{
 			_baseSummarySettings.ShowStation = checkEditStation.Checked;
 			_baseSummarySettings.ShowDescription = checkEditTotalsSpots.Checked;
+		}
+
+		public void Release()
+		{
+			_baseSummarySettings = null;
+			DataChanged = null;
 		}
 
 		private void OnSettingChanged(object sender, EventArgs e)

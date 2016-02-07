@@ -1,6 +1,6 @@
 ﻿using DevComponents.DotNetBar.Metro;
 
-namespace Asa.OnlineSchedule.Controls.PresentationClasses.ToolForms
+namespace Asa.Online.Controls.ToolForms
 {
 	public partial class FormGridType : MetroForm
 	{

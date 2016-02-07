@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Asa.MediaSchedule.Single.Radio.Properties {
+namespace Asa.Media.Single.Radio.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Asa.MediaSchedule.Single.Radio.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Asa.MediaSchedule.Single.Radio.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Asa.Media.Single.Radio.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

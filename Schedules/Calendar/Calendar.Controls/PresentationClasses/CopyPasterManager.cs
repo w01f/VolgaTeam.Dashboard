@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Calendar.Controls.PresentationClasses.Views;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
 
 namespace Asa.Calendar.Controls.PresentationClasses
 {
@@ -12,6 +12,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 		public CopyPasteManager(IView parentView)
 		{
 			ParentView = parentView;
+			Init();
 		}
 
 		public CalendarDay SourceDay { get; private set; }
@@ -24,28 +25,37 @@ namespace Asa.Calendar.Controls.PresentationClasses
 
 		public event EventHandler<EventArgs> NoteCopied;
 
-		public event EventHandler<EventArgs> OnSetCopyDay;
-		public event EventHandler<EventArgs> OnResetCopy;
-		public event EventHandler<EventArgs> OnResetPaste;
+		public event EventHandler<EventArgs> CopyDaySet;
+		public event EventHandler<EventArgs> CopyReset;
+		public event EventHandler<EventArgs> PasteReset;
+
+		private void Init()
+		{
+			CopyDaySet += OnCopyDaySet;
+			CopyReset += OnCopyReset;
+			PasteReset += OnPasteReset;
+			DayCopied += OnDayCopied;
+			DayPasted += OnDayPasted;
+		}
 
 		public void SetCopyDay()
 		{
-			if (OnSetCopyDay != null)
-				OnSetCopyDay(null, null);
+			if (CopyDaySet != null)
+				CopyDaySet(null, null);
 		}
 
 		public void ResetCopy()
 		{
-			if (OnResetCopy != null)
-				OnResetCopy(null, null);
+			if (CopyReset != null)
+				CopyReset(null, null);
 		}
 
 		public void ResetPaste()
 		{
 			SourceDay = null;
 			SourceNote = null;
-			if (OnResetPaste != null)
-				OnResetPaste(null, null);
+			if (PasteReset != null)
+				PasteReset(null, null);
 		}
 
 		public void CopyDay(CalendarDay source)
@@ -62,7 +72,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 			foreach (var day in destination)
 			{
 				day.Comment = source.Comment;
-				day.Logo = source.Logo.Clone();
+				day.Logo = source.Logo.Clone<ImageSource, ImageSource>();
 			}
 			if (DayPasted != null)
 				DayPasted(null, null);
@@ -74,7 +84,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 			foreach (var day in destination)
 			{
 				day.Comment = SourceDay.Comment;
-				day.Logo = SourceDay.Logo.Clone();
+				day.Logo = SourceDay.Logo.Clone<ImageSource, ImageSource>();
 			}
 			if (DayPasted != null)
 				DayPasted(null, null);
@@ -84,7 +94,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 		{
 			if (destination == null || imageSource == null) return;
 			foreach (var day in destination)
-				day.Logo = imageSource.Clone();
+				day.Logo = imageSource.Clone<ImageSource, ImageSource>();
 			if (DayPasted != null)
 				DayPasted(null, null);
 		}
@@ -95,6 +105,46 @@ namespace Asa.Calendar.Controls.PresentationClasses
 			if (SourceNote == null) return;
 			if (NoteCopied != null)
 				NoteCopied(null, null);
+		}
+
+		public void Release()
+		{
+			NoteCopied = null;
+			CopyDaySet = null;
+			CopyReset = null;
+			PasteReset = null;
+			DayCopied = null;
+			DayPasted = null;
+			Init();
+		}
+
+		private void OnCopyDaySet(object sender, EventArgs e)
+		{
+			ParentView.Calendar.CopyButton.Enabled = true;
+			ParentView.Calendar.CloneButton.Enabled = true;
+		}
+
+		private void OnCopyReset(object sender, EventArgs e)
+		{
+			ParentView.Calendar.CopyButton.Enabled = false;
+			ParentView.Calendar.CloneButton.Enabled = false;
+		}
+
+		private void OnPasteReset(object sender, EventArgs e)
+		{
+			ParentView.Calendar.PasteButton.Enabled = false;
+		}
+
+		private void OnDayCopied(object sender, EventArgs e)
+		{
+			ParentView.Calendar.PasteButton.Enabled = true;
+		}
+
+		private void OnDayPasted(object sender, EventArgs e)
+		{
+			ParentView.Calendar.SlideInfo.LoadData();
+			ParentView.RefreshData();
+			ParentView.SettingsNotSaved = true;
 		}
 	}
 }

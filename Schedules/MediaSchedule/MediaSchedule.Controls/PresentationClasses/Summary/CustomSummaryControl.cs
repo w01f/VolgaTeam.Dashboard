@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.CommonGUI.Summary;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Common.Entities.NonPersistent.Summary;
+using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
+using Asa.Common.GUI.Summary;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	class CustomSummaryControl : SectionSummaryBaseControl<SummaryCustomItemControl, CustomSummaryInfoControl>
 	{

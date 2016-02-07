@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using Asa.CommonGUI.Common;
+using Asa.Business.Online.Common;
+using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Common.GUI.Common;
 using DevExpress.XtraEditors;
-using Asa.Core.Common;
-using Asa.Core.OnlineSchedule;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
+namespace Asa.Media.Controls.PresentationClasses.Digital
 {
 	public partial class DigitalInfoControl : UserControl
 	{

@@ -1,4 +1,4 @@
-namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 {
 	partial class FormOutputSettings
 	{

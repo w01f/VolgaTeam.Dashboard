@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
     partial class SectionControl
     {

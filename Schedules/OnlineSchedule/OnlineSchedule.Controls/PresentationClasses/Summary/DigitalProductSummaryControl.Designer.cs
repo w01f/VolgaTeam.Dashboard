@@ -1,4 +1,4 @@
-﻿namespace Asa.OnlineSchedule.Controls.PresentationClasses
+﻿namespace Asa.Online.Controls.PresentationClasses.Summary
 {
 	partial class DigitalProductSummaryControl
 	{

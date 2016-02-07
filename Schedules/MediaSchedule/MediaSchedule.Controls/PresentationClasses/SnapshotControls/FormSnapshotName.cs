@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
-using Asa.Core.Common;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	public partial class FormSnapshotName : MetroForm
 	{
@@ -38,7 +38,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			if (DialogResult != DialogResult.OK) return;
 			if (!String.IsNullOrEmpty(textEditScheduleName.EditValue as String)) return;
 			e.Cancel = true;
-			Utilities.Instance.ShowWarning("You should set Snapshot name before continue");
+			PopupMessageHelper.Instance.ShowWarning("You should set Snapshot name before continue");
 		}
 	}
 }

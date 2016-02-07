@@ -1,6 +1,6 @@
 ﻿using System;
+using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
-using Asa.Core.Calendar;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views
 {
@@ -14,9 +14,10 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views
 		event EventHandler<EventArgs> DataSaved;
 
 		void ChangeMonth(DateTime date);
-		void LoadData(bool reload);
+		void LoadData();
 		void Save();
 		void RefreshData();
+		void Release();
 		void SelectDay(CalendarDay day, bool selected);
 
 		#region Copy-Paste Methods
@@ -24,5 +25,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views
 		void PasteDay();
 		void CloneDay();
 		#endregion
+
 	}
 }

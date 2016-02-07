@@ -2,15 +2,16 @@
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.Core.OfficeInterops;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.Core.OnlineSchedule;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace Asa.OnlineSchedule.Controls.InteropClasses
+namespace Asa.Online.Controls.InteropClasses
 {
 	public partial class OnlineSchedulePowerPointHelper
 	{

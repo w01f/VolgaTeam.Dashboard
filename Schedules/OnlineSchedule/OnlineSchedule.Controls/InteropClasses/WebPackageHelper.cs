@@ -1,19 +1,17 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.OfficeInterops;
+using Asa.Online.Controls.PresentationClasses.Packages;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.OnlineSchedule.Controls.BusinessClasses;
-using Asa.OnlineSchedule.Controls.PresentationClasses;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
-namespace Asa.OnlineSchedule.Controls.InteropClasses
+namespace Asa.Online.Controls.InteropClasses
 {
 	public partial class OnlineSchedulePowerPointHelper
 	{
-		public void AppendWebPackage(WebPackageControl digitalPackage, Presentation destinationPresentation = null)
+		public void AppendWebPackage(IWebPackageOutput digitalPackage, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -24,7 +22,7 @@ namespace Asa.OnlineSchedule.Controls.InteropClasses
 					var rowsCount = digitalPackage.RowsPerSlide;
 					for (var k = 0; k < slidesCount; k++)
 					{
-						var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetOnlinePackageFile(rowsCount, digitalPackage.Settings.ShowScreenshot);
+						var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetOnlinePackageFile(rowsCount, digitalPackage.PackageSettings.ShowScreenshot);
 						if (!File.Exists(presentationTemplatePath)) continue;
 						var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
@@ -96,12 +94,12 @@ namespace Asa.OnlineSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareWebPackageEmail(WebPackageControl digitalPackage, string fileName)
+		public void PrepareWebPackageEmail(IWebPackageOutput digitalPackage, string fileName)
 		{
 			PreparePresentation(fileName, presentation => AppendWebPackage(digitalPackage, presentation));
 		}
 
-		public void PrepareWebPackagePdf(WebPackageControl digitalPackage, string targetFileName)
+		public void PrepareWebPackagePdf(IWebPackageOutput digitalPackage, string targetFileName)
 		{
 			var sourceFileName = Path.GetTempFileName();
 			PreparePresentation(sourceFileName, presentation => AppendWebPackage(digitalPackage, presentation));

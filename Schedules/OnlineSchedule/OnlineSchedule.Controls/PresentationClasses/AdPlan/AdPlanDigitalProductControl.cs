@@ -5,16 +5,17 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Online.Dictionaries;
+using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.ImageGallery;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
-using Asa.CommonGUI.ImageGallery;
-using Asa.Core.Common;
-using Asa.Core.OnlineSchedule;
 
-namespace Asa.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.Online.Controls.PresentationClasses.AdPlan
 {
 	[ToolboxItem(false)]
 	public partial class AdPlanDigitalProductControl : XtraTabPage, IAdPlanItem
@@ -75,10 +76,10 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 				DigitalProduct.FullName;
 			buttonXEditName.Checked = DigitalProduct.AdPlanSettings.EditName;
 
-			var defaultImage = Core.OnlineSchedule.ListManager.Instance.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
+			var defaultImage = ListManager.Instance.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
 			pbLogo.Image = DigitalProduct.AdPlanSettings.Logo ?? (defaultImage != null ? defaultImage.BigImage : null);
 
-			checkEditFlightDates.Text = DigitalProduct.Parent.FlightDates;
+			checkEditFlightDates.Text = DigitalProduct.Parent.ScheduleSettings.FlightDates;
 			checkEditFlightDates.Checked = DigitalProduct.AdPlanSettings.ShowFlightDates;
 
 			checkEditComments.Checked = DigitalProduct.AdPlanSettings.ShowComments;
@@ -132,7 +133,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 
 		private void pbLogo_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormImageGallery(Core.OnlineSchedule.ListManager.Instance.Images))
+			using (var form = new FormImageGallery(ListManager.Instance.Images))
 			{
 				if (form.ShowDialog() == DialogResult.OK && form.SelectedImageSource != null)
 				{
@@ -173,7 +174,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 				{
 					if (!AllowToCheck())
 					{
-						Utilities.Instance.ShowWarning("You may select only up to 6 Ad-Items");
+						PopupMessageHelper.Instance.ShowWarning("You may select only up to 6 Ad-Items");
 						e.Cancel = true;
 					}
 				}

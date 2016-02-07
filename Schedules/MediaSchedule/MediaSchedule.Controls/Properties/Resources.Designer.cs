@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Asa.MediaSchedule.Controls.Properties
+namespace Asa.Media.Controls.Properties
 {
 	using System;
 
@@ -45,7 +45,7 @@ namespace Asa.MediaSchedule.Controls.Properties
 			{
 				if (object.ReferenceEquals(resourceMan, null))
 				{
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Asa.MediaSchedule.Controls.Properties.Resources", typeof(Resources).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Asa.Media.Controls.Properties.Resources", typeof(Resources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;

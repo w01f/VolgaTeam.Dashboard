@@ -5,6 +5,16 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Option;
+using Asa.Business.Media.Entities.NonPersistent.Section.Content;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ImageGallery;
+using Asa.Common.GUI.Preview;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -16,20 +26,14 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.ImageGallery;
-using Asa.CommonGUI.Preview;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 {
 	[ToolboxItem(false)]
 	//public partial class OptionsControl : UserControl, IOptionsSlide
-	public sealed partial class OptionsControl : XtraTabPage, IOptionsSlide
+	public sealed partial class OptionsControl : XtraTabPage, IOptionsSlideControl
 	{
 		private bool _allowToSave;
 		private GridDragDropHelper _dragDropHelper;
@@ -52,7 +56,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			Data = data;
 			Text = Data.Name;
 			repositoryItemComboBoxStations.Items.Clear();
-			repositoryItemComboBoxStations.Items.AddRange(Data.Parent.Stations.Where(station => station.Available).Select(station => station.Name).ToArray());
+			repositoryItemComboBoxStations.Items.AddRange(
+				Data.Parent.ScheduleSettings.Stations
+					.Where(station => station.Available)
+					.Select(station => station.Name)
+					.ToArray());
 			repositoryItemComboBoxDays.Items.Clear();
 			repositoryItemComboBoxDays.Items.AddRange(MediaMetaData.Instance.ListManager.Days);
 			repositoryItemComboBoxLengths.Items.Clear();
@@ -73,6 +81,15 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			advBandedGridView.CloseEditor();
 		}
 
+		public void Release()
+		{
+			gridControlProgramSource.DataSource = null;
+			gridControl.DataSource = null;
+			_dragDropHelper.AfterDrop -= gridControl_AfterDrop;
+			DataChanged = null;
+			Data = null;
+		}
+
 		public void AddProgram()
 		{
 			Data.AddProgram();
@@ -89,7 +106,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			var selectedProgram = advBandedGridView.GetFocusedRow() as OptionProgram;
 			if (selectedProgram == null) return;
 			var selectedProgramIndex = selectedProgram.Index;
-			if (Utilities.Instance.ShowWarningQuestion(String.Format("Delete Line ID {0}?", selectedProgramIndex)) != DialogResult.Yes) return;
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("Delete Line ID {0}?", selectedProgramIndex)) != DialogResult.Yes) return;
 			Data.DeleteProgram(advBandedGridView.GetDataSourceRowIndex(advBandedGridView.FocusedRowHandle));
 			gridControl.DataSource = Data.Programs;
 			advBandedGridView.RefreshData();
@@ -573,11 +590,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				var pageDictionary = new Dictionary<string, string>();
 				key = "Flightdates";
-				value = Data.Parent.FlightDates;
+				value = Data.Parent.ScheduleSettings.FlightDates;
 				if (!pageDictionary.Keys.Contains(key))
 					pageDictionary.Add(key, value);
 				key = "Advertiser  -  Decisionmaker";
-				value = String.Format("{0}  -  {1}", Data.Parent.BusinessName, Data.Parent.DecisionMaker);
+				value = String.Format("{0}  -  {1}", Data.Parent.ScheduleSettings.BusinessName, Data.Parent.ScheduleSettings.DecisionMaker);
 				if (!pageDictionary.Keys.Contains(key))
 					pageDictionary.Add(key, value);
 
@@ -667,7 +684,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			var previewGroup = new PreviewGroup
 			{
 				Name = SlideName,
-				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;

@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
+﻿namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 {
     partial class DaypartsControl
     {

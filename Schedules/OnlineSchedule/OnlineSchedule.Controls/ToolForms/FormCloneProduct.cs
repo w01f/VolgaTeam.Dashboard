@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using DevComponents.DotNetBar.Metro;
 
-namespace Asa.OnlineSchedule.Controls.ToolForms
+namespace Asa.Online.Controls.ToolForms
 {
 	public partial class FormCloneProduct : MetroForm
 	{

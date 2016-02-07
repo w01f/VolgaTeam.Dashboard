@@ -5,16 +5,20 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.ImageGallery;
-using Asa.CommonGUI.Preview;
-using Asa.CommonGUI.RetractableBar;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using Asa.MediaSchedule.Controls.Properties;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ImageGallery;
+using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.RetractableBar;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.Properties;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
 using DevExpress.Utils.Paint;
@@ -23,20 +27,20 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using DevExpress.XtraTab;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	public sealed partial class StrategySummaryControl : UserControl, ISectionSummaryControl
 	{
 		private bool _allowToSave;
+
 		private GridDragDropHelper _dragDropHelper;
 		private StrategyInfoControl _infoControl;
 		private StrategyImageControl _favoriets;
 
 		public SectionSummary SectionData { get; private set; }
-		public List<XtraTabPage> SettingsPages { get; private set; }
+		public List<ISummaryInfoControl> SettingsPages { get; private set; }
 		public List<ButtonInfo> BarButtons { get; private set; }
 		public event EventHandler<EventArgs> DataChanged;
 
@@ -54,7 +58,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 
-			SettingsPages = new List<XtraTabPage>();
+			SettingsPages = new List<ISummaryInfoControl>();
 			BarButtons = new List<ButtonInfo>();
 
 			InitSettingsControls();
@@ -77,6 +81,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 		}
 
 		public void SaveData() { }
+		public void Release()
+		{
+			gridControlItems.DataSource = null;
+			SectionData = null;
+
+			if (_dragDropHelper != null)
+				_dragDropHelper.AfterDrop -= gridControlItems_DragDrop;
+
+			_infoControl = null;
+			_favoriets = null;
+
+			SettingsPages.ForEach(sp => sp.Release());
+			SettingsPages.Clear();
+
+			BarButtons.Clear();
+			DataChanged = null;
+		}
 
 		private void SetDataSource()
 		{
@@ -201,7 +222,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 				var targetItem = view.GetRow(hitInfo.RowHandle) as ProgramStrategyItem;
 				if (targetItem != null)
 				{
-					targetItem.Logo = imageSource.Clone();
+					targetItem.Logo = imageSource.Clone<ImageSource, ImageSource>();
 					advBandedGridViewItems.RefreshRow(hitInfo.RowHandle);
 					RaiseDataChanged();
 				}
@@ -215,7 +236,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			var sourceItem = advBandedGridViewItems.GetRow(e.HitInfo.RowHandle) as ProgramStrategyItem;
 			if (sourceItem == null || !sourceItem.Enabled) return;
 			ImageSource imageSource = null;
-			var clipboardImage = Utilities.Instance.GetImageFormClipboard();
+			var clipboardImage = ClipboardHelper.GetImageFormClipboard();
 			if (clipboardImage != null)
 				imageSource = ImageSource.FromImage(clipboardImage);
 			else if (Clipboard.ContainsText(TextDataFormat.Html))
@@ -223,16 +244,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 				var textContent = Clipboard.GetText(TextDataFormat.Html);
 				try
 				{
-					var doc = new XmlDocument();
-					doc.LoadXml(textContent);
-					imageSource = new ImageSource();
-					imageSource.Deserialize(doc.FirstChild);
+					imageSource = ImageSource.FromString(textContent);
 				}
 				catch { }
 			}
 			e.Menu.Items.Add(new DXMenuItem("Paste Image", (o, ea) =>
 			{
-				sourceItem.Logo = imageSource.Clone();
+				sourceItem.Logo = imageSource.Clone<ImageSource, ImageSource>();
 				advBandedGridViewItems.UpdateCurrentRow();
 				RaiseDataChanged();
 			})
@@ -274,7 +292,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 
 		private void repositoryItemCheckEdit_CheckedChanged(object sender, EventArgs e)
 		{
-			advBandedGridViewItems.CloseEditor();
+			advBandedGridViewItems.PostEditor();
+			RaiseDataChanged();
 		}
 		#endregion
 
@@ -308,7 +327,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 				OutputReplacementsLists = new List<Dictionary<string, string>>();
 			OutputReplacementsLists.Clear();
 			var recordsCount = ItemsCount;
-			var items =SummarySettings.EnabledItems.ToList();
+			var items = SummarySettings.EnabledItems.ToList();
 			for (var i = 0; i < recordsCount; i += ItemsPerSlide)
 			{
 				var slideRows = new Dictionary<string, string>();
@@ -350,7 +369,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			var previewGroup = new PreviewGroup
 			{
 				Name = SectionData.Parent.Name.Replace("&", "&&"),
-				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyEmail(previewGroup.PresentationSourcePath, this);
 			return previewGroup;

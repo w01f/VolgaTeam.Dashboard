@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+﻿namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	partial class FormSectionName
     {
@@ -41,7 +41,7 @@
 			// 
 			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.SectionNew;
+			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.SectionNew;
 			this.pbLogo.Location = new System.Drawing.Point(12, 12);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(72, 75);

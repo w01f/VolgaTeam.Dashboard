@@ -4,17 +4,19 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Common.Core.Configuration;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.RetractableBar;
+using Asa.Common.GUI.ToolForms;
+using Asa.Online.Controls.InteropClasses;
+using Asa.Online.Controls.Properties;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
-using Asa.CommonGUI.Preview;
-using Asa.CommonGUI.RetractableBar;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.OnlineSchedule.Controls.InteropClasses;
-using Asa.OnlineSchedule.Controls.Properties;
 
-namespace Asa.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.Online.Controls.PresentationClasses.AdPlan
 {
 	[ToolboxItem(false)]
 	public abstract partial class AdPlanControl : UserControl
@@ -31,7 +33,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			retractableBar.AddButtons(new[] { new ButtonInfo { Logo = Resources.AdPlanSettings, Tooltip = "Expand bar" } });
 		}
 
-		public abstract ISchedule Schedule { get; }
+		public abstract DigitalProductsContent Content { get; }
 		public abstract ThemeManager ThemeManager { get; }
 		public abstract HelpManager HelpManager { get; }
 		public abstract ButtonItem Theme { get; }
@@ -59,11 +61,11 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 		public virtual void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
-			laAdvertiser.Text = Schedule.BusinessName + (!string.IsNullOrEmpty(Schedule.AccountNumber) ? (" - " + Schedule.AccountNumber) : string.Empty);
+			laAdvertiser.Text = Content.ScheduleSettings.BusinessName + (!string.IsNullOrEmpty(Content.ScheduleSettings.AccountNumber) ? (" - " + Content.ScheduleSettings.AccountNumber) : string.Empty);
 			if (!quickLoad)
 			{
-				checkEditLessSlides.Checked = !Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides;
-				checkEditMoreSlides.Checked = Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides;
+				checkEditLessSlides.Checked = !Content.ScheduleSettings.AdPlanViewSettings.MoreSlides;
+				checkEditMoreSlides.Checked = Content.ScheduleSettings.AdPlanViewSettings.MoreSlides;
 			}
 			_allowToSave = true;
 
@@ -93,7 +95,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 		private void checkEditMoreSlides_CheckedChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides = checkEditMoreSlides.Checked;
+			Content.ScheduleSettings.AdPlanViewSettings.MoreSlides = checkEditMoreSlides.Checked;
 			SettingsNotSaved = true;
 		}
 
@@ -121,33 +123,6 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			PrintPdf();
 		}
 
-		public void Save_Click(object sender, EventArgs e)
-		{
-			SaveSchedule();
-			Utilities.Instance.ShowInformation("Schedule Saved");
-		}
-
-		public void SaveAs_Click(object sender, EventArgs e)
-		{
-			using (var from = new FormNewSchedule(GetExistedScheduleNames()))
-			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (from.ShowDialog() == DialogResult.OK)
-				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
-					{
-						SaveSchedule(from.ScheduleName);
-						Utilities.Instance.ShowInformation("Schedule was saved");
-					}
-					else
-					{
-						Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-					}
-				}
-			}
-		}
-
 		public void Help_Click(object sender, EventArgs e)
 		{
 			HelpManager.OpenHelpLink("adplan");
@@ -166,13 +141,13 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 					case 8:
 					case 11:
 					case 12:
-						return Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides ? 4 : 10;
+						return Content.ScheduleSettings.AdPlanViewSettings.MoreSlides ? 4 : 10;
 					case 9:
 					case 10:
 					case 13:
 					case 14:
 					case 15:
-						return Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides ? 5 : 10;
+						return Content.ScheduleSettings.AdPlanViewSettings.MoreSlides ? 5 : 10;
 					default:
 						if (totalRecords < 6)
 							return totalRecords;
@@ -187,7 +162,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			{
 				return MasterWizardManager.Instance.SelectedWizard.GetAdPlanFile(
 					ProductPagesForOutput.Count,
-					Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides);
+					Content.ScheduleSettings.AdPlanViewSettings.MoreSlides);
 			}
 		}
 
@@ -197,7 +172,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 		{
 			get
 			{
-				return Schedule.PresentationDate.HasValue ? Schedule.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty;
+				return Content.ScheduleSettings.PresentationDate.HasValue ? Content.ScheduleSettings.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty;
 			}
 		}
 
@@ -205,7 +180,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 		{
 			get
 			{
-				return Schedule.BusinessName;
+				return Content.ScheduleSettings.BusinessName;
 			}
 		}
 
@@ -287,7 +262,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			{
 				formEmail.Text = "Email this AdPlan";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.ActivateForm(_formContainer.Handle, true, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();
@@ -303,7 +278,7 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 			FormProgress.ShowProgress();
 			string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			OnlineSchedulePowerPointHelper.Instance.PrepareAdPlanEmail(tempFileName, this);
-			Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+			Utilities.ActivateForm(_formContainer.Handle, true, false);
 			FormProgress.CloseProgress();
 			if (File.Exists(tempFileName))
 				ShowPreview(tempFileName);

@@ -1,55 +1,34 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Asa.Business.Common.Enums;
+using Asa.Business.Media.Entities.NonPersistent.Calendar;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Media.Controls.BusinessClasses;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using Asa.Core.MediaSchedule;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
+namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	public class BroadcastCalendarControl : MediaCalendarControl
 	{
-		public BroadcastCalendarControl()
+		public override string Identifier
 		{
-			InitSlideInfo<BroadcastSlideInfoControl>();
-			SlideInfo.PropertyChanged += (sender, e) =>
-			{
-				if (!(e is DataSourceChangedEventArgs)) return;
-				CalendarData.Reset();
-				SaveCalendarData(false);
-				base.LoadCalendar(false);
-				MonthList_SelectedIndexChanged(MonthList, EventArgs.Empty);
-				SettingsNotSaved = true;
-			};
+			get { return ContentIdentifiers.BroadcastCalendar; }
 		}
 
-		public override Core.Calendar.Calendar CalendarData
+		public override RibbonTabItem TabPage
 		{
-			get { return _localSchedule.BroadcastCalendar; }
+			get { return Controller.Instance.TabCalendar1; }
 		}
 
-		public override ImageListBoxControl MonthList
+		protected override RibbonControl Ribbon
+		{
+			get { return Controller.Instance.Ribbon; }
+		}
+
+		protected override ImageListBoxControl MonthList
 		{
 			get { return Controller.Instance.Calendar1MonthsList; }
-		}
-
-		public override ButtonItem PreviewButton
-		{
-			get { return Controller.Instance.Calendar1Preview; }
-		}
-
-		public override ButtonItem EmailButton
-		{
-			get { return Controller.Instance.Calendar1Email; }
-		}
-
-		public override ButtonItem PowerPointButton
-		{
-			get { return Controller.Instance.Calendar1PowerPoint; }
-		}
-
-		public override ButtonItem PdfButton
-		{
-			get { return Controller.Instance.Calendar1Pdf; }
 		}
 
 		public override ButtonItem CopyButton
@@ -67,35 +46,74 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			get { return Controller.Instance.Calendar1Clone; }
 		}
 
-		protected override RibbonTabItem CalendarTab
+		#region BasePartitionEditControl Override
+		protected override bool IsContentChanged
 		{
-			get { return Controller.Instance.TabCalendar1; }
+			get
+			{
+				return EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
+					ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+					ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
+					ContentUpdateInfo.ChangeInfo.SpotTypeChanged ||
+					ContentUpdateInfo.ChangeInfo.ProgramScheduleChanged ||
+					ContentUpdateInfo.ChangeInfo.SnapshotsChanged);
+			}
 		}
 
-		public override void LoadCalendar(bool quickLoad)
+		public override void InitControl()
 		{
-			base.LoadCalendar(quickLoad);
-			if (quickLoad) return;
-			CalendarData.UpdateNotesCollection();
+			base.InitControl();
+			InitSlideInfo<BroadcastSlideInfoControl>();
+			SlideInfo.PropertyChanged += (sender, e) =>
+			{
+				if (!(e is DataSourceChangedEventArgs)) return;
+				Reset();
+			};
 		}
 
-		public override void ShowCalendar(bool gridView)
+		protected override void UpdateEditedContet()
 		{
-			base.ShowCalendar(gridView);
+			base.UpdateEditedContet();
 			retractableBarControl.AddButtons(SlideInfo.SlideInfoControl.GetChapters());
 		}
 
-		public override void Help_Click(object sender, EventArgs e)
+		protected override void SaveData()
+		{
+			base.SaveData();
+			Schedule.ApplySchedulePartitionContent(
+				SchedulePartitionType.BroadcastCalendar,
+				((BroadcastCalendar)EditedContent).Clone<BroadcastCalendar, BroadcastCalendar>());
+		}
+
+		public override MediaCalendar GetEditedCalendar()
+		{
+			return Schedule.GetSchedulePartitionContent<BroadcastCalendar>(
+				SchedulePartitionType.BroadcastCalendar)
+				.Clone<BroadcastCalendar, BroadcastCalendar>();
+		}
+
+		public override void GetHelp()
 		{
 			OpenHelp("calendar");
+		}
+		#endregion
+
+		#region Output Stuff
+		protected override bool IsOutputEnabled
+		{
+			get
+			{
+				return base.IsOutputEnabled &&
+					   (Schedule.Settings.SelectedSpotType == SpotType.Week &&
+						Schedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any()) ||
+					   Schedule.SnapshotContent.Snapshots.Any(s => s.Programs.Count > 0);
+			}
 		}
 
 		public override void UpdateOutputFunctions()
 		{
-			base.UpdateOutputFunctions();
-			var enable = (_localSchedule.SelectedSpotType == SpotType.Week && 
-				_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any()) || 
-				_localSchedule.Snapshots.Any(s => s.Programs.Count > 0);
+			var enable = IsOutputEnabled;
+
 			retractableBarControl.Visible = enable;
 			MonthList.Enabled = enable;
 			pnTop.Visible = enable;
@@ -103,6 +121,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Calendar
 			pictureBoxNoData.Image = Properties.Resources.CalendarDisabled;
 			pictureBoxNoData.Visible = !enable;
 			pictureBoxNoData.BringToFront();
+
+			Controller.Instance.Calendar1PowerPoint.Enabled = enable;
+			Controller.Instance.Calendar1Pdf.Enabled = enable;
+			Controller.Instance.Calendar1Preview.Enabled = enable;
+			Controller.Instance.Calendar1Email.Enabled = enable;
 		}
+		#endregion
 	}
 }

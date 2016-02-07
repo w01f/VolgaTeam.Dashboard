@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+﻿namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	sealed partial class StrategySummaryControl
 	{

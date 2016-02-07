@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Media.Entities.NonPersistent.Section.Content;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Objects.Images;
+using Asa.Common.Core.Objects.Output;
 
-namespace Asa.MediaSchedule.Controls.BusinessClasses
+namespace Asa.Media.Controls.BusinessClasses
 {
 	public class OutputSchedule
 	{
@@ -61,7 +63,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 
 		public string FlightDates
 		{
-			get { return _parent.ParentSchedule.FlightDates; }
+			get { return _parent.ParentSchedule.Settings.FlightDates; }
 		}
 
 		public string RtgHeaderTitle
@@ -69,7 +71,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			get
 			{
 				string result = string.Empty;
-				switch (_parent.ParentSchedule.DemoType)
+				switch (_parent.ParentSchedule.Settings.DemoType)
 				{
 					case DemoType.Rtg:
 						result = "Rtg";
@@ -78,7 +80,11 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 						result = "(000s)";
 						break;
 				}
-				return String.Format("{0}{1}", (!String.IsNullOrEmpty(_parent.ParentSchedule.Demo) ? String.Format("{0}{1}", _parent.ParentSchedule.Demo, (char)13) : String.Empty), result);
+				return String.Format("{0}{1}", 
+					(!String.IsNullOrEmpty(_parent.ParentSchedule.Settings.Demo) ? 
+						String.Format("{0}{1}", _parent.ParentSchedule.Settings.Demo, (char)13) : 
+						String.Empty), 
+					result);
 			}
 		}
 
@@ -87,7 +93,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			get
 			{
 				string result = string.Empty;
-				switch (_parent.ParentSchedule.DemoType)
+				switch (_parent.ParentSchedule.Settings.DemoType)
 				{
 					case DemoType.Rtg:
 						result = "CPP";
@@ -105,7 +111,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			get
 			{
 				string result = string.Empty;
-				switch (_parent.ParentSchedule.DemoType)
+				switch (_parent.ParentSchedule.Settings.DemoType)
 				{
 					case DemoType.Rtg:
 						result = "GRP";

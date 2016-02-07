@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+﻿namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	sealed partial class SnapshotControl
 	{
@@ -99,7 +99,7 @@
 			// pbNoPrograms
 			// 
 			this.pbNoPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoPrograms.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.SnapshotsNoPrograms;
+			this.pbNoPrograms.Image = global::Asa.Media.Controls.Properties.Resources.SnapshotsNoPrograms;
 			this.pbNoPrograms.Location = new System.Drawing.Point(40, 20);
 			this.pbNoPrograms.Name = "pbNoPrograms";
 			this.pbNoPrograms.Size = new System.Drawing.Size(510, 55);

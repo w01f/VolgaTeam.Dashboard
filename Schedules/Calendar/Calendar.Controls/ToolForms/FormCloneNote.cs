@@ -4,16 +4,16 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
 using Pabo.Calendar;
-using DateRange = Asa.Core.Common.DateRange;
+using DateRange = Asa.Business.Common.Entities.NonPersistent.Common.DateRange;
 
 namespace Asa.Calendar.Controls.ToolForms
 {
-	public partial class FormCloneNote : MetroForm
+	public partial class FormCloneNote: MetroForm
 	{
 		private readonly DateTime _flightDateEnd;
 		private readonly DateTime _flightDateStart;
@@ -81,7 +81,7 @@ namespace Asa.Calendar.Controls.ToolForms
 				e.Info.DateColor = Color.Black;
 				e.OwnerDraw = true;
 			}
-			if (_selectedRanges.Where(x => x.StartDate <= e.Date && x.FinishDate >= e.Date).Count() > 0)
+			if (_selectedRanges.Count(x => x.StartDate <= e.Date && x.FinishDate >= e.Date) > 0)
 			{
 				e.Info.BackColor1 = Color.Blue;
 				e.Info.TextColor = Color.White;
@@ -133,7 +133,7 @@ namespace Asa.Calendar.Controls.ToolForms
 									_rangesToDelete.AddRange(_selectedRanges.Where(x => x.StartDate >= startDate && x.FinishDate <= finishDate));
 									foreach (DateRange rande in _rangesToDelete)
 										_selectedRanges.Remove(rande);
-									_selectedRanges.AddRange(_sourceNote.Parent.CalculateDateRange(new[] { startDate, finishDate }));
+									_selectedRanges.AddRange(_sourceNote.ParentCalendar.CalculateDateRange(new[] { startDate, finishDate }));
 									UpdateSelectedDates();
 									_selectedDate = null;
 								}
@@ -145,7 +145,7 @@ namespace Asa.Calendar.Controls.ToolForms
 						}
 					}
 					else
-						Utilities.Instance.ShowWarning("Pick a date that is in your Schedule Window…");
+						PopupMessageHelper.Instance.ShowWarning("Pick a date that is in your Schedule Window…");
 				}
 			}
 			else

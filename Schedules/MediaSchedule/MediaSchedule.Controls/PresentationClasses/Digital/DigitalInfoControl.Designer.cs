@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.PresentationClasses.Digital
+﻿namespace Asa.Media.Controls.PresentationClasses.Digital
 {
 	partial class DigitalInfoControl
 	{

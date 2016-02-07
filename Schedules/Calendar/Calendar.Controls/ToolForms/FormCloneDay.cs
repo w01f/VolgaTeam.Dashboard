@@ -4,15 +4,15 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
 using Pabo.Calendar;
 
 namespace Asa.Calendar.Controls.ToolForms
 {
-	public partial class FormCloneDay : MetroForm
+	public partial class FormCloneDay: MetroForm
 	{
 		private readonly CalendarDay _day;
 		private readonly DateTime _flightDateEnd;
@@ -34,7 +34,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			monthCalendarClone.ActiveMonth.Month = _day.Date.Month;
 			monthCalendarClone.ActiveMonth.Year = _day.Date.Year;
 			monthCalendarClone.Header.TextColor = Color.Black;
-			if (_day is CalendarDayMondayBased)
+			if (_day.IsMondatBased)
 				monthCalendarClone.FirstDayOfWeek = 2;
 
 			UpdateTotals();
@@ -170,7 +170,7 @@ namespace Asa.Calendar.Controls.ToolForms
 				if (temp >= _flightDateStart && temp <= _flightDateEnd)
 					AddSelectedDate(temp);
 				else if (temp < _flightDateStart || temp > _flightDateEnd)
-					Utilities.Instance.ShowWarning("Pick a date that is in your Schedule Window…");
+					PopupMessageHelper.Instance.ShowWarning("Pick a date that is in your Schedule Window…");
 			}
 		}
 

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Business.Common.Entities.NonPersistent.Summary;
+using Asa.Business.Media.Interfaces;
 using DevExpress.XtraTab;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
 	//public abstract partial class BaseSummaryInfoControl : UserControl, ISummarySettingsEditorControl
-	public abstract partial class BaseSummaryInfoControl : XtraTabPage, ISummarySettingsEditorControl
+	public abstract partial class BaseSummaryInfoControl : XtraTabPage, ISummarySettingsEditorControl, ISummaryInfoControl
 	{
 		protected bool _allowToSave;
 
@@ -31,13 +31,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			_sectionSummaryContent = (ISectionSummaryContent)dataSource;
 			_allowToSave = false;
 
-			checkEditBusinessName.Text = String.Format("{0}", _sectionSummaryContent.Parent.Parent.ParentSchedule.BusinessName);
-			checkEditDecisionMaker.Text = String.Format("{0}", _sectionSummaryContent.Parent.Parent.ParentSchedule.DecisionMaker);
+			checkEditBusinessName.Text = String.Format("{0}", _sectionSummaryContent.Parent.Parent.ParentScheduleSettings.BusinessName);
+			checkEditDecisionMaker.Text = String.Format("{0}", _sectionSummaryContent.Parent.Parent.ParentScheduleSettings.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", 
-				_sectionSummaryContent.Parent.Parent.ParentSchedule.PresentationDate.HasValue ? 
-				_sectionSummaryContent.Parent.Parent.ParentSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : 
+				_sectionSummaryContent.Parent.Parent.ParentScheduleSettings.PresentationDate.HasValue ?
+				_sectionSummaryContent.Parent.Parent.ParentScheduleSettings.PresentationDate.Value.ToString("MM/dd/yyyy") : 
 				String.Empty);
-			laFlightDates.Text = String.Format("{0}", _sectionSummaryContent.Parent.Parent.ParentSchedule.FlightDates);
+			laFlightDates.Text = String.Format("{0}", _sectionSummaryContent.Parent.Parent.ParentScheduleSettings.FlightDates);
 
 			checkEditBusinessName.Checked = _baseSummarySettings.ShowAdvertiser;
 			checkEditDecisionMaker.Checked = _baseSummarySettings.ShowDecisionMaker;
@@ -61,6 +61,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			_baseSummarySettings.ShowTotal = checkEditTotalInvestment.Checked;
 		}
 
+		public virtual void Release()
+		{
+			_sectionSummaryContent = null;
+			_baseSummarySettings = null;
+			DataChanged = null;
+		}
+		
 		public abstract void UpdateTotals();
 
 		private void OnSettingChanged(object sender, EventArgs e)

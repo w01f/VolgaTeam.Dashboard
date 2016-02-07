@@ -1,4 +1,4 @@
-﻿namespace Asa.MediaSchedule.Controls.ToolForms
+﻿namespace Asa.Media.Controls.ToolForms
 {
     partial class FormStart
     {
@@ -94,7 +94,7 @@
 			// 
 			// pbLogo
 			// 
-			this.pbLogo.Image = global::Asa.MediaSchedule.Controls.Properties.Resources.TVRibbonLogo;
+			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.TVRibbonLogo;
 			this.pbLogo.Location = new System.Drawing.Point(14, 12);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(419, 65);

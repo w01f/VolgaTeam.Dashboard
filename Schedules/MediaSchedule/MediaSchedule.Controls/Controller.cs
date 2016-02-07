@@ -1,47 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Activities;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.GUI.Floater;
+using Asa.Common.GUI.SlideSettingsEditors;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.Floater;
-using Asa.CommonGUI.Gallery;
-using Asa.CommonGUI.RateCard;
-using Asa.CommonGUI.SlideSettingsEditors;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using Asa.MediaSchedule.Controls.PresentationClasses.Calendar;
-using Asa.MediaSchedule.Controls.PresentationClasses.Digital;
-using Asa.MediaSchedule.Controls.PresentationClasses.Gallery;
-using Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls;
-using Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
-using Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls;
-using Asa.MediaSchedule.Controls.PresentationClasses.Summary;
-using Asa.OnlineSchedule.Controls.InteropClasses;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
 
-namespace Asa.MediaSchedule.Controls
+namespace Asa.Media.Controls
 {
 	public class Controller
 	{
 		private static readonly Controller _instance = new Controller();
-		private Controller() { }
 		public static Controller Instance
 		{
 			get { return _instance; }
 		}
 
-		public event EventHandler<EventArgs> ScheduleChanged;
+		public ContentController ContentController { get; private set; }
 		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		public Form FormMain { get; set; }
+		public Panel MainPanel { get; set; }
+		public Panel EmptyPanel { get; set; }
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
 		public RibbonTabItem TabHome { get; set; }
@@ -57,11 +48,16 @@ namespace Asa.MediaSchedule.Controls
 		public RibbonTabItem TabSnapshot { get; set; }
 		public RibbonTabItem TabOptions { get; set; }
 
+		private Controller()
+		{
+			ContentController = new ContentController();
+		}
+
 		public async Task InitBusinessObjects()
 		{
 			await AppProfileManager.Instance.LoadProfile();
 
-			await Core.MediaSchedule.ResourceManager.Instance.Load();
+			await ResourceManager.Instance.Load();
 
 			PowerPointManager.Instance.Init(RegularMediaSchedulePowerPointHelper.Instance);
 
@@ -70,21 +66,17 @@ namespace Asa.MediaSchedule.Controls
 			MediaMetaData.Instance.SettingsManager.InitThemeHelper(BusinessObjects.Instance.ThemeManager);
 			MediaMetaData.Instance.SettingsManager.LoadSettings();
 
-			Core.Common.ListManager.Instance.Init();
+			Business.Common.Dictionaries.ListManager.Instance.Load();
 			MediaMetaData.Instance.ListManager.Load();
-			Core.OnlineSchedule.ListManager.Instance.Load(Core.Common.ResourceManager.Instance.OnlineListsFile);
+			Business.Online.Dictionaries.ListManager.Instance.Load(Common.Core.Configuration.ResourceManager.Instance.OnlineListsFile);
 
 			BusinessObjects.Instance.Init();
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => UpdateOutputButtonsAccordingThemeStatus();
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => ConfigureThemeButtons();
 		}
 
 		public void InitForm()
 		{
-			Utilities.Instance.Title = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
-
 			SetDefaultCulture();
-
-			ConfigureTabPages();
 
 			InitControls();
 
@@ -92,302 +84,145 @@ namespace Asa.MediaSchedule.Controls
 
 			ConfigureSpecialButtons();
 
-			SlideSettingsButton.Visible =
-				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
-				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
-
 			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
-
-			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
-			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
-			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
 		}
 
 		private void InitControls()
 		{
+			foreach (var tabPage in new[]
+			{
+				TabHome,
+				TabProgramSchedule,
+				TabDigitalProduct,
+				TabDigitalPackage,
+				TabSnapshot,
+				TabOptions,
+				TabSummary,
+				TabCalendar1,
+				TabCalendar2,
+				TabGallery1,
+				TabGallery2,
+				TabRateCard
+			})
+				tabPage.Visible = false;
+
+			ContentController.Init();
+
+			SlideSettingsButton.Visible =
+				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
+				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
+			Ribbon.Items.Add(SlideSettingsButton);
 			SlideSettingsButton.Click += OnSlideSettingsClick;
 
-			#region Schedule Settings
-			HomeControl = new HomeControl();
-			HomeHelp.Click += HomeControl.Help_Click;
-			HomeSave.Click += HomeControl.Save_Click;
-			HomeSaveAs.Click += HomeControl.SaveAs_Click;
-			HomeBusinessName.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
-			HomeDecisionMaker.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
-			HomeClientType.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
-			HomeAccountNumberText.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
-			HomeAccountNumberCheck.CheckedChanged += HomeControl.checkBoxItemAccountNumber_CheckedChanged;
-			HomeFlightDatesStart.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
-			HomeFlightDatesStart.EditValueChanged += HomeControl.FlightDateStartEditValueChanged;
-			HomeFlightDatesStart.EditValueChanged += HomeControl.CalcWeeksOnFlightDatesChange;
-			HomeFlightDatesEnd.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
-			HomeFlightDatesEnd.EditValueChanged += HomeControl.CalcWeeksOnFlightDatesChange;
-			HomeFlightDatesEnd.EditValueChanged += HomeControl.FlightDateEndEditValueChanged;
-			HomeFlightDatesStart.CloseUp += HomeControl.dateEditFlightDatesStart_CloseUp;
-			HomeFlightDatesEnd.CloseUp += HomeControl.dateEditFlightDatesEnd_CloseUp;
-			HomeProductClone.Click += HomeControl.DigitalProductClone;
-			HomeBusinessName.Enter += TextEditorsHelper.Editor_Enter;
-			HomeBusinessName.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			HomeBusinessName.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			HomeDecisionMaker.Enter += TextEditorsHelper.Editor_Enter;
-			HomeDecisionMaker.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			HomeDecisionMaker.MouseUp += TextEditorsHelper.Editor_MouseUp;
-
-			HomeBusinessName.TabIndex = 0;
-			HomeBusinessName.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
-			HomeDecisionMaker.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
-			HomeClientType.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
-			HomePresentationDate.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
-			HomeFlightDatesStart.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
-			HomeFlightDatesEnd.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
-			#endregion
-
-			#region Program Schedule
-			ProgramSchedule = new ScheduleContainer();
-			ProgramScheduleSave.Click += ProgramSchedule.Save_Click;
-			ProgramScheduleSaveAs.Click += ProgramSchedule.SaveAs_Click;
-			ProgramScheduleHelp.Click += ProgramSchedule.Help_Click;
-			ProgramScheduleNew.Click += ProgramSchedule.OnAddSection;
-			ProgramScheduleProgramAdd.Click += ProgramSchedule.OnAddProgram;
-			ProgramScheduleProgramDelete.Click += ProgramSchedule.OnDeleteProgram;
-			ProgramSchedulePowerPoint.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnPowerPointOutput);
-			ProgramSchedulePreview.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnOutputPreview);
-			ProgramScheduleEmail.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnEmailOutput);
-			ProgramSchedulePdf.AddEventHandler(CheckPowerPointRunning, ProgramSchedule.OnPdfOutput);
-			#endregion
-
-			#region Digital Product
-			DigitalProductContainer = new DigitalProductContainerControl(FormMain);
-			DigitalProductSave.Click += DigitalProductContainer.Save_Click;
-			DigitalProductSaveAs.Click += DigitalProductContainer.SaveAs_Click;
-			DigitalProductPowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.PowerPoint_Click);
-			DigitalProductEmail.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Email_Click);
-			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
-			DigitalProductPreview.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Preview_Click);
-			DigitalProductPdf.AddEventHandler(CheckPowerPointRunning, DigitalProductContainer.Pdf_Click);
-			#endregion
-
-			#region Web Package
-			DigitalPackage = new MediaWebPackageControl(FormMain);
-			DigitalPackageSave.Click += DigitalPackage.Save_Click;
-			DigitalPackageSaveAs.Click += DigitalPackage.SaveAs_Click;
-			DigitalPackagePowerPoint.AddEventHandler(CheckPowerPointRunning, DigitalPackage.PowerPoint_Click);
-			DigitalPackagePreview.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Preview_Click);
-			DigitalPackageEmail.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Email_Click);
-			DigitalPackagePdf.AddEventHandler(CheckPowerPointRunning, DigitalPackage.Pdf_Click);
-			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
-			#endregion
-
-			#region Calendar1
-			BroadcastCalendar = new BroadcastCalendarControl();
-			Calendar1MonthsList.SelectedIndexChanged += BroadcastCalendar.MonthList_SelectedIndexChanged;
-			Calendar1Copy.Click += BroadcastCalendar.CalendarCopy_Click;
-			Calendar1Paste.Click += BroadcastCalendar.CalendarPaste_Click;
-			Calendar1Clone.Click += BroadcastCalendar.CalendarClone_Click;
-			Calendar1Save.Click += BroadcastCalendar.Save_Click;
-			Calendar1SaveAs.Click += BroadcastCalendar.SaveAs_Click;
-			Calendar1Preview.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Preview_Click);
-			Calendar1PowerPoint.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.PowerPoint_Click);
-			Calendar1Email.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Email_Click);
-			Calendar1Pdf.AddEventHandler(CheckPowerPointRunning, BroadcastCalendar.Pdf_Click);
-			Calendar1Help.Click += BroadcastCalendar.Help_Click;
-			#endregion
-
-			#region Calendar2
-			CustomCalendar = new CustomCalendarControl();
-			Calendar2MonthsList.SelectedIndexChanged += CustomCalendar.MonthList_SelectedIndexChanged;
-			Calendar2Copy.Click += CustomCalendar.CalendarCopy_Click;
-			Calendar2Paste.Click += CustomCalendar.CalendarPaste_Click;
-			Calendar2Clone.Click += CustomCalendar.CalendarClone_Click;
-			Calendar2Save.Click += CustomCalendar.Save_Click;
-			Calendar2SaveAs.Click += CustomCalendar.SaveAs_Click;
-			Calendar2Preview.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Preview_Click);
-			Calendar2PowerPoint.AddEventHandler(CheckPowerPointRunning, CustomCalendar.PowerPoint_Click);
-			Calendar2Email.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Email_Click);
-			Calendar2Pdf.AddEventHandler(CheckPowerPointRunning, CustomCalendar.Pdf_Click);
-			Calendar2Help.Click += CustomCalendar.Help_Click;
-			#endregion
-
-			#region Summary Light
-			Summary = new SummaryContainer();
-
-			SummarySave.Click += Summary.Save_Click;
-			SummarySaveAs.Click += Summary.SaveAs_Click;
-			SummaryHelp.Click += Summary.Help_Click;
-			SummaryPowerPoint.AddEventHandler(CheckPowerPointRunning, Summary.OnPowerPointOutput);
-			SummaryPreview.AddEventHandler(CheckPowerPointRunning, Summary.OnOutputPreview);
-			SummaryEmail.AddEventHandler(CheckPowerPointRunning, Summary.OnEmailOutput);
-			SummaryPdf.AddEventHandler(CheckPowerPointRunning, Summary.OnPdfOutput);
-			#endregion
-
-			#region Snapshot
-			Snapshot = new SnapshotContainer();
-			SnapshotSave.Click += Snapshot.Save_Click;
-			SnapshotSaveAs.Click += Snapshot.SaveAs_Click;
-			SnapshotPowerPoint.AddEventHandler(CheckPowerPointRunning, Snapshot.PowerPoint_Click);
-			SnapshotPreview.AddEventHandler(CheckPowerPointRunning, Snapshot.Preview_Click);
-			SnapshotEmail.AddEventHandler(CheckPowerPointRunning, Snapshot.Email_Click);
-			SnapshotPdf.AddEventHandler(CheckPowerPointRunning, Snapshot.Pdf_Click);
-			SnapshotHelp.Click += Snapshot.Help_Click;
-			SnapshotNew.Click += Snapshot.New_Click;
-			SnapshotProgramAdd.Click += Snapshot.AddProgram_Click;
-			SnapshotProgramDelete.Click += Snapshot.DeleteProgram_Click;
-			#endregion
-
-			#region Options
-			Options = new OptionsContainer();
-			OptionsSave.Click += Options.Save_Click;
-			OptionsSaveAs.Click += Options.SaveAs_Click;
-			OptionsPowerPoint.AddEventHandler(CheckPowerPointRunning, Options.PowerPoint_Click);
-			OptionsPreview.AddEventHandler(CheckPowerPointRunning, Options.Preview_Click);
-			OptionsEmail.AddEventHandler(CheckPowerPointRunning, Options.Email_Click);
-			OptionsPdf.AddEventHandler(CheckPowerPointRunning, Options.Pdf_Click);
-			OptionsHelp.Click += Options.Help_Click;
-			OptionsNew.Click += Options.New_Click;
-			OptionsProgramAdd.Click += Options.AddProgram_Click;
-			OptionsProgramDelete.Click += Options.DeleteProgram_Click;
-			#endregion
-
-			#region Rate Card Events
-			RateCard = new RateCardControl(BusinessObjects.Instance.RateCardManager, RateCardCombo);
-			RateCardHelp.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("ratecard");
-			#endregion
-
-			#region Gallery 1
-			Gallery1 = new MediaGallery1Control();
-			Gallery1Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery1");
-			#endregion
-
-			#region Gallery 2
-			Gallery2 = new MediaGallery2Control();
-			Gallery2Help.Click += (o, e) => BusinessObjects.Instance.HelpManager.OpenHelpLink("gallery2");
-			#endregion
-		}
-
-		public void RemoveInstance()
-		{
-			HomeControl.Dispose();
-			ProgramSchedule.Dispose();
-			DigitalProductContainer.Dispose();
-			DigitalPackage.Dispose();
-			BroadcastCalendar.Dispose();
-			CustomCalendar.Dispose();
-			Summary.Dispose();
-			Snapshot.Dispose();
-			Options.Dispose();
-			Gallery1.Dispose();
-			Gallery2.Dispose();
-			RateCard.Dispose();
-			FloaterRequested = null;
-			SetDefaultCulture();
-		}
-
-		public void LoadData()
-		{
-			HomeControl.LoadSchedule(false);
-			ProgramSchedule.LoadSchedule(false);
-			DigitalProductContainer.LoadSchedule(false);
-			DigitalPackage.LoadSchedule(false);
-			BroadcastCalendar.LoadCalendar(false);
-			CustomCalendar.LoadCalendar(false);
-			Summary.LoadSchedule(false);
-			Snapshot.LoadSchedule(false);
-			Options.LoadSchedule(false);
-			TabRateCard.Enabled = BusinessObjects.Instance.RateCardManager.RateCardFolders.Any();
-		}
-
-		private void ConfigureTabPages()
-		{
-			TabDigitalPackage.Visible = false;
-			TabDigitalProduct.Visible = false;
-
-			Ribbon.Items.Clear();
-			var tabPages = new List<BaseItem>();
-			foreach (var tabPageConfig in BusinessObjects.Instance.TabPageManager.TabPageSettings)
+			foreach (var ribbonButton in new[]
 			{
-				switch (tabPageConfig.Id)
-				{
-					case "Home":
-						TabHome.Text = tabPageConfig.Name;
-						tabPages.Add(TabHome);
-						break;
-					case "Weekly Schedule":
-					case "Monthly Schedule":
-						if (!tabPages.Contains(TabProgramSchedule))
-							tabPages.Add(TabProgramSchedule);
-						break;
-					case "Digital Slides":
-						TabDigitalProduct.Text = tabPageConfig.Name;
-						TabDigitalProduct.Visible = true;
-						tabPages.Add(TabDigitalProduct);
-						break;
-					case "Digital PKG":
-						TabDigitalPackage.Text = tabPageConfig.Name;
-						TabDigitalPackage.Visible = true;
-						tabPages.Add(TabDigitalPackage);
-						break;
-					case "Calendar":
-						TabCalendar1.Text = tabPageConfig.Name;
-						tabPages.Add(TabCalendar1);
-						break;
-					case "Calendar2":
-						TabCalendar2.Text = tabPageConfig.Name;
-						tabPages.Add(TabCalendar2);
-						break;
-					case "Gallery1":
-						TabGallery1.Text = tabPageConfig.Name;
-						tabPages.Add(TabGallery1);
-						break;
-					case "Gallery2":
-						TabGallery2.Text = tabPageConfig.Name;
-						tabPages.Add(TabGallery2);
-						break;
-					case "Rate Card":
-						TabRateCard.Text = tabPageConfig.Name;
-						tabPages.Add(TabRateCard);
-						break;
-					case "Snapshot":
-						TabSnapshot.Text = tabPageConfig.Name;
-						tabPages.Add(TabSnapshot);
-						break;
-					case "Options":
-						TabOptions.Text = tabPageConfig.Name;
-						tabPages.Add(TabOptions);
-						break;
-					case "Summaries":
-						TabSummary.Text = tabPageConfig.Name;
-						tabPages.Add(TabSummary);
-						break;
-				}
-			}
-			Ribbon.Items.AddRange(tabPages.ToArray());
-			Ribbon.Items.Add(SlideSettingsButton);
-		}
-
-		public void SaveSchedule(RegularSchedule localSchedule, bool nameChanged, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
-		{
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nSaving settings...");
-			var thread = new Thread(() => BusinessObjects.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, calendarTypeChanged, sender));
-			FormProgress.ShowProgress();
-			thread.Start();
-			while (thread.IsAlive)
-				Application.DoEvents();
-			FormProgress.CloseProgress();
-
-			if (nameChanged)
+				HomeSave,
+				ProgramScheduleSave,
+				DigitalProductSave,
+				DigitalPackageSave,
+				SnapshotSave,
+				OptionsSave,
+				SummarySave,
+				Calendar1Save,
+				Calendar2Save,
+			})
 			{
-				var options = new Dictionary<string, object>();
-				options.Add("Advertiser", localSchedule.BusinessName);
-				if (localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-				{
-					options.Add("TotalSpots", localSchedule.ProgramSchedule.TotalSpots);
-					options.Add("AverageRate", localSchedule.ProgramSchedule.AvgRate);
-					options.Add("GrossInvestment", localSchedule.ProgramSchedule.TotalCost);
-				}
-				BusinessObjects.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
+				ribbonButton.Click += ContentController.OnSaveSchedule;
 			}
-			if (ScheduleChanged != null)
-				ScheduleChanged(this, EventArgs.Empty);
+
+			foreach (var ribbonButton in new[]
+			{
+				HomeSaveAs,
+				ProgramScheduleSaveAs,
+				DigitalProductSaveAs,
+				DigitalPackageSaveAs,
+				SnapshotSaveAs,
+				OptionsSaveAs,
+				SummarySaveAs,
+				Calendar1SaveAs,
+				Calendar2SaveAs,
+			})
+			{
+				ribbonButton.Click += ContentController.OnSaveAsSchedule;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				HomeHelp,
+				ProgramScheduleHelp,
+				DigitalProductHelp,
+				DigitalPackageHelp,
+				SnapshotHelp,
+				OptionsHelp,
+				SummaryHelp,
+				Calendar1Help,
+				Calendar2Help,
+				Gallery1Help,
+				Gallery2Help,
+			})
+			{
+				ribbonButton.Click += ContentController.OnGetHelp;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				ProgramSchedulePowerPoint,
+				DigitalProductPowerPoint,
+				DigitalPackagePowerPoint,
+				SnapshotPowerPoint,
+				OptionsPowerPoint,
+				SummaryPowerPoint,
+				Calendar1PowerPoint,
+				Calendar2PowerPoint,
+			})
+			{
+				ribbonButton.Click += ContentController.OnOutputPowerPoint;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				ProgramSchedulePdf,
+				DigitalProductPdf,
+				DigitalPackagePdf,
+				SnapshotPdf,
+				OptionsPdf,
+				SummaryPdf,
+				Calendar1Pdf,
+				Calendar2Pdf,
+			})
+			{
+				ribbonButton.Click += ContentController.OnOutputPdf;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				ProgramSchedulePreview,
+				DigitalProductPreview,
+				DigitalPackagePreview,
+				SnapshotPreview,
+				OptionsPreview,
+				SummaryPreview,
+				Calendar1Preview,
+				Calendar2Preview,
+			})
+			{
+				ribbonButton.Click += ContentController.OnPreview;
+			}
+
+			foreach (var ribbonButton in new[]
+			{
+				ProgramScheduleEmail,
+				DigitalProductEmail,
+				DigitalPackageEmail,
+				SnapshotEmail,
+				OptionsEmail,
+				SummaryEmail,
+				Calendar1Email,
+				Calendar2Email,
+			})
+			{
+				ribbonButton.Click += ContentController.OnEmail;
+			}
 		}
 
 		public void UpdateScheduleTabs(bool enable)
@@ -411,38 +246,6 @@ namespace Asa.MediaSchedule.Controls
 		}
 
 		public void ConfigureThemeButtons()
-		{
-			UpdateOutputButtonsAccordingThemeStatus();
-			Ribbon.SelectedRibbonTabChanged += (o, e) =>
-			{
-				(ProgramSchedulePowerPoint.ContainerControl as RibbonBar).Text = (ProgramScheduleTheme.Tag as Theme).Name;
-				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = (DigitalProductTheme.Tag as Theme).Name;
-				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
-				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = (SummaryTheme.Tag as Theme).Name;
-				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = (SnapshotTheme.Tag as Theme).Name;
-				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = (OptionsTheme.Tag as Theme).Name;
-
-				ProgramScheduleThemeBar.RecalcLayout();
-				ProgramSchedulePanel.PerformLayout();
-
-				DigitalProductThemeBar.RecalcLayout();
-				DigitalProductPanel.PerformLayout();
-
-				DigitalPackageThemeBar.RecalcLayout();
-				DigitalPackagePanel.PerformLayout();
-
-				SummaryThemeBar.RecalcLayout();
-				SummaryPanel.PerformLayout();
-
-				SnapshotThemeBar.RecalcLayout();
-				SnapshotPanel.PerformLayout();
-
-				OptionsThemeBar.RecalcLayout();
-				OptionsPanel.PerformLayout();
-			};
-		}
-
-		private void UpdateOutputButtonsAccordingThemeStatus()
 		{
 			if (!BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any())
 			{
@@ -562,15 +365,15 @@ namespace Asa.MediaSchedule.Controls
 			};
 			foreach (var ribbonBar in specialLinkContainers)
 			{
-				if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
+				if (Business.Online.Dictionaries.ListManager.Instance.SpecialLinksEnable)
 				{
-					ribbonBar.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+					ribbonBar.Text = Business.Online.Dictionaries.ListManager.Instance.SpecialLinksGroupName;
 					var containerButton = new ButtonItem();
-					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
+					containerButton.Image = Business.Online.Dictionaries.ListManager.Instance.SpecialLinksGroupLogo;
 					containerButton.AutoExpandOnClick = true;
 					Supertip.SetSuperTooltip(containerButton, new SuperTooltipInfo("Links", "", "Helpful schedule building Links and resources", null, null, eTooltipColor.Gray));
 					ribbonBar.Items.Add(containerButton);
-					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+					foreach (var specialLinkButton in Business.Online.Dictionaries.ListManager.Instance.SpecialLinkButtons)
 					{
 						var clickAction = new Action(() => { specialLinkButton.Open(); });
 						var button = new ButtonItem();
@@ -590,23 +393,16 @@ namespace Asa.MediaSchedule.Controls
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Properties.Resources.TVRibbonLogo : Properties.Resources.RadioRibbonLogo };
+			var args = new FloaterRequestedEventArgs
+			{
+				AfterShow = afterShow,
+				Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Properties.Resources.TVRibbonLogo : Properties.Resources.RadioRibbonLogo
+			};
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}
 
-		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessObjects.Instance.ScheduleManager.CurrentAdvertiser));
-			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
-				RateCard.LoadRateCards();
-			if (Ribbon.SelectedRibbonTabItem == TabGallery1)
-				Gallery1.InitControl();
-			else if (Ribbon.SelectedRibbonTabItem == TabGallery2)
-				Gallery2.InitControl();
-		}
-
-		public void SetDefaultCulture()
+		private void SetDefaultCulture()
 		{
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
@@ -616,12 +412,9 @@ namespace Asa.MediaSchedule.Controls
 
 		public bool CheckPowerPointRunning()
 		{
-			if (RegularMediaSchedulePowerPointHelper.Instance.IsLinkedWithApplication)
-			{
-				OnlineSchedulePowerPointHelper.Instance.Connect(false);
+			if (RegularMediaSchedulePowerPointHelper.Instance.Connect(false))
 				return true;
-			}
-			if (Utilities.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
 				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
 			return false;
 		}
@@ -828,21 +621,6 @@ namespace Asa.MediaSchedule.Controls
 		public ComboBoxEdit Gallery2Groups { get; set; }
 		#endregion
 
-		#endregion
-
-		#region Forms
-		public HomeControl HomeControl { get; private set; }
-		public ScheduleContainer ProgramSchedule { get; private set; }
-		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
-		public MediaWebPackageControl DigitalPackage { get; private set; }
-		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
-		public CustomCalendarControl CustomCalendar { get; private set; }
-		public SummaryContainer Summary { get; private set; }
-		public SnapshotContainer Snapshot { get; private set; }
-		public OptionsContainer Options { get; private set; }
-		public RateCardControl RateCard { get; private set; }
-		public GalleryControl Gallery1 { get; private set; }
-		public GalleryControl Gallery2 { get; private set; }
 		#endregion
 	}
 }

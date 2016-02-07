@@ -1,8 +1,9 @@
-﻿using Asa.CommonGUI.RateCard;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+﻿using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Contexts;
+using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.RateCard;
 
-namespace Asa.MediaSchedule.Controls.BusinessClasses
+namespace Asa.Media.Controls.BusinessClasses
 {
 	public class BusinessObjects
 	{
@@ -13,7 +14,7 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 			get { return _instance; }
 		}
 
-		public ScheduleManager ScheduleManager { get; private set; }
+		public MediaScheduleManager ScheduleManager { get; private set; }
 		public HelpManager HelpManager { get; private set; }
 		public OutputManager OutputManager { get; private set; }
 		public TabPageManager TabPageManager { get; private set; }
@@ -26,26 +27,28 @@ namespace Asa.MediaSchedule.Controls.BusinessClasses
 		private BusinessObjects()
 		{
 			OutputManager = new OutputManager();
-			ScheduleManager = new ScheduleManager();
+			ScheduleManager = new MediaScheduleManager();
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
 		}
 
 		public void Init()
 		{
+			ScheduleManager.Init();
+
 			OutputManager.Init();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();
 
 			HelpManager.LoadHelpLinks();
-			
+
 			ThemeManager.Load();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
-			
-			TabPageManager = new TabPageManager(Core.MediaSchedule.ResourceManager.Instance.TabsConfigFile);
+
+			TabPageManager = new TabPageManager(ResourceManager.Instance.TabsConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();
-			Gallery1Manager = new GalleryManager(Core.MediaSchedule.ResourceManager.Instance.Gallery1ConfigFile);
-			Gallery2Manager = new GalleryManager(Core.MediaSchedule.ResourceManager.Instance.Gallery2ConfigFile);
-			RateCardManager = new RateCardManager(Core.Common.ResourceManager.Instance.RateCardFolder);
+			Gallery1Manager = new GalleryManager(ResourceManager.Instance.Gallery1ConfigFile);
+			Gallery2Manager = new GalleryManager(ResourceManager.Instance.Gallery2ConfigFile);
+			RateCardManager = new RateCardManager(Common.Core.Configuration.ResourceManager.Instance.RateCardFolder);
 			RateCardManager.LoadRateCards();
 		}
 	}

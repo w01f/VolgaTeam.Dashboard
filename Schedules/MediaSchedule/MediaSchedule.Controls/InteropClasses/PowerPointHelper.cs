@@ -1,10 +1,8 @@
-﻿using Asa.MediaSchedule.Controls.BusinessClasses;
+﻿using Asa.Common.GUI.Interop;
 
-namespace Asa.MediaSchedule.Controls.InteropClasses
+namespace Asa.Media.Controls.InteropClasses
 {
-	public abstract partial class MediaSchedulePowerPointHelper<T> : CommonGUI.Interop.CommonPowerPointHelper<T> where T : class, new()
-	{
-	}
+	public abstract partial class MediaSchedulePowerPointHelper<T> : CommonPowerPointHelper<T> where T : class, new() { }
 
 	public class RegularMediaSchedulePowerPointHelper : MediaSchedulePowerPointHelper<RegularMediaSchedulePowerPointHelper> { }
 }

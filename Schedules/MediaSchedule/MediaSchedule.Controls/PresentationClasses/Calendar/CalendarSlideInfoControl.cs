@@ -3,21 +3,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Media.Configuration;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.RetractableBar;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.RetractableBar;
+using Asa.Media.Controls.BusinessClasses;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses
+namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	public partial class CalendarSlideInfoControl : UserControl, ISlideInfoControl
 	{
 		protected bool _allowToSave;
-		protected CalendarMonth _month;
 		private readonly List<ImageSource> _imageSources = new List<ImageSource>();
+
+		protected CalendarMonth Month { get; set; }
+		public string MonthTitle { get; set; }
+		public bool SettingsNotSaved { get; set; }
+
+		[Browsable(true)]
+		[Category("Action")]
+		public event EventHandler Closed;
+
+		[Browsable(true)]
+		[Category("Action")]
+		public event EventHandler<EventArgs> PropertyChanged;
 
 		public CalendarSlideInfoControl()
 		{
@@ -58,17 +70,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses
 			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) => InitColorControls();
 		}
 
-		public string MonthTitle { get; set; }
-		public bool SettingsNotSaved { get; set; }
-
-		[Browsable(true)]
-		[Category("Action")]
-		public event EventHandler Closed;
-
-		[Browsable(true)]
-		[Category("Action")]
-		public event EventHandler<EventArgs> PropertyChanged;
-
 		public void OnPropertyChanged(EventArgs e)
 		{
 			var handler = PropertyChanged;
@@ -77,7 +78,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses
 
 		public void LoadMonth(CalendarMonth month)
 		{
-			_month = month;
+			Month = month;
 			LoadCurrentMonthData();
 		}
 
@@ -108,33 +109,33 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses
 
 		public virtual void LoadCurrentMonthData()
 		{
-			if (_month == null) return;
+			if (Month == null) return;
 			_allowToSave = false;
 
-			var isFirstMonth = _month.Parent.Months.OrderBy(m => m.DaysRangeBegin).FirstOrDefault() == _month;
-			MonthTitle = "Slide Info - " + _month.Date.ToString("MMMM yyyy");
-			laCommentMonth.Text = _month.Date.ToString("MMMM, yyyy");
+			var isFirstMonth = Month.Parent.Months.OrderBy(m => m.DaysRangeBegin).FirstOrDefault() == Month;
+			MonthTitle = "Slide Info - " + Month.Date.ToString("MMMM yyyy");
+			laCommentMonth.Text = Month.Date.ToString("MMMM, yyyy");
 
 			#region Comment
-			buttonXComment.Checked = _month.OutputData.ShowCustomComment;
-			memoEditComment.EditValue = _month.OutputData.CustomComment;
-			checkEditCommentApplyForAll.Checked = _month.OutputData.ApplyForAllCustomComment;
+			buttonXComment.Checked = Month.OutputData.ShowCustomComment;
+			memoEditComment.EditValue = Month.OutputData.CustomComment;
+			checkEditCommentApplyForAll.Checked = Month.OutputData.ApplyForAllCustomComment;
 			checkEditCommentApplyForAll.Visible = isFirstMonth;
-			buttonXComment.Enabled = isFirstMonth || !_month.OutputData.ApplyForAllCustomComment;
-			memoEditComment.Enabled = _month.OutputData.ShowCustomComment && (isFirstMonth || !_month.OutputData.ApplyForAllCustomComment);
+			buttonXComment.Enabled = isFirstMonth || !Month.OutputData.ApplyForAllCustomComment;
+			memoEditComment.Enabled = Month.OutputData.ShowCustomComment && (isFirstMonth || !Month.OutputData.ApplyForAllCustomComment);
 			#endregion
 
 			#region Style
 			InitColorControls();
-			checkEditThemeColorApplyForAll.Checked = _month.OutputData.ApplyForAllThemeColor;
-			checkEditStyleBigDate.Checked = _month.OutputData.ShowBigDate;
+			checkEditThemeColorApplyForAll.Checked = Month.OutputData.ApplyForAllThemeColor;
+			checkEditStyleBigDate.Checked = Month.OutputData.ShowBigDate;
 			#endregion
 
 			#region Logo
-			checkEditShowLogo.Checked = _month.OutputData.ShowLogo;
-			checkEditLogoApplyForAll.Checked = _month.OutputData.ApplyForAllLogo;
+			checkEditShowLogo.Checked = Month.OutputData.ShowLogo;
+			checkEditLogoApplyForAll.Checked = Month.OutputData.ApplyForAllLogo;
 			var selectedLogo =
-				_imageSources.FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo)) ??
+				_imageSources.FirstOrDefault(l => Month.OutputData.Logo != null && l.FileName == Month.OutputData.Logo.FileName) ??
 				_imageSources.FirstOrDefault();
 			calendarHeaderSelector.SelectedImageSource = selectedLogo;
 			#endregion
@@ -145,57 +146,61 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses
 
 		public virtual void SaveData()
 		{
-			if (!_allowToSave) return;
+			if (!_allowToSave || Month == null) return;
 
 			#region Comment
-			_month.OutputData.ShowCustomComment = buttonXComment.Checked;
-			_month.OutputData.CustomComment = memoEditComment.EditValue as String;
-			_month.OutputData.ApplyForAllCustomComment = checkEditCommentApplyForAll.Checked;
-			foreach (var month in _month.Parent.Months.Where(month => month != _month))
+			Month.OutputData.ShowCustomComment = buttonXComment.Checked;
+			Month.OutputData.CustomComment = memoEditComment.EditValue as String;
+			Month.OutputData.ApplyForAllCustomComment = checkEditCommentApplyForAll.Checked;
+			foreach (var month in Month.Parent.Months.Where(month => month != Month))
 			{
-				month.OutputData.ApplyForAllCustomComment = _month.OutputData.ApplyForAllCustomComment;
-				if (!_month.OutputData.ApplyForAllCustomComment) continue;
-				month.OutputData.ShowCustomComment = _month.OutputData.ShowCustomComment;
-				month.OutputData.CustomComment = _month.OutputData.CustomComment;
+				month.OutputData.ApplyForAllCustomComment = Month.OutputData.ApplyForAllCustomComment;
+				if (!Month.OutputData.ApplyForAllCustomComment) continue;
+				month.OutputData.ShowCustomComment = Month.OutputData.ShowCustomComment;
+				month.OutputData.CustomComment = Month.OutputData.CustomComment;
 			}
 			#endregion
 
 			#region Style
-			_month.OutputData.SlideColor = outputColorSelector.SelectedColor;
-			_month.OutputData.ApplyForAllThemeColor = checkEditThemeColorApplyForAll.Checked;
-			_month.OutputData.ShowBigDate = checkEditStyleBigDate.Checked;
-			foreach (var month in _month.Parent.Months.Where(month => month != _month))
+			Month.OutputData.SlideColor = outputColorSelector.SelectedColor;
+			Month.OutputData.ApplyForAllThemeColor = checkEditThemeColorApplyForAll.Checked;
+			Month.OutputData.ShowBigDate = checkEditStyleBigDate.Checked;
+			foreach (var month in Month.Parent.Months.Where(month => month != Month))
 			{
-				month.OutputData.ApplyForAllThemeColor = _month.OutputData.ApplyForAllThemeColor;
-				if (!_month.OutputData.ApplyForAllThemeColor) continue;
-				month.OutputData.SlideColor = _month.OutputData.SlideColor;
-				month.OutputData.ShowBigDate = _month.OutputData.ShowBigDate;
+				month.OutputData.ApplyForAllThemeColor = Month.OutputData.ApplyForAllThemeColor;
+				if (!Month.OutputData.ApplyForAllThemeColor) continue;
+				month.OutputData.SlideColor = Month.OutputData.SlideColor;
+				month.OutputData.ShowBigDate = Month.OutputData.ShowBigDate;
 			}
 			#endregion
 
 			#region Logo
-			_month.OutputData.ShowLogo = checkEditShowLogo.Checked;
+			Month.OutputData.ShowLogo = checkEditShowLogo.Checked;
 			var selecteImageSource = calendarHeaderSelector.SelectedImageSource;
-			_month.OutputData.Logo = _month.OutputData.ShowLogo && selecteImageSource != null ? selecteImageSource.BigImage : null;
-			_month.OutputData.EncodedLogo = null;
-			_month.OutputData.ApplyForAllLogo = checkEditLogoApplyForAll.Checked;
-			foreach (var month in _month.Parent.Months.Where(month => month != _month))
+			Month.OutputData.Logo = Month.OutputData.ShowLogo && selecteImageSource != null ? selecteImageSource.Clone<ImageSource, ImageSource>() : null;
+			Month.OutputData.ApplyForAllLogo = checkEditLogoApplyForAll.Checked;
+			foreach (var month in Month.Parent.Months.Where(month => month != Month))
 			{
-				month.OutputData.ApplyForAllLogo = _month.OutputData.ApplyForAllLogo;
-				if (!_month.OutputData.ApplyForAllLogo) continue;
-				month.OutputData.ShowLogo = _month.OutputData.ShowLogo;
-				month.OutputData.Logo = _month.OutputData.Logo;
-				month.OutputData.EncodedLogo = null;
+				month.OutputData.ApplyForAllLogo = Month.OutputData.ApplyForAllLogo;
+				if (!Month.OutputData.ApplyForAllLogo) continue;
+				month.OutputData.ShowLogo = Month.OutputData.ShowLogo;
+				month.OutputData.Logo = Month.OutputData.Logo.Clone<ImageSource, ImageSource>();
 			}
 			#endregion
 
 			SettingsNotSaved = false;
 		}
 
+		public virtual void Release()
+		{
+			_allowToSave = false;
+			Month = null;
+		}
+
 		private void InitColorControls()
 		{
-			if (_month == null) return;
-			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.CalendarColors, _month.OutputData.SlideColor);
+			if (Month == null) return;
+			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.CalendarColors, Month.OutputData.SlideColor);
 			outputColorSelector.ColorChanged += OnColorChanged;
 		}
 
@@ -203,12 +208,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses
 		{
 			if (!_allowToSave) return;
 			SettingsNotSaved = true;
+			OnPropertyChanged(EventArgs.Empty);
 		}
 
 		private void OnColorChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			_month.OutputData.SlideColor = outputColorSelector.SelectedColor;
+			Month.OutputData.SlideColor = outputColorSelector.SelectedColor;
 			SettingsNotSaved = true;
 			OnPropertyChanged(EventArgs.Empty);
 		}

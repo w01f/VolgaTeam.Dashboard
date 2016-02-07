@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
-using Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
+﻿using Asa.Online.Controls.PresentationClasses.Products;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
+namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 {
     partial class HomeControl
     {
@@ -33,7 +32,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
-			this.stationsControl = new Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
+			this.stationsControl = new StationsControl();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
 			this.pnMediaDefault = new System.Windows.Forms.Panel();
@@ -46,8 +45,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.buttonXMonthlySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalProductListControl = new Asa.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
-			this.daypartsControl = new Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls.DaypartsControl();
+			this.digitalProductListControl = new DigitalProductListControl();
+			this.daypartsControl = new Asa.Media.Controls.PresentationClasses.SettingsControls.DaypartsControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStations = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageDayparts = new DevExpress.XtraTab.XtraTabPage();
@@ -138,7 +137,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageMedia,
             this.xtraTabPageDigital});
-			this.xtraTabControlMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlProducts_SelectedPageChanged);
+			this.xtraTabControlMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.OnProductsTabPageChanged);
 			// 
 			// xtraTabPageMedia
 			// 
@@ -159,7 +158,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 			this.pnMediaDefault.Name = "pnMediaDefault";
 			this.pnMediaDefault.Size = new System.Drawing.Size(639, 549);
 			this.pnMediaDefault.TabIndex = 24;
-			this.pnMediaDefault.Resize += new System.EventHandler(this.pnMediaDefault_Resize);
+			this.pnMediaDefault.Resize += new System.EventHandler(this.OnDefaultPanelResize);
 			// 
 			// pbMediaDefault
 			// 
@@ -707,7 +706,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 		private System.Windows.Forms.Panel pnSelectDemo;
 		private System.Windows.Forms.Panel pnSelectSource;
 		private System.Windows.Forms.Panel pnDemosInfo;
-		private OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl digitalProductListControl;
+		private DigitalProductListControl digitalProductListControl;
 		private DevComponents.DotNetBar.ButtonX buttonXMonthlySchedule;
 		private DevComponents.DotNetBar.ButtonX buttonXWeeklySchedule;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageCalendarType;
@@ -721,7 +720,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SettingsControls
 		private DevExpress.XtraEditors.LabelControl labelControlDemoTitle;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
 		private System.Windows.Forms.PictureBox pbMediaDefault;
-		private Panel pnMediaDefault;
+		private System.Windows.Forms.Panel pnMediaDefault;
 
     }
 }

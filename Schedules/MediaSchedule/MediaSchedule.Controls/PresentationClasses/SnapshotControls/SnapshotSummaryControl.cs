@@ -4,25 +4,26 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Snapshot;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.ImageGallery;
+using Asa.Common.GUI.Preview;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
-using Asa.CommonGUI.ImageGallery;
-using Asa.CommonGUI.Preview;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	[ToolboxItem(false)]
 	//public sealed partial class SnapshotSummaryControl : UserControl
-	public sealed partial class SnapshotSummaryControl : XtraTabPage, ISnapshotSlide
+	public sealed partial class SnapshotSummaryControl : XtraTabPage, ISnapshotSlideControl
 	{
 		public SnapshotSummary Data { get; private set; }
 
@@ -45,6 +46,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 		public void SaveData()
 		{
 			advBandedGridView.CloseEditor();
+		}
+
+		public void Release()
+		{
+			gridControl.DataSource = null;
+			DataChanged = null;
+			Data = null;
 		}
 
 		public void UpdateView(bool focus = false)
@@ -226,11 +234,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			{
 				var pageDictionary = new Dictionary<string, string>();
 				key = "Flightdates";
-				value = Data.Parent.FlightDates;
+				value = Data.Parent.ScheduleSettings.FlightDates;
 				if (!pageDictionary.Keys.Contains(key))
 					pageDictionary.Add(key, value);
 				key = "Advertiser - Decisionmaker";
-				value = String.Format("{0}  -  {1}", Data.Parent.BusinessName, Data.Parent.DecisionMaker);
+				value = String.Format("{0}  -  {1}", Data.Parent.ScheduleSettings.BusinessName, Data.Parent.ScheduleSettings.DecisionMaker);
 				if (!pageDictionary.Keys.Contains(key))
 					pageDictionary.Add(key, value);
 
@@ -310,7 +318,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.SnapshotControls
 			var previewGroup = new PreviewGroup
 			{
 				Name = SlideName,
-				PresentationSourcePath = Path.Combine(Core.Common.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;

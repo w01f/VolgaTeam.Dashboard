@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
-using Asa.Core.Common;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 {
 	public partial class FormOptionSetName : MetroForm
 	{
@@ -38,7 +38,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			if (DialogResult != DialogResult.OK) return;
 			if (!String.IsNullOrEmpty(textEditScheduleName.EditValue as String)) return;
 			e.Cancel = true;
-			Utilities.Instance.ShowWarning("You should set Schedule name before continue");
+			PopupMessageHelper.Instance.ShowWarning("You should set Schedule name before continue");
 		}
 	}
 }

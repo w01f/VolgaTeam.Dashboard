@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel;
-using System.Windows.Forms;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
-using Asa.Core.Calendar;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
+using Asa.Common.Core.Attributes;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses
+namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	[ToolboxItem(false)]
 	[IntendForClass(typeof(MediaDataNote))]

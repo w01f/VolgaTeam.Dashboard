@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
-using Asa.CommonGUI.RetractableBar;
-using Asa.Core.Calendar;
+using Asa.Common.GUI.RetractableBar;
 
 namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 {
@@ -57,17 +57,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 		public void LoadVisibilitySettings()
 		{
 			if (_parentCalendar.CalendarSettings.SlideInfoVisible)
-			{
-				_parentCalendar.Splash(true);
 				_container.Expand(true);
-				_parentCalendar.Splash(false);
-			}
 			else
-			{
-				_parentCalendar.Splash(true);
 				_container.Collapse(true);
-				_parentCalendar.Splash(false);
-			}
 		}
 
 		public void LoadData(CalendarMonth month = null, bool allowToSave = true)
@@ -85,12 +77,17 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 		{
 			_containedControl.SaveData();
 		}
+
+		public void Release()
+		{
+			_containedControl.Release();
+		}
 		#endregion
 
 		private ISlideInfoControl _containedControl;
 		public Control ContainedControl
 		{
-			get { return _containedControl as UserControl; }
+			get { return (Control)_containedControl; }
 		}
 
 		public ISlideInfoControl SlideInfoControl
@@ -123,5 +120,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 		void LoadCurrentMonthData();
 		void LoadMonth(CalendarMonth month);
 		void SaveData();
+		void Release();
 	}
 }

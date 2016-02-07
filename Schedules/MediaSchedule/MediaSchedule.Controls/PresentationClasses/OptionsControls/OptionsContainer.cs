@@ -6,30 +6,57 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Common.Enums;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Option;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Entities.Persistent;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ContentEditors.Controls;
+using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.RetractableBar;
+using Asa.Common.GUI.Themes;
+using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab.ViewInfo;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.Preview;
-using Asa.CommonGUI.RetractableBar;
-using Asa.CommonGUI.Themes;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using Asa.MediaSchedule.Controls.Properties;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.Properties;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
+namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 {
 	[ToolboxItem(false)]
-	public partial class OptionsContainer : UserControl
+	public partial class OptionsContainer : BasePartitionEditControl<OptionsContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
 	{
 		private bool _allowToSave;
-		private RegularSchedule _localSchedule;
 		private XtraTabHitInfo _menuHitInfo;
-		private readonly XtraTabDragDropHelper<OptionsControl> _tabDragDropHelper;
-		public bool SettingsNotSaved { get; set; }
+		private XtraTabDragDropHelper<OptionsControl> _tabDragDropHelper;
+
+		public override string Identifier
+		{
+			get { return ContentIdentifiers.Options; }
+		}
+
+		public override RibbonTabItem TabPage
+		{
+			get { return Controller.Instance.TabOptions; }
+		}
+
+		private MediaSchedule Schedule
+		{
+			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
+		}
+
+		private MediaScheduleSettings ScheduleSettings
+		{
+			get { return Schedule.Settings; }
+		}
 
 		public SlideType SlideType
 		{
@@ -54,93 +81,106 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		public OptionsContainer()
 		{
 			InitializeComponent();
-			Dock = DockStyle.Fill;
+		}
+
+		#region BasePartitionEditControl Override
+		public override void InitControl()
+		{
+			base.InitControl();
 			pnNoOptionSets.Dock = DockStyle.Fill;
 			pnOptionSets.Dock = DockStyle.Fill;
-			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
-			{
-				if (sender != this)
-					LoadSchedule(e.QuickSave);
-			});
 			LoadBarButtons();
 			retractableBarControl.Collapse(true);
 			_tabDragDropHelper = new XtraTabDragDropHelper<OptionsControl>(xtraTabControlOptionSets);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
+			InitColorControls();
 			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) =>
 			{
 				InitColorControls();
 				LoadBarButtons();
 			};
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
-			{
-				InitThemeSelector();
-				Controller.Instance.OptionsThemeBar.RecalcLayout();
-				Controller.Instance.OptionsPanel.PerformLayout();
-			};
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
+			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
+
+			Controller.Instance.OptionsNew.Click += OnAddOptionsSetClick;
+			Controller.Instance.OptionsProgramAdd.Click += OnAddProgramClick;
+			Controller.Instance.OptionsProgramDelete.Click += OnDeleteProgramClick;
 		}
 
-		#region Methods
-		public bool AllowToLeaveControl
-		{
-			get
-			{
-				if (SettingsNotSaved)
-					SaveSchedule();
-				return true;
-			}
-		}
-
-		public void LoadSchedule(bool quickLoad)
+		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;
 
-			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			var quickLoad = EditedContent != null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
+				ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
+				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
+
+			if (EditedContent != null)
+				EditedContent.Dispose();
+			EditedContent = Schedule
+				.GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options)
+				.Clone<OptionsContent, OptionsContent>();
+
 			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
-				_localSchedule.BusinessName,
-				_localSchedule.FlightDates,
-				String.Format("{0} {1}s", _localSchedule.TotalWeeks, "week"),
+				ScheduleSettings.BusinessName,
+				ScheduleSettings.FlightDates,
+				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"),
 				Environment.NewLine);
-			InitThemeSelector();
 
 			LoadOptionSets(quickLoad);
-
-			if (!quickLoad)
-			{
-				InitColorControls();
-			}
-
-			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 
 			_allowToSave = true;
 
 			LoadActiveOptionSetData();
-
-			SettingsNotSaved = false;
 		}
 
-		private bool SaveSchedule(string scheduleName = "")
+		protected override void ApplyChanges()
 		{
 			foreach (var optionsControl in xtraTabControlOptionSets.TabPages.OfType<OptionsControl>())
 				optionsControl.SaveData();
+			Summary.SaveData();
 			SaveColors();
-			var nameChanged = !string.IsNullOrEmpty(scheduleName);
-			if (nameChanged)
-				_localSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, false, this);
-			SettingsNotSaved = false;
-			return true;
 		}
 
+		protected override void SaveData()
+		{
+			Schedule.ApplySchedulePartitionContent(SchedulePartitionType.Options, EditedContent.Clone<OptionsContent, OptionsContent>());
+		}
+
+		public override void GetHelp()
+		{
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("options");
+		}
+
+		protected override void LoadThemes()
+		{
+			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				IsThemeChanged = true;
+			}));
+			Controller.Instance.OptionsThemeBar.RecalcLayout();
+			Controller.Instance.OptionsPanel.PerformLayout();
+		}
+		#endregion
+
+		#region Option Sets Processing
 		private void LoadOptionSets(bool quickLoad)
 		{
 			if (quickLoad)
 			{
-				Summary.LoadData(_localSchedule.OptionsSummary);
+				Summary.LoadData(EditedContent.OptionsSummary);
 			}
 			else
 			{
+				xtraTabControlOptionSets.TabPages
+					.OfType<IOptionsSlideControl>()
+					.ToList()
+					.ForEach(sc => sc.Release());
 				xtraTabControlOptionSets.TabPages.Clear();
-				xtraTabControlOptionSets.TabPages.Add(new OptionsSummaryControl(_localSchedule.OptionsSummary));
+				xtraTabControlOptionSets.TabPages.Add(new OptionsSummaryControl(EditedContent.OptionsSummary));
 				Summary.DataChanged += (o, e) =>
 				{
 					if (!_allowToSave) return;
@@ -148,7 +188,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					SettingsNotSaved = true;
 				};
 			}
-			foreach (var optionSet in _localSchedule.Options.OrderBy(s => s.Index))
+			foreach (var optionSet in EditedContent.Options.OrderBy(s => s.Index))
 			{
 				if (quickLoad)
 				{
@@ -321,7 +361,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		private void ApplySharedContractSettings(ContractSettings templateSettings)
 		{
-			foreach (var optionsSlide in xtraTabControlOptionSets.TabPages.OfType<IOptionsSlide>())
+			foreach (var optionsSlide in xtraTabControlOptionSets.TabPages.OfType<IOptionsSlideControl>())
 			{
 				optionsSlide.ContractSettings.ShowSignatureLine = templateSettings.ShowSignatureLine;
 				optionsSlide.ContractSettings.ShowDisclaimer = templateSettings.ShowDisclaimer;
@@ -334,10 +374,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			using (var form = new FormOptionSetName())
 			{
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var optionSet = new OptionSet(_localSchedule);
+				var optionSet = new OptionSet(EditedContent);
 				optionSet.Name = form.OptionSetName;
-				_localSchedule.Options.Add(optionSet);
-				_localSchedule.RebuildOptionSetIndexes();
+				EditedContent.Options.Add(optionSet);
+				EditedContent.RebuildOptionSetIndexes();
 				var optionControl = AddOptionControl(optionSet);
 				xtraTabControlOptionSets.SelectedTabPage = optionControl;
 				Summary.UpdateView();
@@ -350,11 +390,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			{
 				form.OptionSetName = String.Format("{0} (Clone)", optionControl.Data.Name);
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var optionSet = optionControl.Data.Clone();
+				var optionSet = optionControl.Data.Clone<OptionSet, OptionSet>();
 				optionSet.Name = form.OptionSetName;
 				optionSet.Index += 0.5;
-				_localSchedule.Options.Add(optionSet);
-				_localSchedule.RebuildOptionSetIndexes();
+				EditedContent.Options.Add(optionSet);
+				EditedContent.RebuildOptionSetIndexes();
 				var newControl = AddOptionControl(optionSet, (Int32)optionSet.Index);
 				xtraTabControlOptionSets.SelectedTabPage = newControl;
 				Summary.UpdateView();
@@ -363,9 +403,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		private void DeleteOptionSet(OptionsControl optionControl)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", optionControl.Data.Name) != DialogResult.Yes) return;
-			_localSchedule.Options.Remove(optionControl.Data);
-			_localSchedule.RebuildOptionSetIndexes();
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", optionControl.Data.Name) != DialogResult.Yes) return;
+			EditedContent.Options.Remove(optionControl.Data);
+			EditedContent.RebuildOptionSetIndexes();
 			xtraTabControlOptionSets.TabPages.Remove(optionControl);
 			Summary.UpdateView();
 		}
@@ -391,7 +431,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				var sourceControl = o as OptionsControl;
 				if (sourceControl == null) return;
 				if (!_allowToSave) return;
-				if (_localSchedule.OptionsSummary.ApplySettingsForAll)
+				if (EditedContent.OptionsSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(sourceControl);
 					xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Where(oc => oc.Data.UniqueID != sourceControl.Data.UniqueID).ToList().ForEach(oc => oc.UpdateView());
@@ -476,7 +516,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		private void UpdateOptionsSplash()
 		{
-			if (_localSchedule.Options.Any())
+			if (EditedContent.Options.Any())
 			{
 				pnOptionSets.BringToFront();
 				Controller.Instance.OptionsProgramAdd.Enabled = true;
@@ -488,16 +528,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				Controller.Instance.OptionsProgramAdd.Enabled = false;
 				Controller.Instance.OptionsProgramDelete.Enabled = false;
 			}
-		}
-
-		private void InitThemeSelector()
-		{
-			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
 		}
 
 		private void InitColorControls()
@@ -524,73 +554,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 		#endregion
 
 		#region Ribbon Button Clicks
-		public void New_Click(object sender, EventArgs e)
+		private void OnAddOptionsSetClick(object sender, EventArgs e)
 		{
 			AddOptionSet();
 			UpdateOptionsSplash();
 			SettingsNotSaved = true;
 		}
 
-		public void AddProgram_Click(object sender, EventArgs e)
+		private void OnAddProgramClick(object sender, EventArgs e)
 		{
 			if (ActiveOptionControl == null) return;
 			ActiveOptionControl.AddProgram();
 		}
 
-		public void DeleteProgram_Click(object sender, EventArgs e)
+		private void OnDeleteProgramClick(object sender, EventArgs e)
 		{
 			if (ActiveOptionControl == null) return;
 			ActiveOptionControl.DeleteProgram();
-		}
-
-		public void Save_Click(object sender, EventArgs e)
-		{
-			SaveSchedule();
-			Utilities.Instance.ShowInformation("Schedule Saved");
-		}
-
-		public void SaveAs_Click(object sender, EventArgs e)
-		{
-			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
-			{
-				form.Text = "Save Schedule";
-				form.laLogo.Text = "Please set a new defaultName for your Schedule:";
-				if (form.ShowDialog() != DialogResult.OK) return;
-				if (!string.IsNullOrEmpty(form.ScheduleName))
-				{
-					if (SaveSchedule(form.ScheduleName))
-						Utilities.Instance.ShowInformation("Schedule was saved");
-				}
-				else
-				{
-					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-				}
-			}
-		}
-
-		public void Help_Click(object sender, EventArgs e)
-		{
-			BusinessObjects.Instance.HelpManager.OpenHelpLink("options");
-		}
-
-		public void Preview_Click(object sender, EventArgs e)
-		{
-			Preview();
-		}
-
-		public void PowerPoint_Click(object sender, EventArgs e)
-		{
-			PrintOutput();
-		}
-
-		public void Email_Click(object sender, EventArgs e)
-		{
-			Email();
-		}
-
-		public void Pdf_Click(object sender, EventArgs e)
-		{
-			PrintPdf();
 		}
 		#endregion
 
@@ -622,9 +602,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
 		{
-			_localSchedule.ChangeOptionSetPosition(
-				_localSchedule.Options.IndexOf(((OptionsControl)e.MovedPage).Data),
-				_localSchedule.Options.IndexOf(((OptionsControl)e.TargetPage).Data) + (1 * e.Offset));
+			EditedContent.ChangeOptionSetPosition(
+				EditedContent.Options.IndexOf(((OptionsControl)e.MovedPage).Data),
+				EditedContent.Options.IndexOf(((OptionsControl)e.TargetPage).Data) + (1 * e.Offset));
 			Summary.UpdateView();
 			SettingsNotSaved = true;
 		}
@@ -669,7 +649,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					form.checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
 					form.checkEditApplyForAll.Enabled = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count() > 1;
-					form.checkEditApplyForAll.Checked = _localSchedule.OptionsSummary.ApplySettingsForAll;
+					form.checkEditApplyForAll.Checked = EditedContent.OptionsSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
@@ -685,8 +665,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				{
 					ActiveOptionControl.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveOptionControl.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
-					_localSchedule.OptionsSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
-					if (_localSchedule.OptionsSummary.ApplySettingsForAll)
+					EditedContent.OptionsSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
+					if (EditedContent.OptionsSummary.ApplySettingsForAll)
 					{
 						ApplySharedSettings(ActiveOptionControl);
 						xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().ToList().ForEach(oc => oc.UpdateView());
@@ -733,7 +713,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					ActiveOptionControl.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
 					ActiveOptionControl.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
 					ActiveOptionControl.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
-					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+					if (EditedContent.OptionsSummary.ApplySettingsForAll)
 						ApplySharedContractSettings(ActiveOptionControl.ContractSettings);
 				}
 				else if (ActiveSummary != null)
@@ -742,7 +722,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					ActiveSummary.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
 					ActiveSummary.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
 
-					if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+					if (EditedContent.OptionsSummary.ApplySettingsForAll)
 						ApplySharedContractSettings(ActiveSummary.ContractSettings);
 				}
 				SettingsNotSaved = true;
@@ -779,7 +759,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				else if (buttonXOptionTotalSpots.Checked)
 					ActiveOptionControl.Data.SpotType = SpotType.Total;
 
-				if (_localSchedule.OptionsSummary.ApplySettingsForAll)
+				if (EditedContent.OptionsSummary.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveOptionControl);
 					xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().ToList().ForEach(oc => oc.UpdateView());
@@ -814,53 +794,23 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
 		}
 
-		private void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabOptions.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
-		}
-
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabOptions.Text);
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.ProgramSchedule.Sections.SelectMany(s => s.Programs).Any())
-			{
-				options.Add("TotalSpots", _localSchedule.ProgramSchedule.TotalSpots);
-				options.Add("AverageRate", _localSchedule.ProgramSchedule.AvgRate);
-				options.Add("GrossInvestment", _localSchedule.ProgramSchedule.TotalCost);
-			}
-			BusinessObjects.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
-		}
-
-
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.OptionsPowerPoint.Enabled =
 				Controller.Instance.OptionsPdf.Enabled =
 				Controller.Instance.OptionsPreview.Enabled =
-				Controller.Instance.OptionsEmail.Enabled = xtraTabControlOptionSets.TabPages.OfType<IOptionsSlide>().Any(ss => ss.ReadyForOutput);
+				Controller.Instance.OptionsEmail.Enabled = xtraTabControlOptionSets.TabPages.OfType<IOptionsSlideControl>().Any(ss => ss.ReadyForOutput);
 		}
 
-		private void PrintOutput()
+		public override void OutputPowerPoint()
 		{
-			SaveSchedule();
-			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlide>().Where(ss => ss.ReadyForOutput);
-			var optionsSlides = new List<IOptionsSlide>();
+			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlideControl>().Where(ss => ss.ReadyForOutput);
+			var optionsSlides = new List<IOptionsSlideControl>();
 			if (tabPages.Count() > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Options";
-					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlide;
+					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlideControl;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -874,12 +824,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<IOptionsSlide>());
+							OfType<IOptionsSlideControl>());
 				}
 			else
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
@@ -891,16 +840,15 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 			});
 		}
 
-		private void Preview()
+		public override void OutputPdf()
 		{
-			SaveSchedule();
-			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlide>().Where(ss => ss.ReadyForOutput);
-			var optionsSlides = new List<IOptionsSlide>();
+			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlideControl>().Where(ss => ss.ReadyForOutput);
+			var optionsSlides = new List<IOptionsSlideControl>();
 			if (tabPages.Count() > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Options";
-					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlide;
+					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlideControl;
 					foreach (var tabPage in tabPages)
 					{
 						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
@@ -914,112 +862,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<IOptionsSlide>());
+							OfType<IOptionsSlideControl>());
 				}
 			else
 				optionsSlides.AddRange(tabPages);
 			if (!optionsSlides.Any()) return;
-			var previewGroups = new List<PreviewGroup>();
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			FormProgress.CloseProgress();
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			var trackAction = new Action(TrackPreview);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
-			{
-				formPreview.Text = "Preview Options";
-				formPreview.LoadGroups(previewGroups);
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			}
-		}
-
-		private void Email()
-		{
-			SaveSchedule();
-			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlide>().Where(ss => ss.ReadyForOutput);
-			var optionsSlides = new List<IOptionsSlide>();
-			if (tabPages.Count() > 1)
-				using (var form = new FormSelectOutputItems())
-				{
-					form.Text = "Select Options";
-					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlide;
-					foreach (var tabPage in tabPages)
-					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (tabPage == currentOptionControl)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
-					if (form.ShowDialog() == DialogResult.OK)
-						optionsSlides.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<IOptionsSlide>());
-				}
-			else
-				optionsSlides.AddRange(tabPages);
-			if (!optionsSlides.Any()) return;
-			var previewGroups = new List<PreviewGroup>();
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			FormProgress.CloseProgress();
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
-			{
-				formEmail.Text = "Email these Options";
-				formEmail.LoadGroups(previewGroups);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-			}
-		}
-
-		private void PrintPdf()
-		{
-			SaveSchedule();
-			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlide>().Where(ss => ss.ReadyForOutput);
-			var optionsSlides = new List<IOptionsSlide>();
-			if (tabPages.Count() > 1)
-				using (var form = new FormSelectOutputItems())
-				{
-					form.Text = "Select Options";
-					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlide;
-					foreach (var tabPage in tabPages)
-					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (tabPage == currentOptionControl)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
-					if (form.ShowDialog() == DialogResult.OK)
-						optionsSlides.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<IOptionsSlide>());
-				}
-			else
-				optionsSlides.AddRange(tabPages);
-			if (!optionsSlides.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
@@ -1027,7 +874,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 				FormProgress.ShowProgress();
 				var previewGroups = new List<PreviewGroup>();
 				previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				var pdfFileName = Path.Combine(
+					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+					String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
 				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try
@@ -1037,6 +886,103 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.OptionsControls
 					catch { }
 				FormProgress.CloseProgress();
 			});
+		}
+
+		public override void Preview()
+		{
+			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlideControl>().Where(ss => ss.ReadyForOutput);
+			var optionsSlides = new List<IOptionsSlideControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Options";
+					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlideControl;
+					foreach (var tabPage in tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentOptionControl)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						optionsSlides.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<IOptionsSlideControl>());
+				}
+			else
+				optionsSlides.AddRange(tabPages);
+			if (!optionsSlides.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
+			{
+				formPreview.Text = "Preview Options";
+				formPreview.LoadGroups(previewGroups);
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				var previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			}
+		}
+
+		public override void Email()
+		{
+			var tabPages = xtraTabControlOptionSets.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IOptionsSlideControl>().Where(ss => ss.ReadyForOutput);
+			var optionsSlides = new List<IOptionsSlideControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Options";
+					var currentOptionControl = xtraTabControlOptionSets.SelectedTabPage as IOptionsSlideControl;
+					foreach (var tabPage in tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentOptionControl)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						optionsSlides.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<IOptionsSlideControl>());
+				}
+			else
+				optionsSlides.AddRange(tabPages);
+			if (!optionsSlides.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			FormProgress.CloseProgress();
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
+			{
+				formEmail.Text = "Email these Options";
+				formEmail.LoadGroups(previewGroups);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+			}
 		}
 		#endregion
 	}

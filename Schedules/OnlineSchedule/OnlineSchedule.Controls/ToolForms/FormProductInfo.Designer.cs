@@ -1,4 +1,4 @@
-﻿namespace Asa.OnlineSchedule.Controls.ToolForms
+﻿namespace Asa.Online.Controls.ToolForms
 {
 	partial class FormProductInfo
 	{
@@ -68,7 +68,7 @@
 			// 
 			this.pictureBoxInfoType.BackColor = System.Drawing.Color.White;
 			this.pictureBoxInfoType.ForeColor = System.Drawing.Color.Black;
-			this.pictureBoxInfoType.Image = global::Asa.OnlineSchedule.Controls.Properties.Resources.TargetButton;
+			this.pictureBoxInfoType.Image = global::Asa.Online.Controls.Properties.Resources.TargetButton;
 			this.pictureBoxInfoType.Location = new System.Drawing.Point(3, 5);
 			this.pictureBoxInfoType.Name = "pictureBoxInfoType";
 			this.pictureBoxInfoType.Size = new System.Drawing.Size(32, 32);

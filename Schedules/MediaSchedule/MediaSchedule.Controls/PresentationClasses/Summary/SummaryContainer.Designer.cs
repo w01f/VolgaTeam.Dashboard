@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	partial class SummaryContainer
     {
@@ -34,7 +34,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.xtraTabControlSections = new DevExpress.XtraTab.XtraTabControl();
-			this.retractableBarControl = new Asa.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.pnInfoBottom = new System.Windows.Forms.Panel();
 			this.hyperLinkEditInfoContract = new DevExpress.XtraEditors.HyperLinkEdit();
@@ -195,7 +195,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
 
         #endregion
 
-		protected CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
+		protected Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		private Panel pnInfoBottom;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlSections;

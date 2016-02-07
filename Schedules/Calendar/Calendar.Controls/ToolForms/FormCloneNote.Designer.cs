@@ -1,6 +1,8 @@
-﻿namespace Asa.Calendar.Controls.ToolForms
+﻿using Asa.Business.Common.Interfaces;
+
+namespace Asa.Calendar.Controls.ToolForms
 {
-    partial class FormCloneNote
+	partial class FormCloneNote
     {
         /// <summary>
         /// Required designer variable.

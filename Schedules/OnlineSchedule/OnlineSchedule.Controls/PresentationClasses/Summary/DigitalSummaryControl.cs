@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using Asa.Common.Core.Configuration;
+using Asa.Common.GUI.Preview;
+using Asa.Online.Controls.InteropClasses;
+using Asa.Online.Controls.PresentationClasses.Products;
 using DevExpress.XtraTab;
-using Asa.CommonGUI.Preview;
-using Asa.Core.Common;
-using Asa.OnlineSchedule.Controls.InteropClasses;
 
-namespace Asa.OnlineSchedule.Controls.PresentationClasses
+namespace Asa.Online.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalSummaryControl : UserControl, IDigitalOutputControl
-	public partial class DigitalSummaryControl : XtraTabPage, IDigitalOutputControl
+	//public partial class DigitalSummaryControl : UserControl, IDigitalOutputControl,IDigitalSummaryOutputContainer
+	public partial class DigitalSummaryControl : XtraTabPage, IDigitalSlideControl
 	{
 
 		private readonly List<DigitalProductSummaryControl> _summaryControls = new List<DigitalProductSummaryControl>();
 		private bool _allowToSave;
 
-		public DigitalProductContainer Parent { get; private set; }
+		public IDigitalProductsContainer Parent { get; private set; }
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 
-		public DigitalSummaryControl(DigitalProductContainer parent)
+		public DigitalSummaryControl(IDigitalProductsContainer parent)
 		{
 			InitializeComponent();
 			Parent = parent;
@@ -43,21 +43,29 @@ namespace Asa.OnlineSchedule.Controls.PresentationClasses
 				SetFocus();
 			}
 
-			checkEditStatement.Checked = !String.IsNullOrEmpty(Parent.LocalSchedule.DigitalProductSummary.Statement);
-			memoEditStatement.EditValue = Parent.LocalSchedule.DigitalProductSummary.Statement;
-			checkEditMonthlyInvestment.Checked = Parent.LocalSchedule.DigitalProductSummary.MonthlyInvestment.HasValue;
-			spinEditMonthlyInvestment.EditValue = Parent.LocalSchedule.DigitalProductSummary.MonthlyInvestment;
-			checkEditTotalInvestment.Checked = Parent.LocalSchedule.DigitalProductSummary.TotalInvestment.HasValue;
-			spinEditTotalInvestment.EditValue = Parent.LocalSchedule.DigitalProductSummary.TotalInvestment;
+			checkEditStatement.Checked = !String.IsNullOrEmpty(Parent.DigitalProductsContent.DigitalProductSummary.Statement);
+			memoEditStatement.EditValue = Parent.DigitalProductsContent.DigitalProductSummary.Statement;
+			checkEditMonthlyInvestment.Checked = Parent.DigitalProductsContent.DigitalProductSummary.MonthlyInvestment.HasValue;
+			spinEditMonthlyInvestment.EditValue = Parent.DigitalProductsContent.DigitalProductSummary.MonthlyInvestment;
+			checkEditTotalInvestment.Checked = Parent.DigitalProductsContent.DigitalProductSummary.TotalInvestment.HasValue;
+			spinEditTotalInvestment.EditValue = Parent.DigitalProductsContent.DigitalProductSummary.TotalInvestment;
 
 			_allowToSave = true;
 		}
 
 		public void Save()
 		{
-			Parent.LocalSchedule.DigitalProductSummary.Statement = checkEditStatement.Checked ? memoEditStatement.EditValue as String : null;
-			Parent.LocalSchedule.DigitalProductSummary.MonthlyInvestment = checkEditMonthlyInvestment.Checked ? spinEditMonthlyInvestment.EditValue as decimal? : null;
-			Parent.LocalSchedule.DigitalProductSummary.TotalInvestment = checkEditTotalInvestment.Checked ? spinEditTotalInvestment.EditValue as decimal? : null;
+			Parent.DigitalProductsContent.DigitalProductSummary.Statement = checkEditStatement.Checked ? memoEditStatement.EditValue as String : null;
+			Parent.DigitalProductsContent.DigitalProductSummary.MonthlyInvestment = checkEditMonthlyInvestment.Checked ? spinEditMonthlyInvestment.EditValue as decimal? : null;
+			Parent.DigitalProductsContent.DigitalProductSummary.TotalInvestment = checkEditTotalInvestment.Checked ? spinEditTotalInvestment.EditValue as decimal? : null;
+		}
+
+		public void Release()
+		{
+			_summaryControls.ForEach(s => s.Release());
+			_summaryControls.Clear();
+			xtraScrollableControl.Controls.Clear();
+			Parent = null;
 		}
 
 		public void SetFocus()

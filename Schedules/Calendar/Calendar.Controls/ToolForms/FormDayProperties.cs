@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using Asa.Business.Calendar.Entities.NonPersistent;
 using DevComponents.DotNetBar.Metro;
-using Asa.Core.Calendar;
 
 namespace Asa.Calendar.Controls.ToolForms
 {
-	public partial class FormDayProperties : MetroForm
+	public partial class FormDayProperties: MetroForm
 	{
 		private readonly CalendarDay _day;
 

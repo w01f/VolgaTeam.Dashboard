@@ -1,7 +1,6 @@
 ﻿using System;
-using Asa.Core.Common;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.Summary
+namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	class ProductSummaryInfoControl : BaseSummaryInfoControl
 	{

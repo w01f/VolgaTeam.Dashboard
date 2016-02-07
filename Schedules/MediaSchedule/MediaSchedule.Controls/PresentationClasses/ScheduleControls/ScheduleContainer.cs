@@ -5,44 +5,57 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
-using Asa.CommonGUI.Preview;
-using Asa.CommonGUI.RetractableBar;
-using Asa.CommonGUI.Themes;
-using Asa.MediaSchedule.Controls.InteropClasses;
-using Asa.MediaSchedule.Controls.Properties;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Entities.NonPersistent.Section.Content;
+using Asa.Business.Media.Entities.Persistent;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
+using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ContentEditors.Controls;
+using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.RetractableBar;
+using Asa.Common.GUI.Themes;
+using Asa.Common.GUI.ToolForms;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.Properties;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using Asa.CommonGUI.Common;
-using Asa.CommonGUI.ToolForms;
-using Asa.Core.Common;
-using Asa.Core.MediaSchedule;
-using Asa.MediaSchedule.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses;
 using DevExpress.XtraTab.ViewInfo;
 
-namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
-	public partial class ScheduleContainer : UserControl
+	public partial class ScheduleContainer : BasePartitionEditControl<ProgramScheduleContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
 	{
 		private bool _allowToSave;
-		private RegularSchedule _localSchedule;
 		private XtraTabHitInfo _menuHitInfo;
 		private XtraTabDragDropHelper<SectionControl> _tabDragDropHelper;
-		private string _helpKey;
 
 		#region Properties
-		public bool SettingsNotSaved { get; set; }
-
-		public bool AllowToLeaveControl
+		private MediaSchedule Schedule
 		{
-			get
-			{
-				if (SettingsNotSaved)
-					SaveSchedule();
-				return true;
-			}
+			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
+		}
+
+		private MediaScheduleSettings ScheduleSettings
+		{
+			get { return Schedule.Settings; }
+		}
+
+		public override string Identifier
+		{
+			get { return ContentIdentifiers.ProgramSchedule; }
+		}
+
+		public override RibbonTabItem TabPage
+		{
+			get { return Controller.Instance.TabProgramSchedule; }
 		}
 
 		private SectionControl ActiveSection
@@ -52,15 +65,16 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private string SpotTitle
 		{
-			get { return _localSchedule.SelectedSpotType.ToString(); }
+			get { return ScheduleSettings.SelectedSpotType.ToString(); }
 		}
 
 		public SlideType SlideType
 		{
 			get
 			{
-				if (_localSchedule == null) return SlideType.None;
-				return MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVProgramSchedule : SlideType.RadioProgramSchedule;
+				return MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+					SlideType.TVProgramSchedule :
+					SlideType.RadioProgramSchedule;
 			}
 		}
 		#endregion
@@ -68,7 +82,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public ScheduleContainer()
 		{
 			InitializeComponent();
-			Dock = DockStyle.Fill;
+		}
+
+		#region BasePartitionEditControl Override
+		public override void InitControl()
+		{
+			base.InitControl();
 			pnSections.Dock = DockStyle.Fill;
 			pnNoSections.Dock = DockStyle.Fill;
 
@@ -101,19 +120,14 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			_tabDragDropHelper = new XtraTabDragDropHelper<SectionControl>(xtraTabControlSections);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
 
-			BusinessObjects.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.BeginInvoke((MethodInvoker)delegate
-			{
-				if (sender != this)
-					LoadSchedule(e.QuickSave);
-			});
 			digitalInfoControl.RequestDefaultInfo += (o, e) =>
 			{
-				((BaseEdit)e.Editor).EditValue = _localSchedule.GetDigitalInfo(e);
+				((BaseEdit)e.Editor).EditValue = Schedule.DigitalProductsContent.GetDigitalInfo(e);
 				((BaseEdit)e.Editor).Tag = ((BaseEdit)e.Editor).EditValue;
 			};
+
 			digitalInfoControl.SettingsChanged += (o, args) =>
 			{
-				TrackOptionChanged();
 				SettingsNotSaved = true;
 			};
 
@@ -124,58 +138,57 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				LoadBarButtons();
 			};
 
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
-			{
-				InitThemeSelector();
-				Controller.Instance.ProgramScheduleThemeBar.RecalcLayout();
-				Controller.Instance.ProgramSchedulePanel.PerformLayout();
-			};
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
+
+			Controller.Instance.ProgramScheduleNew.Click += OnAddSection;
+			Controller.Instance.ProgramScheduleProgramAdd.Click += OnAddProgram;
+			Controller.Instance.ProgramScheduleProgramDelete.Click += OnDeleteProgram;
 		}
 
-		#region Methods
-
-		#region Schedule Management
-
-		public void LoadSchedule(bool quickLoad)
+		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;
 
-			_localSchedule = BusinessObjects.Instance.ScheduleManager.GetLocalSchedule();
+			var quickLoad = EditedContent!= null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
+				ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
+				ContentUpdateInfo.ChangeInfo.SpotTypeChanged ||
+				ContentUpdateInfo.ChangeInfo.SummaryChanged);
 
-			_helpKey = String.Format("{0}ly", SpotTitle.ToLower());
-
-			InitThemeSelector();
+			if (EditedContent!= null)
+				EditedContent.Dispose();
+			EditedContent = Schedule.ProgramSchedule.Clone<ProgramScheduleContent, ProgramScheduleContent>();
 
 			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
-				_localSchedule.BusinessName,
-				_localSchedule.FlightDates,
-				String.Format("{0} {1}s", _localSchedule.ProgramSchedule.TotalPeriods, SpotTitle),
+				ScheduleSettings.BusinessName,
+				ScheduleSettings.FlightDates,
+				String.Format("{0} {1}s", EditedContent.TotalPeriods, SpotTitle),
 				Environment.NewLine);
 
 			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
 			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed &&
-				(_localSchedule.FlightDateStart != _localSchedule.UserFlightDateStart ||
-					_localSchedule.FlightDateEnd != _localSchedule.UserFlightDateEnd))
+				(ScheduleSettings.FlightDateStart != ScheduleSettings.UserFlightDateStart ||
+					ScheduleSettings.FlightDateEnd != ScheduleSettings.UserFlightDateEnd))
 				labelControlFlexFlightDatesWarning.Visible = true;
 			else
 				labelControlFlexFlightDatesWarning.Visible = false;
 
-			buttonXRating.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			buttonXRating.Text = _localSchedule.DemoType == DemoType.Rtg ? "Rtg" : "(000s)";
-			buttonXCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			buttonXGRP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			buttonXTotalCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			buttonXTotalGRP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-			buttonXCPP.Text = _localSchedule.DemoType == DemoType.Rtg ? "CPP" : "CPM";
-			buttonXTotalCPP.Text = _localSchedule.DemoType == DemoType.Rtg ? "Overall CPP" : "Overall CPM";
-			laTotalCPPTitle.Text = _localSchedule.DemoType == DemoType.Rtg ? "Overall CPP:" : "Overall CPM:";
-			buttonXGRP.Text = _localSchedule.DemoType == DemoType.Rtg ? "GRPs" : "Impr";
-			buttonXTotalGRP.Text = _localSchedule.DemoType == DemoType.Rtg ? "Total GRPs" : "Total Impr";
-			laTotalGRPTitle.Text = _localSchedule.DemoType == DemoType.Rtg ? "Total GRPs:" : "Total Impr:";
+			buttonXRating.Enabled = ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
+			buttonXRating.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Rtg" : "(000s)";
+			buttonXCPP.Enabled = ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
+			buttonXGRP.Enabled = ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
+			buttonXTotalCPP.Enabled = ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
+			buttonXTotalGRP.Enabled = ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
+			buttonXCPP.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "CPP" : "CPM";
+			buttonXTotalCPP.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Overall CPP" : "Overall CPM";
+			laTotalCPPTitle.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Overall CPP:" : "Overall CPM:";
+			buttonXGRP.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "GRPs" : "Impr";
+			buttonXTotalGRP.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Total GRPs" : "Total Impr";
+			laTotalGRPTitle.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Total GRPs:" : "Total Impr:";
 
 			quarterSelectorControl.InitControls(
-				_localSchedule.Quarters,
-				_localSchedule.Quarters.FirstOrDefault(q => q.DateAnchor == _localSchedule.ProgramSchedule.SelectedQuarter));
+				ScheduleSettings.Quarters,
+				ScheduleSettings.Quarters.FirstOrDefault(q => q.DateAnchor == EditedContent.SelectedQuarter));
 			quarterSelectorControl.Enabled = false;
 
 			LoadSections(quickLoad);
@@ -184,34 +197,49 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 
-			xtraTabPageOptionsDigital.PageEnabled = _localSchedule.DigitalProducts.Any();
-			digitalInfoControl.InitData(_localSchedule.ProgramSchedule.DigitalLegend);
+			xtraTabPageOptionsDigital.PageEnabled = Schedule.DigitalProductsContent.DigitalProducts.Any();
+			digitalInfoControl.InitData(EditedContent.DigitalLegend);
 			LoadBarButtons();
 
 			LoadActiveSectionData();
 
 			_allowToSave = true;
-			SettingsNotSaved = false;
 		}
 
-		private bool SaveSchedule(string scheduleName = "")
+		protected override void ApplyChanges()
 		{
 			xtraTabControlSections.TabPages
 				.OfType<SectionControl>()
 				.ToList()
 				.ForEach(sectionControl => sectionControl.SaveData());
-			var nameChanged = !String.IsNullOrEmpty(scheduleName);
-			if (!SettingsNotSaved && !nameChanged) return true;
-			var quickLoad = !SettingsNotSaved && _localSchedule.BroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Snapshots;
-			_localSchedule.BroadcastCalendar.UpdateDataSource();
-			if (nameChanged)
-				_localSchedule.Name = scheduleName;
 			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? String.Empty;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 			digitalInfoControl.SaveData();
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickLoad, false, false, this);
-			SettingsNotSaved = false;
-			return true;
+
+			ChangeInfo.ProgramScheduleChanged = ChangeInfo.ProgramScheduleChanged || SettingsNotSaved;
+		}
+
+		protected override void SaveData()
+		{
+			Schedule.ProgramSchedule = EditedContent.Clone<ProgramScheduleContent, ProgramScheduleContent>();
+		}
+
+		public override void GetHelp()
+		{
+			BusinessObjects.Instance.HelpManager.OpenHelpLink(String.Format("{0}ly", SpotTitle.ToLower()));
+		}
+
+		protected override void LoadThemes()
+		{
+			base.LoadThemes();
+			FormThemeSelector.Link(Controller.Instance.ProgramScheduleTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				IsThemeChanged = true;
+			}));
+			Controller.Instance.ProgramScheduleThemeBar.RecalcLayout();
+			Controller.Instance.ProgramSchedulePanel.PerformLayout();
 		}
 		#endregion
 
@@ -219,8 +247,14 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void LoadSections(bool quickLoad)
 		{
 			if (!quickLoad)
+			{
+				xtraTabControlSections.TabPages
+					.OfType<SectionControl>()
+					.ToList()
+					.ForEach(sc=>sc.Release());
 				xtraTabControlSections.TabPages.Clear();
-			foreach (var section in _localSchedule.ProgramSchedule.Sections.OrderBy(s => s.Index))
+			}
+			foreach (var section in EditedContent.Sections.OrderBy(s => s.Index))
 			{
 				if (quickLoad)
 				{
@@ -286,7 +320,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				var sourceControl = o as SectionControl;
 				if (sourceControl == null) return;
 				if (!_allowToSave) return;
-				if (_localSchedule.ProgramSchedule.ApplySettingsForAll)
+				if (EditedContent.ApplySettingsForAll)
 					ApplySharedSettings(sourceControl);
 				UpdateTotalsVisibility();
 				UpdateTotalsValues();
@@ -303,10 +337,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			using (var form = new FormSectionName())
 			{
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var section = _localSchedule.ProgramSchedule.CreateSection();
+				var section = EditedContent.CreateSection();
 				section.Name = form.SectionName;
-				_localSchedule.ProgramSchedule.Sections.Add(section);
-				_localSchedule.ProgramSchedule.RebuildSectionIndexes();
+				EditedContent.Sections.Add(section);
+				EditedContent.RebuildSectionIndexes();
 				var sectionControl = AddSectionControl(section);
 				xtraTabControlSections.SelectedTabPage = sectionControl;
 				UpdateSectionSplash();
@@ -320,11 +354,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				form.SectionName = String.Format("{0} (Clone)", sectionControl.SectionData.Name);
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var section = sectionControl.SectionData.Clone();
+				var section = sectionControl.SectionData.Clone<ScheduleSection, ScheduleSection>();
 				section.Name = form.SectionName;
 				section.Index += 0.5;
-				_localSchedule.ProgramSchedule.Sections.Add(section);
-				_localSchedule.ProgramSchedule.RebuildSectionIndexes();
+				EditedContent.Sections.Add(section);
+				EditedContent.RebuildSectionIndexes();
 				var newControl = AddSectionControl(section, (Int32)section.Index);
 				xtraTabControlSections.SelectedTabPage = newControl;
 				SettingsNotSaved = true;
@@ -333,9 +367,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private void DeleteSection(SectionControl sectionControl)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", sectionControl.SectionData.Name) != DialogResult.Yes) return;
-			_localSchedule.ProgramSchedule.Sections.Remove(sectionControl.SectionData);
-			_localSchedule.RebuildSnapshotIndexes();
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", sectionControl.SectionData.Name) != DialogResult.Yes) return;
+			EditedContent.Sections.Remove(sectionControl.SectionData);
+			EditedContent.RebuildSectionIndexes();
 			xtraTabControlSections.TabPages.Remove(sectionControl);
 			UpdateSectionSplash();
 			SettingsNotSaved = true;
@@ -444,20 +478,20 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.ProgramScheduleEmail.Enabled = xtraTabControlSections.TabPages
 				.OfType<SectionControl>()
 				.Any(sectionTabControl => sectionTabControl.ReadyForOutput);
-			Controller.Instance.UpdateOutputTabs(_localSchedule.ProgramSchedule.TotalSpots > 0);
+			Controller.Instance.UpdateOutputTabs(EditedContent.TotalSpots > 0);
 		}
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
 		{
-			_localSchedule.ChangeSnapshotPosition(
-				_localSchedule.ProgramSchedule.Sections.IndexOf(((SectionControl)e.MovedPage).SectionData),
-				_localSchedule.ProgramSchedule.Sections.IndexOf(((SectionControl)e.TargetPage).SectionData) + (1 * e.Offset));
+			EditedContent.ChangeSectionPosition(
+				EditedContent.Sections.IndexOf(((SectionControl)e.MovedPage).SectionData),
+				EditedContent.Sections.IndexOf(((SectionControl)e.TargetPage).SectionData) + (1 * e.Offset));
 			SettingsNotSaved = true;
 		}
 
 		private void UpdateSectionSplash()
 		{
-			if (_localSchedule.ProgramSchedule.Sections.Any())
+			if (EditedContent.Sections.Any())
 			{
 				pnSections.BringToFront();
 				Controller.Instance.ProgramScheduleProgramAdd.Enabled = true;
@@ -508,16 +542,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		#endregion
 
 		#region Settings management
-		private void InitThemeSelector()
-		{
-			FormThemeSelector.Link(Controller.Instance.ProgramScheduleTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
-		}
-
 		private void InitColorControls()
 		{
 			xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Count > 1;
@@ -529,24 +553,12 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			var buttonInfos = new List<ButtonInfo>();
 			buttonInfos.Add(new ButtonInfo { Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.SectionSettingsTV : Resources.SectionSettingsRadio, Tooltip = String.Format("Open {0} Schedule Settings", MediaMetaData.Instance.DataTypeString), Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsLine; } });
-			if (_localSchedule.DigitalProducts.Any() && (Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible))
+			if (Schedule.DigitalProductsContent.DigitalProducts.Any() && (Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible))
 				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsDigital, Tooltip = "Open Digital Settings", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsDigital; } });
 			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsTotals; } });
 			if (BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Count > 1)
 				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Slide Style", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
 			retractableBarControl.AddButtons(buttonInfos);
-		}
-
-		private void TrackOptionChanged()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			AddActivity(new UserActivity("Navbar Schedule Cleanup", options));
-		}
-
-		private void AddActivity(UserActivity activity)
-		{
-			BusinessObjects.Instance.ActivityManager.AddActivity(activity);
 		}
 
 		private void OnSettingsChanged(object sender, EventArgs e)
@@ -576,7 +588,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			ActiveSection.SectionData.ShowNetRate = buttonXNetRate.Checked;
 			ActiveSection.SectionData.ShowDiscount = buttonXDiscount.Checked;
 
-			if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+			if (EditedContent.ApplySettingsForAll)
 			{
 				ApplySharedSettings(ActiveSection);
 				xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc => oc.UpdateGridView());
@@ -587,7 +599,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateQuarterSelectorControl();
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
-			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 
@@ -603,8 +614,8 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				form.checkEditOutputNoBrackets.Checked = ActiveSection.SectionData.OutputNoBrackets;
 				form.checkEditUseGenericDates.Checked = ActiveSection.SectionData.UseGenericDateColumns;
 				form.checkEditUseDecimalRate.Checked = ActiveSection.SectionData.UseDecimalRates;
-				form.checkEditOutputLimitQuarters.Enabled = _localSchedule.Quarters.Count > 1;
-				form.checkEditOutputLimitQuarters.Checked = _localSchedule.Quarters.Count > 1 && ActiveSection.SectionData.OutputPerQuater;
+				form.checkEditOutputLimitQuarters.Enabled = ScheduleSettings.Quarters.Count > 1;
+				form.checkEditOutputLimitQuarters.Checked = ScheduleSettings.Quarters.Count > 1 && ActiveSection.SectionData.OutputPerQuater;
 				form.checkEditOutputLimitPeriods.Checked = ActiveSection.SectionData.OutputMaxPeriods.HasValue;
 				form.spinEditOutputLimitPeriods.EditValue = ActiveSection.SectionData.OutputMaxPeriods;
 				form.checkEditOutputLimitPeriods.Text = String.Format("Max {0}s Per PPT Slide", SpotTitle);
@@ -622,7 +633,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
 
-				if (_localSchedule.SnapshotSummary.ApplySettingsForAll)
+				if (EditedContent.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveSection);
 					xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc => oc.UpdateGridView());
@@ -630,7 +641,6 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				else
 					ActiveSection.UpdateGridView();
 
-				TrackOptionChanged();
 				SettingsNotSaved = true;
 			}
 		}
@@ -649,7 +659,7 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				ActiveSection.SectionData.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
 				ActiveSection.SectionData.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
 				ActiveSection.SectionData.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
-				if (_localSchedule.ProgramSchedule.ApplySettingsForAll)
+				if (EditedContent.ApplySettingsForAll)
 					ApplySharedContractSettings(ActiveSection.SectionData.ContractSettings);
 				SettingsNotSaved = true;
 			}
@@ -658,10 +668,9 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void OnQuarterChanged(object sender, EventArgs e)
 		{
 			var selectedQuarter = quarterSelectorControl.SelectedQuarter;
-			_localSchedule.ProgramSchedule.SelectedQuarter = selectedQuarter != null ? selectedQuarter.DateAnchor : (DateTime?)null;
+			EditedContent.SelectedQuarter = selectedQuarter != null ? selectedQuarter.DateAnchor : (DateTime?)null;
 			foreach (var sectionTabControl in xtraTabControlSections.TabPages.OfType<SectionControl>())
 				sectionTabControl.UpdateSpotsByQuarter(selectedQuarter);
-			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 
@@ -675,41 +684,11 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private void OnColorChanged(object sender, EventArgs e)
 		{
-			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 		#endregion
-		#endregion
 
 		#region Ribbon Operations Events
-		public void Help_Click(object sender, EventArgs e)
-		{
-			BusinessObjects.Instance.HelpManager.OpenHelpLink(_helpKey);
-		}
-
-		public void Save_Click(object sender, EventArgs e)
-		{
-			if (SaveSchedule())
-				Utilities.Instance.ShowInformation("Schedule Saved");
-		}
-
-		public void SaveAs_Click(object sender, EventArgs e)
-		{
-			using (var form = new FormNewSchedule(ScheduleManager.GetShortScheduleList().Select(s => s.ShortFileName)))
-			{
-				form.Text = "Save Schedule";
-				form.laLogo.Text = "Please set a new name for your Schedule:";
-				if (form.ShowDialog() != DialogResult.OK) return;
-				if (!string.IsNullOrEmpty(form.ScheduleName))
-				{
-					if (SaveSchedule(form.ScheduleName))
-						Utilities.Instance.ShowInformation("Schedule was saved");
-				}
-				else
-					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-			}
-		}
-
 		public void OnAddSection(object sender, EventArgs e)
 		{
 			AddSection();
@@ -732,52 +711,30 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public bool ShowDigitalLegendOnlyFirstSlide
 		{
-			get { return _localSchedule.ProgramSchedule.DigitalLegend.OutputOnlyOnce; }
+			get { return EditedContent.DigitalLegend.OutputOnlyOnce; }
 		}
 
 		public string DigitalLegend
 		{
 			get
 			{
-				if (!_localSchedule.ProgramSchedule.DigitalLegend.Enabled) return String.Empty;
-				var requestOptions = _localSchedule.ProgramSchedule.DigitalLegend.RequestOptions;
-				if (!_localSchedule.ProgramSchedule.DigitalLegend.AllowEdit)
+				if (!EditedContent.DigitalLegend.Enabled) return String.Empty;
+				var requestOptions = EditedContent.DigitalLegend.RequestOptions;
+				if (!EditedContent.DigitalLegend.AllowEdit)
 				{
 					requestOptions.Separator = " ";
 					return String.Format("Digital Product Info: {0}{1}{2}",
-						_localSchedule.GetDigitalInfo(requestOptions),
+						Schedule.DigitalProductsContent.GetDigitalInfo(requestOptions),
 						requestOptions.Separator,
-						_localSchedule.ProgramSchedule.DigitalLegend.GetAdditionalData(" "));
+						EditedContent.DigitalLegend.GetAdditionalData(" "));
 				}
-				if (!String.IsNullOrEmpty(_localSchedule.ProgramSchedule.DigitalLegend.CompiledInfo))
+				if (!String.IsNullOrEmpty(EditedContent.DigitalLegend.CompiledInfo))
 					return String.Format("Digital Product Info: {0}{1}{2}",
-						_localSchedule.ProgramSchedule.DigitalLegend.CompiledInfo,
+						EditedContent.DigitalLegend.CompiledInfo,
 						requestOptions.Separator,
-						_localSchedule.ProgramSchedule.DigitalLegend.GetAdditionalData(" "));
+						EditedContent.DigitalLegend.GetAdditionalData(" "));
 				return String.Empty;
 			}
-		}
-
-		private void TrackOutput()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", String.Format("{0}ly Schedule", SpotTitle));
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), _localSchedule.ProgramSchedule.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), _localSchedule.ProgramSchedule.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), _localSchedule.ProgramSchedule.TotalCost);
-			AddActivity(new UserActivity("Output", options));
-		}
-
-		private void TrackPreview()
-		{
-			var options = new Dictionary<string, object>();
-			options.Add("Slide", String.Format("{0}ly Schedule", SlideType));
-			options.Add("Advertiser", _localSchedule.BusinessName);
-			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), _localSchedule.ProgramSchedule.TotalSpots);
-			options.Add(String.Format("{0}lyAverageRate", SpotTitle), _localSchedule.ProgramSchedule.AvgRate);
-			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), _localSchedule.ProgramSchedule.TotalCost);
-			AddActivity(new UserActivity("Preview", options));
 		}
 
 		private IEnumerable<SectionControl> SelectSectionsForOutput()
@@ -809,12 +766,10 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			return selectedSections;
 		}
 
-		public void OnPowerPointOutput(object sender, EventArgs e)
+		public override void OutputPowerPoint()
 		{
-			SaveSchedule();
 			var selectedSections = new List<SectionControl>(SelectSectionsForOutput());
 			if (!selectedSections.Any()) return;
-			TrackOutput();
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
@@ -822,26 +777,52 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				FormProgress.ShowProgress();
 				foreach (var sectionTabControl in selectedSections)
 					sectionTabControl.GenerateOutput();
-				TrackOutput();
 				FormProgress.CloseProgress();
 			});
 		}
 
-		public void OnOutputPreview(object sender, EventArgs e)
+		public override void OutputPdf()
 		{
-			SaveSchedule();
+			var selectedSections = new List<SectionControl>(SelectSectionsForOutput());
+			if (!selectedSections.Any()) return;
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
+			{
+				FormProgress.ShowProgress();
+				var previewGroups = selectedSections.Select(summaryTab => summaryTab.GeneratePreview()).ToList();
+				var pdfFileName = Path.Combine(
+					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+					String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
+		}
+
+		public override void Preview()
+		{
 			var selectedSections = new List<SectionControl>(SelectSectionsForOutput());
 			if (!selectedSections.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var previewGroups = selectedSections.Select(sectionControl => sectionControl.GeneratePreview()).ToList();
-			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(
+				Controller.Instance.FormMain, 
+				RegularMediaSchedulePowerPointHelper.Instance, 
+				BusinessObjects.Instance.HelpManager, 
+				Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Schedule";
 				formPreview.LoadGroups(previewGroups);
@@ -851,20 +832,19 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			}
 		}
 
-		public void OnEmailOutput(object sender, EventArgs e)
+		public override void Email()
 		{
-			SaveSchedule();
 			var selectedSections = new List<SectionControl>(SelectSectionsForOutput());
 			if (!selectedSections.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var previewGroups = selectedSections.Select(sectionControl => sectionControl.GeneratePreview()).ToList();
-			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
@@ -872,37 +852,13 @@ namespace Asa.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				formEmail.Text = "Email this Schedule";
 				formEmail.LoadGroups(previewGroups);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 			}
-		}
-
-		public void OnPdfOutput(object sender, EventArgs e)
-		{
-			SaveSchedule();
-			var selectedSections = new List<SectionControl>(SelectSectionsForOutput());
-			if (!selectedSections.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			Controller.Instance.ShowFloater(() =>
-			{
-				FormProgress.ShowProgress();
-				var previewGroups = selectedSections.Select(summaryTab => summaryTab.GeneratePreview()).ToList();
-				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", _localSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-				if (File.Exists(pdfFileName))
-					try
-					{
-						Process.Start(pdfFileName);
-					}
-					catch { }
-				TrackOutput();
-				FormProgress.CloseProgress();
-			});
 		}
 		#endregion
 	}

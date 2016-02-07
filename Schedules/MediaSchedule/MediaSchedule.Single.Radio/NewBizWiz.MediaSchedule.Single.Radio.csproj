@@ -120,11 +120,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy “$(ProjectDir)bin\Release\Asa*.dll” “d:\WorkingFiles\NewBizWiz\RadioSeller.exe” /Y
-copy “$(ProjectDir)bin\Release\Microsoft*.dll” “d:\WorkingFiles\NewBizWiz\RadioSeller.exe” /Y
-copy “$(ProjectDir)bin\Release\office.dll” “d:\WorkingFiles\NewBizWiz\RadioSeller.exe” /Y
-copy “$(ProjectDir)bin\Release\MonthCalendar.dll” “d:\WorkingFiles\NewBizWiz\RadioSeller.exe” /Y
-copy “$(ProjectDir)bin\Release\RadioSeller.exe” “d:\WorkingFiles\NewBizWiz\RadioSeller.exe” /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

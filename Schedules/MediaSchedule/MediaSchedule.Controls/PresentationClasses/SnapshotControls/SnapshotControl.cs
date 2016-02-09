@@ -231,7 +231,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			}.Any(sc => sc == targetColumn))
 			{
 				var columnName = targetColumn.ToolTip;
-				items.Add(new DXMenuItem(String.Format("Clone {0} to all days", columnName), (o, args) =>
+				items.Add(new DXMenuItem($"Clone {columnName} to all days", (o, args) =>
 				{
 					targetView.CloseEditor();
 					var valueToClone = targetView.GetRowCellValue(targetRowHandle, targetColumn);

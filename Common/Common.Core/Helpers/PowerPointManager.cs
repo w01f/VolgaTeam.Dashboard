@@ -76,7 +76,7 @@ namespace Asa.Common.Core.Helpers
 			process.Start();
 		}
 
-		public void KillPowerPoint()
+		private void KillPowerPoint()
 		{
 			Process.GetProcesses().Where(p => p.ProcessName.ToUpper().Contains("POWERPNT")).ToList().ForEach(p => p.Kill());
 		}

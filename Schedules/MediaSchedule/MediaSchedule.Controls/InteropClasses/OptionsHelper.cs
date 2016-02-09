@@ -11,6 +11,7 @@ using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.Core.OfficeInterops;
+using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Media.Controls.InteropClasses
 {

@@ -10,6 +10,7 @@ using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Online.Controls.InteropClasses
 {

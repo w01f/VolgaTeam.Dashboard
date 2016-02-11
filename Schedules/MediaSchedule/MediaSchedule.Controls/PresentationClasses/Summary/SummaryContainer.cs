@@ -385,7 +385,7 @@ namespace Asa.Media.Controls.PresentationClasses.Summary
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var previewGroups = selectedSections.Select(summaryTab => summaryTab.Content.GeneratePreview()).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
@@ -400,7 +400,7 @@ namespace Asa.Media.Controls.PresentationClasses.Summary
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			}
 		}
 
@@ -413,7 +413,7 @@ namespace Asa.Media.Controls.PresentationClasses.Summary
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Email...");
 			FormProgress.ShowProgress();
 			var previewGroups = selectedSections.Select(summaryTab => summaryTab.Content.GeneratePreview()).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
@@ -422,7 +422,7 @@ namespace Asa.Media.Controls.PresentationClasses.Summary
 			{
 				formEmail.Text = "Email Summary";
 				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();

@@ -262,7 +262,7 @@ namespace Asa.Online.Controls.PresentationClasses.AdPlan
 			{
 				formEmail.Text = "Email this AdPlan";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				Utilities.ActivateForm(_formContainer.Handle, true, false);
+				Utilities.ActivateForm(_formContainer.Handle, _formContainer.WindowState == FormWindowState.Maximized, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();
@@ -278,7 +278,7 @@ namespace Asa.Online.Controls.PresentationClasses.AdPlan
 			FormProgress.ShowProgress();
 			string tempFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			OnlineSchedulePowerPointHelper.Instance.PrepareAdPlanEmail(tempFileName, this);
-			Utilities.ActivateForm(_formContainer.Handle, true, false);
+			Utilities.ActivateForm(_formContainer.Handle, _formContainer.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 			if (File.Exists(tempFileName))
 				ShowPreview(tempFileName);

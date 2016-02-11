@@ -42,6 +42,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditUseGenericDates = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.labelControlDescriptionEmptySports = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionUseGenericDates = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionOutputLimitPeriods = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionOutputLimitQuarters = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionUseDecimalRate = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionOutputNoBrackets = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionLockToMaster = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionApplyForAll = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).BeginInit();
@@ -71,23 +79,29 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditUseDecimalRate
 			// 
-			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(12, 183);
+			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(12, 247);
 			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
+			this.checkEditUseDecimalRate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditUseDecimalRate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseDecimalRate.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditUseDecimalRate.Properties.Caption = "Use Decimals with Rates";
-			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(265, 20);
+			this.checkEditUseDecimalRate.Properties.Caption = "<b>E.</b> Use Decimals with Rates";
+			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(399, 20);
 			this.checkEditUseDecimalRate.StyleController = this.styleController;
 			this.checkEditUseDecimalRate.TabIndex = 121;
 			// 
 			// checkEditOutputNoBrackets
 			// 
-			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(12, 226);
+			this.checkEditOutputNoBrackets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(12, 306);
 			this.checkEditOutputNoBrackets.Name = "checkEditOutputNoBrackets";
+			this.checkEditOutputNoBrackets.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditOutputNoBrackets.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditOutputNoBrackets.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditOutputNoBrackets.Properties.Caption = "No [Brackets] for Station on slide";
-			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(265, 20);
+			this.checkEditOutputNoBrackets.Properties.Caption = "<b>F.</b> No [Brackets] for the station on slide";
+			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(399, 20);
 			this.checkEditOutputNoBrackets.StyleController = this.styleController;
 			this.checkEditOutputNoBrackets.TabIndex = 120;
 			// 
@@ -99,7 +113,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
             0,
             0});
 			this.spinEditOutputLimitPeriods.Enabled = false;
-			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(197, 96);
+			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(215, 128);
 			this.spinEditOutputLimitPeriods.Name = "spinEditOutputLimitPeriods";
 			this.spinEditOutputLimitPeriods.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditOutputLimitPeriods.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -126,12 +140,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditOutputLimitPeriods
 			// 
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(12, 97);
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(12, 129);
 			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
+			this.checkEditOutputLimitPeriods.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditOutputLimitPeriods.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditOutputLimitPeriods.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
-			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
+			this.checkEditOutputLimitPeriods.Properties.Caption = "<b>C.</b> Max # of {0}s per Slide: ";
 			this.checkEditOutputLimitPeriods.Size = new System.Drawing.Size(178, 20);
 			this.checkEditOutputLimitPeriods.StyleController = this.styleController;
 			this.checkEditOutputLimitPeriods.TabIndex = 118;
@@ -139,18 +154,23 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditOutputLimitQuarters
 			// 
-			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(12, 140);
+			this.checkEditOutputLimitQuarters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(12, 188);
 			this.checkEditOutputLimitQuarters.Name = "checkEditOutputLimitQuarters";
+			this.checkEditOutputLimitQuarters.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditOutputLimitQuarters.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditOutputLimitQuarters.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditOutputLimitQuarters.Properties.Caption = "Output each Quarter on a Slide";
-			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(265, 20);
+			this.checkEditOutputLimitQuarters.Properties.Caption = "<b>D.</b> Output each Quarter on a slide";
+			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(399, 20);
 			this.checkEditOutputLimitQuarters.StyleController = this.styleController;
 			this.checkEditOutputLimitQuarters.TabIndex = 117;
 			this.checkEditOutputLimitQuarters.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitQuarters_CheckedChanged);
 			// 
 			// checkEditEmptySports
 			// 
+			this.checkEditEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditEmptySports.Location = new System.Drawing.Point(12, 12);
 			this.checkEditEmptySports.Name = "checkEditEmptySports";
 			this.checkEditEmptySports.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -162,8 +182,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.checkEditEmptySports.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.checkEditEmptySports.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditEmptySports.Properties.AutoHeight = false;
-			this.checkEditEmptySports.Properties.Caption = "<b>DO NOT SHOW</b> Hiatus {0}";
-			this.checkEditEmptySports.Size = new System.Drawing.Size(265, 19);
+			this.checkEditEmptySports.Properties.Caption = "<b>A.</b> Do not show Hiatus Weeks";
+			this.checkEditEmptySports.Size = new System.Drawing.Size(399, 19);
 			this.checkEditEmptySports.TabIndex = 116;
 			// 
 			// buttonXOK
@@ -172,7 +192,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(56, 367);
+			this.buttonXOK.Location = new System.Drawing.Point(95, 488);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -185,7 +205,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(197, 367);
+			this.buttonXCancel.Location = new System.Drawing.Point(236, 488);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -194,7 +214,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			// 
 			// checkEditLockToMaster
 			// 
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 269);
+			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 365);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -208,26 +230,30 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditLockToMaster.Properties.AutoHeight = false;
-			this.checkEditLockToMaster.Properties.Caption = "Lock Schedule on Slide Master<br><size=-2>(protect the schedule in PowerPoint)</s" +
-    "ize>";
-			this.checkEditLockToMaster.Size = new System.Drawing.Size(282, 34);
+			this.checkEditLockToMaster.Properties.Caption = "<b>G.</b> Lock Schedule on the Slide Master";
+			this.checkEditLockToMaster.Size = new System.Drawing.Size(399, 18);
 			this.checkEditLockToMaster.StyleController = this.styleController;
 			this.checkEditLockToMaster.TabIndex = 124;
 			// 
 			// checkEditUseGenericDates
 			// 
-			this.checkEditUseGenericDates.Location = new System.Drawing.Point(12, 54);
+			this.checkEditUseGenericDates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditUseGenericDates.Location = new System.Drawing.Point(12, 70);
 			this.checkEditUseGenericDates.Name = "checkEditUseGenericDates";
+			this.checkEditUseGenericDates.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditUseGenericDates.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseGenericDates.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditUseGenericDates.Properties.Caption = "Use Generic Date Columns ";
-			this.checkEditUseGenericDates.Size = new System.Drawing.Size(265, 20);
+			this.checkEditUseGenericDates.Properties.Caption = "<b>B.</b> Use Generic Date Columns";
+			this.checkEditUseGenericDates.Size = new System.Drawing.Size(399, 20);
 			this.checkEditUseGenericDates.StyleController = this.styleController;
 			this.checkEditUseGenericDates.TabIndex = 125;
 			// 
 			// checkEditApplyForAll
 			// 
-			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 309);
+			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 422);
 			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
 			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -243,16 +269,148 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditApplyForAll.Properties.AutoHeight = false;
-			this.checkEditApplyForAll.Properties.Caption = "Universal Toggle Buttons<br><size=-2>Use the same Toggle buttons for all your sch" +
-    "edules…</size>";
-			this.checkEditApplyForAll.Size = new System.Drawing.Size(321, 43);
+			this.checkEditApplyForAll.Properties.Caption = "<b>H.</b> Enable Universal Toggle Buttons";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(399, 17);
 			this.checkEditApplyForAll.StyleController = this.styleController;
 			this.checkEditApplyForAll.TabIndex = 127;
+			// 
+			// labelControlDescriptionEmptySports
+			// 
+			this.labelControlDescriptionEmptySports.AllowHtmlString = true;
+			this.labelControlDescriptionEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionEmptySports.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionEmptySports.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionEmptySports.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionEmptySports.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionEmptySports.Location = new System.Drawing.Point(30, 37);
+			this.labelControlDescriptionEmptySports.Name = "labelControlDescriptionEmptySports";
+			this.labelControlDescriptionEmptySports.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionEmptySports.TabIndex = 128;
+			this.labelControlDescriptionEmptySports.Text = "<i><color=Gray>Only show weeks where spots are scheduled…</color></i>";
+			// 
+			// labelControlDescriptionUseGenericDates
+			// 
+			this.labelControlDescriptionUseGenericDates.AllowHtmlString = true;
+			this.labelControlDescriptionUseGenericDates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionUseGenericDates.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionUseGenericDates.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionUseGenericDates.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionUseGenericDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionUseGenericDates.Location = new System.Drawing.Point(30, 96);
+			this.labelControlDescriptionUseGenericDates.Name = "labelControlDescriptionUseGenericDates";
+			this.labelControlDescriptionUseGenericDates.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionUseGenericDates.TabIndex = 129;
+			this.labelControlDescriptionUseGenericDates.Text = "<i><color=Gray>Show as:  WK 1, WK2, WK3, WK4   or  MO 1, MO 2, MO 3…</color></i>";
+			// 
+			// labelControlDescriptionOutputLimitPeriods
+			// 
+			this.labelControlDescriptionOutputLimitPeriods.AllowHtmlString = true;
+			this.labelControlDescriptionOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionOutputLimitPeriods.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionOutputLimitPeriods.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionOutputLimitPeriods.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionOutputLimitPeriods.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionOutputLimitPeriods.Location = new System.Drawing.Point(30, 155);
+			this.labelControlDescriptionOutputLimitPeriods.Name = "labelControlDescriptionOutputLimitPeriods";
+			this.labelControlDescriptionOutputLimitPeriods.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionOutputLimitPeriods.TabIndex = 130;
+			this.labelControlDescriptionOutputLimitPeriods.Text = "<i><color=Gray>Set the specific # of weeks that will be on each slide…</color></i" +
+    ">";
+			// 
+			// labelControlDescriptionOutputLimitQuarters
+			// 
+			this.labelControlDescriptionOutputLimitQuarters.AllowHtmlString = true;
+			this.labelControlDescriptionOutputLimitQuarters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionOutputLimitQuarters.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionOutputLimitQuarters.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionOutputLimitQuarters.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionOutputLimitQuarters.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionOutputLimitQuarters.Location = new System.Drawing.Point(30, 214);
+			this.labelControlDescriptionOutputLimitQuarters.Name = "labelControlDescriptionOutputLimitQuarters";
+			this.labelControlDescriptionOutputLimitQuarters.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionOutputLimitQuarters.TabIndex = 131;
+			this.labelControlDescriptionOutputLimitQuarters.Text = "<i><color=Gray>For example: Q1 will have its own slide. Q2 will have its own slid" +
+    "e…</color></i>";
+			// 
+			// labelControlDescriptionUseDecimalRate
+			// 
+			this.labelControlDescriptionUseDecimalRate.AllowHtmlString = true;
+			this.labelControlDescriptionUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionUseDecimalRate.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionUseDecimalRate.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionUseDecimalRate.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionUseDecimalRate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionUseDecimalRate.Location = new System.Drawing.Point(30, 273);
+			this.labelControlDescriptionUseDecimalRate.Name = "labelControlDescriptionUseDecimalRate";
+			this.labelControlDescriptionUseDecimalRate.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionUseDecimalRate.TabIndex = 132;
+			this.labelControlDescriptionUseDecimalRate.Text = "<i><color=Gray>Show $100.00  instead of just $100…</color></i>";
+			// 
+			// labelControlDescriptionOutputNoBrackets
+			// 
+			this.labelControlDescriptionOutputNoBrackets.AllowHtmlString = true;
+			this.labelControlDescriptionOutputNoBrackets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionOutputNoBrackets.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionOutputNoBrackets.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionOutputNoBrackets.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionOutputNoBrackets.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionOutputNoBrackets.Location = new System.Drawing.Point(30, 332);
+			this.labelControlDescriptionOutputNoBrackets.Name = "labelControlDescriptionOutputNoBrackets";
+			this.labelControlDescriptionOutputNoBrackets.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionOutputNoBrackets.TabIndex = 133;
+			this.labelControlDescriptionOutputNoBrackets.Text = "<i><color=Gray>Disable the  [Brackets] so they do not output with the station</co" +
+    "lor></i>";
+			// 
+			// labelControlDescriptionLockToMaster
+			// 
+			this.labelControlDescriptionLockToMaster.AllowHtmlString = true;
+			this.labelControlDescriptionLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionLockToMaster.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionLockToMaster.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionLockToMaster.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionLockToMaster.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(30, 389);
+			this.labelControlDescriptionLockToMaster.Name = "labelControlDescriptionLockToMaster";
+			this.labelControlDescriptionLockToMaster.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionLockToMaster.TabIndex = 134;
+			this.labelControlDescriptionLockToMaster.Text = "<i><color=Gray>The schedule will be protected on the powerpoint slide Master</col" +
+    "or></i>";
+			// 
+			// labelControlDescriptionApplyForAll
+			// 
+			this.labelControlDescriptionApplyForAll.AllowHtmlString = true;
+			this.labelControlDescriptionApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionApplyForAll.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionApplyForAll.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionApplyForAll.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionApplyForAll.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionApplyForAll.Location = new System.Drawing.Point(30, 445);
+			this.labelControlDescriptionApplyForAll.Name = "labelControlDescriptionApplyForAll";
+			this.labelControlDescriptionApplyForAll.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionApplyForAll.TabIndex = 135;
+			this.labelControlDescriptionApplyForAll.Text = "<i><color=Gray>Use the same schedule toggle settings for all schedules in this fi" +
+    "le…</color></i>";
 			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(345, 415);
+			this.ClientSize = new System.Drawing.Size(423, 536);
+			this.Controls.Add(this.labelControlDescriptionApplyForAll);
+			this.Controls.Add(this.labelControlDescriptionLockToMaster);
+			this.Controls.Add(this.labelControlDescriptionOutputNoBrackets);
+			this.Controls.Add(this.labelControlDescriptionUseDecimalRate);
+			this.Controls.Add(this.labelControlDescriptionOutputLimitQuarters);
+			this.Controls.Add(this.labelControlDescriptionOutputLimitPeriods);
+			this.Controls.Add(this.labelControlDescriptionUseGenericDates);
+			this.Controls.Add(this.labelControlDescriptionEmptySports);
 			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.checkEditUseGenericDates);
 			this.Controls.Add(this.checkEditLockToMaster);
@@ -303,5 +461,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 		public DevExpress.XtraEditors.CheckEdit checkEditUseGenericDates;
 		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
+		public DevExpress.XtraEditors.LabelControl labelControlDescriptionEmptySports;
+		private DevExpress.XtraEditors.LabelControl labelControlDescriptionUseGenericDates;
+		private DevExpress.XtraEditors.LabelControl labelControlDescriptionOutputLimitPeriods;
+		public DevExpress.XtraEditors.LabelControl labelControlDescriptionOutputLimitQuarters;
+		private DevExpress.XtraEditors.LabelControl labelControlDescriptionUseDecimalRate;
+		private DevExpress.XtraEditors.LabelControl labelControlDescriptionOutputNoBrackets;
+		private DevExpress.XtraEditors.LabelControl labelControlDescriptionLockToMaster;
+		private DevExpress.XtraEditors.LabelControl labelControlDescriptionApplyForAll;
 	}
 }

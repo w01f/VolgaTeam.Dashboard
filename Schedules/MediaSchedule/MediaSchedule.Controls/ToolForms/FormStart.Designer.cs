@@ -94,6 +94,8 @@
 			// 
 			// pbLogo
 			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.TVRibbonLogo;
 			this.pbLogo.Location = new System.Drawing.Point(14, 12);
 			this.pbLogo.Name = "pbLogo";
@@ -118,7 +120,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormStart";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "SellerPoint for {0}";
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.ResumeLayout(false);

@@ -45,6 +45,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			pnNoPrograms.Dock = DockStyle.Fill;
 			gridControl.Dock = DockStyle.Fill;
 			LoadData(data);
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				laProgramSourceInfo.Font = new Font(laProgramSourceInfo.Font.FontFamily, laProgramSourceInfo.Font.Size - 2, laProgramSourceInfo.Font.Style);
+			}
 		}
 
 		#region Methods

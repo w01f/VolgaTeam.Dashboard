@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -13,7 +12,6 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 	public abstract class CalendarOutputData
 	{
 		protected readonly List<ImageSource> _dayLogosPaths = new List<ImageSource>();
-		protected string _encodedLogo;
 
 		public List<CalendarNote> Notes { get; private set; }
 

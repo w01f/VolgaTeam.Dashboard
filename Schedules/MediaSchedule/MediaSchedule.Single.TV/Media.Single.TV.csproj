@@ -143,13 +143,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy “$(ProjectDir)\bin\Debug\Asa*.dll” “d:\WorkingFiles\NewBizWiz\TVSeller.exe” /Y
-xcopy “$(ProjectDir)\bin\Debug\Microsoft*.dll” “d:\WorkingFiles\NewBizWiz\TVSeller.exe” /Y
-xcopy “$(ProjectDir)\bin\Debug\office.dll” “d:\WorkingFiles\NewBizWiz\TVSeller.exe” /Y
-xcopy “$(ProjectDir)\bin\Debug\MonthCalendar.dll” “d:\WorkingFiles\NewBizWiz\TVSeller.exe” /Y
-xcopy “$(ProjectDir)\bin\Debug\TVSeller.exe” “d:\WorkingFiles\NewBizWiz\TVSeller.exe” /Y
-xcopy “$(ProjectDir)\bin\Debug\TVSeller.exe.config” “d:\WorkingFiles\NewBizWiz\TVSeller.exe” /Y
-xcopy “$(ProjectDir)\bin\Debug\Schema” “d:\WorkingFiles\NewBizWiz\TVSeller.exe\Schema” /SY</PostBuildEvent>
+    <PostBuildEvent>robocopy /s /z /r:100 "$(SolutionDir)Business\Business.Common\$(OutDir)\" "d:\WorkingFiles\NewBizWiz\TVSeller.exe" "*.sql" "sequense.txt"
+if %25errorlevel%25 leq 1 robocopy /s /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\TVSeller.exe" "Asa*.dll" "Microsoft*.dll" "office.dll" "MonthCalendar.dll" "TVSeller.exe" "TVSeller.exe.config"
+if %25errorlevel%25 leq 1 exit 0 else exit %25errorlevel%25</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\..\..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\..\..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

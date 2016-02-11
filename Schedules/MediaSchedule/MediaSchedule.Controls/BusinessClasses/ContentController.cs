@@ -20,9 +20,10 @@ namespace Asa.Media.Controls.BusinessClasses
 {
 	public class ContentController : IContentController<MediaScheduleChangeInfo>
 	{
+		private readonly ContentTabStateManager _tabStateManager;
 		public IContentControl ActiveControl { get; set; }
-		public List<IContentControl> ContentControls { get; private set; }
-		public List<ContentEditorRelation> EditorRelations { get; private set; }
+		public List<IContentControl> ContentControls { get; }
+		public List<ContentEditorRelation> EditorRelations { get; }
 
 		public RibbonControl ContentRibbon
 		{
@@ -45,6 +46,7 @@ namespace Asa.Media.Controls.BusinessClasses
 
 		public ContentController()
 		{
+			_tabStateManager = new ContentTabStateManager(this);
 			ContentControls = new List<IContentControl>();
 			EditorRelations = new List<ContentEditorRelation>();
 			EditorRelations.AddRange(new[]{
@@ -140,6 +142,12 @@ namespace Asa.Media.Controls.BusinessClasses
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened += ContentEditManager<MediaScheduleChangeInfo>.OnScheduleOpened;
 			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSaving += (o, e) => BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Save();
 			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSavingAs += (o, e) => BusinessObjects.Instance.ScheduleManager.SaveScheduleAs(e.Name);
+			_tabStateManager.Init();
+		}
+
+		public void UpdateTabsSate()
+		{
+			_tabStateManager.UpdateTabState();
 		}
 
 		private static IContentControl CreateContentEditor(string id)

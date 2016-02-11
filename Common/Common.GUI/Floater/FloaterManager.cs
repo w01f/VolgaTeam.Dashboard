@@ -11,7 +11,7 @@ namespace Asa.Common.GUI.Floater
 		private int _floaterPositionX = int.MinValue;
 		private int _floaterPositionY = int.MinValue;
 
-		public void ShowFloater(Form sender, Image logo, Action afterShow, Action afterHide, Action afterBack)
+		public void ShowFloater(Form sender, Image logo, Action afterShow, Action afterHide, Action<bool> afterBack)
 		{
 			var x = _floaterPositionX == Int32.MinValue ? sender.Left + sender.Width - 40 : _floaterPositionX;
 			var y = _floaterPositionY == Int32.MinValue ? (sender.Top + (sender.Height - 65) / 2) : _floaterPositionY;
@@ -23,6 +23,7 @@ namespace Asa.Common.GUI.Floater
 				var formStyle = sender.FormBorderStyle;
 				var minSize = sender.MinimumSize;
 				var size = sender.Size;
+				var isMaximized = sender.WindowState == FormWindowState.Maximized;
 				sender.Tag = FloatedMarker;
 				sender.FormBorderStyle = FormBorderStyle.None;
 				sender.MinimumSize = new Size(0, 0);
@@ -40,7 +41,7 @@ namespace Asa.Common.GUI.Floater
 				if (result == DialogResult.Yes)
 				{
 					if (afterBack != null)
-						afterBack();
+						afterBack(isMaximized);
 				}
 				else
 				{

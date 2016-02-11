@@ -153,6 +153,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			repositoryItemSpinEditSpot.Enter += TextEditorsHelper.Editor_Enter;
 			repositoryItemSpinEditSpot.MouseDown += TextEditorsHelper.Editor_MouseDown;
 			repositoryItemSpinEditSpot.MouseUp += TextEditorsHelper.Editor_MouseUp;
+
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				laProgramSourceInfo.Font = new Font(laProgramSourceInfo.Font.FontFamily, laProgramSourceInfo.Font.Size - 2, laProgramSourceInfo.Font.Style);
+			}
 		}
 		protected string SpotTitle
 		{
@@ -345,7 +350,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				gridBandSpots.Visible = false;
 		}
 
-		private void UpdateGridData(bool rebuildColumns)
+		public void UpdateGridData(bool rebuildColumns)
 		{
 			int focussedRow = advBandedGridViewSchedule.FocusedRowHandle;
 			advBandedGridViewSchedule.BeginUpdate();
@@ -421,7 +426,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				bandedGridColumn.AppearanceCell.Options.HighPriority = true;
 				bandedGridColumn.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
 				bandedGridColumn.AutoFillDown = true;
-				bandedGridColumn.Caption = column.Caption;
+				bandedGridColumn.Caption = column.Caption.ToUpper();
 				bandedGridColumn.ColumnEdit = repositoryItemSpinEditSpot;
 				bandedGridColumn.FieldName = column.ColumnName;
 				bandedGridColumn.ToolTip = column.ExtendedProperties["Tooltip"] as String;

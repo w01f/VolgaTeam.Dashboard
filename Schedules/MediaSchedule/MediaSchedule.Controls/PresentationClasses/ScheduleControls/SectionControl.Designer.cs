@@ -522,9 +522,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.gridViewProgramSource.OptionsBehavior.AutoPopulateColumns = false;
 			this.gridViewProgramSource.OptionsBehavior.AutoSelectAllInEditor = false;
 			this.gridViewProgramSource.OptionsBehavior.AutoUpdateTotalSummary = false;
-			this.gridViewProgramSource.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
 			this.gridViewProgramSource.OptionsBehavior.Editable = false;
 			this.gridViewProgramSource.OptionsBehavior.ReadOnly = true;
+			this.gridViewProgramSource.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
 			this.gridViewProgramSource.OptionsCustomization.AllowFilter = false;
 			this.gridViewProgramSource.OptionsCustomization.AllowGroup = false;
 			this.gridViewProgramSource.OptionsCustomization.AllowQuickHideColumns = false;
@@ -1046,12 +1046,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			// 
 			// SectionControl
 			// 
-			this.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.Options.UseBackColor = true;
 			this.Controls.Add(this.gridControlSchedule);
 			this.Controls.Add(this.popupContainerControlProgramSource);
 			this.Controls.Add(this.pbNoPrograms);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "SectionControl";
 			this.Size = new System.Drawing.Size(1132, 593);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).EndInit();

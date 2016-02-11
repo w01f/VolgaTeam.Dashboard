@@ -169,7 +169,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 				previewGroups.Add(previewGroup);
 			}
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			Enabled = true;
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
@@ -183,7 +183,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			}
 		}
 
@@ -212,7 +212,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			{
 				formEmail.Text = "Email this Calendar";
 				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();

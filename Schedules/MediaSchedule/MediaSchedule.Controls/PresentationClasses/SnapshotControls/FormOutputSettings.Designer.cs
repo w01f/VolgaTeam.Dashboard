@@ -37,6 +37,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditShowSpotsPerWeek = new DevExpress.XtraEditors.CheckEdit();
+			this.labelControlDescriptionUseDecimalRate = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionShowSpotX = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionShowSpotsPerWeek = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionApplyForAll = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionLockToMaster = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
@@ -62,12 +67,15 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			// 
 			// checkEditUseDecimalRate
 			// 
-			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(12, 12);
+			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(12, 3);
 			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
+			this.checkEditUseDecimalRate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditUseDecimalRate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseDecimalRate.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditUseDecimalRate.Properties.Caption = "Use Decimals with Rates";
-			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(265, 20);
+			this.checkEditUseDecimalRate.Properties.Caption = "<b>A.</b> Use Decimals with rates";
+			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(362, 20);
 			this.checkEditUseDecimalRate.StyleController = this.styleController;
 			this.checkEditUseDecimalRate.TabIndex = 121;
 			// 
@@ -77,7 +85,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(56, 253);
+			this.buttonXOK.Location = new System.Drawing.Point(77, 309);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -90,7 +98,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(197, 253);
+			this.buttonXCancel.Location = new System.Drawing.Point(218, 309);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -99,7 +107,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			// 
 			// checkEditLockToMaster
 			// 
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 201);
+			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 246);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -113,26 +123,30 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditLockToMaster.Properties.AutoHeight = false;
-			this.checkEditLockToMaster.Properties.Caption = "Lock Schedule on Slide Master<br><size=-2>(protect the schedule in PowerPoint)</s" +
-    "ize>";
-			this.checkEditLockToMaster.Size = new System.Drawing.Size(282, 34);
+			this.checkEditLockToMaster.Properties.Caption = "<b>E.</b> Lock Schedule on the Slide Master";
+			this.checkEditLockToMaster.Size = new System.Drawing.Size(323, 16);
 			this.checkEditLockToMaster.StyleController = this.styleController;
 			this.checkEditLockToMaster.TabIndex = 124;
 			// 
 			// checkEditShowSpotX
 			// 
-			this.checkEditShowSpotX.Location = new System.Drawing.Point(12, 56);
+			this.checkEditShowSpotX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditShowSpotX.Location = new System.Drawing.Point(12, 65);
 			this.checkEditShowSpotX.Name = "checkEditShowSpotX";
+			this.checkEditShowSpotX.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditShowSpotX.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditShowSpotX.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditShowSpotX.Properties.Caption = "Show \"X\" in spot #s";
-			this.checkEditShowSpotX.Size = new System.Drawing.Size(256, 20);
+			this.checkEditShowSpotX.Properties.Caption = "<b>B.</b> Show “X” in spot #s";
+			this.checkEditShowSpotX.Size = new System.Drawing.Size(362, 20);
 			this.checkEditShowSpotX.StyleController = this.styleController;
 			this.checkEditShowSpotX.TabIndex = 125;
 			// 
 			// checkEditApplyForAll
 			// 
-			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 145);
+			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 187);
 			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
 			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -148,15 +162,16 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditApplyForAll.Properties.AutoHeight = false;
-			this.checkEditApplyForAll.Properties.Caption = "Universal Toggle Buttons<br><size=-2>Use the same Toggle buttons for all your Sna" +
-    "pshot schedules…</size>";
-			this.checkEditApplyForAll.Size = new System.Drawing.Size(321, 43);
+			this.checkEditApplyForAll.Properties.Caption = "<b>D.</b> Universal Toggle Buttons";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(362, 17);
 			this.checkEditApplyForAll.StyleController = this.styleController;
 			this.checkEditApplyForAll.TabIndex = 126;
 			// 
 			// checkEditShowSpotsPerWeek
 			// 
-			this.checkEditShowSpotsPerWeek.Location = new System.Drawing.Point(12, 89);
+			this.checkEditShowSpotsPerWeek.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditShowSpotsPerWeek.Location = new System.Drawing.Point(12, 127);
 			this.checkEditShowSpotsPerWeek.Name = "checkEditShowSpotsPerWeek";
 			this.checkEditShowSpotsPerWeek.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditShowSpotsPerWeek.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -172,15 +187,96 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.checkEditShowSpotsPerWeek.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditShowSpotsPerWeek.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditShowSpotsPerWeek.Properties.AutoHeight = false;
-			this.checkEditShowSpotsPerWeek.Properties.Caption = "Enable “Spots per Week” on output<br><size=-2>< -----spots------ ></size>";
-			this.checkEditShowSpotsPerWeek.Size = new System.Drawing.Size(321, 43);
+			this.checkEditShowSpotsPerWeek.Properties.Caption = "<b>C.</b> Show “Spots per Week” line";
+			this.checkEditShowSpotsPerWeek.Size = new System.Drawing.Size(362, 18);
 			this.checkEditShowSpotsPerWeek.StyleController = this.styleController;
 			this.checkEditShowSpotsPerWeek.TabIndex = 127;
+			// 
+			// labelControlDescriptionUseDecimalRate
+			// 
+			this.labelControlDescriptionUseDecimalRate.AllowHtmlString = true;
+			this.labelControlDescriptionUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionUseDecimalRate.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionUseDecimalRate.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionUseDecimalRate.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionUseDecimalRate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionUseDecimalRate.Location = new System.Drawing.Point(28, 29);
+			this.labelControlDescriptionUseDecimalRate.Name = "labelControlDescriptionUseDecimalRate";
+			this.labelControlDescriptionUseDecimalRate.Size = new System.Drawing.Size(346, 19);
+			this.labelControlDescriptionUseDecimalRate.TabIndex = 129;
+			this.labelControlDescriptionUseDecimalRate.Text = "<i><color=Gray>Show $100.00  instead of just $100…</color></i>";
+			// 
+			// labelControlDescriptionShowSpotX
+			// 
+			this.labelControlDescriptionShowSpotX.AllowHtmlString = true;
+			this.labelControlDescriptionShowSpotX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionShowSpotX.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionShowSpotX.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionShowSpotX.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionShowSpotX.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionShowSpotX.Location = new System.Drawing.Point(28, 91);
+			this.labelControlDescriptionShowSpotX.Name = "labelControlDescriptionShowSpotX";
+			this.labelControlDescriptionShowSpotX.Size = new System.Drawing.Size(346, 19);
+			this.labelControlDescriptionShowSpotX.TabIndex = 130;
+			this.labelControlDescriptionShowSpotX.Text = "<i><color=Gray>Show “2x” in the schedule instead of just “2”</color></i>";
+			// 
+			// labelControlDescriptionShowSpotsPerWeek
+			// 
+			this.labelControlDescriptionShowSpotsPerWeek.AllowHtmlString = true;
+			this.labelControlDescriptionShowSpotsPerWeek.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionShowSpotsPerWeek.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionShowSpotsPerWeek.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionShowSpotsPerWeek.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionShowSpotsPerWeek.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionShowSpotsPerWeek.Location = new System.Drawing.Point(28, 151);
+			this.labelControlDescriptionShowSpotsPerWeek.Name = "labelControlDescriptionShowSpotsPerWeek";
+			this.labelControlDescriptionShowSpotsPerWeek.Size = new System.Drawing.Size(346, 19);
+			this.labelControlDescriptionShowSpotsPerWeek.TabIndex = 131;
+			this.labelControlDescriptionShowSpotsPerWeek.Text = "<i><color=Gray>Use the flexible  <------spots-----></color></i>";
+			// 
+			// labelControlDescriptionApplyForAll
+			// 
+			this.labelControlDescriptionApplyForAll.AllowHtmlString = true;
+			this.labelControlDescriptionApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionApplyForAll.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionApplyForAll.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionApplyForAll.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionApplyForAll.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionApplyForAll.Location = new System.Drawing.Point(28, 210);
+			this.labelControlDescriptionApplyForAll.Name = "labelControlDescriptionApplyForAll";
+			this.labelControlDescriptionApplyForAll.Size = new System.Drawing.Size(346, 19);
+			this.labelControlDescriptionApplyForAll.TabIndex = 132;
+			this.labelControlDescriptionApplyForAll.Text = "<i><color=Gray>Use the same schedule toggle settings for all schedules in this fi" +
+    "le…</color></i>";
+			// 
+			// labelControlDescriptionLockToMaster
+			// 
+			this.labelControlDescriptionLockToMaster.AllowHtmlString = true;
+			this.labelControlDescriptionLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionLockToMaster.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionLockToMaster.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionLockToMaster.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionLockToMaster.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(28, 268);
+			this.labelControlDescriptionLockToMaster.Name = "labelControlDescriptionLockToMaster";
+			this.labelControlDescriptionLockToMaster.Size = new System.Drawing.Size(346, 19);
+			this.labelControlDescriptionLockToMaster.TabIndex = 133;
+			this.labelControlDescriptionLockToMaster.Text = "<i><color=Gray>The schedule will be protected on the slide Master</color></i>";
 			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(345, 301);
+			this.ClientSize = new System.Drawing.Size(386, 357);
+			this.Controls.Add(this.labelControlDescriptionLockToMaster);
+			this.Controls.Add(this.labelControlDescriptionApplyForAll);
+			this.Controls.Add(this.labelControlDescriptionShowSpotsPerWeek);
+			this.Controls.Add(this.labelControlDescriptionShowSpotX);
+			this.Controls.Add(this.labelControlDescriptionUseDecimalRate);
 			this.Controls.Add(this.checkEditShowSpotsPerWeek);
 			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.checkEditLockToMaster);
@@ -190,7 +286,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.Controls.Add(this.checkEditShowSpotX);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
@@ -220,5 +315,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotX;
 		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotsPerWeek;
+		public DevExpress.XtraEditors.LabelControl labelControlDescriptionUseDecimalRate;
+		public DevExpress.XtraEditors.LabelControl labelControlDescriptionShowSpotX;
+		public DevExpress.XtraEditors.LabelControl labelControlDescriptionShowSpotsPerWeek;
+		public DevExpress.XtraEditors.LabelControl labelControlDescriptionApplyForAll;
+		public DevExpress.XtraEditors.LabelControl labelControlDescriptionLockToMaster;
 	}
 }

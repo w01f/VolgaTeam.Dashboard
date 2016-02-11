@@ -33,6 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	[ToolboxItem(false)]
 	public partial class SnapshotContainer : BasePartitionEditControl<SnapshotContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
+	//public partial class SnapshotContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
@@ -81,6 +82,67 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		public SnapshotContainer()
 		{
 			InitializeComponent();
+
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+
+				font = new Font(laAvgRateTitle.Font.FontFamily, laAvgRateTitle.Font.Size - 2, laAvgRateTitle.Font.Style);
+				laTotalSpotsTitle.Font = font;
+				laAvgRateTitle.Font = font;
+				laTotalCostTitle.Font = font;
+				font = new Font(laAvgRateValue.Font.FontFamily, laAvgRateValue.Font.Size - 2, laAvgRateValue.Font.Style);
+				laTotalSpotsValue.Font = font;
+				laAvgRateValue.Font = font;
+				laTotalCostValue.Font = font;
+
+				laColorsTitle.Font = new Font(laColorsTitle.Font.FontFamily, laColorsTitle.Font.Size - 2, laColorsTitle.Font.Style);
+				labelControlScheduleInfo.Font = new Font(labelControlScheduleInfo.Font.FontFamily,
+					labelControlScheduleInfo.Font.Size - 2, labelControlScheduleInfo.Font.Style);
+				laActiveWeeks.Font = new Font(laActiveWeeks.Font.FontFamily, laActiveWeeks.Font.Size - 2, laActiveWeeks.Font.Style);
+				laActiveWeeksWarning.Font = new Font(laActiveWeeksWarning.Font.FontFamily, laActiveWeeksWarning.Font.Size - 2,
+					laActiveWeeksWarning.Font.Style);
+
+				font = new Font(buttonXSnapshotAvgRate.Font.FontFamily, buttonXSnapshotAvgRate.Font.Size - 2,
+					buttonXSnapshotAvgRate.Font.Style);
+				buttonXSnapshotAvgRate.Font = font;
+				buttonXSnapshotCost.Font = font;
+				buttonXSnapshotDaypart.Font = font;
+				buttonXSnapshotLength.Font = font;
+				buttonXSnapshotLineId.Font = font;
+				buttonXSnapshotLogo.Font = font;
+				buttonXSnapshotProgram.Font = font;
+				buttonXSnapshotRate.Font = font;
+				buttonXSnapshotStation.Font = font;
+				buttonXSnapshotTime.Font = font;
+				buttonXSnapshotTotalRow.Font = font;
+				buttonXSnapshotTotalSpots.Font = font;
+				buttonXSummaryCampaign.Font = font;
+				buttonXSummaryComments.Font = font;
+				buttonXSummaryCost.Font = font;
+				buttonXSummaryLineId.Font = font;
+				buttonXSummaryLogo.Font = font;
+				buttonXSummarySpots.Font = font;
+				buttonXSummaryTallyCost.Font = font;
+				buttonXSummaryTallySpots.Font = font;
+				buttonXSummaryTotalCost.Font = font;
+				buttonXSummaryTotalWeeks.Font = font;
+
+				buttonXSelectAll.Font = font;
+				buttonXClearAll.Font = font;
+
+				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
+					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
+				hyperLinkEditInfoContract.Font = new Font(hyperLinkEditInfoContract.Font.FontFamily,
+					hyperLinkEditInfoContract.Font.Size - 2, hyperLinkEditInfoContract.Font.Style);
+			}
 		}
 
 		#region BasePartitionEditControl Override
@@ -541,14 +603,18 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					form.checkEditUseDecimalRate.Checked = ActiveSnapshot.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSnapshot.Data.ShowSpotsX;
 					form.checkEditShowSpotsPerWeek.Enabled = true;
+					form.labelControlDescriptionShowSpotsPerWeek.Enabled = true;
 					form.checkEditShowSpotsPerWeek.Checked = ActiveSnapshot.Data.ShowSpotsPerWeek;
 					form.checkEditApplyForAll.Enabled = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() > 1;
+					form.labelControlDescriptionApplyForAll.Enabled = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() > 1;
 					form.checkEditApplyForAll.Checked = EditedContent.SnapshotSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
 					form.checkEditApplyForAll.Enabled = false;
+					form.labelControlDescriptionApplyForAll.Enabled = false;
 					form.checkEditShowSpotsPerWeek.Enabled = false;
+					form.labelControlDescriptionShowSpotsPerWeek.Enabled = false;
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
 				}
@@ -831,7 +897,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
@@ -844,7 +910,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			}
 		}
 
@@ -880,14 +946,14 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email these Snapshots";
 				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();

@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -50,34 +49,22 @@
 			this.buttonItemHomeDigitalProductAdd = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeDigitalProductClone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
-			this.dateEditFlightDatesStart = new Asa.Common.GUI.Common.TabbedDateEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.dateEditFlightDatesEnd = new Asa.Common.GUI.Common.TabbedDateEdit();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerHomeFlightDatesStartLogo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeFlightDatesStart = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainerFlightDatesStartValue = new DevComponents.DotNetBar.ItemContainer();
-			this.controlContainerItemFlightDateStart = new DevComponents.DotNetBar.ControlContainerItem();
 			this.itemContainerHomeFlightDatesEndLogo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemFlightDatesEnd = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainerFlightDatesEndValue = new DevComponents.DotNetBar.ItemContainer();
-			this.controlContainerItemFlightDatesEnd = new DevComponents.DotNetBar.ControlContainerItem();
 			this.labelItemHomeFlightDatesWeeks = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
-			this.comboBoxEditBusinessName = new Asa.Common.GUI.Common.ComboBoxListEdit();
-			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
-			this.comboBoxEditClientType = new Asa.Common.GUI.Common.TabbedCombobox();
-			this.dateEditPresentationDate = new Asa.Common.GUI.Common.TabbedDateEdit();
 			this.textEditAccountNumber = new DevExpress.XtraEditors.TextEdit();
 			this.itemContainerHomeAdvertiser = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeAdvertiserTitle = new DevComponents.DotNetBar.LabelItem();
-			this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
-			this.controlContainerItemDecisionMaker = new DevComponents.DotNetBar.ControlContainerItem();
-			this.controlContainerItemClientType = new DevComponents.DotNetBar.ControlContainerItem();
 			this.itemContainerHomeSalesStrategy = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerHomePresentationDate = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomePresentationDate = new DevComponents.DotNetBar.LabelItem();
-			this.controlContainerItemPresentationDate = new DevComponents.DotNetBar.ControlContainerItem();
 			this.itemContainerHomeAccountNumber = new DevComponents.DotNetBar.ItemContainer();
 			this.checkBoxItemHomeAccountNumber = new DevComponents.DotNetBar.CheckBoxItem();
 			this.controlContainerItemAccountNumber = new DevComponents.DotNetBar.ControlContainerItem();
@@ -277,7 +264,7 @@
 			this.buttonItemCalendar2Clone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarCalendar2Calendar = new DevComponents.DotNetBar.RibbonBar();
 			this.listBoxControlCalendar2 = new DevExpress.XtraEditors.ImageListBoxControl();
-			this.imageList = new System.Windows.Forms.ImageList(this.components);
+			this.imageList = new System.Windows.Forms.ImageList();
 			this.itemContainerCalendar2Calendar = new DevComponents.DotNetBar.ItemContainer();
 			this.controlContainerItemCalendar2 = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonPanelCalendar1 = new DevComponents.DotNetBar.RibbonPanel();
@@ -360,25 +347,28 @@
 			this.ribbonTabItemSnapshot = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemOptions = new DevComponents.DotNetBar.RibbonTabItem();
 			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
+			this.dateEditFlightDatesStart = new Asa.Common.GUI.Common.TabbedDateEdit();
+			this.dateEditFlightDatesEnd = new Asa.Common.GUI.Common.TabbedDateEdit();
+			this.controlContainerItemFlightDateStart = new DevComponents.DotNetBar.ControlContainerItem();
+			this.controlContainerItemFlightDatesEnd = new DevComponents.DotNetBar.ControlContainerItem();
+			this.comboBoxEditBusinessName = new Asa.Common.GUI.Common.ComboBoxListEdit();
+			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
+			this.comboBoxEditClientType = new Asa.Common.GUI.Common.TabbedCombobox();
+			this.dateEditPresentationDate = new Asa.Common.GUI.Common.TabbedDateEdit();
+			this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
+			this.controlContainerItemDecisionMaker = new DevComponents.DotNetBar.ControlContainerItem();
+			this.controlContainerItemClientType = new DevComponents.DotNetBar.ControlContainerItem();
+			this.controlContainerItemPresentationDate = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonBarHomeFlightDates.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties.CalendarTimeProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties.CalendarTimeProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties)).BeginInit();
 			this.ribbonBarHomeBasicInfo.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditClientType.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.CalendarTimeProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditAccountNumber.Properties)).BeginInit();
 			this.ribbonPanelSummary.SuspendLayout();
 			this.ribbonPanelProgramSchedule.SuspendLayout();
@@ -403,6 +393,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.listBoxControlCalendar1)).BeginInit();
 			this.ribbonPanelDigitalPackage.SuspendLayout();
 			this.ribbonPanelDigitalSlides.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditClientType.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// ribbonControl
@@ -767,56 +766,6 @@
 			// 
 			this.ribbonBarHomeFlightDates.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
-			// dateEditFlightDatesStart
-			// 
-			this.dateEditFlightDatesStart.EditValue = null;
-			this.dateEditFlightDatesStart.Location = new System.Drawing.Point(4, 22);
-			this.dateEditFlightDatesStart.Name = "dateEditFlightDatesStart";
-			this.dateEditFlightDatesStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-			this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
-			this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-			this.dateEditFlightDatesStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
-			this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
-			this.dateEditFlightDatesStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.dateEditFlightDatesStart.Properties.NullDate = "";
-			this.dateEditFlightDatesStart.Properties.NullText = "Start Date";
-			this.dateEditFlightDatesStart.Properties.ShowPopupShadow = false;
-			this.dateEditFlightDatesStart.Properties.ShowToday = false;
-			this.dateEditFlightDatesStart.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditFlightDatesStart.Size = new System.Drawing.Size(90, 20);
-			this.dateEditFlightDatesStart.StyleController = this.styleController;
-			this.dateEditFlightDatesStart.TabIndex = 1;
-			// 
-			// dateEditFlightDatesEnd
-			// 
-			this.dateEditFlightDatesEnd.EditValue = null;
-			this.dateEditFlightDatesEnd.Location = new System.Drawing.Point(4, 69);
-			this.dateEditFlightDatesEnd.Name = "dateEditFlightDatesEnd";
-			this.dateEditFlightDatesEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-			this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
-			this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
-			this.dateEditFlightDatesEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
-			this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
-			this.dateEditFlightDatesEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.dateEditFlightDatesEnd.Properties.NullDate = "";
-			this.dateEditFlightDatesEnd.Properties.NullText = "End Date";
-			this.dateEditFlightDatesEnd.Properties.ShowPopupShadow = false;
-			this.dateEditFlightDatesEnd.Properties.ShowToday = false;
-			this.dateEditFlightDatesEnd.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditFlightDatesEnd.Size = new System.Drawing.Size(90, 20);
-			this.dateEditFlightDatesEnd.StyleController = this.styleController;
-			this.dateEditFlightDatesEnd.TabIndex = 1;
-			// 
 			// itemContainerHomeFlightDates
 			// 
 			// 
@@ -872,13 +821,6 @@
 			// 
 			this.itemContainerFlightDatesStartValue.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
-			// controlContainerItemFlightDateStart
-			// 
-			this.controlContainerItemFlightDateStart.AllowItemResize = false;
-			this.controlContainerItemFlightDateStart.Control = this.dateEditFlightDatesStart;
-			this.controlContainerItemFlightDateStart.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-			this.controlContainerItemFlightDateStart.Name = "controlContainerItemFlightDateStart";
-			// 
 			// itemContainerHomeFlightDatesEndLogo
 			// 
 			// 
@@ -912,13 +854,6 @@
 			// 
 			// 
 			this.itemContainerFlightDatesEndValue.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// controlContainerItemFlightDatesEnd
-			// 
-			this.controlContainerItemFlightDatesEnd.AllowItemResize = false;
-			this.controlContainerItemFlightDatesEnd.Control = this.dateEditFlightDatesEnd;
-			this.controlContainerItemFlightDatesEnd.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-			this.controlContainerItemFlightDatesEnd.Name = "controlContainerItemFlightDatesEnd";
 			// 
 			// labelItemHomeFlightDatesWeeks
 			// 
@@ -965,75 +900,6 @@
 			// 
 			this.ribbonBarHomeBasicInfo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
-			// comboBoxEditBusinessName
-			// 
-			this.comboBoxEditBusinessName.Location = new System.Drawing.Point(4, 22);
-			this.comboBoxEditBusinessName.Name = "comboBoxEditBusinessName";
-			this.comboBoxEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.comboBoxEditBusinessName.Properties.Appearance.Options.UseFont = true;
-			this.comboBoxEditBusinessName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditBusinessName.Properties.ListType = Asa.Common.GUI.Common.ListType.Advertisers;
-			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
-			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(180, 20);
-			this.comboBoxEditBusinessName.StyleController = this.styleController;
-			this.comboBoxEditBusinessName.TabIndex = 0;
-			// 
-			// comboBoxEditDecisionMaker
-			// 
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(4, 50);
-			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
-			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
-			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditDecisionMaker.Properties.ListType = Asa.Common.GUI.Common.ListType.DecisionMakers;
-			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
-			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(180, 20);
-			this.comboBoxEditDecisionMaker.StyleController = this.styleController;
-			this.comboBoxEditDecisionMaker.TabIndex = 1;
-			// 
-			// comboBoxEditClientType
-			// 
-			this.comboBoxEditClientType.Location = new System.Drawing.Point(4, 78);
-			this.comboBoxEditClientType.Name = "comboBoxEditClientType";
-			this.comboBoxEditClientType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.comboBoxEditClientType.Properties.Appearance.Options.UseFont = true;
-			this.comboBoxEditClientType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.comboBoxEditClientType.Properties.NullText = "Select";
-			this.comboBoxEditClientType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditClientType.Size = new System.Drawing.Size(180, 20);
-			this.comboBoxEditClientType.StyleController = this.styleController;
-			this.comboBoxEditClientType.TabIndex = 1;
-			// 
-			// dateEditPresentationDate
-			// 
-			this.dateEditPresentationDate.EditValue = null;
-			this.dateEditPresentationDate.Location = new System.Drawing.Point(195, 22);
-			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
-			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
-			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
-			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
-			this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
-			this.dateEditPresentationDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.dateEditPresentationDate.Properties.NullDate = "";
-			this.dateEditPresentationDate.Properties.NullText = "Select";
-			this.dateEditPresentationDate.Properties.ShowPopupShadow = false;
-			this.dateEditPresentationDate.Properties.ShowToday = false;
-			this.dateEditPresentationDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditPresentationDate.Size = new System.Drawing.Size(103, 20);
-			this.dateEditPresentationDate.StyleController = this.styleController;
-			this.dateEditPresentationDate.TabIndex = 0;
-			// 
 			// textEditAccountNumber
 			// 
 			this.textEditAccountNumber.Enabled = false;
@@ -1068,27 +934,6 @@
 			this.labelItemHomeAdvertiserTitle.Name = "labelItemHomeAdvertiserTitle";
 			this.labelItemHomeAdvertiserTitle.SingleLineColor = System.Drawing.Color.Empty;
 			this.labelItemHomeAdvertiserTitle.Text = " Advertiser:";
-			// 
-			// controlContainerItemBusinessName
-			// 
-			this.controlContainerItemBusinessName.AllowItemResize = false;
-			this.controlContainerItemBusinessName.Control = this.comboBoxEditBusinessName;
-			this.controlContainerItemBusinessName.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-			this.controlContainerItemBusinessName.Name = "controlContainerItemBusinessName";
-			// 
-			// controlContainerItemDecisionMaker
-			// 
-			this.controlContainerItemDecisionMaker.AllowItemResize = false;
-			this.controlContainerItemDecisionMaker.Control = this.comboBoxEditDecisionMaker;
-			this.controlContainerItemDecisionMaker.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-			this.controlContainerItemDecisionMaker.Name = "controlContainerItemDecisionMaker";
-			// 
-			// controlContainerItemClientType
-			// 
-			this.controlContainerItemClientType.AllowItemResize = false;
-			this.controlContainerItemClientType.Control = this.comboBoxEditClientType;
-			this.controlContainerItemClientType.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-			this.controlContainerItemClientType.Name = "controlContainerItemClientType";
 			// 
 			// itemContainerHomeSalesStrategy
 			// 
@@ -1129,13 +974,6 @@
 			this.labelItemHomePresentationDate.ForeColor = System.Drawing.Color.Black;
 			this.labelItemHomePresentationDate.Name = "labelItemHomePresentationDate";
 			this.labelItemHomePresentationDate.Text = " Presentation Date:";
-			// 
-			// controlContainerItemPresentationDate
-			// 
-			this.controlContainerItemPresentationDate.AllowItemResize = false;
-			this.controlContainerItemPresentationDate.Control = this.dateEditPresentationDate;
-			this.controlContainerItemPresentationDate.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-			this.controlContainerItemPresentationDate.Name = "controlContainerItemPresentationDate";
 			// 
 			// itemContainerHomeAccountNumber
 			// 
@@ -6088,7 +5926,7 @@
 			this.pnMain.Location = new System.Drawing.Point(5, 191);
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-			this.pnMain.Size = new System.Drawing.Size(990, 557);
+			this.pnMain.Size = new System.Drawing.Size(990, 556);
 			this.pnMain.TabIndex = 1;
 			// 
 			// pnEmpty
@@ -6097,7 +5935,7 @@
 			this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnEmpty.Location = new System.Drawing.Point(5, 191);
 			this.pnEmpty.Name = "pnEmpty";
-			this.pnEmpty.Size = new System.Drawing.Size(990, 557);
+			this.pnEmpty.Size = new System.Drawing.Size(990, 556);
 			this.pnEmpty.TabIndex = 2;
 			// 
 			// styleManager
@@ -6105,11 +5943,172 @@
 			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
 			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
 			// 
+			// dateEditFlightDatesStart
+			// 
+			this.dateEditFlightDatesStart.EditValue = null;
+			this.dateEditFlightDatesStart.Location = new System.Drawing.Point(4, 22);
+			this.dateEditFlightDatesStart.Name = "dateEditFlightDatesStart";
+			this.dateEditFlightDatesStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+			this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
+			this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+			this.dateEditFlightDatesStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
+			this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
+			this.dateEditFlightDatesStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditFlightDatesStart.Properties.NullDate = "";
+			this.dateEditFlightDatesStart.Properties.NullText = "Start Date";
+			this.dateEditFlightDatesStart.Properties.ShowPopupShadow = false;
+			this.dateEditFlightDatesStart.Properties.ShowToday = false;
+			this.dateEditFlightDatesStart.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dateEditFlightDatesStart.Size = new System.Drawing.Size(90, 20);
+			this.dateEditFlightDatesStart.StyleController = this.styleController;
+			this.dateEditFlightDatesStart.TabIndex = 1;
+			// 
+			// dateEditFlightDatesEnd
+			// 
+			this.dateEditFlightDatesEnd.EditValue = null;
+			this.dateEditFlightDatesEnd.Location = new System.Drawing.Point(4, 69);
+			this.dateEditFlightDatesEnd.Name = "dateEditFlightDatesEnd";
+			this.dateEditFlightDatesEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+			this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
+			this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+			this.dateEditFlightDatesEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
+			this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
+			this.dateEditFlightDatesEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditFlightDatesEnd.Properties.NullDate = "";
+			this.dateEditFlightDatesEnd.Properties.NullText = "End Date";
+			this.dateEditFlightDatesEnd.Properties.ShowPopupShadow = false;
+			this.dateEditFlightDatesEnd.Properties.ShowToday = false;
+			this.dateEditFlightDatesEnd.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dateEditFlightDatesEnd.Size = new System.Drawing.Size(90, 20);
+			this.dateEditFlightDatesEnd.StyleController = this.styleController;
+			this.dateEditFlightDatesEnd.TabIndex = 1;
+			// 
+			// controlContainerItemFlightDateStart
+			// 
+			this.controlContainerItemFlightDateStart.AllowItemResize = false;
+			this.controlContainerItemFlightDateStart.Control = this.dateEditFlightDatesStart;
+			this.controlContainerItemFlightDateStart.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+			this.controlContainerItemFlightDateStart.Name = "controlContainerItemFlightDateStart";
+			// 
+			// controlContainerItemFlightDatesEnd
+			// 
+			this.controlContainerItemFlightDatesEnd.AllowItemResize = false;
+			this.controlContainerItemFlightDatesEnd.Control = this.dateEditFlightDatesEnd;
+			this.controlContainerItemFlightDatesEnd.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+			this.controlContainerItemFlightDatesEnd.Name = "controlContainerItemFlightDatesEnd";
+			// 
+			// comboBoxEditBusinessName
+			// 
+			this.comboBoxEditBusinessName.Location = new System.Drawing.Point(4, 22);
+			this.comboBoxEditBusinessName.Name = "comboBoxEditBusinessName";
+			this.comboBoxEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.comboBoxEditBusinessName.Properties.Appearance.Options.UseFont = true;
+			this.comboBoxEditBusinessName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.comboBoxEditBusinessName.Properties.ListType = Asa.Common.GUI.Common.ListType.Advertisers;
+			this.comboBoxEditBusinessName.Properties.NullText = "Advertiser";
+			this.comboBoxEditBusinessName.Size = new System.Drawing.Size(180, 20);
+			this.comboBoxEditBusinessName.StyleController = this.styleController;
+			this.comboBoxEditBusinessName.TabIndex = 0;
+			// 
+			// comboBoxEditDecisionMaker
+			// 
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(4, 50);
+			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
+			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
+			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.comboBoxEditDecisionMaker.Properties.ListType = Asa.Common.GUI.Common.ListType.DecisionMakers;
+			this.comboBoxEditDecisionMaker.Properties.NullText = "Contact";
+			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(180, 20);
+			this.comboBoxEditDecisionMaker.StyleController = this.styleController;
+			this.comboBoxEditDecisionMaker.TabIndex = 1;
+			// 
+			// comboBoxEditClientType
+			// 
+			this.comboBoxEditClientType.Location = new System.Drawing.Point(4, 78);
+			this.comboBoxEditClientType.Name = "comboBoxEditClientType";
+			this.comboBoxEditClientType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.comboBoxEditClientType.Properties.Appearance.Options.UseFont = true;
+			this.comboBoxEditClientType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.comboBoxEditClientType.Properties.NullText = "Select";
+			this.comboBoxEditClientType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.comboBoxEditClientType.Size = new System.Drawing.Size(180, 20);
+			this.comboBoxEditClientType.StyleController = this.styleController;
+			this.comboBoxEditClientType.TabIndex = 1;
+			// 
+			// dateEditPresentationDate
+			// 
+			this.dateEditPresentationDate.EditValue = null;
+			this.dateEditPresentationDate.Location = new System.Drawing.Point(195, 22);
+			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
+			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
+			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
+			this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
+			this.dateEditPresentationDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditPresentationDate.Properties.NullDate = "";
+			this.dateEditPresentationDate.Properties.NullText = "Select";
+			this.dateEditPresentationDate.Properties.ShowPopupShadow = false;
+			this.dateEditPresentationDate.Properties.ShowToday = false;
+			this.dateEditPresentationDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dateEditPresentationDate.Size = new System.Drawing.Size(103, 20);
+			this.dateEditPresentationDate.StyleController = this.styleController;
+			this.dateEditPresentationDate.TabIndex = 0;
+			// 
+			// controlContainerItemBusinessName
+			// 
+			this.controlContainerItemBusinessName.AllowItemResize = false;
+			this.controlContainerItemBusinessName.Control = this.comboBoxEditBusinessName;
+			this.controlContainerItemBusinessName.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+			this.controlContainerItemBusinessName.Name = "controlContainerItemBusinessName";
+			// 
+			// controlContainerItemDecisionMaker
+			// 
+			this.controlContainerItemDecisionMaker.AllowItemResize = false;
+			this.controlContainerItemDecisionMaker.Control = this.comboBoxEditDecisionMaker;
+			this.controlContainerItemDecisionMaker.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+			this.controlContainerItemDecisionMaker.Name = "controlContainerItemDecisionMaker";
+			// 
+			// controlContainerItemClientType
+			// 
+			this.controlContainerItemClientType.AllowItemResize = false;
+			this.controlContainerItemClientType.Control = this.comboBoxEditClientType;
+			this.controlContainerItemClientType.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+			this.controlContainerItemClientType.Name = "controlContainerItemClientType";
+			// 
+			// controlContainerItemPresentationDate
+			// 
+			this.controlContainerItemPresentationDate.AllowItemResize = false;
+			this.controlContainerItemPresentationDate.Control = this.dateEditPresentationDate;
+			this.controlContainerItemPresentationDate.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+			this.controlContainerItemPresentationDate.Name = "controlContainerItemPresentationDate";
+			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1000, 750);
+			this.ClientSize = new System.Drawing.Size(1000, 749);
 			this.Controls.Add(this.pnEmpty);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.ribbonControl);
@@ -6118,7 +6117,6 @@
 			this.Name = "FormMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Schedule Builder      ";
-			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormMainClosing);
 			this.Shown += new System.EventHandler(this.OnFormMainShown);
 			this.Resize += new System.EventHandler(this.FormMain_Resize);
@@ -6126,17 +6124,8 @@
 			this.ribbonControl.PerformLayout();
 			this.ribbonPanelHome.ResumeLayout(false);
 			this.ribbonBarHomeFlightDates.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties.CalendarTimeProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties.CalendarTimeProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties)).EndInit();
 			this.ribbonBarHomeBasicInfo.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditClientType.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.CalendarTimeProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditAccountNumber.Properties)).EndInit();
 			this.ribbonPanelSummary.ResumeLayout(false);
 			this.ribbonPanelProgramSchedule.ResumeLayout(false);
@@ -6162,6 +6151,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.listBoxControlCalendar1)).EndInit();
 			this.ribbonPanelDigitalPackage.ResumeLayout(false);
 			this.ribbonPanelDigitalSlides.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesEnd.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditClientType.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }

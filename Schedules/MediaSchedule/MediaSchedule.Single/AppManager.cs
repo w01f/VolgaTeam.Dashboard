@@ -143,14 +143,14 @@ namespace Asa.Media.Single
 				PopupMessageHelper.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");
 		}
 
-		public void ActivateMainForm()
+		public void ActivateMainForm(bool maximize = true)
 		{
 			var processList = Process.GetProcesses();
 			foreach (var process in processList.Where(x => x.ProcessName.ToLower().Contains(String.Format("{0}seller", MediaMetaData.Instance.DataTypeString.ToLower()))))
 			{
 				if (process.MainWindowHandle.ToInt32() != 0)
 				{
-					Utilities.ActivateForm(process.MainWindowHandle, true, false);
+					Utilities.ActivateForm(process.MainWindowHandle, maximize, false);
 					break;
 				}
 			}
@@ -158,7 +158,7 @@ namespace Asa.Media.Single
 
 		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var afterBack = new Action(ActivateMainForm);
+			var afterBack = new Action<bool>(maximize => ActivateMainForm(maximize));
 			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo, e.AfterShow, null, afterBack);
 		}
 	}

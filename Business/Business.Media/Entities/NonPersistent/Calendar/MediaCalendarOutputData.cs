@@ -1,4 +1,6 @@
-﻿using Asa.Business.Calendar.Entities.NonPersistent;
+﻿using System.Linq;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Media.Configuration;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Calendar
@@ -13,6 +15,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 		{
 			ApplyForAllCustomComment = false;
 			ShowLogo = false;
+			Logo = MediaMetaData.Instance.ListManager.Images.SelectMany(g => g.Images)
+					.OrderByDescending(i => i.IsDefault)
+					.ThenBy(i => i.Name)
+					.FirstOrDefault();
 		}
 	}
 }

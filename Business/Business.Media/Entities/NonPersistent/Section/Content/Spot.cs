@@ -108,8 +108,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				if (!Count.HasValue) return textGroup;
 
 				var programNameGroup = new TextGroup("  -  ");
-				programNameGroup.Items.Add(new TextItem(Parent.Station, true));
-				programNameGroup.Items.Add(new TextItem(Parent.Name, false));
+				if (!String.IsNullOrEmpty(Parent.Station))
+					programNameGroup.Items.Add(new TextItem(Parent.Station, true));
+				if (!String.IsNullOrEmpty(Parent.Name))
+					programNameGroup.Items.Add(new TextItem(Parent.Name, false));
 				textGroup.Items.Add(programNameGroup);
 
 				if (!String.IsNullOrEmpty(Parent.Daypart))

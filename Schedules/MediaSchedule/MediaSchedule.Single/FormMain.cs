@@ -79,7 +79,11 @@ namespace Asa.Media.Single
 
 		public void Init()
 		{
-			FormStateHelper.Init(this, Common.Core.Configuration.ResourceManager.Instance.AppSettingsFolder, MediaMetaData.Instance.DataTypeString, false).LoadState();
+			FormStateHelper.Init(this,
+					Common.Core.Configuration.ResourceManager.Instance.AppSettingsFolder,
+					MediaMetaData.Instance.DataTypeString,
+					true)
+				.LoadState();
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.MainPanel = pnMain;
@@ -326,7 +330,7 @@ namespace Asa.Media.Single
 		{
 			using (var form = new FormScheduleName())
 			{
-				if (form.ShowDialog() != DialogResult.OK) return;
+				if (form.ShowDialog(this) != DialogResult.OK) return;
 				BusinessObjects.Instance.ScheduleManager.AddSchedule(form.ScheduleName);
 			}
 		}
@@ -335,7 +339,7 @@ namespace Asa.Media.Single
 		{
 			using (var from = new FormOpenSchedule())
 			{
-				from.ShowDialog();
+				from.ShowDialog(this);
 			}
 		}
 
@@ -343,12 +347,12 @@ namespace Asa.Media.Single
 		{
 			Utilities.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 			UpdateFormTitle();
-			AppManager.Instance.ActivateMainForm();
+			AppManager.Instance.ActivateMainForm(WindowState == FormWindowState.Maximized);
 
 			using (var formStart = new FormStart())
 			{
 				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any();
-				var result = formStart.ShowDialog();
+				var result = formStart.ShowDialog(this);
 				if (result == DialogResult.Yes || result == DialogResult.No)
 				{
 					if (result == DialogResult.Yes)

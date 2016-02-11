@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.barManager = new DevExpress.XtraBars.BarManager();
+			this.components = new System.ComponentModel.Container();
+			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barToolButtons = new DevExpress.XtraBars.Bar();
 			this.barStaticItemLogo = new DevExpress.XtraBars.BarStaticItem();
 			this.barLargeButtonItemOpen = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -46,11 +47,13 @@
 			this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridColumnStatus = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemComboBoxStatus = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+			this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewSchedules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// barManager
@@ -62,6 +65,7 @@
 			this.barManager.AllowShowToolbarsPopup = false;
 			this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.barToolButtons});
+			this.barManager.Controller = this.barAndDockingController;
 			this.barManager.DockControls.Add(this.barDockControlTop);
 			this.barManager.DockControls.Add(this.barDockControlBottom);
 			this.barManager.DockControls.Add(this.barDockControlLeft);
@@ -136,7 +140,7 @@
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(667, 84);
+			this.barDockControlTop.Size = new System.Drawing.Size(667, 87);
 			// 
 			// barDockControlBottom
 			// 
@@ -151,33 +155,32 @@
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
 			this.barDockControlLeft.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 84);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 519);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 87);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 516);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
 			this.barDockControlRight.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlRight.Location = new System.Drawing.Point(667, 84);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 519);
+			this.barDockControlRight.Location = new System.Drawing.Point(667, 87);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 516);
 			// 
 			// gridControlSchedules
 			// 
-			this.gridControlSchedules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
 			this.gridControlSchedules.Cursor = System.Windows.Forms.Cursors.Default;
+			this.gridControlSchedules.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControlSchedules.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
 			this.gridControlSchedules.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.gridControlSchedules.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
 			this.gridControlSchedules.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
-			this.gridControlSchedules.Location = new System.Drawing.Point(12, 94);
+			this.gridControlSchedules.Location = new System.Drawing.Point(0, 87);
 			this.gridControlSchedules.MainView = this.gridViewSchedules;
 			this.gridControlSchedules.Name = "gridControlSchedules";
 			this.gridControlSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlSchedules.Size = new System.Drawing.Size(645, 489);
+			this.gridControlSchedules.Size = new System.Drawing.Size(667, 516);
 			this.gridControlSchedules.TabIndex = 40;
 			this.gridControlSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSchedules});
@@ -303,6 +306,12 @@
 			this.repositoryItemComboBoxStatus.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemComboBoxStatus.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnStatusComboBoxClosed);
 			// 
+			// barAndDockingController
+			// 
+			this.barAndDockingController.PropertiesBar.DefaultGlyphSize = new System.Drawing.Size(16, 16);
+			this.barAndDockingController.PropertiesBar.DefaultLargeGlyphSize = new System.Drawing.Size(32, 32);
+			this.barAndDockingController.PropertiesBar.ScaleIcons = false;
+			// 
 			// FormOpenSchedule
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -328,6 +337,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridViewSchedules)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -353,5 +363,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnStatus;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxStatus;
 		private DevExpress.XtraBars.BarStaticItem barStaticItemLogo;
-    }
+		private DevExpress.XtraBars.BarAndDockingController barAndDockingController;
+	}
 }

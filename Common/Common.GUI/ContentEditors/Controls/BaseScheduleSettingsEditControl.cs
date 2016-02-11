@@ -7,6 +7,6 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 		where TScheduleSettings : IBaseScheduleSettings
 		where TChangeInfo : BaseScheduleChangeInfo
 	{
-		protected TScheduleSettings EditedSettings { get; set; }
+		public TScheduleSettings EditedSettings { get; set; }
 	}
 }

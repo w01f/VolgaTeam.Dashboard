@@ -49,16 +49,15 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 
 		private static void OnContentChanged(object sender, ContentSavedEventArgs<TChangeInfo> e)
 		{
-			if (e.SavingReason != ContentSavingReason.ScheduleChanged && ScheduleSaving != null)
-				ScheduleSaving(null, new ScheduleSavingEventArgs());
+			if (e.SavingReason != ContentSavingReason.ScheduleChanged)
+				ScheduleSaving?.Invoke(null, new ScheduleSavingEventArgs());
 			if (e.SavingReason == ContentSavingReason.TabChanged ||
 				e.SavingReason == ContentSavingReason.ScheduleChanged ||
 				e.SavingReason == ContentSavingReason.ScheduleSaved)
 				foreach (var destinationEditorId in _controller.EditorRelations.Where(l => e.Source.Contains(l.Target)).SelectMany(l => l.Destrination))
 				{
 					var destinationEditor = _controller.ContentControls.OfType<IContentEditControl<TChangeInfo>>().FirstOrDefault(editor => editor.Identifier == destinationEditorId);
-					if (destinationEditor == null) continue;
-					destinationEditor.OnRelatedContentChanged(e.ChangeInfo);
+					destinationEditor?.OnRelatedContentChanged(e.ChangeInfo);
 				}
 		}
 
@@ -106,8 +105,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 				form.Text = "Save Schedule";
 				form.laLogo.Text = "Please set a new name for your Schedule:";
 				if (form.ShowDialog() != DialogResult.OK) return;
-				if (ScheduleSavingAs != null)
-					ScheduleSavingAs(null, new ScheduleSavingEventArgs() { Name = form.ScheduleName });
+				ScheduleSavingAs?.Invoke(null, new ScheduleSavingEventArgs { Name = form.ScheduleName });
 				_controller.ActiveEditor.Save(savingArgs);
 				PopupMessageHelper.Instance.ShowInformation("Data Saved");
 			}

@@ -91,6 +91,7 @@
     <Compile Include="BusinessClasses\BusinessObjects.cs" />
     <Compile Include="BusinessClasses\ContentController.cs" />
     <Compile Include="BusinessClasses\ContentIdentifiers.cs" />
+    <Compile Include="BusinessClasses\ContentTabStateManager.cs" />
     <Compile Include="BusinessClasses\OneSheetModel.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />

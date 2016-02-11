@@ -33,6 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 {
 	[ToolboxItem(false)]
 	public partial class OptionsContainer : BasePartitionEditControl<OptionsContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
+	//public partial class OptionsContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
@@ -81,6 +82,67 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		public OptionsContainer()
 		{
 			InitializeComponent();
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+
+				font = new Font(laAvgRateTitle.Font.FontFamily, laAvgRateTitle.Font.Size - 2, laAvgRateTitle.Font.Style);
+				laTotalSpotsTitle.Font = font;
+				laAvgRateTitle.Font = font;
+				laTotalCostTitle.Font = font;
+				font = new Font(laAvgRateValue.Font.FontFamily, laAvgRateValue.Font.Size - 2, laAvgRateValue.Font.Style);
+				laTotalSpotsValue.Font = font;
+				laAvgRateValue.Font = font;
+				laTotalCostValue.Font = font;
+
+				laColorsTitle.Font = new Font(laColorsTitle.Font.FontFamily, laColorsTitle.Font.Size - 2, laColorsTitle.Font.Style);
+				labelControlScheduleInfo.Font = new Font(labelControlScheduleInfo.Font.FontFamily,
+					labelControlScheduleInfo.Font.Size - 2, labelControlScheduleInfo.Font.Style);
+				
+				font = new Font(buttonXOptionAvgRate.Font.FontFamily, buttonXOptionAvgRate.Font.Size - 2,
+					buttonXOptionAvgRate.Font.Style);
+				buttonXOptionAvgRate.Font = font;
+				buttonXOptionCost.Font = font;
+				buttonXOptionDay.Font = font;
+				buttonXOptionLength.Font = font;
+				buttonXOptionLineId.Font = font;
+				buttonXOptionLogo.Font = font;
+				buttonXOptionProgram.Font = font;
+				buttonXOptionRate.Font = font;
+				buttonXOptionStation.Font = font;
+				buttonXOptionTime.Font = font;
+				buttonXOptionMonthlySpots.Font = font;
+				buttonXOptionWeeklySpots.Font = font;
+				buttonXOptionTotalSpots.Font = font;
+				buttonXOptionTallySpots.Font = font;
+				buttonXOptionTallyCost.Font = font;
+				buttonXSummaryCampaign.Font = font;
+				buttonXSummaryComments.Font = font;
+				buttonXSummaryTallyCost.Font = font;
+				buttonXSummaryTallySpots.Font = font;
+				buttonXSummaryTotalCost.Font = font;
+				buttonXSummaryTotalWeeks.Font = font;
+				buttonXSummaryLineId.Font = font;
+				buttonXSummaryLogo.Font = font;
+				buttonXSummaryMonthlyCost.Font = font;
+				buttonXSummaryMonthlySpots.Font = font;
+				buttonXSummaryWeeklyCost.Font = font;
+				buttonXSummaryWeeklySpots.Font = font;
+				buttonXSummaryTotalMonths.Font = font;
+				buttonXSummaryTotalSpots.Font = font;
+
+				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
+					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
+				hyperLinkEditInfoContract.Font = new Font(hyperLinkEditInfoContract.Font.FontFamily,
+					hyperLinkEditInfoContract.Font.Size - 2, hyperLinkEditInfoContract.Font.Style);
+			}
 		}
 
 		#region BasePartitionEditControl Override
@@ -649,6 +711,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 					form.checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
 					form.checkEditApplyForAll.Enabled = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count() > 1;
+					form.labelControlDescriptionApplyForAll.Enabled = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count() > 1;
 					form.checkEditApplyForAll.Checked = EditedContent.OptionsSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
@@ -656,6 +719,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
 					form.checkEditApplyForAll.Enabled = false;
+					form.labelControlDescriptionApplyForAll.Enabled = false;
 				}
 				else
 					return;
@@ -920,7 +984,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
@@ -933,7 +997,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			}
 		}
 
@@ -969,14 +1033,14 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			previewGroups.AddRange(optionsSlides.Select(optionsSlide => optionsSlide.GetPreviewGroup(SelectedTheme)));
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email these Options";
 				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();

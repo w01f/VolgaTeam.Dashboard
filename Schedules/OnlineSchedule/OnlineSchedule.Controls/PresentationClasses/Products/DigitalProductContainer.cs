@@ -408,7 +408,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				}
 				previewGroups.Add(previewGroup);
 			}
-			Utilities.ActivateForm(MainForm.Handle, true, false);
+			Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
 			if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))

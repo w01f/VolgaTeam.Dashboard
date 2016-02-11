@@ -27,7 +27,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 	public partial class HomeControl : BaseScheduleSettingsEditControl<MediaScheduleSettings, MediaScheduleChangeInfo>
 	{
 		private bool _allowToSave;
-		private DigitalProductsContent DigitalContent { get; set; }
+		public DigitalProductsContent DigitalContent { get; set; }
 		private MediaSchedule Schedule
 		{
 			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
@@ -256,7 +256,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 					() =>
 					{
 						UpdateProductsCount();
-						Controller.Instance.UpdateDigitalProductTab(DigitalContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
+						Controller.Instance.ContentController.UpdateTabsSate();
 						if (_allowToSave)
 						{
 							ChangeInfo.DigitalContentChanged = true;
@@ -399,7 +399,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 								   EditedSettings.PresentationDate.HasValue &
 								   EditedSettings.UserFlightDateStart.HasValue &
 								   EditedSettings.UserFlightDateEnd.HasValue;
-			Controller.Instance.UpdateScheduleTabs(enableSchedules);
+			Controller.Instance.ContentController.UpdateTabsSate();
 			buttonXWeeklySchedule.Enabled = enableSchedules;
 			buttonXMonthlySchedule.Enabled = enableSchedules;
 			if (enableSchedules)

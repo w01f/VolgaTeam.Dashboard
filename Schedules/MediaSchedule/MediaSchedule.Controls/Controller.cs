@@ -21,13 +21,9 @@ namespace Asa.Media.Controls
 {
 	public class Controller
 	{
-		private static readonly Controller _instance = new Controller();
-		public static Controller Instance
-		{
-			get { return _instance; }
-		}
+		public static Controller Instance { get; } = new Controller();
 
-		public ContentController ContentController { get; private set; }
+		public ContentController ContentController { get; }
 		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		public Form FormMain { get; set; }
@@ -225,26 +221,6 @@ namespace Asa.Media.Controls
 			}
 		}
 
-		public void UpdateScheduleTabs(bool enable)
-		{
-			TabProgramSchedule.Enabled = enable;
-			TabCalendar1.Enabled = enable;
-			TabCalendar2.Enabled = enable;
-			TabSnapshot.Enabled = enable;
-			TabOptions.Enabled = enable;
-		}
-
-		public void UpdateOutputTabs(bool enable)
-		{
-			TabSummary.Enabled = enable;
-		}
-
-		public void UpdateDigitalProductTab(bool enable)
-		{
-			TabDigitalProduct.Enabled = enable;
-			TabDigitalPackage.Enabled = enable;
-		}
-
 		public void ConfigureThemeButtons()
 		{
 			if (!BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.None).Any())
@@ -252,49 +228,49 @@ namespace Asa.Media.Controls
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
 
 				ProgramSchedulePowerPoint.Visible = false;
-				(ProgramSchedulePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(ProgramScheduleEmail.ContainerControl as RibbonBar).Visible = false;
-				(ProgramSchedulePreview.ContainerControl as RibbonBar).Visible = false;
+				((RibbonBar) ProgramSchedulePowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar) ProgramScheduleEmail.ContainerControl).Visible = false;
+				((RibbonBar) ProgramSchedulePreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				ProgramScheduleTheme.Click -= OnThemeClick;
 				ProgramScheduleTheme.Click += OnThemeClick;
 
 				DigitalProductPowerPoint.Visible = false;
-				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = false;
-				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = false;
+				((RibbonBar) DigitalProductPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar) DigitalProductEmail.ContainerControl).Visible = false;
+				((RibbonBar) DigitalProductPreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				DigitalProductTheme.Click -= OnThemeClick;
 				DigitalProductTheme.Click += OnThemeClick;
 
 				DigitalPackagePowerPoint.Visible = false;
-				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = false;
-				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
+				((RibbonBar) DigitalPackagePowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar) DigitalPackageEmail.ContainerControl).Visible = false;
+				((RibbonBar) DigitalPackagePreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
 				DigitalPackageTheme.Click -= OnThemeClick;
 				DigitalPackageTheme.Click += OnThemeClick;
 
 				SummaryPowerPoint.Visible = false;
-				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SummaryEmail.ContainerControl as RibbonBar).Visible = false;
-				(SummaryPreview.ContainerControl as RibbonBar).Visible = false;
+				((RibbonBar) SummaryPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar) SummaryEmail.ContainerControl).Visible = false;
+				((RibbonBar) SummaryPreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
 				SummaryTheme.Click -= OnThemeClick;
 				SummaryTheme.Click += OnThemeClick;
 
 				SnapshotPowerPoint.Visible = false;
-				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SnapshotEmail.ContainerControl as RibbonBar).Visible = false;
-				(SnapshotPreview.ContainerControl as RibbonBar).Visible = false;
+				((RibbonBar) SnapshotPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar) SnapshotEmail.ContainerControl).Visible = false;
+				((RibbonBar) SnapshotPreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				SnapshotTheme.Click -= OnThemeClick;
 				SnapshotTheme.Click += OnThemeClick;
 
 				OptionsPowerPoint.Visible = false;
-				(OptionsPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(OptionsEmail.ContainerControl as RibbonBar).Visible = false;
-				(OptionsPreview.ContainerControl as RibbonBar).Visible = false;
+				((RibbonBar) OptionsPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar) OptionsEmail.ContainerControl).Visible = false;
+				((RibbonBar) OptionsPreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 				OptionsTheme.Click -= OnThemeClick;
 				OptionsTheme.Click += OnThemeClick;
@@ -302,33 +278,33 @@ namespace Asa.Media.Controls
 			else
 			{
 				ProgramSchedulePowerPoint.Visible = true;
-				(ProgramScheduleEmail.ContainerControl as RibbonBar).Visible = true;
-				(ProgramSchedulePreview.ContainerControl as RibbonBar).Visible = true;
+				((RibbonBar) ProgramScheduleEmail.ContainerControl).Visible = true;
+				((RibbonBar) ProgramSchedulePreview.ContainerControl).Visible = true;
 				ProgramScheduleTheme.Click -= OnThemeClick;
 
 				DigitalProductPowerPoint.Visible = true;
-				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = true;
-				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = true;
+				((RibbonBar) DigitalProductEmail.ContainerControl).Visible = true;
+				((RibbonBar) DigitalProductPreview.ContainerControl).Visible = true;
 				DigitalProductTheme.Click -= OnThemeClick;
 
 				DigitalPackagePowerPoint.Visible = true;
-				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = true;
-				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = true;
+				((RibbonBar) DigitalPackageEmail.ContainerControl).Visible = true;
+				((RibbonBar) DigitalPackagePreview.ContainerControl).Visible = true;
 				DigitalPackageTheme.Click -= OnThemeClick;
 
 				SummaryPowerPoint.Visible = true;
-				(SummaryEmail.ContainerControl as RibbonBar).Visible = true;
-				(SummaryPreview.ContainerControl as RibbonBar).Visible = true;
+				((RibbonBar) SummaryEmail.ContainerControl).Visible = true;
+				((RibbonBar) SummaryPreview.ContainerControl).Visible = true;
 				SummaryTheme.Click -= OnThemeClick;
 
 				SnapshotPowerPoint.Visible = true;
-				(SnapshotEmail.ContainerControl as RibbonBar).Visible = true;
-				(SnapshotPreview.ContainerControl as RibbonBar).Visible = true;
+				((RibbonBar) SnapshotEmail.ContainerControl).Visible = true;
+				((RibbonBar) SnapshotPreview.ContainerControl).Visible = true;
 				SnapshotTheme.Click -= OnThemeClick;
 
 				OptionsPowerPoint.Visible = true;
-				(OptionsEmail.ContainerControl as RibbonBar).Visible = true;
-				(OptionsPreview.ContainerControl as RibbonBar).Visible = true;
+				((RibbonBar) OptionsEmail.ContainerControl).Visible = true;
+				((RibbonBar) OptionsPreview.ContainerControl).Visible = true;
 				OptionsTheme.Click -= OnThemeClick;
 
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
@@ -368,18 +344,22 @@ namespace Asa.Media.Controls
 				if (Business.Online.Dictionaries.ListManager.Instance.SpecialLinksEnable)
 				{
 					ribbonBar.Text = Business.Online.Dictionaries.ListManager.Instance.SpecialLinksGroupName;
-					var containerButton = new ButtonItem();
-					containerButton.Image = Business.Online.Dictionaries.ListManager.Instance.SpecialLinksGroupLogo;
-					containerButton.AutoExpandOnClick = true;
+					var containerButton = new ButtonItem
+					{
+						Image = Business.Online.Dictionaries.ListManager.Instance.SpecialLinksGroupLogo,
+						AutoExpandOnClick = true
+					};
 					Supertip.SetSuperTooltip(containerButton, new SuperTooltipInfo("Links", "", "Helpful schedule building Links and resources", null, null, eTooltipColor.Gray));
 					ribbonBar.Items.Add(containerButton);
 					foreach (var specialLinkButton in Business.Online.Dictionaries.ListManager.Instance.SpecialLinkButtons)
 					{
 						var clickAction = new Action(() => { specialLinkButton.Open(); });
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = String.Format("<b>{0}</b><p>{1}</p>", specialLinkButton.Name, specialLinkButton.Tooltip);
-						button.Tag = specialLinkButton;
+						var button = new ButtonItem
+						{
+							Image = specialLinkButton.Logo,
+							Text = String.Format("<b>{0}</b><p>{1}</p>", specialLinkButton.Name, specialLinkButton.Tooltip),
+							Tag = specialLinkButton
+						};
 						button.Click += (o, e) => clickAction();
 						containerButton.SubItems.Add(button);
 					}
@@ -398,15 +378,19 @@ namespace Asa.Media.Controls
 				AfterShow = afterShow,
 				Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Properties.Resources.TVRibbonLogo : Properties.Resources.RadioRibbonLogo
 			};
-			if (FloaterRequested != null)
-				FloaterRequested(null, args);
+			FloaterRequested?.Invoke(null, args);
 		}
 
 		private void SetDefaultCulture()
 		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US")
+			{
+				DateTimeFormat =
+				{
+					FirstDayOfWeek = DayOfWeek.Monday,
+					ShortDatePattern = @"MM/dd/yyyy"
+				}
+			};
 			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
 

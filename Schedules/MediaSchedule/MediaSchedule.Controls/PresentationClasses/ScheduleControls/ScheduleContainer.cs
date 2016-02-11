@@ -32,6 +32,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
 	public partial class ScheduleContainer : BasePartitionEditControl<ProgramScheduleContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
+	//public partial class ScheduleContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
@@ -91,9 +92,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			pnSections.Dock = DockStyle.Fill;
 			pnNoSections.Dock = DockStyle.Fill;
 
-			if ((base.CreateGraphics()).DpiX > 96)
+			if ((CreateGraphics()).DpiX > 96)
 			{
-				var font = new Font(laTotalPeriodsTitle.Font.FontFamily, laTotalPeriodsTitle.Font.Size - 2, laTotalPeriodsTitle.Font.Style);
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+
+				font = new Font(laTotalPeriodsTitle.Font.FontFamily, laTotalPeriodsTitle.Font.Size - 2,
+					laTotalPeriodsTitle.Font.Style);
 				laTotalPeriodsTitle.Font = font;
 				laTotalGRPTitle.Font = font;
 				laTotalCPPTitle.Font = font;
@@ -101,7 +112,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				laTotalCostTitle.Font = font;
 				laNetRateTitle.Font = font;
 				laAgencyDiscountTitle.Font = font;
-				font = new Font(laTotalPeriodsValue.Font.FontFamily, laTotalPeriodsValue.Font.Size - 2, laTotalPeriodsValue.Font.Style);
+				font = new Font(laTotalPeriodsValue.Font.FontFamily, laTotalPeriodsValue.Font.Size - 2,
+					laTotalPeriodsValue.Font.Style);
 				laTotalPeriodsValue.Font = font;
 				laTotalGRPValue.Font = font;
 				laTotalCPPValue.Font = font;
@@ -109,6 +121,40 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				laTotalCostValue.Font = font;
 				laNetRateValue.Font = font;
 				laAgencyDiscountValue.Font = font;
+
+				laColorsTitle.Font = new Font(laColorsTitle.Font.FontFamily, laColorsTitle.Font.Size - 2, laColorsTitle.Font.Style);
+				labelControlScheduleInfo.Font = new Font(labelControlScheduleInfo.Font.FontFamily,
+					labelControlScheduleInfo.Font.Size - 2, labelControlScheduleInfo.Font.Style);
+				labelControlFlexFlightDatesWarning.Font = new Font(labelControlFlexFlightDatesWarning.Font.FontFamily,
+					labelControlFlexFlightDatesWarning.Font.Size - 2, labelControlFlexFlightDatesWarning.Font.Style);
+
+				font = new Font(buttonXStation.Font.FontFamily, buttonXStation.Font.Size - 2, buttonXStation.Font.Style);
+				buttonXAvgRate.Font = font;
+				buttonXStation.Font = font;
+				buttonXCPP.Font = font;
+				buttonXCost.Font = font;
+				buttonXDay.Font = font;
+				buttonXDaypart.Font = font;
+				buttonXDiscount.Font = font;
+				buttonXGRP.Font = font;
+				buttonXLength.Font = font;
+				buttonXLogo.Font = font;
+				buttonXNetRate.Font = font;
+				buttonXProgram.Font = font;
+				buttonXRate.Font = font;
+				buttonXRating.Font = font;
+				buttonXSpots.Font = font;
+				buttonXTime.Font = font;
+				buttonXTotalCPP.Font = font;
+				buttonXTotalCost.Font = font;
+				buttonXTotalPeriods.Font = font;
+				buttonXTotalSpots.Font = font;
+				buttonXTotalGRP.Font = font;
+
+				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
+					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
+				hyperLinkEditInfoContract.Font = new Font(hyperLinkEditInfoContract.Font.FontFamily,
+					hyperLinkEditInfoContract.Font.Size - 2, hyperLinkEditInfoContract.Font.Style);
 			}
 
 			xtraTabPageOptionsLine.Text = MediaMetaData.Instance.DataTypeString;
@@ -149,13 +195,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 		{
 			_allowToSave = false;
 
-			var quickLoad = EditedContent!= null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
+			var quickLoad = EditedContent != null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
 				ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
 				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
 				ContentUpdateInfo.ChangeInfo.SpotTypeChanged ||
 				ContentUpdateInfo.ChangeInfo.SummaryChanged);
 
-			if (EditedContent!= null)
+			if (EditedContent != null)
 				EditedContent.Dispose();
 			EditedContent = Schedule.ProgramSchedule.Clone<ProgramScheduleContent, ProgramScheduleContent>();
 
@@ -251,7 +297,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				xtraTabControlSections.TabPages
 					.OfType<SectionControl>()
 					.ToList()
-					.ForEach(sc=>sc.Release());
+					.ForEach(sc => sc.Release());
 				xtraTabControlSections.TabPages.Clear();
 			}
 			foreach (var section in EditedContent.Sections.OrderBy(s => s.Index))
@@ -478,7 +524,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.ProgramScheduleEmail.Enabled = xtraTabControlSections.TabPages
 				.OfType<SectionControl>()
 				.Any(sectionTabControl => sectionTabControl.ReadyForOutput);
-			Controller.Instance.UpdateOutputTabs(EditedContent.TotalSpots > 0);
+			Controller.Instance.ContentController.UpdateTabsSate();
 		}
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
@@ -610,24 +656,27 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			{
 				form.checkEditEmptySports.Text = String.Format(form.checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
 				form.checkEditEmptySports.Enabled = ActiveSection.SectionData.ShowSpots;
+				form.labelControlDescriptionEmptySports.Enabled = ActiveSection.SectionData.ShowSpots;
 				form.checkEditEmptySports.Checked = !ActiveSection.SectionData.ShowEmptySpots;
 				form.checkEditOutputNoBrackets.Checked = ActiveSection.SectionData.OutputNoBrackets;
 				form.checkEditUseGenericDates.Checked = ActiveSection.SectionData.UseGenericDateColumns;
 				form.checkEditUseDecimalRate.Checked = ActiveSection.SectionData.UseDecimalRates;
 				form.checkEditOutputLimitQuarters.Enabled = ScheduleSettings.Quarters.Count > 1;
+				form.labelControlDescriptionOutputLimitQuarters.Enabled = ScheduleSettings.Quarters.Count > 1;
 				form.checkEditOutputLimitQuarters.Checked = ScheduleSettings.Quarters.Count > 1 && ActiveSection.SectionData.OutputPerQuater;
 				form.checkEditOutputLimitPeriods.Checked = ActiveSection.SectionData.OutputMaxPeriods.HasValue;
 				form.spinEditOutputLimitPeriods.EditValue = ActiveSection.SectionData.OutputMaxPeriods;
-				form.checkEditOutputLimitPeriods.Text = String.Format("Max {0}s Per PPT Slide", SpotTitle);
-				form.checkEditEmptySports.Enabled = ActiveSection.SectionData.ShowSpots;
+				form.checkEditOutputLimitPeriods.Text = String.Format(form.checkEditOutputLimitPeriods.Text, SpotTitle);
 				form.checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
 
 				if (form.ShowDialog() != DialogResult.OK) return;
 
+				var updateColumns = ActiveSection.SectionData.UseGenericDateColumns != form.checkEditUseGenericDates.Checked;
+
 				ActiveSection.SectionData.ShowEmptySpots = !form.checkEditEmptySports.Checked;
 				ActiveSection.SectionData.OutputNoBrackets = form.checkEditOutputNoBrackets.Checked;
-				ActiveSection.SectionData.UseGenericDateColumns = form.checkEditUseGenericDates.Checked;
 				ActiveSection.SectionData.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+				ActiveSection.SectionData.UseGenericDateColumns = form.checkEditUseGenericDates.Checked;
 				ActiveSection.SectionData.OutputPerQuater = form.checkEditOutputLimitQuarters.Checked;
 				ActiveSection.SectionData.OutputMaxPeriods = form.spinEditOutputLimitPeriods.EditValue != null ? (Int32?)form.spinEditOutputLimitPeriods.Value : null;
 
@@ -636,10 +685,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				if (EditedContent.ApplySettingsForAll)
 				{
 					ApplySharedSettings(ActiveSection);
-					xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc => oc.UpdateGridView());
+					xtraTabControlSections.TabPages.OfType<SectionControl>().ToList().ForEach(oc =>
+					{
+						oc.UpdateGridView();
+						if (updateColumns)
+							oc.UpdateGridData(true);
+					});
 				}
 				else
+				{
 					ActiveSection.UpdateGridView();
+					if (updateColumns)
+						ActiveSection.UpdateGridData(true);
+				}
 
 				SettingsNotSaved = true;
 			}
@@ -741,7 +799,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 		{
 			var tabPages = xtraTabControlSections.TabPages.OfType<SectionControl>().Where(ss => ss.ReadyForOutput).ToList();
 			var selectedSections = new List<SectionControl>();
-			if (tabPages.Count() > 1)
+			if (tabPages.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Schedules";
@@ -813,15 +871,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var previewGroups = selectedSections.Select(sectionControl => sectionControl.GeneratePreview()).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 
 			using (var formPreview = new FormPreview(
-				Controller.Instance.FormMain, 
-				RegularMediaSchedulePowerPointHelper.Instance, 
-				BusinessObjects.Instance.HelpManager, 
+				Controller.Instance.FormMain,
+				RegularMediaSchedulePowerPointHelper.Instance,
+				BusinessObjects.Instance.HelpManager,
 				Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Schedule";
@@ -832,7 +890,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			}
 		}
 
@@ -844,7 +902,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var previewGroups = selectedSections.Select(sectionControl => sectionControl.GeneratePreview()).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
@@ -852,7 +910,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			{
 				formEmail.Text = "Email this Schedule";
 				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();

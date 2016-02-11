@@ -159,7 +159,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 				RegistryHelper.MaximizeMainForm = MainForm.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = MainForm.Handle;
 				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(MainForm.Handle, true, false);
+					Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
 			}
 		}
 
@@ -169,11 +169,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 			{
 				formEmail.Text = "Email this Online Schedule";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-				Utilities.ActivateForm(MainForm.Handle, true, false);
+				Utilities.ActivateForm(MainForm.Handle, MainForm.WindowState == FormWindowState.Maximized, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = true;
+				RegistryHelper.MaximizeMainForm = MainForm.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = MainForm.Handle;
 			}
 		}

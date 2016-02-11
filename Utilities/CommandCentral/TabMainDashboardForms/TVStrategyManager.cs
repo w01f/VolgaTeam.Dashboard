@@ -8,10 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Enums;
 using CommandCentral.Entities.Common;
 using CommandCentral.Entities.Media;
 using CommandCentral.InteropClasses;
-using Asa.Core.MediaSchedule;
 
 namespace CommandCentral.TabMainDashboardForms
 {

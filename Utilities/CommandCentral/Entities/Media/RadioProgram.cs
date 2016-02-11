@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
 
 namespace CommandCentral.Entities.Media
 {

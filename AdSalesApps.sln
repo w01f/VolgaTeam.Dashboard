@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reset", "Utilities\Reset\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrepareSources", "Utilities\PrepareSources\PrepareSources.csproj", "{88C95A8E-C3FE-4CDF-B4B5-A53B63E835D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandCentral", "Utilities\CommandCentral\CommandCentral.csproj", "{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +213,16 @@ Global
 		{88C95A8E-C3FE-4CDF-B4B5-A53B63E835D3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{88C95A8E-C3FE-4CDF-B4B5-A53B63E835D3}.Release|x86.ActiveCfg = Release|x86
 		{88C95A8E-C3FE-4CDF-B4B5-A53B63E835D3}.Release|x86.Build.0 = Release|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Debug|x86.ActiveCfg = Debug|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Debug|x86.Build.0 = Debug|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Release|Any CPU.ActiveCfg = Release|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Release|x86.ActiveCfg = Release|x86
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -234,5 +246,6 @@ Global
 		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0} = {95CF05B0-0A64-465E-8A53-CACB1C73F39A}
 		{0051B719-73CA-46E5-864F-5235B91F53BD} = {63BFE8A4-C500-4429-96AE-4AE9F224AF86}
 		{88C95A8E-C3FE-4CDF-B4B5-A53B63E835D3} = {63BFE8A4-C500-4429-96AE-4AE9F224AF86}
+		{A1A7BD50-193C-4AB8-B73E-021B374FFCCA} = {63BFE8A4-C500-4429-96AE-4AE9F224AF86}
 	EndGlobalSection
 EndGlobal

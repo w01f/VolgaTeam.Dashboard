@@ -53,6 +53,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=12.6.0.6, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -66,8 +70,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\NewBizWiz.Core\MediaSchedule\ViewSettings.cs">
-      <Link>Entities\Media\ViewSettings.cs</Link>
+    <Compile Include="..\..\Business\Business.Media\Configuration\CalendarToggleSettings.cs">
+      <Link>Entities\Media\CalendarToggleSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Configuration\OptionsSettings.cs">
+      <Link>Entities\Media\OptionsSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Configuration\OptionsSummarySettings.cs">
+      <Link>Entities\Media\OptionsSummarySettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Configuration\ScheduleSectionSettings.cs">
+      <Link>Entities\Media\ScheduleSectionSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Configuration\SnapshotSettings.cs">
+      <Link>Entities\Media\SnapshotSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Configuration\SnapshotSummarySettings.cs">
+      <Link>Entities\Media\SnapshotSummarySettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Entities\NonPersistent\Schedule\Demo.cs">
+      <Link>Entities\Media\Demo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Entities\NonPersistent\Schedule\Station.cs">
+      <Link>Entities\Media\Station.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Business\Business.Media\Enums\DemoType.cs">
+      <Link>Entities\Media\DemoType.cs</Link>
     </Compile>
     <Compile Include="AppManager.cs" />
     <Compile Include="Entities\Newspaper\AdSize.cs" />
@@ -78,11 +106,9 @@
     <Compile Include="Entities\Newspaper\ViewSettings.cs" />
     <Compile Include="Entities\SalesDepot\SalesDepotUserLibraries.cs" />
     <Compile Include="Entities\Online\SpecialLinkButton.cs" />
-    <Compile Include="Entities\Media\Station.cs" />
     <Compile Include="Entities\Newspaper\ShareUnit.cs" />
     <Compile Include="Entities\Common\NameCodePair.cs" />
     <Compile Include="Entities\Media\DaypartRotation.cs" />
-    <Compile Include="Entities\Media\Demo.cs" />
     <Compile Include="Entities\Newspaper\MechanicalItem.cs" />
     <Compile Include="Entities\Newspaper\MechanicalType.cs" />
     <Compile Include="Entities\Online\Product.cs" />
@@ -196,6 +222,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\Users.png" />
   </ItemGroup>
   <ItemGroup>
@@ -300,8 +327,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy “$(ProjectDir)bin\Release\*.dll” “d:\WorkingFiles\NewBizWiz\CommandCentral.exe” /Y
-copy “$(ProjectDir)bin\Release\CommandCentral.exe” “d:\WorkingFiles\NewBizWiz\CommandCentral.exe” /Y</PostBuildEvent>
+    <PostBuildEvent>robocopy /s /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\CommandCentral.exe" "*.dll" "CommandCentral.exe"
+if %25errorlevel%25 leq 1 exit 0 else exit %25errorlevel%25</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

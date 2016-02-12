@@ -101,7 +101,7 @@
 			// 
 			this.barStaticItemLogo.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
 			this.barStaticItemLogo.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-			this.barStaticItemLogo.Glyph = global::Asa.Media.Controls.Properties.Resources.TVRibbonLogo;
+			this.barStaticItemLogo.Glyph = global::Asa.Media.Controls.Properties.Resources.RibbonLogo;
 			this.barStaticItemLogo.Id = 20;
 			this.barStaticItemLogo.Name = "barStaticItemLogo";
 			this.barStaticItemLogo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;

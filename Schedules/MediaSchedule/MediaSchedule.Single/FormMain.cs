@@ -411,7 +411,12 @@ namespace Asa.Media.Single
 		private void OnFloaterClick(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
-			AppManager.Instance.ShowFloater(formSender ?? this, new FloaterRequestedEventArgs { Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo });
+			AppManager.Instance.ShowFloater(
+				formSender ?? this, 
+				new FloaterRequestedEventArgs
+				{
+					Logo = Resources.RibbonLogo
+				});
 		}
 	}
 }

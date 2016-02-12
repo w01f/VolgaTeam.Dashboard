@@ -1,26 +1,25 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Common.Interfaces;
-using Asa.Business.Media.Configuration;
-using Asa.Business.Media.Entities.NonPersistent.Section.Content;
-using Asa.Business.Media.Enums;
-using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Common.GUI.Common;
 
 namespace Asa.Common.GUI.Summary
 {
 	[ToolboxItem(false)]
-	public partial class SummaryProductItemControl : UserControl, ISummaryItemControl
+	public abstract partial class SummaryProductItemControl : UserControl, ISummaryItemControl
 	{
 		private bool _loading;
 		public CustomSummaryItem Data { get; set; }
 
-		private ISummaryProduct Product
+		protected ISummaryProduct Product
 		{
-			get { return Data is ProductSummaryItem ? ((ProductSummaryItem)Data).Parent : null; }
+			get { return (Data as ProductSummaryItem)?.Parent; }
 		}
+
+		protected abstract Image ItemLogo { get; }
 
 		public event EventHandler<EventArgs> DataChanged;
 		public event EventHandler<EventArgs> InvestmentChanged;
@@ -39,22 +38,7 @@ namespace Asa.Common.GUI.Summary
 		public void LoadData()
 		{
 			_loading = true;
-			//if (Product is PrintProduct)
-			//	pictureBoxLogo.Image = Properties.Resources.SummaryPrint;
-			if (Product is DigitalProduct)
-				pictureBoxLogo.Image = Properties.Resources.SummaryDigital;
-			else if (Product is Program)
-			{
-				switch (MediaMetaData.Instance.DataType)
-				{
-					case MediaDataType.TVSchedule:
-						pictureBoxLogo.Image = Properties.Resources.SummaryTV;
-						break;
-					case MediaDataType.RadioSchedule:
-						pictureBoxLogo.Image = Properties.Resources.SummaryRadio;
-						break;
-				}
-			}
+			pictureBoxLogo.Image = ItemLogo;
 			ckItem.Checked = Data.ShowValue;
 			ckDetails.Checked = Data.ShowDescription;
 
@@ -135,31 +119,8 @@ namespace Asa.Common.GUI.Summary
 			get { return Product.SummaryTitle; }
 		}
 
-		public string ItemIcon
-		{
-			get
-			{
-				if (!String.IsNullOrEmpty(ItemTitle) && ShowValueOutput)
-				{
-					//if (Product is PrintProduct)
-					//	return "print.png";
-					if (Product is DigitalProduct)
-						return "digital.png";
-					if (Product is Program)
-					{
-						switch (MediaMetaData.Instance.DataType)
-						{
-							case MediaDataType.TVSchedule:
-								return "tv.png";
-							case MediaDataType.RadioSchedule:
-								return "radio.png";
-						}
-					}
-				}
-				return String.Empty;
-			}
-		}
-
+		public abstract string ItemIcon { get; }
+		
 		public string OutputItemTitle
 		{
 			get { return !String.IsNullOrEmpty(ItemTitle) && ShowValueOutput ? ItemTitle : String.Empty; }

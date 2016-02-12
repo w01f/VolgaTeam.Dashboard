@@ -32,20 +32,22 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
-			this.stationsControl = new StationsControl();
+			this.stationsControl = new Asa.Media.Controls.PresentationClasses.SettingsControls.StationsControl();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
-			this.pnMediaDefault = new System.Windows.Forms.Panel();
-			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.pnMedia = new System.Windows.Forms.Panel();
+			this.buttonXCalendar = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXOptions = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXSnapshot = new DevComponents.DotNetBar.ButtonX();
+			this.pictureBoxConceptTypeTitle = new System.Windows.Forms.PictureBox();
+			this.pictureBoxScheduleTypeTitle = new System.Windows.Forms.PictureBox();
 			this.pbMediaLogo = new System.Windows.Forms.PictureBox();
-			this.laFlexDateWarning = new System.Windows.Forms.Label();
-			this.laMediaDescription = new System.Windows.Forms.Label();
-			this.laMediaTitle = new System.Windows.Forms.Label();
 			this.buttonXMonthlySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
+			this.pnMediaDefault = new System.Windows.Forms.Panel();
+			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalProductListControl = new DigitalProductListControl();
+			this.digitalProductListControl = new Asa.Online.Controls.PresentationClasses.Products.DigitalProductListControl();
 			this.daypartsControl = new Asa.Media.Controls.PresentationClasses.SettingsControls.DaypartsControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStations = new DevExpress.XtraTab.XtraTabPage();
@@ -77,10 +79,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageMedia.SuspendLayout();
+			this.pnMedia.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxConceptTypeTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxScheduleTypeTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).BeginInit();
 			this.pnMediaDefault.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
-			this.pnMedia.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).BeginInit();
 			this.xtraTabPageDigital.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
 			this.xtraTabControlOptions.SuspendLayout();
@@ -143,12 +147,125 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.xtraTabPageMedia.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
 			this.xtraTabPageMedia.Appearance.PageClient.Options.UseBackColor = true;
-			this.xtraTabPageMedia.Controls.Add(this.pnMediaDefault);
 			this.xtraTabPageMedia.Controls.Add(this.pnMedia);
+			this.xtraTabPageMedia.Controls.Add(this.pnMediaDefault);
 			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
 			this.xtraTabPageMedia.Padding = new System.Windows.Forms.Padding(10);
 			this.xtraTabPageMedia.Size = new System.Drawing.Size(659, 569);
 			this.xtraTabPageMedia.Text = "Television Strategy";
+			// 
+			// pnMedia
+			// 
+			this.pnMedia.BackColor = System.Drawing.Color.Transparent;
+			this.pnMedia.Controls.Add(this.buttonXCalendar);
+			this.pnMedia.Controls.Add(this.buttonXOptions);
+			this.pnMedia.Controls.Add(this.buttonXSnapshot);
+			this.pnMedia.Controls.Add(this.pictureBoxConceptTypeTitle);
+			this.pnMedia.Controls.Add(this.pictureBoxScheduleTypeTitle);
+			this.pnMedia.Controls.Add(this.pbMediaLogo);
+			this.pnMedia.Controls.Add(this.buttonXMonthlySchedule);
+			this.pnMedia.Controls.Add(this.buttonXWeeklySchedule);
+			this.pnMedia.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMedia.Location = new System.Drawing.Point(10, 10);
+			this.pnMedia.Name = "pnMedia";
+			this.pnMedia.Size = new System.Drawing.Size(639, 549);
+			this.pnMedia.TabIndex = 0;
+			// 
+			// buttonXCalendar
+			// 
+			this.buttonXCalendar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCalendar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCalendar.Image = global::Asa.Media.Controls.Properties.Resources.HomeCalendar;
+			this.buttonXCalendar.Location = new System.Drawing.Point(406, 431);
+			this.buttonXCalendar.Name = "buttonXCalendar";
+			this.buttonXCalendar.Size = new System.Drawing.Size(130, 45);
+			this.buttonXCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXCalendar.TabIndex = 27;
+			this.buttonXCalendar.TextColor = System.Drawing.Color.Black;
+			this.buttonXCalendar.Click += new System.EventHandler(this.buttonXCalendar_Click);
+			// 
+			// buttonXOptions
+			// 
+			this.buttonXOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXOptions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXOptions.Image = global::Asa.Media.Controls.Properties.Resources.HomeOptions;
+			this.buttonXOptions.Location = new System.Drawing.Point(213, 431);
+			this.buttonXOptions.Name = "buttonXOptions";
+			this.buttonXOptions.Size = new System.Drawing.Size(130, 45);
+			this.buttonXOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXOptions.TabIndex = 26;
+			this.buttonXOptions.TextColor = System.Drawing.Color.Black;
+			this.buttonXOptions.Click += new System.EventHandler(this.buttonXOptions_Click);
+			// 
+			// buttonXSnapshot
+			// 
+			this.buttonXSnapshot.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXSnapshot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSnapshot.Image = global::Asa.Media.Controls.Properties.Resources.HomeSnapshot;
+			this.buttonXSnapshot.Location = new System.Drawing.Point(21, 431);
+			this.buttonXSnapshot.Name = "buttonXSnapshot";
+			this.buttonXSnapshot.Size = new System.Drawing.Size(130, 45);
+			this.buttonXSnapshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXSnapshot.TabIndex = 25;
+			this.buttonXSnapshot.TextColor = System.Drawing.Color.Black;
+			this.buttonXSnapshot.Click += new System.EventHandler(this.buttonXSnapshot_Click);
+			// 
+			// pictureBoxConceptTypeTitle
+			// 
+			this.pictureBoxConceptTypeTitle.Image = global::Asa.Media.Controls.Properties.Resources.HomeConceptTitleLogo;
+			this.pictureBoxConceptTypeTitle.Location = new System.Drawing.Point(21, 380);
+			this.pictureBoxConceptTypeTitle.Name = "pictureBoxConceptTypeTitle";
+			this.pictureBoxConceptTypeTitle.Size = new System.Drawing.Size(515, 32);
+			this.pictureBoxConceptTypeTitle.TabIndex = 24;
+			this.pictureBoxConceptTypeTitle.TabStop = false;
+			// 
+			// pictureBoxScheduleTypeTitle
+			// 
+			this.pictureBoxScheduleTypeTitle.Image = global::Asa.Media.Controls.Properties.Resources.HomeScheduleTitleLogo;
+			this.pictureBoxScheduleTypeTitle.Location = new System.Drawing.Point(21, 171);
+			this.pictureBoxScheduleTypeTitle.Name = "pictureBoxScheduleTypeTitle";
+			this.pictureBoxScheduleTypeTitle.Size = new System.Drawing.Size(515, 32);
+			this.pictureBoxScheduleTypeTitle.TabIndex = 23;
+			this.pictureBoxScheduleTypeTitle.TabStop = false;
+			// 
+			// pbMediaLogo
+			// 
+			this.pbMediaLogo.Image = global::Asa.Media.Controls.Properties.Resources.HomeLogo;
+			this.pbMediaLogo.Location = new System.Drawing.Point(21, 13);
+			this.pbMediaLogo.Name = "pbMediaLogo";
+			this.pbMediaLogo.Size = new System.Drawing.Size(500, 115);
+			this.pbMediaLogo.TabIndex = 22;
+			this.pbMediaLogo.TabStop = false;
+			// 
+			// buttonXMonthlySchedule
+			// 
+			this.buttonXMonthlySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMonthlySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMonthlySchedule.Image = global::Asa.Media.Controls.Properties.Resources.MonthlySchedule;
+			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(308, 218);
+			this.buttonXMonthlySchedule.Name = "buttonXMonthlySchedule";
+			this.buttonXMonthlySchedule.Size = new System.Drawing.Size(228, 89);
+			this.buttonXMonthlySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXMonthlySchedule, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Build a Monthly Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonXMonthlySchedule.TabIndex = 18;
+			this.buttonXMonthlySchedule.TextColor = System.Drawing.Color.Black;
+			this.buttonXMonthlySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
+			this.buttonXMonthlySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
+			// 
+			// buttonXWeeklySchedule
+			// 
+			this.buttonXWeeklySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXWeeklySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXWeeklySchedule.Image = global::Asa.Media.Controls.Properties.Resources.WeeklySchedule;
+			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(21, 218);
+			this.buttonXWeeklySchedule.Name = "buttonXWeeklySchedule";
+			this.buttonXWeeklySchedule.Size = new System.Drawing.Size(228, 89);
+			this.buttonXWeeklySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXWeeklySchedule, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Build a Weekly Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonXWeeklySchedule.TabIndex = 17;
+			this.buttonXWeeklySchedule.TextColor = System.Drawing.Color.Black;
+			this.buttonXWeeklySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
+			this.buttonXWeeklySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
 			// 
 			// pnMediaDefault
 			// 
@@ -169,93 +286,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pbMediaDefault.Size = new System.Drawing.Size(639, 549);
 			this.pbMediaDefault.TabIndex = 23;
 			this.pbMediaDefault.TabStop = false;
-			// 
-			// pnMedia
-			// 
-			this.pnMedia.BackColor = System.Drawing.Color.Transparent;
-			this.pnMedia.Controls.Add(this.pbMediaLogo);
-			this.pnMedia.Controls.Add(this.laFlexDateWarning);
-			this.pnMedia.Controls.Add(this.laMediaDescription);
-			this.pnMedia.Controls.Add(this.laMediaTitle);
-			this.pnMedia.Controls.Add(this.buttonXMonthlySchedule);
-			this.pnMedia.Controls.Add(this.buttonXWeeklySchedule);
-			this.pnMedia.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMedia.Location = new System.Drawing.Point(10, 10);
-			this.pnMedia.Name = "pnMedia";
-			this.pnMedia.Size = new System.Drawing.Size(639, 549);
-			this.pnMedia.TabIndex = 0;
-			// 
-			// pbMediaLogo
-			// 
-			this.pbMediaLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbMediaLogo.Image")));
-			this.pbMediaLogo.Location = new System.Drawing.Point(21, 13);
-			this.pbMediaLogo.Name = "pbMediaLogo";
-			this.pbMediaLogo.Size = new System.Drawing.Size(468, 115);
-			this.pbMediaLogo.TabIndex = 22;
-			this.pbMediaLogo.TabStop = false;
-			// 
-			// laFlexDateWarning
-			// 
-			this.laFlexDateWarning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laFlexDateWarning.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlexDateWarning.ForeColor = System.Drawing.Color.Red;
-			this.laFlexDateWarning.Location = new System.Drawing.Point(18, 372);
-			this.laFlexDateWarning.Name = "laFlexDateWarning";
-			this.laFlexDateWarning.Size = new System.Drawing.Size(606, 108);
-			this.laFlexDateWarning.TabIndex = 21;
-			this.laFlexDateWarning.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
-			// laMediaDescription
-			// 
-			this.laMediaDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laMediaDescription.Location = new System.Drawing.Point(18, 495);
-			this.laMediaDescription.Name = "laMediaDescription";
-			this.laMediaDescription.Size = new System.Drawing.Size(606, 44);
-			this.laMediaDescription.TabIndex = 20;
-			this.laMediaDescription.Text = "*Build a Monthly Schedule if you want the most flexibility to deal with preemptio" +
-    "ns and makegoods\r\n*The Ad Calendar will only work if you build a Weekly Schedule" +
-    " or a Snapshot Schedule…";
-			// 
-			// laMediaTitle
-			// 
-			this.laMediaTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laMediaTitle.Location = new System.Drawing.Point(21, 174);
-			this.laMediaTitle.Name = "laMediaTitle";
-			this.laMediaTitle.Size = new System.Drawing.Size(623, 38);
-			this.laMediaTitle.TabIndex = 19;
-			this.laMediaTitle.Text = "What kind of schedule do you want to build?";
-			// 
-			// buttonXMonthlySchedule
-			// 
-			this.buttonXMonthlySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXMonthlySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMonthlySchedule.Image = ((System.Drawing.Image)(resources.GetObject("buttonXMonthlySchedule.Image")));
-			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(288, 226);
-			this.buttonXMonthlySchedule.Name = "buttonXMonthlySchedule";
-			this.buttonXMonthlySchedule.Size = new System.Drawing.Size(201, 89);
-			this.buttonXMonthlySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.superTooltip.SetSuperTooltip(this.buttonXMonthlySchedule, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Build a Monthly Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonXMonthlySchedule.TabIndex = 18;
-			this.buttonXMonthlySchedule.TextColor = System.Drawing.Color.Black;
-			this.buttonXMonthlySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
-			this.buttonXMonthlySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
-			// 
-			// buttonXWeeklySchedule
-			// 
-			this.buttonXWeeklySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXWeeklySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXWeeklySchedule.Image = ((System.Drawing.Image)(resources.GetObject("buttonXWeeklySchedule.Image")));
-			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(21, 226);
-			this.buttonXWeeklySchedule.Name = "buttonXWeeklySchedule";
-			this.buttonXWeeklySchedule.Size = new System.Drawing.Size(201, 89);
-			this.buttonXWeeklySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.superTooltip.SetSuperTooltip(this.buttonXWeeklySchedule, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Build a Weekly Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonXWeeklySchedule.TabIndex = 17;
-			this.buttonXWeeklySchedule.TextColor = System.Drawing.Color.Black;
-			this.buttonXWeeklySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
-			this.buttonXWeeklySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
 			// 
 			// xtraTabPageDigital
 			// 
@@ -649,10 +679,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).EndInit();
 			this.xtraTabControlMain.ResumeLayout(false);
 			this.xtraTabPageMedia.ResumeLayout(false);
+			this.pnMedia.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxConceptTypeTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxScheduleTypeTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).EndInit();
 			this.pnMediaDefault.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
-			this.pnMedia.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbMediaLogo)).EndInit();
 			this.xtraTabPageDigital.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
 			this.xtraTabControlOptions.ResumeLayout(false);
@@ -712,15 +744,16 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageCalendarType;
 		private DevComponents.DotNetBar.ButtonX buttonXCalendarTypeSundayBased;
 		private DevComponents.DotNetBar.ButtonX buttonXCalendarTypeMondayBased;
-		private System.Windows.Forms.Label laMediaDescription;
-		private System.Windows.Forms.Label laMediaTitle;
-		private System.Windows.Forms.Label laFlexDateWarning;
 		private System.Windows.Forms.PictureBox pbMediaLogo;
 		private DevExpress.XtraEditors.LabelControl labelControlDemosInfo;
 		private DevExpress.XtraEditors.LabelControl labelControlDemoTitle;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
 		private System.Windows.Forms.PictureBox pbMediaDefault;
 		private System.Windows.Forms.Panel pnMediaDefault;
-
-    }
+		private System.Windows.Forms.PictureBox pictureBoxScheduleTypeTitle;
+		private DevComponents.DotNetBar.ButtonX buttonXCalendar;
+		private DevComponents.DotNetBar.ButtonX buttonXOptions;
+		private DevComponents.DotNetBar.ButtonX buttonXSnapshot;
+		private System.Windows.Forms.PictureBox pictureBoxConceptTypeTitle;
+	}
 }

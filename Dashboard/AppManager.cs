@@ -41,8 +41,7 @@ namespace Asa.Dashboard
 		{
 			get
 			{
-				return String.Format("{0} v{1}- {2}",
-					SettingsManager.Instance.DashboardName,
+				return String.Format("6ms v{0}- {1}",
 					FileStorageManager.Instance.Version,
 					PowerPointManager.Instance.SlideSettings.SizeFormatted);
 			}

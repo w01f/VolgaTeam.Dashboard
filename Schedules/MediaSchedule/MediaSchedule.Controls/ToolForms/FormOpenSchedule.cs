@@ -28,7 +28,6 @@ namespace Asa.Media.Controls.ToolForms
 		public FormOpenSchedule()
 		{
 			InitializeComponent();
-			barStaticItemLogo.Glyph = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo;
 		}
 
 		public void LoadSchedules()

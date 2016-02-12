@@ -68,7 +68,7 @@ namespace Asa.Common.GUI.Common
 						height = temp;
 				}
 			}
-			if (x.HasValue && y.HasValue)
+			if (x.HasValue && y.HasValue && x.Value < Int16.MaxValue && y.Value < Int16.MaxValue)
 			{
 				_form.StartPosition = FormStartPosition.Manual;
 				_form.Location = new Point(x.Value, y.Value);

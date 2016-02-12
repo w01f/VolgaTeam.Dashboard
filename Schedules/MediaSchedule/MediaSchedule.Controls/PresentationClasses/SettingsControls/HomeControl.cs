@@ -66,6 +66,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).Visible =
 				Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
 
+			Controller.Instance.ContentController.RibbonTabsStateChanged += OnRibbonRibbonTabsStateChanged;
+
 			Controller.Instance.HomeBusinessName.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeDecisionMaker.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeClientType.EditValueChanged += OnSchedulePropertyValueChanged;
@@ -110,7 +112,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				Controller.Instance.HomeAccountNumberCheck.Enabled = EditedSettings.HomeViewSettings.EnableAccountNumber;
 
 				xtraTabPageMedia.Text = String.Format("{0} Strategy", MediaMetaData.Instance.DataTypeString);
-				pbMediaLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Properties.Resources.HomeTVLogo : Properties.Resources.HomeRadioLogo;
 
 				Controller.Instance.HomeClientType.Properties.Items.Clear();
 				Controller.Instance.HomeClientType.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.ClientTypes.ToArray());
@@ -246,7 +247,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			}
 
 			if (DigitalContent == null ||
-				ContentUpdateInfo.ChangeInfo.WholeScheduleChanged || 
+				ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
 				ContentUpdateInfo.ChangeInfo.DigitalContentChanged)
 			{
 				DigitalContent = Schedule.DigitalProductsContent.Clone<DigitalProductsContent, DigitalProductsContent>();
@@ -457,10 +458,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 						warningText.Add(String.Format("*The LAST WEEK of your schedule ENDS on a {0}.{1}({2} - {3})", endDate.DayOfWeek, Environment.NewLine, weekStart.ToString("M/d/yy"), endDate.ToString("M/d/yy")));
 					}
 				}
-				laFlexDateWarning.Text = String.Join(String.Format("{0}{0}", Environment.NewLine), warningText);
 			}
-			else
-				laFlexDateWarning.Text = String.Empty;
 		}
 
 		private void OnProductsTabPageChanged(object sender, TabPageChangedEventArgs e)
@@ -470,6 +468,13 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				e.Page == xtraTabPageDigital;
 			UpdateProductsCount();
 			splitContainerControl.PanelVisibility = e.Page == xtraTabPageDigital ? SplitPanelVisibility.Panel1 : SplitPanelVisibility.Both;
+		}
+
+		private void OnRibbonRibbonTabsStateChanged(object sender, EventArgs e)
+		{
+			buttonXSnapshot.Enabled = Controller.Instance.TabSnapshot.Visible && Controller.Instance.TabSnapshot.Enabled;
+			buttonXOptions.Enabled = Controller.Instance.TabOptions.Visible && Controller.Instance.TabOptions.Enabled;
+			buttonXCalendar.Enabled = Controller.Instance.TabCalendar2.Visible && Controller.Instance.TabCalendar2.Enabled;
 		}
 
 		private void OnDefaultPanelResize(object sender, EventArgs e)
@@ -767,6 +772,21 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			else if (buttonXMonthlySchedule.Checked)
 				EditedSettings.SelectedSpotType = SpotType.Month;
 			SettingsNotSaved = true;
+		}
+
+		private void buttonXSnapshot_Click(object sender, EventArgs e)
+		{
+			Controller.Instance.TabSnapshot.Select();
+		}
+
+		private void buttonXOptions_Click(object sender, EventArgs e)
+		{
+			Controller.Instance.TabOptions.Select();
+		}
+
+		private void buttonXCalendar_Click(object sender, EventArgs e)
+		{
+			Controller.Instance.TabCalendar2.Select();
 		}
 		#endregion
 

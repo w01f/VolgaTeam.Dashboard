@@ -376,7 +376,7 @@ namespace Asa.Media.Controls
 			var args = new FloaterRequestedEventArgs
 			{
 				AfterShow = afterShow,
-				Logo = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? Properties.Resources.TVRibbonLogo : Properties.Resources.RadioRibbonLogo
+				Logo = Properties.Resources.RibbonLogo
 			};
 			FloaterRequested?.Invoke(null, args);
 		}

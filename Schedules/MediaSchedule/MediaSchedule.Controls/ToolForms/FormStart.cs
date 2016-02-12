@@ -13,9 +13,6 @@ namespace Asa.Media.Controls.ToolForms
 		{
 			InitializeComponent();
 			Text = String.Format(Text, MediaMetaData.Instance.DataTypeString);
-			pbLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
-				? Resources.TVRibbonLogo
-				: Resources.RadioRibbonLogo;
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 3, laTitle.Font.Style);

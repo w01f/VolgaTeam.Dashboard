@@ -8,7 +8,7 @@ using Asa.Common.GUI.Summary;
 namespace Asa.Media.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
-	class ProductSummaryControl : SectionSummaryBaseControl<SummaryProductItemControl, ProductSummaryInfoControl>
+	class ProductSummaryControl : SectionSummaryBaseControl<SummaryMediaProductItemControl, ProductSummaryInfoControl>
 	{
 		protected override bool CustomOrder
 		{

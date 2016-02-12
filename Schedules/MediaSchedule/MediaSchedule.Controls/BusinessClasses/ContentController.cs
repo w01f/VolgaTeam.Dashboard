@@ -25,6 +25,8 @@ namespace Asa.Media.Controls.BusinessClasses
 		public List<IContentControl> ContentControls { get; }
 		public List<ContentEditorRelation> EditorRelations { get; }
 
+		public event EventHandler<EventArgs> RibbonTabsStateChanged;
+
 		public RibbonControl ContentRibbon
 		{
 			get { return Controller.Instance.Ribbon; }
@@ -148,6 +150,7 @@ namespace Asa.Media.Controls.BusinessClasses
 		public void UpdateTabsSate()
 		{
 			_tabStateManager.UpdateTabState();
+			RibbonTabsStateChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private static IContentControl CreateContentEditor(string id)

@@ -311,6 +311,9 @@
     <Compile Include="PresentationClasses\Summary\SummaryContainer.Designer.cs">
       <DependentUpon>SummaryContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryMediaProductItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Summary\SummaryTab.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -434,6 +437,7 @@
     <EmbeddedResource Include="PresentationClasses\Summary\SummaryTypeSettingsControl.resx">
       <DependentUpon>SummaryTypeSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -552,18 +556,6 @@
     <None Include="Resources\FavoritesLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HomeTVLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HomeRadioLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RadioRibbonLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TVRibbonLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SectionSettingsDigital.png" />
   </ItemGroup>
   <ItemGroup>
@@ -660,7 +652,27 @@
       <Name>Online.Controls</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\RibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeScheduleTitleLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeSnapshot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeOptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeCalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeConceptTitleLogo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

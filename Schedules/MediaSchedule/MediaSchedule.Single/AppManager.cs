@@ -158,7 +158,7 @@ namespace Asa.Media.Single
 
 		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var afterBack = new Action<bool>(maximize => ActivateMainForm(maximize));
+			var afterBack = new Action<bool>(ActivateMainForm);
 			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo, e.AfterShow, null, afterBack);
 		}
 	}

@@ -15,8 +15,6 @@ namespace Asa.Bar.App
 {
 	class AppManager
 	{
-		private static readonly AppManager _instance = new AppManager();
-
 		protected FormMain MainForm { get; private set; }
 
 		public SettingsManager Settings { get; private set; }
@@ -29,10 +27,7 @@ namespace Asa.Bar.App
 		public MonitorConfigurationWatcher MonitorConfigurationWatcher { get; private set; }
 		public WebBrowserManager WebBrowserManager { get; private set; }
 
-		public static AppManager Instance
-		{
-			get { return _instance; }
-		}
+		public static AppManager Instance { get; } = new AppManager();
 
 		private AppManager()
 		{
@@ -50,6 +45,7 @@ namespace Asa.Bar.App
 			bool stopRun = false;
 
 			AppProfileManager.Instance.InitApplication(AppTypeEnum.AdBar);
+			PopupMessageHelper.Instance.Title = "adsalesapps";
 
 			FileStorageManager.Instance.UsingLocalMode += (o, e) =>
 			{

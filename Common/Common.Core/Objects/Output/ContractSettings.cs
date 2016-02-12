@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using System.Xml;
 
 namespace Asa.Common.Core.Objects.Output
 {
@@ -32,6 +34,47 @@ namespace Asa.Common.Core.Objects.Output
 				if (RateExpirationDate.HasValue)
 					return "re_only.pptx";
 				return String.Empty;
+			}
+		}
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(@"<ShowSignatureLine>" + ShowSignatureLine + @"</ShowSignatureLine>");
+			result.AppendLine(@"<ShowDisclaimer>" + ShowDisclaimer + @"</ShowDisclaimer>");
+			if (RateExpirationDate.HasValue)
+				result.AppendLine(@"<RateExpirationDate>" + RateExpirationDate.Value + @"</RateExpirationDate>");
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "ShowSignatureLine":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowSignatureLine = temp;
+						}
+						break;
+					case "ShowDisclaimer":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowDisclaimer = temp;
+						}
+						break;
+					case "RateExpirationDate":
+						{
+							DateTime temp;
+							if (DateTime.TryParse(childNode.InnerText, out temp))
+								RateExpirationDate = temp;
+						}
+						break;
+				}
 			}
 		}
 	}

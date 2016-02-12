@@ -35,8 +35,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -201,13 +200,16 @@
   <ItemGroup>
     <None Include="Resources\ProgressCancel.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>robocopy /s /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\adsalesapps.exe" "*.dll" "adsalesapps.exe"
+    <PostBuildEvent>robocopy /s /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\adsalesapps.exe" "*.dll" "adsalesapps.exe" /xf "Microsoft*.dll" "office.dll" "stdole.dll"
 if %25errorlevel%25 leq 1 exit 0 else exit %25errorlevel%25</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

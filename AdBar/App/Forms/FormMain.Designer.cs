@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.superTabControlMain = new DevComponents.DotNetBar.SuperTabControl();
 			this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
@@ -55,8 +54,8 @@
 			this.buttonItemBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			this.superTabItemTemplates = new DevComponents.DotNetBar.SuperTabItem();
 			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
-			this.timerUpdateWindow = new System.Windows.Forms.Timer(this.components);
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
+			this.timerUpdateWindow = new System.Windows.Forms.Timer();
 			((System.ComponentModel.ISupportInitialize)(this.superTabControlMain)).BeginInit();
 			this.superTabControlMain.SuspendLayout();
 			this.superTabControlPanel2.SuspendLayout();
@@ -419,10 +418,9 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormMain";
-			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "adBAR";
+			this.Text = "adsalesapps";
 			this.TopMost = true;
 			this.Deactivate += new System.EventHandler(this.OnFormDeactivate);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);

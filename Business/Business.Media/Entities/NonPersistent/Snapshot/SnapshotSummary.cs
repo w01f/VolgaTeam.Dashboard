@@ -47,7 +47,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		{
 			Parent = parent;
 
-			ApplySettingsForAll = false;
+			ApplySettingsForAll = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.UniversalToggles;
 
 			ContractSettings = new ContractSettings();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Asa.Business.Common.Enums;
+using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Common;
 using Asa.Business.Online.Entities.NonPersistent;
 
@@ -12,7 +13,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		public DateTime? SelectedQuarter { get; set; }
 		public DigitalLegend DigitalLegend { get; set; }
 		public bool ApplySettingsForAll { get; set; }
-		public List<ScheduleSection> Sections { get; private set; }
+		public List<ScheduleSection> Sections { get; }
 
 		public abstract int TotalPeriods { get; }
 

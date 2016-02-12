@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			this.pbNoSnapshots = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlSnapshots = new DevExpress.XtraTab.XtraTabControl();
 			this.pnSnapshots = new System.Windows.Forms.Panel();
@@ -96,6 +96,8 @@
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoSnapshots = new System.Windows.Forms.Panel();
+			this.pnApplyForAll = new System.Windows.Forms.Panel();
+			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).BeginInit();
 			this.pnSnapshots.SuspendLayout();
@@ -123,6 +125,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).BeginInit();
 			this.contextMenuStripSnapshot.SuspendLayout();
 			this.pnNoSnapshots.SuspendLayout();
+			this.pnApplyForAll.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pbNoSnapshots
@@ -384,6 +388,7 @@
 			// pnOptionsInfo
 			// 
 			this.pnOptionsInfo.BackColor = System.Drawing.Color.Transparent;
+			this.pnOptionsInfo.Controls.Add(this.pnApplyForAll);
 			this.pnOptionsInfo.Controls.Add(this.pnSnapshotInfo);
 			this.pnOptionsInfo.Controls.Add(this.pnSummaryInfo);
 			this.pnOptionsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -407,9 +412,9 @@
 			this.pnSnapshotInfo.Controls.Add(this.buttonXSnapshotTime);
 			this.pnSnapshotInfo.Controls.Add(this.buttonXSnapshotProgram);
 			this.pnSnapshotInfo.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnSnapshotInfo.Location = new System.Drawing.Point(0, 278);
+			this.pnSnapshotInfo.Location = new System.Drawing.Point(0, 276);
 			this.pnSnapshotInfo.Name = "pnSnapshotInfo";
-			this.pnSnapshotInfo.Size = new System.Drawing.Size(290, 333);
+			this.pnSnapshotInfo.Size = new System.Drawing.Size(290, 337);
 			this.pnSnapshotInfo.TabIndex = 121;
 			// 
 			// buttonXSnapshotStation
@@ -613,7 +618,7 @@
 			this.pnSummaryInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnSummaryInfo.Name = "pnSummaryInfo";
-			this.pnSummaryInfo.Size = new System.Drawing.Size(290, 278);
+			this.pnSummaryInfo.Size = new System.Drawing.Size(290, 276);
 			this.pnSummaryInfo.TabIndex = 120;
 			// 
 			// buttonXSummaryLineId
@@ -939,9 +944,9 @@
 			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(149, 20);
-			toolTipItem1.Text = "Change Slide Output Settings";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
+			toolTipItem2.Text = "Change Slide Output Settings";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.hyperLinkEditInfoContract.SuperTip = superToolTip2;
 			this.hyperLinkEditInfoContract.TabIndex = 123;
 			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoContract_OpenLink);
 			// 
@@ -960,9 +965,9 @@
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(149, 20);
-			toolTipItem2.Text = "Change Slide Output Settings";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip2;
+			toolTipItem3.Text = "Change Slide Output Settings";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip3;
 			this.hyperLinkEditInfoAdvanced.TabIndex = 122;
 			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditInfoAdvanced_OpenLink);
 			// 
@@ -996,6 +1001,40 @@
 			this.pnNoSnapshots.Padding = new System.Windows.Forms.Padding(40, 20, 20, 20);
 			this.pnNoSnapshots.Size = new System.Drawing.Size(200, 100);
 			this.pnNoSnapshots.TabIndex = 3;
+			// 
+			// pnApplyForAll
+			// 
+			this.pnApplyForAll.Controls.Add(this.checkEditApplyForAll);
+			this.pnApplyForAll.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnApplyForAll.Location = new System.Drawing.Point(0, 469);
+			this.pnApplyForAll.Name = "pnApplyForAll";
+			this.pnApplyForAll.Size = new System.Drawing.Size(290, 30);
+			this.pnApplyForAll.TabIndex = 130;
+			// 
+			// checkEditApplyForAll
+			// 
+			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(20, 3);
+			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
+			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.Caption = "Use these Settings for all Schedules";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(249, 20);
+			this.checkEditApplyForAll.StyleController = this.styleController;
+			this.checkEditApplyForAll.TabIndex = 128;
+			this.checkEditApplyForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
 			// 
 			// SnapshotContainer
 			// 
@@ -1034,6 +1073,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).EndInit();
 			this.contextMenuStripSnapshot.ResumeLayout(false);
 			this.pnNoSnapshots.ResumeLayout(false);
+			this.pnApplyForAll.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1103,6 +1144,7 @@
 		private DevComponents.DotNetBar.ButtonX buttonXSelectAll;
 		private System.Windows.Forms.Panel pnInfoBottom;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;
-
+		private System.Windows.Forms.Panel pnApplyForAll;
+		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
 	}
 }

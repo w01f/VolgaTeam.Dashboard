@@ -269,6 +269,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private void LoadActiveTabData(bool activate = false)
 		{
 			_allowToSave = false;
+
+			pnApplyForAll.Visible = EditedContent.Snapshots.Count > 1 && ActiveSnapshot != null;
+			checkEditApplyForAll.Checked = EditedContent.SnapshotSummary.ApplySettingsForAll;
+
 			if (ActiveSnapshot != null)
 			{
 				pnSnapshotInfo.Visible = true;
@@ -605,14 +609,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					form.checkEditShowSpotsPerWeek.Enabled = true;
 					form.labelControlDescriptionShowSpotsPerWeek.Enabled = true;
 					form.checkEditShowSpotsPerWeek.Checked = ActiveSnapshot.Data.ShowSpotsPerWeek;
-					form.checkEditApplyForAll.Enabled = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() > 1;
-					form.labelControlDescriptionApplyForAll.Enabled = xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Count() > 1;
-					form.checkEditApplyForAll.Checked = EditedContent.SnapshotSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
-					form.checkEditApplyForAll.Enabled = false;
-					form.labelControlDescriptionApplyForAll.Enabled = false;
 					form.checkEditShowSpotsPerWeek.Enabled = false;
 					form.labelControlDescriptionShowSpotsPerWeek.Enabled = false;
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
@@ -627,7 +626,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					ActiveSnapshot.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveSnapshot.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
 					ActiveSnapshot.Data.ShowSpotsPerWeek = form.checkEditShowSpotsPerWeek.Checked;
-					EditedContent.SnapshotSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
 					if (EditedContent.SnapshotSummary.ApplySettingsForAll)
 					{
 						ApplySharedSettings(ActiveSnapshot);
@@ -715,6 +713,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+
+			EditedContent.SnapshotSummary.ApplySettingsForAll = checkEditApplyForAll.Checked;
+
 			if (ActiveSnapshot != null)
 			{
 				ActiveSnapshot.Data.ShowLineId = buttonXSnapshotLineId.Checked;

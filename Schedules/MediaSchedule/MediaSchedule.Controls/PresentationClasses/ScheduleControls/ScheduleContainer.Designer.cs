@@ -31,10 +31,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.quarterSelectorControl = new Asa.Media.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
 			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
@@ -83,6 +83,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.buttonXCPP = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXLength = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXStation = new DevComponents.DotNetBar.ButtonX();
+			this.pnApplyForAll = new System.Windows.Forms.Panel();
+			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageOptionsDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalInfoControl = new Asa.Media.Controls.PresentationClasses.Digital.DigitalInfoControl();
 			this.xtraTabPageOptionsTotals = new DevExpress.XtraTab.XtraTabPage();
@@ -108,6 +110,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.contextMenuStripSections = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
+			this.labelControlGenericSpotColumNamesWarning = new DevExpress.XtraEditors.LabelControl();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
@@ -125,6 +128,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageOptionsLine.SuspendLayout();
 			this.pnOptionsLine.SuspendLayout();
+			this.pnApplyForAll.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			this.xtraTabPageOptionsDigital.SuspendLayout();
 			this.xtraTabPageOptionsTotals.SuspendLayout();
 			this.pnOptionsTotals.SuspendLayout();
@@ -146,7 +151,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(300, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(702, 40);
+			this.pnTop.Size = new System.Drawing.Size(792, 40);
 			this.pnTop.TabIndex = 1;
 			// 
 			// quarterSelectorControl
@@ -156,7 +161,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.quarterSelectorControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.quarterSelectorControl.Location = new System.Drawing.Point(252, 0);
 			this.quarterSelectorControl.Name = "quarterSelectorControl";
-			this.quarterSelectorControl.Size = new System.Drawing.Size(450, 40);
+			this.quarterSelectorControl.Size = new System.Drawing.Size(540, 40);
 			this.quarterSelectorControl.TabIndex = 51;
 			// 
 			// labelControlScheduleInfo
@@ -189,6 +194,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			// 
 			// pnBottom
 			// 
+			this.pnBottom.Controls.Add(this.labelControlGenericSpotColumNamesWarning);
 			this.pnBottom.Controls.Add(this.pnAgencyDiscount);
 			this.pnBottom.Controls.Add(this.pnNetRate);
 			this.pnBottom.Controls.Add(this.pnTotalCost);
@@ -198,9 +204,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.pnBottom.Controls.Add(this.pnTotalSpots);
 			this.pnBottom.Controls.Add(this.pnTotalPeriods);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBottom.Location = new System.Drawing.Point(0, 460);
+			this.pnBottom.Location = new System.Drawing.Point(0, 498);
 			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(1002, 43);
+			this.pnBottom.Size = new System.Drawing.Size(1092, 43);
 			this.pnBottom.TabIndex = 2;
 			// 
 			// pnAgencyDiscount
@@ -473,7 +479,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.labelControlFlexFlightDatesWarning.LookAndFeel.UseDefaultLookAndFeel = false;
 			this.labelControlFlexFlightDatesWarning.Name = "labelControlFlexFlightDatesWarning";
 			this.labelControlFlexFlightDatesWarning.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlFlexFlightDatesWarning.Size = new System.Drawing.Size(702, 27);
+			this.labelControlFlexFlightDatesWarning.Size = new System.Drawing.Size(792, 27);
 			this.labelControlFlexFlightDatesWarning.TabIndex = 4;
 			this.labelControlFlexFlightDatesWarning.Text = "*You have PARTIAL WEEKS in your schedule. <u><b><color=red>CLICK HERE</color></b>" +
     "</u>";
@@ -498,7 +504,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlSections.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlSections.Location = new System.Drawing.Point(300, 67);
 			this.xtraTabControlSections.Name = "xtraTabControlSections";
-			this.xtraTabControlSections.Size = new System.Drawing.Size(702, 393);
+			this.xtraTabControlSections.Size = new System.Drawing.Size(792, 431);
 			this.xtraTabControlSections.TabIndex = 5;
 			this.xtraTabControlSections.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlSections_SelectedPageChanged);
 			this.xtraTabControlSections.CloseButtonClick += new System.EventHandler(this.xtraTabControlSections_CloseButtonClick);
@@ -544,7 +550,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.MultiLine = DevExpress.Utils.DefaultBoolean.False;
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageOptionsLine;
-			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 366);
+			this.xtraTabControlOptions.Size = new System.Drawing.Size(296, 404);
 			this.xtraTabControlOptions.TabIndex = 0;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageOptionsLine,
@@ -557,8 +563,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabPageOptionsLine.Appearance.PageClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.xtraTabPageOptionsLine.Appearance.PageClient.Options.UseBackColor = true;
 			this.xtraTabPageOptionsLine.Controls.Add(this.pnOptionsLine);
+			this.xtraTabPageOptionsLine.Controls.Add(this.pnApplyForAll);
 			this.xtraTabPageOptionsLine.Name = "xtraTabPageOptionsLine";
-			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(290, 335);
+			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(290, 373);
 			this.xtraTabPageOptionsLine.Text = "Radio";
 			// 
 			// pnOptionsLine
@@ -580,7 +587,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsLine.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsLine.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsLine.Name = "pnOptionsLine";
-			this.pnOptionsLine.Size = new System.Drawing.Size(290, 335);
+			this.pnOptionsLine.Size = new System.Drawing.Size(290, 343);
 			this.pnOptionsLine.TabIndex = 0;
 			// 
 			// buttonXProgram
@@ -784,11 +791,45 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.buttonXStation.TextColor = System.Drawing.Color.Black;
 			this.buttonXStation.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
+			// pnApplyForAll
+			// 
+			this.pnApplyForAll.Controls.Add(this.checkEditApplyForAll);
+			this.pnApplyForAll.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnApplyForAll.Location = new System.Drawing.Point(0, 343);
+			this.pnApplyForAll.Name = "pnApplyForAll";
+			this.pnApplyForAll.Size = new System.Drawing.Size(290, 30);
+			this.pnApplyForAll.TabIndex = 129;
+			// 
+			// checkEditApplyForAll
+			// 
+			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(20, 3);
+			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
+			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.Caption = "Use these Settings for all Schedules";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(249, 20);
+			this.checkEditApplyForAll.StyleController = this.styleController;
+			this.checkEditApplyForAll.TabIndex = 128;
+			this.checkEditApplyForAll.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
+			// 
 			// xtraTabPageOptionsDigital
 			// 
 			this.xtraTabPageOptionsDigital.Controls.Add(this.digitalInfoControl);
 			this.xtraTabPageOptionsDigital.Name = "xtraTabPageOptionsDigital";
-			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(290, 335);
+			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(290, 373);
 			this.xtraTabPageOptionsDigital.Text = "Digital";
 			// 
 			// digitalInfoControl
@@ -799,14 +840,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.digitalInfoControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalInfoControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.digitalInfoControl.Name = "digitalInfoControl";
-			this.digitalInfoControl.Size = new System.Drawing.Size(290, 335);
+			this.digitalInfoControl.Size = new System.Drawing.Size(290, 373);
 			this.digitalInfoControl.TabIndex = 0;
 			// 
 			// xtraTabPageOptionsTotals
 			// 
 			this.xtraTabPageOptionsTotals.Controls.Add(this.pnOptionsTotals);
 			this.xtraTabPageOptionsTotals.Name = "xtraTabPageOptionsTotals";
-			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(290, 335);
+			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(290, 373);
 			this.xtraTabPageOptionsTotals.Text = "Info";
 			// 
 			// pnOptionsTotals
@@ -823,7 +864,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.pnOptionsTotals.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsTotals.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsTotals.Name = "pnOptionsTotals";
-			this.pnOptionsTotals.Size = new System.Drawing.Size(290, 335);
+			this.pnOptionsTotals.Size = new System.Drawing.Size(290, 373);
 			this.pnOptionsTotals.TabIndex = 1;
 			// 
 			// buttonXDiscount
@@ -954,7 +995,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 335);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 373);
 			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
@@ -965,7 +1006,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(290, 335);
+			this.pnStyle.Size = new System.Drawing.Size(290, 373);
 			this.pnStyle.TabIndex = 0;
 			// 
 			// outputColorSelector
@@ -977,7 +1018,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.outputColorSelector.Location = new System.Drawing.Point(0, 32);
 			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(290, 303);
+			this.outputColorSelector.Size = new System.Drawing.Size(290, 341);
 			this.outputColorSelector.TabIndex = 50;
 			// 
 			// laColorsTitle
@@ -1002,7 +1043,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
-			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 416);
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 454);
 			this.retractableBarControl.Content.TabIndex = 1;
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -1018,7 +1059,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarControl.Name = "retractableBarControl";
-			this.retractableBarControl.Size = new System.Drawing.Size(300, 460);
+			this.retractableBarControl.Size = new System.Drawing.Size(300, 498);
 			this.retractableBarControl.TabIndex = 4;
 			// 
 			// pnInfoBottom
@@ -1027,7 +1068,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.pnInfoBottom.Controls.Add(this.hyperLinkEditInfoContract);
 			this.pnInfoBottom.Controls.Add(this.hyperLinkEditInfoAdvanced);
 			this.pnInfoBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnInfoBottom.Location = new System.Drawing.Point(0, 366);
+			this.pnInfoBottom.Location = new System.Drawing.Point(0, 404);
 			this.pnInfoBottom.Name = "pnInfoBottom";
 			this.pnInfoBottom.Size = new System.Drawing.Size(296, 50);
 			this.pnInfoBottom.TabIndex = 124;
@@ -1049,9 +1090,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.hyperLinkEditInfoContract.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.hyperLinkEditInfoContract.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditInfoContract.Size = new System.Drawing.Size(149, 20);
-			toolTipItem3.Text = "Change Slide Output Settings";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.hyperLinkEditInfoContract.SuperTip = superToolTip3;
+			toolTipItem1.Text = "Change Slide Output Settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditInfoContract.SuperTip = superToolTip1;
 			this.hyperLinkEditInfoContract.TabIndex = 123;
 			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnContractSettingsOpenLink);
 			// 
@@ -1070,9 +1111,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.hyperLinkEditInfoAdvanced.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.hyperLinkEditInfoAdvanced.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditInfoAdvanced.Size = new System.Drawing.Size(149, 20);
-			toolTipItem1.Text = "Change Slide Output Settings";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip1;
+			toolTipItem2.Text = "Change Slide Output Settings";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.hyperLinkEditInfoAdvanced.SuperTip = superToolTip2;
 			this.hyperLinkEditInfoAdvanced.TabIndex = 122;
 			this.hyperLinkEditInfoAdvanced.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnAdvancedSettingsOpenLink);
 			// 
@@ -1085,7 +1126,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.pnSections.Controls.Add(this.pnBottom);
 			this.pnSections.Location = new System.Drawing.Point(3, 3);
 			this.pnSections.Name = "pnSections";
-			this.pnSections.Size = new System.Drawing.Size(1002, 503);
+			this.pnSections.Size = new System.Drawing.Size(1092, 541);
 			this.pnSections.TabIndex = 6;
 			// 
 			// pnNoSections
@@ -1119,6 +1160,25 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.toolStripMenuItemSnapshotClone.Text = "Clone";
 			this.toolStripMenuItemSnapshotClone.Click += new System.EventHandler(this.toolStripMenuItemSectionsClone_Click);
 			// 
+			// labelControlGenericSpotColumNamesWarning
+			// 
+			this.labelControlGenericSpotColumNamesWarning.AllowHtmlString = true;
+			this.labelControlGenericSpotColumNamesWarning.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.labelControlGenericSpotColumNamesWarning.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlGenericSpotColumNamesWarning.Appearance.ForeColor = System.Drawing.Color.Red;
+			this.labelControlGenericSpotColumNamesWarning.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlGenericSpotColumNamesWarning.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlGenericSpotColumNamesWarning.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlGenericSpotColumNamesWarning.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.labelControlGenericSpotColumNamesWarning.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlGenericSpotColumNamesWarning.Location = new System.Drawing.Point(1005, 0);
+			this.labelControlGenericSpotColumNamesWarning.LookAndFeel.UseDefaultLookAndFeel = false;
+			this.labelControlGenericSpotColumNamesWarning.Name = "labelControlGenericSpotColumNamesWarning";
+			this.labelControlGenericSpotColumNamesWarning.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlGenericSpotColumNamesWarning.Size = new System.Drawing.Size(87, 43);
+			this.labelControlGenericSpotColumNamesWarning.TabIndex = 8;
+			this.labelControlGenericSpotColumNamesWarning.Text = "*Generic Schedule Mode";
+			// 
 			// ScheduleContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1127,7 +1187,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.Controls.Add(this.pnSections);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "ScheduleContainer";
-			this.Size = new System.Drawing.Size(1011, 593);
+			this.Size = new System.Drawing.Size(1098, 593);
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnBottom.ResumeLayout(false);
@@ -1145,6 +1205,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			this.xtraTabControlOptions.ResumeLayout(false);
 			this.xtraTabPageOptionsLine.ResumeLayout(false);
 			this.pnOptionsLine.ResumeLayout(false);
+			this.pnApplyForAll.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			this.xtraTabPageOptionsDigital.ResumeLayout(false);
 			this.xtraTabPageOptionsTotals.ResumeLayout(false);
 			this.pnOptionsTotals.ResumeLayout(false);
@@ -1237,5 +1299,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 		private ToolStripMenuItem toolStripMenuItemSnapshotRename;
 		private ToolStripMenuItem toolStripMenuItemSnapshotClone;
 		private DevComponents.DotNetBar.ButtonX buttonXProgram;
-    }
+		private Panel pnApplyForAll;
+		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
+		private DevExpress.XtraEditors.LabelControl labelControlGenericSpotColumNamesWarning;
+	}
 }

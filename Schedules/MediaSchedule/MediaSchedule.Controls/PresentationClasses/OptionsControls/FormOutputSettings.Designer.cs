@@ -33,15 +33,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.labelControlDescriptionLockToMaster = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlDescriptionApplyForAll = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescriptionShowSpotX = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescriptionUseDecimalRate = new DevExpress.XtraEditors.LabelControl();
-			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
@@ -68,7 +65,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(78, 250);
+			this.buttonXOK.Location = new System.Drawing.Point(78, 191);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -81,7 +78,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(219, 250);
+			this.buttonXCancel.Location = new System.Drawing.Point(219, 191);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -97,27 +94,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.labelControlDescriptionLockToMaster.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlDescriptionLockToMaster.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlDescriptionLockToMaster.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(28, 209);
+			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(28, 151);
 			this.labelControlDescriptionLockToMaster.Name = "labelControlDescriptionLockToMaster";
 			this.labelControlDescriptionLockToMaster.Size = new System.Drawing.Size(346, 19);
 			this.labelControlDescriptionLockToMaster.TabIndex = 141;
 			this.labelControlDescriptionLockToMaster.Text = "<i><color=Gray>The schedule will be protected on the slide Master</color></i>";
-			// 
-			// labelControlDescriptionApplyForAll
-			// 
-			this.labelControlDescriptionApplyForAll.AllowHtmlString = true;
-			this.labelControlDescriptionApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlDescriptionApplyForAll.Appearance.BackColor = System.Drawing.Color.White;
-			this.labelControlDescriptionApplyForAll.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlDescriptionApplyForAll.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.labelControlDescriptionApplyForAll.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlDescriptionApplyForAll.Location = new System.Drawing.Point(28, 151);
-			this.labelControlDescriptionApplyForAll.Name = "labelControlDescriptionApplyForAll";
-			this.labelControlDescriptionApplyForAll.Size = new System.Drawing.Size(346, 19);
-			this.labelControlDescriptionApplyForAll.TabIndex = 140;
-			this.labelControlDescriptionApplyForAll.Text = "<i><color=Gray>Use the same schedule toggle settings for all schedules in this fi" +
-    "le…</color></i>";
 			// 
 			// labelControlDescriptionShowSpotX
 			// 
@@ -149,36 +130,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.labelControlDescriptionUseDecimalRate.TabIndex = 138;
 			this.labelControlDescriptionUseDecimalRate.Text = "<i><color=Gray>Show $100.00  instead of just $100…</color></i>";
 			// 
-			// checkEditApplyForAll
-			// 
-			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 128);
-			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
-			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
-			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AutoHeight = false;
-			this.checkEditApplyForAll.Properties.Caption = "<b>D.</b> Universal Toggle Buttons";
-			this.checkEditApplyForAll.Size = new System.Drawing.Size(362, 17);
-			this.checkEditApplyForAll.StyleController = this.styleController;
-			this.checkEditApplyForAll.TabIndex = 137;
-			// 
 			// checkEditLockToMaster
 			// 
 			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 187);
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 129);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -228,17 +184,15 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(389, 298);
-			this.Controls.Add(this.labelControlDescriptionLockToMaster);
-			this.Controls.Add(this.labelControlDescriptionApplyForAll);
+			this.ClientSize = new System.Drawing.Size(389, 239);
 			this.Controls.Add(this.labelControlDescriptionShowSpotX);
 			this.Controls.Add(this.labelControlDescriptionUseDecimalRate);
-			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.checkEditLockToMaster);
 			this.Controls.Add(this.checkEditUseDecimalRate);
 			this.Controls.Add(this.checkEditShowSpotX);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
+			this.Controls.Add(this.labelControlDescriptionLockToMaster);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -249,9 +203,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Advanced Settings";
-			this.Load += new System.EventHandler(this.FormOutputSettings_Load);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
@@ -265,12 +217,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private DevComponents.DotNetBar.ButtonX buttonXOK;
 		private DevComponents.DotNetBar.ButtonX buttonXCancel;
 		public DevExpress.XtraEditors.LabelControl labelControlDescriptionLockToMaster;
-		public DevExpress.XtraEditors.LabelControl labelControlDescriptionApplyForAll;
 		public DevExpress.XtraEditors.LabelControl labelControlDescriptionShowSpotX;
 		public DevExpress.XtraEditors.LabelControl labelControlDescriptionUseDecimalRate;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotX;
 		public DevExpress.XtraEditors.CheckEdit checkEditUseDecimalRate;
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
-		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
 	}
 }

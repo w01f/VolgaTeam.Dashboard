@@ -105,7 +105,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				laColorsTitle.Font = new Font(laColorsTitle.Font.FontFamily, laColorsTitle.Font.Size - 2, laColorsTitle.Font.Style);
 				labelControlScheduleInfo.Font = new Font(labelControlScheduleInfo.Font.FontFamily,
 					labelControlScheduleInfo.Font.Size - 2, labelControlScheduleInfo.Font.Style);
-				
+
 				font = new Font(buttonXOptionAvgRate.Font.FontFamily, buttonXOptionAvgRate.Font.Size - 2,
 					buttonXOptionAvgRate.Font.Style);
 				buttonXOptionAvgRate.Font = font;
@@ -269,6 +269,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private void LoadActiveOptionSetData(bool activate = false)
 		{
 			_allowToSave = false;
+
+			pnApplyForAll.Visible = EditedContent.Options.Count > 1 && ActiveOptionControl != null;
+			checkEditApplyForAll.Checked = EditedContent.OptionsSummary.ApplySettingsForAll;
+
 			if (ActiveOptionControl != null)
 			{
 				pnSummaryInfo.Visible = false;
@@ -710,16 +714,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
-					form.checkEditApplyForAll.Enabled = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count() > 1;
-					form.labelControlDescriptionApplyForAll.Enabled = xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Count() > 1;
-					form.checkEditApplyForAll.Checked = EditedContent.OptionsSummary.ApplySettingsForAll;
 				}
 				else if (ActiveSummary != null)
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
-					form.checkEditApplyForAll.Enabled = false;
-					form.labelControlDescriptionApplyForAll.Enabled = false;
 				}
 				else
 					return;
@@ -729,7 +728,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				{
 					ActiveOptionControl.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveOptionControl.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
-					EditedContent.OptionsSummary.ApplySettingsForAll = form.checkEditApplyForAll.Checked;
 					if (EditedContent.OptionsSummary.ApplySettingsForAll)
 					{
 						ApplySharedSettings(ActiveOptionControl);
@@ -801,6 +799,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private void OnInfoSettingsChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+
+			EditedContent.OptionsSummary.ApplySettingsForAll = checkEditApplyForAll.Checked;
+
 			if (ActiveOptionControl != null)
 			{
 				ActiveOptionControl.Data.ShowStation = buttonXOptionStation.Checked;

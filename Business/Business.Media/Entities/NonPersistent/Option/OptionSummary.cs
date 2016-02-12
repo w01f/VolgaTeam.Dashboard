@@ -62,7 +62,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 			else
 				SpotType = SpotType.Week;
 
-			ApplySettingsForAll = false;
+			ApplySettingsForAll = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.UniversalToggles; ;
 
 			ContractSettings = new ContractSettings();
 

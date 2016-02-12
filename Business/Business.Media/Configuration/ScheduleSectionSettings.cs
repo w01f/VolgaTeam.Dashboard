@@ -25,6 +25,7 @@ namespace Asa.Business.Media.Configuration
 		public bool ShowNetRate { get; set; }
 		public bool ShowDiscount { get; set; }
 		public bool UseGenericDateColumns { get; set; }
+		public bool UniversalToggles { get; set; }
 
 		public string Serialize()
 		{
@@ -48,6 +49,7 @@ namespace Asa.Business.Media.Configuration
 			result.AppendLine(@"<ShowTotalRate>" + ShowTotalRate + @"</ShowTotalRate>");
 			result.AppendLine(@"<ShowNetRate>" + ShowNetRate + @"</ShowNetRate>");
 			result.AppendLine(@"<ShowDiscount>" + ShowDiscount + @"</ShowDiscount>");
+			result.AppendLine(@"<UniversalToggles>" + UniversalToggles + @"</UniversalToggles>");
 			return result.ToString();
 		}
 
@@ -189,6 +191,13 @@ namespace Asa.Business.Media.Configuration
 								ShowDiscount = temp;
 						}
 						break;
+					case "UniversalToggles":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								UniversalToggles = temp;
+						}
+						break;
 				}
 		}
 
@@ -279,6 +288,13 @@ namespace Asa.Business.Media.Configuration
 						bool temp;
 						if (Boolean.TryParse(value, out temp))
 							UseDecimalRates = temp;
+					}
+					break;
+				case "Universal Toggles":
+					{
+						bool temp;
+						if (Boolean.TryParse(value, out temp))
+							UniversalToggles = temp;
 					}
 					break;
 				case "No Brackets for Station on slide":

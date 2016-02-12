@@ -1,4 +1,6 @@
-﻿namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
+﻿using Asa.Business.Media.Configuration;
+
+namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 {
 	public class WeeklyScheduleContent : ProgramScheduleContent
 	{
@@ -7,8 +9,14 @@
 			get
 			{
 				var datesRange = ScheduleSettings.FlightDateEnd - ScheduleSettings.FlightDateStart;
-				return datesRange.HasValue ? datesRange.Value.Days / 7 + 1 : 0;
+				return datesRange?.Days / 7 + 1 ?? 0;
 			}
+		}
+
+		protected override void AfterConstruction()
+		{
+			base.AfterConstruction();
+			ApplySettingsForAll = MediaMetaData.Instance.ListManager.DefaultWeeklyScheduleSettings.UniversalToggles;
 		}
 
 		public override ScheduleSection CreateSection()

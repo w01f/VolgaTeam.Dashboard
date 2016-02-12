@@ -35,18 +35,15 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditShowSpotsPerWeek = new DevExpress.XtraEditors.CheckEdit();
 			this.labelControlDescriptionUseDecimalRate = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescriptionShowSpotX = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescriptionShowSpotsPerWeek = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlDescriptionApplyForAll = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescriptionLockToMaster = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotsPerWeek.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -85,7 +82,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(77, 309);
+			this.buttonXOK.Location = new System.Drawing.Point(77, 247);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -98,7 +95,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(218, 309);
+			this.buttonXCancel.Location = new System.Drawing.Point(218, 247);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -109,7 +106,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			// 
 			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 246);
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 188);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -141,31 +138,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.checkEditShowSpotX.Size = new System.Drawing.Size(362, 20);
 			this.checkEditShowSpotX.StyleController = this.styleController;
 			this.checkEditShowSpotX.TabIndex = 125;
-			// 
-			// checkEditApplyForAll
-			// 
-			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditApplyForAll.Location = new System.Drawing.Point(12, 187);
-			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
-			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
-			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AutoHeight = false;
-			this.checkEditApplyForAll.Properties.Caption = "<b>D.</b> Universal Toggle Buttons";
-			this.checkEditApplyForAll.Size = new System.Drawing.Size(362, 17);
-			this.checkEditApplyForAll.StyleController = this.styleController;
-			this.checkEditApplyForAll.TabIndex = 126;
 			// 
 			// checkEditShowSpotsPerWeek
 			// 
@@ -237,22 +209,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.labelControlDescriptionShowSpotsPerWeek.TabIndex = 131;
 			this.labelControlDescriptionShowSpotsPerWeek.Text = "<i><color=Gray>Use the flexible  <------spots-----></color></i>";
 			// 
-			// labelControlDescriptionApplyForAll
-			// 
-			this.labelControlDescriptionApplyForAll.AllowHtmlString = true;
-			this.labelControlDescriptionApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlDescriptionApplyForAll.Appearance.BackColor = System.Drawing.Color.White;
-			this.labelControlDescriptionApplyForAll.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlDescriptionApplyForAll.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.labelControlDescriptionApplyForAll.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlDescriptionApplyForAll.Location = new System.Drawing.Point(28, 210);
-			this.labelControlDescriptionApplyForAll.Name = "labelControlDescriptionApplyForAll";
-			this.labelControlDescriptionApplyForAll.Size = new System.Drawing.Size(346, 19);
-			this.labelControlDescriptionApplyForAll.TabIndex = 132;
-			this.labelControlDescriptionApplyForAll.Text = "<i><color=Gray>Use the same schedule toggle settings for all schedules in this fi" +
-    "le…</color></i>";
-			// 
 			// labelControlDescriptionLockToMaster
 			// 
 			this.labelControlDescriptionLockToMaster.AllowHtmlString = true;
@@ -262,7 +218,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.labelControlDescriptionLockToMaster.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlDescriptionLockToMaster.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlDescriptionLockToMaster.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(28, 268);
+			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(28, 210);
 			this.labelControlDescriptionLockToMaster.Name = "labelControlDescriptionLockToMaster";
 			this.labelControlDescriptionLockToMaster.Size = new System.Drawing.Size(346, 19);
 			this.labelControlDescriptionLockToMaster.TabIndex = 133;
@@ -271,19 +227,17 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(386, 357);
-			this.Controls.Add(this.labelControlDescriptionLockToMaster);
-			this.Controls.Add(this.labelControlDescriptionApplyForAll);
+			this.ClientSize = new System.Drawing.Size(386, 295);
 			this.Controls.Add(this.labelControlDescriptionShowSpotsPerWeek);
 			this.Controls.Add(this.labelControlDescriptionShowSpotX);
 			this.Controls.Add(this.labelControlDescriptionUseDecimalRate);
 			this.Controls.Add(this.checkEditShowSpotsPerWeek);
-			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.checkEditLockToMaster);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
 			this.Controls.Add(this.checkEditUseDecimalRate);
 			this.Controls.Add(this.checkEditShowSpotX);
+			this.Controls.Add(this.labelControlDescriptionLockToMaster);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -299,7 +253,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotsPerWeek.Properties)).EndInit();
 			this.ResumeLayout(false);
 
@@ -313,12 +266,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		public DevExpress.XtraEditors.CheckEdit checkEditUseDecimalRate;
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotX;
-		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotsPerWeek;
 		public DevExpress.XtraEditors.LabelControl labelControlDescriptionUseDecimalRate;
 		public DevExpress.XtraEditors.LabelControl labelControlDescriptionShowSpotX;
 		public DevExpress.XtraEditors.LabelControl labelControlDescriptionShowSpotsPerWeek;
-		public DevExpress.XtraEditors.LabelControl labelControlDescriptionApplyForAll;
 		public DevExpress.XtraEditors.LabelControl labelControlDescriptionLockToMaster;
 	}
 }

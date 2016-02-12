@@ -18,9 +18,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 
-				font = new Font(labelControlDescriptionApplyForAll.Font.FontFamily, labelControlDescriptionApplyForAll.Font.Size - 1,
-					labelControlDescriptionApplyForAll.Font.Style);
-				labelControlDescriptionApplyForAll.Font = font;
+				font = new Font(labelControlDescriptionLockToMaster.Font.FontFamily, labelControlDescriptionLockToMaster.Font.Size - 1,
+					labelControlDescriptionLockToMaster.Font.Style);
 				labelControlDescriptionLockToMaster.Font = font;
 				labelControlDescriptionUseDecimalRate.Font = font;
 				labelControlDescriptionShowSpotX.Font = font;
@@ -28,11 +27,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				buttonXOK.Font = new Font(buttonXOK.Font.FontFamily, buttonXOK.Font.Size - 2, buttonXOK.Font.Style);
 				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);
 			}
-		}
-
-		private void FormOutputSettings_Load(object sender, System.EventArgs e)
-		{
-			checkEditApplyForAll.ForeColor = checkEditApplyForAll.Enabled ? Color.Black : Color.Gray;
 		}
 	}
 }

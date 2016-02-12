@@ -55,6 +55,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageOptionsInfo = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsInfo = new System.Windows.Forms.Panel();
+			this.pnApplyForAll = new System.Windows.Forms.Panel();
+			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.pnSummaryInfo = new System.Windows.Forms.Panel();
 			this.buttonXSummaryTotalSpots = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSummaryMonthlyCost = new DevComponents.DotNetBar.ButtonX();
@@ -111,6 +113,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageOptionsInfo.SuspendLayout();
 			this.pnOptionsInfo.SuspendLayout();
+			this.pnApplyForAll.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			this.pnSummaryInfo.SuspendLayout();
 			this.pnOptionSetInfo.SuspendLayout();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
@@ -380,6 +384,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			// pnOptionsInfo
 			// 
 			this.pnOptionsInfo.BackColor = System.Drawing.Color.Transparent;
+			this.pnOptionsInfo.Controls.Add(this.pnApplyForAll);
 			this.pnOptionsInfo.Controls.Add(this.pnSummaryInfo);
 			this.pnOptionsInfo.Controls.Add(this.pnOptionSetInfo);
 			this.pnOptionsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -387,6 +392,40 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.pnOptionsInfo.Name = "pnOptionsInfo";
 			this.pnOptionsInfo.Size = new System.Drawing.Size(290, 499);
 			this.pnOptionsInfo.TabIndex = 1;
+			// 
+			// pnApplyForAll
+			// 
+			this.pnApplyForAll.Controls.Add(this.checkEditApplyForAll);
+			this.pnApplyForAll.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnApplyForAll.Location = new System.Drawing.Point(0, 469);
+			this.pnApplyForAll.Name = "pnApplyForAll";
+			this.pnApplyForAll.Size = new System.Drawing.Size(290, 30);
+			this.pnApplyForAll.TabIndex = 131;
+			// 
+			// checkEditApplyForAll
+			// 
+			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(20, 3);
+			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
+			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.Caption = "Use these Settings for all Schedules";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(249, 20);
+			this.checkEditApplyForAll.StyleController = this.styleController;
+			this.checkEditApplyForAll.TabIndex = 128;
+			this.checkEditApplyForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
 			// 
 			// pnSummaryInfo
 			// 
@@ -405,9 +444,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.pnSummaryInfo.Controls.Add(this.buttonXSummaryTotalWeeks);
 			this.pnSummaryInfo.Controls.Add(this.buttonXSummaryTallyCost);
 			this.pnSummaryInfo.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 437);
+			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 365);
 			this.pnSummaryInfo.Name = "pnSummaryInfo";
-			this.pnSummaryInfo.Size = new System.Drawing.Size(290, 396);
+			this.pnSummaryInfo.Size = new System.Drawing.Size(290, 341);
 			this.pnSummaryInfo.TabIndex = 124;
 			// 
 			// buttonXSummaryTotalSpots
@@ -416,7 +455,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTotalSpots.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTotalSpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTotalSpots.Location = new System.Drawing.Point(18, 295);
+			this.buttonXSummaryTotalSpots.Location = new System.Drawing.Point(18, 255);
 			this.buttonXSummaryTotalSpots.Name = "buttonXSummaryTotalSpots";
 			this.buttonXSummaryTotalSpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalSpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -431,7 +470,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryMonthlyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryMonthlyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryMonthlyCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryMonthlyCost.Location = new System.Drawing.Point(18, 239);
+			this.buttonXSummaryMonthlyCost.Location = new System.Drawing.Point(18, 207);
 			this.buttonXSummaryMonthlyCost.Name = "buttonXSummaryMonthlyCost";
 			this.buttonXSummaryMonthlyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryMonthlyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -447,7 +486,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTotalMonths.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalMonths.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTotalMonths.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTotalMonths.Location = new System.Drawing.Point(159, 239);
+			this.buttonXSummaryTotalMonths.Location = new System.Drawing.Point(159, 207);
 			this.buttonXSummaryTotalMonths.Name = "buttonXSummaryTotalMonths";
 			this.buttonXSummaryTotalMonths.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalMonths.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -463,7 +502,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryMonthlySpots.AutoCheckOnClick = true;
 			this.buttonXSummaryMonthlySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryMonthlySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryMonthlySpots.Location = new System.Drawing.Point(159, 183);
+			this.buttonXSummaryMonthlySpots.Location = new System.Drawing.Point(159, 159);
 			this.buttonXSummaryMonthlySpots.Name = "buttonXSummaryMonthlySpots";
 			this.buttonXSummaryMonthlySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryMonthlySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -493,7 +532,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTallySpots.AutoCheckOnClick = true;
 			this.buttonXSummaryTallySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTallySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTallySpots.Location = new System.Drawing.Point(18, 351);
+			this.buttonXSummaryTallySpots.Location = new System.Drawing.Point(18, 303);
 			this.buttonXSummaryTallySpots.Name = "buttonXSummaryTallySpots";
 			this.buttonXSummaryTallySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTallySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -524,7 +563,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryWeeklySpots.AutoCheckOnClick = true;
 			this.buttonXSummaryWeeklySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryWeeklySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryWeeklySpots.Location = new System.Drawing.Point(18, 127);
+			this.buttonXSummaryWeeklySpots.Location = new System.Drawing.Point(18, 111);
 			this.buttonXSummaryWeeklySpots.Name = "buttonXSummaryWeeklySpots";
 			this.buttonXSummaryWeeklySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryWeeklySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -539,7 +578,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryCampaign.AutoCheckOnClick = true;
 			this.buttonXSummaryCampaign.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryCampaign.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryCampaign.Location = new System.Drawing.Point(18, 71);
+			this.buttonXSummaryCampaign.Location = new System.Drawing.Point(18, 63);
 			this.buttonXSummaryCampaign.Name = "buttonXSummaryCampaign";
 			this.buttonXSummaryCampaign.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryCampaign.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -555,7 +594,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTotalCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTotalCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(159, 295);
+			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(159, 255);
 			this.buttonXSummaryTotalCost.Name = "buttonXSummaryTotalCost";
 			this.buttonXSummaryTotalCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -571,7 +610,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryWeeklyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryWeeklyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryWeeklyCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryWeeklyCost.Location = new System.Drawing.Point(159, 127);
+			this.buttonXSummaryWeeklyCost.Location = new System.Drawing.Point(159, 111);
 			this.buttonXSummaryWeeklyCost.Name = "buttonXSummaryWeeklyCost";
 			this.buttonXSummaryWeeklyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryWeeklyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -587,7 +626,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryComments.AutoCheckOnClick = true;
 			this.buttonXSummaryComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryComments.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryComments.Location = new System.Drawing.Point(159, 71);
+			this.buttonXSummaryComments.Location = new System.Drawing.Point(159, 63);
 			this.buttonXSummaryComments.Name = "buttonXSummaryComments";
 			this.buttonXSummaryComments.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -602,7 +641,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTotalWeeks.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalWeeks.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTotalWeeks.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTotalWeeks.Location = new System.Drawing.Point(18, 183);
+			this.buttonXSummaryTotalWeeks.Location = new System.Drawing.Point(18, 159);
 			this.buttonXSummaryTotalWeeks.Name = "buttonXSummaryTotalWeeks";
 			this.buttonXSummaryTotalWeeks.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalWeeks.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -618,7 +657,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXSummaryTallyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTallyCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(159, 351);
+			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(159, 303);
 			this.buttonXSummaryTallyCost.Name = "buttonXSummaryTallyCost";
 			this.buttonXSummaryTallyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTallyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -647,7 +686,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.pnOptionSetInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnOptionSetInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionSetInfo.Name = "pnOptionSetInfo";
-			this.pnOptionSetInfo.Size = new System.Drawing.Size(290, 437);
+			this.pnOptionSetInfo.Size = new System.Drawing.Size(290, 365);
 			this.pnOptionSetInfo.TabIndex = 123;
 			// 
 			// buttonXOptionStation
@@ -672,7 +711,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionLength.AutoCheckOnClick = true;
 			this.buttonXOptionLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionLength.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionLength.Location = new System.Drawing.Point(163, 123);
+			this.buttonXOptionLength.Location = new System.Drawing.Point(163, 103);
 			this.buttonXOptionLength.Name = "buttonXOptionLength";
 			this.buttonXOptionLength.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -687,7 +726,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionTallySpots.AutoCheckOnClick = true;
 			this.buttonXOptionTallySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionTallySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionTallySpots.Location = new System.Drawing.Point(18, 339);
+			this.buttonXOptionTallySpots.Location = new System.Drawing.Point(18, 279);
 			this.buttonXOptionTallySpots.Name = "buttonXOptionTallySpots";
 			this.buttonXOptionTallySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionTallySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -702,7 +741,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionDay.AutoCheckOnClick = true;
 			this.buttonXOptionDay.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionDay.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionDay.Location = new System.Drawing.Point(18, 69);
+			this.buttonXOptionDay.Location = new System.Drawing.Point(18, 59);
 			this.buttonXOptionDay.Name = "buttonXOptionDay";
 			this.buttonXOptionDay.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionDay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -716,7 +755,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionMonthlySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXOptionMonthlySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionMonthlySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionMonthlySpots.Location = new System.Drawing.Point(18, 231);
+			this.buttonXOptionMonthlySpots.Location = new System.Drawing.Point(18, 191);
 			this.buttonXOptionMonthlySpots.Name = "buttonXOptionMonthlySpots";
 			this.buttonXOptionMonthlySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionMonthlySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -732,7 +771,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionLineId.AutoCheckOnClick = true;
 			this.buttonXOptionLineId.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionLineId.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionLineId.Location = new System.Drawing.Point(18, 285);
+			this.buttonXOptionLineId.Location = new System.Drawing.Point(18, 235);
 			this.buttonXOptionLineId.Name = "buttonXOptionLineId";
 			this.buttonXOptionLineId.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionLineId.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -747,7 +786,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionRate.AutoCheckOnClick = true;
 			this.buttonXOptionRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionRate.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionRate.Location = new System.Drawing.Point(18, 123);
+			this.buttonXOptionRate.Location = new System.Drawing.Point(18, 103);
 			this.buttonXOptionRate.Name = "buttonXOptionRate";
 			this.buttonXOptionRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -763,7 +802,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionCost.AutoCheckOnClick = true;
 			this.buttonXOptionCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionCost.Location = new System.Drawing.Point(163, 285);
+			this.buttonXOptionCost.Location = new System.Drawing.Point(163, 235);
 			this.buttonXOptionCost.Name = "buttonXOptionCost";
 			this.buttonXOptionCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -778,7 +817,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionWeeklySpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionWeeklySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionWeeklySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionWeeklySpots.Location = new System.Drawing.Point(163, 177);
+			this.buttonXOptionWeeklySpots.Location = new System.Drawing.Point(163, 147);
 			this.buttonXOptionWeeklySpots.Name = "buttonXOptionWeeklySpots";
 			this.buttonXOptionWeeklySpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionWeeklySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -811,7 +850,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionTallyCost.AutoCheckOnClick = true;
 			this.buttonXOptionTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionTallyCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionTallyCost.Location = new System.Drawing.Point(163, 339);
+			this.buttonXOptionTallyCost.Location = new System.Drawing.Point(163, 279);
 			this.buttonXOptionTallyCost.Name = "buttonXOptionTallyCost";
 			this.buttonXOptionTallyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionTallyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -827,7 +866,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionTime.AutoCheckOnClick = true;
 			this.buttonXOptionTime.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionTime.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionTime.Location = new System.Drawing.Point(163, 69);
+			this.buttonXOptionTime.Location = new System.Drawing.Point(163, 59);
 			this.buttonXOptionTime.Name = "buttonXOptionTime";
 			this.buttonXOptionTime.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -842,7 +881,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionTotalSpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOptionTotalSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionTotalSpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionTotalSpots.Location = new System.Drawing.Point(163, 231);
+			this.buttonXOptionTotalSpots.Location = new System.Drawing.Point(163, 191);
 			this.buttonXOptionTotalSpots.Name = "buttonXOptionTotalSpots";
 			this.buttonXOptionTotalSpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionTotalSpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -858,7 +897,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionLogo.AutoCheckOnClick = true;
 			this.buttonXOptionLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionLogo.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionLogo.Location = new System.Drawing.Point(18, 177);
+			this.buttonXOptionLogo.Location = new System.Drawing.Point(18, 147);
 			this.buttonXOptionLogo.Name = "buttonXOptionLogo";
 			this.buttonXOptionLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -873,7 +912,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.buttonXOptionAvgRate.AutoCheckOnClick = true;
 			this.buttonXOptionAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptionAvgRate.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXOptionAvgRate.Location = new System.Drawing.Point(18, 393);
+			this.buttonXOptionAvgRate.Location = new System.Drawing.Point(18, 324);
 			this.buttonXOptionAvgRate.Name = "buttonXOptionAvgRate";
 			this.buttonXOptionAvgRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXOptionAvgRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1031,6 +1070,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.xtraTabControlOptions.ResumeLayout(false);
 			this.xtraTabPageOptionsInfo.ResumeLayout(false);
 			this.pnOptionsInfo.ResumeLayout(false);
+			this.pnApplyForAll.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			this.pnSummaryInfo.ResumeLayout(false);
 			this.pnOptionSetInfo.ResumeLayout(false);
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
@@ -1109,6 +1150,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private System.Windows.Forms.Panel pnInfoBottom;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
-
+		private System.Windows.Forms.Panel pnApplyForAll;
+		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
 	}
 }

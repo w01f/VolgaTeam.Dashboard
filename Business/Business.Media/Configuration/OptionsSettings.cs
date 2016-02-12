@@ -23,6 +23,7 @@ namespace Asa.Business.Media.Configuration
 		public bool ShowAverageRate { get; set; }
 		public bool UseDecimalRates { get; set; }
 		public bool ShowSpotsX { get; set; }
+		public bool UniversalToggles { get; set; }
 
 		public string Serialize()
 		{
@@ -44,6 +45,7 @@ namespace Asa.Business.Media.Configuration
 			result.AppendLine(@"<ShowAverageRate>" + ShowAverageRate + @"</ShowAverageRate>");
 			result.AppendLine(@"<UseDecimalRates>" + UseDecimalRates + @"</UseDecimalRates>");
 			result.AppendLine(@"<ShowSpotsX>" + ShowSpotsX + @"</ShowSpotsX>");
+			result.AppendLine(@"<UniversalToggles>" + UniversalToggles + @"</UniversalToggles>");
 			return result.ToString();
 		}
 
@@ -171,6 +173,13 @@ namespace Asa.Business.Media.Configuration
 								ShowSpotsX = temp;
 						}
 						break;
+					case "UniversalToggles":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								UniversalToggles = temp;
+						}
+						break;
 				}
 		}
 
@@ -288,6 +297,13 @@ namespace Asa.Business.Media.Configuration
 						bool temp;
 						if (Boolean.TryParse(value, out temp))
 							UseDecimalRates = temp;
+					}
+					break;
+				case "Universal Toggles":
+					{
+						bool temp;
+						if (Boolean.TryParse(value, out temp))
+							UniversalToggles = temp;
 					}
 					break;
 				case "Show X in spot #s":

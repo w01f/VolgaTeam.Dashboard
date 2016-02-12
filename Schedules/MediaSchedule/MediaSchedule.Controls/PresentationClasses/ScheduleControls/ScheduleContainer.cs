@@ -127,6 +127,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 					labelControlScheduleInfo.Font.Size - 2, labelControlScheduleInfo.Font.Style);
 				labelControlFlexFlightDatesWarning.Font = new Font(labelControlFlexFlightDatesWarning.Font.FontFamily,
 					labelControlFlexFlightDatesWarning.Font.Size - 2, labelControlFlexFlightDatesWarning.Font.Style);
+				labelControlGenericSpotColumNamesWarning.Font = new Font(labelControlGenericSpotColumNamesWarning.Font.FontFamily,
+					labelControlGenericSpotColumNamesWarning.Font.Size - 2, labelControlGenericSpotColumNamesWarning.Font.Style);
 
 				font = new Font(buttonXStation.Font.FontFamily, buttonXStation.Font.Size - 2, buttonXStation.Font.Style);
 				buttonXAvgRate.Font = font;
@@ -321,6 +323,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 		private void LoadActiveSectionData()
 		{
 			_allowToSave = false;
+
+			pnApplyForAll.Visible = EditedContent.Sections.Count > 0 && ActiveSection != null;
+			checkEditApplyForAll.Checked = EditedContent.ApplySettingsForAll;
+
 			if (ActiveSection != null)
 			{
 				buttonXRate.Checked = ActiveSection.SectionData.ShowRate;
@@ -353,6 +359,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				UpdateTotalsVisibility();
 			}
 			UpdateOutputStatus();
+			UpdateGenericDateColumnNamesWarning();
 			_allowToSave = true;
 		}
 
@@ -516,6 +523,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			}
 		}
 
+		private void UpdateGenericDateColumnNamesWarning()
+		{
+			labelControlGenericSpotColumNamesWarning.Visible = ActiveSection != null &&
+				ActiveSection.SectionData.UseGenericDateColumns;
+		}
+
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.ProgramSchedulePowerPoint.Enabled =
@@ -634,6 +647,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 			ActiveSection.SectionData.ShowNetRate = buttonXNetRate.Checked;
 			ActiveSection.SectionData.ShowDiscount = buttonXDiscount.Checked;
 
+			EditedContent.ApplySettingsForAll = checkEditApplyForAll.Checked;
+
 			if (EditedContent.ApplySettingsForAll)
 			{
 				ApplySharedSettings(ActiveSection);
@@ -698,6 +713,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 					if (updateColumns)
 						ActiveSection.UpdateGridData(true);
 				}
+
+				UpdateGenericDateColumnNamesWarning();
 
 				SettingsNotSaved = true;
 			}

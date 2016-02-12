@@ -23,9 +23,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 
-				font = new Font(labelControlDescriptionApplyForAll.Font.FontFamily, labelControlDescriptionApplyForAll.Font.Size - 1,
-					labelControlDescriptionApplyForAll.Font.Style);
-				labelControlDescriptionApplyForAll.Font = font;
+				font = new Font(labelControlDescriptionEmptySports.Font.FontFamily, labelControlDescriptionEmptySports.Font.Size - 1,
+					labelControlDescriptionEmptySports.Font.Style);
 				labelControlDescriptionEmptySports.Font = font;
 				labelControlDescriptionLockToMaster.Font = font;
 				labelControlDescriptionOutputLimitPeriods.Font = font;

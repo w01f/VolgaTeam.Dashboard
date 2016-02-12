@@ -18,9 +18,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 
-				font = new Font(labelControlDescriptionApplyForAll.Font.FontFamily, labelControlDescriptionApplyForAll.Font.Size - 1,
-					labelControlDescriptionApplyForAll.Font.Style);
-				labelControlDescriptionApplyForAll.Font = font;
+				font = new Font(labelControlDescriptionLockToMaster.Font.FontFamily, labelControlDescriptionLockToMaster.Font.Size - 1,
+					labelControlDescriptionLockToMaster.Font.Style);
 				labelControlDescriptionLockToMaster.Font = font;
 				labelControlDescriptionUseDecimalRate.Font = font;
 				labelControlDescriptionShowSpotX.Font = font;
@@ -34,7 +33,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private void FormOutputSettings_Load(object sender, System.EventArgs e)
 		{
 			checkEditShowSpotsPerWeek.ForeColor = checkEditShowSpotsPerWeek.Enabled ? Color.Black : Color.Gray;
-			checkEditApplyForAll.ForeColor = checkEditApplyForAll.Enabled ? Color.Black : Color.Gray;
 		}
 	}
 }

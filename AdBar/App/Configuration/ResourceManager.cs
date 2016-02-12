@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Asa.Core.Common;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App.Configuration
 {

@@ -3,12 +3,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using Asa.Bar.App.Common;
 using Asa.Bar.App.Configuration;
 using Asa.Bar.App.Forms;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using ResourceManager = Asa.Bar.App.Configuration.ResourceManager;
+using Asa.Common.Core.Extensions;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App.BarItems
 {
@@ -34,7 +33,7 @@ namespace Asa.Bar.App.BarItems
 		{
 			if (FileStorageManager.Instance.UseLocalMode)
 			{
-				Utilities.Instance.ShowWarning("You are not connected to the internet. Check your web connection and try again.");
+				PopupMessageHelper.Instance.ShowWarning("You are not connected to the internet. Check your web connection and try again.");
 				return;
 			}
 			FormProgress.SetTitle("Loading file...", true);
@@ -57,8 +56,7 @@ namespace Asa.Bar.App.BarItems
 				catch { }
 			}
 			else
-				Utilities.Instance.ShowWarning("File not found");
-			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _file.LocalPath + " (" + Type + ")"));
+				PopupMessageHelper.Instance.ShowWarning("File not found");
 		}
 	}
 }

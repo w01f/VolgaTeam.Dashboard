@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using Asa.Core.Common;
+using Asa.Common.Core.Helpers;
 
 namespace Asa.Bar.Plugins.Common.BusinessClasses
 {
@@ -31,7 +31,7 @@ namespace Asa.Bar.Plugins.Common.BusinessClasses
 					Application.DoEvents();
 			}
 			else
-				Utilities.Instance.ShowWarning("Couldn't find PowerPointLoader app");
+				PopupMessageHelper.Instance.ShowWarning("Couldn't find PowerPointLoader app");
 		}
 
 		public bool AplicationDetected()

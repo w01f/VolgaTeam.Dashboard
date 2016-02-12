@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Asa.Bar.App</RootNamespace>
     <AssemblyName>adsalesapps</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -174,9 +174,9 @@
     <None Include="Resources\ff.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NewBizWiz.Core\NewBizWiz.Core.csproj">
-      <Project>{164ab808-dbd3-4d71-9431-5a5b44b70593}</Project>
-      <Name>NewBizWiz.Core</Name>
+    <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
+      <Name>Common.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Plugins\AdBar.Plugins.Core\AdBar.Plugins.Core.csproj">
       <Project>{d506b009-76da-45be-9f1b-c3124fe82eec}</Project>
@@ -198,14 +198,17 @@
   <ItemGroup>
     <None Include="Resources\PasswordLogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgressCancel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy “$(ProjectDir)bin\Debug\*.dll” “d:\WorkingFiles\NewBizWiz\adsalesapps.exe” /Y
-copy “$(ProjectDir)bin\Debug\adsalesapps.exe” “d:\WorkingFiles\NewBizWiz\adsalesapps.exe” /Y</PostBuildEvent>
+    <PostBuildEvent>robocopy /s /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\adsalesapps.exe" "*.dll" "adsalesapps.exe"
+if %25errorlevel%25 leq 1 exit 0 else exit %25errorlevel%25</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

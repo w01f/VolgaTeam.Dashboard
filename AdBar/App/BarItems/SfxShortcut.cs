@@ -29,7 +29,6 @@ namespace Asa.Bar.App.BarItems
 			try
 			{
 				Process.Start(_sfxFilePath);
-				AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _sfxFilePath + " (" + Type + ")"));
 			}
 			catch { }
 		}

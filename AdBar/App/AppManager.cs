@@ -5,12 +5,11 @@ using System.Windows.Forms;
 using Asa.Bar.App.Authorization;
 using Asa.Bar.App.BarItems;
 using Asa.Bar.App.Common;
+using Asa.Bar.App.Configuration;
 using Asa.Bar.App.ExternalProcesses;
 using Asa.Bar.App.Forms;
-using Asa.Core.Common;
-using Asa.Core.Interop;
-using ResourceManager = Asa.Bar.App.Configuration.ResourceManager;
-using SettingsManager = Asa.Bar.App.Configuration.SettingsManager;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 
 namespace Asa.Bar.App
 {
@@ -58,30 +57,29 @@ namespace Asa.Bar.App
 				FormStart.CloseProgress();
 				if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
 				{
-					Utilities.Instance.ShowWarning("Server is not available. Application will be closed");
+					PopupMessageHelper.Instance.ShowWarning("Server is not available. Application will be closed");
 					stopRun = true;
-					Application.Exit();
-					return;
 				}
-				if (Utilities.Instance.ShowWarningQuestion("Server is not available. Do you want to continue to work in local mode?") != DialogResult.Yes)
+				else if (PopupMessageHelper.Instance.ShowWarningQuestion("Server is not available. Do you want to continue to work in local mode?") != DialogResult.Yes)
 				{
 					stopRun = true;
-					Application.Exit();
 				}
+				if (stopRun)
+					FormStart.Destroy();
 			};
 
 			FileStorageManager.Instance.Authorizing += (o, e) =>
 			{
 				var authManager = new AdBarAuthManager();
 				authManager.Init();
-				FormStart.SetTitle("Checking credentials...", "*This should not take long…");
+				FormStart.SetTitle("Checking credentials...");
 				authManager.Auth(e);
 				if (!e.Authorized)
 					LoadAtStartupHelper.UnsetLoadAtStartup();
 			};
 
 			FormStart.ShowProgress();
-			FormStart.SetTitle("Connecting to adSALEScloud…", "*This should not take long…");
+			FormStart.SetTitle("Connecting to adSALEScloud…");
 			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
 			thread.Start();
 			while (thread.IsAlive)
@@ -101,11 +99,11 @@ namespace Asa.Bar.App
 			if (FileStorageManager.Instance.Activated)
 			{
 				if (FileStorageManager.Instance.DataState == DataActualityState.NotExisted)
-					FormStart.SetTitle("Syncing adSALEScloud for the 1st time…", "*This may take a few minutes…");
+					FormStart.SetTitle("Syncing adSALEScloud for the 1st time…");
 				else if (FileStorageManager.Instance.DataState == DataActualityState.Outdated)
-					FormStart.SetTitle("Refreshing data from adSALEScloud…", "*This may take a few minutes…");
+					FormStart.SetTitle("Refreshing data from adSALEScloud…");
 				else
-					FormStart.SetTitle("Loading application data...", "*This should not take long…");
+					FormStart.SetTitle("Loading application data...");
 
 				thread = new Thread(() =>
 				{
@@ -116,14 +114,16 @@ namespace Asa.Bar.App
 				while (thread.IsAlive)
 					Application.DoEvents();
 			}
+
 			FormStart.CloseProgress();
+			FormStart.Destroy();
 
 			if (FileStorageManager.Instance.Activated)
 			{
 				Application.Run(MainForm);
 			}
 			else
-				Utilities.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");
+				PopupMessageHelper.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");
 		}
 
 		private async Task LoadBusinessObjects()

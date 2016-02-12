@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using Asa.Bar.App.Common;
 using Asa.Bar.App.Configuration;
-using Asa.Core.Common;
-using ResourceManager = Asa.Bar.App.Configuration.ResourceManager;
+using Asa.Common.Core.Extensions;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App.BarItems
 {
@@ -30,13 +30,12 @@ namespace Asa.Bar.App.BarItems
 		{
 			if (!_file.ExistsLocal())
 			{
-				Utilities.Instance.ShowWarning("File not found");
+				PopupMessageHelper.Instance.ShowWarning("File not found");
 				return;
 			}
 			try
 			{
 				Process.Start(_file.LocalPath);
-				AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _file.LocalPath + " (" + Type + ")"));
 			}
 			catch { }
 		}

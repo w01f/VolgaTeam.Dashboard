@@ -4,11 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using Asa.Bar.App.Common;
 using Asa.Bar.App.Configuration;
 using Asa.Bar.App.Forms;
-using Asa.Core.Common;
-using ResourceManager = Asa.Bar.App.Configuration.ResourceManager;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App.BarItems
 {
@@ -40,7 +39,7 @@ namespace Asa.Bar.App.BarItems
 
 			if (!sourceFile.Exists)
 			{
-				Utilities.Instance.ShowWarning(String.Format("You do not have a network connection to this file.{0}Connect to your network, and then try again.", Environment.NewLine));
+				PopupMessageHelper.Instance.ShowWarning(String.Format("You do not have a network connection to this file.{0}Connect to your network, and then try again.", Environment.NewLine));
 				return;
 			}
 
@@ -77,7 +76,6 @@ namespace Asa.Bar.App.BarItems
 			try
 			{
 				Process.Start(destinationPath);
-				AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _path + " (" + Type + ")"));
 			}
 			catch { }
 		}

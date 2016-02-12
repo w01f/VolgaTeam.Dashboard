@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
-using Asa.Common.Core.Objects.Themes;
 using Asa.Common.Core.OfficeInterops;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;

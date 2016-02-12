@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
-using Asa.Core.Common;
+using Asa.Common.Core.Objects.Activities;
 
 namespace Asa.Bar.App.Common
 {
@@ -8,11 +8,6 @@ namespace Asa.Bar.App.Common
 	{
 		ApplicationOpen,
 		ApplicationClose,
-		ApplicationError,
-		ApplicationOpenLink,
-		ApplicationSwitchTab,
-		BrowserSwitch,
-		ApplicationSync
 	}
 
 	class AdBarActivity : UserActivity

@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Asa.Bar.App.Configuration;
-using Asa.Core.Interop;
+using Asa.Common.Core.Helpers;
 using Timer = System.Windows.Forms.Timer;
 
 namespace Asa.Bar.App.ExternalProcesses

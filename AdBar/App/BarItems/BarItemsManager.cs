@@ -3,8 +3,10 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Asa.Bar.App.Configuration;
-using Asa.Core.Common;
-using ResourceManager = Asa.Bar.App.Configuration.ResourceManager;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Extensions;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App.BarItems
 {

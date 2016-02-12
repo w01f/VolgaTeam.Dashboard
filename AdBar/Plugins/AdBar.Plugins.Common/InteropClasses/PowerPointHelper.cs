@@ -1,4 +1,4 @@
-﻿using Asa.Core.Interop;
+﻿using Asa.Common.Core.OfficeInterops;
 
 namespace Asa.Bar.Plugins.Common.InteropClasses
 {

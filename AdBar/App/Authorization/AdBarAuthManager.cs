@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 using Asa.Bar.App.Forms;
-using Asa.Core.Common;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App.Authorization
 {

@@ -147,10 +147,11 @@ namespace Asa.Bar.App.Forms
 						case TabGroupType.SettingsPanel:
 							ribbonBarSettings.Text = tabGroup.Name;
 							ribbonBarSettings.Top = 0;
+							ribbonBarSettings.Width = shortItemWidth;
 							ribbonBarSettings.Height = (Int32)((1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi))) * itemHeight);
 							ribbonBarSettings.Left = left;
 							tab.AttachedControl.Controls.Add(ribbonBarSettings);
-							left += longItemWidth;
+							left += shortItemWidth;
 							break;
 						case TabGroupType.CustomControls:
 							var pluginName = tabGroup.Tag;
@@ -402,8 +403,6 @@ namespace Asa.Bar.App.Forms
 			AppManager.Instance.Settings.UserSettings.SelectedBrowser = (String)button.Tag;
 			AppManager.Instance.Settings.UserSettings.Save();
 
-			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, AppManager.Instance.Settings.UserSettings.SelectedBrowser));
-
 			UpdateBrowserButtons();
 		}
 		#endregion
@@ -468,7 +467,7 @@ namespace Asa.Bar.App.Forms
 		{
 			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationClose));
 			AppManager.Instance.ExternalProcessesWatcher.StopWatching();
-			Application.Exit();
+			Application.Exit(); 
 		}
 
 		private void OnFormDeactivate(object sender, EventArgs e)
@@ -481,7 +480,6 @@ namespace Asa.Bar.App.Forms
 		private void OnTabControlSelectedTabChanged(object sender, SuperTabStripSelectedTabChangedEventArgs e)
 		{
 			UncollapseWindow();
-			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationSwitchTab, e.OldValue == null ? e.NewValue.Text : e.OldValue.Text + "->" + e.NewValue.Text));
 		}
 
 		private void OnTabControlTabStripMouseMove(object sender, MouseEventArgs e)

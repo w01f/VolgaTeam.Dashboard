@@ -39,7 +39,6 @@ namespace Asa.Bar.App.BarItems
 				}
 				else
 					Process.Start(browserPath);
-				AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpenLink, _url + " (" + Type + ")"));
 			}
 			catch { }
 		}

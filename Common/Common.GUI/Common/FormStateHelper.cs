@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -68,7 +69,7 @@ namespace Asa.Common.GUI.Common
 						height = temp;
 				}
 			}
-			if (x.HasValue && y.HasValue && x.Value < Int16.MaxValue && y.Value < Int16.MaxValue)
+			if (x.HasValue && y.HasValue && Screen.AllScreens.Any(s => s.Bounds.Contains(x.Value, y.Value)))
 			{
 				_form.StartPosition = FormStartPosition.Manual;
 				_form.Location = new Point(x.Value, y.Value);

@@ -15,9 +15,9 @@ using Asa.Common.Core.Objects.Gallery;
 using Asa.Common.GUI.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using Asa.Common.GUI.FavoriteImages;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
-using Asa.Common.GUI.FavoriteImages;
 using Vintasoft.Imaging;
 using Vintasoft.Imaging.VisualTools;
 

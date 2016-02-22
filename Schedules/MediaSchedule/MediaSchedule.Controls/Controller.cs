@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
-using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Activities;
@@ -37,7 +36,6 @@ namespace Asa.Media.Controls
 		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabCalendar1 { get; set; }
 		public RibbonTabItem TabCalendar2 { get; set; }
-		public RibbonTabItem TabSummary { get; set; }
 		public RibbonTabItem TabGallery1 { get; set; }
 		public RibbonTabItem TabGallery2 { get; set; }
 		public RibbonTabItem TabRateCard { get; set; }
@@ -93,7 +91,6 @@ namespace Asa.Media.Controls
 				TabDigitalPackage,
 				TabSnapshot,
 				TabOptions,
-				TabSummary,
 				TabCalendar1,
 				TabCalendar2,
 				TabGallery1,
@@ -118,7 +115,6 @@ namespace Asa.Media.Controls
 				DigitalPackageSave,
 				SnapshotSave,
 				OptionsSave,
-				SummarySave,
 				Calendar1Save,
 				Calendar2Save,
 			})
@@ -134,7 +130,6 @@ namespace Asa.Media.Controls
 				DigitalPackageSaveAs,
 				SnapshotSaveAs,
 				OptionsSaveAs,
-				SummarySaveAs,
 				Calendar1SaveAs,
 				Calendar2SaveAs,
 			})
@@ -150,7 +145,6 @@ namespace Asa.Media.Controls
 				DigitalPackageHelp,
 				SnapshotHelp,
 				OptionsHelp,
-				SummaryHelp,
 				Calendar1Help,
 				Calendar2Help,
 				Gallery1Help,
@@ -167,7 +161,6 @@ namespace Asa.Media.Controls
 				DigitalPackagePowerPoint,
 				SnapshotPowerPoint,
 				OptionsPowerPoint,
-				SummaryPowerPoint,
 				Calendar1PowerPoint,
 				Calendar2PowerPoint,
 			})
@@ -182,7 +175,6 @@ namespace Asa.Media.Controls
 				DigitalPackagePdf,
 				SnapshotPdf,
 				OptionsPdf,
-				SummaryPdf,
 				Calendar1Pdf,
 				Calendar2Pdf,
 			})
@@ -197,7 +189,6 @@ namespace Asa.Media.Controls
 				DigitalPackagePreview,
 				SnapshotPreview,
 				OptionsPreview,
-				SummaryPreview,
 				Calendar1Preview,
 				Calendar2Preview,
 			})
@@ -212,7 +203,6 @@ namespace Asa.Media.Controls
 				DigitalPackageEmail,
 				SnapshotEmail,
 				OptionsEmail,
-				SummaryEmail,
 				Calendar1Email,
 				Calendar2Email,
 			})
@@ -251,14 +241,6 @@ namespace Asa.Media.Controls
 				DigitalPackageTheme.Click -= OnThemeClick;
 				DigitalPackageTheme.Click += OnThemeClick;
 
-				SummaryPowerPoint.Visible = false;
-				((RibbonBar) SummaryPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar) SummaryEmail.ContainerControl).Visible = false;
-				((RibbonBar) SummaryPreview.ContainerControl).Visible = false;
-				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
-				SummaryTheme.Click -= OnThemeClick;
-				SummaryTheme.Click += OnThemeClick;
-
 				SnapshotPowerPoint.Visible = false;
 				((RibbonBar) SnapshotPowerPoint.ContainerControl).Text = "Important Info";
 				((RibbonBar) SnapshotEmail.ContainerControl).Visible = false;
@@ -292,11 +274,6 @@ namespace Asa.Media.Controls
 				((RibbonBar) DigitalPackagePreview.ContainerControl).Visible = true;
 				DigitalPackageTheme.Click -= OnThemeClick;
 
-				SummaryPowerPoint.Visible = true;
-				((RibbonBar) SummaryEmail.ContainerControl).Visible = true;
-				((RibbonBar) SummaryPreview.ContainerControl).Visible = true;
-				SummaryTheme.Click -= OnThemeClick;
-
 				SnapshotPowerPoint.Visible = true;
 				((RibbonBar) SnapshotEmail.ContainerControl).Visible = true;
 				((RibbonBar) SnapshotPreview.ContainerControl).Visible = true;
@@ -311,7 +288,6 @@ namespace Asa.Media.Controls
 				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 			}
@@ -332,7 +308,6 @@ namespace Asa.Media.Controls
 				DigitalPackageSpecialButtons,
 				Calendar1SpecialButtons,
 				Calendar2SpecialButtons,
-				SummarySpecialButtons,
 				SnapshotSpecialButtons,
 				OptionsSpecialButtons,
 				RateCardSpecialButtons,
@@ -505,20 +480,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar2Email { get; set; }
 		public ButtonItem Calendar2PowerPoint { get; set; }
 		public ButtonItem Calendar2Pdf { get; set; }
-		#endregion
-
-		#region Summary
-		public RibbonPanel SummaryPanel { get; set; }
-		public RibbonBar SummaryThemeBar { get; set; }
-		public RibbonBar SummarySpecialButtons { get; set; }
-		public ButtonItem SummaryHelp { get; set; }
-		public ButtonItem SummarySave { get; set; }
-		public ButtonItem SummarySaveAs { get; set; }
-		public ButtonItem SummaryPreview { get; set; }
-		public ButtonItem SummaryEmail { get; set; }
-		public ButtonItem SummaryPowerPoint { get; set; }
-		public ButtonItem SummaryPdf { get; set; }
-		public ButtonItem SummaryTheme { get; set; }
 		#endregion
 
 		#region Snapshot

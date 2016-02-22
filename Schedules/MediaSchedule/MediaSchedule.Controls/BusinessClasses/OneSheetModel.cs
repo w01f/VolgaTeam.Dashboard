@@ -80,10 +80,10 @@ namespace Asa.Media.Controls.BusinessClasses
 						result = "(000s)";
 						break;
 				}
-				return String.Format("{0}{1}", 
-					(!String.IsNullOrEmpty(_parent.ParentSchedule.Settings.Demo) ? 
-						String.Format("{0}{1}", _parent.ParentSchedule.Settings.Demo, (char)13) : 
-						String.Empty), 
+				return String.Format("{0}{1}",
+					(!String.IsNullOrEmpty(_parent.ParentSchedule.Settings.Demo) ?
+						String.Format("{0}{1}", _parent.ParentSchedule.Settings.Demo, (char)13) :
+						String.Empty),
 					result);
 			}
 		}
@@ -290,19 +290,28 @@ namespace Asa.Media.Controls.BusinessClasses
 			var totalCount = Totals.Count;
 			for (var i = 0; i < 3; i++)
 			{
-				var firsrtIndex = i * 2;
-				var secondIndex = firsrtIndex + 1;
-				key = String.Format("[info{0}] [info{1}]", firsrtIndex + 1, secondIndex + 1);
+				var firsrtTagIndex = i * 2;
+				var secondTagIndex = firsrtTagIndex + 1;
+				key = String.Format("[info{0}] [info{1}]", firsrtTagIndex + 1, secondTagIndex + 1);
+
+				var firsrtDataIndex = i * 4;
+				var secondDataIndex = firsrtDataIndex + 1;
+				var thirdDataIndex = firsrtDataIndex + 2;
+				var forthDataIndex = firsrtDataIndex + 3;
 
 				temp.Clear();
-				if (firsrtIndex < totalCount)
-					temp.Add(String.Format("[{0} {1}]", Totals.ElementAt(firsrtIndex).Key, Totals.ElementAt(firsrtIndex).Value));
-				if (secondIndex < totalCount)
-					temp.Add(String.Format("[{0} {1}]", Totals.ElementAt(secondIndex).Key, Totals.ElementAt(secondIndex).Value));
+				if (firsrtDataIndex < totalCount)
+					temp.Add(String.Format("[{0} {1}]", Totals.ElementAt(firsrtDataIndex).Key, Totals.ElementAt(firsrtDataIndex).Value));
+				if (secondDataIndex < totalCount)
+					temp.Add(String.Format("[{0} {1}]", Totals.ElementAt(secondDataIndex).Key, Totals.ElementAt(secondDataIndex).Value));
+				if (thirdDataIndex < totalCount)
+					temp.Add(String.Format("[{0} {1}]", Totals.ElementAt(thirdDataIndex).Key, Totals.ElementAt(thirdDataIndex).Value));
+				if (forthDataIndex < totalCount)
+					temp.Add(String.Format("[{0} {1}]", Totals.ElementAt(forthDataIndex).Key, Totals.ElementAt(forthDataIndex).Value));
 				value = temp.Any() || (!String.IsNullOrEmpty(DigitalInfo) && i == 0) ?
 					String.Format("{0}{1}",
 					!String.IsNullOrEmpty(DigitalInfo) && i == 0 ? String.Format("{0}{1}", DigitalInfo, Environment.NewLine) : String.Empty,
-						String.Join(" ", temp)) :
+						String.Join("    ", temp)) :
 					"Delete Row";
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
@@ -375,7 +384,7 @@ namespace Asa.Media.Controls.BusinessClasses
 							temp.Add(String.Format("{0}: {1}", GRPHeaderTitle, program.GRP));
 						if (ShowCPP)
 							temp.Add(String.Format("{0}: {1}", CPPHeaderTitle, program.CPP));
-						value = String.Join("  ", temp);
+						value = String.Format("   {0}", String.Join("  ", temp));
 						if (!ReplacementsList.Keys.Contains(key))
 							ReplacementsList.Add(key, value);
 					}
@@ -400,7 +409,7 @@ namespace Asa.Media.Controls.BusinessClasses
 								temp.Add(String.Format("{0}: {1}", GRPHeaderTitle, program.GRP));
 							if (ShowCPP)
 								temp.Add(String.Format("{0}: {1}", CPPHeaderTitle, program.CPP));
-							value = String.Join("  ", temp);
+							value = String.Format("   {0}", String.Join("  ", temp));
 							if (!ReplacementsList.Keys.Contains(key))
 								ReplacementsList.Add(key, value);
 						}
@@ -426,7 +435,7 @@ namespace Asa.Media.Controls.BusinessClasses
 								temp.Add(String.Format("{0}: {1}", GRPHeaderTitle, program.GRP));
 							if (ShowCPP)
 								temp.Add(String.Format("{0}: {1}", CPPHeaderTitle, program.CPP));
-							value = String.Join("  ", temp);
+							value = String.Format("   {0}", String.Join("  ", temp));
 							if (!ReplacementsList.Keys.Contains(key))
 								ReplacementsList.Add(key, value);
 						}
@@ -446,7 +455,7 @@ namespace Asa.Media.Controls.BusinessClasses
 								temp.Add(String.Format("{0}: {1}", GRPHeaderTitle, program.GRP));
 							if (ShowCPP)
 								temp.Add(String.Format("{0}: {1}", CPPHeaderTitle, program.CPP));
-							value = String.Join("  ", temp);
+							value = String.Format("   {0}", String.Join("  ", temp));
 							if (!ReplacementsList.Keys.Contains(key))
 								ReplacementsList.Add(key, value);
 						}

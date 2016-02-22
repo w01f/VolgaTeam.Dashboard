@@ -7,6 +7,7 @@ using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Common.Interfaces;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Images;
 using Newtonsoft.Json;
@@ -132,14 +133,19 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			}
 		}
 
-		public decimal SummaryOrder
-		{
-			get { return Index; }
-		}
+		public decimal SummaryOrder => Index;
 
 		public string SummaryTitle
 		{
-			get { return String.Format("{0}  -  {1}", Station, Name); }
+			get
+			{
+				var result = new List<string>();
+				if (Parent.ShowStation && !String.IsNullOrEmpty(Station))
+					result.Add(Station);
+				if (Parent.ShowProgram && !String.IsNullOrEmpty(Name))
+					result.Add(Name);
+				return String.Join("  -  ", result);
+			}
 		}
 
 		public string SummaryInfo
@@ -147,9 +153,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			get
 			{
 				var result = new List<string>();
-				if (!String.IsNullOrEmpty(Daypart))
+				if (Parent.ShowDaypart && !String.IsNullOrEmpty(Daypart))
 					result.Add(Daypart);
-				if (!String.IsNullOrEmpty(Time))
+				if (Parent.ShowTime && !String.IsNullOrEmpty(Time))
 					result.Add(Time);
 				result.Add(String.Format("{0}x", Spots.Sum(sp => sp.Count)));
 				return String.Join(", ", result);
@@ -165,7 +171,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = Parent.Programs.Count + 1;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
 			Station = Parent.ParentScheduleSettings.Stations.Count(x => x.Available) == 1 ? Parent.ParentScheduleSettings.Stations.Where(x => x.Available).Select(x => x.Name).FirstOrDefault() : string.Empty;
 			Daypart = string.Empty;
 			Day = string.Empty;

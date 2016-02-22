@@ -28,8 +28,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.labelControlDescriptionLockToMaster = new DevExpress.XtraEditors.LabelControl();
@@ -148,7 +147,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditLockToMaster.Properties.AutoHeight = false;
-			this.checkEditLockToMaster.Properties.Caption = "<b>E.</b> Lock Schedule on the Slide Master";
+			this.checkEditLockToMaster.Properties.Caption = "<b>C.</b> Lock Schedule on the Slide Master";
 			this.checkEditLockToMaster.Size = new System.Drawing.Size(323, 16);
 			this.checkEditLockToMaster.StyleController = this.styleController;
 			this.checkEditLockToMaster.TabIndex = 135;

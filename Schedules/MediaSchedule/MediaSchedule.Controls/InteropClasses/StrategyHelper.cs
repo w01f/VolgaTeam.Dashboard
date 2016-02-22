@@ -2,11 +2,11 @@
 using System.IO;
 using System.Threading;
 using Asa.Common.Core.OfficeInterops;
-using Asa.Media.Controls.PresentationClasses.Summary;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Asa.Media.Controls.BusinessClasses;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using StrategySummaryControl = Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors.StrategySummaryControl;
 
 namespace Asa.Media.Controls.InteropClasses
 {

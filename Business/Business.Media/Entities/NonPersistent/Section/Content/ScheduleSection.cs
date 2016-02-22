@@ -178,6 +178,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			#endregion
 		}
 
+		public void AfterCreate()
+		{
+			Summary.AfterCreate();
+		}
+
 		public void AfterClone(ScheduleSection source, bool fullClone = true)
 		{
 			UniqueID = Guid.NewGuid();

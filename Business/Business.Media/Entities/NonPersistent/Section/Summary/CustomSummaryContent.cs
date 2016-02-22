@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Enums;
 using Asa.Business.Media.Interfaces;
 using Newtonsoft.Json;
 
@@ -11,6 +12,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 	public class CustomSummaryContent : CustomSummarySettings, ISectionSummaryContent
 	{
 		public SectionSummary Parent { get; private set; }
+		public SectionSummaryTypeEnum SummaryType => SectionSummaryTypeEnum.Custom;
 		public bool IsDefaultSate { get; set; }
 
 		[JsonConstructor]
@@ -28,15 +30,17 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		{
 			if (!IsDefaultSate) return;
 			if (Items.Count != 2) return;
-			
+
 			{
 				var summaryItem = Items[0];
 				summaryItem.ShowValue = true;
 				summaryItem.Value = String.Format("Local {0} Campaign", MediaMetaData.Instance.DataTypeString);
 				var description = new List<string>();
 				var programs = Parent.Parent.Programs.ToList();
-				description.Add(String.Format("Stations: {0}", String.Join(", ", programs.Select(p => p.Station).Distinct())));
-				description.Add(String.Format("Dayparts: {0}", String.Join(", ", programs.Select(p => p.Daypart).Distinct())));
+				if (Parent.Parent.ShowStation)
+					description.Add(String.Format("Stations: {0}", String.Join(", ", programs.Select(p => p.Station).Distinct())));
+				if(Parent.Parent.ShowDaypart)
+					description.Add(String.Format("Dayparts: {0}", String.Join(", ", programs.Select(p => p.Daypart).Distinct())));
 				description.Add(String.Format("Total Spots: {0}x", programs.Sum(p => p.Spots.Sum(sp => sp.Count))));
 				if (programs.Any(p => p.Rate.HasValue))
 					description.Add(String.Format("Avg Rate: {0}", programs.Where(p => p.Rate.HasValue).Average(p => p.Rate.Value).ToString("$#,##0")));

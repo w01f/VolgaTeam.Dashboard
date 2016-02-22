@@ -135,7 +135,6 @@
 			this.memoEditDescription.Size = new System.Drawing.Size(351, 93);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 1;
-			this.memoEditDescription.UseOptimizedRendering = true;
 			this.memoEditDescription.EditValueChanged += new System.EventHandler(this.memoEditDescription_EditValueChanged);
 			// 
 			// pnLeft
@@ -184,6 +183,7 @@
 			this.labelControlTitle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+			this.labelControlTitle.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlTitle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.labelControlTitle.Location = new System.Drawing.Point(0, 0);

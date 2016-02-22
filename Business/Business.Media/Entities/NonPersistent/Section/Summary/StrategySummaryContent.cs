@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Asa.Business.Media.Enums;
 using Asa.Business.Media.Interfaces;
 using Asa.Common.Core.Objects.Output;
 using Newtonsoft.Json;
@@ -10,6 +11,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 	public class StrategySummaryContent : ISectionSummaryContent
 	{
 		public SectionSummary Parent { get; private set; }
+		public SectionSummaryTypeEnum SummaryType => SectionSummaryTypeEnum.Strategy;
 		public bool ShowStation { get; set; }
 		public bool ShowDescription { get; set; }
 

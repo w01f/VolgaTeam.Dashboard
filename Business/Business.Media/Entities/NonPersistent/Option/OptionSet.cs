@@ -15,6 +15,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 {
 	public class OptionSet : IJsonCloneable<OptionSet>
 	{
+		public const int DefaultPositionStation = 0;
+		public const int DefaultPositionProgram = 1;
+		public const int DefaultPositionDay = 2;
+		public const int DefaultPositionTime = 3;
+		public const int DefaultPositionLenght = 4;
+		public const int DefaultPositionSpots = 5;
+		public const int DefaultPositionRate = 6;
+		public const int DefaultPositionCost = 7;
+
 		public OptionsContent Parent { get; private set; }
 		public Guid UniqueID { get; set; }
 		public double Index { get; set; }
@@ -40,13 +49,14 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 		public bool ShowSpotsX { get; set; }
 		public bool UseDecimalRates { get; set; }
 
+		public bool DefaultColumnPositions { get; set; }
 		public int PositionStation { get; set; }
 		public int PositionProgram { get; set; }
 		public int PositionDay { get; set; }
 		public int PositionTime { get; set; }
-		public int PositionRate { get; set; }
 		public int PositionLenght { get; set; }
 		public int PositionSpots { get; set; }
+		public int PositionRate { get; set; }
 		public int PositionCost { get; set; }
 
 		public bool ShowTotalSpots { get; set; }
@@ -101,7 +111,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = parent.Options.Any() ? parent.Options.Max(s => s.Index) + 1 : 0;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
 			TotalPeriods = 1;
 			Programs = new List<OptionProgram>();
 			ContractSettings = new ContractSettings();
@@ -125,60 +135,52 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 			ShowSpotsX = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowSpotsX;
 			UseDecimalRates = MediaMetaData.Instance.ListManager.DefaultOptionsSettings.UseDecimalRates;
 
-			var position = 0;
+			DefaultColumnPositions = true;
 			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowStation)
 			{
-				PositionStation = position;
-				position++;
+				PositionStation = DefaultPositionStation;
 			}
 			else
 				PositionStation = -1;
 			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowProgram)
 			{
-				PositionProgram = position;
-				position++;
+				PositionProgram = DefaultPositionProgram;
 			}
 			else
 				PositionProgram = -1;
 			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowDay)
 			{
-				PositionDay = position;
-				position++;
+				PositionDay = DefaultPositionDay;
 			}
 			else
 				PositionDay = -1;
 			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTime)
 			{
-				PositionTime = position;
-				position++;
+				PositionTime = DefaultPositionTime;
 			}
 			else
 				PositionTime = -1;
+			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowLenght)
+			{
+				PositionLenght = DefaultPositionLenght;
+			}
+			else
+				PositionLenght = -1;
 			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowWeeklySpots || MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowMonthlySpots || MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowTotalSpots)
 			{
-				PositionSpots = position;
-				position++;
+				PositionSpots = DefaultPositionSpots;
 			}
 			else
 				PositionSpots = -1;
 			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowRate)
 			{
-				PositionRate = position;
-				position++;
+				PositionRate = DefaultPositionRate;
 			}
 			else
 				PositionRate = -1;
-			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowLenght)
-			{
-				PositionLenght = position;
-				position++;
-			}
-			else
-				PositionLenght = -1;
 			if (MediaMetaData.Instance.ListManager.DefaultOptionsSettings.ShowCost)
 			{
-				PositionCost = position;
-				position++;
+				PositionCost = DefaultPositionCost;
 			}
 			else
 				PositionCost = -1;

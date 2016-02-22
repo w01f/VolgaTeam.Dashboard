@@ -8,7 +8,6 @@
 		public const string DigitalPackages = "Digital PKG";
 		public const string Snapshots = "Snapshot";
 		public const string Options = "Options";
-		public const string Summary = "Summaries";
 		public const string BroadcastCalendar = "Calendar";
 		public const string CustomCalendar = "Calendar2";
 		public const string Gallery1 = "Gallery1";

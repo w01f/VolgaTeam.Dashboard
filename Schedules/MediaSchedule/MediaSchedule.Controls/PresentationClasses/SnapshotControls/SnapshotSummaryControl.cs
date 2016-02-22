@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ImageGallery;
@@ -124,10 +126,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			{
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
-				selectedProgram.Logo = form.SelectedImageSource;
+				selectedProgram.Logo = form.SelectedImageSource.Clone<ImageSource, ImageSource>();
 				advBandedGridView.UpdateCurrentRow();
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
+				DataChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
 		#endregion

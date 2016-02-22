@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
-using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Online.Entities.NonPersistent;
-using Asa.Media.Controls.PresentationClasses.ScheduleControls;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
 
 namespace Asa.Media.Controls.BusinessClasses
@@ -24,7 +22,6 @@ namespace Asa.Media.Controls.BusinessClasses
 			Controller.Instance.TabDigitalPackage.Enabled = false;
 			Controller.Instance.TabCalendar1.Enabled = false;
 			Controller.Instance.TabCalendar2.Enabled = false;
-			Controller.Instance.TabSummary.Enabled = false;
 			Controller.Instance.TabSnapshot.Enabled = false;
 			Controller.Instance.TabOptions.Enabled = false;
 			Controller.Instance.TabGallery1.Enabled = false;
@@ -53,7 +50,6 @@ namespace Asa.Media.Controls.BusinessClasses
 			Controller.Instance.TabDigitalPackage.Enabled = scheduleInitialized;
 			Controller.Instance.TabCalendar1.Enabled = scheduleInitialized;
 			Controller.Instance.TabCalendar2.Enabled = scheduleInitialized;
-			Controller.Instance.TabSummary.Enabled = scheduleInitialized;
 			Controller.Instance.TabSnapshot.Enabled = scheduleInitialized;
 			Controller.Instance.TabOptions.Enabled = scheduleInitialized;
 			Controller.Instance.TabGallery1.Enabled = scheduleInitialized;
@@ -72,15 +68,6 @@ namespace Asa.Media.Controls.BusinessClasses
 				Controller.Instance.TabDigitalProduct.Enabled = digitalProductsInitialized;
 				Controller.Instance.TabDigitalPackage.Enabled = digitalProductsInitialized;
 			}
-
-			ProgramScheduleContent programScheduleContent;
-			if (_contentController.ActiveEditor is ScheduleContainer)
-				programScheduleContent = ((ScheduleContainer)_contentController.ActiveEditor).EditedContent;
-			else
-				programScheduleContent = BusinessObjects.Instance.ScheduleManager.ActiveSchedule?.ProgramSchedule;
-
-			var programScheduleInitialized = programScheduleContent?.TotalSpots > 0;
-			Controller.Instance.TabSummary.Enabled = programScheduleInitialized;
 		}
 	}
 }

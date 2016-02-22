@@ -10,10 +10,9 @@ using Asa.Media.Controls.PresentationClasses.Digital;
 using Asa.Media.Controls.PresentationClasses.Gallery;
 using Asa.Media.Controls.PresentationClasses.OptionsControls;
 using Asa.Media.Controls.PresentationClasses.RateCard;
-using Asa.Media.Controls.PresentationClasses.ScheduleControls;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls;
-using Asa.Media.Controls.PresentationClasses.Summary;
 using DevComponents.DotNetBar;
 
 namespace Asa.Media.Controls.BusinessClasses
@@ -63,7 +62,6 @@ namespace Asa.Media.Controls.BusinessClasses
 						ContentIdentifiers.DigitalPackages,
 						ContentIdentifiers.Snapshots,
 						ContentIdentifiers.Options,
-						ContentIdentifiers.Summary,
 						ContentIdentifiers.BroadcastCalendar,
 						ContentIdentifiers.CustomCalendar
 					}
@@ -78,7 +76,6 @@ namespace Asa.Media.Controls.BusinessClasses
 						ContentIdentifiers.DigitalPackages,
 						ContentIdentifiers.Snapshots,
 						ContentIdentifiers.Options,
-						ContentIdentifiers.Summary,
 						ContentIdentifiers.BroadcastCalendar,
 						ContentIdentifiers.CustomCalendar
 					}
@@ -88,16 +85,7 @@ namespace Asa.Media.Controls.BusinessClasses
 					Target = ContentIdentifiers.ProgramSchedule,
 					Destrination = new[]
 					{
-						ContentIdentifiers.Summary,
 						ContentIdentifiers.BroadcastCalendar,
-					}
-				},
-				new ContentEditorRelation
-				{
-					Target = ContentIdentifiers.Summary,
-					Destrination = new[]
-					{
-						ContentIdentifiers.ProgramSchedule,
 					}
 				},
 				new ContentEditorRelation
@@ -169,8 +157,6 @@ namespace Asa.Media.Controls.BusinessClasses
 					return new SnapshotContainer();
 				case ContentIdentifiers.Options:
 					return new OptionsContainer();
-				case ContentIdentifiers.Summary:
-					return new SummaryContainer();
 				case ContentIdentifiers.BroadcastCalendar:
 					return new BroadcastCalendarControl();
 				case ContentIdentifiers.CustomCalendar:

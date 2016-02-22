@@ -50,7 +50,7 @@ namespace Asa.Common.GUI.RetractableBar
 		{
 			pnAdditionalButtons.Controls.Clear();
 			var buttons = buttonInfos.Select(ButtonInfo.CreateButton).Reverse().ToList();
-			var buttonHeight = (pnAdditionalButtons.Height - pnAdditionalButtons.Padding.Top - pnAdditionalButtons.Padding.Bottom) / buttons.Count;
+			var buttonHeight = buttons.Any() ? (pnAdditionalButtons.Height - pnAdditionalButtons.Padding.Top - pnAdditionalButtons.Padding.Bottom) / buttons.Count : 0;
 			buttons.ForEach(b =>
 			{
 				b.Height = buttonHeight;
@@ -139,7 +139,10 @@ namespace Asa.Common.GUI.RetractableBar
 
 		private void pnAdditionalButtons_Resize(object sender, EventArgs e)
 		{
-			var buttonHeight = (pnAdditionalButtons.Height - pnAdditionalButtons.Padding.Top - pnAdditionalButtons.Padding.Bottom) / pnAdditionalButtons.Controls.Count;
+
+			var buttonHeight = pnAdditionalButtons.Controls.Count > 0 ?
+				(pnAdditionalButtons.Height - pnAdditionalButtons.Padding.Top - pnAdditionalButtons.Padding.Bottom) / pnAdditionalButtons.Controls.Count :
+				0;
 			foreach (var button in pnAdditionalButtons.Controls.OfType<Control>())
 				button.Height = buttonHeight;
 		}

@@ -63,12 +63,15 @@ namespace Asa.Common.GUI.ToolForms
 			// 
 			// checkEditShowSignatureLine
 			// 
+			this.checkEditShowSignatureLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditShowSignatureLine.Location = new System.Drawing.Point(12, 57);
 			this.checkEditShowSignatureLine.Name = "checkEditShowSignatureLine";
+			this.checkEditShowSignatureLine.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditShowSignatureLine.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditShowSignatureLine.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditShowSignatureLine.Properties.Caption = "Client Signature Line";
-			this.checkEditShowSignatureLine.Size = new System.Drawing.Size(265, 20);
+			this.checkEditShowSignatureLine.Properties.Caption = "<b>A.</b> Client Signature Line";
+			this.checkEditShowSignatureLine.Size = new System.Drawing.Size(321, 20);
 			this.checkEditShowSignatureLine.StyleController = this.styleController;
 			this.checkEditShowSignatureLine.TabIndex = 121;
 			// 
@@ -102,16 +105,19 @@ namespace Asa.Common.GUI.ToolForms
 			// 
 			this.checkEditShowRatesExpiration.Location = new System.Drawing.Point(12, 100);
 			this.checkEditShowRatesExpiration.Name = "checkEditShowRatesExpiration";
+			this.checkEditShowRatesExpiration.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditShowRatesExpiration.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditShowRatesExpiration.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditShowRatesExpiration.Properties.Caption = "Rates Expiration Date";
-			this.checkEditShowRatesExpiration.Size = new System.Drawing.Size(192, 20);
+			this.checkEditShowRatesExpiration.Properties.Caption = "<b>B.</b> Rates Expiration Date";
+			this.checkEditShowRatesExpiration.Size = new System.Drawing.Size(179, 20);
 			this.checkEditShowRatesExpiration.StyleController = this.styleController;
 			this.checkEditShowRatesExpiration.TabIndex = 125;
 			this.checkEditShowRatesExpiration.CheckedChanged += new System.EventHandler(this.checkEditShowRatesExpiration_CheckedChanged);
 			// 
 			// checkEditShowDisclaimer
 			// 
+			this.checkEditShowDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditShowDisclaimer.Location = new System.Drawing.Point(12, 143);
 			this.checkEditShowDisclaimer.Name = "checkEditShowDisclaimer";
 			this.checkEditShowDisclaimer.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -127,7 +133,7 @@ namespace Asa.Common.GUI.ToolForms
 			this.checkEditShowDisclaimer.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditShowDisclaimer.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditShowDisclaimer.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditShowDisclaimer.Properties.Caption = "Legal disclaimer and cancellation policy";
+			this.checkEditShowDisclaimer.Properties.Caption = "<b>C.</b> Legal disclaimer and cancellation policy";
 			this.checkEditShowDisclaimer.Size = new System.Drawing.Size(321, 20);
 			this.checkEditShowDisclaimer.StyleController = this.styleController;
 			this.checkEditShowDisclaimer.TabIndex = 127;
@@ -149,13 +155,15 @@ namespace Asa.Common.GUI.ToolForms
 			// 
 			this.dateEditRatesExpirationDate.EditValue = null;
 			this.dateEditRatesExpirationDate.Enabled = false;
-			this.dateEditRatesExpirationDate.Location = new System.Drawing.Point(188, 99);
+			this.dateEditRatesExpirationDate.Location = new System.Drawing.Point(197, 99);
 			this.dateEditRatesExpirationDate.Name = "dateEditRatesExpirationDate";
 			this.dateEditRatesExpirationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-			this.dateEditRatesExpirationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dateEditRatesExpirationDate.Properties.Appearance.Options.UseFont = true;
+			this.dateEditRatesExpirationDate.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.dateEditRatesExpirationDate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.dateEditRatesExpirationDate.Properties.Appearance.Options.UseBackColor = true;
+			this.dateEditRatesExpirationDate.Properties.Appearance.Options.UseForeColor = true;
 			this.dateEditRatesExpirationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditRatesExpirationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.dateEditRatesExpirationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditRatesExpirationDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -168,6 +176,7 @@ namespace Asa.Common.GUI.ToolForms
 			this.dateEditRatesExpirationDate.Properties.ShowToday = false;
 			this.dateEditRatesExpirationDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.dateEditRatesExpirationDate.Size = new System.Drawing.Size(120, 22);
+			this.dateEditRatesExpirationDate.StyleController = this.styleController;
 			this.dateEditRatesExpirationDate.TabIndex = 129;
 			// 
 			// FormContractSettings

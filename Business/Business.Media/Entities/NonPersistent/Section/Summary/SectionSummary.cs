@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Business.Media.Interfaces;
@@ -9,55 +10,55 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 	public class SectionSummary
 	{
 		public ScheduleSection Parent { get; private set; }
-		public SectionSummaryTypeEnum SummaryType { get; private set; }
-		public ISectionSummaryContent Content { get; private set; }
+		public List<ISectionSummaryContent> Items { get; private set; }
+
+		public CustomSummaryContent CustomSummary => (CustomSummaryContent)Items.First(i => i.SummaryType == SectionSummaryTypeEnum.Custom);
+		public ProductSummaryContent ProductSummary => (ProductSummaryContent)Items.First(i => i.SummaryType == SectionSummaryTypeEnum.Product);
+		public StrategySummaryContent StrategySummary => (StrategySummaryContent)Items.First(i => i.SummaryType == SectionSummaryTypeEnum.Strategy);
 
 		[JsonConstructor]
-		private SectionSummary() { }
+		private SectionSummary()
+		{
+		}
 
 		public SectionSummary(ScheduleSection parent)
 		{
 			Parent = parent;
-			SummaryType = SectionSummaryTypeEnum.Custom;
-			Content = CreateContentBySummaryType();
-			Content.SynchronizeSectionContent(); 
+			InitSummariesContent();
+			SynchronizeSectionContent();
 		}
 
 		public void Dispose()
 		{
-			Content.Dispose();
-			Content = null;
+			Items.ForEach(content => content.Dispose());
+			Items.Clear();
 
 			Parent = null;
 		}
 
-		public void ChangeSummaryType(SectionSummaryTypeEnum newType)
+		public void SynchronizeSectionContent()
 		{
-			if (newType == SummaryType) return;
-			SummaryType = newType;
-			Content = CreateContentBySummaryType();
-			Content.SynchronizeSectionContent();
+			Items.ForEach(i => i.SynchronizeSectionContent());
 		}
 
-		private ISectionSummaryContent CreateContentBySummaryType()
+		private void InitSummariesContent()
 		{
-			switch (SummaryType)
+			if (Items == null || !Items.Any())
 			{
-				case SectionSummaryTypeEnum.Product:
-					return new ProductSummaryContent(this);
-				case SectionSummaryTypeEnum.Custom:
+				Items = new List<ISectionSummaryContent>();
+				Items.AddRange(new ISectionSummaryContent[]
 					{
-						var content = new CustomSummaryContent(this);
-						return content;
-					}
-				case SectionSummaryTypeEnum.Strategy:
-					{
-						var content = new StrategySummaryContent(this);
-						return content;
-					}
+					new CustomSummaryContent(this),
+					new ProductSummaryContent(this),
+					new StrategySummaryContent(this)
+					});
+				SynchronizeSectionContent();
 			}
-			throw new ArgumentOutOfRangeException("Summary Type is undefined");
 		}
 
+		public void AfterCreate()
+		{
+			InitSummariesContent();
+		}
 	}
 }

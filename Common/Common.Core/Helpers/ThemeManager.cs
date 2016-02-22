@@ -148,9 +148,6 @@ namespace Asa.Common.Core.Helpers
 					case "Summary2":
 						slideType = SlideType.Summary2;
 						break;
-					case "Strategy":
-						slideType = SlideType.Strategy;
-						break;
 					#endregion
 				}
 				if (slideType == SlideType.None) continue;

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using Asa.Business.Media.Configuration;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Images;
 using Newtonsoft.Json;
@@ -59,7 +60,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 			Station = Parent.Parent.ScheduleSettings.Stations.Count(x => x.Available) == 1 ?
 				Parent.Parent.ScheduleSettings.Stations.Where(x => x.Available).Select(x => x.Name).FirstOrDefault() :
 				null;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault();
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
 		}
 
 		public void Dispose()

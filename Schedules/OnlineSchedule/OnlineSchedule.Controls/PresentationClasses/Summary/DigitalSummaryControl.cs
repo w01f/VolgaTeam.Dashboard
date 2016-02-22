@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Common.Core.Configuration;
 using Asa.Common.GUI.Preview;
 using Asa.Online.Controls.InteropClasses;
@@ -12,7 +14,7 @@ using DevExpress.XtraTab;
 namespace Asa.Online.Controls.PresentationClasses.Summary
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalSummaryControl : UserControl, IDigitalOutputControl,IDigitalSummaryOutputContainer
+	//public partial class DigitalSummaryControl : UserControl, IDigitalSlideControl
 	public partial class DigitalSummaryControl : XtraTabPage, IDigitalSlideControl
 	{
 
@@ -27,6 +29,17 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 			InitializeComponent();
 			Parent = parent;
 			Text = "Digital Summary";
+			if (CreateGraphics().DpiX > 96)
+			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+			}
 		}
 
 		public void UpdateControls(IEnumerable<DigitalProductSummaryControl> summaryControls)

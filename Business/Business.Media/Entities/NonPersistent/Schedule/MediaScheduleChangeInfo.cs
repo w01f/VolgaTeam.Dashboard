@@ -9,7 +9,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 		public bool CalendarTypeChanged { get; set; }
 		public bool ProgramScheduleChanged { get; set; }
 		public bool SnapshotsChanged { get; set; }
-		public bool SummaryChanged { get; set; }
 
 		public override void Reset()
 		{
@@ -18,7 +17,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			CalendarTypeChanged = false;
 			ProgramScheduleChanged = false;
 			SnapshotsChanged = false;
-			SummaryChanged = false;
 		}
 
 		public override void Merge(BaseScheduleChangeInfo newInfo)
@@ -30,7 +28,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			CalendarTypeChanged |= newMediaInfo.CalendarTypeChanged;
 			ProgramScheduleChanged |= newMediaInfo.ProgramScheduleChanged;
 			SnapshotsChanged |= newMediaInfo.SnapshotsChanged;
-			SummaryChanged |= newMediaInfo.SummaryChanged;
 		}
 	}
 }

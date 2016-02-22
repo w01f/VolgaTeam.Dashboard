@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
-using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ContentEditors.Enums;
@@ -96,7 +95,6 @@ namespace Asa.Media.Single
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
 			Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
-			Controller.Instance.TabSummary = ribbonTabItemSummary;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
@@ -199,20 +197,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
 			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
 			Controller.Instance.Calendar2Pdf = buttonItemCalendar2Pdf;
-			#endregion
-
-			#region Summary Light
-			Controller.Instance.SummaryPanel = ribbonPanelSummary;
-			Controller.Instance.SummaryThemeBar = ribbonBarSummaryPowerPoint;
-			Controller.Instance.SummarySpecialButtons = ribbonBarSummarySpecialButtons;
-			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
-			Controller.Instance.SummarySave = buttonItemSummarySave;
-			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
-			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
-			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
-			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
-			Controller.Instance.SummaryPdf = buttonItemSummaryPdf;
-			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
 			#endregion
 
 			#region Snapshot

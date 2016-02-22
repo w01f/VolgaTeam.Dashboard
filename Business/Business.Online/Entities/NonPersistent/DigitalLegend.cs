@@ -6,18 +6,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 {
 	public class DigitalLegend
 	{
-		public DigitalLegend()
-		{
-			Enabled = false;
-			ShowWebsites = true;
-			ShowProduct = true;
-			ShowDimensions = false;
-			ShowDates = false;
-			ShowImpressions = false;
-			ShowCPM = false;
-			ShowInvestment = false;
-		}
-
 		public bool Enabled { get; set; }
 		public bool AllowEdit { get; set; }
 		public bool ApplyForAll { get; set; }
@@ -48,6 +36,18 @@ namespace Asa.Business.Online.Entities.NonPersistent
 					return Info3;
 				return String.Empty;
 			}
+		}
+
+		public DigitalLegend()
+		{
+			Enabled = false;
+			ShowWebsites = true;
+			ShowProduct = true;
+			ShowDimensions = false;
+			ShowDates = false;
+			ShowImpressions = false;
+			ShowCPM = false;
+			ShowInvestment = false;
 		}
 
 		public RequestDigitalInfoEventArgs RequestOptions

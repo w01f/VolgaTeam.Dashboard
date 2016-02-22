@@ -10,6 +10,7 @@ using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
@@ -32,7 +33,7 @@ using Asa.Media.Controls.InteropClasses;
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 {
 	[ToolboxItem(false)]
-	//public partial class OptionsControl : UserControl, IOptionsSlide
+	//public partial class OptionsControl : UserControl, IOptionsSlideControl
 	public sealed partial class OptionsControl : XtraTabPage, IOptionsSlideControl
 	{
 		private bool _allowToSave;
@@ -97,8 +98,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			advBandedGridView.RefreshData();
 			UpdateProgramSplash();
 			InitDargDropHelper();
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		public void DeleteProgram()
@@ -111,8 +111,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			gridControl.DataSource = Data.Programs;
 			advBandedGridView.RefreshData();
 			UpdateProgramSplash();
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		public void CloneProgram(int sourceIndex)
@@ -121,8 +120,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			gridControl.DataSource = Data.Programs;
 			advBandedGridView.RefreshData();
 			UpdateProgramSplash();
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void UpdateProgramSplash()
@@ -162,15 +160,15 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				bandedGridColumnTime.Visible = false;
 				if (Data.ShowTime)
 					positionedColumns.Add(Data.PositionTime, bandedGridColumnTime);
+				bandedGridColumnLength.Visible = false;
+				if (Data.ShowLenght)
+					positionedColumns.Add(Data.PositionLenght, bandedGridColumnLength);
 				bandedGridColumnSpots.Visible = false;
 				if (Data.ShowSpots)
 					positionedColumns.Add(Data.PositionSpots, bandedGridColumnSpots);
 				bandedGridColumnRate.Visible = false;
 				if (Data.ShowRate)
 					positionedColumns.Add(Data.PositionRate, bandedGridColumnRate);
-				bandedGridColumnLength.Visible = false;
-				if (Data.ShowLenght)
-					positionedColumns.Add(Data.PositionLenght, bandedGridColumnLength);
 				bandedGridColumnCost.Visible = false;
 				if (Data.ShowCost)
 					positionedColumns.Add(Data.PositionCost, bandedGridColumnCost);
@@ -219,6 +217,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 
 		private void UpdateColumnPositions()
 		{
+			if (Data.DefaultColumnPositions) return;
 			var columnPosition = 0;
 			var columns = gridBandOtherColumns.Columns.OfType<BandedGridColumn>().OrderBy(c => c.ColIndex).ToList();
 			var visibleColumns = columns.Where(c => c.ColIndex >= 0).ToList();
@@ -233,12 +232,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 					Data.PositionDay = column.ColIndex >= 0 ? columnPosition++ : hiddenPosition++;
 				else if (column == bandedGridColumnTime)
 					Data.PositionTime = column.ColIndex >= 0 ? columnPosition++ : hiddenPosition++;
+				else if (column == bandedGridColumnLength)
+					Data.PositionLenght = column.ColIndex >= 0 ? columnPosition++ : hiddenPosition++;
 				else if (column == bandedGridColumnSpots)
 					Data.PositionSpots = column.ColIndex >= 0 ? columnPosition++ : hiddenPosition++;
 				else if (column == bandedGridColumnRate)
 					Data.PositionRate = column.ColIndex >= 0 ? columnPosition++ : hiddenPosition++;
-				else if (column == bandedGridColumnLength)
-					Data.PositionLenght = column.ColIndex >= 0 ? columnPosition++ : hiddenPosition++;
 				else if (column == bandedGridColumnCost)
 					Data.PositionCost = column.ColIndex >= 0 ? columnPosition++ : hiddenPosition++;
 			}
@@ -317,7 +316,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			{
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
-				selectedProgram.Logo = form.SelectedImageSource;
+				selectedProgram.Logo = form.SelectedImageSource.Clone<ImageSource, ImageSource>();
 				Data.UpdateLogo();
 				advBandedGridView.UpdateCurrentRow();
 				if (DataChanged != null)
@@ -343,9 +342,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private void advBandedGridView_ColumnPositionChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+			Data.DefaultColumnPositions = false;
 			UpdateColumnPositions();
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void advBandedGridView_DragObjectOver(object sender, DragObjectOverEventArgs e)
@@ -370,8 +369,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			advBandedGridView.RefreshData();
 			if (advBandedGridView.RowCount > 0)
 				advBandedGridView.FocusedRowHandle = targetRow;
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void Properties_BeforeShowMenu(object sender, BeforeShowMenuEventArgs e)
@@ -443,10 +441,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 
-		private int ProgramsPerSlide
-		{
-			get { return 10; }
-		}
+		private int ProgramsPerSlide => 10;
 
 		private string[][] GetLogos()
 		{

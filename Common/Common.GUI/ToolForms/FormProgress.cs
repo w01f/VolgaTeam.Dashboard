@@ -35,6 +35,7 @@ namespace Asa.Common.GUI.ToolForms
 
 		public static void ShowProgress(string title, Action backgroundAction)
 		{
+			backgroundAction();
 			using (var form = new FormProgress())
 			{
 				form.laTitle.Text = title;

@@ -49,10 +49,8 @@
 		WebQuick = 501,
 
 		#region Common
-		Summaries = 901,
-		Summary1 = 902,
-		Summary2 = 903,
-		Strategy = 904,
+		Summary1 = 901,
+		Summary2 = 902,
 		#endregion
 	}
 }

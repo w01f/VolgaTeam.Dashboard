@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Asa.Business.Common.Enums;
-using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Common;
 using Asa.Business.Online.Entities.NonPersistent;
 
@@ -67,23 +65,26 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			base.AfterCreate();
 
 			foreach (var scheduleSection in Sections)
+			{
 				scheduleSection.Parent = this;
+				scheduleSection.AfterCreate();
+			}
 
 			OnScheduleDatesChanged(this, EventArgs.Empty);
 			OnMediaDataChangedChanged(this, EventArgs.Empty);
 
 			Schedule.ScheduleDatesChanged += OnScheduleDatesChanged;
 			Schedule.MediaDataChanged += OnMediaDataChangedChanged;
-			Schedule.PartitionContentChanged += OnSchedulePartitionContentChanged;
 		}
 
 		public override void Dispose()
 		{
-			Schedule.ScheduleDatesChanged -= OnScheduleDatesChanged;
-			Schedule.MediaDataChanged -= OnMediaDataChangedChanged;
-			Schedule.PartitionContentChanged -= OnSchedulePartitionContentChanged;
-
-			Sections.ForEach(s=>s.Dispose());
+			if (Schedule != null)
+			{
+				Schedule.ScheduleDatesChanged -= OnScheduleDatesChanged;
+				Schedule.MediaDataChanged -= OnMediaDataChangedChanged;
+			}
+			Sections.ForEach(s => s.Dispose());
 			Sections.Clear();
 			base.Dispose();
 		}
@@ -123,18 +124,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				scheduleSection.ShowGRP = scheduleSection.ShowGRP & ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
 				scheduleSection.ShowTotalCPP = scheduleSection.ShowTotalCPP & ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
 				scheduleSection.ShowTotalGRP = scheduleSection.ShowTotalGRP & ScheduleSettings.UseDemo & !String.IsNullOrEmpty(ScheduleSettings.Demo);
-			}
-		}
-
-		private void OnSchedulePartitionContentChanged(object sender, Business.Common.Entities.Helpers.PartitionContentChangedEventArgs e)
-		{
-			switch (e.PartitionType)
-			{
-				case SchedulePartitionType.WeeklySchedule:
-				case SchedulePartitionType.MonthlySchedule:
-					foreach (var scheduleSection in Sections)
-						scheduleSection.Summary.Content.SynchronizeSectionContent();
-					break;
 			}
 		}
 	}

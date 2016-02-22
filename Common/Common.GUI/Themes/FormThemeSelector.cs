@@ -49,7 +49,7 @@ namespace Asa.Common.GUI.Themes
 			laThemeName.Text = selectedTheme;
 		}
 
-		public static void Link(ButtonItem selectorButton, IEnumerable<Theme> themes , string selectedThemeName, Action<Theme> themeSelected)
+		public static void Link(ButtonItem selectorButton, IEnumerable<Theme> themes, string selectedThemeName, Action<Theme> themeSelected)
 		{
 			var themesExisted = themes.Any();
 			selectorButton.ForeColor = Color.Black;

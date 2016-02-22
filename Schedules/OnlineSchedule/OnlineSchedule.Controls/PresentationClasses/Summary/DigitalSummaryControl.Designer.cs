@@ -115,11 +115,10 @@
 			// checkEditTotalInvestment
 			// 
 			this.checkEditTotalInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditTotalInvestment.Location = new System.Drawing.Point(421, 55);
+			this.checkEditTotalInvestment.Location = new System.Drawing.Point(423, 56);
 			this.checkEditTotalInvestment.Name = "checkEditTotalInvestment";
-			this.checkEditTotalInvestment.Properties.AutoWidth = true;
 			this.checkEditTotalInvestment.Properties.Caption = "Total:";
-			this.checkEditTotalInvestment.Size = new System.Drawing.Size(54, 20);
+			this.checkEditTotalInvestment.Size = new System.Drawing.Size(80, 20);
 			this.checkEditTotalInvestment.StyleController = this.styleController;
 			this.checkEditTotalInvestment.TabIndex = 5;
 			this.checkEditTotalInvestment.CheckedChanged += new System.EventHandler(this.checkEditTotalInvestment_CheckedChanged);
@@ -171,17 +170,16 @@
 			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatString = "$#,###.00";
 			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthlyInvestment.Properties.NullText = "N/A";
-			this.spinEditMonthlyInvestment.Size = new System.Drawing.Size(106, 21);
+			this.spinEditMonthlyInvestment.Size = new System.Drawing.Size(106, 22);
 			this.spinEditMonthlyInvestment.TabIndex = 4;
 			// 
 			// checkEditMonthlyInvestment
 			// 
 			this.checkEditMonthlyInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(413, 13);
+			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(423, 13);
 			this.checkEditMonthlyInvestment.Name = "checkEditMonthlyInvestment";
-			this.checkEditMonthlyInvestment.Properties.AutoWidth = true;
 			this.checkEditMonthlyInvestment.Properties.Caption = "Monthly:";
-			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(72, 20);
+			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(80, 20);
 			this.checkEditMonthlyInvestment.StyleController = this.styleController;
 			this.checkEditMonthlyInvestment.TabIndex = 3;
 			this.checkEditMonthlyInvestment.CheckedChanged += new System.EventHandler(this.checkEditMonthlyInvestment_CheckedChanged);
@@ -189,7 +187,6 @@
 			// labelControlInvestmentTitle
 			// 
 			this.labelControlInvestmentTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlInvestmentTitle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlInvestmentTitle.Location = new System.Drawing.Point(300, 15);
 			this.labelControlInvestmentTitle.Name = "labelControlInvestmentTitle";
 			this.labelControlInvestmentTitle.Size = new System.Drawing.Size(102, 16);
@@ -209,7 +206,6 @@
 			this.memoEditStatement.Size = new System.Drawing.Size(241, 63);
 			this.memoEditStatement.StyleController = this.styleController;
 			this.memoEditStatement.TabIndex = 1;
-			this.memoEditStatement.UseOptimizedRendering = true;
 			this.memoEditStatement.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// checkEditStatement
@@ -227,6 +223,7 @@
 			// 
 			this.Controls.Add(this.xtraScrollableControl);
 			this.Controls.Add(this.pnSummaryExt);
+			this.Name = "DigitalSummaryControl";
 			this.Size = new System.Drawing.Size(627, 445);
 			this.pnSummaryExt.ResumeLayout(false);
 			this.pnSummaryInt.ResumeLayout(false);

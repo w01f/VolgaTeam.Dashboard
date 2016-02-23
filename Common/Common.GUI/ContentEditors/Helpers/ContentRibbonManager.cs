@@ -51,9 +51,12 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 					contentControl.IsActive = false;
 				_controller.ActiveControl = _controller.ContentControls
 					.First(c => c.Identifier == (String)_controller.ContentRibbon.SelectedRibbonTabItem.Tag);
+				if (!_controller.MainPanel.Controls.Contains((Control) _controller.ActiveControl))
+				{
+					_controller.MainPanel.Controls.Add((Control) _controller.ActiveControl);
+					_controller.ActiveControl.InitControl();
+				}
 				_controller.ActiveControl.ShowControl();
-				if (!_controller.MainPanel.Controls.Contains((Control)_controller.ActiveControl))
-					_controller.MainPanel.Controls.Add((Control)_controller.ActiveControl);
 				((Control)_controller.ActiveControl).BringToFront();
 				_controller.MainPanel.BringToFront();
 

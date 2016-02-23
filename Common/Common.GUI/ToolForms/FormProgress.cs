@@ -35,7 +35,6 @@ namespace Asa.Common.GUI.ToolForms
 
 		public static void ShowProgress(string title, Action backgroundAction)
 		{
-			backgroundAction();
 			using (var form = new FormProgress())
 			{
 				form.laTitle.Text = title;
@@ -43,14 +42,14 @@ namespace Asa.Common.GUI.ToolForms
 				form.Shown += async (o, e) =>
 				{
 					if (_mainForm.InvokeRequired)
-						_mainForm.Invoke(new MethodInvoker(Application.DoEvents));
+						_mainForm.BeginInvoke(new MethodInvoker(Application.DoEvents));
 
 					var taskCompleted = false;
 
 					Task.Run(() =>
 					{
 						if (_mainForm.InvokeRequired)
-							_mainForm.Invoke(new MethodInvoker(() =>
+							_mainForm.BeginInvoke(new MethodInvoker(() =>
 							{
 								Application.DoEvents();
 								backgroundAction();
@@ -66,7 +65,7 @@ namespace Asa.Common.GUI.ToolForms
 						{
 							Thread.Sleep(100);
 							if (_mainForm.InvokeRequired)
-								_mainForm.Invoke(new MethodInvoker(Application.DoEvents));
+								_mainForm.BeginInvoke(new MethodInvoker(Application.DoEvents));
 						}
 					});
 					form.Close();
@@ -90,7 +89,7 @@ namespace Asa.Common.GUI.ToolForms
 		public static void CloseProgress()
 		{
 			if (_instance.InvokeRequired)
-				_instance.Invoke(new MethodInvoker(() => _instance.Close()));
+				_instance.BeginInvoke(new MethodInvoker(() => _instance.Close()));
 			else
 				_instance.Close();
 		}
@@ -99,7 +98,7 @@ namespace Asa.Common.GUI.ToolForms
 		{
 			if (_instance == null)
 				_instance = new FormProgress();
-			_instance.Invoke(new MethodInvoker(() =>
+			_instance.BeginInvoke(new MethodInvoker(() =>
 			{
 				_instance.laTitle.Text = text;
 				_instance.laDetails.Visible = withDetails;
@@ -112,7 +111,7 @@ namespace Asa.Common.GUI.ToolForms
 		{
 			if (_instance == null)
 				_instance = new FormProgress();
-			_instance.Invoke(new MethodInvoker(() =>
+			_instance.BeginInvoke(new MethodInvoker(() =>
 			{
 				_instance.laDetails.Text = text;
 				Application.DoEvents();

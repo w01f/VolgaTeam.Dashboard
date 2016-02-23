@@ -127,7 +127,7 @@ namespace Asa.Media.Controls.BusinessClasses
 				contentEditControl.TabPage.Visible = true;
 				ContentControls.Add(contentEditControl);
 			}
-			ContentControls.ForEach(c => c.InitControl());
+			ContentControls.ForEach(c => c.InitMetaData());
 			ContentEditManager<MediaScheduleChangeInfo>.Init(this);
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened += ContentEditManager<MediaScheduleChangeInfo>.OnScheduleOpened;
 			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSaving += (o, e) => BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Save();

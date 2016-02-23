@@ -67,10 +67,13 @@ namespace Asa.Common.GUI.Gallery
 		public bool IsActive { get; set; }
 		public abstract RibbonTabItem TabPage { get; }
 
-		public void InitControl()
+		public void InitMetaData()
 		{
 			TabPage.Tag = Identifier;
+		}
 
+		public void InitControl()
+		{
 			InitBrowser();
 			InitImageContainer();
 

@@ -24,9 +24,14 @@ namespace Asa.Common.GUI.RateCard
 		public abstract string Identifier { get; }
 		public bool IsActive { get; set; }
 		public abstract RibbonTabItem TabPage { get;  }
-		public virtual void InitControl()
+
+		public void InitMetaData()
 		{
 			TabPage.Tag = Identifier;
+		}
+
+		public virtual void InitControl()
+		{
 			_listControl.SelectedIndexChanged -= comboBoxEditRateCards_EditValueChanged;
 			_listControl.SelectedIndexChanged += comboBoxEditRateCards_EditValueChanged;
 			Disposed += RateCardControl_Disposed;

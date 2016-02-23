@@ -44,7 +44,7 @@ namespace Asa.Common.GUI.ToolForms
 			if (_instance == null)
 				_instance = new FormStart();
 			if (_instance.InvokeRequired)
-				_instance.Invoke(new MethodInvoker(() =>
+				_instance.BeginInvoke(new MethodInvoker(() =>
 				{
 					_instance.Show();
 					Application.DoEvents();
@@ -60,7 +60,7 @@ namespace Asa.Common.GUI.ToolForms
 			if (_queueCount <= 1)
 			{
 				if (_instance.InvokeRequired)
-					_instance.Invoke(new MethodInvoker(() =>
+					_instance.BeginInvoke(new MethodInvoker(() =>
 					{
 						_instance.Hide();
 						_instance.HideTrayIcon();
@@ -81,7 +81,7 @@ namespace Asa.Common.GUI.ToolForms
 		{
 			if (_instance == null)
 				_instance = new FormStart();
-			_instance.Invoke(new MethodInvoker(() =>
+			_instance.BeginInvoke(new MethodInvoker(() =>
 			{
 				_instance.laTitle.Text = text;
 				SetDetails(String.Empty);
@@ -99,7 +99,7 @@ namespace Asa.Common.GUI.ToolForms
 		{
 			if (_instance == null)
 				_instance = new FormStart();
-			_instance.Invoke(new MethodInvoker(() =>
+			_instance.BeginInvoke(new MethodInvoker(() =>
 			{
 				_instance.laDetails.Text = text;
 				if (!String.IsNullOrEmpty(text))

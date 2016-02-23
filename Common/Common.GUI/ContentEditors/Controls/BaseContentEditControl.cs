@@ -31,10 +31,12 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 			ChangeInfo = Activator.CreateInstance<TChangeInfo>();
 		}
 
-		public virtual void InitControl()
+		public virtual void InitMetaData()
 		{
 			TabPage.Tag = Identifier;
 		}
+
+		public virtual void InitControl() { }
 
 		public virtual void ShowControl()
 		{

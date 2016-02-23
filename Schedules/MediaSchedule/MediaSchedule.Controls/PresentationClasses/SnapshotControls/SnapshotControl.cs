@@ -86,9 +86,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		public void Release()
 		{
+			if (_dragDropHelper != null)
+				_dragDropHelper.AfterDrop -= gridControl_AfterDrop;
 			gridControlProgramSource.DataSource = null;
 			gridControl.DataSource = null;
-			_dragDropHelper.AfterDrop -= gridControl_AfterDrop;
 			DataChanged = null;
 			Data = null;
 		}

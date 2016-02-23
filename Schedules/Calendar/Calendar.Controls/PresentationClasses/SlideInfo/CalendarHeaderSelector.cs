@@ -10,6 +10,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.FavoriteImages;
+using Asa.Common.GUI.ImageGallery;
 using Manina.Windows.Forms;
 
 namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
@@ -18,6 +19,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 	{
 		private bool _isLoading;
 		private readonly List<ImageSource> _dataSource = new List<ImageSource>();
+		private ImageSourceAdaptor _listViewAdaptor;
 		private Cursor _dragRowCursor;
 		private Point _hitPoint;
 		private ImageListView.HitInfo _downHitInfo;
@@ -42,7 +44,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 			{
 				_isLoading = true;
 				imageListView.ClearSelection();
-				if (value != null)
+				if (value != null && _dataSource.Contains(value))
 				{
 					var index = _dataSource.IndexOf(value);
 					imageListView.Items[index].Selected = true;
@@ -58,8 +60,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 			_isLoading = true;
 			_dataSource.Clear();
 			_dataSource.AddRange(dataSource);
+			_listViewAdaptor = new ImageSourceAdaptor(_dataSource);
 			imageListView.Items.Clear();
-			imageListView.Items.AddRange(_dataSource.Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
+			imageListView.Items.AddRange(_dataSource.Select(ims => new ImageListViewItem(ims.Identifier) { Tag = ims }).ToArray(), _listViewAdaptor);
 			_isLoading = false;
 		}
 

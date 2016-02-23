@@ -13,8 +13,8 @@ namespace Asa.Common.Core.Json
 			NullValueHandling = NullValueHandling.Ignore;
 			MissingMemberHandling = MissingMemberHandling.Ignore;
 			ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
-			//Formatting = Formatting.None;
-			Formatting = Formatting.Indented;
+			Formatting = Formatting.None;
+			//Formatting = Formatting.Indented;
 			Converters.Add(new JsonImageConverter());
 			ContractResolver = new ContentResolver();
 			Error += OnError;

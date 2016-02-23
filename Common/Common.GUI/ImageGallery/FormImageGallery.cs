@@ -11,37 +11,46 @@ namespace Asa.Common.GUI.ImageGallery
 {
 	public partial class FormImageGallery : MetroForm
 	{
+		private readonly IEnumerable<ImageSourceGroup> _imageGroups;
+
 		public FormImageGallery(IEnumerable<ImageSourceGroup> imageGroups)
 		{
+			_imageGroups = imageGroups;
 			InitializeComponent();
+		}
+
+		public Image SelectedImage { get; private set; }
+
+		public ImageSource SelectedImageSource { get; private set; }
+
+		private void OnGroupDoubleClick(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.OK;
+		}
+
+		private void FormImageGallery_Load(object sender, EventArgs e)
+		{
 			xtraTabControlGroups.TabPages.Clear();
-			foreach (var imageGroup in imageGroups)
+			foreach (var imageGroup in _imageGroups)
 			{
 				var tabPage = new ImageGroupPage(imageGroup);
 				tabPage.DoubleClicked += OnGroupDoubleClick;
 				xtraTabControlGroups.TabPages.Add(tabPage);
 			}
-			xtraTabControlGroups.ShowTabHeader = imageGroups.Count() > 1 ? DefaultBoolean.True : DefaultBoolean.False;
+			xtraTabControlGroups.ShowTabHeader = _imageGroups.Count() > 1 ? DefaultBoolean.True : DefaultBoolean.False;
 		}
 
-		protected ImageGroupPage SelectedPage
+		private void FormImageGallery_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			get { return xtraTabControlGroups.SelectedTabPage as ImageGroupPage; }
-		}
-
-		public Image SelectedImage
-		{
-			get { return SelectedPage != null ? SelectedPage.SelectedImage : null; }
-		}
-
-		public ImageSource SelectedImageSource
-		{
-			get { return SelectedPage != null ? SelectedPage.SelectedImageSource : null; }
-		}
-
-		private void OnGroupDoubleClick(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.OK;
+			if (DialogResult == DialogResult.OK)
+			{
+				var selectedPage = xtraTabControlGroups.SelectedTabPage as ImageGroupPage;
+				SelectedImage = selectedPage?.SelectedImage;
+				SelectedImageSource = selectedPage?.SelectedImageSource;
+			}
+			foreach (var imageGroup in xtraTabControlGroups.TabPages.OfType<ImageGroupPage>())
+				imageGroup.Release();
+			xtraTabControlGroups.TabPages.Clear();
 		}
 	}
 }

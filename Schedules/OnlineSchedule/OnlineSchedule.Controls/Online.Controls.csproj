@@ -118,6 +118,12 @@
       <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Packages\IWebPackageOutput.cs" />
+    <Compile Include="PresentationClasses\Packages\WebPackageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Packages\WebPackageControl.designer.cs">
+      <DependentUpon>WebPackageControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Products\DigitalProductContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -160,12 +166,6 @@
     <Compile Include="PresentationClasses\Summary\DigitalSummaryControl.designer.cs">
       <DependentUpon>DigitalSummaryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Packages\WebPackageControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Packages\WebPackageControl.Designer.cs">
-      <DependentUpon>WebPackageControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolForms\FormCloneProduct.cs">
       <SubType>Form</SubType>
@@ -191,6 +191,9 @@
     <EmbeddedResource Include="PresentationClasses\AdPlan\AdPlanDigitalProductControl.resx">
       <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Packages\WebPackageControl.resx">
+      <DependentUpon>WebPackageControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Products\DigitalProductListControl.resx">
       <DependentUpon>DigitalProductListControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,9 +205,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Summary\DigitalSummaryControl.resx">
       <DependentUpon>DigitalSummaryControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Packages\WebPackageControl.resx">
-      <DependentUpon>WebPackageControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormCloneProduct.resx">
       <DependentUpon>FormCloneProduct.cs</DependentUpon>

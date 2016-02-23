@@ -1,12 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.RemoteStorage;
-using Newtonsoft.Json;
 
 namespace Asa.Common.Core.Objects.Images
 {
@@ -28,6 +26,7 @@ namespace Asa.Common.Core.Objects.Images
 		public const decimal TinyWidth = 128;
 		public const decimal XtraTinyWidth = 90;
 
+		public Guid Identifier { get; set; }
 		public bool IsDefault { get; set; }
 		public Image BigImage { get; set; }
 		public Image SmallImage { get; set; }
@@ -40,6 +39,11 @@ namespace Asa.Common.Core.Objects.Images
 		public bool ContainsData
 		{
 			get { return XtraTinyImage != null; }
+		}
+
+		public ImageSource()
+		{
+			Identifier = Guid.NewGuid();
 		}
 
 		public void Dispose()

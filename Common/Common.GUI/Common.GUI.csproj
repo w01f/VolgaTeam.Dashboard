@@ -143,6 +143,7 @@
     <Compile Include="ImageGallery\ImageGroupPage.Designer.cs">
       <DependentUpon>ImageGroupPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageGallery\ImageSourceAdaptor.cs" />
     <Compile Include="Interop\CommonPowerPointHelper.cs" />
     <Compile Include="Floater\FloaterManager.cs" />
     <Compile Include="Floater\FloaterRequestedEventArgs.cs" />

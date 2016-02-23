@@ -30,11 +30,11 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.imageListView = new Manina.Windows.Forms.ImageListView();
-			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemFavorites = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -53,17 +53,11 @@
 			this.imageListView.PersistentCacheSize = ((long)(100));
 			this.imageListView.Size = new System.Drawing.Size(521, 446);
 			this.imageListView.TabIndex = 40;
-			this.imageListView.ThumbnailSize = new System.Drawing.Size(120, 54);
+			this.imageListView.ThumbnailSize = new System.Drawing.Size(128, 58);
 			this.imageListView.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.imageListView_ItemHover);
 			this.imageListView.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageListView_ItemDoubleClick);
 			this.imageListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseDown);
 			this.imageListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseMove);
-			// 
-			// toolTip
-			// 
-			this.toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.toolTip.UseAnimation = false;
-			this.toolTip.UseFading = false;
 			// 
 			// contextMenuStrip
 			// 
@@ -95,11 +89,18 @@
 			this.toolStripMenuItemFavorites.Text = "Save to Favorites";
 			this.toolStripMenuItemFavorites.Click += new System.EventHandler(this.toolStripMenuItemFavorites_Click);
 			// 
+			// toolTip
+			// 
+			this.toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.toolTip.UseAnimation = false;
+			this.toolTip.UseFading = false;
+			// 
 			// ImageGroupPage
 			// 
 			this.Controls.Add(this.imageListView);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "ImageGroupPage";
 			this.Size = new System.Drawing.Size(521, 446);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);

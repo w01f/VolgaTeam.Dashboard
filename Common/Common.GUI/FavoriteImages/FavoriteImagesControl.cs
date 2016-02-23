@@ -9,12 +9,14 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using Manina.Windows.Forms;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ImageGallery;
 
 namespace Asa.Common.GUI.FavoriteImages
 {
 	public partial class FavoriteImagesControl : UserControl
 	{
 		private FavoriteImagesManager _manager;
+		private ImageSourceAdaptor _listViewAdaptor;
 		private Cursor _dragRowCursor;
 		private Point _hitPoint;
 		private ImageListView.HitInfo _downHitInfo;
@@ -31,6 +33,7 @@ namespace Asa.Common.GUI.FavoriteImages
 		{
 			_manager = FavoriteImagesManager.Instance;
 			_manager.CollectionChanged += OnFavoritesCollectionChanged;
+			_listViewAdaptor = new ImageSourceAdaptor(_manager.Images);
 			LoadImages();
 		}
 
@@ -43,7 +46,7 @@ namespace Asa.Common.GUI.FavoriteImages
 		private void LoadImages()
 		{
 			imageListView.Items.Clear();
-			imageListView.Items.AddRange(_manager.Images.Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
+			imageListView.Items.AddRange(_manager.Images.Select(ims => new ImageListViewItem(ims.Identifier) { Tag = ims }).ToArray(), _listViewAdaptor);
 		}
 
 		private void OnFavoritesCollectionChanged(object sender, EventArgs e)

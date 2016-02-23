@@ -115,6 +115,8 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Select Logo";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormImageGallery_FormClosed);
+			this.Load += new System.EventHandler(this.FormImageGallery_Load);
 			this.pnBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).EndInit();
 			this.ResumeLayout(false);

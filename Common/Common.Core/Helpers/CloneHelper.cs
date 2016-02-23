@@ -7,9 +7,10 @@ namespace Asa.Common.Core.Helpers
 	public static class CloneHelper
 	{
 		public static TClonable Clone<TClonable, TCloneSource>(this TCloneSource original, bool fullClone = true)
-			where TClonable : IJsonCloneable<TCloneSource>, TCloneSource
+			where TClonable : class, IJsonCloneable<TCloneSource>, TCloneSource 
 			where TCloneSource : IJsonCloneSource
 		{
+			if (original == null) return null;
 			var originalEncoded = original.Serialize();
 			var copy = Deserialize<TClonable, TCloneSource>(original, originalEncoded);
 			return copy;

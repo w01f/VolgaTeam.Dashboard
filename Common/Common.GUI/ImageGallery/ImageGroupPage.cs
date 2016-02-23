@@ -16,8 +16,9 @@ namespace Asa.Common.GUI.ImageGallery
 	//public partial class ImageGroupPage : UserControl
 	public partial class ImageGroupPage : XtraTabPage
 	{
+		private readonly List<ImageSource> _imageSources = new List<ImageSource>();
+		private ImageSourceAdaptor _listViewAdaptor;
 		private ImageListView.HitInfo _menuHitInfo;
-		public List<ImageSource> ImageSources { get; private set; }
 
 		public event EventHandler<EventArgs> DoubleClicked;
 
@@ -25,15 +26,24 @@ namespace Asa.Common.GUI.ImageGallery
 		{
 			InitializeComponent();
 			Text = imageSourceGroup.Name;
-			ImageSources = new List<ImageSource>();
-			ImageSources.AddRange(imageSourceGroup.Images);
+			Init(imageSourceGroup.Images);
+		}
+
+		public ImageGroupPage(IEnumerable<ImageSource> imageSources)
+		{
+			InitializeComponent();
+			_imageSources.AddRange(imageSources);
 			LoadImages();
 		}
 
-		public Image SelectedImage
+		private void Init(IEnumerable<ImageSource> imageSources)
 		{
-			get { return SelectedImageSource != null ? SelectedImageSource.BigImage : null; }
+			_imageSources.AddRange(imageSources);
+			_listViewAdaptor = new ImageSourceAdaptor(_imageSources);
+			LoadImages();
 		}
+
+		public Image SelectedImage => SelectedImageSource?.BigImage;
 
 		public ImageSource SelectedImageSource
 		{
@@ -48,7 +58,16 @@ namespace Asa.Common.GUI.ImageGallery
 		private void LoadImages()
 		{
 			imageListView.Items.Clear();
-			imageListView.Items.AddRange(ImageSources.Select(ims => new ImageListViewItem(ims.FileName, ims.Name) { Tag = ims }).ToArray());
+			imageListView.Items.AddRange(_imageSources.Select(ims => new ImageListViewItem(ims.Identifier) { Tag = ims }).ToArray(), _listViewAdaptor);
+		}
+
+		public void Release()
+		{
+			imageListView.ClearSelection();
+			imageListView.Items.Clear();
+			_listViewAdaptor.Dispose();
+			_listViewAdaptor = null;
+			_imageSources.Clear();
 		}
 
 		private void imageListView_ItemDoubleClick(object sender, ItemClickEventArgs e)

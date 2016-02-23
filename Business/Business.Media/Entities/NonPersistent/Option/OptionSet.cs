@@ -212,6 +212,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 		public void AfterClone(OptionSet source, bool fullClone = true)
 		{
 			UniqueID = Guid.NewGuid();
+			Parent = source.Parent;
 			foreach (var optionProgram in Programs)
 			{
 				optionProgram.AfterClone(source.Programs.First(sourceProgram => sourceProgram.UniqueID == optionProgram.UniqueID), fullClone);

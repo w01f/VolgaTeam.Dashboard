@@ -52,13 +52,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 					new ProductSummaryContent(this),
 					new StrategySummaryContent(this)
 					});
-				SynchronizeSectionContent();
 			}
 		}
 
 		public void AfterCreate()
 		{
 			InitSummariesContent();
+			SynchronizeSectionContent();
 		}
 	}
 }

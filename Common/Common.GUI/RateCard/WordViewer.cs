@@ -47,7 +47,7 @@ namespace Asa.Common.GUI.RateCard
 				}
 				Loaded = true;
 			}));
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Rate Card...");
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Page...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
 			thread.Start();
@@ -55,8 +55,6 @@ namespace Asa.Common.GUI.RateCard
 				Application.DoEvents();
 			FormProgress.CloseProgress();
 		}
-
-		public void Email() { }
 		#endregion
 	}
 }

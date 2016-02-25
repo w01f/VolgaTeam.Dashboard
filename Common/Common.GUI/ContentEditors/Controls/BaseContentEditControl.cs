@@ -17,7 +17,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 		public bool IsActive { get; set; }
 		public abstract string Identifier { get; }
 		public abstract RibbonTabItem TabPage { get; }
-		protected TChangeInfo ChangeInfo { get; private set; }
+		protected TChangeInfo ChangeInfo { get; }
 
 		public event EventHandler<ContentSavedEventArgs<TChangeInfo>> ContentChanged;
 

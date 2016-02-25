@@ -390,6 +390,7 @@ namespace Asa.Media.Controls
 		public ButtonItem SlideSettingsButton { get; set; }
 
 		#region Home
+		public RibbonPanel HomePanel { get; set; }
 		public RibbonBar HomeSpecialButtons { get; set; }
 		public ButtonItem HomeHelp { get; set; }
 		public ButtonItem HomeSave { get; set; }

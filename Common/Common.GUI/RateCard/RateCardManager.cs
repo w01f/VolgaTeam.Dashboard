@@ -59,10 +59,7 @@ namespace Asa.Common.GUI.RateCard
 		private void SelectRateCard(object sender, TabPageChangedEventArgs e)
 		{
 			var rateCard = e.Page as IRateCardViewer;
-			if (rateCard != null)
-			{
-				rateCard.LoadViewer();
-			}
+			rateCard?.LoadViewer();
 		}
 
 		public void LoadRateCards()
@@ -107,6 +104,16 @@ namespace Asa.Common.GUI.RateCard
 							rateCard = new DefaultViewer(rateCardFile);
 						}
 						break;
+					case ".txt":
+						try
+						{
+							rateCard = new WebViewer(rateCardFile);
+						}
+						catch
+						{
+							rateCard = new DefaultViewer(rateCardFile);
+						}
+						break;
 					default:
 						rateCard = new DefaultViewer(rateCardFile);
 						break;
@@ -131,6 +138,5 @@ namespace Asa.Common.GUI.RateCard
 		FileInfo File { get; }
 		void ReleaseResources();
 		void LoadViewer();
-		void Email();
 	}
 }

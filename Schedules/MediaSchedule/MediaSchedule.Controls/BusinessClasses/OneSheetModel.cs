@@ -14,18 +14,6 @@ namespace Asa.Media.Controls.BusinessClasses
 	{
 		private readonly ScheduleSection _parent;
 
-		public OutputSchedule(ScheduleSection parent)
-		{
-			_parent = parent;
-			Title = string.Empty;
-			Advertiser = string.Empty;
-			DecisionMaker = string.Empty;
-			Programs = new List<OutputProgram>();
-			TotalSpots = new List<OutputTotalSpot>();
-			Totals = new Dictionary<string, string>();
-			ReplacementsList = new Dictionary<string, string>();
-		}
-
 		public string Title { get; set; }
 		public string Advertiser { get; set; }
 		public string DecisionMaker { get; set; }
@@ -114,7 +102,7 @@ namespace Asa.Media.Controls.BusinessClasses
 				switch (_parent.ParentSchedule.Settings.DemoType)
 				{
 					case DemoType.Rtg:
-						result = "GRP";
+						result = "GRPs";
 						break;
 					case DemoType.Imp:
 						result = "IMPs";
@@ -141,6 +129,18 @@ namespace Asa.Media.Controls.BusinessClasses
 		public bool ShowLogo { get; set; }
 		public bool ShowStationInBrackets { get; set; }
 		#endregion
+
+		public OutputSchedule(ScheduleSection parent)
+		{
+			_parent = parent;
+			Title = string.Empty;
+			Advertiser = string.Empty;
+			DecisionMaker = string.Empty;
+			Programs = new List<OutputProgram>();
+			TotalSpots = new List<OutputTotalSpot>();
+			Totals = new Dictionary<string, string>();
+			ReplacementsList = new Dictionary<string, string>();
+		}
 
 		public void GetLogos()
 		{

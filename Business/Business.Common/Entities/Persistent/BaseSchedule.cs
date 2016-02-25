@@ -27,6 +27,7 @@ namespace Asa.Business.Common.Entities.Persistent
 
 		public void Save()
 		{
+			LastModified = DateTime.Now;
 			Save(Context, this);
 		}
 

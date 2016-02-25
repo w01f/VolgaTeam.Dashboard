@@ -152,7 +152,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
 			this.xtraTabPageMedia.Padding = new System.Windows.Forms.Padding(10);
 			this.xtraTabPageMedia.Size = new System.Drawing.Size(659, 569);
-			this.xtraTabPageMedia.Text = "Television Strategy";
+			this.xtraTabPageMedia.Text = "The Solution";
 			// 
 			// pnMedia
 			// 

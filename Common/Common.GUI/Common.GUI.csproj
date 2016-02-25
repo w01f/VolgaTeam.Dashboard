@@ -206,12 +206,6 @@
     <Compile Include="RateCard\PDFViewer.Designer.cs">
       <DependentUpon>PDFViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="RateCard\PowerPointViewer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RateCard\PowerPointViewer.Designer.cs">
-      <DependentUpon>PowerPointViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="RateCard\RateCardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,6 +218,12 @@
     </Compile>
     <Compile Include="RateCard\RateFolderControl.Designer.cs">
       <DependentUpon>RateFolderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\WebViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\WebViewer.Designer.cs">
+      <DependentUpon>WebViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="RateCard\WordViewer.cs">
       <SubType>Component</SubType>
@@ -434,14 +434,14 @@
     <EmbeddedResource Include="RateCard\PDFViewer.resx">
       <DependentUpon>PDFViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\PowerPointViewer.resx">
-      <DependentUpon>PowerPointViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="RateCard\RateCardControl.resx">
       <DependentUpon>RateCardControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RateCard\RateFolderControl.resx">
       <DependentUpon>RateFolderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\WebViewer.resx">
+      <DependentUpon>WebViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RateCard\WordViewer.resx">
       <DependentUpon>WordViewer.cs</DependentUpon>

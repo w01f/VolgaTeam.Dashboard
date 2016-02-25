@@ -26,8 +26,6 @@ namespace Asa.Common.GUI.RateCard
 		{
 			Loaded = true;
 		}
-
-		public void Email() { }
 		#endregion
 	}
 }

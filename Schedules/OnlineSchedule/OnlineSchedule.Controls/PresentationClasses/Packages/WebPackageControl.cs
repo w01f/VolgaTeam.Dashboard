@@ -30,6 +30,7 @@ namespace Asa.Online.Controls.PresentationClasses.Packages
 {
 	[ToolboxItem(false)]
 	[Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
+	//public partial class WebPackageControl:UserControl
 	public abstract partial class WebPackageControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>, IWebPackageOutput
 		where TPartitionContet : BaseSchedulePartitionContent<TSchedule, TScheduleSettings>, IDigitalProductsContent
 		where TSchedule : IDigitalSchedule<TScheduleSettings>
@@ -70,6 +71,13 @@ namespace Asa.Online.Controls.PresentationClasses.Packages
 			pbFormualHelp.Buttonize();
 			pbDisabledOutput.Buttonize();
 
+			repositoryItemComboBoxCategory.Items.Clear();
+			repositoryItemComboBoxCategory.Items.AddRange(ListManager.Instance.ProductSources
+				.Where(ps => ps.Category != null)
+				.Select(ps => ps.Category.Name)
+				.Distinct()
+				.ToArray());
+
 			if ((MainForm.CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);
@@ -80,9 +88,6 @@ namespace Asa.Online.Controls.PresentationClasses.Packages
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 				laAdvertiser.Font = font;
-				checkEditFormulaCPM.Font = font;
-				checkEditFormulaImpressions.Font = font;
-				checkEditFormulaInvestment.Font = font;
 				labelControlFormula.Font = new Font(labelControlFormula.Font.FontFamily, labelControlFormula.Font.Size - 2, labelControlFormula.Font.Style);
 				advBandedGridView.Appearance.BandPanel.Font = font;
 				advBandedGridView.Appearance.EvenRow.Font = font;
@@ -109,12 +114,6 @@ namespace Asa.Online.Controls.PresentationClasses.Packages
 		protected override void UpdateEditedContet()
 		{
 			AllowApplyValues = false;
-			repositoryItemComboBoxCategory.Items.Clear();
-			repositoryItemComboBoxCategory.Items.AddRange(ListManager.Instance.ProductSources
-				.Where(ps => ps.Category != null)
-				.Select(ps => ps.Category.Name)
-				.Distinct()
-				.ToArray());
 			laAdvertiser.Text = ScheduleSettings.BusinessName + (!String.IsNullOrEmpty(ScheduleSettings.AccountNumber) ? (" - " + ScheduleSettings.AccountNumber) : String.Empty);
 			LoadSettings();
 			UpdateControls();

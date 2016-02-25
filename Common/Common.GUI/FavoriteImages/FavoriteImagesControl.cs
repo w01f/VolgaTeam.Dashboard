@@ -51,6 +51,7 @@ namespace Asa.Common.GUI.FavoriteImages
 
 		private void OnFavoritesCollectionChanged(object sender, EventArgs e)
 		{
+			_listViewAdaptor = new ImageSourceAdaptor(_manager.Images);
 			LoadImages();
 		}
 

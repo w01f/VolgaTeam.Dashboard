@@ -14,7 +14,7 @@ namespace Asa.Common.GUI.RateCard
 	public partial class ExcelViewer : XtraTabPage, IRateCardViewer
 	{
 		#region Properties
-		public FileInfo File { get; private set; }
+		public FileInfo File { get; }
 		public bool Loaded { get; private set; }
 		#endregion
 
@@ -45,7 +45,7 @@ namespace Asa.Common.GUI.RateCard
 				webBrowser.Url = new Uri(newFileName);
 				Loaded = true;
 			}));
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Rate Card...");
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Page...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
 			thread.Start();
@@ -53,8 +53,6 @@ namespace Asa.Common.GUI.RateCard
 				Application.DoEvents();
 			FormProgress.CloseProgress();
 		}
-
-		public void Email() { }
 		#endregion
 	}
 }

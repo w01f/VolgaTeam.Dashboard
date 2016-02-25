@@ -60,11 +60,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			base.InitControl();
 
 			LoadDigitalCategories();
+			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).Visible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
+
 			stationsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 			daypartsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 			xtraTabPageDigital.PageVisible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
-			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).Visible =
-				Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
+
 
 			Controller.Instance.ContentController.RibbonTabsStateChanged += OnRibbonRibbonTabsStateChanged;
 
@@ -110,8 +111,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 				#region Media Tab
 				Controller.Instance.HomeAccountNumberCheck.Enabled = EditedSettings.HomeViewSettings.EnableAccountNumber;
-
-				xtraTabPageMedia.Text = String.Format("{0} Strategy", MediaMetaData.Instance.DataTypeString);
 
 				Controller.Instance.HomeClientType.Properties.Items.Clear();
 				Controller.Instance.HomeClientType.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.ClientTypes.ToArray());
@@ -424,6 +423,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				categoryButton.Click += DigitalProductAdd;
 				Controller.Instance.HomeProductAdd.SubItems.Add(categoryButton);
 			}
+			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).RecalcLayout();
+			Controller.Instance.HomePanel.PerformLayout();
 		}
 
 		private void UpdateProductsCount()
@@ -463,9 +464,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		private void OnProductsTabPageChanged(object sender, TabPageChangedEventArgs e)
 		{
-			Controller.Instance.HomeProductAdd.Enabled =
-			Controller.Instance.HomeProductClone.Enabled =
-				e.Page == xtraTabPageDigital;
+			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).Enabled = e.Page == xtraTabPageDigital;
 			UpdateProductsCount();
 			splitContainerControl.PanelVisibility = e.Page == xtraTabPageDigital ? SplitPanelVisibility.Panel1 : SplitPanelVisibility.Both;
 		}

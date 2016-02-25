@@ -41,9 +41,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 					description.Add(String.Format("Stations: {0}", String.Join(", ", programs.Select(p => p.Station).Distinct())));
 				if(Parent.Parent.ShowDaypart)
 					description.Add(String.Format("Dayparts: {0}", String.Join(", ", programs.Select(p => p.Daypart).Distinct())));
-				description.Add(String.Format("Total Spots: {0}x", programs.Sum(p => p.Spots.Sum(sp => sp.Count))));
+				description.Add(String.Format("Total Spots: {0}x", Parent.Parent.TotalSpots));
 				if (programs.Any(p => p.Rate.HasValue))
-					description.Add(String.Format("Avg Rate: {0}", programs.Where(p => p.Rate.HasValue).Average(p => p.Rate.Value).ToString("$#,##0")));
+					description.Add(String.Format("Avg Rate: {0}", Parent.Parent.AvgRate.ToString("$#,##0")));
 				summaryItem.Description = String.Join("  ", description);
 				summaryItem.ShowDescription = true;
 				summaryItem.ShowMonthly = false;

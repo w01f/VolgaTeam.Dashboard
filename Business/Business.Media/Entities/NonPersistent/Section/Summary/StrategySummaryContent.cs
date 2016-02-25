@@ -41,7 +41,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		{
 			var sourceCollection = Parent.Parent.Programs.ToList();
 			var maxOrder = Items.Any() ? Items.Max(i => i.Order) : 0;
-			var groupedPrograms = sourceCollection.GroupBy(p => p.Name, (key, g) => new { Name = key, Station = String.Join(", ", g.Select(i => i.Station)), Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count) });
+			var groupedPrograms = sourceCollection
+				.GroupBy(
+					p => p.Name, 
+					(key, g) => new
+						{
+							Name = key,
+							Station = String.Join(", ", g.Select(i => i.Station)),
+							Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count)
+						});
 			foreach (var program in groupedPrograms)
 			{
 				var strategyItem = Items.FirstOrDefault(si => si.Name == program.Name);

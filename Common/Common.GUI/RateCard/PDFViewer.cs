@@ -31,8 +31,6 @@ namespace Asa.Common.GUI.RateCard
 			pdfViewerControl.LoadDocument(File.FullName);
 			Loaded = true;
 		}
-
-		public void Email() { }
 		#endregion
 
 		private void pdfViewerControl_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)

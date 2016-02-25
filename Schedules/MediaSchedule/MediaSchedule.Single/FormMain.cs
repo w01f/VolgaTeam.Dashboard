@@ -107,6 +107,8 @@ namespace Asa.Media.Single
 			Controller.Instance.SlideSettingsButton = buttonItemSlideSettings;
 
 			#region Home
+
+			Controller.Instance.HomePanel = ribbonPanelHome;
 			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
 			Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
 			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;

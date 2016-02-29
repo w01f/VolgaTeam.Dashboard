@@ -126,7 +126,6 @@
     <Compile Include="Objects\Output\TextGroup.cs" />
     <Compile Include="Objects\Output\TextItem.cs" />
     <Compile Include="Objects\RemoteStorage\ArchiveDirectory.cs" />
-    <Compile Include="Objects\RemoteStorage\ArchiveFile.cs" />
     <Compile Include="Objects\RemoteStorage\AuthorizingEventArgs.cs" />
     <Compile Include="Objects\RemoteStorage\AuthSettings.cs" />
     <Compile Include="Objects\RemoteStorage\ConfigFile.cs" />

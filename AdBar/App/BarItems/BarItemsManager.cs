@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Asa.Bar.App.Configuration;
@@ -35,10 +35,11 @@ namespace Asa.Bar.App.BarItems
 		private async Task ExtractTabContent()
 		{
 			if (FileStorageManager.Instance.DataState == DataActualityState.Updated) return;
-			var tabConfigFiles = await ResourceManager.Instance.DataFolder.GetRemoteFiles(itemName => itemName.Contains("tab_"));
-			foreach (var storageFile in tabConfigFiles)
+			var tabConfigFiles =
+				(await ResourceManager.Instance.DataFolder.GetRemoteFiles(itemName => itemName.Contains("tab_"))).ToList();
+			foreach (var tabConfigName in tabConfigFiles.Select(file => Regex.Match(file.Name, @"^.*?(?=\.)").Value).Distinct())
 			{
-				var archiveFolder = new ArchiveDirectory(ResourceManager.Instance.DataFolder.RelativePathParts.Merge(Path.GetFileNameWithoutExtension(storageFile.Name)));
+				var archiveFolder = new ArchiveDirectory(ResourceManager.Instance.DataFolder.RelativePathParts.Merge(tabConfigName));
 				await archiveFolder.Download();
 			}
 		}

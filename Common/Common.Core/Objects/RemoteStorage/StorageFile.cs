@@ -13,12 +13,9 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 	public class StorageFile : StorageItem
 	{
 		private readonly Item _remoteSource;
-		protected bool _isOutdated;
+		public bool IsOutdated { get; protected set; }
 
-		public string Extension
-		{
-			get { return Path.GetExtension(LocalPath); }
-		}
+		public string Extension => Path.GetExtension(LocalPath);
 
 		public StorageFile(string[] relativePathParts) : base(relativePathParts) { }
 
@@ -84,8 +81,8 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 				if ((ExistsLocal() && FileStorageManager.Instance.DataState == DataActualityState.Updated && !force) || FileStorageManager.Instance.UseLocalMode)
 					return;
 				var remoteFile = _remoteSource ?? await client.GetFile(RemotePath);
-				_isOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
-				if (_isOutdated)
+				IsOutdated = !(ExistsLocal() && File.GetLastWriteTime(LocalPath) >= remoteFile.LastModified);
+				if (IsOutdated)
 				{
 					AllocateParentFolder();
 					var fullyLoaded = false;

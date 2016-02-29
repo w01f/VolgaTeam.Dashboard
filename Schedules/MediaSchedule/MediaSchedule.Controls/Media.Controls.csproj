@@ -581,9 +581,6 @@
     <None Include="Resources\Favorites.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FavoritesLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SectionSettingsDigital.png" />
   </ItemGroup>
   <ItemGroup>
@@ -697,6 +694,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HomeConceptTitleLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

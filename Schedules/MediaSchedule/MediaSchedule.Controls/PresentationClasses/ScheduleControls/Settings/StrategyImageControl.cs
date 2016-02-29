@@ -19,10 +19,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		public StrategyImageControl()
 		{
 			InitializeComponent();
-			Text = "Favorites";
+			Text = "My Gallery";
 			BarButton = new ButtonInfo
 			{
-				Tooltip = "Open Favorites",
+				Tooltip = "Open My Gallery",
 				Logo = Resources.SummaryOptionsFavorites,
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

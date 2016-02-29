@@ -664,10 +664,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				if (!_sectionContainer.SectionData.Parent.DigitalLegend.AllowEdit)
 				{
 					requestOptions.Separator = " ";
-					return String.Format("Digital Product Info: {0}{1}{2}", _sectionContainer.SectionData.ParentSchedule.DigitalProductsContent.GetDigitalInfo(requestOptions), requestOptions.Separator, _sectionContainer.SectionData.Parent.DigitalLegend.GetAdditionalData(" "));
+					return String.Format("Digital Product Info: {0}", _sectionContainer.SectionData.ParentSchedule.DigitalProductsContent.GetDigitalInfo(requestOptions));
 				}
 				if (!String.IsNullOrEmpty(_sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo))
-					return String.Format("Digital Product Info: {0}{1}{2}", _sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo, requestOptions.Separator, _sectionContainer.SectionData.Parent.DigitalLegend.GetAdditionalData(" "));
+					return String.Format("Digital Product Info: {0}", _sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo);
 				return String.Empty;
 			}
 		}
@@ -736,7 +736,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 												  (k + spotsPerSlide) >= totalSpotsCount) ?
 							DigitalLegend :
 							String.Empty;
-						outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor;
+						outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor ??
+							BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault();
 						outputPage.Quarter = spotInterval.Name;
 
 						outputPage.ProgramsPerSlide = programsPerSlide;

@@ -180,6 +180,18 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap DigitalInfoLogo
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("DigitalInfoLogo", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap EmailBig
 		{
 			get
@@ -209,18 +221,6 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("Favorites", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap FavoritesLogo
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("FavoritesLogo", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

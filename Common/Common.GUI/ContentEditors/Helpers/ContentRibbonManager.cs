@@ -48,7 +48,10 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 				}
 				_controller.EmptyPanel.BringToFront();
 				foreach (var contentControl in _controller.ContentControls)
+				{
 					contentControl.IsActive = false;
+					((Control) contentControl).Visible = false;
+				}
 				_controller.ActiveControl = _controller.ContentControls
 					.First(c => c.Identifier == (String)_controller.ContentRibbon.SelectedRibbonTabItem.Tag);
 				if (!_controller.MainPanel.Controls.Contains((Control) _controller.ActiveControl))
@@ -57,6 +60,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 					_controller.ActiveControl.InitControl();
 				}
 				_controller.ActiveControl.ShowControl();
+				((Control) _controller.ActiveControl).Visible = true;
 				((Control)_controller.ActiveControl).BringToFront();
 				_controller.MainPanel.BringToFront();
 

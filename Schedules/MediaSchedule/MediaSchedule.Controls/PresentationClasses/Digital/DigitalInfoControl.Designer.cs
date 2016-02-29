@@ -31,9 +31,6 @@
 			this.components = new System.ComponentModel.Container();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnControls = new System.Windows.Forms.Panel();
-			this.pnCase3 = new System.Windows.Forms.Panel();
-			this.memoEditAuto3 = new DevExpress.XtraEditors.MemoEdit();
-			this.checkEditAuto3 = new DevExpress.XtraEditors.CheckEdit();
 			this.pnCase2 = new System.Windows.Forms.Panel();
 			this.memoEditAuto2 = new DevExpress.XtraEditors.MemoEdit();
 			this.checkEditAuto2 = new DevExpress.XtraEditors.CheckEdit();
@@ -41,27 +38,19 @@
 			this.memoEditAuto1 = new DevExpress.XtraEditors.MemoEdit();
 			this.checkEditAuto1 = new DevExpress.XtraEditors.CheckEdit();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.spinEditTotal = new DevExpress.XtraEditors.SpinEdit();
-			this.checkEditTotal = new DevExpress.XtraEditors.CheckEdit();
-			this.labelControlTotal = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlMonthly = new DevExpress.XtraEditors.LabelControl();
-			this.checkEditMonthly = new DevExpress.XtraEditors.CheckEdit();
-			this.spinEditMonthly = new DevExpress.XtraEditors.SpinEdit();
+			this.laTitle = new System.Windows.Forms.Label();
+			this.pbLogo = new System.Windows.Forms.PictureBox();
+			this.pnHeader = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnControls.SuspendLayout();
-			this.pnCase3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.memoEditAuto3.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditAuto3.Properties)).BeginInit();
 			this.pnCase2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditAuto2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAuto2.Properties)).BeginInit();
 			this.pnCase1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditAuto1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAuto1.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotal.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthly.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+			this.pnHeader.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -81,55 +70,15 @@
 			// 
 			// pnControls
 			// 
-			this.pnControls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.pnControls.BackColor = System.Drawing.Color.Transparent;
-			this.pnControls.Controls.Add(this.pnCase3);
 			this.pnControls.Controls.Add(this.pnCase2);
 			this.pnControls.Controls.Add(this.pnCase1);
-			this.pnControls.Location = new System.Drawing.Point(0, 3);
+			this.pnControls.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnControls.Location = new System.Drawing.Point(0, 68);
 			this.pnControls.Name = "pnControls";
-			this.pnControls.Size = new System.Drawing.Size(270, 398);
+			this.pnControls.Size = new System.Drawing.Size(270, 466);
 			this.pnControls.TabIndex = 103;
 			this.pnControls.Resize += new System.EventHandler(this.pnControls_Resize);
-			// 
-			// pnCase3
-			// 
-			this.pnCase3.Controls.Add(this.memoEditAuto3);
-			this.pnCase3.Controls.Add(this.checkEditAuto3);
-			this.pnCase3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnCase3.Location = new System.Drawing.Point(0, 257);
-			this.pnCase3.Name = "pnCase3";
-			this.pnCase3.Size = new System.Drawing.Size(270, 134);
-			this.pnCase3.TabIndex = 18;
-			// 
-			// memoEditAuto3
-			// 
-			this.memoEditAuto3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditAuto3.Enabled = false;
-			this.memoEditAuto3.Location = new System.Drawing.Point(29, 18);
-			this.memoEditAuto3.Name = "memoEditAuto3";
-			this.memoEditAuto3.Properties.AllowFocused = false;
-			this.memoEditAuto3.Properties.Appearance.BackColor = System.Drawing.Color.White;
-			this.memoEditAuto3.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditAuto3.Size = new System.Drawing.Size(232, 101);
-			this.memoEditAuto3.StyleController = this.styleController;
-			this.memoEditAuto3.TabIndex = 15;
-			this.memoEditAuto3.EditValueChanged += new System.EventHandler(this.memoEdit_EditValueChanged);
-			// 
-			// checkEditAuto3
-			// 
-			this.checkEditAuto3.Location = new System.Drawing.Point(3, 18);
-			this.checkEditAuto3.Name = "checkEditAuto3";
-			this.checkEditAuto3.Properties.Caption = "checkEdit1";
-			this.checkEditAuto3.Size = new System.Drawing.Size(19, 20);
-			this.checkEditAuto3.StyleController = this.styleController;
-			this.checkEditAuto3.TabIndex = 10;
-			this.checkEditAuto3.TabStop = false;
-			this.checkEditAuto3.CheckedChanged += new System.EventHandler(this.checkEditCase_CheckedChanged);
 			// 
 			// pnCase2
 			// 
@@ -210,162 +159,57 @@
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
-			// spinEditTotal
+			// laTitle
 			// 
-			this.spinEditTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditTotal.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditTotal.Enabled = false;
-			this.spinEditTotal.Location = new System.Drawing.Point(28, 446);
-			this.spinEditTotal.Name = "spinEditTotal";
-			this.spinEditTotal.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotal.Properties.Appearance.Options.UseFont = true;
-			this.spinEditTotal.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotal.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditTotal.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditTotal.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditTotal.Properties.DisplayFormat.FormatString = "$#,##0";
-			this.spinEditTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotal.Properties.EditFormat.FormatString = "$#,##0";
-			this.spinEditTotal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotal.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditTotal.Size = new System.Drawing.Size(169, 22);
-			this.spinEditTotal.StyleController = this.styleController;
-			this.spinEditTotal.TabIndex = 108;
-			this.spinEditTotal.EditValueChanged += new System.EventHandler(this.spinEdit_EditValueChanged);
+			this.laTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.laTitle.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.laTitle.Location = new System.Drawing.Point(97, 9);
+			this.laTitle.Name = "laTitle";
+			this.laTitle.Size = new System.Drawing.Size(164, 48);
+			this.laTitle.TabIndex = 104;
+			this.laTitle.Text = "Show basic digital info at the bottom of this slide:";
+			this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// checkEditTotal
+			// pbLogo
 			// 
-			this.checkEditTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditTotal.Enabled = false;
-			this.checkEditTotal.Location = new System.Drawing.Point(6, 421);
-			this.checkEditTotal.Name = "checkEditTotal";
-			this.checkEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditTotal.Properties.Appearance.Options.UseFont = true;
-			this.checkEditTotal.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditTotal.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.checkEditTotal.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditTotal.Properties.AutoWidth = true;
-			this.checkEditTotal.Properties.Caption = "";
-			this.checkEditTotal.Size = new System.Drawing.Size(19, 19);
-			this.checkEditTotal.TabIndex = 109;
-			this.checkEditTotal.CheckedChanged += new System.EventHandler(this.checkEditTotal_CheckedChanged);
+			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.DigitalInfoLogo;
+			this.pbLogo.Location = new System.Drawing.Point(9, 9);
+			this.pbLogo.Name = "pbLogo";
+			this.pbLogo.Size = new System.Drawing.Size(79, 48);
+			this.pbLogo.TabIndex = 105;
+			this.pbLogo.TabStop = false;
 			// 
-			// labelControlTotal
+			// pnHeader
 			// 
-			this.labelControlTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.labelControlTotal.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelControlTotal.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlTotal.Enabled = false;
-			this.labelControlTotal.Location = new System.Drawing.Point(28, 421);
-			this.labelControlTotal.Name = "labelControlTotal";
-			this.labelControlTotal.Size = new System.Drawing.Size(61, 19);
-			this.labelControlTotal.TabIndex = 110;
-			this.labelControlTotal.Text = "total";
-			// 
-			// labelControlMonthly
-			// 
-			this.labelControlMonthly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.labelControlMonthly.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelControlMonthly.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlMonthly.Enabled = false;
-			this.labelControlMonthly.Location = new System.Drawing.Point(28, 477);
-			this.labelControlMonthly.Name = "labelControlMonthly";
-			this.labelControlMonthly.Size = new System.Drawing.Size(61, 19);
-			this.labelControlMonthly.TabIndex = 113;
-			this.labelControlMonthly.Text = "monthly";
-			// 
-			// checkEditMonthly
-			// 
-			this.checkEditMonthly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditMonthly.Enabled = false;
-			this.checkEditMonthly.Location = new System.Drawing.Point(6, 477);
-			this.checkEditMonthly.Name = "checkEditMonthly";
-			this.checkEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditMonthly.Properties.Appearance.Options.UseFont = true;
-			this.checkEditMonthly.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditMonthly.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.checkEditMonthly.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditMonthly.Properties.AutoWidth = true;
-			this.checkEditMonthly.Properties.Caption = "";
-			this.checkEditMonthly.Size = new System.Drawing.Size(19, 19);
-			this.checkEditMonthly.TabIndex = 112;
-			this.checkEditMonthly.CheckedChanged += new System.EventHandler(this.checkEditMonthly_CheckedChanged);
-			// 
-			// spinEditMonthly
-			// 
-			this.spinEditMonthly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditMonthly.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditMonthly.Enabled = false;
-			this.spinEditMonthly.Location = new System.Drawing.Point(28, 502);
-			this.spinEditMonthly.Name = "spinEditMonthly";
-			this.spinEditMonthly.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthly.Properties.Appearance.Options.UseFont = true;
-			this.spinEditMonthly.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthly.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditMonthly.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditMonthly.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditMonthly.Properties.DisplayFormat.FormatString = "$#,##0";
-			this.spinEditMonthly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthly.Properties.EditFormat.FormatString = "$#,##0";
-			this.spinEditMonthly.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthly.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditMonthly.Size = new System.Drawing.Size(169, 22);
-			this.spinEditMonthly.StyleController = this.styleController;
-			this.spinEditMonthly.TabIndex = 111;
-			this.spinEditMonthly.EditValueChanged += new System.EventHandler(this.spinEdit_EditValueChanged);
+			this.pnHeader.Controls.Add(this.pbLogo);
+			this.pnHeader.Controls.Add(this.laTitle);
+			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnHeader.Location = new System.Drawing.Point(0, 0);
+			this.pnHeader.Name = "pnHeader";
+			this.pnHeader.Size = new System.Drawing.Size(270, 68);
+			this.pnHeader.TabIndex = 106;
 			// 
 			// DigitalInfoControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.labelControlMonthly);
-			this.Controls.Add(this.spinEditMonthly);
-			this.Controls.Add(this.labelControlTotal);
-			this.Controls.Add(this.spinEditTotal);
 			this.Controls.Add(this.pnControls);
-			this.Controls.Add(this.checkEditTotal);
-			this.Controls.Add(this.checkEditMonthly);
+			this.Controls.Add(this.pnHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "DigitalInfoControl";
 			this.Size = new System.Drawing.Size(270, 534);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnControls.ResumeLayout(false);
-			this.pnCase3.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.memoEditAuto3.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditAuto3.Properties)).EndInit();
 			this.pnCase2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.memoEditAuto2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAuto2.Properties)).EndInit();
 			this.pnCase1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.memoEditAuto1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAuto1.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotal.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthly.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+			this.pnHeader.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -375,20 +219,14 @@
 		private DevExpress.XtraEditors.StyleController styleController;
 		private System.Windows.Forms.Panel pnControls;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
-		private DevExpress.XtraEditors.SpinEdit spinEditTotal;
-		public DevExpress.XtraEditors.CheckEdit checkEditTotal;
-		private DevExpress.XtraEditors.LabelControl labelControlTotal;
-		private DevExpress.XtraEditors.LabelControl labelControlMonthly;
-		public DevExpress.XtraEditors.CheckEdit checkEditMonthly;
-		private DevExpress.XtraEditors.SpinEdit spinEditMonthly;
-		private DevExpress.XtraEditors.MemoEdit memoEditAuto3;
 		private DevExpress.XtraEditors.MemoEdit memoEditAuto2;
 		private DevExpress.XtraEditors.MemoEdit memoEditAuto1;
-		private DevExpress.XtraEditors.CheckEdit checkEditAuto3;
 		private DevExpress.XtraEditors.CheckEdit checkEditAuto2;
 		private DevExpress.XtraEditors.CheckEdit checkEditAuto1;
-		private System.Windows.Forms.Panel pnCase3;
 		private System.Windows.Forms.Panel pnCase2;
 		private System.Windows.Forms.Panel pnCase1;
+		private System.Windows.Forms.Label laTitle;
+		private System.Windows.Forms.PictureBox pbLogo;
+		private System.Windows.Forms.Panel pnHeader;
 	}
 }

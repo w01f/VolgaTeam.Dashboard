@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Asa.Business.Online.Common;
 
 namespace Asa.Business.Online.Entities.NonPersistent
@@ -20,10 +19,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public bool ShowInvestment { get; set; }
 		public string Info1 { get; set; }
 		public string Info2 { get; set; }
-		public string Info3 { get; set; }
-		public decimal? Total { get; set; }
-		public decimal? Monthly { get; set; }
-
 		public string CompiledInfo
 		{
 			get
@@ -32,8 +27,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 					return Info1;
 				if (!String.IsNullOrEmpty(Info2))
 					return Info2;
-				if (!String.IsNullOrEmpty(Info3))
-					return Info3;
 				return String.Empty;
 			}
 		}
@@ -53,17 +46,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public RequestDigitalInfoEventArgs RequestOptions
 		{
 			get { return new RequestDigitalInfoEventArgs(null, ShowWebsites, ShowProduct, ShowDimensions, ShowDates, ShowImpressions, ShowCPM, ShowInvestment); }
-		}
-
-		public string GetAdditionalData(string separator = "")
-		{
-			separator = String.IsNullOrEmpty(separator) ? Environment.NewLine : separator;
-			var result = new List<string>();
-			if (Total.HasValue)
-				result.Add(String.Format("[Total Digital Investment: {0}]", Total.Value.ToString("$#,##0")));
-			if (Monthly.HasValue)
-				result.Add(String.Format("[Monthly Digital Investment: {0}]", Monthly.Value.ToString("$#,##0")));
-			return String.Join(separator, result);
 		}
 	}
 }

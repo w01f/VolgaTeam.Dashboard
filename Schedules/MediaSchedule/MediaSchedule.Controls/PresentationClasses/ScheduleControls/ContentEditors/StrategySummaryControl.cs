@@ -53,7 +53,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionContainer = sectionContainer;
 			InitializeComponent();
 			Dock = DockStyle.Fill;
-			Text = "Logo Summary";
+			Text = "Logo Slide";
 		}
 
 		#region ISectionEditorControl Memebers

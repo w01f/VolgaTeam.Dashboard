@@ -20,7 +20,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public ProductSummaryControl(SectionContainer sectionContainer) : base(sectionContainer)
 		{
-			Text = "Product Summary";
+			Text = "Product Slide";
 			buttonXAddItem.Visible = false;
 		}
 

@@ -556,35 +556,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Staff
-
-		public bool ShowDigitalLegendOnlyFirstSlide
-		{
-			get { return EditedContent.DigitalLegend.OutputOnlyOnce; }
-		}
-
-		public string DigitalLegend
-		{
-			get
-			{
-				if (!EditedContent.DigitalLegend.Enabled) return String.Empty;
-				var requestOptions = EditedContent.DigitalLegend.RequestOptions;
-				if (!EditedContent.DigitalLegend.AllowEdit)
-				{
-					requestOptions.Separator = " ";
-					return String.Format("Digital Product Info: {0}{1}{2}",
-						Schedule.DigitalProductsContent.GetDigitalInfo(requestOptions),
-						requestOptions.Separator,
-						EditedContent.DigitalLegend.GetAdditionalData(" "));
-				}
-				if (!String.IsNullOrEmpty(EditedContent.DigitalLegend.CompiledInfo))
-					return String.Format("Digital Product Info: {0}{1}{2}",
-						EditedContent.DigitalLegend.CompiledInfo,
-						requestOptions.Separator,
-						EditedContent.DigitalLegend.GetAdditionalData(" "));
-				return String.Empty;
-			}
-		}
-
 		private IEnumerable<SectionContainer> SelectSectionsForOutput()
 		{
 			var tabPages = xtraTabControlSections.TabPages.OfType<SectionContainer>().Where(ss => ss.ReadyForOutput).ToList();

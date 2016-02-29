@@ -26,7 +26,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public CustomSummaryControl(SectionContainer sectionContainer) : base(sectionContainer)
 		{
-			Text = "General Summary";
+			Text = "Summary Slide";
 			buttonXAddItem.Visible = true;
 			buttonXAddItem.Click += OnAddItem;
 		}

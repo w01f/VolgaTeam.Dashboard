@@ -103,7 +103,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 			using (var form = new FormScheduleName())
 			{
 				form.Text = "Save Schedule";
-				form.laLogo.Text = "Please set a new name for your Schedule:";
+				form.laLogo.Text = "Save a copy of this schedule:";
 				if (form.ShowDialog() != DialogResult.OK) return;
 				ScheduleSavingAs?.Invoke(null, new ScheduleSavingEventArgs { Name = form.ScheduleName });
 				_controller.ActiveEditor.Save(savingArgs);

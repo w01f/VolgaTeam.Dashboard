@@ -14,7 +14,7 @@ namespace Asa.Media.Controls.BusinessClasses
 		public OutputColorList OptionsColors { get; private set; }
 		public OutputColorList CalendarColors { get; private set; }
 
-		public event EventHandler<EventArgs> ColorsChanged; 
+		public event EventHandler<EventArgs> ColorsChanged;
 
 		public StorageDirectory ContractTemplateFolder
 		{
@@ -191,8 +191,8 @@ namespace Asa.Media.Controls.BusinessClasses
 			return GetCalendarTemplateFile(new[]
 			{
 				"broadcast_slides",
-				String.Format("Broadcast_{0}_{1}_{2}.pptx", 
-					showLogo ? "logo" : "no_logo", 
+				String.Format("Broadcast_{0}_{1}_{2}.pptx",
+					showLogo ? "logo" : "no_logo",
 					daysCount,
 					PowerPointManager.Instance.SlideSettings.SlideFolder.Replace("Slides", ""))
 			});

@@ -121,6 +121,9 @@
   <data name="SectionSettingsDigital" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionSettingsDigital.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OpenScheduleRibbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenScheduleRibbon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="HomeOptions" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeOptions.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -129,6 +132,9 @@
   </data>
   <data name="SnapshotNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SnapshotNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SnapshotSettingsActiveWeeks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnapshotSettingsActiveWeeks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SnapshotNoRecords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SnapshotNoRecords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,20 +151,20 @@
   <data name="HomeLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpenSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SummaryOptionsInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryOptionsInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SummaryOptionsFavorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SummaryOptionsFavorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SectionNoPrograms" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SectionNoPrograms.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OptionsNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OptionsNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeDefaultLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeDefaultLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,26 +175,23 @@
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DeleteProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="WeeklySchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WeeklySchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteProgram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FavoritesLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FavoritesLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CloneProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CloneProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SectionSettingsTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionSettingsTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Quarter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Quarter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SectionSettingsRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionSettingsRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CalendarDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalendarDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Favorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Favorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,11 +229,8 @@
   <data name="AddProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SnapshotSettingsActiveWeeks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SnapshotSettingsActiveWeeks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SectionSettingsOptions" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SectionSettingsOptions.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CalendarDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CalendarDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OptionsNoRecords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OptionsNoRecords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,8 +247,8 @@
   <data name="HomeSnapshot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeSnapshot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenScheduleRibbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpenScheduleRibbon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Quarter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Quarter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CalendarOptionsDataSource" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CalendarOptionsDataSource.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -256,20 +256,20 @@
   <data name="DeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CloneProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CloneProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HomeConceptTitleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeConceptTitleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SectionSettingsOptions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SectionSettingsOptions.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NudgeUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NudgeUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SectionNoPrograms" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SectionNoPrograms.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DeleteProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeleteProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SummaryOptionsInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SummaryOptionsInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SummaryOptionsFavorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryOptionsFavorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddProgram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -277,7 +277,7 @@
   <data name="Pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pdf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HomeConceptTitleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeConceptTitleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DigitalInfoLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DigitalInfoLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

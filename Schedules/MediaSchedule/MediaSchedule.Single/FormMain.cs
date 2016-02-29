@@ -366,7 +366,6 @@ namespace Asa.Media.Single
 			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
 				Controller.Instance.ContentController.ActiveEditor,
 				savingArgs);
-			e.Cancel = savingArgs.Cancel;
 		}
 
 		private void OnNewScheduleClick(object sender, EventArgs e)

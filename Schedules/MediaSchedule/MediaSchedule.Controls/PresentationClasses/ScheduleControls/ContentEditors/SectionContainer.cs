@@ -138,6 +138,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					_sectionControl.UpdateGridView();
 					if (args.UpdateGridColums)
 						_sectionControl.UpdateGridData(true);
+					UpdateSummaryState();
 					UpdateWarnings();
 					break;
 				case ScheduleSettingsType.CustomSummary:
@@ -184,8 +185,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			_customSummaryControl.PageEnabled =
 				_productSummaryControl.PageEnabled =
-					_strategySummaryControl.PageEnabled =
-						SectionData.Programs.Any(p => p.TotalSpots > 0);
+					SectionData.Programs.Any(p => p.TotalSpots > 0);
+			_strategySummaryControl.PageEnabled =
+				SectionData.ShowProgram &&
+				SectionData.Programs.Any(p => p.TotalSpots > 0);
 		}
 
 		private void UpdateWarnings()

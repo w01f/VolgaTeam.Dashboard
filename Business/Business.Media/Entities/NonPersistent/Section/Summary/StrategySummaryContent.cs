@@ -17,8 +17,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 
 		public List<ProgramStrategyItem> Items { get; private set; }
 
-		public ContractSettings ContractSettings { get; private set; }
-
 		public IEnumerable<ProgramStrategyItem> EnabledItems
 		{
 			get { return Items.Where(i => i.Enabled).OrderBy(i => i.Order); }
@@ -31,7 +29,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		{
 			Parent = parent;
 			Items = new List<ProgramStrategyItem>();
-			ContractSettings = new ContractSettings();
 
 			ShowStation = true;
 			ShowDescription = true;
@@ -75,7 +72,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		{
 			Items.ForEach(i => i.Dispose());
 			Items.Clear();
-			ContractSettings = null;
 			Parent = null;
 		}
 

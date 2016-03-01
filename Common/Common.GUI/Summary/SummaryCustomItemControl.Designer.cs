@@ -45,6 +45,7 @@
 			this.pbUp = new System.Windows.Forms.PictureBox();
 			this.pbDown = new System.Windows.Forms.PictureBox();
 			this.pbDelete = new System.Windows.Forms.PictureBox();
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.panelExMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).BeginInit();
@@ -53,12 +54,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbUp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDelete)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// laNumber
 			// 
 			this.laNumber.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laNumber.Location = new System.Drawing.Point(3, 36);
+			this.laNumber.Location = new System.Drawing.Point(3, 23);
 			this.laNumber.Name = "laNumber";
 			this.laNumber.Size = new System.Drawing.Size(42, 42);
 			this.laNumber.TabIndex = 27;
@@ -83,7 +85,7 @@
 			this.panelExMain.Controls.Add(this.spinEditMonthly);
 			this.panelExMain.Controls.Add(this.spinEditTotal);
 			this.panelExMain.DisabledBackColor = System.Drawing.Color.Empty;
-			this.panelExMain.Location = new System.Drawing.Point(45, 36);
+			this.panelExMain.Location = new System.Drawing.Point(45, 23);
 			this.panelExMain.Name = "panelExMain";
 			this.panelExMain.Size = new System.Drawing.Size(476, 100);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -178,7 +180,6 @@
 			this.memoEditDetails.Properties.NullText = "Brief Overview...";
 			this.memoEditDetails.Size = new System.Drawing.Size(149, 85);
 			this.memoEditDetails.TabIndex = 3;
-			this.memoEditDetails.UseOptimizedRendering = true;
 			this.memoEditDetails.EditValueChanged += new System.EventHandler(this.memoEditDetails_EditValueChanged);
 			// 
 			// spinEditMonthly
@@ -229,7 +230,7 @@
 			// 
 			this.pbUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbUp.Image = global::Asa.Common.GUI.Properties.Resources.UpArrow;
-			this.pbUp.Location = new System.Drawing.Point(527, 70);
+			this.pbUp.Location = new System.Drawing.Point(527, 57);
 			this.pbUp.Name = "pbUp";
 			this.pbUp.Size = new System.Drawing.Size(32, 32);
 			this.pbUp.TabIndex = 36;
@@ -242,7 +243,7 @@
 			// 
 			this.pbDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDown.Image = global::Asa.Common.GUI.Properties.Resources.DownArrow;
-			this.pbDown.Location = new System.Drawing.Point(527, 104);
+			this.pbDown.Location = new System.Drawing.Point(527, 91);
 			this.pbDown.Name = "pbDown";
 			this.pbDown.Size = new System.Drawing.Size(32, 32);
 			this.pbDown.TabIndex = 35;
@@ -255,7 +256,7 @@
 			// 
 			this.pbDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDelete.Image = global::Asa.Common.GUI.Properties.Resources.DeleteButton;
-			this.pbDelete.Location = new System.Drawing.Point(527, 36);
+			this.pbDelete.Location = new System.Drawing.Point(527, 23);
 			this.pbDelete.Name = "pbDelete";
 			this.pbDelete.Size = new System.Drawing.Size(32, 32);
 			this.pbDelete.TabIndex = 34;
@@ -264,17 +265,39 @@
 			this.pbDelete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbDelete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
+			// hyperLinkEditReset
+			// 
+			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.hyperLinkEditReset.EditValue = "Reset Info";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(45, 124);
+			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.AllowFocused = false;
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.hyperLinkEditReset.Properties.AutoHeight = false;
+			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(476, 20);
+			this.hyperLinkEditReset.TabIndex = 123;
+			// 
 			// SummaryCustomItemControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.hyperLinkEditReset);
 			this.Controls.Add(this.pbUp);
 			this.Controls.Add(this.pbDown);
 			this.Controls.Add(this.pbDelete);
 			this.Controls.Add(this.panelExMain);
 			this.Controls.Add(this.laNumber);
 			this.Name = "SummaryCustomItemControl";
-			this.Size = new System.Drawing.Size(595, 147);
+			this.Size = new System.Drawing.Size(595, 150);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).EndInit();
@@ -284,6 +307,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbUp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDelete)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -305,5 +329,6 @@
         private System.Windows.Forms.CheckBox ckItem;
         public System.Windows.Forms.CheckBox ckDetails;
 		private DevExpress.XtraEditors.TextEdit textEditItem;
-    }
+		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
+	}
 }

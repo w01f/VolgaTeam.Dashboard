@@ -39,11 +39,12 @@ namespace Asa.Common.GUI.Summary
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 2, laTotal.Font.Style);
+				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2, hyperLinkEditReset.Font.Style);
 			}
 			DataChanged += (o, e) => { Data.Commited = true; };
 		}
 
-		public void LoadData()
+		public virtual void LoadData()
 		{
 			_loading = true;
 			ckItem.Checked = Data.ShowValue;
@@ -68,6 +69,16 @@ namespace Asa.Common.GUI.Summary
 			ItemPositionChanged = null;
 			ItemDeleted = null;
 			Data = null;
+		}
+
+		protected virtual void RaiseDescriptionChanged()
+		{
+			DataChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		protected void RaiseDataChanged()
+		{
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		public void UpdateNumber()
@@ -105,8 +116,7 @@ namespace Asa.Common.GUI.Summary
 			Data.ShowMonthly = ckMonthly.Checked;
 			if (InvestmentChanged != null)
 				InvestmentChanged(this, EventArgs.Empty);
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDataChanged();
 		}
 
 		private void ckTotal_CheckedChanged(object sender, EventArgs e)
@@ -118,8 +128,7 @@ namespace Asa.Common.GUI.Summary
 			Data.ShowTotal = ckTotal.Checked;
 			if (InvestmentChanged != null)
 				InvestmentChanged(this, EventArgs.Empty);
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDataChanged();
 		}
 
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
@@ -127,16 +136,14 @@ namespace Asa.Common.GUI.Summary
 			textEditItem.Enabled = ckItem.Checked;
 			if (_loading) return;
 			Data.ShowValue = ckItem.Checked;
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDescriptionChanged();
 		}
 
 		private void textEditItem_EditValueChanged(object sender, EventArgs e)
 		{
 			if (_loading) return;
 			Data.Value = textEditItem.EditValue as String;
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDescriptionChanged();
 		}
 
 		private void ckDetails_CheckedChanged(object sender, EventArgs e)
@@ -145,16 +152,14 @@ namespace Asa.Common.GUI.Summary
 			if (_loading) return;
 			memoEditDetails.EditValue = ckDetails.Checked ? memoEditDetails.EditValue : null;
 			Data.ShowDescription = ckDetails.Checked;
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDescriptionChanged();
 		}
 
 		private void memoEditDetails_EditValueChanged(object sender, EventArgs e)
 		{
 			if (_loading) return;
 			Data.Description = memoEditDetails.EditValue as String;
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDescriptionChanged();
 		}
 
 		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
@@ -163,8 +168,7 @@ namespace Asa.Common.GUI.Summary
 			Data.Monthly = spinEditMonthly.Value;
 			if (InvestmentChanged != null)
 				InvestmentChanged(this, EventArgs.Empty);
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDataChanged();
 		}
 
 		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
@@ -173,8 +177,7 @@ namespace Asa.Common.GUI.Summary
 			Data.Total = spinEditTotal.Value;
 			if (InvestmentChanged != null)
 				InvestmentChanged(this, EventArgs.Empty);
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			RaiseDataChanged();
 		}
 
 		#region Output Stuff

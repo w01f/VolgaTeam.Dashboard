@@ -8,7 +8,7 @@ using Asa.Common.GUI.Summary;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
-	class CustomSummaryControl : SectionSummaryBaseControl<SummaryCustomItemControl>
+	class CustomSummaryControl : SectionSummaryBaseControl<SummaryMediaCustomControl>
 	{
 		#region Calculated properties
 		public override SectionEditorType EditorType=>SectionEditorType.CustomSummary;
@@ -39,24 +39,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		}
 
 		#region Items Management
-		protected override void InitItem(SummaryCustomItemControl item)
+		protected override void InitItem(SummaryMediaCustomControl item)
 		{
 			base.InitItem(item);
 			item.ItemPositionChanged += ItemOnItemPositionChanged;
 			item.ItemDeleted += ItemOnItemDeleted;
-			item.DataChanged += (o, e) => { SummaryContent.IsDefaultSate = false; };
 		}
 
 		private void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
 		{
 			SummaryContent.DeleteItem(e.SummaryItem.Data);
-			_inputControls.Remove(e.SummaryItem as SummaryCustomItemControl);
+			_inputControls.Remove(e.SummaryItem as SummaryMediaCustomControl);
 			SummaryContent.ReorderItems();
 			UpdateControlsInList(OrderedItems.OfType<Control>().FirstOrDefault());
 			UpdateNumbers();
 			UpdateTotalItems();
 			UpdateTotals();
-			SummaryContent.IsDefaultSate = false;
 			RaiseDataChanged();
 		}
 
@@ -65,7 +63,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			SummaryContent.ReorderItems();
 			UpdateNumbers();
 			UpdateControlsInList(e.SummaryItem as SummaryCustomItemControl);
-			SummaryContent.IsDefaultSate = false;
 			RaiseDataChanged();
 		}
 
@@ -81,7 +78,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			var focussed = AddItemToList(newItemData);
 			UpdateControlsInList(focussed);
 			UpdateTotalItems();
-			SummaryContent.IsDefaultSate = false;
 			RaiseDataChanged();
 		}
 		#endregion

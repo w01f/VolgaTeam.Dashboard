@@ -36,7 +36,7 @@ namespace Asa.Common.GUI.Interop
 
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					var mainPresentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetSimpleSummaryTemlateFile(String.Format(MasterWizardManager.SimpleSummarySlideTemplate, mainFileTemplateIndex));
 					MessageFilter.Register();
@@ -143,7 +143,7 @@ namespace Asa.Common.GUI.Interop
 			if (additionalFileTemplateIndex == 0) return;
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					var additionalPresentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetSimpleSummaryTemlateFile(String.Format(MasterWizardManager.SimpleSummarySlideTemplate, (additionalFileTemplateIndex + mainFileTemplateIndex)));
 
@@ -224,6 +224,11 @@ namespace Asa.Common.GUI.Interop
 								}
 							}
 						}
+
+						if (summary.ContractSettings.IsConfigured &&
+							summary.ContractTemplateFolder != null &&
+							summary.ContractTemplateFolder.ExistsLocal())
+							FillContractInfo(slide, summary.ContractSettings, summary.ContractTemplateFolder);
 					}
 					var selectedTheme = summary.SelectedTheme;
 					if (selectedTheme != null)
@@ -246,7 +251,7 @@ namespace Asa.Common.GUI.Interop
 		{
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
 					var slidesCount = summary.OutputReplacementsLists.Count;

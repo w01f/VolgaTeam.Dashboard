@@ -190,6 +190,9 @@
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\StrategySummaryControl.Designer.cs">
       <DependentUpon>StrategySummaryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SummaryMediaCustomControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SummaryMediaProductItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

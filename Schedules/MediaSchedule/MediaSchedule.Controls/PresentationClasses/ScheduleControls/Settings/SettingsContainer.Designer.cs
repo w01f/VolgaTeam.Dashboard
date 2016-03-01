@@ -111,7 +111,7 @@
 			this.hyperLinkEditInfoContract.TabIndex = 123;
 			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnContractSettingsEdit);
 			// 
-			// hyperLinkEditInfoAdvanced
+			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditInfoAdvanced.Dock = System.Windows.Forms.DockStyle.Left;
 			this.hyperLinkEditInfoAdvanced.EditValue = "Advanced Settings";

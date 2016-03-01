@@ -15,7 +15,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public override List<CustomSummaryItem> Items
 		{
-			get { return _sectionContainer.SectionData.Programs.Select(ps => ps.SummaryItem).ToList(); }
+			get { return _sectionContainer.SectionData.Summary.ProductSummary.Items.Select(ps => ps.SummaryItem).ToList(); }
 		}
 
 		public ProductSummaryControl(SectionContainer sectionContainer) : base(sectionContainer)

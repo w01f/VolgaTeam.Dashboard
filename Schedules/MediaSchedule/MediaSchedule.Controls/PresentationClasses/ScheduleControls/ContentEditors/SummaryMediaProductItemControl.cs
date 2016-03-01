@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Drawing;
+using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Common.Core.Attributes;
 using Asa.Common.GUI.Summary;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
+	[IntendForClass(typeof(CustomSummaryItem))]
 	class SummaryMediaProductItemControl : SummaryProductItemControl
 	{
 		protected override Image ItemLogo

@@ -245,7 +245,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; private set; }
 		public List<ImageSource> ItemLogos { get; private set; }
 
-		public ContractSettings ContractSettings => SummarySettings.ContractSettings;
+		public ContractSettings ContractSettings => _sectionContainer.SectionData.ContractSettings;
 
 		public Theme SelectedTheme
 		{

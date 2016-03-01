@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
@@ -42,12 +43,18 @@ namespace Asa.Business.Common.Entities.NonPersistent.Summary
 		public override void Dispose()
 		{
 			base.Dispose();
+			Items.ForEach(item => item.Dispose());
 			Items.Clear();
 		}
 
 		public CustomSummaryItem AddItem()
 		{
-			var item = new CustomSummaryItem();
+			return AddItem<CustomSummaryItem>();
+		}
+
+		public TItem AddItem<TItem>(params object[] parameters) where TItem : CustomSummaryItem
+		{
+			var item = (TItem)Activator.CreateInstance(typeof(TItem), parameters);
 			item.Order = Items.Any() ? Items.Max(it => it.Order) + 1 : 0;
 			Items.Add(item);
 			return item;

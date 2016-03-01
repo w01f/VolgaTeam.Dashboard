@@ -25,6 +25,8 @@ namespace Asa.Common.GUI.RateCard
 			_browser.WebView = new WebView();
 			_browser.Dock = DockStyle.Fill;
 			_browser.WebView.LoadCompleted += WebView_LoadComplete;
+			_browser.WebView.NewWindow += WebView_NewWindow;
+			_browser.WebView.BeforeDownload += WebView_BeforeDownload;
 		}
 
 		public void ReleaseResources(){}
@@ -45,6 +47,19 @@ namespace Asa.Common.GUI.RateCard
 			FormProgress.CloseProgress();
 			TabControl.Enabled = true;
 			Loaded = true;
+		}
+
+		private void WebView_NewWindow(object sender, NewWindowEventArgs e)
+		{
+			e.Accepted = false;
+		}
+
+		private void WebView_BeforeDownload(object sender, BeforeDownloadEventArgs e)
+		{
+			e.FilePath = Path.Combine(
+				Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+				"Downloads",
+				Path.GetFileName(e.FilePath));
 		}
 	}
 }

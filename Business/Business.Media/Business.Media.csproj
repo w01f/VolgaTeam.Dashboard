@@ -92,7 +92,10 @@
     <Compile Include="Entities\NonPersistent\Section\Content\ScheduleSection.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\WeeklySection.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\CustomSummaryContent.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\DigitalInfoSummaryItem.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\MediaInfoSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\ProductSummaryContent.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Summary\ProductInfoSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\ProgramStrategyItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\SectionSummary.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\SourceProgram.cs" />

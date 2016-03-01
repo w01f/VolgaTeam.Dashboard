@@ -314,7 +314,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public ContractSettings ContractSettings
 		{
-			get { return SummarySettings.ContractSettings; }
+			get { return _sectionContainer.SectionData.ContractSettings; }
 		}
 
 		public Theme SelectedTheme

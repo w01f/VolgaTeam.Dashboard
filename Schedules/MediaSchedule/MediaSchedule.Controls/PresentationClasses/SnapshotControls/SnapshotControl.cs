@@ -451,7 +451,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		#region Output
 		public bool ReadyForOutput
 		{
-			get { return Data.Programs.Any() && (Data.ShowProgram || Data.ShowTime || Data.ShowDaypart); }
+			get { return Data.Programs.Any() && (Data.ShowStation || Data.ShowProgram || Data.ShowTime || Data.ShowDaypart); }
 		}
 
 		public string SlideName
@@ -577,6 +577,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					infoParts++;
 				if (Data.ShowProgram)
 					infoParts++;
+				if (Data.ShowStation)
+					infoParts++;
 				if (infoParts == 1)
 				{
 					if (Data.ShowTime)
@@ -585,6 +587,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 						value = "Daypart";
 					else if (Data.ShowProgram)
 						value = "Program";
+					else if (Data.ShowStation)
+						value = "Station";
 				}
 				else
 					value = "Program Info";

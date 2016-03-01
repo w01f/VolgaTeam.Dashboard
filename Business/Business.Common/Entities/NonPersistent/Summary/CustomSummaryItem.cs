@@ -41,5 +41,9 @@ namespace Asa.Business.Common.Entities.NonPersistent.Summary
 			ShowMonthly = false;
 			ShowTotal = false;
 		}
+
+		public virtual void Dispose()
+		{
+		}
 	}
 }

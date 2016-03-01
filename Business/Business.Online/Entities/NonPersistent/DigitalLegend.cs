@@ -17,35 +17,43 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public bool ShowImpressions { get; set; }
 		public bool ShowCPM { get; set; }
 		public bool ShowInvestment { get; set; }
-		public string Info1 { get; set; }
-		public string Info2 { get; set; }
+		public string Info { get; set; }
 		public string CompiledInfo
 		{
 			get
 			{
-				if (!String.IsNullOrEmpty(Info1))
-					return Info1;
-				if (!String.IsNullOrEmpty(Info2))
-					return Info2;
+				if (!String.IsNullOrEmpty(Info))
+					return Info;
 				return String.Empty;
 			}
 		}
 
+		public RequestDigitalInfoEventArgs RequestOptions =>
+		new RequestDigitalInfoEventArgs(
+			null,
+			ShowWebsites,
+			ShowProduct,
+			ShowDimensions,
+			ShowDates,
+			ShowImpressions,
+			ShowCPM,
+			ShowInvestment);
+
 		public DigitalLegend()
 		{
 			Enabled = false;
-			ShowWebsites = true;
+			ResetDefaults();
+		}
+
+		public void ResetDefaults()
+		{
+			ShowWebsites = false;
 			ShowProduct = true;
 			ShowDimensions = false;
 			ShowDates = false;
 			ShowImpressions = false;
 			ShowCPM = false;
 			ShowInvestment = false;
-		}
-
-		public RequestDigitalInfoEventArgs RequestOptions
-		{
-			get { return new RequestDigitalInfoEventArgs(null, ShowWebsites, ShowProduct, ShowDimensions, ShowDates, ShowImpressions, ShowCPM, ShowInvestment); }
 		}
 	}
 }

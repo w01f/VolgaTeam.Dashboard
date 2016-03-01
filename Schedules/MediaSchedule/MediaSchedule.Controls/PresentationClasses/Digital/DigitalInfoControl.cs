@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Asa.Business.Online.Common;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Common.GUI.Common;
-using DevExpress.XtraEditors;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital
 {
@@ -18,15 +17,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 		public DigitalInfoControl()
 		{
 			InitializeComponent();
-			memoEditAuto1.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditAuto1.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditAuto1.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditAuto2.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditAuto2.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditAuto2.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditInfo.Enter += TextEditorsHelper.Editor_Enter;
+			memoEditInfo.MouseDown += TextEditorsHelper.Editor_MouseDown;
+			memoEditInfo.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			if (CreateGraphics().DpiX > 96)
 			{
 				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 2, laTitle.Font.Style);
+				buttonXRefreshInfoCase1.Font = new Font(buttonXRefreshInfoCase1.Font.FontFamily, buttonXRefreshInfoCase1.Font.Size - 2, buttonXRefreshInfoCase1.Font.Style);
+				buttonXRefreshInfoCase2.Font = new Font(buttonXRefreshInfoCase2.Font.FontFamily, buttonXRefreshInfoCase2.Font.Size - 2, buttonXRefreshInfoCase2.Font.Style);
+				buttonXRefreshInfoCase3.Font = new Font(buttonXRefreshInfoCase3.Font.FontFamily, buttonXRefreshInfoCase3.Font.Size - 2, buttonXRefreshInfoCase3.Font.Style);
 			}
 		}
 
@@ -40,128 +39,131 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 		{
 			_loading = true;
 
-			checkEditAuto1.Checked = (_digitalLegend.Enabled && _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && !_digitalLegend.ShowDimensions && !_digitalLegend.ShowDates && !_digitalLegend.ShowImpressions && !_digitalLegend.ShowCPM && !_digitalLegend.ShowInvestment) ||
-				(_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info1));
-			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info1))
-				memoEditAuto1.EditValue = _digitalLegend.Info1;
-			else if (RequestDefaultInfo != null)
-				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto1, true, true, false, false, false, false, false));
+			checkEditEnable.Checked = _digitalLegend.Enabled;
 
+			if(!_digitalLegend.Enabled)
+				_digitalLegend.ResetDefaults();
 
-			checkEditAuto2.Checked = (_digitalLegend.Enabled && _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && !_digitalLegend.ShowDimensions && _digitalLegend.ShowDates && _digitalLegend.ShowImpressions && !_digitalLegend.ShowCPM && !_digitalLegend.ShowInvestment) ||
-				(_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info2));
-			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info2))
-				memoEditAuto2.EditValue = _digitalLegend.Info2;
-			else if (RequestDefaultInfo != null)
-				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto2, true, true, false, true, true, false, false));
+			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info))
+				memoEditInfo.EditValue = _digitalLegend.Info;
+			else
+				RequestDefaultInfo?.Invoke(this,
+					new RequestDigitalInfoEventArgs(
+						memoEditInfo,
+						_digitalLegend.ShowWebsites,
+						_digitalLegend.ShowProduct,
+						_digitalLegend.ShowDimensions,
+						_digitalLegend.ShowDates,
+						_digitalLegend.ShowImpressions,
+						_digitalLegend.ShowCPM,
+						_digitalLegend.ShowInvestment));
+
 
 			_loading = false;
 		}
 
 		public void SaveData()
 		{
-			_digitalLegend.Enabled = checkEditAuto1.Checked || checkEditAuto2.Checked;
-			if (checkEditAuto1.Checked)
+			_digitalLegend.Enabled = checkEditEnable.Checked;
+			if (checkEditEnable.Checked && memoEditInfo.EditValue != memoEditInfo.Tag)
 			{
-				if (memoEditAuto1.EditValue == memoEditAuto1.Tag)
-				{
-					_digitalLegend.AllowEdit = false;
-					_digitalLegend.Info1 = null;
-					_digitalLegend.ShowWebsites = true;
-					_digitalLegend.ShowProduct = true;
-					_digitalLegend.ShowDimensions = false;
-					_digitalLegend.ShowDates = false;
-					_digitalLegend.ShowImpressions = false;
-					_digitalLegend.ShowCPM = false;
-					_digitalLegend.ShowInvestment = false;
-				}
-				else
-				{
-					_digitalLegend.AllowEdit = true;
-					_digitalLegend.Info1 = memoEditAuto1.EditValue as string;
-					_digitalLegend.ShowWebsites = false;
-					_digitalLegend.ShowProduct = false;
-					_digitalLegend.ShowDimensions = false;
-					_digitalLegend.ShowDates = false;
-					_digitalLegend.ShowImpressions = false;
-					_digitalLegend.ShowCPM = false;
-					_digitalLegend.ShowInvestment = false;
-				}
-			}
-			else if (checkEditAuto2.Checked)
-			{
-				if (memoEditAuto2.EditValue == memoEditAuto2.Tag)
-				{
-					_digitalLegend.AllowEdit = false;
-					_digitalLegend.Info2 = null;
-					_digitalLegend.ShowWebsites = true;
-					_digitalLegend.ShowProduct = true;
-					_digitalLegend.ShowDimensions = false;
-					_digitalLegend.ShowDates = true;
-					_digitalLegend.ShowImpressions = true;
-					_digitalLegend.ShowCPM = false;
-					_digitalLegend.ShowInvestment = false;
-				}
-				else
-				{
-					_digitalLegend.AllowEdit = true;
-					_digitalLegend.Info2 = memoEditAuto2.EditValue as string;
-					_digitalLegend.ShowWebsites = false;
-					_digitalLegend.ShowProduct = false;
-					_digitalLegend.ShowDimensions = false;
-					_digitalLegend.ShowDates = false;
-					_digitalLegend.ShowImpressions = false;
-					_digitalLegend.ShowCPM = false;
-					_digitalLegend.ShowInvestment = false;
-				}
+				_digitalLegend.AllowEdit = true;
+				_digitalLegend.Info = memoEditInfo.EditValue as string;
 			}
 			else
 			{
 				_digitalLegend.AllowEdit = false;
-				_digitalLegend.Info1 = null;
-				_digitalLegend.Info2 = null;
-				_digitalLegend.ShowWebsites = false;
-				_digitalLegend.ShowProduct = false;
-				_digitalLegend.ShowDimensions = false;
-				_digitalLegend.ShowDates = false;
-				_digitalLegend.ShowImpressions = false;
-				_digitalLegend.ShowCPM = false;
-				_digitalLegend.ShowInvestment = false;
+				_digitalLegend.Info = null;
 			}
 		}
 
-		private void checkEditCase_CheckedChanged(object sender, EventArgs e)
+		private void checkEditEnable_CheckedChanged(object sender, EventArgs e)
 		{
-			var checkEdit = sender as CheckEdit;
-			if (checkEdit == null) return;
-			if (checkEdit.Checked)
-			{
-				if (checkEdit != checkEditAuto1)
-					checkEditAuto1.Checked = false;
-				if (checkEdit != checkEditAuto2)
-					checkEditAuto2.Checked = false;
-			}
-			memoEditAuto1.Enabled = checkEditAuto1.Checked;
-			memoEditAuto2.Enabled = checkEditAuto2.Checked;
+			memoEditInfo.Enabled = checkEditEnable.Checked;
+			pnBottom.Enabled = checkEditEnable.Checked;
 			if (_loading) return;
-			if (!checkEditAuto1.Checked)
-				memoEditAuto1.EditValue = memoEditAuto1.Tag;
-			if (!checkEditAuto2.Checked)
-				memoEditAuto2.EditValue = memoEditAuto2.Tag;
-			if (SettingsChanged != null)
-				SettingsChanged(this, EventArgs.Empty);
+			if (!checkEditEnable.Checked)
+				_digitalLegend.ResetDefaults();
+			SettingsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void memoEdit_EditValueChanged(object sender, EventArgs e)
 		{
 			if (_loading) return;
-			if (SettingsChanged != null)
-				SettingsChanged(this, EventArgs.Empty);
+			SettingsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		private void pnControls_Resize(object sender, EventArgs e)
+		private void buttonXRefreshInfoCase1_Click(object sender, EventArgs e)
 		{
-			pnCase1.Height = pnCase2.Height = pnControls.Height / 2;
+			_digitalLegend.ShowWebsites = false;
+			_digitalLegend.ShowProduct = true;
+			_digitalLegend.ShowDimensions = false;
+			_digitalLegend.ShowDates = false;
+			_digitalLegend.ShowImpressions = false;
+			_digitalLegend.ShowCPM = false;
+			_digitalLegend.ShowInvestment = false;
+
+			RequestDefaultInfo?.Invoke(this,
+				new RequestDigitalInfoEventArgs(
+					memoEditInfo,
+					_digitalLegend.ShowWebsites,
+					_digitalLegend.ShowProduct,
+					_digitalLegend.ShowDimensions,
+					_digitalLegend.ShowDates,
+					_digitalLegend.ShowImpressions,
+					_digitalLegend.ShowCPM,
+					_digitalLegend.ShowInvestment));
+
+			SettingsChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		private void buttonXRefreshInfoCase2_Click(object sender, EventArgs e)
+		{
+			_digitalLegend.ShowWebsites = false;
+			_digitalLegend.ShowProduct = true;
+			_digitalLegend.ShowDimensions = false;
+			_digitalLegend.ShowDates = false;
+			_digitalLegend.ShowImpressions = true;
+			_digitalLegend.ShowCPM = false;
+			_digitalLegend.ShowInvestment = false;
+
+			RequestDefaultInfo?.Invoke(this,
+				new RequestDigitalInfoEventArgs(
+					memoEditInfo,
+					_digitalLegend.ShowWebsites,
+					_digitalLegend.ShowProduct,
+					_digitalLegend.ShowDimensions,
+					_digitalLegend.ShowDates,
+					_digitalLegend.ShowImpressions,
+					_digitalLegend.ShowCPM,
+					_digitalLegend.ShowInvestment));
+
+			SettingsChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		private void buttonXRefreshInfoCase3_Click(object sender, EventArgs e)
+		{
+			_digitalLegend.AllowEdit = false;
+			_digitalLegend.ShowWebsites = false;
+			_digitalLegend.ShowProduct = true;
+			_digitalLegend.ShowDimensions = false;
+			_digitalLegend.ShowDates = false;
+			_digitalLegend.ShowImpressions = true;
+			_digitalLegend.ShowCPM = true;
+			_digitalLegend.ShowInvestment = false;
+
+			RequestDefaultInfo?.Invoke(this,
+				new RequestDigitalInfoEventArgs(
+					memoEditInfo,
+					_digitalLegend.ShowWebsites,
+					_digitalLegend.ShowProduct,
+					_digitalLegend.ShowDimensions,
+					_digitalLegend.ShowDates,
+					_digitalLegend.ShowImpressions,
+					_digitalLegend.ShowCPM,
+					_digitalLegend.ShowInvestment));
+
+			SettingsChanged?.Invoke(this, EventArgs.Empty);
 		}
 	}
 }

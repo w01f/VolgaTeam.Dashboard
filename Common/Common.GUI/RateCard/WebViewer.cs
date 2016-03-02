@@ -11,6 +11,7 @@ namespace Asa.Common.GUI.RateCard
 	public partial class WebViewer : XtraTabPage, IRateCardViewer
 	{
 		private readonly WebControl _browser;
+		private readonly WebControl _childBrowser;
 		public bool Loaded { get; set; }
 		public FileInfo File { get; }
 
@@ -20,16 +21,25 @@ namespace Asa.Common.GUI.RateCard
 			File = file;
 			Text = Path.GetFileNameWithoutExtension(File.FullName).Replace("&", "&&");
 
+			_childBrowser = new WebControl();
+			_childBrowser.WebView = new WebView();
+			_childBrowser.WebView.BeforeDownload += OnWebViewBeforeDownload;
+			_childBrowser.WebView.CustomUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Essential Objects Chrome/41.0.2272.16 Safari/537.36";
+			Controls.Add(_childBrowser);
+
 			_browser = new WebControl();
-			Controls.Add(_browser);
 			_browser.WebView = new WebView();
 			_browser.Dock = DockStyle.Fill;
-			_browser.WebView.LoadCompleted += WebView_LoadComplete;
-			_browser.WebView.NewWindow += WebView_NewWindow;
-			_browser.WebView.BeforeDownload += WebView_BeforeDownload;
+			_browser.WebView.LoadCompleted += OnMainWebViewLoadComplete;
+			_browser.WebView.NewWindow += OnMainnWebViewNewWindow;
+			_browser.WebView.BeforeDownload += OnWebViewBeforeDownload;
+			_browser.WebView.CustomUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Essential Objects Chrome/41.0.2272.16 Safari/537.36";
+			Controls.Add(_browser);
+
+			_browser.BringToFront();
 		}
 
-		public void ReleaseResources(){}
+		public void ReleaseResources() { }
 
 		public void LoadViewer()
 		{
@@ -42,19 +52,20 @@ namespace Asa.Common.GUI.RateCard
 			_browser.WebView.LoadUrl(url.Replace(" ", "%20"));
 		}
 
-		private void WebView_LoadComplete(Object sender, LoadCompletedEventArgs e)
+		private void OnMainWebViewLoadComplete(Object sender, LoadCompletedEventArgs e)
 		{
 			FormProgress.CloseProgress();
 			TabControl.Enabled = true;
 			Loaded = true;
 		}
 
-		private void WebView_NewWindow(object sender, NewWindowEventArgs e)
+		private void OnMainnWebViewNewWindow(object sender, NewWindowEventArgs e)
 		{
+			_childBrowser.WebView.LoadUrl(e.TargetUrl);
 			e.Accepted = false;
 		}
 
-		private void WebView_BeforeDownload(object sender, BeforeDownloadEventArgs e)
+		private void OnWebViewBeforeDownload(object sender, BeforeDownloadEventArgs e)
 		{
 			e.FilePath = Path.Combine(
 				Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),

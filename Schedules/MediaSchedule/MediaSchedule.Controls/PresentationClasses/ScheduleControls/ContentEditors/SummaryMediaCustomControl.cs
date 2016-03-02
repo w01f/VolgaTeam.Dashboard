@@ -8,6 +8,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
 	public class SummaryMediaCustomControl : SummaryCustomItemControl
 	{
+		private ProductInfoSummaryItem ProductInfoData => Data as ProductInfoSummaryItem;
+
 		public SummaryMediaCustomControl()
 		{
 			hyperLinkEditReset.OpenLink += OnResetData;
@@ -15,7 +17,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		protected override void RaiseDescriptionChanged()
 		{
-			((ProductInfoSummaryItem)Data).IsDefaultSate = false;
+			if (ProductInfoData != null)
+				ProductInfoData.IsDefaultSate = false;
 			base.RaiseDescriptionChanged();
 		}
 
@@ -23,11 +26,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			e.Handled = true;
 
-			var productInfoSummaryItem = (ProductInfoSummaryItem)Data;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion(
-				String.Format("Are you sure you want to delete and update the {0} Data? ", productInfoSummaryItem.Title)) == DialogResult.Yes)
+				String.Format("Are you sure you want to delete and update the {0} Data? ", ProductInfoData.Title)) == DialogResult.Yes)
 			{
-				productInfoSummaryItem.ResetToDefault();
+				ProductInfoData.ResetToDefault();
 				LoadData();
 				RaiseDataChanged();
 			}
@@ -37,10 +39,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			base.LoadData();
 
-			if (Data is ProductInfoSummaryItem)
+			if (ProductInfoData != null)
 			{
 				hyperLinkEditReset.Visible = true;
-				hyperLinkEditReset.Text = String.Format("Reset {0}", ((ProductInfoSummaryItem)Data).Title);
+				hyperLinkEditReset.Text = String.Format("Reset {0}", ProductInfoData.Title);
 			}
 			else
 			{

@@ -16,8 +16,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		public string Station { get; set; }
 		public string Description { get; set; }
 		public decimal Order { get; set; }
+		public ImageSource DefaultLogo { get; set; }
 
 		private ImageSource _logo;
+
 		[JsonIgnore]
 		public ImageSource Logo
 		{
@@ -25,7 +27,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 			{
 				if (!Enabled)
 					return DisabledLogo;
-				return _logo.ContainsData ? _logo : MediaMetaData.Instance.ListManager.DefaultStrategyLogo;
+				return _logo.ContainsData ? _logo : (DefaultLogo ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo);
 			}
 			set
 			{
@@ -36,13 +38,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		}
 
 		private ImageSource _disabledLogo;
+
 		private ImageSource DisabledLogo
 		{
 			get
 			{
 				if (_disabledLogo != null) return _disabledLogo;
 
-				var sourceLogo = (_logo.BigImage ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo.BigImage).Clone() as Image;
+				var sourceLogo =
+					(_logo.BigImage ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo.BigImage).Clone() as Image;
 				if (sourceLogo == null) return null;
 				var disabledImage = new Bitmap(sourceLogo);
 				using (var gr = Graphics.FromImage(disabledImage))
@@ -52,7 +56,8 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 					matrix.Matrix33 = 0.4f;
 					attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
 					gr.Clear(Color.FromKnownColor(KnownColor.ButtonFace));
-					gr.DrawImage(sourceLogo, new Rectangle(0, 0, disabledImage.Width, disabledImage.Height), 0, 0, disabledImage.Width, disabledImage.Height, GraphicsUnit.Pixel, attributes);
+					gr.DrawImage(sourceLogo, new Rectangle(0, 0, disabledImage.Width, disabledImage.Height), 0, 0, disabledImage.Width,
+						disabledImage.Height, GraphicsUnit.Pixel, attributes);
 					_disabledLogo = ImageSource.FromImage(disabledImage);
 					return _disabledLogo;
 				}
@@ -70,7 +75,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		}
 
 		[JsonConstructor]
-		private ProgramStrategyItem() { }
+		private ProgramStrategyItem()
+		{
+		}
 
 		public ProgramStrategyItem(StrategySummaryContent programStrategy)
 		{
@@ -80,9 +87,17 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 
 		public void Dispose()
 		{
-			if (_logo != null)
-				_logo.Dispose();
+			DefaultLogo?.Dispose();
+			DefaultLogo = null;
+
+			_logo?.Dispose();
 			_parent = null;
+		}
+
+		public void ResetLogo()
+		{
+			_logo?.Dispose();
+			_logo = new ImageSource();
 		}
 	}
 }

@@ -150,6 +150,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				case ScheduleSettingsType.Strategy:
 					_strategySummaryControl.UpdateRows();
 					break;
+				case ScheduleSettingsType.StrategyLogos:
+					_strategySummaryControl.ResetLogos();
+					break;
 			}
 		}
 

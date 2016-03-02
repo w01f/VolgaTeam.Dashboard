@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using Asa.Common.GUI.RetractableBar;
@@ -51,6 +52,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			_baseSummarySettings.ShowStation = checkEditStation.Checked;
 			_baseSummarySettings.ShowDescription = checkEditTotalsSpots.Checked;
 			DataChanged?.Invoke(this, new SettingsChangedEventArgs { ChangedSettingsType = SettingsType });
+		}
+
+		private void OnResetLogosClick(object sender, EventArgs e)
+		{
+			DataChanged?.Invoke(this, new SettingsChangedEventArgs { ChangedSettingsType = ScheduleSettingsType.StrategyLogos });
 		}
 	}
 }

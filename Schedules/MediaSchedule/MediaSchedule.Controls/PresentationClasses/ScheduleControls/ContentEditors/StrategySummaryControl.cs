@@ -108,17 +108,17 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			advBandedGridViewItems.RefreshData();
 		}
 
+		public void ResetLogos()
+		{
+			foreach (var strategyItem in SummarySettings.Items)
+				strategyItem.ResetLogo();
+			SetDataSource();
+			RaiseDataChanged();
+		}
+
 		private void RaiseDataChanged()
 		{
 			_sectionContainer.RaiseDataChanged();
-		}
-		#endregion
-
-		#region Settings Management
-		private void OnSettingsChanged(object sender, EventArgs e)
-		{
-			UpdateRows();
-			RaiseDataChanged();
 		}
 		#endregion
 

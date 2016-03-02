@@ -11,6 +11,7 @@
 		CustomSummary,
 		ProductSummary,
 		Strategy,
+		StrategyLogos,
 		FavoriteImages
 	}
 }

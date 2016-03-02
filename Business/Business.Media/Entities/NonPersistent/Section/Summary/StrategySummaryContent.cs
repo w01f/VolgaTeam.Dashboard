@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Asa.Business.Media.Enums;
 using Asa.Business.Media.Interfaces;
-using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Images;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
@@ -40,13 +41,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 			var maxOrder = Items.Any() ? Items.Max(i => i.Order) : 0;
 			var groupedPrograms = sourceCollection
 				.GroupBy(
-					p => p.Name, 
+					p => p.Name,
 					(key, g) => new
-						{
-							Name = key,
-							Station = String.Join(", ", g.Select(i => i.Station)),
-							Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count)
-						});
+					{
+						Name = key,
+						Logo = g.Select(i => i.Logo).FirstOrDefault()?.Clone<ImageSource, ImageSource>(),
+						Station = String.Join(", ", g.Select(i => i.Station)),
+						Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count)
+					})
+				.ToList();
 			foreach (var program in groupedPrograms)
 			{
 				var strategyItem = Items.FirstOrDefault(si => si.Name == program.Name);
@@ -61,10 +64,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 					Items.Add(strategyItem);
 					maxOrder++;
 				}
+				strategyItem.DefaultLogo = Parent.Parent.ShowLogo ? program.Logo : null;
 				strategyItem.Station = program.Station;
 				strategyItem.Description = String.Format("{0}x", program.Spots);
 			}
-			Items.RemoveAll(i => !groupedPrograms.Any(gp => gp.Name == i.Name));
+			Items.RemoveAll(i => groupedPrograms.All(gp => gp.Name != i.Name));
 			ReorderItems();
 		}
 

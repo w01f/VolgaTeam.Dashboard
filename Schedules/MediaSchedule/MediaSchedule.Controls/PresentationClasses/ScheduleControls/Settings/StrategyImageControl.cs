@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
 using DevExpress.XtraTab;

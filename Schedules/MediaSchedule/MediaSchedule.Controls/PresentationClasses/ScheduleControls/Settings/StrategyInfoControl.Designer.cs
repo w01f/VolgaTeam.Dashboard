@@ -30,6 +30,7 @@
 		{
 			this.checkEditTotalsSpots = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditStation = new DevExpress.XtraEditors.CheckEdit();
+			this.buttonXResetLogos = new DevComponents.DotNetBar.ButtonX();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalsSpots.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStation.Properties)).BeginInit();
 			this.SuspendLayout();
@@ -58,14 +59,29 @@
 			this.checkEditStation.TabIndex = 9;
 			this.checkEditStation.CheckedChanged += new System.EventHandler(this.OnSettingChanged);
 			// 
+			// buttonXResetLogos
+			// 
+			this.buttonXResetLogos.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXResetLogos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXResetLogos.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXResetLogos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.buttonXResetLogos.Location = new System.Drawing.Point(15, 411);
+			this.buttonXResetLogos.Name = "buttonXResetLogos";
+			this.buttonXResetLogos.Size = new System.Drawing.Size(267, 34);
+			this.buttonXResetLogos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXResetLogos.TabIndex = 10;
+			this.buttonXResetLogos.Text = "Refresh Logos";
+			this.buttonXResetLogos.Click += new System.EventHandler(this.OnResetLogosClick);
+			// 
 			// StrategyInfoControl
 			// 
-			this.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.Options.UseBackColor = true;
+			this.Controls.Add(this.buttonXResetLogos);
 			this.Controls.Add(this.checkEditStation);
 			this.Controls.Add(this.checkEditTotalsSpots);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "StrategyInfoControl";
 			this.Size = new System.Drawing.Size(296, 457);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalsSpots.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStation.Properties)).EndInit();
@@ -77,7 +93,6 @@
 
 		protected DevExpress.XtraEditors.CheckEdit checkEditTotalsSpots;
 		protected DevExpress.XtraEditors.CheckEdit checkEditStation;
-
-
+		private DevComponents.DotNetBar.ButtonX buttonXResetLogos;
 	}
 }

@@ -84,11 +84,15 @@ namespace Asa.Business.Online.Entities.NonPersistent
 				if (product.MonthlyImpressionsCalculated.HasValue || product.MonthlyCPMCalculated.HasValue || product.MonthlyInvestmentCalculated.HasValue)
 				{
 					var monthly = new List<string>();
-					if (args.ShowImpressions && product.MonthlyImpressionsCalculated.HasValue)
+					if (args.ShowImpressions &&
+						(product.ShowAllPricingMonthly || product.ShowMonthlyImpressions) &&
+						product.MonthlyImpressionsCalculated.HasValue)
 						monthly.Add(String.Format("Imp: {0}", product.MonthlyImpressionsCalculated.Value.ToString("#,##0")));
 					if (args.ShowInvestment && product.MonthlyInvestmentCalculated.HasValue)
 						monthly.Add(String.Format("Inv: {0}", product.MonthlyInvestmentCalculated.Value.ToString("#,##0")));
-					if (args.ShowCPM && product.MonthlyCPMCalculated.HasValue)
+					if (args.ShowCPM &&
+						product.ShowAllPricingMonthly &&
+						product.MonthlyCPMCalculated.HasValue)
 						monthly.Add(String.Format("CPM: {0}", product.MonthlyCPMCalculated.Value.ToString("#,##0")));
 					if (monthly.Any())
 						temp.Add(String.Format("(Monthly) {0}", String.Join(" ", monthly)));
@@ -96,11 +100,15 @@ namespace Asa.Business.Online.Entities.NonPersistent
 				if (product.TotalImpressionsCalculated.HasValue || product.TotalCPMCalculated.HasValue || product.TotalInvestmentCalculated.HasValue)
 				{
 					var total = new List<string>();
-					if (args.ShowImpressions && product.TotalImpressionsCalculated.HasValue)
+					if (args.ShowImpressions &&
+						(product.ShowAllPricingTotal || product.ShowTotalImpressions) &&
+						product.TotalImpressionsCalculated.HasValue)
 						total.Add(String.Format("Imp: {0}", product.TotalImpressionsCalculated.Value.ToString("#,##0")));
 					if (args.ShowInvestment && product.TotalInvestmentCalculated.HasValue)
 						total.Add(String.Format("Inv: {0}", product.TotalInvestmentCalculated.Value.ToString("#,##0")));
-					if (args.ShowCPM && product.TotalCPMCalculated.HasValue)
+					if (args.ShowCPM &&
+						product.ShowAllPricingTotal &&
+						product.TotalCPMCalculated.HasValue)
 						total.Add(String.Format("CPM: {0}", product.TotalCPMCalculated.Value.ToString("#,##0")));
 					if (total.Any())
 						temp.Add(String.Format("(Total) {0}", String.Join(" ", total)));

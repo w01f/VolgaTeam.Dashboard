@@ -34,18 +34,10 @@ namespace Asa.Dashboard.TabHomeForms
 				ckC.Font = new Font(ckC.Font.FontFamily, ckC.Font.Size - 3, ckC.Font.Style);
 			}
 			UpdateEditState();
-			comboBoxEditSlideHeader.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditA.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditA.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditA.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditB.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditB.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditB.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditC.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditC.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditC.Enter += TextEditorsHelper.Editor_Enter;
+			comboBoxEditSlideHeader.EnableSelectAll();
+			memoEditA.EnableSelectAll();
+			memoEditB.EnableSelectAll();
+			memoEditC.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);

@@ -23,18 +23,9 @@ namespace Asa.Common.GUI.Summary
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
-			textEditItem.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			textEditItem.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			textEditItem.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditMonthly.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditMonthly.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditMonthly.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditTotal.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditTotal.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditTotal.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditDetails.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditDetails.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditDetails.Enter += TextEditorsHelper.Editor_Enter;
+			textEditItem.EnableSelectAll();
+			spinEditMonthly.EnableSelectAll();
+			spinEditTotal.EnableSelectAll();
 
 			if ((CreateGraphics()).DpiX > 96)
 			{

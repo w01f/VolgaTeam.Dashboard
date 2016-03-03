@@ -52,7 +52,7 @@ namespace Asa.Dashboard
 
 		public void RunForm(bool onlySlides)
 		{
-			OnlySlidesMode = true;
+			OnlySlidesMode = onlySlides;
 
 			bool stopRun = false;
 

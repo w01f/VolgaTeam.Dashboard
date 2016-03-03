@@ -51,18 +51,10 @@ namespace Asa.Dashboard.TabHomeForms
 				checkEditTotalInvestment.Font = new Font(checkEditTotalInvestment.Font.FontFamily, checkEditTotalInvestment.Font.Size - 2, checkEditTotalInvestment.Font.Style);
 				checkEditTableOutput.Font = new Font(checkEditTableOutput.Font.FontFamily, checkEditTableOutput.Font.Size - 2, checkEditTableOutput.Font.Style);
 			}
-			comboBoxEditAdvertiser.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditAdvertiser.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditAdvertiser.Enter += TextEditorsHelper.Editor_Enter;
-			comboBoxEditDecisionMaker.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditDecisionMaker.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditDecisionMaker.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditMonthly.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditMonthly.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditMonthly.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditTotal.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditTotal.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditTotal.Enter += TextEditorsHelper.Editor_Enter;
+			comboBoxEditAdvertiser.EnableSelectAll();
+			comboBoxEditDecisionMaker.EnableSelectAll();
+			spinEditMonthly.EnableSelectAll();
+			spinEditTotal.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.SimpleSummaryLists.Headers);

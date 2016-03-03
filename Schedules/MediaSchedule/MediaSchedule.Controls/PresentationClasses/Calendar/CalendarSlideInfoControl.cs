@@ -46,9 +46,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			#region Comment
 			buttonXComment.CheckedChanged += OnPropertiesChanged;
 			memoEditComment.EditValueChanged += OnPropertiesChanged;
-			memoEditComment.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditComment.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			memoEditComment.EnableSelectAll();
 			checkEditCommentApplyForAll.CheckedChanged += OnPropertiesChanged;
 			#endregion
 

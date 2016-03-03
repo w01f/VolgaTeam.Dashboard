@@ -53,10 +53,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			laSmallDayCaption.Text = Day.Date.Day.ToString();
 			RefreshData(_colorSchema);
 
-			memoEditSimpleComment.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditSimpleComment.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditSimpleComment.MouseUp += TextEditorsHelper.Editor_MouseUp;
-
+			memoEditSimpleComment.EnableSelectAll();
 			toolStripMenuItemAddNote.Visible = toolStripMenuItemPasteNote.Visible = toolStripSeparator1.Visible = Day.Parent.AllowCustomNotes;
 		}
 

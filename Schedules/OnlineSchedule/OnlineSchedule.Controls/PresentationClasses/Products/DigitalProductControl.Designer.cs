@@ -161,7 +161,6 @@
 			this.memoEditDescription.Size = new System.Drawing.Size(293, 110);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 2;
-			this.memoEditDescription.UseOptimizedRendering = true;
 			this.memoEditDescription.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// memoEditProductName
@@ -174,7 +173,6 @@
 			this.memoEditProductName.Size = new System.Drawing.Size(313, 147);
 			this.memoEditProductName.StyleController = this.styleController;
 			this.memoEditProductName.TabIndex = 1;
-			this.memoEditProductName.UseOptimizedRendering = true;
 			this.memoEditProductName.EditValueChanged += new System.EventHandler(this.memoEditProductName_EditValueChanged);
 			// 
 			// checkedListBoxControlWebsite
@@ -274,7 +272,6 @@
 			this.memoEditComments.Size = new System.Drawing.Size(399, 108);
 			this.memoEditComments.StyleController = this.styleController;
 			this.memoEditComments.TabIndex = 17;
-			this.memoEditComments.UseOptimizedRendering = true;
 			this.memoEditComments.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// spinEditCPM
@@ -819,7 +816,6 @@
 			this.Controls.Add(this.labelControlPriceType);
 			this.Controls.Add(this.labelControlDescription);
 			this.Controls.Add(this.pnPriceTypeContainer);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Size = new System.Drawing.Size(940, 497);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditResetProductName.Properties)).EndInit();

@@ -1,36 +1,61 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 
 namespace Asa.Common.GUI.Common
 {
 	public static class TextEditorsHelper
 	{
-		private static bool enter;
-		private static bool needSelect;
+		private static bool _enter;
+		private static bool _needToPerformSelectionMode;
 
-		public static void Editor_Enter(object sender, EventArgs e)
+		public static void EnableSelectAll(this BaseEdit editor)
 		{
-			enter = true;
+			editor.MouseUp += OnMouseUpForSelect;
+			editor.MouseDown += OnMouseDown;
+			editor.Enter += OnEnterForSelect;
 		}
 
-		public static void Editor_MouseUp(object sender, MouseEventArgs e)
+		public static void EnableSelectAll(this RepositoryItem editor)
 		{
-			if (needSelect)
-			{
-				(sender as BaseEdit).SelectAll();
-			}
+			editor.MouseUp += OnMouseUpForSelect;
+			editor.MouseDown += OnMouseDown;
+			editor.Enter += OnEnterForSelect;
+		}
+
+		public static void DisableSelectAll(this TextEdit editor)
+		{
+			editor.Enter += OnEnterForReset;
+		}
+
+		private static void OnEnterForSelect(object sender, EventArgs e)
+		{
+			_enter = true;
+		}
+
+		private static void OnEnterForReset(object sender, EventArgs e)
+		{
+			var editor = sender as TextEdit;
+			if (!String.IsNullOrEmpty(editor?.Text))
+				editor.Select(editor.Text.Length, 0);
+		}
+
+		private static void OnMouseUpForSelect(object sender, MouseEventArgs e)
+		{
+			if (_needToPerformSelectionMode)
+				((BaseEdit)sender).SelectAll();
 			ResetEnterFlag();
 		}
 
-		public static void Editor_MouseDown(object sender, MouseEventArgs e)
+		private static void OnMouseDown(object sender, MouseEventArgs e)
 		{
-			needSelect = enter;
+			_needToPerformSelectionMode = _enter;
 		}
 
 		private static void ResetEnterFlag()
 		{
-			enter = false;
+			_enter = false;
 		}
 	}
 }

@@ -40,10 +40,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 			RefreshColor();
 
-			memoEdit.Enter += TextEditorsHelper.Editor_Enter;
-			memoEdit.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEdit.MouseUp += TextEditorsHelper.Editor_MouseUp;
-
 			if (calendarNote.UserAdded)
 			{
 				labelControl_Click(null, EventArgs.Empty);
@@ -51,6 +47,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			}
 
 			pbClose.Buttonize();
+			memoEdit.DisableSelectAll();
 		}
 
 		public void Release()

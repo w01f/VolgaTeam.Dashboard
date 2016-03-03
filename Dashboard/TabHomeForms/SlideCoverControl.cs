@@ -44,15 +44,9 @@ namespace Asa.Dashboard.TabHomeForms
 				textEditSalesQuoteAuthor.Font = new Font(textEditSalesQuoteAuthor.Font.FontFamily, textEditSalesQuoteAuthor.Font.Size - 2, textEditSalesQuoteAuthor.Font.Style);
 				memoEditSalesQuote.Font = new Font(memoEditSalesQuote.Font.FontFamily, memoEditSalesQuote.Font.Size - 2, memoEditSalesQuote.Font.Style);
 			}
-			comboBoxEditSlideHeader.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += TextEditorsHelper.Editor_Enter;
-			comboBoxEditAdvertiser.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditAdvertiser.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditAdvertiser.Enter += TextEditorsHelper.Editor_Enter;
-			comboBoxEditDecisionMaker.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditDecisionMaker.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditDecisionMaker.Enter += TextEditorsHelper.Editor_Enter;
+			comboBoxEditSlideHeader.EnableSelectAll();
+			comboBoxEditAdvertiser.EnableSelectAll();
+			comboBoxEditDecisionMaker.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.CoverLists.Headers);

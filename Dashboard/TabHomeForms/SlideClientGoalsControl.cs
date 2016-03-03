@@ -37,21 +37,11 @@ namespace Asa.Dashboard.TabHomeForms
 				laGoal4.Font = new Font(laGoal4.Font.FontFamily, laGoal4.Font.Size - 3, laGoal4.Font.Style);
 				laGoal5.Font = new Font(laGoal5.Font.FontFamily, laGoal5.Font.Size - 3, laGoal5.Font.Style);
 			}
-			comboBoxEditGoal1.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditGoal1.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditGoal1.Enter += TextEditorsHelper.Editor_Enter;
-			comboBoxEditGoal2.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditGoal2.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditGoal2.Enter += TextEditorsHelper.Editor_Enter;
-			comboBoxEditGoal3.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditGoal3.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditGoal3.Enter += TextEditorsHelper.Editor_Enter;
-			comboBoxEditGoal4.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditGoal4.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditGoal4.Enter += TextEditorsHelper.Editor_Enter;
-			comboBoxEditGoal5.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditGoal5.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditGoal5.Enter += TextEditorsHelper.Editor_Enter;
+			comboBoxEditGoal1.EnableSelectAll();
+			comboBoxEditGoal2.EnableSelectAll();
+			comboBoxEditGoal3.EnableSelectAll();
+			comboBoxEditGoal4.EnableSelectAll();
+			comboBoxEditGoal5.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Headers);

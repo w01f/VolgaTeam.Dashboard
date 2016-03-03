@@ -48,15 +48,9 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			if (ListManager.Instance.Placeholders.Count > 2)
 				repositoryItemComboBoxLocation.NullText = ListManager.Instance.Placeholders[2];
 
-			repositoryItemComboBoxProductType.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemComboBoxProductType.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemComboBoxProductType.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemComboBoxProductName.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemComboBoxProductName.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemComboBoxProductName.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemSpinEditSize.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemSpinEditSize.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemSpinEditSize.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			repositoryItemComboBoxProductType.EnableSelectAll();
+			repositoryItemComboBoxProductName.EnableSelectAll();
+			repositoryItemSpinEditSize.EnableSelectAll();
 		}
 
 		public void UpdateData(DigitalProductsContent content, IDigitalScheduleSettings scheduleSettings, Action onDataChanged)
@@ -185,19 +179,18 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 		private void CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
+			var product = advBandedGridView.GetFocusedRow() as DigitalProduct;
+			if (product == null) return;
+
 			if (e.Column == gridColumnName ||
 				e.Column == gridColumnCategory ||
 				e.Column == gridColumnSubCategory)
 			{
-				var product = advBandedGridView.GetFocusedRow() as DigitalProduct;
-				if (product != null)
+				var productSource = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(product.Name));
+				if (productSource != null)
 				{
-					var productSource = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(product.Name));
-					if (productSource != null)
-					{
-						product.ApplyDefaultValues();
-						advBandedGridView.RefreshData();
-					}
+					product.ApplyDefaultValues();
+					advBandedGridView.RefreshData();
 				}
 			}
 			_onDataChanged();
@@ -208,7 +201,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			advBandedGridView.CloseEditor();
 		}
 
-		private void ShowingEditor(object sender, CancelEventArgs e)
+		private void OnShowingEditor(object sender, CancelEventArgs e)
 		{
 			e.Cancel = false;
 			var digitalProduct = advBandedGridView.GetFocusedRow() as DigitalProduct;
@@ -216,7 +209,11 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			if (advBandedGridView.FocusedColumn == gridColumnName)
 			{
 				var category = digitalProduct.Category;
-				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category != null && x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
+				var subCategories = ListManager.Instance.ProductSources
+					.Where(x => x.Category != null && x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory))
+					.Select(x => x.SubCategory)
+					.Distinct()
+					.ToArray();
 				var subCategory = digitalProduct.SubCategory;
 				if ((subCategories.Any() && !String.IsNullOrEmpty(subCategory)) || !subCategories.Any())
 				{
@@ -255,7 +252,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			}
 		}
 
-		private void CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+		private void OnCustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
 		{
 			if (!(e.Column == gridColumnSubCategory ||
 				e.Column == gridColumnLocation ||
@@ -284,7 +281,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			}
 		}
 
-		private void RowCellStyle(object sender, RowCellStyleEventArgs e)
+		private void OnRowCellStyle(object sender, RowCellStyleEventArgs e)
 		{
 			var product = advBandedGridView.GetRow(e.RowHandle) as DigitalProduct;
 			if (e.Column == gridColumnWidth ||

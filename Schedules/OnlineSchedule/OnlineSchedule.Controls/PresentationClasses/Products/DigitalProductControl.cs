@@ -56,31 +56,13 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				hyperLinkEditResetProductName.Font = new Font(hyperLinkEditResetProductName.Font.FontFamily, hyperLinkEditResetProductName.Font.Size - 2, hyperLinkEditResetProductName.Font.Style);
 				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2, hyperLinkEditReset.Font.Style);
 			}
-			spinEditImpressions.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditImpressions.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditImpressions.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditImpressionsOnly.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditImpressionsOnly.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditImpressionsOnly.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditInvestment.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditInvestment.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditInvestment.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditInvestmentOnly.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditInvestmentOnly.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditInvestmentOnly.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			spinEditCPM.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditCPM.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditCPM.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditProductName.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditProductName.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditProductName.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditComments.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditComments.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditComments.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditDescription.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditDescription.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditDescription.MouseUp += TextEditorsHelper.Editor_MouseUp;
-
+			spinEditImpressions.EnableSelectAll();
+			spinEditImpressionsOnly.EnableSelectAll();
+			spinEditInvestment.EnableSelectAll();
+			spinEditInvestmentOnly.EnableSelectAll();
+			spinEditCPM.EnableSelectAll();
+			comboBoxEditStrengths1.DisableSelectAll();
+			comboBoxEditStrengths2.DisableSelectAll();
 			spinEditImpressions.EditValue = null;
 			spinEditInvestment.EditValue = null;
 

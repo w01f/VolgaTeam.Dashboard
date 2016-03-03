@@ -17,9 +17,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 		public DigitalInfoControl()
 		{
 			InitializeComponent();
-			memoEditInfo.Enter += TextEditorsHelper.Editor_Enter;
-			memoEditInfo.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditInfo.MouseUp += TextEditorsHelper.Editor_MouseUp;
 			if (CreateGraphics().DpiX > 96)
 			{
 				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 2, laTitle.Font.Style);

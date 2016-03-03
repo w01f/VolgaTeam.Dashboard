@@ -9,9 +9,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		public FormOutputSettings()
 		{
 			InitializeComponent();
-			spinEditOutputLimitPeriods.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditOutputLimitPeriods.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditOutputLimitPeriods.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			spinEditOutputLimitPeriods.EnableSelectAll();
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,

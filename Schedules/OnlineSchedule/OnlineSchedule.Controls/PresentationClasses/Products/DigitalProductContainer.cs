@@ -71,9 +71,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				checkEditMonths.Font = font;
 				checkEditWeeks.Font = font;
 			}
-			spinEditDuration.Enter += TextEditorsHelper.Editor_Enter;
-			spinEditDuration.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			spinEditDuration.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			spinEditDuration.EnableSelectAll();
 			AssignCloseActiveEditorsOnOutsideClick(pnHeader);
 		}
 

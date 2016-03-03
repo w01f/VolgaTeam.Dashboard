@@ -65,7 +65,7 @@ namespace Asa.Dashboard
 
 			var masterWizardLogo = Resources.RibbonLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
-			buttonItemSlidesLogo.Image = masterWizardLogo;
+			buttonItemSlidesLogo.Image = AppManager.Instance.OnlySlidesMode ? Resources.AddSlidesLogo : masterWizardLogo;
 			ribbonBarHomeOverview.RecalcLayout();
 			ribbonPanelHome.PerformLayout();
 		}
@@ -90,7 +90,6 @@ namespace Asa.Dashboard
 			buttonItemSlideSettings.Visible =
 				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
 				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
-			buttonItemSlidesLogo.Image = AppManager.Instance.OnlySlidesMode ? Resources.AddSlidesLogo : Resources.HomeDefault;
 		}
 
 		public void HideThemeButtons()

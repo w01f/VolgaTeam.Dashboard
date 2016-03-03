@@ -29,9 +29,6 @@ namespace Asa.Common.GUI.Summary
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
-			memoEditDetails.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			memoEditDetails.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			memoEditDetails.Enter += TextEditorsHelper.Editor_Enter;
 			DataChanged += (o, e) => { Data.Commited = true; };
 		}
 

@@ -83,12 +83,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomeFlightDatesStart.CloseUp += OnFlightDatesStartCloseUp;
 			Controller.Instance.HomeFlightDatesEnd.CloseUp += OnFlightDatesEndCloseUp;
 			Controller.Instance.HomeProductClone.Click += DigitalProductClone;
-			Controller.Instance.HomeBusinessName.Enter += TextEditorsHelper.Editor_Enter;
-			Controller.Instance.HomeBusinessName.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			Controller.Instance.HomeBusinessName.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			Controller.Instance.HomeDecisionMaker.Enter += TextEditorsHelper.Editor_Enter;
-			Controller.Instance.HomeDecisionMaker.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			Controller.Instance.HomeDecisionMaker.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			Controller.Instance.HomeBusinessName.EnableSelectAll();
+			Controller.Instance.HomeDecisionMaker.EnableSelectAll();
 
 			Controller.Instance.HomeBusinessName.TabIndex = 0;
 			Controller.Instance.HomeBusinessName.KeyDown += OnSchedulePropertiesEditorKeyDown;

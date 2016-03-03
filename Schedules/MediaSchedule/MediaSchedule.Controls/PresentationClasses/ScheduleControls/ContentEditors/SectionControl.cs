@@ -61,39 +61,17 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#region ISectionEditorControl Memebers
 		public void InitControls()
 		{
-			repositoryItemComboBoxDays.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemComboBoxDays.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemComboBoxDays.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemComboBoxDayparts.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemComboBoxDayparts.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemComboBoxDayparts.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemComboBoxLengths.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemComboBoxLengths.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemComboBoxLengths.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemPopupContainerEditProgram.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemPopupContainerEditProgram.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemPopupContainerEditProgram.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemTextEditProgram.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemTextEditProgram.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemTextEditProgram.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemComboBoxStations.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemComboBoxStations.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemComboBoxStations.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemComboBoxTimes.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemComboBoxTimes.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemComboBoxTimes.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemSpinEdit000s.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemSpinEdit000s.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemSpinEdit000s.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemSpinEditRate.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemSpinEditRate.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemSpinEditRate.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemSpinEditRating.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemSpinEditRating.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemSpinEditRating.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			repositoryItemSpinEditSpot.Enter += TextEditorsHelper.Editor_Enter;
-			repositoryItemSpinEditSpot.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			repositoryItemSpinEditSpot.MouseUp += TextEditorsHelper.Editor_MouseUp;
+			repositoryItemComboBoxDays.EnableSelectAll();
+			repositoryItemComboBoxDayparts.EnableSelectAll();
+			repositoryItemComboBoxLengths.EnableSelectAll();
+			repositoryItemPopupContainerEditProgram.EnableSelectAll();
+			repositoryItemTextEditProgram.EnableSelectAll();
+			repositoryItemComboBoxStations.EnableSelectAll();
+			repositoryItemComboBoxTimes.EnableSelectAll();
+			repositoryItemSpinEdit000s.EnableSelectAll();
+			repositoryItemSpinEditRate.EnableSelectAll();
+			repositoryItemSpinEditRating.EnableSelectAll();
+			repositoryItemSpinEditSpot.EnableSelectAll();
 
 			if ((CreateGraphics()).DpiX > 96)
 			{
@@ -661,13 +639,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			{
 				if (!_sectionContainer.SectionData.Parent.DigitalLegend.Enabled) return String.Empty;
 				var requestOptions = _sectionContainer.SectionData.Parent.DigitalLegend.RequestOptions;
+				requestOptions.Separator = "    ";
 				if (!_sectionContainer.SectionData.Parent.DigitalLegend.AllowEdit)
-				{
-					requestOptions.Separator = " ";
-					return String.Format("Digital Product Info: {0}", _sectionContainer.SectionData.ParentSchedule.DigitalProductsContent.GetDigitalInfo(requestOptions));
-				}
+					return String.Format("Digital:{1}{0}", _sectionContainer.SectionData.ParentSchedule.DigitalProductsContent.GetDigitalInfo(requestOptions), requestOptions.Separator);
 				if (!String.IsNullOrEmpty(_sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo))
-					return String.Format("Digital Product Info: {0}", _sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo);
+					return String.Format("Digital:{1}{0}", _sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo, requestOptions.Separator);
 				return String.Empty;
 			}
 		}

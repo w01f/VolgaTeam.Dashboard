@@ -318,9 +318,9 @@
 			this.advBandedGridView.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridView.OptionsView.ShowIndicator = false;
 			this.advBandedGridView.RowSeparatorHeight = 30;
-			this.advBandedGridView.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.RowCellStyle);
-			this.advBandedGridView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.CustomRowCellEdit);
-			this.advBandedGridView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.ShowingEditor);
+			this.advBandedGridView.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.OnRowCellStyle);
+			this.advBandedGridView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.OnCustomRowCellEdit);
+			this.advBandedGridView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.OnShowingEditor);
 			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.CellValueChanged);
 			// 
 			// gridBandNumber

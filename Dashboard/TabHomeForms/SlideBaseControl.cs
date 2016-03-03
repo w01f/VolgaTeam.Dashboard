@@ -49,9 +49,7 @@ namespace Asa.Dashboard.TabHomeForms
 		{
 			InitializeComponent();
 			if ((CreateGraphics()).DpiX > 96) { }
-			comboBoxEditSlideHeader.MouseUp += TextEditorsHelper.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += TextEditorsHelper.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += TextEditorsHelper.Editor_Enter;
+			comboBoxEditSlideHeader.EnableSelectAll(); 
 		}
 
 		protected void SetLoadState(bool enable)

@@ -455,6 +455,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.ActiveEditor.EditorType);
 			Controller.Instance.ProgramScheduleProgramAdd.Enabled =
 			Controller.Instance.ProgramScheduleProgramDelete.Enabled =
+			quarterSelectorControl.Visible =
 				ActiveSection.ActiveEditor.EditorType == SectionEditorType.ScheduleSection;
 		}
 

@@ -63,6 +63,16 @@ namespace Asa.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddSlidesLogo {
+            get {
+                object obj = ResourceManager.GetObject("AddSlidesLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Advertiser {
             get {
                 object obj = ResourceManager.GetObject("Advertiser", resourceCulture);

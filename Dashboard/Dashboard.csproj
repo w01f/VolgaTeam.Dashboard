@@ -326,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\AddSlidesLogo.png" />
     <None Include="Resources\HomeDefault.png" />
     <None Include="Resources\RibbonLogo.png" />
     <None Include="Resources\SaveTemplate.png" />

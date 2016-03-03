@@ -34,7 +34,7 @@ namespace Asa.Dashboard
 			}
 			PowerPointManager.Instance.SettingsChanged += (o, e) =>
 			{
-				Text = AppManager.FormCaption;
+				Text = AppManager.Instance.FormCaption;
 			};
 		}
 
@@ -57,7 +57,7 @@ namespace Asa.Dashboard
 		#region Configuration Methods
 		private void ApplyMasterWizard()
 		{
-			Text = AppManager.FormCaption;
+			Text = AppManager.Instance.FormCaption;
 
 			var userName = Environment.UserName;
 			ribbonBarHomeOverview.Text = userName;
@@ -78,14 +78,19 @@ namespace Asa.Dashboard
 
 			ApplyMasterWizard();
 
+			ribbonTabItemHome.Visible = !AppManager.Instance.OnlySlidesMode;
+
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
+
+			ribbonControl.SelectedRibbonTabItem = AppManager.Instance.OnlySlidesMode ? ribbonTabItemSlides : ribbonTabItemHome;
 			ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 
 			buttonItemSlideSettings.Visible =
 				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
 				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
+			buttonItemSlidesLogo.Image = AppManager.Instance.OnlySlidesMode ? Resources.AddSlidesLogo : Resources.HomeDefault;
 		}
 
 		public void HideThemeButtons()
@@ -137,6 +142,7 @@ namespace Asa.Dashboard
 
 		private void labelItemLogo_Click(object sender, EventArgs e)
 		{
+			if (AppManager.Instance.OnlySlidesMode) return;
 			ribbonTabItemHome.Select();
 			buttonItemHomeOverview_Click(null, null);
 		}
@@ -153,7 +159,12 @@ namespace Asa.Dashboard
 		{
 			var formSender = sender as Form;
 			if (formSender != null && formSender.IsDisposed) return;
-			AppManager.Instance.ShowFloater(formSender, new FloaterRequestedEventArgs { Logo = Resources.RibbonLogo });
+			AppManager.Instance.ShowFloater(
+				formSender,
+				new FloaterRequestedEventArgs
+				{
+					Logo = AppManager.Instance.OnlySlidesMode ? Resources.AddSlidesLogo : Resources.RibbonLogo
+				});
 		}
 
 		public void buttonItemExit_Click(object sender, EventArgs e)

@@ -29,7 +29,22 @@ namespace Asa.Business.Online.Entities.NonPersistent
 
 		public void AddDigital(string categoryName)
 		{
-			DigitalProducts.Add(new DigitalProduct(this) { Index = DigitalProducts.Count + 1, Category = categoryName }); ;
+			var digitalProduct = new DigitalProduct(this)
+			{
+				Index = DigitalProducts.Count + 1,
+				Category = categoryName
+			};
+			var subCategories = Dictionaries.ListManager.Instance.ProductSources
+				.Where(productSource =>
+					productSource.Category != null &&
+					productSource.Category.Name.Equals(categoryName) &&
+					!String.IsNullOrEmpty(productSource.SubCategory))
+				.Select(x => x.SubCategory)
+				.Distinct()
+				.ToList();
+			if (subCategories.Count <= 1)
+				digitalProduct.SubCategory = subCategories.FirstOrDefault();
+			DigitalProducts.Add(digitalProduct);
 		}
 
 		public void UpDigital(int position)

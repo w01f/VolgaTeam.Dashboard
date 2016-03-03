@@ -180,8 +180,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				_strategySummaryControl.LoadData();
 				_sectionDataChanged = false;
 			}
-			SectionEditorChanged?.Invoke(this, EventArgs.Empty);
 			UpdateWarnings();
+			SectionEditorChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void UpdateSummaryState()

@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
@@ -91,8 +90,8 @@
 			this.repositoryItemTextEditNotAvailable = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.repositoryItemButtonEditTargetDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.repositoryItemButtonEditRichMediaDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.gridToolTipController = new DevExpress.Utils.ToolTipController(this.components);
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.gridToolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.pnDigitalProductBottomBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDigitalProductAppLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
@@ -317,6 +316,7 @@
 			this.advBandedGridView.OptionsView.ShowGroupExpandCollapseButtons = false;
 			this.advBandedGridView.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridView.OptionsView.ShowIndicator = false;
+			this.advBandedGridView.RowHeight = 40;
 			this.advBandedGridView.RowSeparatorHeight = 30;
 			this.advBandedGridView.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.OnRowCellStyle);
 			this.advBandedGridView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.OnCustomRowCellEdit);

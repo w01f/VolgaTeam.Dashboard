@@ -38,9 +38,9 @@
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.pnBottom = new System.Windows.Forms.Panel();
-			this.buttonXRefreshInfoCase1 = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXRefreshInfoCase2 = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXRefreshInfoCase3 = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXRefreshInfoCase2 = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXRefreshInfoCase1 = new DevComponents.DotNetBar.ButtonX();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnControls.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditInfo.Properties)).BeginInit();
@@ -112,8 +112,8 @@
 			// 
 			this.laTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.laTitle.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.laTitle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTitle.ForeColor = System.Drawing.Color.Gray;
 			this.laTitle.Location = new System.Drawing.Point(97, 9);
 			this.laTitle.Name = "laTitle";
 			this.laTitle.Size = new System.Drawing.Size(164, 48);
@@ -152,20 +152,20 @@
 			this.pnBottom.Size = new System.Drawing.Size(270, 171);
 			this.pnBottom.TabIndex = 107;
 			// 
-			// buttonXRefreshInfoCase1
+			// buttonXRefreshInfoCase3
 			// 
-			this.buttonXRefreshInfoCase1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXRefreshInfoCase1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.buttonXRefreshInfoCase3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXRefreshInfoCase3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXRefreshInfoCase1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRefreshInfoCase1.Location = new System.Drawing.Point(9, 15);
-			this.buttonXRefreshInfoCase1.Name = "buttonXRefreshInfoCase1";
-			this.buttonXRefreshInfoCase1.Size = new System.Drawing.Size(254, 32);
-			this.buttonXRefreshInfoCase1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXRefreshInfoCase1.TabIndex = 0;
-			this.buttonXRefreshInfoCase1.Text = "Refresh Digital Products";
-			this.buttonXRefreshInfoCase1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.buttonXRefreshInfoCase1.Click += new System.EventHandler(this.buttonXRefreshInfoCase1_Click);
+			this.buttonXRefreshInfoCase3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXRefreshInfoCase3.Location = new System.Drawing.Point(9, 121);
+			this.buttonXRefreshInfoCase3.Name = "buttonXRefreshInfoCase3";
+			this.buttonXRefreshInfoCase3.Size = new System.Drawing.Size(254, 32);
+			this.buttonXRefreshInfoCase3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXRefreshInfoCase3.TabIndex = 2;
+			this.buttonXRefreshInfoCase3.Text = "Refresh Products Impressions and CPM";
+			this.buttonXRefreshInfoCase3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.buttonXRefreshInfoCase3.Click += new System.EventHandler(this.buttonXRefreshInfoCase3_Click);
 			// 
 			// buttonXRefreshInfoCase2
 			// 
@@ -182,20 +182,20 @@
 			this.buttonXRefreshInfoCase2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.buttonXRefreshInfoCase2.Click += new System.EventHandler(this.buttonXRefreshInfoCase2_Click);
 			// 
-			// buttonXRefreshInfoCase3
+			// buttonXRefreshInfoCase1
 			// 
-			this.buttonXRefreshInfoCase3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXRefreshInfoCase3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.buttonXRefreshInfoCase1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXRefreshInfoCase1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXRefreshInfoCase3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRefreshInfoCase3.Location = new System.Drawing.Point(9, 121);
-			this.buttonXRefreshInfoCase3.Name = "buttonXRefreshInfoCase3";
-			this.buttonXRefreshInfoCase3.Size = new System.Drawing.Size(254, 32);
-			this.buttonXRefreshInfoCase3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXRefreshInfoCase3.TabIndex = 2;
-			this.buttonXRefreshInfoCase3.Text = "Refresh Products Impressions and CPM";
-			this.buttonXRefreshInfoCase3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.buttonXRefreshInfoCase3.Click += new System.EventHandler(this.buttonXRefreshInfoCase3_Click);
+			this.buttonXRefreshInfoCase1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXRefreshInfoCase1.Location = new System.Drawing.Point(9, 15);
+			this.buttonXRefreshInfoCase1.Name = "buttonXRefreshInfoCase1";
+			this.buttonXRefreshInfoCase1.Size = new System.Drawing.Size(254, 32);
+			this.buttonXRefreshInfoCase1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXRefreshInfoCase1.TabIndex = 0;
+			this.buttonXRefreshInfoCase1.Text = "Refresh Digital Products";
+			this.buttonXRefreshInfoCase1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.buttonXRefreshInfoCase1.Click += new System.EventHandler(this.buttonXRefreshInfoCase1_Click);
 			// 
 			// DigitalInfoControl
 			// 

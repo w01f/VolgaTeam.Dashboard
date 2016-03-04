@@ -100,11 +100,14 @@ namespace Asa.Media.Single
 				thread = new Thread(() =>
 				{
 					AsyncHelper.RunSync(() => Controls.Controller.Instance.InitBusinessObjects());
-					FileStorageManager.Instance.DataState = DataActualityState.Updated;
+					AsyncHelper.RunSync(FileStorageManager.Instance.FixDataState);
 				});
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
+
+				FormStart.SetTitle("Launching SellerPoint...");
+				Application.DoEvents();
 
 				FormMain.Instance.Init();
 			}

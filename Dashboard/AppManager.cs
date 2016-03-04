@@ -118,7 +118,7 @@ namespace Asa.Dashboard
 				thread = new Thread(() =>
 				{
 					AsyncHelper.RunSync(Init);
-					FileStorageManager.Instance.DataState = DataActualityState.Updated;
+					AsyncHelper.RunSync(FileStorageManager.Instance.FixDataState);
 				});
 				thread.Start();
 				while (thread.IsAlive)
@@ -247,13 +247,16 @@ namespace Asa.Dashboard
 		private void ControlClick(object sender, EventArgs e)
 		{
 			((Control)sender).Select();
-			if (((Control)sender).Parent != null)
-				((Control)sender).Parent.Select();
+			((Control)sender).Parent?.Select();
 		}
 
 		public void ShowFloater(Action afterShow)
 		{
-			ShowFloater(null, new FloaterRequestedEventArgs() { AfterShow = afterShow });
+			ShowFloater(null, new FloaterRequestedEventArgs
+			{
+				Logo = OnlySlidesMode ? Resources.AddSlidesLogo : Resources.RibbonLogo,
+				AfterShow = afterShow
+			});
 		}
 
 		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)

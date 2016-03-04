@@ -104,7 +104,7 @@ namespace Asa.Bar.App
 				thread = new Thread(() =>
 				{
 					AsyncHelper.RunSync(LoadBusinessObjects);
-					FileStorageManager.Instance.DataState = DataActualityState.Updated;
+					AsyncHelper.RunSync(FileStorageManager.Instance.FixDataState);
 				});
 				thread.Start();
 				while (thread.IsAlive)

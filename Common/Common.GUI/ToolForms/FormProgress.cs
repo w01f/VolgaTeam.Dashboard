@@ -19,6 +19,7 @@ namespace Asa.Common.GUI.ToolForms
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 2, laTitle.Font.Style);
+				laDetails.Font = new Font(laDetails.Font.FontFamily, laDetails.Font.Size - 1, laDetails.Font.Style);
 			}
 		}
 
@@ -90,11 +91,18 @@ namespace Asa.Common.GUI.ToolForms
 
 		public static void CloseProgress()
 		{
-			if (_instance == null) return; 
+			if (_instance == null) return;
 			if (_instance.InvokeRequired)
-				_instance.BeginInvoke(new MethodInvoker(() => _instance.Close()));
+				_instance.BeginInvoke(new MethodInvoker(() =>
+				{
+					_instance.Close();
+					_instance = null;
+				}));
 			else
+			{
 				_instance.Close();
+				_instance = null;
+			}
 		}
 
 		public static void SetTitle(string text, bool withDetails = false)

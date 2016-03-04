@@ -24,12 +24,13 @@ namespace AdSalesBrowser
 			InitializeComponent();
 
 			Runtime.AddLicense(
-				"MEaBpLHLn3Xj7fQQ7azc6c/nrqXg5/YZ8p7cwp61n1mXpM0M66Xm+8+4iVmX" +
-				"pLHLn1mXwPIP41nr/QEQvFu807/u56vm8fbNn6/c9gQU7qe0psLgrWmZpMDp" +
-				"jEOXpLHLu2jY8P0a9neEjrHLn1mz8wMP5KvA8vcan53Y+PbooW+mtsPasWmo" +
-				"ubPL9Z7p9/oa7XaZtcbNn2i1kZvLn1mXwAQU5qfY+AYd5Hfg8/LW5azp/sEi" +
-				"6HrL6OXs7YKt8+nsvHazswQU5qfY+AYd5HeEjs3a66La6f8e5HeEjnXj7fQQ" +
-				"7azcwp61n1mXpM0X6Jzc8gQQyJ21u8PjtmuouMTfsHWm8PoO5Kfq6doPvQ==");
+				"pfcan53Y+PbooW+mtsPasWmoubPL8q7ZyQkb6Kvc99IfvFuts8PdrmuntcfN" +
+				"n6/c9gQU7qe0psLgoVmmwp61n1mXpM0e6KDl5QUg8Z610gLb4IbN1uMjt4/M" +
+				"6sXexY+928T9wHa0wMAe6KDl5QUg8Z61kZvnrqXg5/YZ8p61kZt14+30EO2s" +
+				"3MKetZ9Zl6TNF+ic3PIEEMidtbvD47ZrqLjE37B1pvD6DuSn6unaD71GgaSx" +
+				"y5914+30EO2s3OnP566l4Of2GfKe3MKetZ9Zl6TNDOul5vvPuIlZl6Sxy59Z" +
+				"l8DyD+NZ6/0BELxbvNO/7uer5vH2zZ+v3PYEFO6ntKbC4a1pmaTA6YxDl6Sx" +
+				"y7to2PD9GvZ3hI6xy59Zs/MDD+SrwPI=");
 
 			Load += LoadSettings;
 			Load += InitApplication; 
@@ -71,6 +72,16 @@ namespace AdSalesBrowser
 		private void UpdateTabControlState()
 		{
 			xtraTabControl.ShowTabHeader = xtraTabControl.TabPages.Count > 1?DefaultBoolean.True : DefaultBoolean.False;
+		}
+
+		public void SuspendPages()
+		{
+			xtraTabControl.Enabled = false;
+		}
+
+		public void ResumePages()
+		{
+			xtraTabControl.Enabled = true;
 		}
 
 		private void OnNavigateNewPage(object sender, NewPageEventArgs e)

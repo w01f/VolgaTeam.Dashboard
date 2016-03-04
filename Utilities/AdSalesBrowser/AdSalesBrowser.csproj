@@ -73,6 +73,22 @@
     <Compile Include="..\..\Common\Common.Core\Helpers\SharedAssemblyHelper.cs">
       <Link>SharedAssemblyHelper.cs</Link>
     </Compile>
+    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.cs">
+      <Link>FormDownloadComplete.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.designer.cs">
+      <Link>FormDownloadComplete.designer.cs</Link>
+      <DependentUpon>FormDownloadComplete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormProgress.cs">
+      <Link>FormProgress.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormProgress.designer.cs">
+      <Link>FormProgress.designer.cs</Link>
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppSettingsManager.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -98,6 +114,14 @@
     <Compile Include="WebKitPage.Designer.cs">
       <DependentUpon>WebKitPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.resx">
+      <Link>FormDownloadComplete.resx</Link>
+      <DependentUpon>FormDownloadComplete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Common\Common.GUI\ToolForms\FormProgress.resx">
+      <Link>FormProgress.resx</Link>
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

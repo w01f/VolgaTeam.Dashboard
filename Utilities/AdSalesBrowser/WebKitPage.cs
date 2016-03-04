@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using Asa.Common.GUI.ToolForms;
 using DevExpress.Utils;
 using DevExpress.XtraTab;
 using EO.WebBrowser;
@@ -13,6 +14,7 @@ namespace AdSalesBrowser
 	{
 		private readonly WebControl _webKit;
 		private readonly string _url;
+		private bool _downloadStarted;
 
 		public event EventHandler<NewPageEventArgs> OnNavigateNewPage;
 		public event EventHandler<ClosePageEventArgs> OnClosePage;
@@ -31,7 +33,11 @@ namespace AdSalesBrowser
 			_webKit.WebView.BeforeContextMenu += OnWebViewBeforeContextMenu;
 			_webKit.WebView.NewWindow += OnWebViewNewWindow;
 			_webKit.WebView.LaunchUrl += OnWebViewLaunchUrl;
+			_webKit.WebView.FileDialog += OnProcessFileDialog;
 			_webKit.WebView.BeforeDownload += OnWebViewBeforeDownload;
+			_webKit.WebView.DownloadUpdated += OnWebViewDownloadUpdated;
+			_webKit.WebView.DownloadCompleted += OnWebViewDownloadCompleted;
+			_webKit.WebView.DownloadCanceled += OnWebViewDownloadCanceled;
 			_webKit.WebView.CustomUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Essential Objects Chrome/41.0.2272.16 Safari/537.36";
 			Text = _webKit.WebView.Title;
 		}
@@ -100,16 +106,67 @@ namespace AdSalesBrowser
 				OnNavigateNewPage(this, new NewPageEventArgs() { Url = e.TargetUrl });
 			e.Accepted = false;
 		}
+
 		private void OnWebViewLaunchUrl(object sender, LaunchUrlEventArgs e)
 		{
 			e.UseOSHandler = true;
 		}
+
+		private void OnProcessFileDialog(Object sender, FileDialogEventArgs e)
+		{
+			switch (e.Mode)
+			{
+				case FileDialogMode.Save:
+					using (var saveDialog = new SaveFileDialog())
+					{
+						saveDialog.Title = e.Title;
+						saveDialog.Filter = e.Filter;
+						saveDialog.FileName = e.DefaultFileName;
+						if (saveDialog.ShowDialog(FormMain.Instance) != DialogResult.Cancel)
+						{
+							FormProgress.ShowProgress();
+							FormProgress.SetTitle("Downloading…", true);
+							FormProgress.SetDetails(Path.GetFileName(saveDialog.FileName));
+							FormMain.Instance.SuspendPages();
+							Application.DoEvents();
+							e.Continue(saveDialog.FileName);
+						}
+						else
+							e.Cancel();
+					}
+					break;
+			}
+			e.Handled = true;
+		}
+
 		private void OnWebViewBeforeDownload(object sender, BeforeDownloadEventArgs e)
 		{
 			e.FilePath = Path.Combine(
 				Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
 				"Downloads",
 				Path.GetFileName(e.FilePath));
+		}
+
+		private void OnWebViewDownloadUpdated(Object sender, DownloadEventArgs e)
+		{
+			FormProgress.SetDetails(String.Format("{0} - {1}%", Path.GetFileName(e.Item.FullPath), e.Item.PercentageComplete));
+			Application.DoEvents();
+		}
+
+		private void OnWebViewDownloadCompleted(Object sender, DownloadEventArgs e)
+		{
+			FormMain.Instance.ResumePages();
+			FormProgress.CloseProgress();
+			using (var formComplete = new FormDownloadComplete(e.Item.FullPath))
+			{
+				formComplete.ShowDialog(FormMain.Instance);
+			}
+		}
+
+		private void OnWebViewDownloadCanceled(Object sender, DownloadEventArgs e)
+		{
+			FormMain.Instance.ResumePages();
+			FormProgress.CloseProgress();
 		}
 
 		private void WebPage_Resize(object sender, EventArgs e)

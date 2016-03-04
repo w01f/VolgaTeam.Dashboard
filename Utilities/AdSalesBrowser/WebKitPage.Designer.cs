@@ -51,7 +51,7 @@
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.circularProgressWebpage);
 			this.Name = "WebKitPage";
-			this.Size = new System.Drawing.Size(572, 480);
+			this.Size = new System.Drawing.Size(572, 490);
 			this.Resize += new System.EventHandler(this.WebPage_Resize);
 			this.ResumeLayout(false);
 

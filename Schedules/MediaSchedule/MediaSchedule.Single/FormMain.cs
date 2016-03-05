@@ -42,8 +42,6 @@ namespace Asa.Media.Single
 				comboBoxEditBusinessName.Font = font;
 				comboBoxEditDecisionMaker.Font = font;
 				comboBoxEditClientType.Font = font;
-				dateEditFlightDatesEnd.Font = font;
-				dateEditFlightDatesStart.Font = font;
 				dateEditPresentationDate.Font = font;
 				ribbonBarHomeBasicInfo.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
@@ -113,8 +111,9 @@ namespace Asa.Media.Single
 			Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
 			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
 			Controller.Instance.HomePresentationDate = dateEditPresentationDate;
-			Controller.Instance.HomeFlightDatesStart = dateEditFlightDatesStart;
-			Controller.Instance.HomeFlightDatesEnd = dateEditFlightDatesEnd;
+			Controller.Instance.HomeFlightDates = ribbonBarHomeFlightDates;
+			Controller.Instance.HomeFlightDatesStart = labelItemHomeFlightDatesStartValue;
+			Controller.Instance.HomeFlightDatesEnd = labelItemHomeFlightDatesEndValue;
 			Controller.Instance.HomeWeeks = labelItemHomeFlightDatesWeeks;
 			Controller.Instance.HomeSave = buttonItemHomeSave;
 			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;

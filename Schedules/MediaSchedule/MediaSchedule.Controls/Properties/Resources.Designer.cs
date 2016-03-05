@@ -228,6 +228,30 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap FlightDatesFormEditLogo
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("FlightDatesFormEditLogo", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap FlightDatesRibbonLogo
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("FlightDatesRibbonLogo", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap Floater
 		{
 			get

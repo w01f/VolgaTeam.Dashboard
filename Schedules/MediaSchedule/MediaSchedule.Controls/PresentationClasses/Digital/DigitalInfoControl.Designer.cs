@@ -118,7 +118,7 @@
 			this.laTitle.Name = "laTitle";
 			this.laTitle.Size = new System.Drawing.Size(164, 48);
 			this.laTitle.TabIndex = 104;
-			this.laTitle.Text = "Do you want to show basic digital product info on this slide?";
+			this.laTitle.Text = "Do you want to show basic digital info on the slide ?";
 			this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// pbLogo

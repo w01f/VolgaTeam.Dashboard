@@ -117,17 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="superTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>148, 17</value>
-  </metadata>
-  <data name="labelControlDemosInfo.Text" xml:space="preserve">
-    <value>&lt;b&gt;IMPORTANT INFORMATION:&lt;/b&gt;
-
-ONLY use demo ratings estimates in your SellerPoint Schedule, if you are confident in your ability to accurately project the ratings.
-
-SellerPoint DOES NOT import ratings from services like Nielsen or Arbitron.</value>
-  </data>
   <metadata name="styleController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>49</value>
   </metadata>
 </root>

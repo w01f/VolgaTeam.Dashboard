@@ -403,8 +403,9 @@ namespace Asa.Media.Controls
 		public TextEdit HomeAccountNumberText { get; set; }
 		public CheckBoxItem HomeAccountNumberCheck { get; set; }
 		public DateEdit HomePresentationDate { get; set; }
-		public DateEdit HomeFlightDatesStart { get; set; }
-		public DateEdit HomeFlightDatesEnd { get; set; }
+		public RibbonBar HomeFlightDates { get; set; }
+		public LabelItem HomeFlightDatesStart { get; set; }
+		public LabelItem HomeFlightDatesEnd { get; set; }
 		public LabelItem HomeWeeks { get; set; }
 		#endregion
 

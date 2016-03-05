@@ -32,7 +32,7 @@
 			this.xtraScrollableControlInput = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.buttonXAddItem = new DevComponents.DotNetBar.ButtonX();
 			this.pnInputHeader = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
+			this.laHeaderTitle = new System.Windows.Forms.Label();
 			this.comboBoxEditHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.laTotalItems = new System.Windows.Forms.Label();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
@@ -68,7 +68,7 @@
 			this.buttonXAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(465, 9);
+			this.buttonXAddItem.Location = new System.Drawing.Point(464, 9);
 			this.buttonXAddItem.Name = "buttonXAddItem";
 			this.buttonXAddItem.Size = new System.Drawing.Size(127, 40);
 			this.buttonXAddItem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -80,8 +80,8 @@
 			// 
 			// pnInputHeader
 			// 
-			this.pnInputHeader.Controls.Add(this.label1);
 			this.pnInputHeader.Controls.Add(this.buttonXAddItem);
+			this.pnInputHeader.Controls.Add(this.laHeaderTitle);
 			this.pnInputHeader.Controls.Add(this.comboBoxEditHeader);
 			this.pnInputHeader.Controls.Add(this.laTotalItems);
 			this.pnInputHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -90,15 +90,15 @@
 			this.pnInputHeader.Size = new System.Drawing.Size(737, 59);
 			this.pnInputHeader.TabIndex = 0;
 			// 
-			// label1
+			// laHeaderTitle
 			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.Black;
-			this.label1.Location = new System.Drawing.Point(315, 21);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(73, 16);
-			this.label1.TabIndex = 72;
-			this.label1.Text = "(Slide Title)";
+			this.laHeaderTitle.AutoSize = true;
+			this.laHeaderTitle.ForeColor = System.Drawing.Color.Black;
+			this.laHeaderTitle.Location = new System.Drawing.Point(315, 21);
+			this.laHeaderTitle.Name = "laHeaderTitle";
+			this.laHeaderTitle.Size = new System.Drawing.Size(73, 16);
+			this.laHeaderTitle.TabIndex = 72;
+			this.laHeaderTitle.Text = "(Slide Title)";
 			// 
 			// comboBoxEditHeader
 			// 
@@ -114,11 +114,11 @@
 			// 
 			// laTotalItems
 			// 
-			this.laTotalItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.laTotalItems.Dock = System.Windows.Forms.DockStyle.Right;
 			this.laTotalItems.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalItems.Location = new System.Drawing.Point(598, 18);
+			this.laTotalItems.Location = new System.Drawing.Point(592, 0);
 			this.laTotalItems.Name = "laTotalItems";
-			this.laTotalItems.Size = new System.Drawing.Size(132, 22);
+			this.laTotalItems.Size = new System.Drawing.Size(145, 59);
 			this.laTotalItems.TabIndex = 70;
 			this.laTotalItems.Text = "Total Items: ";
 			this.laTotalItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -152,7 +152,7 @@
 		protected System.Windows.Forms.Label laTotalItems;
 		protected DevComponents.DotNetBar.ButtonX buttonXAddItem;
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditHeader;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label laHeaderTitle;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
 
 	}

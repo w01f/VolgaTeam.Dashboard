@@ -60,7 +60,7 @@
 			// laNumber
 			// 
 			this.laNumber.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laNumber.Location = new System.Drawing.Point(3, 23);
+			this.laNumber.Location = new System.Drawing.Point(3, 43);
 			this.laNumber.Name = "laNumber";
 			this.laNumber.Size = new System.Drawing.Size(42, 42);
 			this.laNumber.TabIndex = 27;
@@ -85,7 +85,7 @@
 			this.panelExMain.Controls.Add(this.spinEditMonthly);
 			this.panelExMain.Controls.Add(this.spinEditTotal);
 			this.panelExMain.DisabledBackColor = System.Drawing.Color.Empty;
-			this.panelExMain.Location = new System.Drawing.Point(45, 23);
+			this.panelExMain.Location = new System.Drawing.Point(45, 43);
 			this.panelExMain.Name = "panelExMain";
 			this.panelExMain.Size = new System.Drawing.Size(476, 100);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -230,7 +230,7 @@
 			// 
 			this.pbUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbUp.Image = global::Asa.Common.GUI.Properties.Resources.UpArrow;
-			this.pbUp.Location = new System.Drawing.Point(527, 57);
+			this.pbUp.Location = new System.Drawing.Point(527, 77);
 			this.pbUp.Name = "pbUp";
 			this.pbUp.Size = new System.Drawing.Size(32, 32);
 			this.pbUp.TabIndex = 36;
@@ -243,7 +243,7 @@
 			// 
 			this.pbDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDown.Image = global::Asa.Common.GUI.Properties.Resources.DownArrow;
-			this.pbDown.Location = new System.Drawing.Point(527, 91);
+			this.pbDown.Location = new System.Drawing.Point(527, 111);
 			this.pbDown.Name = "pbDown";
 			this.pbDown.Size = new System.Drawing.Size(32, 32);
 			this.pbDown.TabIndex = 35;
@@ -256,7 +256,7 @@
 			// 
 			this.pbDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDelete.Image = global::Asa.Common.GUI.Properties.Resources.DeleteButton;
-			this.pbDelete.Location = new System.Drawing.Point(527, 23);
+			this.pbDelete.Location = new System.Drawing.Point(527, 43);
 			this.pbDelete.Name = "pbDelete";
 			this.pbDelete.Size = new System.Drawing.Size(32, 32);
 			this.pbDelete.TabIndex = 34;
@@ -270,7 +270,7 @@
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.hyperLinkEditReset.EditValue = "Reset Info";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(45, 124);
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(45, 149);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.AllowFocused = false;
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -297,7 +297,7 @@
 			this.Controls.Add(this.panelExMain);
 			this.Controls.Add(this.laNumber);
 			this.Name = "SummaryCustomItemControl";
-			this.Size = new System.Drawing.Size(595, 150);
+			this.Size = new System.Drawing.Size(595, 175);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).EndInit();

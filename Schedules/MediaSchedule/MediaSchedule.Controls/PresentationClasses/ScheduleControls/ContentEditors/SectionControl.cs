@@ -344,6 +344,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				bandedGridColumn.Visible = true;
 				bandedGridColumn.SummaryItem.FieldName = column.ColumnName;
 				bandedGridColumn.SummaryItem.SummaryType = SummaryItemType.Sum;
+				bandedGridColumn.OptionsColumn.AllowSize = false;
 				var isFullSpot = (Boolean)((object[])column.ExtendedProperties["SpotSettings"])[2];
 				if (!isFullSpot)
 				{

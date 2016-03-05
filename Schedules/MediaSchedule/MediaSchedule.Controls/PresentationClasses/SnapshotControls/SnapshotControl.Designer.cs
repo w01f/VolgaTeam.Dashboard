@@ -43,27 +43,21 @@
 			this.laProgramSourceInfo = new System.Windows.Forms.Label();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
-			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnIndex = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandLogo = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-			this.gridBandStation = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnStation = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxStations = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.bandedGridColumnDaypart = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxDayparts = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridBandProgram = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemPopupContainerEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
 			this.bandedGridColumnTime = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxTimes = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.bandedGridColumnLength = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxLengths = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridBandRate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditRate = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.gridBandSpots = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnSundaySpot = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditSpot = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.bandedGridColumnMondaySpot = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -72,11 +66,17 @@
 			this.bandedGridColumnThursdaySpot = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnFridaySpot = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnSaturdaySpot = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandTotals = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnTotalSpots = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.pnNoPrograms = new System.Windows.Forms.Panel();
+			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandLogo = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandStation = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandProgram = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandRate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandSpots = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandTotals = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).BeginInit();
 			this.popupContainerControlProgramSource.SuspendLayout();
@@ -150,9 +150,9 @@
 			this.gridViewProgramSource.OptionsBehavior.AutoPopulateColumns = false;
 			this.gridViewProgramSource.OptionsBehavior.AutoSelectAllInEditor = false;
 			this.gridViewProgramSource.OptionsBehavior.AutoUpdateTotalSummary = false;
-			this.gridViewProgramSource.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
 			this.gridViewProgramSource.OptionsBehavior.Editable = false;
 			this.gridViewProgramSource.OptionsBehavior.ReadOnly = true;
+			this.gridViewProgramSource.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
 			this.gridViewProgramSource.OptionsCustomization.AllowFilter = false;
 			this.gridViewProgramSource.OptionsCustomization.AllowGroup = false;
 			this.gridViewProgramSource.OptionsCustomization.AllowQuickHideColumns = false;
@@ -346,9 +346,7 @@
 			this.advBandedGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
 			this.advBandedGridView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
 			this.advBandedGridView.OptionsCustomization.AllowBandMoving = false;
-			this.advBandedGridView.OptionsCustomization.AllowBandResizing = false;
 			this.advBandedGridView.OptionsCustomization.AllowColumnMoving = false;
-			this.advBandedGridView.OptionsCustomization.AllowColumnResizing = false;
 			this.advBandedGridView.OptionsCustomization.AllowFilter = false;
 			this.advBandedGridView.OptionsCustomization.AllowGroup = false;
 			this.advBandedGridView.OptionsCustomization.AllowQuickHideColumns = false;
@@ -381,16 +379,6 @@
 			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.advBandedGridView_CellValueChanged);
 			this.advBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.advBandedGridView_MouseDown);
 			// 
-			// gridBandId
-			// 
-			this.gridBandId.Caption = "ID";
-			this.gridBandId.Columns.Add(this.bandedGridColumnIndex);
-			this.gridBandId.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-			this.gridBandId.Name = "gridBandId";
-			this.gridBandId.OptionsBand.FixedWidth = true;
-			this.gridBandId.VisibleIndex = 0;
-			this.gridBandId.Width = 35;
-			// 
 			// bandedGridColumnIndex
 			// 
 			this.bandedGridColumnIndex.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -409,16 +397,6 @@
 			this.bandedGridColumnIndex.Visible = true;
 			this.bandedGridColumnIndex.Width = 35;
 			// 
-			// gridBandLogo
-			// 
-			this.gridBandLogo.Caption = "Logo";
-			this.gridBandLogo.Columns.Add(this.bandedGridColumnLogo);
-			this.gridBandLogo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-			this.gridBandLogo.Name = "gridBandLogo";
-			this.gridBandLogo.OptionsBand.FixedWidth = true;
-			this.gridBandLogo.VisibleIndex = 1;
-			this.gridBandLogo.Width = 120;
-			// 
 			// bandedGridColumnLogo
 			// 
 			this.bandedGridColumnLogo.AppearanceCell.Options.UseTextOptions = true;
@@ -428,6 +406,7 @@
 			this.bandedGridColumnLogo.FieldName = "SmallLogo";
 			this.bandedGridColumnLogo.Name = "bandedGridColumnLogo";
 			this.bandedGridColumnLogo.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumnLogo.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnLogo.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnLogo.RowCount = 2;
 			this.bandedGridColumnLogo.Visible = true;
@@ -450,18 +429,6 @@
 			this.repositoryItemPictureEdit.ShowMenu = false;
 			this.repositoryItemPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
 			// 
-			// gridBandStation
-			// 
-			this.gridBandStation.Caption = "Station";
-			this.gridBandStation.Columns.Add(this.bandedGridColumnStation);
-			this.gridBandStation.Columns.Add(this.bandedGridColumnDaypart);
-			this.gridBandStation.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-			this.gridBandStation.MinWidth = 20;
-			this.gridBandStation.Name = "gridBandStation";
-			this.gridBandStation.OptionsBand.FixedWidth = true;
-			this.gridBandStation.VisibleIndex = 2;
-			this.gridBandStation.Width = 73;
-			// 
 			// bandedGridColumnStation
 			// 
 			this.bandedGridColumnStation.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -474,6 +441,7 @@
 			this.bandedGridColumnStation.FieldName = "Station";
 			this.bandedGridColumnStation.MinWidth = 73;
 			this.bandedGridColumnStation.Name = "bandedGridColumnStation";
+			this.bandedGridColumnStation.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnStation.Visible = true;
 			this.bandedGridColumnStation.Width = 73;
 			// 
@@ -517,6 +485,7 @@
 			this.bandedGridColumnDaypart.FieldName = "Daypart";
 			this.bandedGridColumnDaypart.MinWidth = 39;
 			this.bandedGridColumnDaypart.Name = "bandedGridColumnDaypart";
+			this.bandedGridColumnDaypart.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnDaypart.RowIndex = 1;
 			this.bandedGridColumnDaypart.Visible = true;
 			this.bandedGridColumnDaypart.Width = 73;
@@ -549,19 +518,6 @@
 			this.repositoryItemComboBoxDayparts.Name = "repositoryItemComboBoxDayparts";
 			this.repositoryItemComboBoxDayparts.NullText = "Select or Type";
 			this.repositoryItemComboBoxDayparts.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
-			// 
-			// gridBandProgram
-			// 
-			this.gridBandProgram.Caption = "Program";
-			this.gridBandProgram.Columns.Add(this.bandedGridColumnName);
-			this.gridBandProgram.Columns.Add(this.bandedGridColumnTime);
-			this.gridBandProgram.Columns.Add(this.bandedGridColumnLength);
-			this.gridBandProgram.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-			this.gridBandProgram.MinWidth = 238;
-			this.gridBandProgram.Name = "gridBandProgram";
-			this.gridBandProgram.OptionsBand.FixedWidth = true;
-			this.gridBandProgram.VisibleIndex = 3;
-			this.gridBandProgram.Width = 240;
 			// 
 			// bandedGridColumnName
 			// 
@@ -611,6 +567,7 @@
 			this.bandedGridColumnTime.ColumnEdit = this.repositoryItemComboBoxTimes;
 			this.bandedGridColumnTime.FieldName = "Time";
 			this.bandedGridColumnTime.Name = "bandedGridColumnTime";
+			this.bandedGridColumnTime.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnTime.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnTime.RowIndex = 1;
 			this.bandedGridColumnTime.Visible = true;
@@ -654,6 +611,7 @@
 			this.bandedGridColumnLength.ColumnEdit = this.repositoryItemComboBoxLengths;
 			this.bandedGridColumnLength.FieldName = "Length";
 			this.bandedGridColumnLength.Name = "bandedGridColumnLength";
+			this.bandedGridColumnLength.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnLength.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnLength.RowIndex = 1;
 			this.bandedGridColumnLength.Visible = true;
@@ -687,17 +645,6 @@
 			this.repositoryItemComboBoxLengths.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemComboBoxLengths.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
 			// 
-			// gridBandRate
-			// 
-			this.gridBandRate.Caption = "Rate";
-			this.gridBandRate.Columns.Add(this.bandedGridColumnRate);
-			this.gridBandRate.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-			this.gridBandRate.MinWidth = 20;
-			this.gridBandRate.Name = "gridBandRate";
-			this.gridBandRate.OptionsBand.FixedWidth = true;
-			this.gridBandRate.VisibleIndex = 4;
-			this.gridBandRate.Width = 100;
-			// 
 			// bandedGridColumnRate
 			// 
 			this.bandedGridColumnRate.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -709,6 +656,7 @@
 			this.bandedGridColumnRate.ColumnEdit = this.repositoryItemSpinEditRate;
 			this.bandedGridColumnRate.FieldName = "Rate";
 			this.bandedGridColumnRate.Name = "bandedGridColumnRate";
+			this.bandedGridColumnRate.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnRate.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnRate.Visible = true;
 			this.bandedGridColumnRate.Width = 100;
@@ -743,21 +691,6 @@
             0});
 			this.repositoryItemSpinEditRate.Name = "repositoryItemSpinEditRate";
 			// 
-			// gridBandSpots
-			// 
-			this.gridBandSpots.Caption = "Spots";
-			this.gridBandSpots.Columns.Add(this.bandedGridColumnSundaySpot);
-			this.gridBandSpots.Columns.Add(this.bandedGridColumnMondaySpot);
-			this.gridBandSpots.Columns.Add(this.bandedGridColumnTuesdaySpot);
-			this.gridBandSpots.Columns.Add(this.bandedGridColumnWednesdaySpot);
-			this.gridBandSpots.Columns.Add(this.bandedGridColumnThursdaySpot);
-			this.gridBandSpots.Columns.Add(this.bandedGridColumnFridaySpot);
-			this.gridBandSpots.Columns.Add(this.bandedGridColumnSaturdaySpot);
-			this.gridBandSpots.MinWidth = 20;
-			this.gridBandSpots.Name = "gridBandSpots";
-			this.gridBandSpots.VisibleIndex = 5;
-			this.gridBandSpots.Width = 525;
-			// 
 			// bandedGridColumnSundaySpot
 			// 
 			this.bandedGridColumnSundaySpot.AppearanceCell.Font = new System.Drawing.Font("Arial", 14.25F);
@@ -769,6 +702,7 @@
 			this.bandedGridColumnSundaySpot.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnSundaySpot.FieldName = "SundaySpot";
 			this.bandedGridColumnSundaySpot.Name = "bandedGridColumnSundaySpot";
+			this.bandedGridColumnSundaySpot.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnSundaySpot.RowCount = 2;
 			this.bandedGridColumnSundaySpot.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SundaySpot", "{0:n0}")});
@@ -823,6 +757,7 @@
 			this.bandedGridColumnMondaySpot.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnMondaySpot.FieldName = "MondaySpot";
 			this.bandedGridColumnMondaySpot.Name = "bandedGridColumnMondaySpot";
+			this.bandedGridColumnMondaySpot.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnMondaySpot.RowCount = 2;
 			this.bandedGridColumnMondaySpot.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MondaySpot", "{0:n0}")});
@@ -840,6 +775,7 @@
 			this.bandedGridColumnTuesdaySpot.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnTuesdaySpot.FieldName = "TuesdaySpot";
 			this.bandedGridColumnTuesdaySpot.Name = "bandedGridColumnTuesdaySpot";
+			this.bandedGridColumnTuesdaySpot.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnTuesdaySpot.RowCount = 2;
 			this.bandedGridColumnTuesdaySpot.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TuesdaySpot", "{0:n0}")});
@@ -857,6 +793,7 @@
 			this.bandedGridColumnWednesdaySpot.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnWednesdaySpot.FieldName = "WednesdaySpot";
 			this.bandedGridColumnWednesdaySpot.Name = "bandedGridColumnWednesdaySpot";
+			this.bandedGridColumnWednesdaySpot.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnWednesdaySpot.RowCount = 2;
 			this.bandedGridColumnWednesdaySpot.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WednesdaySpot", "{0:n0}")});
@@ -874,6 +811,7 @@
 			this.bandedGridColumnThursdaySpot.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnThursdaySpot.FieldName = "ThursdaySpot";
 			this.bandedGridColumnThursdaySpot.Name = "bandedGridColumnThursdaySpot";
+			this.bandedGridColumnThursdaySpot.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnThursdaySpot.RowCount = 2;
 			this.bandedGridColumnThursdaySpot.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ThursdaySpot", "{0:n0}")});
@@ -891,6 +829,7 @@
 			this.bandedGridColumnFridaySpot.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnFridaySpot.FieldName = "FridaySpot";
 			this.bandedGridColumnFridaySpot.Name = "bandedGridColumnFridaySpot";
+			this.bandedGridColumnFridaySpot.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnFridaySpot.RowCount = 2;
 			this.bandedGridColumnFridaySpot.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FridaySpot", "{0:n0}")});
@@ -908,23 +847,13 @@
 			this.bandedGridColumnSaturdaySpot.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnSaturdaySpot.FieldName = "SaturdaySpot";
 			this.bandedGridColumnSaturdaySpot.Name = "bandedGridColumnSaturdaySpot";
+			this.bandedGridColumnSaturdaySpot.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnSaturdaySpot.RowCount = 2;
 			this.bandedGridColumnSaturdaySpot.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SaturdaySpot", "{0:n0}")});
 			this.bandedGridColumnSaturdaySpot.ToolTip = "Saturday";
 			this.bandedGridColumnSaturdaySpot.Visible = true;
 			this.bandedGridColumnSaturdaySpot.Width = 78;
-			// 
-			// gridBandTotals
-			// 
-			this.gridBandTotals.Caption = "Totals";
-			this.gridBandTotals.Columns.Add(this.bandedGridColumnTotalSpots);
-			this.gridBandTotals.Columns.Add(this.bandedGridColumnCost);
-			this.gridBandTotals.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-			this.gridBandTotals.Name = "gridBandTotals";
-			this.gridBandTotals.OptionsBand.FixedWidth = true;
-			this.gridBandTotals.VisibleIndex = 6;
-			this.gridBandTotals.Width = 140;
 			// 
 			// bandedGridColumnTotalSpots
 			// 
@@ -942,6 +871,7 @@
 			this.bandedGridColumnTotalSpots.FieldName = "TotalSpots";
 			this.bandedGridColumnTotalSpots.Name = "bandedGridColumnTotalSpots";
 			this.bandedGridColumnTotalSpots.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumnTotalSpots.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnTotalSpots.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnTotalSpots.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSpots", "{0:n0}")});
@@ -964,6 +894,7 @@
 			this.bandedGridColumnCost.FieldName = "TotalCost";
 			this.bandedGridColumnCost.Name = "bandedGridColumnCost";
 			this.bandedGridColumnCost.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumnCost.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnCost.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnCost.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCost", "{0:c0}")});
@@ -993,12 +924,99 @@
 			this.pnNoPrograms.Size = new System.Drawing.Size(570, 95);
 			this.pnNoPrograms.TabIndex = 6;
 			// 
+			// gridBandId
+			// 
+			this.gridBandId.Caption = "ID";
+			this.gridBandId.Columns.Add(this.bandedGridColumnIndex);
+			this.gridBandId.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridBandId.Name = "gridBandId";
+			this.gridBandId.OptionsBand.AllowSize = false;
+			this.gridBandId.OptionsBand.FixedWidth = true;
+			this.gridBandId.VisibleIndex = 0;
+			this.gridBandId.Width = 35;
+			// 
+			// gridBandLogo
+			// 
+			this.gridBandLogo.Caption = "Logo";
+			this.gridBandLogo.Columns.Add(this.bandedGridColumnLogo);
+			this.gridBandLogo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridBandLogo.Name = "gridBandLogo";
+			this.gridBandLogo.OptionsBand.AllowSize = false;
+			this.gridBandLogo.OptionsBand.FixedWidth = true;
+			this.gridBandLogo.VisibleIndex = 1;
+			this.gridBandLogo.Width = 120;
+			// 
+			// gridBandStation
+			// 
+			this.gridBandStation.Caption = "Station";
+			this.gridBandStation.Columns.Add(this.bandedGridColumnStation);
+			this.gridBandStation.Columns.Add(this.bandedGridColumnDaypart);
+			this.gridBandStation.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridBandStation.MinWidth = 20;
+			this.gridBandStation.Name = "gridBandStation";
+			this.gridBandStation.OptionsBand.AllowSize = false;
+			this.gridBandStation.OptionsBand.FixedWidth = true;
+			this.gridBandStation.VisibleIndex = 2;
+			this.gridBandStation.Width = 73;
+			// 
+			// gridBandProgram
+			// 
+			this.gridBandProgram.Caption = "Program";
+			this.gridBandProgram.Columns.Add(this.bandedGridColumnName);
+			this.gridBandProgram.Columns.Add(this.bandedGridColumnTime);
+			this.gridBandProgram.Columns.Add(this.bandedGridColumnLength);
+			this.gridBandProgram.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridBandProgram.MinWidth = 238;
+			this.gridBandProgram.Name = "gridBandProgram";
+			this.gridBandProgram.OptionsBand.FixedWidth = true;
+			this.gridBandProgram.VisibleIndex = 3;
+			this.gridBandProgram.Width = 240;
+			// 
+			// gridBandRate
+			// 
+			this.gridBandRate.Caption = "Rate";
+			this.gridBandRate.Columns.Add(this.bandedGridColumnRate);
+			this.gridBandRate.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridBandRate.MinWidth = 20;
+			this.gridBandRate.Name = "gridBandRate";
+			this.gridBandRate.OptionsBand.AllowSize = false;
+			this.gridBandRate.OptionsBand.FixedWidth = true;
+			this.gridBandRate.VisibleIndex = 4;
+			this.gridBandRate.Width = 100;
+			// 
+			// gridBandSpots
+			// 
+			this.gridBandSpots.Caption = "Spots";
+			this.gridBandSpots.Columns.Add(this.bandedGridColumnSundaySpot);
+			this.gridBandSpots.Columns.Add(this.bandedGridColumnMondaySpot);
+			this.gridBandSpots.Columns.Add(this.bandedGridColumnTuesdaySpot);
+			this.gridBandSpots.Columns.Add(this.bandedGridColumnWednesdaySpot);
+			this.gridBandSpots.Columns.Add(this.bandedGridColumnThursdaySpot);
+			this.gridBandSpots.Columns.Add(this.bandedGridColumnFridaySpot);
+			this.gridBandSpots.Columns.Add(this.bandedGridColumnSaturdaySpot);
+			this.gridBandSpots.MinWidth = 20;
+			this.gridBandSpots.Name = "gridBandSpots";
+			this.gridBandSpots.OptionsBand.AllowSize = false;
+			this.gridBandSpots.VisibleIndex = 5;
+			this.gridBandSpots.Width = 525;
+			// 
+			// gridBandTotals
+			// 
+			this.gridBandTotals.Caption = "Totals";
+			this.gridBandTotals.Columns.Add(this.bandedGridColumnTotalSpots);
+			this.gridBandTotals.Columns.Add(this.bandedGridColumnCost);
+			this.gridBandTotals.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
+			this.gridBandTotals.Name = "gridBandTotals";
+			this.gridBandTotals.OptionsBand.AllowSize = false;
+			this.gridBandTotals.OptionsBand.FixedWidth = true;
+			this.gridBandTotals.VisibleIndex = 6;
+			this.gridBandTotals.Width = 140;
+			// 
 			// SnapshotControl
 			// 
 			this.Controls.Add(this.pnNoPrograms);
 			this.Controls.Add(this.gridControl);
 			this.Controls.Add(this.popupContainerControlProgramSource);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Size = new System.Drawing.Size(830, 699);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).EndInit();
@@ -1063,13 +1081,13 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnCost;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditProgram;
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandStation;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandProgram;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRate;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSpots;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals;
 		private System.Windows.Forms.Panel pnNoPrograms;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSpots;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRate;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandProgram;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandStation;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
 	}
 }

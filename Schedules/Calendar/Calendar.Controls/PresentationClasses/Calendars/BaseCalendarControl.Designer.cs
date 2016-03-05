@@ -156,7 +156,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.pictureBoxNoData.Location = new System.Drawing.Point(322, 279);
 			this.pictureBoxNoData.Name = "pictureBoxNoData";
 			this.pictureBoxNoData.Size = new System.Drawing.Size(111, 183);
-			this.pictureBoxNoData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this.pictureBoxNoData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal;
 			this.pictureBoxNoData.TabIndex = 5;
 			this.pictureBoxNoData.TabStop = false;
 			this.pictureBoxNoData.Visible = false;

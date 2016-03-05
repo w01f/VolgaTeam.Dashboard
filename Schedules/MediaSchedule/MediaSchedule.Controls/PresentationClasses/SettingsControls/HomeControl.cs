@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
@@ -74,15 +73,10 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomeClientType.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeAccountNumberText.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeAccountNumberCheck.CheckedChanged += checkBoxItemAccountNumber_CheckedChanged;
-			Controller.Instance.HomeFlightDatesStart.EditValueChanged += OnSchedulePropertyValueChanged;
-			Controller.Instance.HomeFlightDatesStart.EditValueChanged += OnFlightDateStartValueChanged;
-			Controller.Instance.HomeFlightDatesStart.EditValueChanged += OnFlightDatesValuesChange;
-			Controller.Instance.HomeFlightDatesEnd.EditValueChanged += OnSchedulePropertyValueChanged;
-			Controller.Instance.HomeFlightDatesEnd.EditValueChanged += OnFlightDatesValuesChange;
-			Controller.Instance.HomeFlightDatesEnd.EditValueChanged += OnFlightDateEndValueChanged;
-			Controller.Instance.HomeFlightDatesStart.CloseUp += OnFlightDatesStartCloseUp;
-			Controller.Instance.HomeFlightDatesEnd.CloseUp += OnFlightDatesEndCloseUp;
+			Controller.Instance.HomeFlightDatesStart.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeFlightDatesEnd.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeProductClone.Click += DigitalProductClone;
+
 			Controller.Instance.HomeBusinessName.EnableSelectAll();
 			Controller.Instance.HomeDecisionMaker.EnableSelectAll();
 
@@ -91,8 +85,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomeDecisionMaker.KeyDown += OnSchedulePropertiesEditorKeyDown;
 			Controller.Instance.HomeClientType.KeyDown += OnSchedulePropertiesEditorKeyDown;
 			Controller.Instance.HomePresentationDate.KeyDown += OnSchedulePropertiesEditorKeyDown;
-			Controller.Instance.HomeFlightDatesStart.KeyDown += OnSchedulePropertiesEditorKeyDown;
-			Controller.Instance.HomeFlightDatesEnd.KeyDown += OnSchedulePropertiesEditorKeyDown;
 		}
 
 		protected override void UpdateEditedContet()
@@ -118,8 +110,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				Controller.Instance.HomeAccountNumberText.EditValue = EditedSettings.AccountNumber;
 
 				Controller.Instance.HomePresentationDate.EditValue = EditedSettings.PresentationDate;
-				Controller.Instance.HomeFlightDatesStart.EditValue = EditedSettings.UserFlightDateStart;
-				Controller.Instance.HomeFlightDatesEnd.EditValue = EditedSettings.UserFlightDateEnd;
+				UpdateFlightDates();
+				UpdateWeekCount();
 
 				switch (EditedSettings.SelectedSpotType)
 				{
@@ -265,7 +257,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			OnProductsTabPageChanged(this, new TabPageChangedEventArgs(null, xtraTabControlMain.SelectedTabPage));
 
 			UpdateScheduleControls();
-			UpdateFlexFlightDatesWarning();
 
 			_allowToSave = true;
 		}
@@ -281,8 +272,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				Controller.Instance.HomeAccountNumberText.EditValue as String :
 				null;
 			EditedSettings.PresentationDate = (DateTime?)Controller.Instance.HomePresentationDate.EditValue;
-			EditedSettings.UserFlightDateStart = (DateTime?)Controller.Instance.HomeFlightDatesStart.EditValue;
-			EditedSettings.UserFlightDateEnd = (DateTime?)Controller.Instance.HomeFlightDatesEnd.EditValue;
 			EditedSettings.UseDemo = buttonXUseDemos.Checked;
 			EditedSettings.ImportDemo = buttonXDemosImport.Checked;
 			EditedSettings.Source = comboBoxEditSource.EditValue as String;
@@ -404,6 +393,29 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				pnMediaDefault.BringToFront();
 		}
 
+		private void UpdateFlightDates()
+		{
+			Controller.Instance.HomeFlightDatesStart.Text = EditedSettings.UserFlightDateStart?.ToString("M/d/yy  ") ?? "Select  ";
+			Controller.Instance.HomeFlightDatesEnd.Text = EditedSettings.UserFlightDateEnd?.ToString("M/d/yy  ") ?? "Select  ";
+			Controller.Instance.HomeFlightDates.RecalcLayout();
+			Controller.Instance.HomePanel.PerformLayout();
+		}
+
+		private void UpdateWeekCount()
+		{
+			var weeksCount = MediaScheduleSettings.CalcWeeksCount(
+				EditedSettings.UserFlightDateStart,
+				EditedSettings.UserFlightDateEnd,
+				EditedSettings.StartDayOfWeek,
+				EditedSettings.EndDayOfWeek
+				);
+			Controller.Instance.HomeWeeks.Text = "";
+			Controller.Instance.HomeWeeks.Visible = false;
+			if (!weeksCount.HasValue) return;
+			Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
+			Controller.Instance.HomeWeeks.Visible = true;
+		}
+
 		private void LoadDigitalCategories()
 		{
 			foreach (var category in ListManager.Instance.Categories)
@@ -426,36 +438,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		private void UpdateProductsCount()
 		{
 			xtraTabPageDigital.Text = String.Format("Digital Strategy  ({0})", DigitalContent.DigitalProducts.Count);
-		}
-
-		private void UpdateFlexFlightDatesWarning()
-		{
-			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed)
-			{
-				var warningText = new List<string>();
-				if (Controller.Instance.HomeFlightDatesStart.EditValue != null)
-				{
-					var startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
-					if (startDate.DayOfWeek != EditedSettings.StartDayOfWeek)
-					{
-						var weekEnd = startDate;
-						while (weekEnd.DayOfWeek != EditedSettings.EndDayOfWeek)
-							weekEnd = weekEnd.AddDays(1);
-						warningText.Add(String.Format("*The FIRST WEEK of your schedule STARTS on a {0}.{1}({2} - {3})", startDate.DayOfWeek, Environment.NewLine, startDate.ToString("M/d/yy"), weekEnd.ToString("M/d/yy")));
-					}
-				}
-				if (Controller.Instance.HomeFlightDatesEnd.EditValue != null)
-				{
-					var endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
-					if (endDate.DayOfWeek != EditedSettings.EndDayOfWeek)
-					{
-						var weekStart = endDate;
-						while (weekStart.DayOfWeek != EditedSettings.StartDayOfWeek)
-							weekStart = weekStart.AddDays(-1);
-						warningText.Add(String.Format("*The LAST WEEK of your schedule ENDS on a {0}.{1}({2} - {3})", endDate.DayOfWeek, Environment.NewLine, weekStart.ToString("M/d/yy"), endDate.ToString("M/d/yy")));
-					}
-				}
-			}
 		}
 
 		private void OnProductsTabPageChanged(object sender, TabPageChangedEventArgs e)
@@ -506,95 +488,23 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			OnSchedulePropertyValueChanged(null, null);
 		}
 
-		public void OnFlightDateStartValueChanged(object sender, EventArgs e)
+		private void OnFlightDatesEditClick(Object sender, EventArgs e)
 		{
-			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && _allowToSave)
+			using (var form = new FormFlightDatesEdit())
 			{
-				var dateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
-				SettingsNotSaved = true;
-				if (Controller.Instance.HomeFlightDatesEnd.EditValue == null)
+				form.DateStart = EditedSettings.UserFlightDateStart;
+				form.DateEnd = EditedSettings.UserFlightDateEnd;
+				form.EndDayOfWeek = EditedSettings.EndDayOfWeek;
+				form.StartDayOfWeek = EditedSettings.StartDayOfWeek;
+				form.EndDayOfWeek = EditedSettings.EndDayOfWeek;
+				if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 				{
-					while (dateStart.DayOfWeek != EditedSettings.EndDayOfWeek)
-						dateStart = dateStart.AddDays(1);
-					_allowToSave = false;
-					Controller.Instance.HomeFlightDatesEnd.EditValue = dateStart;
-					_allowToSave = true;
+					EditedSettings.UserFlightDateStart = form.DateStart;
+					EditedSettings.UserFlightDateEnd = form.DateEnd;
+					UpdateFlightDates();
+					UpdateWeekCount();
+					OnSchedulePropertyValueChanged(sender, e);
 				}
-				UpdateFlexFlightDatesWarning();
-			}
-			OnSchedulePropertyValueChanged(null, null);
-		}
-
-		public void OnFlightDateEndValueChanged(object sender, EventArgs e)
-		{
-			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && _allowToSave)
-			{
-				UpdateFlexFlightDatesWarning();
-				SettingsNotSaved = true;
-			}
-			OnSchedulePropertyValueChanged(null, null);
-		}
-
-		public void OnFlightDatesValuesChange(object sender, EventArgs e)
-		{
-			Controller.Instance.HomeWeeks.Text = "";
-			Controller.Instance.HomeWeeks.Visible = false;
-			if (Controller.Instance.HomeFlightDatesStart.EditValue == null || Controller.Instance.HomeFlightDatesEnd.EditValue == null) return;
-			var startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
-			while (startDate.DayOfWeek != EditedSettings.StartDayOfWeek)
-				startDate = startDate.AddDays(-1);
-			var endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
-			while (endDate.DayOfWeek != EditedSettings.EndDayOfWeek)
-				endDate = endDate.AddDays(1);
-			var datesRange = endDate - startDate;
-			var weeksCount = datesRange.Days / 7 + 1;
-			Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
-			Controller.Instance.HomeWeeks.Visible = true;
-		}
-
-		public void OnFlightDatesStartCloseUp(object sender, CloseUpEventArgs e)
-		{
-			var dateEdit = sender as DateEdit;
-			if (dateEdit == null) return;
-			if (dateEdit.EditValue == e.Value) return;
-			if (e.Value == null) return;
-			DateTime temp;
-			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
-			var moveDateToWeekStart = true;
-			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed)
-			{
-				if (temp.DayOfWeek != EditedSettings.StartDayOfWeek)
-					if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("Are you sure you want to start your schedule on a {0}?{1}{1}The broadcast week normally starts on a {2}.", temp.DayOfWeek, Environment.NewLine, EditedSettings.StartDayOfWeek)) == DialogResult.Yes)
-						moveDateToWeekStart = false;
-			}
-			if (moveDateToWeekStart)
-			{
-				while (temp.DayOfWeek != EditedSettings.StartDayOfWeek)
-					temp = temp.AddDays(-1);
-				e.Value = temp;
-			}
-		}
-
-		public void OnFlightDatesEndCloseUp(object sender, CloseUpEventArgs e)
-		{
-			var dateEdit = sender as DateEdit;
-			if (dateEdit == null) return;
-			if (dateEdit.EditValue == e.Value) return;
-			if (e.Value == null) return;
-			DateTime temp;
-			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
-			var moveDateToWeekEnd = true;
-			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed)
-			{
-				if (temp.DayOfWeek != EditedSettings.EndDayOfWeek)
-					if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("Are you sure you want to end your schedule on a {0}?{1}{1}The broadcast week normally ends on a {2}.", temp.DayOfWeek, Environment.NewLine, EditedSettings.EndDayOfWeek)) == DialogResult.Yes)
-						moveDateToWeekEnd = false;
-			}
-			if (moveDateToWeekEnd)
-			{
-				while (temp.DayOfWeek != EditedSettings.EndDayOfWeek)
-					temp = temp.AddDays(1);
-				e.Value = temp;
 			}
 		}
 
@@ -608,10 +518,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			else if (sender == Controller.Instance.HomeClientType)
 				Controller.Instance.HomePresentationDate.Focus();
 			else if (sender == Controller.Instance.HomePresentationDate)
-				Controller.Instance.HomeFlightDatesStart.Focus();
-			else if (sender == Controller.Instance.HomeFlightDatesStart)
-				Controller.Instance.HomeFlightDatesEnd.Focus();
-			else if (sender == Controller.Instance.HomeFlightDatesEnd)
 				Controller.Instance.HomeBusinessName.Focus();
 			e.Handled = true;
 		}
@@ -738,9 +644,10 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			if (!button.Checked) return;
 			if (!_allowToSave) return;
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
-			Controller.Instance.HomeFlightDatesStart.EditValue = null;
-			Controller.Instance.HomeFlightDatesEnd.EditValue = null;
-			Controller.Instance.HomeWeeks.Text = String.Empty;
+			EditedSettings.UserFlightDateStart = null;
+			EditedSettings.UserFlightDateEnd = null;
+			UpdateFlightDates();
+			UpdateWeekCount();
 			SettingsNotSaved = true;
 		}
 		#endregion

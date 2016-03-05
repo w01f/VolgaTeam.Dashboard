@@ -141,9 +141,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.gridViewProgramSource.OptionsBehavior.AutoPopulateColumns = false;
 			this.gridViewProgramSource.OptionsBehavior.AutoSelectAllInEditor = false;
 			this.gridViewProgramSource.OptionsBehavior.AutoUpdateTotalSummary = false;
-			this.gridViewProgramSource.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
 			this.gridViewProgramSource.OptionsBehavior.Editable = false;
 			this.gridViewProgramSource.OptionsBehavior.ReadOnly = true;
+			this.gridViewProgramSource.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
 			this.gridViewProgramSource.OptionsCustomization.AllowFilter = false;
 			this.gridViewProgramSource.OptionsCustomization.AllowGroup = false;
 			this.gridViewProgramSource.OptionsCustomization.AllowQuickHideColumns = false;
@@ -317,8 +317,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.advBandedGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
 			this.advBandedGridView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
 			this.advBandedGridView.OptionsCustomization.AllowBandMoving = false;
-			this.advBandedGridView.OptionsCustomization.AllowBandResizing = false;
-			this.advBandedGridView.OptionsCustomization.AllowColumnResizing = false;
 			this.advBandedGridView.OptionsCustomization.AllowFilter = false;
 			this.advBandedGridView.OptionsCustomization.AllowGroup = false;
 			this.advBandedGridView.OptionsCustomization.AllowQuickHideColumns = false;
@@ -334,7 +332,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.advBandedGridView.OptionsMenu.ShowGroupSortSummaryItems = false;
 			this.advBandedGridView.OptionsSelection.EnableAppearanceFocusedCell = false;
 			this.advBandedGridView.OptionsSelection.EnableAppearanceHideSelection = false;
-			this.advBandedGridView.OptionsView.ColumnAutoWidth = true;
 			this.advBandedGridView.OptionsView.EnableAppearanceEvenRow = true;
 			this.advBandedGridView.OptionsView.EnableAppearanceOddRow = true;
 			this.advBandedGridView.OptionsView.ShowBands = false;
@@ -357,6 +354,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.gridBandId.Caption = "ID";
 			this.gridBandId.Columns.Add(this.bandedGridColumnIndex);
 			this.gridBandId.Name = "gridBandId";
+			this.gridBandId.OptionsBand.AllowSize = false;
 			this.gridBandId.OptionsBand.FixedWidth = true;
 			this.gridBandId.VisibleIndex = 0;
 			this.gridBandId.Width = 35;
@@ -384,6 +382,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.gridBandLogo.Caption = "Logo";
 			this.gridBandLogo.Columns.Add(this.bandedGridColumnLogo);
 			this.gridBandLogo.Name = "gridBandLogo";
+			this.gridBandLogo.OptionsBand.AllowSize = false;
 			this.gridBandLogo.OptionsBand.FixedWidth = true;
 			this.gridBandLogo.VisibleIndex = 1;
 			this.gridBandLogo.Width = 120;
@@ -398,6 +397,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnLogo.Name = "bandedGridColumnLogo";
 			this.bandedGridColumnLogo.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnLogo.OptionsColumn.AllowMove = false;
+			this.bandedGridColumnLogo.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnLogo.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnLogo.Visible = true;
 			this.bandedGridColumnLogo.Width = 120;
@@ -446,7 +446,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnStation.FieldName = "Station";
 			this.bandedGridColumnStation.MinWidth = 100;
 			this.bandedGridColumnStation.Name = "bandedGridColumnStation";
-			this.bandedGridColumnStation.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnStation.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnStation.Width = 85;
 			// 
 			// repositoryItemComboBoxStations
@@ -527,7 +527,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnDay.FieldName = "Day";
 			this.bandedGridColumnDay.MinWidth = 100;
 			this.bandedGridColumnDay.Name = "bandedGridColumnDay";
-			this.bandedGridColumnDay.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnDay.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnDay.Width = 85;
 			// 
 			// repositoryItemComboBoxDays
@@ -570,7 +570,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnTime.FieldName = "Time";
 			this.bandedGridColumnTime.MinWidth = 100;
 			this.bandedGridColumnTime.Name = "bandedGridColumnTime";
-			this.bandedGridColumnTime.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnTime.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnTime.Width = 85;
 			// 
 			// repositoryItemComboBoxTimes
@@ -617,7 +617,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnSpots.FieldName = "Spot";
 			this.bandedGridColumnSpots.MinWidth = 100;
 			this.bandedGridColumnSpots.Name = "bandedGridColumnSpots";
-			this.bandedGridColumnSpots.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnSpots.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnSpots.Width = 85;
 			// 
 			// repositoryItemSpinEditSpot
@@ -668,7 +668,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnRate.FieldName = "Rate";
 			this.bandedGridColumnRate.MinWidth = 100;
 			this.bandedGridColumnRate.Name = "bandedGridColumnRate";
-			this.bandedGridColumnRate.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnRate.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnRate.Width = 85;
 			// 
 			// repositoryItemSpinEditRate
@@ -713,7 +713,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnLength.FieldName = "Length";
 			this.bandedGridColumnLength.MinWidth = 100;
 			this.bandedGridColumnLength.Name = "bandedGridColumnLength";
-			this.bandedGridColumnLength.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnLength.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnLength.Width = 85;
 			// 
 			// repositoryItemComboBoxLengths
@@ -760,7 +760,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnCost.MinWidth = 100;
 			this.bandedGridColumnCost.Name = "bandedGridColumnCost";
 			this.bandedGridColumnCost.OptionsColumn.AllowEdit = false;
-			this.bandedGridColumnCost.OptionsColumn.FixedWidth = true;
+			this.bandedGridColumnCost.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnCost.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnCost.Width = 85;
 			// 
@@ -792,7 +792,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.Controls.Add(this.pnNoPrograms);
 			this.Controls.Add(this.gridControl);
 			this.Controls.Add(this.popupContainerControlProgramSource);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "SnapshotControl";
 			this.Size = new System.Drawing.Size(830, 699);
@@ -852,8 +851,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditProgram;
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
 		private System.Windows.Forms.Panel pnNoPrograms;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandOtherColumns;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
 	}
 }

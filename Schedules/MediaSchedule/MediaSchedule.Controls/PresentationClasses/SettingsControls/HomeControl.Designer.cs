@@ -115,7 +115,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.stationsControl.HasChanged = false;
 			this.stationsControl.Location = new System.Drawing.Point(0, 0);
 			this.stationsControl.Name = "stationsControl";
-			this.stationsControl.Size = new System.Drawing.Size(344, 569);
+			this.stationsControl.Size = new System.Drawing.Size(348, 572);
 			this.stationsControl.TabIndex = 0;
 			// 
 			// xtraTabControlMain
@@ -136,7 +136,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.xtraTabControlMain.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlMain.Name = "xtraTabControlMain";
 			this.xtraTabControlMain.SelectedTabPage = this.xtraTabPageMedia;
-			this.xtraTabControlMain.Size = new System.Drawing.Size(665, 600);
+			this.xtraTabControlMain.Size = new System.Drawing.Size(658, 600);
 			this.xtraTabControlMain.TabIndex = 18;
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageMedia,
@@ -151,7 +151,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageMedia.Controls.Add(this.pnMediaDefault);
 			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
 			this.xtraTabPageMedia.Padding = new System.Windows.Forms.Padding(10);
-			this.xtraTabPageMedia.Size = new System.Drawing.Size(659, 569);
+			this.xtraTabPageMedia.Size = new System.Drawing.Size(656, 572);
 			this.xtraTabPageMedia.Text = "The Solution";
 			// 
 			// pnMedia
@@ -168,7 +168,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnMedia.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMedia.Location = new System.Drawing.Point(10, 10);
 			this.pnMedia.Name = "pnMedia";
-			this.pnMedia.Size = new System.Drawing.Size(639, 549);
+			this.pnMedia.Size = new System.Drawing.Size(636, 552);
 			this.pnMedia.TabIndex = 0;
 			// 
 			// buttonXCalendar
@@ -273,17 +273,17 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMediaDefault.Location = new System.Drawing.Point(10, 10);
 			this.pnMediaDefault.Name = "pnMediaDefault";
-			this.pnMediaDefault.Size = new System.Drawing.Size(639, 549);
+			this.pnMediaDefault.Size = new System.Drawing.Size(636, 552);
 			this.pnMediaDefault.TabIndex = 24;
 			this.pnMediaDefault.Resize += new System.EventHandler(this.OnDefaultPanelResize);
 			// 
 			// pbMediaDefault
 			// 
 			this.pbMediaDefault.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbMediaDefault.Image = ((System.Drawing.Image)(resources.GetObject("pbMediaDefault.Image")));
+			this.pbMediaDefault.Image = global::Asa.Media.Controls.Properties.Resources.HomeDefaultLogo;
 			this.pbMediaDefault.Location = new System.Drawing.Point(0, 0);
 			this.pbMediaDefault.Name = "pbMediaDefault";
-			this.pbMediaDefault.Size = new System.Drawing.Size(639, 549);
+			this.pbMediaDefault.Size = new System.Drawing.Size(636, 552);
 			this.pbMediaDefault.TabIndex = 23;
 			this.pbMediaDefault.TabStop = false;
 			// 
@@ -291,7 +291,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.xtraTabPageDigital.Controls.Add(this.digitalProductListControl);
 			this.xtraTabPageDigital.Name = "xtraTabPageDigital";
-			this.xtraTabPageDigital.Size = new System.Drawing.Size(659, 569);
+			this.xtraTabPageDigital.Size = new System.Drawing.Size(656, 572);
 			this.xtraTabPageDigital.Text = "Digital Strategy";
 			// 
 			// digitalProductListControl
@@ -302,7 +302,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalProductListControl.Logo = null;
 			this.digitalProductListControl.Name = "digitalProductListControl";
-			this.digitalProductListControl.Size = new System.Drawing.Size(659, 569);
+			this.digitalProductListControl.Size = new System.Drawing.Size(656, 572);
 			this.digitalProductListControl.TabIndex = 0;
 			// 
 			// daypartsControl
@@ -313,7 +313,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.daypartsControl.HasChanged = false;
 			this.daypartsControl.Location = new System.Drawing.Point(0, 0);
 			this.daypartsControl.Name = "daypartsControl";
-			this.daypartsControl.Size = new System.Drawing.Size(344, 569);
+			this.daypartsControl.Size = new System.Drawing.Size(348, 572);
 			this.daypartsControl.TabIndex = 17;
 			// 
 			// xtraTabControlOptions
@@ -346,21 +346,21 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.xtraTabPageStations.Controls.Add(this.stationsControl);
 			this.xtraTabPageStations.Name = "xtraTabPageStations";
-			this.xtraTabPageStations.Size = new System.Drawing.Size(344, 569);
+			this.xtraTabPageStations.Size = new System.Drawing.Size(348, 572);
 			this.xtraTabPageStations.Text = "Stations";
 			// 
 			// xtraTabPageDayparts
 			// 
 			this.xtraTabPageDayparts.Controls.Add(this.daypartsControl);
 			this.xtraTabPageDayparts.Name = "xtraTabPageDayparts";
-			this.xtraTabPageDayparts.Size = new System.Drawing.Size(344, 569);
+			this.xtraTabPageDayparts.Size = new System.Drawing.Size(348, 572);
 			this.xtraTabPageDayparts.Text = "Dayparts";
 			// 
 			// xtraTabPageDemos
 			// 
 			this.xtraTabPageDemos.Controls.Add(this.pnDemos);
 			this.xtraTabPageDemos.Name = "xtraTabPageDemos";
-			this.xtraTabPageDemos.Size = new System.Drawing.Size(344, 569);
+			this.xtraTabPageDemos.Size = new System.Drawing.Size(348, 572);
 			this.xtraTabPageDemos.Text = "Demos";
 			// 
 			// pnDemos
@@ -376,7 +376,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnDemos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnDemos.Location = new System.Drawing.Point(0, 0);
 			this.pnDemos.Name = "pnDemos";
-			this.pnDemos.Size = new System.Drawing.Size(344, 569);
+			this.pnDemos.Size = new System.Drawing.Size(348, 572);
 			this.pnDemos.TabIndex = 0;
 			// 
 			// pnDemosInfo
@@ -386,7 +386,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnDemosInfo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.pnDemosInfo.Location = new System.Drawing.Point(0, 336);
 			this.pnDemosInfo.Name = "pnDemosInfo";
-			this.pnDemosInfo.Size = new System.Drawing.Size(344, 233);
+			this.pnDemosInfo.Size = new System.Drawing.Size(348, 236);
 			this.pnDemosInfo.TabIndex = 12;
 			// 
 			// labelControlDemosInfo
@@ -401,7 +401,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlDemosInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlDemosInfo.Location = new System.Drawing.Point(13, 12);
 			this.labelControlDemosInfo.Name = "labelControlDemosInfo";
-			this.labelControlDemosInfo.Size = new System.Drawing.Size(319, 211);
+			this.labelControlDemosInfo.Size = new System.Drawing.Size(323, 214);
 			this.labelControlDemosInfo.TabIndex = 1;
 			this.labelControlDemosInfo.Text = resources.GetString("labelControlDemosInfo.Text");
 			// 
@@ -411,7 +411,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnSelectDemo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSelectDemo.Location = new System.Drawing.Point(0, 301);
 			this.pnSelectDemo.Name = "pnSelectDemo";
-			this.pnSelectDemo.Size = new System.Drawing.Size(344, 35);
+			this.pnSelectDemo.Size = new System.Drawing.Size(348, 35);
 			this.pnSelectDemo.TabIndex = 11;
 			// 
 			// comboBoxEditDemos
@@ -425,7 +425,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditDemos.Properties.NullText = "Select Demo";
 			this.comboBoxEditDemos.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditDemos.Size = new System.Drawing.Size(319, 22);
+			this.comboBoxEditDemos.Size = new System.Drawing.Size(323, 22);
 			this.comboBoxEditDemos.StyleController = this.styleController;
 			this.comboBoxEditDemos.TabIndex = 1;
 			this.comboBoxEditDemos.EditValueChanged += new System.EventHandler(this.comboBoxEditDemos_EditValueChanged);
@@ -451,7 +451,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnSelectSource.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSelectSource.Location = new System.Drawing.Point(0, 266);
 			this.pnSelectSource.Name = "pnSelectSource";
-			this.pnSelectSource.Size = new System.Drawing.Size(344, 35);
+			this.pnSelectSource.Size = new System.Drawing.Size(348, 35);
 			this.pnSelectSource.TabIndex = 10;
 			// 
 			// comboBoxEditSource
@@ -465,7 +465,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditSource.Properties.NullText = "Select Source";
 			this.comboBoxEditSource.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSource.Size = new System.Drawing.Size(319, 22);
+			this.comboBoxEditSource.Size = new System.Drawing.Size(323, 22);
 			this.comboBoxEditSource.StyleController = this.styleController;
 			this.comboBoxEditSource.TabIndex = 5;
 			this.comboBoxEditSource.EditValueChanged += new System.EventHandler(this.comboBoxEditSource_EditValueChanged);
@@ -477,7 +477,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnDemosType.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosType.Location = new System.Drawing.Point(0, 205);
 			this.pnDemosType.Name = "pnDemosType";
-			this.pnDemosType.Size = new System.Drawing.Size(344, 61);
+			this.pnDemosType.Size = new System.Drawing.Size(348, 61);
 			this.pnDemosType.TabIndex = 9;
 			// 
 			// buttonXDemosRtg
@@ -504,7 +504,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosImps.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImps.Enabled = false;
 			this.buttonXDemosImps.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXDemosImps.Location = new System.Drawing.Point(189, 13);
+			this.buttonXDemosImps.Location = new System.Drawing.Point(193, 13);
 			this.buttonXDemosImps.Name = "buttonXDemosImps";
 			this.buttonXDemosImps.Size = new System.Drawing.Size(143, 35);
 			this.buttonXDemosImps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -521,7 +521,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnDemosImport.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosImport.Location = new System.Drawing.Point(0, 146);
 			this.pnDemosImport.Name = "pnDemosImport";
-			this.pnDemosImport.Size = new System.Drawing.Size(344, 59);
+			this.pnDemosImport.Size = new System.Drawing.Size(348, 59);
 			this.pnDemosImport.TabIndex = 8;
 			// 
 			// buttonXDemosImport
@@ -534,7 +534,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosImport.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXDemosImport.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosImport.Name = "buttonXDemosImport";
-			this.buttonXDemosImport.Size = new System.Drawing.Size(319, 35);
+			this.buttonXDemosImport.Size = new System.Drawing.Size(323, 35);
 			this.buttonXDemosImport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosImport.TabIndex = 2;
 			this.buttonXDemosImport.Text = "Use Imported Estimates?";
@@ -548,7 +548,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnDemosCustom.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosCustom.Location = new System.Drawing.Point(0, 87);
 			this.pnDemosCustom.Name = "pnDemosCustom";
-			this.pnDemosCustom.Size = new System.Drawing.Size(344, 59);
+			this.pnDemosCustom.Size = new System.Drawing.Size(348, 59);
 			this.pnDemosCustom.TabIndex = 7;
 			// 
 			// buttonXDemosCustom
@@ -561,7 +561,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosCustom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXDemosCustom.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosCustom.Name = "buttonXDemosCustom";
-			this.buttonXDemosCustom.Size = new System.Drawing.Size(319, 35);
+			this.buttonXDemosCustom.Size = new System.Drawing.Size(323, 35);
 			this.buttonXDemosCustom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosCustom.TabIndex = 1;
 			this.buttonXDemosCustom.Text = "Use your Own Estimates?";
@@ -576,7 +576,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnUseDemos.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnUseDemos.Location = new System.Drawing.Point(0, 0);
 			this.pnUseDemos.Name = "pnUseDemos";
-			this.pnUseDemos.Size = new System.Drawing.Size(344, 87);
+			this.pnUseDemos.Size = new System.Drawing.Size(348, 87);
 			this.pnUseDemos.TabIndex = 6;
 			// 
 			// labelControlDemoTitle
@@ -588,7 +588,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlDemoTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlDemoTitle.Location = new System.Drawing.Point(13, 3);
 			this.labelControlDemoTitle.Name = "labelControlDemoTitle";
-			this.labelControlDemoTitle.Size = new System.Drawing.Size(319, 38);
+			this.labelControlDemoTitle.Size = new System.Drawing.Size(323, 38);
 			this.labelControlDemoTitle.TabIndex = 1;
 			this.labelControlDemoTitle.Text = "Are you working with an agency?";
 			// 
@@ -602,7 +602,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXUseDemos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXUseDemos.Location = new System.Drawing.Point(13, 47);
 			this.buttonXUseDemos.Name = "buttonXUseDemos";
-			this.buttonXUseDemos.Size = new System.Drawing.Size(319, 35);
+			this.buttonXUseDemos.Size = new System.Drawing.Size(323, 35);
 			this.buttonXUseDemos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.superTooltip.SetSuperTooltip(this.buttonXUseDemos, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Show Ratings or Impressions", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonXUseDemos.TabIndex = 0;
@@ -616,7 +616,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageCalendarType.Controls.Add(this.buttonXCalendarTypeMondayBased);
 			this.xtraTabPageCalendarType.Name = "xtraTabPageCalendarType";
 			this.xtraTabPageCalendarType.PageVisible = false;
-			this.xtraTabPageCalendarType.Size = new System.Drawing.Size(344, 569);
+			this.xtraTabPageCalendarType.Size = new System.Drawing.Size(348, 572);
 			this.xtraTabPageCalendarType.Text = "Calendar";
 			// 
 			// buttonXCalendarTypeSundayBased

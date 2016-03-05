@@ -199,6 +199,20 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 				(UserFlightDateStart != changedInstance.UserFlightDateStart || UserFlightDateEnd != changedInstance.UserFlightDateEnd));
 		}
 
+		public static Int32? CalcWeeksCount(DateTime? UserFlightDateStart, DateTime? UserFlightDateEnd, DayOfWeek startDayOfWeek, DayOfWeek endDayOfWeek)
+		{
+			if (!UserFlightDateStart.HasValue || !UserFlightDateEnd.HasValue)
+				return null;
+			var startDate = UserFlightDateStart.Value;
+			while (startDate.DayOfWeek != startDayOfWeek)
+				startDate = startDate.AddDays(-1);
+			var endDate = UserFlightDateEnd.Value;
+			while (endDate.DayOfWeek != endDayOfWeek)
+				endDate = endDate.AddDays(1);
+			var datesRange = endDate - startDate;
+			return datesRange.Days / 7 + 1;
+		}
+
 		private void LoadQuarters()
 		{
 			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;

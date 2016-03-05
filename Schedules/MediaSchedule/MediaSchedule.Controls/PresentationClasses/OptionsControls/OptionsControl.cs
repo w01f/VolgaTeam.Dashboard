@@ -150,28 +150,28 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var positionedColumns = new SortedDictionary<int, BandedGridColumn>();
 				bandedGridColumnStation.Visible = false;
 				if (Data.ShowStation)
-					positionedColumns.Add(Data.PositionStation, bandedGridColumnStation);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionStation : Data.PositionStation, bandedGridColumnStation);
 				bandedGridColumnName.Visible = false;
 				if (Data.ShowProgram)
-					positionedColumns.Add(Data.PositionProgram, bandedGridColumnName);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionProgram : Data.PositionProgram, bandedGridColumnName);
 				bandedGridColumnDay.Visible = false;
 				if (Data.ShowDay)
-					positionedColumns.Add(Data.PositionDay, bandedGridColumnDay);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionDay : Data.PositionDay, bandedGridColumnDay);
 				bandedGridColumnTime.Visible = false;
 				if (Data.ShowTime)
-					positionedColumns.Add(Data.PositionTime, bandedGridColumnTime);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionTime : Data.PositionTime, bandedGridColumnTime);
 				bandedGridColumnLength.Visible = false;
 				if (Data.ShowLenght)
-					positionedColumns.Add(Data.PositionLenght, bandedGridColumnLength);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionLenght : Data.PositionLenght, bandedGridColumnLength);
 				bandedGridColumnSpots.Visible = false;
 				if (Data.ShowSpots)
-					positionedColumns.Add(Data.PositionSpots, bandedGridColumnSpots);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionSpots : Data.PositionSpots, bandedGridColumnSpots);
 				bandedGridColumnRate.Visible = false;
 				if (Data.ShowRate)
-					positionedColumns.Add(Data.PositionRate, bandedGridColumnRate);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionRate : Data.PositionRate, bandedGridColumnRate);
 				bandedGridColumnCost.Visible = false;
 				if (Data.ShowCost)
-					positionedColumns.Add(Data.PositionCost, bandedGridColumnCost);
+					positionedColumns.Add(Data.DefaultColumnPositions ? OptionSet.DefaultPositionCost : Data.PositionCost, bandedGridColumnCost);
 				var position = 1;
 				foreach (var valuePair in positionedColumns)
 				{
@@ -425,7 +425,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			get
 			{
 				return BusinessObjects.Instance.OutputManager.GetOptionsItemFile(
-					MediaMetaData.Instance.SettingsManager.SelectedColor, 
+					MediaMetaData.Instance.SettingsManager.SelectedColor,
 					Data.ShowLogo);
 			}
 		}
@@ -481,7 +481,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new StationColumnInfo
 				{
 					Width = widths["station"],
-					Index = Data.PositionStation + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionStation : Data.PositionStation) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}
@@ -490,7 +490,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new ProgramColumnInfo
 				{
 					Width = widths["program"],
-					Index = Data.PositionProgram + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionProgram : Data.PositionProgram) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}
@@ -499,7 +499,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new DayColumnInfo
 				{
 					Width = widths["day"],
-					Index = Data.PositionDay + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionDay : Data.PositionDay) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}
@@ -508,7 +508,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new TimeColumnInfo
 				{
 					Width = widths["time"],
-					Index = Data.PositionTime + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionTime : Data.PositionTime) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}
@@ -517,7 +517,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new SpotsColumnInfo(Data.SpotType)
 				{
 					Width = widths["spots"],
-					Index = Data.PositionSpots + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionSpots : Data.PositionSpots) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}
@@ -526,7 +526,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new RateColumnInfo
 				{
 					Width = widths["rate"],
-					Index = Data.PositionRate + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionRate : Data.PositionRate) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}
@@ -535,7 +535,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new LengthColumnInfo
 				{
 					Width = widths["length"],
-					Index = Data.PositionLenght + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionLenght : Data.PositionLenght) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}
@@ -544,7 +544,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				var columnInfo = new CostColumnInfo
 				{
 					Width = widths["cost"],
-					Index = Data.PositionCost + 1
+					Index = (Data.DefaultColumnPositions ? OptionSet.DefaultPositionCost : Data.PositionCost) + 1
 				};
 				columnInfoList.Add(columnInfo);
 			}

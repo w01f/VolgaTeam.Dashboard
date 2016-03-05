@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -27,6 +28,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public SectionSummaryControl()
 		{
 			InitializeComponent();
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				laHeaderTitle.Font = new Font(laHeaderTitle.Font.FontFamily, laHeaderTitle.Font.Size - 2, laHeaderTitle.Font.Style);
+				laTotalItems.Font = new Font(laTotalItems.Font.FontFamily, laTotalItems.Font.Size - 2, laTotalItems.Font.Style);
+				buttonXAddItem.Font = new Font(buttonXAddItem.Font.FontFamily, buttonXAddItem.Font.Size - 2, buttonXAddItem.Font.Style);
+			}
 		}
 	}
 

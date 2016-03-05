@@ -276,6 +276,12 @@
     <Compile Include="PresentationClasses\SettingsControls\DaypartsControl.Designer.cs">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.Designer.cs">
+      <DependentUpon>FormFlightDatesEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\SettingsControls\HomeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -437,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SettingsControls\DaypartsControl.resx">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.resx">
+      <DependentUpon>FormFlightDatesEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SettingsControls\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
@@ -700,6 +709,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalInfoLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FlightDatesFormEditLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FlightDatesRibbonLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

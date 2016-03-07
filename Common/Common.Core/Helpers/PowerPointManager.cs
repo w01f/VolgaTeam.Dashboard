@@ -14,13 +14,9 @@ namespace Asa.Common.Core.Helpers
 {
 	public class PowerPointManager
 	{
-		private static readonly PowerPointManager _instance = new PowerPointManager();
 		private IPowerPointHelper _powerPointHelper;
 
-		public static PowerPointManager Instance
-		{
-			get { return _instance; }
-		}
+		public static PowerPointManager Instance { get; } = new PowerPointManager();
 
 		public SettingsSourceEnum SettingsSource { get; private set; }
 		public SlideSettings SlideSettings { get; private set; }

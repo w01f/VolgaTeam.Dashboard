@@ -33,8 +33,8 @@ namespace Asa.Common.Core.Helpers
 						height = 8.25;
 						break;
 					case "16x9":
-						width = 13;
-						height = 7.32;
+						width = 13.333333333333334;
+						height = 7.5;
 						break;
 					case "3x4":
 						width = 7.5;

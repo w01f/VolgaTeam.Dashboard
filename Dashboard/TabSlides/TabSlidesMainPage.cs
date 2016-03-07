@@ -23,8 +23,6 @@ namespace Asa.Dashboard.TabSlides
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 
-			laSlideSize.Text = String.Format(laSlideSize.Text, PowerPointManager.Instance.SlideSettings.SizeFormatted);
-
 			LoadSlides();
 
 			AppManager.Instance.SetClickEventHandler(this);
@@ -51,6 +49,7 @@ namespace Asa.Dashboard.TabSlides
 			}
 
 			FormMain.Instance.ribbonTabItemSlides.Enabled = SettingsManager.Instance.SlideManager.Slides.Any(s => s.SizeWidth == PowerPointManager.Instance.SlideSettings.SizeWidth && s.SizeHeght == PowerPointManager.Instance.SlideSettings.SizeHeght);
+			laSlideSize.Text = String.Format("Slide Size: {0}", PowerPointManager.Instance.SlideSettings.SizeFormatted);
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;

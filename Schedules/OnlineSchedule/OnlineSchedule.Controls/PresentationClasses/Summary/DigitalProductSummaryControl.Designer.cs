@@ -28,8 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.labelControlNumber = new DevExpress.XtraEditors.LabelControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnMainExt = new System.Windows.Forms.Panel();
 			this.pnBody = new System.Windows.Forms.Panel();
 			this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
@@ -63,10 +64,10 @@
 			this.labelControlNumber.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
 			this.labelControlNumber.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlNumber.Dock = System.Windows.Forms.DockStyle.Left;
-			this.labelControlNumber.Location = new System.Drawing.Point(0, 10);
+			this.labelControlNumber.Location = new System.Drawing.Point(0, 40);
 			this.labelControlNumber.Name = "labelControlNumber";
 			this.labelControlNumber.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-			this.labelControlNumber.Size = new System.Drawing.Size(34, 130);
+			this.labelControlNumber.Size = new System.Drawing.Size(34, 140);
 			this.labelControlNumber.TabIndex = 0;
 			this.labelControlNumber.Text = "#";
 			// 
@@ -103,10 +104,10 @@
 			this.pnMainExt.Controls.Add(this.pnBody);
 			this.pnMainExt.Controls.Add(this.pnFooter);
 			this.pnMainExt.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMainExt.Location = new System.Drawing.Point(34, 10);
+			this.pnMainExt.Location = new System.Drawing.Point(34, 40);
 			this.pnMainExt.Name = "pnMainExt";
 			this.pnMainExt.Padding = new System.Windows.Forms.Padding(1);
-			this.pnMainExt.Size = new System.Drawing.Size(771, 130);
+			this.pnMainExt.Size = new System.Drawing.Size(736, 140);
 			this.pnMainExt.TabIndex = 1;
 			// 
 			// pnBody
@@ -117,7 +118,7 @@
 			this.pnBody.Location = new System.Drawing.Point(1, 1);
 			this.pnBody.Name = "pnBody";
 			this.pnBody.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-			this.pnBody.Size = new System.Drawing.Size(769, 94);
+			this.pnBody.Size = new System.Drawing.Size(734, 104);
 			this.pnBody.TabIndex = 1;
 			// 
 			// memoEditDescription
@@ -132,7 +133,7 @@
 			this.memoEditDescription.Properties.ReadOnly = true;
 			this.memoEditDescription.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditDescription.Properties.WordWrap = false;
-			this.memoEditDescription.Size = new System.Drawing.Size(351, 93);
+			this.memoEditDescription.Size = new System.Drawing.Size(316, 103);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 1;
 			this.memoEditDescription.EditValueChanged += new System.EventHandler(this.memoEditDescription_EditValueChanged);
@@ -145,7 +146,7 @@
 			this.pnLeft.Location = new System.Drawing.Point(0, 0);
 			this.pnLeft.Name = "pnLeft";
 			this.pnLeft.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
-			this.pnLeft.Size = new System.Drawing.Size(418, 93);
+			this.pnLeft.Size = new System.Drawing.Size(418, 103);
 			this.pnLeft.TabIndex = 0;
 			// 
 			// labelControlSites
@@ -161,7 +162,7 @@
 			this.labelControlSites.Location = new System.Drawing.Point(0, 49);
 			this.labelControlSites.Name = "labelControlSites";
 			this.labelControlSites.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-			this.labelControlSites.Size = new System.Drawing.Size(417, 44);
+			this.labelControlSites.Size = new System.Drawing.Size(417, 54);
 			this.labelControlSites.TabIndex = 2;
 			this.labelControlSites.Text = "<b>Sites:</b>Talahasee.com";
 			this.labelControlSites.UseMnemonic = false;
@@ -202,10 +203,10 @@
 			this.pnFooter.Controls.Add(this.checkEditInvestments);
 			this.pnFooter.Controls.Add(this.checkEditImpressions);
 			this.pnFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnFooter.Location = new System.Drawing.Point(1, 95);
+			this.pnFooter.Location = new System.Drawing.Point(1, 105);
 			this.pnFooter.Name = "pnFooter";
 			this.pnFooter.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.pnFooter.Size = new System.Drawing.Size(769, 34);
+			this.pnFooter.Size = new System.Drawing.Size(734, 34);
 			this.pnFooter.TabIndex = 0;
 			// 
 			// checkEditInvDetails
@@ -219,7 +220,7 @@
 			this.checkEditInvDetails.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditInvDetails.Properties.AutoHeight = false;
 			this.checkEditInvDetails.Properties.Caption = "Investment Details: <b>Creative Design</b>";
-			this.checkEditInvDetails.Size = new System.Drawing.Size(216, 34);
+			this.checkEditInvDetails.Size = new System.Drawing.Size(181, 34);
 			this.checkEditInvDetails.StyleController = this.styleController;
 			this.checkEditInvDetails.TabIndex = 3;
 			this.checkEditInvDetails.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -282,8 +283,8 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "DigitalProductSummaryControl";
-			this.Padding = new System.Windows.Forms.Padding(0, 10, 5, 20);
-			this.Size = new System.Drawing.Size(810, 160);
+			this.Padding = new System.Windows.Forms.Padding(0, 40, 40, 10);
+			this.Size = new System.Drawing.Size(810, 190);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnMainExt.ResumeLayout(false);
 			this.pnBody.ResumeLayout(false);

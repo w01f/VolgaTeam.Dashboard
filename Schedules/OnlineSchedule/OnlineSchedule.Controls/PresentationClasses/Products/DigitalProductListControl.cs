@@ -51,6 +51,15 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			repositoryItemComboBoxProductType.EnableSelectAll();
 			repositoryItemComboBoxProductName.EnableSelectAll();
 			repositoryItemSpinEditSize.EnableSelectAll();
+
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				buttonXDimensions.Font = new Font(buttonXDimensions.Font.FontFamily, buttonXDimensions.Font.Size - 2, buttonXDimensions.Font.Style);
+				buttonXLocation.Font = new Font(buttonXLocation.Font.FontFamily, buttonXLocation.Font.Size - 2, buttonXLocation.Font.Style);
+				buttonXRichMedia.Font = new Font(buttonXRichMedia.Font.FontFamily, buttonXRichMedia.Font.Size - 2, buttonXRichMedia.Font.Style);
+				buttonXStrategy.Font = new Font(buttonXStrategy.Font.FontFamily, buttonXStrategy.Font.Size - 2, buttonXStrategy.Font.Style);
+				buttonXTargeting.Font = new Font(buttonXTargeting.Font.FontFamily, buttonXTargeting.Font.Size - 2, buttonXTargeting.Font.Style);
+			}
 		}
 
 		public void UpdateData(DigitalProductsContent content, IDigitalScheduleSettings scheduleSettings, Action onDataChanged)
@@ -89,7 +98,6 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
 				_dragDropHelper.AfterDrop += DigitalProductsAfterDrop;
 			}
-
 		}
 
 		public void ApplyChanges()

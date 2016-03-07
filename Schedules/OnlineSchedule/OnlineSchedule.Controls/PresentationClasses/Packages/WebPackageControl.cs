@@ -115,6 +115,7 @@ namespace Asa.Online.Controls.PresentationClasses.Packages
 		{
 			AllowApplyValues = false;
 			laAdvertiser.Text = ScheduleSettings.BusinessName + (!String.IsNullOrEmpty(ScheduleSettings.AccountNumber) ? (" - " + ScheduleSettings.AccountNumber) : String.Empty);
+			gridControl.DataSource = null;
 			LoadSettings();
 			UpdateControls();
 			gridControl.DataSource = PackageRecords;

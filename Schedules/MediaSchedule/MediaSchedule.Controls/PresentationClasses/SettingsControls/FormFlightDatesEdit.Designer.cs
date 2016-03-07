@@ -28,14 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.ContextButton contextButton1 = new DevExpress.Utils.ContextButton();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.laTitle = new System.Windows.Forms.Label();
 			this.buttonXSave = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.calendarControlDateStart = new DevExpress.XtraEditors.Controls.CalendarControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.labelControlStartTitle = new DevExpress.XtraEditors.LabelControl();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.pnBottomButtons = new System.Windows.Forms.Panel();
@@ -56,7 +55,7 @@
 			// 
 			this.pbLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.FlightDatesFormEditLogo;
-			this.pbLogo.Location = new System.Drawing.Point(16, 13);
+			this.pbLogo.Location = new System.Drawing.Point(20, 13);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(66, 65);
 			this.pbLogo.TabIndex = 0;
@@ -68,9 +67,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laTitle.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTitle.ForeColor = System.Drawing.Color.Black;
-			this.laTitle.Location = new System.Drawing.Point(88, 13);
+			this.laTitle.Location = new System.Drawing.Point(92, 13);
 			this.laTitle.Name = "laTitle";
-			this.laTitle.Size = new System.Drawing.Size(423, 65);
+			this.laTitle.Size = new System.Drawing.Size(459, 65);
 			this.laTitle.TabIndex = 1;
 			this.laTitle.Text = "Select your campaign dates:";
 			this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,7 +80,7 @@
 			this.buttonXSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXSave.Location = new System.Drawing.Point(314, 7);
+			this.buttonXSave.Location = new System.Drawing.Point(343, 7);
 			this.buttonXSave.Name = "buttonXSave";
 			this.buttonXSave.Size = new System.Drawing.Size(85, 36);
 			this.buttonXSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -94,7 +93,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(429, 7);
+			this.buttonXCancel.Location = new System.Drawing.Point(458, 7);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(85, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -116,7 +115,7 @@
 			this.calendarControlDateStart.EditValue = new System.DateTime(2016, 3, 6, 0, 0, 0, 0);
 			this.calendarControlDateStart.FirstDayOfWeek = System.DayOfWeek.Monday;
 			this.calendarControlDateStart.HighlightTodayCell = DevExpress.Utils.DefaultBoolean.False;
-			this.calendarControlDateStart.Location = new System.Drawing.Point(12, 38);
+			this.calendarControlDateStart.Location = new System.Drawing.Point(20, 38);
 			this.calendarControlDateStart.Name = "calendarControlDateStart";
 			this.calendarControlDateStart.ShowFooter = false;
 			this.calendarControlDateStart.ShowMonthHeaders = false;
@@ -149,7 +148,7 @@
 			this.labelControlStartTitle.AllowHtmlString = true;
 			this.labelControlStartTitle.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlStartTitle.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.labelControlStartTitle.Location = new System.Drawing.Point(12, 16);
+			this.labelControlStartTitle.Location = new System.Drawing.Point(20, 16);
 			this.labelControlStartTitle.Name = "labelControlStartTitle";
 			this.labelControlStartTitle.Size = new System.Drawing.Size(32, 16);
 			this.labelControlStartTitle.StyleController = this.styleController;
@@ -165,7 +164,7 @@
 			this.pnTop.ForeColor = System.Drawing.Color.Black;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(523, 90);
+			this.pnTop.Size = new System.Drawing.Size(563, 90);
 			this.pnTop.TabIndex = 5;
 			// 
 			// pnBottomButtons
@@ -175,9 +174,9 @@
 			this.pnBottomButtons.Controls.Add(this.buttonXCancel);
 			this.pnBottomButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottomButtons.ForeColor = System.Drawing.Color.Black;
-			this.pnBottomButtons.Location = new System.Drawing.Point(0, 381);
+			this.pnBottomButtons.Location = new System.Drawing.Point(0, 380);
 			this.pnBottomButtons.Name = "pnBottomButtons";
-			this.pnBottomButtons.Size = new System.Drawing.Size(523, 51);
+			this.pnBottomButtons.Size = new System.Drawing.Size(563, 51);
 			this.pnBottomButtons.TabIndex = 6;
 			// 
 			// pnCalendars
@@ -192,16 +191,15 @@
 			this.pnCalendars.ForeColor = System.Drawing.Color.Black;
 			this.pnCalendars.Location = new System.Drawing.Point(0, 90);
 			this.pnCalendars.Name = "pnCalendars";
-			this.pnCalendars.Size = new System.Drawing.Size(523, 291);
+			this.pnCalendars.Size = new System.Drawing.Size(563, 290);
 			this.pnCalendars.TabIndex = 8;
 			// 
 			// labelControlEndTitle
 			// 
 			this.labelControlEndTitle.AllowHtmlString = true;
-			this.labelControlEndTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelControlEndTitle.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlEndTitle.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.labelControlEndTitle.Location = new System.Drawing.Point(282, 16);
+			this.labelControlEndTitle.Location = new System.Drawing.Point(311, 16);
 			this.labelControlEndTitle.Name = "labelControlEndTitle";
 			this.labelControlEndTitle.Size = new System.Drawing.Size(27, 16);
 			this.labelControlEndTitle.StyleController = this.styleController;
@@ -210,7 +208,6 @@
 			// 
 			// calendarControlDateEnd
 			// 
-			this.calendarControlDateEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.calendarControlDateEnd.Appearance.BackColor = System.Drawing.Color.White;
 			this.calendarControlDateEnd.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.calendarControlDateEnd.Appearance.Options.UseBackColor = true;
@@ -227,7 +224,7 @@
 			this.calendarControlDateEnd.EditValue = new System.DateTime(2016, 3, 6, 0, 0, 0, 0);
 			this.calendarControlDateEnd.FirstDayOfWeek = System.DayOfWeek.Monday;
 			this.calendarControlDateEnd.HighlightTodayCell = DevExpress.Utils.DefaultBoolean.False;
-			this.calendarControlDateEnd.Location = new System.Drawing.Point(282, 38);
+			this.calendarControlDateEnd.Location = new System.Drawing.Point(311, 38);
 			this.calendarControlDateEnd.Name = "calendarControlDateEnd";
 			this.calendarControlDateEnd.ShowFooter = false;
 			this.calendarControlDateEnd.ShowMonthHeaders = false;
@@ -249,9 +246,9 @@
 			this.labelControlWarnings.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlWarnings.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlWarnings.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlWarnings.Location = new System.Drawing.Point(12, 242);
+			this.labelControlWarnings.Location = new System.Drawing.Point(20, 242);
 			this.labelControlWarnings.Name = "labelControlWarnings";
-			this.labelControlWarnings.Size = new System.Drawing.Size(502, 44);
+			this.labelControlWarnings.Size = new System.Drawing.Size(523, 44);
 			this.labelControlWarnings.StyleController = this.styleController;
 			this.labelControlWarnings.TabIndex = 5;
 			this.labelControlWarnings.Text = "labelControl1";
@@ -260,7 +257,7 @@
 			// FormFlightDatesEdit
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(523, 432);
+			this.ClientSize = new System.Drawing.Size(563, 431);
 			this.Controls.Add(this.pnCalendars);
 			this.Controls.Add(this.pnBottomButtons);
 			this.Controls.Add(this.pnTop);

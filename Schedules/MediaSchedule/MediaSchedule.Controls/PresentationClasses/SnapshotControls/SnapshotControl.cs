@@ -606,45 +606,122 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
-					key = "t1";
 					var totalMonday = Data.Programs.Sum(p => p.MondaySpot);
-					value = totalMonday.HasValue && totalMonday.Value > 0 ? String.Format("{0}{1}", totalMonday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					var totalTuesday = Data.Programs.Sum(p => p.TuesdaySpot);
+					var totalWednesday = Data.Programs.Sum(p => p.WednesdaySpot);
+					var totalThursday = Data.Programs.Sum(p => p.ThursdaySpot);
+					var totalFriday = Data.Programs.Sum(p => p.FridaySpot);
+					var totalSaturday = Data.Programs.Sum(p => p.SaturdaySpot);
+					var totalSunday = Data.Programs.Sum(p => p.SundaySpot);
+					var mergedWeekDaySpots = new Dictionary<string, string>();
+					if (Data.ShowSpotsPerWeek)
+					{
+						var weekDayValues = new[]
+						{
+								totalMonday,
+								totalTuesday,
+								totalWednesday,
+								totalThursday,
+								totalFriday,
+								totalSaturday,
+								totalSunday,
+							};
+						if ((totalMonday > 0 || mergedWeekDaySpots.Any()) &&
+							weekDayValues.Any(v => v > 0))
+							mergedWeekDaySpots.Add("t1", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+						weekDayValues = weekDayValues.Skip(1).ToArray();
+						if ((totalTuesday > 0 || mergedWeekDaySpots.Any()) &&
+							 weekDayValues.Any(v => v > 0))
+							mergedWeekDaySpots.Add("t2", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+						weekDayValues = weekDayValues.Skip(1).ToArray();
+						if ((totalWednesday > 0 || mergedWeekDaySpots.Any()) &&
+							 weekDayValues.Any(v => v > 0))
+							mergedWeekDaySpots.Add("t3", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+						weekDayValues = weekDayValues.Skip(1).ToArray();
+						if ((totalThursday > 0 || mergedWeekDaySpots.Any()) &&
+							weekDayValues.Any(v => v > 0))
+							mergedWeekDaySpots.Add("t4", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+						weekDayValues = weekDayValues.Skip(1).ToArray();
+						if ((totalFriday > 0 || mergedWeekDaySpots.Any()) &&
+							weekDayValues.Any(v => v > 0))
+							mergedWeekDaySpots.Add("t5", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+						weekDayValues = weekDayValues.Skip(1).ToArray();
+						if ((totalSaturday > 0 || mergedWeekDaySpots.Any()) &&
+							weekDayValues.Any(v => v > 0))
+							mergedWeekDaySpots.Add("t6", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+						weekDayValues = weekDayValues.Skip(1).ToArray();
+						if ((totalSunday > 0 || mergedWeekDaySpots.Any()) &&
+							weekDayValues.Any(v => v > 0))
+							mergedWeekDaySpots.Add("t7", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+
+						string mergedSpotValueFormat;
+						switch (mergedWeekDaySpots.Values.Count)
+						{
+							case 1:
+								mergedSpotValueFormat = "< {0}{1} >";
+								break;
+							case 2:
+								mergedSpotValueFormat = "< ----- {0}{1} ----- >";
+								break;
+							default:
+								mergedSpotValueFormat = "< ---------- {0}{1} ---------- >";
+								break;
+						}
+
+						var mergedSpotsValue = String.Format(mergedSpotValueFormat, Data.TotalSpots.ToString("#,##0"), Data.ShowSpotsX ? "x" : String.Empty);
+						foreach (var dictionaryKey in mergedWeekDaySpots.Keys.ToList())
+						{
+							if (mergedWeekDaySpots[dictionaryKey] == "Merge") continue;
+							mergedWeekDaySpots[dictionaryKey] = mergedSpotsValue;
+						}
+					}
+
+					key = "t1";
+					value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							totalMonday > 0 ? String.Format("{0}{1}", totalMonday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t2";
-					var totalTuesday = Data.Programs.Sum(p => p.TuesdaySpot);
-					value = totalTuesday.HasValue && totalTuesday.Value > 0 ? String.Format("{0}{1}", totalTuesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							totalTuesday > 0 ? String.Format("{0}{1}", totalTuesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t3";
-					var totalWednesday = Data.Programs.Sum(p => p.WednesdaySpot);
-					value = totalWednesday.HasValue && totalWednesday.Value > 0 ? String.Format("{0}{1}", totalWednesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							totalWednesday > 0 ? String.Format("{0}{1}", totalWednesday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t4";
-					var totalThursday = Data.Programs.Sum(p => p.ThursdaySpot);
-					value = totalThursday.HasValue && totalThursday.Value > 0 ? String.Format("{0}{1}", totalThursday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							totalThursday > 0 ? String.Format("{0}{1}", totalThursday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t5";
-					var totalFriday = Data.Programs.Sum(p => p.FridaySpot);
-					value = totalFriday.HasValue && totalFriday.Value > 0 ? String.Format("{0}{1}", totalFriday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							totalFriday > 0 ? String.Format("{0}{1}", totalFriday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t6";
-					var totalSaturday = Data.Programs.Sum(p => p.SaturdaySpot);
-					value = totalSaturday.HasValue && totalSaturday.Value > 0 ? String.Format("{0}{1}", totalSaturday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							totalSaturday > 0 ? String.Format("{0}{1}", totalSaturday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "t7";
-					var totalSunday = Data.Programs.Sum(p => p.SundaySpot);
-					value = totalSunday.HasValue && totalSunday.Value > 0 ? String.Format("{0}{1}", totalSunday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
+					value = mergedWeekDaySpots.ContainsKey(key) ?
+							mergedWeekDaySpots[key] :
+							totalSunday > 0 ? String.Format("{0}{1}", totalSunday.Value.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty) : "-";
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 				}
@@ -754,17 +831,17 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 							switch (mergedWeekDaySpots.Values.Count)
 							{
 								case 1:
-									mergedSpotValueFormat = "< {0} >";
+									mergedSpotValueFormat = "< {0}{1} >";
 									break;
 								case 2:
-									mergedSpotValueFormat = "< ----- {0} ----- >";
+									mergedSpotValueFormat = "< ----- {0}{1} ----- >";
 									break;
 								default:
-									mergedSpotValueFormat = "< ---------- {0} ---------- >";
+									mergedSpotValueFormat = "< ---------- {0}{1} ---------- >";
 									break;
 							}
 
-							var mergedSpotsValue = String.Format(mergedSpotValueFormat, program.TotalSpots.ToString("#,##0"));
+							var mergedSpotsValue = String.Format(mergedSpotValueFormat, program.TotalSpots.ToString("#,##0"), Data.ShowSpotsX ? "x" : String.Empty);
 							foreach (var dictionaryKey in mergedWeekDaySpots.Keys.ToList())
 							{
 								if (mergedWeekDaySpots[dictionaryKey] == "Merge") continue;

@@ -43,6 +43,16 @@ namespace Asa.Media.Single
 				comboBoxEditDecisionMaker.Font = font;
 				comboBoxEditClientType.Font = font;
 				dateEditPresentationDate.Font = font;
+
+				labelItemHomeFlightDatesStartTitle.Font = new Font(labelItemHomeFlightDatesStartTitle.Font.FontFamily,
+					labelItemHomeFlightDatesStartTitle.Font.Size - 1, labelItemHomeFlightDatesStartTitle.Font.Style);
+				labelItemHomeFlightDatesEndTitle.Font = new Font(labelItemHomeFlightDatesEndTitle.Font.FontFamily,
+					labelItemHomeFlightDatesEndTitle.Font.Size - 1, labelItemHomeFlightDatesEndTitle.Font.Style);
+				labelItemHomeFlightDatesStartValue.Font = new Font(labelItemHomeFlightDatesStartValue.Font.FontFamily,
+					labelItemHomeFlightDatesStartValue.Font.Size - 2, labelItemHomeFlightDatesStartValue.Font.Style);
+				labelItemHomeFlightDatesEndValue.Font = new Font(labelItemHomeFlightDatesEndValue.Font.FontFamily,
+					labelItemHomeFlightDatesEndValue.Font.Size - 2, labelItemHomeFlightDatesEndValue.Font.Style);
+
 				ribbonBarHomeBasicInfo.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
 				ribbonBarHomeExit.RecalcLayout();

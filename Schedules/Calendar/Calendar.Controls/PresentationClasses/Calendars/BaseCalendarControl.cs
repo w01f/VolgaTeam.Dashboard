@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Calendar.Configuration;
@@ -22,6 +23,7 @@ using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
 namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	[ToolboxItem(false)]
+	//public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : UserControl
 	public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>, ICalendarControl
 		where TPartitionContet : BaseSchedulePartitionContent<TSchedule, TScheduleSettings>, ICalendarContent
 		where TSchedule : ISchedule<TScheduleSettings>
@@ -65,7 +67,11 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			CalendarView.DataSaved += OnDataChanged;
 			pnMain.Controls.Add((Control)CalendarView);
 
-			if ((CreateGraphics()).DpiX > 96) { }
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2,
+					hyperLinkEditReset.Font.Style);
+			}
 
 			MonthList.SelectedIndexChanged += OnMonthListSelectedIndexChanged;
 			CopyButton.Click += OnCalendarCopyClick;

@@ -171,7 +171,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = Parent.Programs.Count + 1;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>() ?? new ImageSource();
 			Station = Parent.ParentScheduleSettings.Stations.Count(x => x.Available) == 1 ? Parent.ParentScheduleSettings.Stations.Where(x => x.Available).Select(x => x.Name).FirstOrDefault() : string.Empty;
 			Daypart = string.Empty;
 			Day = string.Empty;

@@ -87,6 +87,13 @@ namespace Asa.Common.Core.Helpers
 				Authorize();
 		}
 
+		public void InitLight(string dataFolderName)
+		{
+			_dataFolderName = dataFolderName;
+			UseLocalMode = true;
+			Activated = true;
+		}
+
 		private async Task InitCredentials()
 		{
 			var clientConfigPath = Path.Combine(Path.GetDirectoryName(typeof(FileStorageManager).Assembly.Location), "client.txt");
@@ -143,8 +150,8 @@ namespace Asa.Common.Core.Helpers
 				try
 				{
 					var remoteFile = await GetClient().GetFile(_versionFile.RemotePath);
-					DataState = File.GetLastWriteTime(_versionFile.LocalPath) < remoteFile.LastModified ? 
-						DataActualityState.Outdated : 
+					DataState = File.GetLastWriteTime(_versionFile.LocalPath) < remoteFile.LastModified ?
+						DataActualityState.Outdated :
 						DataActualityState.Updated;
 				}
 				catch (HttpRequestException e)
@@ -167,7 +174,7 @@ namespace Asa.Common.Core.Helpers
 			}
 			else
 				Activated = false;
-			
+
 		}
 
 		public void ShowDownloadProgress(FileProcessingProgressEventArgs eventArgs)

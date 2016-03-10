@@ -58,15 +58,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		{
 			get
 			{
-				return new[] 
-				{ 
-					MondaySpot, 
-					TuesdaySpot, 
-					WednesdaySpot, 
-					ThursdaySpot, 
-					FridaySpot, 
-					SaturdaySpot, 
-					SundaySpot 
+				return new[]
+				{
+					MondaySpot,
+					TuesdaySpot,
+					WednesdaySpot,
+					ThursdaySpot,
+					FridaySpot,
+					SaturdaySpot,
+					SundaySpot
 				}
 				.Select(v => v ?? 0)
 				.Sum();
@@ -133,7 +133,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			Station = Parent.Parent.ScheduleSettings.Stations.Count(x => x.Available) == 1 ?
 				Parent.Parent.ScheduleSettings.Stations.Where(x => x.Available).Select(x => x.Name).FirstOrDefault() :
 				null;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>() ?? new ImageSource();
 		}
 
 		public void Dispose()

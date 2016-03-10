@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BE9876A-B534-48DD-A10B-13A12625237F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Asa.Legacy.Media</RootNamespace>
+    <AssemblyName>Asa.Legacy.Media</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Calendar\BroadcastCalendar.cs" />
+    <Compile Include="Entities\Calendar\BroadcastDataTypeEnum.cs" />
+    <Compile Include="Entities\Calendar\CalendarMonthMedia.cs" />
+    <Compile Include="Entities\Calendar\CalendarMonthMediaMondayBased.cs" />
+    <Compile Include="Entities\Calendar\CalendarMonthMediaSundayBased.cs" />
+    <Compile Include="Entities\Calendar\CustomCalendar.cs" />
+    <Compile Include="Entities\Calendar\MediaCalendar.cs" />
+    <Compile Include="Entities\Calendar\MediaCalendarOutputData.cs" />
+    <Compile Include="Entities\Calendar\MediaDataNote.cs" />
+    <Compile Include="Entities\Options\OptionProgram.cs" />
+    <Compile Include="Entities\Options\OptionSet.cs" />
+    <Compile Include="Entities\Options\OptionSummary.cs" />
+    <Compile Include="Entities\Schedule\Daypart.cs" />
+    <Compile Include="Entities\Schedule\DemoType.cs" />
+    <Compile Include="Entities\Schedule\RegularSchedule.cs" />
+    <Compile Include="Entities\Schedule\Schedule.cs" />
+    <Compile Include="Entities\Schedule\SpotType.cs" />
+    <Compile Include="Entities\Schedule\Station.cs" />
+    <Compile Include="Entities\Section\MonthlySection.cs" />
+    <Compile Include="Entities\Section\MonthSchedule.cs" />
+    <Compile Include="Entities\Section\Program.cs" />
+    <Compile Include="Entities\Section\ScheduleSection.cs" />
+    <Compile Include="Entities\Snapshot\Snapshot.cs" />
+    <Compile Include="Entities\Snapshot\SnapshotProgram.cs" />
+    <Compile Include="Entities\Snapshot\SnapshotSummary.cs" />
+    <Compile Include="Entities\Summary\CustomSummaryContent.cs" />
+    <Compile Include="Entities\Summary\ISectionSummaryContent.cs" />
+    <Compile Include="Entities\Summary\ProductSummaryContent.cs" />
+    <Compile Include="Entities\Summary\ProgramStrategyItem.cs" />
+    <Compile Include="Entities\Summary\SectionSummary.cs" />
+    <Compile Include="Entities\Section\Spot.cs" />
+    <Compile Include="Entities\Section\WeeklySection.cs" />
+    <Compile Include="Entities\Section\WeekSchedule.cs" />
+    <Compile Include="Entities\Section\ProgramSchedule.cs" />
+    <Compile Include="Entities\Settings\HomeViewSettings.cs" />
+    <Compile Include="Entities\Settings\ScheduleBuilderViewSettings.cs" />
+    <Compile Include="Entities\Summary\SectionSummaryTypeEnum.cs" />
+    <Compile Include="Entities\Summary\StrategySummaryContent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Legacy.Common\Legacy.Common.csproj">
+      <Project>{49004541-de89-47b2-8833-89e7020b60d3}</Project>
+      <Name>Legacy.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

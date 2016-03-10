@@ -49,8 +49,7 @@ namespace Asa.Business.Common.Contexts
 		public void OpenSchedule(TSchedule schedule)
 		{
 			ActiveSchedule = schedule;
-			if (ScheduleOpened != null)
-				ScheduleOpened(this, EventArgs.Empty);
+			ScheduleOpened?.Invoke(this, EventArgs.Empty);
 		}
 
 		public void AddSchedule(string name)

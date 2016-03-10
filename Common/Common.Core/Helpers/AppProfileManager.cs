@@ -64,7 +64,7 @@ namespace Asa.Common.Core.Helpers
 			AppType = appType;
 		}
 
-		public async Task LoadProfile()
+		public async Task LoadProfile(bool useremoteConnection = true)
 		{
 			_localAppIdFile = new StorageFile(new[] { String.Format("{0}_app_id.xml", AppName) });
 
@@ -84,20 +84,20 @@ namespace Asa.Common.Core.Helpers
 				CreateProfile();
 
 			ProfilesRootFolder = new StorageDirectory(new[] { FileStorageManager.OutgoingFolderName, AppName });
-			if (!await ProfilesRootFolder.Exists(true))
-				await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.OutgoingFolderName }, AppName, true);
+			if (!await ProfilesRootFolder.Exists(useremoteConnection))
+				await StorageDirectory.CreateSubFolder(new[] { FileStorageManager.OutgoingFolderName }, AppName, useremoteConnection);
 
 			ProfileFolder = new StorageDirectory(ProfilesRootFolder.RelativePathParts.Merge(ProfileName));
-			if (!await ProfileFolder.Exists(true))
-				await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, ProfileName, true);
+			if (!await ProfileFolder.Exists(useremoteConnection))
+				await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, ProfileName, useremoteConnection);
 
 			UserDataFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(new[] { UserDataFolderName }));
-			if (!await UserDataFolder.Exists(true))
-				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, UserDataFolderName, true);
+			if (!await UserDataFolder.Exists(useremoteConnection))
+				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, UserDataFolderName, useremoteConnection);
 
 			AppSaveFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(SavedFilesFolderName));
-			if (!await AppSaveFolder.Exists(true))
-				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, SavedFilesFolderName, true);
+			if (!await AppSaveFolder.Exists(useremoteConnection))
+				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, SavedFilesFolderName, useremoteConnection);
 		}
 
 		private void CreateProfile()

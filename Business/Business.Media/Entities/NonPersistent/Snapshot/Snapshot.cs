@@ -105,7 +105,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = parent.Snapshots.Any() ? parent.Snapshots.Max(s => s.Index) + 1 : 0;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>()?? new ImageSource();
 			Programs = new List<SnapshotProgram>();
 			ActiveWeeks = new List<DateRange>();
 
@@ -186,7 +186,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			RebuildProgramIndexes();
 		}
 
-		private void RebuildProgramIndexes()
+		public void RebuildProgramIndexes()
 		{
 			Programs.Sort((x, y) => x.Index.CompareTo(y.Index));
 			for (int i = 0; i < Programs.Count; i++)

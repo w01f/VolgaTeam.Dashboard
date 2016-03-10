@@ -37,10 +37,11 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 
 		private async Task Download(string targetPath)
 		{
-			if (FileStorageManager.Instance.DataState == DataActualityState.Updated) return;
+			if (FileStorageManager.Instance.DataState == DataActualityState.Updated ||
+				FileStorageManager.Instance.UseLocalMode) return;
 
 			var filter = new Func<string, bool>(
-				itemName => itemName.StartsWith(Name, StringComparison.OrdinalIgnoreCase));
+				itemName => itemName.StartsWith(String.Format("{0}.", Name), StringComparison.OrdinalIgnoreCase));
 
 			var existedFiles = (_parentFoder.ExistsLocal() ? _parentFoder.GetLocalFiles(filter).ToArray() : new StorageFile[] { }).ToList();
 			var archivePartFiles = (await _parentFoder.GetRemoteFiles(filter)).ToList();

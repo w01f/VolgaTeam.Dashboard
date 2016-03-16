@@ -28,8 +28,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditOutputNoBrackets = new DevExpress.XtraEditors.CheckEdit();
 			this.spinEditOutputLimitPeriods = new DevExpress.XtraEditors.SpinEdit();
@@ -47,6 +48,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			this.labelControlDescriptionUseDecimalRate = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescriptionOutputNoBrackets = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescriptionLockToMaster = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlDescriptionCloneLineToTheEnd = new DevExpress.XtraEditors.LabelControl();
+			this.checkEditCloneLineToTheEnd = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputNoBrackets.Properties)).BeginInit();
@@ -56,6 +59,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseGenericDates.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditCloneLineToTheEnd.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -187,7 +191,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(95, 430);
+			this.buttonXOK.Location = new System.Drawing.Point(95, 487);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(91, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -200,7 +204,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(236, 430);
+			this.buttonXCancel.Location = new System.Drawing.Point(236, 487);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(91, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -211,7 +215,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			// 
 			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 365);
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 420);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -225,7 +229,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditLockToMaster.Properties.AutoHeight = false;
-			this.checkEditLockToMaster.Properties.Caption = "<b>G.</b> Lock Schedule on the Slide Master";
+			this.checkEditLockToMaster.Properties.Caption = "<b>H.</b> Lock Schedule on the Slide Master";
 			this.checkEditLockToMaster.Size = new System.Drawing.Size(399, 18);
 			this.checkEditLockToMaster.StyleController = this.styleController;
 			this.checkEditLockToMaster.TabIndex = 124;
@@ -346,17 +350,56 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			this.labelControlDescriptionLockToMaster.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlDescriptionLockToMaster.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlDescriptionLockToMaster.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(30, 389);
+			this.labelControlDescriptionLockToMaster.Location = new System.Drawing.Point(30, 444);
 			this.labelControlDescriptionLockToMaster.Name = "labelControlDescriptionLockToMaster";
 			this.labelControlDescriptionLockToMaster.Size = new System.Drawing.Size(381, 15);
 			this.labelControlDescriptionLockToMaster.TabIndex = 134;
 			this.labelControlDescriptionLockToMaster.Text = "<i><color=Gray>The schedule will be protected on the powerpoint slide Master</col" +
     "or></i>";
 			// 
+			// labelControlDescriptionCloneLineToTheEnd
+			// 
+			this.labelControlDescriptionCloneLineToTheEnd.AllowHtmlString = true;
+			this.labelControlDescriptionCloneLineToTheEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlDescriptionCloneLineToTheEnd.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescriptionCloneLineToTheEnd.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDescriptionCloneLineToTheEnd.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlDescriptionCloneLineToTheEnd.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlDescriptionCloneLineToTheEnd.Location = new System.Drawing.Point(30, 390);
+			this.labelControlDescriptionCloneLineToTheEnd.Name = "labelControlDescriptionCloneLineToTheEnd";
+			this.labelControlDescriptionCloneLineToTheEnd.Size = new System.Drawing.Size(381, 15);
+			this.labelControlDescriptionCloneLineToTheEnd.TabIndex = 136;
+			this.labelControlDescriptionCloneLineToTheEnd.Text = "<i><color=Gray>When you clone a line, then it will be placed at the end of the sc" +
+    "hedule…</color></i>";
+			// 
+			// checkEditCloneLineToTheEnd
+			// 
+			this.checkEditCloneLineToTheEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditCloneLineToTheEnd.Location = new System.Drawing.Point(12, 366);
+			this.checkEditCloneLineToTheEnd.Name = "checkEditCloneLineToTheEnd";
+			this.checkEditCloneLineToTheEnd.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditCloneLineToTheEnd.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditCloneLineToTheEnd.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditCloneLineToTheEnd.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditCloneLineToTheEnd.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditCloneLineToTheEnd.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditCloneLineToTheEnd.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditCloneLineToTheEnd.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditCloneLineToTheEnd.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditCloneLineToTheEnd.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditCloneLineToTheEnd.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditCloneLineToTheEnd.Properties.AutoHeight = false;
+			this.checkEditCloneLineToTheEnd.Properties.Caption = "<b>G.</b> Cloned lines go to the end";
+			this.checkEditCloneLineToTheEnd.Size = new System.Drawing.Size(399, 18);
+			this.checkEditCloneLineToTheEnd.StyleController = this.styleController;
+			this.checkEditCloneLineToTheEnd.TabIndex = 135;
+			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(423, 478);
+			this.ClientSize = new System.Drawing.Size(423, 535);
 			this.Controls.Add(this.labelControlDescriptionLockToMaster);
 			this.Controls.Add(this.labelControlDescriptionOutputNoBrackets);
 			this.Controls.Add(this.labelControlDescriptionUseDecimalRate);
@@ -374,6 +417,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			this.Controls.Add(this.checkEditOutputLimitPeriods);
 			this.Controls.Add(this.checkEditOutputLimitQuarters);
 			this.Controls.Add(this.checkEditEmptySports);
+			this.Controls.Add(this.labelControlDescriptionCloneLineToTheEnd);
+			this.Controls.Add(this.checkEditCloneLineToTheEnd);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -393,6 +438,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseGenericDates.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditCloneLineToTheEnd.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -418,5 +464,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		private DevExpress.XtraEditors.LabelControl labelControlDescriptionUseDecimalRate;
 		private DevExpress.XtraEditors.LabelControl labelControlDescriptionOutputNoBrackets;
 		private DevExpress.XtraEditors.LabelControl labelControlDescriptionLockToMaster;
+		private DevExpress.XtraEditors.LabelControl labelControlDescriptionCloneLineToTheEnd;
+		public DevExpress.XtraEditors.CheckEdit checkEditCloneLineToTheEnd;
 	}
 }

@@ -119,6 +119,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			Data.CloneProgram(sourceIndex);
 			gridControl.DataSource = Data.Programs;
 			advBandedGridView.RefreshData();
+			if (Data.CloneLineToTheEnd)
+				advBandedGridView.FocusedRowHandle = advBandedGridView.RowCount - 1;
+			else
+				advBandedGridView.FocusedRowHandle = sourceIndex + 1;
 			UpdateProgramSplash();
 			DataChanged?.Invoke(this, EventArgs.Empty);
 		}

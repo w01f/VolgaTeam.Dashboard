@@ -411,6 +411,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				optionsControl.Data.ShowTotalCost = templateControl.Data.ShowTotalCost;
 				optionsControl.Data.ShowAverageRate = templateControl.Data.ShowAverageRate;
 				optionsControl.Data.UseDecimalRates = templateControl.Data.UseDecimalRates;
+				optionsControl.Data.CloneLineToTheEnd = templateControl.Data.CloneLineToTheEnd;
 				optionsControl.Data.ShowSpotsX = templateControl.Data.ShowSpotsX;
 				optionsControl.Data.SpotType = templateControl.Data.SpotType;
 
@@ -714,11 +715,19 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveOptionControl.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveOptionControl.Data.ShowSpotsX;
+
+					form.checkEditCloneLineToTheEnd.Enabled = true;
+					form.labelControlDescriptionCloneLineToTheEnd.Enabled = true;
+					form.checkEditCloneLineToTheEnd.Checked = ActiveOptionControl.Data.CloneLineToTheEnd;
 				}
 				else if (ActiveSummary != null)
 				{
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
+
+					form.checkEditCloneLineToTheEnd.Enabled = false;
+					form.labelControlDescriptionCloneLineToTheEnd.Enabled = false;
+					form.checkEditCloneLineToTheEnd.Checked = false;
 				}
 				else
 					return;
@@ -728,6 +737,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				{
 					ActiveOptionControl.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveOptionControl.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
+					ActiveOptionControl.Data.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
 					if (EditedContent.OptionsSummary.ApplySettingsForAll)
 					{
 						ApplySharedSettings(ActiveOptionControl);

@@ -23,10 +23,16 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				labelControlDescriptionLockToMaster.Font = font;
 				labelControlDescriptionUseDecimalRate.Font = font;
 				labelControlDescriptionShowSpotX.Font = font;
+				labelControlDescriptionCloneLineToTheEnd.Font = font;
 
 				buttonXOK.Font = new Font(buttonXOK.Font.FontFamily, buttonXOK.Font.Size - 2, buttonXOK.Font.Style);
 				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);
 			}
+		}
+
+		private void FormOutputSettings_Load(object sender, System.EventArgs e)
+		{
+			checkEditCloneLineToTheEnd.ForeColor = checkEditCloneLineToTheEnd.Enabled ? Color.Black : Color.Gray;
 		}
 	}
 }

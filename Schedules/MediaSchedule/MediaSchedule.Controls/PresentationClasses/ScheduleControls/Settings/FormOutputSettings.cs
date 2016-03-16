@@ -30,6 +30,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				labelControlDescriptionOutputNoBrackets.Font = font;
 				labelControlDescriptionUseDecimalRate.Font = font;
 				labelControlDescriptionUseGenericDates.Font = font;
+				labelControlDescriptionCloneLineToTheEnd.Font = font;
 
 				buttonXOK.Font = new Font(buttonXOK.Font.FontFamily, buttonXOK.Font.Size - 2, buttonXOK.Font.Style);
 				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);

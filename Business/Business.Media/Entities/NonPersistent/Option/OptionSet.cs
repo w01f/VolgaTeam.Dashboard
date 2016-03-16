@@ -48,6 +48,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 		public bool ShowCost { get; set; }
 		public bool ShowSpotsX { get; set; }
 		public bool UseDecimalRates { get; set; }
+		public bool CloneLineToTheEnd { get; set; }
 
 		public bool DefaultColumnPositions { get; set; }
 		public int PositionStation { get; set; }
@@ -198,7 +199,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 
 		public void Dispose()
 		{
-			Programs.ForEach(p=>p.Dispose());
+			Programs.ForEach(p => p.Dispose());
 			Programs.Clear();
 
 			Logo.Dispose();
@@ -238,7 +239,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 		{
 			if (programIndex < 0 || programIndex >= Programs.Count) return;
 			var program = Programs[programIndex];
-			Programs.Add(program.Clone<OptionProgram, OptionProgram>());
+			var newProgram = program.Clone<OptionProgram, OptionProgram>();
+			Programs.Add(newProgram);
+			if (CloneLineToTheEnd)
+				newProgram.Index = Programs.Count;
 			RebuildProgramIndexes();
 		}
 

@@ -345,6 +345,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				snapshotControl.Data.UseDecimalRates = templateControl.Data.UseDecimalRates;
 				snapshotControl.Data.ShowSpotsX = templateControl.Data.ShowSpotsX;
 				snapshotControl.Data.ShowSpotsPerWeek = templateControl.Data.ShowSpotsPerWeek;
+				snapshotControl.Data.CloneLineToTheEnd = templateControl.Data.CloneLineToTheEnd;
 			}
 		}
 
@@ -609,6 +610,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					form.checkEditShowSpotsPerWeek.Enabled = true;
 					form.labelControlDescriptionShowSpotsPerWeek.Enabled = true;
 					form.checkEditShowSpotsPerWeek.Checked = ActiveSnapshot.Data.ShowSpotsPerWeek;
+					form.checkEditCloneLineToTheEnd.Enabled = true;
+					form.labelControlDescriptionCloneLineToTheEnd.Enabled = true;
+					form.checkEditCloneLineToTheEnd.Checked = ActiveSnapshot.Data.CloneLineToTheEnd;
 				}
 				else if (ActiveSummary != null)
 				{
@@ -616,6 +620,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					form.labelControlDescriptionShowSpotsPerWeek.Enabled = false;
 					form.checkEditUseDecimalRate.Checked = ActiveSummary.Data.UseDecimalRates;
 					form.checkEditShowSpotX.Checked = ActiveSummary.Data.ShowSpotsX;
+					form.checkEditCloneLineToTheEnd.Enabled = false;
+					form.labelControlDescriptionCloneLineToTheEnd.Enabled = false;
+					form.checkEditCloneLineToTheEnd.Checked = false;
 				}
 				else
 					return;
@@ -626,6 +633,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					ActiveSnapshot.Data.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 					ActiveSnapshot.Data.ShowSpotsX = form.checkEditShowSpotX.Checked;
 					ActiveSnapshot.Data.ShowSpotsPerWeek = form.checkEditShowSpotsPerWeek.Checked;
+					ActiveSnapshot.Data.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
 					if (EditedContent.SnapshotSummary.ApplySettingsForAll)
 					{
 						ApplySharedSettings(ActiveSnapshot);

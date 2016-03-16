@@ -136,8 +136,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			_sectionContainer.SectionData.CloneProgram(sourceIndex, fullClone);
 			UpdateGridData(true);
-			if (advBandedGridViewSchedule.RowCount > 0)
+			if (_sectionContainer.SectionData.CloneLineToTheEnd)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
+			else
+				advBandedGridViewSchedule.FocusedRowHandle = sourceIndex + 1;
 
 			_sectionContainer.RaiseDataChanged();
 		}

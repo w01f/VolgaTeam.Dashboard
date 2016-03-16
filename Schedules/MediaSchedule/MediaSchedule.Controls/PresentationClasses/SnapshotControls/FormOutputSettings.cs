@@ -24,6 +24,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				labelControlDescriptionUseDecimalRate.Font = font;
 				labelControlDescriptionShowSpotX.Font = font;
 				labelControlDescriptionShowSpotsPerWeek.Font = font;
+				labelControlDescriptionCloneLineToTheEnd.Font = font;
 
 				buttonXOK.Font = new Font(buttonXOK.Font.FontFamily, buttonXOK.Font.Size - 2, buttonXOK.Font.Style);
 				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);
@@ -33,6 +34,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private void FormOutputSettings_Load(object sender, System.EventArgs e)
 		{
 			checkEditShowSpotsPerWeek.ForeColor = checkEditShowSpotsPerWeek.Enabled ? Color.Black : Color.Gray;
+			checkEditCloneLineToTheEnd.ForeColor = checkEditCloneLineToTheEnd.Enabled ? Color.Black : Color.Gray;
 		}
 	}
 }

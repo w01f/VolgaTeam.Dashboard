@@ -125,6 +125,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			Data.CloneProgram(sourceIndex, fullClone);
 			gridControl.DataSource = Data.Programs;
 			advBandedGridView.RefreshData();
+			if (Data.CloneLineToTheEnd)
+				advBandedGridView.FocusedRowHandle = advBandedGridView.RowCount - 1;
+			else
+				advBandedGridView.FocusedRowHandle = sourceIndex + 1;
 			UpdateProgramSplash();
 			if (DataChanged != null)
 				DataChanged(this, EventArgs.Empty);

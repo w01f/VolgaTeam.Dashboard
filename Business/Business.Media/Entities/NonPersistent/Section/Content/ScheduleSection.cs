@@ -83,6 +83,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		public bool OutputNoBrackets { get; set; }
 		public bool UseDecimalRates { get; set; }
 		public bool UseGenericDateColumns { get; set; }
+		public bool CloneLineToTheEnd { get; set; }
 		#endregion
 
 		#region Calculated Properies
@@ -417,7 +418,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		{
 			if (programIndex < 0 || programIndex >= Programs.Count) return;
 			var program = Programs[programIndex];
-			Programs.Add(program.Clone<Program, Program>(fullClone));
+			var newProgram = program.Clone<Program, Program>(fullClone);
+			Programs.Add(newProgram);
+			if (CloneLineToTheEnd)
+				newProgram.Index = Programs.Count;
 			RebuildProgramIndexes();
 		}
 
@@ -473,6 +477,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			UseDecimalRates = templateData.UseDecimalRates;
 			OutputPerQuater = templateData.OutputPerQuater;
 			OutputMaxPeriods = templateData.OutputMaxPeriods;
+			CloneLineToTheEnd = templateData.CloneLineToTheEnd;
 		}
 	}
 }

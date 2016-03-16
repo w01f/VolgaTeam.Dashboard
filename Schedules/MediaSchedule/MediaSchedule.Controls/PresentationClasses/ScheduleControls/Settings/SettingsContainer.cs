@@ -207,6 +207,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				form.checkEditOutputNoBrackets.Checked = _editedSection.OutputNoBrackets;
 				form.checkEditUseGenericDates.Checked = _editedSection.UseGenericDateColumns;
 				form.checkEditUseDecimalRate.Checked = _editedSection.UseDecimalRates;
+				form.checkEditCloneLineToTheEnd.Checked = _editedSection.CloneLineToTheEnd;
 				form.checkEditOutputLimitQuarters.Enabled = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1;
 				form.labelControlDescriptionOutputLimitQuarters.Enabled = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1;
 				form.checkEditOutputLimitQuarters.Checked = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1 && _editedSection.OutputPerQuater;
@@ -222,6 +223,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				_editedSection.ShowEmptySpots = !form.checkEditEmptySports.Checked;
 				_editedSection.OutputNoBrackets = form.checkEditOutputNoBrackets.Checked;
 				_editedSection.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+				_editedSection.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
 				_editedSection.UseGenericDateColumns = form.checkEditUseGenericDates.Checked;
 				_editedSection.OutputPerQuater = form.checkEditOutputLimitQuarters.Checked;
 				_editedSection.OutputMaxPeriods = form.spinEditOutputLimitPeriods.EditValue != null ? (Int32?)form.spinEditOutputLimitPeriods.Value : null;

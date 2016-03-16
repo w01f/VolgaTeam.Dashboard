@@ -39,6 +39,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		public bool ShowTotalRow { get; set; }
 		public bool UseDecimalRates { get; set; }
 		public bool ShowSpotsPerWeek { get; set; }
+		public bool CloneLineToTheEnd { get; set; }
 
 		public bool ShowTotalSpots { get; set; }
 		public bool ShowAverageRate { get; set; }
@@ -105,7 +106,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = parent.Snapshots.Any() ? parent.Snapshots.Max(s => s.Index) + 1 : 0;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>()?? new ImageSource();
+			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>() ?? new ImageSource();
 			Programs = new List<SnapshotProgram>();
 			ActiveWeeks = new List<DateRange>();
 
@@ -132,7 +133,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 
 		public void Dispose()
 		{
-			Programs.ForEach(p=>p.Dispose());
+			Programs.ForEach(p => p.Dispose());
 			Programs.Clear();
 
 			ActiveWeeks.Clear();
@@ -174,7 +175,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		{
 			if (programIndex < 0 || programIndex >= Programs.Count) return;
 			var program = Programs[programIndex];
-			Programs.Add(program.Clone<SnapshotProgram, SnapshotProgram>(fullClone));
+			var newProgram = program.Clone<SnapshotProgram, SnapshotProgram>(fullClone);
+			Programs.Add(newProgram);
+			if (CloneLineToTheEnd)
+				newProgram.Index = Programs.Count;
 			RebuildProgramIndexes();
 		}
 

@@ -31,6 +31,7 @@ namespace AdSalesBrowser
 				"y5914+30EO2s3OnP566l4Of2GfKe3MKetZ9Zl6TNDOul5vvPuIlZl6Sxy59Z" +
 				"l8DyD+NZ6/0BELxbvNO/7uer5vH2zZ+v3PYEFO6ntKbC4a1pmaTA6YxDl6Sx" +
 				"y7to2PD9GvZ3hI6xy59Zs/MDD+SrwPI=");
+			Runtime.AllowProprietaryMediaFormats();
 
 			Load += LoadSettings;
 			Load += InitApplication; 

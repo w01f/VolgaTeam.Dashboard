@@ -272,6 +272,8 @@
 			this.bandedGridColumnIndex.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.bandedGridColumnIndex.AutoFillDown = true;
 			this.bandedGridColumnIndex.Caption = "ID";
+			this.bandedGridColumnIndex.DisplayFormat.FormatString = "# ##0";
+			this.bandedGridColumnIndex.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.bandedGridColumnIndex.FieldName = "Index";
 			this.bandedGridColumnIndex.Name = "bandedGridColumnIndex";
 			this.bandedGridColumnIndex.OptionsColumn.AllowEdit = false;

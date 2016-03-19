@@ -7,9 +7,23 @@ namespace Asa.Common.GUI.ToolForms
 {
 	public partial class FormScheduleName : MetroForm
 	{
-		public FormScheduleName()
+		public FormScheduleName(bool saveForm = false)
 		{
 			InitializeComponent();
+			if (saveForm)
+			{
+				Text = "Save Schedule";
+				laLogo.Text = "Save a copy of this schedule:";
+				checkEditSaveAsTemplate.Visible = true;
+				Height = 210;
+			}
+			else
+			{
+				Text = "Build a New Schedule";
+				laLogo.Text = "File Name:";
+				checkEditSaveAsTemplate.Visible = false;
+				Height = 190;
+			}
 		}
 
 		public string ScheduleName

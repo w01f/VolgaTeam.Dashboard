@@ -18,6 +18,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 
 		public static event EventHandler<ScheduleSavingEventArgs> ScheduleSaving;
 		public static event EventHandler<ScheduleSavingEventArgs> ScheduleSavingAs;
+		public static event EventHandler<ScheduleSavingEventArgs> ScheduleSavingTemplate;
 
 		public static void Init(IContentController<TChangeInfo> controller)
 		{
@@ -100,14 +101,27 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 					PopupMessageHelper.Instance.ShowWarning(String.Join(Environment.NewLine, savingArgs.ErrorMessages));
 				return;
 			}
-			using (var form = new FormScheduleName())
+			using (var form = new FormScheduleName(true))
 			{
-				form.Text = "Save Schedule";
-				form.laLogo.Text = "Save a copy of this schedule:";
 				if (form.ShowDialog() != DialogResult.OK) return;
-				ScheduleSavingAs?.Invoke(null, new ScheduleSavingEventArgs { Name = form.ScheduleName });
+				var scheduleSavingArgs = new ScheduleSavingEventArgs
+				{
+					Name = form.ScheduleName,
+				};
+				ScheduleSavingAs?.Invoke(null, scheduleSavingArgs);
 				_controller.ActiveEditor.Save(savingArgs);
-				PopupMessageHelper.Instance.ShowInformation("Data Saved");
+				if (form.checkEditSaveAsTemplate.Checked)
+				{
+					if (!FileStorageManager.Instance.UseLocalMode)
+					{
+						ScheduleSavingTemplate?.Invoke(null, scheduleSavingArgs);
+						PopupMessageHelper.Instance.ShowInformation("Data saved to the cloud");
+					}
+					else
+						PopupMessageHelper.Instance.ShowWarning("Cloud is not available");
+				}
+				else
+					PopupMessageHelper.Instance.ShowInformation("Data Saved");
 			}
 		}
 

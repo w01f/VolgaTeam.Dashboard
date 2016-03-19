@@ -617,7 +617,7 @@
 			this.buttonItemHomeSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeSaveAs.Image")));
 			this.buttonItemHomeSaveAs.Name = "buttonItemHomeSaveAs";
 			this.buttonItemHomeSaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeSaveAs.Text = "Save As";
 			// 
 			// buttonItemHomeFloater
@@ -1126,7 +1126,7 @@
 			this.buttonItemHomeOpenSchedule.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemHomeOpenSchedule, new DevComponents.DotNetBar.SuperTooltipInfo("Open a Schedule", "", "Load a previously-saved\r\nSellerPoint schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeOpenSchedule.Text = "Open";
-			this.buttonItemHomeOpenSchedule.Click += new System.EventHandler(this.OnOpenSchedule_Click);
+			this.buttonItemHomeOpenSchedule.Click += new System.EventHandler(this.OnOpenScheduleClick);
 			// 
 			// ribbonPanelOptions
 			// 
@@ -1315,7 +1315,7 @@
 			this.buttonItemOptionsSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemOptionsSaveAs.Image")));
 			this.buttonItemOptionsSaveAs.Name = "buttonItemOptionsSaveAs";
 			this.buttonItemOptionsSaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemOptionsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemOptionsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemOptionsSaveAs.Text = "Save As";
 			// 
 			// buttonItemOptionsFloater
@@ -1768,7 +1768,7 @@
 			this.buttonItemSnapshotSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSnapshotSaveAs.Image")));
 			this.buttonItemSnapshotSaveAs.Name = "buttonItemSnapshotSaveAs";
 			this.buttonItemSnapshotSaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSnapshotSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemSnapshotSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemSnapshotSaveAs.Text = "Save As";
 			// 
 			// buttonItemSnapshotFloater
@@ -2475,7 +2475,7 @@
 			this.buttonItemProgramScheduleSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemProgramScheduleSaveAs.Image")));
 			this.buttonItemProgramScheduleSaveAs.Name = "buttonItemProgramScheduleSaveAs";
 			this.buttonItemProgramScheduleSaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemProgramScheduleSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemProgramScheduleSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemProgramScheduleSaveAs.Text = "Save As";
 			// 
 			// buttonItemProgramScheduleFloater
@@ -3991,7 +3991,7 @@
 			this.buttonItemCalendar2SaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemCalendar2SaveAs.Image")));
 			this.buttonItemCalendar2SaveAs.Name = "buttonItemCalendar2SaveAs";
 			this.buttonItemCalendar2SaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemCalendar2SaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemCalendar2SaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemCalendar2SaveAs.Text = "Save As";
 			// 
 			// buttonItemCalendar2Floater
@@ -4486,7 +4486,7 @@
 			this.buttonItemCalendar1SaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemCalendar1SaveAs.Image")));
 			this.buttonItemCalendar1SaveAs.Name = "buttonItemCalendar1SaveAs";
 			this.buttonItemCalendar1SaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemCalendar1SaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemCalendar1SaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemCalendar1SaveAs.Text = "Save As";
 			// 
 			// buttonItemCalendar1Floater
@@ -4972,7 +4972,7 @@
 			this.buttonItemDigitalPackageSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemDigitalPackageSaveAs.Image")));
 			this.buttonItemDigitalPackageSaveAs.Name = "buttonItemDigitalPackageSaveAs";
 			this.buttonItemDigitalPackageSaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackageSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackageSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemDigitalPackageSaveAs.Text = "Save As";
 			// 
 			// buttonItemDigitalPackageFloater
@@ -5333,7 +5333,7 @@
 			this.buttonItemDigitalScheduleSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemDigitalScheduleSaveAs.Image")));
 			this.buttonItemDigitalScheduleSaveAs.Name = "buttonItemDigitalScheduleSaveAs";
 			this.buttonItemDigitalScheduleSaveAs.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalScheduleSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalScheduleSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this file, or save a public schedule template", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemDigitalScheduleSaveAs.Text = "Save As";
 			// 
 			// buttonItemDigitalScheduleFloater

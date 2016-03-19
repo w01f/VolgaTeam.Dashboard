@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Asa.Business.Common.Entities.Helpers;
 using Asa.Business.Common.Entities.NonPersistent.Common;
+using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
 using Asa.Business.Common.Entities.Persistent;
 using Asa.Business.Common.Enums;
 using Asa.Business.Common.Interfaces;
@@ -129,43 +130,48 @@ namespace Asa.Business.Media.Entities.Persistent
 		}
 		#endregion
 
+		private MediaPartition CreatePartition(SchedulePartitionType partitionType)
+		{
+			MediaPartition schedulePartition;
+			switch (partitionType)
+			{
+				case SchedulePartitionType.WeeklySchedule:
+					schedulePartition = new WeeklySchedulePartition();
+					break;
+				case SchedulePartitionType.MonthlySchedule:
+					schedulePartition = new MonthlySchedulePartition();
+					break;
+				case SchedulePartitionType.DigitalProducts:
+					schedulePartition = new DigitalProductsPartition();
+					break;
+				case SchedulePartitionType.Snapshots:
+					schedulePartition = new SnapshotPartition();
+					break;
+				case SchedulePartitionType.Options:
+					schedulePartition = new OptionsPartition();
+					break;
+				case SchedulePartitionType.BroadcastCalendar:
+					schedulePartition = new BroadcastCalendarPartition();
+					break;
+				case SchedulePartitionType.CustomCalendar:
+					schedulePartition = new CustomCalendarPartition();
+					break;
+				default:
+					throw new ArgumentOutOfRangeException("Undefined schedule partition type");
+			}
+			schedulePartition.Add(Context);
+			schedulePartition.Schedule = this;
+			Partitions.Add(schedulePartition);
+			MarkAsModified();
+			return schedulePartition;
+		}
+
 		public TSchedulePartitionContent GetSchedulePartitionContent<TSchedulePartitionContent>(SchedulePartitionType partitionType)
 			where TSchedulePartitionContent : ISchedulePartitionContent
 		{
 			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == partitionType);
 			if (schedulePartition == null)
-			{
-				switch (partitionType)
-				{
-					case SchedulePartitionType.WeeklySchedule:
-						schedulePartition = new WeeklySchedulePartition();
-						break;
-					case SchedulePartitionType.MonthlySchedule:
-						schedulePartition = new MonthlySchedulePartition();
-						break;
-					case SchedulePartitionType.DigitalProducts:
-						schedulePartition = new DigitalProductsPartition();
-						break;
-					case SchedulePartitionType.Snapshots:
-						schedulePartition = new SnapshotPartition();
-						break;
-					case SchedulePartitionType.Options:
-						schedulePartition = new OptionsPartition();
-						break;
-					case SchedulePartitionType.BroadcastCalendar:
-						schedulePartition = new BroadcastCalendarPartition();
-						break;
-					case SchedulePartitionType.CustomCalendar:
-						schedulePartition = new CustomCalendarPartition();
-						break;
-					default:
-						throw new ArgumentOutOfRangeException("Undefined schedule partition type");
-				}
-				schedulePartition.Add(Context);
-				schedulePartition.Schedule = this;
-				Partitions.Add(schedulePartition);
-				MarkAsModified();
-			}
+				schedulePartition = CreatePartition(partitionType);	
 			return ((ISchedulePartition<TSchedulePartitionContent>)schedulePartition).Content;
 		}
 
@@ -174,7 +180,7 @@ namespace Asa.Business.Media.Entities.Persistent
 		{
 			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == partitionType);
 			if (schedulePartition == null)
-				throw new ArgumentException("Target partition not found");
+				schedulePartition = CreatePartition(partitionType);
 			var oldContent = ((ISchedulePartition<TSchedulePartitionContent>)schedulePartition).Content;
 			if (oldContent != null)
 			{
@@ -198,6 +204,37 @@ namespace Asa.Business.Media.Entities.Persistent
 				CalendarTypeChanged(this, EventArgs.Empty);
 			if (MediaDataChanged != null)
 				MediaDataChanged(this, EventArgs.Empty);
+		}
+
+		public override ScheduleTemplate GetTemplate(string name)
+		{
+			var template = base.GetTemplate(name);
+			template.Advertiser = Settings.BusinessName;
+			return template;
+		}
+
+		public override void LoadFromTemplate(ScheduleTemplate sourceTemplate)
+		{
+			base.LoadFromTemplate(sourceTemplate);
+			foreach (var partitionTemplate in sourceTemplate.PartitionTemplates)
+				ApplySchedulePartitionContentFromTemplate(partitionTemplate);
+		}
+
+		private void ApplySchedulePartitionContentFromTemplate(SchedulePartitionTemplate template)
+		{
+			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == template.PartitionType);
+			if (schedulePartition == null)
+				schedulePartition = CreatePartition(template.PartitionType);
+			schedulePartition.ContentEncoded = template.Content;
+		}
+
+		protected override IEnumerable<SchedulePartitionTemplate> GetPartitionTemplates()
+		{
+			return Partitions.Select(partition => new SchedulePartitionTemplate
+			{
+				PartitionType = partition.Type,
+				Content = partition.ContentEncoded
+			});
 		}
 	}
 }

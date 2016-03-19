@@ -25,12 +25,6 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 			_remoteSource = remoteSource;
 		}
 
-		public static async Task<bool> Exists(string[] relativePathParts, bool checkRemoteToo = false)
-		{
-			var storageItem = new StorageFile(relativePathParts);
-			return await storageItem.Exists(checkRemoteToo);
-		}
-
 		public override bool ExistsLocal()
 		{
 			return File.Exists(LocalPath);

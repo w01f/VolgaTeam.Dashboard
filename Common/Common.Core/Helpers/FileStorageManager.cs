@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -81,6 +82,7 @@ namespace Asa.Common.Core.Helpers
 		{
 			_versionFile = new ConfigFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
 			await InitCredentials();
+			SiteCredentialsManager.Instance.Init();
 			if (Activated)
 				await CheckDataSate();
 			if (Activated)

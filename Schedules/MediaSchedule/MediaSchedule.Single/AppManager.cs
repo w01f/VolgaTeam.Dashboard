@@ -10,6 +10,7 @@ using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
@@ -19,15 +20,11 @@ namespace Asa.Media.Single
 {
 	public class AppManager
 	{
-		private static readonly AppManager _instance = new AppManager();
 		private readonly FloaterManager _floater = new FloaterManager();
 
 		private AppManager() { }
 
-		public static AppManager Instance
-		{
-			get { return _instance; }
-		}
+		public static AppManager Instance { get; } = new AppManager();
 
 		public void RunApplication(MediaDataType mediaType)
 		{
@@ -64,7 +61,6 @@ namespace Asa.Media.Single
 			FileStorageManager.Instance.Authorizing += (o, e) =>
 			{
 				var authManager = new AuthManager();
-				authManager.Init();
 				FormStart.SetTitle("Checking credentials...");
 				e.LightCheck = true;
 				authManager.Auth(e);
@@ -79,14 +75,8 @@ namespace Asa.Media.Single
 
 			if (stopRun) return;
 
-			FileStorageManager.Instance.Downloading += (sender, args) =>
-				FormStart.SetDetails(args.ProgressPercent < 100 ?
-					String.Format("Loading {0} - {1}%", args.FileName, args.ProgressPercent) :
-					String.Empty);
-			FileStorageManager.Instance.Extracting += (sender, args) =>
-				FormStart.SetDetails(args.ProgressPercent < 100 ?
-					String.Format("Extracting {0} - {1}%", args.FileName, args.ProgressPercent) :
-					String.Empty);
+			FileStorageManager.Instance.Downloading += OnFileDownloading;
+			FileStorageManager.Instance.Extracting += OnFileExtracting;
 
 			if (FileStorageManager.Instance.Activated)
 			{
@@ -112,6 +102,8 @@ namespace Asa.Media.Single
 				FormMain.Instance.Init();
 			}
 
+			FileStorageManager.Instance.Downloading -= OnFileDownloading;
+			FileStorageManager.Instance.Extracting -= OnFileExtracting;
 			FormStart.CloseProgress();
 			FormStart.Destroy();
 
@@ -144,6 +136,20 @@ namespace Asa.Media.Single
 			}
 			else
 				PopupMessageHelper.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");
+		}
+
+		private void OnFileDownloading(Object sender, FileProcessingProgressEventArgs e)
+		{
+			FormStart.SetDetails(e.ProgressPercent < 100 ?
+				String.Format("Loading {0} - {1}%", e.FileName, e.ProgressPercent) :
+				String.Empty);
+		}
+
+		private void OnFileExtracting(Object sender, FileProcessingProgressEventArgs e)
+		{
+			FormStart.SetDetails(e.ProgressPercent < 100 ?
+				String.Format("Extracting {0} - {1}%", e.FileName, e.ProgressPercent) :
+				String.Empty);
 		}
 
 		public void ActivateMainForm(bool maximize = true)

@@ -1,34 +1,22 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Common.Core.Helpers
 {
 	public class AuthManager
 	{
-		public StorageFile SettingsFile { get; private set; }
-		public AuthSettings Settings { get; private set; }
-
-		public void Init()
-		{
-			SettingsFile = new StorageFile(new[]
-			{
-				FileStorageManager.LocalFilesFolderName,
-				FileStorageManager.CommonIncomingFolderName,
-				"Credentials.xml"
-			});
-			SettingsFile.AllocateParentFolder();
-
-			Settings = AuthSettings.Load(SettingsFile);
-		}
-
 		public virtual void Auth(AuthorizingEventArgs authArgs)
 		{
-			authArgs.Authorized = Settings.HasCredentials &&
+			authArgs.Authorized = SiteCredentialsManager.Instance.Settings.HasCredentials &&
 				(authArgs.LightCheck ||
 					FileStorageManager.Instance.UseLocalMode ||
-					IsAuthorized(authArgs.AuthServer, Settings.Login, Settings.GetPassword()));
+					IsAuthorized(
+						authArgs.AuthServer,
+						SiteCredentialsManager.Instance.Settings.Login,
+						SiteCredentialsManager.Instance.Settings.GetPassword()));
 		}
 
 		protected bool IsAuthorized(string url, string login, string password)

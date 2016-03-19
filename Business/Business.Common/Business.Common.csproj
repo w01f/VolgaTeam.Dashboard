@@ -83,6 +83,11 @@
     <Compile Include="Entities\NonPersistent\Schedule\BaseSchedulePartitionContent.cs" />
     <Compile Include="Entities\NonPersistent\Common\SettingsContainer.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\BaseScheduleChangeInfo.cs" />
+    <Compile Include="Entities\NonPersistent\ScheduleTemplates\SchedulePartitionTemplate.cs" />
+    <Compile Include="Entities\NonPersistent\ScheduleTemplates\ScheduleTemplate.cs" />
+    <Compile Include="Entities\NonPersistent\ScheduleTemplates\TemplateInfo.cs" />
+    <Compile Include="Entities\NonPersistent\ScheduleTemplates\TemplateList.cs" />
+    <Compile Include="Entities\Helpers\ScheduleTemplatesManager.cs" />
     <Compile Include="Interfaces\IBaseScheduleSettings.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\ShortScheduleModel.cs" />
     <Compile Include="Entities\NonPersistent\Summary\BaseSummarySettings.cs" />
@@ -105,6 +110,7 @@
     <Compile Include="Interfaces\ISchedulePartitionContent.cs" />
     <Compile Include="Interfaces\ISummaryProduct.cs" />
     <Compile Include="Interfaces\ISummarySchedule.cs" />
+    <Compile Include="Interfaces\ITemplatedSchedule.cs" />
     <Compile Include="Mappers\SchedulePartitionMap.cs" />
     <Compile Include="Mappers\ScheduleMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,17 +14,13 @@ namespace Asa.Common.Core.Helpers
 	{
 		public const string UserDataFolderName = "user_data";
 		public const string SavedFilesFolderName = "saved_files";
-
-		private static readonly AppProfileManager _instance = new AppProfileManager();
+		public const string SharedFolderName = "Shared";
 
 		public AppTypeEnum AppType { get; private set; }
 		private Guid _appID;
 		private StorageFile _localAppIdFile;
 
-		public static AppProfileManager Instance
-		{
-			get { return _instance; }
-		}
+		public static AppProfileManager Instance { get; } = new AppProfileManager();
 
 		public string AppName
 		{
@@ -47,13 +43,11 @@ namespace Asa.Common.Core.Helpers
 			}
 		}
 
-		private string ProfileName
-		{
-			get { return String.Format("AppID-{0}", _appID); }
-		}
+		private string ProfileName => String.Format("AppID-{0}", _appID);
 
 		public StorageDirectory ProfilesRootFolder { get; private set; }
 		public StorageDirectory ProfileFolder { get; private set; }
+		public StorageDirectory SharedFolder { get; private set; }
 		public StorageDirectory UserDataFolder { get; private set; }
 		public StorageDirectory AppSaveFolder { get; private set; }
 
@@ -90,6 +84,10 @@ namespace Asa.Common.Core.Helpers
 			ProfileFolder = new StorageDirectory(ProfilesRootFolder.RelativePathParts.Merge(ProfileName));
 			if (!await ProfileFolder.Exists(useremoteConnection))
 				await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, ProfileName, useremoteConnection);
+
+			SharedFolder = new StorageDirectory(ProfilesRootFolder.RelativePathParts.Merge(SharedFolderName));
+			if (!await ProfileFolder.Exists(useremoteConnection))
+				await StorageDirectory.CreateSubFolder(ProfilesRootFolder.RelativePathParts, SharedFolderName, useremoteConnection);
 
 			UserDataFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(new[] { UserDataFolderName }));
 			if (!await UserDataFolder.Exists(useremoteConnection))

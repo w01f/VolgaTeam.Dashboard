@@ -34,7 +34,7 @@ namespace Asa.Common.GUI.ToolForms
 			circularProgress.IsRunning = true;
 		}
 
-		public static void ShowProgress(string title, Action backgroundAction)
+		public static void ShowProgress(string title, Action backgroundAction, bool runInMainThread = true)
 		{
 			using (var form = new FormProgress())
 			{
@@ -45,32 +45,37 @@ namespace Asa.Common.GUI.ToolForms
 					if (_mainForm.InvokeRequired)
 						_mainForm.BeginInvoke(new MethodInvoker(Application.DoEvents));
 
-					var taskCompleted = false;
-
-					#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-					Task.Run(() =>
+					if (runInMainThread)
 					{
-						if (_mainForm.InvokeRequired)
-							_mainForm.BeginInvoke(new MethodInvoker(() =>
-							{
-								Application.DoEvents();
-								backgroundAction();
-							}));
-						else
-							backgroundAction();
-						taskCompleted = true;
-					});
-					#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+						var taskCompleted = false;
 
-					await Task.Run(() =>
-					{
-						while (!taskCompleted)
+						#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+						Task.Run(() =>
 						{
-							Thread.Sleep(100);
 							if (_mainForm.InvokeRequired)
-								_mainForm.BeginInvoke(new MethodInvoker(Application.DoEvents));
-						}
-					});
+								_mainForm.BeginInvoke(new MethodInvoker(() =>
+								{
+									Application.DoEvents();
+									backgroundAction();
+								}));
+							else
+								backgroundAction();
+							taskCompleted = true;
+						});
+						#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
+						await Task.Run(() =>
+						{
+							while (!taskCompleted)
+							{
+								Thread.Sleep(100);
+								if (_mainForm.InvokeRequired)
+									_mainForm.BeginInvoke(new MethodInvoker(Application.DoEvents));
+							}
+						});
+					}
+					else
+						await Task.Run(backgroundAction);
 					form.Close();
 				};
 				form.ShowDialog(_mainForm);

@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Asa.Business.Common.Contexts;
 using Asa.Business.Common.Entities.Helpers;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
+using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
+using Asa.Business.Common.Interfaces;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Common.Entities.Persistent
 {
-	public abstract class BaseSchedule<TContext> : ChangeTrackedEntity<TContext>
+	public abstract class BaseSchedule<TContext> : ChangeTrackedEntity<TContext>, ITemplatedSchedule
 		where TContext : ScheduleContext
 	{
 		#region Persistent Properties
@@ -48,5 +51,25 @@ namespace Asa.Business.Common.Entities.Persistent
 			var handler = PartitionContentChanged;
 			if (handler != null) handler(this, e);
 		}
+
+		public virtual ScheduleTemplate GetTemplate(string name)
+		{
+			var template = new ScheduleTemplate();
+
+			template.Name = name;
+			template.Date = DateTime.Now;
+			template.ScheduleSettingsContent = SettingsEncoded;
+			template.PartitionTemplates.AddRange(GetPartitionTemplates());
+
+			return template;
+		}
+
+		public virtual void LoadFromTemplate(ScheduleTemplate sourceTemplate)
+		{
+			Name = sourceTemplate.Name;
+			SettingsEncoded = sourceTemplate.ScheduleSettingsContent;
+		}
+
+		protected abstract IEnumerable<SchedulePartitionTemplate> GetPartitionTemplates();
 	}
 }

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Helpers;
 using Asa.Common.GUI.ContentEditors.Interfaces;
 using Asa.Common.GUI.ContentEditors.Objects;
+using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.PresentationClasses.Calendar;
 using Asa.Media.Controls.PresentationClasses.Digital;
 using Asa.Media.Controls.PresentationClasses.Gallery;
@@ -129,9 +132,13 @@ namespace Asa.Media.Controls.BusinessClasses
 			}
 			ContentControls.ForEach(c => c.InitMetaData());
 			ContentEditManager<MediaScheduleChangeInfo>.Init(this);
-			BusinessObjects.Instance.ScheduleManager.ScheduleOpened += ContentEditManager<MediaScheduleChangeInfo>.OnScheduleOpened;
-			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSaving += (o, e) => BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Save();
-			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSavingAs += (o, e) => BusinessObjects.Instance.ScheduleManager.SaveScheduleAs(e.Name);
+			BusinessObjects.Instance.ScheduleManager.ScheduleOpened +=
+				ContentEditManager<MediaScheduleChangeInfo>.OnScheduleOpened;
+			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSaving +=
+				(o, e) => BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Save();
+			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSavingAs +=
+				(o, e) => BusinessObjects.Instance.ScheduleManager.SaveScheduleAs(e.Name);
+			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSavingTemplate += OnSaveTemplate;
 			_tabStateManager.Init();
 		}
 
@@ -209,6 +216,14 @@ namespace Asa.Media.Controls.BusinessClasses
 		{
 			if (Controller.Instance.CheckPowerPointRunning())
 				ContentEditManager<MediaScheduleChangeInfo>.Email();
+		}
+
+		public void OnSaveTemplate(object sender, ScheduleSavingEventArgs e)
+		{
+			FormProgress.ShowProgress("Saving Your Schedule Template…...", () =>
+			{
+				AsyncHelper.RunSync(() => BusinessObjects.Instance.ScheduleTemplatesManager.SaveTemplate(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.GetTemplate(e.Name)));
+			}, false);
 		}
 	}
 }

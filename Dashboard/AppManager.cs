@@ -82,7 +82,6 @@ namespace Asa.Dashboard
 			FileStorageManager.Instance.Authorizing += (o, e) =>
 			{
 				var authManager = new AuthManager();
-				authManager.Init();
 				FormStart.SetTitle("Checking credentials...");
 				e.LightCheck = true;
 				authManager.Auth(e);

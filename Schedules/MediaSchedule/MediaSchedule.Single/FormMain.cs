@@ -346,7 +346,8 @@ namespace Asa.Media.Single
 
 			using (var formStart = new FormStart())
 			{
-				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any();
+				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any() || 
+					!FileStorageManager.Instance.UseLocalMode;
 				var result = formStart.ShowDialog(this);
 				if (result == DialogResult.Yes || result == DialogResult.No)
 				{
@@ -387,7 +388,7 @@ namespace Asa.Media.Single
 				AddNewSchedule();
 		}
 
-		private void OnOpenSchedule_Click(object sender, EventArgs e)
+		private void OnOpenScheduleClick(object sender, EventArgs e)
 		{
 			var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.ScheduleChanging };
 			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
@@ -406,7 +407,7 @@ namespace Asa.Media.Single
 		{
 			var formSender = sender as Form;
 			AppManager.Instance.ShowFloater(
-				formSender ?? this, 
+				formSender ?? this,
 				new FloaterRequestedEventArgs
 				{
 					Logo = Resources.RibbonLogo

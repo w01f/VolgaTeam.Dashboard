@@ -67,7 +67,6 @@ namespace Asa.Bar.App
 			FileStorageManager.Instance.Authorizing += (o, e) =>
 			{
 				var authManager = new AdBarAuthManager();
-				authManager.Init();
 				FormStart.SetTitle("Checking credentials...");
 				authManager.Auth(e);
 				if (!e.Authorized)

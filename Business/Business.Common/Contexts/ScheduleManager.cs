@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Asa.Business.Common.Entities.Helpers;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
+using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
 using Asa.Business.Common.Entities.Persistent;
 using Asa.Business.Common.Interfaces;
 using Asa.Common.Core.Configuration;
@@ -52,15 +53,19 @@ namespace Asa.Business.Common.Contexts
 			ScheduleOpened?.Invoke(this, EventArgs.Empty);
 		}
 
+		public void AddScheduleFromTemplate(ScheduleTemplate sourceTemplate)
+		{
+			var schedule = CreateSchedule();
+			schedule.LoadFromTemplate(sourceTemplate);
+			schedule.Save();
+			OpenSchedule(schedule);
+		}
+
 		public void AddSchedule(string name)
 		{
-			var schedule = Activator.CreateInstance<TSchedule>();
-			schedule.Context = Context;
+			var schedule = CreateSchedule();
 			schedule.Name = name;
-			SchedulesContainer.Schedules.Add(schedule);
-			schedule.Add(Context);
 			schedule.Save();
-
 			OpenSchedule(schedule);
 		}
 
@@ -85,6 +90,15 @@ namespace Asa.Business.Common.Contexts
 
 			if (ScheduleNameChanged != null)
 				ScheduleNameChanged(this, EventArgs.Empty);
+		}
+
+		private TSchedule CreateSchedule()
+		{
+			var schedule = Activator.CreateInstance<TSchedule>();
+			schedule.Context = Context;
+			SchedulesContainer.Schedules.Add(schedule);
+			schedule.Add(Context);
+			return schedule;
 		}
 	}
 }

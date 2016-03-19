@@ -1,4 +1,5 @@
-﻿using Asa.Business.Media.Configuration;
+﻿using Asa.Business.Common.Entities.Helpers;
+using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Contexts;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RateCard;
@@ -7,14 +8,10 @@ namespace Asa.Media.Controls.BusinessClasses
 {
 	public class BusinessObjects
 	{
-		private static readonly BusinessObjects _instance = new BusinessObjects();
-
-		public static BusinessObjects Instance
-		{
-			get { return _instance; }
-		}
+		public static BusinessObjects Instance { get; } = new BusinessObjects();
 
 		public MediaScheduleManager ScheduleManager { get; private set; }
+		public ScheduleTemplatesManager ScheduleTemplatesManager { get; private set; }
 		public HelpManager HelpManager { get; private set; }
 		public OutputManager OutputManager { get; private set; }
 		public TabPageManager TabPageManager { get; private set; }
@@ -28,6 +25,7 @@ namespace Asa.Media.Controls.BusinessClasses
 		{
 			OutputManager = new OutputManager();
 			ScheduleManager = new MediaScheduleManager();
+			ScheduleTemplatesManager = new ScheduleTemplatesManager();
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
 		}
@@ -35,6 +33,7 @@ namespace Asa.Media.Controls.BusinessClasses
 		public void Init()
 		{
 			ScheduleManager.Init();
+			AsyncHelper.RunSync(ScheduleTemplatesManager.Init);
 
 			OutputManager.Init();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();

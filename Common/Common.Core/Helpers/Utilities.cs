@@ -1,14 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using Ionic.Zip;
 using Application = Microsoft.Office.Interop.PowerPoint.Application;
 
 namespace Asa.Common.Core.Helpers
 {
 	public static class Utilities
 	{
+		public static void CompressFiles(IEnumerable<string> filesPaths, string compressedFilePath)
+		{
+			using (var zip = new ZipFile())
+			{
+				zip.AddFiles(filesPaths, false, "");
+				zip.Save(compressedFilePath);
+			}
+		}
+
+		public static IEnumerable<string> ExtractFiles(string compressedFilePath)
+		{
+			var zip = ZipFile.Read(compressedFilePath);
+			var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+			if (!Directory.Exists(tempFolder))
+				Directory.CreateDirectory(tempFolder);
+			foreach (var e in zip)
+			{
+				e.Extract(tempFolder, ExtractExistingFileAction.OverwriteSilently);
+			}
+			return Directory.GetFiles(tempFolder);
+		}
+
 		public static void MakeFolderAvailable(DirectoryInfo folder)
 		{
 			try

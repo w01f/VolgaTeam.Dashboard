@@ -71,7 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Common\Common.Core\Helpers\SharedAssemblyHelper.cs">
-      <Link>SharedAssemblyHelper.cs</Link>
+      <Link>Helpers\SharedAssemblyHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Common.GUI\Common\PictureBoxButtonizer.cs">
+      <Link>Helpers\PictureBoxButtonizer.cs</Link>
     </Compile>
     <Compile Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.cs">
       <Link>FormDownloadComplete.cs</Link>
@@ -89,29 +92,22 @@
       <Link>FormProgress.designer.cs</Link>
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppSettingsManager.cs" />
+    <Compile Include="Helpers\AppSettingsManager.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="IWebPage.cs" />
-    <Compile Include="ClosePageEventArgs.cs" />
-    <Compile Include="NewPageEventArgs.cs" />
+    <Compile Include="Helpers\ExternalBrowserManager.cs" />
+    <Compile Include="WebPage\ClosePageEventArgs.cs" />
+    <Compile Include="WebPage\NewPageEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs" />
-    <Compile Include="IEPage.cs">
+    <Compile Include="WebPage\WebKitPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IEPage.Designer.cs">
-      <DependentUpon>IEPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WebKitPage.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WebKitPage.Designer.cs">
+    <Compile Include="WebPage\WebKitPage.Designer.cs">
       <DependentUpon>WebKitPage.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.resx">
@@ -133,11 +129,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="IEPage.resx">
-      <DependentUpon>IEPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WebKitPage.resx">
+    <EmbeddedResource Include="WebPage\WebKitPage.resx">
       <DependentUpon>WebKitPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -156,6 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\ie.png" />
+    <None Include="Resources\ff.png" />
+    <None Include="Resources\ch.png" />
+    <None Include="Resources\ProgressLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

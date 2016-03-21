@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using Asa.Bar.App.Common;
 using Asa.Bar.App.Configuration;
 
 namespace Asa.Bar.App.BarItems

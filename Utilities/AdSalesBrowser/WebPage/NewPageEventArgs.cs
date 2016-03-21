@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdSalesBrowser
+namespace AdSalesBrowser.WebPage
 {
 	public class NewPageEventArgs : EventArgs
 	{

@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace AdSalesBrowser
+namespace AdSalesBrowser.WebPage
 {
 	public class ClosePageEventArgs : EventArgs
 	{
-		public IWebPage Page { get; set; }
+		public WebKitPage Page { get; set; }
 	}
 }

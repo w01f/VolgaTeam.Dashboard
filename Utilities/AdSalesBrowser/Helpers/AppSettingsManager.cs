@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using AdSalesBrowser.Properties;
 
-namespace AdSalesBrowser
+namespace AdSalesBrowser.Helpers
 {
 	class AppSettingsManager
 	{
-		private static readonly AppSettingsManager _instance = new AppSettingsManager();
-
 		public string BaseUrl { get; private set; }
 		public bool EnableMenu { get; private set; }
 		public bool EnableScroll { get; private set; }
-		public bool UseIEEngine { get; private set; }
 
-		public static AppSettingsManager Instance
-		{
-			get { return _instance; }
-		}
+		public Image SplashLogo { get; private set; }
+
+		public static AppSettingsManager Instance { get; } = new AppSettingsManager();
 
 		private AppSettingsManager() { }
 
@@ -27,6 +25,7 @@ namespace AdSalesBrowser
 			EnableScroll = true;
 
 			var appFileName = Process.GetCurrentProcess().MainModule.FileName;
+			var appFolderPath = Path.GetDirectoryName(appFileName);
 			var settingsFilePath = Path.ChangeExtension(appFileName, "txt");
 			if (!File.Exists(settingsFilePath)) return;
 			var settingsLines = File.ReadAllLines(settingsFilePath);
@@ -34,7 +33,9 @@ namespace AdSalesBrowser
 			BaseUrl = settingsLines.ElementAtOrDefault(0);
 			EnableMenu = (settingsLines.ElementAtOrDefault(1) ?? String.Empty).Contains("nomenu");
 			EnableScroll = (settingsLines.ElementAtOrDefault(1) ?? String.Empty).Contains("noscroll");
-			UseIEEngine = (settingsLines.ElementAtOrDefault(1) ?? String.Empty).Contains("ie");
+
+			var splashLogoPath = Path.Combine(appFolderPath, "splash.png");
+			SplashLogo = File.Exists(splashLogoPath) ? Image.FromFile(splashLogoPath) : Resources.ProgressLogo;
 		}
 	}
 }

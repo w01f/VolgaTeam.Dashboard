@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using AdSalesBrowser.Helpers;
+using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ToolForms;
 using DevExpress.Utils;
 using DevExpress.XtraTab;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
 
-namespace AdSalesBrowser
+namespace AdSalesBrowser.WebPage
 {
-	public sealed partial class WebKitPage : XtraTabPage, IWebPage
-	//public sealed partial class WebKitPage : UserControl, IWebPage
+	public sealed partial class WebKitPage : XtraTabPage
+	//public sealed partial class WebKitPage : UserControl
 	{
 		private readonly WebControl _webKit;
 		private readonly string _url;
-		private bool _downloadStarted;
+
+		private PictureBox[] _externalBrowserButtons;
 
 		public event EventHandler<NewPageEventArgs> OnNavigateNewPage;
 		public event EventHandler<ClosePageEventArgs> OnClosePage;
@@ -26,44 +30,42 @@ namespace AdSalesBrowser
 			_webKit.Dock = DockStyle.Fill;
 			Controls.Add(_webKit);
 			_webKit.WebView = new WebView();
-			_webKit.WebView.TitleChanged += OnWebViewTitleChanged;
-			_webKit.WebView.LoadCompleted += OnWebViewLoadCompleted;
-			_webKit.WebView.LoadFailed += OnWebViewLoadFailed;
-			_webKit.WebView.IsLoadingChanged += OnWebViewIsLoadingChanged;
-			_webKit.WebView.BeforeContextMenu += OnWebViewBeforeContextMenu;
-			_webKit.WebView.NewWindow += OnWebViewNewWindow;
-			_webKit.WebView.LaunchUrl += OnWebViewLaunchUrl;
-			_webKit.WebView.FileDialog += OnProcessFileDialog;
-			_webKit.WebView.BeforeDownload += OnWebViewBeforeDownload;
-			_webKit.WebView.DownloadUpdated += OnWebViewDownloadUpdated;
-			_webKit.WebView.DownloadCompleted += OnWebViewDownloadCompleted;
-			_webKit.WebView.DownloadCanceled += OnWebViewDownloadCanceled;
 			_webKit.WebView.CustomUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Essential Objects Chrome/41.0.2272.16 Safari/537.36";
 			Text = _webKit.WebView.Title;
+
+			pbProgressLogo.Image = AppSettingsManager.Instance.SplashLogo;
+
+			InitSiteLoading();
+			InitDownloading();
+			_webKit.WebView.JSExtInvoke += OnJavaScriptCall;
+			InitExternalBrowserButtons();
 		}
 
-		public WebKitPage(string url)
-			: this()
+		public WebKitPage(string url) : this()
 		{
 			_url = url;
 		}
 
+		#region Site Loading
 		public void Navigate()
 		{
-			circularProgressWebpage.Visible = true;
-			circularProgressWebpage.IsRunning = true;
-			circularProgressWebpage.BringToFront();
 			ResizeProgressBar();
+			pnProgress.BringToFront();
+			circularProgress.IsRunning = true;
+
+			Application.DoEvents();
 			Application.DoEvents();
 			_webKit.WebView.LoadUrl(_url);
 		}
 
-		private void ResizeProgressBar()
+		private void InitSiteLoading()
 		{
-			var p = ClientRectangle.GetCenter();
-			var tmp = circularProgressWebpage.ClientRectangle.GetCenter();
-			p.Offset(-tmp.X, -tmp.Y);
-			circularProgressWebpage.Location = p;
+			_webKit.WebView.TitleChanged += OnWebViewTitleChanged;
+			_webKit.WebView.LoadCompleted += OnWebViewLoadCompleted;
+			_webKit.WebView.LoadFailed += OnWebViewLoadFailed;
+			_webKit.WebView.BeforeContextMenu += OnWebViewBeforeContextMenu;
+			_webKit.WebView.NewWindow += OnWebViewNewWindow;
+			_webKit.WebView.LaunchUrl += OnWebViewLaunchUrl;
 		}
 
 		private void OnWebViewTitleChanged(object sender, EventArgs eventArgs)
@@ -77,27 +79,23 @@ namespace AdSalesBrowser
 				e.Menu.Items.Clear();
 		}
 
-		private void OnWebViewIsLoadingChanged(object sender, EventArgs e)
-		{
-			if (_webKit.WebView.IsLoading) return;
-			circularProgressWebpage.Visible = false;
-			circularProgressWebpage.IsRunning = false;
-		}
-
 		private void OnWebViewLoadFailed(object sender, LoadFailedEventArgs e)
 		{
 			if (ShowCloseButton != DefaultBoolean.False && OnClosePage != null)
 				OnClosePage(this, new ClosePageEventArgs() { Page = this });
 			else
 			{
-				circularProgressWebpage.Visible = false;
-				circularProgressWebpage.IsRunning = false;
+				circularProgress.IsRunning = false;
+				pnProgress.SendToBack();
+				_webKit.BringToFront();
 			}
 		}
 
 		private void OnWebViewLoadCompleted(object sender, LoadCompletedEventArgs e)
 		{
-			circularProgressWebpage.Visible = false;
+			circularProgress.IsRunning = false;
+			pnProgress.SendToBack();
+			_webKit.BringToFront();
 		}
 
 		private void OnWebViewNewWindow(object sender, NewWindowEventArgs e)
@@ -110,6 +108,17 @@ namespace AdSalesBrowser
 		private void OnWebViewLaunchUrl(object sender, LaunchUrlEventArgs e)
 		{
 			e.UseOSHandler = true;
+		}
+		#endregion
+
+		#region Download handling
+		private void InitDownloading()
+		{
+			_webKit.WebView.FileDialog += OnProcessFileDialog;
+			_webKit.WebView.BeforeDownload += OnWebViewBeforeDownload;
+			_webKit.WebView.DownloadUpdated += OnWebViewDownloadUpdated;
+			_webKit.WebView.DownloadCompleted += OnWebViewDownloadCompleted;
+			_webKit.WebView.DownloadCanceled += OnWebViewDownloadCanceled;
 		}
 
 		private void OnProcessFileDialog(Object sender, FileDialogEventArgs e)
@@ -168,10 +177,59 @@ namespace AdSalesBrowser
 			FormMain.Instance.ResumePages();
 			FormProgress.CloseProgress();
 		}
+		#endregion
 
-		private void WebPage_Resize(object sender, EventArgs e)
+		#region External Web Browsers
+		private void InitExternalBrowserButtons()
+		{
+			_externalBrowserButtons = new[] { pbChrome, pbFirefox, pbIExplorer };
+			foreach (var browserButton in _externalBrowserButtons)
+			{
+				var browserTag = browserButton.Tag as String;
+				if (ExternalBrowserManager.AvailableBrowsers.ContainsKey(browserTag))
+				{
+					browserButton.Enabled = true;
+					browserButton.Buttonize();
+				}
+				else
+					browserButton.Enabled = false;
+			}
+		}
+
+		private void OnExternalBrowserOpenClick(object sender, EventArgs e)
+		{
+			var browserButton = (PictureBox)sender;
+			var browserTag = browserButton.Tag as String;
+			var browserPath = ExternalBrowserManager.AvailableBrowsers[browserTag];
+			try
+			{
+				Process.Start(browserPath, _webKit.WebView.Url);
+			}
+			catch { }
+		}
+		#endregion
+
+		#region Splash Processing
+		private void ResizeProgressBar()
+		{
+			var padding = (Width - 420) / 2;
+			pnProgress.Padding = new Padding(padding, 50, padding, 0);
+		}
+
+		private void OnWebPageResize(object sender, EventArgs e)
 		{
 			ResizeProgressBar();
+		}
+		#endregion
+
+		private void OnJavaScriptCall(Object sender, JSExtInvokeArgs e)
+		{
+			switch (e.FunctionName)
+			{
+				case "activateEOEngine":
+					MessageBox.Show("Handled");
+					break;
+			}
 		}
 	}
 }

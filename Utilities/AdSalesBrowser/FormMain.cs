@@ -1,7 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
+using AdSalesBrowser.Helpers;
 using AdSalesBrowser.Properties;
+using AdSalesBrowser.WebPage;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
 using DevExpress.XtraTab;
@@ -33,32 +36,35 @@ namespace AdSalesBrowser
 				"y7to2PD9GvZ3hI6xy59Zs/MDD+SrwPI=");
 			Runtime.AllowProprietaryMediaFormats();
 
-			Load += LoadSettings;
-			Load += InitApplication; 
+			InitApplication();
+
+			Shown += (o, e) => LoadPages();
 			Closing += SaveSettings;
 			xtraTabControl.SelectedPageChanged += OnSelectedPageChanged;
-			xtraTabControl.CloseButtonClick+=OnWebPageCloseButtonClick;
+			xtraTabControl.CloseButtonClick += OnWebPageCloseButtonClick;
 		}
 
-		private void InitApplication(object sender, EventArgs e)
+		private void InitApplication()
 		{
+			LoadSettings();
 			AppSettingsManager.Instance.LoadSettings();
+			ExternalBrowserManager.Load();
 			var webPage = CreateWebPage(AppSettingsManager.Instance.BaseUrl);
 			((XtraTabPage)webPage).ShowCloseButton = DefaultBoolean.False;
 			xtraTabControl.TabPages.Add((XtraTabPage)webPage);
 			UpdateTabControlState();
-
-			webPage.Navigate();
 		}
 
-		private IWebPage CreateWebPage(string url)
+		private void LoadPages()
 		{
-			IWebPage webPage;
-			if (AppSettingsManager.Instance.UseIEEngine)
-				webPage =  new IEPage(url);
-			else
-				webPage = new WebKitPage(url);
-			((XtraTabPage)webPage).TextChanged += OnWebPageTextChanged;
+			foreach (var webPage in xtraTabControl.TabPages.OfType<WebKitPage>())
+				webPage.Navigate();
+		}
+
+		private WebKitPage CreateWebPage(string url)
+		{
+			var webPage = new WebKitPage(url);
+			webPage.TextChanged += OnWebPageTextChanged;
 			webPage.OnNavigateNewPage += OnNavigateNewPage;
 			webPage.OnClosePage += OnClosePage;
 			return webPage;
@@ -72,7 +78,7 @@ namespace AdSalesBrowser
 
 		private void UpdateTabControlState()
 		{
-			xtraTabControl.ShowTabHeader = xtraTabControl.TabPages.Count > 1?DefaultBoolean.True : DefaultBoolean.False;
+			xtraTabControl.ShowTabHeader = xtraTabControl.TabPages.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
 		}
 
 		public void SuspendPages()
@@ -117,7 +123,7 @@ namespace AdSalesBrowser
 		}
 
 		#region Form Settings
-		private void LoadSettings(object sender, EventArgs e)
+		private void LoadSettings()
 		{
 			Width = Settings.Default.FormWidth;
 			Height = Settings.Default.FormHeight;

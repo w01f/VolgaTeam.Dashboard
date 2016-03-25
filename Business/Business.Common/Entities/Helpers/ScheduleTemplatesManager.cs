@@ -58,7 +58,7 @@ namespace Asa.Business.Common.Entities.Helpers
 			if (await templateArchiveFile.Exists(true, true))
 			{
 				await templateArchiveFile.Download(true);
-				var templateEncodedFile = Utilities.ExtractFiles(templateArchiveFile.LocalPath).FirstOrDefault();
+				var templateEncodedFile = ZipHelper.ExtractFiles(templateArchiveFile.LocalPath).FirstOrDefault();
 				return ScheduleTemplate.FromFile(templateEncodedFile);
 			}
 			throw new FileNotFoundException("Schedule Template not found in cloud");
@@ -80,7 +80,7 @@ namespace Asa.Business.Common.Entities.Helpers
 						TemplatesFolderName,
 						String.Format("{0}.zip", template.Name)
 					}));
-			Utilities.CompressFiles(new[] { templateEncodedFile }, templateArchiveFile.LocalPath);
+			ZipHelper.CompressFiles(new[] { templateEncodedFile }, templateArchiveFile.LocalPath);
 			await templateArchiveFile.Upload();
 			await SaveTemplatesList(templateList);
 		}

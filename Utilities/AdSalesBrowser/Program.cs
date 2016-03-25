@@ -15,7 +15,7 @@ namespace AdSalesBrowser
 			AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(FormMain.Instance);
+			AppManager.Instance.RunApplication();
 		}
 	}
 }

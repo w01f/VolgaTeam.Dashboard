@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using Asa.Common.Core.Helpers;
 using Microsoft.Win32;
 
 namespace AdSalesBrowser.Helpers
 {
 	class ExternalBrowserManager
 	{
+		public const string BrowserChromeTag = "chrome";
+		public const string BrowserFirefoxTag = "firefox";
+		public const string BrowserIETag = "iexplore";
+		public const string BrowserEdgeTag = "edge";
+
 		private static readonly string[] ProcessedBrowsers =
 		{
-			"chrome",
-			"firefox",
-			"iexplore"
+			BrowserChromeTag,
+			BrowserFirefoxTag,
+			BrowserIETag
 		};
 
 		public static Dictionary<string, string> AvailableBrowsers { get; private set; }
@@ -43,6 +50,22 @@ namespace AdSalesBrowser.Helpers
 						AvailableBrowsers.Add(browserTag, path);
 					}
 				}
+
+				if (Utilities.IsWindows10())
+					AvailableBrowsers.Add(BrowserEdgeTag, "microsoft-edge:{0}");
+			}
+			catch { }
+		}
+
+		public static void OpenUrl(string browserTag, string url)
+		{
+			var browserPath = ExternalBrowserManager.AvailableBrowsers[browserTag];
+			try
+			{
+				if (browserTag == BrowserEdgeTag)
+					Process.Start(String.Format(browserPath, url));
+				else
+					Process.Start(browserPath, url);
 			}
 			catch { }
 		}

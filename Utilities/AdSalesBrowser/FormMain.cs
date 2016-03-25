@@ -1,15 +1,19 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using AdSalesBrowser.Configuration;
 using AdSalesBrowser.Helpers;
+using AdSalesBrowser.PowerPoint;
 using AdSalesBrowser.Properties;
 using AdSalesBrowser.WebPage;
+using Asa.Common.GUI.Floater;
+using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
-using EO.WebBrowser;
 
 namespace AdSalesBrowser
 {
@@ -17,43 +21,48 @@ namespace AdSalesBrowser
 	{
 		private static FormMain _instance;
 
-		public static FormMain Instance
-		{
-			get { return _instance ?? (_instance = new FormMain()); }
-		}
+		public static FormMain Instance => _instance ?? (_instance = new FormMain());
 
 		private FormMain()
 		{
 			InitializeComponent();
-
-			Runtime.AddLicense(
-				"pfcan53Y+PbooW+mtsPasWmoubPL8q7ZyQkb6Kvc99IfvFuts8PdrmuntcfN" +
-				"n6/c9gQU7qe0psLgoVmmwp61n1mXpM0e6KDl5QUg8Z610gLb4IbN1uMjt4/M" +
-				"6sXexY+928T9wHa0wMAe6KDl5QUg8Z61kZvnrqXg5/YZ8p61kZt14+30EO2s" +
-				"3MKetZ9Zl6TNF+ic3PIEEMidtbvD47ZrqLjE37B1pvD6DuSn6unaD71GgaSx" +
-				"y5914+30EO2s3OnP566l4Of2GfKe3MKetZ9Zl6TNDOul5vvPuIlZl6Sxy59Z" +
-				"l8DyD+NZ6/0BELxbvNO/7uer5vH2zZ+v3PYEFO6ntKbC4a1pmaTA6YxDl6Sx" +
-				"y7to2PD9GvZ3hI6xy59Zs/MDD+SrwPI=");
-			Runtime.AllowProprietaryMediaFormats();
-
-			InitApplication();
-
 			Shown += (o, e) => LoadPages();
 			Closing += SaveSettings;
+			Resize += OnFormResize;
 			xtraTabControl.SelectedPageChanged += OnSelectedPageChanged;
 			xtraTabControl.CloseButtonClick += OnWebPageCloseButtonClick;
 		}
 
-		private void InitApplication()
+		public void InitForm()
 		{
 			LoadSettings();
-			AppSettingsManager.Instance.LoadSettings();
-			ExternalBrowserManager.Load();
+
+			Text = AppSettingsManager.Instance.FormText ?? Text;
+			Icon = AppSettingsManager.Instance.FormIcon ?? Icon;
+
+			InitExternalBrowserButtons();
+
 			var webPage = CreateWebPage(AppSettingsManager.Instance.BaseUrl);
 			((XtraTabPage)webPage).ShowCloseButton = DefaultBoolean.False;
 			xtraTabControl.TabPages.Add((XtraTabPage)webPage);
 			UpdateTabControlState();
 		}
+
+		private void OnFormResize(object sender, EventArgs e)
+		{
+			var f = sender as Form;
+			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
+				Opacity = 1;
+		}
+
+		private void OnFormClosed(object sender, FormClosedEventArgs e)
+		{
+			PowerPointSingleton.Instance.Disconnect();
+		}
+
+		#region Web Page Management
+
+		private WebKitPage SelectedWebPage => xtraTabControl.SelectedTabPage as WebKitPage;
 
 		private void LoadPages()
 		{
@@ -64,7 +73,6 @@ namespace AdSalesBrowser
 		private WebKitPage CreateWebPage(string url)
 		{
 			var webPage = new WebKitPage(url);
-			webPage.TextChanged += OnWebPageTextChanged;
 			webPage.OnNavigateNewPage += OnNavigateNewPage;
 			webPage.OnClosePage += OnClosePage;
 			return webPage;
@@ -72,6 +80,7 @@ namespace AdSalesBrowser
 
 		private void RemoveTabPage(XtraTabPage tabPage)
 		{
+			((WebKitPage)tabPage).Release();
 			xtraTabControl.TabPages.Remove(tabPage);
 			UpdateTabControlState();
 		}
@@ -101,14 +110,10 @@ namespace AdSalesBrowser
 			webPage.Navigate();
 		}
 
-		private void OnWebPageTextChanged(object sender, EventArgs e)
-		{
-			Text = xtraTabControl.SelectedTabPage.Text;
-		}
-
 		private void OnSelectedPageChanged(object sender, TabPageChangedEventArgs e)
 		{
-			OnWebPageTextChanged(sender, e);
+			UpdateExtensionsState();
+			UpdateNavigationButtons();
 		}
 
 		private void OnWebPageCloseButtonClick(object sender, EventArgs e)
@@ -119,8 +124,91 @@ namespace AdSalesBrowser
 
 		private void OnClosePage(object sender, ClosePageEventArgs e)
 		{
-			RemoveTabPage((XtraTabPage)e.Page);
+			RemoveTabPage(e.Page);
 		}
+		#endregion
+
+		#region Navigation
+		public ButtonItem ButtonNavigationBack => buttonItemMenuNavigationBack;
+		public ButtonItem ButtonNavigationForward => buttonItemMenuNavigationForward;
+
+		private void UpdateNavigationButtons()
+		{
+			SelectedWebPage?.UpdateNavigationButtonsState();
+		}
+
+		private void buttonItemMenuNavigationBack_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.NavigateBack();
+		}
+
+		private void buttonItemMenuNavigationForward_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.NavigateForward();
+		}
+
+		private void buttonItemMenuNavigationRefresh_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.Refresh();
+		}
+		#endregion
+
+		#region External Web Browsers
+		private ButtonItem[] _externalBrowserButtons;
+
+		private void InitExternalBrowserButtons()
+		{
+			_externalBrowserButtons = new[]
+			{
+				buttonItemMenuBrowserChrome,
+				buttonItemMenuBrowserFirefox,
+				buttonItemMenuBrowserIE,
+				buttonItemMenuBrowserEdge
+			};
+			foreach (var browserButton in _externalBrowserButtons)
+			{
+				var browserTag = browserButton.Tag as String;
+				if (ExternalBrowserManager.AvailableBrowsers.ContainsKey(browserTag))
+					browserButton.Visible = true;
+				else
+					browserButton.Visible = false;
+			}
+		}
+
+		private void OnExternalBrowserOpenClick(object sender, EventArgs e)
+		{
+			var browserButton = (ButtonItem)sender;
+			var browserTag = browserButton.Tag as String;
+			ExternalBrowserManager.OpenUrl(browserTag, SelectedWebPage?.CurrentUrl);
+		}
+		#endregion
+
+		#region Sales Library Extensions
+		public ButtonItem ButtonExtensionsAddSlide => buttonItemMenuExtensionsAddSlide;
+		public ButtonItem ButtonExtensionsAddSlides => buttonItemMenuExtensionsAddSlides;
+		public ButtonItem ButtonExtensionsAddVideo => buttonItemMenuExtensionsAddVideo;
+		public LabelItem LabelExtensionsWarning => labelItemMenuWarning;
+
+		private void UpdateExtensionsState()
+		{
+			SelectedWebPage?.UpdateExtensionsState();
+		}
+
+		private void buttonItemMenuExtensionsAddSlide_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.AddSlide();
+		}
+
+		private void buttonItemMenuExtensionsAddSlides_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.AddSlides();
+		}
+
+		private void buttonItemMenuExtensionsAddVideo_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.AddVideo();
+		}
+		#endregion
 
 		#region Form Settings
 		private void LoadSettings()

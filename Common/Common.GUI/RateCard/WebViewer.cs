@@ -35,7 +35,7 @@ namespace Asa.Common.GUI.RateCard
 			_browser.WebView = new WebView();
 			_browser.Dock = DockStyle.Fill;
 			_browser.WebView.LoadCompleted += OnMainWebViewLoadComplete;
-			_browser.WebView.NewWindow += OnMainnWebViewNewWindow;
+			_browser.WebView.NewWindow += OnMainWebViewNewWindow;
 			_browser.WebView.BeforeDownload += OnWebViewBeforeDownload;
 			_browser.WebView.CustomUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Essential Objects Chrome/41.0.2272.16 Safari/537.36";
 			Controls.Add(_browser);
@@ -63,7 +63,7 @@ namespace Asa.Common.GUI.RateCard
 			Loaded = true;
 		}
 
-		private void OnMainnWebViewNewWindow(object sender, NewWindowEventArgs e)
+		private void OnMainWebViewNewWindow(object sender, NewWindowEventArgs e)
 		{
 			_childBrowser.WebView.LoadUrl(e.TargetUrl);
 			e.Accepted = false;

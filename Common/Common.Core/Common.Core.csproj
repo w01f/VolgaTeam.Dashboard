@@ -110,6 +110,7 @@
     <Compile Include="Helpers\ThemeSaveHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Helpers\WinAPIHelper.cs" />
+    <Compile Include="Helpers\ZipHelper.cs" />
     <Compile Include="Interfaces\IJsonCloneable.cs" />
     <Compile Include="Interfaces\IJsonCloneSource.cs" />
     <Compile Include="Interfaces\ITextItem.cs" />

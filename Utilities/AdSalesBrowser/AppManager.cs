@@ -45,7 +45,11 @@ namespace AdSalesBrowser
 
 		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var afterBack = new Action<bool>(b => Utilities.ActivateForm(FormMain.Instance.Handle, b, false));
+			var afterBack = new Action<bool>(b =>
+			{
+				Utilities.ActivateForm(FormMain.Instance.Handle, b, false);
+				Utilities.ActivateTaskbar();
+			});
 			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo ?? AppSettingsManager.Instance.FloaterLogo, e.AfterShow, null, afterBack);
 		}
 	}

@@ -51,7 +51,7 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 
 		public void SwitchDocumentPage(params object[] args)
 		{
-			CurrentLinkData?.SwitchCurrentPart((Int32)args[0]);
+			CurrentLinkData?.SwitchCurrentPart(Int32.Parse(args[0].ToString()));
 		}
 
 		public bool IsUrlExternal(string targetUrl)

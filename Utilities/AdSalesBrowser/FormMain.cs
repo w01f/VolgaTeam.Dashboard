@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using AdSalesBrowser.Configuration;
@@ -78,10 +77,11 @@ namespace AdSalesBrowser
 			return webPage;
 		}
 
-		private void RemoveTabPage(XtraTabPage tabPage)
+		private void RemoveTabPage(ClosePageEventArgs args)
 		{
-			((WebKitPage)tabPage).Release();
-			xtraTabControl.TabPages.Remove(tabPage);
+			if (args.NeedReleasePage)
+				args.Page.Release();
+			xtraTabControl.TabPages.Remove(args.Page);
 			UpdateTabControlState();
 		}
 
@@ -118,13 +118,17 @@ namespace AdSalesBrowser
 
 		private void OnWebPageCloseButtonClick(object sender, EventArgs e)
 		{
-			var arg = (ClosePageButtonEventArgs)e;
-			RemoveTabPage((XtraTabPage)arg.Page);
+			var args = (ClosePageButtonEventArgs)e;
+			RemoveTabPage(new ClosePageEventArgs
+			{
+				Page = (WebKitPage)args.Page,
+				NeedReleasePage = true
+			});
 		}
 
 		private void OnClosePage(object sender, ClosePageEventArgs e)
 		{
-			RemoveTabPage(e.Page);
+			RemoveTabPage(e);
 		}
 		#endregion
 

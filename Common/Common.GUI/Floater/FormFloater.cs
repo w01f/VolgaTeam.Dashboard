@@ -8,14 +8,13 @@ namespace Asa.Common.GUI.Floater
 {
 	public partial class FormFloater : Form
 	{
-		public FormFloater(int x, int y, Image logo)
+		public FormFloater(int x, int y, string text, Image logo)
 		{
 			InitializeComponent();
 			Top = y;
 			Left = x - Width;
 			buttonXBack.Image = logo;
-			const string text = "adSALESapps.com";
-			labelCaption.Text = String.IsNullOrEmpty(text) ? "GO GET YOUR BIZ!" : text;
+			labelCaption.Text = String.IsNullOrEmpty(text) ? "adSALESapps.com" : text;
 			superTooltip.SetSuperTooltip(buttonXBack, new SuperTooltipInfo("Restore", "", String.Format("Restore {0} Application", String.IsNullOrEmpty(text) ? "adSALESapps Dashboard" : text), null, null, eTooltipColor.Gray));
 		}
 

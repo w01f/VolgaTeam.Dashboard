@@ -102,7 +102,7 @@ namespace AdSalesBrowser.WebPage
 		private void OnWebViewLoadFailed(object sender, LoadFailedEventArgs e)
 		{
 			if (ShowCloseButton != DefaultBoolean.False && OnClosePage != null)
-				OnClosePage(this, new ClosePageEventArgs() { Page = this });
+				OnClosePage(this, new ClosePageEventArgs { Page = this, NeedReleasePage = e.ErrorCode != ErrorCode.ProceedAsDownload });
 			else
 			{
 				circularProgress.IsRunning = false;
@@ -151,6 +151,9 @@ namespace AdSalesBrowser.WebPage
 						saveDialog.Title = e.Title;
 						saveDialog.Filter = e.Filter;
 						saveDialog.FileName = e.DefaultFileName;
+						saveDialog.InitialDirectory = Path.Combine(
+							Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+							"Downloads");
 						if (saveDialog.ShowDialog(FormMain.Instance) != DialogResult.Cancel)
 						{
 							FormDownloadProgress.ShowProgress(FormMain.Instance);
@@ -321,7 +324,7 @@ namespace AdSalesBrowser.WebPage
 					var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
 					var allowVideoInsert = activePresentation != null && File.Exists(activePresentation.FullName);
 					FormMain.Instance.ButtonExtensionsAddVideo.Visible = allowVideoInsert;
-					if (activePresentation!= null && !allowVideoInsert)
+					if (activePresentation != null && !allowVideoInsert)
 						FormMain.Instance.LabelExtensionsWarning.Text = "Save your presentation if you want to add this video…";
 					break;
 			}

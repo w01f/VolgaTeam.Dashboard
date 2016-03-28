@@ -261,7 +261,7 @@ namespace Asa.Dashboard
 		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
 			var afterBack = new Action<bool>(b => ActivateMainForm());
-			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo ?? Resources.RibbonLogo, e.AfterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, null, e.Logo ?? Resources.RibbonLogo, e.AfterShow, null, afterBack);
 		}
 	}
 }

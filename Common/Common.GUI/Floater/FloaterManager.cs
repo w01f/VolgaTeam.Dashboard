@@ -11,12 +11,12 @@ namespace Asa.Common.GUI.Floater
 		private int _floaterPositionX = int.MinValue;
 		private int _floaterPositionY = int.MinValue;
 
-		public void ShowFloater(Form sender, Image logo, Action afterShow, Action afterHide, Action<bool> afterBack)
+		public void ShowFloater(Form sender, String title, Image logo, Action afterShow, Action afterHide, Action<bool> afterBack)
 		{
 			var x = _floaterPositionX == Int32.MinValue ? sender.Left + sender.Width - 40 : _floaterPositionX;
 			var y = _floaterPositionY == Int32.MinValue ? (sender.Top + (sender.Height - 65) / 2) : _floaterPositionY;
 
-			using (var form = new FormFloater(x, y, logo))
+			using (var form = new FormFloater(x, y, title, logo))
 			{
 				if (afterShow != null)
 					form.Shown += (o, e) => afterShow();

@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using AdSalesBrowser.Configuration;
 using AdSalesBrowser.Helpers;
-using AdSalesBrowser.Properties;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Floater;
 using EO.WebBrowser;
@@ -50,7 +49,7 @@ namespace AdSalesBrowser
 				Utilities.ActivateForm(FormMain.Instance.Handle, b, false);
 				Utilities.ActivateTaskbar();
 			});
-			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo ?? AppSettingsManager.Instance.FloaterLogo, e.AfterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, FormMain.Instance.Text, e.Logo ?? AppSettingsManager.Instance.FloaterLogo, e.AfterShow, null, afterBack);
 		}
 	}
 }

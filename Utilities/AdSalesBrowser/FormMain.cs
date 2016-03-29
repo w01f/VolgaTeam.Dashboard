@@ -112,8 +112,9 @@ namespace AdSalesBrowser
 
 		private void OnSelectedPageChanged(object sender, TabPageChangedEventArgs e)
 		{
-			UpdateExtensionsState();
 			UpdateNavigationButtons();
+			UpdateExtensionsState();
+			UpdateYouTubeState();
 		}
 
 		private void OnWebPageCloseButtonClick(object sender, EventArgs e)
@@ -211,6 +212,20 @@ namespace AdSalesBrowser
 		private void buttonItemMenuExtensionsAddVideo_Click(object sender, EventArgs e)
 		{
 			SelectedWebPage?.AddVideo();
+		}
+		#endregion
+
+		#region YouTube Extensions
+		public ButtonItem ButtonExtensionsDownloadYouTube => buttonItemMenuExtensionsDownloadYouTube;
+
+		private void UpdateYouTubeState()
+		{
+			SelectedWebPage?.UpdateYouTubeState();
+		}
+
+		private void buttonItemMenuExtensionsDownloadYouTube_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.DownloadYouTube();
 		}
 		#endregion
 

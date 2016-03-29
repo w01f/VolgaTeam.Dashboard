@@ -11,6 +11,7 @@ using DevExpress.Utils;
 using DevExpress.XtraTab;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
+using Padding = System.Windows.Forms.Padding;
 
 namespace AdSalesBrowser.WebPage
 {
@@ -19,6 +20,7 @@ namespace AdSalesBrowser.WebPage
 	{
 		private readonly WebControl _webKit;
 		private readonly string _startUrl;
+		private bool _initialLoadComplete;
 
 		public event EventHandler<NewPageEventArgs> OnNavigateNewPage;
 		public event EventHandler<ClosePageEventArgs> OnClosePage;
@@ -101,7 +103,7 @@ namespace AdSalesBrowser.WebPage
 
 		private void OnWebViewLoadFailed(object sender, LoadFailedEventArgs e)
 		{
-			if (ShowCloseButton != DefaultBoolean.False && OnClosePage != null)
+			if (!_initialLoadComplete && ShowCloseButton != DefaultBoolean.False && OnClosePage != null)
 				OnClosePage(this, new ClosePageEventArgs { Page = this, NeedReleasePage = e.ErrorCode != ErrorCode.ProceedAsDownload });
 			else
 			{
@@ -116,6 +118,8 @@ namespace AdSalesBrowser.WebPage
 			circularProgress.IsRunning = false;
 			pnProgress.SendToBack();
 			_webKit.BringToFront();
+			UpdateYouTubeState();
+			_initialLoadComplete = true;
 		}
 
 		private void OnWebViewNewWindow(object sender, NewWindowEventArgs e)
@@ -421,6 +425,19 @@ namespace AdSalesBrowser.WebPage
 		{
 			if (!PowerPointManager.Instance.CheckPowerPointRunning()) return;
 			DownloadFile(_extensionManager.CurrentLinkData.OriginalFileUrl);
+		}
+		#endregion
+
+		#region YouTube extensions
+		public void UpdateYouTubeState()
+		{
+			FormMain.Instance.ButtonExtensionsDownloadYouTube.Visible = YouTubeHelper.IsUrlYouTube(_webKit.WebView.Url);
+		}
+
+		public void DownloadYouTube()
+		{
+			_webKit.WebView.EvalScript(
+				"(function(w,d,x){x=new(window.XMLHttpRequest||ActiveXObject)('Microsoft.XMLHTTP');x.onreadystatechange=function(){if(x.readyState==4){if(x.status==200)d.body.appendChild(d.createElement('script')).src=JSON.parse(x.responseText).query.results.url;else console.log('ERR',x.status,x.statusText)}};x.open('GET','//query.yahooapis.com/v1/public/yql?q='+encodeURIComponent('select * from json where url=\"http://noflr.deturl.com/l.asp\"')+'&format=json');x.send()})(window,document);");
 		}
 		#endregion
 

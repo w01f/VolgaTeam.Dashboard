@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using AdSalesBrowser.Helpers;
 
 namespace AdSalesBrowser.SalesLibraryExtensions
 {
@@ -56,7 +57,7 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 
 		public bool IsUrlExternal(string targetUrl)
 		{
-			var regexp = new Regex(@"^((http[s]?|ftp):\/\/)?\/?([^\/\.]+\.)*?([^\/\.]+\.[^:\/\s\.]{2,3}(\.[^:\/\s\.]‌​{2,3})?(:\d+)?)($|\/)([^#?\s]+)?(.*?)?(#[\w\-]+)?$");
+			var regexp = new Regex(UrlParseHelper.UrlParseRegExp);
 
 			var currentUrlMatch = regexp.Match(_url);
 			var targetUrlMatch = regexp.Match(targetUrl);

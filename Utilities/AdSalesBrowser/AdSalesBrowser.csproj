@@ -129,6 +129,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExternalBrowserManager.cs" />
+    <Compile Include="Helpers\YouTubeHelper.cs" />
     <Compile Include="PowerPoint\FormSlideSize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +143,7 @@
     <Compile Include="SalesLibraryExtensions\LinkData.cs" />
     <Compile Include="SalesLibraryExtensions\LinkDataType.cs" />
     <Compile Include="SalesLibraryExtensions\PowerPointData.cs" />
+    <Compile Include="Helpers\UrlParseHelper.cs" />
     <Compile Include="SalesLibraryExtensions\VideoData.cs" />
     <Compile Include="WebPage\ClosePageEventArgs.cs" />
     <Compile Include="WebPage\NewPageEventArgs.cs" />
@@ -204,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\ExtensionsDownloadYouTube.png" />
     <None Include="Resources\ed.png" />
     <None Include="Resources\NavigationRefresh.png" />
     <None Include="Resources\NavigationForward.png" />

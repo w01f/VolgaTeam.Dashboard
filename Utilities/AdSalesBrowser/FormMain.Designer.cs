@@ -44,8 +44,9 @@
 			this.buttonItemMenuExtensionsAddSlide = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlides = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddVideo = new DevComponents.DotNetBar.ButtonItem();
-			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
+			this.buttonItemMenuExtensionsDownloadYouTube = new DevComponents.DotNetBar.ButtonItem();
 			this.labelItemMenuWarning = new DevComponents.DotNetBar.LabelItem();
+			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barMain)).BeginInit();
 			this.SuspendLayout();
@@ -83,7 +84,7 @@
 			this.xtraTabControl.MaxTabPageWidth = 200;
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-			this.xtraTabControl.Size = new System.Drawing.Size(1088, 522);
+			this.xtraTabControl.Size = new System.Drawing.Size(810, 522);
 			this.xtraTabControl.TabIndex = 0;
 			// 
 			// defaultLookAndFeel
@@ -118,10 +119,11 @@
             this.buttonItemMenuExtensionsAddSlide,
             this.buttonItemMenuExtensionsAddSlides,
             this.buttonItemMenuExtensionsAddVideo,
+            this.buttonItemMenuExtensionsDownloadYouTube,
             this.labelItemMenuWarning});
 			this.barMain.Location = new System.Drawing.Point(0, 0);
 			this.barMain.Name = "barMain";
-			this.barMain.Size = new System.Drawing.Size(1088, 33);
+			this.barMain.Size = new System.Drawing.Size(810, 33);
 			this.barMain.Stretch = true;
 			this.barMain.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.barMain.TabIndex = 0;
@@ -222,10 +224,14 @@
 			this.buttonItemMenuExtensionsAddVideo.Visible = false;
 			this.buttonItemMenuExtensionsAddVideo.Click += new System.EventHandler(this.buttonItemMenuExtensionsAddVideo_Click);
 			// 
-			// superTooltip
+			// buttonItemMenuExtensionsDownloadYouTube
 			// 
-			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
-			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.buttonItemMenuExtensionsDownloadYouTube.BeginGroup = true;
+			this.buttonItemMenuExtensionsDownloadYouTube.Image = global::AdSalesBrowser.Properties.Resources.ExtensionsDownloadYouTube;
+			this.buttonItemMenuExtensionsDownloadYouTube.Name = "buttonItemMenuExtensionsDownloadYouTube";
+			this.buttonItemMenuExtensionsDownloadYouTube.Text = "buttonItem1";
+			this.buttonItemMenuExtensionsDownloadYouTube.Visible = false;
+			this.buttonItemMenuExtensionsDownloadYouTube.Click += new System.EventHandler(this.buttonItemMenuExtensionsDownloadYouTube_Click);
 			// 
 			// labelItemMenuWarning
 			// 
@@ -234,10 +240,15 @@
 			this.labelItemMenuWarning.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
 			this.labelItemMenuWarning.Name = "labelItemMenuWarning";
 			// 
+			// superTooltip
+			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(1088, 555);
+			this.ClientSize = new System.Drawing.Size(810, 555);
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.barMain);
 			this.DoubleBuffered = true;
@@ -270,6 +281,7 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsAddVideo;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
 		private DevComponents.DotNetBar.LabelItem labelItemMenuWarning;
+		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsDownloadYouTube;
 	}
 }
 

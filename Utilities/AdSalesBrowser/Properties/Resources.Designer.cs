@@ -113,6 +113,16 @@ namespace AdSalesBrowser.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExtensionsDownloadYouTube {
+            get {
+                object obj = ResourceManager.GetObject("ExtensionsDownloadYouTube", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ff {
             get {
                 object obj = ResourceManager.GetObject("ff", resourceCulture);

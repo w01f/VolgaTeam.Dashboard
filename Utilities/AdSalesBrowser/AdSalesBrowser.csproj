@@ -70,6 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Common\Common.Core\Enums\SlideOrientation.cs">
+      <Link>SalesLibraryExtensions\SlideOrientation.cs</Link>
+    </Compile>
     <Compile Include="..\..\Common\Common.Core\Helpers\SharedAssemblyHelper.cs">
       <Link>Helpers\SharedAssemblyHelper.cs</Link>
     </Compile>
@@ -78,6 +81,9 @@
     </Compile>
     <Compile Include="..\..\Common\Common.Core\Helpers\WinAPIHelper.cs">
       <Link>Helpers\WinAPIHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Common.Core\Objects\Output\SlideSettings.cs">
+      <Link>SalesLibraryExtensions\SlideSettings.cs</Link>
     </Compile>
     <Compile Include="..\..\Common\Common.GUI\Common\PictureBoxButtonizer.cs">
       <Link>Helpers\PictureBoxButtonizer.cs</Link>
@@ -128,6 +134,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUrlDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUrlDetails.Designer.cs">
+      <DependentUpon>FormUrlDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ExternalBrowserManager.cs" />
     <Compile Include="Helpers\YouTubeHelper.cs" />
     <Compile Include="PowerPoint\FormSlideSize.cs">
@@ -174,6 +186,9 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormUrlDetails.resx">
+      <DependentUpon>FormUrlDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PowerPoint\FormSlideSize.resx">
       <DependentUpon>FormSlideSize.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +221,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\UrlDetailsMenu.png" />
+    <None Include="Resources\UrlDetailsForm.png" />
     <None Include="Resources\ExtensionsDownloadYouTube.png" />
     <None Include="Resources\ed.png" />
     <None Include="Resources\NavigationRefresh.png" />

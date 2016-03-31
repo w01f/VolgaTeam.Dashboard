@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Asa.Common.Core.Objects.Output;
 using EO.WebBrowser;
 
 namespace AdSalesBrowser.SalesLibraryExtensions
@@ -10,12 +11,21 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 		private int _currentPartIndex;
 		private string[] _partFileUrls;
 
+		private double _slideWidth;
+		private double _slideHeight;
+
 		public override LinkDataType DataType => LinkDataType.PowerPoint;
 
 		public override void Load(object[] data)
 		{
 			base.Load(data);
 			_partFileUrls = (from object item in (JSArray)data[3] select item.ToString()).ToArray();
+
+			double temp = 0;
+			if (double.TryParse(data[4].ToString(), out temp))
+				_slideWidth = temp;
+			if (double.TryParse(data[5].ToString(), out temp))
+				_slideHeight = temp;
 		}
 
 		public override void SwitchCurrentPart(int partIndex)
@@ -31,6 +41,13 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 		public override string GetPartFileName()
 		{
 			return String.Format("{0}{1}{2}", Path.GetFileNameWithoutExtension(OriginalFileName), (_currentPartIndex + 1), Path.GetExtension(OriginalFileName));
+		}
+
+		public bool IsFitToInsert(SlideSettings currentSliodeSettings)
+		{
+			var currentWidth = (Int32)Math.Round(currentSliodeSettings.SizeWidth);
+			var slideWidth = (Int32)Math.Round(_slideWidth);
+			return slideWidth == 0 || currentWidth == slideWidth;
 		}
 	}
 }

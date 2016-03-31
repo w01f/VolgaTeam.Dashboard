@@ -41,6 +41,7 @@
 			this.buttonItemMenuBrowserFirefox = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuBrowserEdge = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemDetails = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlide = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlides = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddVideo = new DevComponents.DotNetBar.ButtonItem();
@@ -84,7 +85,7 @@
 			this.xtraTabControl.MaxTabPageWidth = 200;
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-			this.xtraTabControl.Size = new System.Drawing.Size(810, 522);
+			this.xtraTabControl.Size = new System.Drawing.Size(768, 522);
 			this.xtraTabControl.TabIndex = 0;
 			// 
 			// defaultLookAndFeel
@@ -116,6 +117,7 @@
             this.buttonItemMenuBrowserFirefox,
             this.buttonItemMenuBrowserIE,
             this.buttonItemMenuBrowserEdge,
+            this.buttonItemDetails,
             this.buttonItemMenuExtensionsAddSlide,
             this.buttonItemMenuExtensionsAddSlides,
             this.buttonItemMenuExtensionsAddVideo,
@@ -123,7 +125,7 @@
             this.labelItemMenuWarning});
 			this.barMain.Location = new System.Drawing.Point(0, 0);
 			this.barMain.Name = "barMain";
-			this.barMain.Size = new System.Drawing.Size(810, 33);
+			this.barMain.Size = new System.Drawing.Size(768, 33);
 			this.barMain.Stretch = true;
 			this.barMain.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.barMain.TabIndex = 0;
@@ -195,6 +197,15 @@
 			this.buttonItemMenuBrowserEdge.Visible = false;
 			this.buttonItemMenuBrowserEdge.Click += new System.EventHandler(this.OnExternalBrowserOpenClick);
 			// 
+			// buttonItemDetails
+			// 
+			this.buttonItemDetails.BeginGroup = true;
+			this.buttonItemDetails.Image = global::AdSalesBrowser.Properties.Resources.UrlDetailsMenu;
+			this.buttonItemDetails.Name = "buttonItemDetails";
+			this.superTooltip.SetSuperTooltip(this.buttonItemDetails, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "URL Info", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(50, 20)));
+			this.buttonItemDetails.Text = "buttonItem1";
+			this.buttonItemDetails.Click += new System.EventHandler(this.buttonItemDetails_Click);
+			// 
 			// buttonItemMenuExtensionsAddSlide
 			// 
 			this.buttonItemMenuExtensionsAddSlide.BeginGroup = true;
@@ -229,6 +240,7 @@
 			this.buttonItemMenuExtensionsDownloadYouTube.BeginGroup = true;
 			this.buttonItemMenuExtensionsDownloadYouTube.Image = global::AdSalesBrowser.Properties.Resources.ExtensionsDownloadYouTube;
 			this.buttonItemMenuExtensionsDownloadYouTube.Name = "buttonItemMenuExtensionsDownloadYouTube";
+			this.superTooltip.SetSuperTooltip(this.buttonItemMenuExtensionsDownloadYouTube, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Save a copy of this MP4 file", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(150, 20)));
 			this.buttonItemMenuExtensionsDownloadYouTube.Text = "buttonItem1";
 			this.buttonItemMenuExtensionsDownloadYouTube.Visible = false;
 			this.buttonItemMenuExtensionsDownloadYouTube.Click += new System.EventHandler(this.buttonItemMenuExtensionsDownloadYouTube_Click);
@@ -248,7 +260,7 @@
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(810, 555);
+			this.ClientSize = new System.Drawing.Size(768, 555);
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.barMain);
 			this.DoubleBuffered = true;
@@ -282,6 +294,7 @@
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
 		private DevComponents.DotNetBar.LabelItem labelItemMenuWarning;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsDownloadYouTube;
+		private DevComponents.DotNetBar.ButtonItem buttonItemDetails;
 	}
 }
 

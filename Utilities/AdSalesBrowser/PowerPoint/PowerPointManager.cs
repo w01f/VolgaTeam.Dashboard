@@ -15,17 +15,17 @@ namespace AdSalesBrowser.PowerPoint
 
 		public static PowerPointManager Instance { get; } = new PowerPointManager();
 
-		public bool CheckPowerPointRunning()
+		public bool CheckPowerPointRunning(Action afterRun)
 		{
 			if (PowerPointSingleton.Instance.Connect())
 				return true;
 			if (MessageBox.Show(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine), "Open PowerPoint", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes)
 				return false;
-			RunPowerPointLoader();
+			RunPowerPointLoader(afterRun);
 			return false;
 		}
 
-		private void RunPowerPointLoader()
+		private void RunPowerPointLoader(Action afterRun)
 		{
 			KillPowerPoint();
 
@@ -61,7 +61,7 @@ namespace AdSalesBrowser.PowerPoint
 					process.StartInfo.UseShellExecute = true;
 					process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
 					process.Start();
-				});
+				}, afterRun);
 			}
 		}
 

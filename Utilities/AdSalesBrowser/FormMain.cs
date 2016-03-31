@@ -188,6 +188,16 @@ namespace AdSalesBrowser
 		}
 		#endregion
 
+		#region Url Details
+		private void buttonItemDetails_Click(object sender, EventArgs e)
+		{
+			using (var form = new FormUrlDetails(SelectedWebPage?.CurrentUrl))
+			{
+				form.ShowDialog(this);
+			}
+		}
+		#endregion
+
 		#region Sales Library Extensions
 		public ButtonItem ButtonExtensionsAddSlide => buttonItemMenuExtensionsAddSlide;
 		public ButtonItem ButtonExtensionsAddSlides => buttonItemMenuExtensionsAddSlides;

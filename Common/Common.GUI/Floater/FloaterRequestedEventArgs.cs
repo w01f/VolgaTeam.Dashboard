@@ -7,5 +7,6 @@ namespace Asa.Common.GUI.Floater
 	{
 		public Image Logo { get; set; }
 		public Action AfterShow { get; set; }
+		public Action AfterBack { get; set; }
 	}
 }

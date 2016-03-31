@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Output;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Application = Microsoft.Office.Interop.PowerPoint.Application;
@@ -316,6 +318,40 @@ namespace AdSalesBrowser.PowerPoint
 		private Design GetDesignFromSlide(Slide slide, Presentation presentation)
 		{
 			return presentation.Designs.Cast<Design>().FirstOrDefault(design => design.Name == slide.Design.Name);
+		}
+
+		public SlideSettings GetSlideSettings()
+		{
+			try
+			{
+				var settings = new SlideSettings();
+				if (PowerPointObject == null) return null;
+				if (PowerPointObject.ActivePresentation == null) return null;
+				settings.SizeWidth = PowerPointObject.ActivePresentation.PageSetup.SlideWidth / 72;
+				settings.SizeHeght = PowerPointObject.ActivePresentation.PageSetup.SlideHeight / 72;
+				switch (PowerPointObject.ActivePresentation.PageSetup.SlideOrientation)
+				{
+					case MsoOrientation.msoOrientationHorizontal:
+						settings.Orientation = SlideOrientationEnum.Landscape;
+						break;
+					case MsoOrientation.msoOrientationVertical:
+						settings.Orientation = SlideOrientationEnum.Portrait;
+						break;
+				}
+				if (settings.SizeWidth == 10 && settings.SizeHeght == 5.625)
+				{
+					settings.SizeWidth = 13;
+					settings.SizeHeght = 7.32;
+				}
+				return settings;
+			}
+			catch
+			{
+				return null;
+			}
+			finally
+			{
+			}
 		}
 	}
 }

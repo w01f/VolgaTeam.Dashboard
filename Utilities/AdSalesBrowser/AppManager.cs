@@ -34,11 +34,12 @@ namespace AdSalesBrowser
 			Application.Run(FormMain.Instance);
 		}
 
-		public void ShowFloater(Action afterShow)
+		public void ShowFloater(Action afterShow, Action afterBack)
 		{
 			ShowFloater(FormMain.Instance, new FloaterRequestedEventArgs
 			{
-				AfterShow = afterShow
+				AfterShow = afterShow,
+				AfterBack = afterBack
 			});
 		}
 
@@ -46,6 +47,7 @@ namespace AdSalesBrowser
 		{
 			var afterBack = new Action<bool>(b =>
 			{
+				e.AfterBack?.Invoke();
 				Utilities.ActivateForm(FormMain.Instance.Handle, b, false);
 				Utilities.ActivateTaskbar();
 			});

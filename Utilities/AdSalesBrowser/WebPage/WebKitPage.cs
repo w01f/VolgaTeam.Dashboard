@@ -65,6 +65,7 @@ namespace AdSalesBrowser.WebPage
 			_webKit.WebView.TitleChanged += OnWebViewTitleChanged;
 			_webKit.WebView.LoadCompleted += OnWebViewLoadCompleted;
 			_webKit.WebView.LoadFailed += OnWebViewLoadFailed;
+			_webKit.WebView.UrlChanged += OnWebViewUrlChanged;
 			_webKit.WebView.BeforeContextMenu += OnWebViewBeforeContextMenu;
 			_webKit.WebView.NewWindow += OnWebViewNewWindow;
 			_webKit.WebView.LaunchUrl += OnWebViewLaunchUrl;
@@ -120,6 +121,11 @@ namespace AdSalesBrowser.WebPage
 			_webKit.BringToFront();
 			UpdateYouTubeState();
 			_initialLoadComplete = true;
+		}
+
+		private void OnWebViewUrlChanged(object sender, EventArgs e)
+		{
+			UpdateYouTubeState();
 		}
 
 		private void OnWebViewNewWindow(object sender, NewWindowEventArgs e)
@@ -317,15 +323,20 @@ namespace AdSalesBrowser.WebPage
 			FormMain.Instance.ButtonExtensionsAddVideo.Visible = false;
 			FormMain.Instance.LabelExtensionsWarning.Text = String.Empty;
 			if (!_extensionManager.Enabled) return;
+			PowerPointSingleton.Instance.Connect();
+			var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
 			switch (_extensionManager.CurrentLinkData.DataType)
 			{
 				case LinkDataType.PowerPoint:
 					FormMain.Instance.ButtonExtensionsAddSlide.Visible = true;
 					FormMain.Instance.ButtonExtensionsAddSlides.Visible = true;
+
+					var slideSettings = PowerPointSingleton.Instance.GetSlideSettings();
+					var powerPointData = (PowerPointData)_extensionManager.CurrentLinkData;
+					if (slideSettings != null && !powerPointData.IsFitToInsert(slideSettings))
+						FormMain.Instance.LabelExtensionsWarning.Text = "Slide Size Conflict: The slides may not insert correctly…";
 					break;
 				case LinkDataType.Video:
-					PowerPointSingleton.Instance.Connect();
-					var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
 					var allowVideoInsert = activePresentation != null && File.Exists(activePresentation.FullName);
 					FormMain.Instance.ButtonExtensionsAddVideo.Visible = allowVideoInsert;
 					if (activePresentation != null && !allowVideoInsert)
@@ -390,7 +401,7 @@ namespace AdSalesBrowser.WebPage
 				else if (_extensionManager.CurrentLinkData.DataType == LinkDataType.PowerPoint)
 					PowerPointSingleton.Instance.AppendSlidesFromFile(e.Item.FullPath);
 				FormProgress.CloseProgress();
-			});
+			}, null);
 		}
 
 		private void OnExtensionWebViewShouldForceDownload(object sender, ShouldForceDownloadEventArgs e)
@@ -407,7 +418,7 @@ namespace AdSalesBrowser.WebPage
 
 		public void AddVideo()
 		{
-			if (!PowerPointManager.Instance.CheckPowerPointRunning()) return;
+			if (!PowerPointManager.Instance.CheckPowerPointRunning(UpdateExtensionsState)) return;
 			var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
 			if (activePresentation != null && File.Exists(activePresentation.FullName))
 			{
@@ -417,13 +428,13 @@ namespace AdSalesBrowser.WebPage
 
 		public void AddSlide()
 		{
-			if (!PowerPointManager.Instance.CheckPowerPointRunning()) return;
+			if (!PowerPointManager.Instance.CheckPowerPointRunning(UpdateExtensionsState)) return;
 			DownloadFile(_extensionManager.CurrentLinkData.GetPartFileUrl());
 		}
 
 		public void AddSlides()
 		{
-			if (!PowerPointManager.Instance.CheckPowerPointRunning()) return;
+			if (!PowerPointManager.Instance.CheckPowerPointRunning(UpdateExtensionsState)) return;
 			DownloadFile(_extensionManager.CurrentLinkData.OriginalFileUrl);
 		}
 		#endregion
@@ -431,7 +442,8 @@ namespace AdSalesBrowser.WebPage
 		#region YouTube extensions
 		public void UpdateYouTubeState()
 		{
-			FormMain.Instance.ButtonExtensionsDownloadYouTube.Visible = YouTubeHelper.IsUrlYouTube(_webKit.WebView.Url);
+			FormMain.Instance.ButtonExtensionsDownloadYouTube.Visible = YouTubeHelper.IsUrlYouTubeWatch(_webKit.WebView.Url);
+			FormMain.Instance.barMain.RecalcLayout();
 		}
 
 		public void DownloadYouTube()

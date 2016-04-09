@@ -15,10 +15,10 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 
 		public LinkData CurrentLinkData { get; private set; }
 		public bool IsExtensionsActive { get; private set; }
-
 		public event EventHandler<EventArgs> DataChanged;
 
-		public bool Enabled => CurrentLinkData != null;
+		public ContentLinkData CurrentContentLinkData => CurrentLinkData as ContentLinkData;
+		public bool ContentEnabled => CurrentContentLinkData != null;
 
 		public void Activate(string url)
 		{
@@ -39,6 +39,9 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 				case "wmv":
 					CurrentLinkData = new VideoData();
 					break;
+				case "lan":
+					CurrentLinkData = new LanData();
+					break;
 			}
 			CurrentLinkData?.Load(args);
 			DataChanged?.Invoke(this, EventArgs.Empty);
@@ -52,7 +55,7 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 
 		public void SwitchDocumentPage(params object[] args)
 		{
-			CurrentLinkData?.SwitchCurrentPart(Int32.Parse(args[0].ToString()));
+			CurrentContentLinkData?.SwitchCurrentPart(Int32.Parse(args[0].ToString()));
 		}
 
 		public bool IsUrlExternal(string targetUrl)

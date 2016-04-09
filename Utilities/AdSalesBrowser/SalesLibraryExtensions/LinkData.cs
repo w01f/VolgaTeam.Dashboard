@@ -13,10 +13,5 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 			OriginalFileName = data[1] as String;
 			OriginalFileUrl = data[2] as String;
 		}
-
-		public abstract void SwitchCurrentPart(int partIndex);
-
-		public abstract string GetPartFileUrl();
-		public abstract string GetPartFileName();
 	}
 }

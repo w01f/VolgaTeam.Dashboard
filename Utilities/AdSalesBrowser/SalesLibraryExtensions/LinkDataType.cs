@@ -3,6 +3,7 @@
 	enum LinkDataType
 	{
 		PowerPoint,
-		Video
+		Video,
+		Lan
 	}
 }

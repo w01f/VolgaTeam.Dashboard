@@ -5,7 +5,7 @@ using EO.WebBrowser;
 
 namespace AdSalesBrowser.SalesLibraryExtensions
 {
-	class VideoData : LinkData
+	class VideoData : ContentLinkData
 	{
 		private string _mp4Url;
 

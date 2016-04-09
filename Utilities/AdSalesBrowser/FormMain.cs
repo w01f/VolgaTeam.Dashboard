@@ -8,6 +8,7 @@ using AdSalesBrowser.PowerPoint;
 using AdSalesBrowser.Properties;
 using AdSalesBrowser.WebPage;
 using Asa.Common.GUI.Floater;
+using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
@@ -34,6 +35,8 @@ namespace AdSalesBrowser
 
 		public void InitForm()
 		{
+			FormProgress.Init(this);
+
 			LoadSettings();
 
 			Text = AppSettingsManager.Instance.FormText ?? Text;

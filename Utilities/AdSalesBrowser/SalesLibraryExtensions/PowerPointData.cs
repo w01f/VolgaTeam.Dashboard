@@ -6,7 +6,7 @@ using EO.WebBrowser;
 
 namespace AdSalesBrowser.SalesLibraryExtensions
 {
-	class PowerPointData : LinkData
+	class PowerPointData : ContentLinkData
 	{
 		private int _currentPartIndex;
 		private string[] _partFileUrls;

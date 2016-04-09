@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using AdSalesBrowser.Configuration;
@@ -322,26 +323,33 @@ namespace AdSalesBrowser.WebPage
 			FormMain.Instance.ButtonExtensionsAddSlides.Visible = false;
 			FormMain.Instance.ButtonExtensionsAddVideo.Visible = false;
 			FormMain.Instance.LabelExtensionsWarning.Text = String.Empty;
-			if (!_extensionManager.Enabled) return;
-			PowerPointSingleton.Instance.Connect();
-			var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
-			switch (_extensionManager.CurrentLinkData.DataType)
+			if (_extensionManager.ContentEnabled)
 			{
-				case LinkDataType.PowerPoint:
-					FormMain.Instance.ButtonExtensionsAddSlide.Visible = true;
-					FormMain.Instance.ButtonExtensionsAddSlides.Visible = true;
+				PowerPointSingleton.Instance.Connect();
+				switch (_extensionManager.CurrentLinkData.DataType)
+				{
+					case LinkDataType.PowerPoint:
+						FormMain.Instance.ButtonExtensionsAddSlide.Visible = true;
+						FormMain.Instance.ButtonExtensionsAddSlides.Visible = true;
 
-					var slideSettings = PowerPointSingleton.Instance.GetSlideSettings();
-					var powerPointData = (PowerPointData)_extensionManager.CurrentLinkData;
-					if (slideSettings != null && !powerPointData.IsFitToInsert(slideSettings))
-						FormMain.Instance.LabelExtensionsWarning.Text = "Slide Size Conflict: The slides may not insert correctly…";
-					break;
-				case LinkDataType.Video:
-					var allowVideoInsert = activePresentation != null && File.Exists(activePresentation.FullName);
-					FormMain.Instance.ButtonExtensionsAddVideo.Visible = allowVideoInsert;
-					if (activePresentation != null && !allowVideoInsert)
-						FormMain.Instance.LabelExtensionsWarning.Text = "Save your presentation if you want to add this video…";
-					break;
+						var slideSettings = PowerPointSingleton.Instance.GetSlideSettings();
+						var powerPointData = (PowerPointData)_extensionManager.CurrentContentLinkData;
+						if (slideSettings != null && !powerPointData.IsFitToInsert(slideSettings))
+							FormMain.Instance.LabelExtensionsWarning.Text = "Slide Size Conflict: The slides may not insert correctly…";
+						break;
+					case LinkDataType.Video:
+						var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
+						var allowVideoInsert = activePresentation != null && File.Exists(activePresentation.FullName);
+						FormMain.Instance.ButtonExtensionsAddVideo.Visible = allowVideoInsert;
+						if (activePresentation != null && !allowVideoInsert)
+							FormMain.Instance.LabelExtensionsWarning.Text = "Save your presentation if you want to add this video…";
+						break;
+				}
+			}
+			if (_extensionManager.CurrentLinkData?.DataType == LinkDataType.Lan)
+			{
+				OpenLanLink(_extensionManager.CurrentLinkData.OriginalFileUrl);
+				_extensionManager.ReleaseData();
 			}
 			FormMain.Instance.barMain.RecalcLayout();
 		}
@@ -353,6 +361,26 @@ namespace AdSalesBrowser.WebPage
 			FormMain.Instance.SuspendPages();
 			Application.DoEvents();
 			_extensionDownloadView.WebView.LoadUrl(url);
+		}
+
+		private void OpenLanLink(string linkPath)
+		{
+			var linkPathAvailable = false;
+			FormProgress.ShowProgress(
+				"Scanning your network for this location…", () =>
+				{
+					try
+					{
+						linkPathAvailable = Directory.Exists(linkPath);
+					}
+					catch { }
+				},
+				false);
+			if (linkPathAvailable)
+				Process.Start(linkPath);
+			else
+				MessageBox.Show("Your Browser does not allow access to this network location…", "Warning", MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
 		}
 
 		private void OnJavaScriptCall(object sender, JSExtInvokeArgs e)
@@ -394,11 +422,11 @@ namespace AdSalesBrowser.WebPage
 			{
 				FormProgress.ShowProgress();
 				FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-				if (_extensionManager.CurrentLinkData.DataType == LinkDataType.Video)
+				if (_extensionManager.CurrentContentLinkData.DataType == LinkDataType.Video)
 				{
 					PowerPointSingleton.Instance.InsertVideoIntoActivePresentation(e.Item.FullPath);
 				}
-				else if (_extensionManager.CurrentLinkData.DataType == LinkDataType.PowerPoint)
+				else if (_extensionManager.CurrentContentLinkData.DataType == LinkDataType.PowerPoint)
 					PowerPointSingleton.Instance.AppendSlidesFromFile(e.Item.FullPath);
 				FormProgress.CloseProgress();
 			}, null);
@@ -422,20 +450,20 @@ namespace AdSalesBrowser.WebPage
 			var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
 			if (activePresentation != null && File.Exists(activePresentation.FullName))
 			{
-				DownloadFile(_extensionManager.CurrentLinkData.GetPartFileUrl());
+				DownloadFile(_extensionManager.CurrentContentLinkData.GetPartFileUrl());
 			}
 		}
 
 		public void AddSlide()
 		{
 			if (!PowerPointManager.Instance.CheckPowerPointRunning(UpdateExtensionsState)) return;
-			DownloadFile(_extensionManager.CurrentLinkData.GetPartFileUrl());
+			DownloadFile(_extensionManager.CurrentContentLinkData.GetPartFileUrl());
 		}
 
 		public void AddSlides()
 		{
 			if (!PowerPointManager.Instance.CheckPowerPointRunning(UpdateExtensionsState)) return;
-			DownloadFile(_extensionManager.CurrentLinkData.OriginalFileUrl);
+			DownloadFile(_extensionManager.CurrentContentLinkData.OriginalFileUrl);
 		}
 		#endregion
 

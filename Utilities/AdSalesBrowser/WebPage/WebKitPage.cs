@@ -7,6 +7,7 @@ using AdSalesBrowser.Configuration;
 using AdSalesBrowser.Helpers;
 using AdSalesBrowser.PowerPoint;
 using AdSalesBrowser.SalesLibraryExtensions;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
 using DevExpress.Utils;
 using DevExpress.XtraTab;
@@ -372,13 +373,13 @@ namespace AdSalesBrowser.WebPage
 					try
 					{
 						linkPathAvailable = Directory.Exists(linkPath);
+						if (linkPathAvailable)
+							Process.Start(linkPath);
 					}
 					catch { }
 				},
 				false);
-			if (linkPathAvailable)
-				Process.Start(linkPath);
-			else
+			if (!linkPathAvailable)
 				MessageBox.Show("Your Browser does not allow access to this network location…", "Warning", MessageBoxButtons.OK,
 					MessageBoxIcon.Exclamation);
 		}

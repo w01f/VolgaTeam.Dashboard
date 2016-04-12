@@ -133,14 +133,20 @@
   <data name="ExtensionsAddVideo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ExtensionsAddVideo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="UrlDetailsForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UrlDetailsForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NavigationForward" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NavigationForward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExtensionsAddSlide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ExtensionsAddSlide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FloaterLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FloaterLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="UrlDetailsMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UrlDetailsMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SlideSize34" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SlideSize34.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SlideSize43" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideSize43.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,8 +154,8 @@
   <data name="ch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SlideSize34" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SlideSize34.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FloaterLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FloaterLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExtensionsAddSlides" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ExtensionsAddSlides.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,10 +178,7 @@
   <data name="ff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UrlDetailsForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UrlDetailsForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UrlDetailsMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UrlDetailsMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FloaterMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FloaterMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

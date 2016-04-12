@@ -143,6 +143,16 @@ namespace AdSalesBrowser.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FloaterMenu {
+            get {
+                object obj = ResourceManager.GetObject("FloaterMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ie {
             get {
                 object obj = ResourceManager.GetObject("ie", resourceCulture);

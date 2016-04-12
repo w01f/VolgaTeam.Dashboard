@@ -62,6 +62,11 @@ namespace AdSalesBrowser
 			PowerPointSingleton.Instance.Disconnect();
 		}
 
+		private void OnFloaterClick(object sender, EventArgs e)
+		{
+			AppManager.Instance.ShowFloater(() => { }, null);
+		}
+
 		#region Web Page Management
 
 		private WebKitPage SelectedWebPage => xtraTabControl.SelectedTabPage as WebKitPage;

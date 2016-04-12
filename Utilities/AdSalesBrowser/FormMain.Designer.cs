@@ -42,6 +42,7 @@
 			this.buttonItemMenuBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuBrowserEdge = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemDetails = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlide = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlides = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddVideo = new DevComponents.DotNetBar.ButtonItem();
@@ -85,7 +86,7 @@
 			this.xtraTabControl.MaxTabPageWidth = 200;
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-			this.xtraTabControl.Size = new System.Drawing.Size(768, 522);
+			this.xtraTabControl.Size = new System.Drawing.Size(1590, 522);
 			this.xtraTabControl.TabIndex = 0;
 			// 
 			// defaultLookAndFeel
@@ -118,6 +119,7 @@
             this.buttonItemMenuBrowserIE,
             this.buttonItemMenuBrowserEdge,
             this.buttonItemDetails,
+            this.buttonItemFloater,
             this.buttonItemMenuExtensionsAddSlide,
             this.buttonItemMenuExtensionsAddSlides,
             this.buttonItemMenuExtensionsAddVideo,
@@ -125,7 +127,7 @@
             this.labelItemMenuWarning});
 			this.barMain.Location = new System.Drawing.Point(0, 0);
 			this.barMain.Name = "barMain";
-			this.barMain.Size = new System.Drawing.Size(768, 33);
+			this.barMain.Size = new System.Drawing.Size(1590, 33);
 			this.barMain.Stretch = true;
 			this.barMain.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.barMain.TabIndex = 0;
@@ -206,6 +208,14 @@
 			this.buttonItemDetails.Text = "buttonItem1";
 			this.buttonItemDetails.Click += new System.EventHandler(this.buttonItemDetails_Click);
 			// 
+			// buttonItemFloater
+			// 
+			this.buttonItemFloater.BeginGroup = true;
+			this.buttonItemFloater.Image = global::AdSalesBrowser.Properties.Resources.FloaterMenu;
+			this.buttonItemFloater.Name = "buttonItemFloater";
+			this.buttonItemFloater.Text = "buttonItem1";
+			this.buttonItemFloater.Click += new System.EventHandler(this.OnFloaterClick);
+			// 
 			// buttonItemMenuExtensionsAddSlide
 			// 
 			this.buttonItemMenuExtensionsAddSlide.BeginGroup = true;
@@ -260,7 +270,7 @@
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(768, 555);
+			this.ClientSize = new System.Drawing.Size(1590, 555);
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.barMain);
 			this.DoubleBuffered = true;
@@ -295,6 +305,7 @@
 		private DevComponents.DotNetBar.LabelItem labelItemMenuWarning;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsDownloadYouTube;
 		private DevComponents.DotNetBar.ButtonItem buttonItemDetails;
+		private DevComponents.DotNetBar.ButtonItem buttonItemFloater;
 	}
 }
 

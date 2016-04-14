@@ -4,6 +4,7 @@
 	{
 		PowerPoint,
 		Video,
-		Lan
+		Lan,
+		App
 	}
 }

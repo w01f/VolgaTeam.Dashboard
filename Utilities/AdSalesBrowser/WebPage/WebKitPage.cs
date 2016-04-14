@@ -352,6 +352,11 @@ namespace AdSalesBrowser.WebPage
 				OpenLanLink(_extensionManager.CurrentLinkData.OriginalFileUrl);
 				_extensionManager.ReleaseData();
 			}
+			if (_extensionManager.CurrentLinkData?.DataType == LinkDataType.App)
+			{
+				OpenAppLink(((AppLinkData)_extensionManager.CurrentLinkData).GetExecutablePaths());
+				_extensionManager.ReleaseData();
+			}
 			FormMain.Instance.barMain.RecalcLayout();
 		}
 
@@ -382,6 +387,19 @@ namespace AdSalesBrowser.WebPage
 			if (!linkPathAvailable)
 				MessageBox.Show("Your Browser does not allow access to this network location…", "Warning", MessageBoxButtons.OK,
 					MessageBoxIcon.Exclamation);
+		}
+
+		private void OpenAppLink(IEnumerable<string> executablePaths)
+		{
+			foreach (var executablePath in executablePaths)
+			{
+				try
+				{
+					Process.Start(executablePath);
+					break;
+				}
+				catch { }
+			}
 		}
 
 		private void OnJavaScriptCall(object sender, JSExtInvokeArgs e)

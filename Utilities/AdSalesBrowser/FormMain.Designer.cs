@@ -213,6 +213,7 @@
 			this.buttonItemFloater.BeginGroup = true;
 			this.buttonItemFloater.Image = global::AdSalesBrowser.Properties.Resources.FloaterMenu;
 			this.buttonItemFloater.Name = "buttonItemFloater";
+			this.superTooltip.SetSuperTooltip(this.buttonItemFloater, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Mini-Floater", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(67, 20)));
 			this.buttonItemFloater.Text = "buttonItem1";
 			this.buttonItemFloater.Click += new System.EventHandler(this.OnFloaterClick);
 			// 

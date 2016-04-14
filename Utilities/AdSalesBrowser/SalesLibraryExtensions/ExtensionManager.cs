@@ -42,6 +42,9 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 				case "lan":
 					CurrentLinkData = new LanData();
 					break;
+				case "app":
+					CurrentLinkData = new AppLinkData();
+					break;
 			}
 			CurrentLinkData?.Load(args);
 			DataChanged?.Invoke(this, EventArgs.Empty);

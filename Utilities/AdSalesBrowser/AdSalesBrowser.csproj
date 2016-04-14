@@ -158,6 +158,7 @@
     <Compile Include="SalesLibraryExtensions\LinkDataType.cs" />
     <Compile Include="SalesLibraryExtensions\PowerPointData.cs" />
     <Compile Include="Helpers\UrlParseHelper.cs" />
+    <Compile Include="SalesLibraryExtensions\AppLinkData.cs" />
     <Compile Include="SalesLibraryExtensions\VideoData.cs" />
     <Compile Include="WebPage\ClosePageEventArgs.cs" />
     <Compile Include="WebPage\NewPageEventArgs.cs" />

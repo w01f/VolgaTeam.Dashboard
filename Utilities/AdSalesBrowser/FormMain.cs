@@ -10,14 +10,13 @@ using AdSalesBrowser.WebPage;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
-using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
 namespace AdSalesBrowser
 {
-	public partial class FormMain : MetroForm
+	public partial class FormMain : Form
 	{
 		private static FormMain _instance;
 

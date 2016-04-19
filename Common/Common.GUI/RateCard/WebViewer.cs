@@ -114,7 +114,7 @@ namespace Asa.Common.GUI.RateCard
 		{
 			TabControl.Enabled = true;
 			FormProgress.CloseProgress();
-			using (var formComplete = new FormDownloadComplete(e.Item.FullPath))
+			using (var formComplete = new FormFileDownloadComplete(e.Item.FullPath))
 			{
 				formComplete.StartPosition=FormStartPosition.CenterScreen;
 				formComplete.ShowDialog();

@@ -201,7 +201,29 @@ namespace AdSalesBrowser.WebPage
 		{
 			FormMain.Instance.ResumePages();
 			FormDownloadProgress.CloseProgress();
-			using (var formComplete = new FormDownloadComplete(e.Item.FullPath))
+			if (".MP4".Equals(Path.GetExtension(e.Item.FullPath), StringComparison.OrdinalIgnoreCase))
+			{
+				PowerPointSingleton.Instance.Connect();
+				var activePresentation = PowerPointSingleton.Instance.GetActivePresentation();
+				var allowVideoInsert = activePresentation != null && File.Exists(activePresentation.FullName);
+				if (allowVideoInsert)
+				{
+					using (var formComplete = new FormVideoDownloadComplete(e.Item.FullPath))
+					{
+						var result = formComplete.ShowDialog(FormMain.Instance);
+						if (result == DialogResult.Abort)
+							AppManager.Instance.ShowFloater(() =>
+							{
+								FormProgress.ShowProgress();
+								FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+								PowerPointSingleton.Instance.InsertVideoIntoActivePresentation(e.Item.FullPath);
+								FormProgress.CloseProgress();
+							}, null);
+						return;
+					}
+				}
+			}
+			using (var formComplete = new FormFileDownloadComplete(e.Item.FullPath))
 			{
 				formComplete.ShowDialog(FormMain.Instance);
 			}

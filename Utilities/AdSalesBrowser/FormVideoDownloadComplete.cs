@@ -3,13 +3,13 @@ using System.Diagnostics;
 using System.IO;
 using DevComponents.DotNetBar.Metro;
 
-namespace Asa.Common.GUI.ToolForms
+namespace AdSalesBrowser
 {
-	public partial class FormDownloadComplete : MetroForm
+	public partial class FormVideoDownloadComplete : MetroForm
 	{
 		private readonly string _filePath;
 
-		public FormDownloadComplete(string filePath)
+		public FormVideoDownloadComplete(string filePath)
 		{
 			InitializeComponent();
 			_filePath = filePath;

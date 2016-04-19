@@ -347,11 +347,11 @@
     <Compile Include="ListEditor\FormCommonListEditor.Designer.cs">
       <DependentUpon>FormCommonListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormDownloadComplete.cs">
+    <Compile Include="ToolForms\FormFileDownloadComplete.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormDownloadComplete.Designer.cs">
-      <DependentUpon>FormDownloadComplete.cs</DependentUpon>
+    <Compile Include="ToolForms\FormFileDownloadComplete.Designer.cs">
+      <DependentUpon>FormFileDownloadComplete.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormEmailFileName.cs">
       <SubType>Form</SubType>
@@ -507,8 +507,8 @@
     <EmbeddedResource Include="ListEditor\FormCommonListEditor.resx">
       <DependentUpon>FormCommonListEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormDownloadComplete.resx">
-      <DependentUpon>FormDownloadComplete.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormFileDownloadComplete.resx">
+      <DependentUpon>FormFileDownloadComplete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
       <DependentUpon>FormEmailFileName.cs</DependentUpon>

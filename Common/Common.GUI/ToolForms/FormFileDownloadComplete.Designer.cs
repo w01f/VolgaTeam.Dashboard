@@ -1,6 +1,6 @@
 ﻿namespace Asa.Common.GUI.ToolForms
 {
-	partial class FormDownloadComplete
+	partial class FormFileDownloadComplete
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -86,7 +86,7 @@
 			this.laTitle.TabIndex = 3;
 			this.laTitle.Text = "{0} is READY!";
 			// 
-			// FormDownloadComplete
+			// FormFileDownloadComplete
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(395, 121);
@@ -100,7 +100,7 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "FormDownloadComplete";
+			this.Name = "FormFileDownloadComplete";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Download Complete";

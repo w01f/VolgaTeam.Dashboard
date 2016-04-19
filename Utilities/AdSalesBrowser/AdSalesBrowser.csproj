@@ -102,14 +102,6 @@
       <Link>Floater\FormFloater.designer.cs</Link>
       <DependentUpon>FormFloater.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.cs">
-      <Link>FormDownloadComplete.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.designer.cs">
-      <Link>FormDownloadComplete.designer.cs</Link>
-      <DependentUpon>FormDownloadComplete.cs</DependentUpon>
-    </Compile>
     <Compile Include="..\..\Common\Common.GUI\ToolForms\FormDownloadProgress.cs">
       <Link>FormDownloadProgress.cs</Link>
       <SubType>Form</SubType>
@@ -117,6 +109,14 @@
     <Compile Include="..\..\Common\Common.GUI\ToolForms\FormDownloadProgress.designer.cs">
       <Link>FormDownloadProgress.designer.cs</Link>
       <DependentUpon>FormDownloadProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormFileDownloadComplete.cs">
+      <Link>FormFileDownloadComplete.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\Common\Common.GUI\ToolForms\FormFileDownloadComplete.designer.cs">
+      <Link>FormFileDownloadComplete.designer.cs</Link>
+      <DependentUpon>FormFileDownloadComplete.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Common\Common.GUI\ToolForms\FormProgress.cs">
       <Link>FormProgress.cs</Link>
@@ -139,6 +139,12 @@
     </Compile>
     <Compile Include="FormUrlDetails.Designer.cs">
       <DependentUpon>FormUrlDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVideoDownloadComplete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVideoDownloadComplete.designer.cs">
+      <DependentUpon>FormVideoDownloadComplete.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExternalBrowserManager.cs" />
     <Compile Include="Helpers\YouTubeHelper.cs" />
@@ -174,13 +180,13 @@
       <Link>Floater\FormFloater.resx</Link>
       <DependentUpon>FormFloater.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Common\Common.GUI\ToolForms\FormDownloadComplete.resx">
-      <Link>FormDownloadComplete.resx</Link>
-      <DependentUpon>FormDownloadComplete.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\..\Common\Common.GUI\ToolForms\FormDownloadProgress.resx">
       <Link>FormDownloadProgress.resx</Link>
       <DependentUpon>FormDownloadProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Common\Common.GUI\ToolForms\FormFileDownloadComplete.resx">
+      <Link>FormFileDownloadComplete.resx</Link>
+      <DependentUpon>FormFileDownloadComplete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\Common\Common.GUI\ToolForms\FormProgress.resx">
       <Link>FormProgress.resx</Link>
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUrlDetails.resx">
       <DependentUpon>FormUrlDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVideoDownloadComplete.resx">
+      <DependentUpon>FormVideoDownloadComplete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PowerPoint\FormSlideSize.resx">
       <DependentUpon>FormSlideSize.cs</DependentUpon>

@@ -21,7 +21,7 @@ namespace Asa.Common.GUI.Preview
 			PreviewGroup = previewGroup;
 
 			Text = PreviewGroup.Name;
-			laSlideSize.Text = String.Format("{0} {1} x {2}", PowerPointManager.Instance.SlideSettings.Orientation, PowerPointManager.Instance.SlideSettings.SizeWidth.ToString("#.##"), PowerPointManager.Instance.SlideSettings.SizeHeght.ToString("#.##"));
+			laSlideSize.Text = String.Format("{0} {1} x {2}", PowerPointManager.Instance.SlideSettings.SlideSize.Orientation, PowerPointManager.Instance.SlideSettings.SlideSize.Width.ToString("#.##"), PowerPointManager.Instance.SlideSettings.SlideSize.Height.ToString("#.##"));
 			GetPreviewImages();
 			Resize += OnResize;
 			if (_previewImages.Any())

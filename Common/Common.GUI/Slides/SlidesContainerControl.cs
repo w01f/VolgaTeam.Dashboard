@@ -20,8 +20,7 @@ namespace Asa.Common.GUI.Slides
 			get
 			{
 				var selectedGroup = xtraTabControlSlides.SelectedTabPage as SlideGroupControl;
-				if (selectedGroup == null) return null;
-				return selectedGroup.SelectedSlide;
+				return selectedGroup?.SelectedSlide;
 			}
 		}
 
@@ -35,30 +34,27 @@ namespace Asa.Common.GUI.Slides
 		{
 			_slideManager = slideManager;
 			xtraTabControlSlides.TabPages.Clear();
-			foreach (var group in _slideManager.Slides.Where(s => s.SizeWidth == PowerPointManager.Instance.SlideSettings.SizeWidth && s.SizeHeght == PowerPointManager.Instance.SlideSettings.SizeHeght).Select(s => s.Group).Distinct())
+			foreach (var group in _slideManager.Slides.Where(s => s.Format == PowerPointManager.Instance.SlideSettings.Format).Select(s => s.Group).Distinct())
 			{
 				var groupPage = new SlideGroupControl();
-				groupPage.LoadSlides(group, _slideManager.Slides.Where(s => s.Group.Equals(group) && s.SizeWidth == PowerPointManager.Instance.SlideSettings.SizeWidth && s.SizeHeght == PowerPointManager.Instance.SlideSettings.SizeHeght));
+				groupPage.LoadSlides(group, _slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == PowerPointManager.Instance.SlideSettings.Format));
 				groupPage.SlideChanged += (o, e) =>
 				{
 					var selectedGroup = o as SlideGroupControl;
 					if (selectedGroup != xtraTabControlSlides.SelectedTabPage) return;
-					if (SlideChanged != null)
-						SlideChanged(o, e);
+					SlideChanged?.Invoke(o, e);
 				};
 				groupPage.SlideSelected += (o, e) =>
 				{
 					var selectedGroup = o as SlideGroupControl;
 					if (selectedGroup != xtraTabControlSlides.SelectedTabPage) return;
-					if (SlideSelected != null)
-						SlideSelected(o, e);
+					SlideSelected?.Invoke(o, e);
 				};
 				xtraTabControlSlides.TabPages.Add(groupPage);
 			}
 			xtraTabControlSlides.SelectedPageChanged += (o, e) =>
 			{
-				if (SlideChanged != null)
-					SlideChanged(e.Page, new SlideMasterEventArgs { SelectedSlide = (e.Page as SlideGroupControl).SelectedSlide });
+				SlideChanged?.Invoke(e.Page, new SlideMasterEventArgs { SelectedSlide = (e.Page as SlideGroupControl).SelectedSlide });
 			};
 		}
 
@@ -67,11 +63,9 @@ namespace Asa.Common.GUI.Slides
 			if (!String.IsNullOrEmpty(selectedGroup) && !String.IsNullOrEmpty(selectedSlide))
 			{
 				var selectedGroupPage = xtraTabControlSlides.TabPages.OfType<SlideGroupControl>().FirstOrDefault(g => g.GroupName.Equals(selectedGroup));
-				if (selectedGroupPage != null)
-				{
-					xtraTabControlSlides.SelectedTabPage = selectedGroupPage;
-					selectedGroupPage.SelectSlide(selectedSlide);
-				}
+				if (selectedGroupPage == null) return;
+				xtraTabControlSlides.SelectedTabPage = selectedGroupPage;
+				selectedGroupPage.SelectSlide(selectedSlide);
 			}
 		}
 	}

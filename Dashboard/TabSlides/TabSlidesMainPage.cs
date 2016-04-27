@@ -48,7 +48,7 @@ namespace Asa.Dashboard.TabSlides
 				_slideContainer.Dispose();
 			}
 
-			FormMain.Instance.ribbonTabItemSlides.Enabled = SettingsManager.Instance.SlideManager.Slides.Any(s => s.SizeWidth == PowerPointManager.Instance.SlideSettings.SizeWidth && s.SizeHeght == PowerPointManager.Instance.SlideSettings.SizeHeght);
+			FormMain.Instance.ribbonTabItemSlides.Enabled = SettingsManager.Instance.SlideManager.Slides.Any(s => s.Format == PowerPointManager.Instance.SlideSettings.Format);
 			laSlideSize.Text = String.Format("Slide Size: {0}", PowerPointManager.Instance.SlideSettings.SizeFormatted);
 
 			_slideContainer = new SlidesContainerControl();

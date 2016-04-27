@@ -79,6 +79,7 @@
     <Compile Include="Enums\BrowserType.cs" />
     <Compile Include="Enums\DataActualityState.cs" />
     <Compile Include="Enums\SettingsSource.cs" />
+    <Compile Include="Enums\SlideFormatEnum.cs" />
     <Compile Include="Enums\SlideOrientation.cs" />
     <Compile Include="Enums\SlideType.cs" />
     <Compile Include="Extensions\CollectionExtension.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Helpers\RegistryHelper.cs" />
     <Compile Include="Helpers\SettingsSerializeHelper.cs" />
     <Compile Include="Helpers\SharedAssemblyHelper.cs" />
+    <Compile Include="Helpers\SlideFormatParser.cs" />
     <Compile Include="Helpers\SlideManager.cs" />
     <Compile Include="Helpers\TabPageManager.cs" />
     <Compile Include="Helpers\ThemeManager.cs" />
@@ -127,8 +129,10 @@
     <Compile Include="Objects\Output\ContractSettings.cs" />
     <Compile Include="Objects\Output\MasterWizard.cs" />
     <Compile Include="Objects\Output\OutputColorList.cs" />
+    <Compile Include="Objects\Output\SlideFormat.cs" />
     <Compile Include="Objects\Output\SlideSettings.cs" />
     <Compile Include="Objects\Output\SlideSettingsChangingEventArgs.cs" />
+    <Compile Include="Objects\Output\SlideSize.cs" />
     <Compile Include="Objects\Output\TextGroup.cs" />
     <Compile Include="Objects\Output\TextItem.cs" />
     <Compile Include="Objects\RemoteStorage\ArchiveDirectory.cs" />

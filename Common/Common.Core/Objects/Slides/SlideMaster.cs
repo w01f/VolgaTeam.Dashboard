@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -14,8 +15,7 @@ namespace Asa.Common.Core.Objects.Slides
 
 		public string Name { get; private set; }
 		public string Group { get; set; }
-		public double SizeHeght { get; set; }
-		public double SizeWidth { get; set; }
+		public SlideFormatEnum Format { get; set; }
 		public int Order { get; private set; }
 		public Image Logo { get; private set; }
 		public Image BrowseLogo { get; private set; }

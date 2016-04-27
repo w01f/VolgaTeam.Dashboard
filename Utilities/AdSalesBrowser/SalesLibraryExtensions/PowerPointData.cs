@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Asa.Common.Core.Objects.Output;
 using EO.WebBrowser;
 
 namespace AdSalesBrowser.SalesLibraryExtensions
@@ -43,9 +42,9 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 			return String.Format("{0}{1}{2}", Path.GetFileNameWithoutExtension(OriginalFileName), (_currentPartIndex + 1), Path.GetExtension(OriginalFileName));
 		}
 
-		public bool IsFitToInsert(SlideSettings currentSliodeSettings)
+		public bool IsFitToInsert(SlideSettings currentSlideSettings)
 		{
-			var currentWidth = (Int32)Math.Round(currentSliodeSettings.SizeWidth);
+			var currentWidth = (Int32)Math.Round(currentSlideSettings.SizeWidth);
 			var slideWidth = (Int32)Math.Round(_slideWidth);
 			return slideWidth == 0 || currentWidth == slideWidth;
 		}

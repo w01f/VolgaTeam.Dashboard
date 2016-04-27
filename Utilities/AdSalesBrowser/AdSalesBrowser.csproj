@@ -82,9 +82,6 @@
     <Compile Include="..\..\Common\Common.Core\Helpers\WinAPIHelper.cs">
       <Link>Helpers\WinAPIHelper.cs</Link>
     </Compile>
-    <Compile Include="..\..\Common\Common.Core\Objects\Output\SlideSettings.cs">
-      <Link>SalesLibraryExtensions\SlideSettings.cs</Link>
-    </Compile>
     <Compile Include="..\..\Common\Common.GUI\Common\PictureBoxButtonizer.cs">
       <Link>Helpers\PictureBoxButtonizer.cs</Link>
     </Compile>
@@ -165,6 +162,7 @@
     <Compile Include="SalesLibraryExtensions\PowerPointData.cs" />
     <Compile Include="Helpers\UrlParseHelper.cs" />
     <Compile Include="SalesLibraryExtensions\AppLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\SlideSettings.cs" />
     <Compile Include="SalesLibraryExtensions\VideoData.cs" />
     <Compile Include="WebPage\ClosePageEventArgs.cs" />
     <Compile Include="WebPage\NewPageEventArgs.cs" />

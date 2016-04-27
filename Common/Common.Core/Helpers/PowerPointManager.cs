@@ -31,6 +31,7 @@ namespace Asa.Common.Core.Helpers
 
 		public void Init(IPowerPointHelper powerPointHelper)
 		{
+			SlideFormatParser.LoadAvailableFormats();
 			_powerPointHelper = powerPointHelper;
 			if (_powerPointHelper.Connect(false))
 			{

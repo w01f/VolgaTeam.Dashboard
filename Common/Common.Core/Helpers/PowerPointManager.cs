@@ -58,16 +58,23 @@ namespace Asa.Common.Core.Helpers
 				SettingsChanged(this, EventArgs.Empty);
 		}
 
-		public void RunPowerPointLoader()
+		public string GetLauncherTemplatePath()
 		{
-			KillPowerPoint();
-
 			var launcherTemplate = new StorageFile(ResourceManager.Instance.LauncherTemplatesFolder.RelativePathParts.Merge(SlideSettings.LauncherTemplateName));
 			if (!launcherTemplate.ExistsLocal())
 				throw new FileNotFoundException(String.Format("There is no {0} found", launcherTemplate.Name));
 
+			return launcherTemplate.LocalPath;
+		}
+
+		public void RunPowerPointLoader()
+		{
+			KillPowerPoint();
+
+			var launcherTemplatePath = GetLauncherTemplatePath();
+
 			var process = new Process();
-			process.StartInfo.FileName = launcherTemplate.LocalPath;
+			process.StartInfo.FileName = launcherTemplatePath;
 			process.StartInfo.UseShellExecute = true;
 			process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
 			process.Start();

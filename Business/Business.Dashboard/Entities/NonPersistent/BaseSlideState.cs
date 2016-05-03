@@ -9,6 +9,7 @@ namespace Asa.Business.Dashboard.Entities.NonPersistent
 {
 	public abstract class BaseSlideState
 	{
+		protected abstract string FileNamePrefix { get; }
 		public bool IsNewSolution { get; set; }
 
 		public StorageDirectory SaveFolder { get; protected set; }
@@ -47,7 +48,7 @@ namespace Asa.Business.Dashboard.Entities.NonPersistent
 			if (String.IsNullOrEmpty(fileName))
 			{
 				var now = DateTime.Now;
-				fileName = "cover-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt");
+				fileName = String.Format("{0}-{1}-{2}", FileNamePrefix, now.ToString("MMddyy"), now.ToString("hmmsstt"));
 				file = new StorageFile(SaveFolder.RelativePathParts.Merge(String.Format("{0}.xml", fileName)));
 			}
 			else

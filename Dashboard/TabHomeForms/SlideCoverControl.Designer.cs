@@ -170,12 +170,6 @@
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditDecisionMaker.Properties.Items.AddRange(new object[] {
-            "222222",
-            "Carlie",
-            "Coding",
-            "Fred Jones",
-            "Mike Jones"});
 			this.comboBoxEditDecisionMaker.Properties.ListType = Asa.Common.GUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(344, 22);
@@ -201,12 +195,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.comboBoxEditAdvertiser.Properties.CaseSensitiveSearch = true;
-			this.comboBoxEditAdvertiser.Properties.Items.AddRange(new object[] {
-            "11111111",
-            "Alex",
-            "Fred\'s Rib Shack",
-            "Fred\'s Used Cars",
-            "Mike\'s Automotive"});
 			this.comboBoxEditAdvertiser.Properties.ListType = Asa.Common.GUI.Common.ListType.Advertisers;
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(344, 22);
@@ -262,7 +250,6 @@
 			this.memoEditSalesQuote.Size = new System.Drawing.Size(564, 58);
 			this.memoEditSalesQuote.TabIndex = 90;
 			this.memoEditSalesQuote.TabStop = false;
-			this.memoEditSalesQuote.UseOptimizedRendering = true;
 			this.memoEditSalesQuote.Visible = false;
 			// 
 			// textEditSalesQuoteAuthor
@@ -335,6 +322,7 @@
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yyyy";
 			this.dateEditPresentationDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditPresentationDate.Properties.FirstDayOfWeek = System.DayOfWeek.Monday;
 			this.dateEditPresentationDate.Properties.Mask.EditMask = "MM/dd/yyyy";
 			this.dateEditPresentationDate.Properties.NullText = "Select";
 			this.dateEditPresentationDate.Properties.ShowPopupShadow = false;

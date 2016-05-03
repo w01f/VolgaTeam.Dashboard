@@ -38,6 +38,8 @@ namespace Asa.Business.Dashboard.Entities.NonPersistent
 			Quote = new Quote();
 		}
 
+		protected override String FileNamePrefix => "cover";
+
 		protected override string Serialize()
 		{
 			var result = new StringBuilder();

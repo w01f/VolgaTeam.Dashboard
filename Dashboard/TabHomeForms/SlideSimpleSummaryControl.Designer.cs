@@ -72,6 +72,7 @@
 			this.checkEditMonthlyInvestment = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTableOutput = new DevExpress.XtraEditors.CheckEdit();
 			this.pnTotals = new DevExpress.XtraEditors.PanelControl();
+			this.labelControlFlightDatesWeeks = new DevExpress.XtraEditors.LabelControl();
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
@@ -158,7 +159,7 @@
 			// 
 			this.dateEditFligtDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesStart.EditValue = null;
-			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(476, 249);
+			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(476, 237);
 			this.dateEditFligtDatesStart.Name = "dateEditFligtDatesStart";
 			this.dateEditFligtDatesStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -171,11 +172,12 @@
 			this.dateEditFligtDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditFligtDatesStart.Properties.EditFormat.FormatString = "MM/dd/yyyy";
 			this.dateEditFligtDatesStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditFligtDatesStart.Properties.FirstDayOfWeek = System.DayOfWeek.Monday;
 			this.dateEditFligtDatesStart.Properties.Mask.EditMask = "MM/dd/yyyy";
 			this.dateEditFligtDatesStart.Properties.ShowPopupShadow = false;
 			this.dateEditFligtDatesStart.Properties.ShowToday = false;
 			this.dateEditFligtDatesStart.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditFligtDatesStart.Size = new System.Drawing.Size(123, 20);
+			this.dateEditFligtDatesStart.Size = new System.Drawing.Size(123, 22);
 			this.dateEditFligtDatesStart.TabIndex = 8;
 			this.dateEditFligtDatesStart.EditValueChanged += new System.EventHandler(this.dateEditFligtDatesStart_EditValueChanged);
 			// 
@@ -187,7 +189,7 @@
 			this.ckFlightDates.Checked = true;
 			this.ckFlightDates.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckFlightDates.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckFlightDates.Location = new System.Drawing.Point(455, 202);
+			this.ckFlightDates.Location = new System.Drawing.Point(455, 190);
 			this.ckFlightDates.Name = "ckFlightDates";
 			this.ckFlightDates.Size = new System.Drawing.Size(15, 14);
 			this.ckFlightDates.TabIndex = 7;
@@ -198,7 +200,7 @@
 			// 
 			this.dateEditFligtDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesEnd.EditValue = null;
-			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(616, 249);
+			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(616, 237);
 			this.dateEditFligtDatesEnd.Name = "dateEditFligtDatesEnd";
 			this.dateEditFligtDatesEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -211,20 +213,21 @@
 			this.dateEditFligtDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditFligtDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yyyy";
 			this.dateEditFligtDatesEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditFligtDatesEnd.Properties.FirstDayOfWeek = System.DayOfWeek.Monday;
 			this.dateEditFligtDatesEnd.Properties.Mask.EditMask = "MM/dd/yyyy";
 			this.dateEditFligtDatesEnd.Properties.ShowPopupShadow = false;
 			this.dateEditFligtDatesEnd.Properties.ShowToday = false;
 			this.dateEditFligtDatesEnd.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditFligtDatesEnd.Size = new System.Drawing.Size(123, 20);
+			this.dateEditFligtDatesEnd.Size = new System.Drawing.Size(123, 22);
 			this.dateEditFligtDatesEnd.TabIndex = 9;
-			this.dateEditFligtDatesEnd.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			this.dateEditFligtDatesEnd.EditValueChanged += new System.EventHandler(this.dateEditFligtDatesEnd_EditValueChanged);
 			// 
 			// laFlightDatesStart
 			// 
 			this.laFlightDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDatesStart.BackColor = System.Drawing.Color.White;
 			this.laFlightDatesStart.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDatesStart.Location = new System.Drawing.Point(476, 274);
+			this.laFlightDatesStart.Location = new System.Drawing.Point(476, 262);
 			this.laFlightDatesStart.Name = "laFlightDatesStart";
 			this.laFlightDatesStart.Size = new System.Drawing.Size(123, 21);
 			this.laFlightDatesStart.TabIndex = 73;
@@ -235,7 +238,7 @@
 			this.laFlightDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDatesEnd.BackColor = System.Drawing.Color.White;
 			this.laFlightDatesEnd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDatesEnd.Location = new System.Drawing.Point(616, 274);
+			this.laFlightDatesEnd.Location = new System.Drawing.Point(616, 262);
 			this.laFlightDatesEnd.Name = "laFlightDatesEnd";
 			this.laFlightDatesEnd.Size = new System.Drawing.Size(123, 21);
 			this.laFlightDatesEnd.TabIndex = 74;
@@ -265,12 +268,6 @@
 			this.comboBoxEditDecisionMaker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditDecisionMaker.Properties.Items.AddRange(new object[] {
-            "222222",
-            "Carlie",
-            "Coding",
-            "Fred Jones",
-            "Mike Jones"});
 			this.comboBoxEditDecisionMaker.Properties.ListType = Asa.Common.GUI.Common.ListType.DecisionMakers;
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(275, 20);
@@ -295,12 +292,6 @@
 			this.comboBoxEditAdvertiser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.comboBoxEditAdvertiser.Properties.Items.AddRange(new object[] {
-            "11111111",
-            "Alex",
-            "Fred\'s Rib Shack",
-            "Fred\'s Used Cars",
-            "Mike\'s Automotive"});
 			this.comboBoxEditAdvertiser.Properties.ListType = Asa.Common.GUI.Common.ListType.Advertisers;
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(257, 22);
@@ -310,7 +301,7 @@
 			// dateEditDate
 			// 
 			this.dateEditDate.EditValue = null;
-			this.dateEditDate.Location = new System.Drawing.Point(38, 249);
+			this.dateEditDate.Location = new System.Drawing.Point(38, 237);
 			this.dateEditDate.Name = "dateEditDate";
 			this.dateEditDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -323,6 +314,7 @@
 			this.dateEditDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditDate.Properties.EditFormat.FormatString = "MM/dd/yyyy";
 			this.dateEditDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditDate.Properties.FirstDayOfWeek = System.DayOfWeek.Monday;
 			this.dateEditDate.Properties.Mask.EditMask = "MM/dd/yyyy";
 			this.dateEditDate.Properties.ShowPopupShadow = false;
 			this.dateEditDate.Properties.ShowToday = false;
@@ -338,7 +330,7 @@
 			this.ckDate.Checked = true;
 			this.ckDate.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckDate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckDate.Location = new System.Drawing.Point(17, 202);
+			this.ckDate.Location = new System.Drawing.Point(17, 190);
 			this.ckDate.Name = "ckDate";
 			this.ckDate.Size = new System.Drawing.Size(15, 14);
 			this.ckDate.TabIndex = 5;
@@ -504,6 +496,7 @@
 			// pnBasicInfo
 			// 
 			this.pnBasicInfo.BackColor = System.Drawing.Color.Transparent;
+			this.pnBasicInfo.Controls.Add(this.labelControlFlightDatesWeeks);
 			this.pnBasicInfo.Controls.Add(this.pbFlightDates);
 			this.pnBasicInfo.Controls.Add(this.laFlightDates);
 			this.pnBasicInfo.Controls.Add(this.pbDate);
@@ -533,7 +526,7 @@
 			// 
 			this.pbFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbFlightDates.Image = global::Asa.Dashboard.Properties.Resources.SummaryFlightDates;
-			this.pbFlightDates.Location = new System.Drawing.Point(476, 179);
+			this.pbFlightDates.Location = new System.Drawing.Point(476, 167);
 			this.pbFlightDates.Name = "pbFlightDates";
 			this.pbFlightDates.Size = new System.Drawing.Size(64, 64);
 			this.pbFlightDates.TabIndex = 84;
@@ -544,7 +537,7 @@
 			this.laFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDates.AutoSize = true;
 			this.laFlightDates.Font = new System.Drawing.Font("Arial", 12F);
-			this.laFlightDates.Location = new System.Drawing.Point(562, 199);
+			this.laFlightDates.Location = new System.Drawing.Point(562, 187);
 			this.laFlightDates.Name = "laFlightDates";
 			this.laFlightDates.Size = new System.Drawing.Size(127, 18);
 			this.laFlightDates.TabIndex = 83;
@@ -553,7 +546,7 @@
 			// pbDate
 			// 
 			this.pbDate.Image = global::Asa.Dashboard.Properties.Resources.SummaryPresentationDate;
-			this.pbDate.Location = new System.Drawing.Point(38, 179);
+			this.pbDate.Location = new System.Drawing.Point(38, 167);
 			this.pbDate.Name = "pbDate";
 			this.pbDate.Size = new System.Drawing.Size(64, 64);
 			this.pbDate.TabIndex = 82;
@@ -563,7 +556,7 @@
 			// 
 			this.laDate.AutoSize = true;
 			this.laDate.Font = new System.Drawing.Font("Arial", 12F);
-			this.laDate.Location = new System.Drawing.Point(121, 198);
+			this.laDate.Location = new System.Drawing.Point(121, 186);
 			this.laDate.Name = "laDate";
 			this.laDate.Size = new System.Drawing.Size(134, 18);
 			this.laDate.TabIndex = 81;
@@ -676,6 +669,18 @@
 			this.pnTotals.TabIndex = 85;
 			this.pnTotals.Visible = false;
 			// 
+			// labelControlFlightDatesWeeks
+			// 
+			this.labelControlFlightDatesWeeks.AllowHtmlString = true;
+			this.labelControlFlightDatesWeeks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlFlightDatesWeeks.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlFlightDatesWeeks.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlFlightDatesWeeks.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlFlightDatesWeeks.Location = new System.Drawing.Point(619, 286);
+			this.labelControlFlightDatesWeeks.Name = "labelControlFlightDatesWeeks";
+			this.labelControlFlightDatesWeeks.Size = new System.Drawing.Size(120, 19);
+			this.labelControlFlightDatesWeeks.TabIndex = 85;
+			// 
 			// SlideSimpleSummaryControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -750,6 +755,6 @@
 		private System.Windows.Forms.Label laFlightDates;
 		protected DevExpress.XtraEditors.CheckEdit checkEditTableOutput;
 		private DevExpress.XtraEditors.PanelControl pnTotals;
-
-    }
+		private DevExpress.XtraEditors.LabelControl labelControlFlightDatesWeeks;
+	}
 }

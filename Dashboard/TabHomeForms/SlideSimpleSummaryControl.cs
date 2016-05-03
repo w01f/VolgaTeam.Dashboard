@@ -47,6 +47,7 @@ namespace Asa.Dashboard.TabHomeForms
 				dateEditFligtDatesEnd.Font = new Font(dateEditFligtDatesEnd.Font.FontFamily, dateEditFligtDatesEnd.Font.Size - 2, dateEditFligtDatesEnd.Font.Style);
 				laFlightDatesStart.Font = new Font(laFlightDatesStart.Font.FontFamily, laFlightDatesStart.Font.Size - 2, laFlightDatesStart.Font.Style);
 				laFlightDatesEnd.Font = new Font(laFlightDatesEnd.Font.FontFamily, laFlightDatesEnd.Font.Size - 2, laFlightDatesEnd.Font.Style);
+				labelControlFlightDatesWeeks.Font = new Font(labelControlFlightDatesWeeks.Font.FontFamily, labelControlFlightDatesWeeks.Font.Size - 2, labelControlFlightDatesWeeks.Font.Style);
 				checkEditMonthlyInvestment.Font = new Font(checkEditMonthlyInvestment.Font.FontFamily, checkEditMonthlyInvestment.Font.Size - 2, checkEditMonthlyInvestment.Font.Style);
 				checkEditTotalInvestment.Font = new Font(checkEditTotalInvestment.Font.FontFamily, checkEditTotalInvestment.Font.Size - 2, checkEditTotalInvestment.Font.Style);
 				checkEditTableOutput.Font = new Font(checkEditTableOutput.Font.FontFamily, checkEditTableOutput.Font.Size - 2, checkEditTableOutput.Font.Style);
@@ -166,6 +167,7 @@ namespace Asa.Dashboard.TabHomeForms
 			AllowToSave = true;
 			SettingsNotSaved = false;
 
+			UpdateFlightDatesWeeks();
 			UpdateTotalItems();
 			UpdateSavedFilesState();
 			UpdateOutputState();
@@ -204,6 +206,22 @@ namespace Asa.Dashboard.TabHomeForms
 		{
 			spinEditMonthly.EditValue = ViewSettingsManager.Instance.SimpleSummaryState.MonthlyValue.HasValue ? ViewSettingsManager.Instance.SimpleSummaryState.MonthlyValue.Value : simpleSummaryItemContainer.TotalMonthlyValue;
 			spinEditTotal.EditValue = ViewSettingsManager.Instance.SimpleSummaryState.TotalValue.HasValue ? ViewSettingsManager.Instance.SimpleSummaryState.TotalValue.Value : simpleSummaryItemContainer.TotalTotalValue;
+		}
+
+		private void UpdateFlightDatesWeeks()
+		{
+			labelControlFlightDatesWeeks.Text = String.Empty;
+			if (dateEditFligtDatesStart.EditValue == null || dateEditFligtDatesEnd.EditValue == null)
+				return;
+			var startDate = dateEditFligtDatesStart.DateTime;
+			while (startDate.DayOfWeek != DayOfWeek.Monday)
+				startDate = startDate.AddDays(-1);
+			var endDate = dateEditFligtDatesEnd.DateTime;
+			while (endDate.DayOfWeek != DayOfWeek.Sunday)
+				endDate = endDate.AddDays(1);
+			var datesRange = endDate - startDate;
+			if (datesRange.Days <= 0) return;
+			labelControlFlightDatesWeeks.Text = String.Format("<color=\"gray\">{0} weeks</color>", datesRange.Days / 7 + 1);
 		}
 
 		public override void LoadClick()
@@ -276,8 +294,16 @@ namespace Asa.Dashboard.TabHomeForms
 		private void dateEditFligtDatesStart_EditValueChanged(object sender, EventArgs e)
 		{
 			dateEditFligtDatesEnd.Properties.NullDate = dateEditFligtDatesStart.DateTime;
+			UpdateFlightDatesWeeks();
+			EditValueChanged(sender, e);
 			if (AllowToSave)
 				SettingsNotSaved = true;
+		}
+
+		private void dateEditFligtDatesEnd_EditValueChanged(object sender, EventArgs e)
+		{
+			UpdateFlightDatesWeeks();
+			EditValueChanged(sender, e);
 		}
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)

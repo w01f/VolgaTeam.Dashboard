@@ -7,7 +7,6 @@ using AdSalesBrowser.Configuration;
 using AdSalesBrowser.Helpers;
 using AdSalesBrowser.PowerPoint;
 using AdSalesBrowser.SalesLibraryExtensions;
-using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
 using DevExpress.Utils;
 using DevExpress.XtraTab;

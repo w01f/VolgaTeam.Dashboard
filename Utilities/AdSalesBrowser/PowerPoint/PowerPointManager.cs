@@ -25,15 +25,13 @@ namespace AdSalesBrowser.PowerPoint
 			return false;
 		}
 
-		private void RunPowerPointLoader(Action afterRun)
+		public string GetLauncherTemplatePath()
 		{
-			KillPowerPoint();
-
 			var launcherTemplatesFolderPath = Path.Combine(
 				Path.GetDirectoryName(typeof(PowerPointManager).Assembly.Location),
 				LauncherTemplatesFolderName);
 
-			var launchertemplateFilePath = String.Empty;
+			var launcherTemplateFilePath = String.Empty;
 
 			using (var form = new FormSlideSize())
 			{
@@ -41,23 +39,32 @@ namespace AdSalesBrowser.PowerPoint
 				switch (result)
 				{
 					case DialogResult.Yes:
-						launchertemplateFilePath = Path.Combine(launcherTemplatesFolderPath, LauncherTemplate169FileName);
+						launcherTemplateFilePath = Path.Combine(launcherTemplatesFolderPath, LauncherTemplate169FileName);
 						break;
 					case DialogResult.No:
-						launchertemplateFilePath = Path.Combine(launcherTemplatesFolderPath, LauncherTemplate43FileName);
+						launcherTemplateFilePath = Path.Combine(launcherTemplatesFolderPath, LauncherTemplate43FileName);
 						break;
 					case DialogResult.Retry:
-						launchertemplateFilePath = Path.Combine(launcherTemplatesFolderPath, LauncherTemplate34FileName);
+						launcherTemplateFilePath = Path.Combine(launcherTemplatesFolderPath, LauncherTemplate34FileName);
 						break;
 				}
 			}
 
-			if (!String.IsNullOrEmpty(launchertemplateFilePath))
+			return launcherTemplateFilePath;
+		}
+
+		private void RunPowerPointLoader(Action afterRun)
+		{
+			KillPowerPoint();
+
+			var launcherTemplateFilePath = GetLauncherTemplatePath();
+
+			if (!String.IsNullOrEmpty(launcherTemplateFilePath))
 			{
 				AppManager.Instance.ShowFloater(() =>
 				{
 					var process = new Process();
-					process.StartInfo.FileName = launchertemplateFilePath;
+					process.StartInfo.FileName = launcherTemplateFilePath;
 					process.StartInfo.UseShellExecute = true;
 					process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
 					process.Start();

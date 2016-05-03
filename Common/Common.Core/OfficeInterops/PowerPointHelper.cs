@@ -37,7 +37,7 @@ namespace Asa.Common.Core.OfficeInterops
 		void BuildPdf(string targetFileName, IEnumerable<string> presentationFiles);
 	}
 
-	public class PowerPointHelper<T> : IPowerPointHelper where T : class,new()
+	public class PowerPointHelper<T> : IPowerPointHelper where T : class, new()
 	{
 		protected static T _instance;
 
@@ -222,7 +222,7 @@ namespace Asa.Common.Core.OfficeInterops
 			if (!File.Exists(filePath)) return;
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
 					var presentation = PowerPointObject.Presentations.Open(filePath, WithWindow: MsoTriState.msoFalse);
@@ -330,7 +330,7 @@ namespace Asa.Common.Core.OfficeInterops
 		{
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
 					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
@@ -355,7 +355,7 @@ namespace Asa.Common.Core.OfficeInterops
 				MessageFilter.Register();
 				var settings = new SlideSettings();
 				if (PowerPointObject?.ActivePresentation == null) return null;
-				settings.SlideSize.Width = Math.Round(Convert.ToDecimal(PowerPointObject.ActivePresentation.PageSetup.SlideWidth / 72),3);
+				settings.SlideSize.Width = Math.Round(Convert.ToDecimal(PowerPointObject.ActivePresentation.PageSetup.SlideWidth / 72), 3);
 				settings.SlideSize.Height = Math.Round(Convert.ToDecimal(PowerPointObject.ActivePresentation.PageSetup.SlideHeight / 72), 3);
 				return settings;
 			}
@@ -443,13 +443,13 @@ namespace Asa.Common.Core.OfficeInterops
 		{
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					SavePrevSlideIndex();
-					var presentations = PowerPointObject.Presentations;
-					var presentation = presentations.Add(MsoTriState.msoFalse);
-					SetSlideSettings(presentation, PowerPointManager.Instance.SlideSettings);
-					Utilities.ReleaseComObject(presentations);
+
+					var presentation = PowerPointObject.Presentations.Open(PowerPointManager.Instance.GetLauncherTemplatePath(), MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);
+					if (presentation.Slides.Count > 0)
+						presentation.Slides[1].Delete();
 					buildPresentation(presentation);
 					MessageFilter.Register();
 					presentation.SaveAs(fileName);
@@ -485,7 +485,7 @@ namespace Asa.Common.Core.OfficeInterops
 		{
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
 					if (presentationFiles == null || !presentationFiles.Any()) return;

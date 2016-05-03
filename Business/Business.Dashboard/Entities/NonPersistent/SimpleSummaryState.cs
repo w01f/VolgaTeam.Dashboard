@@ -58,6 +58,8 @@ namespace Asa.Business.Dashboard.Entities.NonPersistent
 			ContractSettings = new ContractSettings();
 		}
 
+		protected override String FileNamePrefix => "summary";
+
 		protected override string Serialize()
 		{
 			var result = new StringBuilder();

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -30,6 +31,8 @@ namespace Asa.Business.Dashboard.Entities.NonPersistent
 			Goal4 = string.Empty;
 			Goal5 = string.Empty;
 		}
+
+		protected override String FileNamePrefix => "needs";
 
 		protected override string Serialize()
 		{

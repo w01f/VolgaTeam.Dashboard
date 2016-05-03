@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace Asa.Business.Dashboard.Entities.NonPersistent
 			Income = new List<string>();
 			Geographic = new List<string>();
 		}
+
+		protected override String FileNamePrefix => "target";
 
 		protected override string Serialize()
 		{

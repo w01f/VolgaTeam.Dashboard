@@ -62,8 +62,7 @@ namespace Asa.Common.Core.Objects.Output
 
 		public bool IsEqual(SlideSettings target)
 		{
-			return target.SlideSize.Width == SlideSize.Width && 
-				target.SlideSize.Height == SlideSize.Height;
+			return target.Format == Format;
 		}
 
 		public static SlideSettings ReadFromString(string size)

@@ -10,6 +10,7 @@ using Asa.Bar.App.ExternalProcesses;
 using Asa.Bar.App.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Bar.App
 {
@@ -82,14 +83,8 @@ namespace Asa.Bar.App
 
 			if (stopRun) return;
 
-			FileStorageManager.Instance.Downloading += (sender, args) =>
-				FormStart.SetDetails(args.ProgressPercent < 100 ?
-					String.Format("Loading {0} - {1}%", args.FileName, args.ProgressPercent) :
-					String.Empty);
-			FileStorageManager.Instance.Extracting += (sender, args) =>
-				FormStart.SetDetails(args.ProgressPercent < 100 ?
-					String.Format("Extracting {0} - {1}%", args.FileName, args.ProgressPercent) :
-					String.Empty);
+			FileStorageManager.Instance.Downloading += OnFileDownloading;
+			FileStorageManager.Instance.Extracting += OnFileExtracting;
 
 			if (FileStorageManager.Instance.Activated)
 			{
@@ -110,6 +105,8 @@ namespace Asa.Bar.App
 					Application.DoEvents();
 			}
 
+			FileStorageManager.Instance.Downloading -= OnFileDownloading;
+			FileStorageManager.Instance.Extracting -= OnFileExtracting;
 			FormStart.CloseProgress();
 			FormStart.Destroy();
 
@@ -134,6 +131,20 @@ namespace Asa.Bar.App
 			WebBrowserManager.Load();
 
 			await BarItemsManager.Load();
+		}
+
+		private void OnFileDownloading(Object sender, FileProcessingProgressEventArgs args)
+		{
+			FormStart.SetDetails(args.ProgressPercent < 100 ?
+				String.Format("Loading {0} - {1}%", args.FileName, args.ProgressPercent) :
+				String.Empty);
+		}
+
+		private void OnFileExtracting(Object sender, FileProcessingProgressEventArgs args)
+		{
+			FormStart.SetDetails(args.ProgressPercent < 100 ?
+					String.Format("Extracting {0} - {1}%", args.FileName, args.ProgressPercent) :
+					String.Empty);
 		}
 	}
 }

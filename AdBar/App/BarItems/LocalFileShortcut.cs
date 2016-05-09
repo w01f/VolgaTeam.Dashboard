@@ -47,6 +47,7 @@ namespace Asa.Bar.App.BarItems
 			{
 				if (File.Exists(destinationPath))
 					File.Delete(destinationPath);
+				FileStorageManager.Instance.Downloading += OnFileDownloading;
 				FormProgress.SetTitle("Loading file...", true);
 				FormProgress.ShowProgress();
 				var thread = new Thread(() =>
@@ -71,6 +72,7 @@ namespace Asa.Bar.App.BarItems
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
+				FileStorageManager.Instance.Downloading -= OnFileDownloading;
 				FormProgress.CloseProgress();
 			}
 			try
@@ -78,6 +80,13 @@ namespace Asa.Bar.App.BarItems
 				Process.Start(destinationPath);
 			}
 			catch { }
+		}
+
+		private void OnFileDownloading(Object sender, FileProcessingProgressEventArgs args)
+		{
+			FormProgress.SetDetails(args.ProgressPercent < 100 ?
+				String.Format("Loading {0} - {1}%", args.FileName, args.ProgressPercent) :
+				String.Empty);
 		}
 	}
 }

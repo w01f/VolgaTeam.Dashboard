@@ -375,8 +375,12 @@ namespace AdSalesBrowser.WebPage
 			}
 			if (_extensionManager.CurrentLinkData?.DataType == LinkDataType.App)
 			{
-				OpenAppLink(((AppLinkData)_extensionManager.CurrentLinkData).GetExecutablePaths());
+				OpenFileLink(((AppLinkData)_extensionManager.CurrentLinkData).GetExecutablePaths());
 				_extensionManager.ReleaseData();
+			}
+			if (_extensionManager.CurrentLinkData?.DataType == LinkDataType.Excel)
+			{
+				DownloadFile(_extensionManager.CurrentLinkData.OriginalFileUrl);
 			}
 			FormMain.Instance.barMain.RecalcLayout();
 		}
@@ -387,7 +391,7 @@ namespace AdSalesBrowser.WebPage
 			FormDownloadProgress.SetTitle("Downloading…");
 			FormMain.Instance.SuspendPages();
 			Application.DoEvents();
-			_extensionDownloadView.WebView.LoadUrl(url);
+			_extensionDownloadView.WebView.LoadUrl(url.Replace(@"SalesLibraries/SalesLibraries", "SalesLibraries"));
 		}
 
 		private void OpenLanLink(string linkPath)
@@ -410,7 +414,7 @@ namespace AdSalesBrowser.WebPage
 					MessageBoxIcon.Exclamation);
 		}
 
-		private void OpenAppLink(IEnumerable<string> executablePaths)
+		private void OpenFileLink(IEnumerable<string> executablePaths)
 		{
 			foreach (var executablePath in executablePaths)
 			{
@@ -460,15 +464,25 @@ namespace AdSalesBrowser.WebPage
 
 			AppManager.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
-				FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-				if (_extensionManager.CurrentContentLinkData.DataType == LinkDataType.Video)
+				if (_extensionManager.CurrentContentLinkData?.DataType == LinkDataType.Video)
 				{
+					FormProgress.ShowProgress();
+					FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 					PowerPointSingleton.Instance.InsertVideoIntoActivePresentation(e.Item.FullPath);
+					FormProgress.CloseProgress();
 				}
-				else if (_extensionManager.CurrentContentLinkData.DataType == LinkDataType.PowerPoint)
+				else if (_extensionManager.CurrentContentLinkData?.DataType == LinkDataType.PowerPoint)
+				{
+					FormProgress.ShowProgress();
+					FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 					PowerPointSingleton.Instance.AppendSlidesFromFile(e.Item.FullPath);
-				FormProgress.CloseProgress();
+					FormProgress.CloseProgress();
+				}
+				else if (_extensionManager.CurrentLinkData?.DataType == LinkDataType.Excel)
+				{
+					OpenFileLink(new[] {e.Item.FullPath});
+					_extensionManager.ReleaseData();
+				}
 			}, null);
 		}
 

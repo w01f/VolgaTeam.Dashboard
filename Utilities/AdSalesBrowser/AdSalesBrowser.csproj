@@ -156,6 +156,7 @@
     <Compile Include="PowerPoint\PowerPointSingleton.cs" />
     <Compile Include="SalesLibraryExtensions\ContentLinkData.cs" />
     <Compile Include="SalesLibraryExtensions\ExtensionManager.cs" />
+    <Compile Include="SalesLibraryExtensions\ExcelLinkData.cs" />
     <Compile Include="SalesLibraryExtensions\LanData.cs" />
     <Compile Include="SalesLibraryExtensions\LinkData.cs" />
     <Compile Include="SalesLibraryExtensions\LinkDataType.cs" />

@@ -34,6 +34,9 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 				case "ppt":
 					CurrentLinkData = new PowerPointData();
 					break;
+				case "xls":
+					CurrentLinkData = new ExcelLinkData();
+					break;
 				case "video":
 				case "mp4":
 				case "wmv":

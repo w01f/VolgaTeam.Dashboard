@@ -3,6 +3,7 @@
 	enum LinkDataType
 	{
 		PowerPoint,
+		Excel,
 		Video,
 		Lan,
 		App

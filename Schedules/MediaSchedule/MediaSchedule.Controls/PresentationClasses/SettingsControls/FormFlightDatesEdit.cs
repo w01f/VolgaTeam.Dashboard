@@ -52,11 +52,21 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				calendarControlDateStart.DateTime = DateStart.Value;
 				calendarControlDateStart.SetSelection(DateStart.Value);
 			}
+			else
+			{
+				calendarControlDateStart.DateTime = DateTime.Today;
+				calendarControlDateStart.SetSelection(DateTime.Today);
+			}
 
 			if (DateEnd.HasValue)
 			{
 				calendarControlDateEnd.DateTime = DateEnd.Value;
 				calendarControlDateEnd.SetSelection(DateEnd.Value);
+			}
+			else
+			{
+				calendarControlDateEnd.DateTime = DateTime.Today;
+				calendarControlDateEnd.SetSelection(DateTime.Today);
 			}
 
 			UpdateDates();

@@ -12,8 +12,6 @@ namespace Asa.Business.Common.Entities.NonPersistent.Schedule
 	{
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
-		public string ClientType { get; set; }
-		public string AccountNumber { get; set; }
 		public string Status { get; set; }
 		public DateTime? PresentationDate { get; set; }
 		public DateTime? FlightDateStart { get; set; }
@@ -21,18 +19,11 @@ namespace Asa.Business.Common.Entities.NonPersistent.Schedule
 
 		public abstract string FlightDates { get; }
 
-		public virtual bool IsNew
-		{
-			get
-			{
-				return String.IsNullOrEmpty(BusinessName) ||
-					   String.IsNullOrEmpty(DecisionMaker) ||
-					   String.IsNullOrEmpty(ClientType) ||
-					   !PresentationDate.HasValue ||
-					   !FlightDateStart.HasValue ||
-					   !FlightDateEnd.HasValue;
-			}
-		}
+		public virtual bool IsNew => String.IsNullOrEmpty(BusinessName) ||
+									 String.IsNullOrEmpty(DecisionMaker) ||
+									 !PresentationDate.HasValue ||
+									 !FlightDateStart.HasValue ||
+									 !FlightDateEnd.HasValue;
 
 		public int TotalWeeks
 		{

@@ -690,9 +690,6 @@
     <None Include="Resources\RibbonLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HomeLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\HomeScheduleTitleLogo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -712,9 +709,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FlightDatesFormEditLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FlightDatesRibbonLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

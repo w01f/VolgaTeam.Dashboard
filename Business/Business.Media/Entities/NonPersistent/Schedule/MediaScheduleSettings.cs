@@ -169,7 +169,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 		protected override void AfterConstruction()
 		{
 			base.AfterConstruction();
-			ClientType = MediaMetaData.Instance.ListManager.ClientTypes.FirstOrDefault();
 			Status = MediaMetaData.Instance.ListManager.Statuses.FirstOrDefault();
 			PresentationDate = DateTime.Now;
 			DemoType = DemoType.Imp;

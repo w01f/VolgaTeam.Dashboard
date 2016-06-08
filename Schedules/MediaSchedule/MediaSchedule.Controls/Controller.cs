@@ -399,14 +399,10 @@ namespace Asa.Media.Controls
 		public ButtonItem HomeProductClone { get; set; }
 		public ComboBoxEdit HomeBusinessName { get; set; }
 		public ComboBoxEdit HomeDecisionMaker { get; set; }
-		public ComboBoxEdit HomeClientType { get; set; }
-		public TextEdit HomeAccountNumberText { get; set; }
-		public CheckBoxItem HomeAccountNumberCheck { get; set; }
 		public DateEdit HomePresentationDate { get; set; }
 		public RibbonBar HomeFlightDates { get; set; }
 		public LabelItem HomeFlightDatesStart { get; set; }
 		public LabelItem HomeFlightDatesEnd { get; set; }
-		public LabelItem HomeWeeks { get; set; }
 		#endregion
 
 		#region Program Schedule

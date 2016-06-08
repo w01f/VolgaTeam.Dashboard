@@ -16,7 +16,6 @@ using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Media.Controls.BusinessClasses;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls
@@ -70,9 +69,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			Controller.Instance.HomeBusinessName.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeDecisionMaker.EditValueChanged += OnSchedulePropertyValueChanged;
-			Controller.Instance.HomeClientType.EditValueChanged += OnSchedulePropertyValueChanged;
-			Controller.Instance.HomeAccountNumberText.EditValueChanged += OnSchedulePropertyValueChanged;
-			Controller.Instance.HomeAccountNumberCheck.CheckedChanged += checkBoxItemAccountNumber_CheckedChanged;
 			Controller.Instance.HomeFlightDatesStart.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesEnd.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeProductClone.Click += DigitalProductClone;
@@ -83,7 +79,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomeBusinessName.TabIndex = 0;
 			Controller.Instance.HomeBusinessName.KeyDown += OnSchedulePropertiesEditorKeyDown;
 			Controller.Instance.HomeDecisionMaker.KeyDown += OnSchedulePropertiesEditorKeyDown;
-			Controller.Instance.HomeClientType.KeyDown += OnSchedulePropertiesEditorKeyDown;
 			Controller.Instance.HomePresentationDate.KeyDown += OnSchedulePropertiesEditorKeyDown;
 		}
 
@@ -98,16 +93,10 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				SettingsNotSaved = EditedSettings.IsNew;
 
 				#region Media Tab
-				Controller.Instance.HomeAccountNumberCheck.Enabled = EditedSettings.HomeViewSettings.EnableAccountNumber;
 
-				Controller.Instance.HomeClientType.Properties.Items.Clear();
-				Controller.Instance.HomeClientType.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.ClientTypes.ToArray());
 
 				Controller.Instance.HomeBusinessName.EditValue = EditedSettings.BusinessName;
 				Controller.Instance.HomeDecisionMaker.EditValue = EditedSettings.DecisionMaker;
-				Controller.Instance.HomeClientType.EditValue = EditedSettings.ClientType;
-				Controller.Instance.HomeAccountNumberCheck.Checked = !String.IsNullOrEmpty(EditedSettings.AccountNumber);
-				Controller.Instance.HomeAccountNumberText.EditValue = EditedSettings.AccountNumber;
 
 				Controller.Instance.HomePresentationDate.EditValue = EditedSettings.PresentationDate;
 				UpdateFlightDates();
@@ -267,10 +256,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			EditedSettings.BusinessName = Controller.Instance.HomeBusinessName.EditValue as String;
 			EditedSettings.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
-			EditedSettings.ClientType = Controller.Instance.HomeClientType.EditValue as String;
-			EditedSettings.AccountNumber = Controller.Instance.HomeAccountNumberCheck.Checked ?
-				Controller.Instance.HomeAccountNumberText.EditValue as String :
-				null;
 			EditedSettings.PresentationDate = (DateTime?)Controller.Instance.HomePresentationDate.EditValue;
 			EditedSettings.UseDemo = buttonXUseDemos.Checked;
 			EditedSettings.ImportDemo = buttonXDemosImport.Checked;
@@ -323,12 +308,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
 				return;
 			}
-			if (String.IsNullOrEmpty(EditedSettings.ClientType))
-			{
-				savingArgs.Cancel = true;
-				savingArgs.ErrorMessages.Add("You must set Client type before save");
-				return;
-			}
 			if (!EditedSettings.PresentationDate.HasValue)
 			{
 				savingArgs.Cancel = true;
@@ -367,7 +346,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		public override void GetHelp()
 		{
-			if (xtraTabControlMain.SelectedTabPage == xtraTabPageMedia)
+			if (xtraTabControlMain.SelectedTabPage == xtraTabPageSchedule)
 				BusinessObjects.Instance.HelpManager.OpenHelpLink(
 					String.Format("home{0}", MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? "tv" : "rd"));
 			else if (xtraTabControlMain.SelectedTabPage == xtraTabPageDigital)
@@ -380,7 +359,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			var enableSchedules = !String.IsNullOrEmpty(EditedSettings.BusinessName) &
 								   !String.IsNullOrEmpty(EditedSettings.DecisionMaker) &
-								   !String.IsNullOrEmpty(EditedSettings.ClientType) &
 								   EditedSettings.PresentationDate.HasValue &
 								   EditedSettings.UserFlightDateStart.HasValue &
 								   EditedSettings.UserFlightDateEnd.HasValue;
@@ -388,7 +366,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			buttonXWeeklySchedule.Enabled = enableSchedules;
 			buttonXMonthlySchedule.Enabled = enableSchedules;
 			if (enableSchedules)
-				pnMedia.BringToFront();
+				pnSchedule.BringToFront();
 			else
 				pnMediaDefault.BringToFront();
 		}
@@ -409,11 +387,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				EditedSettings.StartDayOfWeek,
 				EditedSettings.EndDayOfWeek
 				);
-			Controller.Instance.HomeWeeks.Text = "";
-			Controller.Instance.HomeWeeks.Visible = false;
+			Controller.Instance.HomeFlightDates.Text = "Weeks";
 			if (!weeksCount.HasValue) return;
-			Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
-			Controller.Instance.HomeWeeks.Visible = true;
+			Controller.Instance.HomeFlightDates.Text = String.Format("Weeks ({0})", weeksCount);
+			Controller.Instance.HomeFlightDates.RecalcLayout();
+			Controller.Instance.HomePanel.PerformLayout();
 		}
 
 		private void LoadDigitalCategories()
@@ -445,6 +423,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).Enabled = e.Page == xtraTabPageDigital;
 			UpdateProductsCount();
 			splitContainerControl.PanelVisibility = e.Page == xtraTabPageDigital ? SplitPanelVisibility.Panel1 : SplitPanelVisibility.Both;
+			xtraTabControlScheduleOptions.Visible = e.Page == xtraTabPageSchedule;
+			xtraTabControlSolutionOptions.Visible = e.Page == xtraTabPageSolution;
 		}
 
 		private void OnRibbonRibbonTabsStateChanged(object sender, EventArgs e)
@@ -482,12 +462,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			SettingsNotSaved = true;
 		}
 
-		public void checkBoxItemAccountNumber_CheckedChanged(object sender, CheckBoxChangeEventArgs e)
-		{
-			Controller.Instance.HomeAccountNumberText.Enabled = Controller.Instance.HomeAccountNumberCheck.Checked;
-			OnSchedulePropertyValueChanged(null, null);
-		}
-
 		private void OnFlightDatesEditClick(Object sender, EventArgs e)
 		{
 			using (var form = new FormFlightDatesEdit())
@@ -514,8 +488,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			if (sender == Controller.Instance.HomeBusinessName)
 				Controller.Instance.HomeDecisionMaker.Focus();
 			else if (sender == Controller.Instance.HomeDecisionMaker)
-				Controller.Instance.HomeClientType.Focus();
-			else if (sender == Controller.Instance.HomeClientType)
 				Controller.Instance.HomePresentationDate.Focus();
 			else if (sender == Controller.Instance.HomePresentationDate)
 				Controller.Instance.HomeBusinessName.Focus();

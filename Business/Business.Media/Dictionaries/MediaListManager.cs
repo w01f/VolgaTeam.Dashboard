@@ -21,7 +21,6 @@ namespace Asa.Business.Media.Dictionaries
 		protected MediaListManager()
 		{
 			SlideHeaders = new List<string>();
-			ClientTypes = new List<string>();
 			Lengths = new List<string>();
 			Stations = new List<Station>();
 			CustomDemos = new List<string>();
@@ -50,7 +49,6 @@ namespace Asa.Business.Media.Dictionaries
 		public DirectoryInfo XtraTinyImageFolder { get; set; }
 		public List<ImageSourceGroup> Images { get; set; }
 		public List<string> SlideHeaders { get; set; }
-		public List<string> ClientTypes { get; set; }
 		public List<string> Lengths { get; set; }
 		public List<string> CustomDemos { get; set; }
 		public List<string> Times { get; set; }
@@ -76,7 +74,6 @@ namespace Asa.Business.Media.Dictionaries
 		private void LoadStrategy()
 		{
 			SlideHeaders.Clear();
-			ClientTypes.Clear();
 			SourcePrograms.Clear();
 			Lengths.Clear();
 			Stations.Clear();
@@ -107,16 +104,6 @@ namespace Asa.Business.Media.Dictionaries
 											break;
 									}
 								}
-								break;
-							case "ClientType":
-								foreach (XmlAttribute attribute in childeNode.Attributes)
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!ClientTypes.Contains(attribute.Value))
-												ClientTypes.Add(attribute.Value);
-											break;
-									}
 								break;
 							case "FlexFlightDatesAllowed":
 								{

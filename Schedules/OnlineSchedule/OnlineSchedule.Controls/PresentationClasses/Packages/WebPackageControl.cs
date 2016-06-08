@@ -114,7 +114,7 @@ namespace Asa.Online.Controls.PresentationClasses.Packages
 		protected override void UpdateEditedContet()
 		{
 			AllowApplyValues = false;
-			laAdvertiser.Text = ScheduleSettings.BusinessName + (!String.IsNullOrEmpty(ScheduleSettings.AccountNumber) ? (" - " + ScheduleSettings.AccountNumber) : String.Empty);
+			laAdvertiser.Text = ScheduleSettings.BusinessName;
 			gridControl.DataSource = null;
 			LoadSettings();
 			UpdateControls();

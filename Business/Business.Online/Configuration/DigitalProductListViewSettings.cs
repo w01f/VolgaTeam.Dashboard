@@ -6,14 +6,12 @@ namespace Asa.Business.Online.Configuration
 {
 	public class DigitalProductListViewSettings
 	{
-		public bool EnableAccountNumber { get; set; }
 		public bool EnableDigitalDimensions { get; set; }
 		public bool EnableDigitalStrategy { get; set; }
 		public bool EnableDigitalLocation { get; set; }
 		public bool EnableDigitalTargeting { get; set; }
 		public bool EnableDigitalRichMedia { get; set; }
 
-		public bool ShowAccountNumber { get; set; }
 		public bool ShowDigitalDimensions { get; set; }
 		public bool ShowDigitalStrategy { get; set; }
 		public bool ShowDigitalLocation { get; set; }
@@ -22,14 +20,12 @@ namespace Asa.Business.Online.Configuration
 
 		public DigitalProductListViewSettings()
 		{
-			EnableAccountNumber = true;
 			EnableDigitalDimensions = true;
 			EnableDigitalStrategy = true;
 			EnableDigitalLocation = true;
 			EnableDigitalTargeting = true;
 			EnableDigitalRichMedia = true;
 
-			ShowAccountNumber = false;
 			ShowDigitalDimensions = true;
 			ShowDigitalStrategy = true;
 			ShowDigitalLocation = true;
@@ -48,14 +44,12 @@ namespace Asa.Business.Online.Configuration
 		{
 			var result = new StringBuilder();
 
-			result.AppendLine(@"<EnableAccountNumber>" + EnableAccountNumber + @"</EnableAccountNumber>");
 			result.AppendLine(@"<EnableDigitalDimensions>" + EnableDigitalDimensions + @"</EnableDigitalDimensions>");
 			result.AppendLine(@"<EnableDigitalStrategy>" + EnableDigitalStrategy + @"</EnableDigitalStrategy>");
 			result.AppendLine(@"<EnableDigitalLocation>" + EnableDigitalLocation + @"</EnableDigitalLocation>");
 			result.AppendLine(@"<EnableDigitalTargeting>" + EnableDigitalTargeting + @"</EnableDigitalTargeting>");
 			result.AppendLine(@"<EnableDigitalRichMedia>" + EnableDigitalRichMedia + @"</EnableDigitalRichMedia>");
 
-			result.AppendLine(@"<ShowAccountNumber>" + ShowAccountNumber + @"</ShowAccountNumber>");
 			result.AppendLine(@"<ShowDigitalDimensions>" + ShowDigitalDimensions + @"</ShowDigitalDimensions>");
 			result.AppendLine(@"<ShowDigitalStrategy>" + ShowDigitalStrategy + @"</ShowDigitalStrategy>");
 			result.AppendLine(@"<ShowDigitalLocation>" + ShowDigitalLocation + @"</ShowDigitalLocation>");
@@ -72,10 +66,6 @@ namespace Asa.Business.Online.Configuration
 				bool tempBool;
 				switch (childNode.Name)
 				{
-					case "EnableAccountNumber":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableAccountNumber = tempBool;
-						break;
 					case "EnableDigitalDimensions":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableDigitalDimensions = tempBool;
@@ -97,10 +87,6 @@ namespace Asa.Business.Online.Configuration
 							EnableDigitalRichMedia = tempBool;
 						break;
 
-					case "ShowAccountNumber":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowAccountNumber = tempBool;
-						break;
 					case "ShowDigitalDimensions":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowDigitalDimensions = tempBool;
@@ -124,7 +110,6 @@ namespace Asa.Business.Online.Configuration
 				}
 			}
 
-			ShowAccountNumber &= EnableAccountNumber;
 			ShowDigitalDimensions &= EnableDigitalDimensions;
 			ShowDigitalStrategy &= EnableDigitalStrategy;
 			ShowDigitalLocation &= EnableDigitalLocation;

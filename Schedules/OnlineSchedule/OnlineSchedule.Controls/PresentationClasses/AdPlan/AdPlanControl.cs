@@ -61,7 +61,7 @@ namespace Asa.Online.Controls.PresentationClasses.AdPlan
 		public virtual void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
-			laAdvertiser.Text = Content.ScheduleSettings.BusinessName + (!string.IsNullOrEmpty(Content.ScheduleSettings.AccountNumber) ? (" - " + Content.ScheduleSettings.AccountNumber) : string.Empty);
+			laAdvertiser.Text = Content.ScheduleSettings.BusinessName;
 			if (!quickLoad)
 			{
 				checkEditLessSlides.Checked = !Content.ScheduleSettings.AdPlanViewSettings.MoreSlides;

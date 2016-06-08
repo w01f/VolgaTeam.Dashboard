@@ -41,7 +41,6 @@ namespace Asa.Media.Single
 				styleController.AppearanceReadOnly.Font = font;
 				comboBoxEditBusinessName.Font = font;
 				comboBoxEditDecisionMaker.Font = font;
-				comboBoxEditClientType.Font = font;
 				dateEditPresentationDate.Font = font;
 
 				labelItemHomeFlightDatesStartTitle.Font = new Font(labelItemHomeFlightDatesStartTitle.Font.FontFamily,
@@ -124,15 +123,11 @@ namespace Asa.Media.Single
 			Controller.Instance.HomeFlightDates = ribbonBarHomeFlightDates;
 			Controller.Instance.HomeFlightDatesStart = labelItemHomeFlightDatesStartValue;
 			Controller.Instance.HomeFlightDatesEnd = labelItemHomeFlightDatesEndValue;
-			Controller.Instance.HomeWeeks = labelItemHomeFlightDatesWeeks;
 			Controller.Instance.HomeSave = buttonItemHomeSave;
 			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
 			Controller.Instance.HomeHelp = buttonItemHomeHelp;
 			Controller.Instance.HomeProductAdd = buttonItemHomeDigitalProductAdd;
 			Controller.Instance.HomeProductClone = buttonItemHomeDigitalProductClone;
-			Controller.Instance.HomeClientType = comboBoxEditClientType;
-			Controller.Instance.HomeAccountNumberText = textEditAccountNumber;
-			Controller.Instance.HomeAccountNumberCheck = checkBoxItemHomeAccountNumber;
 			#endregion
 
 			#region Program Schedule

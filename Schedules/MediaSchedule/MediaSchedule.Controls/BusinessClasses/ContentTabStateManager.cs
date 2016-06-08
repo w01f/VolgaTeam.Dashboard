@@ -40,7 +40,6 @@ namespace Asa.Media.Controls.BusinessClasses
 			var scheduleInitialized = scheduleSettings != null &&
 									!String.IsNullOrEmpty(scheduleSettings.BusinessName) &
 								   !String.IsNullOrEmpty(scheduleSettings.DecisionMaker) &
-								   !String.IsNullOrEmpty(scheduleSettings.ClientType) &
 								   scheduleSettings.PresentationDate.HasValue &
 								   scheduleSettings.UserFlightDateStart.HasValue &
 								   scheduleSettings.UserFlightDateEnd.HasValue;

@@ -102,8 +102,21 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
-      <Project>{CCFAD4DA-48C4-454B-930D-6A81D2626E76}</Project>
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
       <Name>Business.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
@@ -111,7 +124,7 @@
       <Name>Business.Media</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Online\Business.Online.csproj">
-      <Project>{886DC89E-77E0-438E-9FB0-A5D76063C93A}</Project>
+      <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
       <Name>Business.Online</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
@@ -126,19 +139,6 @@
       <Project>{f3572a95-e99d-485f-b4f3-ef26f49c094b}</Project>
       <Name>Media.Controls</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

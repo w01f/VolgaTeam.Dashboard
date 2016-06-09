@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
+using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Interfaces;
 using Asa.Common.Core.Helpers;
@@ -17,6 +18,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Summary;
 using Asa.Online.Controls.ToolForms;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
@@ -25,6 +27,7 @@ using DevExpress.XtraTab.ViewInfo;
 namespace Asa.Online.Controls.PresentationClasses.Products
 {
 	[ToolboxItem(false)]
+	//public class DigitalProductContainer : UserControl
 	public abstract partial class DigitalProductContainer<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>, IDigitalProductsContainer
 		where TPartitionContet : BaseSchedulePartitionContent<TSchedule, TScheduleSettings>, IDigitalProductsContent
 		where TSchedule : IDigitalSchedule<TScheduleSettings>
@@ -40,18 +43,15 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 		protected abstract IDigitalSchedule<IDigitalScheduleSettings> Schedule { get; }
 
-		protected IDigitalScheduleSettings ScheduleSettings
-		{
-			get { return Schedule.Settings; }
-		}
+		protected IDigitalScheduleSettings ScheduleSettings => Schedule.Settings;
 
 		public abstract Form MainForm { get; }
-		public IDigitalProductsContent DigitalProductsContent
-		{
-			get { return EditedContent; }
-		}
+		public IDigitalProductsContent DigitalProductsContent => EditedContent;
 		public abstract Theme SelectedTheme { get; }
 		protected abstract string SlideName { get; }
+		public abstract ButtonItem ProductAddButton { get; }
+		public abstract ButtonItem ProductCloneButton { get; }
+		public abstract RibbonPanel RibbonPanel { get; }
 		public bool AllowApplyValues { get; set; }
 
 		#region BaseContentEditControl Override
@@ -73,15 +73,89 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			}
 			spinEditDuration.EnableSelectAll();
 			AssignCloseActiveEditorsOnOutsideClick(pnHeader);
+
+			LoadDigitalCategories();
+			ProductCloneButton.Click += DigitalProductClone;
+		}
+
+		protected override void UpdateEditedContet()
+		{
+			AllowApplyValues = false;
+
+			checkEditShowFlightDates.Text = String.Format("{0}", ScheduleSettings.FlightDates);
+
+			LoadProductList();
+
+			LoadProductControls(true);
+
+			LoadProduct(_tabPages.FirstOrDefault());
+
+			AllowApplyValues = true;
 		}
 
 		protected override void ApplyChanges()
 		{
+			digitalProductListControl.ApplyChanges();
 			if (xtraTabControlProducts.SelectedTabPage is IDigitalProductControl)
 				SaveProduct((IDigitalProductControl)xtraTabControlProducts.SelectedTabPage);
 			foreach (var tabPage in _tabPages)
 				tabPage.SaveValues();
 			xtraTabControlProducts.TabPages.OfType<DigitalSummaryControl>().First().Save();
+		}
+		#endregion
+
+		#region Product List Management
+		private void LoadProductList()
+		{
+			digitalProductListControl.UpdateData(
+					EditedContent as DigitalProductsContent,
+					ScheduleSettings,
+					() =>
+					{
+						UpdateProductsCount();
+						LoadProductControls();
+						if (!AllowApplyValues) return;
+						ChangeInfo.DigitalContentChanged = true;
+						SettingsNotSaved = true;
+					}
+				);
+		}
+
+		protected abstract void LoadProductControls(bool fullReload = false);
+
+		private void LoadDigitalCategories()
+		{
+			foreach (var category in ListManager.Instance.Categories)
+			{
+				var categoryButton = new ButtonItem
+				{
+					Image = category.Logo,
+					Text = "<b>" + category.TooltipTitle + "</b><p>" + category.TooltipValue + "</p>",
+					ImagePaddingHorizontal = 8,
+					SubItemsExpandWidth = 14,
+					Tag = category
+				};
+				categoryButton.Click += DigitalProductAdd;
+				ProductAddButton.SubItems.Add(categoryButton);
+			}
+			((RibbonBar)ProductAddButton.ContainerControl).RecalcLayout();
+			RibbonPanel.PerformLayout();
+		}
+
+		private void UpdateProductsCount()
+		{
+			xtraTabPageList.Text = String.Format("Digital Strategy  ({0})", EditedContent.DigitalProducts.Count);
+		}
+
+		public void DigitalProductAdd(object sender, EventArgs e)
+		{
+			var category = (Category)((ButtonItem)sender).Tag;
+			digitalProductListControl.AddProduct(category);
+		}
+
+		public void DigitalProductClone(object sender, EventArgs e)
+		{
+			digitalProductListControl.CloneProduct();
 		}
 		#endregion
 
@@ -161,51 +235,54 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		#region Control Event Handlers
 		protected void OnProductsTabControlSelectedPageChanged(object sender, TabPageChangedEventArgs e)
 		{
-			if (e.PrevPage is IDigitalProductControl)
-				SaveProduct((IDigitalProductControl)e.PrevPage);
-			else if (e.PrevPage is DigitalSummaryControl)
-				((DigitalSummaryControl)e.PrevPage).Save();
-			if (e.Page is DigitalSummaryControl)
+			if (e.PrevPage == xtraTabPageList)
+				digitalProductListControl.ApplyChanges();
+			else if (e.PrevPage is IDigitalProductControl)
 			{
 				_tabPages.ForEach(tp => tp.SaveValues());
-				labelControlCategory.Text = "Digital Product Summary";
-				checkEditDuration.Visible = false;
-				spinEditDuration.Visible = false;
-				checkEditMonths.Visible = false;
-				checkEditWeeks.Visible = false;
-				((DigitalSummaryControl)e.Page).SetFocus();
+				SaveProduct((IDigitalProductControl)e.PrevPage);
 			}
-			else
+			else if (e.PrevPage is DigitalSummaryControl)
+				((DigitalSummaryControl)e.PrevPage).Save();
+
+			if (e.Page == xtraTabPageList)
+			{
+				labelControlCategory.Text = String.Empty;
+			}
+			else if (e.Page is IDigitalProductControl)
 			{
 				LoadProduct((DigitalProductControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>)e.Page);
-				checkEditDuration.Visible = true;
-				spinEditDuration.Visible = true;
-				checkEditMonths.Visible = true;
-				checkEditWeeks.Visible = true;
 			}
+			else if (e.Page is DigitalSummaryControl)
+			{
+				labelControlCategory.Text = "Digital Product Summary";
+				((DigitalSummaryControl)e.Page).SetFocus();
+			}
+
+			checkEditShowFlightDates.Visible =
+			checkEditDuration.Visible =
+			spinEditDuration.Visible =
+			checkEditMonths.Visible =
+			checkEditWeeks.Visible = e.Page is IDigitalProductControl;
+			((RibbonBar)ProductAddButton.ContainerControl).Enabled = e.Page == xtraTabPageList;
 		}
 
 		private void OnProductsTabControlMouseDown(object sender, MouseEventArgs e)
 		{
-			var c = sender as XtraTabControl;
+			var c = (XtraTabControl)sender;
 			var hi = c.CalcHitInfo(new Point(e.X, e.Y));
 			if (hi.HitTest != XtraTabHitTest.PageHeader || e.Button != MouseButtons.Right) return;
 			var productControl = hi.Page as DigitalProductControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>;
+			if (productControl == null) return;
 			using (var form = new FormCloneProduct())
 			{
-				if (form.ShowDialog() != DialogResult.Yes || productControl == null) return;
+				if (form.ShowDialog() != DialogResult.Yes) return;
 				var selectedPage = xtraTabControlProducts.SelectedTabPage as DigitalProductControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>;
-				var newPrintProduct = productControl.Product.Clone<DigitalProduct, DigitalProduct>();
-				xtraTabControlProducts.SelectedPageChanged -= OnProductsTabControlSelectedPageChanged;
-				xtraTabControlProducts.TabPages.Clear();
-				var newPublicationTab = new DigitalProductControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>(this);
-				newPublicationTab.Product = newPrintProduct;
-				newPublicationTab.Text = newPrintProduct.Name.Replace("&", "&&");
-				newPublicationTab.LoadValues();
-				_tabPages.Add(newPublicationTab);
-				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
-				xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
-				xtraTabControlProducts.SelectedPageChanged += OnProductsTabControlSelectedPageChanged;
+				productControl.Product.Clone<DigitalProduct, DigitalProduct>();
+
+				LoadProductList();
+				LoadProductControls();
+
 				xtraTabControlProducts.SelectedTabPage = selectedPage;
 				SettingsNotSaved = true;
 			}

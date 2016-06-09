@@ -44,8 +44,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.pnMediaDefault = new System.Windows.Forms.Panel();
 			this.pbMediaDefault = new System.Windows.Forms.PictureBox();
-			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalProductListControl = new Asa.Online.Controls.PresentationClasses.Products.DigitalProductListControl();
+			this.xtraTabPageSolution = new DevExpress.XtraTab.XtraTabPage();
+			this.labelControlCoomingSoon1 = new DevExpress.XtraEditors.LabelControl();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.daypartsControl = new Asa.Media.Controls.PresentationClasses.SettingsControls.DaypartsControl();
 			this.xtraTabControlScheduleOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageScheduleOptionsStations = new DevExpress.XtraTab.XtraTabPage();
@@ -56,7 +57,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlDemosInfo = new DevExpress.XtraEditors.LabelControl();
 			this.pnSelectDemo = new System.Windows.Forms.Panel();
 			this.comboBoxEditDemos = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnSelectSource = new System.Windows.Forms.Panel();
 			this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.pnDemosType = new System.Windows.Forms.Panel();
@@ -73,16 +73,14 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXCalendarTypeSundayBased = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCalendarTypeMondayBased = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.xtraTabPageSolutionOptions3 = new DevExpress.XtraTab.XtraTabPage();
-			this.xtraTabPageSolutionOptions2 = new DevExpress.XtraTab.XtraTabPage();
-			this.xtraTabPageSolutionOptions1 = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabControlSolutionOptions = new DevExpress.XtraTab.XtraTabControl();
-			this.xtraTabPageSolution = new DevExpress.XtraTab.XtraTabPage();
-			this.labelControlCoomingSoon1 = new DevExpress.XtraEditors.LabelControl();
+			this.xtraTabPageSolutionOptions1 = new DevExpress.XtraTab.XtraTabPage();
 			this.labelControlComingSoon2 = new DevExpress.XtraEditors.LabelControl();
+			this.xtraTabPageSolutionOptions2 = new DevExpress.XtraTab.XtraTabPage();
 			this.labelControlComingSoon3 = new DevExpress.XtraEditors.LabelControl();
+			this.xtraTabPageSolutionOptions3 = new DevExpress.XtraTab.XtraTabPage();
 			this.labelControlComingSoon4 = new DevExpress.XtraEditors.LabelControl();
+			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageSchedule.SuspendLayout();
@@ -91,7 +89,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxScheduleTypeTitle)).BeginInit();
 			this.pnMediaDefault.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).BeginInit();
-			this.xtraTabPageDigital.SuspendLayout();
+			this.xtraTabPageSolution.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlScheduleOptions)).BeginInit();
 			this.xtraTabControlScheduleOptions.SuspendLayout();
 			this.xtraTabPageScheduleOptionsStations.SuspendLayout();
@@ -101,7 +100,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnDemosInfo.SuspendLayout();
 			this.pnSelectDemo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDemos.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnSelectSource.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSource.Properties)).BeginInit();
 			this.pnDemosType.SuspendLayout();
@@ -111,12 +109,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageScheduleOptionsCalendarType.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
-			this.xtraTabPageSolutionOptions3.SuspendLayout();
-			this.xtraTabPageSolutionOptions2.SuspendLayout();
-			this.xtraTabPageSolutionOptions1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSolutionOptions)).BeginInit();
 			this.xtraTabControlSolutionOptions.SuspendLayout();
-			this.xtraTabPageSolution.SuspendLayout();
+			this.xtraTabPageSolutionOptions1.SuspendLayout();
+			this.xtraTabPageSolutionOptions2.SuspendLayout();
+			this.xtraTabPageSolutionOptions3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// stationsControl
@@ -152,8 +149,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.xtraTabControlMain.TabIndex = 18;
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageSchedule,
-            this.xtraTabPageSolution,
-            this.xtraTabPageDigital});
+            this.xtraTabPageSolution});
 			this.xtraTabControlMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.OnProductsTabPageChanged);
 			// 
 			// xtraTabPageSchedule
@@ -290,23 +286,41 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pbMediaDefault.TabIndex = 23;
 			this.pbMediaDefault.TabStop = false;
 			// 
-			// xtraTabPageDigital
+			// xtraTabPageSolution
 			// 
-			this.xtraTabPageDigital.Controls.Add(this.digitalProductListControl);
-			this.xtraTabPageDigital.Name = "xtraTabPageDigital";
-			this.xtraTabPageDigital.Size = new System.Drawing.Size(656, 572);
-			this.xtraTabPageDigital.Text = "Digital Strategy";
+			this.xtraTabPageSolution.Controls.Add(this.labelControlCoomingSoon1);
+			this.xtraTabPageSolution.Name = "xtraTabPageSolution";
+			this.xtraTabPageSolution.Size = new System.Drawing.Size(656, 572);
+			this.xtraTabPageSolution.Text = "The Solution";
 			// 
-			// digitalProductListControl
+			// labelControlCoomingSoon1
 			// 
-			this.digitalProductListControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.digitalProductListControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.digitalProductListControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
-			this.digitalProductListControl.Logo = null;
-			this.digitalProductListControl.Name = "digitalProductListControl";
-			this.digitalProductListControl.Size = new System.Drawing.Size(656, 572);
-			this.digitalProductListControl.TabIndex = 0;
+			this.labelControlCoomingSoon1.AllowHtmlString = true;
+			this.labelControlCoomingSoon1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.labelControlCoomingSoon1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.labelControlCoomingSoon1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlCoomingSoon1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlCoomingSoon1.Location = new System.Drawing.Point(0, 0);
+			this.labelControlCoomingSoon1.Name = "labelControlCoomingSoon1";
+			this.labelControlCoomingSoon1.Size = new System.Drawing.Size(656, 572);
+			this.labelControlCoomingSoon1.StyleController = this.styleController;
+			this.labelControlCoomingSoon1.TabIndex = 0;
+			this.labelControlCoomingSoon1.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// daypartsControl
 			// 
@@ -432,21 +446,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.comboBoxEditDemos.StyleController = this.styleController;
 			this.comboBoxEditDemos.TabIndex = 1;
 			this.comboBoxEditDemos.EditValueChanged += new System.EventHandler(this.comboBoxEditDemos_EditValueChanged);
-			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// pnSelectSource
 			// 
@@ -667,32 +666,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.splitContainerControl.TabIndex = 19;
 			this.splitContainerControl.Text = "splitContainerControl1";
 			// 
-			// superTooltip
-			// 
-			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
-			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			// 
-			// xtraTabPageSolutionOptions3
-			// 
-			this.xtraTabPageSolutionOptions3.Controls.Add(this.labelControlComingSoon4);
-			this.xtraTabPageSolutionOptions3.Name = "xtraTabPageSolutionOptions3";
-			this.xtraTabPageSolutionOptions3.Size = new System.Drawing.Size(348, 572);
-			this.xtraTabPageSolutionOptions3.Text = "Tab 3";
-			// 
-			// xtraTabPageSolutionOptions2
-			// 
-			this.xtraTabPageSolutionOptions2.Controls.Add(this.labelControlComingSoon3);
-			this.xtraTabPageSolutionOptions2.Name = "xtraTabPageSolutionOptions2";
-			this.xtraTabPageSolutionOptions2.Size = new System.Drawing.Size(348, 572);
-			this.xtraTabPageSolutionOptions2.Text = "Tab 2";
-			// 
-			// xtraTabPageSolutionOptions1
-			// 
-			this.xtraTabPageSolutionOptions1.Controls.Add(this.labelControlComingSoon2);
-			this.xtraTabPageSolutionOptions1.Name = "xtraTabPageSolutionOptions1";
-			this.xtraTabPageSolutionOptions1.Size = new System.Drawing.Size(348, 572);
-			this.xtraTabPageSolutionOptions1.Text = "Tab 1";
-			// 
 			// xtraTabControlSolutionOptions
 			// 
 			this.xtraTabControlSolutionOptions.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -718,26 +691,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.xtraTabPageSolutionOptions2,
             this.xtraTabPageSolutionOptions3});
 			// 
-			// xtraTabPageSolution
+			// xtraTabPageSolutionOptions1
 			// 
-			this.xtraTabPageSolution.Controls.Add(this.labelControlCoomingSoon1);
-			this.xtraTabPageSolution.Name = "xtraTabPageSolution";
-			this.xtraTabPageSolution.Size = new System.Drawing.Size(656, 572);
-			this.xtraTabPageSolution.Text = "The Solution";
-			// 
-			// labelControlCoomingSoon1
-			// 
-			this.labelControlCoomingSoon1.AllowHtmlString = true;
-			this.labelControlCoomingSoon1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.labelControlCoomingSoon1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.labelControlCoomingSoon1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlCoomingSoon1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlCoomingSoon1.Location = new System.Drawing.Point(0, 0);
-			this.labelControlCoomingSoon1.Name = "labelControlCoomingSoon1";
-			this.labelControlCoomingSoon1.Size = new System.Drawing.Size(656, 572);
-			this.labelControlCoomingSoon1.StyleController = this.styleController;
-			this.labelControlCoomingSoon1.TabIndex = 0;
-			this.labelControlCoomingSoon1.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
+			this.xtraTabPageSolutionOptions1.Controls.Add(this.labelControlComingSoon2);
+			this.xtraTabPageSolutionOptions1.Name = "xtraTabPageSolutionOptions1";
+			this.xtraTabPageSolutionOptions1.Size = new System.Drawing.Size(348, 572);
+			this.xtraTabPageSolutionOptions1.Text = "Tab 1";
 			// 
 			// labelControlComingSoon2
 			// 
@@ -753,6 +712,13 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlComingSoon2.TabIndex = 1;
 			this.labelControlComingSoon2.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
 			// 
+			// xtraTabPageSolutionOptions2
+			// 
+			this.xtraTabPageSolutionOptions2.Controls.Add(this.labelControlComingSoon3);
+			this.xtraTabPageSolutionOptions2.Name = "xtraTabPageSolutionOptions2";
+			this.xtraTabPageSolutionOptions2.Size = new System.Drawing.Size(348, 572);
+			this.xtraTabPageSolutionOptions2.Text = "Tab 2";
+			// 
 			// labelControlComingSoon3
 			// 
 			this.labelControlComingSoon3.AllowHtmlString = true;
@@ -767,6 +733,13 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlComingSoon3.TabIndex = 1;
 			this.labelControlComingSoon3.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
 			// 
+			// xtraTabPageSolutionOptions3
+			// 
+			this.xtraTabPageSolutionOptions3.Controls.Add(this.labelControlComingSoon4);
+			this.xtraTabPageSolutionOptions3.Name = "xtraTabPageSolutionOptions3";
+			this.xtraTabPageSolutionOptions3.Size = new System.Drawing.Size(348, 572);
+			this.xtraTabPageSolutionOptions3.Text = "Tab 3";
+			// 
 			// labelControlComingSoon4
 			// 
 			this.labelControlComingSoon4.AllowHtmlString = true;
@@ -780,6 +753,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlComingSoon4.StyleController = this.styleController;
 			this.labelControlComingSoon4.TabIndex = 1;
 			this.labelControlComingSoon4.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
+			// 
+			// superTooltip
+			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// HomeControl
 			// 
@@ -797,7 +775,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxScheduleTypeTitle)).EndInit();
 			this.pnMediaDefault.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbMediaDefault)).EndInit();
-			this.xtraTabPageDigital.ResumeLayout(false);
+			this.xtraTabPageSolution.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlScheduleOptions)).EndInit();
 			this.xtraTabControlScheduleOptions.ResumeLayout(false);
 			this.xtraTabPageScheduleOptionsStations.ResumeLayout(false);
@@ -807,7 +786,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pnDemosInfo.ResumeLayout(false);
 			this.pnSelectDemo.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDemos.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnSelectSource.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSource.Properties)).EndInit();
 			this.pnDemosType.ResumeLayout(false);
@@ -817,12 +795,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.xtraTabPageScheduleOptionsCalendarType.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
-			this.xtraTabPageSolutionOptions3.ResumeLayout(false);
-			this.xtraTabPageSolutionOptions2.ResumeLayout(false);
-			this.xtraTabPageSolutionOptions1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSolutionOptions)).EndInit();
 			this.xtraTabControlSolutionOptions.ResumeLayout(false);
-			this.xtraTabPageSolution.ResumeLayout(false);
+			this.xtraTabPageSolutionOptions1.ResumeLayout(false);
+			this.xtraTabPageSolutionOptions2.ResumeLayout(false);
+			this.xtraTabPageSolutionOptions3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -848,7 +825,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
         private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDemos;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSource;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageDigital;
 		private System.Windows.Forms.Panel pnDemosImport;
 		private System.Windows.Forms.Panel pnDemosCustom;
 		private System.Windows.Forms.Panel pnUseDemos;
@@ -856,7 +832,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		private System.Windows.Forms.Panel pnSelectDemo;
 		private System.Windows.Forms.Panel pnSelectSource;
 		private System.Windows.Forms.Panel pnDemosInfo;
-		private DigitalProductListControl digitalProductListControl;
 		private DevComponents.DotNetBar.ButtonX buttonXMonthlySchedule;
 		private DevComponents.DotNetBar.ButtonX buttonXWeeklySchedule;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageScheduleOptionsCalendarType;

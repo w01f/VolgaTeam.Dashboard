@@ -42,7 +42,7 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 			}
 		}
 
-		public void UpdateControls(IEnumerable<DigitalProductSummaryControl> summaryControls)
+		public void UpdateControls(IList<DigitalProductSummaryControl> summaryControls)
 		{
 			_allowToSave = false;
 

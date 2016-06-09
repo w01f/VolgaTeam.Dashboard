@@ -395,8 +395,6 @@ namespace Asa.Media.Controls
 		public ButtonItem HomeHelp { get; set; }
 		public ButtonItem HomeSave { get; set; }
 		public ButtonItem HomeSaveAs { get; set; }
-		public ButtonItem HomeProductAdd { get; set; }
-		public ButtonItem HomeProductClone { get; set; }
 		public ComboBoxEdit HomeBusinessName { get; set; }
 		public ComboBoxEdit HomeDecisionMaker { get; set; }
 		public DateEdit HomePresentationDate { get; set; }
@@ -434,6 +432,8 @@ namespace Asa.Media.Controls
 		public ButtonItem DigitalProductSave { get; set; }
 		public ButtonItem DigitalProductSaveAs { get; set; }
 		public ButtonItem DigitalProductHelp { get; set; }
+		public ButtonItem DigitalProductAdd { get; set; }
+		public ButtonItem DigitalProductClone { get; set; }
 		#endregion
 
 		#region Digital Package

@@ -7,7 +7,6 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.Persistent;
 using Asa.Business.Media.Enums;
-using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -26,25 +25,17 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 	{
 		private bool _allowToSave;
 		public DigitalProductsContent DigitalContent { get; set; }
-		private MediaSchedule Schedule
-		{
-			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
-		}
+		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
+
 		private MediaScheduleSettings OriginalSettings
 		{
 			get { return Schedule.Settings; }
 			set { Schedule.Settings = value; }
 		}
 
-		public override string Identifier
-		{
-			get { return ContentIdentifiers.ScheduleSettings; }
-		}
+		public override string Identifier => ContentIdentifiers.ScheduleSettings;
 
-		public override RibbonTabItem TabPage
-		{
-			get { return Controller.Instance.TabHome; }
-		}
+		public override RibbonTabItem TabPage => Controller.Instance.TabHome;
 
 		public HomeControl()
 		{
@@ -57,13 +48,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			base.InitControl();
 
-			LoadDigitalCategories();
-			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).Visible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
 
 			stationsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 			daypartsControl.Changed += (o, e) => { SettingsNotSaved = true; };
-			xtraTabPageDigital.PageVisible = Controller.Instance.TabDigitalProduct.Visible || Controller.Instance.TabDigitalPackage.Visible;
-
 
 			Controller.Instance.ContentController.RibbonTabsStateChanged += OnRibbonRibbonTabsStateChanged;
 
@@ -71,7 +58,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomeDecisionMaker.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeFlightDatesStart.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesEnd.Click += OnFlightDatesEditClick;
-			Controller.Instance.HomeProductClone.Click += DigitalProductClone;
 
 			Controller.Instance.HomeBusinessName.EnableSelectAll();
 			Controller.Instance.HomeDecisionMaker.EnableSelectAll();
@@ -87,8 +73,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			_allowToSave = false;
 			if (EditedSettings == null || ContentUpdateInfo.ChangeInfo.WholeScheduleChanged)
 			{
-				if (EditedSettings != null)
-					EditedSettings.Dispose();
+				EditedSettings?.Dispose();
 				EditedSettings = OriginalSettings.Clone<MediaScheduleSettings, MediaScheduleSettings>();
 				SettingsNotSaved = EditedSettings.IsNew;
 
@@ -222,27 +207,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				#endregion
 			}
 
-			if (DigitalContent == null ||
-				ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
-				ContentUpdateInfo.ChangeInfo.DigitalContentChanged)
-			{
-				DigitalContent = Schedule.DigitalProductsContent.Clone<DigitalProductsContent, DigitalProductsContent>();
-				digitalProductListControl.UpdateData(
-					DigitalContent,
-					EditedSettings,
-					() =>
-					{
-						UpdateProductsCount();
-						Controller.Instance.ContentController.UpdateTabsSate();
-						if (_allowToSave)
-						{
-							ChangeInfo.DigitalContentChanged = true;
-							SettingsNotSaved = true;
-						}
-					}
-				);
-			}
-
 			OnProductsTabPageChanged(this, new TabPageChangedEventArgs(null, xtraTabControlMain.SelectedTabPage));
 
 			UpdateScheduleControls();
@@ -252,8 +216,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		protected override void ApplyChanges()
 		{
-			digitalProductListControl.ApplyChanges();
-
 			EditedSettings.BusinessName = Controller.Instance.HomeBusinessName.EditValue as String;
 			EditedSettings.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
 			EditedSettings.PresentationDate = (DateTime?)Controller.Instance.HomePresentationDate.EditValue;
@@ -320,12 +282,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Flight Dates before you proceed.");
 				return;
 			}
-			if (DigitalContent.DigitalProducts.Any(product => String.IsNullOrEmpty(product.Name)))
-			{
-				savingArgs.Cancel = true;
-				savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Web Product in each line before you proceed.");
-				return;
-			}
 			if (ChangeInfo.ScheduleDatesChanged)
 			{
 				if (PopupMessageHelper.Instance.ShowWarningQuestion("Flight Dates have been changed and all Spots will be recreated\nDo you want to proceed?") != DialogResult.Yes)
@@ -349,8 +305,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			if (xtraTabControlMain.SelectedTabPage == xtraTabPageSchedule)
 				BusinessObjects.Instance.HelpManager.OpenHelpLink(
 					String.Format("home{0}", MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? "tv" : "rd"));
-			else if (xtraTabControlMain.SelectedTabPage == xtraTabPageDigital)
-				BusinessObjects.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", "dg"));
 		}
 		#endregion
 
@@ -394,35 +348,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomePanel.PerformLayout();
 		}
 
-		private void LoadDigitalCategories()
-		{
-			foreach (var category in ListManager.Instance.Categories)
-			{
-				var categoryButton = new ButtonItem
-				{
-					Image = category.Logo,
-					Text = "<b>" + category.TooltipTitle + "</b><p>" + category.TooltipValue + "</p>",
-					ImagePaddingHorizontal = 8,
-					SubItemsExpandWidth = 14,
-					Tag = category
-				};
-				categoryButton.Click += DigitalProductAdd;
-				Controller.Instance.HomeProductAdd.SubItems.Add(categoryButton);
-			}
-			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).RecalcLayout();
-			Controller.Instance.HomePanel.PerformLayout();
-		}
-
-		private void UpdateProductsCount()
-		{
-			xtraTabPageDigital.Text = String.Format("Digital Strategy  ({0})", DigitalContent.DigitalProducts.Count);
-		}
-
 		private void OnProductsTabPageChanged(object sender, TabPageChangedEventArgs e)
 		{
-			((RibbonBar)Controller.Instance.HomeProductAdd.ContainerControl).Enabled = e.Page == xtraTabPageDigital;
-			UpdateProductsCount();
-			splitContainerControl.PanelVisibility = e.Page == xtraTabPageDigital ? SplitPanelVisibility.Panel1 : SplitPanelVisibility.Both;
 			xtraTabControlScheduleOptions.Visible = e.Page == xtraTabPageSchedule;
 			xtraTabControlSolutionOptions.Visible = e.Page == xtraTabPageSolution;
 		}
@@ -665,16 +592,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#endregion
 
 		#region Digital Product Events
-		public void DigitalProductAdd(object sender, EventArgs e)
-		{
-			var category = (Category)((ButtonItem)sender).Tag;
-			digitalProductListControl.AddProduct(category);
-		}
-
-		public void DigitalProductClone(object sender, EventArgs e)
-		{
-			digitalProductListControl.CloneProduct();
-		}
+		
 		#endregion
 	}
 }

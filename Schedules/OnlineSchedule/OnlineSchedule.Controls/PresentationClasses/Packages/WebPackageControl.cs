@@ -39,10 +39,7 @@ namespace Asa.Online.Controls.PresentationClasses.Packages
 	{
 		protected abstract IDigitalSchedule<IDigitalScheduleSettings> Schedule { get; }
 
-		protected IDigitalScheduleSettings ScheduleSettings
-		{
-			get { return Schedule.Settings; }
-		}
+		protected IDigitalScheduleSettings ScheduleSettings => Schedule.Settings;
 
 		protected bool AllowApplyValues { get; set; }
 

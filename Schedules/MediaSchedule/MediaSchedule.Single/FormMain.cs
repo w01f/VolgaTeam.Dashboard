@@ -126,8 +126,6 @@ namespace Asa.Media.Single
 			Controller.Instance.HomeSave = buttonItemHomeSave;
 			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
 			Controller.Instance.HomeHelp = buttonItemHomeHelp;
-			Controller.Instance.HomeProductAdd = buttonItemHomeDigitalProductAdd;
-			Controller.Instance.HomeProductClone = buttonItemHomeDigitalProductClone;
 			#endregion
 
 			#region Program Schedule
@@ -159,6 +157,9 @@ namespace Asa.Media.Single
 			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
 			Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
 			Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
+			Controller.Instance.DigitalProductAdd = buttonItemDigitalScheduleProductAdd;
+			Controller.Instance.DigitalProductClone = buttonItemDigitalScheduleProductClone;
+
 			#endregion
 
 			#region Digital Package

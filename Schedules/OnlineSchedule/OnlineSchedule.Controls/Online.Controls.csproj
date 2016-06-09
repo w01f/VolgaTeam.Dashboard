@@ -206,6 +206,7 @@
     <EmbeddedResource Include="PresentationClasses\Summary\DigitalSummaryControl.resx">
       <DependentUpon>DigitalSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ToolForms\FormCloneProduct.resx">
       <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </EmbeddedResource>

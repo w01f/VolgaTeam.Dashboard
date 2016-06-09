@@ -20,7 +20,8 @@ namespace Asa.Common.GUI.ToolForms
 		{
 			checkedListBoxControlOutputItems.UnCheckAll();
 			var currentItem = buttonXSelectCurrent.Tag as CheckedListBoxItem;
-			currentItem.CheckState = CheckState.Checked;
+			if (currentItem != null)
+				currentItem.CheckState = CheckState.Checked;
 		}
 
 		private void buttonXSelectNone_Click(object sender, System.EventArgs e)

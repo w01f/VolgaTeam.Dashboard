@@ -37,14 +37,18 @@
 			this.checkEditMonths = new DevExpress.XtraEditors.CheckEdit();
 			this.spinEditDuration = new DevExpress.XtraEditors.SpinEdit();
 			this.checkEditDuration = new DevExpress.XtraEditors.CheckEdit();
+			this.xtraTabPageList = new DevExpress.XtraTab.XtraTabPage();
+			this.digitalProductListControl = new Asa.Online.Controls.PresentationClasses.Products.DigitalProductListControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).BeginInit();
+			this.xtraTabControlProducts.SuspendLayout();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowFlightDates.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditWeeks.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonths.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditDuration.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDuration.Properties)).BeginInit();
+			this.xtraTabPageList.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -73,8 +77,11 @@
 			this.xtraTabControlProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlProducts.Location = new System.Drawing.Point(0, 41);
 			this.xtraTabControlProducts.Name = "xtraTabControlProducts";
+			this.xtraTabControlProducts.SelectedTabPage = this.xtraTabPageList;
 			this.xtraTabControlProducts.Size = new System.Drawing.Size(1000, 521);
 			this.xtraTabControlProducts.TabIndex = 3;
+			this.xtraTabControlProducts.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageList});
 			this.xtraTabControlProducts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnProductsTabControlMouseDown);
 			// 
 			// pnHeader
@@ -182,6 +189,24 @@
 			this.checkEditDuration.TabIndex = 21;
 			this.checkEditDuration.CheckedChanged += new System.EventHandler(this.OnDurationCheckedChanged);
 			// 
+			// xtraTabPageList
+			// 
+			this.xtraTabPageList.Controls.Add(this.digitalProductListControl);
+			this.xtraTabPageList.Name = "xtraTabPageList";
+			this.xtraTabPageList.Size = new System.Drawing.Size(998, 493);
+			this.xtraTabPageList.Text = "Digital Strategy";
+			// 
+			// digitalProductListControl
+			// 
+			this.digitalProductListControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.digitalProductListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.digitalProductListControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
+			this.digitalProductListControl.Logo = null;
+			this.digitalProductListControl.Name = "digitalProductListControl";
+			this.digitalProductListControl.Size = new System.Drawing.Size(998, 493);
+			this.digitalProductListControl.TabIndex = 1;
+			// 
 			// DigitalProductContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -194,6 +219,7 @@
 			this.Resize += new System.EventHandler(this.OnDigitalProductContainerResize);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).EndInit();
+			this.xtraTabControlProducts.ResumeLayout(false);
 			this.pnHeader.ResumeLayout(false);
 			this.pnHeader.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowFlightDates.Properties)).EndInit();
@@ -201,6 +227,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonths.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditDuration.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDuration.Properties)).EndInit();
+			this.xtraTabPageList.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -216,6 +243,7 @@
 		private DevExpress.XtraEditors.CheckEdit checkEditDuration;
 		protected DevExpress.XtraEditors.CheckEdit checkEditShowFlightDates;
 		protected DevExpress.XtraEditors.LabelControl labelControlCategory;
-
-    }
+		protected DevExpress.XtraTab.XtraTabPage xtraTabPageList;
+		private DigitalProductListControl digitalProductListControl;
+	}
 }

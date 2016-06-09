@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
-using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
 
 namespace Asa.Media.Controls.BusinessClasses
@@ -54,19 +52,6 @@ namespace Asa.Media.Controls.BusinessClasses
 			Controller.Instance.TabGallery1.Enabled = scheduleInitialized;
 			Controller.Instance.TabGallery2.Enabled = scheduleInitialized;
 			Controller.Instance.TabRateCard.Enabled = scheduleInitialized;
-
-			if (scheduleInitialized)
-			{
-				DigitalProductsContent digitalContent;
-				if (_contentController.ActiveEditor is HomeControl)
-					digitalContent = ((HomeControl)_contentController.ActiveEditor).DigitalContent;
-				else
-					digitalContent = BusinessObjects.Instance.ScheduleManager.ActiveSchedule?.DigitalProductsContent;
-
-				var digitalProductsInitialized = digitalContent?.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) == true;
-				Controller.Instance.TabDigitalProduct.Enabled = digitalProductsInitialized;
-				Controller.Instance.TabDigitalPackage.Enabled = digitalProductsInitialized;
-			}
 		}
 	}
 }

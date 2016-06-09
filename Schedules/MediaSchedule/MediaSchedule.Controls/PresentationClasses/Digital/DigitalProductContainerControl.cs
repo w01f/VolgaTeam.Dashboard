@@ -13,6 +13,7 @@ using Asa.Business.Online.Interfaces;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
 using Asa.Common.GUI.ToolForms;
@@ -22,31 +23,21 @@ using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Products;
 using Asa.Online.Controls.PresentationClasses.Summary;
 using DevComponents.DotNetBar;
+using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital
 {
 	[ToolboxItem(false)]
 	public class DigitalProductContainerControl : DigitalProductContainer<DigitalProductsContent, IDigitalSchedule<IDigitalScheduleSettings>, IDigitalScheduleSettings, MediaScheduleChangeInfo>
 	{
-		protected override IDigitalSchedule<IDigitalScheduleSettings> Schedule
-		{
-			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
-		}
+		protected override IDigitalSchedule<IDigitalScheduleSettings> Schedule =>
+			BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
 
-		public override string Identifier
-		{
-			get { return ContentIdentifiers.DigitalProducts; }
-		}
+		public override string Identifier => ContentIdentifiers.DigitalProducts;
 
-		public override RibbonTabItem TabPage
-		{
-			get { return Controller.Instance.TabDigitalProduct; }
-		}
+		public override RibbonTabItem TabPage => Controller.Instance.TabDigitalProduct;
 
-		public override Form MainForm
-		{
-			get { return Controller.Instance.FormMain; }
-		}
+		public override Form MainForm => Controller.Instance.FormMain;
 
 		#region BaseParttionEditControl Override
 		public override void InitControl()
@@ -57,59 +48,31 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 
 		protected override void UpdateEditedContet()
 		{
+
 			var quickLoad = EditedContent != null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
 				ContentUpdateInfo.ChangeInfo.DigitalContentChanged);
 
 			if (quickLoad) return;
 
-			if (EditedContent != null)
-				EditedContent.Dispose();
+			EditedContent?.Dispose();
 			EditedContent = Schedule.DigitalProductsContent.Clone<DigitalProductsContent, DigitalProductsContent>();
 
-			checkEditShowFlightDates.Text = String.Format("{0}", ScheduleSettings.FlightDates);
+			base.UpdateEditedContet();
 
-			bool temp = AllowApplyValues;
-			AllowApplyValues = false;
-			AllowApplyValues = temp;
-			Application.DoEvents();
-
-			xtraTabControlProducts.SuspendLayout();
-			Application.DoEvents();
-			xtraTabControlProducts.SelectedPageChanged -= OnProductsTabControlSelectedPageChanged;
-			xtraTabControlProducts.TabPages.OfType<IDigitalSlideControl>().ToList().ForEach(c => c.Release());
-			xtraTabControlProducts.TabPages.Clear();
-			_tabPages.Clear();
-			foreach (var product in EditedContent.DigitalProducts)
-			{
-				var productTab = new DigitalProductControl<DigitalProductsContent, IDigitalSchedule<IDigitalScheduleSettings>, IDigitalScheduleSettings, MediaScheduleChangeInfo>(this);
-				AssignCloseActiveEditorsOnOutsideClick(productTab);
-				_tabPages.Add(productTab);
-				Application.DoEvents();
-				productTab.Product = product;
-				productTab.LoadValues();
-				Application.DoEvents();
-			}
-			_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
-			xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
-
-			var summaryControl = new DigitalSummaryControl(this);
-			summaryControl.UpdateControls(_tabPages.Select(tp => tp.SummaryControl));
-			xtraTabControlProducts.TabPages.Add(summaryControl);
-
-			Application.DoEvents();
-			xtraTabControlProducts.ResumeLayout();
-
-			LoadProduct(_tabPages.FirstOrDefault());
-			Application.DoEvents();
-			xtraTabControlProducts.SelectedPageChanged += OnProductsTabControlSelectedPageChanged;
-
-			AllowApplyValues = true;
+			OnProductsTabControlSelectedPageChanged(xtraTabControlProducts, new TabPageChangedEventArgs(null, xtraTabPageList));
 		}
 
 		protected override void ApplyChanges()
 		{
 			base.ApplyChanges();
 			ChangeInfo.DigitalContentChanged = ChangeInfo.DigitalContentChanged || SettingsNotSaved;
+		}
+
+		protected override void ValidateChanges(ContentSavingEventArgs savingArgs)
+		{
+			if (!EditedContent.DigitalProducts.Any(product => String.IsNullOrEmpty(product.Name))) return;
+			savingArgs.Cancel = true;
+			savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Web Product in each line before you proceed.");
 		}
 
 		protected override void SaveData()
@@ -120,7 +83,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 
 		public override void GetHelp()
 		{
-			BusinessObjects.Instance.HelpManager.OpenHelpLink("digitalsl");
+			if (xtraTabControlProducts.SelectedTabPage == xtraTabPageList)
+				BusinessObjects.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", "dg"));
+			else
+				BusinessObjects.Instance.HelpManager.OpenHelpLink("digitalsl");
 		}
 
 		protected override void LoadThemes()
@@ -134,6 +100,82 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 			}));
 			Controller.Instance.DigitalProductThemeBar.RecalcLayout();
 			Controller.Instance.DigitalProductPanel.PerformLayout();
+		}
+
+		protected override void LoadProductControls(bool fullReload = false)
+		{
+			var temp = AllowApplyValues;
+			AllowApplyValues = false;
+
+			xtraTabControlProducts.SelectedPageChanged -= OnProductsTabControlSelectedPageChanged;
+
+			xtraTabControlProducts.SuspendLayout();
+			Application.DoEvents();
+
+			if (fullReload)
+			{
+				_tabPages.Clear();
+				xtraTabControlProducts.TabPages.OfType<IDigitalSlideControl>().ToList().ForEach(c => c.Release());
+			}
+			else
+			{
+				var pagesToDelete = _tabPages.Where(tp => !EditedContent.DigitalProducts.Contains(tp.Product)).ToList();
+				pagesToDelete.ForEach(p => p.Release());
+				_tabPages.RemoveAll(tp => pagesToDelete.Contains(tp));
+			}
+
+			foreach (var productPage in xtraTabControlProducts.TabPages.OfType<IDigitalProductControl>().ToList())
+				xtraTabControlProducts.TabPages.Remove((XtraTabPage)productPage);
+
+			foreach (var product in EditedContent.DigitalProducts
+				.Where(product => !String.IsNullOrEmpty(product.Name))
+				.ToList())
+			{
+				var productTab = _tabPages.FirstOrDefault(tp => tp.Product == product);
+				if (productTab == null)
+				{
+					productTab =
+						new DigitalProductControl
+							<DigitalProductsContent, IDigitalSchedule<IDigitalScheduleSettings>, IDigitalScheduleSettings,
+								MediaScheduleChangeInfo>(this);
+					AssignCloseActiveEditorsOnOutsideClick(productTab);
+					_tabPages.Add(productTab);
+					Application.DoEvents();
+					productTab.Product = product;
+				}
+
+				productTab.LoadValues();
+				Application.DoEvents();
+			}
+
+			_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
+			var tabIndex = 1;
+			foreach (var tabPage in _tabPages)
+			{
+				xtraTabControlProducts.TabPages.Insert(tabIndex, tabPage);
+				tabIndex++;
+			}
+
+			var summaryControl = xtraTabControlProducts.TabPages.OfType<DigitalSummaryControl>().FirstOrDefault();
+			if (fullReload || summaryControl == null)
+			{
+				if (summaryControl != null)
+				{
+					summaryControl.Release();
+					xtraTabControlProducts.TabPages.Remove(summaryControl);
+				}
+				summaryControl = new DigitalSummaryControl(this);
+				xtraTabControlProducts.TabPages.Add(summaryControl);
+			}
+			summaryControl.UpdateControls(_tabPages.Select(tp => tp.SummaryControl).ToList());
+			summaryControl.PageVisible = _tabPages.Any();
+
+			Application.DoEvents();
+			xtraTabControlProducts.ResumeLayout();
+
+			xtraTabControlProducts.SelectedPageChanged += OnProductsTabControlSelectedPageChanged;
+
+			AllowApplyValues = temp;
 		}
 		#endregion
 
@@ -156,10 +198,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 			}
 		}
 
-		protected override string SlideName
-		{
-			get { return Controller.Instance.TabDigitalProduct.Text; }
-		}
+		protected override string SlideName => Controller.Instance.TabDigitalProduct.Text;
+
+		public override ButtonItem ProductAddButton => Controller.Instance.DigitalProductAdd;
+		public override ButtonItem ProductCloneButton => Controller.Instance.DigitalProductClone;
+		public override RibbonPanel RibbonPanel => Controller.Instance.DigitalProductPanel;
 
 		protected override void GeneratePowerPointSlides(IEnumerable<IDigitalSlideControl> tabsForOutput)
 		{

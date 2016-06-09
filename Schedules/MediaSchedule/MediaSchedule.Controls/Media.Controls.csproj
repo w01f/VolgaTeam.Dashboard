@@ -493,31 +493,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Resources\EmailBig.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Exit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Floater.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Help.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\HelpSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PowerPoint.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Preview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SaveAs.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SaveSmall.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DeleteProduct.png" />
@@ -629,9 +610,6 @@
     <None Include="Resources\OptionsNoRecords.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Pdf.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CalendarOptionsDataSource.png" />
   </ItemGroup>
   <ItemGroup>
@@ -709,6 +687,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FlightDatesFormEditLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QatFloater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QatHelp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QatSave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QatSaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonPdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonPowerPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonPreview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalPackageLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalScheduleLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

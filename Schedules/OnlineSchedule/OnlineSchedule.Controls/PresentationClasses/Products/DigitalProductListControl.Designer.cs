@@ -28,32 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalProductListControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.pnDigitalProductBottomBar = new System.Windows.Forms.Panel();
-			this.buttonXTargeting = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXRichMedia = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXLocation = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXStrategy = new DevComponents.DotNetBar.ButtonX();
-			this.pictureBoxDigitalProductAppLogo = new System.Windows.Forms.PictureBox();
-			this.buttonXDimensions = new DevComponents.DotNetBar.ButtonX();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandNumber = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -91,9 +74,6 @@
 			this.repositoryItemButtonEditTargetDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.repositoryItemButtonEditRichMediaDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridToolTipController = new DevExpress.Utils.ToolTipController();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
-			this.pnDigitalProductBottomBar.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDigitalProductAppLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).BeginInit();
@@ -110,116 +90,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditTargetDisabled)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditRichMediaDisabled)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// pnDigitalProductBottomBar
-			// 
-			this.pnDigitalProductBottomBar.BackColor = System.Drawing.Color.White;
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXTargeting);
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXRichMedia);
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXLocation);
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXStrategy);
-			this.pnDigitalProductBottomBar.Controls.Add(this.pictureBoxDigitalProductAppLogo);
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDimensions);
-			this.pnDigitalProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnDigitalProductBottomBar.Location = new System.Drawing.Point(0, 473);
-			this.pnDigitalProductBottomBar.Name = "pnDigitalProductBottomBar";
-			this.pnDigitalProductBottomBar.Size = new System.Drawing.Size(1016, 38);
-			this.pnDigitalProductBottomBar.TabIndex = 3;
-			// 
-			// buttonXTargeting
-			// 
-			this.buttonXTargeting.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXTargeting.AutoCheckOnClick = true;
-			this.buttonXTargeting.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTargeting.Location = new System.Drawing.Point(607, 5);
-			this.buttonXTargeting.Name = "buttonXTargeting";
-			this.buttonXTargeting.Size = new System.Drawing.Size(125, 29);
-			this.buttonXTargeting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem1.Text = "Show Targeting";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.toolTipController.SetSuperTip(this.buttonXTargeting, superToolTip1);
-			this.buttonXTargeting.TabIndex = 12;
-			this.buttonXTargeting.Text = "Targeting";
-			this.buttonXTargeting.TextColor = System.Drawing.Color.Black;
-			this.buttonXTargeting.CheckedChanged += new System.EventHandler(this.buttonXTargeting_CheckedChanged);
-			// 
-			// buttonXRichMedia
-			// 
-			this.buttonXRichMedia.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXRichMedia.AutoCheckOnClick = true;
-			this.buttonXRichMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRichMedia.Location = new System.Drawing.Point(459, 5);
-			this.buttonXRichMedia.Name = "buttonXRichMedia";
-			this.buttonXRichMedia.Size = new System.Drawing.Size(125, 29);
-			this.buttonXRichMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem2.Text = "Show Rich Media";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.toolTipController.SetSuperTip(this.buttonXRichMedia, superToolTip2);
-			this.buttonXRichMedia.TabIndex = 11;
-			this.buttonXRichMedia.Text = "Rich Media";
-			this.buttonXRichMedia.TextColor = System.Drawing.Color.Black;
-			this.buttonXRichMedia.CheckedChanged += new System.EventHandler(this.buttonXRichMedia_CheckedChanged);
-			// 
-			// buttonXLocation
-			// 
-			this.buttonXLocation.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXLocation.AutoCheckOnClick = true;
-			this.buttonXLocation.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLocation.Location = new System.Drawing.Point(163, 5);
-			this.buttonXLocation.Name = "buttonXLocation";
-			this.buttonXLocation.Size = new System.Drawing.Size(125, 29);
-			this.buttonXLocation.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem3.Text = "Show Location";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.toolTipController.SetSuperTip(this.buttonXLocation, superToolTip3);
-			this.buttonXLocation.TabIndex = 10;
-			this.buttonXLocation.Text = "Location";
-			this.buttonXLocation.TextColor = System.Drawing.Color.Black;
-			this.buttonXLocation.CheckedChanged += new System.EventHandler(this.buttonXLocation_CheckedChanged);
-			// 
-			// buttonXStrategy
-			// 
-			this.buttonXStrategy.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXStrategy.AutoCheckOnClick = true;
-			this.buttonXStrategy.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXStrategy.Location = new System.Drawing.Point(311, 5);
-			this.buttonXStrategy.Name = "buttonXStrategy";
-			this.buttonXStrategy.Size = new System.Drawing.Size(125, 29);
-			this.buttonXStrategy.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem4.Text = "Show Pricing Strategy";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.toolTipController.SetSuperTip(this.buttonXStrategy, superToolTip4);
-			this.buttonXStrategy.TabIndex = 8;
-			this.buttonXStrategy.Text = "Pricing Strategy";
-			this.buttonXStrategy.TextColor = System.Drawing.Color.Black;
-			this.buttonXStrategy.CheckedChanged += new System.EventHandler(this.buttonXStrategy_CheckedChanged);
-			// 
-			// pictureBoxDigitalProductAppLogo
-			// 
-			this.pictureBoxDigitalProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pictureBoxDigitalProductAppLogo.Image = global::Asa.Online.Controls.Properties.Resources.AppLogo;
-			this.pictureBoxDigitalProductAppLogo.Location = new System.Drawing.Point(856, 0);
-			this.pictureBoxDigitalProductAppLogo.Name = "pictureBoxDigitalProductAppLogo";
-			this.pictureBoxDigitalProductAppLogo.Size = new System.Drawing.Size(160, 38);
-			this.pictureBoxDigitalProductAppLogo.TabIndex = 7;
-			this.pictureBoxDigitalProductAppLogo.TabStop = false;
-			// 
-			// buttonXDimensions
-			// 
-			this.buttonXDimensions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDimensions.AutoCheckOnClick = true;
-			this.buttonXDimensions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDimensions.Location = new System.Drawing.Point(15, 5);
-			this.buttonXDimensions.Name = "buttonXDimensions";
-			this.buttonXDimensions.Size = new System.Drawing.Size(125, 29);
-			this.buttonXDimensions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem5.Text = "Show Ad Dimensions";
-			superToolTip5.Items.Add(toolTipItem5);
-			this.toolTipController.SetSuperTip(this.buttonXDimensions, superToolTip5);
-			this.buttonXDimensions.TabIndex = 6;
-			this.buttonXDimensions.Text = "Ad Dimensions";
-			this.buttonXDimensions.TextColor = System.Drawing.Color.Black;
-			this.buttonXDimensions.CheckedChanged += new System.EventHandler(this.buttonXDimensions_CheckedChanged);
 			// 
 			// gridControl
 			// 
@@ -241,7 +111,7 @@
             this.repositoryItemButtonEditTargetDisabled,
             this.repositoryItemButtonEditRichMediaEnabled,
             this.repositoryItemButtonEditRichMediaDisabled});
-			this.gridControl.Size = new System.Drawing.Size(1016, 473);
+			this.gridControl.Size = new System.Drawing.Size(1016, 511);
 			this.gridControl.TabIndex = 4;
 			this.gridControl.ToolTipController = this.gridToolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -365,8 +235,8 @@
 			this.repositoryItemButtonEditPosition.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemButtonEditPosition.AutoHeight = false;
 			this.repositoryItemButtonEditPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Nudge Up", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Nudge Down", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "Nudge Up", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "Nudge Down", null, null, true)});
 			this.repositoryItemButtonEditPosition.Name = "repositoryItemButtonEditPosition";
 			this.repositoryItemButtonEditPosition.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemButtonEditPosition.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditPosition_ButtonClick);
@@ -661,7 +531,7 @@
 			this.repositoryItemSpinEditRate.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRate.AutoHeight = false;
 			this.repositoryItemSpinEditRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject12, "", null, null, true)});
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0.00";
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0.00";
@@ -706,7 +576,7 @@
 			// 
 			this.repositoryItemButtonEditRichMediaEnabled.AutoHeight = false;
 			this.repositoryItemButtonEditRichMediaEnabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditRichMediaEnabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "Rich Media Options Coming Soon!", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditRichMediaEnabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject14, "Rich Media Options Coming Soon!", null, null, true)});
 			this.repositoryItemButtonEditRichMediaEnabled.Name = "repositoryItemButtonEditRichMediaEnabled";
 			this.repositoryItemButtonEditRichMediaEnabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditRichMediaEnabled.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditRichMedia_ButtonClick);
@@ -744,7 +614,7 @@
 			// 
 			this.repositoryItemButtonEditTargetEnabled.AutoHeight = false;
 			this.repositoryItemButtonEditTargetEnabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditTargetEnabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "Targeting Options Coming Soon!", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditTargetEnabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, "Targeting Options Coming Soon!", null, null, true)});
 			this.repositoryItemButtonEditTargetEnabled.Name = "repositoryItemButtonEditTargetEnabled";
 			this.repositoryItemButtonEditTargetEnabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditTargetEnabled.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditTarget_ButtonClick);
@@ -779,7 +649,7 @@
 			// 
 			this.repositoryItemButtonEditDelete.AutoHeight = false;
 			this.repositoryItemButtonEditDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "Delete this line", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject11, "Delete this line", null, null, true)});
 			this.repositoryItemButtonEditDelete.Name = "repositoryItemButtonEditDelete";
 			this.repositoryItemButtonEditDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDelete_ButtonClick);
@@ -811,7 +681,7 @@
 			// 
 			this.repositoryItemButtonEditTargetDisabled.AutoHeight = false;
 			this.repositoryItemButtonEditTargetDisabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditTargetDisabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "Targeting Options Coming Soon!", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditTargetDisabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject15, "Targeting Options Coming Soon!", null, null, true)});
 			this.repositoryItemButtonEditTargetDisabled.Name = "repositoryItemButtonEditTargetDisabled";
 			this.repositoryItemButtonEditTargetDisabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			// 
@@ -819,7 +689,7 @@
 			// 
 			this.repositoryItemButtonEditRichMediaDisabled.AutoHeight = false;
 			this.repositoryItemButtonEditRichMediaDisabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditRichMediaDisabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "Rich Media Options Coming Soon!", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditRichMediaDisabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject16, "Rich Media Options Coming Soon!", null, null, true)});
 			this.repositoryItemButtonEditRichMediaDisabled.Name = "repositoryItemButtonEditRichMediaDisabled";
 			this.repositoryItemButtonEditRichMediaDisabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			// 
@@ -833,23 +703,14 @@
 			this.gridToolTipController.ShowShadow = false;
 			this.gridToolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.gridToolTipController_GetActiveObjectInfo);
 			// 
-			// toolTipController
-			// 
-			this.toolTipController.Rounded = true;
-			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
-			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
-			// 
 			// DigitalProductListControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.Controls.Add(this.gridControl);
-			this.Controls.Add(this.pnDigitalProductBottomBar);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "DigitalProductListControl";
 			this.Size = new System.Drawing.Size(1016, 511);
-			this.pnDigitalProductBottomBar.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDigitalProductAppLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).EndInit();
@@ -870,12 +731,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Panel pnDigitalProductBottomBar;
-		private DevComponents.DotNetBar.ButtonX buttonXLocation;
-		private DevComponents.DotNetBar.ButtonX buttonXStrategy;
-		private System.Windows.Forms.PictureBox pictureBoxDigitalProductAppLogo;
-		private DevComponents.DotNetBar.ButtonX buttonXDimensions;
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView advBandedGridView;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPosition;
@@ -898,7 +753,6 @@
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditTargetEnabled;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDelete;
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDelete;
-		private DevExpress.Utils.ToolTipController toolTipController;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditNotAvailable;
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditTargetDisabled;
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditRichMediaEnabled;
@@ -914,7 +768,5 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDelete;
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditRichMediaDisabled;
 		private DevExpress.Utils.ToolTipController gridToolTipController;
-		private DevComponents.DotNetBar.ButtonX buttonXTargeting;
-		private DevComponents.DotNetBar.ButtonX buttonXRichMedia;
 	}
 }

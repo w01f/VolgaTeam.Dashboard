@@ -151,6 +151,7 @@
       <DependentUpon>DigitalProductInfoGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\AdPlan\IAdPlanItem.cs" />
+    <Compile Include="PresentationClasses\Products\DigitalProductListOptionButtonsGroup.cs" />
     <Compile Include="PresentationClasses\Products\IDigitalSlideControl.cs" />
     <Compile Include="PresentationClasses\Products\IDigitalProductControl.cs" />
     <Compile Include="PresentationClasses\Products\IDigitalProductsContainer.cs" />
@@ -206,7 +207,6 @@
     <EmbeddedResource Include="PresentationClasses\Summary\DigitalSummaryControl.resx">
       <DependentUpon>DigitalSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ToolForms\FormCloneProduct.resx">
       <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,9 +319,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FormulaLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AppLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NewScheduleRibbon.png" />

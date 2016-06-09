@@ -52,6 +52,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		public abstract ButtonItem ProductAddButton { get; }
 		public abstract ButtonItem ProductCloneButton { get; }
 		public abstract RibbonPanel RibbonPanel { get; }
+		protected DigitalProductListOptionButtonsGroup OptionButtonsGroup { get; set; }
 		public bool AllowApplyValues { get; set; }
 
 		#region BaseContentEditControl Override
@@ -117,7 +118,8 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 						if (!AllowApplyValues) return;
 						ChangeInfo.DigitalContentChanged = true;
 						SettingsNotSaved = true;
-					}
+					},
+					OptionButtonsGroup
 				);
 		}
 

@@ -44,6 +44,14 @@ namespace Asa.Media.Controls.PresentationClasses.Digital
 		{
 			base.InitControl();
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
+			OptionButtonsGroup = new DigitalProductListOptionButtonsGroup
+			{
+				ToggleDimensions = Controller.Instance.DigitalProductToggleDimensions,
+				ToggleLocation = Controller.Instance.DigitalProductToggleLocation,
+				ToggleStrategy = Controller.Instance.DigitalProductToggleStrategy,
+				ToggleRichMedia = Controller.Instance.DigitalProductToggleRichMedia,
+				ToggleTargeting = Controller.Instance.DigitalProductToggleTargeting
+			};
 		}
 
 		protected override void UpdateEditedContet()

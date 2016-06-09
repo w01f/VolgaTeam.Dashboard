@@ -24,18 +24,12 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 {
 	public partial class DigitalProductListControl : UserControl
 	{
+		private DigitalProductListOptionButtonsGroup _toggleButtons;
 		private Action _onDataChanged;
 		private GridDragDropHelper _dragDropHelper;
 
 		protected DigitalProductsContent Content { get; private set; }
 		protected IDigitalScheduleSettings ScheduleSettings { get; private set; }
-
-		[Browsable(true), Category("Misc")]
-		public Image Logo
-		{
-			get { return pictureBoxDigitalProductAppLogo.Image; }
-			set { pictureBoxDigitalProductAppLogo.Image = value; }
-		}
 
 		public DigitalProductListControl()
 		{
@@ -51,22 +45,20 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			repositoryItemComboBoxProductType.EnableSelectAll();
 			repositoryItemComboBoxProductName.EnableSelectAll();
 			repositoryItemSpinEditSize.EnableSelectAll();
-
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				buttonXDimensions.Font = new Font(buttonXDimensions.Font.FontFamily, buttonXDimensions.Font.Size - 2, buttonXDimensions.Font.Style);
-				buttonXLocation.Font = new Font(buttonXLocation.Font.FontFamily, buttonXLocation.Font.Size - 2, buttonXLocation.Font.Style);
-				buttonXRichMedia.Font = new Font(buttonXRichMedia.Font.FontFamily, buttonXRichMedia.Font.Size - 2, buttonXRichMedia.Font.Style);
-				buttonXStrategy.Font = new Font(buttonXStrategy.Font.FontFamily, buttonXStrategy.Font.Size - 2, buttonXStrategy.Font.Style);
-				buttonXTargeting.Font = new Font(buttonXTargeting.Font.FontFamily, buttonXTargeting.Font.Size - 2, buttonXTargeting.Font.Style);
-			}
 		}
 
-		public void UpdateData(DigitalProductsContent content, IDigitalScheduleSettings scheduleSettings, Action onDataChanged)
+		public void UpdateData(
+			DigitalProductsContent content, 
+			IDigitalScheduleSettings scheduleSettings, 
+			Action onDataChanged,
+			DigitalProductListOptionButtonsGroup toggleButtons)
 		{
 			Content = content;
 			ScheduleSettings = scheduleSettings;
 			_onDataChanged = onDataChanged;
+			_toggleButtons = toggleButtons;
+
+
 			gridControl.DataSource = new BindingList<DigitalProduct>(Content.DigitalProducts);
 
 			if (ListManager.Instance.ProductSources.All(productSource => String.IsNullOrEmpty(productSource.SubCategory)))
@@ -89,6 +81,21 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			repositoryItemComboBoxLocation.Items.Clear();
 			repositoryItemComboBoxLocation.Items.AddRange(ListManager.Instance.ColumnPositions);
 
+			_toggleButtons.ToggleDimensions.CheckedChanged -= OnDimensionsCheckedChanged;
+			_toggleButtons.ToggleDimensions.CheckedChanged += OnDimensionsCheckedChanged;
+
+			_toggleButtons.ToggleLocation.CheckedChanged -= OnLocationCheckedChanged;
+			_toggleButtons.ToggleLocation.CheckedChanged += OnLocationCheckedChanged;
+
+			_toggleButtons.ToggleStrategy.CheckedChanged -= OnStrategyCheckedChanged;
+			_toggleButtons.ToggleStrategy.CheckedChanged += OnStrategyCheckedChanged;
+
+			_toggleButtons.ToggleRichMedia.CheckedChanged -= OnRichMediaCheckedChanged;
+			_toggleButtons.ToggleRichMedia.CheckedChanged += OnRichMediaCheckedChanged;
+
+			_toggleButtons.ToggleTargeting.CheckedChanged -= OnTargetingCheckedChanged;
+			_toggleButtons.ToggleTargeting.CheckedChanged += OnTargetingCheckedChanged;
+
 			_onDataChanged();
 
 			LoadView();
@@ -108,27 +115,27 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 		private void LoadView()
 		{
-			buttonXDimensions.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalDimensions;
-			buttonXStrategy.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalStrategy;
-			buttonXLocation.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalLocation;
-			buttonXTargeting.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalTargeting;
-			buttonXRichMedia.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalRichMedia;
+			_toggleButtons.ToggleDimensions.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalDimensions;
+			_toggleButtons.ToggleStrategy.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalStrategy;
+			_toggleButtons.ToggleLocation.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalLocation;
+			_toggleButtons.ToggleTargeting.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalTargeting;
+			_toggleButtons.ToggleRichMedia.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalRichMedia;
 
-			buttonXDimensions.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions;
-			buttonXStrategy.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalStrategy;
-			buttonXLocation.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalLocation;
-			buttonXTargeting.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting;
-			buttonXRichMedia.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia;
+			_toggleButtons.ToggleDimensions.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions;
+			_toggleButtons.ToggleStrategy.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalStrategy;
+			_toggleButtons.ToggleLocation.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalLocation;
+			_toggleButtons.ToggleTargeting.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting;
+			_toggleButtons.ToggleRichMedia.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia;
 		}
 
 		private void SaveView()
 		{
 			advBandedGridView.CloseEditor();
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions = buttonXDimensions.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalStrategy = buttonXStrategy.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalLocation = buttonXLocation.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting = buttonXTargeting.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia = buttonXRichMedia.Checked;
+			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions = _toggleButtons.ToggleDimensions.Checked;
+			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalStrategy = _toggleButtons.ToggleStrategy.Checked;
+			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalLocation = _toggleButtons.ToggleLocation.Checked;
+			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting = _toggleButtons.ToggleTargeting.Checked;
+			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia = _toggleButtons.ToggleRichMedia.Checked;
 		}
 
 		public void RefreshDigitalAfterAddProduct()
@@ -440,28 +447,22 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			}
 		}
 
-		private void buttonXDimensions_CheckedChanged(object sender, EventArgs e)
+		private void OnDimensionsCheckedChanged(object sender, EventArgs e)
 		{
-			gridBandWidth.Visible = buttonXDimensions.Checked;
-			gridBandHeight.Visible = buttonXDimensions.Checked;
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXDimensions.Checked ? "Hide Ad Dimensions" : "Show Ad Dimensions" });
-			toolTipController.SetSuperTip(buttonXDimensions, tooltip);
+			gridBandWidth.Visible = _toggleButtons.ToggleDimensions.Checked;
+			gridBandHeight.Visible = _toggleButtons.ToggleDimensions.Checked;
 			_onDataChanged();
 		}
 
-		private void buttonXStrategy_CheckedChanged(object sender, EventArgs e)
+		private void OnStrategyCheckedChanged(object sender, EventArgs e)
 		{
-			gridBandRate.Visible = buttonXStrategy.Checked;
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXStrategy.Checked ? "Hide Pricing Strategy" : "Show Pricing Strategy" });
-			toolTipController.SetSuperTip(buttonXStrategy, tooltip);
+			gridBandRate.Visible = _toggleButtons.ToggleStrategy.Checked;
 			_onDataChanged();
 		}
 
-		private void buttonXLocation_CheckedChanged(object sender, EventArgs e)
+		private void OnLocationCheckedChanged(object sender, EventArgs e)
 		{
-			if (buttonXLocation.Checked)
+			if (_toggleButtons.ToggleLocation.Checked)
 			{
 				gridColumnName.RowCount = 1;
 				gridColumnLocation.Visible = true;
@@ -472,27 +473,18 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				gridColumnLocation.Visible = false;
 				gridColumnName.RowCount = 2;
 			}
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXLocation.Checked ? "Hide Location" : "Show Location" });
-			toolTipController.SetSuperTip(buttonXLocation, tooltip);
 			_onDataChanged();
 		}
 
-		private void buttonXTargeting_CheckedChanged(object sender, EventArgs e)
+		private void OnTargetingCheckedChanged(object sender, EventArgs e)
 		{
-			gridBandTarget.Visible = buttonXTargeting.Checked;
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXTargeting.Checked ? "Hide Targeting" : "Show Targeting" });
-			toolTipController.SetSuperTip(buttonXTargeting, tooltip);
+			gridBandTarget.Visible = _toggleButtons.ToggleTargeting.Checked;
 			_onDataChanged();
 		}
 
-		private void buttonXRichMedia_CheckedChanged(object sender, EventArgs e)
+		private void OnRichMediaCheckedChanged(object sender, EventArgs e)
 		{
-			gridBandRichMedia.Visible = buttonXRichMedia.Checked;
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXRichMedia.Checked ? "Hide Rich Media" : "Show Rich Media" });
-			toolTipController.SetSuperTip(buttonXRichMedia, tooltip);
+			gridBandRichMedia.Visible = _toggleButtons.ToggleRichMedia.Checked;
 			_onDataChanged();
 		}
 	}

@@ -107,52 +107,9 @@ namespace Asa.Media.Controls
 			Ribbon.Items.Add(SlideSettingsButton);
 			SlideSettingsButton.Click += OnSlideSettingsClick;
 
-			foreach (var ribbonButton in new[]
-			{
-				HomeSave,
-				ProgramScheduleSave,
-				DigitalProductSave,
-				DigitalPackageSave,
-				SnapshotSave,
-				OptionsSave,
-				Calendar1Save,
-				Calendar2Save,
-			})
-			{
-				ribbonButton.Click += ContentController.OnSaveSchedule;
-			}
-
-			foreach (var ribbonButton in new[]
-			{
-				HomeSaveAs,
-				ProgramScheduleSaveAs,
-				DigitalProductSaveAs,
-				DigitalPackageSaveAs,
-				SnapshotSaveAs,
-				OptionsSaveAs,
-				Calendar1SaveAs,
-				Calendar2SaveAs,
-			})
-			{
-				ribbonButton.Click += ContentController.OnSaveAsSchedule;
-			}
-
-			foreach (var ribbonButton in new[]
-			{
-				HomeHelp,
-				ProgramScheduleHelp,
-				DigitalProductHelp,
-				DigitalPackageHelp,
-				SnapshotHelp,
-				OptionsHelp,
-				Calendar1Help,
-				Calendar2Help,
-				Gallery1Help,
-				Gallery2Help,
-			})
-			{
-				ribbonButton.Click += ContentController.OnGetHelp;
-			}
+			QatSaveButton.Click += ContentController.OnSaveSchedule;
+			QatSaveAsButton.Click += ContentController.OnSaveAsSchedule;
+			QatHelpButton.Click += ContentController.OnGetHelp;
 
 			foreach (var ribbonButton in new[]
 			{
@@ -387,14 +344,15 @@ namespace Asa.Media.Controls
 		}
 
 		#region Command Controls
+		public ButtonItem QatSaveButton { get; set; }
+		public ButtonItem QatSaveAsButton { get; set; }
+		public ButtonItem QatHelpButton { get; set; }
+
 		public ButtonItem SlideSettingsButton { get; set; }
 
 		#region Home
 		public RibbonPanel HomePanel { get; set; }
 		public RibbonBar HomeSpecialButtons { get; set; }
-		public ButtonItem HomeHelp { get; set; }
-		public ButtonItem HomeSave { get; set; }
-		public ButtonItem HomeSaveAs { get; set; }
 		public ComboBoxEdit HomeBusinessName { get; set; }
 		public ComboBoxEdit HomeDecisionMaker { get; set; }
 		public DateEdit HomePresentationDate { get; set; }
@@ -415,9 +373,6 @@ namespace Asa.Media.Controls
 		public ButtonItem ProgramScheduleEmail { get; set; }
 		public ButtonItem ProgramSchedulePdf { get; set; }
 		public ButtonItem ProgramScheduleTheme { get; set; }
-		public ButtonItem ProgramScheduleSave { get; set; }
-		public ButtonItem ProgramScheduleSaveAs { get; set; }
-		public ButtonItem ProgramScheduleHelp { get; set; }
 		#endregion
 
 		#region Digital Product
@@ -429,20 +384,19 @@ namespace Asa.Media.Controls
 		public ButtonItem DigitalProductEmail { get; set; }
 		public ButtonItem DigitalProductPdf { get; set; }
 		public ButtonItem DigitalProductTheme { get; set; }
-		public ButtonItem DigitalProductSave { get; set; }
-		public ButtonItem DigitalProductSaveAs { get; set; }
-		public ButtonItem DigitalProductHelp { get; set; }
 		public ButtonItem DigitalProductAdd { get; set; }
 		public ButtonItem DigitalProductClone { get; set; }
+		public ButtonItem DigitalProductToggleDimensions { get; set; }
+		public ButtonItem DigitalProductToggleLocation { get; set; }
+		public ButtonItem DigitalProductToggleStrategy { get; set; }
+		public ButtonItem DigitalProductToggleRichMedia { get; set; }
+		public ButtonItem DigitalProductToggleTargeting { get; set; }
 		#endregion
 
 		#region Digital Package
 		public RibbonPanel DigitalPackagePanel { get; set; }
 		public RibbonBar DigitalPackageThemeBar { get; set; }
 		public RibbonBar DigitalPackageSpecialButtons { get; set; }
-		public ButtonItem DigitalPackageHelp { get; set; }
-		public ButtonItem DigitalPackageSave { get; set; }
-		public ButtonItem DigitalPackageSaveAs { get; set; }
 		public ButtonItem DigitalPackagePreview { get; set; }
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
@@ -456,9 +410,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar1Copy { get; set; }
 		public ButtonItem Calendar1Paste { get; set; }
 		public ButtonItem Calendar1Clone { get; set; }
-		public ButtonItem Calendar1Help { get; set; }
-		public ButtonItem Calendar1Save { get; set; }
-		public ButtonItem Calendar1SaveAs { get; set; }
 		public ButtonItem Calendar1Preview { get; set; }
 		public ButtonItem Calendar1Email { get; set; }
 		public ButtonItem Calendar1PowerPoint { get; set; }
@@ -471,9 +422,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar2Copy { get; set; }
 		public ButtonItem Calendar2Paste { get; set; }
 		public ButtonItem Calendar2Clone { get; set; }
-		public ButtonItem Calendar2Help { get; set; }
-		public ButtonItem Calendar2Save { get; set; }
-		public ButtonItem Calendar2SaveAs { get; set; }
 		public ButtonItem Calendar2Preview { get; set; }
 		public ButtonItem Calendar2Email { get; set; }
 		public ButtonItem Calendar2PowerPoint { get; set; }
@@ -492,9 +440,6 @@ namespace Asa.Media.Controls
 		public ButtonItem SnapshotPdf { get; set; }
 		public ButtonItem SnapshotEmail { get; set; }
 		public ButtonItem SnapshotTheme { get; set; }
-		public ButtonItem SnapshotSave { get; set; }
-		public ButtonItem SnapshotSaveAs { get; set; }
-		public ButtonItem SnapshotHelp { get; set; }
 		public RibbonBar SnapshotQuarterBar { get; set; }
 		public ButtonItem SnapshotQuarterButton { get; set; }
 		#endregion
@@ -511,16 +456,12 @@ namespace Asa.Media.Controls
 		public ButtonItem OptionsPdf { get; set; }
 		public ButtonItem OptionsEmail { get; set; }
 		public ButtonItem OptionsTheme { get; set; }
-		public ButtonItem OptionsSave { get; set; }
-		public ButtonItem OptionsSaveAs { get; set; }
-		public ButtonItem OptionsHelp { get; set; }
 		public RibbonBar OptionsQuarterBar { get; set; }
 		public ButtonItem OptionsQuarterButton { get; set; }
 		#endregion
 
 		#region Rate Card
 		public RibbonBar RateCardSpecialButtons { get; set; }
-		public ButtonItem RateCardHelp { get; set; }
 		public ComboBoxEdit RateCardCombo { get; set; }
 		#endregion
 
@@ -539,7 +480,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Gallery1ZoomIn { get; set; }
 		public ButtonItem Gallery1ZoomOut { get; set; }
 		public ButtonItem Gallery1Copy { get; set; }
-		public ButtonItem Gallery1Help { get; set; }
 		public ComboBoxEdit Gallery1Sections { get; set; }
 		public ComboBoxEdit Gallery1Groups { get; set; }
 		#endregion
@@ -559,7 +499,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Gallery2ZoomIn { get; set; }
 		public ButtonItem Gallery2ZoomOut { get; set; }
 		public ButtonItem Gallery2Copy { get; set; }
-		public ButtonItem Gallery2Help { get; set; }
 		public ComboBoxEdit Gallery2Sections { get; set; }
 		public ComboBoxEdit Gallery2Groups { get; set; }
 		#endregion

@@ -55,13 +55,11 @@ namespace Asa.Media.Single
 				ribbonBarHomeBasicInfo.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
 				ribbonBarHomeExit.RecalcLayout();
-				ribbonBarDigitalScheduleEmail.RecalcLayout();
 				ribbonBarDigitalScheduleExit.RecalcLayout();
 				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
-				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
-				ribbonPanelDigitalSlides.PerformLayout();
+				ribbonPanelDigitalSchedule.PerformLayout();
 				ribbonPanelHome.PerformLayout();
 				ribbonPanelDigitalPackage.PerformLayout();
 			}
@@ -98,7 +96,7 @@ namespace Asa.Media.Single
 			Controller.Instance.Ribbon = ribbonControl;
 			Controller.Instance.TabHome = ribbonTabItemHome;
 			Controller.Instance.TabProgramSchedule = ribbonTabItemProgramSchedule;
-			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
+			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSchedule;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
 			Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
@@ -111,10 +109,13 @@ namespace Asa.Media.Single
 			FormProgress.Init(this);
 
 			#region Command Controls
+			Controller.Instance.QatSaveButton = buttonItemQatSave;
+			Controller.Instance.QatSaveAsButton = buttonItemQatSaveAs;
+			Controller.Instance.QatHelpButton = buttonItemQatHelp;
+
 			Controller.Instance.SlideSettingsButton = buttonItemSlideSettings;
-
+			
 			#region Home
-
 			Controller.Instance.HomePanel = ribbonPanelHome;
 			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
 			Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
@@ -123,18 +124,12 @@ namespace Asa.Media.Single
 			Controller.Instance.HomeFlightDates = ribbonBarHomeFlightDates;
 			Controller.Instance.HomeFlightDatesStart = labelItemHomeFlightDatesStartValue;
 			Controller.Instance.HomeFlightDatesEnd = labelItemHomeFlightDatesEndValue;
-			Controller.Instance.HomeSave = buttonItemHomeSave;
-			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
-			Controller.Instance.HomeHelp = buttonItemHomeHelp;
 			#endregion
 
 			#region Program Schedule
 			Controller.Instance.ProgramSchedulePanel = ribbonPanelProgramSchedule;
 			Controller.Instance.ProgramScheduleThemeBar = ribbonBarProgramSchedulePowerPoint;
 			Controller.Instance.ProgramScheduleSpecialButtons = ribbonBarProgramScheduleSpecialButtons;
-			Controller.Instance.ProgramScheduleHelp = buttonItemProgramScheduleHelp;
-			Controller.Instance.ProgramScheduleSave = buttonItemProgramScheduleSave;
-			Controller.Instance.ProgramScheduleSaveAs = buttonItemProgramScheduleSaveAs;
 			Controller.Instance.ProgramSchedulePreview = buttonItemProgramSchedulePreview;
 			Controller.Instance.ProgramScheduleEmail = buttonItemProgramScheduleEmail;
 			Controller.Instance.ProgramSchedulePowerPoint = buttonItemProgramSchedulePowerPoint;
@@ -146,7 +141,7 @@ namespace Asa.Media.Single
 			#endregion
 
 			#region Digital Product
-			Controller.Instance.DigitalProductPanel = ribbonPanelDigitalSlides;
+			Controller.Instance.DigitalProductPanel = ribbonPanelDigitalSchedule;
 			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
@@ -154,21 +149,19 @@ namespace Asa.Media.Single
 			Controller.Instance.DigitalProductPdf = buttonItemDigitalSchedulePdf;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
-			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
-			Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
-			Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
 			Controller.Instance.DigitalProductAdd = buttonItemDigitalScheduleProductAdd;
 			Controller.Instance.DigitalProductClone = buttonItemDigitalScheduleProductClone;
-
+			Controller.Instance.DigitalProductToggleDimensions = buttonItemDigitalScheduleDimensions;
+			Controller.Instance.DigitalProductToggleLocation = buttonItemDigitalScheduleLocation;
+			Controller.Instance.DigitalProductToggleStrategy = buttonItemDigitalScheduleStrategy;
+			Controller.Instance.DigitalProductToggleRichMedia = buttonItemDigitalScheduleRichMedia;
+			Controller.Instance.DigitalProductToggleTargeting = buttonItemDigitalScheduleTargeting;
 			#endregion
 
 			#region Digital Package
 			Controller.Instance.DigitalPackagePanel = ribbonPanelDigitalPackage;
 			Controller.Instance.DigitalPackageThemeBar = ribbonBarDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
-			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
-			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
-			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
 			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
@@ -182,9 +175,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
 			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
 			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
-			Controller.Instance.Calendar1Help = buttonItemCalendar1Help;
-			Controller.Instance.Calendar1Save = buttonItemCalendar1Save;
-			Controller.Instance.Calendar1SaveAs = buttonItemCalendar1SaveAs;
 			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
 			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
 			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
@@ -197,9 +187,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
 			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
 			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
-			Controller.Instance.Calendar2Help = buttonItemCalendar2Help;
-			Controller.Instance.Calendar2Save = buttonItemCalendar2Save;
-			Controller.Instance.Calendar2SaveAs = buttonItemCalendar2SaveAs;
 			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
 			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
 			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
@@ -210,9 +197,6 @@ namespace Asa.Media.Single
 			Controller.Instance.SnapshotPanel = ribbonPanelSnapshot;
 			Controller.Instance.SnapshotThemeBar = ribbonBarSnapshotPowerPoint;
 			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
-			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
-			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
-			Controller.Instance.SnapshotSaveAs = buttonItemSnapshotSaveAs;
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
@@ -227,9 +211,6 @@ namespace Asa.Media.Single
 			Controller.Instance.OptionsPanel = ribbonPanelOptions;
 			Controller.Instance.OptionsThemeBar = ribbonBarOptionsPowerPoint;
 			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
-			Controller.Instance.OptionsHelp = buttonItemOptionsHelp;
-			Controller.Instance.OptionsSave = buttonItemOptionsSave;
-			Controller.Instance.OptionsSaveAs = buttonItemOptionsSaveAs;
 			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
 			Controller.Instance.OptionsEmail = buttonItemOptionsEmail;
 			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
@@ -255,7 +236,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Gallery1ZoomIn = buttonItemGallery1ZoomIn;
 			Controller.Instance.Gallery1ZoomOut = buttonItemGallery1ZoomOut;
 			Controller.Instance.Gallery1Copy = buttonItemGallery1Copy;
-			Controller.Instance.Gallery1Help = buttonItemGallery1Help;
 			Controller.Instance.Gallery1Sections = comboBoxEditGallery1Sections;
 			Controller.Instance.Gallery1Groups = comboBoxEditGallery1Groups;
 			#endregion
@@ -275,14 +255,12 @@ namespace Asa.Media.Single
 			Controller.Instance.Gallery2ZoomIn = buttonItemGallery2ZoomIn;
 			Controller.Instance.Gallery2ZoomOut = buttonItemGallery2ZoomOut;
 			Controller.Instance.Gallery2Copy = buttonItemGallery2Copy;
-			Controller.Instance.Gallery2Help = buttonItemGallery2Help;
 			Controller.Instance.Gallery2Sections = comboBoxEditGallery2Sections;
 			Controller.Instance.Gallery2Groups = comboBoxEditGallery2Groups;
 			#endregion
 
 			#region Rate Card
 			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
-			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
 			#endregion
 

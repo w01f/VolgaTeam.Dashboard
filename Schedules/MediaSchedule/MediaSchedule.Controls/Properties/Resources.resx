@@ -142,9 +142,6 @@
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SaveSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SaveSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="HomeScheduleTitleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeScheduleTitleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,20 +154,11 @@
   <data name="OptionsNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OptionsNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="HomeDefaultLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeDefaultLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RibbonLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RibbonLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,14 +196,8 @@
   <data name="SnapshotsNoPrograms" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SnapshotsNoPrograms.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SaveAs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NudgeDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NudgeDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PowerPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PowerPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SectionNoRecords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionNoRecords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -231,9 +213,6 @@
   </data>
   <data name="OptionsNoRecords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OptionsNoRecords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="EmailBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EmailBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SectionNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,13 +250,40 @@
   <data name="AddProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddProgram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pdf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DigitalInfoLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DigitalInfoLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FlightDatesFormEditLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FlightDatesFormEditLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QatFloater" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QatFloater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QatHelp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QatHelp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QatSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QatSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QatSaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QatSaveAs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RibbonEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RibbonPdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonPdf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RibbonPowerPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonPowerPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RibbonPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DigitalPackageLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DigitalPackageLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DigitalScheduleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DigitalScheduleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

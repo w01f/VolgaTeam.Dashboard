@@ -192,11 +192,23 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap EmailBig
+		public static System.Drawing.Bitmap DigitalPackageLogo
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("EmailBig", resourceCulture);
+				object obj = ResourceManager.GetObject("DigitalPackageLogo", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap DigitalScheduleLogo
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("DigitalScheduleLogo", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -233,30 +245,6 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("FlightDatesFormEditLogo", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap Floater
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("Floater", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap Help
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("Help", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -456,11 +444,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap Pdf
+		public static System.Drawing.Bitmap QatFloater
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("Pdf", resourceCulture);
+				object obj = ResourceManager.GetObject("QatFloater", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -468,11 +456,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap PowerPoint
+		public static System.Drawing.Bitmap QatHelp
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("PowerPoint", resourceCulture);
+				object obj = ResourceManager.GetObject("QatHelp", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -480,11 +468,23 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap Preview
+		public static System.Drawing.Bitmap QatSave
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("Preview", resourceCulture);
+				object obj = ResourceManager.GetObject("QatSave", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap QatSaveAs
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("QatSaveAs", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -504,6 +504,18 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap RibbonEmail
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonEmail", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap RibbonLogo
 		{
 			get
@@ -516,11 +528,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap SaveAs
+		public static System.Drawing.Bitmap RibbonPdf
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("SaveAs", resourceCulture);
+				object obj = ResourceManager.GetObject("RibbonPdf", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -528,11 +540,23 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap SaveSmall
+		public static System.Drawing.Bitmap RibbonPowerPoint
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("SaveSmall", resourceCulture);
+				object obj = ResourceManager.GetObject("RibbonPowerPoint", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonPreview
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonPreview", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

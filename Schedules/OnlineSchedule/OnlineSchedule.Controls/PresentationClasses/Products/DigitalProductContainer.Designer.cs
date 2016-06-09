@@ -202,7 +202,6 @@
 			this.digitalProductListControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.digitalProductListControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
-			this.digitalProductListControl.Logo = null;
 			this.digitalProductListControl.Name = "digitalProductListControl";
 			this.digitalProductListControl.Size = new System.Drawing.Size(998, 493);
 			this.digitalProductListControl.TabIndex = 1;

@@ -29,18 +29,9 @@ namespace Asa.Media.Controls.BusinessClasses
 
 		public event EventHandler<EventArgs> RibbonTabsStateChanged;
 
-		public RibbonControl ContentRibbon
-		{
-			get { return Controller.Instance.Ribbon; }
-		}
-		public Panel MainPanel
-		{
-			get { return Controller.Instance.MainPanel; }
-		}
-		public Panel EmptyPanel
-		{
-			get { return Controller.Instance.EmptyPanel; }
-		}
+		public RibbonControl ContentRibbon => Controller.Instance.Ribbon;
+		public Panel MainPanel => Controller.Instance.MainPanel;
+		public Panel EmptyPanel => Controller.Instance.EmptyPanel;
 
 		public IContentEditControl<MediaScheduleChangeInfo> ActiveEditor
 		{

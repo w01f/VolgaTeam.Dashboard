@@ -18,15 +18,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public ScheduleSection SectionData { get; private set; }
 
 		private SectionControl _sectionControl;
-		private CustomSummaryControl _customSummaryControl;
-		private ProductSummaryControl _productSummaryControl;
-		private StrategySummaryControl _strategySummaryControl;
+		private SectionDigitalControl _digitalControl;
+		private SectionSummaryControl _customSummaryControl;
 		private bool _sectionDataChanged;
 
 		public event EventHandler<EventArgs> DataChanged;
 		public event EventHandler<EventArgs> SectionEditorChanged;
 
 		public ISectionEditorControl ActiveEditor => (ISectionEditorControl)xtraTabControl.SelectedTabPage;
+		public ISectionItemCollectionControl ActiveItemCollection => ActiveEditor as ISectionItemCollectionControl;
 
 		#region Totals Calculation
 		public string TotalPeriodsValueFormatted => SectionData.TotalActivePeriods.ToString("#,##0");
@@ -67,22 +67,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public void InitControls()
 		{
 			_sectionControl = new SectionControl(this);
-			_customSummaryControl = new CustomSummaryControl(this);
-			_productSummaryControl = new ProductSummaryControl(this);
-			_strategySummaryControl = new StrategySummaryControl(this);
+			_digitalControl = new SectionDigitalControl();
+			_customSummaryControl = new SectionSummaryControl(this);
 
 			xtraTabControl.TabPages.AddRange(new XtraTabPage[]
 			{
 				_sectionControl,
+				_digitalControl,
 				_customSummaryControl,
-				_productSummaryControl,
-				_strategySummaryControl
 			});
 
 			_sectionControl.InitControls();
+			_digitalControl.InitControls();
 			_customSummaryControl.InitControls();
-			_productSummaryControl.InitControls();
-			_strategySummaryControl.InitControls();
 
 			xtraTabControl.SelectedPageChanged += OnSelectedSectionEditorChanged;
 		}
@@ -92,14 +89,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionControl.Release();
 			_sectionControl = null;
 
+			_digitalControl.Release();
+			_digitalControl = null;
+
 			_customSummaryControl.Release();
 			_customSummaryControl = null;
-
-			_productSummaryControl.Release();
-			_productSummaryControl = null;
-
-			_strategySummaryControl.Release();
-			_strategySummaryControl = null;
 
 			DataChanged = null;
 			SectionEditorChanged = null;
@@ -114,9 +108,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			SectionData.DataChanged += OnSectionDataChanged;
 
 			_sectionControl.LoadData();
+			_digitalControl.LoadData();
 			_customSummaryControl.LoadData(quickLoad);
-			_productSummaryControl.LoadData(quickLoad);
-			_strategySummaryControl.LoadData();
 
 			UpdateSummaryState();
 			UpdateWarnings();
@@ -141,17 +134,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					UpdateSummaryState();
 					UpdateWarnings();
 					break;
+				case ScheduleSettingsType.Digital:
+					_digitalControl.UpdateGridView();
+					break;
 				case ScheduleSettingsType.CustomSummary:
 					_customSummaryControl.UpdateTotalItems();
-					break;
-				case ScheduleSettingsType.ProductSummary:
-					_productSummaryControl.UpdateTotalItems();
-					break;
-				case ScheduleSettingsType.Strategy:
-					_strategySummaryControl.UpdateRows();
-					break;
-				case ScheduleSettingsType.StrategyLogos:
-					_strategySummaryControl.ResetLogos();
 					break;
 			}
 		}
@@ -176,8 +163,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			{
 				SectionData.Summary.SynchronizeSectionContent();
 				_customSummaryControl.LoadData();
-				_productSummaryControl.LoadData();
-				_strategySummaryControl.LoadData();
 				_sectionDataChanged = false;
 			}
 			UpdateWarnings();
@@ -187,10 +172,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void UpdateSummaryState()
 		{
 			_customSummaryControl.PageEnabled =
-				_productSummaryControl.PageEnabled =
-					SectionData.Programs.Any(p => p.TotalSpots > 0);
-			_strategySummaryControl.PageEnabled =
-				SectionData.ShowProgram &&
 				SectionData.Programs.Any(p => p.TotalSpots > 0);
 		}
 
@@ -214,14 +195,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionControl.UpdateSpotsByQuarter(selectedQuarter);
 		}
 
-		public void AddProgram()
+		public void AddItem()
 		{
-			_sectionControl.AddProgram();
+			ActiveItemCollection?.AddItem();
 		}
 
-		public void DeleteProgram()
+		public void DeleteItem()
 		{
-			_sectionControl.DeleteProgram();
+			ActiveItemCollection?.DeleteItem();
 		}
 		#endregion
 

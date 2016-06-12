@@ -94,9 +94,7 @@
     <Compile Include="Entities\NonPersistent\Section\Summary\CustomSummaryContent.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\DigitalInfoSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\MediaInfoSummaryItem.cs" />
-    <Compile Include="Entities\NonPersistent\Section\Summary\ProductSummaryContent.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\ProductInfoSummaryItem.cs" />
-    <Compile Include="Entities\NonPersistent\Section\Summary\ProgramStrategyItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\SectionSummary.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\SourceProgram.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\Spot.cs" />
@@ -104,7 +102,6 @@
     <Compile Include="Entities\NonPersistent\Section\Content\MonthlyScheduleContent.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\WeeklyScheduleContent.cs" />
     <Compile Include="Configuration\SnapshotSettings.cs" />
-    <Compile Include="Entities\NonPersistent\Section\Summary\StrategySummaryContent.cs" />
     <Compile Include="Configuration\SnapshotSummarySettings.cs" />
     <Compile Include="Entities\NonPersistent\Snapshot\Snapshot.cs" />
     <Compile Include="Entities\NonPersistent\Snapshot\SnapshotContent.cs" />

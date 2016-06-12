@@ -45,7 +45,6 @@
 			this.pbUp = new System.Windows.Forms.PictureBox();
 			this.pbDown = new System.Windows.Forms.PictureBox();
 			this.pbDelete = new System.Windows.Forms.PictureBox();
-			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.panelExMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).BeginInit();
@@ -54,7 +53,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbUp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDelete)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// laNumber
@@ -265,39 +263,17 @@
 			this.pbDelete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbDelete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
-			// hyperLinkEditReset
-			// 
-			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.hyperLinkEditReset.EditValue = "Reset Info";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(45, 149);
-			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
-			this.hyperLinkEditReset.Properties.AllowFocused = false;
-			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.White;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
-			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.hyperLinkEditReset.Properties.AutoHeight = false;
-			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(476, 20);
-			this.hyperLinkEditReset.TabIndex = 123;
-			// 
 			// SummaryCustomItemControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.hyperLinkEditReset);
 			this.Controls.Add(this.pbUp);
 			this.Controls.Add(this.pbDown);
 			this.Controls.Add(this.pbDelete);
 			this.Controls.Add(this.panelExMain);
 			this.Controls.Add(this.laNumber);
 			this.Name = "SummaryCustomItemControl";
-			this.Size = new System.Drawing.Size(595, 175);
+			this.Size = new System.Drawing.Size(595, 155);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).EndInit();
@@ -307,7 +283,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbUp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDelete)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -329,6 +304,5 @@
         private System.Windows.Forms.CheckBox ckItem;
         public System.Windows.Forms.CheckBox ckDetails;
 		private DevExpress.XtraEditors.TextEdit textEditItem;
-		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 	}
 }

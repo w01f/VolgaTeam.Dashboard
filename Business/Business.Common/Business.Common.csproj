@@ -88,6 +88,7 @@
     <Compile Include="Entities\NonPersistent\ScheduleTemplates\TemplateInfo.cs" />
     <Compile Include="Entities\NonPersistent\ScheduleTemplates\TemplateList.cs" />
     <Compile Include="Entities\Helpers\ScheduleTemplatesManager.cs" />
+    <Compile Include="Enums\ScheduleSolutionType.cs" />
     <Compile Include="Interfaces\IBaseScheduleSettings.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\ShortScheduleModel.cs" />
     <Compile Include="Entities\NonPersistent\Summary\BaseSummarySettings.cs" />
@@ -138,6 +139,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Schema\Schedule\Base\sequense.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schema\Schedule\Version2\schedule_solution.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -12,7 +12,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 	public abstract class BaseContentEditControl<TChangeInfo> : PartitionEditTemplateControl, IContentEditControl<TChangeInfo>
 		where TChangeInfo : BaseScheduleChangeInfo
 	{
-		protected ContentUpdateInfo<TChangeInfo> ContentUpdateInfo { get; private set; }
+		protected ContentUpdateInfo<TChangeInfo> ContentUpdateInfo { get; }
 		public bool SettingsNotSaved { get; set; }
 		public bool IsActive { get; set; }
 		public abstract string Identifier { get; }

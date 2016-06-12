@@ -576,6 +576,18 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap SectionNoDigitalItems
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SectionNoDigitalItems", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap SectionNoPrograms
 		{
 			get
@@ -701,18 +713,6 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("SnapshotsNoPrograms", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap SummaryOptionsFavorites
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("SummaryOptionsFavorites", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

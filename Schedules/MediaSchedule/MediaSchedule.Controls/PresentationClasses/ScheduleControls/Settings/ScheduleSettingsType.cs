@@ -8,10 +8,7 @@
 		Colors,
 		AdvancedColumns,
 		Contract,
+		Digital,
 		CustomSummary,
-		ProductSummary,
-		Strategy,
-		StrategyLogos,
-		FavoriteImages
 	}
 }

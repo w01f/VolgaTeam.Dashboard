@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 {
@@ -17,12 +15,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		{
 			ShowValue = true;
 			Value = "Digital Campaign";
-			Description = String.Join(", ", _summaryContent.Parent.Parent.ParentSchedule.DigitalProductsContent.DigitalProducts.Select(dp =>
-				String.Format("({0}){1} - {2}",
-				dp.Category,
-				!String.IsNullOrEmpty(dp.SubCategory) ? (String.Format(" {0}", dp.SubCategory)) : String.Empty,
-				dp.Name)));
-			ShowDescription = true;
 		}
 	}
 }

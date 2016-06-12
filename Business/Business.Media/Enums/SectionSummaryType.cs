@@ -4,7 +4,5 @@
 	{
 		None,
 		Custom,
-		Product,
-		Strategy
 	}
 }

@@ -4,8 +4,7 @@
 	{
 		Schedule,
 		ScheduleSection,
+		DigitalSection,
 		CustomSummary,
-		ProductSummary,
-		Strategy
 	}
 }

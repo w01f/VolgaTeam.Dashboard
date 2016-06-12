@@ -28,8 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnControls = new System.Windows.Forms.Panel();
 			this.memoEditInfo = new DevExpress.XtraEditors.MemoEdit();
 			this.checkEditEnable = new DevExpress.XtraEditors.CheckEdit();
@@ -41,6 +40,7 @@
 			this.buttonXRefreshInfoCase3 = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXRefreshInfoCase2 = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXRefreshInfoCase1 = new DevComponents.DotNetBar.ButtonX();
+			this.labelControlComingSoon = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnControls.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditInfo.Properties)).BeginInit();
@@ -70,11 +70,12 @@
 			this.pnControls.BackColor = System.Drawing.Color.Transparent;
 			this.pnControls.Controls.Add(this.memoEditInfo);
 			this.pnControls.Controls.Add(this.checkEditEnable);
-			this.pnControls.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnControls.Location = new System.Drawing.Point(0, 75);
+			this.pnControls.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnControls.Location = new System.Drawing.Point(0, 407);
 			this.pnControls.Name = "pnControls";
-			this.pnControls.Size = new System.Drawing.Size(270, 288);
+			this.pnControls.Size = new System.Drawing.Size(270, 45);
 			this.pnControls.TabIndex = 103;
+			this.pnControls.Visible = false;
 			// 
 			// memoEditInfo
 			// 
@@ -87,7 +88,7 @@
 			this.memoEditInfo.Properties.AllowFocused = false;
 			this.memoEditInfo.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditInfo.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditInfo.Size = new System.Drawing.Size(232, 275);
+			this.memoEditInfo.Size = new System.Drawing.Size(232, 32);
 			this.memoEditInfo.StyleController = this.styleController;
 			this.memoEditInfo.TabIndex = 13;
 			this.memoEditInfo.EditValueChanged += new System.EventHandler(this.memoEdit_EditValueChanged);
@@ -134,11 +135,12 @@
 			// 
 			this.pnHeader.Controls.Add(this.pbLogo);
 			this.pnHeader.Controls.Add(this.laTitle);
-			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 0);
+			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnHeader.Location = new System.Drawing.Point(0, 498);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(270, 75);
+			this.pnHeader.Size = new System.Drawing.Size(270, 36);
 			this.pnHeader.TabIndex = 106;
+			this.pnHeader.Visible = false;
 			// 
 			// pnBottom
 			// 
@@ -147,10 +149,11 @@
 			this.pnBottom.Controls.Add(this.buttonXRefreshInfoCase1);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottom.Enabled = false;
-			this.pnBottom.Location = new System.Drawing.Point(0, 363);
+			this.pnBottom.Location = new System.Drawing.Point(0, 452);
 			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(270, 171);
+			this.pnBottom.Size = new System.Drawing.Size(270, 46);
 			this.pnBottom.TabIndex = 107;
+			this.pnBottom.Visible = false;
 			// 
 			// buttonXRefreshInfoCase3
 			// 
@@ -197,10 +200,26 @@
 			this.buttonXRefreshInfoCase1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.buttonXRefreshInfoCase1.Click += new System.EventHandler(this.buttonXRefreshInfoCase1_Click);
 			// 
+			// labelControlComingSoon
+			// 
+			this.labelControlComingSoon.AllowHtmlString = true;
+			this.labelControlComingSoon.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.labelControlComingSoon.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.labelControlComingSoon.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlComingSoon.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlComingSoon.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlComingSoon.Location = new System.Drawing.Point(0, 0);
+			this.labelControlComingSoon.Name = "labelControlComingSoon";
+			this.labelControlComingSoon.Size = new System.Drawing.Size(270, 407);
+			this.labelControlComingSoon.StyleController = this.styleController;
+			this.labelControlComingSoon.TabIndex = 108;
+			this.labelControlComingSoon.Text = "<size=+6><color=gray>New Digital Sales tools coming soon!</color></size>";
+			// 
 			// DigitalInfoControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.labelControlComingSoon);
 			this.Controls.Add(this.pnControls);
 			this.Controls.Add(this.pnBottom);
 			this.Controls.Add(this.pnHeader);
@@ -233,5 +252,6 @@
 		private DevComponents.DotNetBar.ButtonX buttonXRefreshInfoCase3;
 		private DevComponents.DotNetBar.ButtonX buttonXRefreshInfoCase2;
 		private DevComponents.DotNetBar.ButtonX buttonXRefreshInfoCase1;
+		private DevExpress.XtraEditors.LabelControl labelControlComingSoon;
 	}
 }

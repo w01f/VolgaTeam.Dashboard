@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Asa.Business.Common.Dictionaries;
 using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Output;
@@ -22,48 +23,39 @@ using DevExpress.XtraTab;
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public partial class SectionSummaryControl : UserControl
-	public partial class SectionSummaryControl : XtraTabPage
+	//public partial class SectionSummaryControl : UserControl, ISummaryControl, ISectionEditorControl, ISectionOutputControl
+	public partial class SectionSummaryControl : XtraTabPage, ISummaryControl, ISectionEditorControl, ISectionOutputControl
 	{
-		public SectionSummaryControl()
+		protected SectionContainer _sectionContainer;
+
+		protected readonly List<SummaryCustomItemControl> _inputControls = new List<SummaryCustomItemControl>();
+
+		public List<CustomSummaryItem> Items => SummaryContent.Items;
+
+		public SectionEditorType EditorType => SectionEditorType.CustomSummary;
+
+		#region Calculated properties
+		protected IEnumerable<SummaryCustomItemControl> OrderedItems
+		{
+			get { return _inputControls.OrderBy(it => it.Data.Order).ToList(); }
+		}
+		private CustomSummaryContent SummaryContent => _sectionContainer.SectionData.Summary.CustomSummary;
+		private BaseSummarySettings SummarySettings => _sectionContainer.SectionData.Summary.CustomSummary;
+		#endregion
+
+		public SectionSummaryControl(SectionContainer sectionContainer)
 		{
 			InitializeComponent();
+			_sectionContainer = sectionContainer;
+			Text = "Summary Slide";
+			buttonXAddItem.Visible = true;
+			buttonXAddItem.Click += OnAddItem;
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laHeaderTitle.Font = new Font(laHeaderTitle.Font.FontFamily, laHeaderTitle.Font.Size - 2, laHeaderTitle.Font.Style);
 				laTotalItems.Font = new Font(laTotalItems.Font.FontFamily, laTotalItems.Font.Size - 2, laTotalItems.Font.Style);
 				buttonXAddItem.Font = new Font(buttonXAddItem.Font.FontFamily, buttonXAddItem.Font.Size - 2, buttonXAddItem.Font.Style);
 			}
-		}
-	}
-
-	[ToolboxItem(false)]
-	public abstract class SectionSummaryBaseControl<TItemControl> : SectionSummaryControl, ISummaryControl, ISectionEditorControl, ISectionOutputControl
-		where TItemControl : ISummaryItemControl
-	{
-		private bool _allowToSave;
-
-		protected SectionContainer _sectionContainer;
-
-		protected readonly List<TItemControl> _inputControls = new List<TItemControl>();
-
-		protected abstract bool CustomOrder { get; }
-		public abstract List<CustomSummaryItem> Items { get; }
-
-		public abstract SectionEditorType EditorType { get; }
-
-		#region Calculated properties
-		protected IEnumerable<TItemControl> OrderedItems
-		{
-			get { return CustomOrder ? _inputControls.OrderBy(it => it.Data.Order).ToList() : _inputControls; }
-		}
-
-		protected abstract BaseSummarySettings SummarySettings { get; }
-		#endregion
-
-		protected SectionSummaryBaseControl(SectionContainer sectionContainer)
-		{
-			_sectionContainer = sectionContainer;
 		}
 
 		#region ISectionEditorControl Memebers
@@ -83,7 +75,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		}
 		#endregion
 
-		public virtual void LoadData(bool quickLoad)
+		public void LoadData(bool quickLoad = true)
 		{
 			comboBoxEditHeader.EditValue = String.IsNullOrEmpty(SummarySettings.SlideHeader) ?
 				ListManager.Instance.SimpleSummaryLists.Headers.FirstOrDefault() :
@@ -91,6 +83,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 			LoadItems(quickLoad);
 			UpdateTotalItems();
+			if (!quickLoad)
+				UpdateControlsInList(OrderedItems.OfType<Control>().FirstOrDefault());
 		}
 
 		public void SaveData()
@@ -112,7 +106,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Items Management
-		protected virtual void LoadItems(bool quickLoad)
+		private void LoadItems(bool quickLoad)
 		{
 			if (!quickLoad)
 			{
@@ -135,18 +129,16 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		protected TItemControl AddItemToList(CustomSummaryItem summaryItem)
+		private SummaryCustomItemControl AddItemToList(CustomSummaryItem summaryItem)
 		{
-			var item = Activator.CreateInstance<TItemControl>();
+			var item = new SummaryCustomItemControl();
 			item.Data = summaryItem;
 			InitItem(item);
 			_inputControls.Add(item);
-			var control = item as Control;
-			if (control == null) return item;
 			return item;
 		}
 
-		protected virtual void InitItem(TItemControl item)
+		private void InitItem(SummaryCustomItemControl item)
 		{
 			item.LoadData();
 			item.DataChanged += (o, e) =>
@@ -155,9 +147,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				RaiseDataChanged();
 			};
 			item.InvestmentChanged += (o, e) => UpdateTotals();
+			item.ItemPositionChanged += ItemOnItemPositionChanged;
+			item.ItemDeleted += ItemOnItemDeleted;
 		}
 
-		protected void UpdateControlsInList(Control focussed)
+		private void UpdateControlsInList(Control focussed)
 		{
 			xtraScrollableControlInput.SuspendLayout();
 			xtraScrollableControlInput.Controls.Clear();
@@ -173,8 +167,43 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			laTotalItems.Text = String.Format("Total Items: {0}", _inputControls.Count());
 		}
 
-		protected void UpdateTotals()
+		private void UpdateTotals()
 		{
+			RaiseDataChanged();
+		}
+
+		private void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
+		{
+			SummaryContent.DeleteItem(e.SummaryItem.Data);
+			_inputControls.Remove((SummaryCustomItemControl)e.SummaryItem);
+			SummaryContent.ReorderItems();
+			UpdateControlsInList(OrderedItems.OfType<Control>().FirstOrDefault());
+			UpdateNumbers();
+			UpdateTotalItems();
+			UpdateTotals();
+			RaiseDataChanged();
+		}
+
+		private void ItemOnItemPositionChanged(object sender, SummaryItemEventArgs e)
+		{
+			SummaryContent.ReorderItems();
+			UpdateNumbers();
+			UpdateControlsInList(e.SummaryItem as SummaryCustomItemControl);
+			RaiseDataChanged();
+		}
+
+		private void UpdateNumbers()
+		{
+			foreach (var itemControl in _inputControls)
+				itemControl.UpdateNumber();
+		}
+
+		private void OnAddItem(object sender, EventArgs e)
+		{
+			var newItemData = SummaryContent.AddItem();
+			var focussed = AddItemToList(newItemData);
+			UpdateControlsInList(focussed);
+			UpdateTotalItems();
 			RaiseDataChanged();
 		}
 		#endregion
@@ -230,45 +259,21 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public string Advertiser
-		{
-			get
-			{
-				return SummarySettings.ShowAdvertiser ?
-					_sectionContainer.SectionData.ParentScheduleSettings.BusinessName :
-					String.Empty;
-			}
-		}
+		public string Advertiser => SummarySettings.ShowAdvertiser ?
+			_sectionContainer.SectionData.ParentScheduleSettings.BusinessName :
+			String.Empty;
 
-		public string DecisionMaker
-		{
-			get
-			{
-				return SummarySettings.ShowDecisionMaker ?
-					_sectionContainer.SectionData.ParentScheduleSettings.DecisionMaker :
-					String.Empty;
-			}
-		}
+		public string DecisionMaker => SummarySettings.ShowDecisionMaker ?
+			_sectionContainer.SectionData.ParentScheduleSettings.DecisionMaker :
+			String.Empty;
 
-		public string PresentationDate
-		{
-			get
-			{
-				return SummarySettings.ShowPresentationDate ?
-					_sectionContainer.SectionData.ParentScheduleSettings.PresentationDate.Value.ToString("MM/dd/yy") :
-					String.Empty;
-			}
-		}
+		public string PresentationDate => SummarySettings.ShowPresentationDate ?
+			_sectionContainer.SectionData.ParentScheduleSettings.PresentationDate.Value.ToString("MM/dd/yy") :
+			String.Empty;
 
-		public string CampaignDates
-		{
-			get
-			{
-				return SummarySettings.ShowFlightDates ?
-					_sectionContainer.SectionData.ParentScheduleSettings.FlightDates :
-					String.Empty;
-			}
-		}
+		public string CampaignDates => SummarySettings.ShowFlightDates ?
+			_sectionContainer.SectionData.ParentScheduleSettings.FlightDates :
+			String.Empty;
 
 		public string[] ItemTitles
 		{
@@ -300,9 +305,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public abstract string TotalMonthlyValue { get; }
+		public string TotalMonthlyValue => SummaryContent.ShowMonthly && (SummaryContent.MonthlyValue.HasValue || SummaryContent.TotalMonthly.HasValue) ?
+			(SummaryContent.MonthlyValue ?? SummaryContent.TotalMonthly).Value.ToString("$#,##0.00") :
+			String.Empty;
 
-		public abstract string TotalTotalValue { get; }
+		public string TotalTotalValue => SummaryContent.ShowTotal && (SummaryContent.TotalValue.HasValue || SummaryContent.TotalTotal.HasValue) ?
+			(SummaryContent.TotalValue ?? SummaryContent.TotalTotal).Value.ToString("$#,##0.00") :
+			String.Empty;
 
 		public bool ShowMonthlyHeader
 		{
@@ -314,15 +323,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			get { return OrderedItems.Where(it => it.Complited).Any(it => it.OutputTotalValue.HasValue); }
 		}
 
-		public StorageDirectory ContractTemplateFolder
-		{
-			get { return BusinessObjects.Instance.OutputManager.ContractTemplateFolder; }
-		}
+		public StorageDirectory ContractTemplateFolder => BusinessObjects.Instance.OutputManager.ContractTemplateFolder;
 
-		public ContractSettings ContractSettings
-		{
-			get { return _sectionContainer.SectionData.ContractSettings; }
-		}
+		public ContractSettings ContractSettings => _sectionContainer.SectionData.ContractSettings;
 
 		public Theme SelectedTheme
 		{
@@ -335,17 +338,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public bool TableOutput
-		{
-			get { return SummarySettings.TableOutput; }
-		}
+		public bool TableOutput => SummarySettings.TableOutput;
 
-		public int ItemsPerTable
-		{
-			get { return ItemsCount > 18 ? 18 : ItemsCount; }
-		}
+		public int ItemsPerTable => ItemsCount > 18 ? 18 : ItemsCount;
 
-		public abstract bool ShowIcons { get; }
+		public bool ShowIcons => false;
 
 		public string[] TableIcons
 		{

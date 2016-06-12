@@ -105,15 +105,6 @@ namespace Asa.Media.Controls.BusinessClasses
 			});
 		}
 
-		public string GetStartegyFile(int itemsPerSlide)
-		{
-			return GetScheduleTemplateFile(new[]
-			{
-				"strategy",
-				String.Format("strategy_{0}.pptx",itemsPerSlide)
-			});
-		}
-
 		public string GetSnapshotItemFile(
 			string color,
 			bool showLogo,

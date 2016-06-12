@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Online.Common;
 using Asa.Business.Online.Entities.NonPersistent;
-using Asa.Common.GUI.Common;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital
 {

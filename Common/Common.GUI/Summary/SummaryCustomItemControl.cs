@@ -30,7 +30,6 @@ namespace Asa.Common.GUI.Summary
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 2, laTotal.Font.Style);
-				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2, hyperLinkEditReset.Font.Style);
 			}
 			DataChanged += (o, e) => { Data.Commited = true; };
 		}

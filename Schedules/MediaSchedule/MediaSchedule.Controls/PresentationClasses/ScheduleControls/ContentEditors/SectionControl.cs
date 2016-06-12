@@ -37,7 +37,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
 	[ToolboxItem(false)]
 	//public partial class SectionControl : UserControl
-	public partial class SectionControl : XtraTabPage, ISectionEditorControl, ISectionOutputControl
+	public partial class SectionControl : XtraTabPage, ISectionEditorControl, ISectionOutputControl, ISectionItemCollectionControl
 	{
 		private SectionContainer _sectionContainer;
 		private readonly List<BandedGridColumn> _spotColumns = new List<BandedGridColumn>();
@@ -121,7 +121,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			advBandedGridViewSchedule.CloseEditor();
 		}
 
-		public void AddProgram()
+		public void AddItem()
 		{
 			_sectionContainer.SectionData.AddProgram();
 			UpdateGridData(true);
@@ -144,7 +144,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionContainer.RaiseDataChanged();
 		}
 
-		public void DeleteProgram()
+		public void DeleteItem()
 		{
 			var selectedProgramRow = advBandedGridViewSchedule.GetFocusedDataRow();
 			if (selectedProgramRow == null) return;
@@ -440,7 +440,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnDeleteProgram(object sender, EventArgs e)
 		{
-			DeleteProgram();
+			DeleteItem();
 		}
 		#endregion
 

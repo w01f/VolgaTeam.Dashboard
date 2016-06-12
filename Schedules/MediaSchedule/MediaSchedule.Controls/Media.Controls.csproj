@@ -96,7 +96,6 @@
     <Compile Include="InteropClasses\OptionsHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
-    <Compile Include="InteropClasses\StrategyHelper.cs" />
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,7 +169,14 @@
     <Compile Include="PresentationClasses\RateCard\MediaRateCardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionItemCollectionControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionOutputControl.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalControl.Designer.cs">
+      <DependentUpon>SectionDigitalControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionEditorType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.cs">
       <SubType>Form</SubType>
@@ -183,18 +189,6 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.Designer.cs">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\StrategySummaryControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\StrategySummaryControl.Designer.cs">
-      <DependentUpon>StrategySummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SummaryMediaCustomControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SummaryMediaProductItemControl.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.cs">
       <SubType>Form</SubType>
@@ -238,6 +232,12 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\ColorSettingsControl.Designer.cs">
       <DependentUpon>ColorSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionDigitalSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionDigitalSettingsControl.Designer.cs">
+      <DependentUpon>SectionDigitalSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionEditorSettingsRelation.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\IContentSettingsControl.cs" />
@@ -331,29 +331,8 @@
     <Compile Include="PresentationClasses\ScheduleControls\Settings\BaseSummaryInfoControl.Designer.cs">
       <DependentUpon>BaseSummaryInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\CustomSummaryControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\CustomSummaryInfoControl.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ProductSummaryControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\ProductSummaryInfoControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\StrategyImageControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\StrategyImageControl.Designer.cs">
-      <DependentUpon>StrategyImageControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\StrategyInfoControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\StrategyInfoControl.Designer.cs">
-      <DependentUpon>StrategyInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -402,11 +381,11 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.resx">
       <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalControl.resx">
+      <DependentUpon>SectionDigitalControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.resx">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\StrategySummaryControl.resx">
-      <DependentUpon>StrategySummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
@@ -434,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\DigitalSettingsControl.resx">
       <DependentUpon>DigitalSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\SectionDigitalSettingsControl.resx">
+      <DependentUpon>SectionDigitalSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\SectionTotalsSettingsControl.resx">
       <DependentUpon>SectionTotalsSettingsControl.cs</DependentUpon>
@@ -471,12 +453,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\BaseSummaryInfoControl.resx">
       <DependentUpon>BaseSummaryInfoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\StrategyImageControl.resx">
-      <DependentUpon>StrategyImageControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\StrategyInfoControl.resx">
-      <DependentUpon>StrategyInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -625,9 +601,6 @@
     <None Include="Resources\SectionNew.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SummaryOptionsFavorites.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SummaryOptionsInfo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -717,6 +690,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalScheduleLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionNoDigitalItems.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -75,32 +75,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				} ,
 				new SectionEditorSettingsRelation
 				{
+					EditorType = SectionEditorType.DigitalSection,
+					SettingsTypes = new []
+					{
+						ScheduleSettingsType.Digital,
+						ScheduleSettingsType.Contract
+					}
+				},
+				new SectionEditorSettingsRelation
+				{
 					EditorType = SectionEditorType.CustomSummary,
 					SettingsTypes = new []
 					{
 						ScheduleSettingsType.CustomSummary,
-						ScheduleSettingsType.Contract,
+						ScheduleSettingsType.Contract
 					}
 				},
-				new SectionEditorSettingsRelation
-				{
-					EditorType = SectionEditorType.ProductSummary,
-					SettingsTypes = new []
-					{
-						ScheduleSettingsType.ProductSummary,
-						ScheduleSettingsType.Contract,
-					}
-				},
-				new SectionEditorSettingsRelation
-				{
-					EditorType = SectionEditorType.Strategy,
-					SettingsTypes = new []
-					{
-						ScheduleSettingsType.Strategy,
-						ScheduleSettingsType.FavoriteImages,
-						ScheduleSettingsType.Contract,
-					}
-				}
 			});
 		}
 
@@ -112,10 +102,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 					new SectionTotalsSettingsControl(),
 					new DigitalSettingsControl(),
 					new ColorSettingsControl(),
+					new SectionDigitalSettingsControl(), 
 					new CustomSummaryInfoControl(),
-					new ProductSummaryInfoControl(),
-					new StrategyInfoControl(),
-					new StrategyImageControl(),
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsDataControl>())
 				settingsDataControl.DataChanged += OnSettingsChanged;

@@ -13,13 +13,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		public List<ISectionSummaryContent> Items { get; private set; }
 
 		public CustomSummaryContent CustomSummary => (CustomSummaryContent)Items.First(i => i.SummaryType == SectionSummaryTypeEnum.Custom);
-		public ProductSummaryContent ProductSummary => (ProductSummaryContent)Items.First(i => i.SummaryType == SectionSummaryTypeEnum.Product);
-		public StrategySummaryContent StrategySummary => (StrategySummaryContent)Items.First(i => i.SummaryType == SectionSummaryTypeEnum.Strategy);
 
 		[JsonConstructor]
-		private SectionSummary()
-		{
-		}
+		private SectionSummary() { }
 
 		public SectionSummary(ScheduleSection parent)
 		{
@@ -49,8 +45,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 				Items.AddRange(new ISectionSummaryContent[]
 					{
 					new CustomSummaryContent(this),
-					new ProductSummaryContent(this),
-					new StrategySummaryContent(this)
 					});
 			}
 		}

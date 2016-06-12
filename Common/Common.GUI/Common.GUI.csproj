@@ -303,26 +303,8 @@
     <Compile Include="Summary\SummaryCustomItemControl.Designer.cs">
       <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Summary\SummaryFullControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Summary\ISummaryControl.cs" />
     <Compile Include="Summary\ISummaryItemControl.cs" />
-    <Compile Include="Summary\SummaryControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Summary\SummaryControl.Designer.cs">
-      <DependentUpon>SummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Summary\SummaryLightControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Summary\SummaryProductItemControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Summary\SummaryProductItemControl.Designer.cs">
-      <DependentUpon>SummaryProductItemControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Themes\FormThemeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -433,6 +415,7 @@
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -488,12 +471,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Summary\SummaryCustomItemControl.resx">
       <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Summary\SummaryControl.resx">
-      <DependentUpon>SummaryControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Summary\SummaryProductItemControl.resx">
-      <DependentUpon>SummaryProductItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Themes\FormThemeSelector.resx">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
@@ -609,19 +586,7 @@
     <None Include="Resources\GallerySelect.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SummaryDigital.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SummaryPrint.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\NewSchedule.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SummaryRadio.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SummaryTV.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DeleteButton.png" />

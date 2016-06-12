@@ -52,7 +52,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
 			SlideType.TVProgramSchedule :
 			SlideType.RadioProgramSchedule;
-
 		#endregion
 
 		public ScheduleContainer()
@@ -117,8 +116,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			BusinessObjects.Instance.OutputManager.ColorsChanged += OnSettingsControlsUpdated;
 
 			Controller.Instance.ProgramScheduleNew.Click += OnAddSection;
-			Controller.Instance.ProgramScheduleProgramAdd.Click += OnAddProgram;
-			Controller.Instance.ProgramScheduleProgramDelete.Click += OnDeleteProgram;
+			Controller.Instance.ProgramScheduleProgramAdd.Click += OnAddItem;
+			Controller.Instance.ProgramScheduleProgramDelete.Click += OnDeleteItem;
 		}
 
 		protected override void UpdateEditedContet()
@@ -185,14 +184,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (ActiveSection != null && ActiveSection.ActiveEditor.EditorType != SectionEditorType.ScheduleSection)
 				switch (ActiveSection.ActiveEditor.EditorType)
 				{
-					case SectionEditorType.ProductSummary:
-						helpKey = "summary1";
-						break;
 					case SectionEditorType.CustomSummary:
 						helpKey = "summary2";
-						break;
-					case SectionEditorType.Strategy:
-						helpKey = "strategy";
 						break;
 				}
 			BusinessObjects.Instance.HelpManager.OpenHelpLink(helpKey);
@@ -453,10 +446,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (ActiveSection == null) return;
 			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.ActiveEditor.EditorType);
-			Controller.Instance.ProgramScheduleProgramAdd.Enabled =
-			Controller.Instance.ProgramScheduleProgramDelete.Enabled =
 			quarterSelectorControl.Visible =
 				ActiveSection.ActiveEditor.EditorType == SectionEditorType.ScheduleSection;
+			Controller.Instance.ProgramScheduleProgramAdd.Enabled =
+				Controller.Instance.ProgramScheduleProgramDelete.Enabled = ActiveSection.ActiveItemCollection != null;
 		}
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
@@ -545,14 +538,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			AddSection();
 		}
 
-		public void OnAddProgram(object sender, EventArgs e)
+		public void OnAddItem(object sender, EventArgs e)
 		{
-			ActiveSection?.AddProgram();
+			ActiveSection?.AddItem();
 		}
 
-		public void OnDeleteProgram(object sender, EventArgs e)
+		public void OnDeleteItem(object sender, EventArgs e)
 		{
-			ActiveSection?.DeleteProgram();
+			ActiveSection?.DeleteItem();
 		}
 		#endregion
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Asa.Business.Online.Common;
 using Asa.Business.Online.Interfaces;
 
 namespace Asa.Business.Online.Entities.NonPersistent
@@ -76,62 +75,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		{
 			for (int i = 0; i < DigitalProducts.Count; i++)
 				DigitalProducts[i].Index = i + 1;
-		}
-
-		public string GetDigitalInfo(RequestDigitalInfoEventArgs args)
-		{
-			var result = new List<string>();
-			if (args.ShowWebsites)
-			{
-				var compiledWebsites = String.Join(", ", DigitalProducts.SelectMany(p => p.Websites).Distinct());
-				if (!String.IsNullOrEmpty(compiledWebsites))
-					result.Add(String.Format("{0}", compiledWebsites));
-			}
-			foreach (var product in DigitalProducts)
-			{
-				var temp = new List<string>();
-				if (args.ShowProduct && !String.IsNullOrEmpty(product.UserDefinedName))
-					temp.Add(product.UserDefinedName);
-				if (args.ShowDimensions && !String.IsNullOrEmpty(product.Dimensions))
-					temp.Add(product.Dimensions);
-				if (args.ShowDates && product.DurationValue.HasValue)
-					temp.Add(ScheduleSettings.FlightDates);
-				if (product.MonthlyImpressionsCalculated.HasValue || product.MonthlyCPMCalculated.HasValue || product.MonthlyInvestmentCalculated.HasValue)
-				{
-					var monthly = new List<string>();
-					if (args.ShowImpressions &&
-						(product.ShowAllPricingMonthly || product.ShowMonthlyImpressions) &&
-						product.MonthlyImpressionsCalculated.HasValue)
-						monthly.Add(String.Format("Imp: {0}", product.MonthlyImpressionsCalculated.Value.ToString("#,##0")));
-					if (args.ShowInvestment && product.MonthlyInvestmentCalculated.HasValue)
-						monthly.Add(String.Format("Inv: {0}", product.MonthlyInvestmentCalculated.Value.ToString("#,##0")));
-					if (args.ShowCPM &&
-						product.ShowAllPricingMonthly &&
-						product.MonthlyCPMCalculated.HasValue)
-						monthly.Add(String.Format("CPM: {0}", product.MonthlyCPMCalculated.Value.ToString("#,##0")));
-					if (monthly.Any())
-						temp.Add(String.Format("(Monthly) {0}", String.Join(" ", monthly)));
-				}
-				if (product.TotalImpressionsCalculated.HasValue || product.TotalCPMCalculated.HasValue || product.TotalInvestmentCalculated.HasValue)
-				{
-					var total = new List<string>();
-					if (args.ShowImpressions &&
-						(product.ShowAllPricingTotal || product.ShowTotalImpressions) &&
-						product.TotalImpressionsCalculated.HasValue)
-						total.Add(String.Format("Imp: {0}", product.TotalImpressionsCalculated.Value.ToString("#,##0")));
-					if (args.ShowInvestment && product.TotalInvestmentCalculated.HasValue)
-						total.Add(String.Format("Inv: {0}", product.TotalInvestmentCalculated.Value.ToString("#,##0")));
-					if (args.ShowCPM &&
-						product.ShowAllPricingTotal &&
-						product.TotalCPMCalculated.HasValue)
-						total.Add(String.Format("CPM: {0}", product.TotalCPMCalculated.Value.ToString("#,##0")));
-					if (total.Any())
-						temp.Add(String.Format("(Total) {0}", String.Join(" ", total)));
-				}
-				if (temp.Any())
-					result.Add(String.Format("[{0}]", String.Join(", ", temp.ToArray())));
-			}
-			return String.Join(args.Separator, result);
 		}
 	}
 }

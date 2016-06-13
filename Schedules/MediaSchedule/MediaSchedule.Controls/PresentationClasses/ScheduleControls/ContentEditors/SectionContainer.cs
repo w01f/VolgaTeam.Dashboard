@@ -18,7 +18,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public ScheduleSection SectionData { get; private set; }
 
 		private SectionControl _sectionControl;
-		private SectionDigitalControl _digitalControl;
+		private SectionDigitalInfoControl _digitalInfoControl;
 		private SectionSummaryControl _customSummaryControl;
 		private bool _sectionDataChanged;
 
@@ -67,18 +67,18 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public void InitControls()
 		{
 			_sectionControl = new SectionControl(this);
-			_digitalControl = new SectionDigitalControl();
+			_digitalInfoControl = new SectionDigitalInfoControl(this);
 			_customSummaryControl = new SectionSummaryControl(this);
 
 			xtraTabControl.TabPages.AddRange(new XtraTabPage[]
 			{
 				_sectionControl,
-				_digitalControl,
+				_digitalInfoControl,
 				_customSummaryControl,
 			});
 
 			_sectionControl.InitControls();
-			_digitalControl.InitControls();
+			_digitalInfoControl.InitControls();
 			_customSummaryControl.InitControls();
 
 			xtraTabControl.SelectedPageChanged += OnSelectedSectionEditorChanged;
@@ -89,8 +89,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionControl.Release();
 			_sectionControl = null;
 
-			_digitalControl.Release();
-			_digitalControl = null;
+			_digitalInfoControl.Release();
+			_digitalInfoControl = null;
 
 			_customSummaryControl.Release();
 			_customSummaryControl = null;
@@ -108,7 +108,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			SectionData.DataChanged += OnSectionDataChanged;
 
 			_sectionControl.LoadData();
-			_digitalControl.LoadData();
+			_digitalInfoControl.LoadData();
 			_customSummaryControl.LoadData(quickLoad);
 
 			UpdateSummaryState();
@@ -134,8 +134,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					UpdateSummaryState();
 					UpdateWarnings();
 					break;
-				case ScheduleSettingsType.Digital:
-					_digitalControl.UpdateGridView();
+				case ScheduleSettingsType.DigitalInfo:
+					_digitalInfoControl.UpdateGridView();
 					break;
 				case ScheduleSettingsType.CustomSummary:
 					_customSummaryControl.UpdateTotalItems();

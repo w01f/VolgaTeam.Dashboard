@@ -405,6 +405,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			UpdateQuarterSelectorControl();
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
+			UpdateCollectionChangeButtons();
 			UpdateOutputStatus();
 			SettingsNotSaved = true;
 		}
@@ -448,8 +449,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.ActiveEditor.EditorType);
 			quarterSelectorControl.Visible =
 				ActiveSection.ActiveEditor.EditorType == SectionEditorType.ScheduleSection;
-			Controller.Instance.ProgramScheduleProgramAdd.Enabled =
-				Controller.Instance.ProgramScheduleProgramDelete.Enabled = ActiveSection.ActiveItemCollection != null;
+			UpdateCollectionChangeButtons();
+			UpdateOutputStatus();
 		}
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
@@ -473,6 +474,42 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				pnNoSections.BringToFront();
 				Controller.Instance.ProgramScheduleProgramAdd.Enabled = false;
 				Controller.Instance.ProgramScheduleProgramDelete.Enabled = false;
+			}
+		}
+
+		private void UpdateCollectionChangeButtons()
+		{
+			var activeItemCollection = ActiveSection.ActiveItemCollection;
+			if (activeItemCollection == null)
+			{
+				Controller.Instance.ProgramScheduleProgramAdd.Enabled =
+					Controller.Instance.ProgramScheduleProgramDelete.Enabled = false;
+				((RibbonBar)(Controller.Instance.ProgramScheduleProgramAdd.ContainerControl)).Text = "Program";
+			}
+			else
+			{
+				Controller.Instance.ProgramScheduleProgramAdd.Enabled = activeItemCollection.AllowToAddItem;
+				Controller.Instance.ProgramScheduleProgramDelete.Enabled = activeItemCollection.AllowToDeleteItem;
+				((RibbonBar)(Controller.Instance.ProgramScheduleProgramAdd.ContainerControl)).Text = activeItemCollection.CollectionTitle;
+
+				Controller.Instance.Supertip.SetSuperTooltip(
+					Controller.Instance.ProgramScheduleProgramAdd,
+					new SuperTooltipInfo(
+						String.Format("Add {0}", activeItemCollection.CollectionItemTitle),
+						"",
+						String.Format("Add a {0} to your schedule", activeItemCollection.CollectionItemTitle),
+						null,
+						null,
+						eTooltipColor.Gray));
+				Controller.Instance.Supertip.SetSuperTooltip(
+					Controller.Instance.ProgramScheduleProgramDelete,
+					new SuperTooltipInfo(
+						String.Format("Delete {0}", activeItemCollection.CollectionItemTitle),
+						"",
+						String.Format("Delete the selected {0} from your schedule", activeItemCollection.CollectionItemTitle),
+						null,
+						null,
+						eTooltipColor.Gray));
 			}
 		}
 

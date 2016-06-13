@@ -117,12 +117,6 @@
     <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\DigitalInfoControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Digital\DigitalInfoControl.Designer.cs">
-      <DependentUpon>DigitalInfoControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\Digital\DigitalProductContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,11 +165,11 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionItemCollectionControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionOutputControl.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalControl.Designer.cs">
-      <DependentUpon>SectionDigitalControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.Designer.cs">
+      <DependentUpon>SectionDigitalInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionEditorType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.cs">
@@ -233,21 +227,15 @@
     <Compile Include="PresentationClasses\ScheduleControls\Settings\ColorSettingsControl.Designer.cs">
       <DependentUpon>ColorSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionDigitalSettingsControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\Settings\DigitalInfoSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionDigitalSettingsControl.Designer.cs">
-      <DependentUpon>SectionDigitalSettingsControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\ScheduleControls\Settings\DigitalInfoSettingsControl.Designer.cs">
+      <DependentUpon>DigitalInfoSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionEditorSettingsRelation.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\IContentSettingsControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\ISettingsControl.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\DigitalSettingsControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\DigitalSettingsControl.Designer.cs">
-      <DependentUpon>DigitalSettingsControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\ISettingsDataControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionTotalsSettingsControl.cs">
       <SubType>Component</SubType>
@@ -335,11 +323,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormOpenSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,6 +335,11 @@
     <Compile Include="ToolForms\FormStart.Designer.cs">
       <DependentUpon>FormStart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
@@ -359,9 +347,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\MediaCalendarControl.resx">
       <DependentUpon>MediaCalendarControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfoControl.resx">
-      <DependentUpon>DigitalInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OptionsControls\FormOptionSetName.resx">
       <DependentUpon>FormOptionSetName.cs</DependentUpon>
@@ -381,8 +366,8 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.resx">
       <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalControl.resx">
-      <DependentUpon>SectionDigitalControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.resx">
+      <DependentUpon>SectionDigitalInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.resx">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
@@ -411,11 +396,8 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\SectionColumnSettingsControl.resx">
       <DependentUpon>SectionColumnSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\DigitalSettingsControl.resx">
-      <DependentUpon>DigitalSettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\SectionDigitalSettingsControl.resx">
-      <DependentUpon>SectionDigitalSettingsControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\DigitalInfoSettingsControl.resx">
+      <DependentUpon>DigitalInfoSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\SectionTotalsSettingsControl.resx">
       <DependentUpon>SectionTotalsSettingsControl.cs</DependentUpon>
@@ -550,9 +532,6 @@
     <None Include="Resources\Favorites.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SectionSettingsDigital.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SectionSettingsInfo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -654,9 +633,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HomeConceptTitleLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FlightDatesFormEditLogo.png" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Interfaces;

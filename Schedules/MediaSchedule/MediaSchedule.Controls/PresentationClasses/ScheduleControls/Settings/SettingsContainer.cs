@@ -66,7 +66,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 					SettingsTypes = new []
 					{
 						ScheduleSettingsType.Columns,
-						ScheduleSettingsType.DigitalInfo,
 						ScheduleSettingsType.Totals,
 						ScheduleSettingsType.Colors,
 						ScheduleSettingsType.AdvancedColumns,
@@ -78,7 +77,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 					EditorType = SectionEditorType.DigitalSection,
 					SettingsTypes = new []
 					{
-						ScheduleSettingsType.Digital,
+						ScheduleSettingsType.DigitalInfo,
 						ScheduleSettingsType.Contract
 					}
 				},
@@ -100,9 +99,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				{
 					new SectionColumnSettingsControl(),
 					new SectionTotalsSettingsControl(),
-					new DigitalSettingsControl(),
 					new ColorSettingsControl(),
-					new SectionDigitalSettingsControl(), 
+					new DigitalInfoSettingsControl(), 
 					new CustomSummaryInfoControl(),
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsDataControl>())

@@ -117,10 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="pbNoPrograms.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="styleController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>562, 56</value>
   </metadata>
-  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="spinEditMonthlyInvestment.Properties.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        mQAADpkBKi42KwAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAALpSURBVEhL
+        tZZdiIxRGMfXfM9mpLWDsrVqdoloibW+drDUFldbuNlSIuVi2YQ1ze7MpvWVsnvDrnyUfNwprHLFjSsp
+        ohWttKa4UJq1iiKM3386Z3uZd8bNmPrNc56P8/znPe953zMVuVzuv5L/CgaDGRiHCfhSBj6D+mWsgBrn
+        DL8c41I46+xY1hmfsAJZE7gNLbARNpVgA6wydi3EYT2sBM2/CeqXtQK6HAX65f8Ln89XGQqFUtgq2BYI
+        BDbj12LTytPnuOk3np+ggQkMORsVg0aNcMvv9zfTuI95h/Fb4S7jSjhj+hUIDP7drBg0P0bD1cxZAT2K
+        4Z9lPAOKCgw4m5SCWl1FFTYKDYrhrzG5U+Aq8Bi6IQW9JUjDIUgaukzsICTgEbgKlJsCgYdcZjckIAkn
+        iH0wuev4PXDU2HPEtOezjPtAN1pztQIPzJwCgZR8igKyJvfc5JptzMRj8BNeQgRqvF5v2OQOgKuAftlc
+        7D0YgGnwFJTTA6Rd00FNK3YhSGAEfz5W9btNvyPgKqBlqcbegZPghyegnJ7WxbCHGgmpqQRGK/hgl8Jp
+        I94BrgK9xg+Dz4ztEsXlW/DrIC8QDoc9ivHQRdHyEusEV4ERuAQX4CLcAJu7D8pdhcswDLrJenOqTjHN
+        G4Jn4CpQbgoErrCGS3TTYBGsI/bG5DrxG7DLZaGdsZboHeM41EEMdG/OQ6EAyaTWkLVcxrum3uPx6F7Y
+        XZR/DVDTaObUggRewHTYAm0Swu4D1ytI03gqAh8ZD7KvQ1i7ni1M3oEdxu7ELgAJaBPUwzXQ7muD/eAq
+        kOAKpmC7ENkaiUSc27SJxtrCu2Am1EBegHgU9PTr1d0Ee+EPgfyJRkE/dg6HSDXM4mrm4etJVfF2/NkQ
+        k6VWp5kExlQHUYPE7YEzeaLZM/kTvAbdWDEG30A5vZOUe2Xse9A2/Q5vwc4ZBbsik2ey/VehfwT6VZYf
+        IHHlJOTMqbHiyqvOmfsK5IKZ354OnDpJWrbpAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="spinEditTotalInvestment.Properties.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        mQAADpkBKi42KwAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAALpSURBVEhL
+        tZZdiIxRGMfXfM9mpLWDsrVqdoloibW+drDUFldbuNlSIuVi2YQ1ze7MpvWVsnvDrnyUfNwprHLFjSsp
+        ohWttKa4UJq1iiKM3386Z3uZd8bNmPrNc56P8/znPe953zMVuVzuv5L/CgaDGRiHCfhSBj6D+mWsgBrn
+        DL8c41I46+xY1hmfsAJZE7gNLbARNpVgA6wydi3EYT2sBM2/CeqXtQK6HAX65f8Ln89XGQqFUtgq2BYI
+        BDbj12LTytPnuOk3np+ggQkMORsVg0aNcMvv9zfTuI95h/Fb4S7jSjhj+hUIDP7drBg0P0bD1cxZAT2K
+        4Z9lPAOKCgw4m5SCWl1FFTYKDYrhrzG5U+Aq8Bi6IQW9JUjDIUgaukzsICTgEbgKlJsCgYdcZjckIAkn
+        iH0wuev4PXDU2HPEtOezjPtAN1pztQIPzJwCgZR8igKyJvfc5JptzMRj8BNeQgRqvF5v2OQOgKuAftlc
+        7D0YgGnwFJTTA6Rd00FNK3YhSGAEfz5W9btNvyPgKqBlqcbegZPghyegnJ7WxbCHGgmpqQRGK/hgl8Jp
+        I94BrgK9xg+Dz4ztEsXlW/DrIC8QDoc9ivHQRdHyEusEV4ERuAQX4CLcAJu7D8pdhcswDLrJenOqTjHN
+        G4Jn4CpQbgoErrCGS3TTYBGsI/bG5DrxG7DLZaGdsZboHeM41EEMdG/OQ6EAyaTWkLVcxrum3uPx6F7Y
+        XZR/DVDTaObUggRewHTYAm0Swu4D1ytI03gqAh8ZD7KvQ1i7ni1M3oEdxu7ELgAJaBPUwzXQ7muD/eAq
+        kOAKpmC7ENkaiUSc27SJxtrCu2Am1EBegHgU9PTr1d0Ee+EPgfyJRkE/dg6HSDXM4mrm4etJVfF2/NkQ
+        k6VWp5kExlQHUYPE7YEzeaLZM/kTvAbdWDEG30A5vZOUe2Xse9A2/Q5vwc4ZBbsik2ey/VehfwT6VZYf
+        IHHlJOTMqbHiyqvOmfsK5IKZ354OnDpJWrbpAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

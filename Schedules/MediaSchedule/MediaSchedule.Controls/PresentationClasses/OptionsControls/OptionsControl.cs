@@ -276,8 +276,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		{
 			advBandedGridView.CloseEditor();
 			advBandedGridView.UpdateCurrentRow();
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void advBandedGridView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
@@ -323,8 +322,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				selectedProgram.Logo = form.SelectedImageSource.Clone<ImageSource, ImageSource>();
 				Data.UpdateLogo();
 				advBandedGridView.UpdateCurrentRow();
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
+				DataChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
 

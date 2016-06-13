@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
 using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using Asa.Business.Media.Entities.Persistent;
 using Asa.Business.Media.Enums;
@@ -45,6 +46,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		public List<Program> Programs { get; private set; }
 		public SpotType SpotType { get; set; }
 
+		public SectionDigitalInfo DigitalInfo { get; private set; }
 		public SectionSummary Summary { get; private set; }
 		public ContractSettings ContractSettings { get; private set; }
 
@@ -87,18 +89,12 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		#endregion
 
 		#region Calculated Properies
-		public MediaSchedule ParentSchedule
-		{
-			get { return Parent.Schedule; }
-		}
-		public MediaScheduleSettings ParentScheduleSettings
-		{
-			get { return Parent.ScheduleSettings; }
-		}
-		public int DisplayIndex
-		{
-			get { return (Int32)(Index + 1); }
-		}
+		public MediaSchedule ParentSchedule => Parent.Schedule;
+
+		public MediaScheduleSettings ParentScheduleSettings => Parent.ScheduleSettings;
+
+		public int DisplayIndex => (Int32)(Index + 1);
+
 		public int TotalActivePeriods
 		{
 			get
@@ -111,30 +107,22 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				return 0;
 			}
 		}
-		public double TotalCPP
-		{
-			get { return TotalGRP != 0 ? (TotalCost / (TotalGRP / (ParentScheduleSettings.DemoType == DemoType.Rtg ? 1 : 1000))) : 0; }
-		}
+		public double TotalCPP => TotalGRP != 0 ? (TotalCost / (TotalGRP / (ParentScheduleSettings.DemoType == DemoType.Rtg ? 1 : 1000))) : 0;
+
 		public double TotalGRP
 		{
 			get { return Programs.Count > 0 ? (Programs.Select(x => x.GRP).Sum()) : 0; }
 		}
-		public double AvgRate
-		{
-			get { return TotalSpots != 0 ? (TotalCost / TotalSpots) : 0; }
-		}
+		public double AvgRate => TotalSpots != 0 ? (TotalCost / TotalSpots) : 0;
+
 		public double TotalCost
 		{
 			get { return Programs.Count > 0 ? (Programs.Select(x => x.Cost).Sum()) : 0; }
 		}
-		public double NetRate
-		{
-			get { return TotalCost - Discount; }
-		}
-		public double Discount
-		{
-			get { return TotalCost * 0.15; }
-		}
+		public double NetRate => TotalCost - Discount;
+
+		public double Discount => TotalCost * 0.15;
+
 		public int TotalSpots
 		{
 			get { return Programs.Count > 0 ? Programs.Select(x => x.TotalSpots).Sum() : 0; }
@@ -150,6 +138,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			UniqueID = Guid.NewGuid();
 			Index = parent.Sections.Any() ? parent.Sections.Max(s => s.Index) + 1 : 0;
 			Programs = new List<Program>();
+			DigitalInfo = new SectionDigitalInfo(this);
 			Summary = new SectionSummary(this);
 			ContractSettings = new ContractSettings();
 
@@ -181,6 +170,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 
 		public void AfterCreate()
 		{
+			if (DigitalInfo == null)
+				DigitalInfo = new SectionDigitalInfo(this);
+			DigitalInfo.AfterCreate();
+
 			Summary.AfterCreate();
 		}
 
@@ -200,6 +193,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			DataChanged = null;
 			DataSource = null;
 
+			DigitalInfo.Dispose();
+			DigitalInfo = null;
+
 			Summary.Dispose();
 			Summary = null;
 
@@ -213,9 +209,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 
 		public void GenerateDataSource()
 		{
-			if (DataSource != null)
-				DataSource.Dispose();
-
+			DataSource?.Dispose();
 
 			#region Generate Programs Table
 

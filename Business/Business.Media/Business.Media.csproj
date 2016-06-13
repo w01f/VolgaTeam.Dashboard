@@ -90,7 +90,9 @@
     <Compile Include="Entities\NonPersistent\Schedule\Quarter.cs" />
     <Compile Include="Configuration\ScheduleSectionSettings.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\ScheduleSection.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Digital\SectionDigitalInfo.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\WeeklySection.cs" />
+    <Compile Include="Entities\NonPersistent\Section\Digital\SectionDigitalProduct.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\CustomSummaryContent.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\DigitalInfoSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\MediaInfoSummaryItem.cs" />

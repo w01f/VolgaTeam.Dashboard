@@ -3,12 +3,11 @@
 	public enum ScheduleSettingsType
 	{
 		Columns,
-		DigitalInfo,
 		Totals,
 		Colors,
+		DigitalInfo,
+		CustomSummary,
 		AdvancedColumns,
 		Contract,
-		Digital,
-		CustomSummary,
 	}
 }

@@ -9,7 +9,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 	public abstract class ProgramScheduleContent : MediaScheduleContent
 	{
 		public DateTime? SelectedQuarter { get; set; }
-		public DigitalLegend DigitalLegend { get; set; }
 		public bool ApplySettingsForAll { get; set; }
 		public List<ScheduleSection> Sections { get; }
 
@@ -56,7 +55,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 
 		protected ProgramScheduleContent()
 		{
-			DigitalLegend = new DigitalLegend();
 			Sections = new List<ScheduleSection>();
 		}
 

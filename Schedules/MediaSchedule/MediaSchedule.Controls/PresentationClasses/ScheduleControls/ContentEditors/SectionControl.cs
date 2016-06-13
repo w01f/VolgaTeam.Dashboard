@@ -50,6 +50,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public SectionEditorType EditorType => SectionEditorType.ScheduleSection;
 
+		public string CollectionTitle => "Program";
+		public string CollectionItemTitle => "Program";
+		public bool AllowToAddItem => true;
+		public bool AllowToDeleteItem => _sectionContainer != null && _sectionContainer.SectionData.Programs.Any();
+
 		public SectionControl(SectionContainer sectionContainer)
 		{
 			_sectionContainer = sectionContainer;
@@ -636,21 +641,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public bool ReadyForOutput => _sectionContainer.SectionData.Programs.Any();
 
-		private string DigitalLegend
-		{
-			get
-			{
-				if (!_sectionContainer.SectionData.Parent.DigitalLegend.Enabled) return String.Empty;
-				var requestOptions = _sectionContainer.SectionData.Parent.DigitalLegend.RequestOptions;
-				requestOptions.Separator = "    ";
-				if (!_sectionContainer.SectionData.Parent.DigitalLegend.AllowEdit)
-					return String.Format("Digital:{1}{0}", _sectionContainer.SectionData.ParentSchedule.DigitalProductsContent.GetDigitalInfo(requestOptions), requestOptions.Separator);
-				if (!String.IsNullOrEmpty(_sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo))
-					return String.Format("Digital:{1}{0}", _sectionContainer.SectionData.Parent.DigitalLegend.CompiledInfo, requestOptions.Separator);
-				return String.Empty;
-			}
-		}
-
 		private SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
 			SlideType.TVProgramSchedule :
 			SlideType.RadioProgramSchedule;
@@ -710,11 +700,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						outputPage.Demo = String.Format("{0}{1}",
 								_sectionContainer.SectionData.ParentScheduleSettings.Demo,
 								!String.IsNullOrEmpty(_sectionContainer.SectionData.ParentScheduleSettings.Source) ? (" (" + _sectionContainer.SectionData.ParentScheduleSettings.Source + ")") : String.Empty);
-						outputPage.DigitalInfo = !_sectionContainer.SectionData.Parent.DigitalLegend.OutputOnlyOnce ||
-												 ((i + programsPerSlide) >= _sectionContainer.SectionData.Programs.Count &&
-												  (k + spotsPerSlide) >= totalSpotsCount) ?
-							DigitalLegend :
-							String.Empty;
+						outputPage.DigitalInfo = String.Empty;
 						outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor ??
 							BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault();
 						outputPage.Quarter = spotInterval.Name;

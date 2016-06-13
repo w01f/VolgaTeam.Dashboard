@@ -13,6 +13,5 @@ namespace Asa.Business.Online.Interfaces
 		void DownDigital(int position);
 		void ChangeDigitalProductPosition(int position, int newPosition);
 		void RebuildDigitalProductIndexes();
-		string GetDigitalInfo(RequestDigitalInfoEventArgs args);
 	}
 }

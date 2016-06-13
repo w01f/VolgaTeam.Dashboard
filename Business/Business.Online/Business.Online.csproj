@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ProdutInfoHelper.cs" />
-    <Compile Include="Common\RequestDigitalInfoEventArgs.cs" />
     <Compile Include="Configuration\AdPlanViewSettings.cs" />
     <Compile Include="Configuration\DigitalPackageSettings.cs" />
     <Compile Include="Configuration\DigitalProductAdPlanSettings.cs" />
@@ -62,7 +61,6 @@
     <Compile Include="Configuration\DigitalProductSettings.cs" />
     <Compile Include="Dictionaries\ListManager.cs" />
     <Compile Include="Entities\NonPersistent\Category.cs" />
-    <Compile Include="Entities\NonPersistent\DigitalLegend.cs" />
     <Compile Include="Entities\NonPersistent\DigitalProduct.cs" />
     <Compile Include="Entities\NonPersistent\DigitalProductOutputData.cs" />
     <Compile Include="Entities\NonPersistent\DigitalProductsContent.cs" />

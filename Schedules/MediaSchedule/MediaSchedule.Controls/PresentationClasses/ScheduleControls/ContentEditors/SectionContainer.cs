@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
+using Asa.Common.GUI.ToolForms;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
 using DevExpress.XtraTab;
 
@@ -207,18 +214,164 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public ISectionOutputControl ActiveOutput => (ISectionOutputControl)xtraTabControl.SelectedTabPage;
+		public bool ReadyForOutput => GetAvailableOutputOptions().Any(option => option == ScheduleSectionOutputType.Program || option == ScheduleSectionOutputType.Digital);
 
-		public bool ReadyForOutput => ActiveOutput.ReadyForOutput;
-
-		public void GenerateOutput()
+		public void OutputPowerPoint()
 		{
-			ActiveOutput.GenerateOutput();
+			var availableOptions = SelectedOutputOptions().ToList();
+			if (!availableOptions.Any()) return;
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
+			{
+				FormProgress.ShowProgress();
+				GenerateOutput(availableOptions);
+				FormProgress.CloseProgress();
+			});
 		}
 
-		public PreviewGroup GeneratePreview()
+		public void OutputPdf()
 		{
-			return ActiveOutput.GeneratePreview();
+			var availableOptions = SelectedOutputOptions().ToList();
+			if (!availableOptions.Any()) return;
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			Controller.Instance.ShowFloater(() =>
+			{
+				FormProgress.ShowProgress();
+				var previewGroups = GeneratePreview(availableOptions);
+				var pdfFileName = Path.Combine(
+					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+					String.Format("{0}-{1}.pdf", SectionData.ParentSchedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				if (File.Exists(pdfFileName))
+					try
+					{
+						Process.Start(pdfFileName);
+					}
+					catch { }
+				FormProgress.CloseProgress();
+			});
+		}
+
+		public void Preview()
+		{
+			var availableOptions = SelectedOutputOptions().ToList();
+			if (!availableOptions.Any()) return;
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			var previewGroups = GeneratePreview(availableOptions).ToList();
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
+			FormProgress.CloseProgress();
+
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+
+			using (var formPreview = new FormPreview(
+				Controller.Instance.FormMain,
+				RegularMediaSchedulePowerPointHelper.Instance,
+				BusinessObjects.Instance.HelpManager,
+				Controller.Instance.ShowFloater))
+			{
+				formPreview.Text = "Preview Schedule";
+				formPreview.LoadGroups(previewGroups);
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				var previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
+			}
+		}
+
+		public void Email()
+		{
+			var availableOptions = SelectedOutputOptions().ToList();
+			if (!availableOptions.Any()) return;
+
+			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
+			FormProgress.ShowProgress();
+			var previewGroups = GeneratePreview(availableOptions).ToList();
+			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
+			FormProgress.CloseProgress();
+
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
+			{
+				formEmail.Text = "Email this Schedule";
+				formEmail.LoadGroups(previewGroups);
+				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+			}
+		}
+
+		private IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
+		{
+			return xtraTabControl.TabPages.OfType<ISectionOutputControl>()
+				.SelectMany(sectionOutput => sectionOutput.GetAvailableOutputOptions())
+				.Distinct();
+		}
+
+		private IEnumerable<ScheduleSectionOutputType> SelectedOutputOptions()
+		{
+			var availableOptions = GetAvailableOutputOptions();
+			using (var form = new FormConfigureOutput(SectionData.Name, availableOptions))
+			{
+				if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+				{
+					return form.GetSelectedOutputTypes();
+				}
+			}
+			return new ScheduleSectionOutputType[] { };
+		}
+
+		private void GenerateOutput(IEnumerable<ScheduleSectionOutputType> selectedOutputOptions)
+		{
+			foreach (var outputOption in selectedOutputOptions)
+			{
+				switch (outputOption)
+				{
+					case ScheduleSectionOutputType.Program:
+					case ScheduleSectionOutputType.ProgramAndDigital:
+						_sectionControl.GenerateOutput(outputOption == ScheduleSectionOutputType.ProgramAndDigital);
+						break;
+					case ScheduleSectionOutputType.Digital:
+						_digitalInfoControl.GenerateOutput();
+						break;
+					case ScheduleSectionOutputType.Summary:
+						_customSummaryControl.GenerateOutput();
+						break;
+				}
+			}
+		}
+
+		private IEnumerable<PreviewGroup> GeneratePreview(IEnumerable<ScheduleSectionOutputType> selectedOutputOptions)
+		{
+			var previewGroups = new List<PreviewGroup>();
+
+			foreach (var outputOption in selectedOutputOptions)
+			{
+				switch (outputOption)
+				{
+					case ScheduleSectionOutputType.Program:
+					case ScheduleSectionOutputType.ProgramAndDigital:
+						previewGroups.Add(_sectionControl.GeneratePreview(outputOption == ScheduleSectionOutputType.ProgramAndDigital));
+						break;
+					case ScheduleSectionOutputType.Digital:
+						previewGroups.Add(_digitalInfoControl.GeneratePreview());
+						break;
+					case ScheduleSectionOutputType.Summary:
+						previewGroups.Add(_customSummaryControl.GeneratePreview());
+						break;
+				}
+			}
+
+			return previewGroups;
 		}
 		#endregion
 	}

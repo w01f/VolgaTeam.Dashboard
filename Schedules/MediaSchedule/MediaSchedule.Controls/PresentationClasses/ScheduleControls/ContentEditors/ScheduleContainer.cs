@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
@@ -15,14 +12,10 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ContentEditors.Controls;
-using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
-using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
@@ -587,128 +580,25 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Staff
-		private IEnumerable<SectionContainer> SelectSectionsForOutput()
-		{
-			var tabPages = xtraTabControlSections.TabPages.OfType<SectionContainer>().Where(ss => ss.ReadyForOutput).ToList();
-			var selectedSections = new List<SectionContainer>();
-			if (tabPages.Count > 1)
-				using (var form = new FormSelectOutputItems())
-				{
-					form.Text = "Select Schedules";
-					var currentSection = (SectionContainer)xtraTabControlSections.SelectedTabPage;
-					foreach (var tabPage in tabPages)
-					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.SectionData.Name);
-						form.checkedListBoxControlOutputItems.Items.Add(item);
-						if (tabPage == currentSection)
-							form.buttonXSelectCurrent.Tag = item;
-					}
-					form.checkedListBoxControlOutputItems.CheckAll();
-					if (form.ShowDialog() == DialogResult.OK)
-						selectedSections.AddRange(form.checkedListBoxControlOutputItems.Items.
-							OfType<CheckedListBoxItem>().
-							Where(ci => ci.CheckState == CheckState.Checked).
-							Select(ci => ci.Value).
-							OfType<SectionContainer>());
-				}
-			else
-				selectedSections.AddRange(tabPages);
-			return selectedSections;
-		}
 
 		public override void OutputPowerPoint()
 		{
-			var selectedSections = new List<SectionContainer>(SelectSectionsForOutput());
-			if (!selectedSections.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			Controller.Instance.ShowFloater(() =>
-			{
-				FormProgress.ShowProgress();
-				foreach (var sectionTabControl in selectedSections)
-					sectionTabControl.GenerateOutput();
-				FormProgress.CloseProgress();
-			});
+			ActiveSection?.OutputPowerPoint();
 		}
 
 		public override void OutputPdf()
 		{
-			var selectedSections = new List<SectionContainer>(SelectSectionsForOutput());
-			if (!selectedSections.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			Controller.Instance.ShowFloater(() =>
-			{
-				FormProgress.ShowProgress();
-				var previewGroups = selectedSections.Select(summaryTab => summaryTab.GeneratePreview()).ToList();
-				var pdfFileName = Path.Combine(
-					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-					String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
-				if (File.Exists(pdfFileName))
-					try
-					{
-						Process.Start(pdfFileName);
-					}
-					catch { }
-				FormProgress.CloseProgress();
-			});
+			ActiveSection?.OutputPdf();
 		}
 
 		public override void Preview()
 		{
-			var selectedSections = new List<SectionContainer>(SelectSectionsForOutput());
-			if (!selectedSections.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var previewGroups = selectedSections.Select(sectionControl => sectionControl.GeneratePreview()).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
-
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-
-			using (var formPreview = new FormPreview(
-				Controller.Instance.FormMain,
-				RegularMediaSchedulePowerPointHelper.Instance,
-				BusinessObjects.Instance.HelpManager,
-				Controller.Instance.ShowFloater))
-			{
-				formPreview.Text = "Preview Schedule";
-				formPreview.LoadGroups(previewGroups);
-				RegistryHelper.MainFormHandle = formPreview.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var previewResult = formPreview.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (previewResult != DialogResult.OK)
-					Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			}
+			ActiveSection?.Preview();
 		}
 
 		public override void Email()
 		{
-			var selectedSections = new List<SectionContainer>(SelectSectionsForOutput());
-			if (!selectedSections.Any()) return;
-
-			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
-			var previewGroups = selectedSections.Select(sectionControl => sectionControl.GeneratePreview()).ToList();
-			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-			FormProgress.CloseProgress();
-
-			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
-			{
-				formEmail.Text = "Email this Schedule";
-				formEmail.LoadGroups(previewGroups);
-				Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-				RegistryHelper.MainFormHandle = formEmail.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				formEmail.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-			}
+			ActiveSection?.Email();
 		}
 		#endregion
 	}

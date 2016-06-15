@@ -89,9 +89,9 @@ namespace Asa.Media.Controls.BusinessClasses
 			return file.LocalPath;
 		}
 
-		public string GetOneSheetFile(
+		public string GetMediaOneSheetFile(
 			string color,
-			bool showLogo,
+			bool includeDigital,
 			int programsPerSlide,
 			int spotsPerSlide)
 		{
@@ -99,9 +99,23 @@ namespace Asa.Media.Controls.BusinessClasses
 			{
 				"tables",
 				color,
-				showLogo ? "logos" : "no_logos",
+				includeDigital ? "3_broadcast_and_digital" : "1_broadcast_only",
 				String.Format("{0}_programs",programsPerSlide),
 				String.Format("{0}-{1}.pptx",programsPerSlide,spotsPerSlide)
+			});
+		}
+
+		public string GetDigitalOneSheetFile(
+			string color,
+			int productsPerSlide)
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"tables",
+				color,
+				"2_digital_only",
+				String.Format("{0}_products", productsPerSlide),
+				String.Format("{0}-0.pptx", productsPerSlide)
 			});
 		}
 

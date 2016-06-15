@@ -18,6 +18,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Summary;
 using Asa.Media.Controls.BusinessClasses;
 using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
@@ -388,9 +389,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public bool ReadyForOutput
+		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
 		{
-			get { return ItemsCount > 0; }
+			return Items.Any() ?
+				new[] { ScheduleSectionOutputType.Summary } :
+				new ScheduleSectionOutputType[] { };
 		}
 
 		public void GenerateOutput()
@@ -402,7 +405,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			var previewGroup = new PreviewGroup
 			{
-				Name = _sectionContainer.SectionData.Name.Replace("&", "&&"),
+				Name = Text,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryEmail(previewGroup.PresentationSourcePath, this);

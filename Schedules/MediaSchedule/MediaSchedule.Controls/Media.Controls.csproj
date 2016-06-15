@@ -164,7 +164,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionItemCollectionControl.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionOutputControl.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\Output\ISectionOutputControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -184,6 +184,13 @@
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.Designer.cs">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.Designer.cs">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.resx">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.resx">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>

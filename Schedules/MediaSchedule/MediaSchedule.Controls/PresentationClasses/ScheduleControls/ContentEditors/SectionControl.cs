@@ -19,6 +19,7 @@ using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses;
 using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using DevExpress.Data;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -601,7 +602,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (e.Column != bandedGridColumnLogoImage) return;
 			if (advBandedGridViewSchedule.FocusedRowHandle == GridControl.InvalidRowHandle) return;
-			var logo = ImageSource.FromString(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoSource) as String);
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
 			{
 				if (form.ShowDialog() != DialogResult.OK) return;
@@ -639,7 +639,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private const string NetRateTag = "Net Investment";
 		private const string TotalDiscountTag = "Agency Discount";
 
-		public bool ReadyForOutput => _sectionContainer.SectionData.Programs.Any();
+		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
+		{
+			var outputOptions = new List<ScheduleSectionOutputType>();
+			if (_sectionContainer.SectionData.Programs.Any())
+				outputOptions.Add(ScheduleSectionOutputType.Program);
+			if (_sectionContainer.SectionData.DigitalInfo.Products.Any() && _sectionContainer.SectionData.Programs.Count <= OutputScheduleData.MaxMediaProductsCobinedWithDigital)
+				outputOptions.Add(ScheduleSectionOutputType.ProgramAndDigital);
+			return outputOptions;
+		}
 
 		private SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
 			SlideType.TVProgramSchedule :
@@ -657,13 +665,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public IEnumerable<OutputSchedule> PrepareOutput()
+		public IEnumerable<OutputMediaData> PrepareOutput(bool includeDigital)
 		{
-			var outputPages = new List<OutputSchedule>();
+			var outputPages = new List<OutputMediaData>();
 			var defaultProgram = _sectionContainer.SectionData.Programs.FirstOrDefault();
 			if (defaultProgram == null) return outputPages;
 			var defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
-			var programsPerSlide = 12;
+			var programsPerSlide = OutputScheduleData.MaxSingleMediaProducts;
 			programsPerSlide = _sectionContainer.SectionData.Programs.Count > programsPerSlide ? programsPerSlide : _sectionContainer.SectionData.Programs.Count;
 			var totalSpotsCount = 0;
 			if (_sectionContainer.SectionData.ShowSpots)
@@ -671,13 +679,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			var spotsIteratorLimit = totalSpotsCount;
 			var spotsPerSlide = _sectionContainer.SectionData.OutputMaxPeriods.HasValue ? _sectionContainer.SectionData.OutputMaxPeriods.Value : 26;
 			spotsPerSlide = totalSpotsCount == 0 || totalSpotsCount > spotsPerSlide ? spotsPerSlide : totalSpotsCount;
-			var spotIntervals = new List<SpotInterval>();
+			var spotIntervals = new List<OutputSpotInterval>();
 			if (_sectionContainer.SectionData.OutputPerQuater)
 			{
 				var spots = _sectionContainer.SectionData.ShowEmptySpots ? defaultProgram.Spots.ToArray() : defaultSpotsNotEmpy;
 				foreach (var quarter in _sectionContainer.SectionData.ParentScheduleSettings.Quarters)
 				{
-					var spotInterval = new SpotInterval();
+					var spotInterval = new OutputSpotInterval();
 					spotInterval.Start = spotInterval.End = spotIntervals.Any() ? spotIntervals.Last().End : 0;
 					spotInterval.End += spots.Count(s => s.Quarter == quarter);
 					spotInterval.Name = String.Format("Q{0}", quarter.QuarterNumber);
@@ -686,21 +694,33 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				}
 			}
 			else
-				spotIntervals.Add(new SpotInterval { Start = 0, End = spotsIteratorLimit });
+				spotIntervals.Add(new OutputSpotInterval { Start = 0, End = spotsIteratorLimit });
 			foreach (var spotInterval in spotIntervals)
 			{
 				for (var i = 0; i < _sectionContainer.SectionData.Programs.Count; i += programsPerSlide)
 				{
 					for (var k = spotInterval.Start; k < (spotInterval.End == 0 ? 1 : spotInterval.End); k += spotsPerSlide)
 					{
-						var outputPage = new OutputSchedule(_sectionContainer.SectionData);
+						var outputPage = new OutputMediaData(_sectionContainer.SectionData);
 
 						outputPage.Advertiser = _sectionContainer.SectionData.ParentScheduleSettings.BusinessName;
 						outputPage.DecisionMaker = _sectionContainer.SectionData.ParentScheduleSettings.DecisionMaker;
 						outputPage.Demo = String.Format("{0}{1}",
 								_sectionContainer.SectionData.ParentScheduleSettings.Demo,
 								!String.IsNullOrEmpty(_sectionContainer.SectionData.ParentScheduleSettings.Source) ? (" (" + _sectionContainer.SectionData.ParentScheduleSettings.Source + ")") : String.Empty);
-						outputPage.DigitalInfo = String.Empty;
+
+						if (includeDigital)
+						{
+							var temp = new List<string>();
+							if (_sectionContainer.SectionData.DigitalInfo.ShowMonthlyInvestemt && _sectionContainer.SectionData.DigitalInfo.MonthlyInvestment.HasValue)
+								temp.Add(String.Format("Monthly Digital Investment: {0}", _sectionContainer.SectionData.DigitalInfo.MonthlyInvestment.Value.ToString("$#,###.00")));
+							if (_sectionContainer.SectionData.DigitalInfo.ShowTotalInvestemt && _sectionContainer.SectionData.DigitalInfo.TotalInvestment.HasValue)
+								temp.Add(String.Format("Total Digital Investment: {0}", _sectionContainer.SectionData.DigitalInfo.TotalInvestment.Value.ToString("$#,###.00")));
+							outputPage.DigitalInfo = String.Join("     ", temp);
+						}
+						else
+							outputPage.DigitalInfo = String.Empty;
+
 						outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor ??
 							BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault();
 						outputPage.Quarter = spotInterval.Name;
@@ -747,14 +767,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 						#endregion
 
-						#region Set OutputProgram Values
+						#region Set OutputMediaProgram Values
 
 						for (var j = 0; j < programsPerSlide; j++)
 						{
 							if ((i + j) < _sectionContainer.SectionData.Programs.Count)
 							{
 								var program = _sectionContainer.SectionData.Programs[i + j];
-								var outputProgram = new OutputProgram(outputPage);
+								var outputProgram = new OutputMediaProgram(outputPage);
 								outputProgram.Name = program.Name + (_sectionContainer.SectionData.ShowDaypart ? ("-" + program.Daypart) : string.Empty);
 								outputProgram.LineID = program.Index.ToString("00");
 								outputProgram.Station = program.Station;
@@ -767,7 +787,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 								outputProgram.GRP = _sectionContainer.SectionData.ShowGRP ? program.GRP.ToString(_sectionContainer.SectionData.ParentScheduleSettings.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : String.Empty;
 								outputProgram.TotalRate = _sectionContainer.SectionData.ShowCost ? program.Cost.ToString(_sectionContainer.SectionData.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
 								outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
-								outputProgram.Logo = program.Logo != null ? program.Logo.Clone<ImageSource, ImageSource>() : null;
+								outputProgram.Logo = program.Logo?.Clone<ImageSource, ImageSource>();
 
 								#region Set Spots Values
 
@@ -794,6 +814,34 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 							else
 								break;
 						}
+
+						#endregion
+
+						#region Set OutputDigitalProduct Values
+
+						if (includeDigital)
+							for (var j = 0; j < _sectionContainer.SectionData.DigitalInfo.Products.Count; j++)
+							{
+								var product = _sectionContainer.SectionData.DigitalInfo.Products[j];
+								var outputProduct = new OutputDigitalProduct();
+								outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo ?
+									product.Logo?.Clone<ImageSource, ImageSource>() :
+									null;
+								outputProduct.Category = _sectionContainer.SectionData.DigitalInfo.ShowCategory ?
+									product.Category :
+									String.Empty;
+								outputProduct.SubCategory = _sectionContainer.SectionData.DigitalInfo.ShowSubCategory ?
+									product.SubCategory :
+									String.Empty;
+								outputProduct.Product = _sectionContainer.SectionData.DigitalInfo.ShowProduct ?
+									product.Name :
+									String.Empty;
+								outputProduct.Info = _sectionContainer.SectionData.DigitalInfo.ShowInfo ?
+									product.Info :
+									String.Empty;
+								outputPage.DigitalProducts.Add(outputProduct);
+								Application.DoEvents();
+							}
 
 						#endregion
 
@@ -826,8 +874,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 						#endregion
 
-						outputPage.GetLogos();
-						outputPage.PopulateScheduleReplacementsList();
+						outputPage.GetMediaLogos();
+						outputPage.GetDigitalLogos();
+						outputPage.PopulateReplacementsList();
 
 						outputPages.Add(outputPage);
 					}
@@ -836,21 +885,21 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			return outputPages;
 		}
 
-		public void GenerateOutput()
+		public void GenerateOutput(bool includeDigital)
 		{
-			var outputPages = PrepareOutput();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			var outputPages = PrepareOutput(includeDigital);
+			RegularMediaSchedulePowerPointHelper.Instance.AppendMediaOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
-		public PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview(bool includeDigital)
 		{
-			var outputPages = PrepareOutput();
+			var outputPages = PrepareOutput(includeDigital);
 			var previewGroup = new PreviewGroup
 			{
-				Name = _sectionContainer.SectionData.Name.Replace("&", "&&"),
+				Name = includeDigital ? String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString) : MediaMetaData.Instance.DataTypeString,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmail(previewGroup.PresentationSourcePath, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareMediaOneSheetEmail(previewGroup.PresentationSourcePath, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 		#endregion

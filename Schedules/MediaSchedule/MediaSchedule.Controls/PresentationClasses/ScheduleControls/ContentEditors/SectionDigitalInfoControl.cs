@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
+using Asa.Business.Media.Enums;
 using Asa.Business.Online.Dictionaries;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
+using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
+using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -37,7 +44,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public string CollectionTitle => "Digital";
 		public string CollectionItemTitle => "Product";
-		public bool AllowToAddItem => _digitalInfo != null && _digitalInfo.Products.Count < 10;
+		public bool AllowToAddItem => _digitalInfo != null && _digitalInfo.Products.Count < OutputScheduleData.MaxDigitalProducts;
 		public bool AllowToDeleteItem => _digitalInfo != null && _digitalInfo.Products.Any();
 
 		public SectionDigitalInfoControl(SectionContainer sectionContainer)
@@ -311,15 +318,95 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public Boolean ReadyForOutput => false;
+		private SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+			SlideType.TVProgramSchedule :
+			SlideType.RadioProgramSchedule;
+
+		private Theme SelectedTheme
+		{
+			get
+			{
+				return BusinessObjects.Instance.ThemeManager
+					.GetThemes(SlideType)
+					.FirstOrDefault(t =>
+						t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) ||
+						String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)));
+			}
+		}
+
+		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
+		{
+			return _digitalInfo != null && _digitalInfo.Products.Any() ?
+				new[] { ScheduleSectionOutputType.Digital } :
+				new ScheduleSectionOutputType[] { };
+		}
+
+		public IEnumerable<OutputDigitalData> PrepareOutput()
+		{
+			var outputPages = new List<OutputDigitalData>();
+			var outputPage = new OutputDigitalData(_sectionContainer.SectionData);
+
+			outputPage.Advertiser = _sectionContainer.SectionData.ParentScheduleSettings.BusinessName;
+			outputPage.DecisionMaker = _sectionContainer.SectionData.ParentScheduleSettings.DecisionMaker;
+
+			var temp = new List<string>();
+			if (_sectionContainer.SectionData.DigitalInfo.ShowMonthlyInvestemt && _sectionContainer.SectionData.DigitalInfo.MonthlyInvestment.HasValue)
+				temp.Add(String.Format("Monthly Digital Investment: {0}", _sectionContainer.SectionData.DigitalInfo.MonthlyInvestment.Value.ToString("$#,###.00")));
+			if (_sectionContainer.SectionData.DigitalInfo.ShowTotalInvestemt && _sectionContainer.SectionData.DigitalInfo.TotalInvestment.HasValue)
+				temp.Add(String.Format("Total Digital Investment: {0}", _sectionContainer.SectionData.DigitalInfo.TotalInvestment.Value.ToString("$#,###.00")));
+			outputPage.DigitalInfo = temp.Any() ? String.Join("     ", temp) : String.Empty;
+
+			outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor ??
+				BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault();
+
+			#region Set OutputDigitalProduct Values
+			for (var j = 0; j < _sectionContainer.SectionData.DigitalInfo.Products.Count; j++)
+			{
+				var product = _sectionContainer.SectionData.DigitalInfo.Products[j];
+				var outputProduct = new OutputDigitalProduct();
+				outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo ?
+					product.Logo?.Clone<ImageSource, ImageSource>() :
+					null;
+				outputProduct.Category = _sectionContainer.SectionData.DigitalInfo.ShowCategory ?
+					product.Category :
+					String.Empty;
+				outputProduct.SubCategory = _sectionContainer.SectionData.DigitalInfo.ShowSubCategory ?
+					product.SubCategory :
+					String.Empty;
+				outputProduct.Product = _sectionContainer.SectionData.DigitalInfo.ShowProduct ?
+					product.Name :
+					String.Empty;
+				outputProduct.Info = _sectionContainer.SectionData.DigitalInfo.ShowInfo ?
+					product.Info :
+					String.Empty;
+				outputPage.DigitalProducts.Add(outputProduct);
+				Application.DoEvents();
+			}
+			#endregion
+
+			outputPage.GetDigitalLogos();
+			outputPage.PopulateReplacementsList();
+
+			outputPages.Add(outputPage);
+			return outputPages;
+		}
+
 		public void GenerateOutput()
 		{
-			throw new NotImplementedException();
+			var outputPages = PrepareOutput();
+			RegularMediaSchedulePowerPointHelper.Instance.AppendDigitalOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
 		public PreviewGroup GeneratePreview()
 		{
-			throw new NotImplementedException();
+			var outputPages = PrepareOutput();
+			var previewGroup = new PreviewGroup
+			{
+				Name = Text,
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+			};
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareDigitalOneSheetEmail(previewGroup.PresentationSourcePath, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			return previewGroup;
 		}
 		#endregion
 	}

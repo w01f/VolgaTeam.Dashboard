@@ -10,18 +10,49 @@ using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Media.Controls.BusinessClasses
 {
-	public class OutputSchedule
+	public abstract class OutputScheduleData
 	{
-		private readonly ScheduleSection _parent;
+		public const int MaxSingleMediaProducts = 12;
+		public const int MaxMediaProductsCobinedWithDigital = 8;
+		public const int MaxDigitalProducts = 6;
+
+		protected readonly ScheduleSection _parent;
 
 		public string Title { get; set; }
 		public string Advertiser { get; set; }
 		public string DecisionMaker { get; set; }
-		public string Demo { get; set; }
-		public string DigitalInfo { get; set; }
 		public string Color { get; set; }
-		public string Quarter { get; set; }
+		public string DigitalInfo { get; set; }
+		public List<OutputDigitalProduct> DigitalProducts { get; set; }
 
+		public Dictionary<string, string> ReplacementsList { get; set; }
+		public string[] DigitalLogos { get; set; }
+
+		public ContractSettings ContractSettings => _parent.ContractSettings;
+
+		public abstract string TemplateFilePath { get; }
+
+		public string FlightDates => _parent.ParentSchedule.Settings.FlightDates;
+
+		protected OutputScheduleData(ScheduleSection parent)
+		{
+			_parent = parent;
+			Title = string.Empty;
+			Advertiser = string.Empty;
+			DecisionMaker = string.Empty;
+			DigitalProducts = new List<OutputDigitalProduct>();
+			ReplacementsList = new Dictionary<string, string>();
+		}
+
+		public abstract void GetDigitalLogos();
+
+		public abstract void PopulateReplacementsList();
+	}
+
+	public class OutputMediaData : OutputScheduleData
+	{
+		public string Demo { get; set; }
+		public string Quarter { get; set; }
 		public int ProgramsPerSlide { get; set; }
 		public int SpotsPerSlide { get; set; }
 
@@ -30,29 +61,12 @@ namespace Asa.Media.Controls.BusinessClasses
 		public string TotalCPP { get; set; }
 		public string TotalGRP { get; set; }
 
-		public List<OutputProgram> Programs { get; set; }
+		public List<OutputMediaProgram> Programs { get; set; }
 		public List<OutputTotalSpot> TotalSpots { get; set; }
 		public Dictionary<string, string> Totals { get; set; }
-		public Dictionary<string, string> ReplacementsList { get; set; }
-		public string[] Logos { get; set; }
+		public string[] MediaLogos { get; set; }
 
-		public ContractSettings ContractSettings
-		{
-			get { return _parent.ContractSettings; }
-		}
-
-		public string TemplateFilePath
-		{
-			get
-			{
-				return BusinessObjects.Instance.OutputManager.GetOneSheetFile(Color, ShowLogo, ProgramsPerSlide, SpotsPerSlide);
-			}
-		}
-
-		public string FlightDates
-		{
-			get { return _parent.ParentSchedule.Settings.FlightDates; }
-		}
+		public override string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetMediaOneSheetFile(Color, DigitalProducts.Any(), ProgramsPerSlide, SpotsPerSlide);
 
 		public string RtgHeaderTitle
 		{
@@ -113,7 +127,6 @@ namespace Asa.Media.Controls.BusinessClasses
 		}
 
 		#region Show Options
-
 		public bool ShowLength { get; set; }
 		public bool ShowDay { get; set; }
 		public bool ShowTime { get; set; }
@@ -130,20 +143,16 @@ namespace Asa.Media.Controls.BusinessClasses
 		public bool ShowStationInBrackets { get; set; }
 		#endregion
 
-		public OutputSchedule(ScheduleSection parent)
+		public OutputMediaData(ScheduleSection parent) : base(parent)
 		{
-			_parent = parent;
-			Title = string.Empty;
-			Advertiser = string.Empty;
-			DecisionMaker = string.Empty;
-			Programs = new List<OutputProgram>();
+			Programs = new List<OutputMediaProgram>();
 			TotalSpots = new List<OutputTotalSpot>();
 			Totals = new Dictionary<string, string>();
-			ReplacementsList = new Dictionary<string, string>();
 		}
 
-		public void GetLogos()
+		public void GetMediaLogos()
 		{
+			MediaLogos = new string[] { };
 			if (!ShowLogo) return;
 			var logosOnSlide = new List<string>();
 			var progarmsCount = Programs.Count;
@@ -162,10 +171,34 @@ namespace Asa.Media.Controls.BusinessClasses
 				}
 				logosOnSlide.Add(fileName);
 			}
-			Logos = logosOnSlide.ToArray();
+			MediaLogos = logosOnSlide.ToArray();
 		}
 
-		public void PopulateScheduleReplacementsList()
+		public override void GetDigitalLogos()
+		{
+			DigitalLogos = new string[] { };
+			if (!_parent.DigitalInfo.ShowLogo) return;
+			var logosOnSlide = new List<string>();
+			var digitalProductsCount = DigitalProducts.Count;
+			logosOnSlide.Clear();
+			for (int i = 0; i < MaxDigitalProducts; i++)
+			{
+				var fileName = String.Empty;
+				if (i < digitalProductsCount)
+				{
+					var digitalProduct = DigitalProducts[i];
+					if (digitalProduct.Logo != null && digitalProduct.Logo.ContainsData)
+					{
+						fileName = Path.GetTempFileName();
+						digitalProduct.Logo.SmallImage.Save(fileName);
+					}
+				}
+				logosOnSlide.Add(fileName);
+			}
+			DigitalLogos = logosOnSlide.ToArray();
+		}
+
+		public override void PopulateReplacementsList()
 		{
 			var key = string.Empty;
 			var value = string.Empty;
@@ -181,6 +214,11 @@ namespace Asa.Media.Controls.BusinessClasses
 			value = String.Format("{0}  -  {1}", Advertiser, DecisionMaker);
 			if (!ReplacementsList.Keys.Contains(key))
 				ReplacementsList.Add(key, value);
+			key = "Flightdates - Advertiser - Decisionmaker";
+			value = String.Format("{0} - {1} - {2}", FlightDates, Advertiser, DecisionMaker);
+			if (!ReplacementsList.Keys.Contains(key))
+				ReplacementsList.Add(key, value);
+
 			if (!String.IsNullOrEmpty(Quarter))
 			{
 				key = "Program";
@@ -313,6 +351,18 @@ namespace Asa.Media.Controls.BusinessClasses
 					!String.IsNullOrEmpty(DigitalInfo) && i == 0 ? String.Format("{0}{1}", DigitalInfo, Environment.NewLine) : String.Empty,
 						String.Join("    ", temp)) :
 					"Delete Row";
+				if (!ReplacementsList.Keys.Contains(key))
+					ReplacementsList.Add(key, value);
+			}
+
+			{
+				key = "[info1]   [info2]    [info3]    [info4]    [info5]    [info6]    [info7]    [info8]";
+				temp.Clear();
+				if (Totals.Any())
+					temp.Add(String.Join("    ", Totals.Select(pair => String.Format("[{0} {1}]", pair.Key, pair.Value))));
+				if (!String.IsNullOrEmpty(DigitalInfo))
+					temp.Add(DigitalInfo);
+				value = String.Join(String.Format("{0}", (char)13), temp);
 				if (!ReplacementsList.Keys.Contains(key))
 					ReplacementsList.Add(key, value);
 			}
@@ -601,12 +651,124 @@ namespace Asa.Media.Controls.BusinessClasses
 						ReplacementsList.Add(key, value);
 				}
 			}
+
+			var digitalProductsCount = DigitalProducts.Count;
+			for (var i = 0; i < MaxDigitalProducts; i++)
+			{
+				key = String.Format("Digital{0}", i + 1);
+				if (i < digitalProductsCount)
+				{
+					var digitalProduct = DigitalProducts[i];
+					temp.Clear();
+					if (!String.IsNullOrEmpty(digitalProduct.Category))
+						temp.Add(digitalProduct.Category);
+					if (!String.IsNullOrEmpty(digitalProduct.SubCategory))
+						temp.Add(digitalProduct.SubCategory);
+					if (!String.IsNullOrEmpty(digitalProduct.Product))
+						temp.Add(digitalProduct.Product);
+					if (!String.IsNullOrEmpty(digitalProduct.Info))
+						temp.Add(digitalProduct.Info);
+					value = String.Join("    ", temp);
+					if (!ReplacementsList.Keys.Contains(key))
+						ReplacementsList.Add(key, value);
+
+					Application.DoEvents();
+				}
+				else
+				{
+					value = "Delete Row";
+					if (!ReplacementsList.Keys.Contains(key))
+						ReplacementsList.Add(key, value);
+				}
+			}
 		}
 	}
 
-	public class OutputProgram
+	public class OutputDigitalData : OutputScheduleData
 	{
-		public OutputProgram(OutputSchedule parent)
+		public OutputDigitalData(ScheduleSection parent) : base(parent) { }
+
+		public override String TemplateFilePath => BusinessObjects.Instance.OutputManager.GetDigitalOneSheetFile(Color, DigitalProducts.Count);
+		public override void GetDigitalLogos()
+		{
+			DigitalLogos = new string[] { };
+			if (!_parent.DigitalInfo.ShowLogo) return;
+			var logosOnSlide = new List<string>();
+			var digitalProductsCount = DigitalProducts.Count;
+			logosOnSlide.Clear();
+			for (int i = 0; i < MaxDigitalProducts; i++)
+			{
+				var fileName = String.Empty;
+				if (i < digitalProductsCount)
+				{
+					var digitalProduct = DigitalProducts[i];
+					if (digitalProduct.Logo != null && digitalProduct.Logo.ContainsData)
+					{
+						fileName = Path.GetTempFileName();
+						digitalProduct.Logo.SmallImage.Save(fileName);
+					}
+				}
+				logosOnSlide.Add(fileName);
+			}
+			DigitalLogos = logosOnSlide.ToArray();
+		}
+
+		public override void PopulateReplacementsList()
+		{
+			var key = string.Empty;
+			var value = string.Empty;
+			var temp = new List<string>();
+
+			ReplacementsList.Clear();
+
+			key = "Flightdates";
+			value = FlightDates;
+			if (!ReplacementsList.Keys.Contains(key))
+				ReplacementsList.Add(key, value);
+			key = "Advertiser  -  Decisionmaker";
+			value = String.Format("{0}  -  {1}", Advertiser, DecisionMaker);
+			if (!ReplacementsList.Keys.Contains(key))
+				ReplacementsList.Add(key, value);
+			key = "Investment:";
+			value = DigitalInfo;
+			if (!ReplacementsList.Keys.Contains(key))
+				ReplacementsList.Add(key, value);
+
+			var digitalProductsCount = DigitalProducts.Count;
+			for (var i = 0; i < MaxDigitalProducts; i++)
+			{
+				key = String.Format("Digital{0}", i + 1);
+				if (i < digitalProductsCount)
+				{
+					var digitalProduct = DigitalProducts[i];
+					temp.Clear();
+					if (!String.IsNullOrEmpty(digitalProduct.Category))
+						temp.Add(digitalProduct.Category);
+					if (!String.IsNullOrEmpty(digitalProduct.SubCategory))
+						temp.Add(digitalProduct.SubCategory);
+					if (!String.IsNullOrEmpty(digitalProduct.Product))
+						temp.Add(digitalProduct.Product);
+					if (!String.IsNullOrEmpty(digitalProduct.Info))
+						temp.Add(digitalProduct.Info);
+					value = String.Join("    ", temp);
+					if (!ReplacementsList.Keys.Contains(key))
+						ReplacementsList.Add(key, value);
+
+					Application.DoEvents();
+				}
+				else
+				{
+					value = "Delete Row";
+					if (!ReplacementsList.Keys.Contains(key))
+						ReplacementsList.Add(key, value);
+				}
+			}
+		}
+	}
+
+	public class OutputMediaProgram
+	{
+		public OutputMediaProgram(OutputScheduleData parent)
 		{
 			Parent = parent;
 			Name = string.Empty;
@@ -624,7 +786,7 @@ namespace Asa.Media.Controls.BusinessClasses
 			Spots = new List<string>();
 		}
 
-		public OutputSchedule Parent { get; private set; }
+		public OutputScheduleData Parent { get; private set; }
 		public string Name { get; set; }
 		public string LineID { get; set; }
 		public string Station { get; set; }
@@ -639,6 +801,15 @@ namespace Asa.Media.Controls.BusinessClasses
 		public string GRP { get; set; }
 		public ImageSource Logo { get; set; }
 		public List<string> Spots { get; set; }
+	}
+
+	public class OutputDigitalProduct
+	{
+		public ImageSource Logo { get; set; }
+		public string Category { get; set; }
+		public string SubCategory { get; set; }
+		public string Product { get; set; }
+		public string Info { get; set; }
 	}
 
 	public class OutputTotalSpot
@@ -660,7 +831,7 @@ namespace Asa.Media.Controls.BusinessClasses
 		}
 	}
 
-	public class SpotInterval
+	public class OutputSpotInterval
 	{
 		public int Start { get; set; }
 		public int End { get; set; }

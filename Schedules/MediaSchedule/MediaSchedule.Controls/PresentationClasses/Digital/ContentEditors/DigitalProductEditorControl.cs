@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Interfaces;
 using Asa.Common.Core.Helpers;
@@ -36,7 +37,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public DigitalProductEditorControl(DigitalEditorsContainer container)
 		{
 			InitializeComponent();
-			Text = "Digital Onesheets";
+			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsProductTitle ?? "Digital Onesheets";
 			_container = container;
 			if (CreateGraphics().DpiX > 96)
 			{
@@ -69,7 +70,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			xtraTabControlProducts.TabPages.OfType<IDigitalProductControl>().ToList().ForEach(c => c.Release());
 			xtraTabControlProducts.TabPages.Clear();
 			_tabPages.Clear();
-			foreach (var product in _container.EditedContent.DigitalProducts)
+			foreach (var product in _container.EditedContent.DigitalProducts.Where(p => !String.IsNullOrEmpty(p.Name)))
 			{
 				var productTab = new DigitalProductControl(this);
 				AssignCloseActiveEditorsOnOutsideClick(productTab);

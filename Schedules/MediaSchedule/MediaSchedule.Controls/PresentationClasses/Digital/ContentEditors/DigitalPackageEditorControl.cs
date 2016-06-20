@@ -54,7 +54,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public DigitalPackageEditorControl(DigitalEditorsContainer container)
 		{
 			InitializeComponent();
-			Text = "Digital Package";
+			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsPackageTitle ?? "Digital Package";
 			_container = container;
 
 			repositoryItemComboBoxCategory.Items.Clear();
@@ -63,6 +63,16 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				.Select(ps => ps.Category.Name)
 				.Distinct()
 				.ToArray());
+
+			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
+			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
+			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsProductTitle ?? bandedGridColumnProduct.Caption;
+			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
+			bandedGridColumnComments.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsCommentsTitle ?? bandedGridColumnComments.Caption;
+			bandedGridColumnRate.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsRateTitle ?? bandedGridColumnRate.Caption;
+			bandedGridColumnInvestment.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsInvestmentTitle ?? bandedGridColumnInvestment.Caption;
+			bandedGridColumnImpressions.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsImpressionsTitle ?? bandedGridColumnImpressions.Caption;
+			bandedGridColumnCPM.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsCPMTitle ?? bandedGridColumnCPM.Caption;
 
 			if (CreateGraphics().DpiX > 96)
 			{

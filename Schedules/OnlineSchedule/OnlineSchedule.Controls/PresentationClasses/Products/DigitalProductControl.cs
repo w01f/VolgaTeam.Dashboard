@@ -50,6 +50,13 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				hyperLinkEditResetProductName.Font = new Font(hyperLinkEditResetProductName.Font.FontFamily, hyperLinkEditResetProductName.Font.Size - 2, hyperLinkEditResetProductName.Font.Style);
 				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2, hyperLinkEditReset.Font.Style);
 			}
+
+			labelControlWebsite.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesTitle ?? labelControlWebsite.Text;
+			labelControlProduct.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameTitle ?? labelControlProduct.Text;
+			labelControlDescription.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionTitle ?? labelControlDescription.Text;
+			labelControlPriceType.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingTitle ?? labelControlPriceType.Text;
+			labelControlComments.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsTitle ?? labelControlComments.Text;
+
 			spinEditImpressions.EnableSelectAll();
 			spinEditImpressionsOnly.EnableSelectAll();
 			spinEditInvestment.EnableSelectAll();

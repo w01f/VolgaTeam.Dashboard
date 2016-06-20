@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Enums;
 using Asa.Common.GUI.RetractableBar;
@@ -32,6 +33,21 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 					MediaMetaData.Instance.DataTypeString),
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
+
+			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsCategoryTitle ?? buttonXCategory.Text;
+			buttonXGroup.Text = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsSubCategoryTitle ?? buttonXGroup.Text;
+			buttonXProduct.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsProductTitle ?? buttonXProduct.Text;
+			buttonXImpressions.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsImpressionsTitle ?? buttonXImpressions.Text;
+			buttonXCPM.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsCPMTitle ?? buttonXCPM.Text;
+			buttonXRate.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsRateTitle ?? buttonXRate.Text;
+			buttonXInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsInvestmentTitle ?? buttonXInvestment.Text;
+			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsInfoTitle ?? buttonXInfo.Text;
+			buttonXComments.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsCommentsTitle ?? buttonXComments.Text;
+			buttonXScreenshot.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsScreenshotTitle ?? buttonXScreenshot.Text;
+			labelControlFormula.Text = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.PackageSettingsFormulaTitle) ?
+				String.Format("<b>{0}</b>", ListManager.Instance.DefaultControlsConfiguration.PackageSettingsFormulaTitle) :
+				labelControlFormula.Text;
+
 			if (CreateGraphics().DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
@@ -44,6 +60,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				styleController.AppearanceReadOnly.Font = font;
 
 				font = new Font(buttonXCategory.Font.FontFamily, buttonXCategory.Font.Size - 2, buttonXCategory.Font.Style);
+				buttonXCategory.Font = font;
 				buttonXGroup.Font = font;
 				buttonXProduct.Font = font;
 				buttonXImpressions.Font = font;

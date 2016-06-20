@@ -40,6 +40,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		public HomeControl()
 		{
 			InitializeComponent();
+			xtraTabPageSolution.PageVisible = false;
 			if ((CreateGraphics()).DpiX > 96) { }
 		}
 

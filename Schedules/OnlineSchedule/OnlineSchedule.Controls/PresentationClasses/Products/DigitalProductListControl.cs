@@ -34,12 +34,26 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		{
 			InitializeComponent();
 
-			//if (ListManager.Instance.Placeholders.Count > 0)
-			//	repositoryItemComboBoxProductType.NullText = ListManager.Instance.Placeholders[0];
-			//if (ListManager.Instance.Placeholders.Count > 1)
-			//	repositoryItemComboBoxProductName.NullText = ListManager.Instance.Placeholders[1];
-			//if (ListManager.Instance.Placeholders.Count > 2)
-			//	repositoryItemComboBoxLocation.NullText = ListManager.Instance.Placeholders[2];
+			gridBandType.Caption = ListManager.Instance.DefaultControlsConfiguration.ListColumnsGroupTitle ?? gridBandType.Caption;
+			gridBandName.Caption = ListManager.Instance.DefaultControlsConfiguration.ListColumnsProductTitle ?? gridBandName.Caption;
+			gridBandRate.Caption = ListManager.Instance.DefaultControlsConfiguration.ListColumnsPricingTitle ?? gridBandRate.Caption;
+			gridBandOptions.Caption = ListManager.Instance.DefaultControlsConfiguration.ListColumnsOptionsTitle ?? gridBandOptions.Caption;
+
+			repositoryItemComboBoxProductType.NullText = ListManager.Instance.DefaultControlsConfiguration.ListEditorsGroupTitle?? repositoryItemComboBoxProductType.NullText;
+			repositoryItemComboBoxProductName.NullText = ListManager.Instance.DefaultControlsConfiguration.ListEditorsProductTitle ?? repositoryItemComboBoxProductName.NullText;
+			repositoryItemComboBoxLocation.NullText = ListManager.Instance.DefaultControlsConfiguration.ListEditorsLocationTitle ?? repositoryItemComboBoxLocation.NullText;
+			repositoryItemHyperLinkEditTargetEnabled.Caption = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle)?
+				String.Format("<i>{0}</i>", ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle):
+				repositoryItemHyperLinkEditTargetEnabled.Caption;
+			repositoryItemHyperLinkEditTargetDisabled.Caption = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle) ?
+				String.Format("<i>{0}</i>", ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle) :
+				repositoryItemHyperLinkEditTargetDisabled.Caption;
+			repositoryItemHyperLinkEditRichMediaEnabled.Caption = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ListEditorsRichMediaTitle) ?
+				String.Format("<i>{0}</i>", ListManager.Instance.DefaultControlsConfiguration.ListEditorsRichMediaTitle) :
+				repositoryItemHyperLinkEditRichMediaEnabled.Caption;
+			repositoryItemHyperLinkEditRichMediaDisabled.Caption = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ListEditorsRichMediaTitle) ?
+				String.Format("<i>{0}</i>", ListManager.Instance.DefaultControlsConfiguration.ListEditorsRichMediaTitle) :
+				repositoryItemHyperLinkEditRichMediaDisabled.Caption;
 
 			repositoryItemComboBoxProductType.EnableSelectAll();
 			repositoryItemComboBoxProductName.EnableSelectAll();
@@ -451,12 +465,12 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			if (hitInfo.Column == gridColumnTarget && (String.IsNullOrEmpty(product.Name) || !product.EnableTarget))
 			{
 				Cursor = Cursors.Default;
-				((DXMouseEventArgs) e).Handled = true;
+				((DXMouseEventArgs)e).Handled = true;
 			}
 			if (hitInfo.Column == gridColumnRichMedia && (String.IsNullOrEmpty(product.Name) || !product.EnableRichMedia))
 			{
 				Cursor = Cursors.Default;
-				((DXMouseEventArgs) e).Handled = true;
+				((DXMouseEventArgs)e).Handled = true;
 			}
 		}
 	}

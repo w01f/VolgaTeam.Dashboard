@@ -58,6 +58,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void InitControls()
 		{
+			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
+			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
+			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsProductTitle ?? bandedGridColumnProduct.Caption;
+			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
+
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Asa.Business.Common.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using DevComponents.DotNetBar;
@@ -62,7 +63,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		private void UpdateProductsCount()
 		{
-			Text = String.Format("Digital Strategy  ({0})", _container.EditedContent.DigitalProducts.Count);
+			var title = Business.Online.Dictionaries.ListManager.Instance.DefaultControlsConfiguration.SectionsListTitle ?? "Digital Strategy";
+			Text = String.Format("{0}  ({1})", title, _container.EditedContent.DigitalProducts.Count);
 		}
 
 		public void AddItem(object sender)

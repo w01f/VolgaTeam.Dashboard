@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using Asa.Business.Online.Configuration;
 using Asa.Business.Online.Entities.NonPersistent;
@@ -11,6 +12,7 @@ using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.RemoteStorage;
+using Newtonsoft.Json;
 
 namespace Asa.Business.Online.Dictionaries
 {
@@ -41,6 +43,7 @@ namespace Asa.Business.Online.Dictionaries
 		public DigitalProductListViewSettings DefaultHomeViewSettings { get; private set; }
 		public DigitalProductSettings DefaultDigitalProductSettings { get; private set; }
 		public DigitalPackageSettings DefaultDigitalPackageSettings { get; private set; }
+		public DigitalControlsConfiguration DefaultControlsConfiguration { get; private set; }
 
 		public static ListManager Instance
 		{
@@ -65,6 +68,7 @@ namespace Asa.Business.Online.Dictionaries
 			DefaultHomeViewSettings = new DigitalProductListViewSettings();
 			DefaultDigitalProductSettings = new DigitalProductSettings();
 			DefaultDigitalPackageSettings = new DigitalPackageSettings();
+			DefaultControlsConfiguration = new DigitalControlsConfiguration();
 
 			Images = new List<ImageSourceGroup>();
 		}
@@ -276,6 +280,10 @@ namespace Asa.Business.Online.Dictionaries
 						break;
 					case "DefaultDigitalPackageSettings":
 						DefaultDigitalPackageSettings.Deserialize(childeNode);
+						break;
+					case "DigitalControlsConfiguration":
+						DefaultControlsConfiguration =
+							JsonConvert.DeserializeObject<DigitalControlsConfiguration>(Encoding.Unicode.GetString(Convert.FromBase64String(childeNode.InnerText)));
 						break;
 				}
 			}

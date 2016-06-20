@@ -8,9 +8,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Asa.Business.Online.Configuration;
 using CommandCentral.Entities.Common;
 using CommandCentral.Entities.Online;
 using CommandCentral.InteropClasses;
+using Newtonsoft.Json;
 
 namespace CommandCentral.TabMainDashboardForms
 {
@@ -54,6 +56,8 @@ namespace CommandCentral.TabMainDashboardForms
 						"Home",
 						"WebSlide",
 						"DigPkg",
+						"DigitalRBNLabels",
+						"DigitalSubScheduleLabels",
 					}.Contains(category.Name.Trim()))
 						_categories.Add(category);
 				}
@@ -95,6 +99,8 @@ namespace CommandCentral.TabMainDashboardForms
 			var defaultHomeViewSettings = new HomeViewSettings();
 			var defaultDigitalProductSettings = new DigitalProductSettings();
 			var defaultDigitalPackageSettings = new DigitalPackageSettings();
+
+			var controlsConfiguration = new DigitalControlsConfiguration();
 
 			var connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
@@ -889,6 +895,87 @@ namespace CommandCentral.TabMainDashboardForms
 					dataAdapter.Dispose();
 					dataTable.Dispose();
 				}
+				connection.Close();
+
+				connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=No;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
+				connection = new OleDbConnection(connnectionString);
+				try
+				{
+					connection.Open();
+				}
+				catch
+				{
+					AppManager.Instance.ShowWarning("Couldn't open source file");
+					return;
+				}
+				if (connection.State != ConnectionState.Open) return;
+				//Load Digital Tab Controls Configuration
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [DigitalRBNLabels$]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					var groupName = String.Empty;
+					var groupValues = new List<string>();
+					foreach (DataRow row in dataTable.Rows)
+					{
+						var rowValue = row[0]?.ToString().Trim();
+						if (String.IsNullOrEmpty(rowValue)) continue;
+						if (rowValue.Contains("*"))
+						{
+							if (!String.IsNullOrEmpty(groupName) && groupValues.Any())
+								controlsConfiguration.ApplyValues(groupName, groupValues);
+							groupName = rowValue.Replace("*", "");
+							groupValues.Clear();
+						}
+						else
+							groupValues.Add(rowValue);
+					}
+					if (!String.IsNullOrEmpty(groupName) && groupValues.Any())
+						controlsConfiguration.ApplyValues(groupName, groupValues);
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
+				//Load Digital Section Controls Configuration
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [DigitalSubScheduleLabels$]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					var groupName = String.Empty;
+					var groupValues = new List<string>();
+					foreach (DataRow row in dataTable.Rows)
+					{
+						var rowValue = row[0]?.ToString().Trim();
+						if (String.IsNullOrEmpty(rowValue)) continue;
+						if (rowValue.Contains("*"))
+						{
+							if (!String.IsNullOrEmpty(groupName) && groupValues.Any())
+								controlsConfiguration.ApplyValues(groupName, groupValues);
+							groupName = rowValue.Replace("*", "");
+							groupValues.Clear();
+						}
+						else
+							groupValues.Add(rowValue);
+					}
+					if (!String.IsNullOrEmpty(groupName) && groupValues.Any())
+						controlsConfiguration.ApplyValues(groupName, groupValues);
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
 
 				connection.Close();
 			}
@@ -996,6 +1083,7 @@ namespace CommandCentral.TabMainDashboardForms
 			xml.AppendLine(String.Format(@"<DefaultHomeViewSettings>{0}</DefaultHomeViewSettings>", defaultHomeViewSettings.Serialize()));
 			xml.AppendLine(String.Format(@"<DefaultDigitalProductSettings>{0}</DefaultDigitalProductSettings>", defaultDigitalProductSettings.Serialize()));
 			xml.AppendLine(String.Format(@"<DefaultDigitalPackageSettings>{0}</DefaultDigitalPackageSettings>", defaultDigitalPackageSettings.Serialize()));
+			xml.AppendLine(String.Format(@"<DigitalControlsConfiguration>{0}</DigitalControlsConfiguration>", Convert.ToBase64String(Encoding.Unicode.GetBytes(JsonConvert.SerializeObject(controlsConfiguration)))));
 
 			xml.AppendLine(@"</OnlineStrategy>");
 

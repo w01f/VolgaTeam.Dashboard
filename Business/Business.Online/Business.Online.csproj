@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ProdutInfoHelper.cs" />
+    <Compile Include="Configuration\DigitalControlsConfiguration.cs" />
     <Compile Include="Configuration\DigitalPackageSettings.cs" />
     <Compile Include="Configuration\DigitalProductAdPlanSettings.cs" />
     <Compile Include="Configuration\DigitalProductListViewSettings.cs" />

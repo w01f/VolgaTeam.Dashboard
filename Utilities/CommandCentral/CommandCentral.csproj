@@ -105,6 +105,9 @@
     <Compile Include="..\..\Business\Business.Media\Enums\DemoType.cs">
       <Link>Entities\Media\DemoType.cs</Link>
     </Compile>
+    <Compile Include="..\..\Business\Business.Online\Configuration\DigitalControlsConfiguration.cs">
+      <Link>Entities\Online\DigitalControlsConfiguration.cs</Link>
+    </Compile>
     <Compile Include="AppManager.cs" />
     <Compile Include="Entities\Newspaper\AdSize.cs" />
     <Compile Include="Entities\Media\BroadcastMonthTemplate.cs" />

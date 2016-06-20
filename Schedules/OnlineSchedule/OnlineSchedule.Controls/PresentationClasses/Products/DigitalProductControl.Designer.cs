@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -35,7 +36,7 @@
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.hyperLinkEditResetProductName = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
 			this.memoEditProductName = new DevExpress.XtraEditors.MemoEdit();
@@ -200,6 +201,7 @@
 			this.labelControlWebsite.StyleController = this.styleController;
 			this.labelControlWebsite.TabIndex = 9;
 			this.labelControlWebsite.Text = "A. What Sites are you selling?";
+			this.labelControlWebsite.UseMnemonic = false;
 			// 
 			// checkEditComments
 			// 
@@ -402,7 +404,7 @@
 			this.checkEditFormulaImpressions.Properties.Caption = "Impressions";
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(92, 19);
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(92, 20);
 			this.checkEditFormulaImpressions.TabIndex = 4;
 			this.checkEditFormulaImpressions.TabStop = false;
 			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -418,7 +420,7 @@
 			this.checkEditFormulaInvestment.Properties.Caption = "Investment";
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(84, 19);
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(84, 20);
 			this.checkEditFormulaInvestment.TabIndex = 5;
 			this.checkEditFormulaInvestment.TabStop = false;
 			this.checkEditFormulaInvestment.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -434,7 +436,7 @@
 			this.checkEditFormulaCPM.Properties.Caption = "CPM";
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaCPM.Size = new System.Drawing.Size(51, 19);
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(51, 20);
 			this.checkEditFormulaCPM.TabIndex = 6;
 			this.checkEditFormulaCPM.TabStop = false;
 			this.checkEditFormulaCPM.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -473,6 +475,7 @@
 			this.labelControlProduct.StyleController = this.styleController;
 			this.labelControlProduct.TabIndex = 102;
 			this.labelControlProduct.Text = "B. What Digital Product are you selling?";
+			this.labelControlProduct.UseMnemonic = false;
 			// 
 			// labelControlDescription
 			// 
@@ -696,7 +699,7 @@
 			this.checkEditDescriptionManualEdit.Location = new System.Drawing.Point(6, 9);
 			this.checkEditDescriptionManualEdit.Name = "checkEditDescriptionManualEdit";
 			this.checkEditDescriptionManualEdit.Properties.Caption = "Manual Edit";
-			this.checkEditDescriptionManualEdit.Size = new System.Drawing.Size(134, 19);
+			this.checkEditDescriptionManualEdit.Size = new System.Drawing.Size(134, 20);
 			this.checkEditDescriptionManualEdit.StyleController = this.styleController;
 			this.checkEditDescriptionManualEdit.TabIndex = 108;
 			this.checkEditDescriptionManualEdit.CheckedChanged += new System.EventHandler(this.checkEditDescriptionManualEdit_CheckedChanged);
@@ -757,7 +760,7 @@
 			this.checkEditCommentManualEdit.Location = new System.Drawing.Point(6, 9);
 			this.checkEditCommentManualEdit.Name = "checkEditCommentManualEdit";
 			this.checkEditCommentManualEdit.Properties.Caption = "Manual Edit";
-			this.checkEditCommentManualEdit.Size = new System.Drawing.Size(134, 19);
+			this.checkEditCommentManualEdit.Size = new System.Drawing.Size(134, 20);
 			this.checkEditCommentManualEdit.StyleController = this.styleController;
 			this.checkEditCommentManualEdit.TabIndex = 108;
 			this.checkEditCommentManualEdit.CheckedChanged += new System.EventHandler(this.checkEditCommentManualEdit_CheckedChanged);
@@ -816,6 +819,7 @@
 			this.Controls.Add(this.labelControlPriceType);
 			this.Controls.Add(this.labelControlDescription);
 			this.Controls.Add(this.pnPriceTypeContainer);
+			this.Name = "DigitalProductControl";
 			this.Size = new System.Drawing.Size(940, 497);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditResetProductName.Properties)).EndInit();

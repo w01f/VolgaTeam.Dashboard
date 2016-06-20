@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
@@ -31,6 +32,13 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 					MediaMetaData.Instance.DataTypeString),
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
+
+			buttonXDimensions.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsDimensionTitle ?? buttonXDimensions.Text;
+			buttonXRichMedia.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsRichMediaTitle ?? buttonXRichMedia.Text;
+			buttonXStrategy.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsStrategyTitle ?? buttonXStrategy.Text;
+			buttonXLocation.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsLocationTitle ?? buttonXLocation.Text;
+			buttonXTargeting.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsTargetingTitle ?? buttonXTargeting.Text;
+
 			if (CreateGraphics().DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,

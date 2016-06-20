@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
+using Asa.Business.Online.Dictionaries;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
 using DevExpress.XtraTab;
@@ -35,6 +36,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				Tooltip = "Open Digital Settings",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
+
+			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsCategoryTitle ?? buttonXCategory.Text;
+			buttonXSubCategory.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsSubCategoryTitle ?? buttonXSubCategory.Text;
+			buttonXProduct.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsProductTitle ?? buttonXProduct.Text;
+			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsInfoTitle ?? buttonXInfo.Text;
+			buttonXLogo.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsLogosTitle ?? buttonXLogo.Text;
+			buttonXMonthlyInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsMontlyInvestmentTitle ?? buttonXMonthlyInvestment.Text;
+			buttonXTotalInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsTotalInvestmentTitle ?? buttonXTotalInvestment.Text;
+
 			if (CreateGraphics().DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,

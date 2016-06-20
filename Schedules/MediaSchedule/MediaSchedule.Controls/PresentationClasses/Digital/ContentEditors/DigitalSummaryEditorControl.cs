@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
@@ -32,7 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public DigitalSummaryEditorControl(DigitalEditorsContainer container)
 		{
 			InitializeComponent();
-			Text = "Digital Summary";
+			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsSummaryTitle ?? "Digital Summary";
 			_container = container;
 			if (CreateGraphics().DpiX > 96)
 			{

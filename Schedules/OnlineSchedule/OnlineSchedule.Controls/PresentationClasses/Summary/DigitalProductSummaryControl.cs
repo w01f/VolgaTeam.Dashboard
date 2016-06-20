@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Online.Controls.PresentationClasses.Products;
+using Asa.Business.Online.Entities.NonPersistent;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
@@ -14,13 +14,12 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 	[ToolboxItem(false)]
 	public partial class DigitalProductSummaryControl: UserControl
 	{
-		private IDigitalProductControl _parent;
+		private DigitalProduct _sourceProduct;
 
-		public DigitalProductSummaryControl(IDigitalProductControl parent)
+		public DigitalProductSummaryControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
-			_parent = parent;
 		}
 
 		public void FocusControl()
@@ -28,22 +27,24 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 			labelControlTitle.Focus();
 		}
 
-		public void UpdateControls()
+		public void LoadData(DigitalProduct sourceProduct)
 		{
-			labelControlNumber.Text = String.Format("{0}.", _parent.Product.Index);
+			_sourceProduct = sourceProduct;
+			labelControlNumber.Text = String.Format("{0}.", _sourceProduct.Index);
 			labelControlTitle.Text = String.Format("<b>{0}</b>{1}({2}{3})",
-				_parent.Product.Name,
+				_sourceProduct.Name,
 				Environment.NewLine,
-				_parent.Product.Category,
-				!String.IsNullOrEmpty(_parent.Product.SubCategory) ? String.Format("/{0}", _parent.Product.SubCategory) : String.Empty);
-			labelControlSites.Text = !String.IsNullOrEmpty(_parent.Product.OutputData.Websites) ? String.Format("<b>Sites: </b>{0}", _parent.Product.OutputData.Websites) : String.Empty;
-			memoEditDescription.EditValue = _parent.Product.OutputData.Description;
+				_sourceProduct.Category,
+				!String.IsNullOrEmpty(_sourceProduct.SubCategory) ? String.Format("/{0}", _sourceProduct.SubCategory) : String.Empty);
+			labelControlSites.Text = !String.IsNullOrEmpty(_sourceProduct.OutputData.Websites) ? String.Format("<b>Sites: </b>{0}", _sourceProduct.OutputData.Websites) : String.Empty;
+			memoEditDescription.EditValue = _sourceProduct.OutputData.Description;
 
-			var impressionValue = _parent.Product.OutputData.Impressions.HasValue ? _parent.Product.OutputData.Impressions.Value.ToString("#,##0") : String.Empty;
+			var impressionValue = _sourceProduct.OutputData.Impressions.HasValue ? _sourceProduct.OutputData.Impressions.Value.ToString("#,##0") : String.Empty;
 			if (!String.IsNullOrEmpty(impressionValue))
 			{
 				checkEditImpressions.Text = String.Format("Impressions: <b>{0}</b>", impressionValue);
 				checkEditImpressions.Visible = true;
+				checkEditImpressions.Checked = sourceProduct.ShowSummaryImpressions;
 				checkEditImpressions.BringToFront();
 			}
 			else
@@ -52,11 +53,12 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 				checkEditImpressions.Checked = false;
 			}
 
-			var investmentValue = _parent.Product.OutputData.Investments.HasValue ? _parent.Product.OutputData.Investments.Value.ToString("$#,##0") : String.Empty;
+			var investmentValue = _sourceProduct.OutputData.Investments.HasValue ? _sourceProduct.OutputData.Investments.Value.ToString("$#,##0") : String.Empty;
 			if (!String.IsNullOrEmpty(investmentValue))
 			{
 				checkEditInvestments.Text = String.Format("Investment: <b>{0}</b>", investmentValue);
 				checkEditInvestments.Visible = true;
+				checkEditInvestments.Checked = sourceProduct.ShowSummaryInvestments;
 				checkEditInvestments.BringToFront();
 			}
 			else
@@ -65,11 +67,12 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 				checkEditInvestments.Checked = false;
 			}
 
-			var cpmValue = _parent.Product.OutputData.CPM.HasValue ? _parent.Product.OutputData.CPM.Value.ToString("$#,##0.00") : String.Empty;
+			var cpmValue = _sourceProduct.OutputData.CPM.HasValue ? _sourceProduct.OutputData.CPM.Value.ToString("$#,##0.00") : String.Empty;
 			if (!String.IsNullOrEmpty(cpmValue))
 			{
 				checkEditCPM.Text = String.Format("CPM: <b>{0}</b>", cpmValue);
 				checkEditCPM.Visible = true;
+				checkEditCPM.Checked = sourceProduct.ShowSummaryCPM;
 				checkEditCPM.BringToFront();
 			}
 			else
@@ -78,10 +81,11 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 				checkEditCPM.Checked = false;
 			}
 
-			if (!String.IsNullOrEmpty(_parent.Product.InvestmentDetails))
+			if (!String.IsNullOrEmpty(_sourceProduct.InvestmentDetails))
 			{
-				checkEditInvDetails.Text = String.Format("Investment Details: <b>{0}</b>", _parent.Product.InvestmentDetails);
+				checkEditInvDetails.Text = String.Format("Investment Details: <b>{0}</b>", _sourceProduct.InvestmentDetails);
 				checkEditInvDetails.Visible = true;
+				checkEditInvDetails.Checked = sourceProduct.ShowSummaryInvestmentDetails;
 				checkEditInvDetails.BringToFront();
 			}
 			else
@@ -91,9 +95,17 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 			}
 		}
 
+		public void SaveData()
+		{
+			_sourceProduct.ShowSummaryInvestments = checkEditInvestments.Checked;
+			_sourceProduct.ShowSummaryImpressions = checkEditImpressions.Checked;
+			_sourceProduct.ShowSummaryCPM = checkEditCPM.Checked;
+			_sourceProduct.ShowSummaryInvestmentDetails = checkEditInvDetails.Checked;
+		}
+
 		public void Release()
 		{
-			_parent = null;
+			_sourceProduct = null;
 		}
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
@@ -126,10 +138,10 @@ namespace Asa.Online.Controls.PresentationClasses.Summary
 			{
 				var result = new List<string>();
 
-				result.Add(_parent.Product.Name);
-				result.Add(String.Format("{0}{1}", _parent.Product.Category, !String.IsNullOrEmpty(_parent.Product.SubCategory) ? String.Format("/{0}", _parent.Product.SubCategory) : String.Empty));
-				if (!String.IsNullOrEmpty(_parent.Product.OutputData.Websites))
-					result.Add(_parent.Product.OutputData.Websites);
+				result.Add(_sourceProduct.Name);
+				result.Add(String.Format("{0}{1}", _sourceProduct.Category, !String.IsNullOrEmpty(_sourceProduct.SubCategory) ? String.Format("/{0}", _sourceProduct.SubCategory) : String.Empty));
+				if (!String.IsNullOrEmpty(_sourceProduct.OutputData.Websites))
+					result.Add(_sourceProduct.OutputData.Websites);
 
 				return String.Join(Environment.NewLine, result);
 			}

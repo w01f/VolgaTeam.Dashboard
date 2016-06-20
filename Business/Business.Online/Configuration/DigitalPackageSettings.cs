@@ -8,7 +8,6 @@ namespace Asa.Business.Online.Configuration
 {
 	public class DigitalPackageSettings
 	{
-		public bool ShowOptions { get; set; }
 		public FormulaType Formula { get; set; }
 
 		public bool EnableCategory { get; set; }
@@ -35,7 +34,6 @@ namespace Asa.Business.Online.Configuration
 
 		public DigitalPackageSettings()
 		{
-			ShowOptions = true;
 			Formula = FormulaType.CPM;
 
 			EnableCategory = true;
@@ -71,7 +69,6 @@ namespace Asa.Business.Online.Configuration
 		public string Serialize()
 		{
 			var xml = new StringBuilder();
-			xml.AppendLine(@"<ShowOptions>" + ShowOptions + @"</ShowOptions>");
 			xml.AppendLine(@"<Formula>" + (int)Formula + @"</Formula>");
 
 			xml.AppendLine(@"<EnableCategory>" + EnableCategory + @"</EnableCategory>");
@@ -105,10 +102,6 @@ namespace Asa.Business.Online.Configuration
 			foreach (XmlNode childNode in node.ChildNodes)
 				switch (childNode.Name)
 				{
-					case "ShowOptions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowOptions = tempBool;
-						break;
 					case "Formula":
 						int tempInt;
 						if (Int32.TryParse(childNode.InnerText, out tempInt))

@@ -6,7 +6,8 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 	public interface IDigitalProductsContainer
 	{
 		IDigitalProductsContent DigitalProductsContent { get; }
-		bool SettingsNotSaved { get; set; }
 		Theme SelectedTheme { get; }
+		void RaiseDataChanged();
+		void LoadProduct(IDigitalProductControl productControl);
 	}
 }

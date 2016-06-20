@@ -25,7 +25,6 @@ namespace Asa.Business.Online.Dictionaries
 		public List<string> Strengths { get; private set; }
 		public List<string> PricingStrategies { get; private set; }
 		public List<string> ColumnPositions { get; private set; }
-		public List<string> Placeholders { get; private set; }
 		public List<Category> Categories { get; private set; }
 		public List<ProductSource> ProductSources { get; private set; }
 		public List<string> Statuses { get; private set; }
@@ -58,7 +57,6 @@ namespace Asa.Business.Online.Dictionaries
 			Statuses = new List<string>();
 			PricingStrategies = new List<string>();
 			ColumnPositions = new List<string>();
-			Placeholders = new List<string>();
 			SpecialLinksGroupName = String.Empty;
 			SpecialLinkButtons = new List<SpecialLinkButton>();
 			SpecialLinkBrowsers = new List<string>();
@@ -85,6 +83,30 @@ namespace Asa.Business.Online.Dictionaries
 			defaultGroup.LoadImages();
 			if (defaultGroup.Images.Any())
 				Images.Add(defaultGroup);
+
+			var additionalImageFolder = new StorageDirectory(ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge("DIGITAL_2"));
+			if (additionalImageFolder.ExistsLocal())
+			{
+				var contentDescriptionFile = new StorageFile(additionalImageFolder.RelativePathParts.Merge("order.txt"));
+				if (contentDescriptionFile.ExistsLocal())
+				{
+					var groupNames = File.ReadAllLines(contentDescriptionFile.LocalPath);
+					var groupIndex = 0;
+					foreach (var groupName in groupNames)
+					{
+						if (String.IsNullOrEmpty(groupName)) continue;
+						var groupFolder = new StorageDirectory(additionalImageFolder.RelativePathParts.Merge(groupName));
+						if (!groupFolder.ExistsLocal()) continue;
+						var imageGroup = new ImageSourceGroup(groupFolder);
+						imageGroup.LoadImages();
+						imageGroup.Name = groupName;
+						imageGroup.Order = groupIndex;
+						if (!imageGroup.Images.Any()) continue;
+						Images.Add(imageGroup);
+						groupIndex++;
+					}
+				}
+			}
 		}
 
 		private void LoadOnlineStrategy(StorageFile listsSourceFile)
@@ -209,9 +231,6 @@ namespace Asa.Business.Online.Dictionaries
 						GetSpecialButton(childeNode, ref specialLinkButton);
 						if (!String.IsNullOrEmpty(specialLinkButton.Name) && !String.IsNullOrEmpty(specialLinkButton.Type) && specialLinkButton.Paths.Any())
 							SpecialLinkButtons.Add(specialLinkButton);
-						break;
-					case "Placeholder":
-						Placeholders.Add(childeNode.InnerText);
 						break;
 					case "Targeting":
 						{

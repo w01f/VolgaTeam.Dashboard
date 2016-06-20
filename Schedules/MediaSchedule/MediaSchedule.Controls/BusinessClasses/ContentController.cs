@@ -10,6 +10,7 @@ using Asa.Common.GUI.ContentEditors.Objects;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.PresentationClasses.Calendar;
 using Asa.Media.Controls.PresentationClasses.Digital;
+using Asa.Media.Controls.PresentationClasses.Digital.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.Gallery;
 using Asa.Media.Controls.PresentationClasses.OptionsControls;
 using Asa.Media.Controls.PresentationClasses.RateCard;
@@ -53,7 +54,6 @@ namespace Asa.Media.Controls.BusinessClasses
 						ContentIdentifiers.ScheduleSettings,
 						ContentIdentifiers.ProgramSchedule,
 						ContentIdentifiers.DigitalProducts,
-						ContentIdentifiers.DigitalPackages,
 						ContentIdentifiers.Snapshots,
 						ContentIdentifiers.Options,
 						ContentIdentifiers.BroadcastCalendar,
@@ -67,7 +67,6 @@ namespace Asa.Media.Controls.BusinessClasses
 					{
 						ContentIdentifiers.ProgramSchedule,
 						ContentIdentifiers.DigitalProducts,
-						ContentIdentifiers.DigitalPackages,
 						ContentIdentifiers.Snapshots,
 						ContentIdentifiers.Options,
 						ContentIdentifiers.BroadcastCalendar,
@@ -96,16 +95,6 @@ namespace Asa.Media.Controls.BusinessClasses
 					Destrination = new[]
 					{
 						ContentIdentifiers.ScheduleSettings,
-						ContentIdentifiers.DigitalPackages,
-					}
-				},
-				new ContentEditorRelation
-				{
-					Target = ContentIdentifiers.DigitalPackages,
-					Destrination = new[]
-					{
-						ContentIdentifiers.ScheduleSettings,
-						ContentIdentifiers.DigitalProducts,
 					}
 				},
 			});
@@ -148,9 +137,7 @@ namespace Asa.Media.Controls.BusinessClasses
 				case ContentIdentifiers.ProgramSchedule:
 					return new ScheduleContainer();
 				case ContentIdentifiers.DigitalProducts:
-					return new DigitalProductContainerControl();
-				case ContentIdentifiers.DigitalPackages:
-					return new MediaWebPackageControl();
+					return new DigitalEditorsContainer();
 				case ContentIdentifiers.Snapshots:
 					return new SnapshotContainer();
 				case ContentIdentifiers.Options:

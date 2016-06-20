@@ -57,11 +57,8 @@ namespace Asa.Media.Single
 				ribbonBarHomeExit.RecalcLayout();
 				ribbonBarDigitalScheduleExit.RecalcLayout();
 				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
-				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonPanelDigitalSchedule.PerformLayout();
 				ribbonPanelHome.PerformLayout();
-				ribbonPanelDigitalPackage.PerformLayout();
 			}
 		}
 
@@ -97,7 +94,6 @@ namespace Asa.Media.Single
 			Controller.Instance.TabHome = ribbonTabItemHome;
 			Controller.Instance.TabProgramSchedule = ribbonTabItemProgramSchedule;
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSchedule;
-			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
 			Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
@@ -151,22 +147,7 @@ namespace Asa.Media.Single
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalProductAdd = buttonItemDigitalScheduleProductAdd;
 			Controller.Instance.DigitalProductClone = buttonItemDigitalScheduleProductClone;
-			Controller.Instance.DigitalProductToggleDimensions = buttonItemDigitalScheduleDimensions;
-			Controller.Instance.DigitalProductToggleLocation = buttonItemDigitalScheduleLocation;
-			Controller.Instance.DigitalProductToggleStrategy = buttonItemDigitalScheduleStrategy;
-			Controller.Instance.DigitalProductToggleRichMedia = buttonItemDigitalScheduleRichMedia;
-			Controller.Instance.DigitalProductToggleTargeting = buttonItemDigitalScheduleTargeting;
-			#endregion
-
-			#region Digital Package
-			Controller.Instance.DigitalPackagePanel = ribbonPanelDigitalPackage;
-			Controller.Instance.DigitalPackageThemeBar = ribbonBarDigitalPackagePowerPoint;
-			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
-			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
-			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
-			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
-			Controller.Instance.DigitalPackagePdf = buttonItemDigitalPackagePdf;
-			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
+			Controller.Instance.DigitalProductDelete = buttonItemDigitalScheduleProductDelete;
 			#endregion
 
 			#region Calendar 1

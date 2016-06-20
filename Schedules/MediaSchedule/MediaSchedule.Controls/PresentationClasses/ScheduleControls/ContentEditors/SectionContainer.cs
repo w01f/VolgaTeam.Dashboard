@@ -68,6 +68,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 				labelControlWarnings.Font = font;
+				labelControlCollectionItemsInfo.Font = font;
 			}
 		}
 
@@ -118,6 +119,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_digitalInfoControl.LoadData();
 			_customSummaryControl.LoadData(quickLoad);
 
+			UpdateCollectionItemsInfo();
 			UpdateSummaryState();
 			UpdateWarnings();
 		}
@@ -152,6 +154,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void RaiseDataChanged()
 		{
+			UpdateCollectionItemsInfo();
 			UpdateSummaryState();
 			DataChanged?.Invoke(ActiveEditor, EventArgs.Empty);
 		}
@@ -172,8 +175,30 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				_customSummaryControl.LoadData();
 				_sectionDataChanged = false;
 			}
+			UpdateCollectionItemsInfo();
 			UpdateWarnings();
 			SectionEditorChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		private void UpdateCollectionItemsInfo()
+		{
+			switch (ActiveEditor?.EditorType)
+			{
+				case SectionEditorType.ScheduleSection:
+					labelControlCollectionItemsInfo.Visible = true;
+					labelControlCollectionItemsInfo.Text = String.Format("<color=gray>Total Programs: {0}</color>", SectionData.Programs.Count);
+					break;
+				case SectionEditorType.DigitalSection:
+					labelControlCollectionItemsInfo.Visible = true;
+					if (SectionData.DigitalInfo.Products.Count < OutputScheduleData.MaxDigitalProducts)
+						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Products.Count);
+					else
+						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
+					break;
+				default:
+					labelControlCollectionItemsInfo.Visible = false;
+					break;
+			}
 		}
 
 		private void UpdateSummaryState()

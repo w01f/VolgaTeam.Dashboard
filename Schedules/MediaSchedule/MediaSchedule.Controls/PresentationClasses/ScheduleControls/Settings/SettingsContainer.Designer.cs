@@ -67,7 +67,6 @@
 			this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseBackColor = true;
 			this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlOptions.HeaderAutoFill = DevExpress.Utils.DefaultBoolean.True;
 			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlOptions.MultiLine = DevExpress.Utils.DefaultBoolean.False;
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
@@ -111,7 +110,7 @@
 			this.hyperLinkEditInfoContract.TabIndex = 123;
 			this.hyperLinkEditInfoContract.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnContractSettingsEdit);
 			// 
-			// hyperLinkEditReset
+			// hyperLinkEditInfoAdvanced
 			// 
 			this.hyperLinkEditInfoAdvanced.Dock = System.Windows.Forms.DockStyle.Left;
 			this.hyperLinkEditInfoAdvanced.EditValue = "Advanced Settings";

@@ -17,7 +17,6 @@ namespace Asa.Media.Controls.BusinessClasses
 		{
 			Controller.Instance.TabProgramSchedule.Enabled = false;
 			Controller.Instance.TabDigitalProduct.Enabled = false;
-			Controller.Instance.TabDigitalPackage.Enabled = false;
 			Controller.Instance.TabCalendar1.Enabled = false;
 			Controller.Instance.TabCalendar2.Enabled = false;
 			Controller.Instance.TabSnapshot.Enabled = false;
@@ -44,7 +43,6 @@ namespace Asa.Media.Controls.BusinessClasses
 
 			Controller.Instance.TabProgramSchedule.Enabled = scheduleInitialized;
 			Controller.Instance.TabDigitalProduct.Enabled = scheduleInitialized;
-			Controller.Instance.TabDigitalPackage.Enabled = scheduleInitialized;
 			Controller.Instance.TabCalendar1.Enabled = scheduleInitialized;
 			Controller.Instance.TabCalendar2.Enabled = scheduleInitialized;
 			Controller.Instance.TabSnapshot.Enabled = scheduleInitialized;

@@ -7,6 +7,5 @@ namespace Asa.Business.Online.Interfaces
 	{
 		DigitalProductListViewSettings DigitalProductListViewSettings { get; }
 		DigitalPackageSettings DigitalPackageSettings { get; }
-		AdPlanViewSettings AdPlanViewSettings { get; }
 	}
 }

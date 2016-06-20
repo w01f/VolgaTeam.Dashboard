@@ -24,7 +24,6 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 {
 	public partial class DigitalProductListControl : UserControl
 	{
-		private DigitalProductListOptionButtonsGroup _toggleButtons;
 		private Action _onDataChanged;
 		private GridDragDropHelper _dragDropHelper;
 
@@ -35,12 +34,12 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		{
 			InitializeComponent();
 
-			if (ListManager.Instance.Placeholders.Count > 0)
-				repositoryItemComboBoxProductType.NullText = ListManager.Instance.Placeholders[0];
-			if (ListManager.Instance.Placeholders.Count > 1)
-				repositoryItemComboBoxProductName.NullText = ListManager.Instance.Placeholders[1];
-			if (ListManager.Instance.Placeholders.Count > 2)
-				repositoryItemComboBoxLocation.NullText = ListManager.Instance.Placeholders[2];
+			//if (ListManager.Instance.Placeholders.Count > 0)
+			//	repositoryItemComboBoxProductType.NullText = ListManager.Instance.Placeholders[0];
+			//if (ListManager.Instance.Placeholders.Count > 1)
+			//	repositoryItemComboBoxProductName.NullText = ListManager.Instance.Placeholders[1];
+			//if (ListManager.Instance.Placeholders.Count > 2)
+			//	repositoryItemComboBoxLocation.NullText = ListManager.Instance.Placeholders[2];
 
 			repositoryItemComboBoxProductType.EnableSelectAll();
 			repositoryItemComboBoxProductName.EnableSelectAll();
@@ -48,16 +47,13 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		}
 
 		public void UpdateData(
-			DigitalProductsContent content, 
-			IDigitalScheduleSettings scheduleSettings, 
-			Action onDataChanged,
-			DigitalProductListOptionButtonsGroup toggleButtons)
+			DigitalProductsContent content,
+			IDigitalScheduleSettings scheduleSettings,
+			Action onDataChanged)
 		{
 			Content = content;
 			ScheduleSettings = scheduleSettings;
 			_onDataChanged = onDataChanged;
-			_toggleButtons = toggleButtons;
-
 
 			gridControl.DataSource = new BindingList<DigitalProduct>(Content.DigitalProducts);
 
@@ -81,25 +77,6 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			repositoryItemComboBoxLocation.Items.Clear();
 			repositoryItemComboBoxLocation.Items.AddRange(ListManager.Instance.ColumnPositions);
 
-			_toggleButtons.ToggleDimensions.CheckedChanged -= OnDimensionsCheckedChanged;
-			_toggleButtons.ToggleDimensions.CheckedChanged += OnDimensionsCheckedChanged;
-
-			_toggleButtons.ToggleLocation.CheckedChanged -= OnLocationCheckedChanged;
-			_toggleButtons.ToggleLocation.CheckedChanged += OnLocationCheckedChanged;
-
-			_toggleButtons.ToggleStrategy.CheckedChanged -= OnStrategyCheckedChanged;
-			_toggleButtons.ToggleStrategy.CheckedChanged += OnStrategyCheckedChanged;
-
-			_toggleButtons.ToggleRichMedia.CheckedChanged -= OnRichMediaCheckedChanged;
-			_toggleButtons.ToggleRichMedia.CheckedChanged += OnRichMediaCheckedChanged;
-
-			_toggleButtons.ToggleTargeting.CheckedChanged -= OnTargetingCheckedChanged;
-			_toggleButtons.ToggleTargeting.CheckedChanged += OnTargetingCheckedChanged;
-
-			_onDataChanged();
-
-			LoadView();
-
 			if (_dragDropHelper == null)
 			{
 				_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
@@ -110,32 +87,49 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		public void ApplyChanges()
 		{
 			advBandedGridView.CloseEditor();
-			SaveView();
 		}
 
-		private void LoadView()
+		public void UpdateView()
 		{
-			_toggleButtons.ToggleDimensions.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalDimensions;
-			_toggleButtons.ToggleStrategy.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalStrategy;
-			_toggleButtons.ToggleLocation.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalLocation;
-			_toggleButtons.ToggleTargeting.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalTargeting;
-			_toggleButtons.ToggleRichMedia.Enabled = ScheduleSettings.DigitalProductListViewSettings.EnableDigitalRichMedia;
+			gridBandWidth.Visible = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions;
+			gridBandHeight.Visible = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions;
+			gridBandRate.Visible = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalStrategy;
+			if (ScheduleSettings.DigitalProductListViewSettings.ShowDigitalLocation)
+			{
+				gridColumnName.RowCount = 1;
+				gridColumnLocation.Visible = true;
+				advBandedGridView.SetColumnPosition(gridColumnLocation, 1, 0);
+			}
+			else
+			{
+				gridColumnLocation.Visible = false;
+				gridColumnName.RowCount = 2;
+			}
 
-			_toggleButtons.ToggleDimensions.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions;
-			_toggleButtons.ToggleStrategy.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalStrategy;
-			_toggleButtons.ToggleLocation.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalLocation;
-			_toggleButtons.ToggleTargeting.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting;
-			_toggleButtons.ToggleRichMedia.Checked = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia;
-		}
-
-		private void SaveView()
-		{
-			advBandedGridView.CloseEditor();
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalDimensions = _toggleButtons.ToggleDimensions.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalStrategy = _toggleButtons.ToggleStrategy.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalLocation = _toggleButtons.ToggleLocation.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting = _toggleButtons.ToggleTargeting.Checked;
-			ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia = _toggleButtons.ToggleRichMedia.Checked;
+			gridBandOptions.Visible = ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting ||
+									  ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia;
+			if (ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting &&
+				ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia)
+			{
+				gridColumnTarget.Visible = true;
+				gridColumnTarget.RowCount = 1;
+				advBandedGridView.SetColumnPosition(gridColumnTarget, 0, 0);
+				gridColumnRichMedia.Visible = true;
+				gridColumnRichMedia.RowCount = 1;
+				advBandedGridView.SetColumnPosition(gridColumnRichMedia, 1, 0);
+			}
+			else if (ScheduleSettings.DigitalProductListViewSettings.ShowDigitalTargeting)
+			{
+				gridColumnTarget.Visible = true;
+				gridColumnTarget.RowCount = 2;
+				gridColumnRichMedia.Visible = false;
+			}
+			else if (ScheduleSettings.DigitalProductListViewSettings.ShowDigitalRichMedia)
+			{
+				gridColumnTarget.Visible = false;
+				gridColumnRichMedia.Visible = true;
+				gridColumnRichMedia.RowCount = 2;
+			}
 		}
 
 		public void RefreshDigitalAfterAddProduct()
@@ -151,35 +145,12 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			RefreshDigitalAfterAddProduct();
 		}
 
-		private void DeleteProduct()
+		public void DeleteProduct()
 		{
 			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure you want to delete this line?") != DialogResult.Yes) return;
 			advBandedGridView.DeleteSelectedRows();
 			Content.RebuildDigitalProductIndexes();
 			RefreshDigitalAfterAddProduct();
-		}
-
-		private void repositoryItemButtonEditPosition_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			switch (e.Button.Index)
-			{
-				case 0:
-					Content.UpDigital(advBandedGridView.GetDataSourceRowIndex(advBandedGridView.FocusedRowHandle));
-					if (advBandedGridView.FocusedRowHandle > 0)
-						advBandedGridView.FocusedRowHandle--;
-					break;
-				case 1:
-					Content.DownDigital(advBandedGridView.GetDataSourceRowIndex(advBandedGridView.FocusedRowHandle));
-					if (advBandedGridView.FocusedRowHandle < advBandedGridView.RowCount - 1)
-						advBandedGridView.FocusedRowHandle++;
-					break;
-			}
-			_onDataChanged();
-		}
-
-		private void repositoryItemButtonEditDelete_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			DeleteProduct();
 		}
 
 		public void CloneProduct()
@@ -288,17 +259,17 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			}
 			else if (e.Column == gridColumnTarget)
 			{
-				e.RepositoryItem = product.EnableTarget && !String.IsNullOrEmpty(product.Name) ? repositoryItemButtonEditTargetEnabled : repositoryItemButtonEditTargetDisabled;
+				e.RepositoryItem = product.EnableTarget && !String.IsNullOrEmpty(product.Name) ? repositoryItemHyperLinkEditTargetEnabled : repositoryItemHyperLinkEditTargetDisabled;
 			}
 			else if (e.Column == gridColumnRichMedia)
 			{
-				e.RepositoryItem = product.EnableRichMedia && !String.IsNullOrEmpty(product.Name) ? repositoryItemButtonEditRichMediaEnabled : repositoryItemButtonEditRichMediaDisabled;
+				e.RepositoryItem = product.EnableRichMedia && !String.IsNullOrEmpty(product.Name) ? repositoryItemHyperLinkEditRichMediaEnabled : repositoryItemHyperLinkEditRichMediaDisabled;
 			}
 		}
 
 		private void OnRowCellStyle(object sender, RowCellStyleEventArgs e)
 		{
-			var product = advBandedGridView.GetRow(e.RowHandle) as DigitalProduct;
+			var product = (DigitalProduct)advBandedGridView.GetRow(e.RowHandle);
 			if (e.Column == gridColumnWidth ||
 				e.Column == gridColumnHeight)
 			{
@@ -356,6 +327,28 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 					e.Appearance.Font = new Font(e.Appearance.Font.Name, e.Appearance.Font.Size, FontStyle.Regular);
 				}
 			}
+			else if (e.Column == gridColumnTarget)
+			{
+				if (String.IsNullOrEmpty(product.Name) || !product.EnableTarget)
+				{
+					e.Appearance.ForeColor = Color.Gray;
+				}
+				else
+				{
+					e.Appearance.ForeColor = Color.Black;
+				}
+			}
+			else if (e.Column == gridColumnRichMedia)
+			{
+				if (String.IsNullOrEmpty(product.Name) || !product.EnableRichMedia)
+				{
+					e.Appearance.ForeColor = Color.Gray;
+				}
+				else
+				{
+					e.Appearance.ForeColor = Color.Black;
+				}
+			}
 		}
 
 		private void repositoryItemComboBoxProductType_CloseUp(object sender, CloseUpEventArgs e)
@@ -363,30 +356,6 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			if (e.CloseMode != PopupCloseMode.Normal) return;
 			e.AcceptValue = false;
 			advBandedGridView.SetFocusedRowCellValue(gridColumnSubCategory, e.Value);
-			advBandedGridView.CloseEditor();
-		}
-
-		private void repositoryItemButtonEditTarget_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			var digitalProduct = advBandedGridView.GetFocusedRow() as DigitalProduct;
-			if (digitalProduct == null) return;
-			using (var form = new FormProductInfo(ProductInfoType.Targeting, digitalProduct))
-			{
-				if (form.ShowDialog() == DialogResult.OK)
-					_onDataChanged();
-			}
-			advBandedGridView.CloseEditor();
-		}
-
-		private void repositoryItemButtonEditRichMedia_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			var digitalProduct = advBandedGridView.GetFocusedRow() as DigitalProduct;
-			if (digitalProduct == null) return;
-			using (var form = new FormProductInfo(ProductInfoType.RichMedia, digitalProduct))
-			{
-				if (form.ShowDialog() == DialogResult.OK)
-					_onDataChanged();
-			}
 			advBandedGridView.CloseEditor();
 		}
 
@@ -404,88 +373,91 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			_onDataChanged();
 		}
 
-		private void gridToolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		private void repositoryItemHyperLinkEditTarget_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			var digitalProduct = advBandedGridView.GetFocusedRow() as DigitalProduct;
+			if (digitalProduct == null) return;
+			using (var form = new FormProductInfo(ProductInfoType.Targeting, digitalProduct))
+			{
+				if (form.ShowDialog() == DialogResult.OK)
+					_onDataChanged();
+			}
+			advBandedGridView.CloseEditor();
+		}
+
+		private void repositoryItemHyperLinkEditRichMedia_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			e.Handled = true;
+			var digitalProduct = advBandedGridView.GetFocusedRow() as DigitalProduct;
+			if (digitalProduct == null) return;
+			using (var form = new FormProductInfo(ProductInfoType.RichMedia, digitalProduct))
+			{
+				if (form.ShowDialog() == DialogResult.OK)
+					_onDataChanged();
+			}
+			advBandedGridView.CloseEditor();
+		}
+
+		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
 		{
 			if (e.SelectedControl != gridControl) return;
 			var view = gridControl.GetViewAt(e.ControlMousePosition) as GridView;
 			if (view == null) return;
-			var hi = view.CalcHitInfo(e.ControlMousePosition);
-			if (!hi.InRowCell) return;
-			var product = advBandedGridView.GetRow(hi.RowHandle) as DigitalProduct;
+			var hitInfo = view.CalcHitInfo(e.ControlMousePosition);
+			if (!hitInfo.InRowCell) return;
+			var product = advBandedGridView.GetRow(hitInfo.RowHandle) as DigitalProduct;
 			if (product == null) return;
-			if (hi.Column == gridColumnTarget)
+			if (hitInfo.Column == gridColumnTarget)
 			{
 				if (String.IsNullOrEmpty(product.Name))
-					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Digital Product Required");
+					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), "Digital Product Required");
 				else if (product.EnableTarget)
 				{
 					var availableInfo = product.AddtionalInfo.Where(pi => pi.Type == ProductInfoType.Targeting && pi.Selected);
 					if (availableInfo.Any())
-						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), String.Join(Environment.NewLine, availableInfo.Select(pi => pi.EditValue))) { ToolTipImage = Resources.TargetButton };
+						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), String.Join(Environment.NewLine, availableInfo.Select(pi => pi.EditValue))) { ToolTipImage = Resources.TargetButton };
 					else
-						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Click to add Targeting Options");
+						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), "Click to add Targeting Options");
 				}
 				else
-					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Targeting Options are not available for this product");
+					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), "Targeting Options are not available for this product");
 				e.Info.ToolTipPosition = MousePosition;
 			}
-			else if (hi.Column == gridColumnRichMedia)
+			else if (hitInfo.Column == gridColumnRichMedia)
 			{
 				if (String.IsNullOrEmpty(product.Name))
-					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Digital Product Required");
+					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), "Digital Product Required");
 				else if (product.EnableRichMedia)
 				{
 					var availableInfo = product.AddtionalInfo.Where(pi => pi.Type == ProductInfoType.RichMedia && pi.Selected);
 					if (availableInfo.Any())
-						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), String.Join(Environment.NewLine, availableInfo.Select(pi => pi.EditValue))) { ToolTipImage = Resources.RichMediaButton };
+						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), String.Join(Environment.NewLine, availableInfo.Select(pi => pi.EditValue))) { ToolTipImage = Resources.RichMediaButton };
 					else
-						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Click to add Rich Media Options");
+						e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), "Click to add Rich Media Options");
 				}
 				else
-					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Rich Media Options are not available for this product");
+					e.Info = new ToolTipControlInfo(new CellToolTipInfo(hitInfo.RowHandle, hitInfo.Column, "cell"), "Rich Media Options are not available for this product");
 				e.Info.ToolTipPosition = MousePosition;
 			}
 		}
 
-		private void OnDimensionsCheckedChanged(object sender, EventArgs e)
+		private void advBandedGridView_MouseMove(object sender, MouseEventArgs e)
 		{
-			gridBandWidth.Visible = _toggleButtons.ToggleDimensions.Checked;
-			gridBandHeight.Visible = _toggleButtons.ToggleDimensions.Checked;
-			_onDataChanged();
-		}
-
-		private void OnStrategyCheckedChanged(object sender, EventArgs e)
-		{
-			gridBandRate.Visible = _toggleButtons.ToggleStrategy.Checked;
-			_onDataChanged();
-		}
-
-		private void OnLocationCheckedChanged(object sender, EventArgs e)
-		{
-			if (_toggleButtons.ToggleLocation.Checked)
+			var hitInfo = ((GridView)sender).CalcHitInfo(new Point(e.X, e.Y));
+			if (!hitInfo.InRowCell ||
+				!(hitInfo.Column.ColumnEdit is DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit)) return;
+			var product = (DigitalProduct)advBandedGridView.GetRow(hitInfo.RowHandle);
+			if (hitInfo.Column == gridColumnTarget && (String.IsNullOrEmpty(product.Name) || !product.EnableTarget))
 			{
-				gridColumnName.RowCount = 1;
-				gridColumnLocation.Visible = true;
-				advBandedGridView.SetColumnPosition(gridColumnLocation, 1, 0);
+				Cursor = Cursors.Default;
+				((DXMouseEventArgs) e).Handled = true;
 			}
-			else
+			if (hitInfo.Column == gridColumnRichMedia && (String.IsNullOrEmpty(product.Name) || !product.EnableRichMedia))
 			{
-				gridColumnLocation.Visible = false;
-				gridColumnName.RowCount = 2;
+				Cursor = Cursors.Default;
+				((DXMouseEventArgs) e).Handled = true;
 			}
-			_onDataChanged();
-		}
-
-		private void OnTargetingCheckedChanged(object sender, EventArgs e)
-		{
-			gridBandTarget.Visible = _toggleButtons.ToggleTargeting.Checked;
-			_onDataChanged();
-		}
-
-		private void OnRichMediaCheckedChanged(object sender, EventArgs e)
-		{
-			gridBandRichMedia.Visible = _toggleButtons.ToggleRichMedia.Checked;
-			_onDataChanged();
 		}
 	}
 }

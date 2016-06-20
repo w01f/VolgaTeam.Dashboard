@@ -48,10 +48,9 @@ namespace CommandCentral.TabMainDashboardForms
 						"LockedMode",
 						"PricingStrategy",
 						"PositionColumn",
-						"Placeholder",
 						"SpecialRBNLinks",
 						"TGT_Popup",
-						"RM_Popup",						
+						"RM_Popup",
 						"Home",
 						"WebSlide",
 						"DigPkg",
@@ -92,13 +91,12 @@ namespace CommandCentral.TabMainDashboardForms
 			var specialLinkButtons = new List<SpecialLinkButton>();
 			var targetingRecords = new List<DigitalProductInfo>();
 			var richMediaRecords = new List<DigitalProductInfo>();
-			var placeholders = new List<string>();
 
 			var defaultHomeViewSettings = new HomeViewSettings();
 			var defaultDigitalProductSettings = new DigitalProductSettings();
 			var defaultDigitalPackageSettings = new DigitalPackageSettings();
 
-			string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
+			var connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
 			try
 			{
@@ -133,7 +131,7 @@ namespace CommandCentral.TabMainDashboardForms
 
 					slideHeaders.Sort((x, y) =>
 					{
-						int result = y.IsDefault.CompareTo(x.IsDefault);
+						var result = y.IsDefault.CompareTo(x.IsDefault);
 						if (result == 0)
 							result = 1;
 						return result;
@@ -389,16 +387,13 @@ namespace CommandCentral.TabMainDashboardForms
 					if (dataTable.Columns.Count > 0)
 						foreach (DataRow row in dataTable.Rows)
 						{
-							if (row[0] == null) continue;
-							var rowValue = row[0].ToString();
-							if (!String.IsNullOrEmpty(rowValue))
-							{
-								specialLinksGroupName = rowValue;
-								var imageFilePath = Path.Combine(Application.StartupPath, SpecialButtonsImageSourceFolder, "!RibbonGroup.png");
-								if (File.Exists(imageFilePath))
-									specialLinksGroupLogo = new Bitmap(imageFilePath);
-								break;
-							}
+							var rowValue = row[0]?.ToString();
+							if (String.IsNullOrEmpty(rowValue)) continue;
+							specialLinksGroupName = rowValue;
+							var imageFilePath = Path.Combine(Application.StartupPath, SpecialButtonsImageSourceFolder, "!RibbonGroup.png");
+							if (File.Exists(imageFilePath))
+								specialLinksGroupLogo = new Bitmap(imageFilePath);
+							break;
 						}
 				}
 				catch
@@ -477,30 +472,6 @@ namespace CommandCentral.TabMainDashboardForms
 						if (!String.IsNullOrEmpty(specialButton.Name) && !String.IsNullOrEmpty(specialButton.Type) && specialButton.Paths.Any())
 							specialLinkButtons.Add(specialButton);
 					}
-				}
-				catch
-				{
-				}
-				finally
-				{
-					dataAdapter.Dispose();
-					dataTable.Dispose();
-				}
-
-				//Load Placeholders
-				dataAdapter = new OleDbDataAdapter("SELECT * FROM [Placeholder$]", connection);
-				dataTable = new DataTable();
-				placeholders.Clear();
-				try
-				{
-					dataAdapter.Fill(dataTable);
-					if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
-						foreach (DataRow row in dataTable.Rows)
-						{
-							var placeholder = row[0].ToString().Trim();
-							if (!String.IsNullOrEmpty(placeholder))
-								placeholders.Add(placeholder);
-						}
 				}
 				catch
 				{
@@ -986,9 +957,6 @@ namespace CommandCentral.TabMainDashboardForms
 					xml.AppendLine(String.Format(@"<Path>{0}</Path>", path.Replace(@"&", "&#38;").Replace("\"", "&quot;")));
 				xml.AppendLine(@"</SpecialButton>");
 			}
-
-			foreach (var placeholder in placeholders)
-				xml.AppendLine(String.Format("<Placeholder>{0}</Placeholder>", placeholder.Replace(@"&", "&#38;").Replace("\"", "&quot;")));
 
 			foreach (var productInfo in targetingRecords)
 				xml.AppendLine(String.Format(@"<Targeting>{0}</Targeting>", productInfo.Serialize()));

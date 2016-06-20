@@ -10,30 +10,15 @@ namespace Asa.Business.Online.Entities.NonPersistent
 	{
 		private DigitalProduct _source;
 
-		public string Header
-		{
-			get { return "{0}"; }
-		}
+		public string Header => "{0}";
 
-		public string Websites
-		{
-			get { return String.Join(", ", _source.Websites.ToArray()); }
-		}
+		public string Websites => String.Join(", ", _source.Websites.ToArray());
 
-		public string PresentationDate
-		{
-			get { return _source.Settings.PresentationDate.HasValue ? _source.Settings.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty; }
-		}
+		public string PresentationDate => _source.Settings.PresentationDate?.ToString("MM/dd/yy") ?? String.Empty;
 
-		public string BusinessName
-		{
-			get { return _source.Settings.BusinessName; }
-		}
+		public string BusinessName => _source.Settings.BusinessName;
 
-		public string DecisionMaker
-		{
-			get { return _source.Settings.DecisionMaker; }
-		}
+		public string DecisionMaker => _source.Settings.DecisionMaker;
 
 		public string FlightDates
 		{
@@ -48,25 +33,13 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			}
 		}
 
-		public string DurationValue
-		{
-			get { return _source.DurationValue.HasValue && _source.ShowDuration ? _source.DurationValue.Value.ToString("#,##0") : String.Empty; }
-		}
+		public string DurationValue => _source.DurationValue.HasValue && _source.ShowDuration ? _source.DurationValue.Value.ToString("#,##0") : String.Empty;
 
-		public string DurationType
-		{
-			get { return _source.ShowDuration ? _source.DurationType : String.Empty; }
-		}
+		public string DurationType => _source.ShowDuration ? _source.DurationType : String.Empty;
 
-		public string ProductName
-		{
-			get { return _source.UserDefinedName; }
-		}
+		public string ProductName => !String.IsNullOrEmpty(_source.UserDefinedName) ? _source.UserDefinedName : _source.ExtendedName;
 
-		public string Description
-		{
-			get { return _source.UserDescription; }
-		}
+		public string Description => _source.UserDescription;
 
 		public decimal? Impressions
 		{

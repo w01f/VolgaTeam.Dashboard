@@ -160,7 +160,7 @@
 			this.xtraTabControlSnapshots.Name = "xtraTabControlSnapshots";
 			this.xtraTabControlSnapshots.Size = new System.Drawing.Size(595, 541);
 			this.xtraTabControlSnapshots.TabIndex = 1;
-			this.xtraTabControlSnapshots.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlSnapshots_SelectedPageChanged);
+			this.xtraTabControlSnapshots.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.OnSelectedTabPageChanged);
 			this.xtraTabControlSnapshots.CloseButtonClick += new System.EventHandler(this.xtraTabControlSnapshots_CloseButtonClick);
 			this.xtraTabControlSnapshots.MouseDown += new System.Windows.Forms.MouseEventHandler(this.xtraTabControlSnapshots_MouseDown);
 			// 

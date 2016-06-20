@@ -53,7 +53,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionContainer = sectionContainer;
 			Text = "Digital";
 			pnContent.Dock = DockStyle.Fill;
-			pbNoProducts.Dock = DockStyle.Fill;
+			pnNoProducts.Dock = DockStyle.Fill;
 		}
 
 		public void InitControls()
@@ -169,7 +169,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (_digitalInfo.Products.Any())
 				pnContent.BringToFront();
 			else
-				pbNoProducts.BringToFront();
+				pnNoProducts.BringToFront();
 		}
 		#endregion
 
@@ -246,7 +246,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (e.Column != bandedGridColumnLogo) return;
 			var digitalProduct = advBandedGridView.GetFocusedRow() as SectionDigitalProduct;
 			if (digitalProduct == null) return;
-			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
+			using (var form = new FormImageGallery(ListManager.Instance.Images))
 			{
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;

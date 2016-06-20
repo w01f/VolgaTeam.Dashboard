@@ -3,11 +3,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Enums;
-using Asa.Business.Online.Interfaces;
 using Asa.Common.Core.Configuration;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
@@ -21,16 +19,12 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 {
 	[ToolboxItem(false)]
 	//public partial class DigitalProductControl : UserControl, IDigitalOutputControl
-	public partial class DigitalProductControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : XtraTabPage, IDigitalProductControl
-		where TPartitionContet : BaseSchedulePartitionContent<TSchedule, TScheduleSettings>, IDigitalProductsContent
-		where TSchedule : IDigitalSchedule<TScheduleSettings>
-		where TScheduleSettings : IDigitalScheduleSettings
-		where TChangeInfo : DigitalScheduleChangeInfo
+	public partial class DigitalProductControl : XtraTabPage, IDigitalProductControl, IDigitalOutputItem
 	{
-		private readonly DigitalProductContainer<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> _container;
+		private readonly IDigitalProductsContainer _container;
 		private bool _allowToSave;
 
-		public DigitalProductControl(DigitalProductContainer<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> container)
+		public DigitalProductControl(IDigitalProductsContainer container)
 		{
 			InitializeComponent();
 			_container = container;
@@ -68,7 +62,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 			AssignCloseActiveEditorsonOutSideClick(this);
 
-			SummaryControl = new DigitalProductSummaryControl(this);
+			SummaryControl = new DigitalProductSummaryControl();
 		}
 
 		public DigitalProduct Product { get; set; }
@@ -191,7 +185,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			_allowToSave = false;
 
 			Text = Product.Name.Replace("&", "&&");
-			memoEditProductName.EditValue = Product.UserDefinedName;
+			memoEditProductName.EditValue = !String.IsNullOrEmpty(Product.UserDefinedName) ? Product.UserDefinedName : Product.ExtendedName;
 
 			switch (Product.Formula)
 			{
@@ -251,12 +245,12 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			checkEditStrengths2.Checked = !String.IsNullOrEmpty(Product.Strength2);
 			comboBoxEditStrengths2.EditValue = Product.Strength2;
 
-			hyperLinkEditResetProductName.Visible = !(memoEditProductName.EditValue != null && memoEditProductName.EditValue.ToString().Equals(Product.ExtendedName));
+			hyperLinkEditResetProductName.Visible = !String.Equals(memoEditProductName.EditValue as String, Product.ExtendedName, StringComparison.OrdinalIgnoreCase);
 			_allowToSave = true;
 
 			comboBoxEditPriceType_SelectedIndexChanged(comboBoxEditPriceType, EventArgs.Empty);
 
-			SummaryControl.UpdateControls();
+			SummaryControl.LoadData(Product);
 		}
 
 		private void UpdateFormulaComponents()
@@ -302,7 +296,9 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		public void SaveValues()
 		{
 			if (!_allowToSave) return;
-			Product.UserDefinedName = memoEditProductName.EditValue != null ? memoEditProductName.EditValue.ToString() : Product.ExtendedName;
+			Product.UserDefinedName = !String.Equals(memoEditProductName.EditValue as String, Product.ExtendedName, StringComparison.OrdinalIgnoreCase) ?
+				memoEditProductName.EditValue as String :
+				null;
 			Product.Websites.Clear();
 			foreach (CheckedListBoxItem item in checkedListBoxControlWebsite.Items)
 				if (item.CheckState == CheckState.Checked)
@@ -314,14 +310,14 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			Product.Strength1 = checkEditStrengths1.Checked && comboBoxEditStrengths1.EditValue != null ? comboBoxEditStrengths1.EditValue.ToString() : string.Empty;
 			Product.Strength2 = checkEditStrengths2.Checked && comboBoxEditStrengths2.EditValue != null ? comboBoxEditStrengths2.EditValue.ToString() : string.Empty;
 
-			SummaryControl.UpdateControls();
+			SummaryControl.LoadData(Product);
 		}
 
 		public void Release()
 		{
 			SummaryControl.Release();
 			SummaryControl = null;
-			
+
 			Product = null;
 		}
 
@@ -463,7 +459,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 					break;
 			}
 			_allowToSave = true;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void checkEditFormula_CheckedChanged(object sender, EventArgs e)
@@ -471,7 +467,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			UpdateFormulaComponents();
 			if (!_allowToSave) return;
 			UpdateFormula();
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void checkEditInvestmentDetails_CheckedChanged(object sender, EventArgs e)
@@ -480,33 +476,33 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			if (!checkEditInvestmentDetails.Checked)
 				textEditInvestmentDetails.EditValue = null;
 			if (_allowToSave)
-				_container.SettingsNotSaved = true;
+				_container.RaiseDataChanged();
 		}
 
 		private void spinEditPricing_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			UpdateFormula();
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void SinglePricing_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			UpdateSinglePricing();
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void checkEditStrengths1_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditStrengths1.Enabled = checkEditStrengths1.Checked;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void checkEditStrengths2_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditStrengths2.Enabled = checkEditStrengths2.Checked;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void checkEditComments_CheckedChanged(object sender, EventArgs e)
@@ -518,24 +514,24 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			buttonXShowCommentTargeting.Enabled = checkEditComments.Checked && Product.TargetingAvailable;
 			buttonXShowCommentRichMedia.Enabled = checkEditComments.Checked && Product.RichMediaAvailable;
 			if (!_allowToSave) return;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void Edit_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void checkedListBoxControlWebsite_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
 		{
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void memoEditProductName_EditValueChanged(object sender, EventArgs e)
 		{
-			var userDefinedName = memoEditProductName.EditValue != null ? memoEditProductName.EditValue.ToString() : null;
-			if (Product.ExtendedName.Equals(userDefinedName))
+			var userDefinedName = memoEditProductName.EditValue as String;
+			if (String.Equals(userDefinedName, Product.ExtendedName, StringComparison.OrdinalIgnoreCase))
 			{
 				memoEditProductName.ForeColor = Color.Black;
 				hyperLinkEditResetProductName.Visible = false;
@@ -546,7 +542,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				hyperLinkEditResetProductName.Visible = true;
 			}
 			if (_allowToSave)
-				_container.SettingsNotSaved = true;
+				_container.RaiseDataChanged();
 		}
 
 		private void checkEditDescriptionManualEdit_CheckedChanged(object sender, EventArgs e)
@@ -558,7 +554,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			Product.DescriptionManualEdit = checkEditDescriptionManualEdit.Checked;
 			Product.UserDescription = null;
 			memoEditDescription.EditValue = Product.UserDescription;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void buttonXShowDescriptionAdditionalInfo_CheckedChanged(object sender, EventArgs e)
@@ -567,7 +563,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			Product.ShowDescriptionTargeting = buttonXShowDescriptionTargeting.Checked;
 			Product.ShowDescriptionRichMedia = buttonXShowDescriptionRichMedia.Checked;
 			memoEditDescription.EditValue = Product.UserDescription;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void checkEditCommentManualEdit_CheckedChanged(object sender, EventArgs e)
@@ -579,7 +575,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			Product.CommentManualEdit = checkEditCommentManualEdit.Checked;
 			Product.Comment = null;
 			memoEditComments.EditValue = Product.Comment;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void buttonXShowCommentAdditonalInfo_CheckedChanged(object sender, EventArgs e)
@@ -588,7 +584,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			Product.ShowCommentTargeting = buttonXShowCommentTargeting.Checked;
 			Product.ShowCommentRichMedia = buttonXShowCommentRichMedia.Checked;
 			memoEditComments.EditValue = Product.Comment;
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 		}
 
 		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
@@ -597,34 +593,34 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			ResetProductName(this, new OpenLinkEventArgs(String.Empty));
 			LoadValues();
 			_container.LoadProduct(this);
-			_container.SettingsNotSaved = true;
+			_container.RaiseDataChanged();
 			e.Handled = true;
 		}
 
 		public void ResetProductName(object sender, OpenLinkEventArgs e)
 		{
 			e.Handled = true;
+			Product.UserDefinedName = null;
 			memoEditProductName.EditValue = Product.ExtendedName;
 		}
 
 		#region Output Staff
-		public PreviewGroup GetPreviewGroup()
+		public string SlideName => Product.Name;
+
+		public void GenerateOutput()
 		{
-			return new PreviewGroup
+			OnlineSchedulePowerPointHelper.Instance.AppendOneSheets(new[] { Product }, _container.SelectedTheme);
+		}
+
+		public PreviewGroup GeneratePreview()
+		{
+			var previewGroup = new PreviewGroup
 			{
 				Name = Product.Name,
 				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-		}
-
-		public string SlideName
-		{
-			get { return Product.Name; }
-		}
-
-		public void Output()
-		{
-			OnlineSchedulePowerPointHelper.Instance.AppendOneSheet(new[] { Product }, _container.SelectedTheme);
+			OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, Product, _container.SelectedTheme);
+			return previewGroup;
 		}
 		#endregion
 	}

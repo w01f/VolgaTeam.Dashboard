@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
-using Asa.Business.Media.Configuration;
+using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Images;
@@ -33,7 +33,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Index = Parent.Products.Count + 1;
-			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
+			Logo = ListManager.Instance.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
 		}
 
 		public void Dispose()

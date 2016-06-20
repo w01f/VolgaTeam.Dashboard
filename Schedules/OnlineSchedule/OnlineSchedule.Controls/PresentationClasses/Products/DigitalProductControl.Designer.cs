@@ -1,6 +1,6 @@
 ﻿namespace Asa.Online.Controls.PresentationClasses.Products
 {
-	partial class DigitalProductControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> 
+	partial class DigitalProductControl
     {
         /// <summary> 
         /// Required designer variable.

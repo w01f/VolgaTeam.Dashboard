@@ -5,7 +5,6 @@
 		public const string ScheduleSettings = "Home";
 		public const string ProgramSchedule = "Schedule";
 		public const string DigitalProducts = "Digital Slides";
-		public const string DigitalPackages = "Digital PKG";
 		public const string Snapshots = "Snapshot";
 		public const string Options = "Options";
 		public const string BroadcastCalendar = "Calendar";

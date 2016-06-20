@@ -31,8 +31,11 @@
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.labelControlWarnings = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.pnInfo = new System.Windows.Forms.Panel();
+			this.labelControlCollectionItemsInfo = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			this.pnInfo.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// xtraTabControl
@@ -50,9 +53,9 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 27);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 32);
 			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.Size = new System.Drawing.Size(712, 538);
+			this.xtraTabControl.Size = new System.Drawing.Size(712, 533);
 			this.xtraTabControl.TabIndex = 0;
 			// 
 			// labelControlWarnings
@@ -61,14 +64,15 @@
 			this.labelControlWarnings.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.labelControlWarnings.Appearance.ForeColor = System.Drawing.Color.Red;
 			this.labelControlWarnings.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlWarnings.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.labelControlWarnings.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlWarnings.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlWarnings.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.labelControlWarnings.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelControlWarnings.Location = new System.Drawing.Point(0, 0);
+			this.labelControlWarnings.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlWarnings.Location = new System.Drawing.Point(336, 0);
 			this.labelControlWarnings.Name = "labelControlWarnings";
 			this.labelControlWarnings.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-			this.labelControlWarnings.Size = new System.Drawing.Size(712, 27);
+			this.labelControlWarnings.Size = new System.Drawing.Size(376, 32);
 			this.labelControlWarnings.StyleController = this.styleController;
 			this.labelControlWarnings.TabIndex = 9;
 			// 
@@ -87,16 +91,44 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
+			// pnInfo
+			// 
+			this.pnInfo.Controls.Add(this.labelControlWarnings);
+			this.pnInfo.Controls.Add(this.labelControlCollectionItemsInfo);
+			this.pnInfo.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnInfo.Location = new System.Drawing.Point(0, 0);
+			this.pnInfo.Name = "pnInfo";
+			this.pnInfo.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.pnInfo.Size = new System.Drawing.Size(712, 32);
+			this.pnInfo.TabIndex = 10;
+			// 
+			// labelControlCollectionItemsInfo
+			// 
+			this.labelControlCollectionItemsInfo.AllowHtmlString = true;
+			this.labelControlCollectionItemsInfo.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.labelControlCollectionItemsInfo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.labelControlCollectionItemsInfo.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.labelControlCollectionItemsInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlCollectionItemsInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlCollectionItemsInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.labelControlCollectionItemsInfo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.labelControlCollectionItemsInfo.Location = new System.Drawing.Point(10, 0);
+			this.labelControlCollectionItemsInfo.Name = "labelControlCollectionItemsInfo";
+			this.labelControlCollectionItemsInfo.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+			this.labelControlCollectionItemsInfo.Size = new System.Drawing.Size(326, 32);
+			this.labelControlCollectionItemsInfo.StyleController = this.styleController;
+			this.labelControlCollectionItemsInfo.TabIndex = 10;
+			// 
 			// SectionContainer
 			// 
-			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControl);
-			this.Controls.Add(this.labelControlWarnings);
+			this.Controls.Add(this.pnInfo);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "SectionContainer";
 			this.Size = new System.Drawing.Size(712, 565);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			this.pnInfo.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -106,5 +138,7 @@
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
 		private DevExpress.XtraEditors.LabelControl labelControlWarnings;
 		private DevExpress.XtraEditors.StyleController styleController;
+		private System.Windows.Forms.Panel pnInfo;
+		private DevExpress.XtraEditors.LabelControl labelControlCollectionItemsInfo;
 	}
 }

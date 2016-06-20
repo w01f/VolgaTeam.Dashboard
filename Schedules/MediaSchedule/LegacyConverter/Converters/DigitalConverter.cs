@@ -81,7 +81,6 @@ namespace Asa.Media.LegacyConverter.Converters
 			}
 
 			target.PackageRecord.ImportData(source.PackageRecord);
-			target.SummaryItem.ImportData(source.SummaryItem);
 		}
 
 		private static void ImportData(

@@ -2,8 +2,9 @@
 
 namespace Asa.Online.Controls.PresentationClasses.Products
 {
-	public interface IDigitalProductControl : IDigitalSlideControl
+	public interface IDigitalProductControl
 	{
 		DigitalProduct Product { get; }
+		void Release();
 	}
 }

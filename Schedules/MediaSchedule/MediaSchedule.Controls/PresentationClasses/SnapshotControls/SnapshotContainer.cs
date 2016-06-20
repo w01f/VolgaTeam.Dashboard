@@ -39,45 +39,21 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private XtraTabHitInfo _menuHitInfo;
 		private XtraTabDragDropHelper<SnapshotControl> _tabDragDropHelper;
 
-		private MediaSchedule Schedule
-		{
-			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
-		}
+		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
 
-		private MediaScheduleSettings ScheduleSettings
-		{
-			get { return Schedule.Settings; }
-		}
+		private MediaScheduleSettings ScheduleSettings => Schedule.Settings;
 
-		public override string Identifier
-		{
-			get { return ContentIdentifiers.Snapshots; }
-		}
+		public override string Identifier => ContentIdentifiers.Snapshots;
 
-		public override RibbonTabItem TabPage
-		{
-			get { return Controller.Instance.TabSnapshot; }
-		}
+		public override RibbonTabItem TabPage => Controller.Instance.TabSnapshot;
 
-		public SlideType SlideType
-		{
-			get { return MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVSnapshot : SlideType.RadioSnapshot; }
-		}
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVSnapshot : SlideType.RadioSnapshot;
 
-		private SnapshotControl ActiveSnapshot
-		{
-			get { return xtraTabControlSnapshots.SelectedTabPage as SnapshotControl; }
-		}
+		private SnapshotControl ActiveSnapshot => xtraTabControlSnapshots.SelectedTabPage as SnapshotControl;
 
-		private SnapshotSummaryControl ActiveSummary
-		{
-			get { return xtraTabControlSnapshots.SelectedTabPage as SnapshotSummaryControl; }
-		}
+		private SnapshotSummaryControl ActiveSummary => xtraTabControlSnapshots.SelectedTabPage as SnapshotSummaryControl;
 
-		private SnapshotSummaryControl Summary
-		{
-			get { return xtraTabControlSnapshots.TabPages.OfType<SnapshotSummaryControl>().Single(); }
-		}
+		private SnapshotSummaryControl Summary => xtraTabControlSnapshots.TabPages.OfType<SnapshotSummaryControl>().Single();
 
 		public SnapshotContainer()
 		{
@@ -264,6 +240,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			if (!quickLoad)
 				xtraTabControlSnapshots.SelectedTabPageIndex = 0;
 			UpdateSnapshotSplash();
+			UpdateSummaryState();
+			UpdateProgramCollectionButtons();
 		}
 
 		private void LoadActiveTabData(bool activate = false)
@@ -319,6 +297,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				pnSummaryInfo.Visible = false;
 				pnSnapshotInfo.Visible = false;
 			}
+			UpdateProgramCollectionButtons();
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
 			UpdateOutputStatus();
@@ -426,6 +405,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					ApplySharedSettings(sourceControl);
 					xtraTabControlSnapshots.TabPages.OfType<SnapshotControl>().Where(oc => oc.Data.UniqueID != sourceControl.Data.UniqueID).ToList().ForEach(oc => oc.UpdateView());
 				}
+				UpdateSummaryState();
 				UpdateTotalsValues();
 				UpdateOutputStatus();
 				SettingsNotSaved = true;
@@ -500,6 +480,17 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
+		private void UpdateSummaryState()
+		{
+			Summary.PageEnabled = EditedContent.Snapshots.SelectMany(s => s.Programs).Any();
+		}
+
+		private void UpdateProgramCollectionButtons()
+		{
+			Controller.Instance.SnapshotProgramAdd.Enabled =
+			Controller.Instance.SnapshotProgramDelete.Enabled = ActiveSnapshot != null;
+		}
+
 		private void InitColorsControl()
 		{
 			xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.SnapshotColors.Items.Count > 1;
@@ -540,14 +531,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		private void OnAddProgramClick(object sender, EventArgs e)
 		{
-			if (ActiveSnapshot == null) return;
-			ActiveSnapshot.AddProgram();
+			ActiveSnapshot?.AddProgram();
 		}
 
 		private void OnDeleteProgramClick(object sender, EventArgs e)
 		{
-			if (ActiveSnapshot == null) return;
-			ActiveSnapshot.DeleteProgram();
+			ActiveSnapshot?.DeleteProgram();
 		}
 		#endregion
 
@@ -559,10 +548,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			if (snapshotControl == null) return;
 			DeleteSnapshot(snapshotControl);
 			UpdateSnapshotSplash();
+			UpdateSummaryState();
 			SettingsNotSaved = true;
 		}
 
-		private void xtraTabControlSnapshots_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+		private void OnSelectedTabPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			if (!_allowToSave) return;
 			LoadActiveTabData(true);

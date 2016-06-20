@@ -61,7 +61,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		public void UpdateView(bool focus = false)
 		{
 			Data.UpdateSpotType();
-			
+
 			gridControl.DataSource = null;
 			gridControl.DataSource = Data.Parent.Options;
 			gridControl.RefreshDataSource();
@@ -69,7 +69,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			if (focus)
 				advBandedGridView.Focus();
 
-			PageEnabled = Data.Enabled;
+			PageEnabled = Data.Enabled && Data.Parent.Options.SelectMany(o => o.Programs).Any();
 
 			gridBandId.Visible = Data.ShowLineId;
 			gridBandLogo.Visible = Data.ShowLogo;
@@ -176,7 +176,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 
 		public string[][] Logos { get; set; }
 		public float[] ColumnWidths { get; set; }
-		
+
 		public ContractSettings ContractSettings
 		{
 			get { return Data.ContractSettings; }

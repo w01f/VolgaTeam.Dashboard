@@ -59,7 +59,6 @@ namespace Asa.Business.Media.Dictionaries
 		public List<string> Statuses { get; set; }
 		public List<MediaMonthTemplate> MonthTemplatesMondayBased { get; set; }
 		public List<MediaMonthTemplate> MonthTemplatesSundayBased { get; set; }
-		public ImageSource DefaultStrategyLogo { get; set; }
 		public bool FlexFlightDatesAllowed { get; private set; }
 
 		public ScheduleSectionSettings DefaultWeeklyScheduleSettings { get; private set; }
@@ -230,17 +229,24 @@ namespace Asa.Business.Media.Dictionaries
 		private void LoadImages()
 		{
 			Images.Clear();
-			var defaultGroup = new ImageSourceGroup(new StorageDirectory(Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge(String.Format("{0}", MediaMetaData.Instance.DataTypeString.ToUpper()))))
-			{
-				Name = "Gallery",
-				Order = -1
-			};
+			var defaultGroup =
+				new ImageSourceGroup(
+					new StorageDirectory(
+						Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge(String.Format("{0}",
+							MediaMetaData.Instance.DataTypeString.ToUpper()))))
+				{
+					Name = "Gallery",
+					Order = -1
+				};
 			defaultGroup.LoadImages();
 			if (defaultGroup.Images.Any())
 				Images.Add(defaultGroup);
 
 
-			var additionalImageFolder = new StorageDirectory(Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge(String.Format("{0}_2", MediaMetaData.Instance.DataTypeString.ToUpper())));
+			var additionalImageFolder =
+				new StorageDirectory(
+					Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.RelativePathParts.Merge(String.Format(
+						"{0}_2", MediaMetaData.Instance.DataTypeString.ToUpper())));
 			if (additionalImageFolder.ExistsLocal())
 			{
 				var contentDescriptionFile = new StorageFile(additionalImageFolder.RelativePathParts.Merge("order.txt"));
@@ -263,8 +269,6 @@ namespace Asa.Business.Media.Dictionaries
 					}
 				}
 			}
-
-			DefaultStrategyLogo = ImageSource.FromImage(ResourceManager.Instance.DefaultStrategyLogoFile.ExistsLocal() ? new Bitmap(ResourceManager.Instance.DefaultStrategyLogoFile.LocalPath) : null);
 		}
 
 		private void GetProgramProperties(XmlNode node, ref SourceProgram sourceProgram)

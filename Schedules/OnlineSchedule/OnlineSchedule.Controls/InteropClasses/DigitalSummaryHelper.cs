@@ -11,7 +11,7 @@ namespace Asa.Online.Controls.InteropClasses
 {
 	public partial class OnlineSchedulePowerPointHelper
 	{
-		public void AppendDigitalSummary(DigitalSummaryControl digitalSummary, Presentation destinationPresentation = null)
+		public void AppendDigitalSummary(IDigitalSummaryContainerControl digitalSummary, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -57,7 +57,7 @@ namespace Asa.Online.Controls.InteropClasses
 								}
 							}
 						}
-						var selectedTheme = digitalSummary.Parent.SelectedTheme;
+						var selectedTheme = digitalSummary.SelectedTheme;
 						if (selectedTheme != null)
 							presentation.ApplyTheme(selectedTheme.GetThemePath());
 						AppendSlide(presentation, -1, destinationPresentation);
@@ -76,7 +76,7 @@ namespace Asa.Online.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareDigitalSummaryEmail(string fileName, DigitalSummaryControl digitalSummary)
+		public void PrepareDigitalSummaryEmail(string fileName, IDigitalSummaryContainerControl digitalSummary)
 		{
 			PreparePresentation(fileName, presentation => AppendDigitalSummary(digitalSummary, presentation));
 		}

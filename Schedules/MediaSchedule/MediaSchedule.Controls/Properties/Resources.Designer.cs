@@ -180,35 +180,35 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap DigitalInfoLogo
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("DigitalInfoLogo", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap DigitalPackageLogo
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("DigitalPackageLogo", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
 		public static System.Drawing.Bitmap DigitalScheduleLogo
 		{
 			get
 			{
 				object obj = ResourceManager.GetObject("DigitalScheduleLogo", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap DigitalSettingsList
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("DigitalSettingsList", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap DigitalSettingsPackage
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("DigitalSettingsPackage", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -605,18 +605,6 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("SectionNoRecords", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap SectionSettingsDigital
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("SectionSettingsDigital", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

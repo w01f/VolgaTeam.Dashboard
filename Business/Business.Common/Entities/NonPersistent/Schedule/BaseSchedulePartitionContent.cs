@@ -10,10 +10,7 @@ namespace Asa.Business.Common.Entities.NonPersistent.Schedule
 	{
 		public abstract TSchedule Schedule { get; }
 
-		public TScheduleSettings ScheduleSettings
-		{
-			get { return Schedule.Settings; }
-		}
+		public TScheduleSettings ScheduleSettings => Schedule.Settings;
 
 		public virtual void AfterClone(BaseSchedulePartitionContent<TSchedule, TScheduleSettings> source, bool fullClone = true)
 		{

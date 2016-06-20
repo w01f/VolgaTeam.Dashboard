@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 {
-	public class Program : ISummaryProduct, IJsonCloneable<Program>
+	public class Program : IJsonCloneable<Program>
 	{
 		private string _name;
 		private string _day;
@@ -32,8 +32,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		public double? Rate { get; set; }
 		public double? Rating { get; set; }
 		public List<Spot> Spots { get; set; }
-		public CustomSummaryItem SummaryItem { get; private set; }
-
 		#endregion
 
 		#region Calculated Properties
@@ -178,7 +176,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			Time = string.Empty;
 			Length = string.Empty;
 			Spots = new List<Spot>();
-			SummaryItem = new ProductSummaryItem(this);
 		}
 
 		public void Dispose()
@@ -188,8 +185,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 
 			Logo.Dispose();
 			Logo = null;
-
-			SummaryItem = null;
 
 			Parent = null;
 		}

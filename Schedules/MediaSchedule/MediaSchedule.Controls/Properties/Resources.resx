@@ -166,9 +166,6 @@
   <data name="DeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DigitalPackageLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DigitalPackageLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="AddProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddProgram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -279,5 +276,11 @@
   </data>
   <data name="SectionNoDigitalItems" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionNoDigitalItems.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DigitalSettingsList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DigitalSettingsList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DigitalSettingsPackage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DigitalSettingsPackage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

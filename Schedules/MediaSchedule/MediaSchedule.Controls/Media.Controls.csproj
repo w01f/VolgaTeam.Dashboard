@@ -117,11 +117,62 @@
     <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\DigitalProductContainerControl.cs">
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorSettingsRelation.cs" />
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorType.cs" />
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorsContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\MediaWebPackageControl.cs">
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorsContainer.Designer.cs">
+      <DependentUpon>DigitalEditorsContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalListEditorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalListEditorControl.Designer.cs">
+      <DependentUpon>DigitalListEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalProductEditorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalProductEditorControl.Designer.cs">
+      <DependentUpon>DigitalProductEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalSummaryEditorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalSummaryEditorControl.Designer.cs">
+      <DependentUpon>DigitalSummaryEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\IDigitalEditor.cs" />
+    <Compile Include="PresentationClasses\Digital\ContentEditors\IDigitalItemCollectionEditor.cs" />
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DataChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalPackageEditorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalPackageEditorControl.designer.cs">
+      <DependentUpon>DigitalPackageEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Output\IDigitalOutputContainer.cs" />
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalPackageSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalPackageSettingsControl.Designer.cs">
+      <DependentUpon>DigitalPackageSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalSettingsType.cs" />
+    <Compile Include="PresentationClasses\Digital\Settings\ISettingsControl.cs" />
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalListSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalListSettingsControl.Designer.cs">
+      <DependentUpon>DigitalListSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Settings\SettingsChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\Digital\Settings\SettingsContainer.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Settings\SettingsContainer.Designer.cs">
+      <DependentUpon>SettingsContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Gallery\MediaGallery2Control.cs">
       <SubType>UserControl</SubType>
@@ -354,6 +405,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\MediaCalendarControl.resx">
       <DependentUpon>MediaCalendarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalEditorsContainer.resx">
+      <DependentUpon>DigitalEditorsContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalListEditorControl.resx">
+      <DependentUpon>DigitalListEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalProductEditorControl.resx">
+      <DependentUpon>DigitalProductEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalSummaryEditorControl.resx">
+      <DependentUpon>DigitalSummaryEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalPackageEditorControl.resx">
+      <DependentUpon>DigitalPackageEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalPackageSettingsControl.resx">
+      <DependentUpon>DigitalPackageSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalListSettingsControl.resx">
+      <DependentUpon>DigitalListSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\Settings\SettingsContainer.resx">
+      <DependentUpon>SettingsContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OptionsControls\FormOptionSetName.resx">
       <DependentUpon>FormOptionSetName.cs</DependentUpon>
@@ -672,13 +747,16 @@
     <None Include="Resources\RibbonPreview.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DigitalPackageLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\DigitalScheduleLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SectionNoDigitalItems.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalSettingsList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalSettingsPackage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

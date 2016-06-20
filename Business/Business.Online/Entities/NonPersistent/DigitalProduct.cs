@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using Asa.Business.Common.Entities.NonPersistent.Summary;
-using Asa.Business.Common.Interfaces;
 using Asa.Business.Online.Common;
 using Asa.Business.Online.Configuration;
 using Asa.Business.Online.Enums;
@@ -14,7 +12,7 @@ using ListManager = Asa.Business.Online.Dictionaries.ListManager;
 
 namespace Asa.Business.Online.Entities.NonPersistent
 {
-	public class DigitalProduct : ISummaryProduct, IJsonCloneable<DigitalProduct>
+	public class DigitalProduct : IJsonCloneable<DigitalProduct>
 	{
 		private string _name;
 		private string _userDescription;
@@ -78,18 +76,20 @@ namespace Asa.Business.Online.Entities.NonPersistent
 
 		public ProductPackageRecord PackageRecord { get; private set; }
 		public DigitalProductAdPlanSettings AdPlanSettings { get; set; }
-		public CustomSummaryItem SummaryItem { get; private set; }
+		#endregion
 
+		#region Summary Properties
+		public bool ShowSummaryInvestments { get; set; }
+		public bool ShowSummaryImpressions { get; set; }
+		public bool ShowSummaryCPM { get; set; }
+		public bool ShowSummaryInvestmentDetails { get; set; }
 		#endregion
 
 		public DigitalProductOutputData OutputData { get; private set; }
 
 		#region Calculated Properties
 
-		public IDigitalScheduleSettings Settings
-		{
-			get { return Parent.ScheduleSettings; }
-		}
+		public IDigitalScheduleSettings Settings => Parent.ScheduleSettings;
 
 		[JsonIgnore]
 		public string Name
@@ -99,26 +99,17 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			{
 				string oldValue = _name;
 				_name = value;
-				if (string.IsNullOrEmpty(oldValue))
+				if (String.IsNullOrEmpty(oldValue))
 					ApplyDefaultValues();
 			}
 		}
 
-		public string ExtendedName
-		{
-			get { return String.Format("{0}{1}", !String.IsNullOrEmpty(SubCategory) ? (SubCategory + " - ") : String.Empty, Name); }
-		}
+		public string ExtendedName => String.Format("{0}{1}", !String.IsNullOrEmpty(SubCategory) ? (SubCategory + " - ") : String.Empty, Name);
 
-		public string FullName
-		{
-			get
-			{
-				return String.Format("{0} - {1}{2}",
-					Name,
-					Category,
-					!String.IsNullOrEmpty(SubCategory) ? String.Format(@" / {0}", SubCategory) : String.Empty);
-			}
-		}
+		public string FullName => String.Format("{0} - {1}{2}",
+			Name,
+			Category,
+			!String.IsNullOrEmpty(SubCategory) ? String.Format(@" / {0}", SubCategory) : String.Empty);
 
 		private string CalculatedComment
 		{
@@ -325,7 +316,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			AddtionalInfo = new List<ProductInfo>();
 			PackageRecord = new ProductPackageRecord(this);
 			AdPlanSettings = new DigitalProductAdPlanSettings();
-			SummaryItem = new ProductSummaryItem(this);
 			RateType = "CPM";
 			EnableLocation = true;
 			EnableTarget = true;
@@ -347,8 +337,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			AdPlanSettings.Dispose();
 			AdPlanSettings = null;
 
-			SummaryItem = null;
-
 			OutputData.Dispose();
 			OutputData = null;
 
@@ -358,8 +346,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		[OnDeserialized]
 		public void AfterDeserialize(StreamingContext context)
 		{
-			if (String.IsNullOrEmpty(UserDefinedName))
-				UserDefinedName = ExtendedName;
 			UpdateAdditionlaInfo();
 		}
 
@@ -382,7 +368,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 
 		public void ApplyDefaultView()
 		{
-			UserDefinedName = ExtendedName;
+			UserDefinedName = null;
 			Strength1 = String.Empty;
 			Strength2 = String.Empty;
 			DurationType = String.Empty;

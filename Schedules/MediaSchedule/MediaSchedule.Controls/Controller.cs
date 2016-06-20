@@ -33,7 +33,6 @@ namespace Asa.Media.Controls
 		public RibbonTabItem TabHome { get; set; }
 		public RibbonTabItem TabProgramSchedule { get; set; }
 		public RibbonTabItem TabDigitalProduct { get; set; }
-		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabCalendar1 { get; set; }
 		public RibbonTabItem TabCalendar2 { get; set; }
 		public RibbonTabItem TabGallery1 { get; set; }
@@ -88,7 +87,6 @@ namespace Asa.Media.Controls
 				TabHome,
 				TabProgramSchedule,
 				TabDigitalProduct,
-				TabDigitalPackage,
 				TabSnapshot,
 				TabOptions,
 				TabCalendar1,
@@ -115,7 +113,6 @@ namespace Asa.Media.Controls
 			{
 				ProgramSchedulePowerPoint,
 				DigitalProductPowerPoint,
-				DigitalPackagePowerPoint,
 				SnapshotPowerPoint,
 				OptionsPowerPoint,
 				Calendar1PowerPoint,
@@ -129,7 +126,6 @@ namespace Asa.Media.Controls
 			{
 				ProgramSchedulePdf,
 				DigitalProductPdf,
-				DigitalPackagePdf,
 				SnapshotPdf,
 				OptionsPdf,
 				Calendar1Pdf,
@@ -143,7 +139,6 @@ namespace Asa.Media.Controls
 			{
 				ProgramSchedulePreview,
 				DigitalProductPreview,
-				DigitalPackagePreview,
 				SnapshotPreview,
 				OptionsPreview,
 				Calendar1Preview,
@@ -157,7 +152,6 @@ namespace Asa.Media.Controls
 			{
 				ProgramScheduleEmail,
 				DigitalProductEmail,
-				DigitalPackageEmail,
 				SnapshotEmail,
 				OptionsEmail,
 				Calendar1Email,
@@ -190,14 +184,6 @@ namespace Asa.Media.Controls
 				DigitalProductTheme.Click -= OnThemeClick;
 				DigitalProductTheme.Click += OnThemeClick;
 
-				DigitalPackagePowerPoint.Visible = false;
-				((RibbonBar) DigitalPackagePowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar) DigitalPackageEmail.ContainerControl).Visible = false;
-				((RibbonBar) DigitalPackagePreview.ContainerControl).Visible = false;
-				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
-				DigitalPackageTheme.Click -= OnThemeClick;
-				DigitalPackageTheme.Click += OnThemeClick;
-
 				SnapshotPowerPoint.Visible = false;
 				((RibbonBar) SnapshotPowerPoint.ContainerControl).Text = "Important Info";
 				((RibbonBar) SnapshotEmail.ContainerControl).Visible = false;
@@ -226,11 +212,6 @@ namespace Asa.Media.Controls
 				((RibbonBar) DigitalProductPreview.ContainerControl).Visible = true;
 				DigitalProductTheme.Click -= OnThemeClick;
 
-				DigitalPackagePowerPoint.Visible = true;
-				((RibbonBar) DigitalPackageEmail.ContainerControl).Visible = true;
-				((RibbonBar) DigitalPackagePreview.ContainerControl).Visible = true;
-				DigitalPackageTheme.Click -= OnThemeClick;
-
 				SnapshotPowerPoint.Visible = true;
 				((RibbonBar) SnapshotEmail.ContainerControl).Visible = true;
 				((RibbonBar) SnapshotPreview.ContainerControl).Visible = true;
@@ -244,7 +225,6 @@ namespace Asa.Media.Controls
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
 				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 			}
@@ -262,7 +242,6 @@ namespace Asa.Media.Controls
 				HomeSpecialButtons,
 				ProgramScheduleSpecialButtons,
 				DigitalProductSpecialButtons,
-				DigitalPackageSpecialButtons,
 				Calendar1SpecialButtons,
 				Calendar2SpecialButtons,
 				SnapshotSpecialButtons,
@@ -386,22 +365,7 @@ namespace Asa.Media.Controls
 		public ButtonItem DigitalProductTheme { get; set; }
 		public ButtonItem DigitalProductAdd { get; set; }
 		public ButtonItem DigitalProductClone { get; set; }
-		public ButtonItem DigitalProductToggleDimensions { get; set; }
-		public ButtonItem DigitalProductToggleLocation { get; set; }
-		public ButtonItem DigitalProductToggleStrategy { get; set; }
-		public ButtonItem DigitalProductToggleRichMedia { get; set; }
-		public ButtonItem DigitalProductToggleTargeting { get; set; }
-		#endregion
-
-		#region Digital Package
-		public RibbonPanel DigitalPackagePanel { get; set; }
-		public RibbonBar DigitalPackageThemeBar { get; set; }
-		public RibbonBar DigitalPackageSpecialButtons { get; set; }
-		public ButtonItem DigitalPackagePreview { get; set; }
-		public ButtonItem DigitalPackageEmail { get; set; }
-		public ButtonItem DigitalPackagePowerPoint { get; set; }
-		public ButtonItem DigitalPackagePdf { get; set; }
-		public ButtonItem DigitalPackageTheme { get; set; }
+		public ButtonItem DigitalProductDelete { get; set; }
 		#endregion
 
 		#region Calendar 1

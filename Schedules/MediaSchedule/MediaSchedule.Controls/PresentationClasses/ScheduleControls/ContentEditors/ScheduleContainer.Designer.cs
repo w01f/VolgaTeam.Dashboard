@@ -61,7 +61,7 @@
 			this.xtraTabControlSections = new DevExpress.XtraTab.XtraTabControl();
 			this.pbNoSections = new System.Windows.Forms.PictureBox();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
-			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings.SettingsContainer();
+			this.settingsContainer = new Settings.SettingsContainer();
 			this.pnSections = new System.Windows.Forms.Panel();
 			this.pnNoSections = new System.Windows.Forms.Panel();
 			this.contextMenuStripSections = new System.Windows.Forms.ContextMenuStrip();

@@ -267,7 +267,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				EditedContent.RebuildSectionIndexes();
 				var sectionControl = AddSectionControl(section);
 				xtraTabControlSections.SelectedTabPage = sectionControl;
-				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
+				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
 				UpdateSectionSplash();
 				SettingsNotSaved = true;
 			}
@@ -286,7 +286,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				EditedContent.RebuildSectionIndexes();
 				var newControl = AddSectionControl(section, (Int32)section.Index);
 				xtraTabControlSections.SelectedTabPage = newControl;
-				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
+				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
 				SettingsNotSaved = true;
 			}
 		}
@@ -298,7 +298,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			EditedContent.RebuildSectionIndexes();
 			xtraTabControlSections.TabPages.Remove(sectionControl);
 			UpdateSectionSplash();
-			settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
+			settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
 			SettingsNotSaved = true;
 		}
 
@@ -311,7 +311,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
 				snapshotControl.SectionData.Name = form.SectionName;
 				snapshotControl.Text = form.SectionName;
-				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
+				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
 				SettingsNotSaved = true;
 			}
 		}

@@ -94,7 +94,6 @@
     <Compile Include="Entities\NonPersistent\Summary\BaseSummarySettings.cs" />
     <Compile Include="Entities\NonPersistent\Summary\CustomSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Summary\CustomSummarySettings.cs" />
-    <Compile Include="Entities\NonPersistent\Summary\ProductSummaryItem.cs" />
     <Compile Include="Entities\Persistent\BaseEntity.cs" />
     <Compile Include="Entities\Persistent\ChangeTrackedEntity.cs" />
     <Compile Include="Entities\Persistent\DBVersion.cs" />
@@ -109,8 +108,6 @@
     <Compile Include="Interfaces\IScheduleDBSetContainer.cs" />
     <Compile Include="Interfaces\ISchedulePartition.cs" />
     <Compile Include="Interfaces\ISchedulePartitionContent.cs" />
-    <Compile Include="Interfaces\ISummaryProduct.cs" />
-    <Compile Include="Interfaces\ISummarySchedule.cs" />
     <Compile Include="Interfaces\ITemplatedSchedule.cs" />
     <Compile Include="Mappers\SchedulePartitionMap.cs" />
     <Compile Include="Mappers\ScheduleMap.cs" />

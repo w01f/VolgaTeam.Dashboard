@@ -39,45 +39,21 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private XtraTabHitInfo _menuHitInfo;
 		private XtraTabDragDropHelper<OptionsControl> _tabDragDropHelper;
 
-		public override string Identifier
-		{
-			get { return ContentIdentifiers.Options; }
-		}
+		public override string Identifier => ContentIdentifiers.Options;
 
-		public override RibbonTabItem TabPage
-		{
-			get { return Controller.Instance.TabOptions; }
-		}
+		public override RibbonTabItem TabPage => Controller.Instance.TabOptions;
 
-		private MediaSchedule Schedule
-		{
-			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
-		}
+		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
 
-		private MediaScheduleSettings ScheduleSettings
-		{
-			get { return Schedule.Settings; }
-		}
+		private MediaScheduleSettings ScheduleSettings => Schedule.Settings;
 
-		public SlideType SlideType
-		{
-			get { return MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVOptions : SlideType.RadioOptions; }
-		}
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVOptions : SlideType.RadioOptions;
 
-		private OptionsControl ActiveOptionControl
-		{
-			get { return xtraTabControlOptionSets.SelectedTabPage as OptionsControl; }
-		}
+		private OptionsControl ActiveOptionControl => xtraTabControlOptionSets.SelectedTabPage as OptionsControl;
 
-		private OptionsSummaryControl ActiveSummary
-		{
-			get { return xtraTabControlOptionSets.SelectedTabPage as OptionsSummaryControl; }
-		}
+		private OptionsSummaryControl ActiveSummary => xtraTabControlOptionSets.SelectedTabPage as OptionsSummaryControl;
 
-		private OptionsSummaryControl Summary
-		{
-			get { return xtraTabControlOptionSets.TabPages.OfType<OptionsSummaryControl>().Single(); }
-		}
+		private OptionsSummaryControl Summary => xtraTabControlOptionSets.TabPages.OfType<OptionsSummaryControl>().Single();
 
 		public OptionsContainer()
 		{
@@ -178,8 +154,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
 				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
 
-			if (EditedContent != null)
-				EditedContent.Dispose();
+			EditedContent?.Dispose();
 			EditedContent = Schedule
 				.GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options)
 				.Clone<OptionsContent, OptionsContent>();
@@ -264,6 +239,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			if (!quickLoad)
 				xtraTabControlOptionSets.SelectedTabPageIndex = 0;
 			UpdateOptionsSplash();
+			UpdateSummaryState();
+			UpdateProgramCollectionButtons();
 		}
 
 		private void LoadActiveOptionSetData(bool activate = false)
@@ -387,6 +364,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 				pnSummaryInfo.Visible = false;
 				pnOptionSetInfo.Visible = false;
 			}
+			UpdateProgramCollectionButtons();
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
 			UpdateOutputStatus();
@@ -503,6 +481,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 					ApplySharedSettings(sourceControl);
 					xtraTabControlOptionSets.TabPages.OfType<OptionsControl>().Where(oc => oc.Data.UniqueID != sourceControl.Data.UniqueID).ToList().ForEach(oc => oc.UpdateView());
 				}
+				UpdateSummaryState();
 				UpdateTotalsValues();
 				UpdateOutputStatus();
 				Summary.UpdateView();
@@ -597,6 +576,17 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			}
 		}
 
+		private void UpdateSummaryState()
+		{
+			Summary.PageEnabled = EditedContent.OptionsSummary.Enabled && EditedContent.Options.SelectMany(o => o.Programs).Any();
+		}
+
+		private void UpdateProgramCollectionButtons()
+		{
+			Controller.Instance.OptionsProgramAdd.Enabled =
+			Controller.Instance.OptionsProgramDelete.Enabled = ActiveOptionControl != null;
+		}
+
 		private void InitColorControls()
 		{
 			xtraTabPageOptionsStyle.PageVisible = BusinessObjects.Instance.OutputManager.OptionsColors.Items.Count > 1;
@@ -648,11 +638,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			var optionControl = arg.Page as OptionsControl;
 			if (optionControl == null) return;
 			DeleteOptionSet(optionControl);
+			UpdateSummaryState();
 			UpdateOptionsSplash();
 			SettingsNotSaved = true;
 		}
 
-		private void xtraTabControlOptionSets_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+		private void OnSelectedTabPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			if (!_allowToSave) return;
 			LoadActiveOptionSetData(true);

@@ -157,7 +157,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.xtraTabControlOptionSets.Name = "xtraTabControlOptionSets";
 			this.xtraTabControlOptionSets.Size = new System.Drawing.Size(595, 541);
 			this.xtraTabControlOptionSets.TabIndex = 1;
-			this.xtraTabControlOptionSets.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlOptionSets_SelectedPageChanged);
+			this.xtraTabControlOptionSets.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.OnSelectedTabPageChanged);
 			this.xtraTabControlOptionSets.CloseButtonClick += new System.EventHandler(this.xtraTabControlOptionSets_CloseButtonClick);
 			this.xtraTabControlOptionSets.MouseDown += new System.Windows.Forms.MouseEventHandler(this.xtraTabControlOptionSets_MouseDown);
 			// 

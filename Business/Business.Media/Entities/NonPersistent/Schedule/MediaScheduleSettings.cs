@@ -28,7 +28,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 
 		public DigitalProductListViewSettings HomeViewSettings { get; private set; }
 		public DigitalPackageSettings DigitalPackageSettings { get; private set; }
-		public AdPlanViewSettings AdPlanViewSettings { get; private set; }
 
 		[JsonIgnore]
 		public List<Quarter> Quarters { get; private set; }
@@ -152,7 +151,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 
 			HomeViewSettings = new DigitalProductListViewSettings();
 			DigitalPackageSettings = new DigitalPackageSettings();
-			AdPlanViewSettings = new AdPlanViewSettings();
 		}
 
 		public override void Dispose()

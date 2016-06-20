@@ -103,9 +103,6 @@ namespace Asa.Common.Core.Helpers
 					case "TVDigitalProduct":
 						slideType = SlideType.TVDigitalProduct;
 						break;
-					case "TVWebPackage":
-						slideType = SlideType.TVWebPackage;
-						break;
 					case "TVWeeklySchedule":
 					case "TVMonthlySchedule":
 						slideType = SlideType.TVProgramSchedule;
@@ -121,9 +118,6 @@ namespace Asa.Common.Core.Helpers
 					#region Radio Schedule
 					case "RadioDigitalProduct":
 						slideType = SlideType.RadioDigitalProduct;
-						break;
-					case "RadioWebPackage":
-						slideType = SlideType.RadioWebPackage;
 						break;
 					case "RadioWeeklySchedule":
 					case "RadioMonthlySchedule":

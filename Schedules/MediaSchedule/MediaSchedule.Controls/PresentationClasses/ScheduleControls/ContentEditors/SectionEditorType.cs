@@ -2,7 +2,6 @@
 {
 	public enum SectionEditorType
 	{
-		Schedule,
 		ScheduleSection,
 		DigitalSection,
 		CustomSummary,

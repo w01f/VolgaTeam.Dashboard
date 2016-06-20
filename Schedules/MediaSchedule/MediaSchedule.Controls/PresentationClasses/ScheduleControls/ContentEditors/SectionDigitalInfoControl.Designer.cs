@@ -59,6 +59,7 @@
 			this.pnTotalInvestment = new System.Windows.Forms.Panel();
 			this.labelControlTotalInvestment = new DevExpress.XtraEditors.LabelControl();
 			this.spinEditTotalInvestment = new DevExpress.XtraEditors.SpinEdit();
+			this.pnNoProducts = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
@@ -74,15 +75,17 @@
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyInvestment.Properties)).BeginInit();
 			this.pnTotalInvestment.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalInvestment.Properties)).BeginInit();
+			this.pnNoProducts.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pbNoProducts
 			// 
 			this.pbNoProducts.BackColor = System.Drawing.Color.White;
+			this.pbNoProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pbNoProducts.Image = global::Asa.Media.Controls.Properties.Resources.SectionNoDigitalItems;
-			this.pbNoProducts.Location = new System.Drawing.Point(19, 355);
+			this.pbNoProducts.Location = new System.Drawing.Point(10, 10);
 			this.pbNoProducts.Name = "pbNoProducts";
-			this.pbNoProducts.Size = new System.Drawing.Size(495, 91);
+			this.pbNoProducts.Size = new System.Drawing.Size(180, 80);
 			this.pbNoProducts.TabIndex = 2;
 			this.pbNoProducts.TabStop = false;
 			// 
@@ -483,10 +486,20 @@
 			this.spinEditTotalInvestment.TabIndex = 126;
 			this.spinEditTotalInvestment.EditValueChanged += new System.EventHandler(this.OnInvestmentEditValueChanged);
 			// 
+			// pnNoProducts
+			// 
+			this.pnNoProducts.BackColor = System.Drawing.Color.Transparent;
+			this.pnNoProducts.Controls.Add(this.pbNoProducts);
+			this.pnNoProducts.Location = new System.Drawing.Point(169, 370);
+			this.pnNoProducts.Name = "pnNoProducts";
+			this.pnNoProducts.Padding = new System.Windows.Forms.Padding(10);
+			this.pnNoProducts.Size = new System.Drawing.Size(200, 100);
+			this.pnNoProducts.TabIndex = 7;
+			// 
 			// SectionDigitalInfoControl
 			// 
+			this.Controls.Add(this.pnNoProducts);
 			this.Controls.Add(this.pnContent);
-			this.Controls.Add(this.pbNoProducts);
 			this.Name = "SectionDigitalInfoControl";
 			this.Size = new System.Drawing.Size(761, 470);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoProducts)).EndInit();
@@ -504,6 +517,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyInvestment.Properties)).EndInit();
 			this.pnTotalInvestment.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalInvestment.Properties)).EndInit();
+			this.pnNoProducts.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -534,5 +548,6 @@
 		protected DevExpress.XtraEditors.SpinEdit spinEditTotalInvestment;
 		private DevExpress.XtraEditors.LabelControl labelControlMonthlyInvestment;
 		private DevExpress.XtraEditors.LabelControl labelControlTotalInvestment;
+		private System.Windows.Forms.Panel pnNoProducts;
 	}
 }

@@ -27,17 +27,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		public SettingsContainer()
 		{
 			InitializeComponent();
-			if (CreateGraphics().DpiX > 96)
-			{
-				var regularFont = xtraTabControlOptions.AppearancePage.Header.Font;
-				var activeFont = xtraTabControlOptions.AppearancePage.HeaderActive.Font;
-				regularFont = new Font(regularFont.FontFamily, regularFont.Size - 2, regularFont.Style);
-				activeFont = new Font(activeFont.FontFamily, activeFont.Size - 2, activeFont.Style);
-				xtraTabControlOptions.AppearancePage.Header.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderActive.Font = activeFont;
-				xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = regularFont;
-			}
 		}
 
 		#region Controls Management
@@ -48,6 +37,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 			if (CreateGraphics().DpiX > 96)
 			{
+				var regularFont = xtraTabControlOptions.AppearancePage.Header.Font;
+				var activeFont = xtraTabControlOptions.AppearancePage.HeaderActive.Font;
+				regularFont = new Font(regularFont.FontFamily, regularFont.Size - 2, regularFont.Style);
+				activeFont = new Font(activeFont.FontFamily, activeFont.Size - 2, activeFont.Style);
+				xtraTabControlOptions.AppearancePage.Header.Font = regularFont;
+				xtraTabControlOptions.AppearancePage.HeaderActive.Font = activeFont;
+				xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = regularFont;
+				xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = regularFont;
+
 				hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
 					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
@@ -160,7 +158,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		{
 			switch (editorType)
 			{
-				case SectionEditorType.Schedule:
+				case SectionEditorType.ScheduleSection:
 					_settingsControls.OfType<SectionColumnSettingsControl>().First().UpdateUniversalSettingsToggleVisibility();
 					break;
 				case SectionEditorType.CustomSummary:

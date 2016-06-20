@@ -28,20 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalProductListControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandNumber = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.gridColumnPosition = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditPosition = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridBandType = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.gridColumnCategory = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridColumnSubCategory = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -61,34 +53,28 @@
 			this.repositoryItemComboBoxRateType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.gridColumnRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditRate = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.gridBandRichMedia = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnRichMedia = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditRichMediaEnabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.gridBandTarget = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandOptions = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.gridColumnTarget = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditTargetEnabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.gridBandDelete = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDelete = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+			this.repositoryItemHyperLinkEditTargetEnabled = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+			this.gridColumnRichMedia = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemHyperLinkEditRichMediaEnabled = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
 			this.repositoryItemTextEditNotAvailable = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.repositoryItemButtonEditTargetDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.repositoryItemButtonEditRichMediaDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.gridToolTipController = new DevExpress.Utils.ToolTipController();
+			this.repositoryItemHyperLinkEditTargetDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+			this.repositoryItemHyperLinkEditRichMediaDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxProductType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxProductName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLocation)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditSize)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxRateType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditRate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditRichMediaEnabled)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditTargetEnabled)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDelete)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditTargetEnabled)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditRichMediaEnabled)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditNotAvailable)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditTargetDisabled)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditRichMediaDisabled)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditTargetDisabled)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditRichMediaDisabled)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControl
@@ -98,22 +84,20 @@
 			this.gridControl.MainView = this.advBandedGridView;
 			this.gridControl.Name = "gridControl";
 			this.gridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEditPosition,
             this.repositoryItemComboBoxProductName,
             this.repositoryItemComboBoxProductType,
             this.repositoryItemComboBoxRateType,
             this.repositoryItemSpinEditSize,
-            this.repositoryItemButtonEditDelete,
             this.repositoryItemSpinEditRate,
             this.repositoryItemComboBoxLocation,
-            this.repositoryItemButtonEditTargetEnabled,
             this.repositoryItemTextEditNotAvailable,
-            this.repositoryItemButtonEditTargetDisabled,
-            this.repositoryItemButtonEditRichMediaEnabled,
-            this.repositoryItemButtonEditRichMediaDisabled});
+            this.repositoryItemHyperLinkEditTargetEnabled,
+            this.repositoryItemHyperLinkEditRichMediaEnabled,
+            this.repositoryItemHyperLinkEditTargetDisabled,
+            this.repositoryItemHyperLinkEditRichMediaDisabled});
 			this.gridControl.Size = new System.Drawing.Size(1016, 511);
 			this.gridControl.TabIndex = 4;
-			this.gridControl.ToolTipController = this.gridToolTipController;
+			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridView});
 			// 
@@ -140,17 +124,13 @@
             this.gridBandWidth,
             this.gridBandHeight,
             this.gridBandRate,
-            this.gridBandRichMedia,
-            this.gridBandTarget,
-            this.gridBandDelete});
-			this.advBandedGridView.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gridBandOptions});
 			this.advBandedGridView.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.gridColumnPosition,
             this.gridColumnName,
             this.gridColumnRateType,
             this.gridColumnWidth,
             this.gridColumnHeight,
-            this.gridColumnDelete,
             this.gridColumnCategory,
             this.gridColumnSubCategory,
             this.gridColumnRate,
@@ -177,7 +157,6 @@
 			this.advBandedGridView.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
 			this.advBandedGridView.OptionsMenu.ShowGroupSortSummaryItems = false;
 			this.advBandedGridView.OptionsSelection.EnableAppearanceFocusedCell = false;
-			this.advBandedGridView.OptionsSelection.EnableAppearanceFocusedRow = false;
 			this.advBandedGridView.OptionsSelection.EnableAppearanceHideSelection = false;
 			this.advBandedGridView.OptionsSelection.UseIndicatorForSelection = false;
 			this.advBandedGridView.OptionsView.ColumnAutoWidth = true;
@@ -192,27 +171,29 @@
 			this.advBandedGridView.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.OnCustomRowCellEdit);
 			this.advBandedGridView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.OnShowingEditor);
 			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.CellValueChanged);
+			this.advBandedGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.advBandedGridView_MouseMove);
 			// 
 			// gridBandNumber
 			// 
+			this.gridBandNumber.Caption = "ID";
 			this.gridBandNumber.Columns.Add(this.gridColumnPosition);
 			this.gridBandNumber.MinWidth = 20;
 			this.gridBandNumber.Name = "gridBandNumber";
 			this.gridBandNumber.OptionsBand.AllowSize = false;
 			this.gridBandNumber.OptionsBand.FixedWidth = true;
 			this.gridBandNumber.VisibleIndex = 0;
-			this.gridBandNumber.Width = 120;
+			this.gridBandNumber.Width = 40;
 			// 
 			// gridColumnPosition
 			// 
-			this.gridColumnPosition.AppearanceCell.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
-			this.gridColumnPosition.AppearanceCell.Options.UseFont = true;
 			this.gridColumnPosition.AppearanceCell.Options.UseTextOptions = true;
 			this.gridColumnPosition.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumnPosition.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridColumnPosition.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.gridColumnPosition.Caption = "Position";
-			this.gridColumnPosition.ColumnEdit = this.repositoryItemButtonEditPosition;
 			this.gridColumnPosition.FieldName = "Index";
 			this.gridColumnPosition.Name = "gridColumnPosition";
+			this.gridColumnPosition.OptionsColumn.AllowEdit = false;
 			this.gridColumnPosition.OptionsColumn.AllowMove = false;
 			this.gridColumnPosition.OptionsColumn.AllowSize = false;
 			this.gridColumnPosition.OptionsColumn.FixedWidth = true;
@@ -221,25 +202,7 @@
 			this.gridColumnPosition.RowCount = 2;
 			this.gridColumnPosition.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
 			this.gridColumnPosition.Visible = true;
-			this.gridColumnPosition.Width = 120;
-			// 
-			// repositoryItemButtonEditPosition
-			// 
-			this.repositoryItemButtonEditPosition.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemButtonEditPosition.Appearance.Options.UseFont = true;
-			this.repositoryItemButtonEditPosition.Appearance.Options.UseTextOptions = true;
-			this.repositoryItemButtonEditPosition.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemButtonEditPosition.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemButtonEditPosition.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemButtonEditPosition.AppearanceDisabled.Options.UseTextOptions = true;
-			this.repositoryItemButtonEditPosition.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemButtonEditPosition.AutoHeight = false;
-			this.repositoryItemButtonEditPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "Nudge Up", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "Nudge Down", null, null, true)});
-			this.repositoryItemButtonEditPosition.Name = "repositoryItemButtonEditPosition";
-			this.repositoryItemButtonEditPosition.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemButtonEditPosition.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditPosition_ButtonClick);
+			this.gridColumnPosition.Width = 40;
 			// 
 			// gridBandType
 			// 
@@ -250,7 +213,7 @@
 			this.gridBandType.Name = "gridBandType";
 			this.gridBandType.RowCount = 2;
 			this.gridBandType.VisibleIndex = 1;
-			this.gridBandType.Width = 143;
+			this.gridBandType.Width = 276;
 			// 
 			// gridColumnCategory
 			// 
@@ -264,7 +227,7 @@
 			this.gridColumnCategory.OptionsColumn.AllowEdit = false;
 			this.gridColumnCategory.OptionsColumn.ReadOnly = true;
 			this.gridColumnCategory.Visible = true;
-			this.gridColumnCategory.Width = 143;
+			this.gridColumnCategory.Width = 276;
 			// 
 			// gridColumnSubCategory
 			// 
@@ -278,7 +241,7 @@
 			this.gridColumnSubCategory.Name = "gridColumnSubCategory";
 			this.gridColumnSubCategory.RowIndex = 1;
 			this.gridColumnSubCategory.Visible = true;
-			this.gridColumnSubCategory.Width = 143;
+			this.gridColumnSubCategory.Width = 276;
 			// 
 			// repositoryItemComboBoxProductType
 			// 
@@ -310,7 +273,7 @@
 			this.gridBandName.Name = "gridBandName";
 			this.gridBandName.RowCount = 2;
 			this.gridBandName.VisibleIndex = 2;
-			this.gridBandName.Width = 148;
+			this.gridBandName.Width = 289;
 			// 
 			// gridColumnName
 			// 
@@ -323,7 +286,7 @@
 			this.gridColumnName.FieldName = "Name";
 			this.gridColumnName.Name = "gridColumnName";
 			this.gridColumnName.Visible = true;
-			this.gridColumnName.Width = 148;
+			this.gridColumnName.Width = 289;
 			// 
 			// repositoryItemComboBoxProductName
 			// 
@@ -357,7 +320,7 @@
 			this.gridColumnLocation.Name = "gridColumnLocation";
 			this.gridColumnLocation.RowIndex = 1;
 			this.gridColumnLocation.Visible = true;
-			this.gridColumnLocation.Width = 148;
+			this.gridColumnLocation.Width = 289;
 			// 
 			// repositoryItemComboBoxLocation
 			// 
@@ -531,7 +494,7 @@
 			this.repositoryItemSpinEditRate.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRate.AutoHeight = false;
 			this.repositoryItemSpinEditRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject12, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0.00";
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0.00";
@@ -543,61 +506,21 @@
             0});
 			this.repositoryItemSpinEditRate.Name = "repositoryItemSpinEditRate";
 			// 
-			// gridBandRichMedia
+			// gridBandOptions
 			// 
-			this.gridBandRichMedia.Caption = "RM";
-			this.gridBandRichMedia.Columns.Add(this.gridColumnRichMedia);
-			this.gridBandRichMedia.MinWidth = 56;
-			this.gridBandRichMedia.Name = "gridBandRichMedia";
-			this.gridBandRichMedia.OptionsBand.AllowSize = false;
-			this.gridBandRichMedia.OptionsBand.FixedWidth = true;
-			this.gridBandRichMedia.RowCount = 2;
-			this.gridBandRichMedia.Visible = false;
-			this.gridBandRichMedia.VisibleIndex = -1;
-			this.gridBandRichMedia.Width = 56;
-			// 
-			// gridColumnRichMedia
-			// 
-			this.gridColumnRichMedia.Caption = "Rich Media";
-			this.gridColumnRichMedia.ColumnEdit = this.repositoryItemButtonEditRichMediaEnabled;
-			this.gridColumnRichMedia.FieldName = "Index";
-			this.gridColumnRichMedia.Name = "gridColumnRichMedia";
-			this.gridColumnRichMedia.OptionsColumn.AllowMove = false;
-			this.gridColumnRichMedia.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumnRichMedia.OptionsColumn.FixedWidth = true;
-			this.gridColumnRichMedia.OptionsColumn.ReadOnly = true;
-			this.gridColumnRichMedia.OptionsColumn.ShowCaption = false;
-			this.gridColumnRichMedia.RowCount = 2;
-			this.gridColumnRichMedia.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnRichMedia.Visible = true;
-			this.gridColumnRichMedia.Width = 56;
-			// 
-			// repositoryItemButtonEditRichMediaEnabled
-			// 
-			this.repositoryItemButtonEditRichMediaEnabled.AutoHeight = false;
-			this.repositoryItemButtonEditRichMediaEnabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditRichMediaEnabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject14, "Rich Media Options Coming Soon!", null, null, true)});
-			this.repositoryItemButtonEditRichMediaEnabled.Name = "repositoryItemButtonEditRichMediaEnabled";
-			this.repositoryItemButtonEditRichMediaEnabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-			this.repositoryItemButtonEditRichMediaEnabled.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditRichMedia_ButtonClick);
-			// 
-			// gridBandTarget
-			// 
-			this.gridBandTarget.Caption = "Target";
-			this.gridBandTarget.Columns.Add(this.gridColumnTarget);
-			this.gridBandTarget.MinWidth = 56;
-			this.gridBandTarget.Name = "gridBandTarget";
-			this.gridBandTarget.OptionsBand.AllowSize = false;
-			this.gridBandTarget.OptionsBand.FixedWidth = true;
-			this.gridBandTarget.RowCount = 2;
-			this.gridBandTarget.Visible = false;
-			this.gridBandTarget.VisibleIndex = -1;
-			this.gridBandTarget.Width = 56;
+			this.gridBandOptions.Caption = "Options";
+			this.gridBandOptions.Columns.Add(this.gridColumnTarget);
+			this.gridBandOptions.Columns.Add(this.gridColumnRichMedia);
+			this.gridBandOptions.Name = "gridBandOptions";
+			this.gridBandOptions.VisibleIndex = 6;
+			this.gridBandOptions.Width = 100;
 			// 
 			// gridColumnTarget
 			// 
+			this.gridColumnTarget.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnTarget.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.gridColumnTarget.Caption = "Target";
-			this.gridColumnTarget.ColumnEdit = this.repositoryItemButtonEditTargetEnabled;
+			this.gridColumnTarget.ColumnEdit = this.repositoryItemHyperLinkEditTargetEnabled;
 			this.gridColumnTarget.FieldName = "Index";
 			this.gridColumnTarget.Name = "gridColumnTarget";
 			this.gridColumnTarget.OptionsColumn.AllowMove = false;
@@ -605,54 +528,49 @@
 			this.gridColumnTarget.OptionsColumn.FixedWidth = true;
 			this.gridColumnTarget.OptionsColumn.ReadOnly = true;
 			this.gridColumnTarget.OptionsColumn.ShowCaption = false;
-			this.gridColumnTarget.RowCount = 2;
 			this.gridColumnTarget.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
 			this.gridColumnTarget.Visible = true;
-			this.gridColumnTarget.Width = 56;
+			this.gridColumnTarget.Width = 100;
 			// 
-			// repositoryItemButtonEditTargetEnabled
+			// repositoryItemHyperLinkEditTargetEnabled
 			// 
-			this.repositoryItemButtonEditTargetEnabled.AutoHeight = false;
-			this.repositoryItemButtonEditTargetEnabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditTargetEnabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, "Targeting Options Coming Soon!", null, null, true)});
-			this.repositoryItemButtonEditTargetEnabled.Name = "repositoryItemButtonEditTargetEnabled";
-			this.repositoryItemButtonEditTargetEnabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-			this.repositoryItemButtonEditTargetEnabled.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditTarget_ButtonClick);
+			this.repositoryItemHyperLinkEditTargetEnabled.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.repositoryItemHyperLinkEditTargetEnabled.AutoHeight = false;
+			this.repositoryItemHyperLinkEditTargetEnabled.Caption = "<i>Targeting</i>";
+			this.repositoryItemHyperLinkEditTargetEnabled.LinkColor = System.Drawing.Color.Black;
+			this.repositoryItemHyperLinkEditTargetEnabled.Name = "repositoryItemHyperLinkEditTargetEnabled";
+			this.repositoryItemHyperLinkEditTargetEnabled.SingleClick = true;
+			this.repositoryItemHyperLinkEditTargetEnabled.StartLinkOnClickingEmptySpace = false;
+			this.repositoryItemHyperLinkEditTargetEnabled.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.repositoryItemHyperLinkEditTarget_OpenLink);
 			// 
-			// gridBandDelete
+			// gridColumnRichMedia
 			// 
-			this.gridBandDelete.Columns.Add(this.gridColumnDelete);
-			this.gridBandDelete.MinWidth = 20;
-			this.gridBandDelete.Name = "gridBandDelete";
-			this.gridBandDelete.OptionsBand.AllowSize = false;
-			this.gridBandDelete.OptionsBand.FixedWidth = true;
-			this.gridBandDelete.VisibleIndex = 6;
-			this.gridBandDelete.Width = 48;
+			this.gridColumnRichMedia.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnRichMedia.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumnRichMedia.Caption = "Rich Media";
+			this.gridColumnRichMedia.ColumnEdit = this.repositoryItemHyperLinkEditRichMediaEnabled;
+			this.gridColumnRichMedia.FieldName = "Index";
+			this.gridColumnRichMedia.Name = "gridColumnRichMedia";
+			this.gridColumnRichMedia.OptionsColumn.AllowMove = false;
+			this.gridColumnRichMedia.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumnRichMedia.OptionsColumn.FixedWidth = true;
+			this.gridColumnRichMedia.OptionsColumn.ReadOnly = true;
+			this.gridColumnRichMedia.OptionsColumn.ShowCaption = false;
+			this.gridColumnRichMedia.RowIndex = 1;
+			this.gridColumnRichMedia.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.gridColumnRichMedia.Visible = true;
+			this.gridColumnRichMedia.Width = 100;
 			// 
-			// gridColumnDelete
+			// repositoryItemHyperLinkEditRichMediaEnabled
 			// 
-			this.gridColumnDelete.Caption = "Delete";
-			this.gridColumnDelete.ColumnEdit = this.repositoryItemButtonEditDelete;
-			this.gridColumnDelete.FieldName = "Index";
-			this.gridColumnDelete.Name = "gridColumnDelete";
-			this.gridColumnDelete.OptionsColumn.AllowMove = false;
-			this.gridColumnDelete.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumnDelete.OptionsColumn.FixedWidth = true;
-			this.gridColumnDelete.OptionsColumn.ReadOnly = true;
-			this.gridColumnDelete.OptionsColumn.ShowCaption = false;
-			this.gridColumnDelete.RowCount = 2;
-			this.gridColumnDelete.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnDelete.Visible = true;
-			this.gridColumnDelete.Width = 48;
-			// 
-			// repositoryItemButtonEditDelete
-			// 
-			this.repositoryItemButtonEditDelete.AutoHeight = false;
-			this.repositoryItemButtonEditDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject11, "Delete this line", null, null, true)});
-			this.repositoryItemButtonEditDelete.Name = "repositoryItemButtonEditDelete";
-			this.repositoryItemButtonEditDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-			this.repositoryItemButtonEditDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDelete_ButtonClick);
+			this.repositoryItemHyperLinkEditRichMediaEnabled.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.repositoryItemHyperLinkEditRichMediaEnabled.AutoHeight = false;
+			this.repositoryItemHyperLinkEditRichMediaEnabled.Caption = "<i>Rich Media</i>";
+			this.repositoryItemHyperLinkEditRichMediaEnabled.LinkColor = System.Drawing.Color.Black;
+			this.repositoryItemHyperLinkEditRichMediaEnabled.Name = "repositoryItemHyperLinkEditRichMediaEnabled";
+			this.repositoryItemHyperLinkEditRichMediaEnabled.SingleClick = true;
+			this.repositoryItemHyperLinkEditRichMediaEnabled.StartLinkOnClickingEmptySpace = false;
+			this.repositoryItemHyperLinkEditRichMediaEnabled.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.repositoryItemHyperLinkEditRichMedia_OpenLink);
 			// 
 			// repositoryItemTextEditNotAvailable
 			// 
@@ -677,31 +595,35 @@
 			this.repositoryItemTextEditNotAvailable.NullText = "n/a";
 			this.repositoryItemTextEditNotAvailable.ReadOnly = true;
 			// 
-			// repositoryItemButtonEditTargetDisabled
+			// repositoryItemHyperLinkEditTargetDisabled
 			// 
-			this.repositoryItemButtonEditTargetDisabled.AutoHeight = false;
-			this.repositoryItemButtonEditTargetDisabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditTargetDisabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject15, "Targeting Options Coming Soon!", null, null, true)});
-			this.repositoryItemButtonEditTargetDisabled.Name = "repositoryItemButtonEditTargetDisabled";
-			this.repositoryItemButtonEditTargetDisabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+			this.repositoryItemHyperLinkEditTargetDisabled.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.repositoryItemHyperLinkEditTargetDisabled.AutoHeight = false;
+			this.repositoryItemHyperLinkEditTargetDisabled.Caption = "<i>Targeting</i>";
+			this.repositoryItemHyperLinkEditTargetDisabled.LinkColor = System.Drawing.Color.Gray;
+			this.repositoryItemHyperLinkEditTargetDisabled.Name = "repositoryItemHyperLinkEditTargetDisabled";
+			this.repositoryItemHyperLinkEditTargetDisabled.SingleClick = true;
+			this.repositoryItemHyperLinkEditTargetDisabled.StartLinkOnClickingEmptySpace = false;
 			// 
-			// repositoryItemButtonEditRichMediaDisabled
+			// repositoryItemHyperLinkEditRichMediaDisabled
 			// 
-			this.repositoryItemButtonEditRichMediaDisabled.AutoHeight = false;
-			this.repositoryItemButtonEditRichMediaDisabled.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditRichMediaDisabled.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject16, "Rich Media Options Coming Soon!", null, null, true)});
-			this.repositoryItemButtonEditRichMediaDisabled.Name = "repositoryItemButtonEditRichMediaDisabled";
-			this.repositoryItemButtonEditRichMediaDisabled.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+			this.repositoryItemHyperLinkEditRichMediaDisabled.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.repositoryItemHyperLinkEditRichMediaDisabled.AutoHeight = false;
+			this.repositoryItemHyperLinkEditRichMediaDisabled.Caption = "<i>Rich Media</i>";
+			this.repositoryItemHyperLinkEditRichMediaDisabled.LinkColor = System.Drawing.Color.Gray;
+			this.repositoryItemHyperLinkEditRichMediaDisabled.Name = "repositoryItemHyperLinkEditRichMediaDisabled";
+			this.repositoryItemHyperLinkEditRichMediaDisabled.SingleClick = true;
+			this.repositoryItemHyperLinkEditRichMediaDisabled.StartLinkOnClickingEmptySpace = false;
 			// 
-			// gridToolTipController
+			// toolTipController
 			// 
-			this.gridToolTipController.Appearance.BackColor = System.Drawing.SystemColors.Info;
-			this.gridToolTipController.Appearance.Options.UseBackColor = true;
-			this.gridToolTipController.AppearanceTitle.BackColor = System.Drawing.SystemColors.Info;
-			this.gridToolTipController.AppearanceTitle.Options.UseBackColor = true;
-			this.gridToolTipController.Rounded = true;
-			this.gridToolTipController.ShowShadow = false;
-			this.gridToolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.gridToolTipController_GetActiveObjectInfo);
+			this.toolTipController.Appearance.BackColor = System.Drawing.SystemColors.Info;
+			this.toolTipController.Appearance.Options.UseBackColor = true;
+			this.toolTipController.AppearanceTitle.BackColor = System.Drawing.SystemColors.Info;
+			this.toolTipController.AppearanceTitle.Options.UseBackColor = true;
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
 			// 
 			// DigitalProductListControl
 			// 
@@ -713,19 +635,17 @@
 			this.Size = new System.Drawing.Size(1016, 511);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxProductType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxProductName)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLocation)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditSize)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxRateType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditRate)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditRichMediaEnabled)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditTargetEnabled)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDelete)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditTargetEnabled)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditRichMediaEnabled)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditNotAvailable)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditTargetDisabled)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditRichMediaDisabled)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditTargetDisabled)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEditRichMediaDisabled)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -734,7 +654,6 @@
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView advBandedGridView;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPosition;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditPosition;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnCategory;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnSubCategory;
 		private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxProductType;
@@ -750,23 +669,19 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnRate;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditRate;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnTarget;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditTargetEnabled;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDelete;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDelete;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditNotAvailable;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditTargetDisabled;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditRichMediaEnabled;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnRichMedia;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandNumber;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandType;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandName;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandWidth;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandHeight;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRate;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRichMedia;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnRichMedia;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTarget;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDelete;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditRichMediaDisabled;
-		private DevExpress.Utils.ToolTipController gridToolTipController;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandOptions;
+		private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEditTargetEnabled;
+		private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEditRichMediaEnabled;
+		private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEditTargetDisabled;
+		private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEditRichMediaDisabled;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

@@ -31,19 +31,17 @@
 		#endregion
 
 		#region TV Schedule
-		TVWebPackage = 301,
-		TVDigitalProduct = 302,
-		TVProgramSchedule = 303,
-		TVSnapshot = 304,
-		TVOptions = 305,
+		TVDigitalProduct = 301,
+		TVProgramSchedule = 302,
+		TVSnapshot = 303,
+		TVOptions = 304,
 		#endregion
 
 		#region Radio Schedule
-		RadioWebPackage = 401,
-		RadioDigitalProduct = 402,
-		RadioProgramSchedule = 403,
-		RadioSnapshot = 404,
-		RadioOptions = 405,
+		RadioDigitalProduct = 401,
+		RadioProgramSchedule = 402,
+		RadioSnapshot = 403,
+		RadioOptions = 404,
 		#endregion
 
 		WebQuick = 501,

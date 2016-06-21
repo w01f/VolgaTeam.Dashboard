@@ -55,6 +55,7 @@ namespace Asa.Media.Controls.BusinessClasses
 		public string Quarter { get; set; }
 		public int ProgramsPerSlide { get; set; }
 		public int SpotsPerSlide { get; set; }
+		public bool IncludeDigital { get; set; }
 
 		public string TotalCost { get; set; }
 		public string TotalSpot { get; set; }
@@ -66,13 +67,18 @@ namespace Asa.Media.Controls.BusinessClasses
 		public Dictionary<string, string> Totals { get; set; }
 		public string[] MediaLogos { get; set; }
 
-		public override string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetMediaOneSheetFile(Color, DigitalProducts.Any(), ProgramsPerSlide, SpotsPerSlide);
+		public override string TemplateFilePath =>
+			BusinessObjects.Instance.OutputManager.GetMediaOneSheetFile(
+				Color,
+				IncludeDigital,
+				IncludeDigital ? Programs.Count : ProgramsPerSlide,
+				SpotsPerSlide);
 
 		public string RtgHeaderTitle
 		{
 			get
 			{
-				string result = string.Empty;
+				var result = string.Empty;
 				switch (_parent.ParentSchedule.Settings.DemoType)
 				{
 					case DemoType.Rtg:
@@ -94,7 +100,7 @@ namespace Asa.Media.Controls.BusinessClasses
 		{
 			get
 			{
-				string result = string.Empty;
+				var result = string.Empty;
 				switch (_parent.ParentSchedule.Settings.DemoType)
 				{
 					case DemoType.Rtg:
@@ -157,7 +163,7 @@ namespace Asa.Media.Controls.BusinessClasses
 			var logosOnSlide = new List<string>();
 			var progarmsCount = Programs.Count;
 			logosOnSlide.Clear();
-			for (int i = 0; i < ProgramsPerSlide; i++)
+			for (var i = 0; i < ProgramsPerSlide; i++)
 			{
 				var fileName = String.Empty;
 				if (i < progarmsCount)

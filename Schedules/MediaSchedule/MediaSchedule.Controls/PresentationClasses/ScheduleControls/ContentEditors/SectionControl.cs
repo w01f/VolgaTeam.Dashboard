@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
+using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -644,7 +645,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			var outputOptions = new List<ScheduleSectionOutputType>();
 			if (_sectionContainer.SectionData.Programs.Any())
 				outputOptions.Add(ScheduleSectionOutputType.Program);
-			if (_sectionContainer.SectionData.DigitalInfo.Products.Any() && _sectionContainer.SectionData.Programs.Count <= OutputScheduleData.MaxMediaProductsCobinedWithDigital)
+			if (_sectionContainer.SectionData.DigitalInfo.Products.Any())
 				outputOptions.Add(ScheduleSectionOutputType.ProgramAndDigital);
 			return outputOptions;
 		}
@@ -671,7 +672,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			var defaultProgram = _sectionContainer.SectionData.Programs.FirstOrDefault();
 			if (defaultProgram == null) return outputPages;
 			var defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
-			var programsPerSlide = OutputScheduleData.MaxSingleMediaProducts;
+			var programsPerSlide = includeDigital ? OutputScheduleData.MaxMediaProductsCobinedWithDigital : OutputScheduleData.MaxSingleMediaProducts;
 			programsPerSlide = _sectionContainer.SectionData.Programs.Count > programsPerSlide ? programsPerSlide : _sectionContainer.SectionData.Programs.Count;
 			var totalSpotsCount = 0;
 			if (_sectionContainer.SectionData.ShowSpots)
@@ -709,6 +710,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 								_sectionContainer.SectionData.ParentScheduleSettings.Demo,
 								!String.IsNullOrEmpty(_sectionContainer.SectionData.ParentScheduleSettings.Source) ? (" (" + _sectionContainer.SectionData.ParentScheduleSettings.Source + ")") : String.Empty);
 
+						outputPage.IncludeDigital = includeDigital;
 						if (includeDigital)
 						{
 							var temp = new List<string>();
@@ -819,10 +821,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 						#region Set OutputDigitalProduct Values
 
-						if (includeDigital)
-							for (var j = 0; j < _sectionContainer.SectionData.DigitalInfo.Products.Count; j++)
+						if (includeDigital && (i + programsPerSlide) > _sectionContainer.SectionData.Programs.Count)
+							foreach (var product in _sectionContainer.SectionData.DigitalInfo.Products)
 							{
-								var product = _sectionContainer.SectionData.DigitalInfo.Products[j];
 								var outputProduct = new OutputDigitalProduct();
 								outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo ?
 									product.Logo?.Clone<ImageSource, ImageSource>() :

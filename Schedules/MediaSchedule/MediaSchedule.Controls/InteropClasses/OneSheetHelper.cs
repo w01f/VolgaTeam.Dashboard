@@ -48,7 +48,7 @@ namespace Asa.Media.Controls.InteropClasses
 										shape.Visible = MsoTriState.msoFalse;
 									}
 								}
-								for (var j = 0; j < 6; j++)
+								for (var j = 0; j < OutputScheduleData.MaxDigitalProducts; j++)
 								{
 									if (shapeTagName.Equals(String.Format("DIGLOGO{0}", j + 1)))
 									{
@@ -158,7 +158,7 @@ namespace Asa.Media.Controls.InteropClasses
 				MessageFilter.Revoke();
 			}
 		}
-		
+
 		public void PrepareMediaOneSheetEmail(string fileName, IEnumerable<OutputMediaData> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendMediaOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));

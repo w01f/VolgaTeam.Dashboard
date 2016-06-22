@@ -5,6 +5,20 @@ namespace Asa.Business.Online.Configuration
 {
 	public class DigitalControlsConfiguration
 	{
+		#region Ribbon Buttons
+		public string RibbonButtonDigitalAddTitle { get; set; }
+		public string RibbonButtonDigitalAddTooltip { get; set; }
+		public string RibbonButtonDigitalCloneTitle { get; set; }
+		public string RibbonButtonDigitalCloneTooltip { get; set; }
+		public string RibbonButtonDigitalDeleteTitle { get; set; }
+		public string RibbonButtonDigitalDeleteTooltip { get; set; }
+
+		public string RibbonButtonMediaDigitalAddTitle { get; set; }
+		public string RibbonButtonMediaDigitalAddTooltip { get; set; }
+		public string RibbonButtonMediaDigitalDeleteTitle { get; set; }
+		public string RibbonButtonMediaDigitalDeleteTooltip { get; set; }
+		#endregion
+
 		#region Sections
 		public string SectionsListTitle { get; set; }
 		public string SectionsProductTitle { get; set; }
@@ -110,6 +124,18 @@ namespace Asa.Business.Online.Configuration
 					ListEditorsTargetingTitle = values.ElementAtOrDefault(0);
 					ListEditorsRichMediaTitle = values.ElementAtOrDefault(1);
 					break;
+				case "tab_1_add_product_hover_tip":
+					RibbonButtonDigitalAddTitle = values.ElementAtOrDefault(0);
+					RibbonButtonDigitalAddTooltip = values.ElementAtOrDefault(1);
+					break;
+				case "tab_1_delete_product_hover_tip":
+					RibbonButtonDigitalDeleteTitle = values.ElementAtOrDefault(0);
+					RibbonButtonDigitalDeleteTooltip = values.ElementAtOrDefault(1);
+					break;
+				case "tab_1_clone_product_hover_tip":
+					RibbonButtonDigitalCloneTitle = values.ElementAtOrDefault(0);
+					RibbonButtonDigitalCloneTooltip = values.ElementAtOrDefault(1);
+					break;
 				case "tab_2_section_titles":
 					ProductEditorsSitesTitle = values.ElementAtOrDefault(0);
 					ProductEditorsNameTitle = values.ElementAtOrDefault(1);
@@ -155,6 +181,14 @@ namespace Asa.Business.Online.Configuration
 					MediaDigitalSettingsLogosTitle = values.ElementAtOrDefault(4);
 					MediaDigitalSettingsMontlyInvestmentTitle = values.ElementAtOrDefault(5);
 					MediaDigitalSettingsTotalInvestmentTitle = values.ElementAtOrDefault(6);
+					break;
+				case "add_product_hover_tip":
+					RibbonButtonMediaDigitalAddTitle = values.ElementAtOrDefault(0);
+					RibbonButtonMediaDigitalAddTooltip = values.ElementAtOrDefault(1);
+					break;
+				case "delete_product_hover_tip":
+					RibbonButtonMediaDigitalDeleteTitle = values.ElementAtOrDefault(0);
+					RibbonButtonMediaDigitalDeleteTooltip = values.ElementAtOrDefault(1);
 					break;
 			}
 		}

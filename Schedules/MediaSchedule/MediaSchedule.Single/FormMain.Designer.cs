@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -44,7 +45,7 @@
 			this.labelItemHomeFlightDatesEndValue = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
 			this.comboBoxEditBusinessName = new Asa.Common.GUI.Common.ComboBoxListEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
 			this.dateEditPresentationDate = new Asa.Common.GUI.Common.TabbedDateEdit();
 			this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
@@ -195,7 +196,7 @@
 			this.buttonItemCalendar2Clone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarCalendar2Calendar = new DevComponents.DotNetBar.RibbonBar();
 			this.listBoxControlCalendar2 = new DevExpress.XtraEditors.ImageListBoxControl();
-			this.imageList = new System.Windows.Forms.ImageList();
+			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.itemContainerCalendar2Calendar = new DevComponents.DotNetBar.ItemContainer();
 			this.controlContainerItemCalendar2 = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonPanelCalendar1 = new DevComponents.DotNetBar.RibbonPanel();
@@ -231,11 +232,13 @@
 			this.buttonItemQatSaveAs = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.labelItemHomeFlightDatesStartLogo = new DevComponents.DotNetBar.LabelItem();
+			this.labelItemHomeFlightDatesEndLogo = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonBarHomeBasicInfo.SuspendLayout();
@@ -278,8 +281,6 @@
 			this.ribbonControl.CanCustomize = false;
 			this.ribbonControl.CaptionVisible = true;
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
-			this.ribbonControl.Controls.Add(this.ribbonPanelProgramSchedule);
 			this.ribbonControl.Controls.Add(this.ribbonPanelOptions);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSnapshot);
 			this.ribbonControl.Controls.Add(this.ribbonPanelRateCard);
@@ -287,6 +288,8 @@
 			this.ribbonControl.Controls.Add(this.ribbonPanelGallery1);
 			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar2);
 			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar1);
+			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
+			this.ribbonControl.Controls.Add(this.ribbonPanelProgramSchedule);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
@@ -376,7 +379,7 @@
 			this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(453, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(471, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(89, 135);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -415,7 +418,7 @@
 			this.ribbonBarHomeSpecialButtons.Dock = System.Windows.Forms.DockStyle.Left;
 			this.ribbonBarHomeSpecialButtons.DragDropSupport = true;
 			this.ribbonBarHomeSpecialButtons.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeSpecialButtons.Location = new System.Drawing.Point(353, 0);
+			this.ribbonBarHomeSpecialButtons.Location = new System.Drawing.Point(371, 0);
 			this.ribbonBarHomeSpecialButtons.Name = "ribbonBarHomeSpecialButtons";
 			this.ribbonBarHomeSpecialButtons.Size = new System.Drawing.Size(100, 135);
 			this.ribbonBarHomeSpecialButtons.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -452,7 +455,7 @@
 			this.ribbonBarHomeFlightDates.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeFlightDates.Location = new System.Drawing.Point(258, 0);
 			this.ribbonBarHomeFlightDates.Name = "ribbonBarHomeFlightDates";
-			this.ribbonBarHomeFlightDates.Size = new System.Drawing.Size(95, 135);
+			this.ribbonBarHomeFlightDates.Size = new System.Drawing.Size(113, 135);
 			this.ribbonBarHomeFlightDates.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeFlightDates.TabIndex = 25;
 			this.ribbonBarHomeFlightDates.Text = "Weeks";
@@ -471,10 +474,9 @@
 			// 
 			// 
 			this.itemContainerHomeFlightDatesStart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.itemContainerHomeFlightDatesStart.ItemSpacing = 5;
-			this.itemContainerHomeFlightDatesStart.MinimumSize = new System.Drawing.Size(0, 20);
 			this.itemContainerHomeFlightDatesStart.Name = "itemContainerHomeFlightDatesStart";
 			this.itemContainerHomeFlightDatesStart.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItemHomeFlightDatesStartLogo,
             this.labelItemHomeFlightDatesStartTitle,
             this.labelItemHomeFlightDatesStartValue});
 			// 
@@ -503,10 +505,9 @@
 			// 
 			// 
 			this.itemContainerHomeFlightDatesEnd.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.itemContainerHomeFlightDatesEnd.ItemSpacing = 5;
-			this.itemContainerHomeFlightDatesEnd.MinimumSize = new System.Drawing.Size(0, 20);
 			this.itemContainerHomeFlightDatesEnd.Name = "itemContainerHomeFlightDatesEnd";
 			this.itemContainerHomeFlightDatesEnd.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItemHomeFlightDatesEndLogo,
             this.labelItemHomeFlightDatesEndTitle,
             this.labelItemHomeFlightDatesEndValue});
 			// 
@@ -607,7 +608,7 @@
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
@@ -3844,6 +3845,16 @@
 			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
 			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
 			// 
+			// labelItemHomeFlightDatesStartLogo
+			// 
+			this.labelItemHomeFlightDatesStartLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesStartLogo.Image")));
+			this.labelItemHomeFlightDatesStartLogo.Name = "labelItemHomeFlightDatesStartLogo";
+			// 
+			// labelItemHomeFlightDatesEndLogo
+			// 
+			this.labelItemHomeFlightDatesEndLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesEndLogo.Image")));
+			this.labelItemHomeFlightDatesEndLogo.Name = "labelItemHomeFlightDatesEndLogo";
+			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -4102,6 +4113,8 @@
 		private DevComponents.DotNetBar.RibbonBar ribbonBarDigitalScheduleLogo1;
 		private DevComponents.DotNetBar.ButtonItem buttonItemDigitalScheduleLogo;
 		public DevComponents.DotNetBar.ButtonItem buttonItemDigitalScheduleProductDelete;
+		private DevComponents.DotNetBar.LabelItem labelItemHomeFlightDatesStartLogo;
+		private DevComponents.DotNetBar.LabelItem labelItemHomeFlightDatesEndLogo;
 	}
 }
 

@@ -8,6 +8,7 @@ using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.Persistent;
 using Asa.Business.Media.Enums;
+using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -485,21 +486,37 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				Controller.Instance.ProgramScheduleProgramDelete.Enabled = activeItemCollection.AllowToDeleteItem;
 				((RibbonBar)(Controller.Instance.ProgramScheduleProgramAdd.ContainerControl)).Text = activeItemCollection.CollectionTitle;
 
+				var addProductTitle = String.Format("Add {0}", activeItemCollection.CollectionItemTitle);
+				var addProductTooltip = String.Format("Add a {0} to your schedule", activeItemCollection.CollectionItemTitle);
+				var deleteProductTitle = String.Format("Delete {0}", activeItemCollection.CollectionItemTitle);
+				var deleteProductTooltip = String.Format("Delete the selected {0} from your schedule", activeItemCollection.CollectionItemTitle);
+
+				if (ActiveSection.ActiveEditor.EditorType == SectionEditorType.DigitalSection)
+				{
+					if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTitle))
+						addProductTitle = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTitle;
+					if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTooltip))
+						addProductTooltip = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTooltip;
+					if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalDeleteTitle))
+						deleteProductTitle = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalDeleteTitle;
+					if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalDeleteTooltip))
+						deleteProductTooltip = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalDeleteTooltip;
+				}
 				Controller.Instance.Supertip.SetSuperTooltip(
 					Controller.Instance.ProgramScheduleProgramAdd,
 					new SuperTooltipInfo(
-						String.Format("Add {0}", activeItemCollection.CollectionItemTitle),
+						addProductTitle,
 						"",
-						String.Format("Add a {0} to your schedule", activeItemCollection.CollectionItemTitle),
+						addProductTooltip,
 						null,
 						null,
 						eTooltipColor.Gray));
 				Controller.Instance.Supertip.SetSuperTooltip(
 					Controller.Instance.ProgramScheduleProgramDelete,
 					new SuperTooltipInfo(
-						String.Format("Delete {0}", activeItemCollection.CollectionItemTitle),
+						deleteProductTitle,
 						"",
-						String.Format("Delete the selected {0} from your schedule", activeItemCollection.CollectionItemTitle),
+						deleteProductTooltip,
 						null,
 						null,
 						eTooltipColor.Gray));

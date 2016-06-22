@@ -602,6 +602,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void advBandedGridViewSchedule_RowCellClick(object sender, RowCellClickEventArgs e)
 		{
 			if (e.Column != bandedGridColumnLogoImage) return;
+			if (e.Clicks < 2) return;
 			if (advBandedGridViewSchedule.FocusedRowHandle == GridControl.InvalidRowHandle) return;
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
 			{
@@ -644,9 +645,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			var outputOptions = new List<ScheduleSectionOutputType>();
 			if (_sectionContainer.SectionData.Programs.Any())
+			{
 				outputOptions.Add(ScheduleSectionOutputType.Program);
-			if (_sectionContainer.SectionData.DigitalInfo.Products.Any())
-				outputOptions.Add(ScheduleSectionOutputType.ProgramAndDigital);
+				if (_sectionContainer.SectionData.DigitalInfo.Products.Any())
+					outputOptions.Add(ScheduleSectionOutputType.ProgramAndDigital);
+			}
 			return outputOptions;
 		}
 
@@ -821,28 +824,31 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 						#region Set OutputDigitalProduct Values
 
-						if (includeDigital && (i + programsPerSlide) > _sectionContainer.SectionData.Programs.Count)
+						if (includeDigital && (i + programsPerSlide) >= _sectionContainer.SectionData.Programs.Count)
+						{
 							foreach (var product in _sectionContainer.SectionData.DigitalInfo.Products)
 							{
 								var outputProduct = new OutputDigitalProduct();
-								outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo ?
-									product.Logo?.Clone<ImageSource, ImageSource>() :
-									null;
-								outputProduct.Category = _sectionContainer.SectionData.DigitalInfo.ShowCategory ?
-									product.Category :
-									String.Empty;
-								outputProduct.SubCategory = _sectionContainer.SectionData.DigitalInfo.ShowSubCategory ?
-									product.SubCategory :
-									String.Empty;
-								outputProduct.Product = _sectionContainer.SectionData.DigitalInfo.ShowProduct ?
-									product.Name :
-									String.Empty;
-								outputProduct.Info = _sectionContainer.SectionData.DigitalInfo.ShowInfo ?
-									product.Info :
-									String.Empty;
+								outputProduct.LineID = String.Format("{0}", (_sectionContainer.SectionData.Programs.Count + product.Index).ToString("00"));
+								outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo
+									? product.Logo?.Clone<ImageSource, ImageSource>()
+									: null;
+								outputProduct.Category = _sectionContainer.SectionData.DigitalInfo.ShowCategory
+									? product.Category
+									: String.Empty;
+								outputProduct.SubCategory = _sectionContainer.SectionData.DigitalInfo.ShowSubCategory
+									? product.SubCategory
+									: String.Empty;
+								outputProduct.Product = _sectionContainer.SectionData.DigitalInfo.ShowProduct
+									? product.Name
+									: String.Empty;
+								outputProduct.Info = _sectionContainer.SectionData.DigitalInfo.ShowInfo
+									? product.Info
+									: String.Empty;
 								outputPage.DigitalProducts.Add(outputProduct);
 								Application.DoEvents();
 							}
+						}
 
 						#endregion
 

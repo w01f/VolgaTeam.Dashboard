@@ -678,6 +678,11 @@ namespace Asa.Media.Controls.BusinessClasses
 					if (!ReplacementsList.Keys.Contains(key))
 						ReplacementsList.Add(key, value);
 
+					key = String.Format("d{0}", (i + 1).ToString("00"));
+					value = digitalProduct.LineID;
+					if (!ReplacementsList.Keys.Contains(key))
+						ReplacementsList.Add(key, value);
+
 					Application.DoEvents();
 				}
 				else
@@ -811,6 +816,7 @@ namespace Asa.Media.Controls.BusinessClasses
 
 	public class OutputDigitalProduct
 	{
+		public string LineID { get; set; }
 		public ImageSource Logo { get; set; }
 		public string Category { get; set; }
 		public string SubCategory { get; set; }

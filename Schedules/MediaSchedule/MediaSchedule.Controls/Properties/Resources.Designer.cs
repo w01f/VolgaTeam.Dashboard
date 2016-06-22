@@ -516,6 +516,30 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap RibbonFlightDatesEnd
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonFlightDatesEnd", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonFlightDatesStart
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonFlightDatesStart", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap RibbonLogo
 		{
 			get

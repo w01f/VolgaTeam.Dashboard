@@ -249,6 +249,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void OnGridViewRowCellClick(object sender, RowCellClickEventArgs e)
 		{
 			if (e.Column != bandedGridColumnLogo) return;
+			if (e.Clicks < 2) return;
 			var digitalProduct = advBandedGridView.GetFocusedRow() as SectionDigitalProduct;
 			if (digitalProduct == null) return;
 			using (var form = new FormImageGallery(ListManager.Instance.Images))

@@ -120,6 +120,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private void advBandedGridView_RowCellClick(object sender, RowCellClickEventArgs e)
 		{
 			if (e.Column != bandedGridColumnLogo) return;
+			if (e.Clicks < 2) return;
 			var selectedProgram = advBandedGridView.GetFocusedRow() as Snapshot;
 			if (selectedProgram == null) return;
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))

@@ -313,6 +313,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private void advBandedGridView_RowCellClick(object sender, RowCellClickEventArgs e)
 		{
 			if (e.Column != bandedGridColumnLogo) return;
+			if (e.Clicks < 2) return;
 			var selectedProgram = advBandedGridView.GetFocusedRow() as OptionProgram;
 			if (selectedProgram == null) return;
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))

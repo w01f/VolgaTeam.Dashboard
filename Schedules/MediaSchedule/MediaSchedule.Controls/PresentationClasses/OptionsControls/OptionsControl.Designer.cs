@@ -30,6 +30,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pbNoPrograms = new System.Windows.Forms.PictureBox();
@@ -68,6 +69,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.pnNoPrograms = new System.Windows.Forms.Panel();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).BeginInit();
 			this.popupContainerControlProgramSource.SuspendLayout();
@@ -153,7 +155,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.gridViewProgramSource.OptionsView.ShowGroupExpandCollapseButtons = false;
 			this.gridViewProgramSource.OptionsView.ShowGroupPanel = false;
 			this.gridViewProgramSource.OptionsView.ShowIndicator = false;
-			this.gridViewProgramSource.DoubleClick += new System.EventHandler(this.gridViewProgramSource_DoubleClick);
+			this.gridViewProgramSource.DoubleClick += new System.EventHandler(this.OnGridViewProgramSourceDoubleClick);
 			// 
 			// gridColumnProgramSourceId
 			// 
@@ -240,6 +242,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
             this.repositoryItemPictureEdit});
 			this.gridControl.Size = new System.Drawing.Size(806, 568);
 			this.gridControl.TabIndex = 5;
+			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridView});
 			// 
@@ -340,14 +343,14 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.advBandedGridView.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridView.OptionsView.ShowIndicator = false;
 			this.advBandedGridView.RowHeight = 40;
-			this.advBandedGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.advBandedGridView_RowCellClick);
-			this.advBandedGridView.DragObjectOver += new DevExpress.XtraGrid.Views.Base.DragObjectOverEventHandler(this.advBandedGridView_DragObjectOver);
-			this.advBandedGridView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.advBandedGridView_CustomRowCellEditForEditing);
-			this.advBandedGridView.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.advBandedGridView_PopupMenuShowing);
-			this.advBandedGridView.ShownEditor += new System.EventHandler(this.advBandedGridView_ShownEditor);
-			this.advBandedGridView.ColumnPositionChanged += new System.EventHandler(this.advBandedGridView_ColumnPositionChanged);
-			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.advBandedGridView_CellValueChanged);
-			this.advBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.advBandedGridView_MouseDown);
+			this.advBandedGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.OnGridViewRowCellClick);
+			this.advBandedGridView.DragObjectOver += new DevExpress.XtraGrid.Views.Base.DragObjectOverEventHandler(this.OnGridViewDragObjectOver);
+			this.advBandedGridView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.OnGridViewCustomRowCellEditForEditing);
+			this.advBandedGridView.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.OnGridViewPopupMenuShowing);
+			this.advBandedGridView.ShownEditor += new System.EventHandler(this.OnGridViewShownEditor);
+			this.advBandedGridView.ColumnPositionChanged += new System.EventHandler(this.OnGridViewColumnPositionChanged);
+			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.OnGridViewCellValueChanged);
+			this.advBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnGridViewMouseDown);
 			// 
 			// gridBandId
 			// 
@@ -514,8 +517,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.repositoryItemPopupContainerEditProgram.PopupControl = this.popupContainerControlProgramSource;
 			this.repositoryItemPopupContainerEditProgram.PopupFormSize = new System.Drawing.Size(550, 200);
 			this.repositoryItemPopupContainerEditProgram.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-			this.repositoryItemPopupContainerEditProgram.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemPopupContainerEditProgram_CloseUp);
-			this.repositoryItemPopupContainerEditProgram.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemPopupContainerEditProgram_Closed);
+			this.repositoryItemPopupContainerEditProgram.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.OnRepositoryItemPopupContainerEditProgramCloseUp);
+			this.repositoryItemPopupContainerEditProgram.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemPopupContainerEditProgramClosed);
 			// 
 			// bandedGridColumnDay
 			// 
@@ -789,6 +792,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 			this.pnNoPrograms.Size = new System.Drawing.Size(570, 95);
 			this.pnNoPrograms.TabIndex = 6;
 			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
+			// 
 			// OptionsControl
 			// 
 			this.Controls.Add(this.pnNoPrograms);
@@ -856,5 +865,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandOtherColumns;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

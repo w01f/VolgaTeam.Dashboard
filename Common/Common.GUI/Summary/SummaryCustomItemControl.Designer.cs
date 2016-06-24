@@ -234,8 +234,6 @@
 			this.pbUp.TabIndex = 36;
 			this.pbUp.TabStop = false;
 			this.pbUp.Click += new System.EventHandler(this.pbUp_Click);
-			this.pbUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// pbDown
 			// 
@@ -247,8 +245,6 @@
 			this.pbDown.TabIndex = 35;
 			this.pbDown.TabStop = false;
 			this.pbDown.Click += new System.EventHandler(this.pbDown_Click);
-			this.pbDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// pbDelete
 			// 
@@ -260,8 +256,6 @@
 			this.pbDelete.TabIndex = 34;
 			this.pbDelete.TabStop = false;
 			this.pbDelete.Click += new System.EventHandler(this.pbDelete_Click);
-			this.pbDelete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbDelete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// SummaryCustomItemControl
 			// 

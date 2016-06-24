@@ -18,7 +18,7 @@ using DevExpress.XtraTab;
 namespace Asa.Online.Controls.PresentationClasses.Products
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalProductControl : UserControl, IDigitalOutputControl
+	//public partial class DigitalProductControl : UserControl
 	public partial class DigitalProductControl : XtraTabPage, IDigitalProductControl, IDigitalOutputItem
 	{
 		private readonly IDigitalProductsContainer _container;
@@ -51,10 +51,15 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2, hyperLinkEditReset.Font.Style);
 			}
 
+			labelControlWebsite.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesLogo;
 			labelControlWebsite.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesTitle ?? labelControlWebsite.Text;
+			labelControlProduct.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameLogo;
 			labelControlProduct.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameTitle ?? labelControlProduct.Text;
+			labelControlDescription.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionLogo;
 			labelControlDescription.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionTitle ?? labelControlDescription.Text;
+			labelControlPriceType.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingLogo;
 			labelControlPriceType.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingTitle ?? labelControlPriceType.Text;
+			labelControlComments.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsLogo;
 			labelControlComments.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsTitle ?? labelControlComments.Text;
 
 			spinEditImpressions.EnableSelectAll();

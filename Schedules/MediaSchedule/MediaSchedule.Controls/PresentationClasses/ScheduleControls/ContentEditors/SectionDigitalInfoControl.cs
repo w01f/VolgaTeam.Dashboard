@@ -19,6 +19,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
+using DevExpress.Utils;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -284,7 +285,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			var view = sender as AdvBandedGridView;
 			var edit = view.ActiveEditor as TextEdit;
 			if (edit == null) return;
-			edit.Properties.BeforeShowMenu += Properties_BeforeShowMenu;
+			edit.Properties.BeforeShowMenu += OnMenuBeforeShow;
 		}
 
 		private void OnGridViewPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
@@ -307,7 +308,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			advBandedGridView.CloseEditor();
 		}
 
-		private void Properties_BeforeShowMenu(object sender, BeforeShowMenuEventArgs e)
+		private void OnMenuBeforeShow(object sender, BeforeShowMenuEventArgs e)
 		{
 			var items = GetContextMenuItems(advBandedGridView, advBandedGridView.FocusedRowHandle);
 			if (!items.Any()) return;
@@ -320,6 +321,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (!_allowToSave) return;
 			_sectionContainer.RaiseDataChanged();
+		}
+
+		private void OnTooltipGetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			if (e.SelectedControl != gridControl) return;
+			var view = gridControl.GetViewAt(e.ControlMousePosition) as GridView;
+			if (view == null) return;
+			var hi = view.CalcHitInfo(e.ControlMousePosition);
+			if (!hi.InRowCell) return;
+			if (hi.Column != bandedGridColumnLogo) return;
+			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Double-Click to change the logo…");
+			e.Info.ImmediateToolTip = true;
+			e.Info.Interval = 0;
 		}
 		#endregion
 
@@ -370,6 +384,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			{
 				var product = _sectionContainer.SectionData.DigitalInfo.Products[j];
 				var outputProduct = new OutputDigitalProduct();
+				outputProduct.LineID = product.Index.ToString("00");
 				outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo ?
 					product.Logo?.Clone<ImageSource, ImageSource>() :
 					null;

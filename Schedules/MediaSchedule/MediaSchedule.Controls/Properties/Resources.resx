@@ -181,9 +181,6 @@
   <data name="DeleteProgram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteProgram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NudgeUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NudgeUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SectionSettingsTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionSettingsTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -222,9 +219,6 @@
   </data>
   <data name="QatSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\QatSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NudgeDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NudgeDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SectionSettingsInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SectionSettingsInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -288,5 +282,23 @@
   </data>
   <data name="RibbonFlightDatesStart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RibbonFlightDatesStart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryItemDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryItemDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryItemDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryItemDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryItemImportDigital" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryItemImportDigital.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryItemImportMedia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryItemImportMedia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryItemReset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryItemReset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryItemUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryItemUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

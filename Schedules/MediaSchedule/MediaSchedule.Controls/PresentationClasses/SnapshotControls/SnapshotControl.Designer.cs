@@ -28,8 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pbNoPrograms = new System.Windows.Forms.PictureBox();
 			this.popupContainerControlProgramSource = new DevExpress.XtraEditors.PopupContainerControl();
 			this.gridControlProgramSource = new DevExpress.XtraGrid.GridControl();
@@ -77,6 +78,7 @@
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.pnNoPrograms = new System.Windows.Forms.Panel();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).BeginInit();
 			this.popupContainerControlProgramSource.SuspendLayout();
@@ -162,7 +164,7 @@
 			this.gridViewProgramSource.OptionsView.ShowGroupExpandCollapseButtons = false;
 			this.gridViewProgramSource.OptionsView.ShowGroupPanel = false;
 			this.gridViewProgramSource.OptionsView.ShowIndicator = false;
-			this.gridViewProgramSource.DoubleClick += new System.EventHandler(this.gridViewProgramSource_DoubleClick);
+			this.gridViewProgramSource.DoubleClick += new System.EventHandler(this.OnGridViewProgramSourceDoubleClick);
 			// 
 			// gridColumnProgramSourceId
 			// 
@@ -249,6 +251,7 @@
             this.repositoryItemPictureEdit});
 			this.gridControl.Size = new System.Drawing.Size(806, 568);
 			this.gridControl.TabIndex = 5;
+			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridView});
 			// 
@@ -371,13 +374,13 @@
 			this.advBandedGridView.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridView.OptionsView.ShowIndicator = false;
 			this.advBandedGridView.RowHeight = 30;
-			this.advBandedGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.advBandedGridView_RowCellClick);
-			this.advBandedGridView.CustomDrawFooter += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.advBandedGridView_CustomDrawFooter);
-			this.advBandedGridView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.advBandedGridView_CustomRowCellEditForEditing);
-			this.advBandedGridView.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.advBandedGridView_PopupMenuShowing);
-			this.advBandedGridView.ShownEditor += new System.EventHandler(this.advBandedGridView_ShownEditor);
-			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.advBandedGridView_CellValueChanged);
-			this.advBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.advBandedGridView_MouseDown);
+			this.advBandedGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.OnGridViewRowCellClick);
+			this.advBandedGridView.CustomDrawFooter += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.OnGridViewCustomDrawFooter);
+			this.advBandedGridView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.OnGridViewCustomRowCellEditForEditing);
+			this.advBandedGridView.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.OnGridViewPopupMenuShowing);
+			this.advBandedGridView.ShownEditor += new System.EventHandler(this.OnGridViewShownEditor);
+			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.OnGridViewCellValueChanged);
+			this.advBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnGridViewMouseDown);
 			// 
 			// gridBandId
 			// 
@@ -603,7 +606,7 @@
 			this.repositoryItemPopupContainerEditProgram.PopupControl = this.popupContainerControlProgramSource;
 			this.repositoryItemPopupContainerEditProgram.PopupFormSize = new System.Drawing.Size(550, 200);
 			this.repositoryItemPopupContainerEditProgram.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-			this.repositoryItemPopupContainerEditProgram.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemPopupContainerEditProgram_CloseUp);
+			this.repositoryItemPopupContainerEditProgram.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.OnRepositoryItemPopupContainerEditProgramCloseUp);
 			this.repositoryItemPopupContainerEditProgram.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemClosed);
 			// 
 			// bandedGridColumnTime
@@ -739,7 +742,7 @@
 			this.repositoryItemSpinEditRate.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRate.AutoHeight = false;
 			this.repositoryItemSpinEditRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0";
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0";
@@ -809,7 +812,7 @@
 			this.repositoryItemSpinEditSpot.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEditSpot.AutoHeight = false;
 			this.repositoryItemSpinEditSpot.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.repositoryItemSpinEditSpot.DisplayFormat.FormatString = "#,##0";
 			this.repositoryItemSpinEditSpot.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditSpot.EditFormat.FormatString = "#,##0";
@@ -1014,6 +1017,12 @@
 			this.pnNoPrograms.Size = new System.Drawing.Size(570, 95);
 			this.pnNoPrograms.TabIndex = 6;
 			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
+			// 
 			// SnapshotControl
 			// 
 			this.Controls.Add(this.pnNoPrograms);
@@ -1091,5 +1100,6 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandStation;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

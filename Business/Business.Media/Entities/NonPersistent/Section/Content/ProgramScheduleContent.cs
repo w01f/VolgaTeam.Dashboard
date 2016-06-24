@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Asa.Business.Media.Entities.NonPersistent.Common;
-using Asa.Business.Online.Entities.NonPersistent;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 {

@@ -47,6 +47,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 					new CustomSummaryContent(this),
 					});
 			}
+			CustomSummary.AfterCreate();
 		}
 
 		public void AfterCreate()

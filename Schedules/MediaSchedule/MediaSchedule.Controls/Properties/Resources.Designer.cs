@@ -360,30 +360,6 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap NudgeDown
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("NudgeDown", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap NudgeUp
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("NudgeUp", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
 		public static System.Drawing.Bitmap OpenSchedule
 		{
 			get
@@ -725,6 +701,78 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("SnapshotsNoPrograms", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SummaryItemDelete
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SummaryItemDelete", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SummaryItemDown
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SummaryItemDown", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SummaryItemImportDigital
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SummaryItemImportDigital", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SummaryItemImportMedia
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SummaryItemImportMedia", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SummaryItemReset
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SummaryItemReset", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SummaryItemUp
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SummaryItemUp", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

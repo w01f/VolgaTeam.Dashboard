@@ -145,7 +145,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			{
 				var result = new List<string>();
 				if (Width.HasValue && Height.HasValue && ShowDimensions)
-					result.Add(String.Format("(Ad Dimensions: {0}{1})", Dimensions, !String.IsNullOrEmpty(Location) && !Location.Equals("N/A") ? String.Format(" Location - {0}", Location) : String.Empty));
+					result.Add(String.Format("(Ad Dimensions: {0}{1})", Dimensions, !String.IsNullOrEmpty(Location) && !Location.Equals("N/A") ? String.Format(" {0}", Location) : String.Empty));
 				if (ShowDescriptionTargeting && EnableTarget && AddtionalInfo.Any(pi => pi.Type == ProductInfoType.Targeting && pi.Selected))
 					result.AddRange(AddtionalInfo.Where(pi => pi.Type == ProductInfoType.Targeting && pi.Selected).Select(pi => pi.EditValue));
 				if (ShowDescriptionRichMedia && EnableRichMedia && AddtionalInfo.Any(pi => pi.Type == ProductInfoType.RichMedia && pi.Selected))

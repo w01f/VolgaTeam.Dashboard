@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
@@ -47,6 +48,7 @@
 			this.repositoryItemSpinEditRate = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.bandedGridColumnTotalPeriods = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnPeriodCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -69,6 +71,7 @@
             this.repositoryItemMemoEdit});
 			this.gridControl.Size = new System.Drawing.Size(977, 563);
 			this.gridControl.TabIndex = 6;
+			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridView});
 			// 
@@ -169,9 +172,9 @@
 			this.advBandedGridView.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
 			this.advBandedGridView.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridView.OptionsView.ShowIndicator = false;
-			this.advBandedGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.advBandedGridView_RowCellClick);
-			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.advBandedGridView_CellValueChanged);
-			this.advBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.advBandedGridView_MouseDown);
+			this.advBandedGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.OnGridViewRowCellClick);
+			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.OnGridViewCellValueChanged);
+			this.advBandedGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnGridViewMouseDown);
 			// 
 			// gridBandId
 			// 
@@ -470,12 +473,17 @@
 			this.bandedGridColumnPeriodCost.Visible = true;
 			this.bandedGridColumnPeriodCost.Width = 85;
 			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
+			// 
 			// OptionsSummaryControl
 			// 
 			this.Appearance.PageClient.BackColor = System.Drawing.Color.White;
 			this.Appearance.PageClient.Options.UseBackColor = true;
 			this.Controls.Add(this.gridControl);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Size = new System.Drawing.Size(977, 563);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).EndInit();
@@ -506,5 +514,6 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnTotalPeriods;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnPeriodCost;
 		private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

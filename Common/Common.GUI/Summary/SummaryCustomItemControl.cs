@@ -27,6 +27,10 @@ namespace Asa.Common.GUI.Summary
 			spinEditMonthly.EnableSelectAll();
 			spinEditTotal.EnableSelectAll();
 
+			pbUp.Buttonize();
+			pbDown.Buttonize();
+			pbDelete.Buttonize();
+
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 2, laTotal.Font.Style);
@@ -76,25 +80,27 @@ namespace Asa.Common.GUI.Summary
 			laNumber.Text = (Data.Order + 1).ToString();
 		}
 
+		public void UpdatePositionButtons()
+		{
+			throw new NotImplementedException();
+		}
+
 		private void pbDelete_Click(object sender, EventArgs e)
 		{
 			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure you want to delete this product?") == DialogResult.Yes)
-				if (ItemDeleted != null)
-					ItemDeleted(this, new SummaryItemEventArgs(this));
+				ItemDeleted?.Invoke(this, new SummaryItemEventArgs(this));
 		}
 
 		private void pbUp_Click(object sender, EventArgs e)
 		{
 			Data.Order -= (decimal)1.5;
-			if (ItemPositionChanged != null)
-				ItemPositionChanged(this, new SummaryItemEventArgs(this));
+			ItemPositionChanged?.Invoke(this, new SummaryItemEventArgs(this));
 		}
 
 		private void pbDown_Click(object sender, EventArgs e)
 		{
 			Data.Order += (decimal)1.5;
-			if (ItemPositionChanged != null)
-				ItemPositionChanged(this, new SummaryItemEventArgs(this));
+			ItemPositionChanged?.Invoke(this, new SummaryItemEventArgs(this));
 		}
 
 		private void ckMonthly_CheckedChanged(object sender, EventArgs e)
@@ -104,8 +110,7 @@ namespace Asa.Common.GUI.Summary
 			if (_loading) return;
 			spinEditMonthly.Value = ckMonthly.Checked ? spinEditMonthly.Value : 0;
 			Data.ShowMonthly = ckMonthly.Checked;
-			if (InvestmentChanged != null)
-				InvestmentChanged(this, EventArgs.Empty);
+			InvestmentChanged?.Invoke(this, EventArgs.Empty);
 			RaiseDataChanged();
 		}
 
@@ -116,8 +121,7 @@ namespace Asa.Common.GUI.Summary
 			if (_loading) return;
 			spinEditTotal.Value = ckTotal.Checked ? spinEditTotal.Value : 0;
 			Data.ShowTotal = ckTotal.Checked;
-			if (InvestmentChanged != null)
-				InvestmentChanged(this, EventArgs.Empty);
+			InvestmentChanged?.Invoke(this, EventArgs.Empty);
 			RaiseDataChanged();
 		}
 
@@ -156,8 +160,7 @@ namespace Asa.Common.GUI.Summary
 		{
 			if (_loading) return;
 			Data.Monthly = spinEditMonthly.Value;
-			if (InvestmentChanged != null)
-				InvestmentChanged(this, EventArgs.Empty);
+			InvestmentChanged?.Invoke(this, EventArgs.Empty);
 			RaiseDataChanged();
 		}
 
@@ -165,110 +168,43 @@ namespace Asa.Common.GUI.Summary
 		{
 			if (_loading) return;
 			Data.Total = spinEditTotal.Value;
-			if (InvestmentChanged != null)
-				InvestmentChanged(this, EventArgs.Empty);
+			InvestmentChanged?.Invoke(this, EventArgs.Empty);
 			RaiseDataChanged();
 		}
 
 		#region Output Stuff
-		public bool ShowMonthly
-		{
-			get { return Data.ShowMonthly; }
-		}
+		public bool ShowMonthly => Data.ShowMonthly;
 
-		public bool ShowTotal
-		{
-			get { return Data.ShowTotal; }
-		}
+		public bool ShowTotal => Data.ShowTotal;
 
-		public bool ShowValueOutput
-		{
-			get { return Data.ShowValue; }
-		}
+		public bool ShowValueOutput => Data.ShowValue;
 
-		public bool ShowDescriptionOutput
-		{
-			get { return Data.ShowDescription; }
-		}
+		public bool ShowDescriptionOutput => Data.ShowDescription;
 
-		public bool ShowMonthlyOutput
-		{
-			get { return ShowMonthly; }
-		}
+		public bool ShowMonthlyOutput => ShowMonthly;
 
-		public bool ShowTotalOutput
-		{
-			get { return ShowTotal; }
-		}
+		public bool ShowTotalOutput => ShowTotal;
 
-		public string ItemTitle
-		{
-			get { return !String.IsNullOrEmpty(Data.Value) && Data.ShowValue ? Data.Value : String.Empty; }
-		}
+		public string ItemTitle => !String.IsNullOrEmpty(Data.Value) && Data.ShowValue ? Data.Value : String.Empty;
 
-		public string ItemIcon
-		{
-			get { return String.Empty; }
-		}
+		public string ItemIcon => String.Empty;
 
-		public string OutputItemTitle
-		{
-			get { return !String.IsNullOrEmpty(ItemTitle) && ShowValueOutput ? ItemTitle : String.Empty; }
-		}
+		public string OutputItemTitle => !String.IsNullOrEmpty(ItemTitle) && ShowValueOutput ? ItemTitle : String.Empty;
 
-		private string ItemDetail
-		{
-			get { return !String.IsNullOrEmpty(Data.Description) && Data.ShowDescription ? Data.Description : String.Empty; }
-		}
+		private string ItemDetail => !String.IsNullOrEmpty(Data.Description) && Data.ShowDescription ? Data.Description : String.Empty;
 
-		public string ItemDetailOutput
-		{
-			get { return !String.IsNullOrEmpty(ItemDetail) ? ItemDetail : String.Empty; }
-		}
+		public string ItemDetailOutput => !String.IsNullOrEmpty(ItemDetail) ? ItemDetail : String.Empty;
 
-		public decimal? MonthlyValue
-		{
-			get { return Data.ShowMonthly ? Data.Monthly : null; }
-		}
+		public decimal? MonthlyValue => Data.ShowMonthly ? Data.Monthly : null;
 
-		public decimal? TotalValue
-		{
-			get { return Data.ShowTotal ? Data.Total : null; }
-		}
+		public decimal? TotalValue => Data.ShowTotal ? Data.Total : null;
 
-		public decimal? OutputMonthlyValue
-		{
-			get { return ckMonthly.Checked ? MonthlyValue : null; }
-		}
+		public decimal? OutputMonthlyValue => ckMonthly.Checked ? MonthlyValue : null;
 
-		public decimal? OutputTotalValue
-		{
-			get { return ckTotal.Checked ? TotalValue : null; }
-		}
+		public decimal? OutputTotalValue => ckTotal.Checked ? TotalValue : null;
 
-		public bool Complited
-		{
-			get { return Data.ShowValue && !String.IsNullOrEmpty(ItemTitle); }
-		}
-		#endregion
+		public bool Complited => Data.ShowValue && !String.IsNullOrEmpty(ItemTitle);
 
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
 		#endregion
 	}
 }

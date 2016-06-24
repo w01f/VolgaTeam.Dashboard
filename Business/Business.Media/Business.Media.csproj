@@ -94,8 +94,6 @@
     <Compile Include="Entities\NonPersistent\Section\Content\WeeklySection.cs" />
     <Compile Include="Entities\NonPersistent\Section\Digital\SectionDigitalProduct.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\CustomSummaryContent.cs" />
-    <Compile Include="Entities\NonPersistent\Section\Summary\DigitalInfoSummaryItem.cs" />
-    <Compile Include="Entities\NonPersistent\Section\Summary\MediaInfoSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\ProductInfoSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\SectionSummary.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\SourceProgram.cs" />
@@ -123,6 +121,7 @@
     <Compile Include="Enums\MediaDataType.cs" />
     <Compile Include="Enums\SectionSummaryType.cs" />
     <Compile Include="Enums\SpotType.cs" />
+    <Compile Include="Enums\SummaryItemDataSourceType.cs" />
     <Compile Include="Interfaces\IMediaPartition.cs" />
     <Compile Include="Interfaces\IMediaSettingsManager.cs" />
     <Compile Include="Interfaces\ISectionSummaryContent.cs" />

@@ -215,6 +215,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionItemCollectionControl.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.Designer.cs">
+      <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Output\ISectionOutputControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.cs">
       <SubType>Component</SubType>
@@ -454,6 +460,9 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.resx">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.resx">
+      <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.resx">
       <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
@@ -545,12 +554,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DeleteProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NudgeDown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NudgeUp.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddProduct.png" />
@@ -763,6 +766,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RibbonFlightDatesStart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryItemDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryItemDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryItemImportDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryItemImportMedia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryItemReset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryItemUp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

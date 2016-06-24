@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 
 namespace Asa.Business.Online.Configuration
@@ -51,6 +54,12 @@ namespace Asa.Business.Online.Configuration
 		public string ProductEditorsSitesTitle { get; set; }
 		public string ProductEditorsPricingTitle { get; set; }
 		public string ProductEditorsCommentsTitle { get; set; }
+
+		public Image ProductEditorsNameLogo { get; set; }
+		public Image ProductEditorsDescriptionLogo { get; set; }
+		public Image ProductEditorsSitesLogo { get; set; }
+		public Image ProductEditorsPricingLogo { get; set; }
+		public Image ProductEditorsCommentsLogo { get; set; }
 		#endregion
 
 		#region Package Section
@@ -142,6 +151,20 @@ namespace Asa.Business.Online.Configuration
 					ProductEditorsDescriptionTitle = values.ElementAtOrDefault(2);
 					ProductEditorsPricingTitle = values.ElementAtOrDefault(3);
 					ProductEditorsCommentsTitle = values.ElementAtOrDefault(4);
+					break;
+				case "tab_2_section_icons":
+					var imageRootFolder = Path.Combine(
+						Path.GetDirectoryName(typeof(DigitalControlsConfiguration).Assembly.Location),
+						"Data",
+						"!Main_Dashboard",
+						"Online Source",
+						"Icon Images");
+					if (!Directory.Exists(imageRootFolder)) break;
+					ProductEditorsSitesLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(0)) ? Image.FromFile(Path.Combine(imageRootFolder, values[0])) : null;
+					ProductEditorsNameLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(1)) ? Image.FromFile(Path.Combine(imageRootFolder, values[1])) : null;
+					ProductEditorsDescriptionLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(2)) ? Image.FromFile(Path.Combine(imageRootFolder, values[2])) : null;
+					ProductEditorsPricingLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(3)) ? Image.FromFile(Path.Combine(imageRootFolder, values[3])) : null;
+					ProductEditorsCommentsLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(4)) ? Image.FromFile(Path.Combine(imageRootFolder, values[4])) : null;
 					break;
 				case "tab_4_column_header_names":
 					PackageColumnsCategoryTitle = values.ElementAtOrDefault(0);

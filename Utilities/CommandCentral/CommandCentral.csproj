@@ -108,6 +108,9 @@
     <Compile Include="..\..\Business\Business.Online\Configuration\DigitalControlsConfiguration.cs">
       <Link>Entities\Online\DigitalControlsConfiguration.cs</Link>
     </Compile>
+    <Compile Include="..\..\Common\Common.Core\Json\JsonImageConverter.cs">
+      <Link>InteropClasses\JsonImageConverter.cs</Link>
+    </Compile>
     <Compile Include="AppManager.cs" />
     <Compile Include="Entities\Newspaper\AdSize.cs" />
     <Compile Include="Entities\Media\BroadcastMonthTemplate.cs" />

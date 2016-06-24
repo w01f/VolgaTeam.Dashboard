@@ -26,9 +26,12 @@ namespace Asa.Common.GUI.Summary
 		event EventHandler<EventArgs> InvestmentChanged;
 
 		event EventHandler<SummaryItemEventArgs> ItemPositionChanged;
+		event EventHandler<SummaryItemEventArgs> ItemDeleted;
 
 		void LoadData();
 		void Release();
+		void UpdateNumber();
+		void UpdatePositionButtons();
 	}
 
 	public class SummaryItemEventArgs : EventArgs

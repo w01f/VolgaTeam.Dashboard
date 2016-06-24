@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -38,14 +37,16 @@
 			this.ribbonBarHomeSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
 			this.itemContainerHomeFlightDatesStart = new DevComponents.DotNetBar.ItemContainer();
+			this.labelItemHomeFlightDatesStartLogo = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesStartTitle = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesStartValue = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainerHomeFlightDatesEnd = new DevComponents.DotNetBar.ItemContainer();
+			this.labelItemHomeFlightDatesEndLogo = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesEndTitle = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesEndValue = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
 			this.comboBoxEditBusinessName = new Asa.Common.GUI.Common.ComboBoxListEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
 			this.dateEditPresentationDate = new Asa.Common.GUI.Common.TabbedDateEdit();
 			this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
@@ -196,7 +197,7 @@
 			this.buttonItemCalendar2Clone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarCalendar2Calendar = new DevComponents.DotNetBar.RibbonBar();
 			this.listBoxControlCalendar2 = new DevExpress.XtraEditors.ImageListBoxControl();
-			this.imageList = new System.Windows.Forms.ImageList(this.components);
+			this.imageList = new System.Windows.Forms.ImageList();
 			this.itemContainerCalendar2Calendar = new DevComponents.DotNetBar.ItemContainer();
 			this.controlContainerItemCalendar2 = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonPanelCalendar1 = new DevComponents.DotNetBar.RibbonPanel();
@@ -232,13 +233,11 @@
 			this.buttonItemQatSaveAs = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
-			this.labelItemHomeFlightDatesStartLogo = new DevComponents.DotNetBar.LabelItem();
-			this.labelItemHomeFlightDatesEndLogo = new DevComponents.DotNetBar.LabelItem();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonBarHomeBasicInfo.SuspendLayout();
@@ -281,15 +280,15 @@
 			this.ribbonControl.CanCustomize = false;
 			this.ribbonControl.CaptionVisible = true;
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
+			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar2);
+			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar1);
+			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
+			this.ribbonControl.Controls.Add(this.ribbonPanelProgramSchedule);
 			this.ribbonControl.Controls.Add(this.ribbonPanelOptions);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSnapshot);
 			this.ribbonControl.Controls.Add(this.ribbonPanelRateCard);
 			this.ribbonControl.Controls.Add(this.ribbonPanelGallery2);
 			this.ribbonControl.Controls.Add(this.ribbonPanelGallery1);
-			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar2);
-			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar1);
-			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
-			this.ribbonControl.Controls.Add(this.ribbonPanelProgramSchedule);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
@@ -484,6 +483,11 @@
 			// 
 			this.itemContainerHomeFlightDatesStart.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// labelItemHomeFlightDatesStartLogo
+			// 
+			this.labelItemHomeFlightDatesStartLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesStartLogo.Image")));
+			this.labelItemHomeFlightDatesStartLogo.Name = "labelItemHomeFlightDatesStartLogo";
+			// 
 			// labelItemHomeFlightDatesStartTitle
 			// 
 			this.labelItemHomeFlightDatesStartTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -514,6 +518,11 @@
 			// 
 			// 
 			this.itemContainerHomeFlightDatesEnd.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// labelItemHomeFlightDatesEndLogo
+			// 
+			this.labelItemHomeFlightDatesEndLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesEndLogo.Image")));
+			this.labelItemHomeFlightDatesEndLogo.Name = "labelItemHomeFlightDatesEndLogo";
 			// 
 			// labelItemHomeFlightDatesEndTitle
 			// 
@@ -608,7 +617,7 @@
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
@@ -960,6 +969,7 @@
 			// 
 			// 
 			this.itemContainerDigitalScheduleProduct.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainerDigitalScheduleProduct.ItemSpacing = 12;
 			this.itemContainerDigitalScheduleProduct.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.itemContainerDigitalScheduleProduct.Name = "itemContainerDigitalScheduleProduct";
 			this.itemContainerDigitalScheduleProduct.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -2070,7 +2080,7 @@
 			// 
 			// comboBoxEditRateCards
 			// 
-			this.comboBoxEditRateCards.Location = new System.Drawing.Point(4, 59);
+			this.comboBoxEditRateCards.Location = new System.Drawing.Point(4, 60);
 			this.comboBoxEditRateCards.Name = "comboBoxEditRateCards";
 			this.comboBoxEditRateCards.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2496,7 +2506,7 @@
 			// comboBoxEditGallery2Sections
 			// 
 			this.comboBoxEditGallery2Sections.Enabled = false;
-			this.comboBoxEditGallery2Sections.Location = new System.Drawing.Point(29, 32);
+			this.comboBoxEditGallery2Sections.Location = new System.Drawing.Point(29, 33);
 			this.comboBoxEditGallery2Sections.Name = "comboBoxEditGallery2Sections";
 			this.comboBoxEditGallery2Sections.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2513,7 +2523,7 @@
 			// comboBoxEditGallery2Groups
 			// 
 			this.comboBoxEditGallery2Groups.Enabled = false;
-			this.comboBoxEditGallery2Groups.Location = new System.Drawing.Point(29, 69);
+			this.comboBoxEditGallery2Groups.Location = new System.Drawing.Point(29, 70);
 			this.comboBoxEditGallery2Groups.Name = "comboBoxEditGallery2Groups";
 			this.comboBoxEditGallery2Groups.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2962,7 +2972,7 @@
 			// comboBoxEditGallery1Sections
 			// 
 			this.comboBoxEditGallery1Sections.Enabled = false;
-			this.comboBoxEditGallery1Sections.Location = new System.Drawing.Point(29, 32);
+			this.comboBoxEditGallery1Sections.Location = new System.Drawing.Point(29, 33);
 			this.comboBoxEditGallery1Sections.Name = "comboBoxEditGallery1Sections";
 			this.comboBoxEditGallery1Sections.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2979,7 +2989,7 @@
 			// comboBoxEditGallery1Groups
 			// 
 			this.comboBoxEditGallery1Groups.Enabled = false;
-			this.comboBoxEditGallery1Groups.Location = new System.Drawing.Point(29, 69);
+			this.comboBoxEditGallery1Groups.Location = new System.Drawing.Point(29, 70);
 			this.comboBoxEditGallery1Groups.Name = "comboBoxEditGallery1Groups";
 			this.comboBoxEditGallery1Groups.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3260,6 +3270,7 @@
             this.buttonItemCalendar2Copy,
             this.buttonItemCalendar2Paste,
             this.buttonItemCalendar2Clone});
+			this.ribbonBarCalendar2Edit.ItemSpacing = 12;
 			this.ribbonBarCalendar2Edit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.ribbonBarCalendar2Edit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendar2Edit.Location = new System.Drawing.Point(147, 0);
@@ -3601,6 +3612,7 @@
             this.buttonItemCalendar1Copy,
             this.buttonItemCalendar1Paste,
             this.buttonItemCalendar1Clone});
+			this.ribbonBarCalendar1Edit.ItemSpacing = 12;
 			this.ribbonBarCalendar1Edit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.ribbonBarCalendar1Edit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendar1Edit.Location = new System.Drawing.Point(147, 0);
@@ -3844,16 +3856,6 @@
 			// 
 			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
 			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
-			// 
-			// labelItemHomeFlightDatesStartLogo
-			// 
-			this.labelItemHomeFlightDatesStartLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesStartLogo.Image")));
-			this.labelItemHomeFlightDatesStartLogo.Name = "labelItemHomeFlightDatesStartLogo";
-			// 
-			// labelItemHomeFlightDatesEndLogo
-			// 
-			this.labelItemHomeFlightDatesEndLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesEndLogo.Image")));
-			this.labelItemHomeFlightDatesEndLogo.Name = "labelItemHomeFlightDatesEndLogo";
 			// 
 			// FormMain
 			// 

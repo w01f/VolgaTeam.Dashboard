@@ -29,14 +29,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 	{
 		protected SectionContainer _sectionContainer;
 
-		protected readonly List<SummaryCustomItemControl> _inputControls = new List<SummaryCustomItemControl>();
+		protected readonly List<ISummaryItemControl> _inputControls = new List<ISummaryItemControl>();
 
 		public List<CustomSummaryItem> Items => SummaryContent.Items;
 
 		public SectionEditorType EditorType => SectionEditorType.CustomSummary;
 
 		#region Calculated properties
-		protected IEnumerable<SummaryCustomItemControl> OrderedItems
+		protected IEnumerable<ISummaryItemControl> OrderedItems
 		{
 			get { return _inputControls.OrderBy(it => it.Data.Order).ToList(); }
 		}
@@ -124,22 +124,25 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				{
 					var inputControl = _inputControls.FirstOrDefault(ic => ic.Data.Id.Equals(summaryItem.Id));
 					if (inputControl != null)
+					{
 						inputControl.Data = summaryItem;
+						inputControl.LoadData();
+					}
 					Application.DoEvents();
 				}
 			}
 		}
 
-		private SummaryCustomItemControl AddItemToList(CustomSummaryItem summaryItem)
+		private ISummaryItemControl AddItemToList(CustomSummaryItem summaryItem)
 		{
-			var item = new SummaryCustomItemControl();
+			var item = new SectionSummaryProductItemControl();
 			item.Data = summaryItem;
 			InitItem(item);
 			_inputControls.Add(item);
 			return item;
 		}
 
-		private void InitItem(SummaryCustomItemControl item)
+		private void InitItem(ISummaryItemControl item)
 		{
 			item.LoadData();
 			item.DataChanged += (o, e) =>
@@ -176,10 +179,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
 		{
 			SummaryContent.DeleteItem(e.SummaryItem.Data);
-			_inputControls.Remove((SummaryCustomItemControl)e.SummaryItem);
+			_inputControls.Remove(e.SummaryItem);
 			SummaryContent.ReorderItems();
 			UpdateControlsInList(OrderedItems.OfType<Control>().FirstOrDefault());
 			UpdateNumbers();
+			UpdatePositionButtons();
 			UpdateTotalItems();
 			UpdateTotals();
 			RaiseDataChanged();
@@ -189,7 +193,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			SummaryContent.ReorderItems();
 			UpdateNumbers();
-			UpdateControlsInList(e.SummaryItem as SummaryCustomItemControl);
+			UpdatePositionButtons();
+			UpdateControlsInList((Control)e.SummaryItem);
 			RaiseDataChanged();
 		}
 
@@ -199,12 +204,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				itemControl.UpdateNumber();
 		}
 
+		private void UpdatePositionButtons()
+		{
+			foreach (var itemControl in _inputControls)
+				itemControl.UpdatePositionButtons();
+		}
+
 		private void OnAddItem(object sender, EventArgs e)
 		{
-			var newItemData = SummaryContent.AddItem();
+			var newItemData = SummaryContent.AddItem<ProductInfoSummaryItem>(SummaryContent);
 			var focussed = AddItemToList(newItemData);
-			UpdateControlsInList(focussed);
+			UpdateControlsInList((Control)focussed);
 			UpdateTotalItems();
+			UpdatePositionButtons();
 			RaiseDataChanged();
 		}
 		#endregion

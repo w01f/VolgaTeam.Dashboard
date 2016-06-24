@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -36,7 +35,7 @@
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.hyperLinkEditResetProductName = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
 			this.memoEditProductName = new DevExpress.XtraEditors.MemoEdit();
@@ -169,9 +168,9 @@
 			this.memoEditProductName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditProductName.Location = new System.Drawing.Point(293, 34);
+			this.memoEditProductName.Location = new System.Drawing.Point(411, 34);
 			this.memoEditProductName.Name = "memoEditProductName";
-			this.memoEditProductName.Size = new System.Drawing.Size(313, 147);
+			this.memoEditProductName.Size = new System.Drawing.Size(195, 147);
 			this.memoEditProductName.StyleController = this.styleController;
 			this.memoEditProductName.TabIndex = 1;
 			this.memoEditProductName.EditValueChanged += new System.EventHandler(this.memoEditProductName_EditValueChanged);
@@ -184,7 +183,7 @@
 			this.checkedListBoxControlWebsite.Location = new System.Drawing.Point(11, 34);
 			this.checkedListBoxControlWebsite.Name = "checkedListBoxControlWebsite";
 			this.checkedListBoxControlWebsite.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlWebsite.Size = new System.Drawing.Size(252, 147);
+			this.checkedListBoxControlWebsite.Size = new System.Drawing.Size(371, 147);
 			this.checkedListBoxControlWebsite.StyleController = this.styleController;
 			this.checkedListBoxControlWebsite.TabIndex = 0;
 			this.checkedListBoxControlWebsite.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControlWebsite_ItemCheck);
@@ -194,10 +193,11 @@
 			this.labelControlWebsite.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlWebsite.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlWebsite.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlWebsite.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
 			this.labelControlWebsite.Location = new System.Drawing.Point(11, 8);
 			this.labelControlWebsite.Name = "labelControlWebsite";
 			this.labelControlWebsite.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-			this.labelControlWebsite.Size = new System.Drawing.Size(252, 23);
+			this.labelControlWebsite.Size = new System.Drawing.Size(371, 23);
 			this.labelControlWebsite.StyleController = this.styleController;
 			this.labelControlWebsite.TabIndex = 9;
 			this.labelControlWebsite.Text = "A. What Sites are you selling?";
@@ -353,9 +353,10 @@
 			this.labelControlPriceType.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlPriceType.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlPriceType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlPriceType.Location = new System.Drawing.Point(11, 229);
+			this.labelControlPriceType.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+			this.labelControlPriceType.Location = new System.Drawing.Point(22, 229);
 			this.labelControlPriceType.Name = "labelControlPriceType";
-			this.labelControlPriceType.Size = new System.Drawing.Size(454, 22);
+			this.labelControlPriceType.Size = new System.Drawing.Size(443, 22);
 			this.labelControlPriceType.StyleController = this.styleController;
 			this.labelControlPriceType.TabIndex = 10;
 			this.labelControlPriceType.Text = "D. How do you want to PRICE this Digital Product?";
@@ -468,10 +469,11 @@
 			this.labelControlProduct.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlProduct.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlProduct.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlProduct.Location = new System.Drawing.Point(293, 8);
+			this.labelControlProduct.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+			this.labelControlProduct.Location = new System.Drawing.Point(411, 8);
 			this.labelControlProduct.Name = "labelControlProduct";
 			this.labelControlProduct.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-			this.labelControlProduct.Size = new System.Drawing.Size(313, 23);
+			this.labelControlProduct.Size = new System.Drawing.Size(195, 23);
 			this.labelControlProduct.StyleController = this.styleController;
 			this.labelControlProduct.TabIndex = 102;
 			this.labelControlProduct.Text = "B. What Digital Product are you selling?";
@@ -483,7 +485,8 @@
 			this.labelControlDescription.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlDescription.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlDescription.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlDescription.Location = new System.Drawing.Point(634, 8);
+			this.labelControlDescription.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+			this.labelControlDescription.Location = new System.Drawing.Point(631, 8);
 			this.labelControlDescription.Name = "labelControlDescription";
 			this.labelControlDescription.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
 			this.labelControlDescription.Size = new System.Drawing.Size(293, 23);
@@ -498,9 +501,10 @@
 			this.labelControlComments.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlComments.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlComments.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlComments.Location = new System.Drawing.Point(506, 229);
+			this.labelControlComments.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+			this.labelControlComments.Location = new System.Drawing.Point(528, 229);
 			this.labelControlComments.Name = "labelControlComments";
-			this.labelControlComments.Size = new System.Drawing.Size(260, 22);
+			this.labelControlComments.Size = new System.Drawing.Size(238, 22);
 			this.labelControlComments.StyleController = this.styleController;
 			this.labelControlComments.TabIndex = 105;
 			this.labelControlComments.Text = "E. Comments & Positioning:";

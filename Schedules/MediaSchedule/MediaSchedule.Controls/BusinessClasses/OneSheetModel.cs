@@ -765,6 +765,11 @@ namespace Asa.Media.Controls.BusinessClasses
 					if (!ReplacementsList.Keys.Contains(key))
 						ReplacementsList.Add(key, value);
 
+					key = String.Format("d{0}", (i + 1).ToString("00"));
+					value = digitalProduct.LineID;
+					if (!ReplacementsList.Keys.Contains(key))
+						ReplacementsList.Add(key, value);
+
 					Application.DoEvents();
 				}
 				else

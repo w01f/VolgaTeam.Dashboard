@@ -28,6 +28,7 @@
 		/// </summary>
 		private  void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalPackageSettingsControl));
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
@@ -37,7 +38,7 @@
 			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnButtons = new System.Windows.Forms.Panel();
 			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXInfo = new DevComponents.DotNetBar.ButtonX();
@@ -94,7 +95,7 @@
 			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnButtons.Location = new System.Drawing.Point(0, 0);
 			this.pnButtons.Name = "pnButtons";
-			this.pnButtons.Size = new System.Drawing.Size(260, 244);
+			this.pnButtons.Size = new System.Drawing.Size(280, 244);
 			this.pnButtons.TabIndex = 57;
 			// 
 			// buttonXCategory
@@ -103,9 +104,9 @@
 			this.buttonXCategory.AutoCheckOnClick = true;
 			this.buttonXCategory.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCategory.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXCategory.Location = new System.Drawing.Point(12, 8);
+			this.buttonXCategory.Location = new System.Drawing.Point(11, 8);
 			this.buttonXCategory.Name = "buttonXCategory";
-			this.buttonXCategory.Size = new System.Drawing.Size(95, 27);
+			this.buttonXCategory.Size = new System.Drawing.Size(125, 27);
 			this.buttonXCategory.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCategory.TabIndex = 38;
 			this.buttonXCategory.Text = "Category";
@@ -119,9 +120,9 @@
 			this.buttonXInfo.AutoCheckOnClick = true;
 			this.buttonXInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXInfo.Location = new System.Drawing.Point(156, 155);
+			this.buttonXInfo.Location = new System.Drawing.Point(144, 155);
 			this.buttonXInfo.Name = "buttonXInfo";
-			this.buttonXInfo.Size = new System.Drawing.Size(95, 27);
+			this.buttonXInfo.Size = new System.Drawing.Size(125, 27);
 			this.buttonXInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXInfo.TabIndex = 48;
 			this.buttonXInfo.Text = "Schedule Info";
@@ -135,9 +136,9 @@
 			this.buttonXGroup.AutoCheckOnClick = true;
 			this.buttonXGroup.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXGroup.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXGroup.Location = new System.Drawing.Point(156, 8);
+			this.buttonXGroup.Location = new System.Drawing.Point(144, 8);
 			this.buttonXGroup.Name = "buttonXGroup";
-			this.buttonXGroup.Size = new System.Drawing.Size(95, 27);
+			this.buttonXGroup.Size = new System.Drawing.Size(125, 27);
 			this.buttonXGroup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXGroup.TabIndex = 39;
 			this.buttonXGroup.Text = "Group";
@@ -150,9 +151,9 @@
 			this.buttonXCPM.AutoCheckOnClick = true;
 			this.buttonXCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCPM.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXCPM.Location = new System.Drawing.Point(12, 106);
+			this.buttonXCPM.Location = new System.Drawing.Point(11, 106);
 			this.buttonXCPM.Name = "buttonXCPM";
-			this.buttonXCPM.Size = new System.Drawing.Size(95, 27);
+			this.buttonXCPM.Size = new System.Drawing.Size(125, 27);
 			this.buttonXCPM.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCPM.TabIndex = 47;
 			this.buttonXCPM.Text = "CPM";
@@ -165,9 +166,9 @@
 			this.buttonXProduct.AutoCheckOnClick = true;
 			this.buttonXProduct.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXProduct.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXProduct.Location = new System.Drawing.Point(12, 57);
+			this.buttonXProduct.Location = new System.Drawing.Point(11, 57);
 			this.buttonXProduct.Name = "buttonXProduct";
-			this.buttonXProduct.Size = new System.Drawing.Size(95, 27);
+			this.buttonXProduct.Size = new System.Drawing.Size(125, 27);
 			this.buttonXProduct.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXProduct.TabIndex = 40;
 			this.buttonXProduct.Text = "Product";
@@ -181,9 +182,9 @@
 			this.buttonXScreenshot.AutoCheckOnClick = true;
 			this.buttonXScreenshot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXScreenshot.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXScreenshot.Location = new System.Drawing.Point(156, 204);
+			this.buttonXScreenshot.Location = new System.Drawing.Point(144, 204);
 			this.buttonXScreenshot.Name = "buttonXScreenshot";
-			this.buttonXScreenshot.Size = new System.Drawing.Size(95, 27);
+			this.buttonXScreenshot.Size = new System.Drawing.Size(125, 27);
 			this.buttonXScreenshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXScreenshot.TabIndex = 46;
 			this.buttonXScreenshot.Text = "Screenshot";
@@ -197,9 +198,9 @@
 			this.buttonXImpressions.AutoCheckOnClick = true;
 			this.buttonXImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXImpressions.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXImpressions.Location = new System.Drawing.Point(156, 57);
+			this.buttonXImpressions.Location = new System.Drawing.Point(144, 57);
 			this.buttonXImpressions.Name = "buttonXImpressions";
-			this.buttonXImpressions.Size = new System.Drawing.Size(95, 27);
+			this.buttonXImpressions.Size = new System.Drawing.Size(125, 27);
 			this.buttonXImpressions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXImpressions.TabIndex = 41;
 			this.buttonXImpressions.Text = "Impressions";
@@ -212,9 +213,9 @@
 			this.buttonXComments.AutoCheckOnClick = true;
 			this.buttonXComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXComments.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXComments.Location = new System.Drawing.Point(12, 204);
+			this.buttonXComments.Location = new System.Drawing.Point(11, 204);
 			this.buttonXComments.Name = "buttonXComments";
-			this.buttonXComments.Size = new System.Drawing.Size(95, 27);
+			this.buttonXComments.Size = new System.Drawing.Size(125, 27);
 			this.buttonXComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXComments.TabIndex = 45;
 			this.buttonXComments.Text = "Comments";
@@ -227,9 +228,9 @@
 			this.buttonXInvestment.AutoCheckOnClick = true;
 			this.buttonXInvestment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXInvestment.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXInvestment.Location = new System.Drawing.Point(12, 155);
+			this.buttonXInvestment.Location = new System.Drawing.Point(11, 155);
 			this.buttonXInvestment.Name = "buttonXInvestment";
-			this.buttonXInvestment.Size = new System.Drawing.Size(95, 27);
+			this.buttonXInvestment.Size = new System.Drawing.Size(125, 27);
 			this.buttonXInvestment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXInvestment.TabIndex = 42;
 			this.buttonXInvestment.Text = "Investment";
@@ -243,9 +244,9 @@
 			this.buttonXRate.AutoCheckOnClick = true;
 			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXRate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXRate.Location = new System.Drawing.Point(156, 106);
+			this.buttonXRate.Location = new System.Drawing.Point(144, 106);
 			this.buttonXRate.Name = "buttonXRate";
-			this.buttonXRate.Size = new System.Drawing.Size(95, 27);
+			this.buttonXRate.Size = new System.Drawing.Size(125, 27);
 			this.buttonXRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXRate.TabIndex = 43;
 			this.buttonXRate.Text = "Rate";
@@ -262,7 +263,7 @@
 			this.pnFormula.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnFormula.Location = new System.Drawing.Point(0, 245);
 			this.pnFormula.Name = "pnFormula";
-			this.pnFormula.Size = new System.Drawing.Size(260, 245);
+			this.pnFormula.Size = new System.Drawing.Size(280, 245);
 			this.pnFormula.TabIndex = 56;
 			// 
 			// pbFormula
@@ -305,7 +306,7 @@
 			this.checkEditFormulaCPM.Properties.Caption = "<b>CPM</b><br>Investment / (Impressions / 10)";
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaCPM.Size = new System.Drawing.Size(241, 36);
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(261, 36);
 			this.checkEditFormulaCPM.StyleController = this.styleController;
 			toolTipItem2.Text = "Type Impressions and Investment";
 			superToolTip2.Items.Add(toolTipItem2);
@@ -332,7 +333,7 @@
 			this.checkEditFormulaInvestment.Properties.Caption = "<b>Investment</b><br>(Impressions  x 10%) / CPM";
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(241, 36);
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(261, 36);
 			this.checkEditFormulaInvestment.StyleController = this.styleController;
 			toolTipItem3.Text = "Type Impressions and CPM";
 			superToolTip3.Items.Add(toolTipItem3);
@@ -359,7 +360,7 @@
 			this.checkEditFormulaImpressions.Properties.Caption = "<b>Impressions</b><br>(CPM x Investment x 10)";
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(241, 36);
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(261, 36);
 			this.checkEditFormulaImpressions.StyleController = this.styleController;
 			toolTipItem4.Text = "Type CPM and Investment";
 			superToolTip4.Items.Add(toolTipItem4);
@@ -374,7 +375,7 @@
 			this.Controls.Add(this.pnButtons);
 			this.Controls.Add(this.pnFormula);
 			this.Name = "DigitalPackageSettingsControl";
-			this.Size = new System.Drawing.Size(260, 490);
+			this.Size = new System.Drawing.Size(280, 490);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnButtons.ResumeLayout(false);
 			this.pnFormula.ResumeLayout(false);

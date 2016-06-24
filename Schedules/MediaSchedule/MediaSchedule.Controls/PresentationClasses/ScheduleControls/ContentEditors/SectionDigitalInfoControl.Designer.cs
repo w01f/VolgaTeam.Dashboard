@@ -28,15 +28,16 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SectionDigitalInfoControl));
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pbNoProducts = new System.Windows.Forms.PictureBox();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandMain = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -51,6 +52,7 @@
 			this.repositoryItemComboBoxProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.bandedGridColumnInfo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			this.pnContent = new System.Windows.Forms.Panel();
 			this.pnContentBottom = new System.Windows.Forms.Panel();
 			this.pnMonthlyInvestment = new System.Windows.Forms.Panel();
@@ -119,6 +121,7 @@
             this.repositoryItemPictureEdit});
 			this.gridControl.Size = new System.Drawing.Size(669, 259);
 			this.gridControl.TabIndex = 5;
+			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridView});
 			// 
@@ -305,7 +308,7 @@
 			this.repositoryItemComboBoxGroup.AutoHeight = false;
 			this.repositoryItemComboBoxGroup.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxGroup.Name = "repositoryItemComboBoxGroup";
 			this.repositoryItemComboBoxGroup.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemComboBoxClosed);
 			this.repositoryItemComboBoxGroup.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.OnButtonsRepositoryItemButtonClick);
@@ -337,13 +340,15 @@
 			this.repositoryItemComboBoxProduct.AutoHeight = false;
 			this.repositoryItemComboBoxProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxProduct.Name = "repositoryItemComboBoxProduct";
 			this.repositoryItemComboBoxProduct.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemComboBoxClosed);
 			this.repositoryItemComboBoxProduct.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.OnButtonsRepositoryItemButtonClick);
 			// 
 			// bandedGridColumnInfo
 			// 
+			this.bandedGridColumnInfo.AppearanceCell.Options.UseTextOptions = true;
+			this.bandedGridColumnInfo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.bandedGridColumnInfo.AppearanceHeader.Options.UseTextOptions = true;
 			this.bandedGridColumnInfo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.bandedGridColumnInfo.Caption = "Schedule & Product Info";
@@ -361,6 +366,12 @@
 			this.repositoryItemMemoEdit.AppearanceFocused.Options.UseTextOptions = true;
 			this.repositoryItemMemoEdit.AppearanceFocused.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.repositoryItemMemoEdit.Name = "repositoryItemMemoEdit";
+			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
 			// 
 			// pnContent
 			// 
@@ -423,8 +434,8 @@
 			this.spinEditMonthlyInvestment.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditMonthlyInvestment.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditMonthlyInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthlyInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthlyInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "", null, null, true)});
 			this.spinEditMonthlyInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditMonthlyInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatString = "$#,###.00";
@@ -475,8 +486,8 @@
 			this.spinEditTotalInvestment.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditTotalInvestment.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditTotalInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotalInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotalInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.spinEditTotalInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditTotalInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotalInvestment.Properties.EditFormat.FormatString = "$#,###.00";
@@ -500,7 +511,6 @@
 			// 
 			this.Controls.Add(this.pnNoProducts);
 			this.Controls.Add(this.pnContent);
-			this.Name = "SectionDigitalInfoControl";
 			this.Size = new System.Drawing.Size(761, 470);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
@@ -549,5 +559,6 @@
 		private DevExpress.XtraEditors.LabelControl labelControlMonthlyInvestment;
 		private DevExpress.XtraEditors.LabelControl labelControlTotalInvestment;
 		private System.Windows.Forms.Panel pnNoProducts;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

@@ -315,7 +315,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (_dragDropHelper == null && _sectionContainer.SectionData.Programs.Any())
 			{
 				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, 40);
-				_dragDropHelper.AfterDrop += gridControlSchedule_AfterDrop;
+				_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
 			}
 			if (focussedRow >= 0 && focussedRow < advBandedGridViewSchedule.RowCount)
 				advBandedGridViewSchedule.FocusedRowHandle = focussedRow;
@@ -452,13 +452,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Grid Events
-		private void advBandedGridViewSchedule_CellValueChanged(object sender, CellValueChangedEventArgs e)
+		private void OnGridViewCellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
 			advBandedGridViewSchedule.CloseEditor();
 			advBandedGridViewSchedule.UpdateCurrentRow();
 		}
 
-		private void advBandedGridViewSchedule_CustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)
+		private void OnGridViewCustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)
 		{
 			if (e.Column == null) return;
 			if (!e.Column.AppearanceHeader.Options.UseBackColor) return;
@@ -481,7 +481,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			e.Handled = true;
 		}
 
-		private void advBandedGridViewSchedule_CustomDrawFooter(object sender, RowObjectCustomDrawEventArgs e)
+		private void OnGridViewCustomDrawFooter(object sender, RowObjectCustomDrawEventArgs e)
 		{
 			if (_spotColumns.Count > 0)
 			{
@@ -512,7 +512,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		private void advBandedGridViewSchedule_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
+		private void OnGridViewCustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
 		{
 			if (e.Column != bandedGridColumnName || advBandedGridViewSchedule.FocusedRowHandle == GridControl.InvalidRowHandle) return;
 			var station = advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnStation) as String;
@@ -528,21 +528,21 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				dataSource.AddRange(MediaMetaData.Instance.ListManager.SourcePrograms.OrderBy(sp => sp.Daypart));
 			if (dataSource.Any())
 			{
-				gridViewProgramSource.DoubleClick -= gridViewProgramSource_DoubleClick;
+				gridViewProgramSource.DoubleClick -= OnGridViewProgramSourceDoubleClick;
 				gridControlProgramSource.DataSource = dataSource;
-				gridViewProgramSource.DoubleClick += gridViewProgramSource_DoubleClick;
+				gridViewProgramSource.DoubleClick += OnGridViewProgramSourceDoubleClick;
 				e.RepositoryItem = repositoryItemPopupContainerEditProgram;
 			}
 			else
 				e.RepositoryItem = repositoryItemTextEditProgram;
 		}
 
-		private void gridViewProgramSource_DoubleClick(object sender, EventArgs e)
+		private void OnGridViewProgramSourceDoubleClick(object sender, EventArgs e)
 		{
 			popupContainerControlProgramSource.OwnerEdit.ClosePopup();
 		}
 
-		private void repositoryItemPopupContainerEditProgram_CloseUp(object sender, CloseUpEventArgs e)
+		private void OnRepositoryItemPopupContainerEditProgramCloseUp(object sender, CloseUpEventArgs e)
 		{
 			if (e.CloseMode != PopupCloseMode.Normal) return;
 			if (gridViewProgramSource.FocusedRowHandle != GridControl.InvalidRowHandle)
@@ -550,7 +550,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				var program = MediaMetaData.Instance.ListManager.SourcePrograms.FirstOrDefault(x => x.Id.Equals(gridViewProgramSource.GetRowCellValue(gridViewProgramSource.FocusedRowHandle, gridColumnProgramSourceId).ToString()));
 				if (program != null)
 				{
-					advBandedGridViewSchedule.CellValueChanged -= advBandedGridViewSchedule_CellValueChanged;
+					advBandedGridViewSchedule.CellValueChanged -= OnGridViewCellValueChanged;
 					e.Value = program.Name;
 					if (advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart) == null || string.IsNullOrEmpty(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart).ToString()))
 						advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart, program.Daypart);
@@ -564,26 +564,26 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						if (demo != null)
 							advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnRating, demo.Value);
 					}
-					advBandedGridViewSchedule.CellValueChanged += advBandedGridViewSchedule_CellValueChanged;
+					advBandedGridViewSchedule.CellValueChanged += OnGridViewCellValueChanged;
 				}
 			}
 			e.AcceptValue = true;
 		}
 
-		private void repositoryItemPopupContainerEditProgram_Closed(object sender, ClosedEventArgs e)
+		private void OnRepositoryItemPopupContainerEditProgramClosed(object sender, ClosedEventArgs e)
 		{
 			advBandedGridViewSchedule.CloseEditor();
 		}
 
-		private void advBandedGridViewSchedule_ShownEditor(object sender, EventArgs e)
+		private void OnGridViewShownEditor(object sender, EventArgs e)
 		{
 			var view = sender as AdvBandedGridView;
 			var edit = view.ActiveEditor as TextEdit;
 			if (edit == null) return;
-			edit.Properties.BeforeShowMenu += Properties_BeforeShowMenu;
+			edit.Properties.BeforeShowMenu += OnMenuBeforeShow;
 		}
 
-		private void Properties_BeforeShowMenu(object sender, BeforeShowMenuEventArgs e)
+		private void OnMenuBeforeShow(object sender, BeforeShowMenuEventArgs e)
 		{
 			var items = GetContextMenuItems(advBandedGridViewSchedule, advBandedGridViewSchedule.FocusedColumn, advBandedGridViewSchedule.FocusedRowHandle);
 			if (!items.Any()) return;
@@ -592,14 +592,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				e.Menu.Items.Add(menuItem);
 		}
 
-		private void advBandedGridViewSchedule_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+		private void OnGridViewPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
 		{
 			if (!e.HitInfo.InRowCell) return;
 			foreach (var menuItem in GetContextMenuItems(advBandedGridViewSchedule, e.HitInfo.Column, e.HitInfo.RowHandle))
 				e.Menu.Items.Add(menuItem);
 		}
 
-		private void advBandedGridViewSchedule_RowCellClick(object sender, RowCellClickEventArgs e)
+		private void OnGridViewScheduleRowCellClick(object sender, RowCellClickEventArgs e)
 		{
 			if (e.Column != bandedGridColumnLogoImage) return;
 			if (e.Clicks < 2) return;
@@ -613,7 +613,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		private void gridControlSchedule_AfterDrop(object sender, DragEventArgs e)
+		private void OnGridControlAfterDrop(object sender, DragEventArgs e)
 		{
 			var grid = sender as GridControl;
 			var view = grid.MainView as GridView;
@@ -626,6 +626,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			UpdateGridData(false);
 			UpdateSpotsByQuarter();
 			advBandedGridViewSchedule.FocusedRowHandle = targetRow;
+		}
+
+		private void OnTooltipGetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			if (e.SelectedControl != gridControlSchedule) return;
+			var view = gridControlSchedule.GetViewAt(e.ControlMousePosition) as GridView;
+			if (view == null) return;
+			var hi = view.CalcHitInfo(e.ControlMousePosition);
+			if (!hi.InRowCell) return;
+			if (hi.Column != bandedGridColumnLogoImage) return;
+			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Double-Click to change the logo…");
+			e.Info.ImmediateToolTip = true;
+			e.Info.Interval = 0;
 		}
 		#endregion
 

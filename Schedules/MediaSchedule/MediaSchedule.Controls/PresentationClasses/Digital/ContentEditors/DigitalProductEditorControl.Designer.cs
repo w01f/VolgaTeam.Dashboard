@@ -28,7 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.components = new System.ComponentModel.Container();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.labelControlCategory = new DevExpress.XtraEditors.LabelControl();
@@ -187,6 +188,7 @@
 			// 
 			this.Controls.Add(this.xtraTabControlProducts);
 			this.Controls.Add(this.pnHeader);
+			this.Name = "DigitalProductEditorControl";
 			this.Size = new System.Drawing.Size(967, 417);
 			this.Resize += new System.EventHandler(this.OnDigitalProductContainerResize);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();

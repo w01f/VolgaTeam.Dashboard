@@ -2,6 +2,7 @@
 {
 	public interface IDigitalItemCollectionEditor
 	{
+		bool HasItems { get; }
 		void AddItem(object sender);
 		void CloneItem();
 		void DeleteItem();

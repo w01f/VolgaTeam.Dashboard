@@ -10,6 +10,7 @@ using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Enums;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Extensions;
+using Asa.Common.Core.Json;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Newtonsoft.Json;
@@ -283,7 +284,7 @@ namespace Asa.Business.Online.Dictionaries
 						break;
 					case "DigitalControlsConfiguration":
 						DefaultControlsConfiguration =
-							JsonConvert.DeserializeObject<DigitalControlsConfiguration>(Encoding.Unicode.GetString(Convert.FromBase64String(childeNode.InnerText)));
+							JsonConvert.DeserializeObject<DigitalControlsConfiguration>(Encoding.Unicode.GetString(Convert.FromBase64String(childeNode.InnerText)), new JsonImageConverter());
 						break;
 				}
 			}

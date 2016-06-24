@@ -100,15 +100,14 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		}
 
 		#region Grid Event Handlers
-		private void advBandedGridView_CellValueChanged(object sender, CellValueChangedEventArgs e)
+		private void OnGridViewCellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
 			advBandedGridView.CloseEditor();
 			advBandedGridView.UpdateCurrentRow();
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		private void advBandedGridView_MouseDown(object sender, MouseEventArgs e)
+		private void OnGridViewMouseDown(object sender, MouseEventArgs e)
 		{
 			var view = sender as AdvBandedGridView;
 			if (view == null) return;
@@ -117,7 +116,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				CloseActiveEditorsonOutSideClick(null, null);
 		}
 
-		private void advBandedGridView_RowCellClick(object sender, RowCellClickEventArgs e)
+		private void OnGridViewRowCellClick(object sender, RowCellClickEventArgs e)
 		{
 			if (e.Column != bandedGridColumnLogo) return;
 			if (e.Clicks < 2) return;
@@ -131,6 +130,19 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				advBandedGridView.UpdateCurrentRow();
 				DataChanged?.Invoke(this, EventArgs.Empty);
 			}
+		}
+
+		private void OnTooltipGetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			if (e.SelectedControl != gridControl) return;
+			var view = gridControl.GetViewAt(e.ControlMousePosition) as GridView;
+			if (view == null) return;
+			var hi = view.CalcHitInfo(e.ControlMousePosition);
+			if (!hi.InRowCell) return;
+			if (hi.Column != bandedGridColumnLogo) return;
+			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), "Double-Click to change the logo…");
+			e.Info.ImmediateToolTip = true;
+			e.Info.Interval = 0;
 		}
 		#endregion
 

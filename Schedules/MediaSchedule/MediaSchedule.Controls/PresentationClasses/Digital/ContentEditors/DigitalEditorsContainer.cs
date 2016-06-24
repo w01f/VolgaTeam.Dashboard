@@ -241,10 +241,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		private void UpdateCollectionChangeButtons()
 		{
-			Controller.Instance.DigitalProductAdd.Enabled =
+			Controller.Instance.DigitalProductAdd.Enabled = ActiveCollectionEditor != null;
 			Controller.Instance.DigitalProductClone.Enabled =
 			Controller.Instance.DigitalProductDelete.Enabled =
-				ActiveCollectionEditor != null;
+				ActiveCollectionEditor != null && ActiveCollectionEditor.HasItems;
 		}
 
 		private void OnEditorSelected(object sender, TabPageChangedEventArgs e)
@@ -323,6 +323,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public void OnAddProduct(object sender, EventArgs e)
 		{
 			ActiveCollectionEditor?.AddItem(sender);
+			UpdateCollectionChangeButtons();
 		}
 
 		public void OnCloneProduct(object sender, EventArgs e)
@@ -333,6 +334,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public void OnDeleteProduct(object sender, EventArgs e)
 		{
 			ActiveCollectionEditor?.DeleteItem();
+			UpdateCollectionChangeButtons();
 		}
 		#endregion
 

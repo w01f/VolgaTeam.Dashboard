@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
@@ -17,6 +18,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private readonly DigitalEditorsContainer _container;
 		public DigitalEditorType EditorType => DigitalEditorType.List;
 		public string HelpTag => "homedg";
+		public bool HasItems => _container.EditedContent.DigitalProducts.Any();
 		public event EventHandler<DataChangedEventArgs> DataChanged;
 
 		public DigitalListEditorControl(DigitalEditorsContainer container)

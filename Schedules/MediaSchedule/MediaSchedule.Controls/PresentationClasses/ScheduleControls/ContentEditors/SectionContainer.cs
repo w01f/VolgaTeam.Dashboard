@@ -154,6 +154,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void RaiseDataChanged()
 		{
+			_sectionDataChanged = true;
 			UpdateCollectionItemsInfo();
 			UpdateSummaryState();
 			DataChanged?.Invoke(ActiveEditor, EventArgs.Empty);
@@ -161,7 +162,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnSectionDataChanged(object sender, EventArgs e)
 		{
-			_sectionDataChanged = true;
 			RaiseDataChanged();
 		}
 
@@ -204,7 +204,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void UpdateSummaryState()
 		{
 			_customSummaryControl.PageEnabled =
-				SectionData.Programs.Any(p => p.TotalSpots > 0);
+				SectionData.Programs.Any(p => p.TotalSpots > 0) || SectionData.DigitalInfo.Products.Any();
 		}
 
 		private void UpdateWarnings()

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Asa.Business.Online.Configuration;
+using Asa.Common.Core.Json;
 using CommandCentral.Entities.Common;
 using CommandCentral.Entities.Online;
 using CommandCentral.InteropClasses;
@@ -1083,7 +1084,7 @@ namespace CommandCentral.TabMainDashboardForms
 			xml.AppendLine(String.Format(@"<DefaultHomeViewSettings>{0}</DefaultHomeViewSettings>", defaultHomeViewSettings.Serialize()));
 			xml.AppendLine(String.Format(@"<DefaultDigitalProductSettings>{0}</DefaultDigitalProductSettings>", defaultDigitalProductSettings.Serialize()));
 			xml.AppendLine(String.Format(@"<DefaultDigitalPackageSettings>{0}</DefaultDigitalPackageSettings>", defaultDigitalPackageSettings.Serialize()));
-			xml.AppendLine(String.Format(@"<DigitalControlsConfiguration>{0}</DigitalControlsConfiguration>", Convert.ToBase64String(Encoding.Unicode.GetBytes(JsonConvert.SerializeObject(controlsConfiguration)))));
+			xml.AppendLine(String.Format(@"<DigitalControlsConfiguration>{0}</DigitalControlsConfiguration>", Convert.ToBase64String(Encoding.Unicode.GetBytes(JsonConvert.SerializeObject(controlsConfiguration, Formatting.None, new JsonImageConverter())))));
 
 			xml.AppendLine(@"</OnlineStrategy>");
 

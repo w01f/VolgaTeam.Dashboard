@@ -12,7 +12,7 @@ using Asa.Common.GUI.ContentEditors.Helpers;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.Properties;
 using Asa.Media.Controls.ToolForms;

@@ -9,6 +9,7 @@ using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using Asa.Business.Media.Entities.Persistent;
 using Asa.Business.Media.Enums;
+using Asa.Business.Media.Interfaces;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Images;
@@ -17,7 +18,7 @@ using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 {
-	public abstract class ScheduleSection : IJsonCloneable<ScheduleSection>
+	public abstract class ScheduleSection : IJsonCloneable<ScheduleSection>, IDigitalInfoContainer
 	{
 		public const string ProgramDataTableName = "Programs";
 		public const string ProgramIndexDataColumnName = "Index";
@@ -177,6 +178,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			if (Summary == null)
 				Summary = new SectionSummary(this);
 			Summary.AfterCreate();
+
+			if(ContractSettings==null)
+				ContractSettings = new ContractSettings();
 		}
 
 		public void AfterClone(ScheduleSection source, bool fullClone = true)

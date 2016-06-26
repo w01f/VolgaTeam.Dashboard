@@ -15,7 +15,7 @@ using Asa.Common.Core.Objects.Output;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar

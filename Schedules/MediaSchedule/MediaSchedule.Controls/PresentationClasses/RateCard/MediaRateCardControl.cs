@@ -1,5 +1,5 @@
 ﻿using Asa.Common.GUI.RateCard;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
 
 namespace Asa.Media.Controls.PresentationClasses.RateCard

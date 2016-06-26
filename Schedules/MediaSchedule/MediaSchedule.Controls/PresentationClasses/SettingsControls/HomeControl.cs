@@ -13,8 +13,8 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls

@@ -10,7 +10,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.RetractableBar;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
 {

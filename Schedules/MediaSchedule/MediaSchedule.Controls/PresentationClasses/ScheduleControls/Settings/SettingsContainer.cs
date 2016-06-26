@@ -7,7 +7,7 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Common.GUI.ToolForms;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
@@ -98,7 +98,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 					new SectionColumnSettingsControl(),
 					new SectionTotalsSettingsControl(),
 					new ColorSettingsControl(),
-					new DigitalInfoSettingsControl(), 
+					new SectionDigitalInfoSettingsControl(), 
 					new CustomSummaryInfoControl(),
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsDataControl>())

@@ -1,41 +1,23 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Digital;
-using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Online.Dictionaries;
-using Asa.Common.GUI.RetractableBar;
-using Asa.Media.Controls.Properties;
 using DevExpress.XtraTab;
 
-namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
+namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 {
 	[ToolboxItem(false)]
-	//public partial class SectionDigitalSettingsControl : UserControl
-	public partial class DigitalInfoSettingsControl : XtraTabPage, ISectionSettingsControl
+	//public partial class BaseDigitalInfoSettingsControl : UserControl
+	public abstract partial class BaseDigitalInfoSettingsControl : XtraTabPage
 	{
 		private bool _allowToSave;
-		private ScheduleSection _sectionData;
-		private MediaDigitalInfo _digitalInfo;
+		protected MediaDigitalInfo _digitalInfo;
 
-		public int Order => 0;
-		public bool IsAvailable => true;
-		public ButtonInfo BarButton { get; }
-		public ScheduleSettingsType SettingsType => ScheduleSettingsType.DigitalInfo;
-
-		public event EventHandler<SettingsChangedEventArgs> DataChanged;
-
-		public DigitalInfoSettingsControl()
+		protected BaseDigitalInfoSettingsControl()
 		{
 			InitializeComponent();
 			Text = "Info";
-			BarButton = new ButtonInfo
-			{
-				Logo = Resources.SectionSettingsInfo,
-				Tooltip = "Open Digital Settings",
-				Action = () => { TabControl.SelectedTabPage = this; }
-			};
 
 			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsCategoryTitle ?? buttonXCategory.Text;
 			buttonXSubCategory.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsSubCategoryTitle ?? buttonXSubCategory.Text;
@@ -68,11 +50,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			}
 		}
 
-		public void LoadSectionData(ScheduleSection sectionData)
-		{
-			_sectionData = sectionData;
-			_digitalInfo = _sectionData.DigitalInfo;
+		protected abstract void RaiseDataChanged();
 
+		protected void LoadData()
+		{
 			_allowToSave = false;
 			buttonXCategory.Checked = _digitalInfo.ShowCategory;
 			buttonXSubCategory.Checked = _digitalInfo.ShowSubCategory;
@@ -83,7 +64,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			buttonXTotalInvestment.Checked = _digitalInfo.ShowTotalInvestemt;
 			_allowToSave = true;
 		}
-
+		
 		private void OnSettingsChanged(Object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -96,7 +77,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			_digitalInfo.ShowMonthlyInvestemt = buttonXMonthlyInvestment.Checked;
 			_digitalInfo.ShowTotalInvestemt = buttonXTotalInvestment.Checked;
 
-			DataChanged?.Invoke(this, new SettingsChangedEventArgs { ChangedSettingsType = SettingsType });
+			RaiseDataChanged();
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using Asa.Business.Common.Enums;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Common.Core.Helpers;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 
@@ -9,51 +9,24 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	public class CustomCalendarControl : MediaCalendarControl
 	{
-		public override string Identifier
-		{
-			get { return ContentIdentifiers.CustomCalendar; }
-		}
+		public override string Identifier => ContentIdentifiers.CustomCalendar;
 
-		public override RibbonTabItem TabPage
-		{
-			get { return Controller.Instance.TabCalendar2; }
-		}
+		public override RibbonTabItem TabPage => Controller.Instance.TabCalendar2;
 
-		protected override RibbonControl Ribbon
-		{
-			get { return Controller.Instance.Ribbon; }
-		}
+		protected override RibbonControl Ribbon => Controller.Instance.Ribbon;
 
-		protected override ImageListBoxControl MonthList
-		{
-			get { return Controller.Instance.Calendar2MonthsList; }
-		}
+		protected override ImageListBoxControl MonthList => Controller.Instance.Calendar2MonthsList;
 
-		public override ButtonItem CopyButton
-		{
-			get { return Controller.Instance.Calendar2Copy; }
-		}
+		public override ButtonItem CopyButton => Controller.Instance.Calendar2Copy;
 
-		public override ButtonItem PasteButton
-		{
-			get { return Controller.Instance.Calendar2Paste; }
-		}
+		public override ButtonItem PasteButton => Controller.Instance.Calendar2Paste;
 
-		public override ButtonItem CloneButton
-		{
-			get { return Controller.Instance.Calendar2Clone; }
-		}
+		public override ButtonItem CloneButton => Controller.Instance.Calendar2Clone;
 
 		#region BasePartitionEditControl Override
-		protected override bool IsContentChanged
-		{
-			get
-			{
-				return EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
-					ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
-					ContentUpdateInfo.ChangeInfo.CalendarTypeChanged);
-			}
-		}
+		protected override bool IsContentChanged => EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
+		                                                                      ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+		                                                                      ContentUpdateInfo.ChangeInfo.CalendarTypeChanged);
 
 		public override void InitControl()
 		{

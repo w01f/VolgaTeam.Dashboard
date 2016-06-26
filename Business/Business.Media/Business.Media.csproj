@@ -122,6 +122,7 @@
     <Compile Include="Enums\SectionSummaryType.cs" />
     <Compile Include="Enums\SpotType.cs" />
     <Compile Include="Enums\SummaryItemDataSourceType.cs" />
+    <Compile Include="Interfaces\IDigitalInfoContainer.cs" />
     <Compile Include="Interfaces\IMediaPartition.cs" />
     <Compile Include="Interfaces\IMediaSettingsManager.cs" />
     <Compile Include="Interfaces\ISectionSummaryContent.cs" />

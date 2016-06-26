@@ -11,7 +11,9 @@ using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.BusinessClasses.Output;
+using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
@@ -190,7 +192,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					break;
 				case SectionEditorType.DigitalSection:
 					labelControlCollectionItemsInfo.Visible = true;
-					if (SectionData.DigitalInfo.Records.Count < OutputScheduleData.MaxDigitalProducts)
+					if (SectionData.DigitalInfo.Records.Count < BaseDigitalInfoOutputModel.MaxDigitalProducts)
 						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Records.Count);
 					else
 						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";

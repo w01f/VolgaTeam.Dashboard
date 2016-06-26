@@ -14,7 +14,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.Themes;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;

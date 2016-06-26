@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Common.GUI.RetractableBar;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.Properties;
 using DevExpress.XtraTab;
 

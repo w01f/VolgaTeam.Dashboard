@@ -1,6 +1,6 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
+﻿namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 {
-	partial class DigitalInfoSettingsControl
+	partial class BaseDigitalInfoSettingsControl
 	{
 		/// <summary> 
 		/// Required designer variable.

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Common.Core.Helpers;
-using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Digital
 {

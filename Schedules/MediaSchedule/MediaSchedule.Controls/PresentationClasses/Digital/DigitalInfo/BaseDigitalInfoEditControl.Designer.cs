@@ -1,6 +1,8 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
+﻿using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
+
+namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 {
-	partial class SectionDigitalInfoControl
+	partial class BaseDigitalInfoEditControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -29,13 +31,13 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SectionDigitalInfoControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseDigitalInfoEditControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pbNoProducts = new System.Windows.Forms.PictureBox();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
@@ -84,7 +86,7 @@
 			// 
 			this.pbNoProducts.BackColor = System.Drawing.Color.White;
 			this.pbNoProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoProducts.Image = global::Asa.Media.Controls.Properties.Resources.SectionNoDigitalItems;
+			this.pbNoProducts.Image = global::Asa.Media.Controls.Properties.Resources.DigitalInfoNoItems;
 			this.pbNoProducts.Location = new System.Drawing.Point(10, 10);
 			this.pbNoProducts.Name = "pbNoProducts";
 			this.pbNoProducts.Size = new System.Drawing.Size(180, 80);
@@ -308,7 +310,7 @@
 			this.repositoryItemComboBoxGroup.AutoHeight = false;
 			this.repositoryItemComboBoxGroup.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxGroup.Name = "repositoryItemComboBoxGroup";
 			this.repositoryItemComboBoxGroup.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemComboBoxClosed);
 			this.repositoryItemComboBoxGroup.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.OnButtonsRepositoryItemButtonClick);
@@ -340,7 +342,7 @@
 			this.repositoryItemComboBoxProduct.AutoHeight = false;
 			this.repositoryItemComboBoxProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxProduct.Name = "repositoryItemComboBoxProduct";
 			this.repositoryItemComboBoxProduct.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemComboBoxClosed);
 			this.repositoryItemComboBoxProduct.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.OnButtonsRepositoryItemButtonClick);
@@ -434,8 +436,8 @@
 			this.spinEditMonthlyInvestment.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditMonthlyInvestment.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditMonthlyInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthlyInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthlyInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.spinEditMonthlyInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditMonthlyInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatString = "$#,###.00";
@@ -486,8 +488,8 @@
 			this.spinEditTotalInvestment.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditTotalInvestment.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditTotalInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotalInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotalInvestment.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
 			this.spinEditTotalInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditTotalInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotalInvestment.Properties.EditFormat.FormatString = "$#,###.00";
@@ -507,10 +509,11 @@
 			this.pnNoProducts.Size = new System.Drawing.Size(200, 100);
 			this.pnNoProducts.TabIndex = 7;
 			// 
-			// SectionDigitalInfoControl
+			// BaseDigitalInfoEditControl
 			// 
 			this.Controls.Add(this.pnNoProducts);
 			this.Controls.Add(this.pnContent);
+			this.Name = "BaseDigitalInfoEditControl";
 			this.Size = new System.Drawing.Size(761, 470);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();

@@ -13,7 +13,7 @@ using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using Asa.Media.Controls.BusinessClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Controls

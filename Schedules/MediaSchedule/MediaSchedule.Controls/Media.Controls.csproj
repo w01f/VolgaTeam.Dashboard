@@ -84,15 +84,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessClasses\BusinessObjects.cs" />
-    <Compile Include="BusinessClasses\ContentController.cs" />
-    <Compile Include="BusinessClasses\ContentIdentifiers.cs" />
-    <Compile Include="BusinessClasses\ContentTabStateManager.cs" />
-    <Compile Include="BusinessClasses\OneSheetModel.cs" />
-    <Compile Include="BusinessClasses\OutputManager.cs" />
+    <Compile Include="BusinessClasses\Managers\BusinessObjects.cs" />
+    <Compile Include="BusinessClasses\Managers\ContentController.cs" />
+    <Compile Include="BusinessClasses\Managers\ContentIdentifiers.cs" />
+    <Compile Include="BusinessClasses\Managers\ContentTabStateManager.cs" />
+    <Compile Include="BusinessClasses\Output\DigitalInfo\BaseDigitalInfoOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoRecordOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\DigitalInfo\StandaloneDigitalInfoOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\OutputManager.cs" />
+    <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramDigitalInfoOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramScheduleOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\ProgramSchedule\OutputSpotInterval.cs" />
+    <Compile Include="BusinessClasses\Output\ProgramSchedule\TotalSpotOutputModel.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InteropClasses\CalendarHelper.cs" />
-    <Compile Include="InteropClasses\OneSheetHelper.cs" />
+    <Compile Include="InteropClasses\DigitalInfoHelper.cs" />
+    <Compile Include="InteropClasses\ProgramScheduleHelper.cs" />
     <Compile Include="InteropClasses\OptionsHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
@@ -158,11 +166,17 @@
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalProductPackageEditorControl.designer.cs">
       <DependentUpon>DigitalProductPackageEditorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\DigitalInfo\DigitalInfoEditControl.cs">
+    <Compile Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoEditControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\DigitalInfo\DigitalInfoEditControl.Designer.cs">
-      <DependentUpon>DigitalInfoEditControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoEditControl.Designer.cs">
+      <DependentUpon>BaseDigitalInfoEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoSettingsControl.Designer.cs">
+      <DependentUpon>BaseDigitalInfoSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Digital\Output\IDigitalOutputContainer.cs" />
     <Compile Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.cs">
@@ -229,10 +243,22 @@
     <Compile Include="PresentationClasses\OptionsControls\OptionsSummaryControl.Designer.cs">
       <DependentUpon>OptionsSummaryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\Settings\ISettingsControl.cs" />
+    <Compile Include="PresentationClasses\OptionsControls\Settings\OptionSettingsType.cs" />
+    <Compile Include="PresentationClasses\OptionsControls\Settings\SettingsChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\OptionsControls\Settings\SettingsContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\Settings\SettingsContainer.Designer.cs">
+      <DependentUpon>SettingsContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\RateCard\MediaRateCardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionItemCollectionControl.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -240,12 +266,6 @@
       <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Output\ISectionOutputControl.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.Designer.cs">
-      <DependentUpon>SectionDigitalInfoControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionEditorType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.cs">
       <SubType>Form</SubType>
@@ -309,11 +329,8 @@
     <Compile Include="PresentationClasses\ScheduleControls\Settings\ColorSettingsControl.Designer.cs">
       <DependentUpon>ColorSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\DigitalInfoSettingsControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionDigitalInfoSettingsControl.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\DigitalInfoSettingsControl.Designer.cs">
-      <DependentUpon>DigitalInfoSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\SectionEditorSettingsRelation.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\IContentSettingsControl.cs" />
@@ -448,8 +465,11 @@
     <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalProductPackageEditorControl.resx">
       <DependentUpon>DigitalProductPackageEditorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfo\DigitalInfoEditControl.resx">
-      <DependentUpon>DigitalInfoEditControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoEditControl.resx">
+      <DependentUpon>BaseDigitalInfoEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoSettingsControl.resx">
+      <DependentUpon>BaseDigitalInfoSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.resx">
       <DependentUpon>DigitalStandalonePackageSettingsControl.cs</DependentUpon>
@@ -478,11 +498,11 @@
     <EmbeddedResource Include="PresentationClasses\OptionsControls\OptionsSummaryControl.resx">
       <DependentUpon>OptionsSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\Settings\SettingsContainer.resx">
+      <DependentUpon>SettingsContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.resx">
       <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.resx">
-      <DependentUpon>SectionDigitalInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.resx">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
@@ -516,9 +536,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\SectionColumnSettingsControl.resx">
       <DependentUpon>SectionColumnSettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\DigitalInfoSettingsControl.resx">
-      <DependentUpon>DigitalInfoSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\SectionTotalsSettingsControl.resx">
       <DependentUpon>SectionTotalsSettingsControl.cs</DependentUpon>
@@ -780,9 +797,6 @@
     <None Include="Resources\DigitalScheduleLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SectionNoDigitalItems.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\DigitalSettingsList.png" />
   </ItemGroup>
   <ItemGroup>
@@ -814,6 +828,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalPackageNoRecords.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PresentationClasses\OptionsControls\ContentEditors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoNoItems.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

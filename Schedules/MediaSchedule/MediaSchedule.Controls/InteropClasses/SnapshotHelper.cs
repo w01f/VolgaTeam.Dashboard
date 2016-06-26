@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Media.Controls.BusinessClasses;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 using Asa.Common.Core.OfficeInterops;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Media.Controls.InteropClasses

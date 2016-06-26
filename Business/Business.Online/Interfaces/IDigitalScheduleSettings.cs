@@ -3,9 +3,8 @@ using Asa.Business.Online.Configuration;
 
 namespace Asa.Business.Online.Interfaces
 {
-	public interface IDigitalScheduleSettings: IBaseScheduleSettings
+	public interface IDigitalScheduleSettings: IBaseScheduleSettings, IDigitalPackageSettingsContainer
 	{
 		DigitalProductListViewSettings DigitalProductListViewSettings { get; }
-		DigitalPackageSettings DigitalPackageSettings { get; }
 	}
 }

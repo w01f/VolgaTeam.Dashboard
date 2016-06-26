@@ -3,6 +3,7 @@
 	public enum DigitalSettingsType
 	{
 		ProductList,
-		ProductPackage
+		ProductPackage,
+		StandalonePackage
 	}
 }

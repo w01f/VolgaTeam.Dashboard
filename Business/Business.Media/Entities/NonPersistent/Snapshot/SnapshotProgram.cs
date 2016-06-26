@@ -44,15 +44,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			}
 		}
 
-		public Image SmallLogo
-		{
-			get { return Logo != null ? Logo.TinyImage : null; }
-		}
+		public Image SmallLogo => Logo?.TinyImage;
 
-		public decimal TotalCost
-		{
-			get { return (Rate.HasValue ? Rate.Value : 0) * TotalSpots; }
-		}
+		public decimal TotalCost => (Rate ?? 0) * TotalSpots;
 
 		public int TotalSpots
 		{

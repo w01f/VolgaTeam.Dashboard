@@ -12,49 +12,50 @@ using Asa.Business.Online.Enums;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Packages;
 using Asa.Online.Controls.PresentationClasses.Products;
+using DevComponents.DotNetBar;
 using DevExpress.Utils;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalPackageEditorControl:UserControl
-	public partial class DigitalPackageEditorControl : XtraTabPage, IDigitalEditor, IDigitalOutputContainer, IDigitalOutputItem, IWebPackageOutput
+	//public partial class DigitalStandalonePackageEditorControl:UserControl
+	public partial class DigitalStandalonePackageEditorControl : XtraTabPage, IDigitalEditor, IDigitalOutputContainer, IDigitalOutputItem, IWebPackageOutput, IDigitalItemCollectionEditor
 	{
 		private bool _allowApplyValues;
 		private bool _needToReload;
 		private readonly DigitalEditorsContainer _container;
-		public DigitalEditorType EditorType => DigitalEditorType.Package;
+		private GridDragDropHelper _dragDropHelper;
+		public DigitalEditorType EditorType => DigitalEditorType.StandalonePackage;
 		public string HelpTag => "digitalpk";
 
 		public event EventHandler<DataChangedEventArgs> DataChanged;
 
-		private IEnumerable<ProductPackageRecord> PackageRecords
-		{
-			get
-			{
-				return _container.EditedContent.DigitalProducts
-					.OrderBy(p => p.Index)
-					.Select(p => p.PackageRecord)
-					.ToList();
-			}
-		}
+		private List<StandalonePackageRecord> PackageRecords => _container.EditedContent.StandalonePackage.Items;
 
-		public DigitalPackageSettings PackageSettings => _container.EditedContent.ScheduleSettings.DigitalPackageSettings;
+		public DigitalPackageSettings PackageSettings => _container.EditedContent.StandalonePackage.DigitalPackageSettings;
+		public bool HasItems => PackageRecords.Any();
 
-		public DigitalPackageEditorControl(DigitalEditorsContainer container)
+		public DigitalStandalonePackageEditorControl(DigitalEditorsContainer container)
 		{
 			InitializeComponent();
-			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsPackageTitle ?? "Digital Package";
+			pnData.Dock = DockStyle.Fill;
+			pnNoRecords.Dock = DockStyle.Fill;
+
+			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsStandalonePackageTitle ?? "Speed Builder";
 			_container = container;
 
 			repositoryItemComboBoxCategory.Items.Clear();
@@ -64,15 +65,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				.Distinct()
 				.ToArray());
 
-			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
-			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
-			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsProductTitle ?? bandedGridColumnProduct.Caption;
-			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
-			bandedGridColumnComments.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsCommentsTitle ?? bandedGridColumnComments.Caption;
-			bandedGridColumnRate.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsRateTitle ?? bandedGridColumnRate.Caption;
-			bandedGridColumnInvestment.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsInvestmentTitle ?? bandedGridColumnInvestment.Caption;
-			bandedGridColumnImpressions.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsImpressionsTitle ?? bandedGridColumnImpressions.Caption;
-			bandedGridColumnCPM.Caption = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsCPMTitle ?? bandedGridColumnCPM.Caption;
+			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
+			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
+			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsProductTitle ?? bandedGridColumnProduct.Caption;
+			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
+			bandedGridColumnComments.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsCommentsTitle ?? bandedGridColumnComments.Caption;
+			bandedGridColumnRate.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsRateTitle ?? bandedGridColumnRate.Caption;
+			bandedGridColumnInvestment.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsInvestmentTitle ?? bandedGridColumnInvestment.Caption;
+			bandedGridColumnImpressions.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsImpressionsTitle ?? bandedGridColumnImpressions.Caption;
+			bandedGridColumnCPM.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsCPMTitle ?? bandedGridColumnCPM.Caption;
 
 			if (CreateGraphics().DpiX > 96)
 			{
@@ -103,6 +104,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			gridControl.DataSource = null;
 			UpdateGridColumns();
 			gridControl.DataSource = PackageRecords;
+			InitDargDropHelper();
+			UpdateRecordsSplash();
 
 			_allowApplyValues = true;
 
@@ -124,6 +127,43 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			advBandedGridView.PostEditor();
 			UpdateGridColumns();
 			advBandedGridView.RefreshData();
+		}
+
+		public void AddItem(object sender)
+		{
+			var category = (Category)((ButtonItem)sender).Tag;
+			_container.EditedContent.StandalonePackage.AddItem(category);
+			gridControl.DataSource = PackageRecords;
+			advBandedGridView.RefreshData();
+			UpdateRecordsSplash();
+			InitDargDropHelper();
+			RaiseDataChanged();
+		}
+
+		public void CloneItem()
+		{
+			var packageRecord = advBandedGridView.GetFocusedRow() as StandalonePackageRecord;
+			if (packageRecord == null) return;
+			_container.EditedContent.StandalonePackage.CloneItem(advBandedGridView.GetDataSourceRowIndex(advBandedGridView.FocusedRowHandle));
+			gridControl.DataSource = PackageRecords;
+			advBandedGridView.RefreshData();
+			advBandedGridView.FocusedRowHandle = advBandedGridView.RowCount - 1;
+			UpdateRecordsSplash();
+			RaiseDataChanged();
+		}
+
+		public void DeleteItem()
+		{
+			var packageRecord = advBandedGridView.GetFocusedRow() as StandalonePackageRecord;
+			if (packageRecord == null) return;
+			var selectedRecordIndex = packageRecord.Index.ToString("#0)");
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(
+				String.Format("Delete Line ID {0}?", selectedRecordIndex)) != DialogResult.Yes) return;
+			_container.EditedContent.StandalonePackage.DeleteItem(advBandedGridView.GetDataSourceRowIndex(advBandedGridView.FocusedRowHandle));
+			gridControl.DataSource = PackageRecords;
+			advBandedGridView.RefreshData();
+			UpdateRecordsSplash();
+			RaiseDataChanged();
 		}
 
 		private void RaiseDataChanged()
@@ -283,6 +323,20 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			gridBandFormula.Visible = PackageSettings.ShowInvestment && PackageSettings.ShowImpressions && PackageSettings.ShowCPM;
 		}
 
+		private void InitDargDropHelper()
+		{
+			if (_dragDropHelper != null || !PackageRecords.Any()) return;
+			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
+			_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
+		}
+
+		private void UpdateRecordsSplash()
+		{
+			if (PackageRecords.Any())
+				pnData.BringToFront();
+			else
+				pnNoRecords.BringToFront();
+		}
 		#region Control Event Handlers
 
 		private void OnGridViewCellValueChanged(object sender, CellValueChangedEventArgs e)
@@ -310,30 +364,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			}
 		}
 
-		private void OnResetClick(object sender, OpenLinkEventArgs e)
-		{
-			advBandedGridView.PostEditor();
-			if (PopupMessageHelper.Instance.ShowWarningQuestion("Do you want to reset your Categories and Products to the original selections on the HOME Tab") == DialogResult.Yes)
-			{
-				_allowApplyValues = false;
-
-				PackageSettings.ResetToDefault();
-				UpdateGridColumns();
-
-				foreach (var packageRecord in PackageRecords)
-					packageRecord.ResetToDefault();
-				advBandedGridView.RefreshData();
-
-				RaiseDataChanged();
-
-				_allowApplyValues = true;
-			}
-			e.Handled = true;
-		}
-
 		private void OnGridViewShowingEditor(object sender, CancelEventArgs e)
 		{
-			var focussedRecord = advBandedGridView.GetFocusedRow() as ProductPackageRecord;
+			var focussedRecord = advBandedGridView.GetFocusedRow() as StandalonePackageRecord;
 			e.Cancel = focussedRecord != null && focussedRecord.UseFormula && (PackageSettings.ShowInvestment && PackageSettings.ShowImpressions && PackageSettings.ShowCPM) &&
 					   ((advBandedGridView.FocusedColumn == bandedGridColumnInvestment && PackageSettings.Formula == FormulaType.Investment) ||
 					   (advBandedGridView.FocusedColumn == bandedGridColumnImpressions && PackageSettings.Formula == FormulaType.Impressions) ||
@@ -374,6 +407,23 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			advBandedGridView.RefreshData();
 		}
 
+		private void OnGridControlAfterDrop(object sender, DragEventArgs e)
+		{
+			var grid = sender as GridControl;
+			var view = grid.MainView as GridView;
+			var hitInfo = view.CalcHitInfo(grid.PointToClient(new Point(e.X, e.Y)));
+			var downHitInfo = e.Data.GetData(typeof(BandedGridHitInfo)) as BandedGridHitInfo;
+			if (downHitInfo == null) return;
+			var sourceRow = downHitInfo.RowHandle;
+			var targetRow = hitInfo.HitTest == GridHitTest.EmptyRow ? view.DataRowCount : hitInfo.RowHandle;
+			_container.EditedContent.StandalonePackage.ChangeItemPosition(sourceRow, targetRow);
+			gridControl.DataSource = PackageRecords;
+			advBandedGridView.RefreshData();
+			if (advBandedGridView.RowCount > 0)
+				advBandedGridView.FocusedRowHandle = targetRow;
+			RaiseDataChanged();
+		}
+
 		private void OnTooltipGetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
 		{
 			if (e.SelectedControl != gridControl) return;
@@ -382,7 +432,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			var hi = view.CalcHitInfo(e.ControlMousePosition);
 			if (!hi.InRowCell) return;
 			if (hi.Column != bandedGridColumnFormula) return;
-			var record = view.GetRow(hi.RowHandle) as ProductPackageRecord;
+			var record = view.GetRow(hi.RowHandle) as StandalonePackageRecord;
 			if (record == null) return;
 			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), record.UseFormula ? "Disable Delivery Formula" : "Enable Delivery Formula");
 			e.Info.ImmediateToolTip = true;

@@ -146,8 +146,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			var editorSummary = new DigitalSummaryEditorControl(this);
 			xtraTabControlEditors.TabPages.Add(editorSummary);
 
-			var editorPackage = new DigitalPackageEditorControl(this);
-			xtraTabControlEditors.TabPages.Add(editorPackage);
+			var editorProductPackage = new DigitalProductPackageEditorControl(this);
+			xtraTabControlEditors.TabPages.Add(editorProductPackage);
+
+			var editorStandalonePackage = new DigitalStandalonePackageEditorControl(this);
+			xtraTabControlEditors.TabPages.Add(editorStandalonePackage);
 
 			xtraTabControlEditors.TabPages.OfType<IDigitalEditor>().ToList().ForEach(editor =>
 			{
@@ -265,16 +268,19 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			{
 				case DigitalEditorType.List:
 					predicate = target => target.EditorType == DigitalEditorType.Products || target.EditorType == DigitalEditorType.Summary ||
-										  target.EditorType == DigitalEditorType.Package;
+										  target.EditorType == DigitalEditorType.ProductPackage;
 					break;
 				case DigitalEditorType.Products:
 					predicate = target => target.EditorType == DigitalEditorType.Summary ||
-										  target.EditorType == DigitalEditorType.Package;
+										  target.EditorType == DigitalEditorType.ProductPackage;
 					break;
-				case DigitalEditorType.Package:
+				case DigitalEditorType.ProductPackage:
 					predicate = target => false;
 					break;
 				case DigitalEditorType.Summary:
+					predicate = target => false;
+					break;
+				case DigitalEditorType.StandalonePackage:
 					predicate = target => false;
 					break;
 				default:

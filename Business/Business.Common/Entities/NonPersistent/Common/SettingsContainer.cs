@@ -29,8 +29,7 @@ namespace Asa.Business.Common.Entities.NonPersistent.Common
 
 		protected void OnSettingsChanged()
 		{
-			if (Parent != null)
-				Parent.MarkAsModified();
+			Parent?.MarkAsModified();
 		}
 
 		public string Serialize()

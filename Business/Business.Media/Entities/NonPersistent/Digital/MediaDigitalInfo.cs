@@ -4,12 +4,11 @@ using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Common.Core.Helpers;
 using Newtonsoft.Json;
 
-namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
+namespace Asa.Business.Media.Entities.NonPersistent.Digital
 {
-	public class SectionDigitalInfo
+	public class MediaDigitalInfo
 	{
-		public ScheduleSection Parent { get; private set; }
-		public List<SectionDigitalProduct> Products { get; private set; }
+		public List<MediaDigitalInfoRecord> Records { get; private set; }
 
 		public decimal? MonthlyInvestment { get; set; }
 		public decimal? TotalInvestment { get; set; }
@@ -24,12 +23,8 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
 		public bool ShowTotalInvestemt { get; set; }
 		#endregion
 
-		[JsonConstructor]
-		private SectionDigitalInfo() { }
-
-		public SectionDigitalInfo(ScheduleSection parent)
+		public MediaDigitalInfo()
 		{
-			Parent = parent;
 			InitProducts();
 
 			#region Options
@@ -45,14 +40,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
 
 		public void Dispose()
 		{
-			Products.Clear();
-			Parent = null;
+			Records.Clear();
 		}
 
 		private void InitProducts()
 		{
-			if (Products == null || !Products.Any())
-				Products = new List<SectionDigitalProduct>();
+			if (Records == null || !Records.Any())
+				Records = new List<MediaDigitalInfoRecord>();
 		}
 
 		public void AfterCreate()
@@ -62,39 +56,39 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
 
 		public void AddProduct()
 		{
-			var product = new SectionDigitalProduct(this);
-			Products.Add(product);
+			var product = new MediaDigitalInfoRecord(this);
+			Records.Add(product);
 		}
 
-		public void DeleteProduct(SectionDigitalProduct digitalProduct)
+		public void DeleteProduct(MediaDigitalInfoRecord digitalInfoRecord)
 		{
-			Products.Remove(digitalProduct);
+			Records.Remove(digitalInfoRecord);
 			RebuildProductIndexes();
 		}
 
 		public void CloneProduct(int productIndex)
 		{
-			if (productIndex < 0 || productIndex >= Products.Count) return;
-			var digitalProduct = Products[productIndex];
-			var newDigitalProduct = digitalProduct.Clone<SectionDigitalProduct, SectionDigitalProduct>();
-			Products.Add(newDigitalProduct);
-			newDigitalProduct.Index = Products.Count;
+			if (productIndex < 0 || productIndex >= Records.Count) return;
+			var digitalProduct = Records[productIndex];
+			var newDigitalProduct = digitalProduct.Clone<MediaDigitalInfoRecord, MediaDigitalInfoRecord>();
+			Records.Add(newDigitalProduct);
+			newDigitalProduct.Index = Records.Count;
 			RebuildProductIndexes();
 		}
 
 		public void ChangeProductPosition(int productIndex, int newIndex)
 		{
-			if (productIndex < 0 || productIndex >= Products.Count) return;
-			var digitalProduct = Products[productIndex];
+			if (productIndex < 0 || productIndex >= Records.Count) return;
+			var digitalProduct = Records[productIndex];
 			digitalProduct.Index = newIndex + 0.5m;
 			RebuildProductIndexes();
 		}
 
 		private void RebuildProductIndexes()
 		{
-			Products.Sort((x, y) => x.Index.CompareTo(y.Index));
-			for (int i = 0; i < Products.Count; i++)
-				Products[i].Index = i + 1;
+			Records.Sort((x, y) => x.Index.CompareTo(y.Index));
+			for (int i = 0; i < Records.Count; i++)
+				Records[i].Index = i + 1;
 		}
 	}
 }

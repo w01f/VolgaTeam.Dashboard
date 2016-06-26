@@ -115,7 +115,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedEditorType = DigitalEditorType.Products });
 		}
 
-		#region Products Management
+		#region Records Management
 		public void LoadProduct(IDigitalProductControl productControl)
 		{
 			if (productControl == null) return;
@@ -289,6 +289,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public IList<IDigitalOutputItem> GetOutputItems()
 		{
+			LoadData();
 			return xtraTabControlProducts.TabPages.OfType<IDigitalOutputItem>().ToList();
 		}
 		#endregion

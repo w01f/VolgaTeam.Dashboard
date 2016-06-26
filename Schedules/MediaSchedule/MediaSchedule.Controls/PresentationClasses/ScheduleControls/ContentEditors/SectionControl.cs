@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
-using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -660,7 +659,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (_sectionContainer.SectionData.Programs.Any())
 			{
 				outputOptions.Add(ScheduleSectionOutputType.Program);
-				if (_sectionContainer.SectionData.DigitalInfo.Products.Any())
+				if (_sectionContainer.SectionData.DigitalInfo.Records.Any())
 					outputOptions.Add(ScheduleSectionOutputType.ProgramAndDigital);
 			}
 			return outputOptions;
@@ -839,7 +838,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 						if (includeDigital && (i + programsPerSlide) >= _sectionContainer.SectionData.Programs.Count)
 						{
-							foreach (var product in _sectionContainer.SectionData.DigitalInfo.Products)
+							foreach (var product in _sectionContainer.SectionData.DigitalInfo.Records)
 							{
 								var outputProduct = new OutputDigitalProduct();
 								outputProduct.LineID = String.Format("{0}", (_sectionContainer.SectionData.Programs.Count + product.Index).ToString("00"));

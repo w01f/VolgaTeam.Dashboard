@@ -5,6 +5,7 @@
 		List,
 		Products,
 		Summary,
-		Package
+		ProductPackage,
+		StandalonePackage,
 	}
 }

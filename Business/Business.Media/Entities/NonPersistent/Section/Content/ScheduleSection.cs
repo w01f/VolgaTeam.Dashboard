@@ -4,8 +4,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Digital;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
-using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
 using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using Asa.Business.Media.Entities.Persistent;
 using Asa.Business.Media.Enums;
@@ -46,7 +46,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		public List<Program> Programs { get; private set; }
 		public SpotType SpotType { get; set; }
 
-		public SectionDigitalInfo DigitalInfo { get; private set; }
+		public MediaDigitalInfo DigitalInfo { get; private set; }
 		public SectionSummary Summary { get; private set; }
 		public ContractSettings ContractSettings { get; private set; }
 
@@ -138,7 +138,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			UniqueID = Guid.NewGuid();
 			Index = parent.Sections.Any() ? parent.Sections.Max(s => s.Index) + 1 : 0;
 			Programs = new List<Program>();
-			DigitalInfo = new SectionDigitalInfo(this);
+			DigitalInfo = new MediaDigitalInfo();
 			Summary = new SectionSummary(this);
 			ContractSettings = new ContractSettings();
 
@@ -171,9 +171,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		public void AfterCreate()
 		{
 			if (DigitalInfo == null)
-				DigitalInfo = new SectionDigitalInfo(this);
+				DigitalInfo = new MediaDigitalInfo();
 			DigitalInfo.AfterCreate();
 
+			if (Summary == null)
+				Summary = new SectionSummary(this);
 			Summary.AfterCreate();
 		}
 

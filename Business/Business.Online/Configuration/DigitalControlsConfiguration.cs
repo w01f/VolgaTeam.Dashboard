@@ -25,8 +25,9 @@ namespace Asa.Business.Online.Configuration
 		#region Sections
 		public string SectionsListTitle { get; set; }
 		public string SectionsProductTitle { get; set; }
-		public string SectionsPackageTitle { get; set; }
+		public string SectionsProductPackageTitle { get; set; }
 		public string SectionsSummaryTitle { get; set; }
+		public string SectionsStandalonePackageTitle { get; set; }
 		#endregion
 
 		#region List Section
@@ -62,43 +63,67 @@ namespace Asa.Business.Online.Configuration
 		public Image ProductEditorsCommentsLogo { get; set; }
 		#endregion
 
-		#region Package Section
-		public string PackageColumnsCategoryTitle { get; set; }
-		public string PackageColumnsSubCategoryTitle { get; set; }
-		public string PackageColumnsProductTitle { get; set; }
-		public string PackageColumnsInfoTitle { get; set; }
-		public string PackageColumnsCommentsTitle { get; set; }
-		public string PackageColumnsInvestmentTitle { get; set; }
-		public string PackageColumnsImpressionsTitle { get; set; }
-		public string PackageColumnsCPMTitle { get; set; }
-		public string PackageColumnsRateTitle { get; set; }
+		#region Product Package Section
+		public string ProductPackageColumnsCategoryTitle { get; set; }
+		public string ProductPackageColumnsSubCategoryTitle { get; set; }
+		public string ProductPackageColumnsProductTitle { get; set; }
+		public string ProductPackageColumnsInfoTitle { get; set; }
+		public string ProductPackageColumnsCommentsTitle { get; set; }
+		public string ProductPackageColumnsInvestmentTitle { get; set; }
+		public string ProductPackageColumnsImpressionsTitle { get; set; }
+		public string ProductPackageColumnsCPMTitle { get; set; }
+		public string ProductPackageColumnsRateTitle { get; set; }
 
-		public string PackageSettingsCategoryTitle { get; set; }
-		public string PackageSettingsSubCategoryTitle { get; set; }
-		public string PackageSettingsProductTitle { get; set; }
-		public string PackageSettingsInfoTitle { get; set; }
-		public string PackageSettingsCommentsTitle { get; set; }
-		public string PackageSettingsInvestmentTitle { get; set; }
-		public string PackageSettingsImpressionsTitle { get; set; }
-		public string PackageSettingsCPMTitle { get; set; }
-		public string PackageSettingsRateTitle { get; set; }
-		public string PackageSettingsScreenshotTitle { get; set; }
-		public string PackageSettingsFormulaTitle { get; set; }
+		public string ProductPackageSettingsCategoryTitle { get; set; }
+		public string ProductPackageSettingsSubCategoryTitle { get; set; }
+		public string ProductPackageSettingsProductTitle { get; set; }
+		public string ProductPackageSettingsInfoTitle { get; set; }
+		public string ProductPackageSettingsCommentsTitle { get; set; }
+		public string ProductPackageSettingsInvestmentTitle { get; set; }
+		public string ProductPackageSettingsImpressionsTitle { get; set; }
+		public string ProductPackageSettingsCPMTitle { get; set; }
+		public string ProductPackageSettingsRateTitle { get; set; }
+		public string ProductPackageSettingsScreenshotTitle { get; set; }
+		public string ProductPackageSettingsFormulaTitle { get; set; }
+		#endregion
+
+		#region Standalone Package Section
+		public string StandalonePackageColumnsCategoryTitle { get; set; }
+		public string StandalonePackageColumnsSubCategoryTitle { get; set; }
+		public string StandalonePackageColumnsProductTitle { get; set; }
+		public string StandalonePackageColumnsInfoTitle { get; set; }
+		public string StandalonePackageColumnsCommentsTitle { get; set; }
+		public string StandalonePackageColumnsInvestmentTitle { get; set; }
+		public string StandalonePackageColumnsImpressionsTitle { get; set; }
+		public string StandalonePackageColumnsCPMTitle { get; set; }
+		public string StandalonePackageColumnsRateTitle { get; set; }
+
+		public string StandalonePackageSettingsCategoryTitle { get; set; }
+		public string StandalonePackageSettingsSubCategoryTitle { get; set; }
+		public string StandalonePackageSettingsProductTitle { get; set; }
+		public string StandalonePackageSettingsInfoTitle { get; set; }
+		public string StandalonePackageSettingsCommentsTitle { get; set; }
+		public string StandalonePackageSettingsInvestmentTitle { get; set; }
+		public string StandalonePackageSettingsImpressionsTitle { get; set; }
+		public string StandalonePackageSettingsCPMTitle { get; set; }
+		public string StandalonePackageSettingsRateTitle { get; set; }
+		public string StandalonePackageSettingsScreenshotTitle { get; set; }
+		public string StandalonePackageSettingsFormulaTitle { get; set; }
 		#endregion
 
 		#region Media Digital Section
-		public string MediaDigitalColumnsCategoryTitle { get; set; }
-		public string MediaDigitalColumnsSubCategoryTitle { get; set; }
-		public string MediaDigitalColumnsProductTitle { get; set; }
-		public string MediaDigitalColumnsInfoTitle { get; set; }
+		public string DigitalInfoColumnsCategoryTitle { get; set; }
+		public string DigitalInfoColumnsSubCategoryTitle { get; set; }
+		public string DigitalInfoColumnsProductTitle { get; set; }
+		public string DigitalInfoColumnsInfoTitle { get; set; }
 
-		public string MediaDigitalSettingsCategoryTitle { get; set; }
-		public string MediaDigitalSettingsSubCategoryTitle { get; set; }
-		public string MediaDigitalSettingsProductTitle { get; set; }
-		public string MediaDigitalSettingsInfoTitle { get; set; }
-		public string MediaDigitalSettingsLogosTitle { get; set; }
-		public string MediaDigitalSettingsMontlyInvestmentTitle { get; set; }
-		public string MediaDigitalSettingsTotalInvestmentTitle { get; set; }
+		public string DigitalInfoSettingsCategoryTitle { get; set; }
+		public string DigitalInfoSettingsSubCategoryTitle { get; set; }
+		public string DigitalInfoSettingsProductTitle { get; set; }
+		public string DigitalInfoSettingsInfoTitle { get; set; }
+		public string DigitalInfoSettingsLogosTitle { get; set; }
+		public string DigitalInfoSettingsMontlyInvestmentTitle { get; set; }
+		public string DigitalInfoSettingsTotalInvestmentTitle { get; set; }
 		#endregion
 
 		public void ApplyValues(string groupName, IList<string> values)
@@ -109,7 +134,8 @@ namespace Asa.Business.Online.Configuration
 					SectionsListTitle = values.ElementAtOrDefault(0);
 					SectionsProductTitle = values.ElementAtOrDefault(1);
 					SectionsSummaryTitle = values.ElementAtOrDefault(2);
-					SectionsPackageTitle = values.ElementAtOrDefault(3);
+					SectionsProductPackageTitle = values.ElementAtOrDefault(3);
+					SectionsStandalonePackageTitle = values.ElementAtOrDefault(4);
 					break;
 				case "tab_1_column_header_names":
 					ListColumnsGroupTitle = values.ElementAtOrDefault(0);
@@ -167,43 +193,67 @@ namespace Asa.Business.Online.Configuration
 					ProductEditorsCommentsLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(4)) ? Image.FromFile(Path.Combine(imageRootFolder, values[4])) : null;
 					break;
 				case "tab_4_column_header_names":
-					PackageColumnsCategoryTitle = values.ElementAtOrDefault(0);
-					PackageColumnsSubCategoryTitle = values.ElementAtOrDefault(1);
-					PackageColumnsProductTitle = values.ElementAtOrDefault(2);
-					PackageColumnsInfoTitle = values.ElementAtOrDefault(3);
-					PackageColumnsCommentsTitle = values.ElementAtOrDefault(4);
-					PackageColumnsInvestmentTitle = values.ElementAtOrDefault(5);
-					PackageColumnsImpressionsTitle = values.ElementAtOrDefault(6);
-					PackageColumnsCPMTitle = values.ElementAtOrDefault(7);
-					PackageColumnsRateTitle = values.ElementAtOrDefault(8);
+					ProductPackageColumnsCategoryTitle = values.ElementAtOrDefault(0);
+					ProductPackageColumnsSubCategoryTitle = values.ElementAtOrDefault(1);
+					ProductPackageColumnsProductTitle = values.ElementAtOrDefault(2);
+					ProductPackageColumnsInfoTitle = values.ElementAtOrDefault(3);
+					ProductPackageColumnsCommentsTitle = values.ElementAtOrDefault(4);
+					ProductPackageColumnsInvestmentTitle = values.ElementAtOrDefault(5);
+					ProductPackageColumnsImpressionsTitle = values.ElementAtOrDefault(6);
+					ProductPackageColumnsCPMTitle = values.ElementAtOrDefault(7);
+					ProductPackageColumnsRateTitle = values.ElementAtOrDefault(8);
 					break;
 				case "tab_4_left_panel_button_names":
-					PackageSettingsCategoryTitle = values.ElementAtOrDefault(0);
-					PackageSettingsSubCategoryTitle = values.ElementAtOrDefault(1);
-					PackageSettingsProductTitle = values.ElementAtOrDefault(2);
-					PackageSettingsInfoTitle = values.ElementAtOrDefault(3);
-					PackageSettingsCommentsTitle = values.ElementAtOrDefault(4);
-					PackageSettingsInvestmentTitle = values.ElementAtOrDefault(5);
-					PackageSettingsImpressionsTitle = values.ElementAtOrDefault(6);
-					PackageSettingsCPMTitle = values.ElementAtOrDefault(7);
-					PackageSettingsRateTitle = values.ElementAtOrDefault(8);
-					PackageSettingsScreenshotTitle = values.ElementAtOrDefault(9);
-					PackageSettingsFormulaTitle = values.ElementAtOrDefault(10);
+					ProductPackageSettingsCategoryTitle = values.ElementAtOrDefault(0);
+					ProductPackageSettingsSubCategoryTitle = values.ElementAtOrDefault(1);
+					ProductPackageSettingsProductTitle = values.ElementAtOrDefault(2);
+					ProductPackageSettingsInfoTitle = values.ElementAtOrDefault(3);
+					ProductPackageSettingsCommentsTitle = values.ElementAtOrDefault(4);
+					ProductPackageSettingsInvestmentTitle = values.ElementAtOrDefault(5);
+					ProductPackageSettingsImpressionsTitle = values.ElementAtOrDefault(6);
+					ProductPackageSettingsCPMTitle = values.ElementAtOrDefault(7);
+					ProductPackageSettingsRateTitle = values.ElementAtOrDefault(8);
+					ProductPackageSettingsScreenshotTitle = values.ElementAtOrDefault(9);
+					ProductPackageSettingsFormulaTitle = values.ElementAtOrDefault(10);
+					break;
+				case "tab_5_column_header_names":
+					StandalonePackageColumnsCategoryTitle = values.ElementAtOrDefault(0);
+					StandalonePackageColumnsSubCategoryTitle = values.ElementAtOrDefault(1);
+					StandalonePackageColumnsProductTitle = values.ElementAtOrDefault(2);
+					StandalonePackageColumnsInfoTitle = values.ElementAtOrDefault(3);
+					StandalonePackageColumnsCommentsTitle = values.ElementAtOrDefault(4);
+					StandalonePackageColumnsInvestmentTitle = values.ElementAtOrDefault(5);
+					StandalonePackageColumnsImpressionsTitle = values.ElementAtOrDefault(6);
+					StandalonePackageColumnsCPMTitle = values.ElementAtOrDefault(7);
+					StandalonePackageColumnsRateTitle = values.ElementAtOrDefault(8);
+					break;
+				case "tab_5_left_panel_button_names":
+					StandalonePackageSettingsCategoryTitle = values.ElementAtOrDefault(0);
+					StandalonePackageSettingsSubCategoryTitle = values.ElementAtOrDefault(1);
+					StandalonePackageSettingsProductTitle = values.ElementAtOrDefault(2);
+					StandalonePackageSettingsInfoTitle = values.ElementAtOrDefault(3);
+					StandalonePackageSettingsCommentsTitle = values.ElementAtOrDefault(4);
+					StandalonePackageSettingsInvestmentTitle = values.ElementAtOrDefault(5);
+					StandalonePackageSettingsImpressionsTitle = values.ElementAtOrDefault(6);
+					StandalonePackageSettingsCPMTitle = values.ElementAtOrDefault(7);
+					StandalonePackageSettingsRateTitle = values.ElementAtOrDefault(8);
+					StandalonePackageSettingsScreenshotTitle = values.ElementAtOrDefault(9);
+					StandalonePackageSettingsFormulaTitle = values.ElementAtOrDefault(10);
 					break;
 				case "column_header_names":
-					MediaDigitalColumnsCategoryTitle = values.ElementAtOrDefault(0);
-					MediaDigitalColumnsSubCategoryTitle = values.ElementAtOrDefault(1);
-					MediaDigitalColumnsProductTitle = values.ElementAtOrDefault(2);
-					MediaDigitalColumnsInfoTitle = values.ElementAtOrDefault(3);
+					DigitalInfoColumnsCategoryTitle = values.ElementAtOrDefault(0);
+					DigitalInfoColumnsSubCategoryTitle = values.ElementAtOrDefault(1);
+					DigitalInfoColumnsProductTitle = values.ElementAtOrDefault(2);
+					DigitalInfoColumnsInfoTitle = values.ElementAtOrDefault(3);
 					break;
 				case "left_panel_button_names":
-					MediaDigitalSettingsCategoryTitle = values.ElementAtOrDefault(0);
-					MediaDigitalSettingsSubCategoryTitle = values.ElementAtOrDefault(1);
-					MediaDigitalSettingsProductTitle = values.ElementAtOrDefault(2);
-					MediaDigitalSettingsInfoTitle = values.ElementAtOrDefault(3);
-					MediaDigitalSettingsLogosTitle = values.ElementAtOrDefault(4);
-					MediaDigitalSettingsMontlyInvestmentTitle = values.ElementAtOrDefault(5);
-					MediaDigitalSettingsTotalInvestmentTitle = values.ElementAtOrDefault(6);
+					DigitalInfoSettingsCategoryTitle = values.ElementAtOrDefault(0);
+					DigitalInfoSettingsSubCategoryTitle = values.ElementAtOrDefault(1);
+					DigitalInfoSettingsProductTitle = values.ElementAtOrDefault(2);
+					DigitalInfoSettingsInfoTitle = values.ElementAtOrDefault(3);
+					DigitalInfoSettingsLogosTitle = values.ElementAtOrDefault(4);
+					DigitalInfoSettingsMontlyInvestmentTitle = values.ElementAtOrDefault(5);
+					DigitalInfoSettingsTotalInvestmentTitle = values.ElementAtOrDefault(6);
 					break;
 				case "add_product_hover_tip":
 					RibbonButtonMediaDigitalAddTitle = values.ElementAtOrDefault(0);

@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Asa.Business.Media.Entities.NonPersistent.Digital;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
-using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
 using Asa.Business.Online.Dictionaries;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
@@ -17,7 +17,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 	{
 		private bool _allowToSave;
 		private ScheduleSection _sectionData;
-		private SectionDigitalInfo _digitalInfo;
+		private MediaDigitalInfo _digitalInfo;
 
 		public int Order => 0;
 		public bool IsAvailable => true;
@@ -37,13 +37,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
 
-			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsCategoryTitle ?? buttonXCategory.Text;
-			buttonXSubCategory.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsSubCategoryTitle ?? buttonXSubCategory.Text;
-			buttonXProduct.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsProductTitle ?? buttonXProduct.Text;
-			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsInfoTitle ?? buttonXInfo.Text;
-			buttonXLogo.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsLogosTitle ?? buttonXLogo.Text;
-			buttonXMonthlyInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsMontlyInvestmentTitle ?? buttonXMonthlyInvestment.Text;
-			buttonXTotalInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalSettingsTotalInvestmentTitle ?? buttonXTotalInvestment.Text;
+			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsCategoryTitle ?? buttonXCategory.Text;
+			buttonXSubCategory.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsSubCategoryTitle ?? buttonXSubCategory.Text;
+			buttonXProduct.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsProductTitle ?? buttonXProduct.Text;
+			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsInfoTitle ?? buttonXInfo.Text;
+			buttonXLogo.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsLogosTitle ?? buttonXLogo.Text;
+			buttonXMonthlyInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsMontlyInvestmentTitle ?? buttonXMonthlyInvestment.Text;
+			buttonXTotalInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsTotalInvestmentTitle ?? buttonXTotalInvestment.Text;
 
 			if (CreateGraphics().DpiX > 96)
 			{

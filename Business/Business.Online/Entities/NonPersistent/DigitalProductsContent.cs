@@ -8,18 +8,32 @@ namespace Asa.Business.Online.Entities.NonPersistent
 	public abstract class DigitalProductsContent : DigitalScheduleContent, IDigitalProductsContent
 	{
 		public List<DigitalProduct> DigitalProducts { get; private set; }
+		public StandaloneDigitalPackage StandalonePackage { get; private set; }
 		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
 		protected DigitalProductsContent()
 		{
 			DigitalProducts = new List<DigitalProduct>();
+			StandalonePackage = new StandaloneDigitalPackage();
 			DigitalProductSummary = new DigitalProductSummary();
+		}
+
+		protected override void AfterCreate()
+		{
+			base.AfterCreate();
+			if (StandalonePackage == null)
+				StandalonePackage = new StandaloneDigitalPackage();
+			foreach (var digitalProduct in DigitalProducts)
+				digitalProduct.AfterCreate();
 		}
 
 		public override void Dispose()
 		{
 			DigitalProducts.ForEach(o => o.Dispose());
 			DigitalProducts.Clear();
+
+			StandalonePackage.Dispose();
+			StandalonePackage = null;
 
 			DigitalProductSummary = null;
 

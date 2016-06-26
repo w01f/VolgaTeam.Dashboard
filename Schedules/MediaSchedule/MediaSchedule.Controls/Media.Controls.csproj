@@ -137,6 +137,12 @@
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalProductEditorControl.Designer.cs">
       <DependentUpon>DigitalProductEditorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalStandalonePackageEditorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalStandalonePackageEditorControl.designer.cs">
+      <DependentUpon>DigitalStandalonePackageEditorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalSummaryEditorControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -146,18 +152,30 @@
     <Compile Include="PresentationClasses\Digital\ContentEditors\IDigitalEditor.cs" />
     <Compile Include="PresentationClasses\Digital\ContentEditors\IDigitalItemCollectionEditor.cs" />
     <Compile Include="PresentationClasses\Digital\ContentEditors\DataChangedEventArgs.cs" />
-    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalPackageEditorControl.cs">
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalProductPackageEditorControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalPackageEditorControl.designer.cs">
-      <DependentUpon>DigitalPackageEditorControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalProductPackageEditorControl.designer.cs">
+      <DependentUpon>DigitalProductPackageEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\DigitalInfo\DigitalInfoEditControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\DigitalInfo\DigitalInfoEditControl.Designer.cs">
+      <DependentUpon>DigitalInfoEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Digital\Output\IDigitalOutputContainer.cs" />
-    <Compile Include="PresentationClasses\Digital\Settings\DigitalPackageSettingsControl.cs">
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Digital\Settings\DigitalPackageSettingsControl.Designer.cs">
-      <DependentUpon>DigitalPackageSettingsControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.Designer.cs">
+      <DependentUpon>DigitalStandalonePackageSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalProductPackageSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Settings\DigitalProductPackageSettingsControl.Designer.cs">
+      <DependentUpon>DigitalProductPackageSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Digital\Settings\DigitalSettingsType.cs" />
     <Compile Include="PresentationClasses\Digital\Settings\ISettingsControl.cs" />
@@ -421,14 +439,23 @@
     <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalProductEditorControl.resx">
       <DependentUpon>DigitalProductEditorControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalStandalonePackageEditorControl.resx">
+      <DependentUpon>DigitalStandalonePackageEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalSummaryEditorControl.resx">
       <DependentUpon>DigitalSummaryEditorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalPackageEditorControl.resx">
-      <DependentUpon>DigitalPackageEditorControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalProductPackageEditorControl.resx">
+      <DependentUpon>DigitalProductPackageEditorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalPackageSettingsControl.resx">
-      <DependentUpon>DigitalPackageSettingsControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfo\DigitalInfoEditControl.resx">
+      <DependentUpon>DigitalInfoEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.resx">
+      <DependentUpon>DigitalStandalonePackageSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalProductPackageSettingsControl.resx">
+      <DependentUpon>DigitalProductPackageSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalListSettingsControl.resx">
       <DependentUpon>DigitalListSettingsControl.cs</DependentUpon>
@@ -784,6 +811,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SummaryItemUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalPackageNoRecords.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

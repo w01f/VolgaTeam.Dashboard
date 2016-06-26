@@ -1,6 +1,6 @@
 ﻿namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
-	partial class DigitalPackageEditorControl
+	partial class DigitalStandalonePackageEditorControl
 	{
         /// <summary> 
         /// Required designer variable.
@@ -33,9 +33,7 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalPackageEditorControl));
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalStandalonePackageEditorControl));
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnData = new System.Windows.Forms.Panel();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
@@ -66,8 +64,8 @@
 			this.bandedGridColumnFormula = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemCheckEditFormula = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
-			this.pnHeader = new System.Windows.Forms.Panel();
-			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
+			this.pnNoRecords = new System.Windows.Forms.Panel();
+			this.pbNoRecords = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
@@ -79,8 +77,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditImpressions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditInvestment)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditFormula)).BeginInit();
-			this.pnHeader.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
+			this.pnNoRecords.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -102,10 +100,9 @@
 			// 
 			this.pnData.BackColor = System.Drawing.Color.White;
 			this.pnData.Controls.Add(this.gridControl);
-			this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnData.Location = new System.Drawing.Point(0, 36);
+			this.pnData.Location = new System.Drawing.Point(248, 57);
 			this.pnData.Name = "pnData";
-			this.pnData.Size = new System.Drawing.Size(1033, 551);
+			this.pnData.Size = new System.Drawing.Size(524, 397);
 			this.pnData.TabIndex = 5;
 			// 
 			// gridControl
@@ -123,7 +120,7 @@
             this.repositoryItemComboBoxCategory,
             this.repositoryItemComboBoxGroup,
             this.repositoryItemComboBoxProduct});
-			this.gridControl.Size = new System.Drawing.Size(1033, 551);
+			this.gridControl.Size = new System.Drawing.Size(524, 397);
 			this.gridControl.TabIndex = 4;
 			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -215,7 +212,9 @@
 			this.bandedGridColumnId.AppearanceCell.Options.UseTextOptions = true;
 			this.bandedGridColumnId.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.bandedGridColumnId.Caption = "ID";
-			this.bandedGridColumnId.FieldName = "Parent.Index";
+			this.bandedGridColumnId.DisplayFormat.FormatString = "#0";
+			this.bandedGridColumnId.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.bandedGridColumnId.FieldName = "Index";
 			this.bandedGridColumnId.Name = "bandedGridColumnId";
 			this.bandedGridColumnId.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnId.OptionsColumn.ReadOnly = true;
@@ -500,45 +499,33 @@
 			this.toolTipController.ShowShadow = false;
 			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
 			// 
-			// pnHeader
+			// pnNoRecords
 			// 
-			this.pnHeader.Controls.Add(this.hyperLinkEditReset);
-			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 0);
-			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(1033, 36);
-			this.pnHeader.TabIndex = 3;
+			this.pnNoRecords.BackColor = System.Drawing.Color.Transparent;
+			this.pnNoRecords.Controls.Add(this.pbNoRecords);
+			this.pnNoRecords.Location = new System.Drawing.Point(42, 257);
+			this.pnNoRecords.Name = "pnNoRecords";
+			this.pnNoRecords.Padding = new System.Windows.Forms.Padding(10);
+			this.pnNoRecords.Size = new System.Drawing.Size(200, 100);
+			this.pnNoRecords.TabIndex = 8;
 			// 
-			// hyperLinkEditReset
+			// pbNoRecords
 			// 
-			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(963, 7);
-			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
-			this.hyperLinkEditReset.Properties.AllowFocused = false;
-			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
-			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
-			toolTipItem1.Text = "Reset your Data to original settings";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditReset.SuperTip = superToolTip1;
-			this.hyperLinkEditReset.TabIndex = 102;
-			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnResetClick);
+			this.pbNoRecords.BackColor = System.Drawing.Color.White;
+			this.pbNoRecords.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pbNoRecords.Image = global::Asa.Media.Controls.Properties.Resources.DigitalPackageNoRecords;
+			this.pbNoRecords.Location = new System.Drawing.Point(10, 10);
+			this.pbNoRecords.Name = "pbNoRecords";
+			this.pbNoRecords.Size = new System.Drawing.Size(180, 80);
+			this.pbNoRecords.TabIndex = 2;
+			this.pbNoRecords.TabStop = false;
 			// 
-			// DigitalPackageEditorControl
+			// DigitalStandalonePackageEditorControl
 			// 
-			this.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.BackColor = System.Drawing.Color.White;
+			this.Appearance.PageClient.Options.UseBackColor = true;
+			this.Controls.Add(this.pnNoRecords);
 			this.Controls.Add(this.pnData);
-			this.Controls.Add(this.pnHeader);
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "DigitalPackageEditorControl";
 			this.Size = new System.Drawing.Size(1033, 587);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnData.ResumeLayout(false);
@@ -551,8 +538,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditImpressions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditInvestment)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditFormula)).EndInit();
-			this.pnHeader.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
+			this.pnNoRecords.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -568,8 +555,6 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandInvestment;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandFormula;
 		private System.Windows.Forms.Panel pnData;
-		protected System.Windows.Forms.Panel pnHeader;
-		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditImpressions;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditInvestment;
@@ -591,5 +576,7 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnInvestment;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnFormula;
 		private DevExpress.Utils.ToolTipController toolTipController;
-    }
+		private System.Windows.Forms.Panel pnNoRecords;
+		private System.Windows.Forms.PictureBox pbNoRecords;
+	}
 }

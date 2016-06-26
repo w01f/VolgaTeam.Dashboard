@@ -1,10 +1,9 @@
 ﻿using System;
-using Asa.Business.Online.Enums;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Online.Entities.NonPersistent
 {
-	public class ProductPackageRecord
+	public class ProductPackageRecord : BasePackageRecord
 	{
 		private string _category;
 		private string _subCategory;
@@ -17,10 +16,9 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		private decimal? _cpm;
 
 		public DigitalProduct Parent { get; private set; }
-		public bool UseFormula { get; set; }
 
 		[JsonIgnore]
-		public string Category
+		public override string Category
 		{
 			get
 			{
@@ -36,7 +34,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public string SubCategory
+		public override string SubCategory
 		{
 			get
 			{
@@ -52,7 +50,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public string Name
+		public override string Name
 		{
 			get
 			{
@@ -68,7 +66,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public string Info
+		public override string Info
 		{
 			get
 			{
@@ -81,7 +79,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public string Comments
+		public override string Comments
 		{
 			get
 			{
@@ -94,7 +92,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public decimal? Rate
+		public override decimal? Rate
 		{
 			get
 			{
@@ -107,7 +105,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public decimal? Investment
+		public override decimal? Investment
 		{
 			get
 			{
@@ -120,26 +118,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public decimal? InvestmentCalculated
-		{
-			get
-			{
-				if (UseFormula &&
-					(Parent.Settings.DigitalPackageSettings.ShowInvestment &&
-						Parent.Settings.DigitalPackageSettings.ShowImpressions &&
-						Parent.Settings.DigitalPackageSettings.ShowCPM) &&
-					Parent.Settings.DigitalPackageSettings.Formula == FormulaType.Investment)
-					Investment = CPMCalculated.HasValue && ImpressionsCalculated.HasValue ? Math.Round(CPMCalculated.Value * (ImpressionsCalculated.Value / 1000), 2) : (decimal?)null;
-				return Investment;
-			}
-			set
-			{
-				Investment = value;
-			}
-		}
-
-		[JsonIgnore]
-		public decimal? Impressions
+		public override decimal? Impressions
 		{
 			get
 			{
@@ -152,26 +131,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public decimal? ImpressionsCalculated
-		{
-			get
-			{
-				if (UseFormula &&
-					(Parent.Settings.DigitalPackageSettings.ShowInvestment &&
-						Parent.Settings.DigitalPackageSettings.ShowImpressions &&
-						Parent.Settings.DigitalPackageSettings.ShowCPM) &&
-					Parent.Settings.DigitalPackageSettings.Formula == FormulaType.Impressions)
-					Impressions = InvestmentCalculated.HasValue && CPMCalculated.HasValue && CPMCalculated.Value != 0 ? Math.Round(((InvestmentCalculated.Value * 1000) / CPMCalculated.Value), 0) : (decimal?)null;
-				return Impressions;
-			}
-			set
-			{
-				Impressions = value;
-			}
-		}
-
-		[JsonIgnore]
-		public decimal? CPM
+		public override decimal? CPM
 		{
 			get
 			{
@@ -183,36 +143,18 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			}
 		}
 
-		[JsonIgnore]
-		public decimal? CPMCalculated
-		{
-			get
-			{
-				if (UseFormula &&
-					(Parent.Settings.DigitalPackageSettings.ShowInvestment &&
-						Parent.Settings.DigitalPackageSettings.ShowImpressions &&
-						Parent.Settings.DigitalPackageSettings.ShowCPM) &&
-					Parent.Settings.DigitalPackageSettings.Formula == FormulaType.CPM)
-					CPM = InvestmentCalculated.HasValue && ImpressionsCalculated.HasValue && ImpressionsCalculated.Value != 0 ? Math.Round((InvestmentCalculated.Value / (ImpressionsCalculated.Value / 1000)), 2) : (decimal?)null;
-				return CPM;
-			}
-			set
-			{
-				CPM = value;
-			}
-		}
-
 		[JsonConstructor]
 		private ProductPackageRecord() { }
 
-		public ProductPackageRecord(DigitalProduct parent)
+		public ProductPackageRecord(DigitalProduct parent) : base(parent.Parent.ScheduleSettings)
 		{
 			Parent = parent;
 			ResetToDefault();
 		}
 
-		public void Dispose()
+		public override void Dispose()
 		{
+			base.Dispose();
 			Parent = null;
 		}
 

@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
-using Asa.Business.Media.Entities.NonPersistent.Section.Digital;
+using Asa.Business.Media.Entities.NonPersistent.Digital;
 using Asa.Business.Media.Enums;
 using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Enums;
@@ -39,14 +39,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 	{
 		private bool _allowToSave;
 		private SectionContainer _sectionContainer;
-		private SectionDigitalInfo _digitalInfo;
+		private MediaDigitalInfo _digitalInfo;
 		private GridDragDropHelper _dragDropHelper;
 		public SectionEditorType EditorType => SectionEditorType.DigitalSection;
 
 		public string CollectionTitle => "Digital";
 		public string CollectionItemTitle => "Product";
-		public bool AllowToAddItem => _digitalInfo != null && _digitalInfo.Products.Count < OutputScheduleData.MaxDigitalProducts;
-		public bool AllowToDeleteItem => _digitalInfo != null && _digitalInfo.Products.Any();
+		public bool AllowToAddItem => _digitalInfo != null && _digitalInfo.Records.Count < OutputScheduleData.MaxDigitalProducts;
+		public bool AllowToDeleteItem => _digitalInfo != null && _digitalInfo.Records.Any();
 
 		public SectionDigitalInfoControl(SectionContainer sectionContainer)
 		{
@@ -59,10 +59,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void InitControls()
 		{
-			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
-			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
-			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsProductTitle ?? bandedGridColumnProduct.Caption;
-			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.MediaDigitalColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
+			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
+			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
+			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsProductTitle ?? bandedGridColumnProduct.Caption;
+			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
 
 			if ((CreateGraphics()).DpiX > 96)
 			{
@@ -128,7 +128,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void DeleteItem()
 		{
-			var selectedProduct = advBandedGridView.GetFocusedRow() as SectionDigitalProduct;
+			var selectedProduct = advBandedGridView.GetFocusedRow() as MediaDigitalInfoRecord;
 			if (selectedProduct == null) return;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("Delete Product ID {0}?", selectedProduct.Index.ToString("# ##0"))) != DialogResult.Yes)
 				return;
@@ -151,7 +151,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void UpdateGridData()
 		{
-			gridControl.DataSource = _digitalInfo.Products;
+			gridControl.DataSource = _digitalInfo.Records;
 			advBandedGridView.RefreshData();
 		}
 
@@ -172,7 +172,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void UpdateProductsSplash()
 		{
-			if (_digitalInfo.Products.Any())
+			if (_digitalInfo.Records.Any())
 				pnContent.BringToFront();
 			else
 				pnNoProducts.BringToFront();
@@ -201,7 +201,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void InitDargDropHelper()
 		{
-			if (_dragDropHelper != null || !_digitalInfo.Products.Any()) return;
+			if (_dragDropHelper != null || !_digitalInfo.Records.Any()) return;
 			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
 			_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
 		}
@@ -251,7 +251,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (e.Column != bandedGridColumnLogo) return;
 			if (e.Clicks < 2) return;
-			var digitalProduct = advBandedGridView.GetFocusedRow() as SectionDigitalProduct;
+			var digitalProduct = advBandedGridView.GetFocusedRow() as MediaDigitalInfoRecord;
 			if (digitalProduct == null) return;
 			using (var form = new FormImageGallery(ListManager.Instance.Images))
 			{
@@ -265,7 +265,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnGridViewShowingEditor(object sender, CancelEventArgs e)
 		{
-			var focussedRecord = advBandedGridView.GetFocusedRow() as SectionDigitalProduct;
+			var focussedRecord = advBandedGridView.GetFocusedRow() as MediaDigitalInfoRecord;
 			if (focussedRecord == null) return;
 			if (advBandedGridView.FocusedColumn == bandedGridColumnProduct)
 			{
@@ -356,7 +356,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
 		{
-			return _digitalInfo != null && _digitalInfo.Products.Any() ?
+			return _digitalInfo != null && _digitalInfo.Records.Any() ?
 				new[] { ScheduleSectionOutputType.Digital } :
 				new ScheduleSectionOutputType[] { };
 		}
@@ -380,9 +380,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault();
 
 			#region Set OutputDigitalProduct Values
-			for (var j = 0; j < _sectionContainer.SectionData.DigitalInfo.Products.Count; j++)
+			for (var j = 0; j < _sectionContainer.SectionData.DigitalInfo.Records.Count; j++)
 			{
-				var product = _sectionContainer.SectionData.DigitalInfo.Products[j];
+				var product = _sectionContainer.SectionData.DigitalInfo.Records[j];
 				var outputProduct = new OutputDigitalProduct();
 				outputProduct.LineID = product.Index.ToString("00");
 				outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo ?

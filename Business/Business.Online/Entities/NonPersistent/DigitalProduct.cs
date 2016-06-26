@@ -343,6 +343,11 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			Parent = null;
 		}
 
+		public void AfterCreate()
+		{
+			PackageRecord.SettingsContainer = Parent.ScheduleSettings;
+		}
+
 		[OnDeserialized]
 		public void AfterDeserialize(StreamingContext context)
 		{
@@ -467,30 +472,6 @@ namespace Asa.Business.Online.Entities.NonPersistent
 				newAddtionalInfo.AddRange(ListManager.Instance.RichMediaRecods.MergeSet(AddtionalInfo));
 			AddtionalInfo.Clear();
 			AddtionalInfo.AddRange(newAddtionalInfo);
-		}
-
-		public decimal SummaryOrder
-		{
-			get { return (Decimal)Index; }
-		}
-
-		public string SummaryTitle
-		{
-			get { return String.Format("{0}{1}", Name, (!String.IsNullOrEmpty(Location) && Location != "N/A" ? String.Format(" ({0})", Location) : String.Empty)); }
-		}
-
-		public string SummaryInfo
-		{
-			get
-			{
-				var values = new List<string>();
-				values.Add(FullName);
-				if (!String.IsNullOrEmpty(OutputData.Websites))
-					values.Add(OutputData.Websites);
-				values.Add(String.Format("{0}", Settings.FlightDates));
-				values.Add(String.Format("{0}", UserDescription));
-				return String.Join(", ", values).Replace(Environment.NewLine, ", ");
-			}
 		}
 	}
 }

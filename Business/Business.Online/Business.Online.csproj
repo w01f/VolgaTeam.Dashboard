@@ -63,6 +63,7 @@
     <Compile Include="Configuration\DigitalProductListViewSettings.cs" />
     <Compile Include="Configuration\DigitalProductSettings.cs" />
     <Compile Include="Dictionaries\ListManager.cs" />
+    <Compile Include="Entities\NonPersistent\BasePackageRecord.cs" />
     <Compile Include="Entities\NonPersistent\Category.cs" />
     <Compile Include="Entities\NonPersistent\DigitalProduct.cs" />
     <Compile Include="Entities\NonPersistent\DigitalProductOutputData.cs" />
@@ -74,8 +75,11 @@
     <Compile Include="Entities\NonPersistent\ProductPackageRecord.cs" />
     <Compile Include="Entities\NonPersistent\ProductSource.cs" />
     <Compile Include="Entities\NonPersistent\SpecialLinkButton.cs" />
+    <Compile Include="Entities\NonPersistent\StandalonePackageRecord.cs" />
+    <Compile Include="Entities\NonPersistent\StandaloneDigitalPackage.cs" />
     <Compile Include="Enums\FormulaType.cs" />
     <Compile Include="Enums\ProductInfoType.cs" />
+    <Compile Include="Interfaces\IDigitalPackageSettingsContainer.cs" />
     <Compile Include="Interfaces\IDigitalProductsContent.cs" />
     <Compile Include="Interfaces\IDigitalSchedule.cs" />
     <Compile Include="Interfaces\IDigitalScheduleSettings.cs" />

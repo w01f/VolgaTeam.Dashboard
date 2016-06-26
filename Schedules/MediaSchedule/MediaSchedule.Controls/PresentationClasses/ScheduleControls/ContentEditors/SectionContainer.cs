@@ -190,8 +190,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					break;
 				case SectionEditorType.DigitalSection:
 					labelControlCollectionItemsInfo.Visible = true;
-					if (SectionData.DigitalInfo.Products.Count < OutputScheduleData.MaxDigitalProducts)
-						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Products.Count);
+					if (SectionData.DigitalInfo.Records.Count < OutputScheduleData.MaxDigitalProducts)
+						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Records.Count);
 					else
 						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
 					break;
@@ -204,7 +204,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void UpdateSummaryState()
 		{
 			_customSummaryControl.PageEnabled =
-				SectionData.Programs.Any(p => p.TotalSpots > 0) || SectionData.DigitalInfo.Products.Any();
+				SectionData.Programs.Any(p => p.TotalSpots > 0) || SectionData.DigitalInfo.Records.Any();
 		}
 
 		private void UpdateWarnings()

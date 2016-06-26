@@ -48,20 +48,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		public ContractSettings ContractSettings { get; private set; }
 
 		#region Calculated Properies
-		public int DisplayIndex
-		{
-			get { return (Int32)(Index + 1); }
-		}
+		public int DisplayIndex => (Int32)(Index + 1);
 
-		public Image SmallLogo
-		{
-			get { return Logo != null ? Logo.TinyImage : null; }
-		}
+		public Image SmallLogo => Logo?.TinyImage;
 
-		public decimal AvgRate
-		{
-			get { return TotalSpots != 0 ? (TotalCost / TotalSpots) : 0; }
-		}
+		public decimal AvgRate => TotalSpots != 0 ? (TotalCost / TotalSpots) : 0;
 
 		public decimal TotalCost
 		{
@@ -82,20 +73,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			set { _totalWeeks = value; }
 		}
 
-		public decimal TotalWeekCost
-		{
-			get { return TotalCost * (decimal)TotalWeeks; }
-		}
+		public decimal TotalWeekCost => TotalCost * (decimal)TotalWeeks;
 
 		public int TotalSpots
 		{
 			get { return Programs.Any() ? Programs.Select(x => x.TotalSpots).Sum() : 0; }
 		}
 
-		public int TotalWeekSpots
-		{
-			get { return (int)(TotalSpots * TotalWeeks); }
-		}
+		public int TotalWeekSpots => (int)(TotalSpots * TotalWeeks);
+
 		#endregion
 
 		[JsonConstructor]

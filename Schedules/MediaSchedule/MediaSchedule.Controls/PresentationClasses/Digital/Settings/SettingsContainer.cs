@@ -67,10 +67,18 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				} ,
 				new DigitalEditorSettingsRelation
 				{
-					EditorType = DigitalEditorType.Package,
+					EditorType = DigitalEditorType.ProductPackage,
 					SettingsTypes = new []
 					{
 						DigitalSettingsType.ProductPackage
+					}
+				},
+				new DigitalEditorSettingsRelation
+				{
+					EditorType = DigitalEditorType.StandalonePackage,
+					SettingsTypes = new []
+					{
+						DigitalSettingsType.StandalonePackage
 					}
 				}
 			});
@@ -81,7 +89,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			_settingsControls.AddRange(new ISettingsControl[]
 				{
 					new DigitalListSettingsControl(), 
-					new DigitalPackageSettingsControl()
+					new DigitalProductPackageSettingsControl(),
+					new DigitalStandalonePackageSettingsControl(), 
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsControl>())
 				settingsDataControl.DataChanged += OnSettingsChanged;
@@ -126,8 +135,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 		{
 			switch (editorType)
 			{
-				case DigitalEditorType.Package:
-					_settingsControls.OfType<DigitalPackageSettingsControl>().First().LoadContentData(_editedContent);
+				case DigitalEditorType.ProductPackage:
+					_settingsControls.OfType<DigitalProductPackageSettingsControl>().First().LoadContentData(_editedContent);
 					break;
 			}
 		}

@@ -1,6 +1,6 @@
 ﻿namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 {
-	partial class DigitalPackageSettingsControl
+	partial class DigitalStandalonePackageSettingsControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -29,7 +29,7 @@
 		private  void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalPackageSettingsControl));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalProductPackageSettingsControl));
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
@@ -369,12 +369,12 @@
 			this.checkEditFormulaImpressions.TabStop = false;
 			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// DigitalPackageSettingsControl
+			// DigitalProductPackageSettingsControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnButtons);
 			this.Controls.Add(this.pnFormula);
-			this.Name = "DigitalPackageSettingsControl";
+			this.Name = "DigitalProductPackageSettingsControl";
 			this.Size = new System.Drawing.Size(280, 490);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnButtons.ResumeLayout(false);

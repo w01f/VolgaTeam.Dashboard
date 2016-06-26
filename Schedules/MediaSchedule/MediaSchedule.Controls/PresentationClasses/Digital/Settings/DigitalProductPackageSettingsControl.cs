@@ -11,8 +11,8 @@ using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 {
-	//public partial class DigitalPackageSettingsControl : UserControl, ISettingsControl
-	public partial class DigitalPackageSettingsControl : XtraTabPage, ISettingsControl
+	//public partial class DigitalProductPackageSettingsControl : UserControl, ISettingsControl
+	public partial class DigitalProductPackageSettingsControl : XtraTabPage, ISettingsControl
 	{
 		private bool _allowToSave;
 		private DigitalProductsContent _content;
@@ -22,7 +22,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 
 		public event EventHandler<SettingsChangedEventArgs> DataChanged;
 
-		public DigitalPackageSettingsControl()
+		public DigitalProductPackageSettingsControl()
 		{
 			InitializeComponent();
 			Text = "Info";
@@ -34,18 +34,18 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
 
-			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsCategoryTitle ?? buttonXCategory.Text;
-			buttonXGroup.Text = ListManager.Instance.DefaultControlsConfiguration.PackageColumnsSubCategoryTitle ?? buttonXGroup.Text;
-			buttonXProduct.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsProductTitle ?? buttonXProduct.Text;
-			buttonXImpressions.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsImpressionsTitle ?? buttonXImpressions.Text;
-			buttonXCPM.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsCPMTitle ?? buttonXCPM.Text;
-			buttonXRate.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsRateTitle ?? buttonXRate.Text;
-			buttonXInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsInvestmentTitle ?? buttonXInvestment.Text;
-			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsInfoTitle ?? buttonXInfo.Text;
-			buttonXComments.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsCommentsTitle ?? buttonXComments.Text;
-			buttonXScreenshot.Text = ListManager.Instance.DefaultControlsConfiguration.PackageSettingsScreenshotTitle ?? buttonXScreenshot.Text;
-			labelControlFormula.Text = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.PackageSettingsFormulaTitle) ?
-				String.Format("<b>{0}</b>", ListManager.Instance.DefaultControlsConfiguration.PackageSettingsFormulaTitle) :
+			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsCategoryTitle ?? buttonXCategory.Text;
+			buttonXGroup.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsSubCategoryTitle ?? buttonXGroup.Text;
+			buttonXProduct.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsProductTitle ?? buttonXProduct.Text;
+			buttonXImpressions.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsImpressionsTitle ?? buttonXImpressions.Text;
+			buttonXCPM.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsCPMTitle ?? buttonXCPM.Text;
+			buttonXRate.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsRateTitle ?? buttonXRate.Text;
+			buttonXInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsInvestmentTitle ?? buttonXInvestment.Text;
+			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsInfoTitle ?? buttonXInfo.Text;
+			buttonXComments.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsCommentsTitle ?? buttonXComments.Text;
+			buttonXScreenshot.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsScreenshotTitle ?? buttonXScreenshot.Text;
+			labelControlFormula.Text = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsFormulaTitle) ?
+				String.Format("<b>{0}</b>", ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsFormulaTitle) :
 				labelControlFormula.Text;
 
 			if (CreateGraphics().DpiX > 96)

@@ -7,11 +7,11 @@ using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Images;
 using Newtonsoft.Json;
 
-namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
+namespace Asa.Business.Media.Entities.NonPersistent.Digital
 {
-	public class SectionDigitalProduct : IJsonCloneable<SectionDigitalProduct>
+	public class MediaDigitalInfoRecord : IJsonCloneable<MediaDigitalInfoRecord>
 	{
-		private SectionDigitalInfo Parent { get; set; }
+		private MediaDigitalInfo Parent { get; set; }
 
 		public Guid UniqueID { get; set; }
 		public decimal Index { get; set; }
@@ -26,13 +26,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
 		#endregion
 
 		[JsonConstructor]
-		public SectionDigitalProduct() { }
+		public MediaDigitalInfoRecord() { }
 
-		public SectionDigitalProduct(SectionDigitalInfo parent)
+		public MediaDigitalInfoRecord(MediaDigitalInfo parent)
 		{
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
-			Index = Parent.Products.Count + 1;
+			Index = Parent.Records.Count + 1;
 			Logo = ListManager.Instance.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>();
 		}
 
@@ -44,7 +44,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Digital
 			Parent = null;
 		}
 
-		public void AfterClone(SectionDigitalProduct source, bool fullClone = true)
+		public void AfterClone(MediaDigitalInfoRecord source, bool fullClone = true)
 		{
 			Parent = source.Parent;
 			UniqueID = Guid.NewGuid();

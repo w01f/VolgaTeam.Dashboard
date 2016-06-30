@@ -26,7 +26,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private bool _needToReload;
 		private readonly DigitalEditorsContainer _container;
 		private readonly List<DigitalProductSummaryControl> _summaryControls = new List<DigitalProductSummaryControl>();
-		public DigitalEditorType EditorType => DigitalEditorType.Summary;
+		public DigitalSectionType SectionType => DigitalSectionType.Summary;
 		public string HelpTag => "digitalsl";
 		public event EventHandler<DataChangedEventArgs> DataChanged;
 
@@ -130,7 +130,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private void EditValueChanged(object sender, EventArgs e)
 		{
 			if (_allowToSave)
-				DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedEditorType = EditorType });
+				DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedSectionType = SectionType });
 		}
 
 		#region Output

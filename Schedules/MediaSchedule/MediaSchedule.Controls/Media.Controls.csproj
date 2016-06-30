@@ -127,7 +127,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorSettingsRelation.cs" />
-    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorType.cs" />
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalSectionType.cs" />
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorsContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,6 +158,12 @@
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalSummaryEditorControl.Designer.cs">
       <DependentUpon>DigitalSummaryEditorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\HomePage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Digital\ContentEditors\IDigitalEditor.cs" />
     <Compile Include="PresentationClasses\Digital\ContentEditors\IDigitalItemCollectionEditor.cs" />
     <Compile Include="PresentationClasses\Digital\ContentEditors\DataChangedEventArgs.cs" />
@@ -167,6 +173,7 @@
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalProductPackageEditorControl.designer.cs">
       <DependentUpon>DigitalProductPackageEditorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\IDigitalSection.cs" />
     <Compile Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoEditControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -514,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\DigitalProductPackageEditorControl.resx">
       <DependentUpon>DigitalProductPackageEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\ContentEditors\HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoEditControl.resx">
       <DependentUpon>BaseDigitalInfoEditControl.cs</DependentUpon>

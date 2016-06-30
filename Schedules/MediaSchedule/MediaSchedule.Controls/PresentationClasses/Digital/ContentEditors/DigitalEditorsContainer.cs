@@ -44,6 +44,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public override RibbonTabItem TabPage => Controller.Instance.TabDigitalProduct;
 
+		private IDigitalSection ActiveSection => xtraTabControlEditors.SelectedTabPage as IDigitalSection;
 		private IDigitalEditor ActiveEditor => xtraTabControlEditors.SelectedTabPage as IDigitalEditor;
 		private IDigitalItemCollectionEditor ActiveCollectionEditor => xtraTabControlEditors.SelectedTabPage as IDigitalItemCollectionEditor;
 		#endregion
@@ -105,7 +106,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		protected override void ApplyChanges()
 		{
-			ActiveEditor.SaveData();
+			ActiveEditor?.SaveData();
 			ChangeInfo.DigitalContentChanged = ChangeInfo.DigitalContentChanged || SettingsNotSaved;
 		}
 
@@ -116,7 +117,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public override void GetHelp()
 		{
-			BusinessObjects.Instance.HelpManager.OpenHelpLink(ActiveEditor.HelpTag);
+			BusinessObjects.Instance.HelpManager.OpenHelpLink(ActiveSection.HelpTag);
 		}
 
 		protected override void LoadThemes()
@@ -136,6 +137,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		#region Editors Management
 		private void InitEditors()
 		{
+			var homePage = new HomePage();
+			xtraTabControlEditors.TabPages.Add(homePage);
+
 			var editorList = new DigitalListEditorControl(this);
 			xtraTabControlEditors.TabPages.Add(editorList);
 
@@ -156,13 +160,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				editor.RequestReload();
 				editor.DataChanged += OnEditorDataChanged;
 			});
-			xtraTabControlEditors.SelectedPageChanged += OnEditorSelected;
+			xtraTabControlEditors.SelectedPageChanged += OnSectionSelected;
 		}
 
 		private void LoadActiveEditorData()
 		{
-			if (ActiveEditor != null)
-				OnEditorSelected(ActiveEditor, new TabPageChangedEventArgs(null, (XtraTabPage)ActiveEditor));
+			OnSectionSelected(ActiveSection, new TabPageChangedEventArgs(null, (XtraTabPage)ActiveSection));
 		}
 
 		private void InitCollectionButtons()
@@ -226,7 +229,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		{
 			xtraTabControlEditors.TabPages
 				.OfType<IDigitalEditor>()
-				.Where(e => e.EditorType != DigitalEditorType.List && e.EditorType != DigitalEditorType.StandalonePackage)
+				.Where(e => e.SectionType != DigitalSectionType.List && e.SectionType != DigitalSectionType.StandalonePackage)
 				.OfType<XtraTabPage>()
 				.ToList()
 				.ForEach(e => e.PageEnabled = EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
@@ -249,13 +252,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				ActiveCollectionEditor != null && ActiveCollectionEditor.HasItems;
 		}
 
-		private void OnEditorSelected(object sender, TabPageChangedEventArgs e)
+		private void OnSectionSelected(object sender, TabPageChangedEventArgs e)
 		{
 			var previousEditor = e.PrevPage as IDigitalEditor;
 			previousEditor?.SaveData();
-			if (ActiveEditor == null) return;
-			ActiveEditor.LoadData();
-			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveEditor.EditorType);
+			ActiveEditor?.LoadData();
+			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.SectionType);
 			UpdateCollectionChangeButtons();
 		}
 
@@ -263,23 +265,23 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		{
 			if (ActiveEditor == null) return;
 			Func<IDigitalEditor, bool> predicate = null;
-			switch (e.ChangedEditorType)
+			switch (e.ChangedSectionType)
 			{
-				case DigitalEditorType.List:
-					predicate = target => target.EditorType == DigitalEditorType.Products || target.EditorType == DigitalEditorType.Summary ||
-										  target.EditorType == DigitalEditorType.ProductPackage;
+				case DigitalSectionType.List:
+					predicate = target => target.SectionType == DigitalSectionType.Products || target.SectionType == DigitalSectionType.Summary ||
+										  target.SectionType == DigitalSectionType.ProductPackage;
 					break;
-				case DigitalEditorType.Products:
-					predicate = target => target.EditorType == DigitalEditorType.Summary ||
-										  target.EditorType == DigitalEditorType.ProductPackage;
+				case DigitalSectionType.Products:
+					predicate = target => target.SectionType == DigitalSectionType.Summary ||
+										  target.SectionType == DigitalSectionType.ProductPackage;
 					break;
-				case DigitalEditorType.ProductPackage:
+				case DigitalSectionType.ProductPackage:
 					predicate = target => false;
 					break;
-				case DigitalEditorType.Summary:
+				case DigitalSectionType.Summary:
 					predicate = target => false;
 					break;
-				case DigitalEditorType.StandalonePackage:
+				case DigitalSectionType.StandalonePackage:
 					predicate = target => false;
 					break;
 				default:
@@ -293,7 +295,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 						{
 							editor.RequestReload();
 						});
-			settingsContainer.UpdateSettingsAccordingDataChanges(ActiveEditor.EditorType);
+			settingsContainer.UpdateSettingsAccordingDataChanges(ActiveSection.SectionType);
 			UpdateEditorsStatus();
 			UpdateOutputStatus();
 			SettingsNotSaved = true;

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Common.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using DevComponents.DotNetBar;
@@ -16,7 +15,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 	{
 		private bool _needToReload;
 		private readonly DigitalEditorsContainer _container;
-		public DigitalEditorType EditorType => DigitalEditorType.List;
+		public DigitalSectionType SectionType => DigitalSectionType.List;
 		public string HelpTag => "homedg";
 		public bool HasItems => _container.EditedContent.DigitalProducts.Any();
 		public event EventHandler<DataChangedEventArgs> DataChanged;
@@ -38,7 +37,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 					() =>
 					{
 						UpdateProductsCount();
-						DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedEditorType = EditorType });
+						DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedSectionType = SectionType });
 					}
 				);
 			UpdateProductsCount();

@@ -7,12 +7,7 @@ namespace Asa.Business.Media.Configuration
 {
 	public class ResourceManager
 	{
-		private static readonly ResourceManager _instance = new ResourceManager();
-
-		public static ResourceManager Instance
-		{
-			get { return _instance; }
-		}
+		public static ResourceManager Instance { get; } = new ResourceManager();
 
 		public StorageFile TabsConfigFile { get; private set; }
 		public StorageFile Gallery1ConfigFile { get; private set; }
@@ -20,7 +15,7 @@ namespace Asa.Business.Media.Configuration
 
 		public StorageFile MediaListsFile { get; private set; }
 
-		public StorageFile DefaultStrategyLogoFile { get; private set; }
+		public StorageFile DigitalProductsHomeLogoFile { get; private set; }
 
 		private ResourceManager() { }
 
@@ -69,16 +64,15 @@ namespace Asa.Business.Media.Configuration
 			});
 			await MediaListsFile.Download();
 
-			DefaultStrategyLogoFile = new StorageFile(new[]
+			DigitalProductsHomeLogoFile = new StorageFile(new[]
 			{
 				FileStorageManager.IncomingFolderName,
-				FileStorageManager.CommonIncomingFolderName,
-				"Artwork",
-				MediaMetaData.Instance.DataTypeString.ToUpper(),
-				"DefaultStrategyImage.png"
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"digital_home.png"
 			});
-			if (await DefaultStrategyLogoFile.Exists(true))
-				await DefaultStrategyLogoFile.Download();
+			if (await DigitalProductsHomeLogoFile.Exists(true))
+				await DigitalProductsHomeLogoFile.Download();
 		}
 	}
 }

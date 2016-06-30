@@ -3,10 +3,8 @@ using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
-	interface IDigitalEditor
+	interface IDigitalEditor : IDigitalSection
 	{
-		DigitalEditorType EditorType { get; }
-		string HelpTag { get; }
 		void LoadData();
 		void RequestReload();
 		void SaveData();

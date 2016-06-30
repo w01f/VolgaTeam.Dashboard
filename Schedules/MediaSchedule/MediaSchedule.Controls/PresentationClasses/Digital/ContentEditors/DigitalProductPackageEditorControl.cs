@@ -33,7 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private bool _allowApplyValues;
 		private bool _needToReload;
 		private readonly DigitalEditorsContainer _container;
-		public DigitalEditorType EditorType => DigitalEditorType.ProductPackage;
+		public DigitalSectionType SectionType => DigitalSectionType.ProductPackage;
 		public string HelpTag => "digitalpk";
 
 		public event EventHandler<DataChangedEventArgs> DataChanged;
@@ -128,7 +128,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		private void RaiseDataChanged()
 		{
-			DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedEditorType = EditorType });
+			DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedSectionType = SectionType });
 		}
 
 		private void UpdateGridColumns()

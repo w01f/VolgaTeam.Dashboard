@@ -23,6 +23,7 @@ namespace Asa.Business.Online.Configuration
 		#endregion
 
 		#region Sections
+		public string SectionsHomeTitle { get; set; }
 		public string SectionsListTitle { get; set; }
 		public string SectionsProductTitle { get; set; }
 		public string SectionsProductPackageTitle { get; set; }
@@ -131,11 +132,12 @@ namespace Asa.Business.Online.Configuration
 			switch (groupName)
 			{
 				case "tab_1_top_level_tab_names":
-					SectionsListTitle = values.ElementAtOrDefault(0);
-					SectionsProductTitle = values.ElementAtOrDefault(1);
-					SectionsSummaryTitle = values.ElementAtOrDefault(2);
-					SectionsProductPackageTitle = values.ElementAtOrDefault(3);
-					SectionsStandalonePackageTitle = values.ElementAtOrDefault(4);
+					SectionsHomeTitle = values.ElementAtOrDefault(0);
+					SectionsListTitle = values.ElementAtOrDefault(1);
+					SectionsProductTitle = values.ElementAtOrDefault(2);
+					SectionsSummaryTitle = values.ElementAtOrDefault(3);
+					SectionsProductPackageTitle = values.ElementAtOrDefault(4);
+					SectionsStandalonePackageTitle = values.ElementAtOrDefault(5);
 					break;
 				case "tab_1_column_header_names":
 					ListColumnsGroupTitle = values.ElementAtOrDefault(0);

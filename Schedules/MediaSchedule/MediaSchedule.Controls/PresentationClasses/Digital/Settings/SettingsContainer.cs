@@ -49,7 +49,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			{
 				new DigitalEditorSettingsRelation
 				{
-					EditorType = DigitalEditorType.List,
+					SectionType = DigitalSectionType.List,
 					SettingsTypes = new []
 					{
 						DigitalSettingsType.ProductList
@@ -57,17 +57,17 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				} ,
 				new DigitalEditorSettingsRelation
 				{
-					EditorType = DigitalEditorType.Products,
+					SectionType = DigitalSectionType.Products,
 					SettingsTypes = new DigitalSettingsType[] {}
 				} ,
 				new DigitalEditorSettingsRelation
 				{
-					EditorType = DigitalEditorType.Summary,
+					SectionType = DigitalSectionType.Summary,
 					SettingsTypes = new DigitalSettingsType[] {}
 				} ,
 				new DigitalEditorSettingsRelation
 				{
-					EditorType = DigitalEditorType.ProductPackage,
+					SectionType = DigitalSectionType.ProductPackage,
 					SettingsTypes = new []
 					{
 						DigitalSettingsType.ProductPackage
@@ -75,7 +75,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				},
 				new DigitalEditorSettingsRelation
 				{
-					EditorType = DigitalEditorType.StandalonePackage,
+					SectionType = DigitalSectionType.StandalonePackage,
 					SettingsTypes = new []
 					{
 						DigitalSettingsType.StandalonePackage
@@ -112,11 +112,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			_settingsControls.OfType<ISettingsControl>().ToList().ForEach(c => c.LoadContentData(_editedContent));
 		}
 
-		public void UpdateSettingsAccordingSelectedSectionEditor(DigitalEditorType editorType)
+		public void UpdateSettingsAccordingSelectedSectionEditor(DigitalSectionType sectionType)
 		{
 			var selectedTabPage = xtraTabControlOptions.SelectedTabPage;
 			xtraTabControlOptions.TabPages.Clear();
-			var contentRelation = _sectionEditorSettings.FirstOrDefault(r => r.EditorType == editorType);
+			var contentRelation = _sectionEditorSettings.FirstOrDefault(r => r.SectionType == sectionType);
 			if (contentRelation != null)
 			{
 				xtraTabControlOptions.TabPages.AddRange(_settingsControls
@@ -131,11 +131,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			SettingsControlsUpdated?.Invoke(this, EventArgs.Empty);
 		}
 
-		public void UpdateSettingsAccordingDataChanges(DigitalEditorType editorType)
+		public void UpdateSettingsAccordingDataChanges(DigitalSectionType sectionType)
 		{
-			switch (editorType)
+			switch (sectionType)
 			{
-				case DigitalEditorType.ProductPackage:
+				case DigitalSectionType.ProductPackage:
 					_settingsControls.OfType<DigitalProductPackageSettingsControl>().First().LoadContentData(_editedContent);
 					break;
 			}

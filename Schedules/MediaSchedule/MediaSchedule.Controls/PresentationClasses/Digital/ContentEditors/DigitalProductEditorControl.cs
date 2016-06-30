@@ -29,7 +29,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private readonly DigitalEditorsContainer _container;
 		private readonly List<DigitalProductControl> _tabPages = new List<DigitalProductControl>();
 
-		public DigitalEditorType EditorType => DigitalEditorType.Products;
+		public DigitalSectionType SectionType => DigitalSectionType.Products;
 		public string HelpTag => "digitalsl";
 		public IDigitalProductsContent DigitalProductsContent => _container.EditedContent;
 		public event EventHandler<DataChangedEventArgs> DataChanged;
@@ -112,7 +112,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public void RaiseDataChanged()
 		{
-			DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedEditorType = DigitalEditorType.Products });
+			DataChanged?.Invoke(this, new DataChangedEventArgs { ChangedSectionType = DigitalSectionType.Products });
 		}
 
 		#region Records Management

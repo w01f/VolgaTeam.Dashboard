@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Common;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Common.Core.Helpers;
@@ -102,8 +103,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			advBandedGridView.RefreshData();
 			UpdateProgramSplash();
 			InitDargDropHelper();
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
+			DataChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		public void DeleteProgram()

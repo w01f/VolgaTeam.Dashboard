@@ -5,24 +5,22 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Media.Controls.BusinessClasses;
-using Asa.Media.Controls.PresentationClasses.OptionsControls;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
-using Asa.Common.Core.Objects.Themes;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Media.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
+	public partial class MediaSchedulePowerPointHelper<T> where T : class, new()
 	{
-		public void AppendOptions(IEnumerable<IOptionsSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
+		public void AppendOptions(IEnumerable<IOptionsSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
 					foreach (var page in pages)
@@ -59,6 +57,7 @@ namespace Asa.Media.Controls.InteropClasses
 
 							var tableContainer = taggedSlide.Shapes.OfType<Shape>().FirstOrDefault(s => s.HasTable == MsoTriState.msoTrue);
 							if (tableContainer == null) return;
+							var tableWidth = tableContainer.Width;
 							var table = tableContainer.Table;
 							var tableRowsCount = table.Rows.Count;
 							for (var i = 1; i <= tableRowsCount; i++)
@@ -74,6 +73,7 @@ namespace Asa.Media.Controls.InteropClasses
 									copyOfReplacementList.Remove(key);
 								}
 							}
+
 							tableRowsCount = table.Rows.Count;
 							for (var i = tableRowsCount; i >= 1; i--)
 							{
@@ -85,6 +85,31 @@ namespace Asa.Media.Controls.InteropClasses
 									if (!cellText.Equals("Delete Row")) continue;
 									table.Rows[i].Delete();
 									break;
+								}
+							}
+
+							tableRowsCount = table.Rows.Count;
+							for (var i = 1; i <= tableRowsCount; i++)
+							{
+								for (var j = table.Columns.Count; j >= 1; j--)
+								{
+									var tableShape = table.Cell(i, j).Shape;
+									if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
+									while (cellText == "Merge")
+									{
+										var prevColumnIndex = j - 1;
+										tableShape.TextFrame.TextRange.Text = String.Empty;
+										if (prevColumnIndex >= table.Columns.Count) break;
+										table.Cell(i, prevColumnIndex).Merge(table.Cell(i, j));
+
+										tableShape = table.Cell(i, prevColumnIndex).Shape;
+										if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
+										tableShape.TextFrame.TextRange.ParagraphFormat.Alignment = PpParagraphAlignment.ppAlignLeft;
+										cellText = tableShape.TextFrame.TextRange.Text.Trim();
+										if (cellText == "Merge")
+											j--;
+									}
 								}
 							}
 
@@ -103,6 +128,7 @@ namespace Asa.Media.Controls.InteropClasses
 								if (cellText.Equals("Delete Column"))
 									table.Columns[i + 1].Delete();
 							}
+							tableContainer.Width = tableWidth;
 
 							if (pasteToSlideMaster)
 							{
@@ -156,7 +182,7 @@ namespace Asa.Media.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareOptionsEmail(string fileName, IEnumerable<IOptionsSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareOptionsEmail(string fileName, IEnumerable<IOptionsSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendOptions(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}

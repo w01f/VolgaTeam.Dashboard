@@ -60,33 +60,6 @@ namespace Asa.Common.Core.Helpers
 						break;
 					#endregion
 
-					#region Ad Schedule
-					case "PrintWebPackage":
-						slideType = SlideType.PrintWebPackage;
-						break;
-					case "PrintDigitalProduct":
-						slideType = SlideType.PrintDigitalProduct;
-						break;
-					case "PrintBasicOverview":
-						slideType = SlideType.PrintBasicOverview;
-						break;
-					case "PrintMultiSummary":
-						slideType = SlideType.PrintMultiSummary;
-						break;
-					case "PrintSnapshot":
-						slideType = SlideType.PrintSnapshot;
-						break;
-					case "PrintDetailedGrid":
-						slideType = SlideType.PrintDetailedGrid;
-						break;
-					case "PrintMultiGrid":
-						slideType = SlideType.PrintMultiGrid;
-						break;
-					case "PrintAdPlan":
-						slideType = SlideType.PrintAdPlan;
-						break;
-					#endregion
-
 					#region Online Schedule
 					case "OnlineDigitalProduct":
 						slideType = SlideType.OnlineDigitalProduct;
@@ -128,19 +101,6 @@ namespace Asa.Common.Core.Helpers
 						break;
 					case "RadioOptions":
 						slideType = SlideType.RadioOptions;
-						break;
-					#endregion
-
-					case "WebQuick":
-						slideType = SlideType.WebQuick;
-						break;
-
-					#region Common
-					case "Summary1":
-						slideType = SlideType.Summary1;
-						break;
-					case "Summary2":
-						slideType = SlideType.Summary2;
 						break;
 					#endregion
 				}

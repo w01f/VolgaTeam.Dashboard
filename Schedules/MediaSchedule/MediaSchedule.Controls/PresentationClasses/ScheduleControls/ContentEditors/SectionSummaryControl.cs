@@ -54,7 +54,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laHeaderTitle.Font = new Font(laHeaderTitle.Font.FontFamily, laHeaderTitle.Font.Size - 2, laHeaderTitle.Font.Style);
-				laTotalItems.Font = new Font(laTotalItems.Font.FontFamily, laTotalItems.Font.Size - 2, laTotalItems.Font.Style);
 				buttonXAddItem.Font = new Font(buttonXAddItem.Font.FontFamily, buttonXAddItem.Font.Size - 2, buttonXAddItem.Font.Style);
 			}
 		}
@@ -83,7 +82,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				SummarySettings.SlideHeader;
 
 			LoadItems(quickLoad);
-			UpdateTotalItems();
 			if (!quickLoad)
 				UpdateControlsInList(OrderedItems.OfType<Control>().FirstOrDefault());
 		}
@@ -101,7 +99,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#region Settings Management
 		private void OnSettingsChanged(object sender, EventArgs e)
 		{
-			UpdateTotalItems();
 			RaiseDataChanged();
 		}
 		#endregion
@@ -147,7 +144,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			item.LoadData();
 			item.DataChanged += (o, e) =>
 			{
-				UpdateTotalItems();
 				RaiseDataChanged();
 			};
 			item.InvestmentChanged += (o, e) => UpdateTotals();
@@ -166,11 +162,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				xtraScrollableControlInput.ScrollControlIntoView(focussed);
 		}
 
-		public void UpdateTotalItems()
-		{
-			laTotalItems.Text = String.Format("Total Items: {0}", _inputControls.Count());
-		}
-
 		private void UpdateTotals()
 		{
 			RaiseDataChanged();
@@ -184,7 +175,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			UpdateControlsInList(OrderedItems.OfType<Control>().FirstOrDefault());
 			UpdateNumbers();
 			UpdatePositionButtons();
-			UpdateTotalItems();
 			UpdateTotals();
 			RaiseDataChanged();
 		}
@@ -215,7 +205,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			var newItemData = SummaryContent.AddItem<ProductInfoSummaryItem>(SummaryContent);
 			var focussed = AddItemToList(newItemData);
 			UpdateControlsInList((Control)focussed);
-			UpdateTotalItems();
 			UpdatePositionButtons();
 			RaiseDataChanged();
 		}

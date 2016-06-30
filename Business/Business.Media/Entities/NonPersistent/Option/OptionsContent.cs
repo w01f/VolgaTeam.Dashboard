@@ -29,6 +29,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 		protected override void AfterCreate()
 		{
 			base.AfterCreate();
+
+			foreach (var optionSet in Options)
+			{
+				optionSet.Parent = this;
+				optionSet.AfterCreate();
+			}
+
 			RebuildOptionSetIndexes();
 		}
 

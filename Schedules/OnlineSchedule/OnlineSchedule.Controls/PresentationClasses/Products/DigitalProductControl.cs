@@ -11,6 +11,7 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Summary;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
@@ -196,7 +197,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 			_allowToSave = false;
 
-			Text = Product.Name.Replace("&", "&&");
+			Text = Product.Name;
 			memoEditProductName.EditValue = !String.IsNullOrEmpty(Product.UserDefinedName) ? Product.UserDefinedName : Product.ExtendedName;
 
 			switch (Product.Formula)

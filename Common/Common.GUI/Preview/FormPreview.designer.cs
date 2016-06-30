@@ -28,17 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barOperations = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemOutput = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -100,12 +99,12 @@
 			this.barLargeButtonItemOutput.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Black;
 			this.barLargeButtonItemOutput.ItemAppearance.Normal.Options.UseForeColor = true;
 			this.barLargeButtonItemOutput.Name = "barLargeButtonItemOutput";
-			toolTipTitleItem4.Text = "Send to PowerPoint";
-			toolTipItem4.LeftIndent = 6;
-			toolTipItem4.Text = "Send this Schedule to PowerPoint";
-			superToolTip4.Items.Add(toolTipTitleItem4);
-			superToolTip4.Items.Add(toolTipItem4);
-			this.barLargeButtonItemOutput.SuperTip = superToolTip4;
+			toolTipTitleItem1.Text = "Send to PowerPoint";
+			toolTipItem1.LeftIndent = 6;
+			toolTipItem1.Text = "Send this Schedule to PowerPoint";
+			superToolTip1.Items.Add(toolTipTitleItem1);
+			superToolTip1.Items.Add(toolTipItem1);
+			this.barLargeButtonItemOutput.SuperTip = superToolTip1;
 			this.barLargeButtonItemOutput.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemOutput_ItemClick);
 			// 
 			// barLargeButtonItemHelp
@@ -115,12 +114,12 @@
 			this.barLargeButtonItemHelp.Glyph = global::Asa.Common.GUI.Properties.Resources.Help;
 			this.barLargeButtonItemHelp.Id = 6;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipTitleItem5.Text = "HELP";
-			toolTipItem5.LeftIndent = 6;
-			toolTipItem5.Text = "Learn more about how to preview your schedules";
-			superToolTip5.Items.Add(toolTipTitleItem5);
-			superToolTip5.Items.Add(toolTipItem5);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip5;
+			toolTipTitleItem2.Text = "HELP";
+			toolTipItem2.LeftIndent = 6;
+			toolTipItem2.Text = "Learn more about how to preview your schedules";
+			superToolTip2.Items.Add(toolTipTitleItem2);
+			superToolTip2.Items.Add(toolTipItem2);
+			this.barLargeButtonItemHelp.SuperTip = superToolTip2;
 			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
 			// 
 			// barLargeButtonItemExit
@@ -130,12 +129,12 @@
 			this.barLargeButtonItemExit.Glyph = global::Asa.Common.GUI.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 15;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
-			toolTipTitleItem6.Text = "EXIT";
-			toolTipItem6.LeftIndent = 6;
-			toolTipItem6.Text = "Close this Window ";
-			superToolTip6.Items.Add(toolTipTitleItem6);
-			superToolTip6.Items.Add(toolTipItem6);
-			this.barLargeButtonItemExit.SuperTip = superToolTip6;
+			toolTipTitleItem3.Text = "EXIT";
+			toolTipItem3.LeftIndent = 6;
+			toolTipItem3.Text = "Close this Window ";
+			superToolTip3.Items.Add(toolTipTitleItem3);
+			superToolTip3.Items.Add(toolTipItem3);
+			this.barLargeButtonItemExit.SuperTip = superToolTip3;
 			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemExit_ItemClick);
 			// 
 			// barDockControlTop
@@ -180,8 +179,12 @@
 			this.xtraTabControlGroups.Appearance.Options.UseForeColor = true;
 			this.xtraTabControlGroups.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlGroups.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.Header.Options.UseTextOptions = true;
+			this.xtraTabControlGroups.AppearancePage.Header.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlGroups.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlGroups.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.HeaderActive.Options.UseTextOptions = true;
+			this.xtraTabControlGroups.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlGroups.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlGroups.AppearancePage.HeaderDisabled.Options.UseFont = true;
 			this.xtraTabControlGroups.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -194,6 +197,7 @@
 			this.xtraTabControlGroups.Name = "xtraTabControlGroups";
 			this.xtraTabControlGroups.Size = new System.Drawing.Size(934, 471);
 			this.xtraTabControlGroups.TabIndex = 10;
+			this.xtraTabControlGroups.UseMnemonic = false;
 			// 
 			// FormPreview
 			// 
@@ -217,6 +221,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 

@@ -1,4 +1,6 @@
-﻿namespace Asa.Common.GUI.RateCard
+﻿using DevExpress.Utils;
+
+namespace Asa.Common.GUI.RateCard
 {
     partial class RateFolderControl
     {
@@ -38,13 +40,16 @@
 			this.xtraTabControlRateCards.Appearance.Options.UseFont = true;
 			this.xtraTabControlRateCards.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlRateCards.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlRateCards.AppearancePage.Header.TextOptions.HotkeyPrefix = HKeyPrefix.None;
 			this.xtraTabControlRateCards.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlRateCards.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlRateCards.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = HKeyPrefix.None;
 			this.xtraTabControlRateCards.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlRateCards.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlRateCards.Name = "xtraTabControlRateCards";
 			this.xtraTabControlRateCards.Size = new System.Drawing.Size(737, 430);
 			this.xtraTabControlRateCards.TabIndex = 3;
+			this.xtraTabControlRateCards.UseMnemonic = false;
 			// 
 			// RateFolderControl
 			// 

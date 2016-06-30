@@ -13,20 +13,9 @@
 		SimpleSummary = 6,
 		#endregion
 
-		#region Ad Schedule
-		PrintWebPackage = 101,
-		PrintDigitalProduct = 102,
-		PrintBasicOverview = 103,
-		PrintMultiSummary = 104,
-		PrintSnapshot = 105,
-		PrintDetailedGrid = 106,
-		PrintMultiGrid = 107,
-		PrintAdPlan = 108,
-		#endregion
-
-		#region Online Schedule
-		OnlineWebPackage = 201,
-		OnlineDigitalProduct = 202,
+		#region Online
+		OnlineDigitalProduct = 201,
+		OnlineWebPackage = 202,
 		OnlineAdPlan = 203,
 		#endregion
 
@@ -42,13 +31,6 @@
 		RadioProgramSchedule = 402,
 		RadioSnapshot = 403,
 		RadioOptions = 404,
-		#endregion
-
-		WebQuick = 501,
-
-		#region Common
-		Summary1 = 901,
-		Summary2 = 902,
 		#endregion
 	}
 }

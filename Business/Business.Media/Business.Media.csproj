@@ -96,7 +96,7 @@
     <Compile Include="Entities\NonPersistent\Section\Summary\CustomSummaryContent.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\ProductInfoSummaryItem.cs" />
     <Compile Include="Entities\NonPersistent\Section\Summary\SectionSummary.cs" />
-    <Compile Include="Entities\NonPersistent\Section\Content\SourceProgram.cs" />
+    <Compile Include="Entities\NonPersistent\Common\SourceProgram.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\Spot.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\Station.cs" />
     <Compile Include="Entities\NonPersistent\Section\Content\MonthlyScheduleContent.cs" />

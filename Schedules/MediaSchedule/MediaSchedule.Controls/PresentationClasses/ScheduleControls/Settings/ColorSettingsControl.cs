@@ -21,13 +21,17 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		{
 			InitializeComponent();
 			Text = "Slide Style";
-			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) =>
+			BusinessObjects.Instance.OutputManager.ColorCollectionChanged += (o, e) =>
 				{
-					InitColorControls();
+					LoadData();
 				};
+			BusinessObjects.Instance.OutputManager.SelectedColorChanged += (o, e) =>
+			{
+				LoadData();
+			};
 			BarButton = new ButtonInfo
 			{
-				Logo = Resources.SectionSettingsOptions,
+				Logo = Resources.SectionSettingsStyle,
 				Tooltip = "Open Slide Style",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
@@ -35,10 +39,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			{
 				laColorsTitle.Font = new Font(laColorsTitle.Font.FontFamily, laColorsTitle.Font.Size - 2, laColorsTitle.Font.Style);
 			}
-			InitColorControls();
+			LoadData();
 		}
 
-		private void InitColorControls()
+		private void LoadData()
 		{
 			outputColorSelector.InitData(BusinessObjects.Instance.OutputManager.ScheduleColors, MediaMetaData.Instance.SettingsManager.SelectedColor);
 			outputColorSelector.ColorChanged += OnColorChanged;
@@ -48,6 +52,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		{
 			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? String.Empty;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
+			BusinessObjects.Instance.OutputManager.RaiseSelectedColorChanged();
 		}
 	}
 }

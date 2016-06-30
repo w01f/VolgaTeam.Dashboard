@@ -238,9 +238,6 @@
   <data name="QatSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\QatSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SectionSettingsOptions" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SectionSettingsOptions.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SummaryItemImportMedia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SummaryItemImportMedia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -303,5 +300,8 @@
   </data>
   <data name="DigitalInfoNoItems" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DigitalInfoNoItems.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SectionSettingsStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SectionSettingsStyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

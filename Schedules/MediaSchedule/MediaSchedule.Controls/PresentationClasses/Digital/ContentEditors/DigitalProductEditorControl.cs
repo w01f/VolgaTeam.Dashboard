@@ -186,7 +186,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				xtraTabControlProducts.TabPages.Clear();
 				var newPublicationTab = new DigitalProductControl(this);
 				newPublicationTab.Product = newPrintProduct;
-				newPublicationTab.Text = newPrintProduct.Name.Replace("&", "&&");
+				newPublicationTab.Text = newPrintProduct.Name;
 				newPublicationTab.LoadValues();
 				_tabPages.Add(newPublicationTab);
 				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));

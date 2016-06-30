@@ -636,11 +636,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap SectionSettingsOptions
+		public static System.Drawing.Bitmap SectionSettingsRadio
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("SectionSettingsOptions", resourceCulture);
+				object obj = ResourceManager.GetObject("SectionSettingsRadio", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -648,11 +648,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap SectionSettingsRadio
+		public static System.Drawing.Bitmap SectionSettingsStyle
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("SectionSettingsRadio", resourceCulture);
+				object obj = ResourceManager.GetObject("SectionSettingsStyle", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

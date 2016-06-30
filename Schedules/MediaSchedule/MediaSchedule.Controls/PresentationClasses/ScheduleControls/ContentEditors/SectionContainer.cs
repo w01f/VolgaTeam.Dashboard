@@ -12,11 +12,11 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.BusinessClasses.Output;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
+using DevExpress.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
@@ -114,7 +114,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public void LoadData(ScheduleSection sectionData, bool quickLoad = false)
 		{
 			SectionData = sectionData;
-			Text = SectionData.Name.Replace("&", "&&");
+			Text = SectionData.Name;
 			SectionData.DataChanged += OnSectionDataChanged;
 
 			_sectionControl.LoadData();
@@ -147,9 +147,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					break;
 				case ScheduleSettingsType.DigitalInfo:
 					_digitalInfoControl.UpdateGridView();
-					break;
-				case ScheduleSettingsType.CustomSummary:
-					_customSummaryControl.UpdateTotalItems();
 					break;
 			}
 		}
@@ -186,16 +183,20 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			switch (ActiveEditor?.EditorType)
 			{
-				case SectionEditorType.ScheduleSection:
+				case SectionEditorType.Schedule:
 					labelControlCollectionItemsInfo.Visible = true;
 					labelControlCollectionItemsInfo.Text = String.Format("<color=gray>Total Programs: {0}</color>", SectionData.Programs.Count);
 					break;
-				case SectionEditorType.DigitalSection:
+				case SectionEditorType.DigitalInfo:
 					labelControlCollectionItemsInfo.Visible = true;
 					if (SectionData.DigitalInfo.Records.Count < BaseDigitalInfoOutputModel.MaxDigitalProducts)
 						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Records.Count);
 					else
 						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
+					break;
+				case SectionEditorType.CustomSummary:
+					labelControlCollectionItemsInfo.Visible = true;
+					labelControlCollectionItemsInfo.Text = String.Format("<color=gray>Summary Items: {0}</color>", SectionData.Summary.CustomSummary.Items.Count);
 					break;
 				default:
 					labelControlCollectionItemsInfo.Visible = false;

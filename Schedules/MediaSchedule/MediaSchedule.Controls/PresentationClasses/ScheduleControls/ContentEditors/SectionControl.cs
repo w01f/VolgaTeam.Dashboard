@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Common;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
@@ -18,7 +19,6 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.BusinessClasses.Output;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule;
 using Asa.Media.Controls.InteropClasses;
@@ -52,7 +52,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private string SpotTitle => _sectionContainer.SectionData.ParentScheduleSettings.SelectedSpotType.ToString();
 
-		public SectionEditorType EditorType => SectionEditorType.ScheduleSection;
+		public SectionEditorType EditorType => SectionEditorType.Schedule;
 
 		public string CollectionTitle => "Program";
 		public string CollectionItemTitle => "Program";

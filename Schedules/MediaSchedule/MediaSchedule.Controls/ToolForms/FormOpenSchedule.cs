@@ -9,8 +9,10 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Data;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 
@@ -21,6 +23,8 @@ namespace Asa.Media.Controls.ToolForms
 		public FormOpenSchedule()
 		{
 			InitializeComponent();
+			gridColumnSchedulesLastModifiedDate.SortIndex = 0;
+			gridColumnSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
 		}
 
 		private void OnFormLoad(object sender, EventArgs e)

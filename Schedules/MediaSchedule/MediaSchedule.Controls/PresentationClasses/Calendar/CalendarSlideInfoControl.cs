@@ -65,7 +65,8 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 			#endregion
 
-			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) => InitColorControls();
+			BusinessObjects.Instance.OutputManager.ColorCollectionChanged += (o, e) => InitColorControls();
+			BusinessObjects.Instance.OutputManager.SelectedColorChanged += (o, e) => InitColorControls();
 		}
 
 		public void OnPropertyChanged(EventArgs e)

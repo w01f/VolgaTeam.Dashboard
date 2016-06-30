@@ -1,4 +1,6 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
+﻿using DevExpress.Utils;
+
+namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	partial class DigitalProductEditorControl
 	{
@@ -69,13 +71,16 @@
 			this.xtraTabControlProducts.Appearance.Options.UseFont = true;
 			this.xtraTabControlProducts.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlProducts.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlProducts.AppearancePage.Header.TextOptions.HotkeyPrefix = HKeyPrefix.None;
 			this.xtraTabControlProducts.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlProducts.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlProducts.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = HKeyPrefix.None;
 			this.xtraTabControlProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlProducts.Location = new System.Drawing.Point(0, 41);
 			this.xtraTabControlProducts.Name = "xtraTabControlProducts";
 			this.xtraTabControlProducts.Size = new System.Drawing.Size(967, 376);
 			this.xtraTabControlProducts.TabIndex = 5;
+			this.xtraTabControlProducts.UseMnemonic = false;
 			this.xtraTabControlProducts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnProductsTabControlMouseDown);
 			// 
 			// pnHeader
@@ -188,7 +193,6 @@
 			// 
 			this.Controls.Add(this.xtraTabControlProducts);
 			this.Controls.Add(this.pnHeader);
-			this.Name = "DigitalProductEditorControl";
 			this.Size = new System.Drawing.Size(967, 417);
 			this.Resize += new System.EventHandler(this.OnDigitalProductContainerResize);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();

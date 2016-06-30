@@ -70,7 +70,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Digital
 			var digitalProduct = Records[productIndex];
 			var newDigitalProduct = digitalProduct.Clone<MediaDigitalInfoRecord, MediaDigitalInfoRecord>();
 			Records.Add(newDigitalProduct);
-			newDigitalProduct.Index = Records.Count;
+			newDigitalProduct.Index = Records.Count + 1;
 			RebuildProductIndexes();
 		}
 

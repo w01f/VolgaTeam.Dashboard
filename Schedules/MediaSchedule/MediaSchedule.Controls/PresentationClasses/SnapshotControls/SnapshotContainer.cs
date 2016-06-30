@@ -132,7 +132,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			_tabDragDropHelper = new XtraTabDragDropHelper<SnapshotControl>(xtraTabControlSnapshots);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
 			InitColorsControl();
-			BusinessObjects.Instance.OutputManager.ColorsChanged += (o, e) =>
+			BusinessObjects.Instance.OutputManager.ColorCollectionChanged += (o, e) =>
+			{
+				InitColorsControl();
+				LoadBarButtons();
+			};
+			BusinessObjects.Instance.OutputManager.SelectedColorChanged += (o, e) =>
 			{
 				InitColorsControl();
 				LoadBarButtons();
@@ -154,8 +159,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
 				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
 
-			if (EditedContent != null)
-				EditedContent.Dispose();
+			EditedContent?.Dispose();
 			EditedContent = Schedule.SnapshotContent.Clone<SnapshotContent, SnapshotContent>();
 
 			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
@@ -510,7 +514,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			var buttonInfos = new List<ButtonInfo>();
 			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsInfo; } });
 			if (BusinessObjects.Instance.OutputManager.SnapshotColors.Items.Count > 1)
-				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
+				buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsStyle, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
 			if (ActiveSnapshot != null)
 			{
 				xtraTabPageOptionsActiveWeeks.PageVisible = true;

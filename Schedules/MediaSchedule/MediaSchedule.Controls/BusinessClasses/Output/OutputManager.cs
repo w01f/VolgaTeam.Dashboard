@@ -14,21 +14,16 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 		public OutputColorList OptionsColors { get; private set; }
 		public OutputColorList CalendarColors { get; private set; }
 
-		public event EventHandler<EventArgs> ColorsChanged;
+		public event EventHandler<EventArgs> ColorCollectionChanged;
+		public event EventHandler<EventArgs> SelectedColorChanged;
 
-		public StorageDirectory ContractTemplateFolder
-		{
-			get
+		public StorageDirectory ContractTemplateFolder => new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
+			.Merge(new[]
 			{
-				return new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
-					.Merge(new[]
-					{
-						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
-						String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString),
-						"legal"
-					}));
-			}
-		}
+				PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
+				String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString),
+				"legal"
+			}));
 
 		public void Init()
 		{
@@ -73,7 +68,12 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 						"broadcast_cal",
 						"broadcast_images",
 					})));
-			ColorsChanged?.Invoke(this, EventArgs.Empty);
+			ColorCollectionChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		public void RaiseSelectedColorChanged()
+		{
+			SelectedColorChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private string GetScheduleTemplateFile(string[] fileName)

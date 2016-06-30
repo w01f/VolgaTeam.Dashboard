@@ -24,7 +24,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public StandalonePackageRecord(StandaloneDigitalPackage parent) : base(parent)
 		{
 			Parent = parent;
-			Index = parent.Items.Any() ? parent.Items.Max(s => s.Index) + 1 : 0;
+			Index = parent.Items.Any() ? parent.Items.Max(s => s.Index) + 1 : 1;
 		}
 
 		public override void Dispose()

@@ -80,7 +80,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			InitCollectionButtons();
 
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
-			BusinessObjects.Instance.OutputManager.ColorsChanged += OnSettingsControlsUpdated;
 		}
 
 		protected override void UpdateEditedContet()
@@ -227,7 +226,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		{
 			xtraTabControlEditors.TabPages
 				.OfType<IDigitalEditor>()
-				.Where(e => e.EditorType != DigitalEditorType.List)
+				.Where(e => e.EditorType != DigitalEditorType.List && e.EditorType != DigitalEditorType.StandalonePackage)
 				.OfType<XtraTabPage>()
 				.ToList()
 				.ForEach(e => e.PageEnabled = EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));

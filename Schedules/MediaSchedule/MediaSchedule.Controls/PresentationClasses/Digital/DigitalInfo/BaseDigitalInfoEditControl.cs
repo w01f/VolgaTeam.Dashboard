@@ -39,18 +39,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 	{
 		private bool _allowToSave;
 		private GridDragDropHelper _dragDropHelper;
-		private readonly IDigitalInfoContainer _dataContainer;
+		protected IDigitalInfoContainer _dataContainer;
 		protected MediaDigitalInfo _digitalInfo;
 
 		public bool AllowToAddItem => _digitalInfo != null && _digitalInfo.Records.Count < BaseDigitalInfoOutputModel.MaxDigitalProducts;
 		public bool AllowToDeleteItem => _digitalInfo != null && _digitalInfo.Records.Any();
 
-		protected BaseDigitalInfoEditControl(IDigitalInfoContainer dataContainer)
+		protected BaseDigitalInfoEditControl()
 		{
 			InitializeComponent();
-
-			_dataContainer = dataContainer;
-
 			Text = "Digital";
 			pnContent.Dock = DockStyle.Fill;
 			pnNoProducts.Dock = DockStyle.Fill;
@@ -182,7 +179,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		public virtual void Release()
 		{
 			gridControl.DataSource = null;
-			_dragDropHelper.AfterDrop -= OnGridControlAfterDrop;
+			if (_dragDropHelper != null)
+				_dragDropHelper.AfterDrop -= OnGridControlAfterDrop;
 			_digitalInfo = null;
 		}
 
@@ -405,12 +403,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			RegularMediaSchedulePowerPointHelper.Instance.AppendDigitalOneSheet(outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
-		public PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview(string groupName = "")
 		{
 			var outputPage = PrepareOutput();
 			var previewGroup = new PreviewGroup
 			{
-				Name = Text,
+				Name = !String.IsNullOrEmpty(groupName) ? groupName : Text,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareDigitalOneSheetEmail(previewGroup.PresentationSourcePath, outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);

@@ -1,4 +1,6 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
+﻿using DevExpress.Utils;
+
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 {
 	partial class SnapshotContainer
 	{
@@ -146,8 +148,10 @@
 			this.xtraTabControlSnapshots.Appearance.Options.UseFont = true;
 			this.xtraTabControlSnapshots.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlSnapshots.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlSnapshots.AppearancePage.Header.TextOptions.HotkeyPrefix=HKeyPrefix.None;
 			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = HKeyPrefix.None;
 			this.xtraTabControlSnapshots.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlSnapshots.AppearancePage.HeaderDisabled.Options.UseFont = true;
 			this.xtraTabControlSnapshots.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);

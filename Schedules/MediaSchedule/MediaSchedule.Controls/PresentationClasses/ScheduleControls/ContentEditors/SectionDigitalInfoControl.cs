@@ -16,11 +16,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 	{
 		private SectionContainer _sectionContainer;
 
-		public SectionEditorType EditorType => SectionEditorType.DigitalSection;
+		public SectionEditorType EditorType => SectionEditorType.DigitalInfo;
 		public string CollectionTitle => "Digital";
 		public string CollectionItemTitle => "Product";
 
-		public SectionDigitalInfoControl(SectionContainer sectionContainer) : base(sectionContainer.SectionData)
+		public SectionDigitalInfoControl(SectionContainer sectionContainer)
 		{
 			_sectionContainer = sectionContainer;
 		}
@@ -28,7 +28,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#region Data Methods
 		public override void LoadData()
 		{
-			_digitalInfo = _sectionContainer.SectionData.DigitalInfo;
+			_dataContainer = _sectionContainer.SectionData;
+			_digitalInfo = _dataContainer.DigitalInfo;
+			
 			base.LoadData();
 		}
 

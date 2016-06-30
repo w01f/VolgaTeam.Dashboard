@@ -28,9 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.labelControlWarnings = new DevExpress.XtraEditors.LabelControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnInfo = new System.Windows.Forms.Panel();
 			this.labelControlCollectionItemsInfo = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -57,6 +58,7 @@
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.Size = new System.Drawing.Size(712, 533);
 			this.xtraTabControl.TabIndex = 0;
+			this.xtraTabControl.UseMnemonic = false;
 			// 
 			// labelControlWarnings
 			// 
@@ -124,7 +126,6 @@
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.pnInfo);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "SectionContainer";
 			this.Size = new System.Drawing.Size(712, 565);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();

@@ -1,4 +1,6 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
+﻿using DevExpress.Utils;
+
+namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
 	partial class ScheduleContainer
     {
@@ -435,8 +437,10 @@
 			this.xtraTabControlSections.Appearance.Options.UseFont = true;
 			this.xtraTabControlSections.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlSections.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlSections.AppearancePage.Header.TextOptions.HotkeyPrefix = HKeyPrefix.None;
 			this.xtraTabControlSections.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlSections.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlSections.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = HKeyPrefix.None;
 			this.xtraTabControlSections.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlSections.AppearancePage.HeaderDisabled.Options.UseFont = true;
 			this.xtraTabControlSections.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);

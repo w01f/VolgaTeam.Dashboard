@@ -11,7 +11,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.PresentationClasses.Calendar;
 using Asa.Media.Controls.PresentationClasses.Digital.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.Gallery;
-using Asa.Media.Controls.PresentationClasses.OptionsControls;
+using Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.RateCard;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
@@ -140,7 +140,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				case ContentIdentifiers.Snapshots:
 					return new SnapshotContainer();
 				case ContentIdentifiers.Options:
-					return new OptionsContainer();
+					return new OptionsContentEditorsContainer();
 				case ContentIdentifiers.BroadcastCalendar:
 					return new BroadcastCalendarControl();
 				case ContentIdentifiers.CustomCalendar:

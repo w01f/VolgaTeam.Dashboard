@@ -163,7 +163,7 @@
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(934, 88);
+			this.barDockControlTop.Size = new System.Drawing.Size(934, 91);
 			// 
 			// barDockControlBottom
 			// 
@@ -178,16 +178,16 @@
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
 			this.barDockControlLeft.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 88);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 474);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 91);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 471);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
 			this.barDockControlRight.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlRight.Location = new System.Drawing.Point(934, 88);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 474);
+			this.barDockControlRight.Location = new System.Drawing.Point(934, 91);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 471);
 			// 
 			// xtraTabControlGroups
 			// 
@@ -199,8 +199,12 @@
 			this.xtraTabControlGroups.Appearance.Options.UseForeColor = true;
 			this.xtraTabControlGroups.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlGroups.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.Header.Options.UseTextOptions = true;
+			this.xtraTabControlGroups.AppearancePage.Header.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlGroups.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlGroups.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.HeaderActive.Options.UseTextOptions = true;
+			this.xtraTabControlGroups.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlGroups.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlGroups.AppearancePage.HeaderDisabled.Options.UseFont = true;
 			this.xtraTabControlGroups.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -208,10 +212,11 @@
 			this.xtraTabControlGroups.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlGroups.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlGroups.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlGroups.Location = new System.Drawing.Point(0, 88);
+			this.xtraTabControlGroups.Location = new System.Drawing.Point(0, 91);
 			this.xtraTabControlGroups.Name = "xtraTabControlGroups";
-			this.xtraTabControlGroups.Size = new System.Drawing.Size(934, 474);
+			this.xtraTabControlGroups.Size = new System.Drawing.Size(934, 471);
 			this.xtraTabControlGroups.TabIndex = 11;
+			this.xtraTabControlGroups.UseMnemonic = false;
 			// 
 			// FormEmail
 			// 
@@ -235,6 +240,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 

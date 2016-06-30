@@ -60,7 +60,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			{
 				new SectionEditorSettingsRelation
 				{
-					EditorType = SectionEditorType.ScheduleSection,
+					EditorType = SectionEditorType.Schedule,
 					SettingsTypes = new []
 					{
 						ScheduleSettingsType.Columns,
@@ -72,7 +72,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				} ,
 				new SectionEditorSettingsRelation
 				{
-					EditorType = SectionEditorType.DigitalSection,
+					EditorType = SectionEditorType.DigitalInfo,
 					SettingsTypes = new []
 					{
 						ScheduleSettingsType.DigitalInfo,
@@ -158,7 +158,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		{
 			switch (editorType)
 			{
-				case SectionEditorType.ScheduleSection:
+				case SectionEditorType.Schedule:
 					_settingsControls.OfType<SectionColumnSettingsControl>().First().UpdateUniversalSettingsToggleVisibility();
 					break;
 				case SectionEditorType.CustomSummary:

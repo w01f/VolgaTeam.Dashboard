@@ -107,7 +107,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_tabDragDropHelper.TabMoved += OnTabMoved;
 
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
-			BusinessObjects.Instance.OutputManager.ColorsChanged += OnSettingsControlsUpdated;
+			BusinessObjects.Instance.OutputManager.ColorCollectionChanged += OnSettingsControlsUpdated;
 
 			Controller.Instance.ProgramScheduleNew.Click += OnAddSection;
 			Controller.Instance.ProgramScheduleProgramAdd.Click += OnAddItem;
@@ -123,8 +123,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
 				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
 
-			if (EditedContent != null)
-				EditedContent.Dispose();
+			EditedContent?.Dispose();
 			EditedContent = Schedule.ProgramSchedule.Clone<ProgramScheduleContent, ProgramScheduleContent>();
 
 			labelControlScheduleInfo.Text = String.Format("{0}<br><color=gray><i>{1} ({2})</i></color>",
@@ -175,7 +174,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public override void GetHelp()
 		{
 			var helpKey = String.Format("{0}ly", SpotTitle.ToLower());
-			if (ActiveSection != null && ActiveSection.ActiveEditor.EditorType != SectionEditorType.ScheduleSection)
+			if (ActiveSection != null && ActiveSection.ActiveEditor.EditorType != SectionEditorType.Schedule)
 				switch (ActiveSection.ActiveEditor.EditorType)
 				{
 					case SectionEditorType.CustomSummary:
@@ -268,7 +267,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				EditedContent.RebuildSectionIndexes();
 				var sectionControl = AddSectionControl(section);
 				xtraTabControlSections.SelectedTabPage = sectionControl;
-				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
+				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
 				UpdateSectionSplash();
 				SettingsNotSaved = true;
 			}
@@ -287,7 +286,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				EditedContent.RebuildSectionIndexes();
 				var newControl = AddSectionControl(section, (Int32)section.Index);
 				xtraTabControlSections.SelectedTabPage = newControl;
-				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
+				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
 				SettingsNotSaved = true;
 			}
 		}
@@ -299,7 +298,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			EditedContent.RebuildSectionIndexes();
 			xtraTabControlSections.TabPages.Remove(sectionControl);
 			UpdateSectionSplash();
-			settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
+			settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
 			SettingsNotSaved = true;
 		}
 
@@ -312,7 +311,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
 				snapshotControl.SectionData.Name = form.SectionName;
 				snapshotControl.Text = form.SectionName;
-				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.ScheduleSection);
+				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
 				SettingsNotSaved = true;
 			}
 		}
@@ -442,7 +441,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (ActiveSection == null) return;
 			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.ActiveEditor.EditorType);
 			quarterSelectorControl.Visible =
-				ActiveSection.ActiveEditor.EditorType == SectionEditorType.ScheduleSection;
+				ActiveSection.ActiveEditor.EditorType == SectionEditorType.Schedule;
 			UpdateCollectionChangeButtons();
 			UpdateOutputStatus();
 		}
@@ -491,7 +490,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				var deleteProductTitle = String.Format("Delete {0}", activeItemCollection.CollectionItemTitle);
 				var deleteProductTooltip = String.Format("Delete the selected {0} from your schedule", activeItemCollection.CollectionItemTitle);
 
-				if (ActiveSection.ActiveEditor.EditorType == SectionEditorType.DigitalSection)
+				if (ActiveSection.ActiveEditor.EditorType == SectionEditorType.DigitalInfo)
 				{
 					if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTitle))
 						addProductTitle = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTitle;

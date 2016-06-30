@@ -22,7 +22,7 @@ namespace Asa.Common.GUI.RateCard
 		{
 			InitializeComponent();
 			File = file;
-			Text = Path.GetFileNameWithoutExtension(File.FullName).Replace("&", "&&");
+			Text = Path.GetFileNameWithoutExtension(File.FullName);
 		}
 
 		#region IFileViewer Methods

@@ -86,6 +86,13 @@ namespace Asa.Media.Single
 					true)
 				.LoadState();
 
+			if (ResourceManager.Instance.MainAppIconFile.ExistsLocal())
+				Icon = new Icon(ResourceManager.Instance.MainAppIconFile.LocalPath);
+
+			if (ResourceManager.Instance.DigitalProductsRibbonLogoFile.ExistsLocal())
+				buttonItemDigitalScheduleLogo.Image =
+					Image.FromFile(ResourceManager.Instance.DigitalProductsRibbonLogoFile.LocalPath);
+
 			Controller.Instance.FormMain = this;
 			Controller.Instance.MainPanel = pnMain;
 			Controller.Instance.EmptyPanel = pnEmpty;
@@ -110,7 +117,7 @@ namespace Asa.Media.Single
 			Controller.Instance.QatHelpButton = buttonItemQatHelp;
 
 			Controller.Instance.SlideSettingsButton = buttonItemSlideSettings;
-			
+
 			#region Home
 			Controller.Instance.HomePanel = ribbonPanelHome;
 			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
@@ -301,7 +308,7 @@ namespace Asa.Media.Single
 
 			using (var formStart = new FormStart())
 			{
-				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any() || 
+				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any() ||
 					!FileStorageManager.Instance.UseLocalMode;
 				var result = formStart.ShowDialog(this);
 				if (result == DialogResult.Yes || result == DialogResult.No)
@@ -365,7 +372,9 @@ namespace Asa.Media.Single
 				formSender ?? this,
 				new FloaterRequestedEventArgs
 				{
-					Logo = Resources.RibbonLogo
+					Logo = ResourceManager.Instance.MainAppRibbonLogoFile.ExistsLocal() ?
+						Image.FromFile(ResourceManager.Instance.MainAppRibbonLogoFile.LocalPath) :
+						Resources.RibbonLogo
 				});
 		}
 	}

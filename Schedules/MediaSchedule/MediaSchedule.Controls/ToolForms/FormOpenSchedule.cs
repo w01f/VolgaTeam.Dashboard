@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
@@ -12,7 +13,6 @@ using DevComponents.DotNetBar.Metro;
 using DevExpress.Data;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 
@@ -23,6 +23,8 @@ namespace Asa.Media.Controls.ToolForms
 		public FormOpenSchedule()
 		{
 			InitializeComponent();
+			if (ResourceManager.Instance.MainAppRibbonLogoFile.ExistsLocal())
+				barStaticItemLogo.Glyph = Image.FromFile(ResourceManager.Instance.MainAppRibbonLogoFile.LocalPath);
 			gridColumnSchedulesLastModifiedDate.SortIndex = 0;
 			gridColumnSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
 		}

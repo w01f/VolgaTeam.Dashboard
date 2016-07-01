@@ -556,7 +556,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public IList<IDigitalOutputItem> GetOutputItems()
 		{
-			return new List<IDigitalOutputItem> { this };
+			if (PackageRecords.Any())
+				return new List<IDigitalOutputItem> { this };
+			return new List<IDigitalOutputItem>();
 		}
 
 		public void GenerateOutput()

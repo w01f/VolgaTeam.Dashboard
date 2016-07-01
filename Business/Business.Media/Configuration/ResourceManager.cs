@@ -15,6 +15,10 @@ namespace Asa.Business.Media.Configuration
 
 		public StorageFile MediaListsFile { get; private set; }
 
+		public StorageFile MainAppTitleTextFile { get; private set; }
+		public StorageFile MainAppIconFile { get; private set; }
+		public StorageFile MainAppRibbonLogoFile { get; private set; }
+		public StorageFile DigitalProductsRibbonLogoFile { get; private set; }
 		public StorageFile DigitalProductsHomeLogoFile { get; private set; }
 
 		private ResourceManager() { }
@@ -63,6 +67,46 @@ namespace Asa.Business.Media.Configuration
 				String.Format("{0} Strategy.xml",MediaMetaData.Instance.DataTypeString)
 			});
 			await MediaListsFile.Download();
+
+			MainAppTitleTextFile = new StorageFile(new[]
+{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"app_brand.txt"
+			});
+			if (await MainAppTitleTextFile.Exists(true))
+				await MainAppTitleTextFile.Download();
+
+			MainAppIconFile = new StorageFile(new[]
+{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"form_icon.ico"
+			});
+			if (await MainAppIconFile.Exists(true))
+				await MainAppIconFile.Download();
+
+			MainAppRibbonLogoFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"branding_image.png"
+			});
+			if (await MainAppRibbonLogoFile.Exists(true))
+				await MainAppRibbonLogoFile.Download();
+
+			DigitalProductsRibbonLogoFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"digital_ribbon_group_1.png"
+			});
+			if (await DigitalProductsRibbonLogoFile.Exists(true))
+				await DigitalProductsRibbonLogoFile.Download();
 
 			DigitalProductsHomeLogoFile = new StorageFile(new[]
 			{

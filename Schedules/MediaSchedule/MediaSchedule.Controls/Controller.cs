@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -65,6 +67,9 @@ namespace Asa.Media.Controls
 
 			BusinessObjects.Instance.Init();
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => ConfigureThemeButtons();
+
+			if (ResourceManager.Instance.MainAppTitleTextFile.ExistsLocal())
+				PopupMessageHelper.Instance.Title = File.ReadAllText(ResourceManager.Instance.MainAppTitleTextFile.LocalPath);
 		}
 
 		public void InitForm()
@@ -169,33 +174,33 @@ namespace Asa.Media.Controls
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
 
 				ProgramSchedulePowerPoint.Visible = false;
-				((RibbonBar) ProgramSchedulePowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar) ProgramScheduleEmail.ContainerControl).Visible = false;
-				((RibbonBar) ProgramSchedulePreview.ContainerControl).Visible = false;
+				((RibbonBar)ProgramSchedulePowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar)ProgramScheduleEmail.ContainerControl).Visible = false;
+				((RibbonBar)ProgramSchedulePreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				ProgramScheduleTheme.Click -= OnThemeClick;
 				ProgramScheduleTheme.Click += OnThemeClick;
 
 				DigitalProductPowerPoint.Visible = false;
-				((RibbonBar) DigitalProductPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar) DigitalProductEmail.ContainerControl).Visible = false;
-				((RibbonBar) DigitalProductPreview.ContainerControl).Visible = false;
+				((RibbonBar)DigitalProductPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar)DigitalProductEmail.ContainerControl).Visible = false;
+				((RibbonBar)DigitalProductPreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				DigitalProductTheme.Click -= OnThemeClick;
 				DigitalProductTheme.Click += OnThemeClick;
 
 				SnapshotPowerPoint.Visible = false;
-				((RibbonBar) SnapshotPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar) SnapshotEmail.ContainerControl).Visible = false;
-				((RibbonBar) SnapshotPreview.ContainerControl).Visible = false;
+				((RibbonBar)SnapshotPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar)SnapshotEmail.ContainerControl).Visible = false;
+				((RibbonBar)SnapshotPreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				SnapshotTheme.Click -= OnThemeClick;
 				SnapshotTheme.Click += OnThemeClick;
 
 				OptionsPowerPoint.Visible = false;
-				((RibbonBar) OptionsPowerPoint.ContainerControl).Text = "Important Info";
-				((RibbonBar) OptionsEmail.ContainerControl).Visible = false;
-				((RibbonBar) OptionsPreview.ContainerControl).Visible = false;
+				((RibbonBar)OptionsPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar)OptionsEmail.ContainerControl).Visible = false;
+				((RibbonBar)OptionsPreview.ContainerControl).Visible = false;
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 				OptionsTheme.Click -= OnThemeClick;
 				OptionsTheme.Click += OnThemeClick;
@@ -203,23 +208,23 @@ namespace Asa.Media.Controls
 			else
 			{
 				ProgramSchedulePowerPoint.Visible = true;
-				((RibbonBar) ProgramScheduleEmail.ContainerControl).Visible = true;
-				((RibbonBar) ProgramSchedulePreview.ContainerControl).Visible = true;
+				((RibbonBar)ProgramScheduleEmail.ContainerControl).Visible = true;
+				((RibbonBar)ProgramSchedulePreview.ContainerControl).Visible = true;
 				ProgramScheduleTheme.Click -= OnThemeClick;
 
 				DigitalProductPowerPoint.Visible = true;
-				((RibbonBar) DigitalProductEmail.ContainerControl).Visible = true;
-				((RibbonBar) DigitalProductPreview.ContainerControl).Visible = true;
+				((RibbonBar)DigitalProductEmail.ContainerControl).Visible = true;
+				((RibbonBar)DigitalProductPreview.ContainerControl).Visible = true;
 				DigitalProductTheme.Click -= OnThemeClick;
 
 				SnapshotPowerPoint.Visible = true;
-				((RibbonBar) SnapshotEmail.ContainerControl).Visible = true;
-				((RibbonBar) SnapshotPreview.ContainerControl).Visible = true;
+				((RibbonBar)SnapshotEmail.ContainerControl).Visible = true;
+				((RibbonBar)SnapshotPreview.ContainerControl).Visible = true;
 				SnapshotTheme.Click -= OnThemeClick;
 
 				OptionsPowerPoint.Visible = true;
-				((RibbonBar) OptionsEmail.ContainerControl).Visible = true;
-				((RibbonBar) OptionsPreview.ContainerControl).Visible = true;
+				((RibbonBar)OptionsEmail.ContainerControl).Visible = true;
+				((RibbonBar)OptionsPreview.ContainerControl).Visible = true;
 				OptionsTheme.Click -= OnThemeClick;
 
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
@@ -287,7 +292,9 @@ namespace Asa.Media.Controls
 			var args = new FloaterRequestedEventArgs
 			{
 				AfterShow = afterShow,
-				Logo = Properties.Resources.RibbonLogo
+				Logo = ResourceManager.Instance.MainAppRibbonLogoFile.ExistsLocal() ?
+					Image.FromFile(ResourceManager.Instance.MainAppRibbonLogoFile.LocalPath) :
+					Properties.Resources.RibbonLogo
 			};
 			FloaterRequested?.Invoke(null, args);
 		}

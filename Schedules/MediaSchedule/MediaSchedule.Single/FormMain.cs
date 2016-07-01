@@ -145,6 +145,7 @@ namespace Asa.Media.Single
 
 			#region Digital Product
 			Controller.Instance.DigitalProductPanel = ribbonPanelDigitalSchedule;
+			Controller.Instance.DigitalProductLogoBar = ribbonBarDigitalScheduleLogo;
 			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;

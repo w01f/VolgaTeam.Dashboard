@@ -28,31 +28,67 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.pbLogo = new System.Windows.Forms.PictureBox();
+			this.pbMainLogo = new System.Windows.Forms.PictureBox();
 			this.pnLogo = new System.Windows.Forms.Panel();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+			this.pbRightLogo = new System.Windows.Forms.PictureBox();
+			this.pbBottomLogo = new System.Windows.Forms.PictureBox();
+			this.pnBottomLogo = new System.Windows.Forms.Panel();
+			((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).BeginInit();
 			this.pnLogo.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbRightLogo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbBottomLogo)).BeginInit();
+			this.pnBottomLogo.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// pbLogo
+			// pbMainLogo
 			// 
-			this.pbLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbLogo.Location = new System.Drawing.Point(20, 20);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(110, 110);
-			this.pbLogo.TabIndex = 0;
-			this.pbLogo.TabStop = false;
+			this.pbMainLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pbMainLogo.ImageLocation = "";
+			this.pbMainLogo.Location = new System.Drawing.Point(20, 20);
+			this.pbMainLogo.Name = "pbMainLogo";
+			this.pbMainLogo.Size = new System.Drawing.Size(497, 268);
+			this.pbMainLogo.TabIndex = 0;
+			this.pbMainLogo.TabStop = false;
 			// 
 			// pnLogo
 			// 
 			this.pnLogo.BackColor = System.Drawing.Color.Transparent;
-			this.pnLogo.Controls.Add(this.pbLogo);
+			this.pnLogo.Controls.Add(this.pbMainLogo);
+			this.pnLogo.Controls.Add(this.pbRightLogo);
+			this.pnLogo.Controls.Add(this.pnBottomLogo);
 			this.pnLogo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnLogo.Location = new System.Drawing.Point(0, 0);
 			this.pnLogo.Name = "pnLogo";
 			this.pnLogo.Padding = new System.Windows.Forms.Padding(20);
-			this.pnLogo.Size = new System.Drawing.Size(150, 150);
+			this.pnLogo.Size = new System.Drawing.Size(723, 459);
 			this.pnLogo.TabIndex = 1;
+			// 
+			// pbRightLogo
+			// 
+			this.pbRightLogo.Dock = System.Windows.Forms.DockStyle.Right;
+			this.pbRightLogo.Location = new System.Drawing.Point(517, 20);
+			this.pbRightLogo.Name = "pbRightLogo";
+			this.pbRightLogo.Size = new System.Drawing.Size(186, 268);
+			this.pbRightLogo.TabIndex = 1;
+			this.pbRightLogo.TabStop = false;
+			// 
+			// pbBottomLogo
+			// 
+			this.pbBottomLogo.Dock = System.Windows.Forms.DockStyle.Right;
+			this.pbBottomLogo.Location = new System.Drawing.Point(-13, 0);
+			this.pbBottomLogo.Name = "pbBottomLogo";
+			this.pbBottomLogo.Size = new System.Drawing.Size(696, 151);
+			this.pbBottomLogo.TabIndex = 2;
+			this.pbBottomLogo.TabStop = false;
+			// 
+			// pnBottomLogo
+			// 
+			this.pnBottomLogo.Controls.Add(this.pbBottomLogo);
+			this.pnBottomLogo.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnBottomLogo.Location = new System.Drawing.Point(20, 288);
+			this.pnBottomLogo.Name = "pnBottomLogo";
+			this.pnBottomLogo.Size = new System.Drawing.Size(683, 151);
+			this.pnBottomLogo.TabIndex = 3;
 			// 
 			// HomePage
 			// 
@@ -60,15 +96,22 @@
 			this.Controls.Add(this.pnLogo);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "HomePage";
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+			this.Size = new System.Drawing.Size(723, 459);
+			((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).EndInit();
 			this.pnLogo.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbRightLogo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbBottomLogo)).EndInit();
+			this.pnBottomLogo.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.PictureBox pbLogo;
+		private System.Windows.Forms.PictureBox pbMainLogo;
 		private System.Windows.Forms.Panel pnLogo;
+		private System.Windows.Forms.PictureBox pbRightLogo;
+		private System.Windows.Forms.PictureBox pbBottomLogo;
+		private System.Windows.Forms.Panel pnBottomLogo;
 	}
 }

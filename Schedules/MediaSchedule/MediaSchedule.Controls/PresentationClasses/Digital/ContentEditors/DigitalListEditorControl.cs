@@ -23,7 +23,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public DigitalListEditorControl(DigitalEditorsContainer container)
 		{
 			InitializeComponent();
-			Text = "Digital Startegy";
+			Text = Business.Online.Dictionaries.ListManager.Instance.DefaultControlsConfiguration.SectionsListTitle ?? "Digital Strategy";
 			_container = container;
 		}
 

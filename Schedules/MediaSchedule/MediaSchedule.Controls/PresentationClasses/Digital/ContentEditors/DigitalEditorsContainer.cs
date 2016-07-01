@@ -39,6 +39,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 	{
 		#region Properties
 		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
+		private MediaScheduleSettings ScheduleSettings => Schedule.Settings;
 
 		public override string Identifier => ContentIdentifiers.DigitalProducts;
 
@@ -81,6 +82,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			InitCollectionButtons();
 
 			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
+
+			Controller.Instance.DigitalProductLogoBar.Text =
+				ListManager.Instance.DefaultControlsConfiguration.RibbonGroupDigitalLogoTitle ?? Controller.Instance.DigitalProductLogoBar.Text;
 		}
 
 		protected override void UpdateEditedContet()
@@ -92,6 +96,13 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 			EditedContent?.Dispose();
 			EditedContent = Schedule.DigitalProductsContent.Clone<DigitalProductsContent, DigitalProductsContent>();
+
+			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
+				ScheduleSettings.BusinessName,
+				ScheduleSettings.FlightDates,
+				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"),
+				Environment.NewLine);
+
 			settingsContainer.LoadContent(EditedContent);
 
 			xtraTabControlEditors.TabPages.OfType<IDigitalEditor>().ToList().ForEach(editor =>

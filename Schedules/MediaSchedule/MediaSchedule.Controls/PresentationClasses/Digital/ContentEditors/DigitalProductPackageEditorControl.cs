@@ -28,7 +28,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
 	//public partial class DigitalProductPackageEditorControl:UserControl
-	public partial class DigitalProductPackageEditorControl : XtraTabPage, IDigitalEditor, IDigitalOutputContainer, IDigitalOutputItem, IWebPackageOutput
+	public partial class DigitalProductPackageEditorControl : XtraTabPage, IDigitalEditor, IDigitalOutputContainer,
+		IDigitalOutputItem, IWebPackageOutput
 	{
 		private bool _allowApplyValues;
 		private bool _needToReload;
@@ -63,20 +64,38 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				.Select(ps => ps.Category.Name)
 				.Distinct()
 				.ToArray());
+			repositoryItemComboBoxLocation.Items.Clear();
+			repositoryItemComboBoxLocation.Items.AddRange(ListManager.Instance.ColumnPositions);
 
-			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
-			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
-			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsProductTitle ?? bandedGridColumnProduct.Caption;
-			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
-			bandedGridColumnComments.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsCommentsTitle ?? bandedGridColumnComments.Caption;
-			bandedGridColumnRate.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsRateTitle ?? bandedGridColumnRate.Caption;
-			bandedGridColumnInvestment.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsInvestmentTitle ?? bandedGridColumnInvestment.Caption;
-			bandedGridColumnImpressions.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsImpressionsTitle ?? bandedGridColumnImpressions.Caption;
-			bandedGridColumnCPM.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsCPMTitle ?? bandedGridColumnCPM.Caption;
+			bandedGridColumnCategory.Caption =
+				ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsCategoryTitle ??
+				bandedGridColumnCategory.Caption;
+			bandedGridColumnGroup.Caption =
+				ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsSubCategoryTitle ??
+				bandedGridColumnGroup.Caption;
+			bandedGridColumnProduct.Caption =
+				ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsProductTitle ??
+				bandedGridColumnProduct.Caption;
+			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsInfoTitle ??
+										   bandedGridColumnInfo.Caption;
+			bandedGridColumnLocation.Caption =
+				ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsLocationTitle ??
+				bandedGridColumnLocation.Caption;
+			bandedGridColumnRate.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsRateTitle ??
+										   bandedGridColumnRate.Caption;
+			bandedGridColumnInvestment.Caption =
+				ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsInvestmentTitle ??
+				bandedGridColumnInvestment.Caption;
+			bandedGridColumnImpressions.Caption =
+				ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsImpressionsTitle ??
+				bandedGridColumnImpressions.Caption;
+			bandedGridColumnCPM.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsCPMTitle ??
+										  bandedGridColumnCPM.Caption;
 
 			if (CreateGraphics().DpiX > 96)
 			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
 				styleController.Appearance.Font = font;
 				styleController.AppearanceDisabled.Font = font;
 				styleController.AppearanceDropDown.Font = font;
@@ -133,153 +152,108 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		private void UpdateGridColumns()
 		{
-			if (PackageSettings.ShowCategory || PackageSettings.ShowGroup || PackageSettings.ShowProduct)
+			gridBandCategory.Visible = PackageSettings.ShowCategory || PackageSettings.ShowGroup;
+			if (PackageSettings.ShowCategory && PackageSettings.ShowGroup)
 			{
-				if (PackageSettings.ShowCategory && PackageSettings.ShowGroup && PackageSettings.ShowProduct)
-				{
-					bandedGridColumnCategory.Visible = true;
-					bandedGridColumnCategory.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCategory, 0, 0);
-					bandedGridColumnGroup.Visible = true;
-					bandedGridColumnGroup.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnGroup, 1, 0);
-					bandedGridColumnProduct.Visible = true;
-					bandedGridColumnProduct.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnProduct, 2, 0);
-				}
-				else if (PackageSettings.ShowCategory && PackageSettings.ShowGroup)
-				{
-					bandedGridColumnCategory.Visible = true;
-					bandedGridColumnCategory.RowCount = 2;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCategory, 0, 0);
-					bandedGridColumnGroup.Visible = true;
-					bandedGridColumnGroup.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnGroup, 1, 0);
-					bandedGridColumnProduct.Visible = false;
-				}
-				else if (PackageSettings.ShowCategory && PackageSettings.ShowProduct)
-				{
-					bandedGridColumnCategory.Visible = true;
-					bandedGridColumnCategory.RowCount = 2;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCategory, 0, 0);
-					bandedGridColumnGroup.Visible = false;
-					bandedGridColumnProduct.Visible = true;
-					bandedGridColumnProduct.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnProduct, 1, 0);
-				}
-				else if (PackageSettings.ShowGroup && PackageSettings.ShowProduct)
-				{
-					bandedGridColumnCategory.Visible = false;
-					bandedGridColumnGroup.Visible = true;
-					bandedGridColumnGroup.RowCount = 2;
-					advBandedGridView.SetColumnPosition(bandedGridColumnGroup, 0, 0);
-					bandedGridColumnProduct.Visible = true;
-					bandedGridColumnProduct.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnProduct, 1, 0);
-				}
-				else if (PackageSettings.ShowCategory)
-				{
-					bandedGridColumnCategory.Visible = true;
-					bandedGridColumnCategory.RowCount = 3;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCategory, 0, 0);
-					bandedGridColumnGroup.Visible = false;
-					bandedGridColumnProduct.Visible = false;
-				}
-				else if (PackageSettings.ShowGroup)
-				{
-					bandedGridColumnCategory.Visible = false;
-					bandedGridColumnGroup.Visible = true;
-					bandedGridColumnGroup.RowCount = 3;
-					advBandedGridView.SetColumnPosition(bandedGridColumnGroup, 0, 0);
-					bandedGridColumnProduct.Visible = false;
-				}
-				else if (PackageSettings.ShowProduct)
-				{
-					bandedGridColumnCategory.Visible = false;
-					bandedGridColumnGroup.Visible = false;
-					bandedGridColumnProduct.Visible = true;
-					bandedGridColumnProduct.RowCount = 3;
-					advBandedGridView.SetColumnPosition(bandedGridColumnProduct, 0, 0);
-				}
-				gridBandProduct.Visible = true;
+				bandedGridColumnCategory.Visible = true;
+				bandedGridColumnCategory.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnCategory, 0, 0);
+				bandedGridColumnGroup.Visible = true;
+				bandedGridColumnGroup.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnGroup, 1, 0);
 			}
-			else
-				gridBandProduct.Visible = false;
+			else if (PackageSettings.ShowCategory)
+			{
+				bandedGridColumnGroup.Visible = false;
+				bandedGridColumnCategory.Visible = true;
+				bandedGridColumnCategory.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnCategory, 0, 0);
+			}
+			else if (PackageSettings.ShowGroup)
+			{
+				bandedGridColumnCategory.Visible = false;
+				bandedGridColumnGroup.Visible = true;
+				bandedGridColumnGroup.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnGroup, 0, 0);
+			}
+
+			gridBandProduct.Visible = PackageSettings.ShowProduct || PackageSettings.ShowLocation;
+			if (PackageSettings.ShowProduct && PackageSettings.ShowLocation)
+			{
+				bandedGridColumnProduct.Visible = true;
+				bandedGridColumnProduct.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnProduct, 0, 0);
+				bandedGridColumnLocation.Visible = true;
+				bandedGridColumnLocation.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnLocation, 1, 0);
+			}
+			else if (PackageSettings.ShowProduct)
+			{
+				bandedGridColumnLocation.Visible = false;
+				bandedGridColumnProduct.Visible = true;
+				bandedGridColumnProduct.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnProduct, 0, 0);
+			}
+			else if (PackageSettings.ShowLocation)
+			{
+				bandedGridColumnProduct.Visible = false;
+				bandedGridColumnLocation.Visible = true;
+				bandedGridColumnLocation.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnLocation, 0, 0);
+			}
+
 			gridBandInfo.Visible = PackageSettings.ShowInfo;
-			gridBandComments.Visible = PackageSettings.ShowComments;
-			if (PackageSettings.ShowImpressions || PackageSettings.ShowCPM || PackageSettings.ShowRate)
+
+			gridBandImpressions.Visible = PackageSettings.ShowImpressions || PackageSettings.ShowCPM;
+			if (PackageSettings.ShowImpressions && PackageSettings.ShowCPM)
 			{
-				if (PackageSettings.ShowImpressions && PackageSettings.ShowCPM && PackageSettings.ShowRate)
-				{
-					bandedGridColumnImpressions.Visible = true;
-					bandedGridColumnImpressions.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnImpressions, 0, 0);
-					bandedGridColumnCPM.Visible = true;
-					bandedGridColumnCPM.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCPM, 1, 0);
-					bandedGridColumnRate.Visible = true;
-					bandedGridColumnRate.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnRate, 2, 0);
-				}
-				else if (PackageSettings.ShowImpressions && PackageSettings.ShowCPM)
-				{
-					bandedGridColumnImpressions.Visible = true;
-					bandedGridColumnImpressions.RowCount = 2;
-					advBandedGridView.SetColumnPosition(bandedGridColumnImpressions, 0, 0);
-					bandedGridColumnCPM.Visible = true;
-					bandedGridColumnCPM.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCPM, 1, 0);
-					bandedGridColumnRate.Visible = false;
-				}
-				else if (PackageSettings.ShowImpressions && PackageSettings.ShowRate)
-				{
-					bandedGridColumnImpressions.Visible = true;
-					bandedGridColumnImpressions.RowCount = 2;
-					advBandedGridView.SetColumnPosition(bandedGridColumnImpressions, 0, 0);
-					bandedGridColumnCPM.Visible = false;
-					bandedGridColumnRate.Visible = true;
-					bandedGridColumnRate.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnRate, 1, 0);
-				}
-				else if (PackageSettings.ShowCPM && PackageSettings.ShowRate)
-				{
-					bandedGridColumnImpressions.Visible = false;
-					bandedGridColumnCPM.Visible = true;
-					bandedGridColumnCPM.RowCount = 2;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCPM, 0, 0);
-					bandedGridColumnRate.Visible = true;
-					bandedGridColumnRate.RowCount = 1;
-					advBandedGridView.SetColumnPosition(bandedGridColumnRate, 1, 0);
-				}
-				else if (PackageSettings.ShowImpressions)
-				{
-					bandedGridColumnImpressions.Visible = true;
-					bandedGridColumnImpressions.RowCount = 3;
-					advBandedGridView.SetColumnPosition(bandedGridColumnImpressions, 0, 0);
-					bandedGridColumnCPM.Visible = false;
-					bandedGridColumnRate.Visible = false;
-				}
-				else if (PackageSettings.ShowCPM)
-				{
-					bandedGridColumnImpressions.Visible = false;
-					bandedGridColumnCPM.Visible = true;
-					bandedGridColumnCPM.RowCount = 3;
-					advBandedGridView.SetColumnPosition(bandedGridColumnCPM, 0, 0);
-					bandedGridColumnRate.Visible = false;
-				}
-				else if (PackageSettings.ShowRate)
-				{
-					bandedGridColumnImpressions.Visible = false;
-					bandedGridColumnCPM.Visible = false;
-					bandedGridColumnRate.Visible = true;
-					bandedGridColumnRate.RowCount = 3;
-					advBandedGridView.SetColumnPosition(bandedGridColumnRate, 0, 0);
-				}
-				gridBandRate.Visible = true;
+				bandedGridColumnImpressions.Visible = true;
+				bandedGridColumnImpressions.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnImpressions, 0, 0);
+				bandedGridColumnCPM.Visible = true;
+				bandedGridColumnCPM.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnCPM, 1, 0);
 			}
-			else
-				gridBandRate.Visible = false;
-			gridBandInvestment.Visible = PackageSettings.ShowInvestment;
+			else if (PackageSettings.ShowImpressions)
+			{
+				bandedGridColumnCPM.Visible = false;
+				bandedGridColumnImpressions.Visible = true;
+				bandedGridColumnImpressions.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnImpressions, 0, 0);
+			}
+			else if (PackageSettings.ShowCPM)
+			{
+				bandedGridColumnImpressions.Visible = false;
+				bandedGridColumnCPM.Visible = true;
+				bandedGridColumnCPM.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnCPM, 0, 0);
+			}
+
+			gridBandInvestment.Visible = PackageSettings.ShowInvestment || PackageSettings.ShowRate;
+			if (PackageSettings.ShowInvestment && PackageSettings.ShowRate)
+			{
+				bandedGridColumnInvestment.Visible = true;
+				bandedGridColumnInvestment.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnInvestment, 0, 0);
+				bandedGridColumnRate.Visible = true;
+				bandedGridColumnRate.RowCount = 1;
+				advBandedGridView.SetColumnPosition(bandedGridColumnRate, 1, 0);
+			}
+			else if (PackageSettings.ShowInvestment)
+			{
+				bandedGridColumnRate.Visible = false;
+				bandedGridColumnInvestment.Visible = true;
+				bandedGridColumnInvestment.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnInvestment, 0, 0);
+			}
+			else if (PackageSettings.ShowRate)
+			{
+				bandedGridColumnInvestment.Visible = false;
+				bandedGridColumnRate.Visible = true;
+				bandedGridColumnRate.RowCount = 2;
+				advBandedGridView.SetColumnPosition(bandedGridColumnRate, 0, 0);
+			}
+
 			gridBandFormula.Visible = PackageSettings.ShowInvestment && PackageSettings.ShowImpressions && PackageSettings.ShowCPM;
 		}
 
@@ -344,12 +318,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				var category = PackageSettings.ShowCategory ? focussedRecord.Category : null;
 				var subCategory = PackageSettings.ShowGroup ? focussedRecord.SubCategory : null;
 				repositoryItemComboBoxProduct.Items.Clear();
-				repositoryItemComboBoxProduct.Items.AddRange(ListManager.Instance.ProductSources.Where(x => (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).Select(x => x.Name).Distinct().ToArray());
+				repositoryItemComboBoxProduct.Items.AddRange(ListManager.Instance.ProductSources.Where(x => x.Category!= null && (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).Select(x => x.Name).Distinct().ToArray());
 			}
 			else if (advBandedGridView.FocusedColumn == bandedGridColumnGroup)
 			{
 				var category = PackageSettings.ShowCategory ? focussedRecord.Category : null;
-				var subCategories = ListManager.Instance.ProductSources.Where(x => (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
+				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category != null && (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
 				repositoryItemComboBoxGroup.Items.Clear();
 				repositoryItemComboBoxGroup.Items.AddRange(subCategories);
 			}
@@ -434,8 +408,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 						var info = new List<string>();
 						if (PackageSettings.ShowInfo && !String.IsNullOrEmpty(packageRecord.Info))
 							info.Add(packageRecord.Info);
-						if (PackageSettings.ShowComments && !String.IsNullOrEmpty(packageRecord.Comments))
-							info.Add(packageRecord.Comments);
+						if (PackageSettings.ShowLocation && !String.IsNullOrEmpty(packageRecord.Location))
+							info.Add(packageRecord.Location);
 
 						if (info.Any())
 						{

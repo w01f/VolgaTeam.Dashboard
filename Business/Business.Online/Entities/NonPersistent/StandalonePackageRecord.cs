@@ -12,7 +12,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public override string SubCategory { get; set; }
 		public override string Name { get; set; }
 		public override string Info { get; set; }
-		public override string Comments { get; set; }
+		public override string Location { get; set; }
 		public override decimal? Rate { get; set; }
 		public override decimal? Investment { get; set; }
 		public override decimal? Impressions { get; set; }

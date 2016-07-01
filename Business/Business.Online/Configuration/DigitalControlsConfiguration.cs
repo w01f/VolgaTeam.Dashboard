@@ -9,6 +9,7 @@ namespace Asa.Business.Online.Configuration
 	public class DigitalControlsConfiguration
 	{
 		#region Ribbon Buttons
+		public string RibbonGroupDigitalLogoTitle { get; set; }
 		public string RibbonButtonDigitalAddTitle { get; set; }
 		public string RibbonButtonDigitalAddTooltip { get; set; }
 		public string RibbonButtonDigitalCloneTitle { get; set; }
@@ -69,7 +70,7 @@ namespace Asa.Business.Online.Configuration
 		public string ProductPackageColumnsSubCategoryTitle { get; set; }
 		public string ProductPackageColumnsProductTitle { get; set; }
 		public string ProductPackageColumnsInfoTitle { get; set; }
-		public string ProductPackageColumnsCommentsTitle { get; set; }
+		public string ProductPackageColumnsLocationTitle { get; set; }
 		public string ProductPackageColumnsInvestmentTitle { get; set; }
 		public string ProductPackageColumnsImpressionsTitle { get; set; }
 		public string ProductPackageColumnsCPMTitle { get; set; }
@@ -79,7 +80,7 @@ namespace Asa.Business.Online.Configuration
 		public string ProductPackageSettingsSubCategoryTitle { get; set; }
 		public string ProductPackageSettingsProductTitle { get; set; }
 		public string ProductPackageSettingsInfoTitle { get; set; }
-		public string ProductPackageSettingsCommentsTitle { get; set; }
+		public string ProductPackageSettingsLocationTitle { get; set; }
 		public string ProductPackageSettingsInvestmentTitle { get; set; }
 		public string ProductPackageSettingsImpressionsTitle { get; set; }
 		public string ProductPackageSettingsCPMTitle { get; set; }
@@ -93,7 +94,7 @@ namespace Asa.Business.Online.Configuration
 		public string StandalonePackageColumnsSubCategoryTitle { get; set; }
 		public string StandalonePackageColumnsProductTitle { get; set; }
 		public string StandalonePackageColumnsInfoTitle { get; set; }
-		public string StandalonePackageColumnsCommentsTitle { get; set; }
+		public string StandalonePackageColumnsLocationTitle { get; set; }
 		public string StandalonePackageColumnsInvestmentTitle { get; set; }
 		public string StandalonePackageColumnsImpressionsTitle { get; set; }
 		public string StandalonePackageColumnsCPMTitle { get; set; }
@@ -103,7 +104,7 @@ namespace Asa.Business.Online.Configuration
 		public string StandalonePackageSettingsSubCategoryTitle { get; set; }
 		public string StandalonePackageSettingsProductTitle { get; set; }
 		public string StandalonePackageSettingsInfoTitle { get; set; }
-		public string StandalonePackageSettingsCommentsTitle { get; set; }
+		public string StandalonePackageSettingsLocationTitle { get; set; }
 		public string StandalonePackageSettingsInvestmentTitle { get; set; }
 		public string StandalonePackageSettingsImpressionsTitle { get; set; }
 		public string StandalonePackageSettingsCPMTitle { get; set; }
@@ -131,7 +132,10 @@ namespace Asa.Business.Online.Configuration
 		{
 			switch (groupName)
 			{
-				case "tab_1_top_level_tab_names":
+				case "ribbon_group_1_name":
+					RibbonGroupDigitalLogoTitle = values.ElementAtOrDefault(0);
+					break;
+				case "top_level_subtab_names":
 					SectionsHomeTitle = values.ElementAtOrDefault(0);
 					SectionsListTitle = values.ElementAtOrDefault(1);
 					SectionsProductTitle = values.ElementAtOrDefault(2);
@@ -139,48 +143,48 @@ namespace Asa.Business.Online.Configuration
 					SectionsProductPackageTitle = values.ElementAtOrDefault(4);
 					SectionsStandalonePackageTitle = values.ElementAtOrDefault(5);
 					break;
-				case "tab_1_column_header_names":
+				case "tab_2_column_header_names":
 					ListColumnsGroupTitle = values.ElementAtOrDefault(0);
 					ListColumnsProductTitle = values.ElementAtOrDefault(1);
 					ListColumnsPricingTitle = values.ElementAtOrDefault(2);
 					ListColumnsOptionsTitle = values.ElementAtOrDefault(3);
 					break;
-				case "tab_1_left_panel_button_names":
+				case "tab_2_left_panel_button_names":
 					ListSettingsDimensionTitle = values.ElementAtOrDefault(0);
 					ListSettingsLocationTitle = values.ElementAtOrDefault(1);
 					ListSettingsStrategyTitle = values.ElementAtOrDefault(2);
 					ListSettingsTargetingTitle = values.ElementAtOrDefault(3);
 					ListSettingsRichMediaTitle = values.ElementAtOrDefault(4);
 					break;
-				case "tab_1_new_line_placeholder_names":
+				case "tab_2_new_line_placeholder_names":
 					ListEditorsGroupTitle = values.ElementAtOrDefault(0);
 					ListEditorsProductTitle = values.ElementAtOrDefault(1);
 					ListEditorsLocationTitle = values.ElementAtOrDefault(2);
 					break;
-				case "tab_1_new_line_options_label_names":
+				case "tab_2_new_line_options_label_names":
 					ListEditorsTargetingTitle = values.ElementAtOrDefault(0);
 					ListEditorsRichMediaTitle = values.ElementAtOrDefault(1);
 					break;
-				case "tab_1_add_product_hover_tip":
+				case "tab_2_add_product_hover_tip":
 					RibbonButtonDigitalAddTitle = values.ElementAtOrDefault(0);
 					RibbonButtonDigitalAddTooltip = values.ElementAtOrDefault(1);
 					break;
-				case "tab_1_delete_product_hover_tip":
+				case "tab_2_delete_product_hover_tip":
 					RibbonButtonDigitalDeleteTitle = values.ElementAtOrDefault(0);
 					RibbonButtonDigitalDeleteTooltip = values.ElementAtOrDefault(1);
 					break;
-				case "tab_1_clone_product_hover_tip":
+				case "tab_2_clone_product_hover_tip":
 					RibbonButtonDigitalCloneTitle = values.ElementAtOrDefault(0);
 					RibbonButtonDigitalCloneTooltip = values.ElementAtOrDefault(1);
 					break;
-				case "tab_2_section_titles":
+				case "tab_3_section_titles":
 					ProductEditorsSitesTitle = values.ElementAtOrDefault(0);
 					ProductEditorsNameTitle = values.ElementAtOrDefault(1);
 					ProductEditorsDescriptionTitle = values.ElementAtOrDefault(2);
 					ProductEditorsPricingTitle = values.ElementAtOrDefault(3);
 					ProductEditorsCommentsTitle = values.ElementAtOrDefault(4);
 					break;
-				case "tab_2_section_icons":
+				case "tab_3_section_icons":
 					var imageRootFolder = Path.Combine(
 						Path.GetDirectoryName(typeof(DigitalControlsConfiguration).Assembly.Location),
 						"Data",
@@ -194,23 +198,23 @@ namespace Asa.Business.Online.Configuration
 					ProductEditorsPricingLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(3)) ? Image.FromFile(Path.Combine(imageRootFolder, values[3])) : null;
 					ProductEditorsCommentsLogo = !String.IsNullOrEmpty(values.ElementAtOrDefault(4)) ? Image.FromFile(Path.Combine(imageRootFolder, values[4])) : null;
 					break;
-				case "tab_4_column_header_names":
+				case "tab_5_column_header_names":
 					ProductPackageColumnsCategoryTitle = values.ElementAtOrDefault(0);
 					ProductPackageColumnsSubCategoryTitle = values.ElementAtOrDefault(1);
 					ProductPackageColumnsProductTitle = values.ElementAtOrDefault(2);
 					ProductPackageColumnsInfoTitle = values.ElementAtOrDefault(3);
-					ProductPackageColumnsCommentsTitle = values.ElementAtOrDefault(4);
+					ProductPackageColumnsLocationTitle = values.ElementAtOrDefault(4);
 					ProductPackageColumnsInvestmentTitle = values.ElementAtOrDefault(5);
 					ProductPackageColumnsImpressionsTitle = values.ElementAtOrDefault(6);
 					ProductPackageColumnsCPMTitle = values.ElementAtOrDefault(7);
 					ProductPackageColumnsRateTitle = values.ElementAtOrDefault(8);
 					break;
-				case "tab_4_left_panel_button_names":
+				case "tab_5_left_panel_button_names":
 					ProductPackageSettingsCategoryTitle = values.ElementAtOrDefault(0);
 					ProductPackageSettingsSubCategoryTitle = values.ElementAtOrDefault(1);
 					ProductPackageSettingsProductTitle = values.ElementAtOrDefault(2);
 					ProductPackageSettingsInfoTitle = values.ElementAtOrDefault(3);
-					ProductPackageSettingsCommentsTitle = values.ElementAtOrDefault(4);
+					ProductPackageSettingsLocationTitle = values.ElementAtOrDefault(4);
 					ProductPackageSettingsInvestmentTitle = values.ElementAtOrDefault(5);
 					ProductPackageSettingsImpressionsTitle = values.ElementAtOrDefault(6);
 					ProductPackageSettingsCPMTitle = values.ElementAtOrDefault(7);
@@ -218,23 +222,23 @@ namespace Asa.Business.Online.Configuration
 					ProductPackageSettingsScreenshotTitle = values.ElementAtOrDefault(9);
 					ProductPackageSettingsFormulaTitle = values.ElementAtOrDefault(10);
 					break;
-				case "tab_5_column_header_names":
+				case "tab_6_column_header_names":
 					StandalonePackageColumnsCategoryTitle = values.ElementAtOrDefault(0);
 					StandalonePackageColumnsSubCategoryTitle = values.ElementAtOrDefault(1);
 					StandalonePackageColumnsProductTitle = values.ElementAtOrDefault(2);
 					StandalonePackageColumnsInfoTitle = values.ElementAtOrDefault(3);
-					StandalonePackageColumnsCommentsTitle = values.ElementAtOrDefault(4);
+					StandalonePackageColumnsLocationTitle = values.ElementAtOrDefault(4);
 					StandalonePackageColumnsInvestmentTitle = values.ElementAtOrDefault(5);
 					StandalonePackageColumnsImpressionsTitle = values.ElementAtOrDefault(6);
 					StandalonePackageColumnsCPMTitle = values.ElementAtOrDefault(7);
 					StandalonePackageColumnsRateTitle = values.ElementAtOrDefault(8);
 					break;
-				case "tab_5_left_panel_button_names":
+				case "tab_6_left_panel_button_names":
 					StandalonePackageSettingsCategoryTitle = values.ElementAtOrDefault(0);
 					StandalonePackageSettingsSubCategoryTitle = values.ElementAtOrDefault(1);
 					StandalonePackageSettingsProductTitle = values.ElementAtOrDefault(2);
 					StandalonePackageSettingsInfoTitle = values.ElementAtOrDefault(3);
-					StandalonePackageSettingsCommentsTitle = values.ElementAtOrDefault(4);
+					StandalonePackageSettingsLocationTitle = values.ElementAtOrDefault(4);
 					StandalonePackageSettingsInvestmentTitle = values.ElementAtOrDefault(5);
 					StandalonePackageSettingsImpressionsTitle = values.ElementAtOrDefault(6);
 					StandalonePackageSettingsCPMTitle = values.ElementAtOrDefault(7);

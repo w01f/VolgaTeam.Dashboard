@@ -16,7 +16,8 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public StandaloneDigitalPackage()
 		{
 			Items = new List<StandalonePackageRecord>();
-			DigitalPackageSettings = new DigitalPackageSettings();
+			DigitalPackageSettings = new DigitalStandalonePackageSettings();
+			DigitalPackageSettings.ResetToDefault();
 		}
 
 		public void Dispose()

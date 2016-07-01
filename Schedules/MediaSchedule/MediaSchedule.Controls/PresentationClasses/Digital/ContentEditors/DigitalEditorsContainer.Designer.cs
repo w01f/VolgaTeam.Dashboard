@@ -35,9 +35,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.xtraTabControlEditors = new DevExpress.XtraTab.XtraTabControl();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.Digital.Settings.SettingsContainer();
+			this.pnTop = new System.Windows.Forms.Panel();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlEditors)).BeginInit();
 			this.retractableBarControl.Content.SuspendLayout();
+			this.pnTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -71,9 +74,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.xtraTabControlEditors.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlEditors.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlEditors.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlEditors.Location = new System.Drawing.Point(300, 0);
+			this.xtraTabControlEditors.Location = new System.Drawing.Point(300, 40);
 			this.xtraTabControlEditors.Name = "xtraTabControlEditors";
-			this.xtraTabControlEditors.Size = new System.Drawing.Size(564, 593);
+			this.xtraTabControlEditors.Size = new System.Drawing.Size(564, 553);
 			this.xtraTabControlEditors.TabIndex = 5;
 			// 
 			// retractableBarControl
@@ -117,11 +120,36 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.settingsContainer.Size = new System.Drawing.Size(296, 549);
 			this.settingsContainer.TabIndex = 0;
 			// 
+			// pnTop
+			// 
+			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
+			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnTop.Location = new System.Drawing.Point(300, 0);
+			this.pnTop.Name = "pnTop";
+			this.pnTop.Size = new System.Drawing.Size(564, 40);
+			this.pnTop.TabIndex = 6;
+			// 
+			// labelControlScheduleInfo
+			// 
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AppearanceHovered.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.labelControlScheduleInfo.AppearanceHovered.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(564, 40);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 52;
+			// 
 			// DigitalEditorsContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControlEditors);
+			this.Controls.Add(this.pnTop);
 			this.Controls.Add(this.retractableBarControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "DigitalEditorsContainer";
@@ -129,6 +157,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlEditors)).EndInit();
 			this.retractableBarControl.Content.ResumeLayout(false);
+			this.pnTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -138,5 +167,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 	    protected Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlEditors;
 		private SettingsContainer settingsContainer;
+		protected System.Windows.Forms.Panel pnTop;
+		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 	}
 }

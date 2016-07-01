@@ -9,7 +9,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		private string _subCategory;
 		private string _name;
 		private string _info;
-		private string _comments;
+		private string _location;
 		private decimal? _rate;
 		private decimal? _investment;
 		private decimal? _impressions;
@@ -79,15 +79,18 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		}
 
 		[JsonIgnore]
-		public override string Comments
+		public override string Location
 		{
 			get
 			{
-				return _comments;
+				if (_location == null)
+					return Parent.Location;
+				return _location;
 			}
 			set
 			{
-				_comments = value;
+				if (String.IsNullOrEmpty(Parent.Location) || !Parent.Location.Equals(value))
+					_location = value;
 			}
 		}
 
@@ -164,7 +167,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			_subCategory = null;
 			_name = null;
 			_info = null;
-			_comments = null;
+			_location = null;
 			_rate = null;
 			_investment = null;
 			_impressions = null;

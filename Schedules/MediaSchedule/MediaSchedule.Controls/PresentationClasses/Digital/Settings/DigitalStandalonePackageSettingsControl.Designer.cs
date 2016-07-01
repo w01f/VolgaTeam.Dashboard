@@ -47,7 +47,7 @@
 			this.buttonXProduct = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXScreenshot = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXImpressions = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXComments = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXLocation = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXInvestment = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXRate = new DevComponents.DotNetBar.ButtonX();
 			this.pnFormula = new System.Windows.Forms.Panel();
@@ -89,7 +89,7 @@
 			this.pnButtons.Controls.Add(this.buttonXProduct);
 			this.pnButtons.Controls.Add(this.buttonXScreenshot);
 			this.pnButtons.Controls.Add(this.buttonXImpressions);
-			this.pnButtons.Controls.Add(this.buttonXComments);
+			this.pnButtons.Controls.Add(this.buttonXLocation);
 			this.pnButtons.Controls.Add(this.buttonXInvestment);
 			this.pnButtons.Controls.Add(this.buttonXRate);
 			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Top;
@@ -209,18 +209,18 @@
 			// 
 			// buttonXComments
 			// 
-			this.buttonXComments.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXComments.AutoCheckOnClick = true;
-			this.buttonXComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXComments.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXComments.Location = new System.Drawing.Point(11, 204);
-			this.buttonXComments.Name = "buttonXComments";
-			this.buttonXComments.Size = new System.Drawing.Size(125, 27);
-			this.buttonXComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXComments.TabIndex = 45;
-			this.buttonXComments.Text = "Comments";
-			this.buttonXComments.TextColor = System.Drawing.Color.Black;
-			this.buttonXComments.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
+			this.buttonXLocation.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXLocation.AutoCheckOnClick = true;
+			this.buttonXLocation.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXLocation.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.buttonXLocation.Location = new System.Drawing.Point(11, 204);
+			this.buttonXLocation.Name = "buttonXLocation";
+			this.buttonXLocation.Size = new System.Drawing.Size(125, 27);
+			this.buttonXLocation.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXLocation.TabIndex = 45;
+			this.buttonXLocation.Text = "Comments";
+			this.buttonXLocation.TextColor = System.Drawing.Color.Black;
+			this.buttonXLocation.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
 			// buttonXInvestment
 			// 
@@ -398,7 +398,7 @@
 		private DevComponents.DotNetBar.ButtonX buttonXProduct;
 		private DevComponents.DotNetBar.ButtonX buttonXScreenshot;
 		private DevComponents.DotNetBar.ButtonX buttonXImpressions;
-		private DevComponents.DotNetBar.ButtonX buttonXComments;
+		private DevComponents.DotNetBar.ButtonX buttonXLocation;
 		private DevComponents.DotNetBar.ButtonX buttonXInvestment;
 		private DevComponents.DotNetBar.ButtonX buttonXRate;
 		private System.Windows.Forms.Panel pnFormula;

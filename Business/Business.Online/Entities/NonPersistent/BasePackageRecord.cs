@@ -13,7 +13,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public abstract string SubCategory { get; set; }
 		public abstract string Name { get; set; }
 		public abstract string Info { get; set; }
-		public abstract string Comments { get; set; }
+		public abstract string Location { get; set; }
 		public abstract decimal? Rate { get; set; }
 		public abstract decimal? Investment { get; set; }
 		public abstract decimal? Impressions { get; set; }

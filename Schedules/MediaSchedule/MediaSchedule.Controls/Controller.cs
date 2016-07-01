@@ -363,6 +363,7 @@ namespace Asa.Media.Controls
 
 		#region Digital Product
 		public RibbonPanel DigitalProductPanel { get; set; }
+		public RibbonBar DigitalProductLogoBar { get; set; }
 		public RibbonBar DigitalProductThemeBar { get; set; }
 		public RibbonBar DigitalProductSpecialButtons { get; set; }
 		public ButtonItem DigitalProductPreview { get; set; }

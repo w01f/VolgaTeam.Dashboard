@@ -41,7 +41,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			buttonXRate.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsRateTitle ?? buttonXRate.Text;
 			buttonXInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsInvestmentTitle ?? buttonXInvestment.Text;
 			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsInfoTitle ?? buttonXInfo.Text;
-			buttonXComments.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsCommentsTitle ?? buttonXComments.Text;
+			buttonXLocation.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsLocationTitle ?? buttonXLocation.Text;
 			buttonXScreenshot.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsScreenshotTitle ?? buttonXScreenshot.Text;
 			labelControlFormula.Text = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsFormulaTitle) ?
 				String.Format("<b>{0}</b>", ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsFormulaTitle) :
@@ -67,7 +67,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				buttonXRate.Font = font;
 				buttonXInvestment.Font = font;
 				buttonXInfo.Font = font;
-				buttonXComments.Font = font;
+				buttonXLocation.Font = font;
 				buttonXScreenshot.Font = font;
 			}
 		}
@@ -85,7 +85,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			buttonXRate.Checked = _content.StandalonePackage.DigitalPackageSettings.ShowRate;
 			buttonXInvestment.Checked = _content.StandalonePackage.DigitalPackageSettings.ShowInvestment;
 			buttonXInfo.Checked = _content.StandalonePackage.DigitalPackageSettings.ShowInfo;
-			buttonXComments.Checked = _content.StandalonePackage.DigitalPackageSettings.ShowComments;
+			buttonXLocation.Checked = _content.StandalonePackage.DigitalPackageSettings.ShowLocation;
 			buttonXScreenshot.Checked = _content.StandalonePackage.DigitalPackageSettings.ShowScreenshot;
 			switch (_content.StandalonePackage.DigitalPackageSettings.Formula)
 			{
@@ -120,7 +120,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			_content.StandalonePackage.DigitalPackageSettings.ShowRate = buttonXRate.Checked;
 			_content.StandalonePackage.DigitalPackageSettings.ShowInvestment = buttonXInvestment.Checked;
 			_content.StandalonePackage.DigitalPackageSettings.ShowInfo = buttonXInfo.Checked;
-			_content.StandalonePackage.DigitalPackageSettings.ShowComments = buttonXComments.Checked;
+			_content.StandalonePackage.DigitalPackageSettings.ShowLocation = buttonXLocation.Checked;
 			_content.StandalonePackage.DigitalPackageSettings.ShowScreenshot = buttonXScreenshot.Checked;
 			if (checkEditFormulaCPM.Checked)
 				_content.StandalonePackage.DigitalPackageSettings.Formula = FormulaType.CPM;

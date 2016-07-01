@@ -150,7 +150,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			Stations = new List<Station>();
 
 			HomeViewSettings = new DigitalProductListViewSettings();
-			DigitalPackageSettings = new DigitalPackageSettings();
+			DigitalPackageSettings = new DigitalProductPackageSettings();
 		}
 
 		public override void Dispose()

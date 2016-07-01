@@ -19,7 +19,9 @@ namespace Asa.Business.Media.Configuration
 		public StorageFile MainAppIconFile { get; private set; }
 		public StorageFile MainAppRibbonLogoFile { get; private set; }
 		public StorageFile DigitalProductsRibbonLogoFile { get; private set; }
-		public StorageFile DigitalProductsHomeLogoFile { get; private set; }
+		public StorageFile DigitalProductsHomeMainLogoFile { get; private set; }
+		public StorageFile DigitalProductsHomeRightLogoFile { get; private set; }
+		public StorageFile DigitalProductsHomeBottomLogoFile { get; private set; }
 
 		private ResourceManager() { }
 
@@ -108,15 +110,35 @@ namespace Asa.Business.Media.Configuration
 			if (await DigitalProductsRibbonLogoFile.Exists(true))
 				await DigitalProductsRibbonLogoFile.Download();
 
-			DigitalProductsHomeLogoFile = new StorageFile(new[]
+			DigitalProductsHomeMainLogoFile = new StorageFile(new[]
 			{
 				FileStorageManager.IncomingFolderName,
 				AppProfileManager.Instance.AppName,
 				"AppSettings",
 				"digital_home.png"
 			});
-			if (await DigitalProductsHomeLogoFile.Exists(true))
-				await DigitalProductsHomeLogoFile.Download();
+			if (await DigitalProductsHomeMainLogoFile.Exists(true))
+				await DigitalProductsHomeMainLogoFile.Download();
+
+			DigitalProductsHomeRightLogoFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"digital_home_right.png"
+			});
+			if (await DigitalProductsHomeRightLogoFile.Exists(true))
+				await DigitalProductsHomeRightLogoFile.Download();
+
+			DigitalProductsHomeBottomLogoFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"digital_home_bottom.png"
+			});
+			if (await DigitalProductsHomeBottomLogoFile.Exists(true))
+				await DigitalProductsHomeBottomLogoFile.Download();
 		}
 	}
 }

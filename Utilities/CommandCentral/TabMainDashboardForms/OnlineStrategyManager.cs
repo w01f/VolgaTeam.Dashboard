@@ -56,7 +56,8 @@ namespace CommandCentral.TabMainDashboardForms
 						"RM_Popup",
 						"Home",
 						"WebSlide",
-						"DigPkg",
+						"DigPkgA",
+						"DigPkgB",
 						"DigitalRBNLabels",
 						"DigitalSubScheduleLabels",
 					}.Contains(category.Name.Trim()))
@@ -99,7 +100,8 @@ namespace CommandCentral.TabMainDashboardForms
 
 			var defaultHomeViewSettings = new HomeViewSettings();
 			var defaultDigitalProductSettings = new DigitalProductSettings();
-			var defaultDigitalPackageSettings = new DigitalPackageSettings();
+			var defaultDigitalProductPackageSettings = new DigitalPackageSettings();
+			var defaultDigitalStandalonePackageSettings = new DigitalPackageSettings();
 
 			var controlsConfiguration = new DigitalControlsConfiguration();
 
@@ -590,10 +592,17 @@ namespace CommandCentral.TabMainDashboardForms
 					if (dataTable.Rows.Count > 0 && dataTable.Columns.Count >= 4)
 						foreach (DataRow row in dataTable.Rows)
 						{
-							string name = row[0].ToString().Trim();
-							var category = _categories.FirstOrDefault(x => x.Name.Equals(name));
+							var originalName = row[0].ToString().Trim();
+							var schemaName = originalName
+								.Replace(".", "#")
+								.Replace("!", "_")
+								.Replace("`", "_")
+								.Replace("[", "(")
+								.Replace("]", ")");
+							var category = _categories.FirstOrDefault(x => x.Name.Equals(schemaName));
 							if (category != null)
 							{
+								category.Name = originalName;
 								category.Order = i;
 								category.TooltipTitle = row[1].ToString().Trim();
 								category.TooltipValue = row[2].ToString().Trim();
@@ -618,7 +627,12 @@ namespace CommandCentral.TabMainDashboardForms
 				products.Clear();
 				foreach (var category in _categories)
 				{
-					dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", category.Name), connection);
+					dataAdapter = new OleDbDataAdapter(
+						String.Format("SELECT * FROM [{0}$]", 
+							category.Name
+								.Replace("!", "")
+							)
+						, connection);
 					dataTable = new DataTable();
 					try
 					{
@@ -644,7 +658,7 @@ namespace CommandCentral.TabMainDashboardForms
 									products.Add(product);
 							}
 					}
-					catch
+					catch(Exception ex)
 					{
 					}
 					finally
@@ -784,7 +798,7 @@ namespace CommandCentral.TabMainDashboardForms
 				}
 
 				//Load Digital Package Settings
-				dataAdapter = new OleDbDataAdapter("SELECT * FROM [DigPkg$]", connection);
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [DigPkgA$]", connection);
 				dataTable = new DataTable();
 				try
 				{
@@ -792,7 +806,7 @@ namespace CommandCentral.TabMainDashboardForms
 					if (dataTable.Columns.Count >= 3)
 						foreach (DataRow row in dataTable.Rows)
 						{
-							var optionName = row[0] != null ? row[0].ToString().Trim() : null;
+							var optionName = row[0]?.ToString().Trim();
 							if (String.IsNullOrEmpty(optionName)) continue;
 							switch (optionName)
 							{
@@ -800,90 +814,90 @@ namespace CommandCentral.TabMainDashboardForms
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableCategory = temp;
+											defaultDigitalProductPackageSettings.EnableCategory = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowCategory = temp;
+											defaultDigitalProductPackageSettings.ShowCategory = temp;
 									}
 									break;
 								case "Group":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableGroup = temp;
+											defaultDigitalProductPackageSettings.EnableGroup = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowGroup = temp;
+											defaultDigitalProductPackageSettings.ShowGroup = temp;
 									}
 									break;
 								case "Product":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableProduct = temp;
+											defaultDigitalProductPackageSettings.EnableProduct = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowProduct = temp;
+											defaultDigitalProductPackageSettings.ShowProduct = temp;
 									}
 									break;
 								case "Impressions":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableImpressions = temp;
+											defaultDigitalProductPackageSettings.EnableImpressions = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowImpressions = temp;
+											defaultDigitalProductPackageSettings.ShowImpressions = temp;
 									}
 									break;
 								case "CPM":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableCPM = temp;
+											defaultDigitalProductPackageSettings.EnableCPM = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowCPM = temp;
+											defaultDigitalProductPackageSettings.ShowCPM = temp;
 									}
 									break;
 								case "Rate":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableRate = temp;
+											defaultDigitalProductPackageSettings.EnableRate = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowRate = temp;
+											defaultDigitalProductPackageSettings.ShowRate = temp;
 									}
 									break;
 								case "Investment":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableInvestment = temp;
+											defaultDigitalProductPackageSettings.EnableInvestment = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowInvestment = temp;
+											defaultDigitalProductPackageSettings.ShowInvestment = temp;
 									}
 									break;
 								case "Schedule Info":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableInfo = temp;
+											defaultDigitalProductPackageSettings.EnableInfo = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowInfo = temp;
+											defaultDigitalProductPackageSettings.ShowInfo = temp;
 									}
 									break;
-								case "Comments":
+								case "Campaign":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableComments = temp;
+											defaultDigitalProductPackageSettings.EnableLocation = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowComments = temp;
+											defaultDigitalProductPackageSettings.ShowLocation = temp;
 									}
 									break;
 								case "Screenshot":
 									{
 										bool temp;
 										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
-											defaultDigitalPackageSettings.EnableScreenshot = temp;
+											defaultDigitalProductPackageSettings.EnableScreenshot = temp;
 										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
-											defaultDigitalPackageSettings.ShowScreenshot = temp;
+											defaultDigitalProductPackageSettings.ShowScreenshot = temp;
 									}
 									break;
 							}
@@ -896,6 +910,121 @@ namespace CommandCentral.TabMainDashboardForms
 					dataAdapter.Dispose();
 					dataTable.Dispose();
 				}
+
+				//Load Digital Standalone Package Settings
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [DigPkgB$]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					if (dataTable.Columns.Count >= 3)
+						foreach (DataRow row in dataTable.Rows)
+						{
+							var optionName = row[0]?.ToString().Trim();
+							if (String.IsNullOrEmpty(optionName)) continue;
+							switch (optionName)
+							{
+								case "Category":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableCategory = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowCategory = temp;
+									}
+									break;
+								case "Group":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableGroup = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowGroup = temp;
+									}
+									break;
+								case "Product":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableProduct = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowProduct = temp;
+									}
+									break;
+								case "Impressions":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableImpressions = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowImpressions = temp;
+									}
+									break;
+								case "CPM":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableCPM = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowCPM = temp;
+									}
+									break;
+								case "Rate":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableRate = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowRate = temp;
+									}
+									break;
+								case "Investment":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableInvestment = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowInvestment = temp;
+									}
+									break;
+								case "Schedule Info":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableInfo = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowInfo = temp;
+									}
+									break;
+								case "Campaign":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableLocation = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowLocation = temp;
+									}
+									break;
+								case "Screenshot":
+									{
+										bool temp;
+										if (row[1] != null && Boolean.TryParse(row[1].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.EnableScreenshot = temp;
+										if (row[2] != null && Boolean.TryParse(row[2].ToString(), out temp))
+											defaultDigitalStandalonePackageSettings.ShowScreenshot = temp;
+									}
+									break;
+							}
+						}
+				}
+				catch
+				{ }
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
 				connection.Close();
 
 				connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=No;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
@@ -1083,7 +1212,8 @@ namespace CommandCentral.TabMainDashboardForms
 
 			xml.AppendLine(String.Format(@"<DefaultHomeViewSettings>{0}</DefaultHomeViewSettings>", defaultHomeViewSettings.Serialize()));
 			xml.AppendLine(String.Format(@"<DefaultDigitalProductSettings>{0}</DefaultDigitalProductSettings>", defaultDigitalProductSettings.Serialize()));
-			xml.AppendLine(String.Format(@"<DefaultDigitalPackageSettings>{0}</DefaultDigitalPackageSettings>", defaultDigitalPackageSettings.Serialize()));
+			xml.AppendLine(String.Format(@"<DefaultDigitalProductPackageSettings>{0}</DefaultDigitalProductPackageSettings>", defaultDigitalProductPackageSettings.Serialize()));
+			xml.AppendLine(String.Format(@"<DefaultDigitalStandalonePackageSettings>{0}</DefaultDigitalStandalonePackageSettings>", defaultDigitalStandalonePackageSettings.Serialize()));
 			xml.AppendLine(String.Format(@"<DigitalControlsConfiguration>{0}</DigitalControlsConfiguration>", Convert.ToBase64String(Encoding.Unicode.GetBytes(JsonConvert.SerializeObject(controlsConfiguration, Formatting.None, new JsonImageConverter())))));
 
 			xml.AppendLine(@"</OnlineStrategy>");

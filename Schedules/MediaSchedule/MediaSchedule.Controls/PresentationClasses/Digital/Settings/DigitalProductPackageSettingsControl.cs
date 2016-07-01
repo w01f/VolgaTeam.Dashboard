@@ -42,7 +42,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			buttonXRate.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsRateTitle ?? buttonXRate.Text;
 			buttonXInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsInvestmentTitle ?? buttonXInvestment.Text;
 			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsInfoTitle ?? buttonXInfo.Text;
-			buttonXComments.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsCommentsTitle ?? buttonXComments.Text;
+			buttonXLocation.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsLocationTitle ?? buttonXLocation.Text;
 			buttonXScreenshot.Text = ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsScreenshotTitle ?? buttonXScreenshot.Text;
 			labelControlFormula.Text = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsFormulaTitle) ?
 				String.Format("<b>{0}</b>", ListManager.Instance.DefaultControlsConfiguration.ProductPackageSettingsFormulaTitle) :
@@ -68,7 +68,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				buttonXRate.Font = font;
 				buttonXInvestment.Font = font;
 				buttonXInfo.Font = font;
-				buttonXComments.Font = font;
+				buttonXLocation.Font = font;
 				buttonXScreenshot.Font = font;
 			}
 		}
@@ -86,7 +86,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			buttonXRate.Checked = _content.ScheduleSettings.DigitalPackageSettings.ShowRate;
 			buttonXInvestment.Checked = _content.ScheduleSettings.DigitalPackageSettings.ShowInvestment;
 			buttonXInfo.Checked = _content.ScheduleSettings.DigitalPackageSettings.ShowInfo;
-			buttonXComments.Checked = _content.ScheduleSettings.DigitalPackageSettings.ShowComments;
+			buttonXLocation.Checked = _content.ScheduleSettings.DigitalPackageSettings.ShowLocation;
 			buttonXScreenshot.Checked = _content.ScheduleSettings.DigitalPackageSettings.ShowScreenshot;
 			switch (_content.ScheduleSettings.DigitalPackageSettings.Formula)
 			{
@@ -121,7 +121,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			_content.ScheduleSettings.DigitalPackageSettings.ShowRate = buttonXRate.Checked;
 			_content.ScheduleSettings.DigitalPackageSettings.ShowInvestment = buttonXInvestment.Checked;
 			_content.ScheduleSettings.DigitalPackageSettings.ShowInfo = buttonXInfo.Checked;
-			_content.ScheduleSettings.DigitalPackageSettings.ShowComments = buttonXComments.Checked;
+			_content.ScheduleSettings.DigitalPackageSettings.ShowLocation = buttonXLocation.Checked;
 			_content.ScheduleSettings.DigitalPackageSettings.ShowScreenshot = buttonXScreenshot.Checked;
 			if (checkEditFormulaCPM.Checked)
 				_content.ScheduleSettings.DigitalPackageSettings.Formula = FormulaType.CPM;

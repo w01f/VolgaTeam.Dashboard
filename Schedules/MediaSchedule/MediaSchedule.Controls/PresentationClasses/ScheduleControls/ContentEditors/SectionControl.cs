@@ -64,7 +64,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionContainer = sectionContainer;
 			InitializeComponent();
 			Dock = DockStyle.Fill;
-			Text = "Schedule";
+			Text = MediaMetaData.Instance.DataTypeString;
 		}
 
 		#region ISectionEditorControl Memebers

@@ -19,8 +19,6 @@ namespace Asa.Business.Online.Dictionaries
 {
 	public class ListManager
 	{
-		private static readonly ListManager _instance = new ListManager();
-
 		public List<ImageSourceGroup> Images { get; set; }
 
 		public List<string> SlideHeaders { get; private set; }
@@ -43,13 +41,11 @@ namespace Asa.Business.Online.Dictionaries
 
 		public DigitalProductListViewSettings DefaultHomeViewSettings { get; private set; }
 		public DigitalProductSettings DefaultDigitalProductSettings { get; private set; }
-		public DigitalPackageSettings DefaultDigitalPackageSettings { get; private set; }
+		public DigitalPackageSettings DefaultDigitalProductPackageSettings { get; private set; }
+		public DigitalPackageSettings DefaultDigitalStandalonePackageSettings { get; private set; }
 		public DigitalControlsConfiguration DefaultControlsConfiguration { get; private set; }
 
-		public static ListManager Instance
-		{
-			get { return _instance; }
-		}
+		public static ListManager Instance { get; } = new ListManager();
 
 		private ListManager()
 		{
@@ -68,7 +64,8 @@ namespace Asa.Business.Online.Dictionaries
 			RichMediaRecods = new List<ProductInfo>();
 			DefaultHomeViewSettings = new DigitalProductListViewSettings();
 			DefaultDigitalProductSettings = new DigitalProductSettings();
-			DefaultDigitalPackageSettings = new DigitalPackageSettings();
+			DefaultDigitalProductPackageSettings = new DigitalTemplatePackageSettings();
+			DefaultDigitalStandalonePackageSettings = new DigitalTemplatePackageSettings();
 			DefaultControlsConfiguration = new DigitalControlsConfiguration();
 
 			Images = new List<ImageSourceGroup>();
@@ -279,8 +276,11 @@ namespace Asa.Business.Online.Dictionaries
 					case "DefaultDigitalProductSettings":
 						DefaultDigitalProductSettings.Deserialize(childeNode);
 						break;
-					case "DefaultDigitalPackageSettings":
-						DefaultDigitalPackageSettings.Deserialize(childeNode);
+					case "DefaultDigitalProductPackageSettings":
+						DefaultDigitalProductPackageSettings.Deserialize(childeNode);
+						break;
+					case "DefaultDigitalStandalonePackageSettings":
+						DefaultDigitalStandalonePackageSettings.Deserialize(childeNode);
 						break;
 					case "DigitalControlsConfiguration":
 						DefaultControlsConfiguration =

@@ -60,7 +60,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			InitializeComponent();
 			pnNoPrograms.Dock = DockStyle.Fill;
 			gridControl.Dock = DockStyle.Fill;
-			Text = "Schedule";
+			Text = MediaMetaData.Instance.DataTypeString;
 		}
 
 		#region Methods

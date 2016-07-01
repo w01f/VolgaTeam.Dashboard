@@ -13,7 +13,6 @@ using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;
-using DevExpress.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors

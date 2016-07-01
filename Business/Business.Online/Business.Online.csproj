@@ -61,7 +61,10 @@
     <Compile Include="Configuration\DigitalPackageSettings.cs" />
     <Compile Include="Configuration\DigitalProductAdPlanSettings.cs" />
     <Compile Include="Configuration\DigitalProductListViewSettings.cs" />
+    <Compile Include="Configuration\DigitalProductPackageSettings.cs" />
     <Compile Include="Configuration\DigitalProductSettings.cs" />
+    <Compile Include="Configuration\DigitalStandalonePackageSettings.cs" />
+    <Compile Include="Configuration\DigitalTemplatePackageSettings.cs" />
     <Compile Include="Dictionaries\ListManager.cs" />
     <Compile Include="Entities\NonPersistent\BasePackageRecord.cs" />
     <Compile Include="Entities\NonPersistent\Category.cs" />

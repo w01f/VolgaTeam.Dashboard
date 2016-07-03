@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Common.GUI.RetractableBar;
@@ -30,9 +32,20 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
 
+			quarterSelectorControl.QuarterSelected += OnQuarterChanged;
+
 			if (CreateGraphics().DpiX > 96)
 			{
-				var font = new Font(buttonXAvgRate.Font.FontFamily, buttonXAvgRate.Font.Size - 2, buttonXAvgRate.Font.Style);
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+
+				font = new Font(buttonXAvgRate.Font.FontFamily, buttonXAvgRate.Font.Size - 2, buttonXAvgRate.Font.Style);
 				buttonXAvgRate.Font = font;
 				buttonXDiscount.Font = font;
 				buttonXNetRate.Font = font;
@@ -65,6 +78,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			buttonXNetRate.Checked = _sectionData.ShowNetRate;
 			buttonXDiscount.Checked = _sectionData.ShowDiscount;
 
+			InitQuarters();
+			UpdateQuarterState();
+
 			_allowToSave = true;
 		}
 
@@ -82,6 +98,35 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			_sectionData.ShowDiscount = buttonXDiscount.Checked;
 
 			DataChanged?.Invoke(this, new SettingsChangedEventArgs { ChangedSettingsType = SettingsType });
+		}
+
+		private void OnQuarterChanged(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+
+			var selectedQuarter = quarterSelectorControl.SelectedQuarter;
+			_sectionData.Parent.SelectedQuarter = selectedQuarter?.DateAnchor;
+
+			DataChanged?.Invoke(this, new SettingsChangedEventArgs { ChangedSettingsType = ScheduleSettingsType.Quarters });
+		}
+
+
+		private void InitQuarters()
+		{
+			labelControlQuarterSelectorTitle.Visible =
+			quarterSelectorControl.Visible = _sectionData.ParentScheduleSettings.Quarters.Count > 0;
+			quarterSelectorControl.InitControls(
+				_sectionData.ParentScheduleSettings.Quarters,
+				_sectionData.ParentScheduleSettings.Quarters.FirstOrDefault(q => q.DateAnchor == _sectionData.Parent.SelectedQuarter));
+		}
+
+		public void UpdateQuarterState()
+		{
+			quarterSelectorControl.Enabled = _sectionData.ShowSpots;
+			if (!_sectionData.ShowSpots)
+				quarterSelectorControl.InitControls(
+				_sectionData.ParentScheduleSettings.Quarters,
+				null);
 		}
 	}
 }

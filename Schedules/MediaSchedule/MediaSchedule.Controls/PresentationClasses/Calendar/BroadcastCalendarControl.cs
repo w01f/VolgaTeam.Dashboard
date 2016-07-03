@@ -24,6 +24,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override ButtonItem PasteButton => Controller.Instance.Calendar1Paste;
 
 		public override ButtonItem CloneButton => Controller.Instance.Calendar1Clone;
+		public override ButtonItem ResetButton => Controller.Instance.Calendar1Reset;
 
 		#region BasePartitionEditControl Override
 		protected override bool IsContentChanged => EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
@@ -83,7 +84,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			}
 		}
 
-		public override void UpdateOutputFunctions()
+		public override void UpdateDataManagementAndOutputFunctions()
 		{
 			var enable = IsOutputEnabled;
 
@@ -94,6 +95,8 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			pictureBoxNoData.Image = Properties.Resources.CalendarDisabled;
 			pictureBoxNoData.Visible = !enable;
 			pictureBoxNoData.BringToFront();
+
+			Controller.Instance.Calendar1Reset.Enabled = enable;
 
 			Controller.Instance.Calendar1PowerPoint.Enabled = enable;
 			Controller.Instance.Calendar1Pdf.Enabled = enable;

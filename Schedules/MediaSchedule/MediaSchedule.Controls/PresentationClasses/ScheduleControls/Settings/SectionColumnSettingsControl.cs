@@ -121,6 +121,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			_sectionData.ShowTime = buttonXTime.Checked;
 			_sectionData.ShowSpots = buttonXSpots.Checked;
 
+			if (!_sectionData.ShowSpots)
+				_sectionData.Parent.SelectedQuarter = null;
+
 			DataChanged?.Invoke(this, new SettingsChangedEventArgs { ChangedSettingsType = SettingsType });
 		}
 	}

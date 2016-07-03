@@ -7,11 +7,11 @@ using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Enums;
 using Asa.Common.Core.Configuration;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Summary;
-using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
@@ -53,15 +53,15 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			}
 
 			labelControlWebsite.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesLogo;
-			labelControlWebsite.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesTitle ?? labelControlWebsite.Text;
+			labelControlWebsite.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesTitle ?? labelControlWebsite.Text);
 			labelControlProduct.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameLogo;
-			labelControlProduct.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameTitle ?? labelControlProduct.Text;
+			labelControlProduct.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameTitle ?? labelControlProduct.Text);
 			labelControlDescription.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionLogo;
-			labelControlDescription.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionTitle ?? labelControlDescription.Text;
+			labelControlDescription.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionTitle ?? labelControlDescription.Text);
 			labelControlPriceType.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingLogo;
-			labelControlPriceType.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingTitle ?? labelControlPriceType.Text;
+			labelControlPriceType.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingTitle ?? labelControlPriceType.Text);
 			labelControlComments.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsLogo;
-			labelControlComments.Text = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsTitle ?? labelControlComments.Text;
+			labelControlComments.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsTitle ?? labelControlComments.Text);
 
 			spinEditImpressions.EnableSelectAll();
 			spinEditImpressionsOnly.EnableSelectAll();
@@ -602,6 +602,9 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
 		{
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(
+				String.Format("Are you SURE you want to Wipe Everything{0}and reset the data for this Digital Product ? ", Environment.NewLine))
+				!= DialogResult.Yes) return;
 			Product.ApplyDefaultView();
 			ResetProductName(this, new OpenLinkEventArgs(String.Empty));
 			LoadValues();
@@ -613,6 +616,9 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		public void ResetProductName(object sender, OpenLinkEventArgs e)
 		{
 			e.Handled = true;
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(
+				String.Format("Are you SURE you want to Wipe Everything{0}and reset the data for this Digital Product ? ", Environment.NewLine))
+				!= DialogResult.Yes) return;
 			Product.UserDefinedName = null;
 			memoEditProductName.EditValue = Product.ExtendedName;
 		}

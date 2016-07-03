@@ -9,7 +9,6 @@ using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Business.Calendar.Interfaces;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Common.Interfaces;
-using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.ToolForms;
@@ -37,16 +36,14 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		#region ICalendarControl Members
 		public bool AllowToSave { get; set; }
 		public abstract CalendarSettings CalendarSettings { get; }
-		public ICalendarContent CalendarContent
-		{
-			get { return EditedContent; }
-		}
+		public ICalendarContent CalendarContent => EditedContent;
 		public IView CalendarView { get; private set; }
 		public SlideInfoWrapper SlideInfo { get; private set; }
 
 		public abstract ButtonItem CopyButton { get; }
 		public abstract ButtonItem PasteButton { get; }
 		public abstract ButtonItem CloneButton { get; }
+		public abstract ButtonItem ResetButton { get; }
 		#endregion
 
 		protected BaseCalendarControl()
@@ -69,8 +66,14 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 			if ((CreateGraphics()).DpiX > 96)
 			{
-				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2,
-					hyperLinkEditReset.Font.Style);
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
 			}
 
 			MonthList.SelectedIndexChanged += OnMonthListSelectedIndexChanged;
@@ -83,8 +86,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		{
 			AllowToSave = false;
 
-			labelControlScheduleInfo.Text = String.Format("{0}   <color=gray><i>({1} {2})</i></color>",
-				CalendarContent.Settings.BusinessName,
+			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>",CalendarContent.Settings.BusinessName);
+
+			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				CalendarContent.Settings.FlightDates,
 				String.Format("{0} {1}s", CalendarContent.Settings.TotalWeeks, "week"));
 
@@ -105,7 +109,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			SlideInfo.LoadVisibilitySettings();
 			SlideInfo.LoadData(CalendarContent.Months[MonthList.SelectedIndex], false);
 
-			UpdateOutputFunctions();
+			UpdateDataManagementAndOutputFunctions();
 
 			AllowToSave = true;
 		}
@@ -212,7 +216,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		protected abstract void PreviewSlides(IEnumerable<CalendarOutputData> outputData);
 		protected abstract void OutputPdfSlides(IEnumerable<CalendarOutputData> outputData);
 
-		public abstract void UpdateOutputFunctions();
+		public abstract void UpdateDataManagementAndOutputFunctions();
 
 		protected virtual bool IsOutputEnabled
 		{

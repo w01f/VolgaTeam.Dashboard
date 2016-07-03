@@ -125,8 +125,12 @@ namespace Asa.Media.Single
 			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
 			Controller.Instance.HomePresentationDate = dateEditPresentationDate;
 			Controller.Instance.HomeFlightDates = ribbonBarHomeFlightDates;
-			Controller.Instance.HomeFlightDatesStart = labelItemHomeFlightDatesStartValue;
-			Controller.Instance.HomeFlightDatesEnd = labelItemHomeFlightDatesEndValue;
+			Controller.Instance.HomeFlightDatesStartLogo = labelItemHomeFlightDatesStartLogo;
+			Controller.Instance.HomeFlightDatesStartTitle = labelItemHomeFlightDatesStartTitle;
+			Controller.Instance.HomeFlightDatesStartValue = labelItemHomeFlightDatesStartValue;
+			Controller.Instance.HomeFlightDatesEndLogo = labelItemHomeFlightDatesEndLogo;
+			Controller.Instance.HomeFlightDatesEndTitle = labelItemHomeFlightDatesEndTitle;
+			Controller.Instance.HomeFlightDatesEndValue = labelItemHomeFlightDatesEndValue;
 			#endregion
 
 			#region Program Schedule
@@ -168,6 +172,7 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
 			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
 			Controller.Instance.Calendar1Pdf = buttonItemCalendar1Pdf;
+			Controller.Instance.Calendar1Reset = buttonItemCalendar1Reset;
 			#endregion
 
 			#region Calendar 2
@@ -180,6 +185,7 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
 			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
 			Controller.Instance.Calendar2Pdf = buttonItemCalendar2Pdf;
+			Controller.Instance.Calendar2Reset = buttonItemCalendar2Reset;
 			#endregion
 
 			#region Snapshot

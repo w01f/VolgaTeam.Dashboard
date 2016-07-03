@@ -71,7 +71,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 
-				labelControlScheduleInfo.Font = font;
 				labelControlFlexFlightDatesWarning.Font = new Font(labelControlFlexFlightDatesWarning.Font.FontFamily,
 					labelControlFlexFlightDatesWarning.Font.Size - 2, labelControlFlexFlightDatesWarning.Font.Style);
 
@@ -99,8 +98,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			settingsContainer.SettingsChanged += OnSectionSettingsChanged;
 			settingsContainer.SettingsControlsUpdated += OnSettingsControlsUpdated;
 
-			quarterSelectorControl.QuarterSelected += OnQuarterChanged;
-
 			retractableBarControl.Collapse(true);
 
 			_tabDragDropHelper = new XtraTabDragDropHelper<SectionContainer>(xtraTabControlSections);
@@ -126,10 +123,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			EditedContent?.Dispose();
 			EditedContent = Schedule.ProgramSchedule.Clone<ProgramScheduleContent, ProgramScheduleContent>();
 
-			labelControlScheduleInfo.Text = String.Format("{0}<br><color=gray><i>{1} ({2})</i></color>",
-				ScheduleSettings.BusinessName,
+			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
+
+			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", EditedContent.TotalPeriods, SpotTitle));
+				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
 			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed &&
@@ -143,11 +141,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			laTotalGRPTitle.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Total GRPs:" : "Total Impr:";
 
 			settingsContainer.LoadContent(EditedContent);
-
-			quarterSelectorControl.InitControls(
-				ScheduleSettings.Quarters,
-				ScheduleSettings.Quarters.FirstOrDefault(q => q.DateAnchor == EditedContent.SelectedQuarter));
-			quarterSelectorControl.Enabled = false;
 
 			LoadSections(quickLoad);
 
@@ -234,7 +227,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (ActiveSection != null)
 			{
 				settingsContainer.LoadSection(ActiveSection.SectionData);
-				UpdateQuarterSelectorControl();
 				UpdateTotalsValues();
 				UpdateTotalsVisibility();
 				OnSectionEditorChanged(ActiveSection, EventArgs.Empty);
@@ -248,7 +240,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			var sectionTabControl = new SectionContainer();
 			sectionTabControl.InitControls();
 			sectionTabControl.LoadData(sectionData);
-			sectionTabControl.UpdateSpotsByQuarter(quarterSelectorControl.SelectedQuarter);
 			sectionTabControl.DataChanged += OnSectionDataChanged;
 			sectionTabControl.SectionEditorChanged += OnSectionEditorChanged;
 			position = position == -1 ? xtraTabControlSections.TabPages.OfType<SectionContainer>().Count() : position;
@@ -314,12 +305,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
 				SettingsNotSaved = true;
 			}
-		}
-
-		private void UpdateQuarterSelectorControl()
-		{
-			if (ActiveSection == null) return;
-			quarterSelectorControl.Enabled = ActiveSection.SectionData.ShowSpots;
 		}
 
 		private void UpdateTotalsVisibility()
@@ -395,7 +380,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (ActiveSection == null) return;
 			if (!_allowToSave) return;
 			settingsContainer.UpdateSettingsAccordingDataChanges(ActiveSection.ActiveEditor.EditorType);
-			UpdateQuarterSelectorControl();
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
 			UpdateCollectionChangeButtons();
@@ -440,8 +424,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (ActiveSection == null) return;
 			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.ActiveEditor.EditorType);
-			quarterSelectorControl.Visible =
-				ActiveSection.ActiveEditor.EditorType == SectionEditorType.Schedule;
 			UpdateCollectionChangeButtons();
 			UpdateOutputStatus();
 		}
@@ -558,15 +540,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void OnSettingsControlsUpdated(object sender, EventArgs e)
 		{
 			retractableBarControl.AddButtons(settingsContainer.GetSettingsButtons());
-		}
-
-		private void OnQuarterChanged(object sender, EventArgs e)
-		{
-			var selectedQuarter = quarterSelectorControl.SelectedQuarter;
-			EditedContent.SelectedQuarter = selectedQuarter != null ? selectedQuarter.DateAnchor : (DateTime?)null;
-			foreach (var sectionTabControl in xtraTabControlSections.TabPages.OfType<SectionContainer>())
-				sectionTabControl.UpdateSpotsByQuarter(selectedQuarter);
-			SettingsNotSaved = true;
 		}
 
 		private void OnFlexFlightDatesWarningClick(object sender, EventArgs e)

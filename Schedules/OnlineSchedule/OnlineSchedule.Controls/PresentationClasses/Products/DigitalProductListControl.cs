@@ -39,11 +39,11 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			gridBandRate.Caption = ListManager.Instance.DefaultControlsConfiguration.ListColumnsPricingTitle ?? gridBandRate.Caption;
 			gridBandOptions.Caption = ListManager.Instance.DefaultControlsConfiguration.ListColumnsOptionsTitle ?? gridBandOptions.Caption;
 
-			repositoryItemComboBoxProductType.NullText = ListManager.Instance.DefaultControlsConfiguration.ListEditorsGroupTitle?? repositoryItemComboBoxProductType.NullText;
+			repositoryItemComboBoxProductType.NullText = ListManager.Instance.DefaultControlsConfiguration.ListEditorsGroupTitle ?? repositoryItemComboBoxProductType.NullText;
 			repositoryItemComboBoxProductName.NullText = ListManager.Instance.DefaultControlsConfiguration.ListEditorsProductTitle ?? repositoryItemComboBoxProductName.NullText;
 			repositoryItemComboBoxLocation.NullText = ListManager.Instance.DefaultControlsConfiguration.ListEditorsLocationTitle ?? repositoryItemComboBoxLocation.NullText;
-			repositoryItemHyperLinkEditTargetEnabled.Caption = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle)?
-				String.Format("<i>{0}</i>", ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle):
+			repositoryItemHyperLinkEditTargetEnabled.Caption = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle) ?
+				String.Format("<i>{0}</i>", ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle) :
 				repositoryItemHyperLinkEditTargetEnabled.Caption;
 			repositoryItemHyperLinkEditTargetDisabled.Caption = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle) ?
 				String.Format("<i>{0}</i>", ListManager.Instance.DefaultControlsConfiguration.ListEditorsTargetingTitle) :
@@ -227,7 +227,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				else
 				{
 					e.Cancel = true;
-					PopupMessageHelper.Instance.ShowWarning("You need to select Digital Inventory Group First");
+					PopupMessageHelper.Instance.ShowWarning(ListManager.Instance.DefaultControlsConfiguration.ListPopupGroupText ?? String.Format("You need to select {0} First", gridBandType));
 				}
 			}
 			else if (advBandedGridView.FocusedColumn == gridColumnSubCategory)

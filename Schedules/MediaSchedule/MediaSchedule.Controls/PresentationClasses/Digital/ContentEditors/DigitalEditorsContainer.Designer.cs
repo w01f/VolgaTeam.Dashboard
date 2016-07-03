@@ -37,6 +37,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.Digital.Settings.SettingsContainer();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlEditors)).BeginInit();
 			this.retractableBarControl.Content.SuspendLayout();
@@ -74,9 +75,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.xtraTabControlEditors.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlEditors.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlEditors.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlEditors.Location = new System.Drawing.Point(300, 40);
+			this.xtraTabControlEditors.Location = new System.Drawing.Point(300, 42);
 			this.xtraTabControlEditors.Name = "xtraTabControlEditors";
-			this.xtraTabControlEditors.Size = new System.Drawing.Size(564, 553);
+			this.xtraTabControlEditors.Size = new System.Drawing.Size(564, 551);
 			this.xtraTabControlEditors.TabIndex = 5;
 			// 
 			// retractableBarControl
@@ -123,26 +124,40 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			// pnTop
 			// 
 			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
+			this.pnTop.Controls.Add(this.labelControlFlightDates);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(300, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(564, 40);
+			this.pnTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+			this.pnTop.Size = new System.Drawing.Size(564, 42);
 			this.pnTop.TabIndex = 6;
 			// 
 			// labelControlScheduleInfo
 			// 
 			this.labelControlScheduleInfo.AllowHtmlString = true;
 			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AppearanceHovered.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.labelControlScheduleInfo.AppearanceHovered.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(5, 0);
 			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
 			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(564, 40);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(304, 42);
 			this.labelControlScheduleInfo.StyleController = this.styleController;
-			this.labelControlScheduleInfo.TabIndex = 52;
+			this.labelControlScheduleInfo.TabIndex = 126;
+			// 
+			// labelControlFlightDates
+			// 
+			this.labelControlFlightDates.AllowHtmlString = true;
+			this.labelControlFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlFlightDates.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlFlightDates.Dock = System.Windows.Forms.DockStyle.Right;
+			this.labelControlFlightDates.Location = new System.Drawing.Point(309, 0);
+			this.labelControlFlightDates.Name = "labelControlFlightDates";
+			this.labelControlFlightDates.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlFlightDates.Size = new System.Drawing.Size(250, 42);
+			this.labelControlFlightDates.StyleController = this.styleController;
+			this.labelControlFlightDates.TabIndex = 127;
 			// 
 			// DigitalEditorsContainer
 			// 
@@ -169,5 +184,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private SettingsContainer settingsContainer;
 		protected System.Windows.Forms.Panel pnTop;
 		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
+		protected DevExpress.XtraEditors.LabelControl labelControlFlightDates;
 	}
 }

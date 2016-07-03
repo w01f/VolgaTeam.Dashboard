@@ -29,30 +29,28 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
+			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
 			this.pnEmpty = new System.Windows.Forms.Panel();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.pictureBoxNoData = new System.Windows.Forms.PictureBox();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNoData)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnTop
 			// 
 			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
-			this.pnTop.Controls.Add(this.hyperLinkEditReset);
+			this.pnTop.Controls.Add(this.labelControlFlightDates);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(270, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(383, 35);
+			this.pnTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+			this.pnTop.Size = new System.Drawing.Size(383, 40);
 			this.pnTop.TabIndex = 1;
 			// 
 			// labelControlScheduleInfo
@@ -61,10 +59,10 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(5, 0);
 			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
 			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(257, 35);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(123, 40);
 			this.labelControlScheduleInfo.StyleController = this.styleController;
 			this.labelControlScheduleInfo.TabIndex = 126;
 			// 
@@ -83,29 +81,19 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// hyperLinkEditReset
+			// labelControlFlightDates
 			// 
-			this.hyperLinkEditReset.Dock = System.Windows.Forms.DockStyle.Right;
-			this.hyperLinkEditReset.EditValue = "Reset Defaults";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(257, 0);
-			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
-			this.hyperLinkEditReset.Properties.AllowFocused = false;
-			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
-			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.hyperLinkEditReset.Properties.AutoHeight = false;
-			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(126, 35);
-			toolTipItem1.Text = "Reset original default data";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.hyperLinkEditReset.SuperTip = superToolTip1;
-			this.hyperLinkEditReset.TabIndex = 104;
-			this.hyperLinkEditReset.Visible = false;
+			this.labelControlFlightDates.AllowHtmlString = true;
+			this.labelControlFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlFlightDates.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlFlightDates.Dock = System.Windows.Forms.DockStyle.Right;
+			this.labelControlFlightDates.Location = new System.Drawing.Point(128, 0);
+			this.labelControlFlightDates.Name = "labelControlFlightDates";
+			this.labelControlFlightDates.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlFlightDates.Size = new System.Drawing.Size(250, 40);
+			this.labelControlFlightDates.StyleController = this.styleController;
+			this.labelControlFlightDates.TabIndex = 127;
 			// 
 			// pnEmpty
 			// 
@@ -156,7 +144,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.pictureBoxNoData.Location = new System.Drawing.Point(322, 279);
 			this.pictureBoxNoData.Name = "pictureBoxNoData";
 			this.pictureBoxNoData.Size = new System.Drawing.Size(111, 183);
-			this.pictureBoxNoData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal;
 			this.pictureBoxNoData.TabIndex = 5;
 			this.pictureBoxNoData.TabStop = false;
 			this.pictureBoxNoData.Visible = false;
@@ -175,7 +162,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.Size = new System.Drawing.Size(653, 519);
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNoData)).EndInit();
 			this.ResumeLayout(false);
 
@@ -188,8 +174,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		private System.Windows.Forms.Panel pnEmpty;
 		protected System.Windows.Forms.Panel pnMain;
 		protected System.Windows.Forms.PictureBox pictureBoxNoData;
-		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		protected Asa.Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
 		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
-    }
+		protected DevExpress.XtraEditors.LabelControl labelControlFlightDates;
+	}
 }

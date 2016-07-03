@@ -123,6 +123,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 			UpdateGridData(true);
 			UpdateGridView();
+			UpdateSpotsByQuarter();
 		}
 
 		public void SaveData()
@@ -241,16 +242,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCPP, 1, secondColumnIndex);
 		}
 
-		public void UpdateSpotsByQuarter(Quarter selectedQuarter)
+		public void UpdateSpotsByQuarter()
 		{
-			if (_selectedQuarter == selectedQuarter)
+			if (_selectedQuarter!= null && _selectedQuarter.DateAnchor == _sectionContainer.SectionData.Parent.SelectedQuarter)
 				return;
-			_selectedQuarter = selectedQuarter;
-			UpdateSpotsByQuarter();
-		}
 
-		private void UpdateSpotsByQuarter()
-		{
+			_selectedQuarter = _sectionContainer.SectionData.ParentScheduleSettings.Quarters.FirstOrDefault(
+					q => q.DateAnchor == _sectionContainer.SectionData.Parent.SelectedQuarter);
 			if (_sectionContainer.SectionData.ShowSpots)
 			{
 				gridBandSpots.Visible = true;

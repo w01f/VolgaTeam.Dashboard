@@ -31,8 +31,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.pnTop = new System.Windows.Forms.Panel();
-			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.xtraTabControlContentEditors = new DevExpress.XtraTab.XtraTabControl();
 			this.pbNoRecords = new System.Windows.Forms.PictureBox();
@@ -53,7 +51,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
-			this.pnTop.SuspendLayout();
+			this.pnTop = new System.Windows.Forms.Panel();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlContentEditors)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).BeginInit();
@@ -65,31 +65,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			this.pnTotalSpots.SuspendLayout();
 			this.pnNoRecords.SuspendLayout();
 			this.contextMenuStrip.SuspendLayout();
+			this.pnTop.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// pnTop
-			// 
-			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
-			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTop.Location = new System.Drawing.Point(300, 0);
-			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(792, 40);
-			this.pnTop.TabIndex = 1;
-			// 
-			// labelControlScheduleInfo
-			// 
-			this.labelControlScheduleInfo.AllowHtmlString = true;
-			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AppearanceHovered.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.labelControlScheduleInfo.AppearanceHovered.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
-			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
-			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(792, 40);
-			this.labelControlScheduleInfo.StyleController = this.styleController;
-			this.labelControlScheduleInfo.TabIndex = 52;
 			// 
 			// styleController
 			// 
@@ -113,10 +90,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			this.xtraTabControlContentEditors.Appearance.Options.UseFont = true;
 			this.xtraTabControlContentEditors.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlContentEditors.AppearancePage.Header.Options.UseFont = true;
-			this.xtraTabControlContentEditors.AppearancePage.Header.TextOptions.HotkeyPrefix = HKeyPrefix.None;
+			this.xtraTabControlContentEditors.AppearancePage.Header.Options.UseTextOptions = true;
+			this.xtraTabControlContentEditors.AppearancePage.Header.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlContentEditors.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlContentEditors.AppearancePage.HeaderActive.Options.UseFont = true;
-			this.xtraTabControlContentEditors.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = HKeyPrefix.None;
+			this.xtraTabControlContentEditors.AppearancePage.HeaderActive.Options.UseTextOptions = true;
+			this.xtraTabControlContentEditors.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlContentEditors.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlContentEditors.AppearancePage.HeaderDisabled.Options.UseFont = true;
 			this.xtraTabControlContentEditors.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -188,8 +167,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			// pnData
 			// 
 			this.pnData.Controls.Add(this.xtraTabControlContentEditors);
-			this.pnData.Controls.Add(this.pnBottom);
 			this.pnData.Controls.Add(this.pnTop);
+			this.pnData.Controls.Add(this.pnBottom);
 			this.pnData.Controls.Add(this.retractableBarControl);
 			this.pnData.Location = new System.Drawing.Point(3, 3);
 			this.pnData.Name = "pnData";
@@ -316,8 +295,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			// contextMenuStrip
 			// 
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.toolStripMenuItemRename,
-			this.toolStripMenuItemClone});
+            this.toolStripMenuItemRename,
+            this.toolStripMenuItemClone});
 			this.contextMenuStrip.Name = "contextMenuStripSnapshot";
 			this.contextMenuStrip.Size = new System.Drawing.Size(118, 48);
 			// 
@@ -335,16 +314,53 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			this.toolStripMenuItemClone.Text = "Clone";
 			this.toolStripMenuItemClone.Click += new System.EventHandler(this.OnCloneOptionSetClick);
 			// 
-			// OptionsContainer
+			// pnTop
+			// 
+			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
+			this.pnTop.Controls.Add(this.labelControlFlightDates);
+			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnTop.Location = new System.Drawing.Point(300, 0);
+			this.pnTop.Name = "pnTop";
+			this.pnTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+			this.pnTop.Size = new System.Drawing.Size(792, 40);
+			this.pnTop.TabIndex = 7;
+			// 
+			// labelControlScheduleInfo
+			// 
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(5, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(532, 40);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 126;
+			// 
+			// labelControlFlightDates
+			// 
+			this.labelControlFlightDates.AllowHtmlString = true;
+			this.labelControlFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlFlightDates.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlFlightDates.Dock = System.Windows.Forms.DockStyle.Right;
+			this.labelControlFlightDates.Location = new System.Drawing.Point(537, 0);
+			this.labelControlFlightDates.Name = "labelControlFlightDates";
+			this.labelControlFlightDates.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlFlightDates.Size = new System.Drawing.Size(250, 40);
+			this.labelControlFlightDates.StyleController = this.styleController;
+			this.labelControlFlightDates.TabIndex = 127;
+			// 
+			// OptionsContentEditorsContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnNoRecords);
 			this.Controls.Add(this.pnData);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "OptionsContainer";
+			this.Name = "OptionsContentEditorsContainer";
 			this.Size = new System.Drawing.Size(1098, 593);
-			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlContentEditors)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).EndInit();
@@ -356,16 +372,14 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			this.pnTotalSpots.ResumeLayout(false);
 			this.pnNoRecords.ResumeLayout(false);
 			this.contextMenuStrip.ResumeLayout(false);
+			this.pnTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		protected System.Windows.Forms.Panel pnTop;
 		private DevExpress.XtraEditors.StyleController styleController;
 		protected Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
-		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 		private System.Windows.Forms.PictureBox pbNoRecords;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlContentEditors;
 		private System.Windows.Forms.Panel pnData;
@@ -384,5 +398,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private System.Windows.Forms.Label laTotalSpotsValue;
 		private System.Windows.Forms.Label laTotalSpotsTitle;
 		private Settings.SettingsContainer settingsContainer;
+		protected System.Windows.Forms.Panel pnTop;
+		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
+		protected DevExpress.XtraEditors.LabelControl labelControlFlightDates;
 	}
 }

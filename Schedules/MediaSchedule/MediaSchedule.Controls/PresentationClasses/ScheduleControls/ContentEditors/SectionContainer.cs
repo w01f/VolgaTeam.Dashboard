@@ -142,8 +142,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					_sectionControl.UpdateGridView();
 					if (args.UpdateGridColums)
 						_sectionControl.UpdateGridData(true);
+					_sectionControl.UpdateSpotsByQuarter();
 					UpdateSummaryState();
 					UpdateWarnings();
+					break;
+				case ScheduleSettingsType.Quarters:
+					_sectionControl.UpdateSpotsByQuarter();
 					break;
 				case ScheduleSettingsType.DigitalInfo:
 					_digitalInfoControl.UpdateGridView();
@@ -225,11 +229,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Schedule Management
-		public void UpdateSpotsByQuarter(Quarter selectedQuarter)
-		{
-			_sectionControl.UpdateSpotsByQuarter(selectedQuarter);
-		}
-
 		public void AddItem()
 		{
 			ActiveItemCollection?.AddItem();

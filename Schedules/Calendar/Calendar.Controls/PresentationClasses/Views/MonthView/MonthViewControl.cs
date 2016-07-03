@@ -69,7 +69,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				var calendarMonth = Calendar.CalendarContent.Months.FirstOrDefault(x => x.Date.Equals(month.Key));
 				if (calendarMonth == null) continue;
 				month.Value.RefreshData(Calendar.GetColorSchema(calendarMonth.OutputData.SlideColor));
-				Calendar.UpdateOutputFunctions();
+				Calendar.UpdateDataManagementAndOutputFunctions();
 			}
 		}
 
@@ -119,13 +119,13 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 									Calendar.SettingsNotSaved = true;
 									Calendar.CalendarView.RefreshData();
 									Calendar.SlideInfo.LoadData();
-									Calendar.UpdateOutputFunctions();
+									Calendar.UpdateDataManagementAndOutputFunctions();
 								};
 								dayControl.DataChanged += (sender, e) =>
 								{
 									var day = sender as DayControl;
 									if (day == null) return;
-									Calendar.UpdateOutputFunctions();
+									Calendar.UpdateDataManagementAndOutputFunctions();
 									Calendar.SettingsNotSaved = true;
 								};
 
@@ -141,7 +141,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 									var noteDateRange = Calendar.CalendarContent.CalculateDateRange(SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
 									AddNote(noteDateRange);
 									RefreshData();
-									Calendar.UpdateOutputFunctions();
+									Calendar.UpdateDataManagementAndOutputFunctions();
 								};
 								dayControl.NotePasted += (sender, e) =>
 								{
@@ -176,7 +176,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 									}
 									Calendar.SettingsNotSaved = true;
 									Calendar.CalendarView.RefreshData();
-									Calendar.UpdateOutputFunctions();
+									Calendar.UpdateDataManagementAndOutputFunctions();
 								};
 
 								SelectionManager.SelectionStateResponse += (sender, e) => dayControl.UpdateNoteMenuAccordingSelection(SelectionManager.SelectedDays.OrderBy(x => x.Date).ToList());

@@ -175,6 +175,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		private void OnSettingsChanged(Object sender, SettingsChangedEventArgs e)
 		{
 			RaiseSettingsChanged(e);
+			if(e.ChangedSettingsType == ScheduleSettingsType.Columns)
+				_settingsControls.OfType<SectionTotalsSettingsControl>().First().UpdateQuarterState();
 		}
 		#endregion
 

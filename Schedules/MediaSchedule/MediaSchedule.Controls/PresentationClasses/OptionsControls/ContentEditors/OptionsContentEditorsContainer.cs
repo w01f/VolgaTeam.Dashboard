@@ -104,7 +104,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				laTotalSpotsValue.Font = font;
 				laAvgRateValue.Font = font;
 				laTotalCostValue.Font = font;
-				labelControlScheduleInfo.Font = new Font(labelControlScheduleInfo.Font.FontFamily, labelControlScheduleInfo.Font.Size - 2, labelControlScheduleInfo.Font.Style);
 			}
 		}
 
@@ -122,11 +121,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				.GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options)
 				.Clone<OptionsContent, OptionsContent>();
 
-			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
-				ScheduleSettings.BusinessName,
+			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
+
+			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"),
-				Environment.NewLine);
+				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			settingsContainer.LoadContent(EditedContent);
 

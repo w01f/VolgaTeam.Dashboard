@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using DevComponents.DotNetBar;
-using Padding = System.Windows.Forms.Padding;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
 	public partial class QuarterSelectorControl : UserControl
 	{
 		private const Int32 ButtonWidth = 60;
+		private const Int32 ButtonHeight = 30;
 		private const Int32 ButtonPadding = 5;
 
 		private readonly List<ButtonX> _quarterButtons = new List<ButtonX>();
@@ -25,34 +24,48 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void InitControls(IEnumerable<Quarter> quarters, Quarter selectedQuarter)
 		{
-			Visible = quarters.Count() > 1;
 			SelectedQuarter = selectedQuarter;
 			Controls.Clear();
 			_quarterButtons.Clear();
 			foreach (var quarter in quarters)
 			{
-				var panel = new Panel
-				{
-					Dock = DockStyle.Right,
-					Width = ButtonWidth,
-					Padding = new Padding(ButtonPadding)
-				};
 				var button = new ButtonX
 				{
-					Dock = DockStyle.Fill,
 					ColorTable = eButtonColor.OrangeWithBackground,
 					Style = eDotNetBarStyle.StyleManagerControlled,
 					Text = quarter.ToString(),
 					Cursor = Cursors.Hand,
 					Tag = quarter,
-					Checked = quarter == SelectedQuarter
+					Checked = quarter == SelectedQuarter,
+					Height = ButtonHeight,
+					Width = ButtonWidth
 				};
 				button.Click += OnQuarterClick;
 				_quarterButtons.Add(button);
-				panel.Controls.Add(button);
-				Controls.Add(panel);
+				Controls.Add(button);
 			}
-			Width = Controls.Count * (ButtonWidth + (ButtonPadding * 2));
+			ResizeButtons();
+		}
+
+		private void ResizeButtons()
+		{
+			var areaWidth = Width;
+
+			var topPosition = ButtonPadding;
+			var leftPosition = 0;
+
+			foreach (var quarterButton in _quarterButtons)
+			{
+				quarterButton.Top = topPosition;
+				quarterButton.Left = leftPosition;
+
+				leftPosition += ButtonWidth + ButtonPadding;
+				if (leftPosition >= areaWidth)
+				{
+					leftPosition = 0;
+					topPosition += (ButtonHeight + ButtonPadding);
+				}
+			}
 		}
 
 		private void OnQuarterClick(object sender, EventArgs e)
@@ -69,8 +82,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				button.Checked = true;
 				SelectedQuarter = (Quarter)button.Tag;
 			}
-			if (QuarterSelected != null)
-				QuarterSelected(this, EventArgs.Empty);
+			QuarterSelected?.Invoke(this, EventArgs.Empty);
+		}
+
+		private void QuarterSelectorControl_Resize(object sender, EventArgs e)
+		{
+			ResizeButtons();
 		}
 	}
 }

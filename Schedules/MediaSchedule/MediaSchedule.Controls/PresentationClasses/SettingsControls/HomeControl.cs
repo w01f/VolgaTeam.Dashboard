@@ -57,8 +57,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			Controller.Instance.HomeBusinessName.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeDecisionMaker.EditValueChanged += OnSchedulePropertyValueChanged;
-			Controller.Instance.HomeFlightDatesStart.Click += OnFlightDatesEditClick;
-			Controller.Instance.HomeFlightDatesEnd.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeFlightDatesStartLogo.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeFlightDatesStartTitle.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeFlightDatesStartValue.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeFlightDatesEndLogo.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeFlightDatesEndTitle.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeFlightDatesEndValue.Click += OnFlightDatesEditClick;
 
 			Controller.Instance.HomeBusinessName.EnableSelectAll();
 			Controller.Instance.HomeDecisionMaker.EnableSelectAll();
@@ -328,8 +332,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		private void UpdateFlightDates()
 		{
-			Controller.Instance.HomeFlightDatesStart.Text = EditedSettings.UserFlightDateStart?.ToString("M/d/yy  ") ?? "Select  ";
-			Controller.Instance.HomeFlightDatesEnd.Text = EditedSettings.UserFlightDateEnd?.ToString("M/d/yy  ") ?? "Select  ";
+			Controller.Instance.HomeFlightDatesStartValue.Text = EditedSettings.UserFlightDateStart?.ToString("M/d/yy  ") ?? "Select  ";
+			Controller.Instance.HomeFlightDatesEndValue.Text = EditedSettings.UserFlightDateEnd?.ToString("M/d/yy  ") ?? "Select  ";
 			Controller.Instance.HomeFlightDates.RecalcLayout();
 			Controller.Instance.HomePanel.PerformLayout();
 		}

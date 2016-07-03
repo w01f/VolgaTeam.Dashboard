@@ -22,6 +22,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override ButtonItem PasteButton => Controller.Instance.Calendar2Paste;
 
 		public override ButtonItem CloneButton => Controller.Instance.Calendar2Clone;
+		public override ButtonItem ResetButton => Controller.Instance.Calendar2Reset;
 
 		#region BasePartitionEditControl Override
 		protected override bool IsContentChanged => EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
@@ -56,7 +57,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		#endregion
 
 		#region Output Stuff
-		public override void UpdateOutputFunctions()
+		public override void UpdateDataManagementAndOutputFunctions()
 		{
 			var enable = IsOutputEnabled;
 
@@ -66,10 +67,12 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			pnMain.Visible = true;
 			pictureBoxNoData.Visible = false;
 
-			Controller.Instance.Calendar1PowerPoint.Enabled = enable;
-			Controller.Instance.Calendar1Pdf.Enabled = enable;
-			Controller.Instance.Calendar1Preview.Enabled = enable;
-			Controller.Instance.Calendar1Email.Enabled = enable;
+			Controller.Instance.Calendar2Reset.Enabled = enable;
+
+			Controller.Instance.Calendar2PowerPoint.Enabled = enable;
+			Controller.Instance.Calendar2Pdf.Enabled = enable;
+			Controller.Instance.Calendar2Preview.Enabled = enable;
+			Controller.Instance.Calendar2Email.Enabled = enable;
 		}
 		#endregion
 	}

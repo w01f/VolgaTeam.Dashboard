@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.laNumber = new System.Windows.Forms.Label();
 			this.panelExMain = new DevComponents.DotNetBar.PanelEx();
 			this.textEditItem = new DevExpress.XtraEditors.TextEdit();
@@ -62,9 +62,9 @@
 			this.laNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.laNumber.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laNumber.Location = new System.Drawing.Point(19, 43);
+			this.laNumber.Location = new System.Drawing.Point(19, 29);
 			this.laNumber.Name = "laNumber";
-			this.laNumber.Size = new System.Drawing.Size(32, 100);
+			this.laNumber.Size = new System.Drawing.Size(32, 105);
 			this.laNumber.TabIndex = 27;
 			this.laNumber.Text = "1";
 			this.laNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -87,9 +87,9 @@
 			this.panelExMain.Controls.Add(this.spinEditMonthly);
 			this.panelExMain.Controls.Add(this.spinEditTotal);
 			this.panelExMain.DisabledBackColor = System.Drawing.Color.Empty;
-			this.panelExMain.Location = new System.Drawing.Point(95, 43);
+			this.panelExMain.Location = new System.Drawing.Point(95, 29);
 			this.panelExMain.Name = "panelExMain";
-			this.panelExMain.Size = new System.Drawing.Size(383, 100);
+			this.panelExMain.Size = new System.Drawing.Size(383, 105);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
 			this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
 			this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.LightGray;
@@ -180,7 +180,7 @@
 			this.memoEditDetails.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.memoEditDetails.Properties.Appearance.Options.UseFont = true;
 			this.memoEditDetails.Properties.NullText = "Brief Overview...";
-			this.memoEditDetails.Size = new System.Drawing.Size(56, 85);
+			this.memoEditDetails.Size = new System.Drawing.Size(56, 90);
 			this.memoEditDetails.TabIndex = 3;
 			this.memoEditDetails.EditValueChanged += new System.EventHandler(this.memoEditDetails_EditValueChanged);
 			// 
@@ -197,7 +197,7 @@
 			this.spinEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditMonthly.Properties.Appearance.Options.UseFont = true;
 			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.spinEditMonthly.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditMonthly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthly.Properties.EditFormat.FormatString = "$#,###.00";
@@ -219,7 +219,7 @@
 			this.spinEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditTotal.Properties.Appearance.Options.UseFont = true;
 			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.spinEditTotal.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotal.Properties.EditFormat.FormatString = "$#,###.00";
@@ -233,7 +233,7 @@
 			this.buttonXUp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXUp.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXUp.Image = global::Asa.Media.Controls.Properties.Resources.SummaryItemUp;
-			this.buttonXUp.Location = new System.Drawing.Point(57, 43);
+			this.buttonXUp.Location = new System.Drawing.Point(57, 29);
 			this.buttonXUp.Name = "buttonXUp";
 			this.buttonXUp.Size = new System.Drawing.Size(32, 32);
 			this.buttonXUp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -247,7 +247,7 @@
 			this.buttonXDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXDown.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDown.Image = global::Asa.Media.Controls.Properties.Resources.SummaryItemDown;
-			this.buttonXDown.Location = new System.Drawing.Point(57, 111);
+			this.buttonXDown.Location = new System.Drawing.Point(57, 102);
 			this.buttonXDown.Name = "buttonXDown";
 			this.buttonXDown.Size = new System.Drawing.Size(32, 32);
 			this.buttonXDown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -261,7 +261,7 @@
 			this.buttonXReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXReset.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXReset.Image = global::Asa.Media.Controls.Properties.Resources.SummaryItemReset;
-			this.buttonXReset.Location = new System.Drawing.Point(545, 43);
+			this.buttonXReset.Location = new System.Drawing.Point(545, 29);
 			this.buttonXReset.Name = "buttonXReset";
 			this.buttonXReset.Size = new System.Drawing.Size(32, 32);
 			this.buttonXReset.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -275,7 +275,7 @@
 			this.buttonXImportDigital.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXImportDigital.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXImportDigital.Image = global::Asa.Media.Controls.Properties.Resources.SummaryItemImportDigital;
-			this.buttonXImportDigital.Location = new System.Drawing.Point(492, 111);
+			this.buttonXImportDigital.Location = new System.Drawing.Point(492, 102);
 			this.buttonXImportDigital.Name = "buttonXImportDigital";
 			this.buttonXImportDigital.Size = new System.Drawing.Size(32, 32);
 			this.buttonXImportDigital.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -289,7 +289,7 @@
 			this.buttonXDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDelete.Image = global::Asa.Media.Controls.Properties.Resources.SummaryItemDelete;
-			this.buttonXDelete.Location = new System.Drawing.Point(545, 111);
+			this.buttonXDelete.Location = new System.Drawing.Point(545, 102);
 			this.buttonXDelete.Name = "buttonXDelete";
 			this.buttonXDelete.Size = new System.Drawing.Size(32, 32);
 			this.buttonXDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -303,7 +303,7 @@
 			this.buttonXImportMedia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXImportMedia.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXImportMedia.Image = global::Asa.Media.Controls.Properties.Resources.SummaryItemImportMedia;
-			this.buttonXImportMedia.Location = new System.Drawing.Point(492, 43);
+			this.buttonXImportMedia.Location = new System.Drawing.Point(492, 29);
 			this.buttonXImportMedia.Name = "buttonXImportMedia";
 			this.buttonXImportMedia.Size = new System.Drawing.Size(32, 32);
 			this.buttonXImportMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -327,7 +327,7 @@
 			this.Controls.Add(this.panelExMain);
 			this.Controls.Add(this.laNumber);
 			this.Name = "SectionSummaryProductItemControl";
-			this.Size = new System.Drawing.Size(595, 155);
+			this.Size = new System.Drawing.Size(595, 160);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).EndInit();

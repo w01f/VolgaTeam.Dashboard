@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Online.Configuration;
 using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Common.GUI.RetractableBar;
@@ -33,24 +34,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
 
-			buttonXDimensions.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsDimensionTitle ?? buttonXDimensions.Text;
-			buttonXRichMedia.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsRichMediaTitle ?? buttonXRichMedia.Text;
-			buttonXStrategy.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsStrategyTitle ?? buttonXStrategy.Text;
-			buttonXLocation.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsLocationTitle ?? buttonXLocation.Text;
-			buttonXTargeting.Text = ListManager.Instance.DefaultControlsConfiguration.ListSettingsTargetingTitle ?? buttonXTargeting.Text;
+			buttonXDimensions.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.ListSettingsDimensionTitle ?? buttonXDimensions.Text);
+			buttonXRichMedia.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.ListSettingsRichMediaTitle ?? buttonXRichMedia.Text);
+			buttonXStrategy.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.ListSettingsStrategyTitle ?? buttonXStrategy.Text);
+			buttonXLocation.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.ListSettingsLocationTitle ?? buttonXLocation.Text);
+			buttonXTargeting.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.ListSettingsTargetingTitle ?? buttonXTargeting.Text);
 
 			if (CreateGraphics().DpiX > 96)
 			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				font = new Font(buttonXDimensions.Font.FontFamily, buttonXDimensions.Font.Size - 2, buttonXDimensions.Font.Style);
+				var font = new Font(buttonXDimensions.Font.FontFamily, buttonXDimensions.Font.Size - 2, buttonXDimensions.Font.Style);
 				buttonXDimensions.Font = font;
 				buttonXRichMedia.Font = font;
 				buttonXStrategy.Font = font;

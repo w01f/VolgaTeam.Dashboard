@@ -23,7 +23,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		void AssignCloseActiveEditorsonOutSideClick(Control control);
 		ColorSchema GetColorSchema(string colorName);
-		void UpdateOutputFunctions();
+		void UpdateDataManagementAndOutputFunctions();
 		void OpenHelp(string key);
 		void Splash(bool show);
 		void SaveSettings();

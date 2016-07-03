@@ -318,7 +318,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				var category = PackageSettings.ShowCategory ? focussedRecord.Category : null;
 				var subCategory = PackageSettings.ShowGroup ? focussedRecord.SubCategory : null;
 				repositoryItemComboBoxProduct.Items.Clear();
-				repositoryItemComboBoxProduct.Items.AddRange(ListManager.Instance.ProductSources.Where(x => x.Category!= null && (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).Select(x => x.Name).Distinct().ToArray());
+				repositoryItemComboBoxProduct.Items.AddRange(ListManager.Instance.ProductSources.Where(x => x.Category != null && (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).Select(x => x.Name).Distinct().ToArray());
 			}
 			else if (advBandedGridView.FocusedColumn == bandedGridColumnGroup)
 			{
@@ -480,7 +480,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public IList<IDigitalOutputItem> GetOutputItems()
 		{
-			return new List<IDigitalOutputItem> { this };
+			return _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
+				new List<IDigitalOutputItem> { this }:
+				new List<IDigitalOutputItem>();
 		}
 
 		public void GenerateOutput()

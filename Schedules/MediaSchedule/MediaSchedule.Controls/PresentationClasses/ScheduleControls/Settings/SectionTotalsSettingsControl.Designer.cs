@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.buttonXDiscount = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXTotalGRP = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXNetRate = new DevComponents.DotNetBar.ButtonX();
@@ -36,6 +37,10 @@
 			this.buttonXTotalSpots = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXAvgRate = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXTotalPeriods = new DevComponents.DotNetBar.ButtonX();
+			this.quarterSelectorControl = new Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors.QuarterSelectorControl();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.labelControlQuarterSelectorTitle = new DevExpress.XtraEditors.LabelControl();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonXDiscount
@@ -162,10 +167,47 @@
 			this.buttonXTotalPeriods.TextColor = System.Drawing.Color.Black;
 			this.buttonXTotalPeriods.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
+			// quarterSelectorControl
+			// 
+			this.quarterSelectorControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.quarterSelectorControl.BackColor = System.Drawing.Color.Transparent;
+			this.quarterSelectorControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.quarterSelectorControl.Location = new System.Drawing.Point(20, 280);
+			this.quarterSelectorControl.Name = "quarterSelectorControl";
+			this.quarterSelectorControl.Size = new System.Drawing.Size(286, 288);
+			this.quarterSelectorControl.TabIndex = 72;
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
+			// labelControlQuarterSelectorTitle
+			// 
+			this.labelControlQuarterSelectorTitle.AllowHtmlString = true;
+			this.labelControlQuarterSelectorTitle.Location = new System.Drawing.Point(20, 258);
+			this.labelControlQuarterSelectorTitle.Name = "labelControlQuarterSelectorTitle";
+			this.labelControlQuarterSelectorTitle.Size = new System.Drawing.Size(128, 16);
+			this.labelControlQuarterSelectorTitle.StyleController = this.styleController;
+			this.labelControlQuarterSelectorTitle.TabIndex = 73;
+			this.labelControlQuarterSelectorTitle.Text = "<color=gray><i>Toggle-View Quarters:</i></color>";
+			// 
 			// SectionTotalsSettingsControl
 			// 
-			this.Appearance.PageClient.BackColor = System.Drawing.Color.White;
-			this.Appearance.PageClient.Options.UseBackColor = true;
+			this.Controls.Add(this.labelControlQuarterSelectorTitle);
+			this.Controls.Add(this.quarterSelectorControl);
 			this.Controls.Add(this.buttonXDiscount);
 			this.Controls.Add(this.buttonXTotalGRP);
 			this.Controls.Add(this.buttonXNetRate);
@@ -174,8 +216,11 @@
 			this.Controls.Add(this.buttonXTotalSpots);
 			this.Controls.Add(this.buttonXAvgRate);
 			this.Controls.Add(this.buttonXTotalPeriods);
+			this.Name = "SectionTotalsSettingsControl";
 			this.Size = new System.Drawing.Size(325, 571);
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -189,5 +234,8 @@
 		private DevComponents.DotNetBar.ButtonX buttonXTotalSpots;
 		private DevComponents.DotNetBar.ButtonX buttonXAvgRate;
 		private DevComponents.DotNetBar.ButtonX buttonXTotalPeriods;
+		private ContentEditors.QuarterSelectorControl quarterSelectorControl;
+		private DevExpress.XtraEditors.StyleController styleController;
+		private DevExpress.XtraEditors.LabelControl labelControlQuarterSelectorTitle;
 	}
 }

@@ -140,6 +140,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public void PopulateReplacementsList()
 		{
+			if (_needToReload)
+				LoadData();
+
 			var recordsCount = _summaryControls.Count;
 			OutputReplacementsLists = new List<Dictionary<string, string>>();
 			for (var i = 0; i < recordsCount; i += RowsPerSlide)
@@ -185,7 +188,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public IList<IDigitalOutputItem> GetOutputItems()
 		{
-			return new List<IDigitalOutputItem> { this };
+			return _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
+				new List<IDigitalOutputItem> { this } :
+				new List<IDigitalOutputItem>();
 		}
 
 		public void GenerateOutput()
@@ -211,6 +216,5 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			return previewGroup;
 		}
 		#endregion
-
 	}
 }

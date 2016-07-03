@@ -43,8 +43,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override void InitControl()
 		{
 			base.InitControl();
-			hyperLinkEditReset.Visible = true;
-			hyperLinkEditReset.OpenLink += OnReset;
+			ResetButton.Click += OnCalendarResetClick;
 		}
 
 		protected override void UpdateEditedContet()
@@ -98,7 +97,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		#endregion
 
 		#region Event Handlers
-		protected void OnReset(object sender, EventArgs e)
+		protected void OnCalendarResetClick(object sender, EventArgs e)
 		{
 			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you SURE you want to RESET your calendar to the default Information?") != DialogResult.Yes) return;
 			Reset();

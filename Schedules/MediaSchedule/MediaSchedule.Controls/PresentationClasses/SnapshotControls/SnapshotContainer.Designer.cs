@@ -38,8 +38,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pbNoSnapshots = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlSnapshots = new DevExpress.XtraTab.XtraTabControl();
 			this.pnSnapshots = new System.Windows.Forms.Panel();
-			this.pnTop = new System.Windows.Forms.Panel();
-			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnTotalCost = new System.Windows.Forms.Panel();
@@ -55,6 +53,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageOptionsInfo = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsInfo = new System.Windows.Forms.Panel();
+			this.pnApplyForAll = new System.Windows.Forms.Panel();
+			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.pnSnapshotInfo = new System.Windows.Forms.Panel();
 			this.buttonXSnapshotStation = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSnapshotAvgRate = new DevComponents.DotNetBar.ButtonX();
@@ -98,12 +98,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnNoSnapshots = new System.Windows.Forms.Panel();
-			this.pnApplyForAll = new System.Windows.Forms.Panel();
-			this.checkEditApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+			this.pnTop = new System.Windows.Forms.Panel();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).BeginInit();
 			this.pnSnapshots.SuspendLayout();
-			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnBottom.SuspendLayout();
 			this.pnTotalCost.SuspendLayout();
@@ -114,6 +114,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageOptionsInfo.SuspendLayout();
 			this.pnOptionsInfo.SuspendLayout();
+			this.pnApplyForAll.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
 			this.pnSnapshotInfo.SuspendLayout();
 			this.pnSummaryInfo.SuspendLayout();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
@@ -127,8 +129,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).BeginInit();
 			this.contextMenuStripSnapshot.SuspendLayout();
 			this.pnNoSnapshots.SuspendLayout();
-			this.pnApplyForAll.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).BeginInit();
+			this.pnTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pbNoSnapshots
@@ -148,10 +149,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.xtraTabControlSnapshots.Appearance.Options.UseFont = true;
 			this.xtraTabControlSnapshots.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlSnapshots.AppearancePage.Header.Options.UseFont = true;
-			this.xtraTabControlSnapshots.AppearancePage.Header.TextOptions.HotkeyPrefix=HKeyPrefix.None;
+			this.xtraTabControlSnapshots.AppearancePage.Header.Options.UseTextOptions = true;
+			this.xtraTabControlSnapshots.AppearancePage.Header.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.Options.UseFont = true;
-			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = HKeyPrefix.None;
+			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.Options.UseTextOptions = true;
+			this.xtraTabControlSnapshots.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControlSnapshots.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlSnapshots.AppearancePage.HeaderDisabled.Options.UseFont = true;
 			this.xtraTabControlSnapshots.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -178,28 +181,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnSnapshots.Name = "pnSnapshots";
 			this.pnSnapshots.Size = new System.Drawing.Size(895, 624);
 			this.pnSnapshots.TabIndex = 2;
-			// 
-			// pnTop
-			// 
-			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
-			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTop.Location = new System.Drawing.Point(300, 0);
-			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(595, 40);
-			this.pnTop.TabIndex = 6;
-			// 
-			// labelControlScheduleInfo
-			// 
-			this.labelControlScheduleInfo.AllowHtmlString = true;
-			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(0, 0);
-			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
-			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(252, 40);
-			this.labelControlScheduleInfo.StyleController = this.styleController;
-			this.labelControlScheduleInfo.TabIndex = 125;
 			// 
 			// styleController
 			// 
@@ -386,7 +367,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			// 
 			this.xtraTabPageOptionsInfo.Controls.Add(this.pnOptionsInfo);
 			this.xtraTabPageOptionsInfo.Name = "xtraTabPageOptionsInfo";
-			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(290, 499);
+			this.xtraTabPageOptionsInfo.Size = new System.Drawing.Size(294, 502);
 			this.xtraTabPageOptionsInfo.Text = "Info";
 			// 
 			// pnOptionsInfo
@@ -398,8 +379,42 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnOptionsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsInfo.Name = "pnOptionsInfo";
-			this.pnOptionsInfo.Size = new System.Drawing.Size(290, 499);
+			this.pnOptionsInfo.Size = new System.Drawing.Size(294, 502);
 			this.pnOptionsInfo.TabIndex = 1;
+			// 
+			// pnApplyForAll
+			// 
+			this.pnApplyForAll.Controls.Add(this.checkEditApplyForAll);
+			this.pnApplyForAll.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnApplyForAll.Location = new System.Drawing.Point(0, 472);
+			this.pnApplyForAll.Name = "pnApplyForAll";
+			this.pnApplyForAll.Size = new System.Drawing.Size(294, 30);
+			this.pnApplyForAll.TabIndex = 130;
+			// 
+			// checkEditApplyForAll
+			// 
+			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditApplyForAll.Location = new System.Drawing.Point(20, 3);
+			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
+			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditApplyForAll.Properties.Caption = "Use these Settings for all Schedules";
+			this.checkEditApplyForAll.Size = new System.Drawing.Size(253, 20);
+			this.checkEditApplyForAll.StyleController = this.styleController;
+			this.checkEditApplyForAll.TabIndex = 128;
+			this.checkEditApplyForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
 			// 
 			// pnSnapshotInfo
 			// 
@@ -418,7 +433,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnSnapshotInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSnapshotInfo.Location = new System.Drawing.Point(0, 276);
 			this.pnSnapshotInfo.Name = "pnSnapshotInfo";
-			this.pnSnapshotInfo.Size = new System.Drawing.Size(290, 337);
+			this.pnSnapshotInfo.Size = new System.Drawing.Size(294, 337);
 			this.pnSnapshotInfo.TabIndex = 121;
 			// 
 			// buttonXSnapshotStation
@@ -443,7 +458,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSnapshotAvgRate.AutoCheckOnClick = true;
 			this.buttonXSnapshotAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSnapshotAvgRate.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSnapshotAvgRate.Location = new System.Drawing.Point(159, 239);
+			this.buttonXSnapshotAvgRate.Location = new System.Drawing.Point(163, 239);
 			this.buttonXSnapshotAvgRate.Name = "buttonXSnapshotAvgRate";
 			this.buttonXSnapshotAvgRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotAvgRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -489,7 +504,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSnapshotLength.AutoCheckOnClick = true;
 			this.buttonXSnapshotLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSnapshotLength.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSnapshotLength.Location = new System.Drawing.Point(159, 15);
+			this.buttonXSnapshotLength.Location = new System.Drawing.Point(163, 15);
 			this.buttonXSnapshotLength.Name = "buttonXSnapshotLength";
 			this.buttonXSnapshotLength.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -505,7 +520,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSnapshotTotalRow.AutoCheckOnClick = true;
 			this.buttonXSnapshotTotalRow.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSnapshotTotalRow.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSnapshotTotalRow.Location = new System.Drawing.Point(159, 295);
+			this.buttonXSnapshotTotalRow.Location = new System.Drawing.Point(163, 295);
 			this.buttonXSnapshotTotalRow.Name = "buttonXSnapshotTotalRow";
 			this.buttonXSnapshotTotalRow.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotTotalRow.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -521,7 +536,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSnapshotDaypart.AutoCheckOnClick = true;
 			this.buttonXSnapshotDaypart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSnapshotDaypart.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSnapshotDaypart.Location = new System.Drawing.Point(159, 71);
+			this.buttonXSnapshotDaypart.Location = new System.Drawing.Point(163, 71);
 			this.buttonXSnapshotDaypart.Name = "buttonXSnapshotDaypart";
 			this.buttonXSnapshotDaypart.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotDaypart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -537,7 +552,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSnapshotRate.AutoCheckOnClick = true;
 			this.buttonXSnapshotRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSnapshotRate.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSnapshotRate.Location = new System.Drawing.Point(159, 127);
+			this.buttonXSnapshotRate.Location = new System.Drawing.Point(163, 127);
 			this.buttonXSnapshotRate.Name = "buttonXSnapshotRate";
 			this.buttonXSnapshotRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -553,7 +568,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSnapshotLogo.AutoCheckOnClick = true;
 			this.buttonXSnapshotLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSnapshotLogo.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSnapshotLogo.Location = new System.Drawing.Point(159, 183);
+			this.buttonXSnapshotLogo.Location = new System.Drawing.Point(163, 183);
 			this.buttonXSnapshotLogo.Name = "buttonXSnapshotLogo";
 			this.buttonXSnapshotLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSnapshotLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -622,7 +637,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnSummaryInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSummaryInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnSummaryInfo.Name = "pnSummaryInfo";
-			this.pnSummaryInfo.Size = new System.Drawing.Size(290, 276);
+			this.pnSummaryInfo.Size = new System.Drawing.Size(294, 276);
 			this.pnSummaryInfo.TabIndex = 120;
 			// 
 			// buttonXSummaryLineId
@@ -662,7 +677,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSummaryLogo.AutoCheckOnClick = true;
 			this.buttonXSummaryLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryLogo.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryLogo.Location = new System.Drawing.Point(159, 15);
+			this.buttonXSummaryLogo.Location = new System.Drawing.Point(163, 15);
 			this.buttonXSummaryLogo.Name = "buttonXSummaryLogo";
 			this.buttonXSummaryLogo.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -708,7 +723,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSummaryTotalCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTotalCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(159, 183);
+			this.buttonXSummaryTotalCost.Location = new System.Drawing.Point(163, 183);
 			this.buttonXSummaryTotalCost.Name = "buttonXSummaryTotalCost";
 			this.buttonXSummaryTotalCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -724,7 +739,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSummaryCost.AutoCheckOnClick = true;
 			this.buttonXSummaryCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryCost.Location = new System.Drawing.Point(159, 126);
+			this.buttonXSummaryCost.Location = new System.Drawing.Point(163, 126);
 			this.buttonXSummaryCost.Name = "buttonXSummaryCost";
 			this.buttonXSummaryCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -740,7 +755,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSummaryComments.AutoCheckOnClick = true;
 			this.buttonXSummaryComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryComments.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryComments.Location = new System.Drawing.Point(159, 70);
+			this.buttonXSummaryComments.Location = new System.Drawing.Point(163, 70);
 			this.buttonXSummaryComments.Name = "buttonXSummaryComments";
 			this.buttonXSummaryComments.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -771,7 +786,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXSummaryTallyCost.AutoCheckOnClick = true;
 			this.buttonXSummaryTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSummaryTallyCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(159, 238);
+			this.buttonXSummaryTallyCost.Location = new System.Drawing.Point(163, 238);
 			this.buttonXSummaryTallyCost.Name = "buttonXSummaryTallyCost";
 			this.buttonXSummaryTallyCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSummaryTallyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -784,7 +799,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(290, 499);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(294, 502);
 			this.xtraTabPageOptionsStyle.Text = "Slide Style";
 			// 
 			// pnStyle
@@ -795,7 +810,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(290, 499);
+			this.pnStyle.Size = new System.Drawing.Size(294, 502);
 			this.pnStyle.TabIndex = 0;
 			// 
 			// outputColorSelector
@@ -807,7 +822,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.outputColorSelector.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.outputColorSelector.Location = new System.Drawing.Point(0, 34);
 			this.outputColorSelector.Name = "outputColorSelector";
-			this.outputColorSelector.Size = new System.Drawing.Size(290, 465);
+			this.outputColorSelector.Size = new System.Drawing.Size(294, 468);
 			this.outputColorSelector.TabIndex = 49;
 			// 
 			// laColorsTitle
@@ -824,7 +839,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			// 
 			this.xtraTabPageOptionsActiveWeeks.Controls.Add(this.pnActiveWeeks);
 			this.xtraTabPageOptionsActiveWeeks.Name = "xtraTabPageOptionsActiveWeeks";
-			this.xtraTabPageOptionsActiveWeeks.Size = new System.Drawing.Size(290, 499);
+			this.xtraTabPageOptionsActiveWeeks.Size = new System.Drawing.Size(294, 502);
 			this.xtraTabPageOptionsActiveWeeks.Text = "Calendar";
 			// 
 			// pnActiveWeeks
@@ -837,7 +852,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnActiveWeeks.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnActiveWeeks.Location = new System.Drawing.Point(0, 0);
 			this.pnActiveWeeks.Name = "pnActiveWeeks";
-			this.pnActiveWeeks.Size = new System.Drawing.Size(290, 499);
+			this.pnActiveWeeks.Size = new System.Drawing.Size(294, 502);
 			this.pnActiveWeeks.TabIndex = 50;
 			// 
 			// checkedListBoxActiveWeeks
@@ -852,7 +867,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.checkedListBoxActiveWeeks.Location = new System.Drawing.Point(0, 90);
 			this.checkedListBoxActiveWeeks.Name = "checkedListBoxActiveWeeks";
 			this.checkedListBoxActiveWeeks.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxActiveWeeks.Size = new System.Drawing.Size(290, 369);
+			this.checkedListBoxActiveWeeks.Size = new System.Drawing.Size(294, 372);
 			this.checkedListBoxActiveWeeks.StyleController = this.styleController;
 			this.checkedListBoxActiveWeeks.TabIndex = 19;
 			this.checkedListBoxActiveWeeks.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxActiveWeeks_ItemCheck);
@@ -864,7 +879,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnActiveweeksButtons.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnActiveweeksButtons.Location = new System.Drawing.Point(0, 42);
 			this.pnActiveweeksButtons.Name = "pnActiveweeksButtons";
-			this.pnActiveweeksButtons.Size = new System.Drawing.Size(290, 48);
+			this.pnActiveweeksButtons.Size = new System.Drawing.Size(294, 48);
 			this.pnActiveweeksButtons.TabIndex = 50;
 			// 
 			// buttonXClearAll
@@ -873,7 +888,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXClearAll.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXClearAll.Location = new System.Drawing.Point(176, 8);
+			this.buttonXClearAll.Location = new System.Drawing.Point(180, 8);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(107, 33);
 			this.buttonXClearAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -901,9 +916,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.laActiveWeeksWarning.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.laActiveWeeksWarning.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laActiveWeeksWarning.ForeColor = System.Drawing.Color.Red;
-			this.laActiveWeeksWarning.Location = new System.Drawing.Point(0, 459);
+			this.laActiveWeeksWarning.Location = new System.Drawing.Point(0, 462);
 			this.laActiveWeeksWarning.Name = "laActiveWeeksWarning";
-			this.laActiveWeeksWarning.Size = new System.Drawing.Size(290, 40);
+			this.laActiveWeeksWarning.Size = new System.Drawing.Size(294, 40);
 			this.laActiveWeeksWarning.TabIndex = 49;
 			this.laActiveWeeksWarning.Text = "You should select at least 1 week";
 			this.laActiveWeeksWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -916,7 +931,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.laActiveWeeks.Location = new System.Drawing.Point(0, 0);
 			this.laActiveWeeks.Name = "laActiveWeeks";
 			this.laActiveWeeks.Padding = new System.Windows.Forms.Padding(5);
-			this.laActiveWeeks.Size = new System.Drawing.Size(290, 42);
+			this.laActiveWeeks.Size = new System.Drawing.Size(294, 42);
 			this.laActiveWeeks.TabIndex = 48;
 			this.laActiveWeeks.Text = "Do you want to apply this schedule to specific weeks on the calendar?";
 			// 
@@ -1006,39 +1021,43 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.pnNoSnapshots.Size = new System.Drawing.Size(200, 100);
 			this.pnNoSnapshots.TabIndex = 3;
 			// 
-			// pnApplyForAll
+			// pnTop
 			// 
-			this.pnApplyForAll.Controls.Add(this.checkEditApplyForAll);
-			this.pnApplyForAll.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnApplyForAll.Location = new System.Drawing.Point(0, 469);
-			this.pnApplyForAll.Name = "pnApplyForAll";
-			this.pnApplyForAll.Size = new System.Drawing.Size(290, 30);
-			this.pnApplyForAll.TabIndex = 130;
+			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
+			this.pnTop.Controls.Add(this.labelControlFlightDates);
+			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnTop.Location = new System.Drawing.Point(300, 0);
+			this.pnTop.Name = "pnTop";
+			this.pnTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+			this.pnTop.Size = new System.Drawing.Size(595, 40);
+			this.pnTop.TabIndex = 8;
 			// 
-			// checkEditApplyForAll
+			// labelControlScheduleInfo
 			// 
-			this.checkEditApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditApplyForAll.Location = new System.Drawing.Point(20, 3);
-			this.checkEditApplyForAll.Name = "checkEditApplyForAll";
-			this.checkEditApplyForAll.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
-			this.checkEditApplyForAll.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.checkEditApplyForAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseBackColor = true;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditApplyForAll.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditApplyForAll.Properties.Caption = "Use these Settings for all Schedules";
-			this.checkEditApplyForAll.Size = new System.Drawing.Size(249, 20);
-			this.checkEditApplyForAll.StyleController = this.styleController;
-			this.checkEditApplyForAll.TabIndex = 128;
-			this.checkEditApplyForAll.CheckedChanged += new System.EventHandler(this.OnInfoSettingsChanged);
+			this.labelControlScheduleInfo.AllowHtmlString = true;
+			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlScheduleInfo.Location = new System.Drawing.Point(5, 0);
+			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
+			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlScheduleInfo.Size = new System.Drawing.Size(335, 40);
+			this.labelControlScheduleInfo.StyleController = this.styleController;
+			this.labelControlScheduleInfo.TabIndex = 126;
+			// 
+			// labelControlFlightDates
+			// 
+			this.labelControlFlightDates.AllowHtmlString = true;
+			this.labelControlFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlFlightDates.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlFlightDates.Dock = System.Windows.Forms.DockStyle.Right;
+			this.labelControlFlightDates.Location = new System.Drawing.Point(340, 0);
+			this.labelControlFlightDates.Name = "labelControlFlightDates";
+			this.labelControlFlightDates.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.labelControlFlightDates.Size = new System.Drawing.Size(250, 40);
+			this.labelControlFlightDates.StyleController = this.styleController;
+			this.labelControlFlightDates.TabIndex = 127;
 			// 
 			// SnapshotContainer
 			// 
@@ -1052,7 +1071,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSnapshots)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlSnapshots)).EndInit();
 			this.pnSnapshots.ResumeLayout(false);
-			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnBottom.ResumeLayout(false);
 			this.pnTotalCost.ResumeLayout(false);
@@ -1063,6 +1081,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			this.xtraTabControlOptions.ResumeLayout(false);
 			this.xtraTabPageOptionsInfo.ResumeLayout(false);
 			this.pnOptionsInfo.ResumeLayout(false);
+			this.pnApplyForAll.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
 			this.pnSnapshotInfo.ResumeLayout(false);
 			this.pnSummaryInfo.ResumeLayout(false);
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
@@ -1077,8 +1097,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditInfoAdvanced.Properties)).EndInit();
 			this.contextMenuStripSnapshot.ResumeLayout(false);
 			this.pnNoSnapshots.ResumeLayout(false);
-			this.pnApplyForAll.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyForAll.Properties)).EndInit();
+			this.pnTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -1112,7 +1131,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private DevComponents.DotNetBar.ButtonX buttonXSnapshotLength;
 		private DevComponents.DotNetBar.ButtonX buttonXSnapshotStation;
 		private DevComponents.DotNetBar.ButtonX buttonXSnapshotLogo;
-		protected System.Windows.Forms.Panel pnTop;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStripSnapshot;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotRename;
 		private System.Windows.Forms.Panel pnNoSnapshots;
@@ -1137,7 +1155,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSnapshotClone;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoAdvanced;
 		private Common.GUI.OutputColors.OutputColorSelector outputColorSelector;
-		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsActiveWeeks;
 		public DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxActiveWeeks;
 		private System.Windows.Forms.Panel pnActiveWeeks;
@@ -1150,5 +1167,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditInfoContract;
 		private System.Windows.Forms.Panel pnApplyForAll;
 		public DevExpress.XtraEditors.CheckEdit checkEditApplyForAll;
+		protected System.Windows.Forms.Panel pnTop;
+		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
+		protected DevExpress.XtraEditors.LabelControl labelControlFlightDates;
 	}
 }

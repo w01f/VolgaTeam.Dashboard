@@ -110,6 +110,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnImportDigitalClick(object sender, EventArgs e)
 		{
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(
+				String.Format("Are you SURE you want to Write Over this data{0}With Digital Marketing Info?", Environment.NewLine))
+				!= DialogResult.Yes) return;
+
 			ProductSummaryData.DataSourceType = SummaryItemDataSourceType.Digital;
 			ProductSummaryData.Synchronize();
 
@@ -121,6 +125,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnImportMediaClick(object sender, EventArgs e)
 		{
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(
+				String.Format("Are you SURE you want to Write Over this data{1}With {0} Schedule Info?", MediaMetaData.Instance.DataTypeString, Environment.NewLine))
+				!= DialogResult.Yes) return;
+
 			ProductSummaryData.DataSourceType = SummaryItemDataSourceType.Media;
 			ProductSummaryData.Synchronize();
 
@@ -132,6 +140,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnResetItemClick(object sender, EventArgs e)
 		{
+			if(!String.IsNullOrEmpty(Data.Description))
+				if (PopupMessageHelper.Instance.ShowWarningQuestion(
+					String.Format("Are you SURE you want to DELETE the{0}data from this product?", MediaMetaData.Instance.DataTypeString, Environment.NewLine))
+					!= DialogResult.Yes) return;
+
 			ProductSummaryData.ResetToDefault();
 			ckDetails.Checked = false;
 			memoEditDetails.EditValue = Data.Description;

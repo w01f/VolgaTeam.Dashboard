@@ -51,6 +51,7 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "QuarterSelectorControl";
 			this.Size = new System.Drawing.Size(488, 41);
+			this.Resize += new System.EventHandler(this.QuarterSelectorControl_Resize);
 			this.ResumeLayout(false);
 
 		}

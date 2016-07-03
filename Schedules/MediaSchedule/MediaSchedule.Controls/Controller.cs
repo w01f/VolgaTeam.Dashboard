@@ -343,8 +343,12 @@ namespace Asa.Media.Controls
 		public ComboBoxEdit HomeDecisionMaker { get; set; }
 		public DateEdit HomePresentationDate { get; set; }
 		public RibbonBar HomeFlightDates { get; set; }
-		public LabelItem HomeFlightDatesStart { get; set; }
-		public LabelItem HomeFlightDatesEnd { get; set; }
+		public LabelItem HomeFlightDatesStartLogo { get; set; }
+		public LabelItem HomeFlightDatesStartTitle { get; set; }
+		public LabelItem HomeFlightDatesStartValue { get; set; }
+		public LabelItem HomeFlightDatesEndLogo { get; set; }
+		public LabelItem HomeFlightDatesEndTitle { get; set; }
+		public LabelItem HomeFlightDatesEndValue { get; set; }
 		#endregion
 
 		#region Program Schedule
@@ -386,6 +390,7 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar1Email { get; set; }
 		public ButtonItem Calendar1PowerPoint { get; set; }
 		public ButtonItem Calendar1Pdf { get; set; }
+		public ButtonItem Calendar1Reset { get; set; }
 		#endregion
 
 		#region Calendar 2
@@ -398,6 +403,7 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar2Email { get; set; }
 		public ButtonItem Calendar2PowerPoint { get; set; }
 		public ButtonItem Calendar2Pdf { get; set; }
+		public ButtonItem Calendar2Reset { get; set; }
 		#endregion
 
 		#region Snapshot

@@ -81,8 +81,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				laTotalCostValue.Font = font;
 
 				laColorsTitle.Font = new Font(laColorsTitle.Font.FontFamily, laColorsTitle.Font.Size - 2, laColorsTitle.Font.Style);
-				labelControlScheduleInfo.Font = new Font(labelControlScheduleInfo.Font.FontFamily,
-					labelControlScheduleInfo.Font.Size - 2, labelControlScheduleInfo.Font.Style);
 				laActiveWeeks.Font = new Font(laActiveWeeks.Font.FontFamily, laActiveWeeks.Font.Size - 2, laActiveWeeks.Font.Style);
 				laActiveWeeksWarning.Font = new Font(laActiveWeeksWarning.Font.FontFamily, laActiveWeeksWarning.Font.Size - 2,
 					laActiveWeeksWarning.Font.Style);
@@ -162,11 +160,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			EditedContent?.Dispose();
 			EditedContent = Schedule.SnapshotContent.Clone<SnapshotContent, SnapshotContent>();
 
-			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
-				ScheduleSettings.BusinessName,
+			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
+
+			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"),
-				Environment.NewLine);
+				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			LoadSnapshots(quickLoad);
 

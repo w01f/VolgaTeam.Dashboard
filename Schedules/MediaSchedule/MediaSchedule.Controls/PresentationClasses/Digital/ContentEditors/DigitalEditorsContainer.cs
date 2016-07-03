@@ -97,11 +97,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			EditedContent?.Dispose();
 			EditedContent = Schedule.DigitalProductsContent.Clone<DigitalProductsContent, DigitalProductsContent>();
 
-			labelControlScheduleInfo.Text = String.Format("{0}{3}<color=gray><i>{1} ({2})</i></color>",
-				ScheduleSettings.BusinessName,
+			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
+
+			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"),
-				Environment.NewLine);
+				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			settingsContainer.LoadContent(EditedContent);
 
@@ -252,7 +252,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			Controller.Instance.DigitalProductPdf.Enabled =
 			Controller.Instance.DigitalProductPreview.Enabled =
 			Controller.Instance.DigitalProductEmail.Enabled =
-				EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name));
+				EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ||
+				EditedContent.StandalonePackage.Items.Any();
 		}
 
 		private void UpdateCollectionChangeButtons()

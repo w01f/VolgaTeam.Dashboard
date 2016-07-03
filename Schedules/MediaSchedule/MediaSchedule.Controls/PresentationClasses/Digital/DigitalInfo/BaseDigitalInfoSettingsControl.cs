@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Digital;
+using Asa.Business.Online.Configuration;
 using Asa.Business.Online.Dictionaries;
 using DevExpress.XtraTab;
 
@@ -19,13 +21,13 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			InitializeComponent();
 			Text = "Info";
 
-			buttonXCategory.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsCategoryTitle ?? buttonXCategory.Text;
-			buttonXSubCategory.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsSubCategoryTitle ?? buttonXSubCategory.Text;
-			buttonXProduct.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsProductTitle ?? buttonXProduct.Text;
-			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsInfoTitle ?? buttonXInfo.Text;
-			buttonXLogo.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsLogosTitle ?? buttonXLogo.Text;
-			buttonXMonthlyInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsMontlyInvestmentTitle ?? buttonXMonthlyInvestment.Text;
-			buttonXTotalInvestment.Text = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsTotalInvestmentTitle ?? buttonXTotalInvestment.Text;
+			buttonXCategory.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsCategoryTitle ?? buttonXCategory.Text);
+			buttonXSubCategory.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsSubCategoryTitle ?? buttonXSubCategory.Text);
+			buttonXProduct.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsProductTitle ?? buttonXProduct.Text);
+			buttonXInfo.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsInfoTitle ?? buttonXInfo.Text);
+			buttonXLogo.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsLogosTitle ?? buttonXLogo.Text);
+			buttonXMonthlyInvestment.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsMontlyInvestmentTitle ?? buttonXMonthlyInvestment.Text);
+			buttonXTotalInvestment.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsTotalInvestmentTitle ?? buttonXTotalInvestment.Text);
 
 			if (CreateGraphics().DpiX > 96)
 			{
@@ -64,7 +66,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			buttonXTotalInvestment.Checked = _digitalInfo.ShowTotalInvestemt;
 			_allowToSave = true;
 		}
-		
+
 		private void OnSettingsChanged(Object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;

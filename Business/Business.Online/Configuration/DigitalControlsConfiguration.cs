@@ -49,6 +49,8 @@ namespace Asa.Business.Online.Configuration
 		public string ListEditorsLocationTitle { get; set; }
 		public string ListEditorsTargetingTitle { get; set; }
 		public string ListEditorsRichMediaTitle { get; set; }
+
+		public string ListPopupGroupText { get; set; }
 		#endregion
 
 		#region Product Section
@@ -177,6 +179,9 @@ namespace Asa.Business.Online.Configuration
 					RibbonButtonDigitalCloneTitle = values.ElementAtOrDefault(0);
 					RibbonButtonDigitalCloneTooltip = values.ElementAtOrDefault(1);
 					break;
+				case "tab_2_warning_popup":
+					ListPopupGroupText = values.ElementAtOrDefault(0);
+					break;
 				case "tab_3_section_titles":
 					ProductEditorsSitesTitle = values.ElementAtOrDefault(0);
 					ProductEditorsNameTitle = values.ElementAtOrDefault(1);
@@ -270,6 +275,11 @@ namespace Asa.Business.Online.Configuration
 					RibbonButtonMediaDigitalDeleteTooltip = values.ElementAtOrDefault(1);
 					break;
 			}
+		}
+
+		public static string WrapTitle(string originalTitle)
+		{
+			return originalTitle.Length >= 10 ? originalTitle.Replace(" ", Environment.NewLine) : originalTitle;
 		}
 	}
 }

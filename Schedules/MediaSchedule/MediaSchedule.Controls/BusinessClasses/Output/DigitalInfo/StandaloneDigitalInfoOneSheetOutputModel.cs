@@ -6,7 +6,7 @@ using Asa.Media.Controls.BusinessClasses.Managers;
 
 namespace Asa.Media.Controls.BusinessClasses.Output.DigitalInfo
 {
-	public class StandaloneDigitalInfoOutputModel : BaseDigitalInfoOutputModel
+	public class StandaloneDigitalInfoOneSheetOutputModel : BaseDigitalInfoOneSheetOutputModel
 	{
 		private readonly IDigitalInfoContainer _container;
 		public string Advertiser { get; set; }
@@ -18,7 +18,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output.DigitalInfo
 
 		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetDigitalOneSheetFile(Color, Records.Count);
 
-		public StandaloneDigitalInfoOutputModel(IDigitalInfoContainer container) : base(container.DigitalInfo)
+		public StandaloneDigitalInfoOneSheetOutputModel(IDigitalInfoContainer container) : base(container.DigitalInfo)
 		{
 			_container = container;
 		}

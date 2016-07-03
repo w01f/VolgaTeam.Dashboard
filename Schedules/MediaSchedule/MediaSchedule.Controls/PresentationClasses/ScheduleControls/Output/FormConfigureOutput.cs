@@ -26,7 +26,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 					case ScheduleSectionOutputType.Program:
 						itemName = String.Format("{0} ({1})", scheduleName, MediaMetaData.Instance.DataTypeString);
 						break;
-					case ScheduleSectionOutputType.Digital:
+					case ScheduleSectionOutputType.DigitalOneSheet:
 						itemName = String.Format("{0} (Digital)", scheduleName);
 						break;
 					case ScheduleSectionOutputType.ProgramAndDigital:
@@ -34,6 +34,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 						break;
 					case ScheduleSectionOutputType.Summary:
 						itemName = String.Format("{0} (Summary)", scheduleName);
+						break;
+					case ScheduleSectionOutputType.DigitalStrategy:
+						itemName = String.Format("{0} (Digital Strategies)", scheduleName);
 						break;
 				}
 				var checkItem = new CheckedListBoxItem(optionItem, itemName, CheckState.Checked);

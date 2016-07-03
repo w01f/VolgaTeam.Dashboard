@@ -6,9 +6,6 @@ namespace Asa.Media.Controls.BusinessClasses.Output.DigitalInfo
 	{
 		public string LineID { get; set; }
 		public ImageSource Logo { get; set; }
-		public string Category { get; set; }
-		public string SubCategory { get; set; }
-		public string Product { get; set; }
-		public string Info { get; set; }
+		public string Details { get; set; }
 	}
 }

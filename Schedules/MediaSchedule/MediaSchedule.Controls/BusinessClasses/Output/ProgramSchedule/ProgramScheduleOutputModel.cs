@@ -39,7 +39,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule
 		public Dictionary<string, string> Totals { get; set; }
 		public string[] Logos { get; set; }
 
-		public ProgramDigitalInfoOutputModel DigitalInfo { get; }
+		public ProgramDigitalInfoOneSheetOutputModel DigitalInfo { get; }
 
 		public Dictionary<string, string> ReplacementsList { get; }
 
@@ -139,7 +139,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule
 			Programs = new List<ProgramOutputModel>();
 			TotalSpots = new List<TotalSpotOutputModel>();
 			Totals = new Dictionary<string, string>();
-			DigitalInfo = new ProgramDigitalInfoOutputModel(parent);
+			DigitalInfo = new ProgramDigitalInfoOneSheetOutputModel(parent);
 		}
 
 		public void GetLogos()

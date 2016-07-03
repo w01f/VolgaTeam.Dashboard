@@ -55,7 +55,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			var outputConfigurations = new List<OutputConfiguration>();
 			if (_digitalInfo.Records.Any())
+			{
 				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.Digital));
+				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.DigitalStrategy));
+			}
 			return outputConfigurations;
 		}
 		#endregion

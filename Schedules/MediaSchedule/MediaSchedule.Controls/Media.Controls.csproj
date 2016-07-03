@@ -89,11 +89,13 @@
     <Compile Include="BusinessClasses\Managers\ContentController.cs" />
     <Compile Include="BusinessClasses\Managers\ContentIdentifiers.cs" />
     <Compile Include="BusinessClasses\Managers\ContentTabStateManager.cs" />
-    <Compile Include="BusinessClasses\Output\DigitalInfo\BaseDigitalInfoOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\DigitalInfo\BaseDigitalInfoOneSheetOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoRecordOutputModel.cs" />
-    <Compile Include="BusinessClasses\Output\DigitalInfo\StandaloneDigitalInfoOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoStrategyOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoStrategyRecordOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\DigitalInfo\StandaloneDigitalInfoOneSheetOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\OutputManager.cs" />
-    <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramDigitalInfoOutputModel.cs" />
+    <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramDigitalInfoOneSheetOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\ProgramSchedule\ProgramScheduleOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\ProgramSchedule\OutputSpotInterval.cs" />

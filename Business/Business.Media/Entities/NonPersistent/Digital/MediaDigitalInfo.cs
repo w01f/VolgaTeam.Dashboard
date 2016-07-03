@@ -50,6 +50,8 @@ namespace Asa.Business.Media.Entities.NonPersistent.Digital
 		public void AfterCreate()
 		{
 			InitProducts();
+			foreach (var digitalInfoRecord in Records)
+				digitalInfoRecord.Parent = this;
 		}
 
 		public void AddProduct()

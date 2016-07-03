@@ -42,7 +42,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		protected IDigitalInfoContainer _dataContainer;
 		protected MediaDigitalInfo _digitalInfo;
 
-		public bool AllowToAddItem => _digitalInfo != null && _digitalInfo.Records.Count < BaseDigitalInfoOutputModel.MaxDigitalProducts;
+		public bool AllowToAddItem => _digitalInfo != null && _digitalInfo.Records.Count < BaseDigitalInfoOneSheetOutputModel.MaxRecords;
 		public bool AllowToDeleteItem => _digitalInfo != null && _digitalInfo.Records.Any();
 
 		protected BaseDigitalInfoEditControl()
@@ -348,9 +348,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			}
 		}
 
-		private StandaloneDigitalInfoOutputModel PrepareOutput()
+
+		#region OneSheet
+		private StandaloneDigitalInfoOneSheetOutputModel PrepareOneSheetOutput()
 		{
-			var outputPage = new StandaloneDigitalInfoOutputModel(_dataContainer);
+			var outputPage = new StandaloneDigitalInfoOneSheetOutputModel(_dataContainer);
 
 			outputPage.Advertiser = _dataContainer.ParentScheduleSettings.BusinessName;
 			outputPage.DecisionMaker = _dataContainer.ParentScheduleSettings.DecisionMaker;
@@ -368,24 +370,13 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			#region Set OutputDigitalProduct Values
 			for (var j = 0; j < _digitalInfo.Records.Count; j++)
 			{
-				var product = _digitalInfo.Records[j];
+				var digitalInfoRecord = _digitalInfo.Records[j];
 				var outputProduct = new DigitalInfoRecordOutputModel();
-				outputProduct.LineID = product.Index.ToString("00");
+				outputProduct.LineID = digitalInfoRecord.Index.ToString("00");
 				outputProduct.Logo = _digitalInfo.ShowLogo ?
-					product.Logo?.Clone<ImageSource, ImageSource>() :
+					digitalInfoRecord.Logo?.Clone<ImageSource, ImageSource>() :
 					null;
-				outputProduct.Category = _digitalInfo.ShowCategory ?
-					product.Category :
-					String.Empty;
-				outputProduct.SubCategory = _digitalInfo.ShowSubCategory ?
-					product.SubCategory :
-					String.Empty;
-				outputProduct.Product = _digitalInfo.ShowProduct ?
-					product.Name :
-					String.Empty;
-				outputProduct.Info = _digitalInfo.ShowInfo ?
-					product.Info :
-					String.Empty;
+				outputProduct.Details = digitalInfoRecord.OneSheetDetails;
 				outputPage.Records.Add(outputProduct);
 				Application.DoEvents();
 			}
@@ -397,15 +388,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			return outputPage;
 		}
 
-		public void GenerateOutput()
+		public void GenerateOneSheetOutput()
 		{
-			var outputPage = PrepareOutput();
+			var outputPage = PrepareOneSheetOutput();
 			RegularMediaSchedulePowerPointHelper.Instance.AppendDigitalOneSheet(outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
-		public PreviewGroup GeneratePreview(string groupName = "")
+		public PreviewGroup GenerateOneSheetPreview(string groupName = "")
 		{
-			var outputPage = PrepareOutput();
+			var outputPage = PrepareOneSheetOutput();
 			var previewGroup = new PreviewGroup
 			{
 				Name = !String.IsNullOrEmpty(groupName) ? groupName : Text,
@@ -414,6 +405,69 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			RegularMediaSchedulePowerPointHelper.Instance.PrepareDigitalOneSheetEmail(previewGroup.PresentationSourcePath, outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
+		#endregion
+
+		#region Strategy
+
+		private DigitalInfoStrategyOutputModel PrepareStrategyOutput()
+		{
+			var outputModel = new DigitalInfoStrategyOutputModel();
+
+			outputModel.ShowLogos = _digitalInfo.ShowLogo;
+
+			var totals = new List<string>();
+			if (_digitalInfo.ShowTotalInvestemt && _digitalInfo.TotalInvestment.HasValue)
+				totals.Add(String.Format("Total Investment:  {0}", _digitalInfo.TotalInvestment.Value.ToString("$# ##0.00")));
+			if (_digitalInfo.ShowMonthlyInvestemt && _digitalInfo.MonthlyInvestment.HasValue)
+				totals.Add(String.Format("Monthly Investment:  {0}", _digitalInfo.MonthlyInvestment.Value.ToString("$# ##0.00")));
+			outputModel.Total1 = totals.ElementAtOrDefault(0);
+			outputModel.Total2 = totals.ElementAtOrDefault(1);
+
+			foreach (var digitalInfoRecord in _digitalInfo.Records)
+			{
+				var recordOutputModel = new DigitalInfoStrategyRecordOutputModel();
+				recordOutputModel.Logo = digitalInfoRecord.Logo;
+
+				var values = new List<string>();
+				if (_digitalInfo.ShowCategory && !String.IsNullOrEmpty(digitalInfoRecord.Category))
+					values.Add(digitalInfoRecord.Category);
+				if (_digitalInfo.ShowSubCategory && !String.IsNullOrEmpty(digitalInfoRecord.SubCategory))
+					values.Add(digitalInfoRecord.SubCategory);
+				recordOutputModel.Text1 = String.Join(" - ", values);
+
+				values.Clear();
+				if (_digitalInfo.ShowProduct && !String.IsNullOrEmpty(digitalInfoRecord.Name))
+					values.Add(digitalInfoRecord.Name);
+				if (_digitalInfo.ShowInfo && !String.IsNullOrEmpty(digitalInfoRecord.Info))
+					values.Add(digitalInfoRecord.Info);
+				recordOutputModel.Text1 = String.Join("   |   ", values);
+
+				outputModel.Records.Add(recordOutputModel);
+			}
+
+			outputModel.GetLogos();
+			return outputModel;
+		}
+
+		public void GenerateStrategyOutput()
+		{
+			var dataModel = PrepareStrategyOutput();
+			RegularMediaSchedulePowerPointHelper.Instance.AppendStrategy(dataModel, SelectedTheme);
+		}
+
+		public PreviewGroup GenerateStrategyPreview(string groupName = "")
+		{
+			var dataModel = PrepareStrategyOutput();
+			var previewGroup = new PreviewGroup
+			{
+				Name = !String.IsNullOrEmpty(groupName) ? groupName : "Digital Strategies",
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+			};
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyEmail(previewGroup.PresentationSourcePath, dataModel, SelectedTheme);
+			return previewGroup;
+		}
+		#endregion
+
 		#endregion
 	}
 }

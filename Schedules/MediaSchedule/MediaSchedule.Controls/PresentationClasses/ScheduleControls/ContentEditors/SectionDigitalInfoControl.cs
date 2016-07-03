@@ -9,9 +9,9 @@ using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
-	class SectionDigitalInfoControl : BaseDigitalInfoEditControl, 
-		ISectionEditorControl, 
-		ISectionOutputControl, 
+	class SectionDigitalInfoControl : BaseDigitalInfoEditControl,
+		ISectionEditorControl,
+		ISectionOutputControl,
 		ISectionItemCollectionControl
 	{
 		private SectionContainer _sectionContainer;
@@ -30,7 +30,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			_dataContainer = _sectionContainer.SectionData;
 			_digitalInfo = _dataContainer.DigitalInfo;
-			
+
 			base.LoadData();
 		}
 
@@ -53,10 +53,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		protected override SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
 			SlideType.TVProgramSchedule :
 			SlideType.RadioProgramSchedule;
+
 		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
 		{
 			return _digitalInfo != null && _digitalInfo.Records.Any() ?
-				new[] { ScheduleSectionOutputType.Digital } :
+				new[] { ScheduleSectionOutputType.DigitalOneSheet, ScheduleSectionOutputType.DigitalStrategy, } :
 				new ScheduleSectionOutputType[] { };
 		}
 		#endregion

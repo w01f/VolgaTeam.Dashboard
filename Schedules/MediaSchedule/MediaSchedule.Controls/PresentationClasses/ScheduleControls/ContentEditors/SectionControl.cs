@@ -841,25 +841,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 						if (includeDigital && (i + programsPerSlide) >= _sectionContainer.SectionData.Programs.Count)
 						{
-							foreach (var product in _sectionContainer.SectionData.DigitalInfo.Records)
+							foreach (var digitalInfoRecord in _sectionContainer.SectionData.DigitalInfo.Records)
 							{
 								var outputProduct = new DigitalInfoRecordOutputModel();
-								outputProduct.LineID = String.Format("{0}", (_sectionContainer.SectionData.Programs.Count + product.Index).ToString("00"));
+								outputProduct.LineID = String.Format("{0}", (_sectionContainer.SectionData.Programs.Count + digitalInfoRecord.Index).ToString("00"));
 								outputProduct.Logo = _sectionContainer.SectionData.DigitalInfo.ShowLogo
-									? product.Logo?.Clone<ImageSource, ImageSource>()
+									? digitalInfoRecord.Logo?.Clone<ImageSource, ImageSource>()
 									: null;
-								outputProduct.Category = _sectionContainer.SectionData.DigitalInfo.ShowCategory
-									? product.Category
-									: String.Empty;
-								outputProduct.SubCategory = _sectionContainer.SectionData.DigitalInfo.ShowSubCategory
-									? product.SubCategory
-									: String.Empty;
-								outputProduct.Product = _sectionContainer.SectionData.DigitalInfo.ShowProduct
-									? product.Name
-									: String.Empty;
-								outputProduct.Info = _sectionContainer.SectionData.DigitalInfo.ShowInfo
-									? product.Info
-									: String.Empty;
+								outputProduct.Details = digitalInfoRecord.OneSheetDetails;
 								outputPage.DigitalInfo.Records.Add(outputProduct);
 								Application.DoEvents();
 							}

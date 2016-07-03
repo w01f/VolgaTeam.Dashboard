@@ -3,8 +3,8 @@ using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 
 namespace Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule
 {
-	public class ProgramDigitalInfoOutputModel : BaseDigitalInfoOutputModel
+	public class ProgramDigitalInfoOneSheetOutputModel : BaseDigitalInfoOneSheetOutputModel
 	{
-		public ProgramDigitalInfoOutputModel(ScheduleSection parent) : base(parent.DigitalInfo) { }
+		public ProgramDigitalInfoOneSheetOutputModel(ScheduleSection parent) : base(parent.DigitalInfo) { }
 	}
 }

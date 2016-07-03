@@ -5,7 +5,8 @@
 		None = 0,
 		ProgramAndDigital = 1,
 		Program = 2,
-		Digital = 3,
-		Summary = 4
+		DigitalOneSheet = 3,
+		Summary = 4,
+		DigitalStrategy = 5,
 	}
 }

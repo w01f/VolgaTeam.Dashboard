@@ -123,7 +123,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 					break;
 				case OptionEditorType.DigitalInfo:
 					labelControlCollectionItemsInfo.Visible = true;
-					if (OptionSetData.DigitalInfo.Records.Count < BaseDigitalInfoOutputModel.MaxDigitalProducts)
+					if (OptionSetData.DigitalInfo.Records.Count < BaseDigitalInfoOneSheetOutputModel.MaxRecords)
 						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", OptionSetData.DigitalInfo.Records.Count);
 					else
 						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
@@ -177,7 +177,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 						_optionsControl.GenerateOutput(GetSelectedTheme(), configuration.OutputType == OptionSetOutputType.ProgramAndDigital);
 						break;
 					case OptionSetOutputType.Digital:
-						_digitalInfoControl.GenerateOutput();
+						_digitalInfoControl.GenerateOneSheetOutput();
+						break;
+					case OptionSetOutputType.DigitalStrategy:
+						_digitalInfoControl.GenerateStrategyOutput();
 						break;
 				}
 			}
@@ -196,7 +199,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 						previewGroups.Add(_optionsControl.GeneratePreview(GetSelectedTheme(), configuration.OutputType == OptionSetOutputType.ProgramAndDigital));
 						break;
 					case OptionSetOutputType.Digital:
-						previewGroups.Add(_digitalInfoControl.GeneratePreview(String.Format("{0} ({1})", OptionSetData.Name, _digitalInfoControl.Text)));
+						previewGroups.Add(_digitalInfoControl.GenerateOneSheetPreview(String.Format("{0} ({1})", OptionSetData.Name, _digitalInfoControl.Text)));
+						break;
+					case OptionSetOutputType.DigitalStrategy:
+						previewGroups.Add(_digitalInfoControl.GenerateStrategyPreview(String.Format("{0} ({1})", OptionSetData.Name, "Digital Strategies")));
 						break;
 				}
 			}

@@ -189,7 +189,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					break;
 				case SectionEditorType.DigitalInfo:
 					labelControlCollectionItemsInfo.Visible = true;
-					if (SectionData.DigitalInfo.Records.Count < BaseDigitalInfoOutputModel.MaxDigitalProducts)
+					if (SectionData.DigitalInfo.Records.Count < BaseDigitalInfoOneSheetOutputModel.MaxRecords)
 						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Records.Count);
 					else
 						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
@@ -242,7 +242,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public bool ReadyForOutput => GetAvailableOutputOptions().Any(option => option == ScheduleSectionOutputType.Program || option == ScheduleSectionOutputType.Digital);
+		public bool ReadyForOutput => GetAvailableOutputOptions().Any(option => option == ScheduleSectionOutputType.Program || option == ScheduleSectionOutputType.DigitalOneSheet);
 
 		public void OutputPowerPoint()
 		{
@@ -368,8 +368,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					case ScheduleSectionOutputType.ProgramAndDigital:
 						_sectionControl.GenerateOutput(outputOption == ScheduleSectionOutputType.ProgramAndDigital);
 						break;
-					case ScheduleSectionOutputType.Digital:
-						_digitalInfoControl.GenerateOutput();
+					case ScheduleSectionOutputType.DigitalOneSheet:
+						_digitalInfoControl.GenerateOneSheetOutput();
+						break;
+					case ScheduleSectionOutputType.DigitalStrategy:
+						_digitalInfoControl.GenerateStrategyOutput();
 						break;
 					case ScheduleSectionOutputType.Summary:
 						_customSummaryControl.GenerateOutput();
@@ -390,8 +393,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					case ScheduleSectionOutputType.ProgramAndDigital:
 						previewGroups.Add(_sectionControl.GeneratePreview(outputOption == ScheduleSectionOutputType.ProgramAndDigital));
 						break;
-					case ScheduleSectionOutputType.Digital:
-						previewGroups.Add(_digitalInfoControl.GeneratePreview());
+					case ScheduleSectionOutputType.DigitalOneSheet:
+						previewGroups.Add(_digitalInfoControl.GenerateOneSheetPreview());
+						break;
+					case ScheduleSectionOutputType.DigitalStrategy:
+						previewGroups.Add(_digitalInfoControl.GenerateStrategyPreview());
 						break;
 					case ScheduleSectionOutputType.Summary:
 						previewGroups.Add(_customSummaryControl.GeneratePreview());

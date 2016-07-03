@@ -49,7 +49,7 @@ namespace Asa.Media.Controls.InteropClasses
 										shape.Visible = MsoTriState.msoFalse;
 									}
 								}
-								for (var j = 0; j < BaseDigitalInfoOutputModel.MaxDigitalProducts; j++)
+								for (var j = 0; j < BaseDigitalInfoOneSheetOutputModel.MaxRecords; j++)
 								{
 									if (shapeTagName.Equals(String.Format("DIGLOGO{0}", j + 1)))
 									{
@@ -163,13 +163,6 @@ namespace Asa.Media.Controls.InteropClasses
 		public void PrepareMediaOneSheetEmail(string fileName, IEnumerable<ProgramScheduleOutputModel> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendMediaOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
-		}
-
-		public void PrepareMediaOneSheetPdf(string targetFileName, IEnumerable<ProgramScheduleOutputModel> pages, Theme selectedTheme, bool pasteToSlideMaster)
-		{
-			var sourceFileName = Path.GetTempFileName();
-			PreparePresentation(sourceFileName, presentation => AppendMediaOneSheet(pages, selectedTheme, pasteToSlideMaster, presentation));
-			BuildPdf(sourceFileName, targetFileName);
 		}
 	}
 }

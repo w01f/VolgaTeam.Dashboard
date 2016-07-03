@@ -21,6 +21,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 						return String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString);
 					case OptionSetOutputType.Summary:
 						return "Summary";
+					case OptionSetOutputType.DigitalStrategy:
+						return "Digital Strategies";
 					default:
 						throw new ArgumentOutOfRangeException("Undefined output type");
 				}

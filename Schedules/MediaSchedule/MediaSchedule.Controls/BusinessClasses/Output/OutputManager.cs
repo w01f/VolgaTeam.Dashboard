@@ -106,15 +106,25 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 
 		public string GetDigitalOneSheetFile(
 			string color,
-			int productsPerSlide)
+			int recordsPerSlide)
 		{
 			return GetScheduleTemplateFile(new[]
 			{
 				"tables",
 				color,
 				"2_digital_only",
-				String.Format("{0}_products", productsPerSlide),
-				String.Format("{0}-0.pptx", productsPerSlide)
+				String.Format("{0}_products", recordsPerSlide),
+				String.Format("{0}-0.pptx", recordsPerSlide)
+			});
+		}
+
+		public string GetDigitalStrategyFile(
+			int recordsPerSlide)
+		{
+			return GetScheduleTemplateFile(new[]
+			{
+				"digital_strategies",
+				String.Format("digital_strategies_{0}.pptx", recordsPerSlide)
 			});
 		}
 

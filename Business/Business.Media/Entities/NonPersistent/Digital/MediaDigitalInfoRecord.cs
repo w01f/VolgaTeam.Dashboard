@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using Asa.Business.Online.Dictionaries;
@@ -11,7 +12,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Digital
 {
 	public class MediaDigitalInfoRecord : IJsonCloneable<MediaDigitalInfoRecord>
 	{
-		private MediaDigitalInfo Parent { get; set; }
+		public MediaDigitalInfo Parent { get; set; }
 
 		public Guid UniqueID { get; set; }
 		public decimal Index { get; set; }
@@ -49,5 +50,26 @@ namespace Asa.Business.Media.Entities.NonPersistent.Digital
 			Parent = source.Parent;
 			UniqueID = Guid.NewGuid();
 		}
+
+		#region Output
+
+		public string OneSheetDetails
+		{
+			get
+			{
+				var temp = new List<string>();
+				if(Parent.ShowCategory && !String.IsNullOrEmpty(Category))
+					temp.Add(Category);
+				if (Parent.ShowSubCategory && !String.IsNullOrEmpty(SubCategory))
+					temp.Add(SubCategory);
+				if (Parent.ShowProduct && !String.IsNullOrEmpty(Name))
+					temp.Add(Name);
+				if (Parent.ShowInfo && !String.IsNullOrEmpty(Info))
+					temp.Add(Info);
+				return String.Join("    ", temp);
+			}
+		}
+
+		#endregion
 	}
 }

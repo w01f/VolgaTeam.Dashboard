@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Online.Controls.PresentationClasses.Products;
 using DevComponents.DotNetBar.Metro;
 
-namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
+namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 {
 	public partial class FormConfigureOutput : MetroForm
 	{
@@ -20,11 +20,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 				var groupNode = treeView.Nodes.Add(outputGroup.Name);
 				groupNode.Tag = outputGroup;
 				groupNode.Checked = true;
-				if (outputGroup.Configurations.Length <= 1) continue;
-				foreach (var outputConfiguration in outputGroup.Configurations.OrderBy(c => c.OutputType))
+				if (outputGroup.OutputItems.Count <= 1 && !outputGroup.AlwaysShowChildren) continue;
+				foreach (var outputItem in outputGroup.OutputItems)
 				{
-					var configNode = groupNode.Nodes.Add(outputConfiguration.DisplayName);
-					configNode.Tag = outputConfiguration;
+					var configNode = groupNode.Nodes.Add(outputItem.SlideName);
+					configNode.Tag = outputItem;
 					configNode.Checked = true;
 				}
 			}
@@ -37,15 +37,15 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 			if (DialogResult != DialogResult.OK) return;
 			foreach (var groupNode in treeView.Nodes.OfType<TreeNode>())
 			{
-				var outputGroup = (OutputGroup) groupNode.Tag;
+				var outputGroup = (OutputGroup)groupNode.Tag;
 				if (groupNode.Nodes.Count > 0)
-					outputGroup.Configurations = groupNode.Nodes
+					outputGroup.OutputItems = groupNode.Nodes
 						.OfType<TreeNode>()
 						.Where(n => n.Checked)
-						.Select(n => (OutputConfiguration) n.Tag)
-						.ToArray();
+						.Select(n => (IDigitalOutputItem)n.Tag)
+						.ToList();
 				else if (!groupNode.Checked)
-					outputGroup.Configurations = new OutputConfiguration[] {};
+					outputGroup.OutputItems = new List<IDigitalOutputItem>();
 			}
 		}
 
@@ -63,7 +63,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 			node.Checked = false;
 		}
 
-		private void OnSelectAllClick(object sender, EventArgs e)
+		private void OnSelectAllClick(object sender, System.EventArgs e)
 		{
 			_handleNodeEvents = false;
 			foreach (var treeNode in treeView.Nodes.OfType<TreeNode>())
@@ -71,18 +71,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 			_handleNodeEvents = true;
 		}
 
-		private void OnSelectCurrentClick(object sender, EventArgs e)
-		{
-			OnSelectNoneClick(sender, e);
-
-			_handleNodeEvents = false;
-			foreach (var treeNode in treeView.Nodes.OfType<TreeNode>())
-				if (((OutputGroup)treeNode.Tag).IsCurrent)
-					CheckWithDecendants(treeNode);
-			_handleNodeEvents = true;
-		}
-
-		private void OnSelectNoneClick(object sender, EventArgs e)
+		private void OnSelectNoneClick(object sender, System.EventArgs e)
 		{
 			_handleNodeEvents = false;
 			foreach (var treeNode in treeView.Nodes.OfType<TreeNode>())
@@ -93,9 +82,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 		private void OnTreeViewAfterCheck(object sender, TreeViewEventArgs e)
 		{
 			buttonXContinue.Enabled = treeView.Nodes.OfType<TreeNode>().Count(n => n.Checked) > 0;
-
 			if (!_handleNodeEvents) return;
-
 			_handleNodeEvents = false;
 			if (e.Node.Nodes.Count > 0)
 			{

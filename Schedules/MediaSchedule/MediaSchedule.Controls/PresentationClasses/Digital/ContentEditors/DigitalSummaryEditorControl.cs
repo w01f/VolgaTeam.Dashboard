@@ -186,11 +186,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public string SlideName => Text;
 
-		public IList<IDigitalOutputItem> GetOutputItems()
+		public OutputGroup GetOutputGroup()
 		{
-			return _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
-				new List<IDigitalOutputItem> { this } :
-				new List<IDigitalOutputItem>();
+			return new OutputGroup
+			{
+				Name = SlideName,
+				OutputItems = _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
+					new List<IDigitalOutputItem> { this } :
+					new List<IDigitalOutputItem>()
+			};
 		}
 
 		public void GenerateOutput()

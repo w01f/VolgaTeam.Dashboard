@@ -492,7 +492,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 					slideSuffics.Add("c");
 				if (!(Data.ShowLenght || Data.ShowRate || Data.ShowTotalSpots || Data.ShowCost))
 					slideSuffics.Add("no_lrsc");
-				return BusinessObjects.Instance.OutputManager.GetSnapshotItemFile(MediaMetaData.Instance.SettingsManager.SelectedColor, Data.ShowLogo, ProgramsPerSlide, String.Join("", slideSuffics));
+				return BusinessObjects.Instance.OutputManager.GetSnapshotItemFile(
+					MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(), 
+					Data.ShowLogo, 
+					ProgramsPerSlide, 
+					String.Join("", slideSuffics));
 			}
 		}
 

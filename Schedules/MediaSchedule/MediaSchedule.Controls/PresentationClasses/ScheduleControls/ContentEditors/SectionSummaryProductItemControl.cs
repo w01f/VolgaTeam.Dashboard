@@ -142,7 +142,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if(!String.IsNullOrEmpty(Data.Description))
 				if (PopupMessageHelper.Instance.ShowWarningQuestion(
-					String.Format("Are you SURE you want to DELETE the{0}data from this product?", MediaMetaData.Instance.DataTypeString, Environment.NewLine))
+					"Are you SURE you want to DELETE the data for this product?")
 					!= DialogResult.Yes) return;
 
 			ProductSummaryData.ResetToDefault();

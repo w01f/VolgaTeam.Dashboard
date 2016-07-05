@@ -377,7 +377,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 					case 6:
 						return 3;
 					default:
-						return recordsCount < 5 ? recordsCount : 4;
+						return recordsCount <= 4 ? recordsCount : 4;
 				}
 			}
 		}
@@ -391,98 +391,82 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			for (var i = 0; i < recordsCount; i += rowsPerSlide)
 			{
 				var slideRows = new Dictionary<string, string>();
-				slideRows.Add("Digital Media Campaign: AdvertiserNameHere", String.Format("Digital Media Campaign: {0}", _container.EditedContent.ScheduleSettings.BusinessName));
+				slideRows.Add("Digital Media Campaign: AdvertiserNameHere", _container.EditedContent.ScheduleSettings.BusinessName);
 				for (var j = 0; j < rowsPerSlide; j++)
 				{
 					if ((i + j) < recordsCount)
 					{
 						var packageRecord = PackageRecords.ElementAt(i + j);
-						var category = new List<string>();
+						var mainInfo = new List<string>();
 						if (PackageSettings.ShowCategory && !String.IsNullOrEmpty(packageRecord.Category))
-							category.Add(packageRecord.Category);
+							mainInfo.Add(packageRecord.Category);
 						if (PackageSettings.ShowGroup && !String.IsNullOrEmpty(packageRecord.SubCategory))
-							category.Add(packageRecord.SubCategory);
+							mainInfo.Add(packageRecord.SubCategory);
 						if (PackageSettings.ShowProduct && !String.IsNullOrEmpty(packageRecord.Name))
-							category.Add(packageRecord.Name);
+							mainInfo.Add(packageRecord.Name);
 
-						var info = new List<string>();
-						if (PackageSettings.ShowInfo && !String.IsNullOrEmpty(packageRecord.Info))
-							info.Add(packageRecord.Info);
+						var additionalInfo = new List<string>();
 						if (PackageSettings.ShowLocation && !String.IsNullOrEmpty(packageRecord.Location))
-							info.Add(packageRecord.Location);
+							additionalInfo.Add(packageRecord.Location);
+						if (PackageSettings.ShowInfo && !String.IsNullOrEmpty(packageRecord.Info))
+							additionalInfo.Add(packageRecord.Info);
 
-						if (info.Any())
+						var pricingInfo = new List<string>();
+						if (PackageSettings.ShowImpressions && packageRecord.ImpressionsCalculated.HasValue)
+							pricingInfo.Add(String.Format("Impressions: {0}", packageRecord.ImpressionsCalculated.Value.ToString("#,##0")));
+						if (PackageSettings.ShowInvestment && packageRecord.InvestmentCalculated.HasValue)
+							pricingInfo.Add(String.Format("Investment: {0}", packageRecord.InvestmentCalculated.Value.ToString("$#,###.00")));
+						if (PackageSettings.ShowCPM && packageRecord.CPMCalculated.HasValue)
+							pricingInfo.Add(String.Format("CPM: {0}", packageRecord.CPMCalculated.Value.ToString("$#,###.00")));
+						if (PackageSettings.ShowRate && packageRecord.Rate.HasValue)
+							pricingInfo.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
+
+						if (pricingInfo.Any())
+							additionalInfo.Add(String.Join(",   ", pricingInfo));
+
+						var mainInfoRow = mainInfo.Any() ?
+							String.Join("  |  ", mainInfo.ToArray()) :
+							String.Empty;
+						var additionalInfoRow = additionalInfo.Any() ?
+							String.Format("{0}{2}{2}{1}", additionalInfo.First(), String.Join("  |  ", additionalInfo.Skip(1)), (char)13) :
+							String.Empty;
+
+
+						if (!String.IsNullOrEmpty(mainInfoRow) && !String.IsNullOrEmpty(additionalInfoRow))
 						{
-							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), category.Any() ? String.Join("  |  ", category.ToArray()) : "DeleteRow");
-							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), String.Join(String.Format("{0}{0}", (char)13), info.ToArray()));
+							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), mainInfoRow);
+							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), additionalInfoRow);
 						}
-						else if (recordsCount > 1)
+						else if (!String.IsNullOrEmpty(mainInfoRow))
 						{
-							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), "DeleteRow");
-							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), category.Any() ? String.Join("  |  ", category.ToArray()) : "DeleteRow");
-						}
-						else
-						{
-							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), category.Any() ? String.Join("  |  ", category.ToArray()) : "DeleteRow");
+							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), mainInfoRow);
 							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), "DeleteRow");
 						}
-
-						if (recordsCount > 1)
+						else if (!String.IsNullOrEmpty(additionalInfoRow))
 						{
-							var investments = new List<string>();
-							if (PackageSettings.ShowImpressions && packageRecord.ImpressionsCalculated.HasValue)
-								investments.Add(String.Format("Impressions: {0}", packageRecord.ImpressionsCalculated.Value.ToString("#,##0")));
-							if (PackageSettings.ShowCPM && packageRecord.CPMCalculated.HasValue)
-								investments.Add(String.Format("CPM: {0}", packageRecord.CPMCalculated.Value.ToString("$#,###.00")));
-							if (PackageSettings.ShowRate && packageRecord.Rate.HasValue)
-								investments.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
-							if (PackageSettings.ShowInvestment && packageRecord.InvestmentCalculated.HasValue)
-								investments.Add(String.Format("Investment: {0}", packageRecord.InvestmentCalculated.Value.ToString("$#,###.00")));
-
-							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), investments.Any() ? String.Join(",   ", investments.ToArray()) : "DeleteColumn");
-						}
-						else
-						{
-							var impressions = new List<string>();
-							if (PackageSettings.ShowImpressions && packageRecord.ImpressionsCalculated.HasValue)
-								impressions.Add(String.Format("Impressions: {0}", packageRecord.ImpressionsCalculated.Value.ToString("#,##0")));
-							if (PackageSettings.ShowCPM && packageRecord.CPMCalculated.HasValue)
-								impressions.Add(String.Format("CPM: {0}", packageRecord.CPMCalculated.Value.ToString("$#,###.00")));
-							if (PackageSettings.ShowRate && packageRecord.Rate.HasValue)
-								impressions.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
-
-							var investments = new List<string>();
-							if (PackageSettings.ShowInvestment && packageRecord.InvestmentCalculated.HasValue)
-								investments.Add(String.Format("Investment: {0}", packageRecord.InvestmentCalculated.Value.ToString("$#,###.00")));
-
-							if (investments.Any())
-							{
-								slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0}", j + 1), impressions.Any() ? String.Join(",   ", impressions.ToArray()) : "DeleteRow");
-								slideRows.Add(String.Format("Investment{0}", j + 1), String.Join(",   ", investments.ToArray()));
-							}
-							else
-							{
-								slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0}", j + 1), "DeleteRow");
-								slideRows.Add(String.Format("Investment{0}", j + 1), impressions.Any() ? String.Join(",   ", impressions.ToArray()) : "DeleteRow");
-							}
+							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), additionalInfoRow);
+							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), "DeleteRow");
 						}
 					}
 					else
 					{
 						slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), "DeleteRow");
 						slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), "DeleteRow");
-						slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), String.Empty);
 					}
 				}
 				OutputReplacementsLists.Add(slideRows);
 			}
 		}
 
-		public IList<IDigitalOutputItem> GetOutputItems()
+		public OutputGroup GetOutputGroup()
 		{
-			return _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
-				new List<IDigitalOutputItem> { this }:
-				new List<IDigitalOutputItem>();
+			return new OutputGroup
+			{
+				Name = SlideName,
+				OutputItems = _container.EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ?
+					new List<IDigitalOutputItem> { this } :
+					new List<IDigitalOutputItem>()
+			};
 		}
 
 		public void GenerateOutput()

@@ -30,7 +30,7 @@
         {
 			this.buttonXContinue = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
-			this.treeView = new System.Windows.Forms.TreeView();
+			this.treeView = new Common.GUI.Common.NoDoubleClickTreeView();
 			this.buttonXSelectNone = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSelectCurrent = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSelectAll = new DevComponents.DotNetBar.ButtonX();
@@ -81,6 +81,7 @@
 			this.treeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewAfterCheck);
 			this.treeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.OnTreeViewBeforeCollapse);
 			this.treeView.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.OnTreeViewBeforeSelect);
+			this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OnTreeViewNodeMouseClick);
 			this.treeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnTreeViewMouseDown);
 			// 
 			// buttonXSelectNone
@@ -154,7 +155,7 @@
 
         private DevComponents.DotNetBar.ButtonX buttonXClose;
 		public DevComponents.DotNetBar.ButtonX buttonXContinue;
-		private System.Windows.Forms.TreeView treeView;
+		private Common.GUI.Common.NoDoubleClickTreeView treeView;
 		public DevComponents.DotNetBar.ButtonX buttonXSelectNone;
 		public DevComponents.DotNetBar.ButtonX buttonXSelectCurrent;
 		public DevComponents.DotNetBar.ButtonX buttonXSelectAll;

@@ -1,4 +1,4 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
+﻿namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 {
     partial class FormConfigureOutput
     {
@@ -30,10 +30,9 @@
         {
 			this.buttonXContinue = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
-			this.checkedListBoxControlOutputOptionItems = new DevExpress.XtraEditors.CheckedListBoxControl();
+			this.treeView = new Common.GUI.Common.NoDoubleClickTreeView();
 			this.buttonXSelectNone = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSelectAll = new DevComponents.DotNetBar.ButtonX();
-			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlOutputOptionItems)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonXContinue
@@ -64,27 +63,25 @@
 			this.buttonXClose.Text = "Cancel";
 			this.buttonXClose.TextColor = System.Drawing.Color.Black;
 			// 
-			// checkedListBoxControlOutputOptionItems
+			// treeView
 			// 
-			this.checkedListBoxControlOutputOptionItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkedListBoxControlOutputOptionItems.Appearance.BackColor = System.Drawing.Color.White;
-			this.checkedListBoxControlOutputOptionItems.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkedListBoxControlOutputOptionItems.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.checkedListBoxControlOutputOptionItems.Appearance.Options.UseBackColor = true;
-			this.checkedListBoxControlOutputOptionItems.Appearance.Options.UseFont = true;
-			this.checkedListBoxControlOutputOptionItems.Appearance.Options.UseForeColor = true;
-			this.checkedListBoxControlOutputOptionItems.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-			this.checkedListBoxControlOutputOptionItems.CheckOnClick = true;
-			this.checkedListBoxControlOutputOptionItems.ItemHeight = 25;
-			this.checkedListBoxControlOutputOptionItems.Location = new System.Drawing.Point(14, 53);
-			this.checkedListBoxControlOutputOptionItems.Name = "checkedListBoxControlOutputOptionItems";
-			this.checkedListBoxControlOutputOptionItems.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlOutputOptionItems.ShowFocusRect = false;
-			this.checkedListBoxControlOutputOptionItems.Size = new System.Drawing.Size(322, 306);
-			this.checkedListBoxControlOutputOptionItems.TabIndex = 15;
-			this.checkedListBoxControlOutputOptionItems.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControlProducts_ItemCheck);
+			this.treeView.BackColor = System.Drawing.Color.White;
+			this.treeView.CausesValidation = false;
+			this.treeView.CheckBoxes = true;
+			this.treeView.ForeColor = System.Drawing.Color.Black;
+			this.treeView.ItemHeight = 30;
+			this.treeView.Location = new System.Drawing.Point(14, 53);
+			this.treeView.Name = "treeView";
+			this.treeView.ShowLines = false;
+			this.treeView.ShowPlusMinus = false;
+			this.treeView.ShowRootLines = false;
+			this.treeView.Size = new System.Drawing.Size(322, 311);
+			this.treeView.TabIndex = 12;
+			this.treeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewAfterCheck);
+			this.treeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.OnTreeViewBeforeCollapse);
+			this.treeView.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.OnTreeViewBeforeSelect);
+			this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OnTreeViewNodeMouseClick);
+			this.treeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnTreeViewMouseDown);
 			// 
 			// buttonXSelectNone
 			// 
@@ -95,10 +92,10 @@
 			this.buttonXSelectNone.Name = "buttonXSelectNone";
 			this.buttonXSelectNone.Size = new System.Drawing.Size(96, 35);
 			this.buttonXSelectNone.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXSelectNone.TabIndex = 23;
+			this.buttonXSelectNone.TabIndex = 21;
 			this.buttonXSelectNone.Text = "Clear";
 			this.buttonXSelectNone.TextColor = System.Drawing.Color.Black;
-			this.buttonXSelectNone.Click += new System.EventHandler(this.OnSelectNone_Click);
+			this.buttonXSelectNone.Click += new System.EventHandler(this.OnSelectNoneClick);
 			// 
 			// buttonXSelectAll
 			// 
@@ -109,7 +106,7 @@
 			this.buttonXSelectAll.Name = "buttonXSelectAll";
 			this.buttonXSelectAll.Size = new System.Drawing.Size(96, 35);
 			this.buttonXSelectAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXSelectAll.TabIndex = 22;
+			this.buttonXSelectAll.TabIndex = 19;
 			this.buttonXSelectAll.Text = "All";
 			this.buttonXSelectAll.TextColor = System.Drawing.Color.Black;
 			this.buttonXSelectAll.Click += new System.EventHandler(this.OnSelectAllClick);
@@ -121,7 +118,7 @@
 			this.ClientSize = new System.Drawing.Size(350, 420);
 			this.Controls.Add(this.buttonXSelectNone);
 			this.Controls.Add(this.buttonXSelectAll);
-			this.Controls.Add(this.checkedListBoxControlOutputOptionItems);
+			this.Controls.Add(this.treeView);
 			this.Controls.Add(this.buttonXClose);
 			this.Controls.Add(this.buttonXContinue);
 			this.DoubleBuffered = true;
@@ -132,8 +129,8 @@
 			this.Name = "FormConfigureOutput";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Select Schedules";
-			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlOutputOptionItems)).EndInit();
+			this.Text = "Select Digital Slides";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
 			this.ResumeLayout(false);
 
         }
@@ -142,7 +139,7 @@
 
         private DevComponents.DotNetBar.ButtonX buttonXClose;
 		public DevComponents.DotNetBar.ButtonX buttonXContinue;
-        public DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlOutputOptionItems;
+		private Common.GUI.Common.NoDoubleClickTreeView treeView;
 		public DevComponents.DotNetBar.ButtonX buttonXSelectNone;
 		public DevComponents.DotNetBar.ButtonX buttonXSelectAll;
 	}

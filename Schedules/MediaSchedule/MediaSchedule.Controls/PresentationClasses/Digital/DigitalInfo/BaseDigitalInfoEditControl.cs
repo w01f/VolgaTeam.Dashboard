@@ -417,9 +417,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 
 			var totals = new List<string>();
 			if (_digitalInfo.ShowTotalInvestemt && _digitalInfo.TotalInvestment.HasValue)
-				totals.Add(String.Format("Total Investment:  {0}", _digitalInfo.TotalInvestment.Value.ToString("$# ##0.00")));
+				totals.Add(String.Format("Total Investment:  {0}", _digitalInfo.TotalInvestment.Value.ToString("$#,##0.00")));
 			if (_digitalInfo.ShowMonthlyInvestemt && _digitalInfo.MonthlyInvestment.HasValue)
-				totals.Add(String.Format("Monthly Investment:  {0}", _digitalInfo.MonthlyInvestment.Value.ToString("$# ##0.00")));
+				totals.Add(String.Format("Monthly Investment:  {0}", _digitalInfo.MonthlyInvestment.Value.ToString("$#,##0.00")));
 			outputModel.Total1 = totals.ElementAtOrDefault(0);
 			outputModel.Total2 = totals.ElementAtOrDefault(1);
 
@@ -433,14 +433,14 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 					values.Add(digitalInfoRecord.Category);
 				if (_digitalInfo.ShowSubCategory && !String.IsNullOrEmpty(digitalInfoRecord.SubCategory))
 					values.Add(digitalInfoRecord.SubCategory);
-				recordOutputModel.Text1 = String.Join(" - ", values);
+				recordOutputModel.Text1 = String.Join("  -  ", values);
 
 				values.Clear();
 				if (_digitalInfo.ShowProduct && !String.IsNullOrEmpty(digitalInfoRecord.Name))
 					values.Add(digitalInfoRecord.Name);
 				if (_digitalInfo.ShowInfo && !String.IsNullOrEmpty(digitalInfoRecord.Info))
 					values.Add(digitalInfoRecord.Info);
-				recordOutputModel.Text1 = String.Join("   |   ", values);
+				recordOutputModel.Text2 = String.Join("   |   ", values);
 
 				outputModel.Records.Add(recordOutputModel);
 			}

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Asa.Business.Media.Entities.NonPersistent.Digital;
 using Asa.Media.Controls.BusinessClasses.Managers;
 
 namespace Asa.Media.Controls.BusinessClasses.Output.DigitalInfo

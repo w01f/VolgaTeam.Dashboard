@@ -58,5 +58,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 		{
 			buttonXContinue.Enabled = checkedListBoxControlOutputOptionItems.CheckedItemsCount > 0;
 		}
+
+		private void OnSelectAllClick(object sender, EventArgs e)
+		{
+			checkedListBoxControlOutputOptionItems.CheckAll();
+		}
+
+		private void OnSelectNone_Click(object sender, EventArgs e)
+		{
+			checkedListBoxControlOutputOptionItems.UnCheckAll();
+		}
 	}
 }

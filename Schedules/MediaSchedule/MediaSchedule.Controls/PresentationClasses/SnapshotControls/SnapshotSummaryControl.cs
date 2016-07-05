@@ -157,13 +157,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			get { return "Summary Slide"; }
 		}
 
-		public string TemplateFilePath
-		{
-			get
-			{
-				return BusinessObjects.Instance.OutputManager.GetSnapshotSummaryFile(MediaMetaData.Instance.SettingsManager.SelectedColor, GetColumnInfo().Count());
-			}
-		}
+		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetSnapshotSummaryFile(
+			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
+			GetColumnInfo().Count());
 
 		public string TotalRowValue
 		{

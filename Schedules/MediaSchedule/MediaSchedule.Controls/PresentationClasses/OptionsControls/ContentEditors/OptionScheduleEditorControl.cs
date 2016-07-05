@@ -491,7 +491,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		#region Output
 		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetOptionsItemFile(
-			MediaMetaData.Instance.SettingsManager.SelectedColor,
+			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
 			_data.ShowLogo || _data.DigitalInfo.ShowLogo);
 		public string[][] Logos { get; set; }
 		public float[] ColumnWidths { get; set; }

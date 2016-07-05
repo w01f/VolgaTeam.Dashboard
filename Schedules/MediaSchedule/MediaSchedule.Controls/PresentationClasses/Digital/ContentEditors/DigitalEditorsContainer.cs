@@ -26,7 +26,6 @@ using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.PresentationClasses.Products;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTab;
 using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
@@ -110,7 +109,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				editor.RequestReload();
 			});
 
+			xtraTabControlEditors.TabPages.OfType<DigitalListEditorControl>().Single().LoadData();
 			LoadActiveEditorData();
+
 			UpdateEditorsStatus();
 			UpdateOutputStatus();
 		}
@@ -472,26 +473,21 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		private IList<IDigitalOutputItem> GetOutputItems()
 		{
-			var outputItems = new List<IDigitalOutputItem>();
-			using (var form = new FormSelectOutputItems())
-			{
-				form.Text = "Select Digital Slides";
-				form.buttonXSelectCurrent.Visible = false;
-				foreach (var tabPage in xtraTabControlEditors.TabPages
+			var outputGroups = new List<OutputGroup>();
+			var availableOutputGroups = xtraTabControlEditors.TabPages
 					.OfType<IDigitalOutputContainer>()
-					.SelectMany(container => container.GetOutputItems()))
+					.Select(oc => oc.GetOutputGroup())
+					.Where(g=>g.OutputItems.Any())
+					.ToList();
+			if (availableOutputGroups.Any())
+			{
+				using (var form = new FormConfigureOutput(availableOutputGroups))
 				{
-					var item = new CheckedListBoxItem(tabPage, tabPage.SlideName, CheckState.Checked);
-					form.checkedListBoxControlOutputItems.Items.Add(item);
+					if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+						outputGroups.AddRange(availableOutputGroups);
 				}
-				if (form.ShowDialog() == DialogResult.OK)
-					outputItems.AddRange(form.checkedListBoxControlOutputItems.Items.
-						OfType<CheckedListBoxItem>().
-						Where(ci => ci.CheckState == CheckState.Checked).
-						Select(ci => ci.Value).
-						OfType<IDigitalOutputItem>());
 			}
-			return outputItems;
+			return outputGroups.SelectMany(g=>g.OutputItems).ToList();
 		}
 		#endregion
 	}

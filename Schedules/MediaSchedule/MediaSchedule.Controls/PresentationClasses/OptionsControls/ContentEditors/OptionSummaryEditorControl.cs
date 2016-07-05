@@ -46,7 +46,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		public OptionsSummaryEditorControl(OptionSummary data)
 		{
 			InitializeComponent();
-			Text = "Summary Slide";
+			Text = String.Format("Summary ({0})", MediaMetaData.Instance.DataTypeString);
 		}
 
 		public void LoadData(OptionSummary data)
@@ -189,7 +189,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		#region Output
 		public string OutputName => "Summary";
-		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetOptionsSummaryFile(MediaMetaData.Instance.SettingsManager.SelectedColor, GetColumnInfo().Count());
+		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetOptionsSummaryFile(
+			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
+			GetColumnInfo().Count());
 		public string[][] Logos { get; set; }
 		public float[] ColumnWidths { get; set; }
 		public ContractSettings ContractSettings => Data.ContractSettings;

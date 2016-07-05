@@ -106,6 +106,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\FormStateHelper.cs" />
+    <Compile Include="Common\NoDoubleClickTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\PictureBoxButtonizer.cs" />
     <Compile Include="Common\TextEditorsHelper.cs" />
     <Compile Include="Common\XtraTabDragDropHelper.cs" />

@@ -287,10 +287,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		#region Output
 		public Theme SelectedTheme => _container.SelectedTheme;
 
-		public IList<IDigitalOutputItem> GetOutputItems()
+		public OutputGroup GetOutputGroup()
 		{
 			LoadData();
-			return xtraTabControlProducts.TabPages.OfType<IDigitalOutputItem>().ToList();
+			return new OutputGroup
+			{
+				Name = "Planners",
+				AlwaysShowChildren = true,
+				OutputItems = xtraTabControlProducts.TabPages.OfType<IDigitalOutputItem>().ToList()
+			};
 		}
 		#endregion
 	}

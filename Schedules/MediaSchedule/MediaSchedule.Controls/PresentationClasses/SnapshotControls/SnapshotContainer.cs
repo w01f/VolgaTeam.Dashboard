@@ -503,7 +503,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		private void SaveColors()
 		{
-			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? String.Empty;
+			MediaMetaData.Instance.SettingsManager.SelectedColor = 
+				outputColorSelector.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault();
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 		}
 

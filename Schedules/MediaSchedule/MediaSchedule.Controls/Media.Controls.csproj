@@ -188,7 +188,14 @@
     <Compile Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoSettingsControl.Designer.cs">
       <DependentUpon>BaseDigitalInfoSettingsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Digital\Output\FormConfigureOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Digital\Output\FormConfigureOutput.Designer.cs">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Digital\Output\IDigitalOutputContainer.cs" />
+    <Compile Include="PresentationClasses\Digital\Output\OutputGroup.cs" />
     <Compile Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -532,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfo\BaseDigitalInfoSettingsControl.resx">
       <DependentUpon>BaseDigitalInfoSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Digital\Output\FormConfigureOutput.resx">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Digital\Settings\DigitalStandalonePackageSettingsControl.resx">
       <DependentUpon>DigitalStandalonePackageSettingsControl.cs</DependentUpon>

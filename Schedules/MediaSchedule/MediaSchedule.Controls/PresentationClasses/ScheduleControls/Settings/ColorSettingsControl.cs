@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Common.GUI.RetractableBar;
@@ -50,7 +51,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 		private void OnColorChanged(object sender, EventArgs e)
 		{
-			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? String.Empty;
+			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? 
+				BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault();
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 			BusinessObjects.Instance.OutputManager.RaiseSelectedColorChanged();
 		}

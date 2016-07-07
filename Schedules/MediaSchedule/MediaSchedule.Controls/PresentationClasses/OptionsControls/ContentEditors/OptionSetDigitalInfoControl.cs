@@ -47,9 +47,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#endregion
 
 		#region Output
-		protected override SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-			SlideType.TVOptions :
-			SlideType.RadioOptions;
+		public override SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+			SlideType.TVOptionsDigital :
+			SlideType.RadioOptionsDigital;
 
 		public IList<OutputConfiguration> GetOutputConfigurations()
 		{

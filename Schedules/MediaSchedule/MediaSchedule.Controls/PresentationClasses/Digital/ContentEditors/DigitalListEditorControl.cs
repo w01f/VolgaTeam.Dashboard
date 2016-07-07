@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Common.Core.Enums;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
@@ -16,6 +17,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private bool _needToReload;
 		private readonly DigitalEditorsContainer _container;
 		public DigitalSectionType SectionType => DigitalSectionType.List;
+		public SlideType SlideType => SlideType.DigitalProducts;
 		public string HelpTag => "homedg";
 		public bool HasItems => _container.EditedContent.DigitalProducts.Any();
 		public event EventHandler<DataChangedEventArgs> DataChanged;

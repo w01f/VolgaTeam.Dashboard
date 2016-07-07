@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.Output;
@@ -152,31 +154,32 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			get { return Data.Parent.Snapshots.Any(s => s.Programs.Any()); }
 		}
 
-		public string SlideName
+		public string SlideName => "Summary Slide";
+
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
+			? SlideType.TVSnapshotSummary
+			: SlideType.RadioSnapshotSummary;
+
+		private Theme SelectedTheme
 		{
-			get { return "Summary Slide"; }
+			get
+			{
+				var selectedTheme = MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType);
+				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
+			}
 		}
 
 		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetSnapshotSummaryFile(
 			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
 			GetColumnInfo().Count());
 
-		public string TotalRowValue
-		{
-			get { return String.Empty; }
-		}
+		public string TotalRowValue => String.Empty;
 
 		public string[][] Logos { get; set; }
-		public ContractSettings ContractSettings
-		{
-			get { return Data.ContractSettings; }
-		}
+		public ContractSettings ContractSettings => Data.ContractSettings;
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 
-		private int ProgramsPerSlide
-		{
-			get { return 6; }
-		}
+		private int ProgramsPerSlide => 6;
 
 		private string[][] GetLogos()
 		{
@@ -321,7 +324,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
-		public PreviewGroup GetPreviewGroup(Theme selectedTheme)
+		public PreviewGroup GetPreviewGroup()
 		{
 			Logos = GetLogos();
 			PopulateReplacementsList();
@@ -330,15 +333,15 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				Name = SlideName,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 
-		public void Output(Theme selectedTheme)
+		public void Output()
 		{
 			Logos = GetLogos();
 			PopulateReplacementsList();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
 		internal abstract class OutputColumnInfo
@@ -351,10 +354,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		internal class SpotsColumnInfo : OutputColumnInfo
 		{
-			public override string HeaderCaption
-			{
-				get { return String.Format("Weekly{0}Spots", (char)13); }
-			}
+			public override string HeaderCaption => String.Format("Weekly{0}Spots", (char)13);
 
 			public override string GetValue(Snapshot snapshot)
 			{
@@ -364,10 +364,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		internal class RateColumnInfo : OutputColumnInfo
 		{
-			public override string HeaderCaption
-			{
-				get { return String.Format("Weekly{0}Cost", (char)13); }
-			}
+			public override string HeaderCaption => String.Format("Weekly{0}Cost", (char)13);
 
 			public override string GetValue(Snapshot snapshot)
 			{
@@ -377,10 +374,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		internal class TotalWeeksColumnInfo : OutputColumnInfo
 		{
-			public override string HeaderCaption
-			{
-				get { return String.Format("Total{0}Weeks", (char)13); }
-			}
+			public override string HeaderCaption => String.Format("Total{0}Weeks", (char)13);
 
 			public override string GetValue(Snapshot snapshot)
 			{
@@ -390,10 +384,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		internal class CostColumnInfo : OutputColumnInfo
 		{
-			public override string HeaderCaption
-			{
-				get { return "Cost"; }
-			}
+			public override string HeaderCaption => "Cost";
 
 			public override string GetValue(Snapshot snapshot)
 			{

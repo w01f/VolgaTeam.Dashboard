@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Common.Core.Enums;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
@@ -10,7 +11,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 	//public partial class HomePage : UserControl
 	public partial class HomePage : XtraTabPage, IDigitalSection
 	{
-		public DigitalSectionType SectionType=>DigitalSectionType.Home;
+		public DigitalSectionType SectionType => DigitalSectionType.Home;
+		public SlideType SlideType => SlideType.DigitalProducts;
 		public string HelpTag => "homedg";
 		public HomePage()
 		{

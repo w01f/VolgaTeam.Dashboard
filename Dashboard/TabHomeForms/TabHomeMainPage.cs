@@ -95,15 +95,7 @@ namespace Asa.Dashboard.TabHomeForms
 			UpdatePageAccordingToggledButton(args.SlideType);
 		}
 
-		public static TabHomeMainPage Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new TabHomeMainPage();
-				return _instance;
-			}
-		}
+		public static TabHomeMainPage Instance => _instance ?? (_instance = new TabHomeMainPage());
 
 		private void UpdatePageAccordingToggledButton()
 		{

@@ -113,6 +113,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ContentEditManager<MediaScheduleChangeInfo>.Init(this);
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened +=
 				ContentEditManager<MediaScheduleChangeInfo>.OnScheduleOpened;
+			BusinessObjects.Instance.ThemeManager.ThemesChanged +=
+				ContentEditManager<MediaScheduleChangeInfo>.OnThemeChanged;
 			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSaving +=
 				(o, e) => BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Save();
 			ContentEditManager<MediaScheduleChangeInfo>.ScheduleSavingAs +=

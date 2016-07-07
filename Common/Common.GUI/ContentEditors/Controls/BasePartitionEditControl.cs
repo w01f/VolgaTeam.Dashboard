@@ -13,8 +13,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 		where TScheduleSettings : IBaseScheduleSettings
 		where TChangeInfo : BaseScheduleChangeInfo
 	{
-		protected bool IsThemeChanged { get; set; }
-		protected ThemeUpdateInfo ThemeUpdateInfo { get; private set; }
+		protected ThemeUpdateInfo ThemeUpdateInfo { get; }
 		public TPartitionContet EditedContent { get; set; }
 
 		public event EventHandler<EventArgs> ThemeChanged;
@@ -36,13 +35,6 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 				LoadThemes();
 		}
 
-		public override void Save(ContentSavingEventArgs savingArgs)
-		{
-			base.Save(savingArgs);
-			if (IsThemeChanged)
-				OnThemeChanged();
-		}
-
 		protected virtual void LoadThemes()
 		{
 			ThemeUpdateInfo.NeedToUpdate = false;
@@ -51,7 +43,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 		protected virtual void OnThemeChanged()
 		{
 			var handler = ThemeChanged;
-			if (handler != null) handler(this, EventArgs.Empty);
+			handler?.Invoke(this, EventArgs.Empty);
 		}
 
 		public virtual void OnOuterThemeChanged()

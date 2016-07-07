@@ -62,7 +62,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 				}
 		}
 
-		private static void OnThemeChanged(object sender, EventArgs e)
+		public static void OnThemeChanged(object sender, EventArgs e)
 		{
 			foreach (var partitionEditControl in _controller.ContentControls.OfType<IPartitionEditControl<TChangeInfo>>().Where(c => c != sender))
 				partitionEditControl.OnOuterThemeChanged();

@@ -24,7 +24,6 @@ using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab.ViewInfo;
-using Asa.Media.Controls.BusinessClasses;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.Properties;
@@ -48,9 +47,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		public override RibbonTabItem TabPage => Controller.Instance.TabSnapshot;
 
-		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVSnapshot : SlideType.RadioSnapshot;
-
 		private SnapshotControl ActiveSnapshot => xtraTabControlSnapshots.SelectedTabPage as SnapshotControl;
+
+		private ISnapshotSlideControl ActiveEditor => xtraTabControlSnapshots.SelectedTabPage as ISnapshotSlideControl;
 
 		private SnapshotSummaryControl ActiveSummary => xtraTabControlSnapshots.SelectedTabPage as SnapshotSummaryControl;
 
@@ -60,7 +59,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		{
 			InitializeComponent();
 
-			if ((CreateGraphics()).DpiX > 96)
+			if (CreateGraphics().DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
 					styleController.Appearance.Font.Style);
@@ -140,7 +139,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				InitColorsControl();
 				LoadBarButtons();
 			};
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
 			hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 
 			Controller.Instance.SnapshotNew.Click += OnAddSnapshotClick;
@@ -195,12 +193,13 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		protected override void LoadThemes()
 		{
-			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			base.LoadThemes();
+
+			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), t =>
 			{
 				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				IsThemeChanged = true;
-			}));
+			});
 			Controller.Instance.SnapshotThemeBar.RecalcLayout();
 			Controller.Instance.SnapshotPanel.PerformLayout();
 		}
@@ -560,6 +559,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		{
 			if (!_allowToSave) return;
 			LoadActiveTabData(true);
+			LoadThemes();
 		}
 
 		private void xtraTabControlSnapshots_MouseDown(object sender, MouseEventArgs e)
@@ -575,7 +575,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		{
 			EditedContent.ChangeSnapshotPosition(
 				EditedContent.Snapshots.IndexOf(((SnapshotControl)e.MovedPage).Data),
-				EditedContent.Snapshots.IndexOf(((SnapshotControl)e.TargetPage).Data) + (1 * e.Offset));
+				EditedContent.Snapshots.IndexOf(((SnapshotControl)e.TargetPage).Data) + 1 * e.Offset);
 			Summary.UpdateView();
 			SettingsNotSaved = true;
 		}
@@ -769,10 +769,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		#endregion
 
 		#region Output
-		private Theme SelectedTheme
-		{
-			get { return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
-		}
+		private SlideType SlideType => ActiveEditor?.SlideType ??
+				(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
+					? SlideType.TVSnapshotPrograms
+					: SlideType.RadioSnapshotPrograms);
 
 		private void UpdateOutputStatus()
 		{
@@ -815,7 +815,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			{
 				FormProgress.ShowProgress();
 				foreach (var snapshotSlide in selectedSnapshots)
-					snapshotSlide.Output(SelectedTheme);
+					snapshotSlide.Output();
 				FormProgress.CloseProgress();
 			});
 		}
@@ -853,7 +853,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			{
 				FormProgress.ShowProgress();
 				var previewGroups = new List<PreviewGroup>();
-				previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+				previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup()));
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
 					String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
@@ -899,7 +899,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
-			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup()));
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
@@ -948,7 +948,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
-			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup(SelectedTheme)));
+			previewGroups.AddRange(selectedSnapshots.Select(snapshotSlide => snapshotSlide.GetPreviewGroup()));
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;

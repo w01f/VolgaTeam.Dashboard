@@ -5,15 +5,17 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
 using Asa.Business.Online.Configuration;
 using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Enums;
-using Asa.Common.Core.Configuration;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.InteropClasses;
@@ -28,6 +30,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
+using ResourceManager = Asa.Common.Core.Configuration.ResourceManager;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
@@ -400,7 +403,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		#region Output Stuff
 		public string SlideName => Text;
-		public Theme SelectedTheme => _container.SelectedTheme;
+		public SlideType SlideType => SlideType.DigitalStandalonePackage;
+		public Theme SelectedTheme
+		{
+			get
+			{
+				var selectedTheme = MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType);
+				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
+			}
+		}
 		public int RowsPerSlide
 		{
 			get

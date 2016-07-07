@@ -40,6 +40,7 @@ namespace Asa.Common.Core.Helpers
 
 		public void Deserialize(IEnumerable<XmlNode> nodes)
 		{
+			_selectedThemes.Clear();
 			foreach (var childNode in nodes)
 			{
 				SlideType temp;

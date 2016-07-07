@@ -4,12 +4,15 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
 using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Interfaces;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.PresentationClasses.Products;
@@ -30,6 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private readonly List<DigitalProductControl> _tabPages = new List<DigitalProductControl>();
 
 		public DigitalSectionType SectionType => DigitalSectionType.Products;
+		public SlideType SlideType => SlideType.DigitalProducts;
 		public string HelpTag => "digitalsl";
 		public IDigitalProductsContent DigitalProductsContent => _container.EditedContent;
 		public event EventHandler<DataChangedEventArgs> DataChanged;
@@ -285,7 +289,14 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		#endregion
 
 		#region Output
-		public Theme SelectedTheme => _container.SelectedTheme;
+		public Theme SelectedTheme
+		{
+			get
+			{
+				var selectedTheme = MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType);
+				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
+			}
+		}
 
 		public OutputGroup GetOutputGroup()
 		{

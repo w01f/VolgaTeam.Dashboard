@@ -58,15 +58,19 @@ namespace Asa.Media.Controls
 
 			MasterWizardManager.Instance.Load();
 
-			MediaMetaData.Instance.SettingsManager.InitThemeHelper(BusinessObjects.Instance.ThemeManager);
-			MediaMetaData.Instance.SettingsManager.LoadSettings();
-
 			Business.Common.Dictionaries.ListManager.Instance.Load();
 			MediaMetaData.Instance.ListManager.Load();
 			Business.Online.Dictionaries.ListManager.Instance.Load(Common.Core.Configuration.ResourceManager.Instance.OnlineListsFile);
 
 			BusinessObjects.Instance.Init();
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => ConfigureThemeButtons();
+			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) =>
+			{
+				MediaMetaData.Instance.SettingsManager.LoadSettings();
+				ConfigureThemeButtons();
+			};
+
+			MediaMetaData.Instance.SettingsManager.InitThemeHelper(BusinessObjects.Instance.ThemeManager);
+			MediaMetaData.Instance.SettingsManager.LoadSettings();
 
 			if (ResourceManager.Instance.MainAppTitleTextFile.ExistsLocal())
 				PopupMessageHelper.Instance.Title = File.ReadAllText(ResourceManager.Instance.MainAppTitleTextFile.LocalPath);

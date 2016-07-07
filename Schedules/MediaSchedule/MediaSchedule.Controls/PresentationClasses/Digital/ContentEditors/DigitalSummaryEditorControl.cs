@@ -5,16 +5,19 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Configuration;
 using Asa.Business.Online.Dictionaries;
-using Asa.Common.Core.Configuration;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Products;
 using Asa.Online.Controls.PresentationClasses.Summary;
 using DevExpress.XtraTab;
+using ResourceManager = Asa.Common.Core.Configuration.ResourceManager;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
@@ -135,7 +138,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		#region Output
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
-		public Theme SelectedTheme => _container.SelectedTheme;
+		public SlideType SlideType => SlideType.DigitalSummary;
+		public Theme SelectedTheme
+		{
+			get
+			{
+				var selectedTheme = MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType);
+				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
+			}
+		}
 		private static int RowsPerSlide => 7;
 
 		public void PopulateReplacementsList()

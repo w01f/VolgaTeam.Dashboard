@@ -53,7 +53,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private OptionSetEditorsContainer ActiveOptionSetContainer => xtraTabControlContentEditors.SelectedTabPage as OptionSetEditorsContainer;
 		private OptionsSummaryEditorControl ActiveSummary => xtraTabControlContentEditors.SelectedTabPage as OptionsSummaryEditorControl;
 		private OptionsSummaryEditorControl Summary => xtraTabControlContentEditors.TabPages.OfType<OptionsSummaryEditorControl>().Single();
-		private SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVOptions : SlideType.RadioOptions;
 		#endregion
 
 		public OptionsContentEditorsContainer()
@@ -76,10 +75,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			settingsContainer.InitControl();
 			settingsContainer.SettingsChanged += OnSettingsChanged;
 			settingsContainer.SettingsControlsUpdated += OnSettingsControlsUpdated;
-
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
-			BusinessObjects.Instance.OutputManager.ColorCollectionChanged += OnSettingsControlsUpdated;
-
 
 			Controller.Instance.OptionsNew.Click += OnAddOptionsSet;
 			Controller.Instance.OptionsProgramAdd.Click += OnAddItem;
@@ -155,11 +150,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		protected override void LoadThemes()
 		{
+			base.LoadThemes();
+
 			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
 			{
 				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				IsThemeChanged = true;
 			}));
 			Controller.Instance.OptionsThemeBar.RecalcLayout();
 			Controller.Instance.OptionsPanel.PerformLayout();
@@ -406,6 +402,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			UpdateCollectionChangeButtons();
 			UpdateTotalsValues();
 			UpdateTotalsVisibility();
+			LoadThemes();
 		}
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
@@ -489,6 +486,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			if (!_allowToSave) return;
 			LoadActiveEditorData();
+			LoadThemes();
 		}
 
 		private void OnContentEditorTabCloseClick(object sender, EventArgs e)
@@ -547,6 +545,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#endregion
 
 		#region Output Staff
+		private SlideType SlideType => ActiveContentEditor?.ActiveEditor?.SlideType ??
+				(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
+					? SlideType.TVOptionsPrograms
+					: SlideType.RadioOptionsPrograms);
+
 		public override void OutputPowerPoint()
 		{
 			var outputGroups = GetOutputConfiguration();

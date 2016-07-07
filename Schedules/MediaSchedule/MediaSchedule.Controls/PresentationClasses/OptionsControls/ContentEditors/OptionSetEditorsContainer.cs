@@ -174,7 +174,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				{
 					case OptionSetOutputType.Program:
 					case OptionSetOutputType.ProgramAndDigital:
-						_optionsControl.GenerateOutput(GetSelectedTheme(), configuration.OutputType == OptionSetOutputType.ProgramAndDigital);
+						_optionsControl.GenerateOutput(configuration.OutputType == OptionSetOutputType.ProgramAndDigital);
 						break;
 					case OptionSetOutputType.Digital:
 						_digitalInfoControl.GenerateOneSheetOutput();
@@ -196,7 +196,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				{
 					case OptionSetOutputType.Program:
 					case OptionSetOutputType.ProgramAndDigital:
-						previewGroups.Add(_optionsControl.GeneratePreview(GetSelectedTheme(), configuration.OutputType == OptionSetOutputType.ProgramAndDigital));
+						previewGroups.Add(_optionsControl.GeneratePreview(configuration.OutputType == OptionSetOutputType.ProgramAndDigital));
 						break;
 					case OptionSetOutputType.Digital:
 						previewGroups.Add(_digitalInfoControl.GenerateOneSheetPreview(String.Format("{0} ({1})", OptionSetData.Name, _digitalInfoControl.Text)));
@@ -207,12 +207,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				}
 			}
 			return previewGroups;
-		}
-
-		private Theme GetSelectedTheme()
-		{
-			var slideType = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVOptions : SlideType.RadioOptions;
-			return BusinessObjects.Instance.ThemeManager.GetThemes(slideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(slideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(slideType)));
 		}
 		#endregion
 	}

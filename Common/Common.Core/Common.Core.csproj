@@ -146,6 +146,7 @@
     <Compile Include="Objects\Slides\SlideMaster.cs" />
     <Compile Include="Objects\Slides\SlideMasterEventArgs.cs" />
     <Compile Include="Objects\TabPages\TabPageConfig.cs" />
+    <Compile Include="Objects\Themes\SlideApprovedThemeInfo.cs" />
     <Compile Include="Objects\Themes\Theme.cs" />
     <Compile Include="Objects\Themes\ThemeEventArgs.cs" />
     <Compile Include="OfficeInterops\ExcelHelper.cs" />

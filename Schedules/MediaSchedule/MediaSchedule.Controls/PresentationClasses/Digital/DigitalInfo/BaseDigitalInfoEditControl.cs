@@ -334,7 +334,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		#endregion
 
 		#region Output Stuff
-		protected abstract SlideType SlideType { get; }
+		public abstract SlideType SlideType { get; }
 
 		private Theme SelectedTheme
 		{

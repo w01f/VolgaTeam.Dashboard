@@ -50,9 +50,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output
-		protected override SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-			SlideType.TVProgramSchedule :
-			SlideType.RadioProgramSchedule;
+		public override SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+			SlideType.TVScheduleDigital :
+			SlideType.RadioScheduleDigital;
 
 		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
 		{

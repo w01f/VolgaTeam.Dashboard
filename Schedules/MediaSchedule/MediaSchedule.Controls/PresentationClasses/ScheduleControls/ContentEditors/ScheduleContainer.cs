@@ -42,10 +42,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private SectionContainer ActiveSection => xtraTabControlSections.SelectedTabPage as SectionContainer;
 
 		private string SpotTitle => ScheduleSettings.SelectedSpotType.ToString();
-
-		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-			SlideType.TVProgramSchedule :
-			SlideType.RadioProgramSchedule;
 		#endregion
 
 		public ScheduleContainer()
@@ -103,7 +99,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_tabDragDropHelper = new XtraTabDragDropHelper<SectionContainer>(xtraTabControlSections);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
 
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
 			BusinessObjects.Instance.OutputManager.ColorCollectionChanged += OnSettingsControlsUpdated;
 
 			Controller.Instance.ProgramScheduleNew.Click += OnAddSection;
@@ -180,11 +175,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		protected override void LoadThemes()
 		{
 			base.LoadThemes();
+
 			FormThemeSelector.Link(Controller.Instance.ProgramScheduleTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
 			{
 				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				IsThemeChanged = true;
 			}));
 			Controller.Instance.ProgramScheduleThemeBar.RecalcLayout();
 			Controller.Instance.ProgramSchedulePanel.PerformLayout();
@@ -425,6 +420,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (ActiveSection == null) return;
 			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.ActiveEditor.EditorType);
 			UpdateCollectionChangeButtons();
+			LoadThemes();
 			UpdateOutputStatus();
 		}
 
@@ -569,6 +565,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Staff
+		private SlideType SlideType => ActiveSection?.ActiveEditor?.SlideType ??
+									   (MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
+										   ? SlideType.TVSchedulePrograms
+										   : SlideType.RadioSchedulePrograms);
 
 		public override void OutputPowerPoint()
 		{

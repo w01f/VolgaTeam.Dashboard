@@ -15,10 +15,7 @@ namespace Asa.Common.GUI.Themes
 	{
 		private ThemeContainerControl _themeContainer;
 
-		public Theme SelectedTheme
-		{
-			get { return _themeContainer.SelectedTheme; }
-		}
+		public Theme SelectedTheme => _themeContainer.SelectedTheme;
 
 		public FormThemeSelector()
 		{

@@ -188,6 +188,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#endregion
 
 		#region Output
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+			SlideType.TVOptionstSummary :
+			SlideType.RadioOptionstSummary;
+		private Theme SelectedTheme => BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)));
 		public string OutputName => "Summary";
 		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetOptionsSummaryFile(
 			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
@@ -213,7 +217,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			if (!configurations.Any()) return;
 			Logos = GetLogos();
 			PopulateReplacementsList();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendOptions(new[] { this }, GetSelectedTheme(), MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
 		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
@@ -229,7 +233,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				Name = OutputName,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, GetSelectedTheme(), MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 
 			groupList.Add(previewGroup);
 			return groupList;
@@ -241,12 +245,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			if (Data.Enabled && Data.Parent.Options.Any(s => s.Programs.Any()))
 				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.Summary));
 			return outputConfigurations;
-		}
-
-		private Theme GetSelectedTheme()
-		{
-			var slideType = MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVOptions : SlideType.RadioOptions;
-			return BusinessObjects.Instance.ThemeManager.GetThemes(slideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(slideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(slideType)));
 		}
 
 		private string[][] GetLogos()

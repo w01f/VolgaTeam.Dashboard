@@ -235,10 +235,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public string Title
-		{
-			get { return (comboBoxEditHeader.EditValue as String) ?? String.Empty; }
-		}
+		public string Title => (comboBoxEditHeader.EditValue as String) ?? String.Empty;
 
 		public string SummaryData
 		{
@@ -329,14 +326,18 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public ContractSettings ContractSettings => _sectionContainer.SectionData.ContractSettings;
 
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+			SlideType.TVScheduleSummary :
+			SlideType.RadioScheduleSummary;
+
 		public Theme SelectedTheme
 		{
 			get
 			{
-				return BusinessObjects.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVProgramSchedule : SlideType.RadioProgramSchedule)
+				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType)
 					.FirstOrDefault(t =>
-				  t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVProgramSchedule : SlideType.RadioProgramSchedule)) ||
-				  String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? SlideType.TVProgramSchedule : SlideType.RadioProgramSchedule)));
+				  t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) ||
+				  String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)));
 			}
 		}
 

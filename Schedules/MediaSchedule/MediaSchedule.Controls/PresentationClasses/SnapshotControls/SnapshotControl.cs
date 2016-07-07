@@ -7,8 +7,9 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Common;
-using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
+using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.Output;
@@ -467,14 +468,21 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 		#endregion
 
 		#region Output
-		public bool ReadyForOutput
-		{
-			get { return Data.Programs.Any() && (Data.ShowStation || Data.ShowProgram || Data.ShowTime || Data.ShowDaypart); }
-		}
+		public bool ReadyForOutput => Data.Programs.Any() && (Data.ShowStation || Data.ShowProgram || Data.ShowTime || Data.ShowDaypart);
 
-		public string SlideName
+		public string SlideName => Data.Name;
+
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
+			? SlideType.TVSnapshotPrograms
+			: SlideType.RadioSnapshotPrograms;
+
+		private Theme SelectedTheme
 		{
-			get { return Data.Name; }
+			get
+			{
+				var selectedTheme = MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType);
+				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
+			}
 		}
 
 		public string TemplateFilePath
@@ -493,9 +501,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				if (!(Data.ShowLenght || Data.ShowRate || Data.ShowTotalSpots || Data.ShowCost))
 					slideSuffics.Add("no_lrsc");
 				return BusinessObjects.Instance.OutputManager.GetSnapshotItemFile(
-					MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(), 
-					Data.ShowLogo, 
-					ProgramsPerSlide, 
+					MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
+					Data.ShowLogo,
+					ProgramsPerSlide,
 					String.Join("", slideSuffics));
 			}
 		}
@@ -531,17 +539,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 
 		public string[][] Logos { get; set; }
 
-		public ContractSettings ContractSettings
-		{
-			get { return Data.ContractSettings; }
-		}
+		public ContractSettings ContractSettings => Data.ContractSettings;
 
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
 
-		private int ProgramsPerSlide
-		{
-			get { return Data.Programs.Count <= 10 ? Data.Programs.Count : 10; }
-		}
+		private int ProgramsPerSlide => Data.Programs.Count <= 10 ? Data.Programs.Count : 10;
 
 		private string[][] GetLogos()
 		{
@@ -933,7 +935,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 			}
 		}
 
-		public PreviewGroup GetPreviewGroup(Theme selectedTheme)
+		public PreviewGroup GetPreviewGroup()
 		{
 			Logos = GetLogos();
 			PopulateReplacementsList();
@@ -942,15 +944,15 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls
 				Name = SlideName,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 
-		public void Output(Theme selectedTheme)
+		public void Output()
 		{
 			Logos = GetLogos();
 			PopulateReplacementsList();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 		#endregion
 	}

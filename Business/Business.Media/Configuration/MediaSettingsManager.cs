@@ -18,7 +18,7 @@ namespace Asa.Business.Media.Configuration
 		public string SaveFolder { get; set; }
 		public string SelectedColor { get; set; }
 		public bool UseSlideMaster { get; set; }
-		public CalendarSettings BroadcastCalendarSettings { get; private set; }
+		public CalendarSettings BroadcastCalendarSettings { get; }
 
 		public MediaSettingsManager()
 		{

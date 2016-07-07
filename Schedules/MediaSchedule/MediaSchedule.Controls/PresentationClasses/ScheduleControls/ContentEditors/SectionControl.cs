@@ -666,9 +666,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			return outputOptions;
 		}
 
-		private SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-			SlideType.TVProgramSchedule :
-			SlideType.RadioProgramSchedule;
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+			SlideType.TVSchedulePrograms :
+			SlideType.RadioSchedulePrograms;
 
 		private Theme SelectedTheme
 		{
@@ -681,7 +681,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)));
 			}
 		}
-
+	
 		public IEnumerable<ProgramScheduleOutputModel> PrepareOutput(bool includeDigital)
 		{
 			var outputPages = new List<ProgramScheduleOutputModel>();

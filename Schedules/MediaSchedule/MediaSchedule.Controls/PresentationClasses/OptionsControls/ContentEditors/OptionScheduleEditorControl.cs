@@ -9,6 +9,7 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Common;
 using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Business.Media.Enums;
+using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.Output;
@@ -490,6 +491,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#endregion
 
 		#region Output
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
+			SlideType.TVOptionsPrograms :
+			SlideType.RadioOptionsPrograms;
+		private Theme SelectedTheme => BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)));
 		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetOptionsItemFile(
 			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
 			_data.ShowLogo || _data.DigitalInfo.ShowLogo);
@@ -811,7 +816,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			}
 		}
 
-		public PreviewGroup GeneratePreview(Theme selectedTheme, bool includeDigital)
+		public PreviewGroup GeneratePreview(bool includeDigital)
 		{
 			Logos = GetLogos(includeDigital);
 			ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
@@ -821,16 +826,16 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				Name = String.Format("{0} ({1})", _data.Name, includeDigital ? String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString) : MediaMetaData.Instance.DataTypeString),
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 
-		public void GenerateOutput(Theme selectedTheme, bool includeDigital)
+		public void GenerateOutput(bool includeDigital)
 		{
 			Logos = GetLogos(includeDigital);
 			ColumnWidths = GetColumnInfo().OrderBy(ci => ci.Index).Select(ci => ci.Width).ToArray();
 			PopulateReplacementsList(includeDigital);
-			RegularMediaSchedulePowerPointHelper.Instance.AppendOptions(new[] { this }, selectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			RegularMediaSchedulePowerPointHelper.Instance.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
 		internal abstract class OutputColumnInfo

@@ -14,18 +14,20 @@ namespace Asa.Common.Core.Helpers
 	{
 		private readonly List<Theme> _themes = new List<Theme>();
 
-		public Dictionary<SlideType, List<string>> ApprovedThemes { get; private set; }
+		public Dictionary<SlideType, List<SlideApprovedThemeInfo>> ApprovedThemes { get; }
 
 		public event EventHandler<EventArgs> ThemesChanged;
 
 		public ThemeManager()
 		{
-			ApprovedThemes = new Dictionary<SlideType, List<string>>();
+			ApprovedThemes = new Dictionary<SlideType, List<SlideApprovedThemeInfo>>();
 		}
 
 		private void LoadApprovedThemes(StorageDirectory root)
 		{
-			var contentFile = new StorageFile(root.GetParentFolder().RelativePathParts.Merge("ApprovedThemes.xml"));
+			var contentFile = new StorageFile(root.RelativePathParts.Merge("ApprovedThemes.xml"));
+
+			ApprovedThemes.Clear();
 
 			if (!contentFile.ExistsLocal()) return;
 
@@ -60,56 +62,92 @@ namespace Asa.Common.Core.Helpers
 						break;
 					#endregion
 
-					#region Online Schedule
-					case "OnlineDigitalProduct":
-						slideType = SlideType.OnlineDigitalProduct;
-						break;
-					case "OnlineWebPackage":
-						slideType = SlideType.OnlineWebPackage;
-						break;
-					case "OnlineAdPlan":
-						slideType = SlideType.OnlineAdPlan;
-						break;
-					#endregion
-
 					#region TV Schedule
-					case "TVDigitalProduct":
-						slideType = SlideType.TVDigitalProduct;
+					case "TVScheduleTV":
+						slideType = SlideType.TVSchedulePrograms;
 						break;
-					case "TVWeeklySchedule":
-					case "TVMonthlySchedule":
-						slideType = SlideType.TVProgramSchedule;
+					case "TVScheduleDigital":
+						slideType = SlideType.TVScheduleDigital;
 						break;
-					case "TVSnapshot":
-						slideType = SlideType.TVSnapshot;
+					case "TVScheduleSummary":
+						slideType = SlideType.TVScheduleSummary;
 						break;
-					case "TVOptions":
-						slideType = SlideType.TVOptions;
+
+					case "TVOptionsTV":
+						slideType = SlideType.TVOptionsPrograms;
+						break;
+					case "TVOptionsDigital":
+						slideType = SlideType.TVOptionsDigital;
+						break;
+					case "TVOptionsTVSummary":
+						slideType = SlideType.TVOptionstSummary;
+						break;
+
+					case "TVSnapTV":
+						slideType = SlideType.TVSnapshotPrograms;
+						break;
+					case "TVSnapDigital":
+						slideType = SlideType.TVSnapshotDigital;
+						break;
+					case "TVSnapTVSummary":
+						slideType = SlideType.TVSnapshotSummary;
 						break;
 					#endregion
 
 					#region Radio Schedule
-					case "RadioDigitalProduct":
-						slideType = SlideType.RadioDigitalProduct;
+					case "RadioScheduleRadio":
+						slideType = SlideType.RadioSchedulePrograms;
 						break;
-					case "RadioWeeklySchedule":
-					case "RadioMonthlySchedule":
-						slideType = SlideType.RadioProgramSchedule;
+					case "RadioScheduleDigital":
+						slideType = SlideType.RadioScheduleDigital;
 						break;
-					case "RadioSnapshot":
-						slideType = SlideType.RadioSnapshot;
+					case "RadioScheduleSummary":
+						slideType = SlideType.RadioScheduleSummary;
 						break;
-					case "RadioOptions":
-						slideType = SlideType.RadioOptions;
+
+					case "RadioOptionsRadio":
+						slideType = SlideType.RadioOptionsPrograms;
+						break;
+					case "RadioOptionsDigital":
+						slideType = SlideType.RadioOptionsDigital;
+						break;
+					case "RadioOptionsRadioSummary":
+						slideType = SlideType.RadioOptionstSummary;
+						break;
+
+					case "RadioSnapRadio":
+						slideType = SlideType.RadioSnapshotPrograms;
+						break;
+					case "RadioSnapDigital":
+						slideType = SlideType.RadioSnapshotDigital;
+						break;
+					case "RadioSnapRadioSummary":
+						slideType = SlideType.RadioSnapshotSummary;
 						break;
 					#endregion
+
+					#region Digital
+					case "DigitalPlanner":
+						slideType = SlideType.DigitalProducts;
+						break;
+					case "DigitalWrapup":
+						slideType = SlideType.DigitalSummary;
+						break;
+					case "DigitalPkgA":
+						slideType = SlideType.DigitalProductPackage;
+						break;
+					case "DigitalPkgB":
+						slideType = SlideType.DigitalStandalonePackage;
+						break;
+						#endregion
 				}
 				if (slideType == SlideType.None) continue;
 				foreach (var themeNode in slideNode.SelectNodes("Theme").OfType<XmlNode>())
 				{
 					if (!ApprovedThemes.ContainsKey(slideType))
-						ApprovedThemes.Add(slideType, new List<string>());
-					ApprovedThemes[slideType].Add(themeNode.InnerText);
+						ApprovedThemes.Add(slideType, new List<SlideApprovedThemeInfo>());
+					var defaultAttribute = themeNode.Attributes["Default"];
+					ApprovedThemes[slideType].Add(new SlideApprovedThemeInfo { ThemName = themeNode.InnerText, IsDefault = defaultAttribute != null });
 				}
 			}
 		}
@@ -137,7 +175,12 @@ namespace Asa.Common.Core.Helpers
 
 		public IEnumerable<Theme> GetThemes(SlideType slideType)
 		{
-			return _themes.Where(t => t.ApprovedSlides.Contains(slideType) || !ApprovedThemes.ContainsKey(slideType));
+			if (!ApprovedThemes.ContainsKey(slideType))
+				return _themes;
+			return ApprovedThemes[slideType]
+				.OrderByDescending(themeInfo => themeInfo.IsDefault)
+				.Select(themeInfo => _themes.FirstOrDefault(theme => theme.Name == themeInfo.ThemName))
+				.Where(theme => theme != null);
 		}
 	}
 }

@@ -9,13 +9,11 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.Persistent;
-using Asa.Business.Media.Enums;
 using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Interfaces;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
-using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
@@ -80,8 +78,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 			InitCollectionButtons();
 
-			BusinessObjects.Instance.ThemeManager.ThemesChanged += (o, e) => OnOuterThemeChanged();
-
 			Controller.Instance.DigitalProductLogoBar.Text =
 				ListManager.Instance.DefaultControlsConfiguration.RibbonGroupDigitalLogoTitle ?? Controller.Instance.DigitalProductLogoBar.Text;
 		}
@@ -135,12 +131,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		protected override void LoadThemes()
 		{
 			base.LoadThemes();
-			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType.OnlineDigitalProduct), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.OnlineDigitalProduct), (t =>
+
+			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), t =>
 			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.OnlineDigitalProduct, t.Name);
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				IsThemeChanged = true;
-			}));
+			});
 			Controller.Instance.DigitalProductThemeBar.RecalcLayout();
 			Controller.Instance.DigitalProductPanel.PerformLayout();
 		}
@@ -272,6 +268,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			ActiveEditor?.LoadData();
 			settingsContainer.UpdateSettingsAccordingSelectedSectionEditor(ActiveSection.SectionType);
 			UpdateCollectionChangeButtons();
+			LoadThemes();
 		}
 
 		private void OnEditorDataChanged(object sender, DataChangedEventArgs e)
@@ -359,23 +356,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		#endregion
 
 		#region Output Staff
-		public Theme SelectedTheme
-		{
-			get
-			{
-				return BusinessObjects.Instance.ThemeManager.GetThemes(
-						MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-							SlideType.TVDigitalProduct :
-							SlideType.RadioDigitalProduct)
-					.FirstOrDefault(t => t.Name.Equals(
-						MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-							SlideType.TVDigitalProduct :
-							SlideType.RadioDigitalProduct) ||
-						String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-							SlideType.TVDigitalProduct :
-							SlideType.RadioDigitalProduct)));
-			}
-		}
+		private SlideType SlideType => ActiveSection?.SlideType ?? SlideType.DigitalProducts;
 
 		public override void OutputPowerPoint()
 		{
@@ -477,7 +458,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			var availableOutputGroups = xtraTabControlEditors.TabPages
 					.OfType<IDigitalOutputContainer>()
 					.Select(oc => oc.GetOutputGroup())
-					.Where(g=>g.OutputItems.Any())
+					.Where(g => g.OutputItems.Any())
 					.ToList();
 			if (availableOutputGroups.Any())
 			{
@@ -487,7 +468,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 						outputGroups.AddRange(availableOutputGroups);
 				}
 			}
-			return outputGroups.SelectMany(g=>g.OutputItems).ToList();
+			return outputGroups.SelectMany(g => g.OutputItems).ToList();
 		}
 		#endregion
 	}

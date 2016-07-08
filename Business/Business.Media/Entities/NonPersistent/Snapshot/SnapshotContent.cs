@@ -29,6 +29,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		protected override void AfterCreate()
 		{
 			base.AfterCreate();
+			foreach (var snapshot in Snapshots)
+			{
+				snapshot.Parent = this;
+				snapshot.AfterCreate();
+			}
 			RebuildSnapshotIndexes();
 		}
 

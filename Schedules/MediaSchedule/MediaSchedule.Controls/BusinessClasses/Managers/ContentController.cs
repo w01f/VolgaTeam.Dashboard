@@ -15,7 +15,7 @@ using Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.RateCard;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
-using Asa.Media.Controls.PresentationClasses.SnapshotControls;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using DevComponents.DotNetBar;
 
 namespace Asa.Media.Controls.BusinessClasses.Managers
@@ -140,7 +140,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				case ContentIdentifiers.DigitalProducts:
 					return new DigitalEditorsContainer();
 				case ContentIdentifiers.Snapshots:
-					return new SnapshotContainer();
+					return new SnapshotContentEditorsContainer();
 				case ContentIdentifiers.Options:
 					return new OptionsContentEditorsContainer();
 				case ContentIdentifiers.BroadcastCalendar:

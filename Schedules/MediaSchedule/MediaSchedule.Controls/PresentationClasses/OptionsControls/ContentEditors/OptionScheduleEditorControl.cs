@@ -526,7 +526,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			var recordsCount = includeDigital ? (programsCount + digitalsCount) : programsCount;
 			var digitalStartIndex = programsCount;
 
-
 			for (var i = 0; i < recordsCount; i += ProgramsPerSlide)
 			{
 				logosOnSlide.Clear();
@@ -725,7 +724,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 						if (_data.DigitalInfo.ShowTotalInvestemt && _data.DigitalInfo.TotalInvestment.HasValue)
 							temp.Add(String.Format("Total Digital Investment: {0}", _data.DigitalInfo.TotalInvestment.Value.ToString("$#,###.00")));
 						var digitalSummary = String.Join("     ", temp);
-						value = String.Join(String.Format("{0}", (char)13), scheduleSummary, digitalSummary);
+						if (!String.IsNullOrEmpty(digitalSummary))
+							value = String.Join(String.Format("{0}", (char)13), scheduleSummary, digitalSummary);
+						else
+							value = scheduleSummary;
 					}
 					else
 						value = scheduleSummary;

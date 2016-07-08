@@ -297,17 +297,17 @@
     <Compile Include="PresentationClasses\OptionsControls\Settings\OptionsDigitalInfoSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OptionsControls\Settings\SummaryColumnSettingsControls.cs">
+    <Compile Include="PresentationClasses\OptionsControls\Settings\SummaryColumnSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OptionsControls\Settings\SummaryColumnSettingsControls.Designer.cs">
-      <DependentUpon>SummaryColumnSettingsControls.cs</DependentUpon>
+    <Compile Include="PresentationClasses\OptionsControls\Settings\SummaryColumnSettingsControl.Designer.cs">
+      <DependentUpon>SummaryColumnSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\OptionsControls\Settings\OptionSetColumnSettingsControls.cs">
+    <Compile Include="PresentationClasses\OptionsControls\Settings\OptionSetColumnSettingsControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OptionsControls\Settings\OptionSetColumnSettingsControls.Designer.cs">
-      <DependentUpon>OptionSetColumnSettingsControls.cs</DependentUpon>
+    <Compile Include="PresentationClasses\OptionsControls\Settings\OptionSetColumnSettingsControl.Designer.cs">
+      <DependentUpon>OptionSetColumnSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\OptionsControls\Settings\OptionSettingsType.cs" />
     <Compile Include="PresentationClasses\OptionsControls\Settings\OptionEditorSettingsRelation.cs" />
@@ -447,36 +447,100 @@
     <Compile Include="PresentationClasses\SettingsControls\StationsControl.Designer.cs">
       <DependentUpon>StationsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\FormOutputSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\FormOutputSettings.Designer.cs">
-      <DependentUpon>FormOutputSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\FormSnapshotName.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\FormSnapshotName.Designer.cs">
-      <DependentUpon>FormSnapshotName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\ISnapshotSlideControl.cs" />
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotContainer.cs">
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotCollectionEditorControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotContentEditorControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotEditorControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotContainer.Designer.cs">
-      <DependentUpon>SnapshotContainer.cs</DependentUpon>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.Designer.cs">
+      <DependentUpon>SnapshotContentEditorsContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotControl.cs">
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotEditorsContainer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotControl.Designer.cs">
-      <DependentUpon>SnapshotControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotEditorsContainer.Designer.cs">
+      <DependentUpon>SnapshotEditorsContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.cs">
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotDigitalInfoControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.Designer.cs">
-      <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotEditorType.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Output\FormConfigureOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Output\FormConfigureOutput.Designer.cs">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Output\FormOutputSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Output\FormOutputSettings.Designer.cs">
+      <DependentUpon>FormOutputSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\FormSnapshotName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\FormSnapshotName.Designer.cs">
+      <DependentUpon>FormSnapshotName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Output\IOutputContainer.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Output\IOutputItem.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Output\ISnapshotSlideData.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Output\SnapshotOutputType.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Output\OutputConfiguration.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Output\OutputGroup.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\ColorSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\ColorSettingsControl.Designer.cs">
+      <DependentUpon>ColorSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\IContentSettingsControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\ISnapshotSettingsControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\ISettingsControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\ISettingsDataControl.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\ActiveWeeksSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\ActiveWeeksSettingsControl.Designer.cs">
+      <DependentUpon>ActiveWeeksSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SettingsContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SettingsContainer.Designer.cs">
+      <DependentUpon>SettingsContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SnapshotDigitalInfoSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SummaryColumnSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SummaryColumnSettingsControl.Designer.cs">
+      <DependentUpon>SummaryColumnSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SnapshotColumnSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SnapshotColumnSettingsControl.Designer.cs">
+      <DependentUpon>SnapshotColumnSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SnapshotEditorSettingsRelation.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SettingsChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\Settings\SnapshotSettingsType.cs" />
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotScheduleEditorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotScheduleEditorControl.Designer.cs">
+      <DependentUpon>SnapshotScheduleEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotSummaryEditorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotSummaryEditorControl.Designer.cs">
+      <DependentUpon>SnapshotSummaryEditorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Settings\BaseSummaryInfoControl.cs">
       <SubType>Component</SubType>
@@ -579,11 +643,11 @@
     <EmbeddedResource Include="PresentationClasses\OptionsControls\Settings\ColorSettingsControl.resx">
       <DependentUpon>ColorSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OptionsControls\Settings\SummaryColumnSettingsControls.resx">
-      <DependentUpon>SummaryColumnSettingsControls.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\Settings\SummaryColumnSettingsControl.resx">
+      <DependentUpon>SummaryColumnSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OptionsControls\Settings\OptionSetColumnSettingsControls.resx">
-      <DependentUpon>OptionSetColumnSettingsControls.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\OptionsControls\Settings\OptionSetColumnSettingsControl.resx">
+      <DependentUpon>OptionSetColumnSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OptionsControls\Settings\SettingsContainer.resx">
       <DependentUpon>SettingsContainer.cs</DependentUpon>
@@ -643,20 +707,41 @@
     <EmbeddedResource Include="PresentationClasses\SettingsControls\StationsControl.resx">
       <DependentUpon>StationsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormOutputSettings.resx">
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.resx">
+      <DependentUpon>SnapshotContentEditorsContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotEditorsContainer.resx">
+      <DependentUpon>SnapshotEditorsContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Output\FormConfigureOutput.resx">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Output\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SnapshotControls\FormSnapshotName.resx">
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\FormSnapshotName.resx">
       <DependentUpon>FormSnapshotName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotContainer.resx">
-      <DependentUpon>SnapshotContainer.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Settings\ColorSettingsControl.resx">
+      <DependentUpon>ColorSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotControl.resx">
-      <DependentUpon>SnapshotControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Settings\ActiveWeeksSettingsControl.resx">
+      <DependentUpon>ActiveWeeksSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SnapshotControls\SnapshotSummaryControl.resx">
-      <DependentUpon>SnapshotSummaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Settings\SettingsContainer.resx">
+      <DependentUpon>SettingsContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Settings\SummaryColumnSettingsControl.resx">
+      <DependentUpon>SummaryColumnSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\Settings\SnapshotColumnSettingsControl.resx">
+      <DependentUpon>SnapshotColumnSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotScheduleEditorControl.resx">
+      <DependentUpon>SnapshotScheduleEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotSummaryEditorControl.resx">
+      <DependentUpon>SnapshotSummaryEditorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\BaseSummaryInfoControl.resx">
       <DependentUpon>BaseSummaryInfoControl.cs</DependentUpon>
@@ -919,6 +1004,7 @@
   <ItemGroup>
     <None Include="Resources\DigitalInfoNoItems.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

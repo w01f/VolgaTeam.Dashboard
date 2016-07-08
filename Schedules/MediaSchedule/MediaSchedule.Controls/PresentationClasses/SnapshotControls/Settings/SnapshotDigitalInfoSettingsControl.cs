@@ -1,22 +1,22 @@
 ﻿using System;
-using Asa.Business.Media.Entities.NonPersistent.Option;
+using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
 using Asa.Media.Controls.Properties;
 
-namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 {
-	class OptionsDigitalInfoSettingsControl : BaseDigitalInfoSettingsControl, IOptionSetSettingsControl
+	class SnapshotDigitalInfoSettingsControl : BaseDigitalInfoSettingsControl, ISnapshotSettingsControl
 	{
-		private OptionSet _optionSetData;
+		private Snapshot _snapshotData;
 
-		public int Order => 1;
+		public int Order => 0;
 		public bool IsAvailable => true;
 		public ButtonInfo BarButton { get; }
-		public OptionSettingsType SettingsType => OptionSettingsType.DigitalInfo;
+		public SnapshotSettingsType SettingsType => SnapshotSettingsType.DigitalInfo;
 		public event EventHandler<SettingsChangedEventArgs> DataChanged;
 
-		public OptionsDigitalInfoSettingsControl()
+		public SnapshotDigitalInfoSettingsControl()
 		{
 			BarButton = new ButtonInfo
 			{
@@ -26,10 +26,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 			};
 		}
 
-		public void LoadOptionsSetData(OptionSet optionSetData)
+		public void LoadSnapshotData(Snapshot snapshotData)
 		{
-			_optionSetData = optionSetData;
-			_digitalInfo = _optionSetData.DigitalInfo;
+			_snapshotData = snapshotData;
+			_digitalInfo = _snapshotData.DigitalInfo;
 			LoadData();
 		}
 

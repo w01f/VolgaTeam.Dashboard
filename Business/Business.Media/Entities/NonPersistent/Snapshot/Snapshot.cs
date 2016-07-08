@@ -4,6 +4,9 @@ using System.Drawing;
 using System.Linq;
 using Asa.Business.Common.Entities.NonPersistent.Common;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Digital;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
+using Asa.Business.Media.Interfaces;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Interfaces;
@@ -13,9 +16,9 @@ using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 {
-	public class Snapshot : IJsonCloneable<Snapshot>
+	public class Snapshot : IJsonCloneable<Snapshot>, IDigitalInfoContainer
 	{
-		public SnapshotContent Parent { get; private set; }
+		public SnapshotContent Parent { get; set; }
 		public Guid UniqueID { get; set; }
 		public double Index { get; set; }
 		public string Name { get; set; }
@@ -23,8 +26,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		public string Comment { get; set; }
 
 		public List<SnapshotProgram> Programs { get; private set; }
+		public MediaDigitalInfo DigitalInfo { get; private set; }
+		public MediaScheduleSettings ParentScheduleSettings => Parent.ScheduleSettings;
 		public List<DateRange> ActiveWeeks { get; private set; }
-
+		
 		#region Options
 		public bool ShowLineId { get; set; }
 		public bool ShowLogo { get; set; }
@@ -94,6 +99,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			Index = parent.Snapshots.Any() ? parent.Snapshots.Max(s => s.Index) + 1 : 0;
 			Logo = MediaMetaData.Instance.ListManager.Images.Where(g => g.IsDefault).Select(g => g.Images.FirstOrDefault(i => i.IsDefault)).FirstOrDefault()?.Clone<ImageSource, ImageSource>() ?? new ImageSource();
 			Programs = new List<SnapshotProgram>();
+			DigitalInfo = new MediaDigitalInfo();
 			ActiveWeeks = new List<DateRange>();
 
 			#region Options
@@ -130,6 +136,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			ContractSettings = null;
 
 			Parent = null;
+		}
+
+		public void AfterCreate()
+		{
+			if (DigitalInfo == null)
+				DigitalInfo = new MediaDigitalInfo();
+			DigitalInfo.AfterCreate();
 		}
 
 		public void AfterClone(Snapshot source, bool fullClone = true)

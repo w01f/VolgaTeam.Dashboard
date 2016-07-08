@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
-using Asa.Business.Media.Entities.NonPersistent.Option;
+using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -16,8 +16,8 @@ using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
-using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
-using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
@@ -25,25 +25,24 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
 
-namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public sealed partial class OptionsSummaryEditorControl : UserControl
-	public sealed partial class OptionsSummaryEditorControl :
-		XtraTabPage,
-		IOptionContentEditorControl,
-		IOptionSetEditorControl,
+	//public sealed partial class SnapshotSummaryEditorControl : UserControl
+	public sealed partial class SnapshotSummaryEditorControl : XtraTabPage,
+		ISnapshotContentEditorControl,
+		ISnapshotEditorControl,
 		IOutputContainer,
 		IOutputItem,
-		IOptionsSlideData
+		ISnapshotSlideData
 	{
-		public OptionSummary Data { get; private set; }
-		public OptionEditorType EditorType => OptionEditorType.Summary;
-		public IOptionSetEditorControl ActiveEditor => this;
-		public IOptionSetCollectionEditorControl ActiveItemCollection => null;
+		public SnapshotSummary Data { get; private set; }
+		public SnapshotEditorType EditorType => SnapshotEditorType.Summary;
+		public ISnapshotEditorControl ActiveEditor => this;
+		public ISnapshotCollectionEditorControl ActiveItemCollection => null;
 		public event EventHandler<EventArgs> DataChanged;
 
-		public OptionsSummaryEditorControl()
+		public SnapshotSummaryEditorControl()
 		{
 			InitializeComponent();
 			Text = String.Format("Summary ({0})", MediaMetaData.Instance.DataTypeString);
@@ -54,7 +53,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			ShowCloseButton = DefaultBoolean.False;
 		}
 
-		public void LoadData(OptionSummary data)
+		public void LoadData(SnapshotSummary data)
 		{
 			Data = data;
 			UpdateView();
@@ -74,58 +73,40 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		public void UpdateAccordingSettings(SettingsChangedEventArgs eventArgs)
 		{
-			if (eventArgs.ChangedSettingsType != OptionSettingsType.Summary) return;
+			if (eventArgs.ChangedSettingsType != SnapshotSettingsType.Summary) return;
 			UpdateView();
 		}
 
 		public void UpdateView(bool focus = false)
 		{
 			gridControl.DataSource = null;
-			gridControl.DataSource = Data.Parent.Options;
+			gridControl.DataSource = Data.Parent.Snapshots;
 			gridControl.RefreshDataSource();
 			advBandedGridView.RefreshData();
 			if (focus)
 				advBandedGridView.Focus();
 
-			PageEnabled = Data.Enabled && Data.Parent.Options.SelectMany(o => o.Programs).Any();
-
 			gridBandId.Visible = Data.ShowLineId;
 			gridBandLogo.Visible = Data.ShowLogo;
-			gridBandOtherColumns.Visible = Data.ShowCampaign || Data.ShowComments || Data.ShowSpots || Data.ShowCost || Data.ShowTotalPeriods || Data.ShowTotalCost;
+			gridBandOtherColumns.Visible = Data.ShowCampaign || Data.ShowComments || Data.ShowSpots || Data.ShowCost || Data.ShowTotalWeeks || Data.ShowTotalCost;
 			bandedGridColumnName.Visible = Data.ShowCampaign;
 			bandedGridColumnComment.Visible = Data.ShowComments;
 			bandedGridColumnSpots.Visible = Data.ShowSpots;
-			bandedGridColumnCost.Visible = Data.ShowCost;
-			bandedGridColumnTotalPeriods.Visible = Data.ShowTotalPeriods;
-			bandedGridColumnPeriodCost.Visible = Data.ShowTotalCost;
-			switch (Data.SpotType)
-			{
-				case SpotType.Week:
-					bandedGridColumnSpots.Caption = String.Format("Weekly{0}Spots", Environment.NewLine);
-					bandedGridColumnCost.Caption = String.Format("Weekly{0}Cost", Environment.NewLine);
-					bandedGridColumnTotalPeriods.Caption = String.Format("Total{0}Weeks", Environment.NewLine);
-					break;
-				case SpotType.Month:
-					bandedGridColumnSpots.Caption = String.Format("Monthly{0}Spots", Environment.NewLine);
-					bandedGridColumnCost.Caption = String.Format("Monthly{0}Cost", Environment.NewLine);
-					bandedGridColumnTotalPeriods.Caption = String.Format("Total{0}Months", Environment.NewLine);
-					break;
-				case SpotType.Total:
-					bandedGridColumnSpots.Caption = String.Format("Total{0}Spots", Environment.NewLine);
-					break;
-			}
+			bandedGridColumnRate.Visible = Data.ShowCost;
+			bandedGridColumnTotalWeeks.Visible = Data.ShowTotalWeeks;
+			bandedGridColumnCost.Visible = Data.ShowTotalCost;
 			if (Data.UseDecimalRates)
 			{
+				bandedGridColumnRate.DisplayFormat.FormatString = "$#,##0.00";
 				bandedGridColumnCost.DisplayFormat.FormatString = "$#,##0.00";
-				bandedGridColumnPeriodCost.DisplayFormat.FormatString = "$#,##0.00";
 				repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0.00";
 				repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0.00";
 				repositoryItemSpinEditRate.IsFloatValue = true;
 			}
 			else
 			{
+				bandedGridColumnRate.DisplayFormat.FormatString = "$#,##0";
 				bandedGridColumnCost.DisplayFormat.FormatString = "$#,##0";
-				bandedGridColumnPeriodCost.DisplayFormat.FormatString = "$#,##0";
 				repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0";
 				repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0";
 				repositoryItemSpinEditRate.IsFloatValue = false;
@@ -159,7 +140,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			if (e.Column != bandedGridColumnLogo) return;
 			if (e.Clicks < 2) return;
-			var selectedProgram = advBandedGridView.GetFocusedRow() as OptionSet;
+			var selectedProgram = advBandedGridView.GetFocusedRow() as Snapshot;
 			if (selectedProgram == null) return;
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
 			{
@@ -186,18 +167,31 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#endregion
 
 		#region Output
-		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ?
-			SlideType.TVOptionstSummary :
-			SlideType.RadioOptionstSummary;
-		private Theme SelectedTheme => BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)));
 		public string OutputName => "Summary";
-		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetOptionsSummaryFile(
+
+		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
+			? SlideType.TVSnapshotSummary
+			: SlideType.RadioSnapshotSummary;
+
+		private Theme SelectedTheme
+		{
+			get
+			{
+				var selectedTheme = MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType);
+				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
+			}
+		}
+
+		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetSnapshotSummaryFile(
 			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
 			GetColumnInfo().Count());
+
+		public string TotalRowValue => String.Empty;
+
 		public string[][] Logos { get; set; }
-		public float[] ColumnWidths { get; set; }
 		public ContractSettings ContractSettings => Data.ContractSettings;
 		public List<Dictionary<string, string>> ReplacementsList { get; private set; }
+
 		private int ProgramsPerSlide => 6;
 
 		public OutputGroup GetOutputGroup()
@@ -210,38 +204,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			};
 		}
 
-		public void GenerateOutput(IList<OutputConfiguration> configurations)
-		{
-			if (!configurations.Any()) return;
-			Logos = GetLogos();
-			PopulateReplacementsList();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendOptions(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-		}
-
-		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
-		{
-			var groupList = new List<PreviewGroup>();
-			if (!configurations.Any())
-				return groupList;
-
-			Logos = GetLogos();
-			PopulateReplacementsList();
-			var previewGroup = new PreviewGroup
-			{
-				Name = OutputName,
-				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
-			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareOptionsEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-
-			groupList.Add(previewGroup);
-			return groupList;
-		}
-
 		public IList<OutputConfiguration> GetOutputConfigurations()
 		{
 			var outputConfigurations = new List<OutputConfiguration>();
-			if (Data.Enabled && Data.Parent.Options.Any(s => s.Programs.Any()))
-				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.Summary));
+			if (Data.Parent.Snapshots.Any(s => s.Programs.Any()))
+				outputConfigurations.Add(new OutputConfiguration(SnapshotOutputType.Summary));
 			return outputConfigurations;
 		}
 
@@ -249,7 +216,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			var logos = new List<string[]>();
 			var logosOnSlide = new List<string>();
-			var progarmsCount = Data.Parent.Options.Count;
+			var progarmsCount = Data.Parent.Snapshots.Count;
 			for (var i = 0; i < progarmsCount; i += ProgramsPerSlide)
 			{
 				logosOnSlide.Clear();
@@ -258,11 +225,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 					var fileName = String.Empty;
 					if (Data.ShowLogo && (i + j) < progarmsCount)
 					{
-						var optionSet = Data.Parent.Options[i + j];
-						if (optionSet.Logo != null && optionSet.Logo.ContainsData)
+						var snapshot = Data.Parent.Snapshots[i + j];
+						if (snapshot.Logo != null && snapshot.Logo.ContainsData)
 						{
 							fileName = Path.GetTempFileName();
-							optionSet.Logo.SmallImage.Save(fileName);
+							snapshot.Logo.SmallImage.Save(fileName);
 						}
 					}
 					logosOnSlide.Add(fileName);
@@ -278,22 +245,22 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			var i = 0;
 			if (Data.ShowSpots)
 			{
-				columnInfoList.Add(new SpotsColumnInfo(Data.SpotType) { Index = i });
+				columnInfoList.Add(new SpotsColumnInfo { Index = i });
 				i++;
 			}
 			if (Data.ShowCost)
 			{
-				columnInfoList.Add(new CostColumnInfo(Data.SpotType) { Index = i });
+				columnInfoList.Add(new RateColumnInfo { Index = i });
 				i++;
 			}
-			if (Data.ShowTotalPeriods)
+			if (Data.ShowTotalWeeks)
 			{
-				columnInfoList.Add(new TotalPeriodsColumnInfo(Data.SpotType) { Index = i });
+				columnInfoList.Add(new TotalWeeksColumnInfo { Index = i });
 				i++;
 			}
 			if (Data.ShowTotalCost)
 			{
-				columnInfoList.Add(new PeriodCostColumnInfo { Index = i });
+				columnInfoList.Add(new CostColumnInfo { Index = i });
 				i++;
 			}
 			return columnInfoList;
@@ -305,9 +272,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			var value = string.Empty;
 			var temp = new List<string>();
 			ReplacementsList = new List<Dictionary<string, string>>();
-			var optionsCount = Data.Parent.Options.Count;
+			var snapshotCount = Data.Parent.Snapshots.Count;
 
-			for (var i = 0; i < optionsCount; i += ProgramsPerSlide)
+			for (var i = 0; i < snapshotCount; i += ProgramsPerSlide)
 			{
 				var pageDictionary = new Dictionary<string, string>();
 				key = "Flightdates";
@@ -325,7 +292,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 					temp.Clear();
 					if (Data.ShowTallySpots)
 						temp.Add(String.Format("Total Spots: {0}", String.Format("{0}{1}", Data.TotalSpots.ToString("#,###"), Data.ShowSpotsX ? "x" : String.Empty)));
-					if (Data.ShowTallyCost)
+					if (Data.ShowTotalCost)
 						temp.Add(String.Format("Total Cost: {0}", Data.TotalCost.ToString(Data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
 					value = String.Join("     ", temp);
 				}
@@ -350,20 +317,20 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				for (int j = 0; j < ProgramsPerSlide; j++)
 				{
 					key = (j + 1).ToString("00");
-					if ((i + j) < optionsCount)
+					if ((i + j) < snapshotCount)
 					{
-						var optionSet = Data.Parent.Options[i + j];
-						value = Data.ShowLineId ? optionSet.DisplayIndex.ToString("00") : "Delete Column";
+						var snapshot = Data.Parent.Snapshots[i + j];
+						value = Data.ShowLineId ? snapshot.DisplayIndex.ToString("00") : "Delete Column";
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("campaign{0}", j + 1);
-						value = Data.ShowCampaign ? optionSet.Name : String.Empty;
+						value = Data.ShowCampaign ? snapshot.Name : String.Empty;
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
 						key = String.Format("comments{0}", j + 1);
-						value = Data.ShowComments ? optionSet.Comment : String.Empty;
+						value = Data.ShowComments ? snapshot.Comment : String.Empty;
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
@@ -371,7 +338,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 						foreach (var outputColumnInfo in dynamicColumnInfoList)
 						{
 							key = String.Format(columValuesTags[columnIndex], j + 1);
-							value = outputColumnInfo.GetValue(optionSet);
+							value = outputColumnInfo.GetValue(snapshot);
 							if (!pageDictionary.Keys.Contains(key))
 								pageDictionary.Add(key, value);
 							columnIndex++;
@@ -388,115 +355,78 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			}
 		}
 
+		public void GenerateOutput(IList<OutputConfiguration> configurations)
+		{
+			if (!configurations.Any()) return;
+			Logos = GetLogos();
+			PopulateReplacementsList();
+			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+		}
+
+		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
+		{
+			var groupList = new List<PreviewGroup>();
+			if (!configurations.Any())
+				return groupList;
+
+			Logos = GetLogos();
+			PopulateReplacementsList();
+			var previewGroup = new PreviewGroup
+			{
+				Name = OutputName,
+				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
+			};
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+
+			groupList.Add(previewGroup);
+			return groupList;
+		}
+
 		internal abstract class OutputColumnInfo
 		{
 			public abstract string HeaderCaption { get; }
 			public int Index { get; set; }
 
-			public abstract string GetValue(OptionSet optionSet);
+			public abstract string GetValue(Snapshot snapshot);
 		}
 
 		internal class SpotsColumnInfo : OutputColumnInfo
 		{
-			private readonly SpotType _spotType;
-			public override string HeaderCaption
-			{
-				get
-				{
-					switch (_spotType)
-					{
-						case SpotType.Week:
-							return String.Format("Weekly{0}Spots", (char)13);
-						case SpotType.Month:
-							return String.Format("Monthly{0}Spots", (char)13);
-						case SpotType.Total:
-							return String.Format("Total{0}Spots", (char)13);
-						default:
-							return String.Empty;
-					}
-				}
-			}
+			public override string HeaderCaption => String.Format("Weekly{0}Spots", (char)13);
 
-			public SpotsColumnInfo(SpotType spotType)
+			public override string GetValue(Snapshot snapshot)
 			{
-				_spotType = spotType;
+				return String.Format("{0}{1}", snapshot.TotalSpots.ToString("#,##0"), snapshot.Parent.SnapshotSummary.ShowSpotsX ? "x" : String.Empty);
 			}
+		}
 
-			public override string GetValue(OptionSet optionSet)
+		internal class RateColumnInfo : OutputColumnInfo
+		{
+			public override string HeaderCaption => String.Format("Weekly{0}Cost", (char)13);
+
+			public override string GetValue(Snapshot snapshot)
 			{
-				return String.Format("{0}{1}", optionSet.TotalSpots.ToString("#,##0"), optionSet.Parent.OptionsSummary.ShowSpotsX ? "x" : String.Empty);
+				return snapshot.TotalCost.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+			}
+		}
+
+		internal class TotalWeeksColumnInfo : OutputColumnInfo
+		{
+			public override string HeaderCaption => String.Format("Total{0}Weeks", (char)13);
+
+			public override string GetValue(Snapshot snapshot)
+			{
+				return snapshot.TotalWeeks.ToString("#,##0");
 			}
 		}
 
 		internal class CostColumnInfo : OutputColumnInfo
 		{
-			private readonly SpotType _spotType;
-			public override string HeaderCaption
-			{
-				get
-				{
-					switch (_spotType)
-					{
-						case SpotType.Week:
-							return String.Format("Weekly{0}Cost", (char)13);
-						case SpotType.Month:
-							return String.Format("Monthly{0}Cost", (char)13);
-						case SpotType.Total:
-							return String.Format("Total{0}Cost", (char)13);
-						default:
-							return String.Empty;
-					}
-				}
-			}
-
-			public CostColumnInfo(SpotType spotType)
-			{
-				_spotType = spotType;
-			}
-
-			public override string GetValue(OptionSet optionSet)
-			{
-				return optionSet.TotalCost.ToString(optionSet.Parent.OptionsSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-			}
-		}
-
-		internal class TotalPeriodsColumnInfo : OutputColumnInfo
-		{
-			private readonly SpotType _spotType;
-			public override string HeaderCaption
-			{
-				get
-				{
-					switch (_spotType)
-					{
-						case SpotType.Week:
-							return String.Format("Total{0}Weeks", (char)13);
-						case SpotType.Month:
-							return String.Format("Total{0}Months", (char)13);
-						default:
-							return String.Empty;
-					}
-				}
-			}
-
-			public TotalPeriodsColumnInfo(SpotType spotType)
-			{
-				_spotType = spotType;
-			}
-
-			public override string GetValue(OptionSet optionSet)
-			{
-				return (optionSet.TotalPeriods.HasValue ? optionSet.TotalPeriods.Value : 0).ToString("#,##0");
-			}
-		}
-
-		internal class PeriodCostColumnInfo : OutputColumnInfo
-		{
 			public override string HeaderCaption => "Cost";
 
-			public override string GetValue(OptionSet optionSet)
+			public override string GetValue(Snapshot snapshot)
 			{
-				return optionSet.TotalPeriodCost.ToString(optionSet.Parent.OptionsSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				return snapshot.TotalWeekCost.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 			}
 		}
 		#endregion

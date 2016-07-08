@@ -5,18 +5,18 @@ using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
-using Asa.Media.Controls.PresentationClasses.SnapshotControls;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Media.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
-		public void AppendSnapshot(IEnumerable<ISnapshotSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
+		public void AppendSnapshot(IEnumerable<ISnapshotSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -72,26 +72,59 @@ namespace Asa.Media.Controls.InteropClasses
 									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
 									var key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
 									if (String.IsNullOrEmpty(key)) continue;
-									while (copyOfReplacementList[key] == "Merge")
-									{
-										copyOfReplacementList.Remove(key);
-										var nextColumnIndex = j + 1;
-										tableShape.TextFrame.TextRange.Text = String.Empty;
-										if (nextColumnIndex >= table.Columns.Count) break;
-										table.Cell(i, j).Merge(table.Cell(i, nextColumnIndex));
+									//while (copyOfReplacementList[key] == "Merge")
+									//{
+									//	//copyOfReplacementList.Remove(key);
+									//	var nextColumnIndex = j + 1;
+									//	tableShape.TextFrame.TextRange.Text = String.Empty;
+									//	if (nextColumnIndex >= table.Columns.Count) break;
+									//	table.Cell(i, j).Merge(table.Cell(i, nextColumnIndex));
 
-										tableShape = table.Cell(i, j).Shape;
-										if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
-										cellText = tableShape.TextFrame.TextRange.Text.Trim();
-										key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
-										if (copyOfReplacementList[key] == "Merge")
-											j++;
-									}
-									if (String.IsNullOrEmpty(key)) continue;
+									//	tableShape = table.Cell(i, j).Shape;
+									//	if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
+									//	cellText = tableShape.TextFrame.TextRange.Text.Trim();
+									//	key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
+									//	if (copyOfReplacementList[key] == "Merge")
+									//		j++;
+									//}
+									//if (String.IsNullOrEmpty(key)) continue;
 									tableShape.TextFrame.TextRange.Text = copyOfReplacementList[key];
 									copyOfReplacementList.Remove(key);
 								}
 							}
+
+							tableRowsCount = table.Rows.Count;
+							for (var i = 1; i <= tableRowsCount; i++)
+							{
+								for (var j = table.Columns.Count; j >= 1; j--)
+								{
+									var tableShape = table.Cell(i, j).Shape;
+									if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
+									while (cellText == "Merge")
+									{
+										if (j == 1)
+										{
+											tableShape.TextFrame.TextRange.Text = String.Empty;
+											table.Cell(i, j).Merge(table.Cell(i, j + 1));
+											break;
+										}
+
+										var prevColumnIndex = j - 1;
+										tableShape.TextFrame.TextRange.Text = String.Empty;
+										if (prevColumnIndex >= table.Columns.Count) break;
+										table.Cell(i, prevColumnIndex).Merge(table.Cell(i, j));
+
+										tableShape = table.Cell(i, prevColumnIndex).Shape;
+										if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
+										tableShape.TextFrame.TextRange.ParagraphFormat.Alignment = PpParagraphAlignment.ppAlignLeft;
+										cellText = tableShape.TextFrame.TextRange.Text.Trim();
+										if (cellText == "Merge")
+											j--;
+									}
+								}
+							}
+
 							tableRowsCount = table.Rows.Count;
 							for (var i = tableRowsCount; i >= 1; i--)
 							{
@@ -190,7 +223,7 @@ namespace Asa.Media.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareSnapshotEmail(string fileName, IEnumerable<ISnapshotSlideControl> pages, Theme selectedTheme, bool pasteToSlideMaster)
+		public void PrepareSnapshotEmail(string fileName, IEnumerable<ISnapshotSlideData> pages, Theme selectedTheme, bool pasteToSlideMaster)
 		{
 			PreparePresentation(fileName, presentation => AppendSnapshot(pages, selectedTheme, pasteToSlideMaster, presentation));
 		}

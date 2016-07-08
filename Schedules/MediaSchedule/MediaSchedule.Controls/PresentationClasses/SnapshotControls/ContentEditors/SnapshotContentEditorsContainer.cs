@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Enums;
 using Asa.Business.Media.Configuration;
-using Asa.Business.Media.Entities.NonPersistent.Option;
+using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.Persistent;
 using Asa.Business.Media.Enums;
@@ -22,40 +22,40 @@ using Asa.Common.GUI.Themes;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
-using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
-using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings;
 using DevComponents.DotNetBar;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
 
-namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
+namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
 	[ToolboxItem(false)]
-	public partial class OptionsContentEditorsContainer : BasePartitionEditControl<OptionsContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
-	//public partial class OptionsContentEditorsContainer : UserControl
+	public partial class SnapshotContentEditorsContainer : BasePartitionEditControl<SnapshotContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
+	//public partial class SnapshotContentEditorsContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
-		private XtraTabDragDropHelper<OptionSetEditorsContainer> _tabDragDropHelper;
+		private XtraTabDragDropHelper<SnapshotEditorsContainer> _tabDragDropHelper;
 
 		#region Properties
 		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
 
 		private MediaScheduleSettings ScheduleSettings => Schedule.Settings;
 
-		public override string Identifier => ContentIdentifiers.Options;
+		public override string Identifier => ContentIdentifiers.Snapshots;
 
-		public override RibbonTabItem TabPage => Controller.Instance.TabOptions;
+		public override RibbonTabItem TabPage => Controller.Instance.TabSnapshot;
 
-		private IOptionContentEditorControl ActiveContentEditor => xtraTabControlContentEditors.SelectedTabPage as IOptionContentEditorControl;
-		private OptionSetEditorsContainer ActiveOptionSetContainer => xtraTabControlContentEditors.SelectedTabPage as OptionSetEditorsContainer;
-		private OptionsSummaryEditorControl ActiveSummary => xtraTabControlContentEditors.SelectedTabPage as OptionsSummaryEditorControl;
-		private OptionsSummaryEditorControl Summary => xtraTabControlContentEditors.TabPages.OfType<OptionsSummaryEditorControl>().Single();
+		private ISnapshotContentEditorControl ActiveContentEditor => xtraTabControlContentEditors.SelectedTabPage as ISnapshotContentEditorControl;
+		private SnapshotEditorsContainer ActiveSnapshotContainer => xtraTabControlContentEditors.SelectedTabPage as SnapshotEditorsContainer;
+		private SnapshotSummaryEditorControl ActiveSummary => xtraTabControlContentEditors.SelectedTabPage as SnapshotSummaryEditorControl;
+		private SnapshotSummaryEditorControl Summary => xtraTabControlContentEditors.TabPages.OfType<SnapshotSummaryEditorControl>().Single();
 		#endregion
 
-		public OptionsContentEditorsContainer()
+		public SnapshotContentEditorsContainer()
 		{
 			InitializeComponent();
 		}
@@ -69,16 +69,16 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 			retractableBarControl.Collapse(true);
 
-			_tabDragDropHelper = new XtraTabDragDropHelper<OptionSetEditorsContainer>(xtraTabControlContentEditors);
+			_tabDragDropHelper = new XtraTabDragDropHelper<SnapshotEditorsContainer>(xtraTabControlContentEditors);
 			_tabDragDropHelper.TabMoved += OnTabMoved;
 
 			settingsContainer.InitControl();
 			settingsContainer.SettingsChanged += OnSettingsChanged;
 			settingsContainer.SettingsControlsUpdated += OnSettingsControlsUpdated;
 
-			Controller.Instance.OptionsNew.Click += OnAddOptionsSet;
-			Controller.Instance.OptionsProgramAdd.Click += OnAddItem;
-			Controller.Instance.OptionsProgramDelete.Click += OnDeleteItem;
+			Controller.Instance.SnapshotNew.Click += OnAddSnapshotSet;
+			Controller.Instance.SnapshotProgramAdd.Click += OnAddItem;
+			Controller.Instance.SnapshotProgramDelete.Click += OnDeleteItem;
 
 			if ((CreateGraphics()).DpiX > 96)
 			{
@@ -112,9 +112,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
 
 			EditedContent?.Dispose();
-			EditedContent = Schedule
-				.GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options)
-				.Clone<OptionsContent, OptionsContent>();
+			EditedContent = Schedule.SnapshotContent.Clone<SnapshotContent, SnapshotContent>();
 
 			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
 
@@ -133,32 +131,32 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		protected override void ApplyChanges()
 		{
-			foreach (var editorsContainer in xtraTabControlContentEditors.TabPages.OfType<OptionSetEditorsContainer>())
+			foreach (var editorsContainer in xtraTabControlContentEditors.TabPages.OfType<SnapshotEditorsContainer>())
 				editorsContainer.SaveData();
 			Summary.SaveData();
 		}
 
 		protected override void SaveData()
 		{
-			Schedule.ApplySchedulePartitionContent(SchedulePartitionType.Options, EditedContent.Clone<OptionsContent, OptionsContent>());
+			Schedule.SnapshotContent = EditedContent.Clone<SnapshotContent, SnapshotContent>();
 		}
 
 		public override void GetHelp()
 		{
-			BusinessObjects.Instance.HelpManager.OpenHelpLink("options");
+			BusinessObjects.Instance.HelpManager.OpenHelpLink("snapshot");
 		}
 
 		protected override void LoadThemes()
 		{
 			base.LoadThemes();
 
-			FormThemeSelector.Link(Controller.Instance.OptionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
+			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
 			{
 				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 			}));
-			Controller.Instance.OptionsThemeBar.RecalcLayout();
-			Controller.Instance.OptionsPanel.PerformLayout();
+			Controller.Instance.SnapshotThemeBar.RecalcLayout();
+			Controller.Instance.SnapshotPanel.PerformLayout();
 		}
 		#endregion
 
@@ -167,30 +165,30 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			if (quickLoad)
 			{
-				foreach (var optionSet in EditedContent.Options.OrderBy(s => s.Index))
+				foreach (var snapshot in EditedContent.Snapshots.OrderBy(s => s.Index))
 				{
 					var sectionTabControl = xtraTabControlContentEditors.TabPages
-						.OfType<OptionSetEditorsContainer>()
-						.FirstOrDefault(sc => sc.OptionSetData.UniqueID.Equals(optionSet.UniqueID));
-					sectionTabControl?.LoadData(optionSet);
+						.OfType<SnapshotEditorsContainer>()
+						.FirstOrDefault(sc => sc.SnapshotData.UniqueID.Equals(snapshot.UniqueID));
+					sectionTabControl?.LoadData(snapshot);
 				}
-				Summary.LoadData(EditedContent.OptionsSummary);
+				Summary.LoadData(EditedContent.SnapshotSummary);
 			}
 			else
 			{
 				xtraTabControlContentEditors.TabPages
-					.OfType<IOptionContentEditorControl>()
+					.OfType<ISnapshotContentEditorControl>()
 					.ToList()
 					.ForEach(sc => sc.Release());
 				xtraTabControlContentEditors.TabPages.Clear();
 
 
-				foreach (var optionSet in EditedContent.Options.OrderBy(s => s.Index))
-					AddOptionSetEditorsContainerControl(optionSet);
+				foreach (var snapshot in EditedContent.Snapshots.OrderBy(s => s.Index))
+					AddSnapshotSetEditorsContainerControl(snapshot);
 
-				xtraTabControlContentEditors.TabPages.Add(new OptionsSummaryEditorControl());
+				xtraTabControlContentEditors.TabPages.Add(new SnapshotSummaryEditorControl());
 				Summary.InitControls();
-				Summary.LoadData(EditedContent.OptionsSummary);
+				Summary.LoadData(EditedContent.SnapshotSummary);
 				Summary.DataChanged += (o, e) =>
 				{
 					if (!_allowToSave) return;
@@ -208,9 +206,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private void LoadActiveEditorData()
 		{
 			_allowToSave = false;
-			if (ActiveOptionSetContainer != null)
+			if (ActiveSnapshotContainer != null)
 			{
-				settingsContainer.LoadOptionSet(ActiveOptionSetContainer.OptionSetData);
+				settingsContainer.LoadSnapshot(ActiveSnapshotContainer.SnapshotData);
 				UpdateTotalsValues();
 				UpdateTotalsVisibility();
 			}
@@ -219,88 +217,110 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			_allowToSave = true;
 		}
 
-		private OptionSetEditorsContainer AddOptionSetEditorsContainerControl(OptionSet data, int position = -1)
+		private SnapshotEditorsContainer AddSnapshotSetEditorsContainerControl(Snapshot data, int position = -1)
 		{
-			var optionSetEditorsContainer = new OptionSetEditorsContainer();
-			optionSetEditorsContainer.InitControls();
-			optionSetEditorsContainer.LoadData(data);
-			optionSetEditorsContainer.DataChanged += OnOptionSetDataChanged;
-			optionSetEditorsContainer.SelectedEditorChanged += OnContentEditorChanged;
-			position = position == -1 ? xtraTabControlContentEditors.TabPages.OfType<OptionSetEditorsContainer>().Count() : position;
-			xtraTabControlContentEditors.TabPages.Insert(position, optionSetEditorsContainer);
-			return optionSetEditorsContainer;
+			var snapshotEditorsContainer = new SnapshotEditorsContainer();
+			snapshotEditorsContainer.InitControls();
+			snapshotEditorsContainer.LoadData(data);
+			snapshotEditorsContainer.DataChanged += OnSnapshotSetDataChanged;
+			snapshotEditorsContainer.SelectedEditorChanged += OnContentEditorChanged;
+			position = position == -1 ? xtraTabControlContentEditors.TabPages.OfType<SnapshotEditorsContainer>().Count() : position;
+			xtraTabControlContentEditors.TabPages.Insert(position, snapshotEditorsContainer);
+			return snapshotEditorsContainer;
 		}
 
-		private void AddOptionSet()
+		private void AddSnapshotSet()
 		{
-			using (var form = new FormOptionSetName())
+			using (var form = new FormSnapshotName())
 			{
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var optionSet = new OptionSet(EditedContent);
-				optionSet.Name = form.OptionSetName;
-				EditedContent.Options.Add(optionSet);
-				EditedContent.RebuildOptionSetIndexes();
-				var optionControl = AddOptionSetEditorsContainerControl(optionSet);
-				xtraTabControlContentEditors.SelectedTabPage = optionControl;
+				var snapshot = new Snapshot(EditedContent);
+				snapshot.Name = form.SnapshotName;
+				EditedContent.Snapshots.Add(snapshot);
+				EditedContent.RebuildSnapshotIndexes();
+				var snapshotEditorsContainer = AddSnapshotSetEditorsContainerControl(snapshot);
+				xtraTabControlContentEditors.SelectedTabPage = snapshotEditorsContainer;
 				Summary.UpdateView();
 				UpdateSplash();
 			}
 		}
 
-		private void CloneOptionSet(OptionSetEditorsContainer optionControl)
+		private void CloneSnapshotSet(SnapshotEditorsContainer snapshotEditorsContainer)
 		{
-			using (var form = new FormOptionSetName())
+			using (var form = new FormSnapshotName())
 			{
-				form.OptionSetName = String.Format("{0} (Clone)", optionControl.OptionSetData.Name);
+				form.SnapshotName = String.Format("{0} (Clone)", snapshotEditorsContainer.SnapshotData.Name);
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				var optionSet = optionControl.OptionSetData.Clone<OptionSet, OptionSet>();
-				optionSet.Name = form.OptionSetName;
-				optionSet.Index += 0.5;
-				EditedContent.Options.Add(optionSet);
-				EditedContent.RebuildOptionSetIndexes();
-				var newControl = AddOptionSetEditorsContainerControl(optionSet, (Int32)optionSet.Index);
+				var snapshot = snapshotEditorsContainer.SnapshotData.Clone<Snapshot, Snapshot>();
+				snapshot.Name = form.SnapshotName;
+				snapshot.Index += 0.5;
+				EditedContent.Snapshots.Add(snapshot);
+				EditedContent.RebuildSnapshotIndexes();
+				var newControl = AddSnapshotSetEditorsContainerControl(snapshot, (Int32)snapshot.Index);
 				xtraTabControlContentEditors.SelectedTabPage = newControl;
 				Summary.UpdateView();
 			}
 		}
 
-		private void DeleteOptionSet(OptionSetEditorsContainer optionSetEditorsContainer)
+		private void DeleteSnapshotSet(SnapshotEditorsContainer snapshotEditorsContainer)
 		{
-			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", optionSetEditorsContainer.OptionSetData.Name) != DialogResult.Yes) return;
-			EditedContent.Options.Remove(optionSetEditorsContainer.OptionSetData);
-			EditedContent.RebuildOptionSetIndexes();
-			xtraTabControlContentEditors.TabPages.Remove(optionSetEditorsContainer);
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure want to delete {0}?", snapshotEditorsContainer.SnapshotData.Name) != DialogResult.Yes) return;
+			EditedContent.Snapshots.Remove(snapshotEditorsContainer.SnapshotData);
+			EditedContent.RebuildSnapshotIndexes();
+			xtraTabControlContentEditors.TabPages.Remove(snapshotEditorsContainer);
 			Summary.UpdateView();
 			UpdateSplash();
 			UpdateSummaryState();
-			settingsContainer.UpdateSettingsAccordingDataChanges(OptionEditorType.Schedule);
+			settingsContainer.UpdateSettingsAccordingDataChanges(SnapshotEditorType.Schedule);
 			SettingsNotSaved = true;
 		}
 
-		private void RenameOptionSet(OptionSetEditorsContainer optionSetEditorsContainer)
+		private void RenameSnapshotSet(SnapshotEditorsContainer snapshotEditorsContainer)
 		{
-			if (optionSetEditorsContainer == null) return;
-			using (var form = new FormOptionSetName())
+			if (snapshotEditorsContainer == null) return;
+			using (var form = new FormSnapshotName())
 			{
-				form.OptionSetName = optionSetEditorsContainer.OptionSetData.Name;
+				form.SnapshotName = snapshotEditorsContainer.SnapshotData.Name;
 				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
-				optionSetEditorsContainer.OptionSetData.Name = form.OptionSetName;
-				optionSetEditorsContainer.Text = form.OptionSetName;
-				settingsContainer.UpdateSettingsAccordingDataChanges(OptionEditorType.Schedule);
+				snapshotEditorsContainer.SnapshotData.Name = form.SnapshotName;
+				snapshotEditorsContainer.Text = form.SnapshotName;
+				settingsContainer.UpdateSettingsAccordingDataChanges(SnapshotEditorType.Schedule);
 				SettingsNotSaved = true;
+			}
+		}
+
+		private void UpdateTotalsValues()
+		{
+			if (ActiveSnapshotContainer != null && ActiveSnapshotContainer.SnapshotData.Programs.Any())
+			{
+				pnBottom.Visible = true;
+				laTotalSpotsValue.Text = ActiveSnapshotContainer.SnapshotData.TotalSpots.ToString("#,##0");
+				laAvgRateValue.Text = ActiveSnapshotContainer.SnapshotData.AvgRate.ToString(ActiveSnapshotContainer.SnapshotData.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				laTotalCostValue.Text = String.Empty;
+			}
+			else if (ActiveSummary != null)
+			{
+				pnBottom.Visible = true;
+				laTotalSpotsValue.Text = ActiveSummary.Data.TotalSpots.ToString("#,##0");
+				laTotalCostValue.Text = ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				laAvgRateValue.Text = String.Empty;
+			}
+			else
+			{
+				pnBottom.Visible = false;
+				laTotalSpotsValue.Text = laTotalCostValue.Text = laAvgRateValue.Text = String.Empty;
 			}
 		}
 
 		private void UpdateTotalsVisibility()
 		{
-			if (ActiveOptionSetContainer != null)
+			if (ActiveSnapshotContainer != null)
 			{
-				pnTotalSpots.Visible = ActiveOptionSetContainer.OptionSetData.ShowTotalSpots;
-				pnTotalSpots.BringToFront();
-				pnTotalCost.Visible = ActiveOptionSetContainer.OptionSetData.ShowTotalCost;
-				pnTotalCost.BringToFront();
-				pnAvgRate.Visible = ActiveOptionSetContainer.OptionSetData.ShowAverageRate;
+				pnTotalSpots.Visible = ActiveSnapshotContainer.SnapshotData.ShowTotalSpots;
+				pnTotalSpots.SendToBack();
+				pnAvgRate.Visible = ActiveSnapshotContainer.SnapshotData.ShowAverageRate;
 				pnAvgRate.BringToFront();
+				pnTotalCost.Visible = false;
 			}
 			else if (ActiveSummary != null)
 			{
@@ -318,70 +338,30 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			}
 		}
 
-		private void UpdateTotalsValues()
-		{
-			if (ActiveOptionSetContainer != null && ActiveOptionSetContainer.OptionSetData.Programs.Any())
-			{
-				pnBottom.Visible = true;
-				switch (ActiveOptionSetContainer.OptionSetData.SpotType)
-				{
-					case SpotType.Week:
-						laTotalSpotsTitle.Text = "Weekly Spots";
-						laTotalCostTitle.Text = "Weekly Cost";
-						break;
-					case SpotType.Month:
-						laTotalSpotsTitle.Text = "Monthly Spots";
-						laTotalCostTitle.Text = "Monthly Cost";
-						break;
-					case SpotType.Total:
-						laTotalSpotsTitle.Text = "Total Spots";
-						laTotalCostTitle.Text = "Total Cost";
-						break;
-				}
-				laTotalSpotsValue.Text = ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0");
-				laTotalCostValue.Text = ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-				laAvgRateValue.Text = ActiveOptionSetContainer.OptionSetData.AvgRate.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-			}
-			else if (ActiveSummary != null)
-			{
-				pnBottom.Visible = true;
-				laTotalSpotsTitle.Text = "Total Spots";
-				laTotalCostTitle.Text = "Total Cost";
-				laTotalSpotsValue.Text = ActiveSummary.Data.TotalSpots.ToString("#,##0");
-				laTotalCostValue.Text = ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-				laAvgRateValue.Text = String.Empty;
-			}
-			else
-			{
-				pnBottom.Visible = false;
-				laTotalSpotsValue.Text = laAvgRateValue.Text = String.Empty;
-			}
-		}
-
 		private void UpdateOutputStatus()
 		{
-			Controller.Instance.OptionsPowerPoint.Enabled =
-				Controller.Instance.OptionsPdf.Enabled =
-				Controller.Instance.OptionsPreview.Enabled =
-				Controller.Instance.OptionsEmail.Enabled =
+			Controller.Instance.SnapshotPowerPoint.Enabled =
+				Controller.Instance.SnapshotPdf.Enabled =
+				Controller.Instance.SnapshotPreview.Enabled =
+				Controller.Instance.SnapshotEmail.Enabled =
 				xtraTabControlContentEditors.TabPages.OfType<IOutputContainer>().Any(oc => oc.GetOutputGroup().Configurations.Any());
 		}
 
 		private void UpdateSummaryState()
 		{
-			Summary.PageEnabled = EditedContent.OptionsSummary.Enabled && EditedContent.Options.SelectMany(o => o.Programs).Any();
+			Summary.PageEnabled = EditedContent.Snapshots.SelectMany(o => o.Programs).Any();
 		}
 
 		private void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
 		{
 			if (ActiveContentEditor == null) return;
 			if (!_allowToSave) return;
-			foreach (var sectionTabControl in xtraTabControlContentEditors.TabPages.OfType<IOptionContentEditorControl>())
+			foreach (var sectionTabControl in xtraTabControlContentEditors.TabPages.OfType<ISnapshotContentEditorControl>())
 				sectionTabControl.UpdateAccordingSettings(e);
-			OnOptionSetDataChanged(sender, e);
+			OnSnapshotSetDataChanged(sender, e);
 		}
 
-		private void OnOptionSetDataChanged(object sender, EventArgs e)
+		private void OnSnapshotSetDataChanged(object sender, EventArgs e)
 		{
 			if (ActiveContentEditor == null) return;
 			if (!_allowToSave) return;
@@ -407,26 +387,26 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		private void OnTabMoved(object sender, TabMoveEventArgs e)
 		{
-			EditedContent.ChangeOptionSetPosition(
-				EditedContent.Options.IndexOf(((OptionSetEditorsContainer)e.MovedPage).OptionSetData),
-				EditedContent.Options.IndexOf(((OptionSetEditorsContainer)e.TargetPage).OptionSetData) + (1 * e.Offset));
+			EditedContent.ChangeSnapshotPosition(
+				EditedContent.Snapshots.IndexOf(((SnapshotEditorsContainer)e.MovedPage).SnapshotData),
+				EditedContent.Snapshots.IndexOf(((SnapshotEditorsContainer)e.TargetPage).SnapshotData) + (1 * e.Offset));
 			Summary.UpdateView();
 			SettingsNotSaved = true;
 		}
 
 		private void UpdateSplash()
 		{
-			if (EditedContent.Options.Any())
+			if (EditedContent.Snapshots.Any())
 			{
 				pnData.BringToFront();
-				Controller.Instance.OptionsProgramAdd.Enabled = true;
-				Controller.Instance.OptionsProgramDelete.Enabled = true;
+				Controller.Instance.SnapshotProgramAdd.Enabled = true;
+				Controller.Instance.SnapshotProgramDelete.Enabled = true;
 			}
 			else
 			{
 				pnNoRecords.BringToFront();
-				Controller.Instance.OptionsProgramAdd.Enabled = false;
-				Controller.Instance.OptionsProgramDelete.Enabled = false;
+				Controller.Instance.SnapshotProgramAdd.Enabled = false;
+				Controller.Instance.SnapshotProgramDelete.Enabled = false;
 			}
 		}
 
@@ -435,22 +415,22 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			var activeItemCollection = ActiveContentEditor?.ActiveItemCollection;
 			if (activeItemCollection == null)
 			{
-				Controller.Instance.OptionsProgramAdd.Enabled =
-					Controller.Instance.OptionsProgramDelete.Enabled = false;
-				((RibbonBar)(Controller.Instance.OptionsProgramAdd.ContainerControl)).Text = "Program";
+				Controller.Instance.SnapshotProgramAdd.Enabled =
+					Controller.Instance.SnapshotProgramDelete.Enabled = false;
+				((RibbonBar)(Controller.Instance.SnapshotProgramAdd.ContainerControl)).Text = "Program";
 			}
 			else
 			{
-				Controller.Instance.OptionsProgramAdd.Enabled = activeItemCollection.AllowToAddItem;
-				Controller.Instance.OptionsProgramDelete.Enabled = activeItemCollection.AllowToDeleteItem;
-				((RibbonBar)(Controller.Instance.OptionsProgramAdd.ContainerControl)).Text = activeItemCollection.CollectionTitle;
+				Controller.Instance.SnapshotProgramAdd.Enabled = activeItemCollection.AllowToAddItem;
+				Controller.Instance.SnapshotProgramDelete.Enabled = activeItemCollection.AllowToDeleteItem;
+				((RibbonBar)(Controller.Instance.SnapshotProgramAdd.ContainerControl)).Text = activeItemCollection.CollectionTitle;
 
 				var addProductTitle = String.Format("Add {0}", activeItemCollection.CollectionItemTitle);
 				var addProductTooltip = String.Format("Add a {0} to your schedule", activeItemCollection.CollectionItemTitle);
 				var deleteProductTitle = String.Format("Delete {0}", activeItemCollection.CollectionItemTitle);
 				var deleteProductTooltip = String.Format("Delete the selected {0} from your schedule", activeItemCollection.CollectionItemTitle);
 
-				if (ActiveContentEditor.ActiveEditor.EditorType == OptionEditorType.DigitalInfo)
+				if (ActiveContentEditor.ActiveEditor.EditorType == SnapshotEditorType.DigitalInfo)
 				{
 					if (!String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTitle))
 						addProductTitle = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalAddTitle;
@@ -462,7 +442,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 						deleteProductTooltip = ListManager.Instance.DefaultControlsConfiguration.RibbonButtonMediaDigitalDeleteTooltip;
 				}
 				Controller.Instance.Supertip.SetSuperTooltip(
-					Controller.Instance.OptionsProgramAdd,
+					Controller.Instance.SnapshotProgramAdd,
 					new SuperTooltipInfo(
 						addProductTitle,
 						"",
@@ -471,7 +451,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 						null,
 						eTooltipColor.Gray));
 				Controller.Instance.Supertip.SetSuperTooltip(
-					Controller.Instance.OptionsProgramDelete,
+					Controller.Instance.SnapshotProgramDelete,
 					new SuperTooltipInfo(
 						deleteProductTitle,
 						"",
@@ -492,8 +472,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private void OnContentEditorTabCloseClick(object sender, EventArgs e)
 		{
 			var arg = (ClosePageButtonEventArgs)e;
-			var optionSetEditorsContainer = (OptionSetEditorsContainer)arg.Page;
-			DeleteOptionSet(optionSetEditorsContainer);
+			var snapshotEditorsContainer = (SnapshotEditorsContainer)arg.Page;
+			DeleteSnapshotSet(snapshotEditorsContainer);
 		}
 
 		private void OnContentEditorTabMouseDown(object sender, MouseEventArgs e)
@@ -504,14 +484,14 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			contextMenuStrip.Show((Control)sender, e.Location);
 		}
 
-		private void OnRenameOptionSetClick(object sender, EventArgs e)
+		private void OnRenameSnapshotClick(object sender, EventArgs e)
 		{
-			RenameOptionSet((OptionSetEditorsContainer)_menuHitInfo.Page);
+			RenameSnapshotSet((SnapshotEditorsContainer)_menuHitInfo.Page);
 		}
 
-		private void OnCloneOptionSetClick(object sender, EventArgs e)
+		private void OnCloneSnapshotClick(object sender, EventArgs e)
 		{
-			CloneOptionSet((OptionSetEditorsContainer)_menuHitInfo.Page);
+			CloneSnapshotSet((SnapshotEditorsContainer)_menuHitInfo.Page);
 		}
 		#endregion
 
@@ -528,9 +508,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#endregion
 
 		#region Ribbon Operations Events
-		public void OnAddOptionsSet(object sender, EventArgs e)
+		public void OnAddSnapshotSet(object sender, EventArgs e)
 		{
-			AddOptionSet();
+			AddSnapshotSet();
 		}
 
 		public void OnAddItem(object sender, EventArgs e)
@@ -547,8 +527,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#region Output Staff
 		private SlideType SlideType => ActiveContentEditor?.ActiveEditor?.SlideType ??
 				(MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
-					? SlideType.TVOptionsPrograms
-					: SlideType.RadioOptionsPrograms);
+					? SlideType.TVSnapshotPrograms
+					: SlideType.RadioSnapshotPrograms);
 
 		public override void OutputPowerPoint()
 		{

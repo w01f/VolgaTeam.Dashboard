@@ -97,9 +97,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 		{
 			_settingsControls.AddRange(new ISettingsControl[]
 				{
-					new OptionSetColumnSettingsControls(),
+					new OptionSetColumnSettingsControl(),
 					new OptionsDigitalInfoSettingsControl(),
-					new SummaryColumnSettingsControls(),
+					new SummaryColumnSettingsControl(),
 					new ColorSettingsControl(),
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsDataControl>())
@@ -162,7 +162,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 			switch (editorType)
 			{
 				case OptionEditorType.Schedule:
-					_settingsControls.OfType<OptionSetColumnSettingsControls>().First().UpdateUniversalSettingsToggleVisibility();
+					_settingsControls.OfType<OptionSetColumnSettingsControl>().First().UpdateUniversalSettingsToggleVisibility();
 					break;
 			}
 		}
@@ -170,7 +170,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 		private void RaiseSettingsChanged(SettingsChangedEventArgs args)
 		{
 			if(args.ChangedSettingsType==OptionSettingsType.Schedule)
-				_settingsControls.OfType<SummaryColumnSettingsControls>().First().LoadContentData(_editedContent);
+				_settingsControls.OfType<SummaryColumnSettingsControl>().First().LoadContentData(_editedContent);
 			SettingsChanged?.Invoke(this, args);
 		}
 

@@ -71,12 +71,21 @@ namespace Asa.Bar.App.Forms
 			var screens = Screen.AllScreens;
 			var currentScreenIndex = AppManager.Instance.Settings.UserSettings.PreferedMonitor < screens.Length ?
 				AppManager.Instance.Settings.UserSettings.PreferedMonitor :
-				(screens.Length - 1);
+				0;
 			var screen = screens[currentScreenIndex];
 			var taskbar = new TaskBarHelper.Taskbar(!Screen.PrimaryScreen.Equals(screen));
-			var y = taskbar.Handle == IntPtr.Zero ?
-				screen.Bounds.Bottom - Height :
-				taskbar.Location.Y - Height;
+
+			int y;
+			if (taskbar.Handle != IntPtr.Zero && taskbar.Position == TaskBarHelper.TaskbarPosition.Bottom)
+			{
+				var taskBarHeight = screen.Bounds.Bottom - taskbar.Location.Y;
+				taskBarHeight = taskBarHeight > 0 && taskBarHeight < taskbar.Bounds.Height
+					? taskBarHeight
+					: taskbar.Bounds.Height;
+				y = screen.Bounds.Bottom - Height - taskBarHeight;
+			}
+			else
+				y = screen.Bounds.Bottom - Height;
 
 			if (y == _lastYVisible && !forced)
 				return;
@@ -467,7 +476,7 @@ namespace Asa.Bar.App.Forms
 		{
 			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationClose));
 			AppManager.Instance.ExternalProcessesWatcher.StopWatching();
-			Application.Exit(); 
+			Application.Exit();
 		}
 
 		private void OnFormDeactivate(object sender, EventArgs e)

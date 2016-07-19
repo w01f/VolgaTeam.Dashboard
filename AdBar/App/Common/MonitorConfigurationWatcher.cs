@@ -32,7 +32,7 @@ namespace Asa.Bar.App.Common
 
 		private int GetMonitorsCount()
 		{
-			return Screen.AllScreens.Count();
+			return Screen.AllScreens.Length;
 		}
 
 		private void OnCheckTimerTick(object sender, EventArgs e)
@@ -44,14 +44,13 @@ namespace Asa.Bar.App.Common
 
 			UpdatePreferedMonitorSettings();
 
-			if (ConfigurationChanged != null)
-				ConfigurationChanged(this, EventArgs.Empty);
+			ConfigurationChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void UpdatePreferedMonitorSettings()
 		{
 			if (AppManager.Instance.Settings.UserSettings.PreferedMonitor < MonitorsCount) return;
-			AppManager.Instance.Settings.UserSettings.PreferedMonitor = (MonitorsCount - 1);
+			AppManager.Instance.Settings.UserSettings.PreferedMonitor = 0;
 			AppManager.Instance.Settings.UserSettings.Save();
 		}
 	}

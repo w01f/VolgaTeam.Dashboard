@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -14,6 +15,8 @@ namespace Asa.Business.Media.Configuration
 		public StorageFile Gallery2ConfigFile { get; private set; }
 
 		public StorageFile MediaListsFile { get; private set; }
+
+		public StorageFile SolutionsConfigFile { get; private set; }
 
 		public StorageFile MainAppTitleTextFile { get; private set; }
 		public StorageFile MainAppIconFile { get; private set; }
@@ -61,14 +64,19 @@ namespace Asa.Business.Media.Configuration
 			});
 			await Gallery2ConfigFile.Download();
 
-			MediaListsFile = new StorageFile(new[]
-			{
+			MediaListsFile = new StorageFile(
+				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge(
+					String.Format("{0} Strategy.xml",MediaMetaData.Instance.DataTypeString)));
+			await MediaListsFile.Download();
+
+			SolutionsConfigFile = new StorageFile(new[]
+{
 				FileStorageManager.IncomingFolderName,
 				AppProfileManager.Instance.AppName,
-				"Data",
-				String.Format("{0} Strategy.xml",MediaMetaData.Instance.DataTypeString)
+				"AppSettings",
+				"solution_templates.xml"
 			});
-			await MediaListsFile.Download();
+			await SolutionsConfigFile.Download();
 
 			MainAppTitleTextFile = new StorageFile(new[]
 {

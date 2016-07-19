@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -212,23 +213,13 @@ namespace Asa.Common.Core.Configuration
 			});
 			await HelpBrowserFile.Download();
 
-			OnlineListsFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"Data",
-				"Online Strategy.xml"
-			});
+			OnlineListsFile = new StorageFile(
+				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Online Strategy.xml"));
 			if (await OnlineListsFile.Exists(true))
 				await OnlineListsFile.Download();
 
-			DataSimpleSummaryFile = new StorageFile(new[]
-			{
-				FileStorageManager.IncomingFolderName,
-				AppProfileManager.Instance.AppName,
-				"Data",
-				"Closing Summary.xml"
-			});
+			DataSimpleSummaryFile = new StorageFile(
+				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Closing Summary.xml"));
 			if (await DataSimpleSummaryFile.Exists(true))
 				await DataSimpleSummaryFile.Download();
 			#endregion

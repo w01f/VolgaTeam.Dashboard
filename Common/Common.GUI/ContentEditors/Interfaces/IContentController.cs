@@ -10,7 +10,8 @@ namespace Asa.Common.GUI.ContentEditors.Interfaces
 		where TChangeInfo : BaseScheduleChangeInfo
 	{
 		IContentControl ActiveControl { get; set; }
-		IContentEditControl<TChangeInfo> ActiveEditor { get; set; }
+		IContentEditControl<TChangeInfo> ActiveEditor { get; }
+		IOutputControl ActiveOutputControl { get; }
 		List<IContentControl> ContentControls { get; }
 		List<ContentEditorRelation> EditorRelations { get; }
 		RibbonControl ContentRibbon { get; }

@@ -6,9 +6,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Common
 {
 	public abstract class MediaScheduleContent : BaseSchedulePartitionContent<MediaSchedule, MediaScheduleSettings>
 	{
-		public override MediaSchedule Schedule
-		{
-			get { return ((MediaPartition)Parent).Schedule; }
-		}
+		public override MediaSchedule Schedule => ((MediaPartition)Parent).Schedule;
 	}
 }

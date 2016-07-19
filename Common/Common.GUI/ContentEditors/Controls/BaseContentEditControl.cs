@@ -9,7 +9,7 @@ using DevComponents.DotNetBar;
 
 namespace Asa.Common.GUI.ContentEditors.Controls
 {
-	public abstract class BaseContentEditControl<TChangeInfo> : PartitionEditTemplateControl, IContentEditControl<TChangeInfo>
+	public abstract class BaseContentEditControl<TChangeInfo> : UserControl, IContentEditControl<TChangeInfo>
 		where TChangeInfo : BaseScheduleChangeInfo
 	{
 		protected ContentUpdateInfo<TChangeInfo> ContentUpdateInfo { get; }
@@ -27,6 +27,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 
 		protected BaseContentEditControl()
 		{
+			Dock = DockStyle.Fill;
 			ContentUpdateInfo = new ContentUpdateInfo<TChangeInfo>();
 			ChangeInfo = Activator.CreateInstance<TChangeInfo>();
 		}
@@ -94,8 +95,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 		protected virtual void OnContentChanged(ContentSavedEventArgs<TChangeInfo> e)
 		{
 			var handler = ContentChanged;
-			if (handler != null)
-				handler(this, e);
+			handler?.Invoke(this, e);
 		}
 	}
 }

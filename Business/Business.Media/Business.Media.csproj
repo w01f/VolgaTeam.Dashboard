@@ -38,8 +38,8 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -74,6 +74,7 @@
     <Compile Include="Configuration\OptionsSettings.cs" />
     <Compile Include="Entities\NonPersistent\Common\MediaScheduleContent.cs" />
     <Compile Include="Configuration\OptionsSummarySettings.cs" />
+    <Compile Include="Entities\NonPersistent\Common\MediaSolutionContent.cs" />
     <Compile Include="Entities\NonPersistent\Digital\DigitalMediaProductsContent.cs" />
     <Compile Include="Entities\NonPersistent\Option\OptionProgram.cs" />
     <Compile Include="Entities\NonPersistent\Option\OptionsContent.cs" />
@@ -109,7 +110,9 @@
     <Compile Include="Entities\NonPersistent\Snapshot\SnapshotSummary.cs" />
     <Compile Include="Entities\Persistent\CustomCalendarPartition.cs" />
     <Compile Include="Entities\Persistent\BroadcastCalendarPartition.cs" />
+    <Compile Include="Entities\Persistent\MediaDashboardSolution.cs" />
     <Compile Include="Entities\Persistent\DigitalProductsPartition.cs" />
+    <Compile Include="Entities\Persistent\MediaSolution.cs" />
     <Compile Include="Entities\Persistent\MediaPartition.cs" />
     <Compile Include="Entities\Persistent\OptionsPartition.cs" />
     <Compile Include="Entities\Persistent\SnapshotPartition.cs" />
@@ -148,6 +151,10 @@
     <ProjectReference Include="..\Business.Online\Business.Online.csproj">
       <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
       <Name>Business.Online</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Solutions\Business.Solutions.csproj">
+      <Project>{4f118ea5-97aa-43f9-a8f5-601b8596825c}</Project>
+      <Name>Business.Solutions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

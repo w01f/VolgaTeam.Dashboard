@@ -32,11 +32,5 @@ namespace Asa.Business.Common.Entities.Persistent
 			target.Type = Type;
 			target.ContentEncoded = ContentEncoded;
 		}
-
-		public bool CompareByKey(IExtKeyHolder target)
-		{
-			if (target == null) return false;
-			return target.ExtId == ExtId;
-		}
 	}
 }

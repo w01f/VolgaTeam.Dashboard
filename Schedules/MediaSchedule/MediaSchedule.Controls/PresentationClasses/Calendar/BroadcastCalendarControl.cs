@@ -26,7 +26,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override ButtonItem CloneButton => Controller.Instance.Calendar1Clone;
 		public override ButtonItem ResetButton => Controller.Instance.Calendar1Reset;
 
-		#region BasePartitionEditControl Override
+		#region BaseContentEditControl Override
 		protected override bool IsContentChanged => EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
 		                                                                      ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
 		                                                                      ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||

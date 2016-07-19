@@ -42,6 +42,7 @@ namespace Asa.Media.Controls
 		public RibbonTabItem TabRateCard { get; set; }
 		public RibbonTabItem TabSnapshot { get; set; }
 		public RibbonTabItem TabOptions { get; set; }
+		public RibbonTabItem TabSolutions { get; set; }
 
 		private Controller()
 		{
@@ -98,6 +99,7 @@ namespace Asa.Media.Controls
 				TabDigitalProduct,
 				TabSnapshot,
 				TabOptions,
+				TabSolutions,
 				TabCalendar1,
 				TabCalendar2,
 				TabGallery1,
@@ -124,6 +126,7 @@ namespace Asa.Media.Controls
 				DigitalProductPowerPoint,
 				SnapshotPowerPoint,
 				OptionsPowerPoint,
+				SolutionsPowerPoint,
 				Calendar1PowerPoint,
 				Calendar2PowerPoint,
 			})
@@ -137,6 +140,7 @@ namespace Asa.Media.Controls
 				DigitalProductPdf,
 				SnapshotPdf,
 				OptionsPdf,
+				SolutionsPdf,
 				Calendar1Pdf,
 				Calendar2Pdf,
 			})
@@ -150,6 +154,7 @@ namespace Asa.Media.Controls
 				DigitalProductPreview,
 				SnapshotPreview,
 				OptionsPreview,
+				SolutionsPreview,
 				Calendar1Preview,
 				Calendar2Preview,
 			})
@@ -163,6 +168,7 @@ namespace Asa.Media.Controls
 				DigitalProductEmail,
 				SnapshotEmail,
 				OptionsEmail,
+				SolutionsEmail,
 				Calendar1Email,
 				Calendar2Email,
 			})
@@ -208,6 +214,14 @@ namespace Asa.Media.Controls
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
 				OptionsTheme.Click -= OnThemeClick;
 				OptionsTheme.Click += OnThemeClick;
+
+				SolutionsPowerPoint.Visible = false;
+				((RibbonBar)SolutionsPowerPoint.ContainerControl).Text = "Important Info";
+				((RibbonBar)SolutionsEmail.ContainerControl).Visible = false;
+				((RibbonBar)SolutionsPreview.ContainerControl).Visible = false;
+				Supertip.SetSuperTooltip(SolutionsTheme, selectorToolTip);
+				SolutionsTheme.Click -= OnThemeClick;
+				SolutionsTheme.Click += OnThemeClick;
 			}
 			else
 			{
@@ -231,11 +245,17 @@ namespace Asa.Media.Controls
 				((RibbonBar)OptionsPreview.ContainerControl).Visible = true;
 				OptionsTheme.Click -= OnThemeClick;
 
+				SolutionsPowerPoint.Visible = true;
+				((RibbonBar)SolutionsEmail.ContainerControl).Visible = true;
+				((RibbonBar)SolutionsPreview.ContainerControl).Visible = true;
+				SolutionsTheme.Click -= OnThemeClick;
+
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
 				Supertip.SetSuperTooltip(ProgramScheduleTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(OptionsTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SolutionsTheme, selectorToolTip);
 			}
 		}
 
@@ -255,6 +275,7 @@ namespace Asa.Media.Controls
 				Calendar2SpecialButtons,
 				SnapshotSpecialButtons,
 				OptionsSpecialButtons,
+				SolutionsSpecialButtons,
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
 				Gallery2SpecialButtons
@@ -422,8 +443,6 @@ namespace Asa.Media.Controls
 		public ButtonItem SnapshotPdf { get; set; }
 		public ButtonItem SnapshotEmail { get; set; }
 		public ButtonItem SnapshotTheme { get; set; }
-		public RibbonBar SnapshotQuarterBar { get; set; }
-		public ButtonItem SnapshotQuarterButton { get; set; }
 		#endregion
 
 		#region Options
@@ -438,8 +457,19 @@ namespace Asa.Media.Controls
 		public ButtonItem OptionsPdf { get; set; }
 		public ButtonItem OptionsEmail { get; set; }
 		public ButtonItem OptionsTheme { get; set; }
-		public RibbonBar OptionsQuarterBar { get; set; }
-		public ButtonItem OptionsQuarterButton { get; set; }
+		#endregion
+
+		#region Solutions
+		public RibbonPanel SolutionsPanel { get; set; }
+		public RibbonBar SolutionsHomeBar { get; set; }
+		public RibbonBar SolutionsThemeBar { get; set; }
+		public RibbonBar SolutionsSpecialButtons { get; set; }
+		public ButtonItem SolutionsHomeButton { get; set; }
+		public ButtonItem SolutionsPreview { get; set; }
+		public ButtonItem SolutionsPowerPoint { get; set; }
+		public ButtonItem SolutionsPdf { get; set; }
+		public ButtonItem SolutionsEmail { get; set; }
+		public ButtonItem SolutionsTheme { get; set; }
 		#endregion
 
 		#region Rate Card

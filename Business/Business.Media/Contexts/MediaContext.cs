@@ -30,6 +30,7 @@ namespace Asa.Business.Media.Contexts
 		{
 			modelBuilder.Configurations.Add(new ScheduleMap<MediaSchedule, MediaContext>());
 			modelBuilder.Configurations.Add(new SchedulePartitionMap<MediaPartition, MediaContext>());
+			modelBuilder.Configurations.Add(new ScheduleSolutionMap<MediaSolution, MediaContext>());
 			base.OnModelCreating(modelBuilder);
 		}
 

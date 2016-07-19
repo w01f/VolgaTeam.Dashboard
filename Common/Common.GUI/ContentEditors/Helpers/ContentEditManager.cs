@@ -27,9 +27,6 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 			foreach (var contentEditControl in _controller.ContentControls.OfType<IContentEditControl<TChangeInfo>>())
 				contentEditControl.ContentChanged += OnContentChanged;
 
-			foreach (var partitionEditControl in _controller.ContentControls.OfType<IPartitionEditControl<TChangeInfo>>())
-				partitionEditControl.ThemeChanged += OnThemeChanged;
-
 			_controller.ContentRibbon.Items.Clear();
 			_controller.ContentRibbon.Items.AddRange(_controller.ContentControls.Select(c => c.TabPage).ToArray());
 
@@ -64,7 +61,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 
 		public static void OnThemeChanged(object sender, EventArgs e)
 		{
-			foreach (var partitionEditControl in _controller.ContentControls.OfType<IPartitionEditControl<TChangeInfo>>().Where(c => c != sender))
+			foreach (var partitionEditControl in _controller.ContentControls.OfType<IOutputControl>().Where(c => c != sender))
 				partitionEditControl.OnOuterThemeChanged();
 		}
 
@@ -127,26 +124,23 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 
 		public static void OutputPowerPoint()
 		{
-			var outputControl = _controller.ActiveControl as IOutputControl;
-			if (outputControl == null) return;
+			if (_controller.ActiveOutputControl == null) return;
 			SaveSchedule(true);
-			outputControl.OutputPowerPoint();
+			_controller.ActiveOutputControl.OutputPowerPoint();
 		}
 
 		public static void OutputPdf()
 		{
-			var outputControl = _controller.ActiveControl as IOutputControl;
-			if (outputControl == null) return;
+			if (_controller.ActiveOutputControl == null) return;
 			SaveSchedule(true);
-			outputControl.OutputPdf();
+			_controller.ActiveOutputControl.OutputPdf();
 		}
 
 		public static void Preview()
 		{
-			var outputControl = _controller.ActiveControl as IOutputControl;
-			if (outputControl == null) return;
+			if (_controller.ActiveOutputControl == null) return;
 			SaveSchedule(true);
-			outputControl.Preview();
+			_controller.ActiveOutputControl.Preview();
 		}
 
 		public static void Email()

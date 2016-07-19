@@ -16,6 +16,7 @@ using Asa.Media.Controls.PresentationClasses.RateCard;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
+using Asa.Media.Controls.PresentationClasses.Solutions;
 using DevComponents.DotNetBar;
 
 namespace Asa.Media.Controls.BusinessClasses.Managers
@@ -34,10 +35,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Panel EmptyPanel => Controller.Instance.EmptyPanel;
 
 		public IContentEditControl<MediaScheduleChangeInfo> ActiveEditor
-		{
-			get { return ActiveControl as IContentEditControl<MediaScheduleChangeInfo>; }
-			set { ActiveControl = value; }
-		}
+			=> ActiveControl as IContentEditControl<MediaScheduleChangeInfo>;
+
+		public IOutputControl ActiveOutputControl => ActiveEditor as IOutputControl;
 
 		public ContentController()
 		{
@@ -55,6 +55,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 						ContentIdentifiers.DigitalProducts,
 						ContentIdentifiers.Snapshots,
 						ContentIdentifiers.Options,
+						ContentIdentifiers.Solutions,
 						ContentIdentifiers.BroadcastCalendar,
 						ContentIdentifiers.CustomCalendar
 					}
@@ -68,6 +69,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 						ContentIdentifiers.DigitalProducts,
 						ContentIdentifiers.Snapshots,
 						ContentIdentifiers.Options,
+						ContentIdentifiers.Solutions,
 						ContentIdentifiers.BroadcastCalendar,
 						ContentIdentifiers.CustomCalendar
 					}
@@ -143,6 +145,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 					return new SnapshotContentEditorsContainer();
 				case ContentIdentifiers.Options:
 					return new OptionsContentEditorsContainer();
+				case ContentIdentifiers.Solutions:
+					return new MediaSolutionsContainer();
 				case ContentIdentifiers.BroadcastCalendar:
 					return new BroadcastCalendarControl();
 				case ContentIdentifiers.CustomCalendar:

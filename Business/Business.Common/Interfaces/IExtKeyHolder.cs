@@ -5,7 +5,5 @@ namespace Asa.Business.Common.Interfaces
 	public interface IExtKeyHolder
 	{
 		Guid ExtId { get; set; }
-
-		bool CompareByKey(IExtKeyHolder target);
 	}
 }

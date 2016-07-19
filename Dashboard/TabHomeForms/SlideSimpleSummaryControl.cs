@@ -76,25 +76,13 @@ namespace Asa.Dashboard.TabHomeForms
 
 		public bool AllowToSave { get; set; }
 
-		public override string SlideName
-		{
-			get { return "Closing Summary"; }
-		}
+		public override string SlideName => "Closing Summary";
 
-		public override SuperTooltipInfo TooltipLoad
-		{
-			get { return _toolTipLoad; }
-		}
+		public override SuperTooltipInfo TooltipLoad => _toolTipLoad;
 
-		public override SuperTooltipInfo TooltipHelp
-		{
-			get { return _toolTipHelp; }
-		}
+		public override SuperTooltipInfo TooltipHelp => _toolTipHelp;
 
-		public override ButtonItem ThemeButton
-		{
-			get { return FormMain.Instance.buttonItemHomeThemeSimpleSummary; }
-		}
+		public override ButtonItem ThemeButton => FormMain.Instance.buttonItemHomeThemeSimpleSummary;
 
 		public void UpdateTotalItems()
 		{
@@ -350,10 +338,7 @@ namespace Asa.Dashboard.TabHomeForms
 		}
 
 		#region Output Staff
-		public int ItemsCount
-		{
-			get { return simpleSummaryItemContainer.ItemTitles.Length; }
-		}
+		public int ItemsCount => simpleSummaryItemContainer.ItemTitles.Length;
 
 		public int SlidesCount
 		{
@@ -374,10 +359,7 @@ namespace Asa.Dashboard.TabHomeForms
 			}
 		}
 
-		public string Title
-		{
-			get { return comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString(); }
-		}
+		public string Title => comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString();
 
 		public string SummaryData
 		{
@@ -441,15 +423,9 @@ namespace Asa.Dashboard.TabHomeForms
 			}
 		}
 
-		public string[] ItemTitles
-		{
-			get { return simpleSummaryItemContainer.ItemTitles; }
-		}
+		public string[] ItemTitles => simpleSummaryItemContainer.ItemTitles;
 
-		public string[] ItemDetails
-		{
-			get { return simpleSummaryItemContainer.ItemDetails; }
-		}
+		public string[] ItemDetails => simpleSummaryItemContainer.ItemDetails;
 
 		public string[] MonthlyValues
 		{
@@ -471,60 +447,27 @@ namespace Asa.Dashboard.TabHomeForms
 			}
 		}
 
-		public string TotalMonthlyValue
-		{
-			get { return checkEditMonthlyInvestment.Checked && spinEditMonthly.EditValue != null ? spinEditMonthly.Value.ToString("$#,##0.00") : String.Empty; }
-		}
+		public string TotalMonthlyValue => checkEditMonthlyInvestment.Checked && spinEditMonthly.EditValue != null ? spinEditMonthly.Value.ToString("$#,##0.00") : String.Empty;
 
-		public string TotalTotalValue
-		{
-			get { return checkEditTotalInvestment.Checked && spinEditTotal.EditValue != null ? spinEditTotal.Value.ToString("$#,##0.00") : String.Empty; }
-		}
+		public string TotalTotalValue => checkEditTotalInvestment.Checked && spinEditTotal.EditValue != null ? spinEditTotal.Value.ToString("$#,##0.00") : String.Empty;
 
-		public bool ShowMonthlyHeader
-		{
-			get { return simpleSummaryItemContainer.ShowMonthlyTotal; }
-		}
+		public bool ShowMonthlyHeader => simpleSummaryItemContainer.ShowMonthlyTotal;
 
-		public bool ShowTotalHeader
-		{
-			get { return simpleSummaryItemContainer.ShowTotalTotal; }
-		}
+		public bool ShowTotalHeader => simpleSummaryItemContainer.ShowTotalTotal;
 
-		public StorageDirectory ContractTemplateFolder
-		{
-			get { return null; }
-		}
+		public StorageDirectory ContractTemplateFolder => null;
 
-		public ContractSettings ContractSettings
-		{
-			get { return ViewSettingsManager.Instance.SimpleSummaryState.ContractSettings; }
-		}
+		public ContractSettings ContractSettings => ViewSettingsManager.Instance.SimpleSummaryState.ContractSettings;
 
-		public Theme SelectedTheme
-		{
-			get { return SettingsManager.Instance.GetSelectedTheme(SlideType.SimpleSummary); }
-		}
+		public Theme SelectedTheme => SettingsManager.Instance.GetSelectedTheme(SlideType.SimpleSummary);
 
-		public bool TableOutput
-		{
-			get { return checkEditTableOutput.Checked; }
-		}
+		public bool TableOutput => checkEditTableOutput.Checked;
 
-		public int ItemsPerTable
-		{
-			get { return ItemsCount > 18 ? 18 : ItemsCount; }
-		}
+		public int ItemsPerTable => ItemsCount > 18 ? 18 : ItemsCount;
 
-		public bool ShowIcons
-		{
-			get { return false; }
-		}
+		public bool ShowIcons => false;
 
-		public string[] TableIcons
-		{
-			get { return null; }
-		}
+		public string[] TableIcons => null;
 
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; private set; }
 

@@ -18,30 +18,15 @@ namespace Asa.Dashboard.TabHomeForms
 	{
 		public bool SettingsNotSaved { get; set; }
 
-		public virtual string SlideName
-		{
-			get { return null; }
-		}
+		public virtual string SlideName => null;
 
-		public virtual SuperTooltipInfo TooltipLoad
-		{
-			get { return null; }
-		}
+		public virtual SuperTooltipInfo TooltipLoad => null;
 
-		public virtual SuperTooltipInfo TooltipHelp
-		{
-			get { return null; }
-		}
+		public virtual SuperTooltipInfo TooltipHelp => null;
 
-		public virtual ButtonItem ThemeButton
-		{
-			get { return null; }
-		}
+		public virtual ButtonItem ThemeButton => null;
 
-		public ButtonItem LoadButton
-		{
-			get { return FormMain.Instance.buttonItemHomeLoad; }
-		}
+		public ButtonItem LoadButton => FormMain.Instance.buttonItemHomeLoad;
 
 		public event EventHandler<SlideEventArgs> SlideChanged;
 
@@ -173,25 +158,6 @@ namespace Asa.Dashboard.TabHomeForms
 					PopupMessageHelper.Instance.ShowWarning("Template Name can't be empty");
 			}
 		}
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (Control)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (Control)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
 	}
 
 	public class SlideEventArgs : EventArgs

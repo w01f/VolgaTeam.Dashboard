@@ -39,7 +39,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			get { return MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings; }
 		}
 
-		#region BasePartitionEditControl Override
+		#region BaseContentEditControl Override
 		public override void InitControl()
 		{
 			base.InitControl();

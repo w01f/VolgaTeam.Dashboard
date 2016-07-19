@@ -343,8 +343,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 				return BusinessObjects.Instance.ThemeManager
 					.GetThemes(SlideType)
 					.FirstOrDefault(t =>
-						t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) ||
-						String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)));
+						t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType)) ||
+						String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType)));
 			}
 		}
 

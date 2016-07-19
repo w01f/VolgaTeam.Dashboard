@@ -7,6 +7,7 @@
 		public const string DigitalProducts = "Digital Slides";
 		public const string Snapshots = "Snapshot";
 		public const string Options = "Options";
+		public const string Solutions = "Solutions";
 		public const string BroadcastCalendar = "Calendar";
 		public const string CustomCalendar = "Calendar2";
 		public const string Gallery1 = "Gallery1";

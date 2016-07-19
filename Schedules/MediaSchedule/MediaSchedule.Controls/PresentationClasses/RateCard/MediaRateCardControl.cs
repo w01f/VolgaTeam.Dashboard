@@ -6,15 +6,9 @@ namespace Asa.Media.Controls.PresentationClasses.RateCard
 {
 	class MediaRateCardControl : RateCardControl
 	{
-		public override string Identifier
-		{
-			get { return ContentIdentifiers.RateCard; }
-		}
+		public override string Identifier => ContentIdentifiers.RateCard;
 
-		public override RibbonTabItem TabPage
-		{
-			get { return Controller.Instance.TabRateCard; }
-		}
+		public override RibbonTabItem TabPage => Controller.Instance.TabRateCard;
 
 		public override void InitControl()
 		{

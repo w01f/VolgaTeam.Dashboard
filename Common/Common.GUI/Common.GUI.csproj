@@ -70,16 +70,16 @@
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.Base, Version=16.0.49.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.16.0.49.0\lib\EO.Base.dll</HintPath>
+    <Reference Include="EO.Base, Version=16.1.39.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.16.1.39.0\lib\EO.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=16.0.49.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.16.0.49.0\lib\EO.WebBrowser.dll</HintPath>
+    <Reference Include="EO.WebBrowser, Version=16.1.39.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.16.1.39.0\lib\EO.WebBrowser.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebEngine, Version=16.0.49.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.16.0.49.0\lib\EO.WebEngine.dll</HintPath>
+    <Reference Include="EO.WebEngine, Version=16.1.39.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.16.1.39.0\lib\EO.WebEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ImageListView, Version=11.0.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -116,8 +116,10 @@
     <Compile Include="Common\TabbedControls.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ContentEditors\Controls\BaseContentOutputControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ContentEditors\Helpers\ContentEditManager.cs" />
-    <Compile Include="ContentEditors\Interfaces\IPartitionEditControl.cs" />
     <Compile Include="ContentEditors\Objects\ContentEditorRelation.cs" />
     <Compile Include="ContentEditors\Helpers\ContentRibbonManager.cs" />
     <Compile Include="ContentEditors\Events\ContentSavingEventArgs.cs" />
@@ -264,12 +266,6 @@
     </Compile>
     <Compile Include="ContentEditors\Events\ContentSavedEventArgs.cs" />
     <Compile Include="ContentEditors\Interfaces\IContentEditControl.cs" />
-    <Compile Include="ContentEditors\Controls\PartitionEditTemplateControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContentEditors\Controls\PartitionEditTemplateControl.Designer.cs">
-      <DependentUpon>PartitionEditTemplateControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="SlideSettingsEditors\FormEditSlideSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,9 +447,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RetractableBar\RetractableBarRight.resx">
       <DependentUpon>RetractableBarRight.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ContentEditors\Controls\PartitionEditTemplateControl.resx">
-      <DependentUpon>PartitionEditTemplateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SlideSettingsEditors\FormEditSlideSettings.resx">
       <DependentUpon>FormEditSlideSettings.cs</DependentUpon>

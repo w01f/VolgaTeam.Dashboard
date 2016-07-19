@@ -51,7 +51,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			InitializeComponent();
 		}
 
-		#region BasePartitionEditControl Override
+		#region BaseContentEditControl Override
 		public override void InitControl()
 		{
 			base.InitControl();

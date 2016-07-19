@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9399D618-8C42-483C-8B87-3BD111B07B88}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Asa.Solutions.Dashboard</RootNamespace>
+    <AssemblyName>Asa.Solutions.Dashboard</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.6.0.6, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PresentationClasses\BaseDashboardContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\BaseDashboardContainer.Designer.cs">
+      <DependentUpon>BaseDashboardContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\DashboardSlideChangedEventArgs.cs" />
+    <Compile Include="PresentationClasses\DashboardSlideControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\DashboardSlideControl.Designer.cs">
+      <DependentUpon>DashboardSlideControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\CleanslateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\CleanslateControl.Designer.cs">
+      <DependentUpon>CleanslateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\FormQuotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\FormQuotes.Designer.cs">
+      <DependentUpon>FormQuotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\CoverControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\CoverControl.Designer.cs">
+      <DependentUpon>CoverControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SimpleSummaryItemContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SimpleSummaryItemContainer.Designer.cs">
+      <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SimpleSummaryItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SimpleSummaryItemControl.Designer.cs">
+      <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SimpleSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SimpleSummaryControl.Designer.cs">
+      <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ClientGoalsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ClientGoalsControl.Designer.cs">
+      <DependentUpon>ClientGoalsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\LeadoffStatementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\LeadoffStatementControl.Designer.cs">
+      <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\TargetCustomersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\TargetCustomersControl.Designer.cs">
+      <DependentUpon>TargetCustomersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SlideClientGoals.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\Business.Common\Business.Common.csproj">
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\Business.Solutions\Business.Solutions.csproj">
+      <Project>{4f118ea5-97aa-43f9-a8f5-601b8596825c}</Project>
+      <Name>Business.Solutions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.GUI\Common.GUI.csproj">
+      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
+      <Name>Common.GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solutions.Common\Solutions.Common.csproj">
+      <Project>{5265e59c-b925-4494-aa69-a40d8a8e50e0}</Project>
+      <Name>Solutions.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\BaseDashboardContainer.resx">
+      <DependentUpon>BaseDashboardContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\DashboardSlideControl.resx">
+      <DependentUpon>DashboardSlideControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\CleanslateControl.resx">
+      <DependentUpon>CleanslateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\FormQuotes.resx">
+      <DependentUpon>FormQuotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\CoverControl.resx">
+      <DependentUpon>CoverControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SimpleSummaryItemContainer.resx">
+      <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SimpleSummaryItemControl.resx">
+      <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SimpleSummaryControl.resx">
+      <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ClientGoalsControl.resx">
+      <DependentUpon>ClientGoalsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\LeadoffStatementControl.resx">
+      <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\TargetCustomersControl.resx">
+      <DependentUpon>TargetCustomersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SlideCover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SlideLeadoff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SlideSummary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SlideTargetCustomers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SalesQuotes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DescriptionClientGoals.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DescriptionCover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DescriptionLeadoff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DescriptionSummary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DescriptionTargetCustomers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SalesRep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Advertiser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DecisionMaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryBusinessName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryDecisionMaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryFlightDates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryPresentationDate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DownArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UpArrow.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

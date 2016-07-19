@@ -1,6 +1,7 @@
-﻿using Asa.Business.Common.Entities.Helpers;
+﻿using Asa.Business.Common.Helpers;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Contexts;
+using Asa.Business.Solutions.Common.Helpers;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RateCard;
 using Asa.Media.Controls.BusinessClasses.Output;
@@ -13,6 +14,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		public MediaScheduleManager ScheduleManager { get; }
 		public ScheduleTemplatesManager ScheduleTemplatesManager { get; }
+		public SolutionsManager SolutionsManager { get; }
 		public HelpManager HelpManager { get; }
 		public OutputManager OutputManager { get; }
 		public TabPageManager TabPageManager { get; private set; }
@@ -27,6 +29,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			OutputManager = new OutputManager();
 			ScheduleManager = new MediaScheduleManager();
 			ScheduleTemplatesManager = new ScheduleTemplatesManager();
+			SolutionsManager = new SolutionsManager();
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
 		}
@@ -35,6 +38,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		{
 			ScheduleManager.Init();
 			AsyncHelper.RunSync(ScheduleTemplatesManager.Init);
+
+			SolutionsManager.LoadSolutions(ResourceManager.Instance.SolutionsConfigFile);
+			SolutionsManager.LoadSolutionData(AppProfileManager.Instance.AppDataFolder);
 
 			OutputManager.Init();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();

@@ -54,10 +54,6 @@ namespace Asa.Media.Single
 
 				ribbonBarHomeBasicInfo.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
-				ribbonBarHomeExit.RecalcLayout();
-				ribbonBarDigitalScheduleExit.RecalcLayout();
-				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
-				ribbonPanelDigitalSchedule.PerformLayout();
 				ribbonPanelHome.PerformLayout();
 			}
 		}
@@ -108,6 +104,7 @@ namespace Asa.Media.Single
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 			Controller.Instance.TabOptions = ribbonTabItemOptions;
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
+			Controller.Instance.TabSolutions = ribbonTabItemSolutions;
 
 			FormProgress.Init(this);
 
@@ -214,6 +211,19 @@ namespace Asa.Media.Single
 			Controller.Instance.OptionsNew = buttonItemOptionsNew;
 			Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
 			Controller.Instance.OptionsProgramDelete = buttonItemOptionsProgramDelete;
+			#endregion
+
+			#region Solutions
+			Controller.Instance.SolutionsPanel = ribbonPanelSolutions;
+			Controller.Instance.SolutionsHomeBar = ribbonBarSolutionsHome;
+			Controller.Instance.SolutionsThemeBar = ribbonBarSolutionsPowerPoint;
+			Controller.Instance.SolutionsSpecialButtons = ribbonBarSolutionsSpecialButtons;
+			Controller.Instance.SolutionsHomeButton = buttonItemSolutionsHome;
+			Controller.Instance.SolutionsPreview = buttonItemSolutionsPreview;
+			Controller.Instance.SolutionsEmail = buttonItemSolutionsEmail;
+			Controller.Instance.SolutionsPowerPoint = buttonItemSolutionsPowerPoint;
+			Controller.Instance.SolutionsPdf = buttonItemSolutionsPdf;
+			Controller.Instance.SolutionsTheme = buttonItemSolutionsTheme;
 			#endregion
 
 			#region Gallery 1

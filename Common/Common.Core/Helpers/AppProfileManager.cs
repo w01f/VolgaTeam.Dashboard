@@ -50,6 +50,7 @@ namespace Asa.Common.Core.Helpers
 		public StorageDirectory SharedFolder { get; private set; }
 		public StorageDirectory UserDataFolder { get; private set; }
 		public StorageDirectory AppSaveFolder { get; private set; }
+		public StorageDirectory AppDataFolder { get; private set; }
 
 		private AppProfileManager() { }
 
@@ -69,9 +70,8 @@ namespace Asa.Common.Core.Helpers
 				document.Load(_localAppIdFile.LocalPath);
 
 				var node = document.SelectSingleNode(@"/AppID");
-				if (node != null)
-					if (!string.IsNullOrEmpty(node.InnerText))
-						_appID = new Guid(node.InnerText);
+				if (!string.IsNullOrEmpty(node?.InnerText))
+					_appID = new Guid(node.InnerText);
 			}
 
 			if (_appID.Equals(Guid.Empty))
@@ -96,6 +96,8 @@ namespace Asa.Common.Core.Helpers
 			AppSaveFolder = new StorageDirectory(ProfileFolder.RelativePathParts.Merge(SavedFilesFolderName));
 			if (!await AppSaveFolder.Exists(useremoteConnection))
 				await StorageDirectory.CreateSubFolder(ProfileFolder.RelativePathParts, SavedFilesFolderName, useremoteConnection);
+
+			AppDataFolder = new StorageDirectory(new[] { FileStorageManager.IncomingFolderName, AppName, "Data" });
 		}
 
 		private void CreateProfile()

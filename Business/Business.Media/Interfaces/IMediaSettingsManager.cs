@@ -1,6 +1,7 @@
 ﻿using Asa.Business.Calendar.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Themes;
 
 namespace Asa.Business.Media.Interfaces
 {
@@ -12,7 +13,8 @@ namespace Asa.Business.Media.Interfaces
 		void LoadSettings();
 		void SaveSettings();
 		void InitThemeHelper(ThemeManager themeManager);
-		string GetSelectedTheme(SlideType slideType);
+		string GetSelectedThemeName(SlideType slideType);
+		Theme GetSelectedTheme(SlideType slideType);
 		void SetSelectedTheme(SlideType slideType, string themeName);
 	}
 }

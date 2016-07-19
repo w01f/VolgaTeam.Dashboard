@@ -11,7 +11,7 @@ namespace Asa.Business.Common.Schema.Schedule
 	public class ScheduleInitializer<TContext> : IDatabaseInitializer<TContext>
 		where TContext:ScheduleContext
 	{
-		private const int CurrentRevision = 1;
+		private const int CurrentRevision = 3;
 		private ScheduleContext _context;
 
 		public void InitializeDatabase(TContext context)

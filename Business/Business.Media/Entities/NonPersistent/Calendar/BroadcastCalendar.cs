@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Business.Common.Enums;
+using Asa.Business.Common.Helpers;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Extensions;
@@ -204,7 +205,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 			targetMonth.OutputData.ShowBigDate = MediaMetaData.Instance.ListManager.DefaultBroadcastCalendarSettings.ShowBigDate;
 		}
 
-		private void OnSchedulePartitionContentChanged(object sender, Business.Common.Entities.Helpers.PartitionContentChangedEventArgs e)
+		private void OnSchedulePartitionContentChanged(object sender, PartitionContentChangedEventArgs e)
 		{
 			var needToUpdateNotes = false;
 			switch (e.PartitionType)

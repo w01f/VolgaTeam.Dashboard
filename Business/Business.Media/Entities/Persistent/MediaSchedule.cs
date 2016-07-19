@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Asa.Business.Common.Entities.Helpers;
 using Asa.Business.Common.Entities.NonPersistent.Common;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
 using Asa.Business.Common.Entities.Persistent;
 using Asa.Business.Common.Enums;
+using Asa.Business.Common.Helpers;
 using Asa.Business.Common.Interfaces;
 using Asa.Business.Media.Contexts;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Business.Media.Enums;
+using Asa.Business.Media.Interfaces;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Interfaces;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Business.Solutions.Common.Enums;
+using Asa.Business.Solutions.Common.Interfaces;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.Persistent
@@ -23,6 +27,7 @@ namespace Asa.Business.Media.Entities.Persistent
 	{
 		#region Persistent Properties
 		public virtual ICollection<MediaPartition> Partitions { get; set; }
+		public virtual ICollection<MediaSolution> Solutions { get; set; }
 		#endregion
 
 		#region Nonpersistent Properties
@@ -90,6 +95,7 @@ namespace Asa.Business.Media.Entities.Persistent
 		public MediaSchedule()
 		{
 			Partitions = new List<MediaPartition>();
+			Solutions = new List<MediaSolution>();
 		}
 
 		#region Base Schedule Processing
@@ -130,6 +136,7 @@ namespace Asa.Business.Media.Entities.Persistent
 		}
 		#endregion
 
+		#region Partition Processing
 		private MediaPartition CreatePartition(SchedulePartitionType partitionType)
 		{
 			MediaPartition schedulePartition;
@@ -171,16 +178,15 @@ namespace Asa.Business.Media.Entities.Persistent
 		{
 			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == partitionType);
 			if (schedulePartition == null)
-				schedulePartition = CreatePartition(partitionType);	
+				schedulePartition = CreatePartition(partitionType);
 			return ((ISchedulePartition<TSchedulePartitionContent>)schedulePartition).Content;
 		}
 
 		public void ApplySchedulePartitionContent<TSchedulePartitionContent>(SchedulePartitionType partitionType, TSchedulePartitionContent content)
 			where TSchedulePartitionContent : class, ISchedulePartitionContent
 		{
-			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == partitionType);
-			if (schedulePartition == null)
-				schedulePartition = CreatePartition(partitionType);
+			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == partitionType) ??
+				CreatePartition(partitionType);
 			var oldContent = ((ISchedulePartition<TSchedulePartitionContent>)schedulePartition).Content;
 			if (oldContent != null)
 			{
@@ -202,10 +208,11 @@ namespace Asa.Business.Media.Entities.Persistent
 				DigitalDataChanged(this, EventArgs.Empty);
 			if (mediaChangeInfo.CalendarTypeChanged && CalendarTypeChanged != null)
 				CalendarTypeChanged(this, EventArgs.Empty);
-			if (MediaDataChanged != null)
-				MediaDataChanged(this, EventArgs.Empty);
+			MediaDataChanged?.Invoke(this, EventArgs.Empty);
 		}
+		#endregion
 
+		#region Templates Processing
 		public override ScheduleTemplate GetTemplate(string name)
 		{
 			var template = base.GetTemplate(name);
@@ -222,9 +229,8 @@ namespace Asa.Business.Media.Entities.Persistent
 
 		private void ApplySchedulePartitionContentFromTemplate(SchedulePartitionTemplate template)
 		{
-			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == template.PartitionType);
-			if (schedulePartition == null)
-				schedulePartition = CreatePartition(template.PartitionType);
+			var schedulePartition = Partitions.FirstOrDefault(partition => partition.Type == template.PartitionType) ??
+				CreatePartition(template.PartitionType);
 			schedulePartition.ContentEncoded = template.Content;
 		}
 
@@ -236,5 +242,50 @@ namespace Asa.Business.Media.Entities.Persistent
 				Content = partition.ContentEncoded
 			});
 		}
+		#endregion
+
+		#region Solution Processing
+		private MediaSolution CreateScheduleSolution(SolutionType solutionType)
+		{
+			MediaSolution scheduleSolution;
+			switch (solutionType)
+			{
+				case SolutionType.Dashboard:
+					scheduleSolution = new MediaDashboardSolution();
+					break;
+				default:
+					throw new ArgumentOutOfRangeException("Undefined schedule solution type");
+			}
+			scheduleSolution.Add(Context);
+			scheduleSolution.Schedule = this;
+			Solutions.Add(scheduleSolution);
+			MarkAsModified();
+			return scheduleSolution;
+		}
+
+		public TScheduleSolutionContent GetScheduleSolutionContent<TScheduleSolutionContent>(SolutionType solutionType)
+			where TScheduleSolutionContent : BaseSolutionContent
+		{
+			var scheduleSolution = Solutions.OfType<IScheduleSolution<TScheduleSolutionContent>>().FirstOrDefault(solution => solution.Type == (Int32)solutionType) ??
+				(IScheduleSolution<TScheduleSolutionContent>)CreateScheduleSolution(solutionType);
+			return scheduleSolution.Content;
+		}
+
+		public void ApplyScheduleSolutionContent<TScheduleSolutionContent>(SolutionType solutionType, TScheduleSolutionContent content)
+			where TScheduleSolutionContent : BaseSolutionContent
+		{
+			var scheduleSolution = Solutions.OfType<IScheduleSolution<TScheduleSolutionContent>>().FirstOrDefault(solution => solution.Type == (Int32)solutionType) ??
+				(IScheduleSolution<TScheduleSolutionContent>)CreateScheduleSolution(solutionType);
+			var oldContent = scheduleSolution.Content;
+			if (oldContent != null)
+			{
+				oldContent.Dispose();
+				scheduleSolution.Content = null;
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+			}
+			scheduleSolution.Content = content;
+		}
+		#endregion
 	}
 }

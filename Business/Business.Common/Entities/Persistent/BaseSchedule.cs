@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Asa.Business.Common.Contexts;
-using Asa.Business.Common.Entities.Helpers;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
+using Asa.Business.Common.Helpers;
 using Asa.Business.Common.Interfaces;
 using Newtonsoft.Json;
 
@@ -42,14 +42,14 @@ namespace Asa.Business.Common.Entities.Persistent
 
 		public virtual void ApplySettingsChanges<TChangeInfo>(TChangeInfo changeInfo) where TChangeInfo : BaseScheduleChangeInfo
 		{
-			if (changeInfo.ScheduleDatesChanged && ScheduleDatesChanged != null)
-				ScheduleDatesChanged(this, EventArgs.Empty);
+			if (changeInfo.ScheduleDatesChanged)
+				ScheduleDatesChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		protected virtual void OnPartitionContentChanged(PartitionContentChangedEventArgs e)
 		{
 			var handler = PartitionContentChanged;
-			if (handler != null) handler(this, e);
+			handler?.Invoke(this, e);
 		}
 
 		public virtual ScheduleTemplate GetTemplate(string name)

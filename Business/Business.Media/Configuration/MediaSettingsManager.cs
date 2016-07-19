@@ -8,6 +8,7 @@ using Asa.Business.Media.Interfaces;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Themes;
 
 namespace Asa.Business.Media.Configuration
 {
@@ -71,9 +72,14 @@ namespace Asa.Business.Media.Configuration
 			_themeSaveHelper = new ThemeSaveHelper(themeManager);
 		}
 
-		public string GetSelectedTheme(SlideType slideType)
+		public string GetSelectedThemeName(SlideType slideType)
 		{
-			return _themeSaveHelper.GetSelectedTheme(slideType).Name;
+			return GetSelectedTheme(slideType).Name;
+		}
+
+		public Theme GetSelectedTheme(SlideType slideType)
+		{
+			return _themeSaveHelper.GetSelectedTheme(slideType);
 		}
 
 		public void SetSelectedTheme(SlideType slideType, string themeName)

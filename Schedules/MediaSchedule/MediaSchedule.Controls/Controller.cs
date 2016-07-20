@@ -464,7 +464,7 @@ namespace Asa.Media.Controls
 		public RibbonBar SolutionsHomeBar { get; set; }
 		public RibbonBar SolutionsThemeBar { get; set; }
 		public RibbonBar SolutionsSpecialButtons { get; set; }
-		public ButtonItem SolutionsHomeButton { get; set; }
+		public LabelItem SolutionsHomeLabel { get; set; }
 		public ButtonItem SolutionsPreview { get; set; }
 		public ButtonItem SolutionsPowerPoint { get; set; }
 		public ButtonItem SolutionsPdf { get; set; }

@@ -25,7 +25,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 		void Email();
 		event EventHandler<EventArgs> DataChanged;
 		event EventHandler<SelectedSlideTypeChanged> SlideTypeChanged;
-		event EventHandler<HomeButtonStatusChangedEventArgs> HomeButtonStatusChanged;
 		event EventHandler<OutputStatusChangedEventArgs> OutputStatusChanged;
 	}
 }

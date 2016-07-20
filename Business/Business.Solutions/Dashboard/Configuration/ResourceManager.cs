@@ -13,6 +13,14 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 		public StorageFile DataTargetCustomersFile { get; private set; }
 		public StorageFile DataSimpleSummaryFile { get; private set; }
 
+		public StorageFile LogoCleanslateHeaderFile { get; private set; }
+		public StorageFile LogoCleanslateSplashFile { get; private set; }
+		public StorageFile LogoCoverSplashFile { get; private set; }
+		public StorageFile LogoLeadoffStatementSplashFile { get; private set; }
+		public StorageFile LogoClientGoalsSplashFile { get; private set; }
+		public StorageFile LogoTargetCustomersSplashFile { get; private set; }
+		public StorageFile LogoSimpleSummarySplashFile { get; private set; }
+
 		public async Task Load(StorageDirectory dataFolder)
 		{
 			DataUsersFile = new StorageFile(dataFolder.RelativePathParts.Merge("Users.xml"));
@@ -32,6 +40,29 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 
 			DataSimpleSummaryFile = new StorageFile(dataFolder.RelativePathParts.Merge("Closing Summary.xml"));
 			await DataSimpleSummaryFile.Download();
+
+			var imageResourceFolder = new StorageDirectory(dataFolder.RelativePathParts.Merge("responsive_images"));
+
+			LogoCleanslateHeaderFile = new StorageFile(imageResourceFolder.RelativePathParts.Merge("tab_1_header.png"));
+			await LogoCleanslateHeaderFile.Download();
+
+			LogoCleanslateSplashFile = new StorageFile(imageResourceFolder.RelativePathParts.Merge("tab_1.png"));
+			await LogoCleanslateSplashFile.Download();
+
+			LogoCoverSplashFile = new StorageFile(imageResourceFolder.RelativePathParts.Merge("tab_2.png"));
+			await LogoCoverSplashFile.Download();
+
+			LogoLeadoffStatementSplashFile = new StorageFile(imageResourceFolder.RelativePathParts.Merge("tab_3.png"));
+			await LogoLeadoffStatementSplashFile.Download();
+
+			LogoClientGoalsSplashFile = new StorageFile(imageResourceFolder.RelativePathParts.Merge("tab_4.png"));
+			await LogoClientGoalsSplashFile.Download();
+
+			LogoTargetCustomersSplashFile = new StorageFile(imageResourceFolder.RelativePathParts.Merge("tab_5.png"));
+			await LogoTargetCustomersSplashFile.Download();
+
+			LogoSimpleSummarySplashFile = new StorageFile(imageResourceFolder.RelativePathParts.Merge("tab_6.png"));
+			await LogoSimpleSummarySplashFile.Download();
 		}
 	}
 }

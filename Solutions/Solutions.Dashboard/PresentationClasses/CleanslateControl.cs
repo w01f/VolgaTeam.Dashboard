@@ -10,12 +10,14 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 	public partial class CleanslateControl : DashboardSlideControl
 	{
 		public override SlideType SlideType => SlideType.Cleanslate;
-		public override string SlideName => "Slide Header";
+		public override string SlideName => SlideContainer.DashboardInfo.Title;
 
 		public CleanslateControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
-			pnBottom.Visible = false;
+			Text = SlideName;
+			pbHeader.Image = SlideContainer.DashboardInfo.CleanslateHeaderLogo;
+			pbCleanslateSplash.Image = SlideContainer.DashboardInfo.CleanslateSplashLogo;
 		}
 
 		public override void LoadData() { }

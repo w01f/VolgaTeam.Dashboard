@@ -103,69 +103,9 @@ namespace Asa.Solutions.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DescriptionClientGoals {
-            get {
-                object obj = ResourceManager.GetObject("DescriptionClientGoals", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DescriptionCover {
-            get {
-                object obj = ResourceManager.GetObject("DescriptionCover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DescriptionLeadoff {
-            get {
-                object obj = ResourceManager.GetObject("DescriptionLeadoff", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DescriptionSummary {
-            get {
-                object obj = ResourceManager.GetObject("DescriptionSummary", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DescriptionTargetCustomers {
-            get {
-                object obj = ResourceManager.GetObject("DescriptionTargetCustomers", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap DownArrow {
             get {
                 object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap HomeDefault {
-            get {
-                object obj = ResourceManager.GetObject("HomeDefault", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,56 +136,6 @@ namespace Asa.Solutions.Dashboard.Properties {
         internal static System.Drawing.Bitmap SalesRep {
             get {
                 object obj = ResourceManager.GetObject("SalesRep", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SlideClientGoals {
-            get {
-                object obj = ResourceManager.GetObject("SlideClientGoals", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SlideCover {
-            get {
-                object obj = ResourceManager.GetObject("SlideCover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SlideLeadoff {
-            get {
-                object obj = ResourceManager.GetObject("SlideLeadoff", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SlideSummary {
-            get {
-                object obj = ResourceManager.GetObject("SlideSummary", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SlideTargetCustomers {
-            get {
-                object obj = ResourceManager.GetObject("SlideTargetCustomers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

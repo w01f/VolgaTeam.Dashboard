@@ -1,6 +1,6 @@
 ﻿namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 {
-	public class ClientGoalsState : DasboardDataState
+	public class ClientGoalsState
 	{
 		public string SlideHeader { get; set; }
 		public string Goal1 { get; set; }

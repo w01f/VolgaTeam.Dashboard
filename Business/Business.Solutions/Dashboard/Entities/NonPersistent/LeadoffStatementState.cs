@@ -1,6 +1,6 @@
 ﻿namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 {
-	public class LeadoffStatementState : DasboardDataState
+	public class LeadoffStatementState
 	{
 		public bool ShowStatement1 { get; set; }
 		public bool ShowStatement2 { get; set; }

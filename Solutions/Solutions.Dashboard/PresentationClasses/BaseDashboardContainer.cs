@@ -12,13 +12,15 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Dashboard.Properties;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraTab;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses
 {
+	//public abstract partial class BaseDashboardContainer : UserControl
 	public abstract partial class BaseDashboardContainer : BaseSolutionEditor
 	{
 		private readonly List<DashboardSlideControl> _slides = new List<DashboardSlideControl>();
-		private DashboardSlideControl ActiveSlide => _slides.FirstOrDefault(s => s.IsActive);
+		private DashboardSlideControl ActiveSlide => xtraTabControl.SelectedTabPage as DashboardSlideControl;
 
 		public DashboardSolutionInfo DashboardInfo { get; }
 		public DashboardContent EditedContent { get; protected set; }
@@ -65,10 +67,18 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			_slides.Add(new TargetCustomersControl(this));
 			_slides.Add(new SimpleSummaryControl(this));
 
-			_slides.ForEach(s =>
-			{
-				s.SelectedSlideChanged += OnSlideChanged;
-			});
+			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
+			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
+			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
+		}
+
+		private void OnSelectedSlideChanged(Object sender, TabPageChangedEventArgs e)
+		{
+			var prevSlide =  e.PrevPage as DashboardSlideControl;
+			prevSlide?.ApplyChanges();
+
+			RaiseSlideTypeChanged();
+			RaiseOutputStatuesChanged();
 		}
 
 		public override void ShowEditor()
@@ -79,24 +89,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		public override void ShowHomeSlide()
 		{
-			OnSlideChanged(this, new DashboardSlideChangedEventArgs { SlideType = SlideType.Cleanslate });
-		}
-
-		private void OnSlideChanged(object sender, DashboardSlideChangedEventArgs e)
-		{
-			ActiveSlide?.ApplyChanges();
-			_slides.ForEach(s =>
-			{
-				s.UpdateSelectedSlide(e.SlideType);
-				s.IsActive = s.SlideType == e.SlideType;
-			});
-			_slides.First(s => s.SlideType == e.SlideType).IsActive = true;
-			if (ActiveSlide != null && !Controls.Contains(ActiveSlide))
-				Controls.Add(ActiveSlide);
-			ActiveSlide?.BringToFront();
-			RaiseHomeButtonsStateChanged(e.SlideType == SlideType.Cleanslate);
-			RaiseSlideTypeChanged();
-			RaiseOutputStatuesChanged();
+			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
 		}
 		#endregion
 

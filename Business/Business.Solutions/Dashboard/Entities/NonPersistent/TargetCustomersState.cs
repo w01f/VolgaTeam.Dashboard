@@ -2,7 +2,7 @@
 
 namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 {
-	public class TargetCustomersState : DasboardDataState
+	public class TargetCustomersState
 	{
 		public string SlideHeader { get; set; }
 		public List<string> Demo { get; set; }

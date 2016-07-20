@@ -14,11 +14,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.ClientGoals;
-		public override string SlideName => "Needs Analysis";
+		public override string SlideName => "C. Needs Analysis";
 
 		public ClientGoalsControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
+			Text = SlideName;
 			if ((CreateGraphics()).DpiX > 96)
 			{
 
@@ -52,13 +53,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			comboBoxEditGoal5.Properties.Items.Clear();
 			comboBoxEditGoal5.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);
 
-			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			pbSplash.Image = SlideContainer.DashboardInfo.ClientGoalsSplashLogo;
 		}
 
 		public override void LoadData()
 		{
 			_allowToSave = false;
-			checkEditSolutionNew.Checked = SlideContainer.EditedContent.ClientGoalsState.IsNewSolution;
 			if (String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -80,7 +80,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		public override void ApplyChanges()
 		{
-			SlideContainer.EditedContent.ClientGoalsState.IsNewSolution = checkEditSolutionNew.Checked;
 			SlideContainer.EditedContent.ClientGoalsState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : String.Empty;
 			SlideContainer.EditedContent.ClientGoalsState.Goal1 = comboBoxEditGoal1.EditValue != null ? comboBoxEditGoal1.EditValue.ToString() : String.Empty;
 			SlideContainer.EditedContent.ClientGoalsState.Goal2 = comboBoxEditGoal2.EditValue != null ? comboBoxEditGoal2.EditValue.ToString() : String.Empty;

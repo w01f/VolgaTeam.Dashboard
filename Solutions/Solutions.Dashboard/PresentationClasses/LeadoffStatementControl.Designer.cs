@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.ckC = new System.Windows.Forms.CheckBox();
 			this.ckB = new System.Windows.Forms.CheckBox();
 			this.ckA = new System.Windows.Forms.CheckBox();
@@ -38,11 +35,9 @@
 			this.memoEditB = new DevExpress.XtraEditors.MemoEdit();
 			this.memoEditA = new DevExpress.XtraEditors.MemoEdit();
 			this.pnMain.SuspendLayout();
-			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditA.Properties)).BeginInit();
@@ -71,21 +66,8 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
-			// checkEditSolutionNew
-			// 
-			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
-			// 
-			// pbDescription
-			// 
-			this.pbDescription.Image = global::Asa.Solutions.Dashboard.Properties.Resources.DescriptionLeadoff;
-			// 
 			// ckC
 			// 
-			this.ckC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckC.AutoSize = true;
 			this.ckC.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ckC.Location = new System.Drawing.Point(11, 298);
@@ -99,7 +81,6 @@
 			// 
 			// ckB
 			// 
-			this.ckB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckB.AutoSize = true;
 			this.ckB.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ckB.Location = new System.Drawing.Point(11, 182);
@@ -113,7 +94,6 @@
 			// 
 			// ckA
 			// 
-			this.ckA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckA.AutoSize = true;
 			this.ckA.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ckA.Location = new System.Drawing.Point(11, 63);
@@ -135,9 +115,8 @@
 			this.memoEditC.Name = "memoEditC";
 			this.memoEditC.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditC.Properties.Appearance.Options.UseFont = true;
-			this.memoEditC.Size = new System.Drawing.Size(700, 80);
+			this.memoEditC.Size = new System.Drawing.Size(612, 80);
 			this.memoEditC.TabIndex = 3;
-			this.memoEditC.UseOptimizedRendering = true;
 			this.memoEditC.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// memoEditB
@@ -149,9 +128,8 @@
 			this.memoEditB.Name = "memoEditB";
 			this.memoEditB.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditB.Properties.Appearance.Options.UseFont = true;
-			this.memoEditB.Size = new System.Drawing.Size(700, 81);
+			this.memoEditB.Size = new System.Drawing.Size(612, 81);
 			this.memoEditB.TabIndex = 2;
-			this.memoEditB.UseOptimizedRendering = true;
 			this.memoEditB.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// memoEditA
@@ -163,22 +141,18 @@
 			this.memoEditA.Name = "memoEditA";
 			this.memoEditA.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditA.Properties.Appearance.Options.UseFont = true;
-			this.memoEditA.Size = new System.Drawing.Size(700, 80);
+			this.memoEditA.Size = new System.Drawing.Size(612, 80);
 			this.memoEditA.TabIndex = 1;
-			this.memoEditA.UseOptimizedRendering = true;
 			this.memoEditA.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
-			// SlideLeadoffStatementControl
+			// LeadoffStatementControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.Name = "SlideLeadoffStatementControl";
+			this.Name = "LeadoffStatementControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnMain.PerformLayout();
-			this.pnBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditA.Properties)).EndInit();

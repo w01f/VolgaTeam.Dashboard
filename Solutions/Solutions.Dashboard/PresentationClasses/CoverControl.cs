@@ -21,19 +21,18 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		private readonly List<User> _users = new List<User>();
 
 		public override SlideType SlideType => SlideType.Cover;
-		public override string SlideName => "Cover";
+		public override string SlideName => "A. Cover";
 
 		public CoverControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
+			Text = SlideName;
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laAdvertiser.Font = new Font(laAdvertiser.Font.FontFamily, laAdvertiser.Font.Size - 2, laAdvertiser.Font.Style);
 				laDecisionMaker.Font = new Font(laDecisionMaker.Font.FontFamily, laDecisionMaker.Font.Size - 2, laDecisionMaker.Font.Style);
-				checkEditFirstSlide.Font = new Font(checkEditFirstSlide.Font.FontFamily, checkEditFirstSlide.Font.Size - 2, checkEditFirstSlide.Font.Style);
 				checkEditPresentationDate.Font = new Font(checkEditPresentationDate.Font.FontFamily, checkEditPresentationDate.Font.Size - 2, checkEditPresentationDate.Font.Style);
 				checkEditSalesRep.Font = new Font(checkEditSalesRep.Font.FontFamily, checkEditSalesRep.Font.Size - 2, checkEditSalesRep.Font.Style);
-				checkEditUseEmptyCover.Font = new Font(checkEditUseEmptyCover.Font.FontFamily, checkEditUseEmptyCover.Font.Size - 2, checkEditUseEmptyCover.Font.Style);
 				buttonXSalesQuote.Font = new Font(buttonXSalesQuote.Font.FontFamily, buttonXSalesQuote.Font.Size - 2, buttonXSalesQuote.Font.Style);
 				textEditSalesQuoteAuthor.Font = new Font(textEditSalesQuoteAuthor.Font.FontFamily, textEditSalesQuoteAuthor.Font.Size - 2, textEditSalesQuoteAuthor.Font.Style);
 				memoEditSalesQuote.Font = new Font(memoEditSalesQuote.Font.FontFamily, memoEditSalesQuote.Font.Size - 2, memoEditSalesQuote.Font.Style);
@@ -50,13 +49,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			comboBoxEditSalesRep.Properties.Items.Clear();
 			comboBoxEditSalesRep.Properties.Items.AddRange(_users.Select(it => it.FullName).ToArray());
 
-			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			pbSplash.Image = SlideContainer.DashboardInfo.CoverSplashLogo;
 		}
 
 		public override void LoadData()
 		{
 			_allowToSave = false;
-			checkEditSolutionNew.Checked = SlideContainer.EditedContent.CoverState.IsNewSolution;
 			if (string.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -70,23 +68,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.Advertiser) ? null : SlideContainer.EditedContent.CoverState.Advertiser;
 			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.DecisionMaker) ? null : SlideContainer.EditedContent.CoverState.DecisionMaker;
 
-			checkEditFirstSlide.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
 			checkEditPresentationDate.Checked = SlideContainer.EditedContent.CoverState.ShowPresentationDate;
 			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
 			if (checkEditPresentationDate.Checked)
 				dateEditPresentationDate.EditValue = SlideContainer.EditedContent.CoverState.PresentationDate != DateTime.MinValue ? (object)SlideContainer.EditedContent.CoverState.PresentationDate : null;
 			else
 				dateEditPresentationDate.EditValue = null;
-			checkEditUseEmptyCover.Checked = SlideContainer.EditedContent.CoverState.UseGenericCover;
-			comboBoxEditAdvertiser.Enabled = !checkEditUseEmptyCover.Checked;
-			comboBoxEditDecisionMaker.Enabled = !checkEditUseEmptyCover.Checked;
-			comboBoxEditSlideHeader.Enabled = !checkEditUseEmptyCover.Checked;
-			buttonXSalesQuote.Enabled = !checkEditUseEmptyCover.Checked;
-			dateEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked && checkEditPresentationDate.Checked;
-			checkEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked;
+			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
 			checkEditSalesRep.Checked = !String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.SalesRep);
-			checkEditSalesRep.Enabled = !checkEditUseEmptyCover.Checked;
-			comboBoxEditSalesRep.Enabled = !checkEditUseEmptyCover.Checked && checkEditSalesRep.Checked;
+			comboBoxEditSalesRep.Enabled = checkEditSalesRep.Checked;
 			comboBoxEditSalesRep.EditValue = SlideContainer.EditedContent.CoverState.SalesRep;
 
 			if (SlideContainer.EditedContent.CoverState.Quote.IsSet)
@@ -115,12 +105,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		public override void ApplyChanges()
 		{
-			SlideContainer.EditedContent.CoverState.IsNewSolution = checkEditSolutionNew.Checked;
 			SlideContainer.EditedContent.CoverState.SlideHeader = comboBoxEditSlideHeader.EditValue as String;
-			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditFirstSlide.Checked;
 			SlideContainer.EditedContent.CoverState.ShowPresentationDate = checkEditPresentationDate.Checked;
 			SlideContainer.EditedContent.CoverState.PresentationDate = dateEditPresentationDate.DateTime;
-			SlideContainer.EditedContent.CoverState.UseGenericCover = checkEditUseEmptyCover.Checked;
 			SlideContainer.EditedContent.CoverState.Quote.Author = textEditSalesQuoteAuthor.EditValue as String;
 			SlideContainer.EditedContent.CoverState.Quote.Text = memoEditSalesQuote.EditValue as String;
 			SlideContainer.EditedContent.CoverState.Advertiser = comboBoxEditAdvertiser.EditValue as String;
@@ -199,29 +186,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			SlideContainer.RaiseDataChanged();
 		}
 
-		private void checkEditUseEmptyCover_CheckedChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			comboBoxEditAdvertiser.Enabled = !checkEditUseEmptyCover.Checked;
-			comboBoxEditDecisionMaker.Enabled = !checkEditUseEmptyCover.Checked;
-			comboBoxEditSlideHeader.Enabled = !checkEditUseEmptyCover.Checked;
-			comboBoxEditSalesRep.Enabled = !checkEditUseEmptyCover.Checked;
-			buttonXSalesQuote.Enabled = !checkEditUseEmptyCover.Checked;
-			dateEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked && checkEditPresentationDate.Checked;
-			checkEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked;
-			SlideContainer.RaiseDataChanged();
-		}
-
-		private void checkEdit_CheckedChanged(object sender, EventArgs e)
-		{
-			if (_allowToSave)
-				SlideContainer.RaiseDataChanged();
-		}
-
 		#region Output Staff
 
-		public override bool ReadyForOutput =>
-			!String.IsNullOrEmpty(comboBoxEditAdvertiser.EditValue as String) || checkEditUseEmptyCover.Checked;
+		public override bool ReadyForOutput => !String.IsNullOrEmpty(comboBoxEditAdvertiser.EditValue as String);
 
 		public string Title => (comboBoxEditSlideHeader.EditValue as String) ?? String.Empty;
 

@@ -3,10 +3,8 @@ using Asa.Business.Solutions.Dashboard.Dictionaries;
 
 namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 {
-	public class CoverState : DasboardDataState
+	public class CoverState
 	{
-		public bool AddAsPageOne { get; set; }
-		public bool UseGenericCover { get; set; }
 		public bool ShowPresentationDate { get; set; }
 
 		public string SlideHeader { get; set; }
@@ -18,7 +16,6 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 
 		public CoverState()
 		{
-			AddAsPageOne = true;
 			Quote = new Quote();
 		}
 	}

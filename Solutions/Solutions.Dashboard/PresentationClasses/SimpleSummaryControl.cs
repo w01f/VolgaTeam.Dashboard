@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using Asa.Business.Common.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Extensions;
@@ -21,11 +20,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 	{
 		public bool AllowToSave { get; set; }
 		public override SlideType SlideType => SlideType.SimpleSummary;
-		public override string SlideName => "Closing Summary";
+		public override string SlideName => "E. Closing Summary";
 
 		public SimpleSummaryControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
+			Text = SlideName;
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				ckAdvertiser.Font = new Font(ckAdvertiser.Font.FontFamily, ckAdvertiser.Font.Size - 2, ckAdvertiser.Font.Style);
@@ -54,8 +54,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
 				comboBoxEditSlideHeader.SelectedIndex = 0;
 
-			checkEditSolutionNew.EditValueChanged += EditValueChanged;
 			simpleSummaryItemContainer.ItemCollectionChanged += OnItemCollectionChanged;
+
+			pbSplash.Image = SlideContainer.DashboardInfo.SimpleSummarySplashLogo;
 		}
 
 		private void OnItemCollectionChanged(object sender, EventArgs e)
@@ -63,13 +64,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			SlideContainer.RaiseDataChanged();
 			UpdateTotalItems();
 			UpdateTotalValues();
-		}
-
-		public override void UpdateSelectedSlide(SlideType slideType)
-		{
-			base.UpdateSelectedSlide(slideType);
-			if (slideType == SlideType)
-				xtraTabControl.SelectedTabPage = xtraTabPageBasicInfo;
 		}
 
 		public void UpdateTotalItems()
@@ -80,7 +74,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		public override void LoadData()
 		{
 			AllowToSave = false;
-			checkEditSolutionNew.Checked = SlideContainer.EditedContent.SimpleSummaryState.IsNewSolution;
 			if (string.IsNullOrEmpty(SlideContainer.EditedContent.SimpleSummaryState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -133,7 +126,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		public override void ApplyChanges()
 		{
 			SlideContainer.EditedContent.SimpleSummaryState.ItemsState.AddRange(simpleSummaryItemContainer.GetItems());
-			SlideContainer.EditedContent.SimpleSummaryState.IsNewSolution = checkEditSolutionNew.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.SlideHeader = comboBoxEditSlideHeader.EditValue?.ToString();
 			SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser = ckAdvertiser.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.Advertiser = comboBoxEditAdvertiser.EditValue?.ToString() ?? string.Empty;

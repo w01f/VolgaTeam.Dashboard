@@ -20,7 +20,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		public event EventHandler<EventArgs> DataChanged;
 		public event EventHandler<SelectedSlideTypeChanged> SlideTypeChanged;
-		public event EventHandler<HomeButtonStatusChangedEventArgs> HomeButtonStatusChanged;
 		public event EventHandler<OutputStatusChangedEventArgs> OutputStatusChanged;
 
 		protected BaseSolutionEditor(BaseSolutionInfo solutionInfo)
@@ -37,10 +36,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 			BringToFront();
 		}
 		public abstract void ShowHomeSlide();
-		public void RaiseHomeButtonsStateChanged(bool homeButtonChecked)
-		{
-			HomeButtonStatusChanged?.Invoke(this, new HomeButtonStatusChangedEventArgs { HomeButtonChecked = homeButtonChecked });
-		}
 		#endregion
 
 		#region Data Management

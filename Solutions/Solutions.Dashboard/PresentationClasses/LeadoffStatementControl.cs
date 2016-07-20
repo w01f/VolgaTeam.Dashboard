@@ -14,11 +14,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.LeadoffStatement;
-		public override string SlideName => "Introduction";
+		public override string SlideName => "B. Intro Slide";
 
 		public LeadoffStatementControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
+			Text = SlideName;
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				ckA.Font = new Font(ckA.Font.FontFamily, ckA.Font.Size - 3, ckA.Font.Style);
@@ -34,7 +35,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.LeadoffStatementLists.Headers);
 
-			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			pbSplash.Image = SlideContainer.DashboardInfo.LeadoffStatementSplashLogo;
 		}
 
 		private void UpdateEditState()
@@ -47,7 +48,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		public override void LoadData()
 		{
 			_allowToSave = false;
-			checkEditSolutionNew.Checked = SlideContainer.EditedContent.LeadoffStatementState.IsNewSolution;
 			if (string.IsNullOrEmpty(SlideContainer.EditedContent.LeadoffStatementState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -70,7 +70,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		public override void ApplyChanges()
 		{
-			SlideContainer.EditedContent.LeadoffStatementState.IsNewSolution = checkEditSolutionNew.Checked;
 			SlideContainer.EditedContent.LeadoffStatementState.SlideHeader = comboBoxEditSlideHeader.EditValue?.ToString() ?? string.Empty;
 			SlideContainer.EditedContent.LeadoffStatementState.ShowStatement1 = ckA.Checked;
 			SlideContainer.EditedContent.LeadoffStatementState.ShowStatement2 = ckB.Checked;

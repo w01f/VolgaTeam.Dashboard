@@ -13,11 +13,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.TargetCustomers;
-		public override string SlideName => "Target Audience";
+		public override string SlideName => "D. Target Customer";
 
 		public TargetCustomersControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
+
+			Text = SlideName;
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Headers);
@@ -31,13 +33,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			checkedListBoxControlGeographicResidence.Items.Clear();
 			checkedListBoxControlGeographicResidence.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Geographies.ToArray());
 
-			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			pbSplash.Image = SlideContainer.DashboardInfo.TargeCustomersSplashLogo;
 		}
 
 		public override void LoadData()
 		{
 			_allowToSave = false;
-			checkEditSolutionNew.Checked = SlideContainer.EditedContent.TargetCustomersState.IsNewSolution;
 			if (string.IsNullOrEmpty(SlideContainer.EditedContent.TargetCustomersState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -67,9 +68,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		public override void ApplyChanges()
 		{
-			SlideContainer.EditedContent.TargetCustomersState.IsNewSolution = checkEditSolutionNew.Checked;
-
-			SlideContainer.EditedContent.TargetCustomersState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : string.Empty;
+			SlideContainer.EditedContent.TargetCustomersState.SlideHeader = comboBoxEditSlideHeader.EditValue?.ToString() ?? string.Empty;
 
 			SlideContainer.EditedContent.TargetCustomersState.Demo.Clear();
 			foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.Items)

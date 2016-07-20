@@ -42,11 +42,8 @@
 			this.xtraTabPageHouseholdIncome = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageGeographicResidence = new DevExpress.XtraTab.XtraTabPage();
 			this.pnMain.SuspendLayout();
-			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlTargetDemo)).BeginInit();
@@ -75,18 +72,6 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
-			// 
-			// checkEditSolutionNew
-			// 
-			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
-			// 
-			// pbDescription
-			// 
-			this.pbDescription.Image = global::Asa.Solutions.Dashboard.Properties.Resources.DescriptionTargetCustomers;
 			// 
 			// tabControlPanelGeographicResidence
 			// 
@@ -244,14 +229,10 @@
 			// 
 			// SlideTargetCustomersControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Name = "SlideTargetCustomersControl";
 			this.pnMain.ResumeLayout(false);
-			this.pnBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlTargetDemo)).EndInit();

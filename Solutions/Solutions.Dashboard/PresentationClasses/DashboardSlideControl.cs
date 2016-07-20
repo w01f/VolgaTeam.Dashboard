@@ -1,25 +1,22 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
-using DevComponents.DotNetBar;
+using DevExpress.XtraTab;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses
 {
 	[ToolboxItem(false)]
-	public partial class DashboardSlideControl : UserControl
+	//public partial class DashboardSlideControl : UserControl
+	public partial class DashboardSlideControl : XtraTabPage
 	{
 		protected BaseDashboardContainer SlideContainer { get; }
 
 		public virtual SlideType SlideType { get; }
 		public virtual string SlideName { get; }
 		public virtual bool ReadyForOutput { get; }
-		public bool IsActive { get; set; }
-
-		public event EventHandler<DashboardSlideChangedEventArgs> SelectedSlideChanged;
 
 		public DashboardSlideControl()
 		{
@@ -35,6 +32,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			if (CreateGraphics().DpiX > 96)
 			{
 			}
+			OnSplashResize(this, EventArgs.Empty);
 		}
 
 		public virtual void LoadData()
@@ -47,46 +45,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			throw new NotImplementedException();
 		}
 
-		public virtual void UpdateSelectedSlide(SlideType slideType)
-		{
-			foreach (var button in pnSlideSelector.Controls.OfType<ButtonX>())
-				button.Checked = false;
-			switch (slideType)
-			{
-				case SlideType.Cover:
-					buttonXCover.Checked = true;
-					break;
-				case SlideType.LeadoffStatement:
-					buttonXLeadoff.Checked = true;
-					break;
-				case SlideType.ClientGoals:
-					buttonXClientGoals.Checked = true;
-					break;
-				case SlideType.TargetCustomers:
-					buttonXTargetCustomers.Checked = true;
-					break;
-				case SlideType.SimpleSummary:
-					buttonXSummary.Checked = true;
-					break;
-			}
-		}
-
-		private void OnSelectSlideType(object sender, EventArgs e)
-		{
-			var slideType = SlideType.None;
-			if (sender == buttonXCover)
-				slideType = SlideType.Cover;
-			else if (sender == buttonXLeadoff)
-				slideType = SlideType.LeadoffStatement;
-			else if (sender == buttonXClientGoals)
-				slideType = SlideType.ClientGoals;
-			else if (sender == buttonXTargetCustomers)
-				slideType = SlideType.TargetCustomers;
-			else if (sender == buttonXSummary)
-				slideType = SlideType.SimpleSummary;
-			SelectedSlideChanged?.Invoke(this, new DashboardSlideChangedEventArgs { SlideType = slideType });
-		}
-
 		public virtual void GenerateOutput()
 		{
 			throw new NotImplementedException();
@@ -95,6 +53,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		public virtual PreviewGroup GeneratePreview()
 		{
 			throw new NotImplementedException();
+		}
+
+		private void OnSplashResize(object sender, EventArgs e)
+		{
+			var splashWidth = pnSplash.Width;
+			pbSplash.Visible = splashWidth >= 411;
 		}
 	}
 }

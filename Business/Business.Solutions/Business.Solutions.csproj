@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,7 +70,6 @@
     <Compile Include="Dashboard\Dictionaries\Users.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\ClientGoalsState.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\CoverState.cs" />
-    <Compile Include="Dashboard\Entities\NonPersistent\DasboardDataState.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\DashboardContent.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\DashboardSolutionInfo.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\LeadoffStatementState.cs" />

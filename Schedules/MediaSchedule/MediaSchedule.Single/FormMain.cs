@@ -218,7 +218,7 @@ namespace Asa.Media.Single
 			Controller.Instance.SolutionsHomeBar = ribbonBarSolutionsHome;
 			Controller.Instance.SolutionsThemeBar = ribbonBarSolutionsPowerPoint;
 			Controller.Instance.SolutionsSpecialButtons = ribbonBarSolutionsSpecialButtons;
-			Controller.Instance.SolutionsHomeButton = buttonItemSolutionsHome;
+			Controller.Instance.SolutionsHomeLabel = labelItemSolutionsHome;
 			Controller.Instance.SolutionsPreview = buttonItemSolutionsPreview;
 			Controller.Instance.SolutionsEmail = buttonItemSolutionsEmail;
 			Controller.Instance.SolutionsPowerPoint = buttonItemSolutionsPowerPoint;

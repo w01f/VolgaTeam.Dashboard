@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
@@ -24,7 +25,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		public abstract RibbonPanel PanelSolutions { get; }
 		public abstract RibbonBar BarHome { get; }
-		public abstract ButtonItem ButtonHome { get; }
+		public abstract LabelItem LabelHome { get; }
 		public abstract ButtonItem ButtonPowerPoint { get; }
 		public abstract ButtonItem ButtonPdf { get; }
 		public abstract ButtonItem ButtonPreview { get; }
@@ -36,6 +37,17 @@ namespace Asa.Solutions.Common.PresentationClasses
 			Dock = DockStyle.Fill;
 			SolutionToggles = new List<SolutionToggle>();
 			SolutionEditors = new List<ISolutionEditor>();
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+			}
 		}
 
 		#region BaseContentEditControl Override
@@ -49,7 +61,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 			_allowToHandleEvents = true;
 
 			Resize += OnResize;
-			ButtonHome.Click += OnHomeClick;
 		}
 
 		protected override void UpdateEditedContet()
@@ -97,25 +108,14 @@ namespace Asa.Solutions.Common.PresentationClasses
 		{
 			editor.InitControl();
 			editor.DataChanged += OnEditorDataChanged;
-			editor.HomeButtonStatusChanged += OnHomeButtonStatusChanged;
 			editor.SlideTypeChanged += OnSelectedSlideChanged;
 			editor.OutputStatusChanged += OnEditorOutputStatusChanged;
-		}
-
-		private void OnHomeButtonStatusChanged(object sender, HomeButtonStatusChangedEventArgs e)
-		{
-			ButtonHome.Checked = e.HomeButtonChecked;
-		}
-
-		private void OnHomeClick(Object sender, EventArgs e)
-		{
-			ActiveSolutionEditor?.ShowHomeSlide();
 		}
 
 		private void UpdateHomeButton()
 		{
 			BarHome.Text = ActiveSolutionEditor?.HomeText;
-			ButtonHome.Image = ActiveSolutionEditor?.HomeLogo;
+			LabelHome.Image = ActiveSolutionEditor?.HomeLogo;
 			BarHome.RecalcLayout();
 			PanelSolutions.PerformLayout();
 		}

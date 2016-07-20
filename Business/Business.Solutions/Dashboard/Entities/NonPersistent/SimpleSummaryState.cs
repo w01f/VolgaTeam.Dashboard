@@ -4,7 +4,7 @@ using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 {
-	public class SimpleSummaryState : DasboardDataState
+	public class SimpleSummaryState
 	{
 		public bool ShowAdvertiser { get; set; }
 		public bool ShowDecisionMaker { get; set; }

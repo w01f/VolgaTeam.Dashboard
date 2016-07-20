@@ -54,13 +54,13 @@
     </Compile>
     <Compile Include="PresentationClasses\DashboardSlideChangedEventArgs.cs" />
     <Compile Include="PresentationClasses\DashboardSlideControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\DashboardSlideControl.Designer.cs">
       <DependentUpon>DashboardSlideControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\CleanslateControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\CleanslateControl.Designer.cs">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
@@ -72,7 +72,7 @@
       <DependentUpon>FormQuotes.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\CoverControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\CoverControl.Designer.cs">
       <DependentUpon>CoverControl.cs</DependentUpon>
@@ -90,25 +90,25 @@
       <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\SimpleSummaryControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\SimpleSummaryControl.Designer.cs">
       <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ClientGoalsControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ClientGoalsControl.Designer.cs">
       <DependentUpon>ClientGoalsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\LeadoffStatementControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\LeadoffStatementControl.Designer.cs">
       <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\TargetCustomersControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\TargetCustomersControl.Designer.cs">
       <DependentUpon>TargetCustomersControl.cs</DependentUpon>
@@ -119,9 +119,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SlideClientGoals.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\Business.Common\Business.Common.csproj">
@@ -185,40 +182,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SlideCover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SlideLeadoff.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SlideSummary.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SlideTargetCustomers.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\RibbonLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HomeDefault.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SalesQuotes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DescriptionClientGoals.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DescriptionCover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DescriptionLeadoff.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DescriptionSummary.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DescriptionTargetCustomers.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SalesRep.png" />

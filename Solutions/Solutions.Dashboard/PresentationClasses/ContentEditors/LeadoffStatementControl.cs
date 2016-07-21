@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
+using System.IO;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.Dashboard.InteropClasses;
+using Asa.Solutions.Dashboard.PresentationClasses.Output;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class LeadoffStatementControl : DashboardSlideControl
+	public sealed partial class LeadoffStatementControl : DashboardSlideControl, ILeadoffStatementOutputData, IDashboardSlide
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.LeadoffStatement;
-		public override string SlideName => "B. Intro Slide";
+		public string SlideName => "B. Intro Slide";
 
 		public LeadoffStatementControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
@@ -95,23 +98,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		#region Output Staff
 		public override bool ReadyForOutput => ckA.Checked || ckB.Checked || ckC.Checked;
 
-		public int StatementsCount
-		{
-			get
-			{
-				var result = 0;
-				if (ckA.Checked && memoEditA.EditValue != null)
-					if (!string.IsNullOrEmpty(memoEditA.EditValue.ToString().Trim()))
-						result++;
-				if (ckB.Checked && memoEditB.EditValue != null)
-					if (!string.IsNullOrEmpty(memoEditB.EditValue.ToString().Trim()))
-						result++;
-				if (ckC.Checked && memoEditC.EditValue != null)
-					if (!string.IsNullOrEmpty(memoEditC.EditValue.ToString().Trim()))
-						result++;
-				return result;
-			}
-		}
+		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.LeadoffStatement);
+
+		public int StatementsCount => SelectedStatements.Length;
 
 		public string Title => comboBoxEditSlideHeader.EditValue?.ToString() ?? string.Empty;
 
@@ -133,41 +122,16 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			}
 		}
 
-		public override void GenerateOutput()
+		public void GenerateOutput()
 		{
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			//FormProgress.ShowProgress();
-			//AppManager.Instance.ShowFloater(() =>
-			//{
-			//	DashboardPowerPointHelper.Instance.AppendLeadoffStatements();
-			//	FormProgress.CloseProgress();
-			//});
+			SolutionDashboardPowerPointHelper.Instance.AppendLeadoffStatements(this);
 		}
 
-		public override PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview()
 		{
-			throw new NotImplementedException();
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			//FormProgress.ShowProgress();
-			//var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//DashboardPowerPointHelper.Instance.PrepareLeadoffStatements(tempFileName);
-			//Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			//FormProgress.CloseProgress();
-			//if (!File.Exists(tempFileName)) return;
-			//using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
-			//{
-			//	formPreview.Text = "Preview Slides";
-			//	formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-			//	RegistryHelper.MainFormHandle = formPreview.Handle;
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	var previewResult = formPreview.ShowDialog();
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			//	if (previewResult != DialogResult.OK)
-			//		AppManager.Instance.ActivateMainForm();
-			//}
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			SolutionDashboardPowerPointHelper.Instance.PrepareLeadoffStatements(this, tempFileName);
+			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

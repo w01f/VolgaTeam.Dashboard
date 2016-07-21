@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	public partial class SimpleSummaryItemContainer : UserControl
 	{

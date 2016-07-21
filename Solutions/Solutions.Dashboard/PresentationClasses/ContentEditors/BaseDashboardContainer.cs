@@ -10,11 +10,12 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
+using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using Asa.Solutions.Dashboard.Properties;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	//public abstract partial class BaseDashboardContainer : UserControl
 	public abstract partial class BaseDashboardContainer : BaseSolutionEditor
@@ -74,7 +75,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		private void OnSelectedSlideChanged(Object sender, TabPageChangedEventArgs e)
 		{
-			var prevSlide =  e.PrevPage as DashboardSlideControl;
+			var prevSlide = e.PrevPage as DashboardSlideControl;
 			prevSlide?.ApplyChanges();
 
 			RaiseSlideTypeChanged();
@@ -107,15 +108,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		#region Output Processing
 		protected override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
-		public abstract Theme GetSelectedTheme(SlideType simpleSummary);
+		public abstract Theme GetSelectedTheme(SlideType slideType);
 
-		public IList<DashboardSlideControl> GetOutputSlides()
+		public IList<IDashboardSlide> GetOutputSlides()
 		{
-			var selectedSlides = new List<DashboardSlideControl>();
+			var selectedSlides = new List<IDashboardSlide>();
 			using (var form = new FormSelectOutputItems())
 			{
 				form.Text = "Select Slides";
-				foreach (var slideControl in _slides.Where(s => s.ReadyForOutput))
+				foreach (var slideControl in _slides.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>())
 				{
 					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName);
 					form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -128,7 +129,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 						OfType<CheckedListBoxItem>().
 						Where(ci => ci.CheckState == CheckState.Checked).
 						Select(ci => ci.Value).
-						OfType<DashboardSlideControl>());
+						OfType<IDashboardSlide>());
 			}
 			return selectedSlides;
 		}

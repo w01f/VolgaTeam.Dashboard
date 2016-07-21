@@ -1,4 +1,4 @@
-﻿namespace Asa.Solutions.Dashboard.PresentationClasses
+﻿namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	sealed partial class SimpleSummaryControl
 	{
@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleSummaryControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleSummaryControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.dateEditFligtDatesStart = new DevExpress.XtraEditors.DateEdit();
 			this.ckFlightDates = new System.Windows.Forms.CheckBox();
 			this.dateEditFligtDatesEnd = new DevExpress.XtraEditors.DateEdit();
@@ -49,7 +49,7 @@
 			this.ckDate = new System.Windows.Forms.CheckBox();
 			this.ckDecisionMaker = new System.Windows.Forms.CheckBox();
 			this.ckAdvertiser = new System.Windows.Forms.CheckBox();
-			this.simpleSummaryItemContainer = new Asa.Solutions.Dashboard.PresentationClasses.SimpleSummaryItemContainer();
+			this.simpleSummaryItemContainer = new Asa.Solutions.Dashboard.PresentationClasses.ContentEditors.SimpleSummaryItemContainer();
 			this.spinEditTotal = new DevExpress.XtraEditors.SpinEdit();
 			this.spinEditMonthly = new DevExpress.XtraEditors.SpinEdit();
 			this.buttonXAddItem = new DevComponents.DotNetBar.ButtonX();
@@ -74,6 +74,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).BeginInit();
+			this.pnSplash.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesEnd.Properties.CalendarTimeProperties)).BeginInit();
@@ -104,7 +105,7 @@
 			// 
 			this.pnMain.Controls.Add(this.xtraTabControl);
 			this.pnMain.Controls.Add(this.pnTotals);
-			this.pnMain.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.pnMain.Padding = new System.Windows.Forms.Padding(10, 0, 0, 30);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -130,13 +131,13 @@
 			// 
 			this.dateEditFligtDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesStart.EditValue = null;
-			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(327, 237);
+			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(323, 237);
 			this.dateEditFligtDatesStart.Name = "dateEditFligtDatesStart";
 			this.dateEditFligtDatesStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditFligtDatesStart.Properties.Appearance.Options.UseFont = true;
 			this.dateEditFligtDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.dateEditFligtDatesStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditFligtDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -160,7 +161,7 @@
 			this.ckFlightDates.Checked = true;
 			this.ckFlightDates.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckFlightDates.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckFlightDates.Location = new System.Drawing.Point(306, 190);
+			this.ckFlightDates.Location = new System.Drawing.Point(302, 190);
 			this.ckFlightDates.Name = "ckFlightDates";
 			this.ckFlightDates.Size = new System.Drawing.Size(15, 14);
 			this.ckFlightDates.TabIndex = 7;
@@ -171,13 +172,13 @@
 			// 
 			this.dateEditFligtDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesEnd.EditValue = null;
-			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(467, 237);
+			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(463, 237);
 			this.dateEditFligtDatesEnd.Name = "dateEditFligtDatesEnd";
 			this.dateEditFligtDatesEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditFligtDatesEnd.Properties.Appearance.Options.UseFont = true;
 			this.dateEditFligtDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.dateEditFligtDatesEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditFligtDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -198,7 +199,7 @@
 			this.laFlightDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDatesStart.BackColor = System.Drawing.Color.White;
 			this.laFlightDatesStart.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDatesStart.Location = new System.Drawing.Point(327, 262);
+			this.laFlightDatesStart.Location = new System.Drawing.Point(323, 262);
 			this.laFlightDatesStart.Name = "laFlightDatesStart";
 			this.laFlightDatesStart.Size = new System.Drawing.Size(123, 21);
 			this.laFlightDatesStart.TabIndex = 73;
@@ -209,7 +210,7 @@
 			this.laFlightDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDatesEnd.BackColor = System.Drawing.Color.White;
 			this.laFlightDatesEnd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDatesEnd.Location = new System.Drawing.Point(467, 262);
+			this.laFlightDatesEnd.Location = new System.Drawing.Point(463, 262);
 			this.laFlightDatesEnd.Name = "laFlightDatesEnd";
 			this.laFlightDatesEnd.Size = new System.Drawing.Size(123, 21);
 			this.laFlightDatesEnd.TabIndex = 74;
@@ -223,7 +224,7 @@
 			// comboBoxEditDecisionMaker
 			// 
 			this.comboBoxEditDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(327, 102);
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(323, 102);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
 			this.comboBoxEditDecisionMaker.OverrideTab = false;
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -278,7 +279,7 @@
 			this.dateEditDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.dateEditDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -316,7 +317,7 @@
 			this.ckDecisionMaker.Checked = true;
 			this.ckDecisionMaker.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckDecisionMaker.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckDecisionMaker.Location = new System.Drawing.Point(306, 55);
+			this.ckDecisionMaker.Location = new System.Drawing.Point(302, 55);
 			this.ckDecisionMaker.Name = "ckDecisionMaker";
 			this.ckDecisionMaker.Size = new System.Drawing.Size(15, 14);
 			this.ckDecisionMaker.TabIndex = 3;
@@ -344,7 +345,7 @@
 			this.simpleSummaryItemContainer.Location = new System.Drawing.Point(0, 0);
 			this.simpleSummaryItemContainer.Name = "simpleSummaryItemContainer";
 			this.simpleSummaryItemContainer.SelectedIndex = -1;
-			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(688, 382);
+			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(684, 379);
 			this.simpleSummaryItemContainer.TabIndex = 37;
 			this.simpleSummaryItemContainer.TabStop = false;
 			// 
@@ -369,8 +370,8 @@
 			this.spinEditTotal.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditTotal.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotal.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotal.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
 			this.spinEditTotal.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotal.Properties.EditFormat.FormatString = "$#,###.00";
@@ -401,8 +402,8 @@
 			this.spinEditMonthly.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditMonthly.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthly.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthly.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
 			this.spinEditMonthly.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditMonthly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthly.Properties.EditFormat.FormatString = "$#,###.00";
@@ -450,7 +451,7 @@
 			this.xtraTabControl.Location = new System.Drawing.Point(10, 0);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageBasicInfo;
-			this.xtraTabControl.Size = new System.Drawing.Size(690, 410);
+			this.xtraTabControl.Size = new System.Drawing.Size(690, 380);
 			this.xtraTabControl.TabIndex = 75;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageBasicInfo,
@@ -461,7 +462,7 @@
 			// 
 			this.xtraTabPageBasicInfo.Controls.Add(this.pnBasicInfo);
 			this.xtraTabPageBasicInfo.Name = "xtraTabPageBasicInfo";
-			this.xtraTabPageBasicInfo.Size = new System.Drawing.Size(688, 382);
+			this.xtraTabPageBasicInfo.Size = new System.Drawing.Size(684, 349);
 			this.xtraTabPageBasicInfo.Text = "Basic Info";
 			// 
 			// pnBasicInfo
@@ -490,7 +491,7 @@
 			this.pnBasicInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnBasicInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnBasicInfo.Name = "pnBasicInfo";
-			this.pnBasicInfo.Size = new System.Drawing.Size(688, 382);
+			this.pnBasicInfo.Size = new System.Drawing.Size(684, 349);
 			this.pnBasicInfo.TabIndex = 0;
 			// 
 			// labelControlFlightDatesWeeks
@@ -500,7 +501,7 @@
 			this.labelControlFlightDatesWeeks.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlFlightDatesWeeks.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.labelControlFlightDatesWeeks.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlFlightDatesWeeks.Location = new System.Drawing.Point(470, 286);
+			this.labelControlFlightDatesWeeks.Location = new System.Drawing.Point(466, 286);
 			this.labelControlFlightDatesWeeks.Name = "labelControlFlightDatesWeeks";
 			this.labelControlFlightDatesWeeks.Size = new System.Drawing.Size(120, 19);
 			this.labelControlFlightDatesWeeks.TabIndex = 85;
@@ -509,7 +510,7 @@
 			// 
 			this.pbFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbFlightDates.Image = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryFlightDates;
-			this.pbFlightDates.Location = new System.Drawing.Point(327, 167);
+			this.pbFlightDates.Location = new System.Drawing.Point(323, 167);
 			this.pbFlightDates.Name = "pbFlightDates";
 			this.pbFlightDates.Size = new System.Drawing.Size(64, 64);
 			this.pbFlightDates.TabIndex = 84;
@@ -520,7 +521,7 @@
 			this.laFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDates.AutoSize = true;
 			this.laFlightDates.Font = new System.Drawing.Font("Arial", 12F);
-			this.laFlightDates.Location = new System.Drawing.Point(413, 187);
+			this.laFlightDates.Location = new System.Drawing.Point(409, 187);
 			this.laFlightDates.Name = "laFlightDates";
 			this.laFlightDates.Size = new System.Drawing.Size(127, 18);
 			this.laFlightDates.TabIndex = 83;
@@ -549,7 +550,7 @@
 			// 
 			this.pbDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDecisionMaker.Image = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryDecisionMaker;
-			this.pbDecisionMaker.Location = new System.Drawing.Point(327, 32);
+			this.pbDecisionMaker.Location = new System.Drawing.Point(323, 32);
 			this.pbDecisionMaker.Name = "pbDecisionMaker";
 			this.pbDecisionMaker.Size = new System.Drawing.Size(64, 64);
 			this.pbDecisionMaker.TabIndex = 80;
@@ -560,7 +561,7 @@
 			this.laDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laDecisionMaker.AutoSize = true;
 			this.laDecisionMaker.Font = new System.Drawing.Font("Arial", 12F);
-			this.laDecisionMaker.Location = new System.Drawing.Point(413, 55);
+			this.laDecisionMaker.Location = new System.Drawing.Point(409, 55);
 			this.laDecisionMaker.Name = "laDecisionMaker";
 			this.laDecisionMaker.Size = new System.Drawing.Size(119, 18);
 			this.laDecisionMaker.TabIndex = 79;
@@ -589,7 +590,7 @@
 			// 
 			this.xtraTabPagePaymentDetails.Controls.Add(this.simpleSummaryItemContainer);
 			this.xtraTabPagePaymentDetails.Name = "xtraTabPagePaymentDetails";
-			this.xtraTabPagePaymentDetails.Size = new System.Drawing.Size(688, 382);
+			this.xtraTabPagePaymentDetails.Size = new System.Drawing.Size(684, 379);
 			this.xtraTabPagePaymentDetails.Text = "What are you Selling?";
 			// 
 			// checkEditTotalInvestment
@@ -645,7 +646,7 @@
 			this.pnTotals.Controls.Add(this.spinEditMonthly);
 			this.pnTotals.Controls.Add(this.spinEditTotal);
 			this.pnTotals.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnTotals.Location = new System.Drawing.Point(10, 410);
+			this.pnTotals.Location = new System.Drawing.Point(10, 380);
 			this.pnTotals.Name = "pnTotals";
 			this.pnTotals.Size = new System.Drawing.Size(690, 51);
 			this.pnTotals.TabIndex = 85;
@@ -659,6 +660,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).EndInit();
+			this.pnSplash.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesEnd.Properties.CalendarTimeProperties)).EndInit();

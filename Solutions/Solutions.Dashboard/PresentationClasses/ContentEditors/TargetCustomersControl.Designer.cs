@@ -1,4 +1,4 @@
-﻿namespace Asa.Solutions.Dashboard.PresentationClasses
+﻿namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	sealed partial class TargetCustomersControl
 	{
@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.tabControlPanelGeographicResidence = new DevComponents.DotNetBar.TabControlPanel();
 			this.checkedListBoxControlGeographicResidence = new DevExpress.XtraEditors.CheckedListBoxControl();
 			this.tabControlPanelHouseholdIncome = new DevComponents.DotNetBar.TabControlPanel();
@@ -44,6 +41,8 @@
 			this.pnMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).BeginInit();
+			this.pnSplash.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlTargetDemo)).BeginInit();
@@ -57,7 +56,7 @@
 			// pnMain
 			// 
 			this.pnMain.Controls.Add(this.xtraTabControl);
-			this.pnMain.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.pnMain.Padding = new System.Windows.Forms.Padding(10, 0, 0, 30);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -104,7 +103,7 @@
 			this.checkedListBoxControlGeographicResidence.Location = new System.Drawing.Point(0, 0);
 			this.checkedListBoxControlGeographicResidence.Name = "checkedListBoxControlGeographicResidence";
 			this.checkedListBoxControlGeographicResidence.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlGeographicResidence.Size = new System.Drawing.Size(758, 359);
+			this.checkedListBoxControlGeographicResidence.Size = new System.Drawing.Size(773, 356);
 			this.checkedListBoxControlGeographicResidence.TabIndex = 2;
 			this.checkedListBoxControlGeographicResidence.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
 			// 
@@ -139,7 +138,7 @@
 			this.checkedListBoxControlHouseholdIncome.Location = new System.Drawing.Point(0, 0);
 			this.checkedListBoxControlHouseholdIncome.Name = "checkedListBoxControlHouseholdIncome";
 			this.checkedListBoxControlHouseholdIncome.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlHouseholdIncome.Size = new System.Drawing.Size(758, 359);
+			this.checkedListBoxControlHouseholdIncome.Size = new System.Drawing.Size(684, 400);
 			this.checkedListBoxControlHouseholdIncome.TabIndex = 2;
 			this.checkedListBoxControlHouseholdIncome.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
 			// 
@@ -175,7 +174,7 @@
 			this.checkedListBoxControlTargetDemo.Location = new System.Drawing.Point(0, 0);
 			this.checkedListBoxControlTargetDemo.Name = "checkedListBoxControlTargetDemo";
 			this.checkedListBoxControlTargetDemo.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(777, 359);
+			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(684, 430);
 			this.checkedListBoxControlTargetDemo.TabIndex = 1;
 			this.checkedListBoxControlTargetDemo.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
 			// 
@@ -199,7 +198,7 @@
 			this.xtraTabControl.Location = new System.Drawing.Point(10, 0);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageTargetDemo;
-			this.xtraTabControl.Size = new System.Drawing.Size(779, 387);
+			this.xtraTabControl.Size = new System.Drawing.Size(690, 431);
 			this.xtraTabControl.TabIndex = 29;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageTargetDemo,
@@ -210,29 +209,31 @@
 			// 
 			this.xtraTabPageTargetDemo.Controls.Add(this.checkedListBoxControlTargetDemo);
 			this.xtraTabPageTargetDemo.Name = "xtraTabPageTargetDemo";
-			this.xtraTabPageTargetDemo.Size = new System.Drawing.Size(777, 359);
+			this.xtraTabPageTargetDemo.Size = new System.Drawing.Size(684, 430);
 			this.xtraTabPageTargetDemo.Text = "Target Demo";
 			// 
 			// xtraTabPageHouseholdIncome
 			// 
 			this.xtraTabPageHouseholdIncome.Controls.Add(this.checkedListBoxControlHouseholdIncome);
 			this.xtraTabPageHouseholdIncome.Name = "xtraTabPageHouseholdIncome";
-			this.xtraTabPageHouseholdIncome.Size = new System.Drawing.Size(758, 359);
+			this.xtraTabPageHouseholdIncome.Size = new System.Drawing.Size(684, 400);
 			this.xtraTabPageHouseholdIncome.Text = "Household Income";
 			// 
 			// xtraTabPageGeographicResidence
 			// 
 			this.xtraTabPageGeographicResidence.Controls.Add(this.checkedListBoxControlGeographicResidence);
 			this.xtraTabPageGeographicResidence.Name = "xtraTabPageGeographicResidence";
-			this.xtraTabPageGeographicResidence.Size = new System.Drawing.Size(758, 359);
+			this.xtraTabPageGeographicResidence.Size = new System.Drawing.Size(773, 356);
 			this.xtraTabPageGeographicResidence.Text = "Geographic Residence";
 			// 
-			// SlideTargetCustomersControl
+			// TargetCustomersControl
 			// 
-			this.Name = "SlideTargetCustomersControl";
+			this.Name = "TargetCustomersControl";
 			this.pnMain.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).EndInit();
+			this.pnSplash.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlTargetDemo)).EndInit();

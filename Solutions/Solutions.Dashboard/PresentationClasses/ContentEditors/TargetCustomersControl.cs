@@ -1,19 +1,23 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.Dashboard.InteropClasses;
+using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using DevExpress.XtraEditors.Controls;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class TargetCustomersControl : DashboardSlideControl
+	public sealed partial class TargetCustomersControl : DashboardSlideControl, ITargetCustomersOutputData, IDashboardSlide
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.TargetCustomers;
-		public override string SlideName => "D. Target Customer";
+		public string SlideName => "D. Target Customer";
 
 		public TargetCustomersControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
@@ -102,13 +106,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 				checkedListBoxControlHouseholdIncome.CheckedItems.Count > 0 &&
 				checkedListBoxControlTargetDemo.CheckedItems.Count > 0;
 
+		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.TargetCustomers);
+
 		public string Title => comboBoxEditSlideHeader.EditValue?.ToString() ?? string.Empty;
 
 		public string TargetDemo
 		{
 			get
 			{
-				string result = string.Empty;
+				var result = string.Empty;
 				foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.CheckedItems)
 					result += ", " + item.Value;
 				if (!string.IsNullOrEmpty(result))
@@ -121,7 +127,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		{
 			get
 			{
-				string result = string.Empty;
+				var result = string.Empty;
 				foreach (CheckedListBoxItem item in checkedListBoxControlHouseholdIncome.CheckedItems)
 					result += ", " + item.Value;
 				if (!string.IsNullOrEmpty(result))
@@ -143,41 +149,16 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			}
 		}
 
-		public override void GenerateOutput()
+		public void GenerateOutput()
 		{
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			//FormProgress.ShowProgress();
-			//AppManager.Instance.ShowFloater(() =>
-			//{
-			//	DashboardPowerPointHelper.Instance.AppendTargetCustomers();
-			//	FormProgress.CloseProgress();
-			//});
+			SolutionDashboardPowerPointHelper.Instance.AppendTargetCustomers(this);
 		}
 
-		public override PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview()
 		{
-			throw new NotImplementedException();
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			//FormProgress.ShowProgress();
-			//var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//DashboardPowerPointHelper.Instance.PrepareTargetCustomers(tempFileName);
-			//Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			//FormProgress.CloseProgress();
-			//if (!File.Exists(tempFileName)) return;
-			//using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
-			//{
-			//	formPreview.Text = "Preview Slides";
-			//	formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-			//	RegistryHelper.MainFormHandle = formPreview.Handle;
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	var previewResult = formPreview.ShowDialog();
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			//	if (previewResult != DialogResult.OK)
-			//		AppManager.Instance.ActivateMainForm();
-			//}
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			SolutionDashboardPowerPointHelper.Instance.PrepareTargetCustomers(this, tempFileName);
+			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

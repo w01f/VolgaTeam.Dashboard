@@ -6,7 +6,7 @@ using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class SimpleSummaryItemControl : UserControl

@@ -2,7 +2,5 @@
 
 namespace Asa.Dashboard.InteropClasses
 {
-	public partial class DashboardPowerPointHelper : CommonPowerPointHelper<DashboardPowerPointHelper>
-	{
-	}
+	public partial class DashboardPowerPointHelper : CommonPowerPointHelper<DashboardPowerPointHelper> { }
 }

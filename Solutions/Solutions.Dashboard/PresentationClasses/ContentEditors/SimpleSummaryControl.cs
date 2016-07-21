@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using Asa.Business.Common.Dictionaries;
 using Asa.Common.Core.Enums;
@@ -12,15 +13,17 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Summary;
+using Asa.Solutions.Dashboard.InteropClasses;
+using Asa.Solutions.Dashboard.PresentationClasses.Output;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class SimpleSummaryControl : DashboardSlideControl, ISummaryControl
+	public sealed partial class SimpleSummaryControl : DashboardSlideControl, IDashboardOutputData, IDashboardSlide, ISummaryControl
 	{
 		public bool AllowToSave { get; set; }
 		public override SlideType SlideType => SlideType.SimpleSummary;
-		public override string SlideName => "E. Closing Summary";
+		public string SlideName => "E. Closing Summary";
 
 		public SimpleSummaryControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
@@ -459,42 +462,16 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			}
 		}
 
-		public override void GenerateOutput()
+		public void GenerateOutput()
 		{
-			throw new NotImplementedException();
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			//FormProgress.ShowProgress();
-			//AppManager.Instance.ShowFloater(() =>
-			//{
-			//	DashboardPowerPointHelper.Instance.AppendSummary(this);
-			//	FormProgress.CloseProgress();
-			//});
+			SolutionDashboardPowerPointHelper.Instance.AppendSummary(this);
 		}
 
-		public override PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview()
 		{
-			throw new NotImplementedException();
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			//FormProgress.ShowProgress();
-			//var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//DashboardPowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
-			//Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			//FormProgress.CloseProgress();
-			//if (!File.Exists(tempFileName)) return;
-			//using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
-			//{
-			//	formPreview.Text = "Preview Slides";
-			//	formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-			//	RegistryHelper.MainFormHandle = formPreview.Handle;
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	var previewResult = formPreview.ShowDialog();
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			//	if (previewResult != DialogResult.OK)
-			//		AppManager.Instance.ActivateMainForm();
-			//}
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			SolutionDashboardPowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
+			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

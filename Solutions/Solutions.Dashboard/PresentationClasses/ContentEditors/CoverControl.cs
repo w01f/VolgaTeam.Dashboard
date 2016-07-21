@@ -8,20 +8,23 @@ using System.Windows.Forms;
 using Asa.Business.Solutions.Dashboard.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.Dashboard.InteropClasses;
+using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using Asa.Solutions.Dashboard.Properties;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class CoverControl : DashboardSlideControl
+	public sealed partial class CoverControl : DashboardSlideControl, ICoverOutputData, IDashboardSlide
 	{
 		private bool _allowToSave;
 		private readonly List<User> _users = new List<User>();
 
 		public override SlideType SlideType => SlideType.Cover;
-		public override string SlideName => "A. Cover";
+		public string SlideName => "A. Cover";
 
 		public CoverControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
@@ -36,6 +39,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 				buttonXSalesQuote.Font = new Font(buttonXSalesQuote.Font.FontFamily, buttonXSalesQuote.Font.Size - 2, buttonXSalesQuote.Font.Style);
 				textEditSalesQuoteAuthor.Font = new Font(textEditSalesQuoteAuthor.Font.FontFamily, textEditSalesQuoteAuthor.Font.Size - 2, textEditSalesQuoteAuthor.Font.Style);
 				memoEditSalesQuote.Font = new Font(memoEditSalesQuote.Font.FontFamily, memoEditSalesQuote.Font.Size - 2, memoEditSalesQuote.Font.Style);
+				laSalesRepEmail.Font = new Font(laSalesRepEmail.Font.FontFamily, laSalesRepEmail.Font.Size - 2, laSalesRepEmail.Font.Style);
+				laSalesRepPhone.Font = new Font(laSalesRepPhone.Font.FontFamily, laSalesRepPhone.Font.Size - 2, laSalesRepPhone.Font.Style);
 			}
 			comboBoxEditSlideHeader.EnableSelectAll();
 			comboBoxEditAdvertiser.EnableSelectAll();
@@ -139,7 +144,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		private void comboBoxEditSalesRep_EditValueChanged(object sender, EventArgs e)
 		{
 			var user = _users.FirstOrDefault(u => u.FullName.Equals(comboBoxEditSalesRep.EditValue as String));
-			laSalesRepDetails.Text = user != null ? String.Format("{0}{2}{1}", user.Phone, user.Email, Environment.NewLine) : String.Empty;
+			laSalesRepEmail.Text = user?.Email;
+			laSalesRepPhone.Text = user?.Phone;
 			if (!_allowToSave) return;
 			SlideContainer.RaiseDataChanged();
 		}
@@ -190,6 +196,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		public override bool ReadyForOutput => !String.IsNullOrEmpty(comboBoxEditAdvertiser.EditValue as String);
 
+		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.Cover);
+
 		public string Title => (comboBoxEditSlideHeader.EditValue as String) ?? String.Empty;
 
 		public string Advertiser => (comboBoxEditAdvertiser.EditValue as String) ?? String.Empty;
@@ -213,52 +221,16 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		public string Quote => (memoEditSalesQuote.EditValue?.ToString() ?? string.Empty)
 							   + (char)13 + (textEditSalesQuoteAuthor.EditValue?.ToString() ?? string.Empty);
 
-		public override void GenerateOutput()
+		public void GenerateOutput()
 		{
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			//FormProgress.ShowProgress();
-			//if (checkEditUseEmptyCover.Checked)
-			//	AppManager.Instance.ShowFloater(() =>
-			//	{
-			//		DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked);
-			//		FormProgress.CloseProgress();
-			//	});
-
-			//else
-			//	AppManager.Instance.ShowFloater(() =>
-			//	{
-			//		DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked);
-			//		FormProgress.CloseProgress();
-			//	});
+			SolutionDashboardPowerPointHelper.Instance.AppendCover(this);
 		}
 
-		public override PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview()
 		{
-			throw new NotImplementedException();
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			//FormProgress.ShowProgress();
-			//var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//if (checkEditUseEmptyCover.Checked)
-			//	DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName);
-			//else
-			//	DashboardPowerPointHelper.Instance.PrepareCover(tempFileName);
-			//Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			//FormProgress.CloseProgress();
-			//if (!File.Exists(tempFileName)) return;
-			//using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
-			//{
-			//	formPreview.Text = "Preview Slides";
-			//	formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName, InsertOnTop = checkEditFirstSlide.Checked } });
-			//	RegistryHelper.MainFormHandle = formPreview.Handle;
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	var previewResult = formPreview.ShowDialog();
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			//	if (previewResult != DialogResult.OK)
-			//		AppManager.Instance.ActivateMainForm();
-			//}
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			SolutionDashboardPowerPointHelper.Instance.PrepareCover(this, tempFileName);
+			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

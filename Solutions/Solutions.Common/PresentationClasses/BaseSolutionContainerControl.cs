@@ -120,7 +120,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 			PanelSolutions.PerformLayout();
 		}
 
-		private void OnEditorDataChanged(Object sender, EventArgs e)
+		private void OnEditorDataChanged(object sender, EventArgs e)
 		{
 			SettingsNotSaved = true;
 		}
@@ -192,7 +192,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 			LoadThemes(e.SlideType);
 		}
 
-		private void OnEditorOutputStatusChanged(Object sender, OutputStatusChangedEventArgs e)
+		private void OnEditorOutputStatusChanged(object sender, OutputStatusChangedEventArgs e)
 		{
 			ButtonPowerPoint.Enabled =
 				ButtonPdf.Enabled =
@@ -202,22 +202,22 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		public override void OutputPowerPoint()
 		{
-			//ActiveSolutionEditor?.OutputPowerPoint();
+			ActiveSolutionEditor?.OutputPowerPoint();
 		}
 
 		public override void OutputPdf()
 		{
-			//ActiveSolutionEditor?.OutputPdf();
+			ActiveSolutionEditor?.OutputPdf();
 		}
 
 		public override void Preview()
 		{
-			//ActiveSolutionEditor?.Preview();
+			ActiveSolutionEditor?.Preview();
 		}
 
 		public override void Email()
 		{
-			//ActiveSolutionEditor?.Email();
+			ActiveSolutionEditor?.Email();
 		}
 		#endregion
 	}

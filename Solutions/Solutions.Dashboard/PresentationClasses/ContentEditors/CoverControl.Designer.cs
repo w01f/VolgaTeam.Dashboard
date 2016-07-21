@@ -1,4 +1,4 @@
-﻿namespace Asa.Solutions.Dashboard.PresentationClasses
+﻿namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	sealed partial class CoverControl
 	{
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoverControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.checkEditPresentationDate = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
 			this.comboBoxEditAdvertiser = new Asa.Common.GUI.Common.ComboBoxListEdit();
@@ -45,11 +45,14 @@
 			this.pbAdvertiser = new System.Windows.Forms.PictureBox();
 			this.checkEditSalesRep = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditSalesRep = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.laSalesRepDetails = new System.Windows.Forms.Label();
+			this.laSalesRepEmail = new System.Windows.Forms.Label();
 			this.laSalesQuotesHint = new System.Windows.Forms.Label();
+			this.laSalesRepPhone = new System.Windows.Forms.Label();
 			this.pnMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).BeginInit();
+			this.pnSplash.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).BeginInit();
@@ -67,7 +70,8 @@
 			// 
 			// pnMain
 			// 
-			this.pnMain.Controls.Add(this.laSalesRepDetails);
+			this.pnMain.Controls.Add(this.laSalesRepPhone);
+			this.pnMain.Controls.Add(this.laSalesRepEmail);
 			this.pnMain.Controls.Add(this.comboBoxEditSalesRep);
 			this.pnMain.Controls.Add(this.pbAdvertiser);
 			this.pnMain.Controls.Add(this.checkEditSalesRep);
@@ -271,7 +275,7 @@
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -360,14 +364,14 @@
 			this.comboBoxEditSalesRep.TabIndex = 4;
 			this.comboBoxEditSalesRep.EditValueChanged += new System.EventHandler(this.comboBoxEditSalesRep_EditValueChanged);
 			// 
-			// laSalesRepDetails
+			// laSalesRepEmail
 			// 
-			this.laSalesRepDetails.ForeColor = System.Drawing.Color.Black;
-			this.laSalesRepDetails.Location = new System.Drawing.Point(73, 283);
-			this.laSalesRepDetails.Name = "laSalesRepDetails";
-			this.laSalesRepDetails.Size = new System.Drawing.Size(257, 47);
-			this.laSalesRepDetails.TabIndex = 100;
-			this.laSalesRepDetails.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			this.laSalesRepEmail.ForeColor = System.Drawing.Color.Black;
+			this.laSalesRepEmail.Location = new System.Drawing.Point(73, 283);
+			this.laSalesRepEmail.Name = "laSalesRepEmail";
+			this.laSalesRepEmail.Size = new System.Drawing.Size(222, 21);
+			this.laSalesRepEmail.TabIndex = 100;
+			this.laSalesRepEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// laSalesQuotesHint
 			// 
@@ -379,6 +383,15 @@
 			this.laSalesQuotesHint.Text = "Add “Words of Wisdom” to your cover page…";
 			this.laSalesQuotesHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
+			// laSalesRepPhone
+			// 
+			this.laSalesRepPhone.ForeColor = System.Drawing.Color.Black;
+			this.laSalesRepPhone.Location = new System.Drawing.Point(301, 283);
+			this.laSalesRepPhone.Name = "laSalesRepPhone";
+			this.laSalesRepPhone.Size = new System.Drawing.Size(113, 21);
+			this.laSalesRepPhone.TabIndex = 102;
+			this.laSalesRepPhone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// CoverControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -386,6 +399,8 @@
 			this.pnMain.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbSplash)).EndInit();
+			this.pnSplash.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).EndInit();
@@ -420,8 +435,8 @@
         private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
 		private DevExpress.XtraEditors.CheckEdit checkEditSalesRep;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSalesRep;
-		private System.Windows.Forms.Label laSalesRepDetails;
+		private System.Windows.Forms.Label laSalesRepEmail;
 		private System.Windows.Forms.Label laSalesQuotesHint;
-
-    }
+		private System.Windows.Forms.Label laSalesRepPhone;
+	}
 }

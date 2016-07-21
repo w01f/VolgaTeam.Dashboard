@@ -13,7 +13,8 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
-using Asa.Solutions.Dashboard.PresentationClasses;
+using Asa.Solutions.Dashboard.PresentationClasses.ContentEditors;
+using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using DevExpress.XtraPrinting.Native;
 using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
 
@@ -52,7 +53,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				GetOutputSlides().ForEach(s => s.GenerateOutput());
+				slides.ForEach(s => s.GenerateOutput());
 				FormProgress.CloseProgress();
 			});
 		}

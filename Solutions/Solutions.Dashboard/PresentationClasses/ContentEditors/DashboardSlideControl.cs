@@ -3,10 +3,9 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.GUI.Common;
-using Asa.Common.GUI.Preview;
 using DevExpress.XtraTab;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
 	//public partial class DashboardSlideControl : UserControl
@@ -15,7 +14,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		protected BaseDashboardContainer SlideContainer { get; }
 
 		public virtual SlideType SlideType { get; }
-		public virtual string SlideName { get; }
 		public virtual bool ReadyForOutput { get; }
 
 		public DashboardSlideControl()
@@ -41,16 +39,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 		}
 
 		public virtual void ApplyChanges()
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual void GenerateOutput()
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual PreviewGroup GeneratePreview()
 		{
 			throw new NotImplementedException();
 		}

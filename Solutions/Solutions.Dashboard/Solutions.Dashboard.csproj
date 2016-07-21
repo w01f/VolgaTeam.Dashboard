@@ -46,73 +46,83 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PresentationClasses\BaseDashboardContainer.cs">
+    <Compile Include="InteropClasses\TargetCustomersHelper.cs" />
+    <Compile Include="InteropClasses\ClientGoalsHelper.cs" />
+    <Compile Include="InteropClasses\LeadoffStatementHelper.cs" />
+    <Compile Include="InteropClasses\CoverHelper.cs" />
+    <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\BaseDashboardContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\BaseDashboardContainer.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\BaseDashboardContainer.Designer.cs">
       <DependentUpon>BaseDashboardContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\DashboardSlideChangedEventArgs.cs" />
-    <Compile Include="PresentationClasses\DashboardSlideControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\DashboardSlideControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\DashboardSlideControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\DashboardSlideControl.Designer.cs">
       <DependentUpon>DashboardSlideControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\CleanslateControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\CleanslateControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.Designer.cs">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\FormQuotes.cs">
+    <Compile Include="PresentationClasses\ContentEditors\FormQuotes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\FormQuotes.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\FormQuotes.Designer.cs">
       <DependentUpon>FormQuotes.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\CoverControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\CoverControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\CoverControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\CoverControl.Designer.cs">
       <DependentUpon>CoverControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SimpleSummaryItemContainer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\SimpleSummaryItemContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\SimpleSummaryItemContainer.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\SimpleSummaryItemContainer.Designer.cs">
       <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SimpleSummaryItemControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\SimpleSummaryItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\SimpleSummaryItemControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\SimpleSummaryItemControl.Designer.cs">
       <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SimpleSummaryControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\SimpleSummaryControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\SimpleSummaryControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\SimpleSummaryControl.Designer.cs">
       <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ClientGoalsControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\ClientGoalsControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ClientGoalsControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\ClientGoalsControl.Designer.cs">
       <DependentUpon>ClientGoalsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\LeadoffStatementControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\LeadoffStatementControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\LeadoffStatementControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\LeadoffStatementControl.Designer.cs">
       <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\TargetCustomersControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\TargetCustomersControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\TargetCustomersControl.Designer.cs">
+    <Compile Include="PresentationClasses\ContentEditors\TargetCustomersControl.Designer.cs">
       <DependentUpon>TargetCustomersControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Output\IClientGoalsOutputData.cs" />
+    <Compile Include="PresentationClasses\Output\ICoverOutputData.cs" />
+    <Compile Include="PresentationClasses\Output\IDashboardSlide.cs" />
+    <Compile Include="PresentationClasses\Output\IDashboardOutputData.cs" />
+    <Compile Include="PresentationClasses\Output\ILeadoffStatementOutputData.cs" />
+    <Compile Include="PresentationClasses\Output\ITargetCustomersOutputData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -143,37 +153,37 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PresentationClasses\BaseDashboardContainer.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseDashboardContainer.resx">
       <DependentUpon>BaseDashboardContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\DashboardSlideControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\DashboardSlideControl.resx">
       <DependentUpon>DashboardSlideControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\CleanslateControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CleanslateControl.resx">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\FormQuotes.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\FormQuotes.resx">
       <DependentUpon>FormQuotes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\CoverControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\CoverControl.resx">
       <DependentUpon>CoverControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SimpleSummaryItemContainer.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\SimpleSummaryItemContainer.resx">
       <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SimpleSummaryItemControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\SimpleSummaryItemControl.resx">
       <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\SimpleSummaryControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\SimpleSummaryControl.resx">
       <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ClientGoalsControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ClientGoalsControl.resx">
       <DependentUpon>ClientGoalsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\LeadoffStatementControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\LeadoffStatementControl.resx">
       <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\TargetCustomersControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\TargetCustomersControl.resx">
       <DependentUpon>TargetCustomersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -219,6 +229,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\UpArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>12</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

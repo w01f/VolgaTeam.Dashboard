@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
+using System.IO;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
+using Asa.Solutions.Dashboard.InteropClasses;
+using Asa.Solutions.Dashboard.PresentationClasses.Output;
 
-namespace Asa.Solutions.Dashboard.PresentationClasses
+namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	public sealed partial class ClientGoalsControl : DashboardSlideControl
+	public sealed partial class ClientGoalsControl : DashboardSlideControl, IClientGoalsOutputData, IDashboardSlide
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.ClientGoals;
-		public override string SlideName => "C. Needs Analysis";
+		public string SlideName => "C. Needs Analysis";
 
 		public ClientGoalsControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
@@ -80,12 +83,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		public override void ApplyChanges()
 		{
-			SlideContainer.EditedContent.ClientGoalsState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : String.Empty;
-			SlideContainer.EditedContent.ClientGoalsState.Goal1 = comboBoxEditGoal1.EditValue != null ? comboBoxEditGoal1.EditValue.ToString() : String.Empty;
-			SlideContainer.EditedContent.ClientGoalsState.Goal2 = comboBoxEditGoal2.EditValue != null ? comboBoxEditGoal2.EditValue.ToString() : String.Empty;
-			SlideContainer.EditedContent.ClientGoalsState.Goal3 = comboBoxEditGoal3.EditValue != null ? comboBoxEditGoal3.EditValue.ToString() : String.Empty;
-			SlideContainer.EditedContent.ClientGoalsState.Goal4 = comboBoxEditGoal4.EditValue != null ? comboBoxEditGoal4.EditValue.ToString() : String.Empty;
-			SlideContainer.EditedContent.ClientGoalsState.Goal5 = comboBoxEditGoal5.EditValue != null ? comboBoxEditGoal5.EditValue.ToString() : String.Empty;
+			SlideContainer.EditedContent.ClientGoalsState.SlideHeader = comboBoxEditSlideHeader.EditValue?.ToString() ?? String.Empty;
+			SlideContainer.EditedContent.ClientGoalsState.Goal1 = comboBoxEditGoal1.EditValue?.ToString() ?? String.Empty;
+			SlideContainer.EditedContent.ClientGoalsState.Goal2 = comboBoxEditGoal2.EditValue?.ToString() ?? String.Empty;
+			SlideContainer.EditedContent.ClientGoalsState.Goal3 = comboBoxEditGoal3.EditValue?.ToString() ?? String.Empty;
+			SlideContainer.EditedContent.ClientGoalsState.Goal4 = comboBoxEditGoal4.EditValue?.ToString() ?? String.Empty;
+			SlideContainer.EditedContent.ClientGoalsState.Goal5 = comboBoxEditGoal5.EditValue?.ToString() ?? String.Empty;
 		}
 
 		private void EditValueChanged(object sender, EventArgs e)
@@ -96,30 +99,14 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 
 		#region Output Staff
 
+		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.ClientGoals);
 		public override bool ReadyForOutput => !String.IsNullOrEmpty(comboBoxEditGoal1.EditValue?.ToString().Trim()) ||
 			!String.IsNullOrEmpty(comboBoxEditGoal2.EditValue?.ToString().Trim()) ||
 			!String.IsNullOrEmpty(comboBoxEditGoal3.EditValue?.ToString().Trim()) ||
 			!String.IsNullOrEmpty(comboBoxEditGoal4.EditValue?.ToString().Trim()) ||
 			!String.IsNullOrEmpty(comboBoxEditGoal5.EditValue?.ToString().Trim());
 
-		public int GoalsCount
-		{
-			get
-			{
-				int result = 0;
-				if (!String.IsNullOrEmpty(comboBoxEditGoal1.EditValue?.ToString().Trim()))
-					result++;
-				if (!String.IsNullOrEmpty(comboBoxEditGoal2.EditValue?.ToString().Trim()))
-					result++;
-				if (!String.IsNullOrEmpty(comboBoxEditGoal3.EditValue?.ToString().Trim()))
-					result++;
-				if (!String.IsNullOrEmpty(comboBoxEditGoal4.EditValue?.ToString().Trim()))
-					result++;
-				if (!String.IsNullOrEmpty(comboBoxEditGoal5.EditValue?.ToString().Trim()))
-					result++;
-				return result;
-			}
-		}
+		public int GoalsCount => SelectedGoals.Length;
 
 		public string Title => comboBoxEditSlideHeader.EditValue?.ToString() ?? String.Empty;
 
@@ -142,50 +129,16 @@ namespace Asa.Solutions.Dashboard.PresentationClasses
 			}
 		}
 
-		public override void GenerateOutput()
+		public void GenerateOutput()
 		{
-			throw new NotImplementedException();
+			SolutionDashboardPowerPointHelper.Instance.AppendClientGoals(this);
 		}
 
-		public override PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview()
 		{
-			throw new NotImplementedException();
-		}
-
-		public void Output()
-		{
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			//FormProgress.ShowProgress();
-			//AppManager.Instance.ShowFloater(() =>
-			//{
-			//	DashboardPowerPointHelper.Instance.AppendClientGoals();
-			//	FormProgress.CloseProgress();
-			//});
-		}
-
-		public void Preview()
-		{
-			//SaveChanges();
-			//FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			//FormProgress.ShowProgress();
-			//var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			//DashboardPowerPointHelper.Instance.PrepareClientGoals(tempFileName);
-			//Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
-			//FormProgress.CloseProgress();
-			//if (!File.Exists(tempFileName)) return;
-			//using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
-			//{
-			//	formPreview.Text = "Preview Slides";
-			//	formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-			//	RegistryHelper.MainFormHandle = formPreview.Handle;
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	var previewResult = formPreview.ShowDialog();
-			//	RegistryHelper.MaximizeMainForm = false;
-			//	RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			//	if (previewResult != DialogResult.OK)
-			//		AppManager.Instance.ActivateMainForm();
-			//}
+			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
+			SolutionDashboardPowerPointHelper.Instance.PrepareClientGoals(this,tempFileName);
+			return new PreviewGroup {Name = SlideName, PresentationSourcePath = tempFileName};
 		}
 		#endregion
 	}

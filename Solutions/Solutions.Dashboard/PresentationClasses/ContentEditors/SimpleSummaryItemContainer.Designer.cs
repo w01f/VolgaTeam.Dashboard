@@ -1,4 +1,4 @@
-﻿namespace Asa.Solutions.Dashboard.PresentationClasses
+﻿namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
     partial class SimpleSummaryItemContainer
     {

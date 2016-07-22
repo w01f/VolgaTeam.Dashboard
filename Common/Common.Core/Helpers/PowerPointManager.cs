@@ -49,13 +49,11 @@ namespace Asa.Common.Core.Helpers
 		public void ApplySettings(SlideSettings newSettings)
 		{
 			var args = new SlideSettingsChangingEventArgs();
-			if (SettingsChanging != null)
-				SettingsChanging(this, args);
+			SettingsChanging?.Invoke(this, args);
 			if (args.Cancel) return;
 			SlideSettings = newSettings;
 			_powerPointHelper.SetSlideSettings(SlideSettings);
-			if (SettingsChanged != null)
-				SettingsChanged(this, EventArgs.Empty);
+			SettingsChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		public string GetLauncherTemplatePath()

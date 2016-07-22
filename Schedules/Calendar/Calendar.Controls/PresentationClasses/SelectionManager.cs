@@ -35,8 +35,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 
 		public void ProcessSelectionStateRequest()
 		{
-			if (SelectionStateResponse != null)
-				SelectionStateResponse(this, new EventArgs());
+			SelectionStateResponse?.Invoke(this, new EventArgs());
 		}
 
 		public void SelectDay(CalendarDay day, Keys modifierKeys)

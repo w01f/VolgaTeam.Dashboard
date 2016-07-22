@@ -71,8 +71,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 		public void OnPropertyChanged(EventArgs e)
 		{
-			var handler = PropertyChanged;
-			if (handler != null) handler(this, e);
+			PropertyChanged?.Invoke(this, e);
 		}
 
 		public void LoadMonth(CalendarMonth month)

@@ -131,8 +131,7 @@ namespace AdSalesBrowser.WebPage
 
 		private void OnWebViewNewWindow(object sender, NewWindowEventArgs e)
 		{
-			if (OnNavigateNewPage != null)
-				OnNavigateNewPage(this, new NewPageEventArgs() { Url = e.TargetUrl });
+			OnNavigateNewPage?.Invoke(this, new NewPageEventArgs() { Url = e.TargetUrl });
 			e.Accepted = false;
 		}
 

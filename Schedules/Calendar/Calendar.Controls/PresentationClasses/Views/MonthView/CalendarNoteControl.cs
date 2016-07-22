@@ -91,8 +91,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			var newText = memoEdit.EditValue != null ? memoEdit.EditValue.ToString() : null;
 			if (CalendarNote.Note.SimpleText != newText)
 				CalendarNote.Note = !String.IsNullOrEmpty(newText) ? new TextItem(newText, false) : null;
-			if (NoteChanged != null)
-				NoteChanged(this, new EventArgs());
+			NoteChanged?.Invoke(this, new EventArgs());
 		}
 
 		private void memoEdit_EditValueChanging(object sender, ChangingEventArgs e)
@@ -123,26 +122,22 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		private void pbClose_Click(object sender, EventArgs e)
 		{
 			if (PopupMessageHelper.Instance.ShowWarningQuestion("Do you want to delete note?") != DialogResult.Yes) return;
-			if (NoteDeleted != null)
-				NoteDeleted(sender, new EventArgs());
+			NoteDeleted?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
 		{
-			if (NoteCopied != null)
-				NoteCopied(sender, new EventArgs());
+			NoteCopied?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemClone_Click(object sender, EventArgs e)
 		{
-			if (NoteCloned != null)
-				NoteCloned(sender, new EventArgs());
+			NoteCloned?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemColor_Click(object sender, EventArgs e)
 		{
-			if (ColorChanging != null)
-				ColorChanging(sender, new EventArgs());
+			ColorChanging?.Invoke(sender, new EventArgs());
 		}
 	}
 }

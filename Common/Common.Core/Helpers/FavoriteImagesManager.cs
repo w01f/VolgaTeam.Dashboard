@@ -27,8 +27,7 @@ namespace Asa.Common.Core.Helpers
 
 		protected void OnCollectionChanged()
 		{
-			var handler = CollectionChanged;
-			if (handler != null) handler(this, EventArgs.Empty);
+			CollectionChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void LoadImages()

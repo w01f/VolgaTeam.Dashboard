@@ -53,14 +53,12 @@ namespace Asa.Common.GUI.Common
 					if (_tabControl.TabPages.IndexOf(hi.Page) < _tabControl.TabPages.IndexOf(_movedPage))
 					{
 						_tabControl.TabPages.Move(_tabControl.TabPages.IndexOf(hi.Page), _movedPage);
-						if (TabMoved != null)
-							TabMoved(_tabControl, new TabMoveEventArgs { MovedPage = _movedPage, TargetPage = hi.Page });
+						TabMoved?.Invoke(_tabControl, new TabMoveEventArgs { MovedPage = _movedPage, TargetPage = hi.Page });
 					}
 					else
 					{
 						_tabControl.TabPages.Move(_tabControl.TabPages.IndexOf(hi.Page) + 1, _movedPage);
-						if (TabMoved != null)
-							TabMoved(_tabControl, new TabMoveEventArgs { MovedPage = _movedPage, TargetPage = hi.Page, Offset = 1 });
+						TabMoved?.Invoke(_tabControl, new TabMoveEventArgs { MovedPage = _movedPage, TargetPage = hi.Page, Offset = 1 });
 					}
 				}
 				e.Effect = DragDropEffects.Move;

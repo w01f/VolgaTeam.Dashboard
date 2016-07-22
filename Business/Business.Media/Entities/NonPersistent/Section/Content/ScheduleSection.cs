@@ -395,8 +395,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				}
 			}
 
-			if (DataChanged != null)
-				DataChanged(null, new EventArgs());
+			DataChanged?.Invoke(null, new EventArgs());
 		}
 
 		public void AddProgram()

@@ -48,8 +48,7 @@ namespace Asa.Common.GUI.Themes
 			if (!hitInfo.InCard) return;
 			var theme = layoutView.GetRow(hitInfo.RowHandle) as Theme;
 			if (theme == null) return;
-			if (ThemeSelected != null)
-				ThemeSelected(this, new ThemeEventArgs { SelectedTheme = theme });
+			ThemeSelected?.Invoke(this, new ThemeEventArgs { SelectedTheme = theme });
 		}
 
 		private void layoutViewThemes_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
@@ -64,8 +63,7 @@ namespace Asa.Common.GUI.Themes
 
 		private void layoutViewThemes_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
 		{
-			if (ThemeChanged != null)
-				ThemeChanged(this, new ThemeEventArgs { SelectedTheme = SelectedTheme });
+			ThemeChanged?.Invoke(this, new ThemeEventArgs { SelectedTheme = SelectedTheme });
 		}
 	}
 }

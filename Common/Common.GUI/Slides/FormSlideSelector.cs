@@ -48,8 +48,7 @@ namespace Asa.Common.GUI.Slides
 
 		private void buttonXAddSlide_Click(object sender, EventArgs e)
 		{
-			if (AddSlide != null)
-				AddSlide(this, new SlideMasterEventArgs { SelectedSlide = SelectedSlide });
+			AddSlide?.Invoke(this, new SlideMasterEventArgs { SelectedSlide = SelectedSlide });
 		}
 	}
 }

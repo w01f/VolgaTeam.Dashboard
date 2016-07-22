@@ -57,8 +57,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		public void Save()
 		{
-			if (DataSaved != null)
-				DataSaved(this, new EventArgs());
+			DataSaved?.Invoke(this, new EventArgs());
 			SettingsNotSaved = false;
 		}
 

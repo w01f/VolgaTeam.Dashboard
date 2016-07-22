@@ -95,8 +95,7 @@ namespace Asa.Common.GUI.Common
 		{
 			_downHitInfo = null;
 			DropTargetRowHandle = -1;
-			if (AfterDrop != null)
-				AfterDrop(sender, e);
+			AfterDrop?.Invoke(sender, e);
 		}
 
 		private void GridControl_DragOver(object sender, DragEventArgs e)

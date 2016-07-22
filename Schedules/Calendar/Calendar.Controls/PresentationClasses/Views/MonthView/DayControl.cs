@@ -182,8 +182,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (!RaiseEvents) return;
 			if (e.Button != MouseButtons.Left) return;
 			if (!Day.BelongsToSchedules) return;
-			if (DaySelected != null)
-				DaySelected(this, new SelectDayEventArgs(this, ModifierKeys));
+			DaySelected?.Invoke(this, new SelectDayEventArgs(this, ModifierKeys));
 		}
 
 		private void DayControl_MouseDown(object sender, MouseEventArgs e)
@@ -203,8 +202,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			if (!RaiseEvents) return;
 			if (!MultiSelectEnabled) return;
-			if (DayMouseMove != null)
-				DayMouseMove(this, e);
+			DayMouseMove?.Invoke(this, e);
 		}
 		#endregion
 
@@ -241,8 +239,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (imageSource == null) return;
 			Day.Logo = imageSource.Clone<ImageSource, ImageSource>();
 			RefreshData(_colorSchema);
-			if (DataChanged != null)
-				DataChanged(this, new EventArgs());
+			DataChanged?.Invoke(this, new EventArgs());
 		}
 		#endregion
 
@@ -251,8 +248,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			if (!Day.BelongsToSchedules)
 				e.Cancel = true;
-			else if (SelectionStateRequested != null)
-				SelectionStateRequested(sender, new EventArgs());
+			else SelectionStateRequested?.Invoke(sender, new EventArgs());
 			toolStripMenuItemCopyImage.Enabled = Day.Logo.ContainsData;
 			toolStripMenuItemDeleteImage.Enabled = Day.Logo.ContainsData;
 			var clipBoardImage = ClipboardHelper.GetImageFormClipboard();
@@ -267,14 +263,12 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
 		{
-			if (DayCopied != null)
-				DayCopied(sender, new EventArgs());
+			DayCopied?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemPaste_Click(object sender, EventArgs e)
 		{
-			if (DayPasted != null)
-				DayPasted(sender, new EventArgs());
+			DayPasted?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemEdit_Click(object sender, EventArgs e)
@@ -283,51 +277,43 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			{
 				if (form.ShowDialog() != DialogResult.OK) return;
 				RefreshData(_colorSchema);
-				if (DataChanged != null)
-					DataChanged(this, new EventArgs());
+				DataChanged?.Invoke(this, new EventArgs());
 			}
 		}
 
 		private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
 		{
-			if (DayDataDeleted != null)
-				DayDataDeleted(sender, new EventArgs());
+			DayDataDeleted?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemClone_Click(object sender, EventArgs e)
 		{
-			if (DayCloned != null)
-				DayCloned(sender, new EventArgs());
+			DayCloned?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemAddNote_Click(object sender, EventArgs e)
 		{
-			if (NoteAdded != null)
-				NoteAdded(sender, new EventArgs());
+			NoteAdded?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemPasteNote_Click(object sender, EventArgs e)
 		{
-			if (NotePasted != null)
-				NotePasted(sender, new EventArgs());
+			NotePasted?.Invoke(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemCopyImage_Click(object sender, EventArgs e)
 		{
-			if (ImageCopied != null)
-				ImageCopied(this, new EventArgs());
+			ImageCopied?.Invoke(this, new EventArgs());
 		}
 
 		private void toolStripMenuItemPasteImage_Click(object sender, EventArgs e)
 		{
-			if (ImagePasted != null)
-				ImagePasted(this, new EventArgs());
+			ImagePasted?.Invoke(this, new EventArgs());
 		}
 
 		private void toolStripMenuItemDeleteImage_Click(object sender, EventArgs e)
 		{
-			if (ImageDeleted != null)
-				ImageDeleted(this, new EventArgs());
+			ImageDeleted?.Invoke(this, new EventArgs());
 		}
 		#endregion
 
@@ -337,8 +323,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (!_allowToSave) return;
 			Day.Comment = memoEditSimpleComment.EditValue as String;
 			RefreshData(_colorSchema);
-			if (DataChanged != null)
-				DataChanged(this, new EventArgs());
+			DataChanged?.Invoke(this, new EventArgs());
 		}
 
 		private void memoEditSimpleComment_Leave(object sender, EventArgs e)

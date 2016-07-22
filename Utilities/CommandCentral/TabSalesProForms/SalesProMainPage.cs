@@ -115,15 +115,13 @@ namespace CommandCentral.TabSalesProForms
 
         public void buttonItemAdvancedUpdate_Click(object sender, EventArgs e)
         {
-            if(_updateData != null)
-                _updateData();
-        }
+			_updateData?.Invoke();
+		}
 
         public void buttonItemAdvancedViewFile_Click(object sender, EventArgs e)
         {
-            if (_viewFile != null)
-                _viewFile();
-        }
+			_viewFile?.Invoke();
+		}
 
         public void AdvancedButton_Click(object sender, EventArgs e)
         {

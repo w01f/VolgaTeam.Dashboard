@@ -40,13 +40,11 @@ namespace Asa.Common.GUI.Floater
 				sender.Size = size;
 				if (result == DialogResult.Yes)
 				{
-					if (afterBack != null)
-						afterBack(isMaximized);
+					afterBack?.Invoke(isMaximized);
 				}
 				else
 				{
-					if (afterHide != null)
-						afterHide();
+					afterHide?.Invoke();
 					Utilities.ActivateTaskbar();
 				}
 			}

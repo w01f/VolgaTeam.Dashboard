@@ -51,8 +51,7 @@ namespace Asa.Common.GUI.Slides
 			if (!hitInfo.InCard) return;
 			var slideMaster = layoutView.GetRow(hitInfo.RowHandle) as SlideMaster;
 			if (slideMaster == null) return;
-			if (SlideSelected != null)
-				SlideSelected(this, new SlideMasterEventArgs { SelectedSlide = slideMaster });
+			SlideSelected?.Invoke(this, new SlideMasterEventArgs { SelectedSlide = slideMaster });
 		}
 
 		private void layoutViewSlides_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
@@ -67,8 +66,7 @@ namespace Asa.Common.GUI.Slides
 
 		private void layoutViewSlides_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
 		{
-			if (SlideChanged != null)
-				SlideChanged(this, new SlideMasterEventArgs { SelectedSlide = SelectedSlide });
+			SlideChanged?.Invoke(this, new SlideMasterEventArgs { SelectedSlide = SelectedSlide });
 		}
 
 		private void gridControlSlides_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)

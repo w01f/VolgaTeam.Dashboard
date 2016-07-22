@@ -148,8 +148,7 @@ namespace Asa.Dashboard
 
 		private void Outside_Click(object sender, EventArgs e)
 		{
-			if (OutsideClick != null)
-				OutsideClick();
+			OutsideClick?.Invoke();
 		}
 		#endregion
 
@@ -174,21 +173,18 @@ namespace Asa.Dashboard
 		private void buttonItemPowerPoint_Click(object sender, EventArgs e)
 		{
 			if (!AppManager.Instance.CheckPowerPointRunning()) return;
-			if (OutputClick != null)
-				OutputClick();
+			OutputClick?.Invoke();
 		}
 
 		private void buttonItemPreview_Click(object sender, EventArgs e)
 		{
 			if (!AppManager.Instance.CheckPowerPointRunning()) return;
-			if (PreviewClick != null)
-				PreviewClick();
+			PreviewClick?.Invoke();
 		}
 
 		private void buttonItemHomeLoad_Click(object sender, EventArgs e)
 		{
-			if (LoadClick != null)
-				LoadClick();
+			LoadClick?.Invoke();
 		}
 
 		private void buttonItemHomeTheme_Click(object sender, EventArgs e)

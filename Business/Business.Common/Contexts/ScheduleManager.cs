@@ -88,8 +88,7 @@ namespace Asa.Business.Common.Contexts
 			ActiveSchedule.Name = name;
 			ActiveSchedule.Save();
 
-			if (ScheduleNameChanged != null)
-				ScheduleNameChanged(this, EventArgs.Empty);
+			ScheduleNameChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		private TSchedule CreateSchedule()

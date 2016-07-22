@@ -40,8 +40,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 
 		private void OnPropertyChanged(object sender, EventArgs e)
 		{
-			if (PropertyChanged != null)
-				PropertyChanged(this, e);
+			PropertyChanged?.Invoke(this, e);
 		}
 		#endregion
 

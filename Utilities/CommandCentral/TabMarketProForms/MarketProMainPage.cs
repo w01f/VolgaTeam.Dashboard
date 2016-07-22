@@ -86,15 +86,13 @@ namespace CommandCentral.TabMarketProForms
 
         public void buttonItemMediaLibraryUpdate_Click(object sender, EventArgs e)
         {
-            if(_updateData != null)
-                _updateData();
-        }
+			_updateData?.Invoke();
+		}
 
         public void buttonItemMediaLibraryViewFile_Click(object sender, EventArgs e)
         {
-            if (_viewFile != null)
-                _viewFile();
-        }
+			_viewFile?.Invoke();
+		}
 
         public void MediaLibraryButton_Click(object sender, EventArgs e)
         {

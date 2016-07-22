@@ -24,8 +24,7 @@ namespace Asa.Business.Common.Dictionaries
 		{
 			Save();
 
-			var handler = ListChanged;
-			if (handler != null) handler(this, EventArgs.Empty);
+			ListChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		public AdvertisersManager()

@@ -110,8 +110,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 		private void imageListView_SelectionChanged(object sender, EventArgs e)
 		{
 			if (_isLoading) return;
-			if (SelectionChanged != null)
-				SelectionChanged(sender, e);
+			SelectionChanged?.Invoke(sender, e);
 		}
 
 		private void imageListView_ItemHover(object sender, ItemHoverEventArgs e)

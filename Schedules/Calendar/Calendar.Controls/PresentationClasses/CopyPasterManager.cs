@@ -40,30 +40,26 @@ namespace Asa.Calendar.Controls.PresentationClasses
 
 		public void SetCopyDay()
 		{
-			if (CopyDaySet != null)
-				CopyDaySet(null, null);
+			CopyDaySet?.Invoke(null, null);
 		}
 
 		public void ResetCopy()
 		{
-			if (CopyReset != null)
-				CopyReset(null, null);
+			CopyReset?.Invoke(null, null);
 		}
 
 		public void ResetPaste()
 		{
 			SourceDay = null;
 			SourceNote = null;
-			if (PasteReset != null)
-				PasteReset(null, null);
+			PasteReset?.Invoke(null, null);
 		}
 
 		public void CopyDay(CalendarDay source)
 		{
 			SourceDay = source;
 			if (SourceDay == null) return;
-			if (DayCopied != null)
-				DayCopied(null, null);
+			DayCopied?.Invoke(null, null);
 		}
 
 		public void CloneDay(CalendarDay source, IEnumerable<CalendarDay> destination)
@@ -74,8 +70,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 				day.Comment = source.Comment;
 				day.Logo = source.Logo.Clone<ImageSource, ImageSource>();
 			}
-			if (DayPasted != null)
-				DayPasted(null, null);
+			DayPasted?.Invoke(null, null);
 		}
 
 		public void PasteDay(CalendarDay[] destination)
@@ -86,8 +81,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 				day.Comment = SourceDay.Comment;
 				day.Logo = SourceDay.Logo.Clone<ImageSource, ImageSource>();
 			}
-			if (DayPasted != null)
-				DayPasted(null, null);
+			DayPasted?.Invoke(null, null);
 		}
 
 		public void PasteImage(CalendarDay[] destination, ImageSource imageSource)
@@ -95,16 +89,14 @@ namespace Asa.Calendar.Controls.PresentationClasses
 			if (destination == null || imageSource == null) return;
 			foreach (var day in destination)
 				day.Logo = imageSource.Clone<ImageSource, ImageSource>();
-			if (DayPasted != null)
-				DayPasted(null, null);
+			DayPasted?.Invoke(null, null);
 		}
 
 		public void CopyNote(CalendarNote source)
 		{
 			SourceNote = source;
 			if (SourceNote == null) return;
-			if (NoteCopied != null)
-				NoteCopied(null, null);
+			NoteCopied?.Invoke(null, null);
 		}
 
 		public void Release()

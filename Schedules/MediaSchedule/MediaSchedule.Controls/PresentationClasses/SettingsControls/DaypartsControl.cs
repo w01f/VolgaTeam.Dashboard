@@ -35,8 +35,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		private void gridViewItems_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
 			HasChanged = true;
-			if (Changed != null)
-				Changed(this, EventArgs.Empty);
+			Changed?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void repositoryItemCheckEdit_CheckedChanged(object sender, EventArgs e)

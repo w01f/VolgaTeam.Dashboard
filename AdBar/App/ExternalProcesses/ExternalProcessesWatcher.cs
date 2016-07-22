@@ -262,8 +262,7 @@ namespace Asa.Bar.App.ExternalProcesses
 		private void OnCheckProcessProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
 			if (e.ProgressPercentage != -1) return;
-			if (OnStatusChanged != null)
-				OnStatusChanged(this, new ProcessStatusEventArgs(_newStatus));
+			OnStatusChanged?.Invoke(this, new ProcessStatusEventArgs(_newStatus));
 			_lastStatus = _newStatus;
 		}
 

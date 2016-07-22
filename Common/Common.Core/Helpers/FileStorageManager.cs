@@ -178,20 +178,17 @@ namespace Asa.Common.Core.Helpers
 
 		public void ShowDownloadProgress(FileProcessingProgressEventArgs eventArgs)
 		{
-			if (Downloading != null)
-				Downloading(this, eventArgs);
+			Downloading?.Invoke(this, eventArgs);
 		}
 
 		public void ShowExtractionProgress(FileProcessingProgressEventArgs eventArgs)
 		{
-			if (Extracting != null)
-				Extracting(this, eventArgs);
+			Extracting?.Invoke(this, eventArgs);
 		}
 
 		public void SwitchToLocalMode()
 		{
-			if (UsingLocalMode != null)
-				UsingLocalMode(this, EventArgs.Empty);
+			UsingLocalMode?.Invoke(this, EventArgs.Empty);
 			UseLocalMode = true;
 		}
 	}

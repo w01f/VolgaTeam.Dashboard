@@ -74,8 +74,7 @@ namespace Asa.Common.GUI.ImageGallery
 		{
 			imageListView.ClearSelection();
 			e.Item.Selected = true;
-			if (DoubleClicked != null)
-				DoubleClicked(this, EventArgs.Empty);
+			DoubleClicked?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void imageListView_ItemHover(object sender, ItemHoverEventArgs e)

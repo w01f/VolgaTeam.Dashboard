@@ -156,8 +156,7 @@ namespace Asa.Calendar.Controls.ToolForms
 
 		private void pbHelp_Click(object sender, EventArgs e)
 		{
-			if (OnHelpClick != null)
-				OnHelpClick();
+			OnHelpClick?.Invoke();
 		}
 
 		#region Picture Box Clicks Habdlers

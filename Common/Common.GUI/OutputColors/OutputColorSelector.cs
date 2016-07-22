@@ -71,8 +71,7 @@ namespace Asa.Common.GUI.OutputColors
 				{
 					var clickedButton = (OutputColorButton)sender;
 					if (!clickedButton.Checked) return;
-					if (ColorChanged != null)
-						ColorChanged(sender, e);
+					ColorChanged?.Invoke(sender, e);
 				};
 				xtraScrollableControlColors.Controls.Add(button);
 				if (columOrder > 0)

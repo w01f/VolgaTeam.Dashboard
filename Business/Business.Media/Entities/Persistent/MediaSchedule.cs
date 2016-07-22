@@ -133,6 +133,8 @@ namespace Asa.Business.Media.Entities.Persistent
 			SettingsEncoded = Settings.Serialize();
 			foreach (var schedulePartition in Partitions.ToList())
 				schedulePartition.BeforeSave();
+			foreach (var scheduleSolution in Solutions.ToList())
+				scheduleSolution.BeforeSave();
 		}
 		#endregion
 

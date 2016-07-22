@@ -105,6 +105,7 @@ namespace Asa.Media.Single
 			Controller.Instance.TabOptions = ribbonTabItemOptions;
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
 			Controller.Instance.TabSolutions = ribbonTabItemSolutions;
+			Controller.Instance.TabSlides = ribbonTabItemSlides;
 
 			FormProgress.Init(this);
 
@@ -224,6 +225,14 @@ namespace Asa.Media.Single
 			Controller.Instance.SolutionsPowerPoint = buttonItemSolutionsPowerPoint;
 			Controller.Instance.SolutionsPdf = buttonItemSolutionsPdf;
 			Controller.Instance.SolutionsTheme = buttonItemSolutionsTheme;
+			#endregion
+
+			#region Slides
+			Controller.Instance.SlidesSpecialButtons = ribbonBarSlidesSpecialButtons;
+			Controller.Instance.SlidesPreview = buttonItemSlidesPreview;
+			Controller.Instance.SlidesEmail = buttonItemSlidesEmail;
+			Controller.Instance.SlidesPowerPoint = buttonItemSlidesPowerPoint;
+			Controller.Instance.SlidesPdf = buttonItemSlidesPdf;
 			#endregion
 
 			#region Gallery 1

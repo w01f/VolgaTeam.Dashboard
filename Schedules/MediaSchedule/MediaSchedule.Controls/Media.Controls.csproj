@@ -447,6 +447,12 @@
     <Compile Include="PresentationClasses\SettingsControls\StationsControl.Designer.cs">
       <DependentUpon>StationsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Slides\MediaSlidesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Slides\MediaSlidesControl.Designer.cs">
+      <DependentUpon>MediaSlidesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotCollectionEditorControl.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotContentEditorControl.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotEditorControl.cs" />
@@ -712,6 +718,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SettingsControls\StationsControl.resx">
       <DependentUpon>StationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Slides\MediaSlidesControl.resx">
+      <DependentUpon>MediaSlidesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.resx">
       <DependentUpon>SnapshotContentEditorsContainer.cs</DependentUpon>

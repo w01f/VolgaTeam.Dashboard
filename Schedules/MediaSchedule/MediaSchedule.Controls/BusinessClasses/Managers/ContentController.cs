@@ -15,6 +15,7 @@ using Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.RateCard;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
+using Asa.Media.Controls.PresentationClasses.Slides;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.Solutions;
 using DevComponents.DotNetBar;
@@ -37,7 +38,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public IContentEditControl<MediaScheduleChangeInfo> ActiveEditor
 			=> ActiveControl as IContentEditControl<MediaScheduleChangeInfo>;
 
-		public IOutputControl ActiveOutputControl => ActiveEditor as IOutputControl;
+		public IOutputControl ActiveOutputControl => ActiveControl as IOutputControl;
 
 		public ContentController()
 		{
@@ -145,12 +146,14 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 					return new SnapshotContentEditorsContainer();
 				case ContentIdentifiers.Options:
 					return new OptionsContentEditorsContainer();
-				case ContentIdentifiers.Solutions:
-					return new MediaSolutionsContainer();
 				case ContentIdentifiers.BroadcastCalendar:
 					return new BroadcastCalendarControl();
 				case ContentIdentifiers.CustomCalendar:
 					return new CustomCalendarControl();
+				case ContentIdentifiers.Solutions:
+					return new MediaSolutionsContainer();
+				case ContentIdentifiers.Slides:
+					return new MediaSlidesControl();
 				case ContentIdentifiers.Gallery1:
 					return new MediaGallery1Control();
 				case ContentIdentifiers.Gallery2:

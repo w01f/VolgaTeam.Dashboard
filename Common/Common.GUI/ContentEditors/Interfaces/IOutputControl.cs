@@ -2,7 +2,6 @@
 {
 	public interface IOutputControl
 	{
-		void OnOuterThemeChanged();
 		void OutputPowerPoint();
 		void OutputPdf();
 		void Preview();

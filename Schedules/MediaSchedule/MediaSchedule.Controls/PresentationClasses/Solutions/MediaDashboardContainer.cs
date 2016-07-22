@@ -14,7 +14,6 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.ContentEditors;
-using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using DevExpress.XtraPrinting.Native;
 using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
 

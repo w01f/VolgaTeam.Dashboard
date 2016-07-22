@@ -43,12 +43,12 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.labelItemSlidesLogo = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
 			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-			this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
 			this.SuspendLayout();
@@ -339,7 +339,7 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonBarSlidesLogo.DragDropSupport = true;
 			this.ribbonBarSlidesLogo.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
 			this.ribbonBarSlidesLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItem1});
+            this.labelItemSlidesLogo});
 			this.ribbonBarSlidesLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarSlidesLogo.Name = "ribbonBarSlidesLogo";
@@ -356,6 +356,11 @@ namespace Asa.SlideTemplateViewer
 			// 
 			this.ribbonBarSlidesLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSlidesLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// labelItemSlidesLogo
+			// 
+			this.labelItemSlidesLogo.Image = global::Asa.SlideTemplateViewer.Properties.Resources.AddSlidesLogo;
+			this.labelItemSlidesLogo.Name = "labelItemSlidesLogo";
 			// 
 			// ribbonTabItemSlides
 			// 
@@ -384,11 +389,6 @@ namespace Asa.SlideTemplateViewer
 			// defaultLookAndFeel
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Office 2013";
-			// 
-			// labelItem1
-			// 
-			this.labelItem1.Image = global::Asa.SlideTemplateViewer.Properties.Resources.AddSlidesLogo;
-			this.labelItem1.Name = "labelItem1";
 			// 
 			// FormMain
 			// 
@@ -432,7 +432,7 @@ namespace Asa.SlideTemplateViewer
 		private DevComponents.DotNetBar.ButtonItem buttonItemSlideSettings;
 		private DevComponents.DotNetBar.StyleManager styleManager;
 		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-		private DevComponents.DotNetBar.LabelItem labelItem1;
+		private DevComponents.DotNetBar.LabelItem labelItemSlidesLogo;
 	}
 }
 

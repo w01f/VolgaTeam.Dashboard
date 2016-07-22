@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.ContentEditors.Enums;
 using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Interfaces;
@@ -61,7 +62,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 
 		public static void OnThemeChanged(object sender, EventArgs e)
 		{
-			foreach (var partitionEditControl in _controller.ContentControls.OfType<IOutputControl>().Where(c => c != sender))
+			foreach (var partitionEditControl in _controller.ContentControls.OfType<BaseContentOutputControl<TChangeInfo>>().Where(c => c != sender))
 				partitionEditControl.OnOuterThemeChanged();
 		}
 
@@ -145,10 +146,9 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 
 		public static void Email()
 		{
-			var outputControl = _controller.ActiveControl as IOutputControl;
-			if (outputControl == null) return;
+			if (_controller.ActiveOutputControl == null) return;
 			SaveSchedule(true);
-			outputControl.Email();
+			_controller.ActiveOutputControl.Email();
 		}
 	}
 }

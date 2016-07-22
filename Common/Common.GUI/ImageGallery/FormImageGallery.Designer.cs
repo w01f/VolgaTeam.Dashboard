@@ -45,7 +45,7 @@
 			this.pnBottom.ForeColor = System.Drawing.Color.Black;
 			this.pnBottom.Location = new System.Drawing.Point(0, 349);
 			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(709, 43);
+			this.pnBottom.Size = new System.Drawing.Size(719, 43);
 			this.pnBottom.TabIndex = 1;
 			// 
 			// buttonXCancel
@@ -54,7 +54,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(622, 6);
+			this.buttonXCancel.Location = new System.Drawing.Point(632, 6);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(75, 31);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -68,7 +68,7 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(539, 6);
+			this.buttonXOK.Location = new System.Drawing.Point(549, 6);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(75, 31);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -95,21 +95,21 @@
 			this.xtraTabControlGroups.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlGroups.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlGroups.Name = "xtraTabControlGroups";
-			this.xtraTabControlGroups.Size = new System.Drawing.Size(709, 349);
+			this.xtraTabControlGroups.Size = new System.Drawing.Size(719, 349);
 			this.xtraTabControlGroups.TabIndex = 8;
 			// 
 			// FormImageGallery
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(709, 392);
+			this.ClientSize = new System.Drawing.Size(719, 392);
 			this.Controls.Add(this.xtraTabControlGroups);
 			this.Controls.Add(this.pnBottom);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(725, 430);
+			this.MinimumSize = new System.Drawing.Size(735, 430);
 			this.Name = "FormImageGallery";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

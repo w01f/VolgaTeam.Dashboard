@@ -15,6 +15,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public MediaScheduleManager ScheduleManager { get; }
 		public ScheduleTemplatesManager ScheduleTemplatesManager { get; }
 		public SolutionsManager SolutionsManager { get; }
+		public SlideManager SlideManager { get; }
 		public HelpManager HelpManager { get; }
 		public OutputManager OutputManager { get; }
 		public TabPageManager TabPageManager { get; private set; }
@@ -30,6 +31,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ScheduleManager = new MediaScheduleManager();
 			ScheduleTemplatesManager = new ScheduleTemplatesManager();
 			SolutionsManager = new SolutionsManager();
+			SlideManager = new SlideManager();
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
 		}
@@ -49,6 +51,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			ThemeManager.Load();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
+
+			SlideManager.Load();
 
 			TabPageManager = new TabPageManager(ResourceManager.Instance.TabsConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();

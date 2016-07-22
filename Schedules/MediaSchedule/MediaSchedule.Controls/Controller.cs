@@ -43,6 +43,7 @@ namespace Asa.Media.Controls
 		public RibbonTabItem TabSnapshot { get; set; }
 		public RibbonTabItem TabOptions { get; set; }
 		public RibbonTabItem TabSolutions { get; set; }
+		public RibbonTabItem TabSlides { get; set; }
 
 		private Controller()
 		{
@@ -99,9 +100,10 @@ namespace Asa.Media.Controls
 				TabDigitalProduct,
 				TabSnapshot,
 				TabOptions,
-				TabSolutions,
 				TabCalendar1,
 				TabCalendar2,
+				TabSolutions,
+				TabSlides,
 				TabGallery1,
 				TabGallery2,
 				TabRateCard
@@ -126,9 +128,10 @@ namespace Asa.Media.Controls
 				DigitalProductPowerPoint,
 				SnapshotPowerPoint,
 				OptionsPowerPoint,
-				SolutionsPowerPoint,
 				Calendar1PowerPoint,
 				Calendar2PowerPoint,
+				SolutionsPowerPoint,
+				SlidesPowerPoint,
 			})
 			{
 				ribbonButton.Click += ContentController.OnOutputPowerPoint;
@@ -140,9 +143,10 @@ namespace Asa.Media.Controls
 				DigitalProductPdf,
 				SnapshotPdf,
 				OptionsPdf,
-				SolutionsPdf,
 				Calendar1Pdf,
 				Calendar2Pdf,
+				SolutionsPdf,
+				SlidesPdf,
 			})
 			{
 				ribbonButton.Click += ContentController.OnOutputPdf;
@@ -154,9 +158,10 @@ namespace Asa.Media.Controls
 				DigitalProductPreview,
 				SnapshotPreview,
 				OptionsPreview,
-				SolutionsPreview,
 				Calendar1Preview,
 				Calendar2Preview,
+				SolutionsPreview,
+				SlidesPreview,
 			})
 			{
 				ribbonButton.Click += ContentController.OnPreview;
@@ -168,9 +173,10 @@ namespace Asa.Media.Controls
 				DigitalProductEmail,
 				SnapshotEmail,
 				OptionsEmail,
-				SolutionsEmail,
 				Calendar1Email,
 				Calendar2Email,
+				SolutionsEmail,
+				SlidesEmail,
 			})
 			{
 				ribbonButton.Click += ContentController.OnEmail;
@@ -271,11 +277,12 @@ namespace Asa.Media.Controls
 				HomeSpecialButtons,
 				ProgramScheduleSpecialButtons,
 				DigitalProductSpecialButtons,
-				Calendar1SpecialButtons,
-				Calendar2SpecialButtons,
 				SnapshotSpecialButtons,
 				OptionsSpecialButtons,
+				Calendar1SpecialButtons,
+				Calendar2SpecialButtons,
 				SolutionsSpecialButtons,
+				SlidesSpecialButtons,
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
 				Gallery2SpecialButtons
@@ -470,6 +477,14 @@ namespace Asa.Media.Controls
 		public ButtonItem SolutionsPdf { get; set; }
 		public ButtonItem SolutionsEmail { get; set; }
 		public ButtonItem SolutionsTheme { get; set; }
+		#endregion
+
+		#region Slides
+		public RibbonBar SlidesSpecialButtons { get; set; }
+		public ButtonItem SlidesPreview { get; set; }
+		public ButtonItem SlidesPowerPoint { get; set; }
+		public ButtonItem SlidesPdf { get; set; }
+		public ButtonItem SlidesEmail { get; set; }
 		#endregion
 
 		#region Rate Card

@@ -1,31 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 
-namespace SlideTemplateViewer
+namespace Asa.SlideTemplateViewer
 {
 	static class Program
 	{
+		private static Mutex _mutex;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main()
+		private static void Main(string[] args)
 		{
-			var fileManagerPath = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), "6ms.exe");
-			if (!File.Exists(fileManagerPath)) return;
-			try
+			bool firstInstance;
+			const string uniqueIdentifier = "Local\\AddSlidesApplication";
+			_mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			if (firstInstance)
 			{
-				var process = new Process();
-				process.StartInfo.FileName = fileManagerPath;
-				process.StartInfo.Arguments = "addslides";
-				process.Start();
+				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
+
+				RegistryHelper.MaximizeMainForm = false;
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				AppManager.Instance.RunForm();
 			}
-			catch { }
+			else
+			{
+				Utilities.ActivatePowerPoint(SlideTemplateViewerPowerPointHelper.Instance.PowerPointObject);
+				AppManager.Instance.ActivateMainForm();
+			}
 		}
 	}
 }

@@ -37,26 +37,16 @@ namespace Asa.Dashboard
 
 		public static AppManager Instance { get; } = new AppManager();
 
-		public bool OnlySlidesMode { get; private set; }
+		public string FormCaption => String.Format("{0} v{1}- {2}",
+			"6ms",
+			FileStorageManager.Instance.Version,
+			PowerPointManager.Instance.SlideSettings.SizeFormatted);
 
-		public string FormCaption
+		public void RunForm()
 		{
-			get
-			{
-				return String.Format("{0} v{1}- {2}",
-					OnlySlidesMode ? "Add Slides" : "6ms",
-					FileStorageManager.Instance.Version,
-					PowerPointManager.Instance.SlideSettings.SizeFormatted);
-			}
-		}
-
-		public void RunForm(bool onlySlides)
-		{
-			OnlySlidesMode = onlySlides;
-
 			bool stopRun = false;
 
-			PopupMessageHelper.Instance.Title = OnlySlidesMode ? "Add Slides" : "6 Minute Seller";
+			PopupMessageHelper.Instance.Title = "6 Minute Seller";
 
 			LicenseHelper.Register();
 
@@ -253,7 +243,7 @@ namespace Asa.Dashboard
 		{
 			ShowFloater(null, new FloaterRequestedEventArgs
 			{
-				Logo = OnlySlidesMode ? Resources.AddSlidesLogo : Resources.RibbonLogo,
+				Logo = Resources.RibbonLogo,
 				AfterShow = afterShow
 			});
 		}

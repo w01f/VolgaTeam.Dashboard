@@ -21,12 +21,10 @@ namespace Asa.Dashboard
 			if (firstInstance)
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
-
-				var onlySlides = args != null && args.Length > 0 && args[0].Equals("addslides", StringComparison.OrdinalIgnoreCase);
 				RegistryHelper.MaximizeMainForm = false;
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
-				AppManager.Instance.RunForm(onlySlides);
+				AppManager.Instance.RunForm();
 			}
 			else
 			{

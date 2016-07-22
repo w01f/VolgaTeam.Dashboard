@@ -65,7 +65,7 @@ namespace Asa.Dashboard
 
 			var masterWizardLogo = Resources.RibbonLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
-			buttonItemSlidesLogo.Image = AppManager.Instance.OnlySlidesMode ? Resources.AddSlidesLogo : masterWizardLogo;
+			buttonItemSlidesLogo.Image = masterWizardLogo;
 			ribbonBarHomeOverview.RecalcLayout();
 			ribbonPanelHome.PerformLayout();
 		}
@@ -78,12 +78,10 @@ namespace Asa.Dashboard
 
 			ApplyMasterWizard();
 
-			ribbonTabItemHome.Visible = !AppManager.Instance.OnlySlidesMode;
-
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
 
-			ribbonControl.SelectedRibbonTabItem = AppManager.Instance.OnlySlidesMode ? ribbonTabItemSlides : ribbonTabItemHome;
+			ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
 			ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 
@@ -141,7 +139,6 @@ namespace Asa.Dashboard
 
 		private void labelItemLogo_Click(object sender, EventArgs e)
 		{
-			if (AppManager.Instance.OnlySlidesMode) return;
 			ribbonTabItemHome.Select();
 			buttonItemHomeOverview_Click(null, null);
 		}
@@ -161,7 +158,7 @@ namespace Asa.Dashboard
 				formSender,
 				new FloaterRequestedEventArgs
 				{
-					Logo = AppManager.Instance.OnlySlidesMode ? Resources.AddSlidesLogo : Resources.RibbonLogo
+					Logo = Resources.RibbonLogo
 				});
 		}
 

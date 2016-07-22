@@ -68,6 +68,7 @@ namespace Asa.Common.GUI.SlideSettingsEditors
 			if (DialogResult != DialogResult.OK) return;
 
 			SettingsManager.Instance.SelectedWizard = ((MasterWizard)comboBoxEditSlideFormat.EditValue).Name;
+			SettingsManager.Instance.SaveSharedSettings();
 			MasterWizardManager.Instance.SetMasterWizard();
 
 			var buttons = GetSizeButtons().ToList();

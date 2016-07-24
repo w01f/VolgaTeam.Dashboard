@@ -2,7 +2,7 @@
 
 namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 {
-	public class DashboardContent: BaseSolutionContent
+	public class DashboardContent : BaseSolutionContent
 	{
 		public CoverState CoverState { get; private set; }
 		public LeadoffStatementState LeadoffStatementState { get; private set; }
@@ -17,6 +17,12 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 			ClientGoalsState = new ClientGoalsState();
 			TargetCustomersState = new TargetCustomersState();
 			SimpleSummaryState = new SimpleSummaryState();
+		}
+
+		protected override void AfterCreate()
+		{
+			base.AfterCreate();
+			SimpleSummaryState.AfterCreate();
 		}
 	}
 }

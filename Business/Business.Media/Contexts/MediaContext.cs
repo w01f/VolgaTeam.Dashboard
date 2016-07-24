@@ -18,7 +18,9 @@ namespace Asa.Business.Media.Contexts
 			try
 			{
 				ChangeTracker.DetectChanges();
-				return base.SaveChanges();
+				var result = base.SaveChanges();
+				Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "VACUUM;");
+				return result;
 			}
 			catch (DbEntityValidationException e)
 			{

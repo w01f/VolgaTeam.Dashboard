@@ -452,7 +452,7 @@ namespace Asa.Common.Core.OfficeInterops
 						presentation.Slides[1].Delete();
 					buildPresentation(presentation);
 					MessageFilter.Register();
-					presentation.SaveAs(fileName);
+					presentation.SaveAs(fileName, PpSaveAsFileType.ppSaveAsOpenXMLPresentation, MsoTriState.msoCTrue);
 					if (generateImages)
 					{
 						var destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);

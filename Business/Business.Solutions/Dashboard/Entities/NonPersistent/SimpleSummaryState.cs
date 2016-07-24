@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
@@ -37,6 +38,15 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 			ItemsState = new List<SimpleSummaryItemState>();
 
 			ContractSettings = new ContractSettings();
+		}
+
+		public void AfterCreate()
+		{
+			if (!ItemsState.Any())
+			{
+				ItemsState.Add(new SimpleSummaryItemState { Order = 1 });
+				ItemsState.Add(new SimpleSummaryItemState { Order = 2 });
+			}
 		}
 	}
 }

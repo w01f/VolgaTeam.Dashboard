@@ -64,7 +64,7 @@ namespace Asa.Common.Core.OfficeInterops
 				}
 				Utilities.ActivateForm(handle, true, false);
 				var mi = (MailItem)_outlookObject.CreateItem(OlItemType.olMailItem);
-				mi.Attachments.Add(attachmentPath, OlAttachmentType.olByValue, 1, "Attachment");
+				mi.Attachments.Add(attachmentPath, OlAttachmentType.olByValue, 1, Path.GetFileNameWithoutExtension(attachmentPath));
 				mi.Subject = subject;
 				mi.Display(true);
 				var count = 100000;
@@ -90,7 +90,7 @@ namespace Asa.Common.Core.OfficeInterops
 			{
 				var mi = (MailItem)_outlookObject.CreateItem(OlItemType.olMailItem);
 				foreach (string attachmentPath in attachmentPaths)
-					mi.Attachments.Add(attachmentPath, OlAttachmentType.olByValue, 1, "Attachment");
+					mi.Attachments.Add(attachmentPath, OlAttachmentType.olByValue, 1, Path.GetFileNameWithoutExtension(attachmentPath));
 				mi.Display(true);
 			}
 			catch (Exception e)

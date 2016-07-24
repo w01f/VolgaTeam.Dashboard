@@ -46,29 +46,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			_itemStates.AddRange(itemStates);
 			_itemsCollection.Clear();
 			pnMain.Controls.Clear();
-			if (_itemStates.Any())
+			foreach (var itemState in _itemStates)
 			{
-				foreach (var itemState in _itemStates)
-				{
-					var item = new SimpleSummaryItemControl(this);
-					item.ItemNumber = _itemsCollection.Count() + 1;
-					item.LoadSavedState(itemState);
-					_itemsCollection.Add(item);
-					pnMain.Controls.Add(item);
-				}
+				var item = new SimpleSummaryItemControl(this);
+				item.ItemNumber = _itemsCollection.Count + 1;
+				item.LoadSavedState(itemState);
+				item.Changed += OnItemChanged;
+				_itemsCollection.Add(item);
+				pnMain.Controls.Add(item);
 			}
-			else
-			{
-				var firstItem = new SimpleSummaryItemControl(this);
-				firstItem.ItemNumber = _itemsCollection.Count() + 1;
-				_itemsCollection.Add(firstItem);
-				pnMain.Controls.Add(firstItem);
-				var secondItem = new SimpleSummaryItemControl(this);
-				secondItem.ItemNumber = _itemsCollection.Count() + 1;
-				_itemsCollection.Add(secondItem);
-				pnMain.Controls.Add(secondItem);
-			}
-			_itemsCollection.ForEach(item=>item.Changed+=OnItemChanged);
 			RefreshItems();
 			pnMain.ScrollControlIntoView(_itemsCollection[0]);
 		}
@@ -95,7 +81,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				itemState.Total = item.TotalValue;
 				_itemStates.Add(itemState);
 			}
-			_itemStates.Sort((x,y)=>x.Order.CompareTo(y.Order));
+			_itemStates.Sort((x, y) => x.Order.CompareTo(y.Order));
 			return _itemStates;
 		}
 

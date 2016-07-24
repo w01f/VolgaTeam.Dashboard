@@ -128,7 +128,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public override void ApplyChanges()
 		{
+			SlideContainer.EditedContent.SimpleSummaryState.ItemsState.Clear();
 			SlideContainer.EditedContent.SimpleSummaryState.ItemsState.AddRange(simpleSummaryItemContainer.GetItems());
+
 			SlideContainer.EditedContent.SimpleSummaryState.SlideHeader = comboBoxEditSlideHeader.EditValue?.ToString();
 			SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser = ckAdvertiser.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.Advertiser = comboBoxEditAdvertiser.EditValue?.ToString() ?? string.Empty;

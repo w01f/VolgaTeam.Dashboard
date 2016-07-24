@@ -83,7 +83,10 @@ namespace Asa.Common.GUI.Preview
 				RegistryHelper.MainFormHandle = form.Handle;
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pptx");
+					var emailFile = Path.Combine(
+						Path.GetFullPath(_mergedGroup.PresentationSourcePath)
+							.Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty),
+						form.FileName + ".pptx");
 					try
 					{
 						File.Copy(_mergedGroup.PresentationSourcePath, emailFile, true);
@@ -109,7 +112,10 @@ namespace Asa.Common.GUI.Preview
 				RegistryHelper.MainFormHandle = form.Handle;
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					var emailFile = Path.Combine(Path.GetFullPath(_mergedGroup.PresentationSourcePath).Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), form.FileName + ".pdf");
+					var emailFile = Path.Combine(
+						Path.GetFullPath(_mergedGroup.PresentationSourcePath)
+							.Replace(Path.GetFileName(_mergedGroup.PresentationSourcePath), string.Empty), 
+						form.FileName + ".pdf");
 					try
 					{
 						_powerPointHelper.ConvertToPDF(_mergedGroup.PresentationSourcePath, emailFile);

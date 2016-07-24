@@ -45,17 +45,13 @@ namespace Asa.Common.Core.Objects.Images
 
 		public void Dispose()
 		{
-			if (BigImage != null)
-				BigImage.Dispose();
+			BigImage?.Dispose();
 			BigImage = null;
-			if (SmallImage != null)
-				SmallImage.Dispose();
+			SmallImage?.Dispose();
 			SmallImage = null;
-			if (TinyImage != null)
-				TinyImage.Dispose();
+			TinyImage?.Dispose();
 			TinyImage = null;
-			if (XtraTinyImage != null)
-				XtraTinyImage.Dispose();
+			XtraTinyImage?.Dispose();
 			XtraTinyImage = null;
 		}
 

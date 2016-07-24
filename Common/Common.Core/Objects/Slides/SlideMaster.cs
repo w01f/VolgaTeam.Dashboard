@@ -13,10 +13,12 @@ namespace Asa.Common.Core.Objects.Slides
 		private readonly StorageDirectory _root;
 		private StorageFile _masterFile;
 
+		public Guid Identifier { get; set; }
 		public string Name { get; private set; }
 		public string Group { get; set; }
 		public SlideFormatEnum Format { get; set; }
 		public int Order { get; private set; }
+		public StorageFile LogoFile { get; private set; }
 		public Image Logo { get; private set; }
 		public Image BrowseLogo { get; private set; }
 		public Image RibbonLogo { get; private set; }
@@ -25,6 +27,7 @@ namespace Asa.Common.Core.Objects.Slides
 		public SlideMaster(StorageDirectory root)
 		{
 			_root = root;
+			Identifier = Guid.NewGuid();
 		}
 
 		public void Load()
@@ -38,10 +41,10 @@ namespace Asa.Common.Core.Objects.Slides
 			if (Int32.TryParse(Path.GetFileName(_root.LocalPath), out tempInt))
 				Order = tempInt;
 
-			var logoFile = files.FirstOrDefault(file => file.Extension == ".png" && !file.Name.Contains("_rbn"));
-			if (logoFile != null)
+			LogoFile = files.FirstOrDefault(file => file.Extension == ".png" && !file.Name.Contains("_rbn"));
+			if (LogoFile != null)
 			{
-				Logo = new Bitmap(logoFile.LocalPath);
+				Logo = new Bitmap(LogoFile.LocalPath);
 				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);
 
 				var borderedLogo = Logo.DrawBorder();

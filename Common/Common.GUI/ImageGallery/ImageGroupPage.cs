@@ -29,13 +29,6 @@ namespace Asa.Common.GUI.ImageGallery
 			Init(imageSourceGroup.Images);
 		}
 
-		public ImageGroupPage(IEnumerable<ImageSource> imageSources)
-		{
-			InitializeComponent();
-			_imageSources.AddRange(imageSources);
-			LoadImages();
-		}
-
 		private void Init(IEnumerable<ImageSource> imageSources)
 		{
 			_imageSources.AddRange(imageSources);
@@ -80,7 +73,7 @@ namespace Asa.Common.GUI.ImageGallery
 		private void imageListView_ItemHover(object sender, ItemHoverEventArgs e)
 		{
 			toolTip.RemoveAll();
-			var sourceItem = e.Item != null ? e.Item.Tag as ImageSource : null;
+			var sourceItem = e.Item?.Tag as ImageSource;
 			if (sourceItem == null) return;
 			var toolTipText = Path.GetFileName(sourceItem.FileName);
 			toolTip.SetToolTip(imageListView, toolTipText);

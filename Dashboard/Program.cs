@@ -13,7 +13,7 @@ namespace Asa.Dashboard
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		private static void Main(string[] args)
+		private static void Main()
 		{
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\NewBizWizApplication";
@@ -21,7 +21,6 @@ namespace Asa.Dashboard
 			if (firstInstance)
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
-				RegistryHelper.MaximizeMainForm = false;
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				AppManager.Instance.RunForm();

@@ -73,7 +73,6 @@ namespace Asa.SlideTemplateViewer
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			Utilities.ActivatePowerPoint(SlideTemplateViewerPowerPointHelper.Instance.PowerPointObject);
-			RegistryHelper.MainFormHandle = Handle;
 			AppManager.Instance.ActivateMainForm();
 		}
 

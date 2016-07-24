@@ -163,15 +163,12 @@ namespace Asa.SlideTemplateViewer
 
 		public void ActivateMainForm()
 		{
-			var mainFormHandle = RegistryHelper.MainFormHandle;
-			if (mainFormHandle.ToInt32() == 0)
+			IntPtr mainFormHandle = IntPtr.Zero;
+			var processList = Process.GetProcesses();
+			foreach (var process in processList.Where(x => x.ProcessName.ToLower().Contains("add slides")).Where(process => process.MainWindowHandle.ToInt32() != 0))
 			{
-				var processList = Process.GetProcesses();
-				foreach (var process in processList.Where(x => x.ProcessName.ToLower().Contains("add slides")).Where(process => process.MainWindowHandle.ToInt32() != 0))
-				{
-					mainFormHandle = process.MainWindowHandle;
-					break;
-				}
+				mainFormHandle = process.MainWindowHandle;
+				break;
 			}
 			Utilities.ActivateForm(mainFormHandle, RegistryHelper.MaximizeMainForm, false);
 		}
@@ -189,7 +186,7 @@ namespace Asa.SlideTemplateViewer
 		{
 			ShowFloater(null, new FloaterRequestedEventArgs
 			{
-				Logo =Resources.AddSlidesLogo,
+				Logo = Resources.AddSlidesLogo,
 				AfterShow = afterShow
 			});
 		}

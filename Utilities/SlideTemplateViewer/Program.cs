@@ -14,7 +14,7 @@ namespace Asa.SlideTemplateViewer
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		private static void Main(string[] args)
+		private static void Main()
 		{
 			bool firstInstance;
 			const string uniqueIdentifier = "Local\\AddSlidesApplication";
@@ -23,7 +23,6 @@ namespace Asa.SlideTemplateViewer
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;
 
-				RegistryHelper.MaximizeMainForm = false;
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				AppManager.Instance.RunForm();

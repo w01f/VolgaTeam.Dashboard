@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoverControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.checkEditPresentationDate = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
 			this.comboBoxEditAdvertiser = new Asa.Common.GUI.Common.ComboBoxListEdit();
@@ -48,6 +48,8 @@
 			this.laSalesRepEmail = new System.Windows.Forms.Label();
 			this.laSalesQuotesHint = new System.Windows.Forms.Label();
 			this.laSalesRepPhone = new System.Windows.Forms.Label();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.checkEditAddAsPageOne = new DevExpress.XtraEditors.CheckEdit();
 			this.pnMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
@@ -66,6 +68,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbAdvertiser)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSalesRep.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSalesRep.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -102,6 +106,12 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			// 
+			// pnTop
+			// 
+			this.pnTop.Controls.Add(this.checkEditAddAsPageOne);
+			this.pnTop.Controls.SetChildIndex(this.comboBoxEditSlideHeader, 0);
+			this.pnTop.Controls.SetChildIndex(this.checkEditAddAsPageOne, 0);
 			// 
 			// checkEditPresentationDate
 			// 
@@ -275,7 +285,7 @@
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -392,6 +402,33 @@
 			this.laSalesRepPhone.TabIndex = 102;
 			this.laSalesRepPhone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
+			// checkEditAddAsPageOne
+			// 
+			this.checkEditAddAsPageOne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditAddAsPageOne.Location = new System.Drawing.Point(808, 15);
+			this.checkEditAddAsPageOne.Name = "checkEditAddAsPageOne";
+			this.checkEditAddAsPageOne.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditAddAsPageOne.Properties.Caption = "<color=gray>Always Output to Page 1</color>";
+			this.checkEditAddAsPageOne.Size = new System.Drawing.Size(186, 20);
+			this.checkEditAddAsPageOne.StyleController = this.styleController;
+			this.checkEditAddAsPageOne.TabIndex = 29;
+			this.checkEditAddAsPageOne.CheckedChanged += new System.EventHandler(this.EditValueChanged);
+			// 
 			// CoverControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -414,6 +451,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbAdvertiser)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSalesRep.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSalesRep.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -438,5 +477,7 @@
 		private System.Windows.Forms.Label laSalesRepEmail;
 		private System.Windows.Forms.Label laSalesQuotesHint;
 		private System.Windows.Forms.Label laSalesRepPhone;
+		private DevExpress.XtraEditors.StyleController styleController;
+		private DevExpress.XtraEditors.CheckEdit checkEditAddAsPageOne;
 	}
 }

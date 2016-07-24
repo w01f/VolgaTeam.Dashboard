@@ -331,6 +331,12 @@
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryProductItemControl.Designer.cs">
       <DependentUpon>SectionSummaryProductItemControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.Designer.cs">
+      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Output\ISectionOutputControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionEditorType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormFlexFlightDatesWarning.cs">
@@ -344,12 +350,6 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.Designer.cs">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.Designer.cs">
-      <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.cs">

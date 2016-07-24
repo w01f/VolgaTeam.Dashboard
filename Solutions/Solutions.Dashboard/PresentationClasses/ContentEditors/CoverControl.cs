@@ -32,6 +32,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			Text = SlideName;
 			if ((CreateGraphics()).DpiX > 96)
 			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+
 				laAdvertiser.Font = new Font(laAdvertiser.Font.FontFamily, laAdvertiser.Font.Size - 2, laAdvertiser.Font.Style);
 				laDecisionMaker.Font = new Font(laDecisionMaker.Font.FontFamily, laDecisionMaker.Font.Size - 2, laDecisionMaker.Font.Style);
 				checkEditPresentationDate.Font = new Font(checkEditPresentationDate.Font.FontFamily, checkEditPresentationDate.Font.Size - 2, checkEditPresentationDate.Font.Style);
@@ -83,6 +92,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			checkEditSalesRep.Checked = !String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.SalesRep);
 			comboBoxEditSalesRep.Enabled = checkEditSalesRep.Checked;
 			comboBoxEditSalesRep.EditValue = SlideContainer.EditedContent.CoverState.SalesRep;
+			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
 
 			if (SlideContainer.EditedContent.CoverState.Quote.IsSet)
 			{
@@ -118,6 +128,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.CoverState.Advertiser = comboBoxEditAdvertiser.EditValue as String;
 			SlideContainer.EditedContent.CoverState.DecisionMaker = comboBoxEditDecisionMaker.EditValue as String;
 			SlideContainer.EditedContent.CoverState.SalesRep = comboBoxEditSalesRep.EditValue as String;
+			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
 
 			Business.Common.Dictionaries.ListManager.Instance.Advertisers.Add(Advertiser);
 			Business.Common.Dictionaries.ListManager.Instance.Advertisers.Save();
@@ -215,6 +226,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 					(userName ?? String.Empty);
 			}
 		}
+
+		public bool AddAsPageOne => checkEditAddAsPageOne.Checked;
 
 		public string PresentationDate => dateEditPresentationDate.EditValue != null ? dateEditPresentationDate.DateTime.ToString("MMMM d, yyyy") : String.Empty;
 

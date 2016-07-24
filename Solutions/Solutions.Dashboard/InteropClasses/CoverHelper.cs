@@ -53,7 +53,7 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 					var selectedTheme = outputData.SelectedTheme;
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.GetThemePath());
-					AppendSlide(presentation, -1, destinationPresentation);
+					AppendSlide(presentation, -1, destinationPresentation, outputData.AddAsPageOne);
 					presentation.Close();
 				});
 				thread.Start();

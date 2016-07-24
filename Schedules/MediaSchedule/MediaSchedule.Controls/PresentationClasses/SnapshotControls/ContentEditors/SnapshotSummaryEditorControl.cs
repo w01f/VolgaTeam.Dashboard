@@ -167,7 +167,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		#endregion
 
 		#region Output
-		public string OutputName => "Summary";
+		public string OutputName => String.Format("Summary ({0})", MediaMetaData.Instance.DataTypeString);
 
 		public SlideType SlideType => MediaMetaData.Instance.DataType == MediaDataType.TVSchedule
 			? SlideType.TVSnapshotSummary

@@ -1,4 +1,6 @@
-﻿namespace Asa.Solutions.Dashboard.PresentationClasses.Output
+﻿using System;
+
+namespace Asa.Solutions.Dashboard.PresentationClasses.Output
 {
 	public interface ICoverOutputData : IDashboardOutputData
 	{
@@ -8,5 +10,6 @@
 		string Advertiser { get; }
 		string Quote { get; }
 		string SalesRep { get; }
+		bool AddAsPageOne { get; }
 	}
 }

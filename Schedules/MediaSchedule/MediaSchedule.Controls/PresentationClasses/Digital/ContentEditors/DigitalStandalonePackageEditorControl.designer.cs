@@ -357,7 +357,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.repositoryItemComboBoxLocation.Name = "repositoryItemComboBoxLocation";
 			this.repositoryItemComboBoxLocation.NullText = "(campaign)";
-			this.repositoryItemComboBoxLocation.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			// 
 			// gridBandInfo
 			// 

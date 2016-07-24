@@ -190,7 +190,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			SlideType.TVOptionstSummary :
 			SlideType.RadioOptionstSummary;
 		private Theme SelectedTheme => BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType)));
-		public string OutputName => "Summary";
+		public string OutputName => String.Format("Summary ({0})", MediaMetaData.Instance.DataTypeString);
 		public string TemplateFilePath => BusinessObjects.Instance.OutputManager.GetOptionsSummaryFile(
 			MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
 			GetColumnInfo().Count());

@@ -98,6 +98,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				advBandedGridView.Appearance.Row.Font = font;
 				advBandedGridView.Appearance.SelectedRow.Font = font;
 			}
+
+			if (Business.Media.Configuration.ResourceManager.Instance.DigitalStandalonePackageNoRecordsLogoFile.ExistsLocal())
+				pbNoRecords.Image =
+					Image.FromFile(Business.Media.Configuration.ResourceManager.Instance.DigitalStandalonePackageNoRecordsLogoFile.LocalPath);
 		}
 
 		public void LoadData()
@@ -286,7 +290,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private void InitDargDropHelper()
 		{
 			if (_dragDropHelper != null || !PackageRecords.Any()) return;
-			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
+			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true, handledColumns: new[] { bandedGridColumnId });
 			_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
 		}
 

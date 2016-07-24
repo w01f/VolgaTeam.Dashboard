@@ -80,6 +80,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			Controller.Instance.OptionsProgramAdd.Click += OnAddItem;
 			Controller.Instance.OptionsProgramDelete.Click += OnDeleteItem;
 
+			if (ResourceManager.Instance.OptionsNoRecordsLogoFile.ExistsLocal())
+				pbNoRecords.Image = Image.FromFile(ResourceManager.Instance.OptionsNoRecordsLogoFile.LocalPath);
+
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,

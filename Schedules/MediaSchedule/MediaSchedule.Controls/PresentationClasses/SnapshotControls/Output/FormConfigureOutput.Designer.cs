@@ -145,7 +145,7 @@
 			this.Name = "FormConfigureOutput";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Select Snapshots";
+			this.Text = "Slide Output Options";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
 			this.ResumeLayout(false);
 

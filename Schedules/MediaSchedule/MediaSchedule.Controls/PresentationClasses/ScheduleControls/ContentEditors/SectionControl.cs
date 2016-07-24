@@ -82,6 +82,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			repositoryItemSpinEditRating.EnableSelectAll();
 			repositoryItemSpinEditSpot.EnableSelectAll();
 
+			if (ResourceManager.Instance.ProgramScheduleNoProgramsLogoFile.ExistsLocal())
+				pbNoPrograms.Image = Image.FromFile(ResourceManager.Instance.ProgramScheduleNoProgramsLogoFile.LocalPath);
+
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laProgramSourceInfo.Font = new Font(laProgramSourceInfo.Font.FontFamily, laProgramSourceInfo.Font.Size - 2, laProgramSourceInfo.Font.Style);
@@ -244,7 +247,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void UpdateSpotsByQuarter()
 		{
-			if (_selectedQuarter!= null && _selectedQuarter.DateAnchor == _sectionContainer.SectionData.Parent.SelectedQuarter)
+			if (_selectedQuarter != null && _selectedQuarter.DateAnchor == _sectionContainer.SectionData.Parent.SelectedQuarter)
 				return;
 
 			_selectedQuarter = _sectionContainer.SectionData.ParentScheduleSettings.Quarters.FirstOrDefault(
@@ -314,7 +317,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			advBandedGridViewSchedule.EndUpdate();
 			if (_dragDropHelper == null && _sectionContainer.SectionData.Programs.Any())
 			{
-				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, 40);
+				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, 40, handledColumns: new[] { bandedGridColumnIndex, bandedGridColumnLogoImage });
 				_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
 			}
 			if (focussedRow >= 0 && focussedRow < advBandedGridViewSchedule.RowCount)
@@ -681,7 +684,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType)));
 			}
 		}
-	
+
 		public IEnumerable<ProgramScheduleOutputModel> PrepareOutput(bool includeDigital)
 		{
 			var outputPages = new List<ProgramScheduleOutputModel>();

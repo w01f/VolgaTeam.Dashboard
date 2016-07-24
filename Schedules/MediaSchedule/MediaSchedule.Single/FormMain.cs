@@ -85,6 +85,30 @@ namespace Asa.Media.Single
 			if (ResourceManager.Instance.MainAppIconFile.ExistsLocal())
 				Icon = new Icon(ResourceManager.Instance.MainAppIconFile.LocalPath);
 
+			if (ResourceManager.Instance.ProgramScheduleRibbonLogoFile.ExistsLocal())
+			{
+				buttonItemProgramScheduleNew.Image =
+					Image.FromFile(ResourceManager.Instance.ProgramScheduleRibbonLogoFile.LocalPath);
+				ribbonBarProgramScheduleNew.RecalcLayout();
+				ribbonPanelProgramSchedule.PerformLayout();
+			}
+
+			if (ResourceManager.Instance.SnapshotsRibbonLogoFile.ExistsLocal())
+			{
+				buttonItemSnapshotNew.Image =
+					Image.FromFile(ResourceManager.Instance.SnapshotsRibbonLogoFile.LocalPath);
+				ribbonBarSnapshotNew.RecalcLayout();
+				ribbonPanelSnapshot.PerformLayout();
+			}
+
+			if (ResourceManager.Instance.OptionsRibbonLogoFile.ExistsLocal())
+			{
+				buttonItemOptionsNew.Image =
+					Image.FromFile(ResourceManager.Instance.OptionsRibbonLogoFile.LocalPath);
+				ribbonBarOptionsNew.RecalcLayout();
+				ribbonPanelOptions.PerformLayout();
+			}
+
 			if (ResourceManager.Instance.DigitalProductsRibbonLogoFile.ExistsLocal())
 				buttonItemDigitalScheduleLogo.Image =
 					Image.FromFile(ResourceManager.Instance.DigitalProductsRibbonLogoFile.LocalPath);

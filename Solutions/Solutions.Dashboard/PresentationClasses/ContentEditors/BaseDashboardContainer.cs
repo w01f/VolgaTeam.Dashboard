@@ -115,7 +115,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			var selectedSlides = new List<IDashboardSlide>();
 			using (var form = new FormSelectOutputItems())
 			{
-				form.Text = "Select Slides";
+				form.Text = "Slide Output Options";
 				foreach (var slideControl in _slides.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>())
 				{
 					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -35,6 +36,9 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		{
 			base.InitControl();
 			ResetButton.Click += OnCalendarResetClick;
+
+			if (ResourceManager.Instance.CalendarNoDataLogoFile.ExistsLocal())
+				pictureBoxNoData.Image = Image.FromFile(ResourceManager.Instance.CalendarNoDataLogoFile.LocalPath);
 		}
 
 		protected override void UpdateEditedContet()

@@ -537,7 +537,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 
 		#endregion
 
-		private System.Windows.Forms.PictureBox pbNoProducts;
+		protected System.Windows.Forms.PictureBox pbNoProducts;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView advBandedGridView;

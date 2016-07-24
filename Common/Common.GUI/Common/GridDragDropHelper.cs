@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
@@ -19,15 +22,18 @@ namespace Asa.Common.GUI.Common
 		private int _dropTargetRowHandle = -1;
 		private readonly int _rowVerticalOffset;
 		private readonly bool _underlineHoverRow;
+		private readonly List<GridColumn> _handledColumns = new List<GridColumn>();
 
 		public event DragEventHandler AfterDrop;
 
-		public GridDragDropHelper(GridView view, bool underlineHoverRow, int rowVerticalOffset = 0)
+		public GridDragDropHelper(GridView view, bool underlineHoverRow, int rowVerticalOffset = 0, GridColumn[] handledColumns = null)
 			: base(view)
 		{
 			_view = view;
 			_rowVerticalOffset = rowVerticalOffset;
 			_underlineHoverRow = underlineHoverRow;
+			if (handledColumns != null)
+				_handledColumns.AddRange(handledColumns);
 			SubscribeEvents(view);
 		}
 
@@ -130,8 +136,7 @@ namespace Asa.Common.GUI.Common
 
 			if (dragRect.Contains(point)) return;
 			_dragRowCursor = GetDragCursor(_downHitInfo.RowHandle, point);
-			if (_view != null)
-				_view.GridControl.DoDragDrop(_downHitInfo, DragDropEffects.All);
+			_view?.GridControl.DoDragDrop(_downHitInfo, DragDropEffects.All);
 			_downHitInfo = null;
 		}
 
@@ -144,7 +149,10 @@ namespace Asa.Common.GUI.Common
 			var hitInfo = view.CalcHitInfo(new Point(e.X, e.Y));
 			if (Control.ModifierKeys != Keys.None)
 				return;
-			if (e.Button == MouseButtons.Left && (hitInfo.InRow || hitInfo.InRowCell) && hitInfo.RowHandle != GridControl.NewItemRowHandle)
+			if (e.Button == MouseButtons.Left &&
+				(hitInfo.InRow || hitInfo.InRowCell) &&
+				hitInfo.RowHandle != GridControl.NewItemRowHandle &&
+				(!_handledColumns.Any() || _handledColumns.Any(hc => hc == hitInfo.Column)))
 				_downHitInfo = hitInfo;
 		}
 

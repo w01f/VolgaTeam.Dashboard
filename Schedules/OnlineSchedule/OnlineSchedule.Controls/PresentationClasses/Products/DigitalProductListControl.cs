@@ -93,7 +93,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 			if (_dragDropHelper == null)
 			{
-				_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
+				_dragDropHelper = new GridDragDropHelper(advBandedGridView, true, handledColumns: new[] { gridColumnPosition });
 				_dragDropHelper.AfterDrop += DigitalProductsAfterDrop;
 			}
 		}

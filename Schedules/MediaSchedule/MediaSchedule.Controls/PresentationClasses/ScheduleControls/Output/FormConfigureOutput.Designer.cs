@@ -68,8 +68,7 @@
 			this.treeView.BackColor = System.Drawing.Color.White;
 			this.treeView.CausesValidation = false;
 			this.treeView.CheckBoxes = true;
-			this.treeView.ForeColor = System.Drawing.Color.Black;
-			this.treeView.ItemHeight = 30;
+			this.treeView.ItemHeight = 40;
 			this.treeView.Location = new System.Drawing.Point(14, 53);
 			this.treeView.Name = "treeView";
 			this.treeView.ShowLines = false;
@@ -129,7 +128,7 @@
 			this.Name = "FormConfigureOutput";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Select Schedules";
+			this.Text = "Slide Output Options";
 			this.ResumeLayout(false);
 
         }

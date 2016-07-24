@@ -30,7 +30,7 @@
         {
 			this.buttonXContinue = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
-			this.treeView = new Common.GUI.Common.NoDoubleClickTreeView();
+			this.treeView = new Asa.Common.GUI.Common.NoDoubleClickTreeView();
 			this.buttonXSelectNone = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSelectCurrent = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSelectAll = new DevComponents.DotNetBar.ButtonX();
@@ -145,7 +145,7 @@
 			this.Name = "FormConfigureOutput";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Select Options";
+			this.Text = "Slide Output Options";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
 			this.ResumeLayout(false);
 

@@ -73,6 +73,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			repositoryItemComboBoxLengths.Items.AddRange(MediaMetaData.Instance.ListManager.Lengths);
 			repositoryItemComboBoxTimes.Items.Clear();
 			repositoryItemComboBoxTimes.Items.AddRange(MediaMetaData.Instance.ListManager.Times);
+
+			if (ResourceManager.Instance.SnapshotsNoProgramsLogoFile.ExistsLocal())
+				pbNoPrograms.Image = Image.FromFile(ResourceManager.Instance.SnapshotsNoProgramsLogoFile.LocalPath);
 		}
 
 		public void LoadData(Snapshot data)
@@ -296,7 +299,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		private void InitDargDropHelper()
 		{
 			if (_dragDropHelper != null || !_data.Programs.Any()) return;
-			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
+			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true, handledColumns: new[] { bandedGridColumnIndex, bandedGridColumnLogo });
 			_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
 		}
 

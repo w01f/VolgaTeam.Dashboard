@@ -80,6 +80,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			Controller.Instance.SnapshotProgramAdd.Click += OnAddItem;
 			Controller.Instance.SnapshotProgramDelete.Click += OnDeleteItem;
 
+			if (ResourceManager.Instance.SnapshotsNoRecordsLogoFile.ExistsLocal())
+				pbNoRecords.Image = Image.FromFile(ResourceManager.Instance.SnapshotsNoRecordsLogoFile.LocalPath);
+
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,

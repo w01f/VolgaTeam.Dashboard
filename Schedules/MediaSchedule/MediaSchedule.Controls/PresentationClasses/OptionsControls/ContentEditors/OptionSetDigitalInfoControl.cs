@@ -39,6 +39,13 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		#endregion
 
 		#region Common Methods
+		public override void InitControls()
+		{
+			base.InitControls();
+			if (ResourceManager.Instance.OptionsNoDigitalItemsLogoFile.ExistsLocal())
+				pbNoProducts.Image = System.Drawing.Image.FromFile(ResourceManager.Instance.OptionsNoDigitalItemsLogoFile.LocalPath);
+		}
+
 		public override void Release()
 		{
 			base.Release();

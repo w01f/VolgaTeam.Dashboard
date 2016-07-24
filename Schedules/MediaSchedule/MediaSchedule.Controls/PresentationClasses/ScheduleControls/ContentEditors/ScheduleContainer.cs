@@ -90,6 +90,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				laAgencyDiscountValue.Font = font;
 			}
 
+			if (ResourceManager.Instance.ProgramScheduleNoRecordsLogoFile.ExistsLocal())
+				pbNoSections.Image = Image.FromFile(ResourceManager.Instance.ProgramScheduleNoRecordsLogoFile.LocalPath);
+
 			settingsContainer.InitControl();
 			settingsContainer.SettingsChanged += OnSectionSettingsChanged;
 			settingsContainer.SettingsControlsUpdated += OnSettingsControlsUpdated;

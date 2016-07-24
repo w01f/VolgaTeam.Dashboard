@@ -41,6 +41,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Common Methods
+		public override void InitControls()
+		{
+			base.InitControls();
+			if (ResourceManager.Instance.ProgramScheduleNoDigitalItemsLogoFile.ExistsLocal())
+				pbNoProducts.Image = System.Drawing.Image.FromFile(ResourceManager.Instance.ProgramScheduleNoDigitalItemsLogoFile.LocalPath);
+		}
 
 		public override void Release()
 		{

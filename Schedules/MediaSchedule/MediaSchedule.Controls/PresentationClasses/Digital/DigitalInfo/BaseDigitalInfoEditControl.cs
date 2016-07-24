@@ -53,7 +53,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			pnNoProducts.Dock = DockStyle.Fill;
 		}
 
-		public void InitControls()
+		public virtual void InitControls()
 		{
 			bandedGridColumnCategory.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsCategoryTitle ?? bandedGridColumnCategory.Caption;
 			bandedGridColumnGroup.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsSubCategoryTitle ?? bandedGridColumnGroup.Caption;
@@ -198,7 +198,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		private void InitDargDropHelper()
 		{
 			if (_dragDropHelper != null || !_digitalInfo.Records.Any()) return;
-			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true);
+			_dragDropHelper = new GridDragDropHelper(advBandedGridView, true, handledColumns: new[] { bandedGridColumnId, bandedGridColumnLogo });
 			_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
 		}
 		#endregion

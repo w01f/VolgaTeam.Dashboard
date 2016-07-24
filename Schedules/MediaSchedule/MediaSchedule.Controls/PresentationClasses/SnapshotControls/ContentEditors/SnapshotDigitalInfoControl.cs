@@ -39,6 +39,13 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		#endregion
 
 		#region Common Methods
+		public override void InitControls()
+		{
+			base.InitControls();
+			if (ResourceManager.Instance.SnapshotsNoDigitalItemsLogoFile.ExistsLocal())
+				pbNoProducts.Image = System.Drawing.Image.FromFile(ResourceManager.Instance.SnapshotsNoDigitalItemsLogoFile.LocalPath);
+		}
+
 		public override void Release()
 		{
 			base.Release();

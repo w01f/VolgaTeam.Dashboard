@@ -12,10 +12,7 @@ namespace Asa.Bar.App.BarItems
 	{
 		private StorageFile _file;
 
-		protected override LinkType Type
-		{
-			get { return LinkType.SyncFile; }
-		}
+		protected override LinkType Type => LinkType.SyncFile;
 
 		public SyncFileShortcut(string configPath) : base(configPath) { }
 

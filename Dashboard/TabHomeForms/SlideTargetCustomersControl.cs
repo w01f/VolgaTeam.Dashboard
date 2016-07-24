@@ -52,25 +52,13 @@ namespace Asa.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
-		public override string SlideName
-		{
-			get { return "Target Audience"; }
-		}
+		public override string SlideName => "Target Audience";
 
-		public override SuperTooltipInfo TooltipLoad
-		{
-			get { return _toolTipLoad; }
-		}
+		public override SuperTooltipInfo TooltipLoad => _toolTipLoad;
 
-		public override SuperTooltipInfo TooltipHelp
-		{
-			get { return _toolTipHelp; }
-		}
+		public override SuperTooltipInfo TooltipHelp => _toolTipHelp;
 
-		public override ButtonItem ThemeButton
-		{
-			get { return FormMain.Instance.buttonItemHomeThemeTargetCustomers; }
-		}
+		public override ButtonItem ThemeButton => FormMain.Instance.buttonItemHomeThemeTargetCustomers;
 
 		private void LoadSavedState()
 		{
@@ -155,10 +143,7 @@ namespace Asa.Dashboard.TabHomeForms
 		}
 
 		#region Output Staff
-		public string Title
-		{
-			get { return comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString(); }
-		}
+		public string Title => comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString();
 
 		public string TargetDemo
 		{

@@ -8,10 +8,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 {
 	public class CalendarMondayBased : CalendarContent<ISchedule<BaseScheduleSettings>, BaseScheduleSettings>
 	{
-		public override bool AllowCustomNotes
-		{
-			get { return true; }
-		}
+		public override bool AllowCustomNotes => true;
 
 		public override void UpdateDaysCollection()
 		{

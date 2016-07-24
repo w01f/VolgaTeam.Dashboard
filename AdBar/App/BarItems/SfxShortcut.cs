@@ -10,10 +10,7 @@ namespace Asa.Bar.App.BarItems
 	{
 		private string _sfxFilePath;
 
-		protected override LinkType Type
-		{
-			get { return LinkType.Sfx; }
-		}
+		protected override LinkType Type => LinkType.Sfx;
 
 		public SfxShortcut(string configPath) : base(configPath) { }
 

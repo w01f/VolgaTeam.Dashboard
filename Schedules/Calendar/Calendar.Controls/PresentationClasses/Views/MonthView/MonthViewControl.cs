@@ -27,10 +27,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		public CopyPasteManager CopyPasteManager { get; private set; }
 
 		public bool SettingsNotSaved { get; set; }
-		public string Title
-		{
-			get { return "Calendar"; }
-		}
+		public string Title => "Calendar";
 		public event EventHandler<EventArgs> DataSaved;
 		#endregion
 

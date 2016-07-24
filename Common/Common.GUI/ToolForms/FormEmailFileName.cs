@@ -9,14 +9,6 @@ namespace Asa.Common.GUI.ToolForms
 			InitializeComponent();
 		}
 
-		public string FileName
-		{
-			get
-			{
-				if (textEditFileName.EditValue != null)
-					return textEditFileName.EditValue.ToString();
-				return null;
-			}
-		}
+		public string FileName => textEditFileName.EditValue?.ToString();
 	}
 }

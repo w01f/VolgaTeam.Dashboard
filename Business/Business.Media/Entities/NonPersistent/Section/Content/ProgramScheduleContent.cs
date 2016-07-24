@@ -30,22 +30,16 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 		{
 			get { return Sections.Sum(s => s.TotalGRP); }
 		}
-		public double AvgRate
-		{
-			get { return TotalSpots != 0 ? (TotalCost / TotalSpots) : 0; }
-		}
+		public double AvgRate => TotalSpots != 0 ? (TotalCost / TotalSpots) : 0;
+
 		public double TotalCost
 		{
 			get { return Sections.Sum(s => s.TotalCost); }
 		}
-		public double NetRate
-		{
-			get { return TotalCost - Discount; }
-		}
-		public double Discount
-		{
-			get { return TotalCost * 0.15; }
-		}
+		public double NetRate => TotalCost - Discount;
+
+		public double Discount => TotalCost * 0.15;
+
 		public int TotalSpots
 		{
 			get { return Sections.Sum(s => s.TotalSpots); }

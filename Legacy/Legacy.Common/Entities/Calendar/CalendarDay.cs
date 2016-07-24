@@ -18,10 +18,7 @@ namespace Asa.Legacy.Common.Entities.Calendar
 		public bool HasNotes { get; set; }
 		public bool EditedByUser { get; private set; }
 		public ImageSource Logo { get; set; }
-		public virtual string ImportedData
-		{
-			get { return String.Empty; }
-		}
+		public virtual string ImportedData => String.Empty;
 
 		public string Comment
 		{

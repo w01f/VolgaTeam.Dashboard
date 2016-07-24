@@ -317,13 +317,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public mcItemAlign Align
-		{
-			get
-			{
-				return this.m_align; 
-			}
-		}
+		public mcItemAlign Align => this.m_align;
 
 		#endregion
 	}

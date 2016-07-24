@@ -20,10 +20,7 @@ namespace AdSalesBrowser.PowerPoint
 		public Presentation SlideSourcePresentation { get; private set; }
 		public SlideShowWindow SlideShowWindow { get; private set; }
 
-		public IntPtr WindowHandle
-		{
-			get { return PowerPointObject != null ? new IntPtr(PowerPointObject.HWND) : IntPtr.Zero; }
-		}
+		public IntPtr WindowHandle => PowerPointObject != null ? new IntPtr(PowerPointObject.HWND) : IntPtr.Zero;
 
 		public bool IsLinkedWithApplication
 		{

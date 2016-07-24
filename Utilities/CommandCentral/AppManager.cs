@@ -17,15 +17,9 @@ namespace CommandCentral
         {
         }
 
-        public static AppManager Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
+        public static AppManager Instance => _instance;
 
-        public void Run()
+	    public void Run()
         {
             Application.Run(FormMain.Instance);
         }

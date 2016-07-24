@@ -16,10 +16,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		public bool HasNotes { get; set; }
 		public bool EditedByUser { get; private set; }
 		public ImageSource Logo { get; set; }
-		public virtual string ImportedData
-		{
-			get { return String.Empty; }
-		}
+		public virtual string ImportedData => String.Empty;
 
 		[JsonIgnore]
 		public string Comment
@@ -54,10 +51,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 			}
 		}
 
-		public bool ContainsData
-		{
-			get { return !string.IsNullOrEmpty(Summary) || Logo.ContainsData; }
-		}
+		public bool ContainsData => !string.IsNullOrEmpty(Summary) || Logo.ContainsData;
 
 		public abstract int WeekDayIndex { get; }
 

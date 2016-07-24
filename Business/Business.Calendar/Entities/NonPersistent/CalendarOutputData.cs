@@ -42,20 +42,11 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		#endregion
 
 		#region Calculated Options
-		public string SlideTitle
-		{
-			get { return ShowHeader ? Header : string.Empty; }
-		}
+		public string SlideTitle => ShowHeader ? Header : string.Empty;
 
-		public string BusinessName
-		{
-			get { return !ShowBusinessName ? string.Empty : Parent.Parent.Settings.BusinessName; }
-		}
+		public string BusinessName => !ShowBusinessName ? string.Empty : Parent.Parent.Settings.BusinessName;
 
-		public string DecisionMaker
-		{
-			get { return !ShowDecisionMaker ? string.Empty : Parent.Parent.Settings.DecisionMaker; }
-		}
+		public string DecisionMaker => !ShowDecisionMaker ? string.Empty : Parent.Parent.Settings.DecisionMaker;
 
 		public int SlideRGB
 		{
@@ -103,10 +94,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 			}
 		}
 
-		public string MonthText
-		{
-			get { return Parent.Date.ToString("MMMM yyyy"); }
-		}
+		public string MonthText => Parent.Date.ToString("MMMM yyyy");
 
 		public string Comments
 		{
@@ -124,35 +112,18 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 			get { return Parent.Days.Select(x => x.Summary).ToArray(); }
 		}
 
-		public List<ImageSource> DayLogoPaths
-		{
-			get { return _dayLogosPaths; }
-		}
+		public List<ImageSource> DayLogoPaths => _dayLogosPaths;
 
-		public float FontSize
-		{
-			get { return 7; }
-		}
+		public float FontSize => 7;
 
-		public virtual string TagA
-		{
-			get { return String.Empty; }
-		}
+		public virtual string TagA => String.Empty;
 
-		public virtual string TagB
-		{
-			get { return String.Empty; }
-		}
+		public virtual string TagB => String.Empty;
 
-		public virtual string TagC
-		{
-			get { return String.Empty; }
-		}
+		public virtual string TagC => String.Empty;
 
-		public virtual string TagD
-		{
-			get { return String.Empty; }
-		}
+		public virtual string TagD => String.Empty;
+
 		#endregion
 
 		[JsonConstructor]

@@ -23,10 +23,7 @@ namespace Asa.Bar.App.BarItems
 		public string Password { get; private set; }
 		public bool UserGranted { get; private set; }
 
-		private bool SplashEnabled
-		{
-			get { return !String.IsNullOrEmpty(_splashText); }
-		}
+		private bool SplashEnabled => !String.IsNullOrEmpty(_splashText);
 
 		protected TabGroupItem(string configPath)
 		{

@@ -14,10 +14,7 @@ namespace Asa.Common.Core.Objects.Images
 		public string Name { get; set; }
 		public int Order { get; set; }
 
-		public bool IsDefault
-		{
-			get { return Order < 0; }
-		}
+		public bool IsDefault => Order < 0;
 
 		public List<ImageSource> Images { get; private set; }
 

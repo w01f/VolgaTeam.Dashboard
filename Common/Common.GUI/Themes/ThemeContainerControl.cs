@@ -15,10 +15,7 @@ namespace Asa.Common.GUI.Themes
 		private readonly List<Theme> _themes = new List<Theme>();
 		public event EventHandler<ThemeEventArgs> ThemeChanged;
 		public event EventHandler<ThemeEventArgs> ThemeSelected;
-		public Theme SelectedTheme
-		{
-			get { return layoutViewThemes.GetFocusedRow() as Theme; }
-		}
+		public Theme SelectedTheme => layoutViewThemes.GetFocusedRow() as Theme;
 
 		public ThemeContainerControl()
 		{

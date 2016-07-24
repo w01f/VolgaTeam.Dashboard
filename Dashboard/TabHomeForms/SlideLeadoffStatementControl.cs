@@ -56,25 +56,13 @@ namespace Asa.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
-		public override string SlideName
-		{
-			get { return "Introduction"; }
-		}
+		public override string SlideName => "Introduction";
 
-		public override SuperTooltipInfo TooltipLoad
-		{
-			get { return _toolTipLoad; }
-		}
+		public override SuperTooltipInfo TooltipLoad => _toolTipLoad;
 
-		public override SuperTooltipInfo TooltipHelp
-		{
-			get { return _toolTipHelp; }
-		}
+		public override SuperTooltipInfo TooltipHelp => _toolTipHelp;
 
-		public override ButtonItem ThemeButton
-		{
-			get { return FormMain.Instance.buttonItemHomeThemeLeadoff; }
-		}
+		public override ButtonItem ThemeButton => FormMain.Instance.buttonItemHomeThemeLeadoff;
 
 		private void UpdateEditState()
 		{
@@ -170,10 +158,7 @@ namespace Asa.Dashboard.TabHomeForms
 			}
 		}
 
-		public string Title
-		{
-			get { return comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString(); }
-		}
+		public string Title => comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString();
 
 		public string[] SelectedStatements
 		{

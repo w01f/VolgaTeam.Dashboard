@@ -10,10 +10,7 @@ namespace Asa.Common.Core.Objects.Output
 		public bool ShowDisclaimer { get; set; }
 		public DateTime? RateExpirationDate { get; set; }
 
-		public bool IsConfigured
-		{
-			get { return ShowSignatureLine || ShowDisclaimer || RateExpirationDate.HasValue; }
-		}
+		public bool IsConfigured => ShowSignatureLine || ShowDisclaimer || RateExpirationDate.HasValue;
 
 		public string TemplateName
 		{

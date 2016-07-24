@@ -25,10 +25,7 @@ namespace Asa.Business.Common.Entities.NonPersistent.Schedule
 									 !FlightDateStart.HasValue ||
 									 !FlightDateEnd.HasValue;
 
-		public int TotalWeeks
-		{
-			get { return GetWeeks().Count(); }
-		}
+		public int TotalWeeks => GetWeeks().Count();
 
 		public IEnumerable<DateRange> GetWeeks()
 		{

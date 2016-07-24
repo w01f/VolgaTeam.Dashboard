@@ -9,10 +9,7 @@ namespace Asa.Common.Core.Configuration
 	{
 		private static readonly ResourceManager _instance = new ResourceManager();
 
-		public static ResourceManager Instance
-		{
-			get { return _instance; }
-		}
+		public static ResourceManager Instance => _instance;
 
 		#region Local
 		public StorageDirectory AppSettingsFolder { get; private set; }

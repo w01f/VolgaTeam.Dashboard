@@ -73,21 +73,9 @@ namespace Pabo.Calendar
 
 		#region properties
 		
-		public DateTime BeginDate
-		{
-			get
-			{
-				return m_selBeginDate;
-			}
-		}
+		public DateTime BeginDate => m_selBeginDate;
 
-		public DateTime EndDate
-		{
-			get
-			{
-				return m_selEndDate;
-			}
-		}
+		public DateTime EndDate => m_selEndDate;
 
 		public int Begin
 		{

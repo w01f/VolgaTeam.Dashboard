@@ -33,10 +33,7 @@ namespace Asa.Legacy.Common.Entities.Common
 		public string FileName { get; set; }
 		public string OutputFilePath { get; set; }
 
-		public bool ContainsData
-		{
-			get { return XtraTinyImage != null; }
-		}
+		public bool ContainsData => XtraTinyImage != null;
 
 		private string _encodedBigImage;
 		public string EncodedBigImage

@@ -15,15 +15,9 @@ namespace Asa.Business.Online.Entities.NonPersistent
 		public List<string> Phrases { get; private set; }
 		public string UserValue { get; set; }
 
-		public string Key
-		{
-			get { return JoinedPhrases; }
-		}
+		public string Key => JoinedPhrases;
 
-		public string JoinedPhrases
-		{
-			get { return String.Join("  -  ", Phrases); }
-		}
+		public string JoinedPhrases => String.Join("  -  ", Phrases);
 
 		public string EditValue
 		{

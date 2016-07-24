@@ -16,20 +16,11 @@ namespace Asa.Dashboard.TabHomeForms
 	{
 		private readonly SuperTooltipInfo _toolTipHelp = new SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, eTooltipColor.Gray);
 
-		public override string SlideName
-		{
-			get { return "Slide Header"; }
-		}
+		public override string SlideName => "Slide Header";
 
-		public override SuperTooltipInfo TooltipHelp
-		{
-			get { return _toolTipHelp; }
-		}
+		public override SuperTooltipInfo TooltipHelp => _toolTipHelp;
 
-		public override ButtonItem ThemeButton
-		{
-			get { return FormMain.Instance.buttonItemHomeThemeCleanslate; }
-		}
+		public override ButtonItem ThemeButton => FormMain.Instance.buttonItemHomeThemeCleanslate;
 
 		public SlideCleanslateControl()
 			: base()

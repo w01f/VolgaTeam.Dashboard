@@ -10,10 +10,7 @@ namespace Asa.Common.GUI.Preview
 
 		public bool InsertOnTop { get; set; }
 
-		public string ImageSourcePath
-		{
-			get { return PresentationSourcePath.Replace(Path.GetExtension(PresentationSourcePath), String.Empty); }
-		}
+		public string ImageSourcePath => PresentationSourcePath.Replace(Path.GetExtension(PresentationSourcePath), String.Empty);
 
 		public void ClearAssets()
 		{

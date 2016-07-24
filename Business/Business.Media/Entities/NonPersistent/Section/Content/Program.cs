@@ -59,10 +59,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			}
 		}
 
-		public Image SmallLogo
-		{
-			get { return Logo != null ? Logo.TinyImage : null; }
-		}
+		public Image SmallLogo => Logo != null ? Logo.TinyImage : null;
 
 		public double CPP
 		{
@@ -76,15 +73,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			}
 		}
 
-		public double GRP
-		{
-			get { return (Rating.HasValue ? Rating.Value : 0) * TotalSpots * (Parent.ParentScheduleSettings.DemoType == DemoType.Rtg ? 1 : 1000); }
-		}
+		public double GRP => (Rating.HasValue ? Rating.Value : 0) * TotalSpots * (Parent.ParentScheduleSettings.DemoType == DemoType.Rtg ? 1 : 1000);
 
-		public double Cost
-		{
-			get { return (Rate.HasValue ? Rate.Value : 0) * TotalSpots; }
-		}
+		public double Cost => (Rate.HasValue ? Rate.Value : 0) * TotalSpots;
 
 		public int TotalSpots
 		{

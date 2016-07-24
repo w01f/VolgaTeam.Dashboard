@@ -24,20 +24,11 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 	{
 		protected abstract bool IsContentChanged { get; }
 
-		protected MediaSchedule Schedule
-		{
-			get { return BusinessObjects.Instance.ScheduleManager.ActiveSchedule; }
-		}
+		protected MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
 
-		protected override Form FormMain
-		{
-			get { return Controller.Instance.FormMain; }
-		}
+		protected override Form FormMain => Controller.Instance.FormMain;
 
-		public override CalendarSettings CalendarSettings
-		{
-			get { return MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings; }
-		}
+		public override CalendarSettings CalendarSettings => MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings;
 
 		#region BaseContentEditControl Override
 		public override void InitControl()

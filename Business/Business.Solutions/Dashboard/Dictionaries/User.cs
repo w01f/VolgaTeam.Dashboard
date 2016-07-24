@@ -18,9 +18,6 @@
 		public string Email { get; set; }
 		public bool IsAdmin { get; set; }
 
-		public string FullName
-		{
-			get { return FirstName + " " + LastName; }
-		}
+		public string FullName => FirstName + " " + LastName;
 	}
 }

@@ -305,13 +305,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public virtual DateItem this[int index]
-		{
-			get
-			{
-				return this.List[index] as DateItem;
-			}
-		}
+		public virtual DateItem this[int index] => this.List[index] as DateItem;
 
 		#endregion
 

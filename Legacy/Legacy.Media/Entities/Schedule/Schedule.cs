@@ -34,21 +34,9 @@ namespace Asa.Legacy.Media.Entities.Schedule
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 
-		public DateTime? UserFlightDateStart
-		{
-			get
-			{
-				return _userFlightDateStart;
-			}
-		}
+		public DateTime? UserFlightDateStart => _userFlightDateStart;
 
-		public DateTime? UserFlightDateEnd
-		{
-			get
-			{
-				return _userFlightDateEnd;
-			}
-		}
+		public DateTime? UserFlightDateEnd => _userFlightDateEnd;
 
 		public string DisplayedSpotType
 		{

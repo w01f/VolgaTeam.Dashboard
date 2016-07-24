@@ -22,16 +22,10 @@ namespace Asa.Common.GUI.Common
 			Properties.CaseSensitiveSearch = true;
 		}
 
-		public override string EditorTypeName
-		{
-			get { return RepositoryItemComboBoxList.EditorName; }
-		}
+		public override string EditorTypeName => RepositoryItemComboBoxList.EditorName;
 
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public new RepositoryItemComboBoxList Properties
-		{
-			get { return base.Properties as RepositoryItemComboBoxList; }
-		}
+		public new RepositoryItemComboBoxList Properties => base.Properties as RepositoryItemComboBoxList;
 	}
 
 	[UserRepositoryItem("RegisterComboBoxList")]
@@ -49,10 +43,7 @@ namespace Asa.Common.GUI.Common
 			EditorRegistrationInfo.Default.Editors.Add(new EditorClassInfo(EditorName, typeof(ComboBoxListEdit), typeof(RepositoryItemComboBoxList), typeof(ComboBoxViewInfo), new ButtonEditPainter(), true));
 		}
 
-		public override string EditorTypeName
-		{
-			get { return EditorName; }
-		}
+		public override string EditorTypeName => EditorName;
 
 		private ListType _listType;
 		[Browsable(true), Description("List Type"), Category("Misc")]

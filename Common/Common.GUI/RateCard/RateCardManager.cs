@@ -51,10 +51,7 @@ namespace Asa.Common.GUI.RateCard
 		public RateFolderControl RateCardContainer { get; private set; }
 		public List<IRateCardViewer> RateCards { get; private set; }
 
-		public string FolderName
-		{
-			get { return Regex.Replace(_rootFolder.Name, @"\d+_", string.Empty); }
-		}
+		public string FolderName => Regex.Replace(_rootFolder.Name, @"\d+_", string.Empty);
 
 		private void SelectRateCard(object sender, TabPageChangedEventArgs e)
 		{

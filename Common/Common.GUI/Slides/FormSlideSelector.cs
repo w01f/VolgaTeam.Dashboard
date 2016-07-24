@@ -12,10 +12,7 @@ namespace Asa.Common.GUI.Slides
 
 		public event EventHandler<SlideMasterEventArgs> AddSlide;
 
-		public SlideMaster SelectedSlide
-		{
-			get { return _slideContainer.SelectedSlide; }
-		}
+		public SlideMaster SelectedSlide => _slideContainer.SelectedSlide;
 
 		public FormSlideSelector()
 		{

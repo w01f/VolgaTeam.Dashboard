@@ -149,10 +149,7 @@ namespace Asa.Business.Online.Entities.NonPersistent
 			}
 		}
 
-		public string InvestmentDetails
-		{
-			get { return _source.InvestmentDetails; }
-		}
+		public string InvestmentDetails => _source.InvestmentDetails;
 
 		public string Comment
 		{

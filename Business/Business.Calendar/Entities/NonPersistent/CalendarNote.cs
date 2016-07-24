@@ -18,10 +18,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		public DateTime FinishDay { get; set; }
 		public bool UserAdded { get; set; }
 
-		public ICalendarContent ParentCalendar
-		{
-			get { return Parent; }
-		}
+		public ICalendarContent ParentCalendar => Parent;
 
 		[JsonIgnore]
 		public virtual ITextItem Note
@@ -37,10 +34,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 			set { _backgroundColor = value; }
 		}
 
-		public int Length
-		{
-			get { return FinishDay.Subtract(StartDay).Days; }
-		}
+		public int Length => FinishDay.Subtract(StartDay).Days;
 
 		public Color ForeColor
 		{

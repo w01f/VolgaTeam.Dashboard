@@ -12,10 +12,7 @@ namespace Asa.Legacy.Media.Entities.Calendar
 		public bool EditedByUser { get; private set; }
 		public bool Splitted { get; set; }
 
-		public override ITextItem Note
-		{
-			get { return _note ?? MediaData; }
-		}
+		public override ITextItem Note => _note ?? MediaData;
 
 		public override Color BackgroundColor
 		{

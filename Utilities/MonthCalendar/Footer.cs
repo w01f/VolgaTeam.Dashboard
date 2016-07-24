@@ -441,13 +441,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public mcFooterProperty Property
-		{
-			get
-			{
-				return this.m_property;
-			}
-		}
+		public mcFooterProperty Property => this.m_property;
 
 		#endregion
 	}

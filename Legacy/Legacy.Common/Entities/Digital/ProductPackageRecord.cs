@@ -17,70 +17,23 @@ namespace Asa.Legacy.Common.Entities.Digital
 
 		public bool UseFormula { get; set; }
 
-		public string Category
-		{
-			get
-			{
-				return _category;
-			}
-		}
-		public string SubCategory
-		{
-			get
-			{
-				return _subCategory;
-			}
-		}
-		public string Name
-		{
-			get
-			{
-				return _name;
-			}
-		}
-		public string Info
-		{
-			get
-			{
-				return _info;
-			}
-		}
-		public string Comments
-		{
-			get
-			{
-				return _comments;
-			}
-		}
-		public decimal? Rate
-		{
-			get
-			{
-				return _rate;
-			}
-		}
-		public decimal? Investment
-		{
-			get
-			{
-				return _investment;
-			}
-		}
+		public string Category => _category;
 
-		public decimal? Impressions
-		{
-			get
-			{
-				return _impressions;
-			}
-		}
-		public decimal? CPM
-		{
-			get
-			{
-				return _cpm;
-			}
-		}
+		public string SubCategory => _subCategory;
+
+		public string Name => _name;
+
+		public string Info => _info;
+
+		public string Comments => _comments;
+
+		public decimal? Rate => _rate;
+
+		public decimal? Investment => _investment;
+
+		public decimal? Impressions => _impressions;
+
+		public decimal? CPM => _cpm;
 
 		public void Deserialize(XmlNode node)
 		{

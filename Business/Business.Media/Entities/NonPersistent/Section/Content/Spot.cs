@@ -33,21 +33,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			}
 		}
 
-		public DateTime? StartDate
-		{
-			get
-			{
-				return DateRange.FirstOrDefault();
-			}
-		}
+		public DateTime? StartDate => DateRange.FirstOrDefault();
 
-		public DateTime? EndDate
-		{
-			get
-			{
-				return DateRange.LastOrDefault();
-			}
-		}
+		public DateTime? EndDate => DateRange.LastOrDefault();
 
 		public string Name
 		{

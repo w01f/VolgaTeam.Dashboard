@@ -15,10 +15,7 @@ namespace Asa.Bar.App.BarItems
 	{
 		private StorageFile _file;
 
-		protected override LinkType Type
-		{
-			get { return LinkType.CloudFile; }
-		}
+		protected override LinkType Type => LinkType.CloudFile;
 
 		public CloudFileShortcut(string configPath) : base(configPath) { }
 

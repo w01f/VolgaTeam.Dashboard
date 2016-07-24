@@ -1483,15 +1483,9 @@ namespace Pabo.Calendar
 		[Description("Collection with formatted dates.")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)] 
 		[Editor(typeof(DateItemCollectionEditor), typeof(UITypeEditor))]
-		public DateItemCollection Dates
-		{
-			get
-			{
-				return this.m_dateItemCollection;
-			}
-		}
+		public DateItemCollection Dates => this.m_dateItemCollection;
 
-        [Browsable(false)]
+		[Browsable(false)]
         public SelectedDatesCollection SelectedDates
         {
             get
@@ -1789,74 +1783,38 @@ namespace Pabo.Calendar
 		[Category("Appearance")]
 		[Description("Properties for header.")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public Header Header
-		{
-			get
-			{
-				return m_header;
-			}
-		}
-		
+		public Header Header => m_header;
+
 		[Browsable(true)]
 		[Category("Appearance")]
 		[Description("Properties for weekdays.")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public Weekday Weekdays
-		{
-			get
-			{
-				return m_weekday;
-			}
-		}
+		public Weekday Weekdays => m_weekday;
 
 		[Browsable(true)]
 		[Category("Behavior")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		[Description("")]
-		public ActiveMonth ActiveMonth
-		{
-			get
-			{
-				return m_activeMonth;
-			}
-		}
+		public ActiveMonth ActiveMonth => m_activeMonth;
 
 		[Browsable(true)]
 		[Category("Appearance")]
 		[Description("Properties for week numbers.")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public Weeknumber Weeknumbers
-		{
-			get
-			{
-				return m_weeknumber;
-			}
-		}
+		public Weeknumber Weeknumbers => m_weeknumber;
 
 		[Browsable(true)]
 		[Category("Appearance")]
 		[Description("Properties for month.")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public Month Month
-		{
-			get
-			{
-				return m_month;
-			}
-		}
+		public Month Month => m_month;
 
 		[Browsable(true)]
 		[Category("Appearance")]
 		[Description("Properties for footer.")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public Footer Footer
-		{
-			get
-			{
-				return m_footer;
-			}
-		}
-		
+		public Footer Footer => m_footer;
+
 		[Browsable(true)]
 		[Category("Appearance")]
 		[Description("The borderstyle used for the calendar.")]
@@ -1977,13 +1935,8 @@ namespace Pabo.Calendar
         [Category("Behavior")]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public KeyboardConfig Keyboard
-        {
-            get
-            {
-                return m_keyboard;
-            }
-        }
+        public KeyboardConfig Keyboard => m_keyboard;
+
 		#endregion
 
 		#region Overrides
@@ -2916,13 +2869,7 @@ namespace Pabo.Calendar
         internal event BeforeMonthChangedEventHandler BeforeMonthChanged;
 
 		[Browsable(false)]
-		public MonthCalendar Calendar
-		{
-			get
-			{
-				return m_calendar;
-			}
-		}
+		public MonthCalendar Calendar => m_calendar;
 
 		[Browsable(false)]
 		internal bool RaiseEvent
@@ -3428,21 +3375,9 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public int Month
-		{
-			get
-			{
-				return m_month;
-			}
-		}
+		public int Month => m_month;
 
-		public int Year
-		{
-			get
-			{
-				return m_year; 
-			}
-		}
+		public int Year => m_year;
 
 		#endregion
 	}
@@ -3486,46 +3421,16 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public Graphics Graphics
-		{
-			get
-			{
-				return m_graphics;
-			}
-		}
+		public Graphics Graphics => m_graphics;
 
 
-		public DateTime Date
-		{
-			get
-			{
-				return m_date; 
-			}
-		}
+		public DateTime Date => m_date;
 
-		public int Width
-		{
-			get
-			{
-				return m_rect.Width; 
-			}
-		}
+		public int Width => m_rect.Width;
 
-		public mcDayState State
-		{
-			get
-			{
-				return m_state;
-			}
-		}
+		public mcDayState State => m_state;
 
-		public int Height
-		{
-			get
-			{
-				return m_rect.Height; 
-			}
-		}
+		public int Height => m_rect.Height;
 
 		public bool OwnerDraw
 		{
@@ -3579,32 +3484,14 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public DateItem Info
-        {
-            get
-            {
-                return m_info;
-            }
-        }
+        public DateItem Info => m_info;
 
 
-        public DateTime Date
-        {
-            get
-            {
-                return m_date;
-            }
-        }
-                
-        public mcDayState State
-        {
-            get
-            {
-                return m_state;
-            }
-        }
-                
-        public bool OwnerDraw
+	    public DateTime Date => m_date;
+
+	    public mcDayState State => m_state;
+
+	    public bool OwnerDraw
         {
             set
             {
@@ -3666,15 +3553,9 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public MouseButtons Button
-		{
-			get
-			{
-				return this.m_button; 
-			}
-		}
+		public MouseButtons Button => this.m_button;
 
-		#endregion
+	    #endregion
 	}
 
 
@@ -3714,13 +3595,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public mcCalendarColor Color
-		{
-			get
-			{
-				return this.m_color;
-			}
-		}
+		public mcCalendarColor Color => this.m_color;
 
 		#endregion
 	}
@@ -3762,23 +3637,11 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public int OldYear
-        {
-            get
-            {
-                return m_oldYear;
-            }
-        }
-        
-        public int OldMonth
-        {
-            get
-            {
-                return m_oldMonth;
-            }
-        }
+        public int OldYear => m_oldYear;
 
-        public int NewYear
+	    public int OldMonth => m_oldMonth;
+
+	    public int NewYear
         {
             get
             {
@@ -3854,32 +3717,13 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public Keys NewKey
-        {
-            get
-            {
-                return m_new;
-            }
-        }
+        public Keys NewKey => m_new;
 
-        public Keys OldKey
-        {
-            get
-            {
-                return m_old;
-            }
-        }
+	    public Keys OldKey => m_old;
 
-        public mcKeyboard Key
-        {
-            get
-            {
-                return m_key;
-            }
-        }
+	    public mcKeyboard Key => m_key;
 
-        
-        #endregion
+	    #endregion
     }
 
 
@@ -3986,15 +3830,9 @@ namespace Pabo.Calendar
                 return prop;
         }
 
-        public DateItemCollection Dates
-        {
-            get
-            {
-                return calendar.Dates;
-            }
-        }
+        public DateItemCollection Dates => calendar.Dates;
 
-        public bool ShowHeader
+	    public bool ShowHeader
         {
             get
             {

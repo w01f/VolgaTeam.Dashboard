@@ -159,38 +159,14 @@ namespace Pabo.Calendar
 			}
 		}
 
-        internal Region[] DateRegion
-        {
-            get
-            {
-                return m_dateRgn;
-            }
-        }
+        internal Region[] DateRegion => m_dateRgn;
 
-        internal Region[] TextRegion
-        {
-            get
-            {
-                return m_textRgn;
-            }
-        }
+		internal Region[] TextRegion => m_textRgn;
 
 
-		public int Week
-		{
-			get
-			{
-				return m_calendar.WeeknumberCallBack(m_date);
-			}
-		}
+		public int Week => m_calendar.WeeknumberCallBack(m_date);
 
-		public DayOfWeek Weekday
-		{
-			get
-			{
-				return m_date.DayOfWeek;
-			}	
-		}
+		public DayOfWeek Weekday => m_date.DayOfWeek;
 
 		public mcDayState State
 		{
@@ -691,13 +667,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public string Date
-		{
-			get
-			{
-				return this.m_date; 
-			}
-		}
+		public string Date => this.m_date;
 
 		#endregion
 	}
@@ -748,63 +718,19 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public string Date
-		{
-			get
-			{
-				return this.m_date;
-			}
-		}
+		public string Date => this.m_date;
 
-        public Rectangle DayRectangle
-        {
-            get
-            {
-                return m_dayRect;
-            }
-        }
+		public Rectangle DayRectangle => m_dayRect;
 
-		public MouseButtons Button
-		{
-			get
-			{
-				return this.m_button; 
-			}
-		}
+		public MouseButtons Button => this.m_button;
 
-        public int DayX
-        {
-            get
-            {
-                return m_dayX;
-            }
-        }
+		public int DayX => m_dayX;
 
-        public int DayY
-        {
-            get
-            {
-                return m_dayY;
-            }
-        }
+		public int DayY => m_dayY;
 
-        public int X
-        {
-            get
-            {
-                return m_x;
-            }
-        }
+		public int X => m_x;
 
-        public int Y
-        {
-            get
-            {
-                return m_y;
-            }
-        }
-
-
+		public int Y => m_y;
 
 		#endregion
 	}
@@ -835,13 +761,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public string[] Days
-		{
-			get
-			{
-				return this.m_days; 
-			}
-		}
+		public string[] Days => this.m_days;
 
 		#endregion
 	}
@@ -879,30 +799,11 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public string Date
-		{
-			get
-			{
-				return this.m_date;
-			}
-		}
+		public string Date => this.m_date;
 
-		public int KeyState
-		{
-			get
-			{
-				return this.m_keyState;
-			}
-		}
+		public int KeyState => this.m_keyState;
 
-		public IDataObject Data
-		{
-			get
-			{
-				return this.m_data;
-			}
-		}
-
+		public IDataObject Data => this.m_data;
 
 		#endregion
 
@@ -944,31 +845,13 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public string Date
-        {
-            get
-            {
-                return this.m_date;
-            }
-        }
+        public string Date => this.m_date;
 
-        public mcDayState OldState
-        {
-            get
-            {
-                return this.m_oldState;
-            }
-        }
+	    public mcDayState OldState => this.m_oldState;
 
-        public mcDayState NewState
-        {
-            get
-            {
-                return this.m_newState;
-            }
-        }
+	    public mcDayState NewState => this.m_newState;
 
-        public bool Cancel
+	    public bool Cancel
         {
             get
             {
@@ -1031,57 +914,19 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public string Date
-        {
-            get
-            {
-                return this.m_date;
-            }
-        }
+        public string Date => this.m_date;
 
-        public Rectangle DayRectangle
-        {
-            get
-            {
-                return m_dayRect;
-            }
-        }
+	    public Rectangle DayRectangle => m_dayRect;
 
-        public int DayX
-        {
-            get
-            {
-                return m_dayX;
-            }
-        }
+	    public int DayX => m_dayX;
 
-        public int DayY
-        {
-            get
-            {
-                return m_dayY;
-            }
-        }
+	    public int DayY => m_dayY;
 
-        public int X
-        {
-            get
-            {
-                return m_x;
-            }
-        }
+	    public int X => m_x;
 
-        public int Y
-        {
-            get
-            {
-                return m_y;
-            }
-        }
+	    public int Y => m_y;
 
-
-
-        #endregion
+	    #endregion
     }
 
 

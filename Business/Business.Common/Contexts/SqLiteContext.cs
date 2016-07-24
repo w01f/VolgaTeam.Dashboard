@@ -9,10 +9,7 @@ namespace Asa.Business.Common.Contexts
 {
 	public class SqLiteContext : DbContext
 	{
-		public ObjectContext ObjectContext
-		{
-			get { return ((IObjectContextAdapter)this).ObjectContext; }
-		}
+		public ObjectContext ObjectContext => ((IObjectContextAdapter)this).ObjectContext;
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

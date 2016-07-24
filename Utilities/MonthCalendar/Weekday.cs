@@ -466,21 +466,9 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public int Day
-		{
-			get
-			{
-				return this.m_day;
-			}
-		}
+		public int Day => this.m_day;
 
-		public MouseButtons Button
-		{
-			get
-			{
-				return this.m_button; 
-			}
-		}
+		public MouseButtons Button => this.m_button;
 
 		#endregion
 	}
@@ -518,13 +506,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public mcWeekdayProperty Property
-		{
-			get
-			{
-				return this.m_property;
-			}
-		}
+		public mcWeekdayProperty Property => this.m_property;
 
 		#endregion
 	}

@@ -22,10 +22,7 @@ namespace Asa.Legacy.Common.Entities.Summary
 		public bool ShowTotal { get; set; }
 
 		protected Guid _id;
-		public virtual Guid Id
-		{
-			get { return _id; }
-		}
+		public virtual Guid Id => _id;
 
 		public string Value { get; set; }
 		protected string _description;

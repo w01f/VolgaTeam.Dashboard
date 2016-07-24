@@ -84,20 +84,11 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 		#endregion
 
 		private ISlideInfoControl _containedControl;
-		public Control ContainedControl
-		{
-			get { return (Control)_containedControl; }
-		}
+		public Control ContainedControl => (Control)_containedControl;
 
-		public ISlideInfoControl SlideInfoControl
-		{
-			get { return _containedControl; }
-		}
+		public ISlideInfoControl SlideInfoControl => _containedControl;
 
-		public bool SettingsNotSaved
-		{
-			get { return _containedControl.SettingsNotSaved; }
-		}
+		public bool SettingsNotSaved => _containedControl.SettingsNotSaved;
 
 		public event EventHandler<EventArgs> PropertyChanged;
 	}

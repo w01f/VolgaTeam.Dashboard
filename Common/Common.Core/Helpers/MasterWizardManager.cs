@@ -22,10 +22,7 @@ namespace Asa.Common.Core.Helpers
 
 		public Dictionary<string, MasterWizard> MasterWizards { get; set; }
 
-		public static MasterWizardManager Instance
-		{
-			get { return _instance; }
-		}
+		public static MasterWizardManager Instance => _instance;
 
 		public MasterWizard SelectedWizard { get; set; }
 

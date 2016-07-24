@@ -17,10 +17,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		public List<CalendarMonth> Months { get; private set; }
 		public List<CalendarDay> Days { get; private set; }
 		public List<CalendarNote> Notes { get; private set; }
-		public IBaseScheduleSettings Settings
-		{
-			get { return ScheduleSettings; }
-		}
+		public IBaseScheduleSettings Settings => ScheduleSettings;
 		public abstract bool AllowCustomNotes { get; }
 
 		protected CalendarContent()

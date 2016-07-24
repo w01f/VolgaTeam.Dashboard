@@ -33,10 +33,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 		public List<Quarter> Quarters { get; private set; }
 
 		[JsonIgnore]
-		public DigitalProductListViewSettings DigitalProductListViewSettings
-		{
-			get { return HomeViewSettings; }
-		}
+		public DigitalProductListViewSettings DigitalProductListViewSettings => HomeViewSettings;
 
 
 		private DateTime? _userFlightDateStart;
@@ -87,15 +84,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			}
 		}
 
-		public DayOfWeek StartDayOfWeek
-		{
-			get { return MondayBased ? DayOfWeek.Monday : DayOfWeek.Sunday; }
-		}
+		public DayOfWeek StartDayOfWeek => MondayBased ? DayOfWeek.Monday : DayOfWeek.Sunday;
 
-		public DayOfWeek EndDayOfWeek
-		{
-			get { return MondayBased ? DayOfWeek.Sunday : DayOfWeek.Saturday; }
-		}
+		public DayOfWeek EndDayOfWeek => MondayBased ? DayOfWeek.Sunday : DayOfWeek.Saturday;
 
 		public string StartWeekDays
 		{

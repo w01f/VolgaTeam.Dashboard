@@ -13,10 +13,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 	{
 		protected bool? _isMondayBased;
 
-		public override MediaSchedule Schedule
-		{
-			get { return ((MediaPartition)Parent).Schedule; }
-		}
+		public override MediaSchedule Schedule => ((MediaPartition)Parent).Schedule;
 
 		protected override void AfterConstruction()
 		{

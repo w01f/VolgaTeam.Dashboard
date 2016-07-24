@@ -15,10 +15,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 	{
 		public BroadcastDataTypeEnum DataSourceType { get; set; }
 
-		public override bool AllowCustomNotes
-		{
-			get { return false; }
-		}
+		public override bool AllowCustomNotes => false;
 
 		public bool AllowSelectDataSource
 		{

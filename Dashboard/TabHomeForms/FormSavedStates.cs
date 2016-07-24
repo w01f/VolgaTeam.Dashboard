@@ -167,14 +167,8 @@ namespace Asa.Dashboard.TabHomeForms
 	{
 		public string FilePath { get; set; }
 
-		public string Name
-		{
-			get { return Path.GetFileNameWithoutExtension(FilePath); }
-		}
+		public string Name => Path.GetFileNameWithoutExtension(FilePath);
 
-		public DateTime LastModified
-		{
-			get { return File.GetLastWriteTime(FilePath); }
-		}
+		public DateTime LastModified => File.GetLastWriteTime(FilePath);
 	}
 }

@@ -154,50 +154,24 @@ namespace Asa.Dashboard.TabHomeForms
 		#endregion
 
 		#region Output Stuff
-		public bool ShowMonthly
-		{
-			get { return ckMonthly.Checked && spinEditMonthly.EditValue != null; }
-		}
+		public bool ShowMonthly => ckMonthly.Checked && spinEditMonthly.EditValue != null;
 
-		public bool ShowTotal
-		{
-			get { return ckTotal.Checked && spinEditTotal.EditValue != null; }
-		}
+		public bool ShowTotal => ckTotal.Checked && spinEditTotal.EditValue != null;
 
-		public bool ShowValue
-		{
-			get { return ckItem.Checked; }
-		}
+		public bool ShowValue => ckItem.Checked;
 
-		public bool ShowDescription
-		{
-			get { return ckDetails.Checked; }
-		}
+		public bool ShowDescription => ckDetails.Checked;
 
-		public string ItemTitle
-		{
-			get { return textEditItem.EditValue != null && ckItem.Checked ? textEditItem.EditValue.ToString() : string.Empty; }
-		}
+		public string ItemTitle => textEditItem.EditValue != null && ckItem.Checked ? textEditItem.EditValue.ToString() : string.Empty;
 
-		public string ItemDetail
-		{
-			get { return memoEditDetails.EditValue != null && ckDetails.Checked ? memoEditDetails.EditValue.ToString() : string.Empty; }
-		}
+		public string ItemDetail => memoEditDetails.EditValue != null && ckDetails.Checked ? memoEditDetails.EditValue.ToString() : string.Empty;
 
-		public decimal? MonthlyValue
-		{
-			get { return (decimal?)spinEditMonthly.EditValue; }
-		}
+		public decimal? MonthlyValue => (decimal?)spinEditMonthly.EditValue;
 
-		public decimal? TotalValue
-		{
-			get { return (decimal?)spinEditTotal.EditValue; }
-		}
+		public decimal? TotalValue => (decimal?)spinEditTotal.EditValue;
 
-		public bool Complited
-		{
-			get { return !ckItem.Checked || !string.IsNullOrEmpty(ItemTitle); }
-		}
+		public bool Complited => !ckItem.Checked || !string.IsNullOrEmpty(ItemTitle);
+
 		#endregion
 	}
 }

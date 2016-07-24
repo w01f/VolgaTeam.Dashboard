@@ -974,13 +974,7 @@ namespace Pabo.Calendar
 
 		#region Properties
 
-		public mcHeaderProperty Property
-		{
-			get
-			{
-				return this.m_property;
-			}
-		}
+		public mcHeaderProperty Property => this.m_property;
 
 		#endregion
 	}

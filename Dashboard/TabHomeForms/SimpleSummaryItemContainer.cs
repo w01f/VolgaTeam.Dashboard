@@ -178,10 +178,7 @@ namespace Asa.Dashboard.TabHomeForms
 			}
 		}
 		#region Output Staff
-		public int ItemsCount
-		{
-			get { return _itemsCollection.Count; }
-		}
+		public int ItemsCount => _itemsCollection.Count;
 
 		public string[] ItemTitles
 		{

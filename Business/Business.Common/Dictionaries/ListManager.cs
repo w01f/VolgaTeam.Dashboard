@@ -11,10 +11,7 @@
 		public DecisionMakersManager DecisionMakers { get; private set; }
 		public SimpleSummaryLists SimpleSummaryLists { get; set; }
 
-		public static ListManager Instance
-		{
-			get { return _instance; }
-		}
+		public static ListManager Instance => _instance;
 
 		private ListManager()
 		{

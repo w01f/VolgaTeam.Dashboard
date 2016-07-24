@@ -73,25 +73,13 @@ namespace Asa.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
-		public override string SlideName
-		{
-			get { return "Needs Analysis"; }
-		}
+		public override string SlideName => "Needs Analysis";
 
-		public override SuperTooltipInfo TooltipLoad
-		{
-			get { return _toolTipLoad; }
-		}
+		public override SuperTooltipInfo TooltipLoad => _toolTipLoad;
 
-		public override SuperTooltipInfo TooltipHelp
-		{
-			get { return _toolTipHelp; }
-		}
+		public override SuperTooltipInfo TooltipHelp => _toolTipHelp;
 
-		public override ButtonItem ThemeButton
-		{
-			get { return FormMain.Instance.buttonItemHomeThemeClientGoals; }
-		}
+		public override ButtonItem ThemeButton => FormMain.Instance.buttonItemHomeThemeClientGoals;
 
 		private void LoadSavedState()
 		{
@@ -176,10 +164,7 @@ namespace Asa.Dashboard.TabHomeForms
 			}
 		}
 
-		public string Title
-		{
-			get { return comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString(); }
-		}
+		public string Title => comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString();
 
 		public string[] SelectedGoals
 		{

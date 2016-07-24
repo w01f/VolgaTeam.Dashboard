@@ -15,10 +15,7 @@ namespace Asa.Bar.App.BarItems
 	{
 		private string _path;
 
-		protected override LinkType Type
-		{
-			get { return LinkType.LocalFile; }
-		}
+		protected override LinkType Type => LinkType.LocalFile;
 
 		public LocalFileShortcut(string configPath) : base(configPath) { }
 

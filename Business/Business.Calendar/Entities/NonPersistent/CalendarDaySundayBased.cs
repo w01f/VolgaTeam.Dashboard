@@ -12,10 +12,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		public CalendarDaySundayBased(ICalendarContent parent)
 			: base(parent) { }
 
-		public override bool IsMondatBased
-		{
-			get { return false; }
-		}
+		public override bool IsMondatBased => false;
 
 		public override int WeekDayIndex
 		{

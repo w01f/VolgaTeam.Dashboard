@@ -16,10 +16,7 @@ namespace Asa.Common.Core.OfficeInterops
 
 		private OutlookHelper() { }
 
-		public static OutlookHelper Instance
-		{
-			get { return instance; }
-		}
+		public static OutlookHelper Instance => instance;
 
 		public bool Open()
 		{

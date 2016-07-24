@@ -8,10 +8,7 @@ namespace Asa.Bar.App.Configuration
 	{
 		private static readonly ResourceManager _instance = new ResourceManager();
 
-		public static ResourceManager Instance
-		{
-			get { return _instance; }
-		}
+		public static ResourceManager Instance => _instance;
 
 		#region Local
 		public StorageDirectory TempFolder { get; private set; }

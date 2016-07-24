@@ -101,15 +101,9 @@ namespace Asa.Bar.App.Common
 
 			public TaskbarPosition Position { get; private set; }
 
-			public Point Location
-			{
-				get { return VisibleBounds.Location; }
-			}
+			public Point Location => VisibleBounds.Location;
 
-			public Size Size
-			{
-				get { return Bounds.Size; }
-			}
+			public Size Size => Bounds.Size;
 
 			//Always returns false under Windows 7
 			public bool AlwaysOnTop { get; private set; }

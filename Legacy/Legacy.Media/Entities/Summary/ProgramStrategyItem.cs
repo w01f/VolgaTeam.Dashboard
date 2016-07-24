@@ -15,13 +15,7 @@ namespace Asa.Legacy.Media.Entities.Summary
 		public decimal Order { get; set; }
 
 		private ImageSource _logo;
-		public ImageSource Logo
-		{
-			get
-			{
-				return _logo;
-			}
-		}
+		public ImageSource Logo => _logo;
 
 		public ProgramStrategyItem(StrategySummaryContent programStrategy)
 		{

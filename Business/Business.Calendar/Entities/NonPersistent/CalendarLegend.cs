@@ -8,10 +8,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		public string Description { get; set; }
 		public bool Visible { get; set; }
 
-		public string StringRepresentation
-		{
-			get { return Code + " = " + Description; }
-		}
+		public string StringRepresentation => Code + " = " + Description;
 
 		public CalendarLegend()
 		{

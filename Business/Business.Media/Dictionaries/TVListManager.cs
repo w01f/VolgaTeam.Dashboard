@@ -2,9 +2,6 @@
 {
 	public class TVListManager : MediaListManager
 	{
-		protected override string XmlRootPrefix
-		{
-			get { return "TV"; }
-		}
+		protected override string XmlRootPrefix => "TV";
 	}
 }

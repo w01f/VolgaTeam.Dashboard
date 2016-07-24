@@ -6,9 +6,6 @@ namespace Asa.Business.Media.Contexts
 {
 	public class MediaScheduleManager : ScheduleManager<MediaSchedule, MediaScheduleSettings, MediaContext, MediaContext>
 	{
-		public override MediaContext SchedulesContainer
-		{
-			get { return Context; }
-		}
+		public override MediaContext SchedulesContainer => Context;
 	}
 }

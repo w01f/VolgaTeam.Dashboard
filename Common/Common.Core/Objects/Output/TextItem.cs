@@ -10,10 +10,7 @@ namespace Asa.Common.Core.Objects.Output
 		public string Text { get; private set; }
 		public bool IsBold { get; private set; }
 
-		public string SimpleText
-		{
-			get { return Text; }
-		}
+		public string SimpleText => Text;
 
 		public string FormattedText
 		{

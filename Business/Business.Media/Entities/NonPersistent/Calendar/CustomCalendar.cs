@@ -5,10 +5,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 {
 	public class CustomCalendar : MediaCalendar
 	{
-		public override bool AllowCustomNotes
-		{
-			get { return true; }
-		}
+		public override bool AllowCustomNotes => true;
 
 		protected override void ApplyDefaultMonthSettings(CalendarMonth targetMonth)
 		{

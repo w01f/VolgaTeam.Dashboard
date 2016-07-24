@@ -28,10 +28,7 @@ namespace Asa.Legacy.Common.Entities.Calendar
 			set { _backgroundColor = value; }
 		}
 
-		public int Length
-		{
-			get { return FinishDay.Subtract(StartDay).Days; }
-		}
+		public int Length => FinishDay.Subtract(StartDay).Days;
 
 		public Color ForeColor
 		{

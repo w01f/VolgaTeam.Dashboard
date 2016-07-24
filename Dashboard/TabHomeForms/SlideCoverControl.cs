@@ -68,25 +68,13 @@ namespace Asa.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
-		public override string SlideName
-		{
-			get { return "Cover"; }
-		}
+		public override string SlideName => "Cover";
 
-		public override SuperTooltipInfo TooltipLoad
-		{
-			get { return _toolTipLoad; }
-		}
+		public override SuperTooltipInfo TooltipLoad => _toolTipLoad;
 
-		public override SuperTooltipInfo TooltipHelp
-		{
-			get { return _toolTipHelp; }
-		}
+		public override SuperTooltipInfo TooltipHelp => _toolTipHelp;
 
-		public override ButtonItem ThemeButton
-		{
-			get { return FormMain.Instance.buttonItemHomeThemeCover; }
-		}
+		public override ButtonItem ThemeButton => FormMain.Instance.buttonItemHomeThemeCover;
 
 		private void LoadSavedState()
 		{
@@ -274,20 +262,11 @@ namespace Asa.Dashboard.TabHomeForms
 
 		#region Output Staff
 
-		public string Title
-		{
-			get { return (comboBoxEditSlideHeader.EditValue as String) ?? String.Empty; }
-		}
+		public string Title => (comboBoxEditSlideHeader.EditValue as String) ?? String.Empty;
 
-		public string Advertiser
-		{
-			get { return (comboBoxEditAdvertiser.EditValue as String) ?? String.Empty; }
-		}
+		public string Advertiser => (comboBoxEditAdvertiser.EditValue as String) ?? String.Empty;
 
-		public string DecisionMaker
-		{
-			get { return (comboBoxEditDecisionMaker.EditValue as String) ?? String.Empty; }
-		}
+		public string DecisionMaker => (comboBoxEditDecisionMaker.EditValue as String) ?? String.Empty;
 
 		public string SalesRep
 		{
@@ -301,19 +280,10 @@ namespace Asa.Dashboard.TabHomeForms
 			}
 		}
 
-		public string PresentationDate
-		{
-			get { return dateEditPresentationDate.EditValue != null ? dateEditPresentationDate.DateTime.ToString("MMMM d, yyyy") : String.Empty; }
-		}
+		public string PresentationDate => dateEditPresentationDate.EditValue != null ? dateEditPresentationDate.DateTime.ToString("MMMM d, yyyy") : String.Empty;
 
-		public string Quote
-		{
-			get
-			{
-				return (memoEditSalesQuote.EditValue == null ? string.Empty : memoEditSalesQuote.EditValue.ToString())
-					   + (char)13 + (textEditSalesQuoteAuthor.EditValue == null ? string.Empty : textEditSalesQuoteAuthor.EditValue.ToString());
-			}
-		}
+		public string Quote => (memoEditSalesQuote.EditValue == null ? string.Empty : memoEditSalesQuote.EditValue.ToString())
+		                       + (char)13 + (textEditSalesQuoteAuthor.EditValue == null ? string.Empty : textEditSalesQuoteAuthor.EditValue.ToString());
 
 		public void UpdateOutputState()
 		{

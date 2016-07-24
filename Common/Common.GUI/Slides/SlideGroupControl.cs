@@ -17,10 +17,7 @@ namespace Asa.Common.GUI.Slides
 		public string GroupName { get; private set; }
 		public event EventHandler<SlideMasterEventArgs> SlideChanged;
 		public event EventHandler<SlideMasterEventArgs> SlideSelected;
-		public SlideMaster SelectedSlide
-		{
-			get { return layoutViewSlides.GetFocusedRow() as SlideMaster; }
-		}
+		public SlideMaster SelectedSlide => layoutViewSlides.GetFocusedRow() as SlideMaster;
 
 		public SlideGroupControl()
 		{

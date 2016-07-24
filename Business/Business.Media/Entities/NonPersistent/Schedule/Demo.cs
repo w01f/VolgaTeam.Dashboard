@@ -17,10 +17,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 		public string Name { get; set; }
 		public string Value { get; set; }
 
-		public string DisplayString
-		{
-			get { return String.Format("{0} {1}", DemoType == DemoType.Rtg ? "Rtg" : "(000s)", Name); }
-		}
+		public string DisplayString => String.Format("{0} {1}", DemoType == DemoType.Rtg ? "Rtg" : "(000s)", Name);
 
 		public override string ToString()
 		{

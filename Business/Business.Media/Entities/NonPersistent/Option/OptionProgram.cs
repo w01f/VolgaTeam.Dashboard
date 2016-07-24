@@ -38,15 +38,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 			}
 		}
 
-		public Image SmallLogo
-		{
-			get { return Logo != null ? Logo.TinyImage : null; }
-		}
+		public Image SmallLogo => Logo != null ? Logo.TinyImage : null;
 
-		public decimal? Cost
-		{
-			get { return Rate * Spot; }
-		}
+		public decimal? Cost => Rate * Spot;
+
 		#endregion
 
 		[JsonConstructor]

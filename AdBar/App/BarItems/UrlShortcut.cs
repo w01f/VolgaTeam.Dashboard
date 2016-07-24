@@ -9,10 +9,7 @@ namespace Asa.Bar.App.BarItems
 	{
 		private string _url;
 
-		protected override LinkType Type
-		{
-			get { return LinkType.Url; }
-		}
+		protected override LinkType Type => LinkType.Url;
 
 		public UrlShortcut(string configPath) : base(configPath) { }
 

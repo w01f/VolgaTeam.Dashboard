@@ -10,10 +10,7 @@ namespace Asa.Bar.App.BarItems
 	{
 		private string _executablePath;
 
-		protected override LinkType Type
-		{
-			get { return LinkType.Exe; }
-		}
+		protected override LinkType Type => LinkType.Exe;
 
 		public ExecutableShortcut(string configPath) : base(configPath) {}
 

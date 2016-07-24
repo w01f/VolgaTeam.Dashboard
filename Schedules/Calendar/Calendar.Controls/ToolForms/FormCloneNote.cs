@@ -49,10 +49,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		public DateRange[] SelectedRanges
-		{
-			get { return _selectedRanges.ToArray(); }
-		}
+		public DateRange[] SelectedRanges => _selectedRanges.ToArray();
 
 		private void UpdateSelectedDates()
 		{

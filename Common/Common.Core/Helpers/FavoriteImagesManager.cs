@@ -14,10 +14,7 @@ namespace Asa.Common.Core.Helpers
 		public List<ImageSource> Images { get; private set; }
 		public event EventHandler<EventArgs> CollectionChanged;
 
-		public static FavoriteImagesManager Instance
-		{
-			get { return _instance; }
-		}
+		public static FavoriteImagesManager Instance => _instance;
 
 		private FavoriteImagesManager()
 		{

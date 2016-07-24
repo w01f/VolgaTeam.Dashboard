@@ -8,10 +8,7 @@ namespace Asa.Common.Core.Helpers
 	{
 		private static readonly PopupMessageHelper _instance = new PopupMessageHelper();
 		private PopupMessageHelper() { }
-		public static PopupMessageHelper Instance
-		{
-			get { return _instance; }
-		}
+		public static PopupMessageHelper Instance => _instance;
 
 		private string _title;
 

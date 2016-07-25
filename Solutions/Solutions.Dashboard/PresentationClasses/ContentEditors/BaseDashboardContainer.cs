@@ -12,6 +12,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using Asa.Solutions.Dashboard.Properties;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 
@@ -71,6 +72,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
 			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
 			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
+
+			foreach (var slideControl in _slides)
+				AssignCloseActiveEditorsOnOutsideClick(slideControl);
 		}
 
 		private void OnSelectedSlideChanged(Object sender, TabPageChangedEventArgs e)
@@ -91,6 +95,22 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public override void ShowHomeSlide()
 		{
 			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
+		}
+
+		private void AssignCloseActiveEditorsOnOutsideClick(Control control)
+		{
+			if (!(control is BaseEdit ||
+				control is CheckedListBoxControl))
+			{
+				control.Click += CloseActiveEditorsOnOutSideClick;
+				foreach (Control childControl in control.Controls)
+					AssignCloseActiveEditorsOnOutsideClick(childControl);
+			}
+		}
+
+		protected void CloseActiveEditorsOnOutSideClick(object sender, EventArgs e)
+		{
+			xtraTabControl.Focus();
 		}
 		#endregion
 

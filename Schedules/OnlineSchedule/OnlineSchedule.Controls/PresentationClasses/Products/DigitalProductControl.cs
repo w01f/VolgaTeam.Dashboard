@@ -92,9 +92,15 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				control.GetType() != typeof(SpinEdit) &&
 				control.GetType() != typeof(CheckEdit))
 			{
+				control.Click += CloseActiveEditorsOnOutSideClick;
 				foreach (Control childControl in control.Controls)
 					AssignCloseActiveEditorsonOutSideClick(childControl);
 			}
+		}
+
+		private void CloseActiveEditorsOnOutSideClick(object sender, EventArgs e)
+		{
+			labelControlWebsite.Focus();
 		}
 
 		private void UpdateFormula()

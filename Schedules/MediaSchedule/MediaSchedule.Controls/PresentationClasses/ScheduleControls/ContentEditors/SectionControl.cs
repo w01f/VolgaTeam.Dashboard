@@ -82,8 +82,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			repositoryItemSpinEditRating.EnableSelectAll();
 			repositoryItemSpinEditSpot.EnableSelectAll();
 
-			if (ResourceManager.Instance.ProgramScheduleNoProgramsLogoFile.ExistsLocal())
-				pbNoPrograms.Image = Image.FromFile(ResourceManager.Instance.ProgramScheduleNoProgramsLogoFile.LocalPath);
+			pbNoPrograms.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoProgramsLogo ?? pbNoPrograms.Image;
 
 			if ((CreateGraphics()).DpiX > 96)
 			{

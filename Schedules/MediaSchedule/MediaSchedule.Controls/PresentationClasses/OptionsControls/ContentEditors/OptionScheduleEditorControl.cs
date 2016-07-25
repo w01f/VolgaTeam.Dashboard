@@ -74,8 +74,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			repositoryItemComboBoxTimes.Items.Clear();
 			repositoryItemComboBoxTimes.Items.AddRange(MediaMetaData.Instance.ListManager.Times);
 
-			if (ResourceManager.Instance.OptionsNoProgramsLogoFile.ExistsLocal())
-				pbNoPrograms.Image = Image.FromFile(ResourceManager.Instance.OptionsNoProgramsLogoFile.LocalPath);
+			pbNoPrograms.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsNoProgramsLogo ?? pbNoPrograms.Image;
 		}
 
 		public void LoadData(OptionSet data)

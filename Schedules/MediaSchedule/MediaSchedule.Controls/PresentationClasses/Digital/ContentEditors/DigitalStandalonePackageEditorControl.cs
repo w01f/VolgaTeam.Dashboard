@@ -99,9 +99,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				advBandedGridView.Appearance.SelectedRow.Font = font;
 			}
 
-			if (Business.Media.Configuration.ResourceManager.Instance.DigitalStandalonePackageNoRecordsLogoFile.ExistsLocal())
-				pbNoRecords.Image =
-					Image.FromFile(Business.Media.Configuration.ResourceManager.Instance.DigitalStandalonePackageNoRecordsLogoFile.LocalPath);
+			pbNoRecords.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalStandalonePackageNoRecordsLogo ?? pbNoRecords.Image;
 		}
 
 		public void LoadData()

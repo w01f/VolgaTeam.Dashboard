@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
-using Asa.Business.Media.Configuration;
 using Asa.Common.Core.Enums;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
@@ -18,19 +17,18 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		{
 			InitializeComponent();
 			Text = Business.Online.Dictionaries.ListManager.Instance.DefaultControlsConfiguration.SectionsHomeTitle ?? "Home";
-			if (ResourceManager.Instance.DigitalProductsHomeMainLogoFile.ExistsLocal())
-				pbMainLogo.Image = Image.FromFile(ResourceManager.Instance.DigitalProductsHomeMainLogoFile.LocalPath);
-			if (ResourceManager.Instance.DigitalProductsHomeRightLogoFile.ExistsLocal())
+			pbMainLogo.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalProductsHomeMainLogo ?? pbMainLogo.Image;
+			if (BusinessObjects.Instance.ImageResourcesManager.DigitalProductsHomeRightLogo != null)
 			{
 				pbRightLogo.Visible = true;
-				pbRightLogo.Image = Image.FromFile(ResourceManager.Instance.DigitalProductsHomeRightLogoFile.LocalPath);
+				pbRightLogo.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalProductsHomeRightLogo;
 			}
 			else
 				pbRightLogo.Visible = false;
-			if (ResourceManager.Instance.DigitalProductsHomeBottomLogoFile.ExistsLocal())
+			if (BusinessObjects.Instance.ImageResourcesManager.DigitalProductsHomeBottomLogo != null)
 			{
 				pnBottomLogo.Visible = true;
-				pbBottomLogo.Image = Image.FromFile(ResourceManager.Instance.DigitalProductsHomeBottomLogoFile.LocalPath);
+				pbBottomLogo.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalProductsHomeBottomLogo;
 			}
 			else
 				pnBottomLogo.Visible = false;

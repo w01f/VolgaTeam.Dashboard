@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Asa.Business.Media.Configuration;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar.Metro;
 
 namespace Asa.Media.Controls.ToolForms
@@ -11,8 +12,7 @@ namespace Asa.Media.Controls.ToolForms
 		{
 			InitializeComponent();
 			Text = String.Format(Text, MediaMetaData.Instance.DataTypeString);
-			if (ResourceManager.Instance.MainAppRibbonLogoFile.ExistsLocal())
-				pbLogo.Image = Image.FromFile(ResourceManager.Instance.MainAppRibbonLogoFile.LocalPath);
+			pbLogo.Image = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? pbLogo.Image;
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 3, laTitle.Font.Style);

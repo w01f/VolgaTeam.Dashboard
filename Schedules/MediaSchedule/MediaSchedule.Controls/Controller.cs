@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -324,9 +323,7 @@ namespace Asa.Media.Controls
 			var args = new FloaterRequestedEventArgs
 			{
 				AfterShow = afterShow,
-				Logo = ResourceManager.Instance.MainAppRibbonLogoFile.ExistsLocal() ?
-					Image.FromFile(ResourceManager.Instance.MainAppRibbonLogoFile.LocalPath) :
-					Properties.Resources.RibbonLogo
+				Logo = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Properties.Resources.RibbonLogo
 			};
 			FloaterRequested?.Invoke(null, args);
 		}

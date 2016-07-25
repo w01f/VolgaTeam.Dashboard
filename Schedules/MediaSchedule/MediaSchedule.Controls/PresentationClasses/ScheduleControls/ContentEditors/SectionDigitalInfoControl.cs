@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 
@@ -44,8 +44,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public override void InitControls()
 		{
 			base.InitControls();
-			if (ResourceManager.Instance.ProgramScheduleNoDigitalItemsLogoFile.ExistsLocal())
-				pbNoProducts.Image = System.Drawing.Image.FromFile(ResourceManager.Instance.ProgramScheduleNoDigitalItemsLogoFile.LocalPath);
+			pbNoProducts.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoDigitalItemsLogo ?? pbNoProducts.Image;
 		}
 
 		public override void Release()

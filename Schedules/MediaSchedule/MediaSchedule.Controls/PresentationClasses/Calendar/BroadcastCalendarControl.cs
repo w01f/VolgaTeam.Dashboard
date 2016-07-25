@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Drawing;
+using System.Linq;
 using Asa.Business.Common.Enums;
+using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
@@ -28,11 +30,11 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 		#region BaseContentEditControl Override
 		protected override bool IsContentChanged => EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
-		                                                                      ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
-		                                                                      ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
-		                                                                      ContentUpdateInfo.ChangeInfo.SpotTypeChanged ||
-		                                                                      ContentUpdateInfo.ChangeInfo.ProgramScheduleChanged ||
-		                                                                      ContentUpdateInfo.ChangeInfo.SnapshotsChanged);
+																			  ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+																			  ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
+																			  ContentUpdateInfo.ChangeInfo.SpotTypeChanged ||
+																			  ContentUpdateInfo.ChangeInfo.ProgramScheduleChanged ||
+																			  ContentUpdateInfo.ChangeInfo.SnapshotsChanged);
 
 		public override void InitControl()
 		{
@@ -92,7 +94,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			MonthList.Enabled = enable;
 			pnTop.Visible = enable;
 			pnMain.Visible = enable;
-			pictureBoxNoData.Image = Properties.Resources.CalendarDisabled;
+			pictureBoxNoData.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarNoDataLogo ?? Properties.Resources.CalendarDisabled;
 			pictureBoxNoData.Visible = !enable;
 			pictureBoxNoData.BringToFront();
 

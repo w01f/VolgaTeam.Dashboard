@@ -82,36 +82,35 @@ namespace Asa.Media.Single
 					true)
 				.LoadState();
 
-			if (ResourceManager.Instance.MainAppIconFile.ExistsLocal())
-				Icon = new Icon(ResourceManager.Instance.MainAppIconFile.LocalPath);
+			Icon = BusinessObjects.Instance.ImageResourcesManager.MainAppIcon ?? Icon;
 
-			if (ResourceManager.Instance.ProgramScheduleRibbonLogoFile.ExistsLocal())
+			if (BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRibbonLogo != null)
 			{
-				buttonItemProgramScheduleNew.Image =
-					Image.FromFile(ResourceManager.Instance.ProgramScheduleRibbonLogoFile.LocalPath);
+				buttonItemProgramScheduleNew.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRibbonLogo;
 				ribbonBarProgramScheduleNew.RecalcLayout();
 				ribbonPanelProgramSchedule.PerformLayout();
 			}
 
-			if (ResourceManager.Instance.SnapshotsRibbonLogoFile.ExistsLocal())
+			if (BusinessObjects.Instance.ImageResourcesManager.SnapshotsRibbonLogo != null)
 			{
-				buttonItemSnapshotNew.Image =
-					Image.FromFile(ResourceManager.Instance.SnapshotsRibbonLogoFile.LocalPath);
+				buttonItemSnapshotNew.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsRibbonLogo;
 				ribbonBarSnapshotNew.RecalcLayout();
 				ribbonPanelSnapshot.PerformLayout();
 			}
 
-			if (ResourceManager.Instance.OptionsRibbonLogoFile.ExistsLocal())
+			if (BusinessObjects.Instance.ImageResourcesManager.OptionsRibbonLogo != null)
 			{
-				buttonItemOptionsNew.Image =
-					Image.FromFile(ResourceManager.Instance.OptionsRibbonLogoFile.LocalPath);
+				buttonItemOptionsNew.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsRibbonLogo;
 				ribbonBarOptionsNew.RecalcLayout();
 				ribbonPanelOptions.PerformLayout();
 			}
 
-			if (ResourceManager.Instance.DigitalProductsRibbonLogoFile.ExistsLocal())
-				buttonItemDigitalScheduleLogo.Image =
-					Image.FromFile(ResourceManager.Instance.DigitalProductsRibbonLogoFile.LocalPath);
+			if (BusinessObjects.Instance.ImageResourcesManager.DigitalProductsRibbonLogo != null)
+			{
+				buttonItemDigitalScheduleLogo.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalProductsRibbonLogo;
+				ribbonBarDigitalScheduleLogo.RecalcLayout();
+				ribbonPanelDigitalSchedule.PerformLayout();
+			}
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.MainPanel = pnMain;
@@ -422,9 +421,7 @@ namespace Asa.Media.Single
 				formSender ?? this,
 				new FloaterRequestedEventArgs
 				{
-					Logo = ResourceManager.Instance.MainAppRibbonLogoFile.ExistsLocal() ?
-						Image.FromFile(ResourceManager.Instance.MainAppRibbonLogoFile.LocalPath) :
-						Resources.RibbonLogo
+					Logo = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Resources.RibbonLogo
 				});
 		}
 	}

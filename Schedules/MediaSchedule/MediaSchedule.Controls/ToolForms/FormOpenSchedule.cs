@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
@@ -23,8 +22,7 @@ namespace Asa.Media.Controls.ToolForms
 		public FormOpenSchedule()
 		{
 			InitializeComponent();
-			if (ResourceManager.Instance.MainAppRibbonLogoFile.ExistsLocal())
-				barStaticItemLogo.Glyph = Image.FromFile(ResourceManager.Instance.MainAppRibbonLogoFile.LocalPath);
+			barStaticItemLogo.Glyph = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? barStaticItemLogo.Glyph;
 			gridColumnSchedulesLastModifiedDate.SortIndex = 0;
 			gridColumnSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
 		}

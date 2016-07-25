@@ -74,8 +74,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			repositoryItemComboBoxTimes.Items.Clear();
 			repositoryItemComboBoxTimes.Items.AddRange(MediaMetaData.Instance.ListManager.Times);
 
-			if (ResourceManager.Instance.SnapshotsNoProgramsLogoFile.ExistsLocal())
-				pbNoPrograms.Image = Image.FromFile(ResourceManager.Instance.SnapshotsNoProgramsLogoFile.LocalPath);
+			pbNoPrograms.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNoProgramsLogo ?? pbNoPrograms.Image;
 		}
 
 		public void LoadData(Snapshot data)

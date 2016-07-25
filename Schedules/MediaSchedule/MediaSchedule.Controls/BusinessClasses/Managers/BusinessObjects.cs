@@ -24,6 +24,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public GalleryManager Gallery1Manager { get; private set; }
 		public GalleryManager Gallery2Manager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
+		public ImageResourcesManager ImageResourcesManager { get; private set; }
 
 		private BusinessObjects()
 		{
@@ -34,6 +35,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			SlideManager = new SlideManager();
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
+			ImageResourcesManager = new ImageResourcesManager();
 		}
 
 		public void Init()
@@ -60,6 +62,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			Gallery2Manager = new GalleryManager(ResourceManager.Instance.Gallery2ConfigFile);
 			RateCardManager = new RateCardManager(Common.Core.Configuration.ResourceManager.Instance.RateCardFolder);
 			RateCardManager.LoadRateCards();
+
+			ImageResourcesManager.Load();
 		}
 	}
 }

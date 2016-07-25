@@ -80,8 +80,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			Controller.Instance.OptionsProgramAdd.Click += OnAddItem;
 			Controller.Instance.OptionsProgramDelete.Click += OnDeleteItem;
 
-			if (ResourceManager.Instance.OptionsNoRecordsLogoFile.ExistsLocal())
-				pbNoRecords.Image = Image.FromFile(ResourceManager.Instance.OptionsNoRecordsLogoFile.LocalPath);
+			pbNoRecords.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsNoRecordsLogo ?? pbNoRecords.Image;
 
 			if ((CreateGraphics()).DpiX > 96)
 			{

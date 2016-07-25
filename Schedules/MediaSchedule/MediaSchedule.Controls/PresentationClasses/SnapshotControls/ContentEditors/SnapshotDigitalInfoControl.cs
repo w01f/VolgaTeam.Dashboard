@@ -3,6 +3,7 @@ using System.Linq;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 
@@ -42,8 +43,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public override void InitControls()
 		{
 			base.InitControls();
-			if (ResourceManager.Instance.SnapshotsNoDigitalItemsLogoFile.ExistsLocal())
-				pbNoProducts.Image = System.Drawing.Image.FromFile(ResourceManager.Instance.SnapshotsNoDigitalItemsLogoFile.LocalPath);
+			pbNoProducts.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNoDigitalItemsLogo ?? pbNoProducts.Image;
 		}
 
 		public override void Release()

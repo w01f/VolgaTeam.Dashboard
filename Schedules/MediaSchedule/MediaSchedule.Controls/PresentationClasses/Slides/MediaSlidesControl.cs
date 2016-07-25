@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Slides;
 using Asa.Common.GUI.ContentEditors.Interfaces;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Slides;
@@ -28,7 +29,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 		}
-		
+
 		private void LoadSlides()
 		{
 			if (_slideContainer != null)
@@ -42,11 +43,12 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
 			_slideContainer.InitSlides(BusinessObjects.Instance.SlideManager);
+			_slideContainer.SlideOutput += (o, e) => OutputPowerPoint(e.SlideMaster);
+			_slideContainer.SlidePreview += (o, e) => Preview(e.SlideMaster);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();
 		}
 
-		
 		public void InitMetaData()
 		{
 			TabPage.Tag = Identifier;
@@ -73,11 +75,16 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			var selectedSlideMaster = _slideContainer.SelectedSlide;
 			if (selectedSlideMaster == null) return;
 
+			OutputPowerPoint(selectedSlideMaster);
+		}
+
+		private void OutputPowerPoint(SlideMaster slideMaster)
+		{
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				RegularMediaSchedulePowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.GetMasterPath());
+				RegularMediaSchedulePowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath());
 				FormProgress.CloseProgress();
 			});
 		}
@@ -93,7 +100,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 				FormProgress.ShowProgress();
 				var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				RegularMediaSchedulePowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => RegularMediaSchedulePowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
-				var previewGroups = new[] {new PreviewGroup {Name = "Preview", PresentationSourcePath = tempFileName}};
+				var previewGroups = new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } };
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
 					string.Format("{0}-{1}.pdf", selectedSlideMaster.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
@@ -113,10 +120,15 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			var selectedSlideMaster = _slideContainer.SelectedSlide;
 			if (selectedSlideMaster == null) return;
 
+			Preview(selectedSlideMaster);
+		}
+
+		private void Preview(SlideMaster slideMaster)
+		{
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			RegularMediaSchedulePowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => RegularMediaSchedulePowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
+			RegularMediaSchedulePowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => RegularMediaSchedulePowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 

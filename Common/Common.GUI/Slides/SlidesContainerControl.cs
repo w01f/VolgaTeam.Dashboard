@@ -13,6 +13,9 @@ namespace Asa.Common.GUI.Slides
 	{
 		private SlideManager _slideManager;
 
+		public event EventHandler<SlideMasterEventArgs> SlideOutput;
+		public event EventHandler<SlideMasterEventArgs> SlidePreview;
+
 		public SlideMaster SelectedSlide
 		{
 			get
@@ -31,15 +34,27 @@ namespace Asa.Common.GUI.Slides
 		public void InitSlides(SlideManager slideManager)
 		{
 			_slideManager = slideManager;
-			xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ForEach(g=>g.Release());
+			xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ForEach(g => g.Release());
 			xtraTabControlSlides.TabPages.Clear();
 			foreach (var group in _slideManager.Slides.Where(s => s.Format == PowerPointManager.Instance.SlideSettings.Format).Select(s => s.Group).Distinct())
 			{
 				var groupPage = new SlideGroupPage(
 					group,
 					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == PowerPointManager.Instance.SlideSettings.Format));
+				groupPage.SlideOutput += OnSlideOutput;
+				groupPage.SlidePreview += OnSlidePreview;
 				xtraTabControlSlides.TabPages.Add(groupPage);
 			}
+		}
+
+		private void OnSlideOutput(object sender, SlideMasterEventArgs e)
+		{
+			SlideOutput?.Invoke(sender, e);
+		}
+
+		private void OnSlidePreview(object sender, SlideMasterEventArgs e)
+		{
+			SlidePreview?.Invoke(sender, e);
 		}
 	}
 }

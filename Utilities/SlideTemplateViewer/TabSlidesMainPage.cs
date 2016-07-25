@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.Slides;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Slides;
 using Asa.Common.GUI.ToolForms;
@@ -48,33 +49,31 @@ namespace Asa.SlideTemplateViewer
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
 			_slideContainer.InitSlides(AppManager.Instance.SlideManager);
+			_slideContainer.SlideOutput += (o, e) => GenerateOutput(e.SlideMaster);
+			_slideContainer.SlidePreview += (o, e) => GeneratePreview(e.SlideMaster);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();
 		}
 
-		public void buttonItemSlidesPowerPoint_Click(object sender, EventArgs e)
+		private void GenerateOutput(SlideMaster slideMaster)
 		{
-			var selectedSlideMaster = _slideContainer.SelectedSlide;
-			if (selectedSlideMaster == null) return;
 			if (!AppManager.Instance.CheckPowerPointRunning()) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			AppManager.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				SlideTemplateViewerPowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.GetMasterPath());
+				SlideTemplateViewerPowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath());
 				FormProgress.CloseProgress();
 			});
 		}
 
-		public void buttonItemSlidesPreview_Click(object sender, EventArgs e)
+		private void GeneratePreview(SlideMaster slideMaster)
 		{
-			var selectedSlideMaster = _slideContainer.SelectedSlide;
-			if (selectedSlideMaster == null) return;
 			if (!AppManager.Instance.CheckPowerPointRunning()) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideTemplateViewerPowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => SlideTemplateViewerPowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
+			SlideTemplateViewerPowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => SlideTemplateViewerPowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
 			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
@@ -90,6 +89,20 @@ namespace Asa.SlideTemplateViewer
 				if (previewResult != DialogResult.OK)
 					AppManager.Instance.ActivateMainForm();
 			}
+		}
+
+		public void buttonItemSlidesPowerPoint_Click(object sender, EventArgs e)
+		{
+			var slideMaster = _slideContainer.SelectedSlide;
+			if (slideMaster == null) return;
+			GenerateOutput(slideMaster);
+		}
+
+		public void buttonItemSlidesPreview_Click(object sender, EventArgs e)
+		{
+			var slideMaster = _slideContainer.SelectedSlide;
+			if (slideMaster == null) return;
+			GeneratePreview(slideMaster);
 		}
 	}
 }

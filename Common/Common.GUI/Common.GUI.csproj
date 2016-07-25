@@ -285,6 +285,7 @@
       <DependentUpon>SlideGroupPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Slides\SlideAdaptor.cs" />
+    <Compile Include="Slides\SlideMasterEventArgs.cs" />
     <Compile Include="Slides\SlidesContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -608,7 +609,12 @@
   <ItemGroup>
     <None Include="Resources\ProgressCancel.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\SlideOutput.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SlidePreview.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

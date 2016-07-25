@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripMenuItemOutput.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADpwAAA6cAQeUU90AAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbo
+        vLKMAAABLUlEQVQ4T6XSIUgDURzH8deMKgZBBkNQwSg4LCKCwaSgomnBOhgM1hd1WFZWRFQMBpNxyhQR
+        MQwRrGpcWFAUFAxant//3v/wPP7CgQefu+P3/ve7G2/Oe/8vduhcL8Yxj01UrDkRTs7NYh1bOMINniGL
+        opl8MBJOP4N/uUQJ+zjEHuqopi24hjx8hmXcIaylLGjoXFGuen8Ls6CAGezEsqighgmMoQqzYBq7yOFR
+        s1OdW8AaVtCGWSBvX8UcXjT7tQscGc3NginIlnZiWfcLdLYHx5qbBYuQ/0E8k10oQ3biXrPAKHjHVyKT
+        ggYkf8MTwppRYJH9H8AospCvDGspC66wgQs00cIHXqOCJchv3MYJHvCJqOAc/RhRwxhEX7cgiWMIk8jj
+        ADVrznvvvgERLFZCNKhjLQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripMenuItemPreview.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADpwAAA6cAQeUU90AAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbo
+        vLKMAAABB0lEQVQ4T6XSMUsCYRzH8WeIsCECB19ANDtJtIggaJBCONYUtOjQ4ODgK9DJ3cGmBOdwiJaW
+        xCUwqF03afEtXN//eY899/A/b+gHn+Oe5/d/joM7EwTBv6ibLnKJVyzxjR6Odr077CN9fKANedANHjFH
+        PpzxD1nkAXI4q3StqDuOFc7ACb5wpvWCDEMJZQ1TrbNIFcukUl5xrHUWOccmqSziXesscotFUnmINzS0
+        XkR9Uy0F6UJu6t5+Ds94CtduaRH53vKZ7jDDC0aYYIEBMuGscvgaaxSi9QHq6OAep7H52MKYCla4cPf3
+        +bsxpowflNyBNNuLMVf4RMUfSLO98NOg5ZfpAvML+os8iOpJkZoAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="slidesListView.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

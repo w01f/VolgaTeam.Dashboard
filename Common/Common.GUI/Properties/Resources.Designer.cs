@@ -283,6 +283,26 @@ namespace Asa.Common.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap SlideOutput {
+            get {
+                object obj = ResourceManager.GetObject("SlideOutput", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SlidePreview {
+            get {
+                object obj = ResourceManager.GetObject("SlidePreview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap StartLogo {
             get {
                 object obj = ResourceManager.GetObject("StartLogo", resourceCulture);

@@ -54,8 +54,7 @@ namespace Asa.Bar.App.BarItems
 		{
 			foreach (var configFile in Directory
 				.GetFiles(_rootPath, "*.xml")
-				.Where(filePath => 
-					String.Compare(Path.GetFileName(filePath), GroupConfigFileName, StringComparison.OrdinalIgnoreCase) != 0))
+				.Where(filePath => !GroupConfigFileName.Equals(Path.GetFileName(filePath), StringComparison.OrdinalIgnoreCase)))
 			{
 				Items.Add(TabGroupItem.Create(configFile));
 			}

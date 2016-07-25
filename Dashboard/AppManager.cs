@@ -177,7 +177,7 @@ namespace Asa.Dashboard
 				mainFormHandle = process.MainWindowHandle;
 				break;
 			}
-			Utilities.ActivateForm(mainFormHandle, RegistryHelper.MaximizeMainForm, false);
+			Utilities.ActivateForm(mainFormHandle, false, false);
 		}
 
 		public void SetClickEventHandler(Control control)

@@ -170,7 +170,7 @@ namespace Asa.SlideTemplateViewer
 				mainFormHandle = process.MainWindowHandle;
 				break;
 			}
-			Utilities.ActivateForm(mainFormHandle, RegistryHelper.MaximizeMainForm, false);
+			Utilities.ActivateForm(mainFormHandle, false, false);
 		}
 
 		public bool CheckPowerPointRunning()

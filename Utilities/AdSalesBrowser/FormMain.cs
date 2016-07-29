@@ -205,7 +205,7 @@ namespace AdSalesBrowser
 		}
 		#endregion
 
-		#region Sales Library Extensions
+		#region Slide Content Extension
 		public ButtonItem ButtonExtensionsAddSlide => buttonItemMenuExtensionsAddSlide;
 		public ButtonItem ButtonExtensionsAddSlides => buttonItemMenuExtensionsAddSlides;
 		public ButtonItem ButtonExtensionsAddVideo => buttonItemMenuExtensionsAddVideo;
@@ -213,7 +213,7 @@ namespace AdSalesBrowser
 
 		private void UpdateExtensionsState()
 		{
-			SelectedWebPage?.UpdateExtensionsState();
+			SelectedWebPage?.UpdateSlideContentState();
 		}
 
 		private void buttonItemMenuExtensionsAddSlide_Click(object sender, EventArgs e)

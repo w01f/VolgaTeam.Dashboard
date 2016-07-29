@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Common\Common.Core\Enums\SlideOrientation.cs">
-      <Link>SalesLibraryExtensions\SlideOrientation.cs</Link>
+      <Link>SalesLibraryExtensions\SlideContent\SlideOrientation.cs</Link>
     </Compile>
     <Compile Include="..\..\Common\Common.Core\Helpers\SharedAssemblyHelper.cs">
       <Link>Helpers\SharedAssemblyHelper.cs</Link>
@@ -154,17 +154,24 @@
     <Compile Include="PowerPoint\PowerPointManager.cs" />
     <Compile Include="PowerPoint\PowerPointProcessor.cs" />
     <Compile Include="PowerPoint\PowerPointSingleton.cs" />
-    <Compile Include="SalesLibraryExtensions\ContentLinkData.cs" />
-    <Compile Include="SalesLibraryExtensions\ExtensionManager.cs" />
-    <Compile Include="SalesLibraryExtensions\ExcelLinkData.cs" />
-    <Compile Include="SalesLibraryExtensions\LanData.cs" />
-    <Compile Include="SalesLibraryExtensions\LinkData.cs" />
-    <Compile Include="SalesLibraryExtensions\LinkDataType.cs" />
-    <Compile Include="SalesLibraryExtensions\PowerPointData.cs" />
+    <Compile Include="SalesLibraryExtensions\ExtensionsManager.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\ImageLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\PdfLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\LinkOpenExtension.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\ExcelLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\WordLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\PowerPointLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\SlideContent\SlideContentData.cs" />
+    <Compile Include="SalesLibraryExtensions\SlideContent\SlideContentExtension.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\LanData.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\BaseLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\LinkType.cs" />
+    <Compile Include="SalesLibraryExtensions\SlideContent\PowerPointData.cs" />
     <Compile Include="Helpers\UrlParseHelper.cs" />
-    <Compile Include="SalesLibraryExtensions\AppLinkData.cs" />
-    <Compile Include="SalesLibraryExtensions\SlideSettings.cs" />
-    <Compile Include="SalesLibraryExtensions\VideoData.cs" />
+    <Compile Include="SalesLibraryExtensions\FileLinks\AppLinkData.cs" />
+    <Compile Include="SalesLibraryExtensions\SlideContent\SlideContentType.cs" />
+    <Compile Include="SalesLibraryExtensions\SlideContent\SlideSettings.cs" />
+    <Compile Include="SalesLibraryExtensions\SlideContent\VideoData.cs" />
     <Compile Include="WebPage\ClosePageEventArgs.cs" />
     <Compile Include="WebPage\NewPageEventArgs.cs" />
     <Compile Include="Program.cs" />
@@ -174,6 +181,18 @@
     </Compile>
     <Compile Include="WebPage\WebKitPage.Designer.cs">
       <DependentUpon>WebKitPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage\WebKitPage.Extension.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebPage\WebKitPage.Extensions.LinkOpen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebPage\WebKitPage.Extensions.SlideContent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebPage\WebKitPage.Extensions.YouTube.cs">
+      <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="..\..\Common\Common.GUI\Floater\FormFloater.resx">
       <Link>Floater\FormFloater.resx</Link>
@@ -283,6 +302,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>robocopy /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\AdSalesBrowser.shared.exe" "Asa*.dll" "SimpleBrowser.exe"

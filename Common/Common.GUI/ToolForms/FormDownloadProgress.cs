@@ -37,6 +37,7 @@ namespace Asa.Common.GUI.ToolForms
 
 		public static void CloseProgress()
 		{
+			if (_instance == null) return;
 			if (_instance.InvokeRequired)
 				_instance.BeginInvoke(new MethodInvoker(() =>
 				{

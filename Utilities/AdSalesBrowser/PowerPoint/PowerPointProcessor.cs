@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using AdSalesBrowser.SalesLibraryExtensions;
+using AdSalesBrowser.SalesLibraryExtensions.SlideContent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Microsoft.Office.Core;

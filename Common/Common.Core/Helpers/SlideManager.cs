@@ -1,14 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Xml;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.Core.Objects.Slides;
 
 namespace Asa.Common.Core.Helpers
 {
 	public class SlideManager
 	{
-		public List<SlideMaster> Slides { get; private set; }
+		public string FormTitle { get; private set; }
+		public string TabTitle { get; private set; }
+		public Image RibbonBarLogo { get; private set; }
+		public Icon FormIcon { get; private set; }
+		public List<SlideMaster> Slides { get; }
 
 		public SlideManager()
 		{
@@ -19,9 +26,32 @@ namespace Asa.Common.Core.Helpers
 		{
 			var storageDirectory = ResourceManager.Instance.SlideMastersFolder;
 			if (!storageDirectory.ExistsLocal()) return;
+
+			var titleConfigFile = Path.Combine(storageDirectory.LocalPath, "app_branding.xml");
+			if (File.Exists(titleConfigFile))
+			{
+				var titleConfig = new XmlDocument();
+				titleConfig.Load(titleConfigFile);
+
+				FormTitle = titleConfig.SelectSingleNode(@"/Settings/addslides/TitleBar")?.InnerText;
+				TabTitle = titleConfig.SelectSingleNode(@"/Settings/addslides/RibbonTab")?.InnerText;
+			}
+
+			var ribbonBarLogoFile = Path.Combine(storageDirectory.LocalPath, "app_logo.png");
+			if (File.Exists(ribbonBarLogoFile))
+				RibbonBarLogo = Image.FromFile(ribbonBarLogoFile);
+
+			var formIconFile = Path.Combine(storageDirectory.LocalPath, "app_icon.ico");
+			if (File.Exists(formIconFile))
+				FormIcon = new Icon(formIconFile);
+
+			LoadSlides(storageDirectory);
+		}
+
+		private void LoadSlides(StorageDirectory storageDirectory)
+		{
 			foreach (var sizeFolder in storageDirectory.GetLocalFolders())
 			{
-
 				var format = SlideFormatEnum.Undefined;
 				switch (Path.GetFileName(sizeFolder.LocalPath))
 				{
@@ -47,7 +77,8 @@ namespace Asa.Common.Core.Helpers
 						Slides.Add(slideMaster);
 					}
 			}
-			Slides.Sort((x, y) => x.Group.Equals(y.Group) ? x.Order.CompareTo(y.Order) : WinAPIHelper.StrCmpLogicalW(x.Group, y.Group));
+			Slides.Sort(
+				(x, y) => x.Group.Equals(y.Group) ? x.Order.CompareTo(y.Order) : WinAPIHelper.StrCmpLogicalW(x.Group, y.Group));
 		}
 	}
 }

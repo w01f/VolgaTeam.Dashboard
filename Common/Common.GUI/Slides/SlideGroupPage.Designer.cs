@@ -28,13 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideGroupPage));
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-			this.slidesListView = new Manina.Windows.Forms.ImageListView();
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemOutput = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemPreview = new System.Windows.Forms.ToolStripMenuItem();
+			this.slidesListView = new Manina.Windows.Forms.ImageListView();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -45,13 +45,29 @@
             this.toolStripSeparator,
             this.toolStripMenuItemPreview});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(166, 76);
+			this.contextMenuStrip.Size = new System.Drawing.Size(166, 54);
 			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+			// 
+			// toolStripMenuItemOutput
+			// 
+			this.toolStripMenuItemOutput.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOutput.Image")));
+			this.toolStripMenuItemOutput.Name = "toolStripMenuItemOutput";
+			this.toolStripMenuItemOutput.Size = new System.Drawing.Size(165, 22);
+			this.toolStripMenuItemOutput.Text = "Add this Slide";
+			this.toolStripMenuItemOutput.Click += new System.EventHandler(this.toolStripMenuItemOutput_Click);
 			// 
 			// toolStripSeparator
 			// 
 			this.toolStripSeparator.Name = "toolStripSeparator";
 			this.toolStripSeparator.Size = new System.Drawing.Size(162, 6);
+			// 
+			// toolStripMenuItemPreview
+			// 
+			this.toolStripMenuItemPreview.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemPreview.Image")));
+			this.toolStripMenuItemPreview.Name = "toolStripMenuItemPreview";
+			this.toolStripMenuItemPreview.Size = new System.Drawing.Size(165, 22);
+			this.toolStripMenuItemPreview.Text = "Preview this Slide";
+			this.toolStripMenuItemPreview.Click += new System.EventHandler(this.toolStripMenuItemPreview_Click);
 			// 
 			// slidesListView
 			// 
@@ -69,25 +85,11 @@
 			this.slidesListView.Size = new System.Drawing.Size(521, 446);
 			this.slidesListView.TabIndex = 40;
 			this.slidesListView.ThumbnailSize = new System.Drawing.Size(255, 170);
+			this.slidesListView.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.slidesListView_ItemHover);
 			this.slidesListView.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageListView_ItemDoubleClick);
 			this.slidesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseDown);
+			this.slidesListView.MouseLeave += new System.EventHandler(this.slidesListView_MouseLeave);
 			this.slidesListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseMove);
-			// 
-			// toolStripMenuItemOutput
-			// 
-			this.toolStripMenuItemOutput.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOutput.Image")));
-			this.toolStripMenuItemOutput.Name = "toolStripMenuItemOutput";
-			this.toolStripMenuItemOutput.Size = new System.Drawing.Size(165, 22);
-			this.toolStripMenuItemOutput.Text = "Add this Slide";
-			this.toolStripMenuItemOutput.Click += new System.EventHandler(this.toolStripMenuItemOutput_Click);
-			// 
-			// toolStripMenuItemPreview
-			// 
-			this.toolStripMenuItemPreview.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemPreview.Image")));
-			this.toolStripMenuItemPreview.Name = "toolStripMenuItemPreview";
-			this.toolStripMenuItemPreview.Size = new System.Drawing.Size(165, 22);
-			this.toolStripMenuItemPreview.Text = "Preview this Slide";
-			this.toolStripMenuItemPreview.Click += new System.EventHandler(this.toolStripMenuItemPreview_Click);
 			// 
 			// SlideGroupPage
 			// 
@@ -107,5 +109,6 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOutput;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreview;
+		private DevExpress.Utils.ToolTipController toolTipController;
 	}
 }

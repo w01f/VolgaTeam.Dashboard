@@ -15,6 +15,8 @@ namespace Asa.Common.Core.Objects.Slides
 
 		public Guid Identifier { get; set; }
 		public string Name { get; private set; }
+		public string ToolTipHeader { get; private set; }
+		public string ToolTipBody { get; private set; }
 		public string Group { get; set; }
 		public SlideFormatEnum Format { get; set; }
 		public int Order { get; private set; }
@@ -36,6 +38,14 @@ namespace Asa.Common.Core.Objects.Slides
 
 			var titleFile = files.First(file => file.Name == "title.txt");
 			Name = File.ReadAllText(titleFile.LocalPath).Trim();
+
+			var toolTipFile = files.FirstOrDefault(file => file.Name == "tip.txt");
+			if (toolTipFile != null)
+			{
+				var tooltipLines = File.ReadAllLines(toolTipFile.LocalPath);
+				ToolTipHeader = tooltipLines.ElementAtOrDefault(0)?.Replace("*", "");
+				ToolTipBody = tooltipLines.ElementAtOrDefault(1)?.Replace("*", "");
+			}
 
 			int tempInt;
 			if (Int32.TryParse(Path.GetFileName(_root.LocalPath), out tempInt))

@@ -56,6 +56,10 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 
 		public void InitControl()
 		{
+			Controller.Instance.SlidesLogoLabel.Image = BusinessObjects.Instance.SlideManager.RibbonBarLogo ?? Controller.Instance.SlidesLogoLabel.Image;
+			Controller.Instance.SlidesLogoBar.RecalcLayout();
+			Controller.Instance.SlidesPanel.PerformLayout();
+
 			LoadSlides();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => LoadSlides();
 		}

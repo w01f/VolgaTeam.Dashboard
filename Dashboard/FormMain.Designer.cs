@@ -30,8 +30,9 @@ namespace Asa.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			this.toolTip = new System.Windows.Forms.ToolTip();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -70,10 +71,10 @@ namespace Asa.Dashboard
 			this.ribbonTabItemHome = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
 			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
@@ -93,8 +94,8 @@ namespace Asa.Dashboard
 			// 
 			this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.CaptionVisible = true;
-			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
+			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -153,6 +154,7 @@ namespace Asa.Dashboard
 			// 
 			this.ribbonPanelHome.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelHome.TabIndex = 4;
+			this.ribbonPanelHome.Visible = false;
 			// 
 			// ribbonBarHomeExit
 			// 
@@ -194,7 +196,7 @@ namespace Asa.Dashboard
 			this.buttonItemHomeExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemHomeExit.Name = "buttonItemHomeExit";
 			this.buttonItemHomeExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("Exit", "", "Close this app…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
 			this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
 			// ribbonBarHomeFloater
@@ -234,7 +236,7 @@ namespace Asa.Dashboard
 			this.buttonItemHomeFloater.Image = global::Asa.Dashboard.Properties.Resources.Floater;
 			this.buttonItemHomeFloater.Name = "buttonItemHomeFloater";
 			this.buttonItemHomeFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Minimize this app to the floater bar…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeFloater.Text = "Floater";
 			this.buttonItemHomeFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
@@ -275,7 +277,7 @@ namespace Asa.Dashboard
 			this.buttonItemHomeHelp.Image = global::Asa.Dashboard.Properties.Resources.Help;
 			this.buttonItemHomeHelp.Name = "buttonItemHomeHelp";
 			this.buttonItemHomeHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Help", "", "Learn more about this app…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeHelp.Text = "buttonItem1";
 			this.buttonItemHomeHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
 			// 
@@ -362,7 +364,7 @@ namespace Asa.Dashboard
 			this.buttonItemPowerPoint.Image = global::Asa.Dashboard.Properties.Resources.Output;
 			this.buttonItemPowerPoint.Name = "buttonItemPowerPoint";
 			this.buttonItemPowerPoint.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Insert Slide", "", "Add this slide to my Presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemPowerPoint.Click += new System.EventHandler(this.buttonItemPowerPoint_Click);
 			// 
 			// buttonItemHomeThemeCleanslate
@@ -444,6 +446,7 @@ namespace Asa.Dashboard
 			this.buttonItemPreview.Image = global::Asa.Dashboard.Properties.Resources.Preview;
 			this.buttonItemPreview.Name = "buttonItemPreview";
 			this.buttonItemPreview.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Preview", "", "View this slide before you add it to your presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemPreview.Text = "buttonItem1";
 			this.buttonItemPreview.Click += new System.EventHandler(this.buttonItemPreview_Click);
 			// 
@@ -517,7 +520,6 @@ namespace Asa.Dashboard
 			// 
 			this.ribbonPanelSlides.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelSlides.TabIndex = 23;
-			this.ribbonPanelSlides.Visible = false;
 			// 
 			// ribbonBarSlidesExit
 			// 
@@ -559,7 +561,7 @@ namespace Asa.Dashboard
 			this.buttonItemSlidesExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemSlidesExit.Name = "buttonItemSlidesExit";
 			this.buttonItemSlidesExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesExit, new DevComponents.DotNetBar.SuperTooltipInfo("Exit", "", "Close this app…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
 			this.buttonItemSlidesExit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
 			// ribbonBarSlidesFloater
@@ -599,7 +601,7 @@ namespace Asa.Dashboard
 			this.buttonItemSlidesFloater.Image = global::Asa.Dashboard.Properties.Resources.Floater;
 			this.buttonItemSlidesFloater.Name = "buttonItemSlidesFloater";
 			this.buttonItemSlidesFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Minimize this app to the floater bar…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemSlidesFloater.Text = "Floater";
 			this.buttonItemSlidesFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
@@ -640,7 +642,7 @@ namespace Asa.Dashboard
 			this.buttonItemSlidesHelp.Image = global::Asa.Dashboard.Properties.Resources.Help;
 			this.buttonItemSlidesHelp.Name = "buttonItemSlidesHelp";
 			this.buttonItemSlidesHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Help", "", "Learn more about this app…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemSlidesHelp.Text = "buttonItem1";
 			this.buttonItemSlidesHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
 			// 
@@ -681,7 +683,7 @@ namespace Asa.Dashboard
 			this.buttonItemSlidesPowerPoint.Image = global::Asa.Dashboard.Properties.Resources.Output;
 			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
 			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Insert Slide", "", "Add this slide to my Presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarSlidesPreview
 			// 
@@ -720,6 +722,7 @@ namespace Asa.Dashboard
 			this.buttonItemSlidesPreview.Image = global::Asa.Dashboard.Properties.Resources.Preview;
 			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
 			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Preview", "", "View this slide before you add it to your presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemSlidesPreview.Text = "buttonItem1";
 			// 
 			// ribbonBarSlidesLogo
@@ -766,7 +769,6 @@ namespace Asa.Dashboard
 			// 
 			// ribbonTabItemHome
 			// 
-			this.ribbonTabItemHome.Checked = true;
 			this.ribbonTabItemHome.Name = "ribbonTabItemHome";
 			this.ribbonTabItemHome.Panel = this.ribbonPanelHome;
 			this.ribbonTabItemHome.Text = "HOME";
@@ -774,6 +776,7 @@ namespace Asa.Dashboard
 			// 
 			// ribbonTabItemSlides
 			// 
+			this.ribbonTabItemSlides.Checked = true;
 			this.ribbonTabItemSlides.Name = "ribbonTabItemSlides";
 			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
 			this.ribbonTabItemSlides.Text = "Slides";

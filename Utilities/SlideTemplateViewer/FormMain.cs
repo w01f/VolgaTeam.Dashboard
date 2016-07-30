@@ -42,22 +42,17 @@ namespace Asa.SlideTemplateViewer
 			}
 		}
 
-		#region Configuration Methods
-		private void ApplyMasterWizard()
-		{
-			Text = AppManager.Instance.FormCaption;
-
-			var userName = Environment.UserName;
-			ribbonBarSlidesLogo.Text = userName;
-		}
-		#endregion
-
 		#region GUI Event Handlers
 		public void Init()
 		{
 			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "add slides", false).LoadState();
 
-			ApplyMasterWizard();
+			Text = AppManager.Instance.FormCaption;
+			Icon = AppManager.Instance.SlideManager.FormIcon ?? Icon;
+
+			ribbonTabItemSlides.Text = AppManager.Instance.SlideManager.TabTitle ?? ribbonTabItemSlides.Text;
+			ribbonBarSlidesLogo.Text = Environment.UserName;
+			labelItemSlidesLogo.Image = AppManager.Instance.SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo;
 
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
@@ -96,10 +91,7 @@ namespace Asa.SlideTemplateViewer
 			if (formSender != null && formSender.IsDisposed) return;
 			AppManager.Instance.ShowFloater(
 				formSender,
-				new FloaterRequestedEventArgs
-				{
-					Logo = Resources.AddSlidesLogo
-				});
+				new FloaterRequestedEventArgs());
 		}
 
 		public void buttonItemExit_Click(object sender, EventArgs e)

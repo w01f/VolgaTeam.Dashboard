@@ -251,7 +251,10 @@ namespace Asa.Media.Single
 			#endregion
 
 			#region Slides
+			Controller.Instance.SlidesPanel = ribbonPanelSlides;
+			Controller.Instance.SlidesLogoBar = ribbonBarSlidesLogo;
 			Controller.Instance.SlidesSpecialButtons = ribbonBarSlidesSpecialButtons;
+			Controller.Instance.SlidesLogoLabel = labelItemSlideHome;
 			Controller.Instance.SlidesPreview = buttonItemSlidesPreview;
 			Controller.Instance.SlidesEmail = buttonItemSlidesEmail;
 			Controller.Instance.SlidesPowerPoint = buttonItemSlidesPowerPoint;

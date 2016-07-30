@@ -477,7 +477,10 @@ namespace Asa.Media.Controls
 		#endregion
 
 		#region Slides
+		public RibbonPanel SlidesPanel { get; set; }
+		public RibbonBar SlidesLogoBar { get; set; }
 		public RibbonBar SlidesSpecialButtons { get; set; }
+		public LabelItem SlidesLogoLabel { get; set; }
 		public ButtonItem SlidesPreview { get; set; }
 		public ButtonItem SlidesPowerPoint { get; set; }
 		public ButtonItem SlidesPdf { get; set; }

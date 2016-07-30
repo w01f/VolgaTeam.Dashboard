@@ -54,29 +54,24 @@ namespace Asa.Dashboard
 			}
 		}
 
-		#region Configuration Methods
-		private void ApplyMasterWizard()
-		{
-			Text = AppManager.Instance.FormCaption;
-
-			var userName = Environment.UserName;
-			ribbonBarHomeOverview.Text = userName;
-			ribbonBarSlidesLogo.Text = userName;
-
-			var masterWizardLogo = Resources.RibbonLogo;
-			buttonItemHomeOverview.Image = masterWizardLogo;
-			buttonItemSlidesLogo.Image = masterWizardLogo;
-			ribbonBarHomeOverview.RecalcLayout();
-			ribbonPanelHome.PerformLayout();
-		}
-		#endregion
 
 		#region GUI Event Handlers
 		public void Init()
 		{
 			FormStateHelper.Init(this, Common.Core.Configuration.ResourceManager.Instance.AppSettingsFolder, "6ms", false).LoadState();
 
-			ApplyMasterWizard();
+			Text = AppManager.Instance.FormCaption;
+
+			var userName = Environment.UserName;
+			ribbonBarHomeOverview.Text = userName;
+			buttonItemHomeOverview.Image = Resources.RibbonLogo;
+			ribbonBarHomeOverview.RecalcLayout();
+			ribbonPanelHome.PerformLayout();
+
+			ribbonTabItemSlides.Text = SettingsManager.Instance.SlideManager.TabTitle ?? ribbonTabItemSlides.Text;
+			buttonItemSlidesLogo.Image = SettingsManager.Instance.SlideManager.RibbonBarLogo ?? Resources.RibbonLogo;
+			ribbonBarSlidesLogo.RecalcLayout();
+			ribbonPanelSlides.PerformLayout();
 
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;

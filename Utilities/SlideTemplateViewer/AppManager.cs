@@ -33,7 +33,7 @@ namespace Asa.SlideTemplateViewer
 		public static AppManager Instance { get; } = new AppManager();
 
 		public string FormCaption => String.Format("{0} v{1}- {2}",
-			"Add Slides",
+			SlideManager.FormTitle ?? "Add Slides",
 			FileStorageManager.Instance.Version,
 			PowerPointManager.Instance.SlideSettings.SizeFormatted);
 
@@ -186,7 +186,7 @@ namespace Asa.SlideTemplateViewer
 		{
 			ShowFloater(null, new FloaterRequestedEventArgs
 			{
-				Logo = Resources.AddSlidesLogo,
+				Logo = SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo,
 				AfterShow = afterShow
 			});
 		}
@@ -194,7 +194,7 @@ namespace Asa.SlideTemplateViewer
 		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
 			var afterBack = new Action<bool>(b => ActivateMainForm());
-			_floater.ShowFloater(sender ?? FormMain.Instance, null, e.Logo ?? Resources.AddSlidesLogo, e.AfterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, null, e.Logo ?? SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo, e.AfterShow, null, afterBack);
 		}
 	}
 }

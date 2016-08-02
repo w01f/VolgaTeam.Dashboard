@@ -88,9 +88,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 		{
 			_settingsControls.AddRange(new ISettingsControl[]
 				{
-					new DigitalListSettingsControl(), 
+					new DigitalListSettingsControl(),
 					new DigitalProductPackageSettingsControl(),
-					new DigitalStandalonePackageSettingsControl(), 
+					new DigitalStandalonePackageSettingsControl(),
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsControl>())
 				settingsDataControl.DataChanged += OnSettingsChanged;

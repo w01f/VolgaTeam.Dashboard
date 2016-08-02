@@ -46,7 +46,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = regularFont;
 				xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = regularFont;
 
-				hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
 					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
 				hyperLinkEditInfoContract.Font = new Font(hyperLinkEditInfoContract.Font.FontFamily,
@@ -98,7 +97,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 					new SectionColumnSettingsControl(),
 					new SectionTotalsSettingsControl(),
 					new ColorSettingsControl(),
-					new SectionDigitalInfoSettingsControl(), 
+					new SectionDigitalInfoSettingsControl(),
 					new CustomSummaryInfoControl(),
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsDataControl>())
@@ -148,6 +147,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.AdvancedColumns);
 			hyperLinkEditInfoAdvanced.BringToFront();
 			hyperLinkEditInfoContract.Visible =
+				BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal() &&
 				contentRelation != null &&
 				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.Contract);
 			hyperLinkEditInfoContract.BringToFront();
@@ -175,7 +175,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		private void OnSettingsChanged(Object sender, SettingsChangedEventArgs e)
 		{
 			RaiseSettingsChanged(e);
-			if(e.ChangedSettingsType == ScheduleSettingsType.Columns)
+			if (e.ChangedSettingsType == ScheduleSettingsType.Columns)
 				_settingsControls.OfType<SectionTotalsSettingsControl>().First().UpdateQuarterState();
 		}
 		#endregion
@@ -246,7 +246,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 		private void OnBottomPanelResize(object sender, EventArgs e)
 		{
-			hyperLinkEditInfoAdvanced.Width = pnInfoBottom.Width / 2;
+			hyperLinkEditInfoAdvanced.Width = pnInfoBottom.Width / (hyperLinkEditInfoContract.Visible ? 2 : 1);
 		}
 		#endregion
 	}

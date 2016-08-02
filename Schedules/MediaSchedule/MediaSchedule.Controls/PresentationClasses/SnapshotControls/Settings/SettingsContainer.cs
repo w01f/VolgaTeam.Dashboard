@@ -48,7 +48,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 				xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = regularFont;
 				xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = regularFont;
 
-				hyperLinkEditInfoContract.Enabled = BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal();
 				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
 					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
 				hyperLinkEditInfoContract.Font = new Font(hyperLinkEditInfoContract.Font.FontFamily,
@@ -60,7 +59,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 		{
 			_snapshotEditorSettings.AddRange(new[]
 			{
-				new SnapshotEditorSettingsRelation 
+				new SnapshotEditorSettingsRelation
 				{
 					EditorType = SnapshotEditorType.Schedule,
 					SettingsTypes = new []
@@ -101,7 +100,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 					new SnapshotColumnSettingsControl(),
 					new SnapshotDigitalInfoSettingsControl(),
 					new SummaryColumnSettingsControl(),
-					new ActiveWeeksSettingsControl(), 
+					new ActiveWeeksSettingsControl(),
 					new ColorSettingsControl(),
 				});
 			foreach (var settingsDataControl in _settingsControls.OfType<ISettingsDataControl>())
@@ -153,6 +152,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 				contentRelation.SettingsTypes.Contains(SnapshotSettingsType.AdvancedColumns);
 			hyperLinkEditInfoAdvanced.BringToFront();
 			hyperLinkEditInfoContract.Visible =
+				BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal() &&
 				contentRelation != null &&
 				contentRelation.SettingsTypes.Contains(SnapshotSettingsType.Contract);
 			hyperLinkEditInfoContract.BringToFront();
@@ -171,7 +171,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 
 		private void RaiseSettingsChanged(SettingsChangedEventArgs args)
 		{
-			if(args.ChangedSettingsType== SnapshotSettingsType.Schedule)
+			if (args.ChangedSettingsType == SnapshotSettingsType.Schedule)
 				_settingsControls.OfType<SummaryColumnSettingsControl>().First().LoadContentData(_editedContent);
 			SettingsChanged?.Invoke(this, args);
 		}
@@ -227,7 +227,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 							{
 								snapshot.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
 								snapshot.ShowSpotsX = form.checkEditShowSpotX.Checked;
-								snapshot.ShowSpotsPerWeek  = form.checkEditShowSpotsPerWeek.Checked;
+								snapshot.ShowSpotsPerWeek = form.checkEditShowSpotsPerWeek.Checked;
 								snapshot.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
 							}
 						}
@@ -303,7 +303,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 
 		private void OnBottomPanelResize(object sender, EventArgs e)
 		{
-			hyperLinkEditInfoAdvanced.Width = pnInfoBottom.Width / 2;
+			hyperLinkEditInfoAdvanced.Width = pnInfoBottom.Width / (hyperLinkEditInfoContract.Visible ? 2 : 1);
 		}
 		#endregion
 	}

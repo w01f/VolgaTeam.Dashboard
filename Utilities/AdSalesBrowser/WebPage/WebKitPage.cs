@@ -39,16 +39,16 @@ namespace AdSalesBrowser.WebPage
 			Text = _webKit.WebView.Title;
 
 			pbProgressLogo.Image = AppSettingsManager.Instance.SplashLogo;
-
-			InitSiteLoading();
-			InitDownloading();
-			InitExternalBrowsersCommandIds();
-			InitExtensions();
 		}
 
 		public WebKitPage(string url) : this()
 		{
 			_startUrl = url;
+
+			InitSiteLoading();
+			InitDownloading();
+			InitExternalBrowsersCommandIds();
+			InitExtensions();
 		}
 
 		#region Site Loading

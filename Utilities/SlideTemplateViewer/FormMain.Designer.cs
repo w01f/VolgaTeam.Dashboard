@@ -33,13 +33,6 @@ namespace Asa.SlideTemplateViewer
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
-			this.labelItemSlidesLogo = new DevComponents.DotNetBar.LabelItem();
-			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
-			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
-			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.ribbonBarSlidesExit = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesFloater = new DevComponents.DotNetBar.RibbonBar();
@@ -50,6 +43,13 @@ namespace Asa.SlideTemplateViewer
 			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.labelItemSlidesLogo = new DevComponents.DotNetBar.LabelItem();
+			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
+			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
+			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
 			this.SuspendLayout();
@@ -120,73 +120,6 @@ namespace Asa.SlideTemplateViewer
 			// 
 			this.ribbonPanelSlides.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelSlides.TabIndex = 23;
-			// 
-			// ribbonBarSlidesLogo
-			// 
-			this.ribbonBarSlidesLogo.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesLogo.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesLogo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesLogo.DragDropSupport = true;
-			this.ribbonBarSlidesLogo.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-			this.ribbonBarSlidesLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItemSlidesLogo});
-			this.ribbonBarSlidesLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesLogo.Location = new System.Drawing.Point(3, 0);
-			this.ribbonBarSlidesLogo.Name = "ribbonBarSlidesLogo";
-			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 130);
-			this.ribbonBarSlidesLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesLogo.TabIndex = 23;
-			this.ribbonBarSlidesLogo.Text = "GO GET YOUR BIZ!";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-			// 
-			// labelItemSlidesLogo
-			// 
-			this.labelItemSlidesLogo.Image = global::Asa.SlideTemplateViewer.Properties.Resources.AddSlidesLogo;
-			this.labelItemSlidesLogo.Name = "labelItemSlidesLogo";
-			// 
-			// ribbonTabItemSlides
-			// 
-			this.ribbonTabItemSlides.Checked = true;
-			this.ribbonTabItemSlides.Name = "ribbonTabItemSlides";
-			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
-			this.ribbonTabItemSlides.Text = "Slides";
-			// 
-			// buttonItemSlideSettings
-			// 
-			this.buttonItemSlideSettings.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
-			this.buttonItemSlideSettings.Name = "buttonItemSlideSettings";
-			this.buttonItemSlideSettings.Text = "Slide Settings";
-			this.buttonItemSlideSettings.Click += new System.EventHandler(this.buttonItemSlideSettings_Click);
-			// 
-			// superTooltip
-			// 
-			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
-			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			// 
-			// styleManager
-			// 
-			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
-			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Office 2013";
 			// 
 			// ribbonBarSlidesExit
 			// 
@@ -391,6 +324,73 @@ namespace Asa.SlideTemplateViewer
 			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Preview", "", "View this slide before you add it to your presentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemSlidesPreview.Text = "buttonItem1";
+			// 
+			// ribbonBarSlidesLogo
+			// 
+			this.ribbonBarSlidesLogo.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesLogo.ContainerControlProcessDialogKey = true;
+			this.ribbonBarSlidesLogo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSlidesLogo.DragDropSupport = true;
+			this.ribbonBarSlidesLogo.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
+			this.ribbonBarSlidesLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItemSlidesLogo});
+			this.ribbonBarSlidesLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarSlidesLogo.Location = new System.Drawing.Point(3, 0);
+			this.ribbonBarSlidesLogo.Name = "ribbonBarSlidesLogo";
+			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 130);
+			this.ribbonBarSlidesLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarSlidesLogo.TabIndex = 23;
+			this.ribbonBarSlidesLogo.Text = "GO GET YOUR BIZ!";
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// labelItemSlidesLogo
+			// 
+			this.labelItemSlidesLogo.Image = global::Asa.SlideTemplateViewer.Properties.Resources.AddSlidesLogo;
+			this.labelItemSlidesLogo.Name = "labelItemSlidesLogo";
+			// 
+			// ribbonTabItemSlides
+			// 
+			this.ribbonTabItemSlides.Checked = true;
+			this.ribbonTabItemSlides.Name = "ribbonTabItemSlides";
+			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
+			this.ribbonTabItemSlides.Text = "Slides";
+			// 
+			// buttonItemSlideSettings
+			// 
+			this.buttonItemSlideSettings.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemSlideSettings.Name = "buttonItemSlideSettings";
+			this.buttonItemSlideSettings.Text = "Slide Settings";
+			this.buttonItemSlideSettings.Click += new System.EventHandler(this.buttonItemSlideSettings_Click);
+			// 
+			// superTooltip
+			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			// 
+			// styleManager
+			// 
+			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
+			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
+			// 
+			// defaultLookAndFeel
+			// 
+			this.defaultLookAndFeel.LookAndFeel.SkinName = "Office 2013";
 			// 
 			// FormMain
 			// 

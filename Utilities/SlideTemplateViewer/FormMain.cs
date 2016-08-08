@@ -57,9 +57,6 @@ namespace Asa.SlideTemplateViewer
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
 
-			Controls.Add(TabSlidesMainPage.Instance);
-			TabSlidesMainPage.Instance.BringToFront();
-
 			buttonItemSlideSettings.Visible =
 				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
 				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
@@ -68,6 +65,8 @@ namespace Asa.SlideTemplateViewer
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			Utilities.ActivatePowerPoint(SlideTemplateViewerPowerPointHelper.Instance.PowerPointObject);
+			Controls.Add(TabSlidesMainPage.Instance);
+			TabSlidesMainPage.Instance.BringToFront();
 			AppManager.Instance.ActivateMainForm();
 		}
 

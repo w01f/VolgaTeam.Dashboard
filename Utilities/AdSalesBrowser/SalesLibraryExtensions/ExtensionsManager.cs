@@ -45,6 +45,7 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 			var targetPath = targetUrlMatch.Success && targetUrlMatch.Groups.Count >= 9 ? targetUrlMatch.Groups[8].Value : null;
 			return !String.IsNullOrEmpty(targetPath) &&
 				(targetPath.StartsWith("qpage", StringComparison.OrdinalIgnoreCase) ||
+				targetPath.Contains("public_links") ||
 				targetPath.StartsWith("shortcuts/getSinglePage", StringComparison.OrdinalIgnoreCase));
 		}
 
@@ -56,7 +57,7 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 					Activate();
 					break;
 				default:
-					SlideContentExtension.OnJavaScriptCall(sender,e);
+					SlideContentExtension.OnJavaScriptCall(sender, e);
 					LinkOpenExtension.OnJavaScriptCall(sender, e);
 					break;
 			}

@@ -78,6 +78,22 @@ namespace Asa.Common.Core.Helpers
 			process.Start();
 		}
 
+		public static bool IsPowerPointMultipleInstances(IPowerPointHelper powerPointHelper)
+		{
+			if (Process.GetProcesses().Count(p => p.ProcessName.ToUpper().Contains("POWERPNT")) > 1)
+				return true;
+			try
+			{
+				if (!powerPointHelper.Connect(false))
+					return false;
+				return powerPointHelper.PowerPointObject.Presentations.Count > 1;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
 		private void KillPowerPoint()
 		{
 			try

@@ -348,6 +348,12 @@
     <Compile Include="Preview\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormPowerPointSeveralInstancesWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormPowerPointSeveralInstancesWarning.Designer.cs">
+      <DependentUpon>FormPowerPointSeveralInstancesWarning.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormScheduleName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -482,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Preview\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormPowerPointSeveralInstancesWarning.resx">
+      <DependentUpon>FormPowerPointSeveralInstancesWarning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormScheduleName.resx">
       <DependentUpon>FormScheduleName.cs</DependentUpon>

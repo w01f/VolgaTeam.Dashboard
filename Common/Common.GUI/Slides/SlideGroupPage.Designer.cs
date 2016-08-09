@@ -53,7 +53,7 @@
 			this.toolStripMenuItemOutput.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOutput.Image")));
 			this.toolStripMenuItemOutput.Name = "toolStripMenuItemOutput";
 			this.toolStripMenuItemOutput.Size = new System.Drawing.Size(165, 22);
-			this.toolStripMenuItemOutput.Text = "Add this Slide";
+			this.toolStripMenuItemOutput.Text = "Insert slide(s)";
 			this.toolStripMenuItemOutput.Click += new System.EventHandler(this.toolStripMenuItemOutput_Click);
 			// 
 			// toolStripSeparator

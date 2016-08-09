@@ -46,7 +46,18 @@ namespace Asa.Dashboard
 		{
 			bool stopRun = false;
 
-			PopupMessageHelper.Instance.Title = "6 Minute Seller";
+			var appTitle = "6 Minute Seller";
+			if (PowerPointManager.IsPowerPointMultipleInstances(DashboardPowerPointHelper.Instance))
+			{
+				using (var form = new FormPowerPointSeveralInstancesWarning())
+				{
+					form.Text = appTitle;
+					if (form.ShowDialog() != DialogResult.OK)
+						return;
+				}
+			}
+
+			PopupMessageHelper.Instance.Title = appTitle;
 
 			LicenseHelper.Register();
 
@@ -139,7 +150,7 @@ namespace Asa.Dashboard
 					}
 					else
 					{
-						PopupMessageHelper.Instance.ShowWarning("Slide pack not found for selected size. Contact adSALESapps Support (help@adSALESapps.com)");
+						PopupMessageHelper.Instance.ShowWarning("You already have a PowerPoint file opened that is not compatible with this application.\nPlease close that presentation, and open Sales Ninja again.");
 						return;
 					}
 				}

@@ -15,6 +15,7 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
 using Asa.Common.GUI.ToolForms;
+using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Single
 {
@@ -36,9 +37,20 @@ namespace Asa.Media.Single
 			LicenseHelper.Register();
 
 			MediaMetaData.Instance.Init(mediaType);
-			AppProfileManager.Instance.InitApplication(MediaMetaData.Instance.AppType);
+			var appTitle = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
 
-			PopupMessageHelper.Instance.Title = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
+			if (PowerPointManager.IsPowerPointMultipleInstances(RegularMediaSchedulePowerPointHelper.Instance))
+			{
+				using (var form = new FormPowerPointSeveralInstancesWarning())
+				{
+					form.Text = appTitle;
+					if (form.ShowDialog() != DialogResult.OK)
+						return;
+				}
+			}
+
+			PopupMessageHelper.Instance.Title = appTitle;
+			AppProfileManager.Instance.InitApplication(MediaMetaData.Instance.AppType);
 
 			FileStorageManager.Instance.UsingLocalMode += (o, e) =>
 			{
@@ -128,7 +140,7 @@ namespace Asa.Media.Single
 					}
 					else
 					{
-						PopupMessageHelper.Instance.ShowWarning("Slide pack not found for selected size. Contact adSALESapps Support (help@adSALESapps.com)");
+						PopupMessageHelper.Instance.ShowWarning("You already have a PowerPoint file opened that is not compatible with Sales Ninja.\nPlease close that presentation, and open Sales Ninja again.");
 						return;
 					}
 				}

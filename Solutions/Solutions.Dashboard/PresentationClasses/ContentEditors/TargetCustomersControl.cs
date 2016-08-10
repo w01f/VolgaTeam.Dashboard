@@ -49,10 +49,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(SlideContainer.EditedContent.TargetCustomersState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.TargetCustomersState.SlideHeader;
 
 			checkedListBoxControlTargetDemo.UnCheckAll();
 			foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.Items)

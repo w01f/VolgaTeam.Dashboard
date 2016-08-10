@@ -57,10 +57,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(SlideContainer.EditedContent.LeadoffStatementState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.LeadoffStatementState.SlideHeader;
 			ckA.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement1;
 			ckB.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement2;
 			ckC.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement3;

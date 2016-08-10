@@ -83,10 +83,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(SlideContainer.EditedContent.SimpleSummaryState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.SimpleSummaryState.SlideHeader;
 
 			ckAdvertiser.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser;
 			ckDecisionMaker.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowDecisionMaker;

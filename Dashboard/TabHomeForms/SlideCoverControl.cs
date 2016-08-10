@@ -86,10 +86,8 @@ namespace Asa.Dashboard.TabHomeForms
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.CoverState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = ViewSettingsManager.Instance.CoverState.SlideHeader;
+
 			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.Advertiser) ? null : ViewSettingsManager.Instance.CoverState.Advertiser;
 			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.DecisionMaker) ? null : ViewSettingsManager.Instance.CoverState.DecisionMaker;
 

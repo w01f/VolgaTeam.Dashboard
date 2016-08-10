@@ -68,10 +68,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(SlideContainer.EditedContent.ClientGoalsState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClientGoalsState.SlideHeader;
+
 			comboBoxEditGoal1.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal1) ? SlideContainer.EditedContent.ClientGoalsState.Goal1 : null;
 			comboBoxEditGoal2.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal2) ? SlideContainer.EditedContent.ClientGoalsState.Goal2 : null;
 			comboBoxEditGoal3.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal3) ? SlideContainer.EditedContent.ClientGoalsState.Goal3 : null;
@@ -137,8 +135,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public PreviewGroup GeneratePreview()
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SolutionDashboardPowerPointHelper.Instance.PrepareClientGoals(this,tempFileName);
-			return new PreviewGroup {Name = SlideName, PresentationSourcePath = tempFileName};
+			SolutionDashboardPowerPointHelper.Instance.PrepareClientGoals(this, tempFileName);
+			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

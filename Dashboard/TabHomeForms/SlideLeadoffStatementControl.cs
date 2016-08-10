@@ -81,10 +81,7 @@ namespace Asa.Dashboard.TabHomeForms
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.LeadoffStatementState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = ViewSettingsManager.Instance.LeadoffStatementState.SlideHeader;
 			ckA.Checked = ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement1;
 			ckB.Checked = ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement2;
 			ckC.Checked = ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement3;

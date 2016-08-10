@@ -70,10 +70,7 @@ namespace Asa.Dashboard.TabHomeForms
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.TargetCustomersState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = ViewSettingsManager.Instance.TargetCustomersState.SlideHeader;
 
 			checkedListBoxControlTargetDemo.UnCheckAll();
 			foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.Items)

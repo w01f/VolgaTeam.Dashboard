@@ -69,16 +69,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
-			if (string.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.SlideHeader))
+			if (String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 			else
-			{
-				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(SlideContainer.EditedContent.CoverState.SlideHeader);
-				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
-			}
+				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.CoverState.SlideHeader;
 			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.Advertiser) ? null : SlideContainer.EditedContent.CoverState.Advertiser;
 			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.DecisionMaker) ? null : SlideContainer.EditedContent.CoverState.DecisionMaker;
 

@@ -65,7 +65,7 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// buttonXOptionStation
+			// buttonXStation
 			// 
 			this.buttonXStation.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXStation.AutoCheckOnClick = true;
@@ -80,7 +80,7 @@
 			this.buttonXStation.TextColor = System.Drawing.Color.Black;
 			this.buttonXStation.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionLength
+			// buttonXLength
 			// 
 			this.buttonXLength.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -96,7 +96,7 @@
 			this.buttonXLength.TextColor = System.Drawing.Color.Black;
 			this.buttonXLength.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionTallySpots
+			// buttonXTallySpots
 			// 
 			this.buttonXTallySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTallySpots.AutoCheckOnClick = true;
@@ -110,9 +110,8 @@
 			this.buttonXTallySpots.Text = "Tally Spots";
 			this.buttonXTallySpots.TextColor = System.Drawing.Color.Black;
 			this.buttonXTallySpots.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
-			this.buttonXTallySpots.Click += new System.EventHandler(this.OnSpotsClick);
 			// 
-			// buttonXOptionDay
+			// buttonXDay
 			// 
 			this.buttonXDay.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDay.AutoCheckOnClick = true;
@@ -127,7 +126,7 @@
 			this.buttonXDay.TextColor = System.Drawing.Color.Black;
 			this.buttonXDay.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionMonthlySpots
+			// buttonXMonthlySpots
 			// 
 			this.buttonXMonthlySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMonthlySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -142,7 +141,7 @@
 			this.buttonXMonthlySpots.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			this.buttonXMonthlySpots.Click += new System.EventHandler(this.OnSpotsClick);
 			// 
-			// buttonXOptionLineId
+			// buttonXLineId
 			// 
 			this.buttonXLineId.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXLineId.AutoCheckOnClick = true;
@@ -157,7 +156,7 @@
 			this.buttonXLineId.TextColor = System.Drawing.Color.Black;
 			this.buttonXLineId.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionRate
+			// buttonXRate
 			// 
 			this.buttonXRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXRate.AutoCheckOnClick = true;
@@ -172,7 +171,7 @@
 			this.buttonXRate.TextColor = System.Drawing.Color.Black;
 			this.buttonXRate.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionCost
+			// buttonXCost
 			// 
 			this.buttonXCost.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -188,7 +187,7 @@
 			this.buttonXCost.TextColor = System.Drawing.Color.Black;
 			this.buttonXCost.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionWeeklySpots
+			// buttonXWeeklySpots
 			// 
 			this.buttonXWeeklySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXWeeklySpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -204,7 +203,7 @@
 			this.buttonXWeeklySpots.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			this.buttonXWeeklySpots.Click += new System.EventHandler(this.OnSpotsClick);
 			// 
-			// buttonXOptionProgram
+			// buttonXProgram
 			// 
 			this.buttonXProgram.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -220,7 +219,7 @@
 			this.buttonXProgram.TextColor = System.Drawing.Color.Black;
 			this.buttonXProgram.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionTallyCost
+			// buttonXTallyCost
 			// 
 			this.buttonXTallyCost.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTallyCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -236,7 +235,7 @@
 			this.buttonXTallyCost.TextColor = System.Drawing.Color.Black;
 			this.buttonXTallyCost.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionTime
+			// buttonXTime
 			// 
 			this.buttonXTime.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -252,7 +251,7 @@
 			this.buttonXTime.TextColor = System.Drawing.Color.Black;
 			this.buttonXTime.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionTotalSpots
+			// buttonXTotalSpots
 			// 
 			this.buttonXTotalSpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalSpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -266,8 +265,9 @@
 			this.buttonXTotalSpots.Text = "Total Spots";
 			this.buttonXTotalSpots.TextColor = System.Drawing.Color.Black;
 			this.buttonXTotalSpots.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
+			this.buttonXTotalSpots.Click += new System.EventHandler(this.OnSpotsClick);
 			// 
-			// buttonXOptionLogo
+			// buttonXLogo
 			// 
 			this.buttonXLogo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXLogo.AutoCheckOnClick = true;
@@ -282,7 +282,7 @@
 			this.buttonXLogo.TextColor = System.Drawing.Color.Black;
 			this.buttonXLogo.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// buttonXOptionAvgRate
+			// buttonXAvgRate
 			// 
 			this.buttonXAvgRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXAvgRate.AutoCheckOnClick = true;
@@ -322,7 +322,7 @@
 			this.checkEditApplyForAll.TabIndex = 130;
 			this.checkEditApplyForAll.CheckedChanged += new System.EventHandler(this.OnSettingsChanged);
 			// 
-			// OptionSetColumnSettingsControls
+			// OptionSetColumnSettingsControl
 			// 
 			this.Controls.Add(this.checkEditApplyForAll);
 			this.Controls.Add(this.buttonXStation);

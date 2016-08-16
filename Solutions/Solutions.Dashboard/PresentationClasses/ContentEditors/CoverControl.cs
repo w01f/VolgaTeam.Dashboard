@@ -86,9 +86,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			else
 				dateEditPresentationDate.EditValue = null;
 			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
-			checkEditSalesRep.Checked = !String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.SalesRep);
+			checkEditSalesRep.Checked = !String.IsNullOrEmpty(SlideContainer.SettingsContainer.SalesRep);
 			comboBoxEditSalesRep.Enabled = checkEditSalesRep.Checked;
-			comboBoxEditSalesRep.EditValue = SlideContainer.EditedContent.CoverState.SalesRep;
+			comboBoxEditSalesRep.EditValue = SlideContainer.SettingsContainer.SalesRep;
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
 
 			if (SlideContainer.EditedContent.CoverState.Quote.IsSet)
@@ -124,7 +124,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.CoverState.Quote.Text = memoEditSalesQuote.EditValue as String;
 			SlideContainer.EditedContent.CoverState.Advertiser = comboBoxEditAdvertiser.EditValue as String;
 			SlideContainer.EditedContent.CoverState.DecisionMaker = comboBoxEditDecisionMaker.EditValue as String;
-			SlideContainer.EditedContent.CoverState.SalesRep = comboBoxEditSalesRep.EditValue as String;
 			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
 
 			Business.Common.Dictionaries.ListManager.Instance.Advertisers.Add(Advertiser);
@@ -132,6 +131,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
 			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Save();
+
+			SlideContainer.SettingsContainer.SalesRep = comboBoxEditSalesRep.EditValue as String;
+			SlideContainer.SettingsContainer.SaveSettings();
 		}
 
 		private void EditValueChanged(object sender, EventArgs e)
@@ -203,8 +205,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		#region Output Staff
 
 		public override bool ReadyForOutput => !String.IsNullOrEmpty(comboBoxEditAdvertiser.EditValue as String);
-
-		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.Cover);
 
 		public string Title => (comboBoxEditSlideHeader.EditValue as String) ?? String.Empty;
 

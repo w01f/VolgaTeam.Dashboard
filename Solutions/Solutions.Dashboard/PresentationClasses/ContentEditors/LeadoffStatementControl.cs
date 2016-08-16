@@ -95,8 +95,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		#region Output Staff
 		public override bool ReadyForOutput => ckA.Checked || ckB.Checked || ckC.Checked;
 
-		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.LeadoffStatement);
-
 		public int StatementsCount => SelectedStatements.Length;
 
 		public string Title => comboBoxEditSlideHeader.EditValue?.ToString() ?? string.Empty;

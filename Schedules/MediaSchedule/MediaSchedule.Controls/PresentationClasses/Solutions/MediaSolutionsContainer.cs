@@ -57,7 +57,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			base.LoadThemes();
 			FormThemeSelector.Link(Controller.Instance.SolutionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(slideType), MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(slideType), (t =>
 			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(slideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(ActiveSolutionEditor.SelectedSlideType, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 			}));
 			Controller.Instance.SolutionsThemeBar.RecalcLayout();

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -22,6 +23,8 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 	class MediaDashboardContainer : BaseDashboardContainer
 	{
 		public MediaDashboardContainer(BaseSolutionInfo solutionInfo) : base(solutionInfo) { }
+
+		public override IDashboardSettingsContainer SettingsContainer => MediaMetaData.Instance.SettingsManager;
 
 		public override void LoadData()
 		{

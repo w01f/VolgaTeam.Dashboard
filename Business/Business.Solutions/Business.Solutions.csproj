@@ -59,6 +59,7 @@
     <Compile Include="Common\Enums\SolutionType.cs" />
     <Compile Include="Common\Helpers\SolutionsManager.cs" />
     <Compile Include="Common\Interfaces\IScheduleSolution.cs" />
+    <Compile Include="Dashboard\Configuration\IDashboardSettingsContainer.cs" />
     <Compile Include="Dashboard\Configuration\ResourceManager.cs" />
     <Compile Include="Dashboard\Dictionaries\ClientGoalsLists.cs" />
     <Compile Include="Dashboard\Dictionaries\CoverLists.cs" />

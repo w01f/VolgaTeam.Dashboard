@@ -12,7 +12,6 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 		public string DecisionMaker { get; set; }
 		public DateTime PresentationDate { get; set; }
 		public Quote Quote { get; set; }
-		public string SalesRep { get; set; }
 		public bool AddAsPageOne { get; set; }
 
 		public CoverState()

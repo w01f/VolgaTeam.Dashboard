@@ -413,8 +413,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public ContractSettings ContractSettings => SlideContainer.EditedContent.SimpleSummaryState.ContractSettings;
 
-		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.SimpleSummary);
-
 		public bool TableOutput => checkEditTableOutput.Checked;
 
 		public int ItemsPerTable => ItemsCount > 18 ? 18 : ItemsCount;

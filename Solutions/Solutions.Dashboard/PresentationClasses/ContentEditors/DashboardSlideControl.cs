@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using DevExpress.XtraTab;
 
@@ -15,6 +16,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public virtual SlideType SlideType { get; }
 		public virtual bool ReadyForOutput { get; }
+		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
 
 		public DashboardSlideControl()
 		{

@@ -101,6 +101,7 @@
     <Compile Include="Entities\Persistent\DBVersion.cs" />
     <Compile Include="Entities\Persistent\BaseSchedule.cs" />
     <Compile Include="Entities\Persistent\BaseSchedulePartition.cs" />
+    <Compile Include="Interfaces\IBaseSettingsContainer.cs" />
     <Compile Include="Interfaces\IChangableScheduleSettings.cs" />
     <Compile Include="Interfaces\ISchedule.cs" />
     <Compile Include="Enums\SchedulePartitionType.cs" />

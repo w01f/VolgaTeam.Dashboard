@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using Asa.Business.Calendar.Configuration;
 using Asa.Business.Media.Interfaces;
+using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -12,7 +13,7 @@ using Asa.Common.Core.Objects.Themes;
 
 namespace Asa.Business.Media.Configuration
 {
-	public class MediaSettingsManager : IMediaSettingsManager
+	public class MediaSettingsManager : IMediaSettingsManager, IDashboardSettingsContainer
 	{
 		private ThemeSaveHelper _themeSaveHelper;
 
@@ -20,6 +21,8 @@ namespace Asa.Business.Media.Configuration
 		public string SelectedColor { get; set; }
 		public bool UseSlideMaster { get; set; }
 		public CalendarSettings BroadcastCalendarSettings { get; }
+
+		public string SalesRep { get; set; }
 
 		public MediaSettingsManager()
 		{
@@ -47,6 +50,9 @@ namespace Asa.Business.Media.Configuration
 			node = document.SelectSingleNode(@"/Settings/BroadcastCalendarSettings");
 			if (node != null)
 				BroadcastCalendarSettings.Deserialize(node);
+			node = document.SelectSingleNode(@"/Settings/SalesRep");
+			if (node != null)
+				SalesRep = node.InnerText;
 			_themeSaveHelper.Deserialize(document.SelectNodes(@"//Settings/SelectedTheme").OfType<XmlNode>());
 		}
 
@@ -59,6 +65,8 @@ namespace Asa.Business.Media.Configuration
 				xml.AppendLine(@"<SelectedColor>" + SelectedColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedColor>");
 			xml.AppendLine(@"<UseSlideMaster>" + UseSlideMaster + @"</UseSlideMaster>");
 			xml.AppendLine(@"<BroadcastCalendarSettings>" + BroadcastCalendarSettings.Serialize() + @"</BroadcastCalendarSettings>");
+			if (!String.IsNullOrEmpty(SalesRep))
+				xml.AppendLine(@"<SalesRep>" + SalesRep.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SalesRep>");
 			xml.AppendLine(@"</Settings>");
 			using (var sw = new StreamWriter(Asa.Common.Core.Configuration.ResourceManager.Instance.AppSettingsFile.LocalPath, false))
 			{

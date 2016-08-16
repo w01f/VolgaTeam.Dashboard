@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
+using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
@@ -26,6 +27,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public DashboardSolutionInfo DashboardInfo { get; }
 		public DashboardContent EditedContent { get; protected set; }
+		public abstract IDashboardSettingsContainer SettingsContainer { get; }
 		public override SolutionType SolutionType => SolutionType.Dashboard;
 		public override SlideType SelectedSlideType => ActiveSlide.SlideType;
 		public override Image HomeLogo => Resources.RibbonLogo;

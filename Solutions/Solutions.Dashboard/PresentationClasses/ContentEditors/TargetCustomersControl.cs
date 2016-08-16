@@ -103,8 +103,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				checkedListBoxControlHouseholdIncome.CheckedItems.Count > 0 &&
 				checkedListBoxControlTargetDemo.CheckedItems.Count > 0;
 
-		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.TargetCustomers);
-
 		public string Title => comboBoxEditSlideHeader.EditValue?.ToString() ?? string.Empty;
 
 		public string TargetDemo

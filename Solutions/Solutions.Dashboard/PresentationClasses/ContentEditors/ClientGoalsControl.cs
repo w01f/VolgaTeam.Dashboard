@@ -96,8 +96,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		}
 
 		#region Output Staff
-
-		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType.ClientGoals);
 		public override bool ReadyForOutput => !String.IsNullOrEmpty(comboBoxEditGoal1.EditValue?.ToString().Trim()) ||
 			!String.IsNullOrEmpty(comboBoxEditGoal2.EditValue?.ToString().Trim()) ||
 			!String.IsNullOrEmpty(comboBoxEditGoal3.EditValue?.ToString().Trim()) ||

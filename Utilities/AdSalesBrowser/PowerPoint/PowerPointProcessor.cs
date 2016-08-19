@@ -221,7 +221,7 @@ namespace AdSalesBrowser.PowerPoint
 				while (thread.IsAlive)
 					System.Windows.Forms.Application.DoEvents();
 
-				
+
 				result = true;
 			}
 			catch
@@ -242,7 +242,7 @@ namespace AdSalesBrowser.PowerPoint
 				var thread = new Thread(delegate ()
 				{
 					var presentation = PowerPointObject.Presentations.Open(filePath, WithWindow: MsoTriState.msoFalse);
-					AppendSlide(presentation, -1);
+					AppendSlide(presentation);
 					presentation.Close();
 				});
 				thread.Start();
@@ -257,60 +257,21 @@ namespace AdSalesBrowser.PowerPoint
 		}
 
 		public void AppendSlide(Presentation sourcePresentation,
-			int slideIndex,
-			Presentation destinationPresentation = null,
-			bool firstSlide = false,
-			int indexToPaste = 0)
+			Presentation destinationPresentation = null)
 		{
-			var tempPresentationPath = Path.GetTempFileName();
-			sourcePresentation.SaveAs(tempPresentationPath);
-
 			if (destinationPresentation == null)
-			{
 				destinationPresentation = GetActivePresentation();
-				indexToPaste = GetActiveSlideIndex();
-			}
-			else if (!firstSlide)
-				indexToPaste = destinationPresentation.Slides.Count;
 
-			if (firstSlide)
-				indexToPaste = 0;
-
-			Slide addedSlide = null;
-			var slides = sourcePresentation.Slides;
-			for (var i = 1; i <= slides.Count; i++)
+			for (var i = 1; i <= sourcePresentation.Slides.Count; i++)
 			{
-				if ((i != slideIndex) && (slideIndex != -1)) continue;
-				var slide = slides[i];
-				var activeSlides = destinationPresentation.Slides;
-				activeSlides.InsertFromFile(tempPresentationPath, indexToPaste, i, i);
-				indexToPaste++;
-				addedSlide = activeSlides[indexToPaste];
-				var design = GetDesignFromSlide(slide, destinationPresentation);
-				if (design != null)
-					addedSlide.Design = design;
-				else
+				sourcePresentation.Slides[i].Copy();
+				try
 				{
-					var slideDesign = sourcePresentation.SlideMaster.Design;
-					addedSlide.Design = slideDesign;
-					Utilities.ReleaseComObject(slideDesign);
+					destinationPresentation.Application.CommandBars.ExecuteMso("PasteSourceFormatting");
 				}
-				var colorScheme = slide.ColorScheme;
-				addedSlide.ColorScheme = colorScheme;
-				Utilities.ReleaseComObject(colorScheme);
-				Utilities.ReleaseComObject(design);
-				Utilities.ReleaseComObject(slide);
-				Utilities.ReleaseComObject(activeSlides);
+				catch { }
 			}
-			if (addedSlide != null)
-				addedSlide.Select();
-			Utilities.ReleaseComObject(addedSlide);
-			Utilities.ReleaseComObject(slides);
-			try
-			{
-				File.Delete(tempPresentationPath);
-			}
-			catch { }
+			destinationPresentation.Slides[destinationPresentation.Slides.Count].Select();
 		}
 
 		private Design GetDesignFromSlide(Slide slide, Presentation presentation)

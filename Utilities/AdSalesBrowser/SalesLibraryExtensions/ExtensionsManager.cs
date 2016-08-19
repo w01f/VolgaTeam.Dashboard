@@ -4,6 +4,7 @@ using AdSalesBrowser.Helpers;
 using AdSalesBrowser.SalesLibraryExtensions.FileLinks;
 using AdSalesBrowser.SalesLibraryExtensions.SlideContent;
 using EO.WebBrowser;
+using Microsoft.Win32;
 
 namespace AdSalesBrowser.SalesLibraryExtensions
 {
@@ -47,6 +48,23 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 				(targetPath.StartsWith("qpage", StringComparison.OrdinalIgnoreCase) ||
 				targetPath.Contains("public_links") ||
 				targetPath.StartsWith("shortcuts/getSinglePage", StringComparison.OrdinalIgnoreCase));
+		}
+
+		public static void MakeUrlTrusted(string targetUrl)
+		{
+			const string domainsKeyLocation = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains";
+			const int trustedSiteZone = 0x2;
+
+			var regexp = new Regex(UrlParseHelper.UrlParseRegExp);
+			var targetUrlMatch = regexp.Match(targetUrl);
+			var targetDomain = targetUrlMatch.Success && targetUrlMatch.Groups.Count >= 5 ? targetUrlMatch.Groups[4].Value : null;
+
+			try
+			{
+				RegistryKey key = Registry.CurrentUser.OpenSubKey(domainsKeyLocation, RegistryKeyPermissionCheck.ReadWriteSubTree).CreateSubKey(targetDomain, RegistryKeyPermissionCheck.ReadWriteSubTree);
+				key?.SetValue("http", trustedSiteZone, RegistryValueKind.DWord);
+			}
+			catch { }
 		}
 
 		public void OnJavaScriptCall(object sender, JSExtInvokeArgs e)

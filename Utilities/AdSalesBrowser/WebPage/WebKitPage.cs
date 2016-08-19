@@ -5,7 +5,6 @@ using System.IO;
 using System.Windows.Forms;
 using AdSalesBrowser.Configuration;
 using AdSalesBrowser.Helpers;
-using AdSalesBrowser.PowerPoint;
 using AdSalesBrowser.SalesLibraryExtensions;
 using Asa.Common.GUI.ToolForms;
 using DevExpress.Utils;
@@ -44,7 +43,7 @@ namespace AdSalesBrowser.WebPage
 		public WebKitPage(string url) : this()
 		{
 			_startUrl = url;
-
+			ExtensionsManager.MakeUrlTrusted(_startUrl);
 			InitSiteLoading();
 			InitDownloading();
 			InitExternalBrowsersCommandIds();

@@ -34,7 +34,7 @@ namespace Asa.Dashboard.TabHomeForms
 		{
 			InitializeComponent();
 			if ((CreateGraphics()).DpiX > 96) { }
-			comboBoxEditSlideHeader.EnableSelectAll(); 
+			comboBoxEditSlideHeader.EnableSelectAll();
 		}
 
 		protected void SetLoadState(bool enable)
@@ -55,22 +55,17 @@ namespace Asa.Dashboard.TabHomeForms
 			var themes = SettingsManager.Instance.ThemeManager.GetThemes(slideType);
 			FormMain.Instance.HideThemeButtons();
 			ThemeButton.Visible = true;
-			FormThemeSelector.Link(ThemeButton, themes, (SettingsManager.Instance.GetSelectedTheme(slideType) ?? new Theme(null)).Name, (t =>
-			{
-				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.Cleanslate).Any(slideTheme => slideTheme.Name == t.Name))
-					SettingsManager.Instance.SetSelectedTheme(SlideType.Cleanslate, t.Name);
-				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.Cover).Any(slideTheme => slideTheme.Name == t.Name))
-					SettingsManager.Instance.SetSelectedTheme(SlideType.Cover, t.Name);
-				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.LeadoffStatement).Any(slideTheme => slideTheme.Name == t.Name))
-					SettingsManager.Instance.SetSelectedTheme(SlideType.LeadoffStatement, t.Name);
-				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.ClientGoals).Any(slideTheme => slideTheme.Name == t.Name))
-					SettingsManager.Instance.SetSelectedTheme(SlideType.ClientGoals, t.Name);
-				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.TargetCustomers).Any(slideTheme => slideTheme.Name == t.Name))
-					SettingsManager.Instance.SetSelectedTheme(SlideType.TargetCustomers, t.Name);
-				if (SettingsManager.Instance.ThemeManager.GetThemes(SlideType.SimpleSummary).Any(slideTheme => slideTheme.Name == t.Name))
-					SettingsManager.Instance.SetSelectedTheme(SlideType.SimpleSummary, t.Name);
-				SettingsManager.Instance.SaveDashboardSettings();
-			}));
+			FormThemeSelector.Link(
+				ThemeButton,
+				themes,
+				(SettingsManager.Instance.GetSelectedTheme(slideType) ?? new Theme(null)).Name,
+				SettingsManager.Instance,
+				(theme, applyForAllSlideTypes) =>
+				{
+					SettingsManager.Instance.SetSelectedTheme(slideType, theme.Name, applyForAllSlideTypes);
+					SettingsManager.Instance.SaveSettings();
+				}
+			);
 			if (!themes.Any())
 			{
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);

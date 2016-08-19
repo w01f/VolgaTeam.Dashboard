@@ -1,9 +1,12 @@
-﻿using Asa.Business.Solutions.Common.Entities.NonPersistent;
+﻿using Asa.Business.Common.Entities.NonPersistent.Schedule;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 
 namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 {
-	public class DashboardContent : BaseSolutionContent
+	public abstract class DashboardContent : BaseSolutionContent
 	{
+		public abstract BaseScheduleSettings ScheduleSettings { get; }
+
 		public CoverState CoverState { get; private set; }
 		public LeadoffStatementState LeadoffStatementState { get; private set; }
 		public ClientGoalsState ClientGoalsState { get; private set; }

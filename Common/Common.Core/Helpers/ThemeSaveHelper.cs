@@ -11,12 +11,14 @@ namespace Asa.Common.Core.Helpers
 	public class ThemeSaveHelper
 	{
 		private readonly ThemeManager _themeManager;
+		private readonly List<SlideType> _availableSlideTypes = new List<SlideType>();
 		private readonly Dictionary<SlideType, string> _selectedThemes = new Dictionary<SlideType, string>();
 
-		public ThemeSaveHelper(ThemeManager themeManager)
+		public ThemeSaveHelper(ThemeManager themeManager, IEnumerable<SlideType> availableSlideTypes)
 		{
 			_themeManager = themeManager;
 			_selectedThemes = new Dictionary<SlideType, string>();
+			_availableSlideTypes.AddRange(availableSlideTypes);
 		}
 
 		public Theme GetSelectedTheme(SlideType slideType)
@@ -24,18 +26,25 @@ namespace Asa.Common.Core.Helpers
 			if (!_themeManager.ApprovedThemes.ContainsKey(slideType))
 				slideType = SlideType.None;
 			var themes = _themeManager.GetThemes(slideType);
-			return themes.FirstOrDefault(t => (_selectedThemes.ContainsKey(slideType) && t.Name.Equals(_selectedThemes[slideType])) || !_selectedThemes.ContainsKey(slideType));
+			return themes.FirstOrDefault(t => (
+				_selectedThemes.ContainsKey(slideType) && t.Name.Equals(_selectedThemes[slideType])) ||
+				!_selectedThemes.ContainsKey(slideType));
 		}
 
-		public void SetSelectedTheme(SlideType slideType, string themeName)
+		public void SetSelectedTheme(SlideType slideType, string themeName, bool applyThemeForAllSlideTypes)
 		{
-			if (!_themeManager.ApprovedThemes.ContainsKey(slideType))
-				slideType = SlideType.None;
+			var processedSlideTypes = applyThemeForAllSlideTypes ? _availableSlideTypes.ToArray() : new[] { slideType };
+			foreach (var processedSlideType in processedSlideTypes)
+			{
+				if (!(_themeManager.ApprovedThemes.ContainsKey(processedSlideType) &&
+					_themeManager.ApprovedThemes[processedSlideType].Any(themeInfo => themeInfo.ThemName == themeName)))
+					continue;
 
-			if (_selectedThemes.ContainsKey(slideType))
-				_selectedThemes[slideType] = themeName;
-			else
-				_selectedThemes.Add(slideType, themeName);
+				if (_selectedThemes.ContainsKey(processedSlideType))
+					_selectedThemes[processedSlideType] = themeName;
+				else
+					_selectedThemes.Add(processedSlideType, themeName);
+			}
 		}
 
 		public void Deserialize(IEnumerable<XmlNode> nodes)

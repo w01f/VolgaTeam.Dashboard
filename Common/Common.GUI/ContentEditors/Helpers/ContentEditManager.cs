@@ -60,10 +60,15 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 				}
 		}
 
+		public static void RaiseThemeChanged(IThemeManagementControl sender)
+		{
+			foreach (var contentOutputControl in _controller.ContentControls.OfType<IThemeManagementControl>().Where(c => c != sender))
+				contentOutputControl.OnOuterThemeChanged();
+		}
+
 		public static void OnThemeChanged(object sender, EventArgs e)
 		{
-			foreach (var partitionEditControl in _controller.ContentControls.OfType<BaseContentOutputControl<TChangeInfo>>().Where(c => c != sender))
-				partitionEditControl.OnOuterThemeChanged();
+			RaiseThemeChanged((IThemeManagementControl)sender);
 		}
 
 		public static void ProcessContentEditChanges(IContentEditControl<TChangeInfo> contentEditor, ContentSavingEventArgs savingArgs)

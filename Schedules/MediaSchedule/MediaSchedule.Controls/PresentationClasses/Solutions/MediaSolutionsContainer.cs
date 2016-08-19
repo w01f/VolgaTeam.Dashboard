@@ -55,11 +55,19 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		protected override void LoadThemes(SlideType slideType)
 		{
 			base.LoadThemes();
-			FormThemeSelector.Link(Controller.Instance.SolutionsTheme, BusinessObjects.Instance.ThemeManager.GetThemes(slideType), MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(slideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(ActiveSolutionEditor.SelectedSlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-			}));
+			FormThemeSelector.Link(
+				Controller.Instance.SolutionsTheme, 
+				BusinessObjects.Instance.ThemeManager.GetThemes(slideType), 
+				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(slideType),
+				MediaMetaData.Instance.SettingsManager,
+				(theme, applyForAllSlideTypes) =>
+				{
+					MediaMetaData.Instance.SettingsManager.SetSelectedTheme(ActiveSolutionEditor.SelectedSlideType, theme.Name, applyForAllSlideTypes);
+					MediaMetaData.Instance.SettingsManager.SaveSettings();
+					if (applyForAllSlideTypes)
+						Controller.Instance.ContentController.RaiseThemeChanged();
+				}
+			);
 			Controller.Instance.SolutionsThemeBar.RecalcLayout();
 			Controller.Instance.SolutionsPanel.PerformLayout();
 		}

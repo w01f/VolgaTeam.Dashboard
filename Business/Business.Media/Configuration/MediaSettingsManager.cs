@@ -5,7 +5,6 @@ using System.Text;
 using System.Xml;
 using Asa.Business.Calendar.Configuration;
 using Asa.Business.Media.Interfaces;
-using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -13,13 +12,14 @@ using Asa.Common.Core.Objects.Themes;
 
 namespace Asa.Business.Media.Configuration
 {
-	public class MediaSettingsManager : IMediaSettingsManager, IDashboardSettingsContainer
+	public class MediaSettingsManager : IMediaSettingsManager
 	{
 		private ThemeSaveHelper _themeSaveHelper;
 
 		public string SaveFolder { get; set; }
 		public string SelectedColor { get; set; }
 		public bool UseSlideMaster { get; set; }
+		public bool ApplyThemeForAllSlideTypes { get; set; }
 		public CalendarSettings BroadcastCalendarSettings { get; }
 
 		public string SalesRep { get; set; }
@@ -53,6 +53,13 @@ namespace Asa.Business.Media.Configuration
 			node = document.SelectSingleNode(@"/Settings/SalesRep");
 			if (node != null)
 				SalesRep = node.InnerText;
+			node = document.SelectSingleNode(@"/Settings/ApplyThemeForAllSlideTypes");
+			if (node != null)
+			{
+				bool tempBool;
+				if (Boolean.TryParse(node.InnerText, out tempBool))
+					ApplyThemeForAllSlideTypes = tempBool;
+			}
 			_themeSaveHelper.Deserialize(document.SelectNodes(@"//Settings/SelectedTheme").OfType<XmlNode>());
 		}
 
@@ -60,13 +67,14 @@ namespace Asa.Business.Media.Configuration
 		{
 			var xml = new StringBuilder();
 			xml.AppendLine(@"<Settings>");
-			xml.AppendLine(_themeSaveHelper.Serialize());
 			if (!String.IsNullOrEmpty(SelectedColor))
 				xml.AppendLine(@"<SelectedColor>" + SelectedColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedColor>");
 			xml.AppendLine(@"<UseSlideMaster>" + UseSlideMaster + @"</UseSlideMaster>");
 			xml.AppendLine(@"<BroadcastCalendarSettings>" + BroadcastCalendarSettings.Serialize() + @"</BroadcastCalendarSettings>");
 			if (!String.IsNullOrEmpty(SalesRep))
 				xml.AppendLine(@"<SalesRep>" + SalesRep.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SalesRep>");
+			xml.AppendLine(@"<ApplyThemeForAllSlideTypes>" + ApplyThemeForAllSlideTypes + @"</ApplyThemeForAllSlideTypes>");
+			xml.AppendLine(_themeSaveHelper.Serialize());
 			xml.AppendLine(@"</Settings>");
 			using (var sw = new StreamWriter(Asa.Common.Core.Configuration.ResourceManager.Instance.AppSettingsFile.LocalPath, false))
 			{
@@ -77,7 +85,47 @@ namespace Asa.Business.Media.Configuration
 
 		public void InitThemeHelper(ThemeManager themeManager)
 		{
-			_themeSaveHelper = new ThemeSaveHelper(themeManager);
+			_themeSaveHelper = new ThemeSaveHelper(
+				themeManager,
+				new[]
+				{
+					SlideType.TVSchedulePrograms,
+					SlideType.TVScheduleDigital,
+					SlideType.TVScheduleSummary,
+
+					SlideType.TVSnapshotPrograms,
+					SlideType.TVSnapshotDigital,
+					SlideType.TVSnapshotSummary,
+
+					SlideType.TVOptionsPrograms,
+					SlideType.TVOptionsDigital,
+					SlideType.TVOptionstSummary,
+
+					SlideType.RadioSchedulePrograms,
+					SlideType.RadioScheduleDigital,
+					SlideType.RadioScheduleSummary,
+
+					SlideType.RadioSnapshotPrograms,
+					SlideType.RadioSnapshotDigital,
+					SlideType.RadioSnapshotSummary,
+
+					SlideType.RadioOptionsPrograms,
+					SlideType.RadioOptionsDigital,
+					SlideType.RadioOptionstSummary,
+
+					SlideType.DigitalProducts,
+					SlideType.DigitalSummary,
+					SlideType.DigitalProductPackage,
+					SlideType.DigitalStandalonePackage,
+
+					SlideType.Cleanslate,
+					SlideType.Cover,
+					SlideType.LeadoffStatement,
+					SlideType.ClientGoals,
+					SlideType.TargetCustomers,
+					SlideType.SimpleSummary,
+				}
+			);
 		}
 
 		public string GetSelectedThemeName(SlideType slideType)
@@ -90,9 +138,10 @@ namespace Asa.Business.Media.Configuration
 			return _themeSaveHelper.GetSelectedTheme(slideType);
 		}
 
-		public void SetSelectedTheme(SlideType slideType, string themeName)
+		public void SetSelectedTheme(SlideType slideType, string themeName, bool applyForAllSlidesTypes)
 		{
-			_themeSaveHelper.SetSelectedTheme(slideType, themeName);
+			ApplyThemeForAllSlideTypes = applyForAllSlidesTypes;
+			_themeSaveHelper.SetSelectedTheme(slideType, themeName, applyForAllSlidesTypes);
 		}
 	}
 }

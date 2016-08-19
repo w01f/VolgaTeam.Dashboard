@@ -39,6 +39,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			=> ActiveControl as IContentEditControl<MediaScheduleChangeInfo>;
 
 		public IOutputControl ActiveOutputControl => ActiveControl as IOutputControl;
+		public IThemeManagementControl ActiveThemeManagementControl => ActiveControl as IThemeManagementControl;
 
 		public ContentController()
 		{
@@ -178,6 +179,11 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public void OnGetHelp(object sender, EventArgs e)
 		{
 			ActiveControl.GetHelp();
+		}
+
+		public void RaiseThemeChanged()
+		{
+			ContentEditManager<MediaScheduleChangeInfo>.RaiseThemeChanged(ActiveThemeManagementControl);
 		}
 
 		public void OnOutputPowerPoint(object sender, EventArgs e)

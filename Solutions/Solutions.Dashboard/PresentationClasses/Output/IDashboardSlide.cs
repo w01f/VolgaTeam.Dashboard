@@ -1,4 +1,5 @@
-﻿using Asa.Common.GUI.Preview;
+﻿using Asa.Common.Core.Enums;
+using Asa.Common.GUI.Preview;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.Output
 {

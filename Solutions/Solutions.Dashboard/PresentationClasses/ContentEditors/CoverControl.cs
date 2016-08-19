@@ -76,13 +76,16 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 			else
 				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.CoverState.SlideHeader;
-			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.Advertiser) ? null : SlideContainer.EditedContent.CoverState.Advertiser;
-			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.CoverState.DecisionMaker) ? null : SlideContainer.EditedContent.CoverState.DecisionMaker;
+
+			comboBoxEditAdvertiser.EditValue = SlideContainer.EditedContent.CoverState.Advertiser ?? SlideContainer.EditedContent.ScheduleSettings.BusinessName;
+			comboBoxEditDecisionMaker.EditValue = SlideContainer.EditedContent.CoverState.DecisionMaker ?? SlideContainer.EditedContent.ScheduleSettings.DecisionMaker;
 
 			checkEditPresentationDate.Checked = SlideContainer.EditedContent.CoverState.ShowPresentationDate;
 			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
 			if (checkEditPresentationDate.Checked)
-				dateEditPresentationDate.EditValue = SlideContainer.EditedContent.CoverState.PresentationDate != DateTime.MinValue ? (object)SlideContainer.EditedContent.CoverState.PresentationDate : null;
+				dateEditPresentationDate.EditValue = SlideContainer.EditedContent.CoverState.PresentationDate != DateTime.MinValue ? 
+					SlideContainer.EditedContent.CoverState.PresentationDate : 
+					SlideContainer.EditedContent.ScheduleSettings.PresentationDate;
 			else
 				dateEditPresentationDate.EditValue = null;
 			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;

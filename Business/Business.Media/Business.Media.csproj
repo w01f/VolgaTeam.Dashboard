@@ -108,6 +108,7 @@
     <Compile Include="Entities\NonPersistent\Snapshot\SnapshotContent.cs" />
     <Compile Include="Entities\NonPersistent\Snapshot\SnapshotProgram.cs" />
     <Compile Include="Entities\NonPersistent\Snapshot\SnapshotSummary.cs" />
+    <Compile Include="Entities\NonPersistent\Solutions\MediaDashboardContent.cs" />
     <Compile Include="Entities\Persistent\CustomCalendarPartition.cs" />
     <Compile Include="Entities\Persistent\BroadcastCalendarPartition.cs" />
     <Compile Include="Entities\Persistent\MediaDashboardSolution.cs" />

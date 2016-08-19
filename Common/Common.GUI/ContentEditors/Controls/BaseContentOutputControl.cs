@@ -4,7 +4,7 @@ using Asa.Common.GUI.ContentEditors.Objects;
 
 namespace Asa.Common.GUI.ContentEditors.Controls
 {
-	public abstract class BaseContentOutputControl<TChangeInfo> : BaseContentEditControl<TChangeInfo>, IOutputControl
+	public abstract class BaseContentOutputControl<TChangeInfo> : BaseContentEditControl<TChangeInfo>, IThemeManagementControl, IOutputControl
 		where TChangeInfo : BaseScheduleChangeInfo
 	{
 		protected ThemeUpdateInfo ThemeUpdateInfo { get; }

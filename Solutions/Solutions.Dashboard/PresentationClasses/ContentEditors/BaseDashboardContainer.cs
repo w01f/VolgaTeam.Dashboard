@@ -140,12 +140,11 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				form.Text = "Slide Output Options";
 				foreach (var slideControl in _slides.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>())
 				{
-					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName);
+					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName, ActiveSlide.SlideType == SlideType.Cleanslate || slideControl == ActiveSlide ? CheckState.Checked : CheckState.Unchecked);
 					form.checkedListBoxControlOutputItems.Items.Add(item);
 					if (slideControl == ActiveSlide)
 						form.buttonXSelectCurrent.Tag = item;
 				}
-				form.checkedListBoxControlOutputItems.CheckAll();
 				if (form.ShowDialog() == DialogResult.OK)
 					selectedSlides.AddRange(form.checkedListBoxControlOutputItems.Items.
 						OfType<CheckedListBoxItem>().

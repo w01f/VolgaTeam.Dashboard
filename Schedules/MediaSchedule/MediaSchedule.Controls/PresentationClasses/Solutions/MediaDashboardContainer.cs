@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Solutions;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
@@ -30,15 +31,15 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		{
 			EditedContent?.Dispose();
 			EditedContent = BusinessObjects.Instance.ScheduleManager.ActiveSchedule
-				.GetScheduleSolutionContent<DashboardContent>(SolutionInfo.Type)
-				.Clone<DashboardContent, DashboardContent>();
+				.GetScheduleSolutionContent<MediaDashboardContent>(SolutionInfo.Type)
+				.Clone<MediaDashboardContent, DashboardContent>();
 			base.LoadData();
 		}
 
 		public override void SaveData()
 		{
 			BusinessObjects.Instance.ScheduleManager.ActiveSchedule
-				.ApplyScheduleSolutionContent(SolutionInfo.Type, EditedContent.Clone<DashboardContent, DashboardContent>());
+				.ApplyScheduleSolutionContent(SolutionInfo.Type, EditedContent.Clone<MediaDashboardContent, DashboardContent>());
 		}
 
 		public override Theme GetSelectedTheme(SlideType slideType)

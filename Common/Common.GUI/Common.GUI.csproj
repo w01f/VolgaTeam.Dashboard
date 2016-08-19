@@ -120,6 +120,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ContentEditors\Helpers\ContentEditManager.cs" />
+    <Compile Include="ContentEditors\Interfaces\IThemeManagementControl.cs" />
     <Compile Include="ContentEditors\Objects\ContentEditorRelation.cs" />
     <Compile Include="ContentEditors\Helpers\ContentRibbonManager.cs" />
     <Compile Include="ContentEditors\Events\ContentSavingEventArgs.cs" />
@@ -306,6 +307,7 @@
     <Compile Include="Themes\FormThemeSelector.Designer.cs">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Themes\ThemeButtonInfo.cs" />
     <Compile Include="Themes\ThemeContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -152,11 +152,19 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		{
 			base.LoadThemes();
 
-			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-			}));
+			FormThemeSelector.Link(
+				Controller.Instance.SnapshotTheme,
+				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType),
+				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType),
+				MediaMetaData.Instance.SettingsManager,
+				(theme, applyForAllSlideTypes) =>
+				{
+					MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, theme.Name, applyForAllSlideTypes);
+					MediaMetaData.Instance.SettingsManager.SaveSettings();
+					if (applyForAllSlideTypes)
+						Controller.Instance.ContentController.RaiseThemeChanged();
+				}
+			);
 			Controller.Instance.SnapshotThemeBar.RecalcLayout();
 			Controller.Instance.SnapshotPanel.PerformLayout();
 		}

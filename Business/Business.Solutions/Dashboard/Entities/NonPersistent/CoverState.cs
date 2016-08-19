@@ -17,6 +17,7 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 		public CoverState()
 		{
 			Quote = new Quote();
+			ShowPresentationDate = true;
 			AddAsPageOne = true;
 		}
 	}

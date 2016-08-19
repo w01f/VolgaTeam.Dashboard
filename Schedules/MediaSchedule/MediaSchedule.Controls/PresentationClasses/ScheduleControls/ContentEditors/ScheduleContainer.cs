@@ -178,11 +178,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			base.LoadThemes();
 
-			FormThemeSelector.Link(Controller.Instance.ProgramScheduleTheme, BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-			}));
+			FormThemeSelector.Link(
+				Controller.Instance.ProgramScheduleTheme, 
+				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), 
+				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType),
+				MediaMetaData.Instance.SettingsManager,
+				(theme, applyForAllSlideTypes) =>
+				{
+					MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, theme.Name, applyForAllSlideTypes);
+					MediaMetaData.Instance.SettingsManager.SaveSettings();
+					if (applyForAllSlideTypes)
+						Controller.Instance.ContentController.RaiseThemeChanged();
+				}
+			);
 			Controller.Instance.ProgramScheduleThemeBar.RecalcLayout();
 			Controller.Instance.ProgramSchedulePanel.PerformLayout();
 		}

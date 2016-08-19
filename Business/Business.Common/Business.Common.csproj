@@ -113,6 +113,7 @@
     <Compile Include="Interfaces\IScheduleSolutionContent.cs" />
     <Compile Include="Interfaces\ISchedulePartitionContent.cs" />
     <Compile Include="Interfaces\ITemplatedSchedule.cs" />
+    <Compile Include="Interfaces\IThemeSettingsContainer.cs" />
     <Compile Include="Mappers\ScheduleSolutionMap.cs" />
     <Compile Include="Mappers\SchedulePartitionMap.cs" />
     <Compile Include="Mappers\ScheduleMap.cs" />

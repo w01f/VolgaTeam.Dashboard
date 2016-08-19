@@ -153,7 +153,7 @@ namespace Asa.Dashboard.TabHomeForms
 			ViewSettingsManager.Instance.CoverState.DecisionMaker = (comboBoxEditDecisionMaker.EditValue as String) ?? String.Empty;
 
 			SettingsManager.Instance.SalesRep = (comboBoxEditSalesRep.EditValue as String) ?? String.Empty;
-			SettingsManager.Instance.SaveDashboardSettings();
+			SettingsManager.Instance.SaveSettings();
 
 			SettingsNotSaved = false;
 		}

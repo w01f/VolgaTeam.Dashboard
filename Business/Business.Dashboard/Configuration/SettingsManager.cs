@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Asa.Business.Common.Interfaces;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 
 namespace Asa.Business.Dashboard.Configuration
 {
-	public class SettingsManager
+	public class SettingsManager : IThemeSettingsContainer
 	{
 		private ThemeSaveHelper _themeSaveHelper;
 
@@ -21,6 +22,8 @@ namespace Asa.Business.Dashboard.Configuration
 
 		public string SalesRep { get; set; }
 
+		public bool ApplyThemeForAllSlideTypes { get; set; }
+
 		public static SettingsManager Instance { get; } = new SettingsManager();
 
 		public Theme GetSelectedTheme(SlideType slideType)
@@ -28,9 +31,14 @@ namespace Asa.Business.Dashboard.Configuration
 			return _themeSaveHelper.GetSelectedTheme(slideType);
 		}
 
-		public void SetSelectedTheme(SlideType slideType, string themeName)
+		public String GetSelectedThemeName(SlideType slideType)
 		{
-			_themeSaveHelper.SetSelectedTheme(slideType, themeName);
+			return GetSelectedTheme(slideType).Name;
+		}
+
+		public void SetSelectedTheme(SlideType slideType, string themeName, bool applyForAllSlidesTypes)
+		{
+			_themeSaveHelper.SetSelectedTheme(slideType, themeName, applyForAllSlidesTypes);
 		}
 
 		public async Task LoadSettings()
@@ -40,7 +48,7 @@ namespace Asa.Business.Dashboard.Configuration
 			ThemeManager = new ThemeManager();
 			ThemeManager.Load();
 			PowerPointManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
-			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
+			InitThemeHelper(ThemeManager);
 
 			SlideManager = new SlideManager();
 			SlideManager.Load();
@@ -56,15 +64,39 @@ namespace Asa.Business.Dashboard.Configuration
 			var node = document.SelectSingleNode(@"/DashboardSettings/SalesRep");
 			if (node != null)
 				SalesRep = node.InnerText;
+			node = document.SelectSingleNode(@"/Settings/ApplyThemeForAllSlideTypes");
+			if (node != null)
+			{
+				bool tempBool;
+				if (Boolean.TryParse(node.InnerText, out tempBool))
+					ApplyThemeForAllSlideTypes = tempBool;
+			}
 			_themeSaveHelper.Deserialize(document.SelectNodes(@"//DashboardSettings/SelectedTheme").OfType<XmlNode>());
 		}
 
-		public void SaveDashboardSettings()
+		public void InitThemeHelper(ThemeManager themeManager)
+		{
+			_themeSaveHelper = new ThemeSaveHelper(
+				themeManager,
+				new[]
+				{
+					SlideType.Cleanslate,
+					SlideType.Cover,
+					SlideType.LeadoffStatement,
+					SlideType.ClientGoals,
+					SlideType.TargetCustomers,
+					SlideType.SimpleSummary,
+				}
+			);
+		}
+
+		public void SaveSettings()
 		{
 			var xml = new StringBuilder();
 			xml.AppendLine(@"<DashboardSettings>");
 			if (!String.IsNullOrEmpty(SalesRep))
 				xml.AppendLine(@"<SalesRep>" + SalesRep.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SalesRep>");
+			xml.AppendLine(@"<ApplyThemeForAllSlideTypes>" + ApplyThemeForAllSlideTypes + @"</ApplyThemeForAllSlideTypes>");
 			xml.AppendLine(_themeSaveHelper.Serialize());
 			xml.AppendLine(@"</DashboardSettings>");
 			using (var sw = new StreamWriter(Asa.Common.Core.Configuration.ResourceManager.Instance.AppSettingsFile.LocalPath, false))

@@ -1,24 +1,24 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Asa.Business.Common.Entities.NonPersistent.Common;
+using Asa.Business.Media.Entities.NonPersistent.Solutions;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Common.Interfaces;
-using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.Persistent
 {
-	class MediaDashboardSolution : MediaSolution, IScheduleSolution<DashboardContent>
+	class MediaDashboardSolution : MediaSolution, IScheduleSolution<MediaDashboardContent>
 	{
 		#region Nonpersistent Properties
-		private DashboardContent _content;
+		private MediaDashboardContent _content;
 		[NotMapped, JsonIgnore]
-		public DashboardContent Content
+		public MediaDashboardContent Content
 		{
 			get
 			{
 				if (_content == null)
-					_content = SettingsContainer.CreateInstance<DashboardContent>(this, ContentEncoded);
+					_content = SettingsContainer.CreateInstance<MediaDashboardContent>(this, ContentEncoded);
 				return _content;
 			}
 			set { _content = value; }

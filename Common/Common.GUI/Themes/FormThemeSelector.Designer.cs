@@ -33,10 +33,14 @@
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.laThemeName = new System.Windows.Forms.Label();
-			this.laSlideSize = new System.Windows.Forms.Label();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.labelControlSlideSize = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlThemName = new DevExpress.XtraEditors.LabelControl();
+			this.checkEditApplyThemeForAllSlideTypes = new DevExpress.XtraEditors.CheckEdit();
 			this.pnButtons.SuspendLayout();
 			this.pnHeader.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -52,6 +56,7 @@
 			// pnButtons
 			// 
 			this.pnButtons.BackColor = System.Drawing.Color.Transparent;
+			this.pnButtons.Controls.Add(this.checkEditApplyThemeForAllSlideTypes);
 			this.pnButtons.Controls.Add(this.buttonXOK);
 			this.pnButtons.Controls.Add(this.buttonXCancel);
 			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -91,9 +96,9 @@
 			// 
 			// pnHeader
 			// 
-			this.pnHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
-			this.pnHeader.Controls.Add(this.laThemeName);
-			this.pnHeader.Controls.Add(this.laSlideSize);
+			this.pnHeader.BackColor = System.Drawing.Color.Transparent;
+			this.pnHeader.Controls.Add(this.labelControlThemName);
+			this.pnHeader.Controls.Add(this.labelControlSlideSize);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.ForeColor = System.Drawing.Color.Black;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
@@ -101,31 +106,54 @@
 			this.pnHeader.Size = new System.Drawing.Size(894, 40);
 			this.pnHeader.TabIndex = 6;
 			// 
-			// laThemeName
+			// styleController
 			// 
-			this.laThemeName.BackColor = System.Drawing.Color.White;
-			this.laThemeName.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laThemeName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laThemeName.ForeColor = System.Drawing.Color.Black;
-			this.laThemeName.Location = new System.Drawing.Point(333, 0);
-			this.laThemeName.Name = "laThemeName";
-			this.laThemeName.Size = new System.Drawing.Size(561, 40);
-			this.laThemeName.TabIndex = 3;
-			this.laThemeName.Text = "Slide Name";
-			this.laThemeName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// laSlideSize
+			// labelControlSlideSize
 			// 
-			this.laSlideSize.BackColor = System.Drawing.Color.White;
-			this.laSlideSize.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideSize.ForeColor = System.Drawing.Color.Black;
-			this.laSlideSize.Location = new System.Drawing.Point(0, 0);
-			this.laSlideSize.Name = "laSlideSize";
-			this.laSlideSize.Size = new System.Drawing.Size(333, 40);
-			this.laSlideSize.TabIndex = 2;
-			this.laSlideSize.Text = "Slide Size: {0}";
-			this.laSlideSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.labelControlSlideSize.AllowHtmlString = true;
+			this.labelControlSlideSize.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlSlideSize.Dock = System.Windows.Forms.DockStyle.Left;
+			this.labelControlSlideSize.Location = new System.Drawing.Point(0, 0);
+			this.labelControlSlideSize.Name = "labelControlSlideSize";
+			this.labelControlSlideSize.Size = new System.Drawing.Size(327, 40);
+			this.labelControlSlideSize.StyleController = this.styleController;
+			this.labelControlSlideSize.TabIndex = 4;
+			this.labelControlSlideSize.Text = "<b><size=+4>Slide Size: {0}</size></b>";
+			// 
+			// labelControlThemName
+			// 
+			this.labelControlThemName.AllowHtmlString = true;
+			this.labelControlThemName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlThemName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlThemName.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.labelControlThemName.Location = new System.Drawing.Point(327, 0);
+			this.labelControlThemName.Name = "labelControlThemName";
+			this.labelControlThemName.Size = new System.Drawing.Size(567, 40);
+			this.labelControlThemName.StyleController = this.styleController;
+			this.labelControlThemName.TabIndex = 5;
+			this.labelControlThemName.Text = "<b><size=+4>Theme Name</size></b>";
+			// 
+			// checkEditApplyThemeForAllSlideTypes
+			// 
+			this.checkEditApplyThemeForAllSlideTypes.Location = new System.Drawing.Point(12, 13);
+			this.checkEditApplyThemeForAllSlideTypes.Name = "checkEditApplyThemeForAllSlideTypes";
+			this.checkEditApplyThemeForAllSlideTypes.Properties.Caption = "Use this Slide Theme for everything";
+			this.checkEditApplyThemeForAllSlideTypes.Size = new System.Drawing.Size(227, 20);
+			this.checkEditApplyThemeForAllSlideTypes.StyleController = this.styleController;
+			this.checkEditApplyThemeForAllSlideTypes.TabIndex = 6;
 			// 
 			// FormThemeSelector
 			// 
@@ -137,6 +165,7 @@
 			this.Controls.Add(this.pnButtons);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -147,6 +176,8 @@
 			this.TopMost = true;
 			this.pnButtons.ResumeLayout(false);
 			this.pnHeader.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -158,7 +189,9 @@
 		private DevComponents.DotNetBar.ButtonX buttonXOK;
 		private DevComponents.DotNetBar.ButtonX buttonXCancel;
 		private System.Windows.Forms.Panel pnHeader;
-		private System.Windows.Forms.Label laThemeName;
-		private System.Windows.Forms.Label laSlideSize;
+		private DevExpress.XtraEditors.StyleController styleController;
+		private DevExpress.XtraEditors.LabelControl labelControlThemName;
+		private DevExpress.XtraEditors.LabelControl labelControlSlideSize;
+		private DevExpress.XtraEditors.CheckEdit checkEditApplyThemeForAllSlideTypes;
 	}
 }

@@ -87,12 +87,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 			ckAdvertiser.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser;
 			ckDecisionMaker.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowDecisionMaker;
-			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.SimpleSummaryState.Advertiser) ? null : SlideContainer.EditedContent.SimpleSummaryState.Advertiser;
-			comboBoxEditDecisionMaker.EditValue = String.IsNullOrEmpty(SlideContainer.EditedContent.SimpleSummaryState.DecisionMaker) ? null : SlideContainer.EditedContent.SimpleSummaryState.DecisionMaker;
+
+			comboBoxEditAdvertiser.EditValue = SlideContainer.EditedContent.SimpleSummaryState.Advertiser ?? SlideContainer.EditedContent.ScheduleSettings.BusinessName;
+			comboBoxEditDecisionMaker.EditValue = SlideContainer.EditedContent.SimpleSummaryState.DecisionMaker ?? SlideContainer.EditedContent.ScheduleSettings.DecisionMaker;
 
 			ckDate.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowPresentationDate;
 			if (ckDate.Checked)
-				dateEditDate.EditValue = SlideContainer.EditedContent.SimpleSummaryState.PresentationDate != DateTime.MinValue ? (object)SlideContainer.EditedContent.SimpleSummaryState.PresentationDate : null;
+				dateEditDate.EditValue = SlideContainer.EditedContent.SimpleSummaryState.PresentationDate != DateTime.MinValue ?
+					SlideContainer.EditedContent.SimpleSummaryState.PresentationDate :
+					SlideContainer.EditedContent.ScheduleSettings.PresentationDate;
 			else
 				dateEditDate.EditValue = null;
 

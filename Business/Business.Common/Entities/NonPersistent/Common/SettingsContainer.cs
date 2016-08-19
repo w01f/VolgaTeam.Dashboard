@@ -14,7 +14,7 @@ namespace Asa.Business.Common.Entities.NonPersistent.Common
 			var createNew = String.IsNullOrEmpty(encodedSource);
 			var serializerSettings = new DefaultSerializeSettings();
 			var settings = !createNew ?
-				JsonConvert.DeserializeObject<TSettings>(encodedSource, serializerSettings) :
+				JsonConvert.DeserializeObject<TSettings>(encodedSource, serializerSettings) ?? Activator.CreateInstance<TSettings>() :
 				Activator.CreateInstance<TSettings>();
 			settings.Parent = parent;
 			if (createNew)

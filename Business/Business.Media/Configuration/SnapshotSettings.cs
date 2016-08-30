@@ -12,9 +12,11 @@ namespace Asa.Business.Media.Configuration
 		public bool ShowDaypart { get; set; }
 		public bool ShowTime { get; set; }
 		public bool ShowRate { get; set; }
-		public bool ShowCost { get; set; }
-		public bool ShowLogo { get; set; }
 		public bool ShowTotalSpots { get; set; }
+		public bool ShowTotalCost { get; set; }
+		public bool ShowWeeklySpots { get; set; }
+		public bool ShowWeeklyCost { get; set; }
+		public bool ShowLogo { get; set; }
 		public bool ShowAverageRate { get; set; }
 		public bool ShowLineId { get; set; }
 		public bool ShowTotalRow { get; set; }
@@ -32,9 +34,11 @@ namespace Asa.Business.Media.Configuration
 			result.AppendLine(@"<ShowDaypart>" + ShowDaypart + @"</ShowDaypart>");
 			result.AppendLine(@"<ShowTime>" + ShowTime + @"</ShowTime>");
 			result.AppendLine(@"<ShowRate>" + ShowRate + @"</ShowRate>");
-			result.AppendLine(@"<ShowCost>" + ShowCost + @"</ShowCost>");
-			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
+			result.AppendLine(@"<ShowWeeklySpots>" + ShowWeeklySpots + @"</ShowWeeklySpots>");
+			result.AppendLine(@"<ShowWeeklyCost>" + ShowWeeklyCost + @"</ShowWeeklyCost>");
 			result.AppendLine(@"<ShowTotalSpots>" + ShowTotalSpots + @"</ShowTotalSpots>");
+			result.AppendLine(@"<ShowTotalCost>" + ShowTotalCost + @"</ShowTotalCost>");
+			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
 			result.AppendLine(@"<ShowAverageRate>" + ShowAverageRate + @"</ShowAverageRate>");
 			result.AppendLine(@"<ShowLineId>" + ShowLineId + @"</ShowLineId>");
 			result.AppendLine(@"<ShowTotalRow>" + ShowTotalRow + @"</ShowTotalRow>");
@@ -92,18 +96,18 @@ namespace Asa.Business.Media.Configuration
 								ShowRate = temp;
 						}
 						break;
-					case "ShowCost":
+					case "ShowWeeklySpots":
 						{
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
-								ShowCost = temp;
+								ShowWeeklySpots = temp;
 						}
 						break;
-					case "ShowLogo":
+					case "ShowWeeklyCost":
 						{
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
-								ShowLogo = temp;
+								ShowWeeklyCost = temp;
 						}
 						break;
 					case "ShowTotalSpots":
@@ -111,6 +115,20 @@ namespace Asa.Business.Media.Configuration
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
 								ShowTotalSpots = temp;
+						}
+						break;
+					case "ShowTotalCost":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowTotalCost = temp;
+						}
+						break;
+					case "ShowLogo":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowLogo = temp;
 						}
 						break;
 					case "ShowAverageRate":
@@ -211,18 +229,18 @@ namespace Asa.Business.Media.Configuration
 							ShowRate = temp;
 					}
 					break;
-				case "Total Cost":
+				case "Weekly Spots":
 					{
 						bool temp;
 						if (Boolean.TryParse(value, out temp))
-							ShowCost = temp;
+							ShowWeeklySpots = temp;
 					}
 					break;
-				case "Logo":
+				case "Weekly Cost":
 					{
 						bool temp;
 						if (Boolean.TryParse(value, out temp))
-							ShowLogo = temp;
+							ShowWeeklyCost = temp;
 					}
 					break;
 				case "Total Spots":
@@ -230,6 +248,20 @@ namespace Asa.Business.Media.Configuration
 						bool temp;
 						if (Boolean.TryParse(value, out temp))
 							ShowTotalSpots = temp;
+					}
+					break;
+				case "Total Cost":
+					{
+						bool temp;
+						if (Boolean.TryParse(value, out temp))
+							ShowTotalCost = temp;
+					}
+					break;
+				case "Logo":
+					{
+						bool temp;
+						if (Boolean.TryParse(value, out temp))
+							ShowLogo = temp;
 					}
 					break;
 				case "Average Rate":

@@ -26,7 +26,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 		public ActiveWeeksSettingsControl()
 		{
 			InitializeComponent();
-			Text = "Calendar";
+			Text = "Active Weeks";
 			BarButton = new ButtonInfo
 			{
 				Logo = Resources.SnapshotSettingsActiveWeeks,

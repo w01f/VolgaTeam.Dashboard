@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Common.Enums;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
@@ -94,13 +93,18 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				styleController.AppearanceReadOnly.Font = font;
 
 				font = new Font(laAvgRateTitle.Font.FontFamily, laAvgRateTitle.Font.Size - 2, laAvgRateTitle.Font.Style);
+				laActiveWeeksTitle.Font = font;
+				laWeeklySpotsTitle.Font = font;
+				laWeeklyCostTitle.Font = font;
 				laTotalSpotsTitle.Font = font;
-				laAvgRateTitle.Font = font;
 				laTotalCostTitle.Font = font;
+				laAvgRateTitle.Font = font;
 				font = new Font(laAvgRateValue.Font.FontFamily, laAvgRateValue.Font.Size - 2, laAvgRateValue.Font.Style);
+				laWeeklySpotsValue.Font = font;
+				laWeeklyCostValue.Font = font;
 				laTotalSpotsValue.Font = font;
-				laAvgRateValue.Font = font;
 				laTotalCostValue.Font = font;
+				laAvgRateValue.Font = font;
 			}
 		}
 
@@ -304,21 +308,22 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (ActiveSnapshotContainer != null && ActiveSnapshotContainer.SnapshotData.Programs.Any())
 			{
 				pnBottom.Visible = true;
+				laActiveWeeksValue.Text = ActiveSnapshotContainer.SnapshotData.TotalWeeks.ToString("#0");
+				laWeeklySpotsValue.Text = ActiveSnapshotContainer.SnapshotData.WeeklySpots.ToString("#,##0");
+				laWeeklyCostValue.Text = ActiveSnapshotContainer.SnapshotData.WeeklyCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 				laTotalSpotsValue.Text = ActiveSnapshotContainer.SnapshotData.TotalSpots.ToString("#,##0");
+				laTotalCostValue.Text = ActiveSnapshotContainer.SnapshotData.TotalCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 				laAvgRateValue.Text = ActiveSnapshotContainer.SnapshotData.AvgRate.ToString(ActiveSnapshotContainer.SnapshotData.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-				laTotalCostValue.Text = String.Empty;
 			}
 			else if (ActiveSummary != null)
 			{
 				pnBottom.Visible = true;
 				laTotalSpotsValue.Text = ActiveSummary.Data.TotalSpots.ToString("#,##0");
 				laTotalCostValue.Text = ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-				laAvgRateValue.Text = String.Empty;
 			}
 			else
 			{
 				pnBottom.Visible = false;
-				laTotalSpotsValue.Text = laTotalCostValue.Text = laAvgRateValue.Text = String.Empty;
 			}
 		}
 
@@ -327,21 +332,39 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (ActiveSnapshotContainer != null)
 			{
 				pnTotalSpots.Visible = ActiveSnapshotContainer.SnapshotData.ShowTotalSpots;
-				pnTotalSpots.SendToBack();
+
+				pnWeeklyCost.Visible = ActiveSnapshotContainer.SnapshotData.ShowWeeklyCost;
+				pnWeeklyCost.SendToBack();
+
+				pnWeeklySpots.Visible = ActiveSnapshotContainer.SnapshotData.ShowWeeklySpots;
+				pnWeeklySpots.SendToBack();
+
+				pnActiveWeeks.Visible = true;
+				pnActiveWeeks.SendToBack();
+
+				pnTotalCost.Visible = ActiveSnapshotContainer.SnapshotData.ShowTotalCost;
+				pnTotalCost.BringToFront();
+
 				pnAvgRate.Visible = ActiveSnapshotContainer.SnapshotData.ShowAverageRate;
 				pnAvgRate.BringToFront();
-				pnTotalCost.Visible = false;
 			}
 			else if (ActiveSummary != null)
 			{
+				pnActiveWeeks.Visible = false;
+				pnWeeklySpots.Visible = false;
+				pnWeeklyCost.Visible = false;
+				pnAvgRate.Visible = false;
+
 				pnTotalSpots.Visible = ActiveSummary.Data.ShowTallySpots;
 				pnTotalSpots.SendToBack();
 				pnTotalCost.Visible = ActiveSummary.Data.ShowTallyCost;
 				pnTotalCost.BringToFront();
-				pnAvgRate.Visible = false;
 			}
 			else
 			{
+				pnActiveWeeks.Visible = false;
+				pnWeeklySpots.Visible = false;
+				pnWeeklyCost.Visible = false;
 				pnTotalSpots.Visible = false;
 				pnTotalCost.Visible = false;
 				pnAvgRate.Visible = false;

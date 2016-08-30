@@ -36,13 +36,13 @@ namespace Asa.Media.LegacyConverter.Converters
 			target.ShowLenght = source.ShowLenght;
 			target.ShowTime = source.ShowTime;
 			target.ShowRate = source.ShowRate;
-			target.ShowCost = source.ShowCost;
+			target.ShowWeeklyCost = source.ShowCost;
 			target.ShowSpotsX = source.ShowSpotsX;
 			target.ShowTotalRow = source.ShowTotalRow;
 			target.UseDecimalRates = source.UseDecimalRates;
 			target.ShowSpotsPerWeek = source.ShowSpotsPerWeek;
 
-			target.ShowTotalSpots = source.ShowTotalSpots;
+			target.ShowWeeklySpots = source.ShowTotalSpots;
 			target.ShowAverageRate = source.ShowAverageRate;
 
 			target.ContractSettings.ImportData(source.ContractSettings);

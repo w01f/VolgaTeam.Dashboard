@@ -39,7 +39,8 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		public bool ShowLenght { get; set; }
 		public bool ShowTime { get; set; }
 		public bool ShowRate { get; set; }
-		public bool ShowCost { get; set; }
+		public bool ShowWeeklySpots { get; set; }
+		public bool ShowWeeklyCost { get; set; }
 		public bool ShowSpotsX { get; set; }
 		public bool ShowTotalRow { get; set; }
 		public bool UseDecimalRates { get; set; }
@@ -47,6 +48,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		public bool CloneLineToTheEnd { get; set; }
 
 		public bool ShowTotalSpots { get; set; }
+		public bool ShowTotalCost { get; set; }
 		public bool ShowAverageRate { get; set; }
 		#endregion
 
@@ -57,9 +59,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 
 		public Image SmallLogo => Logo?.TinyImage;
 
-		public decimal AvgRate => TotalSpots != 0 ? (TotalCost / TotalSpots) : 0;
+		public decimal AvgRate => WeeklySpots != 0 ? (WeeklyCost / WeeklySpots) : 0;
 
-		public decimal TotalCost
+		public decimal WeeklyCost
 		{
 			get { return Programs.Any() ? (Programs.Select(x => x.TotalCost).Sum()) : 0; }
 		}
@@ -78,14 +80,14 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			set { _totalWeeks = value; }
 		}
 
-		public decimal TotalWeekCost => TotalCost * (decimal)TotalWeeks;
+		public decimal TotalCost => WeeklyCost * (decimal)TotalWeeks;
 
-		public int TotalSpots
+		public int WeeklySpots
 		{
 			get { return Programs.Any() ? Programs.Select(x => x.TotalSpots).Sum() : 0; }
 		}
 
-		public int TotalWeekSpots => (int)(TotalSpots * TotalWeeks);
+		public int TotalSpots => (int)(WeeklySpots * TotalWeeks);
 
 		#endregion
 
@@ -110,8 +112,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 			ShowLenght = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowLenght;
 			ShowTime = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowTime;
 			ShowRate = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowRate;
-			ShowCost = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowCost;
+			ShowWeeklySpots = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowWeeklySpots;
+			ShowWeeklyCost = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowWeeklyCost;
 			ShowTotalSpots = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowTotalSpots;
+			ShowTotalCost = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowTotalCost;
 			ShowAverageRate = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowAverageRate;
 			ShowSpotsX = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowSpotsX;
 			ShowLineId = MediaMetaData.Instance.ListManager.DefaultSnapshotSettings.ShowLineId;

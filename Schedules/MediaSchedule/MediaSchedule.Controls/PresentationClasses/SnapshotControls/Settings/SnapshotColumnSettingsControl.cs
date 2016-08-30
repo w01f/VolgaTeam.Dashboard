@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
@@ -43,7 +44,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 
 				font = new Font(buttonXAvgRate.Font.FontFamily, buttonXAvgRate.Font.Size - 2, buttonXAvgRate.Font.Style);
 				buttonXAvgRate.Font = font;
-				buttonXCost.Font = font;
 				buttonXDaypart.Font = font;
 				buttonXLength.Font = font;
 				buttonXLineId.Font = font;
@@ -53,7 +53,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 				buttonXStation.Font = font;
 				buttonXTime.Font = font;
 				buttonXTotalRow.Font = font;
+				buttonXWeeklySpots.Font = font;
+				buttonXWeeklyCost.Font = font;
 				buttonXTotalSpots.Font = font;
+				buttonXTotalCost.Font = font;
 			}
 		}
 
@@ -71,9 +74,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 			buttonXDaypart.Checked = _snapshotData.ShowDaypart;
 			buttonXTime.Checked = _snapshotData.ShowTime;
 			buttonXRate.Checked = _snapshotData.ShowRate;
-			buttonXCost.Checked = _snapshotData.ShowCost;
-			buttonXLogo.Checked = _snapshotData.ShowLogo;
+			buttonXWeeklySpots.Checked = _snapshotData.ShowWeeklySpots;
+			buttonXWeeklyCost.Checked = _snapshotData.ShowWeeklyCost;
 			buttonXTotalSpots.Checked = _snapshotData.ShowTotalSpots;
+			buttonXTotalCost.Checked = _snapshotData.ShowTotalCost;
+			buttonXLogo.Checked = _snapshotData.ShowLogo;
 			buttonXAvgRate.Checked = _snapshotData.ShowAverageRate;
 			buttonXTotalRow.Checked = _snapshotData.ShowTotalRow;
 
@@ -99,9 +104,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 			_snapshotData.ShowDaypart = buttonXDaypart.Checked;
 			_snapshotData.ShowTime = buttonXTime.Checked;
 			_snapshotData.ShowRate = buttonXRate.Checked;
-			_snapshotData.ShowCost = buttonXCost.Checked;
-			_snapshotData.ShowLogo = buttonXLogo.Checked;
+			_snapshotData.ShowWeeklySpots = buttonXWeeklySpots.Checked;
+			_snapshotData.ShowWeeklyCost = buttonXWeeklyCost.Checked;
 			_snapshotData.ShowTotalSpots = buttonXTotalSpots.Checked;
+			_snapshotData.ShowTotalCost = buttonXTotalCost.Checked;
+			_snapshotData.ShowLogo = buttonXLogo.Checked;
 			_snapshotData.ShowAverageRate = buttonXAvgRate.Checked;
 			_snapshotData.ShowTotalRow = buttonXTotalRow.Checked;
 
@@ -116,9 +123,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 					snapshot.ShowDaypart = _snapshotData.ShowDaypart;
 					snapshot.ShowTime = _snapshotData.ShowTime;
 					snapshot.ShowRate = _snapshotData.ShowRate;
-					snapshot.ShowCost = _snapshotData.ShowCost;
-					snapshot.ShowLogo = _snapshotData.ShowLogo;
+					snapshot.ShowWeeklySpots = _snapshotData.ShowWeeklySpots;
+					snapshot.ShowWeeklyCost = _snapshotData.ShowWeeklyCost;
 					snapshot.ShowTotalSpots = _snapshotData.ShowTotalSpots;
+					snapshot.ShowTotalCost = _snapshotData.ShowTotalCost;
+					snapshot.ShowLogo = _snapshotData.ShowLogo;
 					snapshot.ShowAverageRate = _snapshotData.ShowAverageRate;
 					snapshot.ShowTotalRow = _snapshotData.ShowTotalRow;
 				}

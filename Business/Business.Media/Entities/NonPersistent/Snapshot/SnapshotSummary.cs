@@ -31,12 +31,12 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		#region Calculated Properties
 		public decimal TotalCost
 		{
-			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalWeekCost).Sum() : 0; }
+			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalCost).Sum() : 0; }
 		}
 
 		public int TotalSpots
 		{
-			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalWeekSpots).Sum() : 0; }
+			get { return Parent.Snapshots.Any() ? Parent.Snapshots.Select(x => x.TotalSpots).Sum() : 0; }
 		}
 		#endregion
 

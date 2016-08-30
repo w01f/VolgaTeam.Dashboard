@@ -35,6 +35,9 @@
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings.SettingsContainer();
 			this.pnData = new System.Windows.Forms.Panel();
+			this.pnTop = new System.Windows.Forms.Panel();
+			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAvgRate = new System.Windows.Forms.Panel();
 			this.laAvgRateValue = new System.Windows.Forms.Label();
@@ -49,21 +52,30 @@
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
-			this.pnTop = new System.Windows.Forms.Panel();
-			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
+			this.pnWeeklySpots = new System.Windows.Forms.Panel();
+			this.laWeeklySpotsValue = new System.Windows.Forms.Label();
+			this.laWeeklySpotsTitle = new System.Windows.Forms.Label();
+			this.pnWeeklyCost = new System.Windows.Forms.Panel();
+			this.laWeeklyCostValue = new System.Windows.Forms.Label();
+			this.laWeeklyCostTitle = new System.Windows.Forms.Label();
+			this.pnActiveWeeks = new System.Windows.Forms.Panel();
+			this.laActiveWeeksValue = new System.Windows.Forms.Label();
+			this.laActiveWeeksTitle = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlContentEditors)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).BeginInit();
 			this.retractableBarControl.Content.SuspendLayout();
 			this.pnData.SuspendLayout();
+			this.pnTop.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			this.pnAvgRate.SuspendLayout();
 			this.pnTotalCost.SuspendLayout();
 			this.pnTotalSpots.SuspendLayout();
 			this.pnNoRecords.SuspendLayout();
 			this.contextMenuStrip.SuspendLayout();
-			this.pnTop.SuspendLayout();
+			this.pnWeeklySpots.SuspendLayout();
+			this.pnWeeklyCost.SuspendLayout();
+			this.pnActiveWeeks.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -173,145 +185,6 @@
 			this.pnData.Size = new System.Drawing.Size(1092, 541);
 			this.pnData.TabIndex = 6;
 			// 
-			// pnBottom
-			// 
-			this.pnBottom.Controls.Add(this.pnAvgRate);
-			this.pnBottom.Controls.Add(this.pnTotalCost);
-			this.pnBottom.Controls.Add(this.pnTotalSpots);
-			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBottom.Location = new System.Drawing.Point(300, 498);
-			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.pnBottom.Size = new System.Drawing.Size(792, 43);
-			this.pnBottom.TabIndex = 6;
-			// 
-			// pnAvgRate
-			// 
-			this.pnAvgRate.Controls.Add(this.laAvgRateValue);
-			this.pnAvgRate.Controls.Add(this.laAvgRateTitle);
-			this.pnAvgRate.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnAvgRate.Location = new System.Drawing.Point(240, 0);
-			this.pnAvgRate.Name = "pnAvgRate";
-			this.pnAvgRate.Size = new System.Drawing.Size(115, 43);
-			this.pnAvgRate.TabIndex = 3;
-			// 
-			// laAvgRateValue
-			// 
-			this.laAvgRateValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laAvgRateValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laAvgRateValue.Location = new System.Drawing.Point(0, 19);
-			this.laAvgRateValue.Name = "laAvgRateValue";
-			this.laAvgRateValue.Size = new System.Drawing.Size(115, 19);
-			this.laAvgRateValue.TabIndex = 2;
-			this.laAvgRateValue.Text = "Average Rate:";
-			this.laAvgRateValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// laAvgRateTitle
-			// 
-			this.laAvgRateTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laAvgRateTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laAvgRateTitle.Location = new System.Drawing.Point(0, 0);
-			this.laAvgRateTitle.Name = "laAvgRateTitle";
-			this.laAvgRateTitle.Size = new System.Drawing.Size(115, 19);
-			this.laAvgRateTitle.TabIndex = 1;
-			this.laAvgRateTitle.Text = "Average Rate:";
-			this.laAvgRateTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// pnTotalCost
-			// 
-			this.pnTotalCost.Controls.Add(this.laTotalCostValue);
-			this.pnTotalCost.Controls.Add(this.laTotalCostTitle);
-			this.pnTotalCost.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnTotalCost.Location = new System.Drawing.Point(125, 0);
-			this.pnTotalCost.Name = "pnTotalCost";
-			this.pnTotalCost.Size = new System.Drawing.Size(115, 43);
-			this.pnTotalCost.TabIndex = 8;
-			// 
-			// laTotalCostValue
-			// 
-			this.laTotalCostValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalCostValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalCostValue.Location = new System.Drawing.Point(0, 19);
-			this.laTotalCostValue.Name = "laTotalCostValue";
-			this.laTotalCostValue.Size = new System.Drawing.Size(115, 19);
-			this.laTotalCostValue.TabIndex = 2;
-			this.laTotalCostValue.Text = "Total Cost:";
-			this.laTotalCostValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// laTotalCostTitle
-			// 
-			this.laTotalCostTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalCostTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalCostTitle.Location = new System.Drawing.Point(0, 0);
-			this.laTotalCostTitle.Name = "laTotalCostTitle";
-			this.laTotalCostTitle.Size = new System.Drawing.Size(115, 19);
-			this.laTotalCostTitle.TabIndex = 1;
-			this.laTotalCostTitle.Text = "Total Cost:";
-			this.laTotalCostTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// pnTotalSpots
-			// 
-			this.pnTotalSpots.Controls.Add(this.laTotalSpotsValue);
-			this.pnTotalSpots.Controls.Add(this.laTotalSpotsTitle);
-			this.pnTotalSpots.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnTotalSpots.Location = new System.Drawing.Point(10, 0);
-			this.pnTotalSpots.Name = "pnTotalSpots";
-			this.pnTotalSpots.Size = new System.Drawing.Size(115, 43);
-			this.pnTotalSpots.TabIndex = 7;
-			// 
-			// laTotalSpotsValue
-			// 
-			this.laTotalSpotsValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalSpotsValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalSpotsValue.Location = new System.Drawing.Point(0, 19);
-			this.laTotalSpotsValue.Name = "laTotalSpotsValue";
-			this.laTotalSpotsValue.Size = new System.Drawing.Size(115, 19);
-			this.laTotalSpotsValue.TabIndex = 2;
-			this.laTotalSpotsValue.Text = "Total Spots:";
-			this.laTotalSpotsValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// laTotalSpotsTitle
-			// 
-			this.laTotalSpotsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalSpotsTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalSpotsTitle.Location = new System.Drawing.Point(0, 0);
-			this.laTotalSpotsTitle.Name = "laTotalSpotsTitle";
-			this.laTotalSpotsTitle.Size = new System.Drawing.Size(115, 19);
-			this.laTotalSpotsTitle.TabIndex = 1;
-			this.laTotalSpotsTitle.Text = "Total Spots:";
-			this.laTotalSpotsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// pnNoRecords
-			// 
-			this.pnNoRecords.Controls.Add(this.pbNoRecords);
-			this.pnNoRecords.Location = new System.Drawing.Point(246, 530);
-			this.pnNoRecords.Name = "pnNoRecords";
-			this.pnNoRecords.Padding = new System.Windows.Forms.Padding(40, 20, 20, 20);
-			this.pnNoRecords.Size = new System.Drawing.Size(200, 100);
-			this.pnNoRecords.TabIndex = 7;
-			// 
-			// contextMenuStrip
-			// 
-			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemRename,
-            this.toolStripMenuItemClone});
-			this.contextMenuStrip.Name = "contextMenuStripSnapshot";
-			this.contextMenuStrip.Size = new System.Drawing.Size(118, 48);
-			// 
-			// toolStripMenuItemRename
-			// 
-			this.toolStripMenuItemRename.Name = "toolStripMenuItemRename";
-			this.toolStripMenuItemRename.Size = new System.Drawing.Size(117, 22);
-			this.toolStripMenuItemRename.Text = "Rename";
-			this.toolStripMenuItemRename.Click += new System.EventHandler(this.OnRenameSnapshotClick);
-			// 
-			// toolStripMenuItemClone
-			// 
-			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
-			this.toolStripMenuItemClone.Size = new System.Drawing.Size(117, 22);
-			this.toolStripMenuItemClone.Text = "Clone";
-			this.toolStripMenuItemClone.Click += new System.EventHandler(this.OnCloneSnapshotClick);
-			// 
 			// pnTop
 			// 
 			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
@@ -350,27 +223,268 @@
 			this.labelControlFlightDates.StyleController = this.styleController;
 			this.labelControlFlightDates.TabIndex = 127;
 			// 
-			// OptionsContentEditorsContainer
+			// pnBottom
+			// 
+			this.pnBottom.Controls.Add(this.pnAvgRate);
+			this.pnBottom.Controls.Add(this.pnTotalCost);
+			this.pnBottom.Controls.Add(this.pnTotalSpots);
+			this.pnBottom.Controls.Add(this.pnWeeklyCost);
+			this.pnBottom.Controls.Add(this.pnWeeklySpots);
+			this.pnBottom.Controls.Add(this.pnActiveWeeks);
+			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnBottom.Location = new System.Drawing.Point(300, 498);
+			this.pnBottom.Name = "pnBottom";
+			this.pnBottom.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.pnBottom.Size = new System.Drawing.Size(792, 43);
+			this.pnBottom.TabIndex = 6;
+			// 
+			// pnAvgRate
+			// 
+			this.pnAvgRate.Controls.Add(this.laAvgRateValue);
+			this.pnAvgRate.Controls.Add(this.laAvgRateTitle);
+			this.pnAvgRate.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pnAvgRate.Location = new System.Drawing.Point(585, 0);
+			this.pnAvgRate.Name = "pnAvgRate";
+			this.pnAvgRate.Size = new System.Drawing.Size(115, 43);
+			this.pnAvgRate.TabIndex = 3;
+			// 
+			// laAvgRateValue
+			// 
+			this.laAvgRateValue.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laAvgRateValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laAvgRateValue.Location = new System.Drawing.Point(0, 19);
+			this.laAvgRateValue.Name = "laAvgRateValue";
+			this.laAvgRateValue.Size = new System.Drawing.Size(115, 19);
+			this.laAvgRateValue.TabIndex = 2;
+			this.laAvgRateValue.Text = "Average Rate:";
+			this.laAvgRateValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// laAvgRateTitle
+			// 
+			this.laAvgRateTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laAvgRateTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laAvgRateTitle.Location = new System.Drawing.Point(0, 0);
+			this.laAvgRateTitle.Name = "laAvgRateTitle";
+			this.laAvgRateTitle.Size = new System.Drawing.Size(115, 19);
+			this.laAvgRateTitle.TabIndex = 1;
+			this.laAvgRateTitle.Text = "Average Rate:";
+			this.laAvgRateTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// pnTotalCost
+			// 
+			this.pnTotalCost.Controls.Add(this.laTotalCostValue);
+			this.pnTotalCost.Controls.Add(this.laTotalCostTitle);
+			this.pnTotalCost.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pnTotalCost.Location = new System.Drawing.Point(470, 0);
+			this.pnTotalCost.Name = "pnTotalCost";
+			this.pnTotalCost.Size = new System.Drawing.Size(115, 43);
+			this.pnTotalCost.TabIndex = 8;
+			// 
+			// laTotalCostValue
+			// 
+			this.laTotalCostValue.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laTotalCostValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTotalCostValue.Location = new System.Drawing.Point(0, 19);
+			this.laTotalCostValue.Name = "laTotalCostValue";
+			this.laTotalCostValue.Size = new System.Drawing.Size(115, 19);
+			this.laTotalCostValue.TabIndex = 2;
+			this.laTotalCostValue.Text = "Total Cost:";
+			this.laTotalCostValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// laTotalCostTitle
+			// 
+			this.laTotalCostTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laTotalCostTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTotalCostTitle.Location = new System.Drawing.Point(0, 0);
+			this.laTotalCostTitle.Name = "laTotalCostTitle";
+			this.laTotalCostTitle.Size = new System.Drawing.Size(115, 19);
+			this.laTotalCostTitle.TabIndex = 1;
+			this.laTotalCostTitle.Text = "Total Cost:";
+			this.laTotalCostTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// pnTotalSpots
+			// 
+			this.pnTotalSpots.Controls.Add(this.laTotalSpotsValue);
+			this.pnTotalSpots.Controls.Add(this.laTotalSpotsTitle);
+			this.pnTotalSpots.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pnTotalSpots.Location = new System.Drawing.Point(355, 0);
+			this.pnTotalSpots.Name = "pnTotalSpots";
+			this.pnTotalSpots.Size = new System.Drawing.Size(115, 43);
+			this.pnTotalSpots.TabIndex = 7;
+			// 
+			// laTotalSpotsValue
+			// 
+			this.laTotalSpotsValue.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laTotalSpotsValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTotalSpotsValue.Location = new System.Drawing.Point(0, 19);
+			this.laTotalSpotsValue.Name = "laTotalSpotsValue";
+			this.laTotalSpotsValue.Size = new System.Drawing.Size(115, 19);
+			this.laTotalSpotsValue.TabIndex = 2;
+			this.laTotalSpotsValue.Text = "Total Spots:";
+			this.laTotalSpotsValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// laTotalSpotsTitle
+			// 
+			this.laTotalSpotsTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laTotalSpotsTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTotalSpotsTitle.Location = new System.Drawing.Point(0, 0);
+			this.laTotalSpotsTitle.Name = "laTotalSpotsTitle";
+			this.laTotalSpotsTitle.Size = new System.Drawing.Size(115, 19);
+			this.laTotalSpotsTitle.TabIndex = 1;
+			this.laTotalSpotsTitle.Text = "Total Spots:";
+			this.laTotalSpotsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// pnNoRecords
+			// 
+			this.pnNoRecords.Controls.Add(this.pbNoRecords);
+			this.pnNoRecords.Location = new System.Drawing.Point(196, 565);
+			this.pnNoRecords.Name = "pnNoRecords";
+			this.pnNoRecords.Padding = new System.Windows.Forms.Padding(40, 20, 20, 20);
+			this.pnNoRecords.Size = new System.Drawing.Size(200, 100);
+			this.pnNoRecords.TabIndex = 7;
+			// 
+			// contextMenuStrip
+			// 
+			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemRename,
+            this.toolStripMenuItemClone});
+			this.contextMenuStrip.Name = "contextMenuStripSnapshot";
+			this.contextMenuStrip.Size = new System.Drawing.Size(118, 48);
+			// 
+			// toolStripMenuItemRename
+			// 
+			this.toolStripMenuItemRename.Name = "toolStripMenuItemRename";
+			this.toolStripMenuItemRename.Size = new System.Drawing.Size(117, 22);
+			this.toolStripMenuItemRename.Text = "Rename";
+			this.toolStripMenuItemRename.Click += new System.EventHandler(this.OnRenameSnapshotClick);
+			// 
+			// toolStripMenuItemClone
+			// 
+			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
+			this.toolStripMenuItemClone.Size = new System.Drawing.Size(117, 22);
+			this.toolStripMenuItemClone.Text = "Clone";
+			this.toolStripMenuItemClone.Click += new System.EventHandler(this.OnCloneSnapshotClick);
+			// 
+			// pnWeeklySpots
+			// 
+			this.pnWeeklySpots.Controls.Add(this.laWeeklySpotsValue);
+			this.pnWeeklySpots.Controls.Add(this.laWeeklySpotsTitle);
+			this.pnWeeklySpots.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pnWeeklySpots.Location = new System.Drawing.Point(125, 0);
+			this.pnWeeklySpots.Name = "pnWeeklySpots";
+			this.pnWeeklySpots.Size = new System.Drawing.Size(115, 43);
+			this.pnWeeklySpots.TabIndex = 9;
+			// 
+			// laWeeklySpotsValue
+			// 
+			this.laWeeklySpotsValue.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laWeeklySpotsValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laWeeklySpotsValue.Location = new System.Drawing.Point(0, 19);
+			this.laWeeklySpotsValue.Name = "laWeeklySpotsValue";
+			this.laWeeklySpotsValue.Size = new System.Drawing.Size(115, 19);
+			this.laWeeklySpotsValue.TabIndex = 2;
+			this.laWeeklySpotsValue.Text = "Weekly Spots:";
+			this.laWeeklySpotsValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// laWeeklySpotsTitle
+			// 
+			this.laWeeklySpotsTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laWeeklySpotsTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laWeeklySpotsTitle.Location = new System.Drawing.Point(0, 0);
+			this.laWeeklySpotsTitle.Name = "laWeeklySpotsTitle";
+			this.laWeeklySpotsTitle.Size = new System.Drawing.Size(115, 19);
+			this.laWeeklySpotsTitle.TabIndex = 1;
+			this.laWeeklySpotsTitle.Text = "Weekly Spots:";
+			this.laWeeklySpotsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// pnWeeklyCost
+			// 
+			this.pnWeeklyCost.Controls.Add(this.laWeeklyCostValue);
+			this.pnWeeklyCost.Controls.Add(this.laWeeklyCostTitle);
+			this.pnWeeklyCost.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pnWeeklyCost.Location = new System.Drawing.Point(240, 0);
+			this.pnWeeklyCost.Name = "pnWeeklyCost";
+			this.pnWeeklyCost.Size = new System.Drawing.Size(115, 43);
+			this.pnWeeklyCost.TabIndex = 10;
+			// 
+			// laWeeklyCostValue
+			// 
+			this.laWeeklyCostValue.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laWeeklyCostValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laWeeklyCostValue.Location = new System.Drawing.Point(0, 19);
+			this.laWeeklyCostValue.Name = "laWeeklyCostValue";
+			this.laWeeklyCostValue.Size = new System.Drawing.Size(115, 19);
+			this.laWeeklyCostValue.TabIndex = 2;
+			this.laWeeklyCostValue.Text = "Weekly Cost:";
+			this.laWeeklyCostValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// laWeeklyCostTitle
+			// 
+			this.laWeeklyCostTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laWeeklyCostTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laWeeklyCostTitle.Location = new System.Drawing.Point(0, 0);
+			this.laWeeklyCostTitle.Name = "laWeeklyCostTitle";
+			this.laWeeklyCostTitle.Size = new System.Drawing.Size(115, 19);
+			this.laWeeklyCostTitle.TabIndex = 1;
+			this.laWeeklyCostTitle.Text = "Weekly Cost:";
+			this.laWeeklyCostTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// pnActiveWeeks
+			// 
+			this.pnActiveWeeks.Controls.Add(this.laActiveWeeksValue);
+			this.pnActiveWeeks.Controls.Add(this.laActiveWeeksTitle);
+			this.pnActiveWeeks.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pnActiveWeeks.Location = new System.Drawing.Point(10, 0);
+			this.pnActiveWeeks.Name = "pnActiveWeeks";
+			this.pnActiveWeeks.Size = new System.Drawing.Size(115, 43);
+			this.pnActiveWeeks.TabIndex = 11;
+			// 
+			// laActiveWeeksValue
+			// 
+			this.laActiveWeeksValue.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laActiveWeeksValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laActiveWeeksValue.Location = new System.Drawing.Point(0, 19);
+			this.laActiveWeeksValue.Name = "laActiveWeeksValue";
+			this.laActiveWeeksValue.Size = new System.Drawing.Size(115, 19);
+			this.laActiveWeeksValue.TabIndex = 2;
+			this.laActiveWeeksValue.Text = "Active Weeks:";
+			this.laActiveWeeksValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// laActiveWeeksTitle
+			// 
+			this.laActiveWeeksTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laActiveWeeksTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laActiveWeeksTitle.Location = new System.Drawing.Point(0, 0);
+			this.laActiveWeeksTitle.Name = "laActiveWeeksTitle";
+			this.laActiveWeeksTitle.Size = new System.Drawing.Size(115, 19);
+			this.laActiveWeeksTitle.TabIndex = 1;
+			this.laActiveWeeksTitle.Text = "Active Weeks:";
+			this.laActiveWeeksTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// SnapshotContentEditorsContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnNoRecords);
 			this.Controls.Add(this.pnData);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "OptionsContentEditorsContainer";
-			this.Size = new System.Drawing.Size(1098, 593);
+			this.Name = "SnapshotContentEditorsContainer";
+			this.Size = new System.Drawing.Size(942, 593);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlContentEditors)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).EndInit();
 			this.retractableBarControl.Content.ResumeLayout(false);
 			this.pnData.ResumeLayout(false);
+			this.pnTop.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
 			this.pnAvgRate.ResumeLayout(false);
 			this.pnTotalCost.ResumeLayout(false);
 			this.pnTotalSpots.ResumeLayout(false);
 			this.pnNoRecords.ResumeLayout(false);
 			this.contextMenuStrip.ResumeLayout(false);
-			this.pnTop.ResumeLayout(false);
+			this.pnWeeklySpots.ResumeLayout(false);
+			this.pnWeeklyCost.ResumeLayout(false);
+			this.pnActiveWeeks.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -399,5 +513,14 @@
 		protected System.Windows.Forms.Panel pnTop;
 		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
 		protected DevExpress.XtraEditors.LabelControl labelControlFlightDates;
+		private System.Windows.Forms.Panel pnWeeklyCost;
+		private System.Windows.Forms.Label laWeeklyCostValue;
+		private System.Windows.Forms.Label laWeeklyCostTitle;
+		private System.Windows.Forms.Panel pnWeeklySpots;
+		private System.Windows.Forms.Label laWeeklySpotsValue;
+		private System.Windows.Forms.Label laWeeklySpotsTitle;
+		private System.Windows.Forms.Panel pnActiveWeeks;
+		private System.Windows.Forms.Label laActiveWeeksValue;
+		private System.Windows.Forms.Label laActiveWeeksTitle;
 	}
 }

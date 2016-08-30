@@ -396,7 +396,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 			public override string GetValue(Snapshot snapshot)
 			{
-				return String.Format("{0}{1}", snapshot.TotalSpots.ToString("#,##0"), snapshot.Parent.SnapshotSummary.ShowSpotsX ? "x" : String.Empty);
+				return String.Format("{0}{1}", snapshot.WeeklySpots.ToString("#,##0"), snapshot.Parent.SnapshotSummary.ShowSpotsX ? "x" : String.Empty);
 			}
 		}
 
@@ -406,7 +406,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 			public override string GetValue(Snapshot snapshot)
 			{
-				return snapshot.TotalCost.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				return snapshot.WeeklyCost.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 			}
 		}
 
@@ -426,7 +426,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 			public override string GetValue(Snapshot snapshot)
 			{
-				return snapshot.TotalWeekCost.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				return snapshot.TotalCost.ToString(snapshot.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0");
 			}
 		}
 		#endregion

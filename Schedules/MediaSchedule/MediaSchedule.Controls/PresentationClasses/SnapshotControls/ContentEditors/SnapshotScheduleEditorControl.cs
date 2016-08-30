@@ -189,12 +189,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (_data.ShowDaypart)
 				advBandedGridView.SetColumnPosition(bandedGridColumnDaypart, 1, 0);
 
-			gridBandTotals.Visible = _data.ShowTotalSpots || _data.ShowCost;
-			bandedGridColumnTotalSpots.Visible = _data.ShowTotalSpots;
-			bandedGridColumnCost.Visible = _data.ShowCost;
-			if (_data.ShowTotalSpots)
+			gridBandTotals.Visible = _data.ShowWeeklySpots || _data.ShowWeeklyCost;
+			bandedGridColumnTotalSpots.Visible = _data.ShowWeeklySpots;
+			bandedGridColumnCost.Visible = _data.ShowWeeklyCost;
+			if (_data.ShowWeeklySpots)
 				advBandedGridView.SetColumnPosition(bandedGridColumnTotalSpots, 0, 0);
-			if (_data.ShowCost)
+			if (_data.ShowWeeklyCost)
 				advBandedGridView.SetColumnPosition(bandedGridColumnCost, 0, 1);
 
 			if (_data.Parent.ScheduleSettings.MondayBased)
@@ -538,11 +538,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				slideSuffics.Add("l");
 			if (_data.ShowRate)
 				slideSuffics.Add("r");
-			if (_data.ShowTotalSpots)
+			if (_data.ShowWeeklySpots)
 				slideSuffics.Add("s");
-			if (_data.ShowCost)
+			if (_data.ShowWeeklyCost)
 				slideSuffics.Add("c");
-			if (!(_data.ShowLenght || _data.ShowRate || _data.ShowTotalSpots || _data.ShowCost))
+			if (!(_data.ShowLenght || _data.ShowRate || _data.ShowWeeklySpots || _data.ShowWeeklyCost))
 				slideSuffics.Add("no_lrsc");
 			TemplateFilePath = BusinessObjects.Instance.OutputManager.GetSnapshotItemFile(
 				MediaMetaData.Instance.SettingsManager.SelectedColor ?? BusinessObjects.Instance.OutputManager.ScheduleColors.Items.Select(ci => ci.Name).FirstOrDefault(),
@@ -651,12 +651,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				if (_data.ShowTotalRow)
 				{
 					key = "tspot";
-					value = _data.ShowTotalSpots ? String.Format("{0}{1}", _data.TotalSpots.ToString("#,###"), _data.ShowSpotsX ? "x" : String.Empty) : String.Empty;
+					value = _data.ShowWeeklySpots ? String.Format("{0}{1}", _data.WeeklySpots.ToString("#,###"), _data.ShowSpotsX ? "x" : String.Empty) : String.Empty;
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
 					key = "tcost";
-					value = _data.ShowCost ? _data.TotalCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
+					value = _data.ShowWeeklyCost ? _data.WeeklyCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0") : String.Empty;
 					if (!pageDictionary.Keys.Contains(key))
 						pageDictionary.Add(key, value);
 
@@ -722,7 +722,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 								break;
 						}
 
-						var mergedSpotsValue = String.Format(mergedSpotValueFormat, _data.TotalSpots.ToString("#,##0"), _data.ShowSpotsX ? "x" : String.Empty);
+						var mergedSpotsValue = String.Format(mergedSpotValueFormat, _data.WeeklySpots.ToString("#,##0"), _data.ShowSpotsX ? "x" : String.Empty);
 						foreach (var dictionaryKey in mergedWeekDaySpots.Keys.ToList())
 						{
 							if (mergedWeekDaySpots[dictionaryKey] == "Merge") continue;
@@ -1048,9 +1048,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			var values = new List<string>();
 			if (hasSeveralSnapshots)
 			{
-				values.Add(String.Format("Weekly Spots: {0}x", _data.TotalSpots));
+				values.Add(String.Format("Weekly Spots: {0}x", _data.WeeklySpots));
 				values.Add(String.Format("Weekly Cost: {0}",
-					_data.TotalCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
+					_data.WeeklyCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
 				values.Add(String.Format("Weeks: {0}", _data.TotalWeeks));
 				values.Add(String.Format("({0}{2}{1})", totalSpotsValue, totalCostValue, separator));
 			}
@@ -1058,9 +1058,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			{
 				values.Add(totalSpotsValue);
 				values.Add(totalCostValue);
-				values.Add(String.Format("Weekly Spots: {0}x", _data.TotalSpots));
+				values.Add(String.Format("Weekly Spots: {0}x", _data.WeeklySpots));
 				values.Add(String.Format("Weekly Cost: {0}",
-					_data.TotalCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
+					_data.WeeklyCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
 				values.Add(String.Format("Weeks: {0}", _data.TotalWeeks));
 			}
 			var scheduleSummary = String.Format("{1}{0}", String.Join(separator, values), separator);

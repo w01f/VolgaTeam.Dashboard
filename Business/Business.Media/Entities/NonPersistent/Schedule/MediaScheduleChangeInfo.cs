@@ -5,6 +5,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 {
 	public class MediaScheduleChangeInfo : DigitalScheduleChangeInfo
 	{
+		public bool KeepSpotsWhenDatesChanged { get; set; }
 		public bool SpotTypeChanged { get; set; }
 		public bool CalendarTypeChanged { get; set; }
 		public bool ProgramScheduleChanged { get; set; }

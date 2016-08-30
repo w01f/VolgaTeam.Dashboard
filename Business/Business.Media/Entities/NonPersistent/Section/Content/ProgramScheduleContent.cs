@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Asa.Business.Common.Helpers;
 using Asa.Business.Media.Entities.NonPersistent.Common;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
@@ -61,7 +62,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				scheduleSection.AfterCreate();
 			}
 
-			OnScheduleDatesChanged(this, EventArgs.Empty);
+			OnScheduleDatesChanged(this, new ScheduleDatesChangedEventArgs());
 			OnMediaDataChangedChanged(this, EventArgs.Empty);
 
 			Schedule.ScheduleDatesChanged += OnScheduleDatesChanged;
@@ -101,9 +102,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			Sections.Sort((x, y) => x.Index.CompareTo(y.Index));
 		}
 
-		private void OnScheduleDatesChanged(object sender, EventArgs e)
+		private void OnScheduleDatesChanged(object sender, ScheduleDatesChangedEventArgs e)
 		{
-			Sections.ForEach(section => section.RebuildSpots());
+			Sections.ForEach(section => section.RebuildSpots(e.KeepDatesRelatedData));
 		}
 
 		private void OnMediaDataChangedChanged(object sender, EventArgs e)

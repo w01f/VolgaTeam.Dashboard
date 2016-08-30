@@ -430,6 +430,12 @@
     <Compile Include="PresentationClasses\SettingsControls\DaypartsControl.Designer.cs">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesChangeWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesChangeWarning.Designer.cs">
+      <DependentUpon>FormFlightDatesChangeWarning.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -709,6 +715,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SettingsControls\DaypartsControl.resx">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\FormFlightDatesChangeWarning.resx">
+      <DependentUpon>FormFlightDatesChangeWarning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.resx">
       <DependentUpon>FormFlightDatesEdit.cs</DependentUpon>

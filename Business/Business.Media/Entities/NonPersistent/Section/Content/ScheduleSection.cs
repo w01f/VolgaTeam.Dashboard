@@ -179,7 +179,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				Summary = new SectionSummary(this);
 			Summary.AfterCreate();
 
-			if(ContractSettings==null)
+			if (ContractSettings == null)
 				ContractSettings = new ContractSettings();
 		}
 
@@ -439,10 +439,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 				Programs[i].Index = i + 1;
 		}
 
-		public void RebuildSpots()
+		public void RebuildSpots(bool keepExistedData = false)
 		{
 			foreach (var program in Programs)
-				program.RebuildSpots();
+				program.RebuildSpots(keepExistedData);
 		}
 
 		public void ApplyFromTemplate(ScheduleSection templateData)

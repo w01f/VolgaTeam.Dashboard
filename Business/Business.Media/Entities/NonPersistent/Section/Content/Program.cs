@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Asa.Business.Common.Entities.NonPersistent.Summary;
-using Asa.Business.Common.Interfaces;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
@@ -59,7 +57,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			}
 		}
 
-		public Image SmallLogo => Logo != null ? Logo.TinyImage : null;
+		public Image SmallLogo => Logo?.TinyImage;
 
 		public double CPP
 		{
@@ -73,13 +71,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			}
 		}
 
-		public double GRP => (Rating.HasValue ? Rating.Value : 0) * TotalSpots * (Parent.ParentScheduleSettings.DemoType == DemoType.Rtg ? 1 : 1000);
+		public double GRP => (Rating ?? 0) * TotalSpots * (Parent.ParentScheduleSettings.DemoType == DemoType.Rtg ? 1 : 1000);
 
-		public double Cost => (Rate.HasValue ? Rate.Value : 0) * TotalSpots;
+		public double Cost => (Rate ?? 0) * TotalSpots;
 
 		public int TotalSpots
 		{
-			get { return Spots.Select(x => x.Count.HasValue ? x.Count.Value : 0).Sum(); }
+			get { return Spots.Select(x => x.Count ?? 0).Sum(); }
 		}
 
 		public Spot[] SpotsNotEmpty
@@ -189,9 +187,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			Time = source[0].Time;
 		}
 
-		public void RebuildSpots()
+		public void RebuildSpots(bool keepExistedData = false)
 		{
 			if (!Parent.ParentScheduleSettings.FlightDateStart.HasValue || !Parent.ParentScheduleSettings.FlightDateEnd.HasValue) return;
+
 			var startDate = Parent.ParentScheduleSettings.FlightDateStart.Value;
 			var endDate = Parent.ParentScheduleSettings.FlightDateEnd.Value;
 			var spotDate = startDate;
@@ -206,6 +205,16 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 
 			if (!(Spots.Any() && Spots.First().Date == startDate && Spots.Count == newSpots.Count))
 			{
+				if (keepExistedData)
+				{
+					if (Spots.Count >= newSpots.Count)
+						for (int i = 0; i < newSpots.Count; i++)
+							newSpots[i].Count = Spots[i].Count;
+					else
+						for (int i = 0; i < Spots.Count; i++)
+							newSpots[i].Count = Spots[i].Count;
+				}
+
 				Spots.Clear();
 				Spots.AddRange(newSpots);
 			}

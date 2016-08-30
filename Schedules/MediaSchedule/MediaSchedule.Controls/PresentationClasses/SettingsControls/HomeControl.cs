@@ -12,7 +12,6 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.ContentEditors.Events;
-using Asa.Media.Controls.BusinessClasses;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
@@ -230,8 +229,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			if (buttonXDemosImport.Checked)
 			{
 				var demo = comboBoxEditDemos.EditValue as Demo;
-				EditedSettings.Demo = demo != null ? demo.Name : null;
-				EditedSettings.DemoType = demo != null ? demo.DemoType : DemoType.Rtg;
+				EditedSettings.Demo = demo?.Name;
+				EditedSettings.DemoType = demo?.DemoType ?? DemoType.Rtg;
 			}
 			else
 			{
@@ -258,7 +257,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			UpdateScheduleControls();
 
-			OriginalSettings.CompareChanges(EditedSettings, ChangeInfo);
+			ChangeInfo.Merge(OriginalSettings.GetChangeInfo(EditedSettings));
 		}
 
 		protected override void ValidateChanges(ContentSavingEventArgs savingArgs)
@@ -286,11 +285,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				savingArgs.Cancel = true;
 				savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Flight Dates before you proceed.");
 				return;
-			}
-			if (ChangeInfo.ScheduleDatesChanged)
-			{
-				if (PopupMessageHelper.Instance.ShowWarningQuestion("Flight Dates have been changed and all Spots will be recreated\nDo you want to proceed?") != DialogResult.Yes)
-					savingArgs.Cancel = true;
 			}
 		}
 
@@ -398,18 +392,40 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			using (var form = new FormFlightDatesEdit())
 			{
-				form.DateStart = EditedSettings.UserFlightDateStart;
-				form.DateEnd = EditedSettings.UserFlightDateEnd;
+				var currentDateStart = EditedSettings.UserFlightDateStart;
+				var currentDateEnd = EditedSettings.UserFlightDateEnd;
+				form.DateStart = currentDateStart;
+				form.DateEnd = currentDateEnd;
 				form.EndDayOfWeek = EditedSettings.EndDayOfWeek;
 				form.StartDayOfWeek = EditedSettings.StartDayOfWeek;
 				form.EndDayOfWeek = EditedSettings.EndDayOfWeek;
 				if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 				{
-					EditedSettings.UserFlightDateStart = form.DateStart;
-					EditedSettings.UserFlightDateEnd = form.DateEnd;
-					UpdateFlightDates();
-					UpdateWeekCount();
-					OnSchedulePropertyValueChanged(sender, e);
+					var comparableSettings = EditedSettings.Clone<MediaScheduleSettings, MediaScheduleSettings>();
+					comparableSettings.UserFlightDateStart = form.DateStart;
+					comparableSettings.UserFlightDateEnd = form.DateEnd;
+					var changeInfo = EditedSettings.GetChangeInfo(comparableSettings);
+					if (changeInfo.ScheduleDatesChanged)
+					{
+						if (Schedule.ProgramSchedule.Sections.Any(s => s.Programs.Any(p => p.TotalSpots > 0)))
+						{
+							using (var formWarning = new FormFlightDatesChangeWarning(EditedSettings.SelectedSpotType))
+							{
+								if (formWarning.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK)
+								{
+									comparableSettings.Dispose();
+									return;
+								}
+								ChangeInfo.KeepSpotsWhenDatesChanged = formWarning.KeepSpots;
+							}
+						}
+						EditedSettings.UserFlightDateStart = form.DateStart;
+						EditedSettings.UserFlightDateEnd = form.DateEnd;
+						OnSchedulePropertyValueChanged(sender, e);
+						UpdateFlightDates();
+						UpdateWeekCount();
+					}
+					comparableSettings.Dispose();
 				}
 			}
 		}
@@ -597,7 +613,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#endregion
 
 		#region Digital Product Events
-		
+
 		#endregion
 	}
 }

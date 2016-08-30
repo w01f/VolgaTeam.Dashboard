@@ -2,10 +2,10 @@
 
 namespace Asa.Business.Common.Interfaces
 {
-	public interface IChangableScheduleSettings<in TScheduleSettings, in TScheduleChangeInfo>
+	public interface IChangableScheduleSettings<in TScheduleSettings, out TScheduleChangeInfo>
 		where TScheduleSettings : IBaseScheduleSettings
 		where TScheduleChangeInfo: BaseScheduleChangeInfo
 	{
-		void CompareChanges(TScheduleSettings changedInstance, TScheduleChangeInfo changeInfo);
+		TScheduleChangeInfo GetChangeInfo(TScheduleSettings changedInstance);
 	}
 }

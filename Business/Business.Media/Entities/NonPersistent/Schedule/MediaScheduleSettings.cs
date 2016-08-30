@@ -178,13 +178,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			LoadQuarters();
 		}
 
-		public void CompareChanges(MediaScheduleSettings changedInstance, MediaScheduleChangeInfo changeInfo)
+		public MediaScheduleChangeInfo GetChangeInfo(MediaScheduleSettings changedInstance)
 		{
-			changeInfo.SpotTypeChanged = changeInfo.SpotTypeChanged || SelectedSpotType != changedInstance.SelectedSpotType;
-			changeInfo.CalendarTypeChanged = changeInfo.CalendarTypeChanged || MondayBased != changedInstance.MondayBased;
-			changeInfo.ScheduleDatesChanged = changeInfo.ScheduleDatesChanged || (UserFlightDateStart.HasValue &&
+			var changeInfo = new MediaScheduleChangeInfo();
+			changeInfo.SpotTypeChanged = SelectedSpotType != changedInstance.SelectedSpotType;
+			changeInfo.CalendarTypeChanged = MondayBased != changedInstance.MondayBased;
+			changeInfo.ScheduleDatesChanged = (UserFlightDateStart.HasValue &&
 				UserFlightDateEnd.HasValue &&
 				(UserFlightDateStart != changedInstance.UserFlightDateStart || UserFlightDateEnd != changedInstance.UserFlightDateEnd));
+			return changeInfo;
 		}
 
 		public static Int32? CalcWeeksCount(DateTime? UserFlightDateStart, DateTime? UserFlightDateEnd, DayOfWeek startDayOfWeek, DayOfWeek endDayOfWeek)

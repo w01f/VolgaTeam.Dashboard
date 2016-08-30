@@ -78,6 +78,7 @@
     <Compile Include="Dictionaries\NameCodePair.cs" />
     <Compile Include="Dictionaries\SimpleSummaryList.cs" />
     <Compile Include="Helpers\PartitionContentChangedEventArgs.cs" />
+    <Compile Include="Helpers\ScheduleDatesChangedEventArgs.cs" />
     <Compile Include="Helpers\ShortScheduleHelper.cs" />
     <Compile Include="Entities\NonPersistent\Common\DateRange.cs" />
     <Compile Include="Entities\NonPersistent\Schedule\BaseScheduleSettings.cs" />

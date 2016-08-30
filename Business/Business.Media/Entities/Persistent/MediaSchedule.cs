@@ -203,13 +203,14 @@ namespace Asa.Business.Media.Entities.Persistent
 
 		public override void ApplySettingsChanges<TChangeInfo>(TChangeInfo changeInfo)
 		{
-			base.ApplySettingsChanges(changeInfo);
 			var mediaChangeInfo = changeInfo as MediaScheduleChangeInfo;
+			if (changeInfo.ScheduleDatesChanged)
+				OnScheduleDatesChanged(new ScheduleDatesChangedEventArgs { KeepDatesRelatedData = mediaChangeInfo.KeepSpotsWhenDatesChanged});
 			if (mediaChangeInfo == null) return;
-			if (mediaChangeInfo.DigitalContentChanged && DigitalDataChanged != null)
-				DigitalDataChanged(this, EventArgs.Empty);
-			if (mediaChangeInfo.CalendarTypeChanged && CalendarTypeChanged != null)
-				CalendarTypeChanged(this, EventArgs.Empty);
+			if (mediaChangeInfo.DigitalContentChanged)
+				DigitalDataChanged?.Invoke(this, EventArgs.Empty);
+			if (mediaChangeInfo.CalendarTypeChanged)
+				CalendarTypeChanged?.Invoke(this, EventArgs.Empty);
 			MediaDataChanged?.Invoke(this, EventArgs.Empty);
 		}
 		#endregion

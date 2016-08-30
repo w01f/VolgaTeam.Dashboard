@@ -25,7 +25,7 @@ namespace Asa.Business.Common.Entities.Persistent
 		public TContext Context { get; set; }
 		#endregion
 
-		public event EventHandler<EventArgs> ScheduleDatesChanged;
+		public event EventHandler<ScheduleDatesChangedEventArgs> ScheduleDatesChanged;
 		public event EventHandler<PartitionContentChangedEventArgs> PartitionContentChanged;
 
 		public void Save()
@@ -40,10 +40,13 @@ namespace Asa.Business.Common.Entities.Persistent
 			target.SettingsEncoded = SettingsEncoded;
 		}
 
-		public virtual void ApplySettingsChanges<TChangeInfo>(TChangeInfo changeInfo) where TChangeInfo : BaseScheduleChangeInfo
+		public abstract void ApplySettingsChanges<TChangeInfo>(TChangeInfo changeInfo)
+			where TChangeInfo : BaseScheduleChangeInfo;
+		
+		protected virtual void OnScheduleDatesChanged(ScheduleDatesChangedEventArgs e)
 		{
-			if (changeInfo.ScheduleDatesChanged)
-				ScheduleDatesChanged?.Invoke(this, EventArgs.Empty);
+			var handler = ScheduleDatesChanged;
+			handler?.Invoke(this, e);
 		}
 
 		protected virtual void OnPartitionContentChanged(PartitionContentChangedEventArgs e)

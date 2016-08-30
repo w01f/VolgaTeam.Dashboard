@@ -12,9 +12,7 @@ namespace Asa.Media.LegacyConverter.Converters
 		{
 			target.BusinessName = source.BusinessName;
 			target.DecisionMaker = source.DecisionMaker;
-			target.ClientType = source.ClientType;
 			target.Status = source.Status;
-			target.AccountNumber = source.AccountNumber;
 			target.PresentationDate = source.PresentationDate;
 			target.UserFlightDateStart = source.UserFlightDateStart;
 			target.UserFlightDateEnd = source.UserFlightDateEnd;
@@ -65,14 +63,12 @@ namespace Asa.Media.LegacyConverter.Converters
 
 		private static void ImportData(this DigitalProductListViewSettings target, HomeViewSettings source)
 		{
-			target.EnableAccountNumber = source.EnableAccountNumber;
 			target.EnableDigitalDimensions = source.EnableDigitalDimensions;
 			target.EnableDigitalLocation = source.EnableDigitalLocation;
 			target.EnableDigitalRichMedia = source.EnableDigitalRichMedia;
 			target.EnableDigitalStrategy = source.EnableDigitalStrategy;
 			target.EnableDigitalTargeting = source.EnableDigitalTargeting;
 
-			target.ShowAccountNumber = source.ShowAccountNumber;
 			target.ShowDigitalDimensions = source.ShowDigitalDimensions;
 			target.ShowDigitalLocation = source.ShowDigitalLocation;
 			target.ShowDigitalRichMedia = source.ShowDigitalRichMedia;
@@ -92,7 +88,6 @@ namespace Asa.Media.LegacyConverter.Converters
 			target.EnableRate = source.EnableRate;
 			target.EnableInvestment = source.EnableInvestment;
 			target.EnableInfo = source.EnableInfo;
-			target.EnableComments = source.EnableComments;
 			target.EnableScreenshot = source.EnableScreenshot;
 
 			target.ShowCategory = source.ShowCategory;
@@ -103,7 +98,6 @@ namespace Asa.Media.LegacyConverter.Converters
 			target.ShowRate = source.ShowRate;
 			target.ShowInvestment = source.ShowInvestment;
 			target.ShowInfo = source.ShowInfo;
-			target.ShowComments = source.ShowComments;
 			target.ShowScreenshot = source.ShowScreenshot;
 		}
 	}

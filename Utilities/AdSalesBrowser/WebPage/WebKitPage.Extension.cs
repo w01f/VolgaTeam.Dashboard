@@ -13,6 +13,7 @@ namespace AdSalesBrowser.WebPage
 	{
 		private WebControl _extensionDownloadView;
 		private ExtensionsManager _extensionsManager;
+		private AfterDownloadAction _afterDownloadAction;
 
 		private void InitExtensions()
 		{
@@ -30,12 +31,13 @@ namespace AdSalesBrowser.WebPage
 			_webKit.WebView.RegisterJSExtensionFunction(ExtensionsManager.ActivateFunctionName, _extensionsManager.OnJavaScriptCall);
 			_webKit.WebView.RegisterJSExtensionFunction(LinkOpenExtension.OpenLinkFunctionName, _extensionsManager.OnJavaScriptCall);
 
-			InitSalesLibrarySlideExtensions();
+			InitSalesLibraryViewContentExtensions();
 			InitSalesLibraryLinkOpenExtensions();
 		}
 
-		private void DownloadFile(string url)
+		private void DownloadFile(string url, AfterDownloadAction afterDownloadAction = AfterDownloadAction.None)
 		{
+			_afterDownloadAction = afterDownloadAction;
 			FormDownloadProgress.ShowProgress(FormMain.Instance);
 			FormDownloadProgress.SetTitle("Downloading…");
 			FormMain.Instance.SuspendPages();

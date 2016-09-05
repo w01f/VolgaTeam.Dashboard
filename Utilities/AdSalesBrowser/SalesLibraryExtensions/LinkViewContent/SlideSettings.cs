@@ -1,6 +1,6 @@
 ﻿using Asa.Common.Core.Enums;
 
-namespace AdSalesBrowser.SalesLibraryExtensions.SlideContent
+namespace AdSalesBrowser.SalesLibraryExtensions.LinkViewContent
 {
 	public class SlideSettings
 	{

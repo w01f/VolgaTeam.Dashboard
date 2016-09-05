@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
 using AdSalesBrowser.Helpers;
+using AdSalesBrowser.Interops;
 using AdSalesBrowser.SalesLibraryExtensions.FileLinks;
-using AdSalesBrowser.SalesLibraryExtensions.SlideContent;
+using AdSalesBrowser.SalesLibraryExtensions.LinkViewContent;
+using Asa.Common.GUI.ToolForms;
 using EO.WebBrowser;
 using Microsoft.Win32;
 
@@ -15,19 +19,33 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 		private readonly string _url;
 
 		public bool IsExtensionsActive { get; private set; }
-		public SlideContentExtension SlideContentExtension { get; }
+		public LinkViewContentExtension LinkViewContentExtension { get; }
 		public LinkOpenExtension LinkOpenExtension { get; }
 
 		public ExtensionsManager(string url)
 		{
 			_url = url;
-			SlideContentExtension = new SlideContentExtension();
+			LinkViewContentExtension = new LinkViewContentExtension();
 			LinkOpenExtension = new LinkOpenExtension();
 		}
 
 		public void Activate()
 		{
 			IsExtensionsActive = true;
+		}
+
+		public void OnJavaScriptCall(object sender, JSExtInvokeArgs e)
+		{
+			switch (e.FunctionName)
+			{
+				case ActivateFunctionName:
+					Activate();
+					break;
+				default:
+					LinkViewContentExtension.OnJavaScriptCall(sender, e);
+					LinkOpenExtension.OnJavaScriptCall(sender, e);
+					break;
+			}
 		}
 
 		public bool IsUrlExternal(string targetUrl)
@@ -67,19 +85,67 @@ namespace AdSalesBrowser.SalesLibraryExtensions
 			catch { }
 		}
 
-		public void OnJavaScriptCall(object sender, JSExtInvokeArgs e)
+		public static void PrintFile(string filePath, int currentPage = 0)
 		{
-			switch (e.FunctionName)
+			var printProcess = new Process();
+			if (FileFormatHelper.IsPowerPointFile(filePath))
 			{
-				case ActivateFunctionName:
-					Activate();
-					break;
-				default:
-					SlideContentExtension.OnJavaScriptCall(sender, e);
-					LinkOpenExtension.OnJavaScriptCall(sender, e);
-					break;
+				try
+				{
+					using (var powerPointProcessor = new PowerPointHidden())
+					{
+						if (!powerPointProcessor.Connect(true)) return;
+						powerPointProcessor.PrintPresentation(
+							filePath,
+							currentPage,
+							printAction => FormProgress.ShowProgress("Printing...",
+								() =>
+								{
+									try
+									{
+										printAction();
+									}
+									catch
+									{
+									}
+								},
+								false));
+					}
+				}
+				catch
+				{
+				}
+			}
+			else if (FileFormatHelper.IsWordFile(filePath))
+			{
+				try
+				{
+					printProcess.StartInfo.FileName = "winword.exe";
+					printProcess.StartInfo.Arguments = '"' + filePath + '"' + " /mFilePrint";
+					printProcess.Start();
+				}
+				catch { }
+			}
+			else if (FileFormatHelper.IsExcelFile(filePath))
+			{
+				if (ExcelHelper.Instance.Connect())
+				{
+					ExcelHelper.Instance.Print(new FileInfo(filePath));
+					ExcelHelper.Instance.Disconnect();
+				}
+			}
+			else if (FileFormatHelper.IsPdfFile(filePath))
+			{
+				try
+				{
+					printProcess.StartInfo.FileName = "AcroRd32.exe";
+					printProcess.StartInfo.Arguments = " /p " + '"' + filePath + '"';
+					printProcess.Start();
+				}
+				catch
+				{
+				}
 			}
 		}
-
 	}
 }

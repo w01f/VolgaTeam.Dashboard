@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using AdSalesBrowser.Configuration;
 using AdSalesBrowser.Helpers;
-using AdSalesBrowser.PowerPoint;
+using AdSalesBrowser.Interops;
 using AdSalesBrowser.Properties;
 using AdSalesBrowser.WebPage;
 using Asa.Common.GUI.Floater;
@@ -208,12 +208,13 @@ namespace AdSalesBrowser
 		#region Slide Content Extension
 		public ButtonItem ButtonExtensionsAddSlide => buttonItemMenuExtensionsAddSlide;
 		public ButtonItem ButtonExtensionsAddSlides => buttonItemMenuExtensionsAddSlides;
+		public ButtonItem ButtonExtensionsPrint => buttonItemMenuExtensionsPrint;
 		public ButtonItem ButtonExtensionsAddVideo => buttonItemMenuExtensionsAddVideo;
 		public LabelItem LabelExtensionsWarning => labelItemMenuWarning;
 
 		private void UpdateExtensionsState()
 		{
-			SelectedWebPage?.UpdateSlideContentState();
+			SelectedWebPage?.UpdateViewContentState();
 		}
 
 		private void buttonItemMenuExtensionsAddSlide_Click(object sender, EventArgs e)
@@ -224,6 +225,11 @@ namespace AdSalesBrowser
 		private void buttonItemMenuExtensionsAddSlides_Click(object sender, EventArgs e)
 		{
 			SelectedWebPage?.AddSlides();
+		}
+
+		private void buttonItemMenuExtensionsPrint_Click(object sender, EventArgs e)
+		{
+			SelectedWebPage?.Print();
 		}
 
 		private void buttonItemMenuExtensionsAddVideo_Click(object sender, EventArgs e)

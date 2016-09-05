@@ -144,16 +144,19 @@
       <DependentUpon>FormVideoDownloadComplete.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExternalBrowserManager.cs" />
+    <Compile Include="Helpers\FileFormatHelper.cs" />
     <Compile Include="Helpers\YouTubeHelper.cs" />
-    <Compile Include="PowerPoint\FormSlideSize.cs">
+    <Compile Include="Interops\ExcelHelper.cs" />
+    <Compile Include="Interops\FormSlideSize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PowerPoint\FormSlideSize.Designer.cs">
+    <Compile Include="Interops\FormSlideSize.Designer.cs">
       <DependentUpon>FormSlideSize.cs</DependentUpon>
     </Compile>
-    <Compile Include="PowerPoint\PowerPointManager.cs" />
-    <Compile Include="PowerPoint\PowerPointProcessor.cs" />
-    <Compile Include="PowerPoint\PowerPointSingleton.cs" />
+    <Compile Include="Interops\PowerPointHidden.cs" />
+    <Compile Include="Interops\PowerPointManager.cs" />
+    <Compile Include="Interops\PowerPointProcessor.cs" />
+    <Compile Include="Interops\PowerPointSingleton.cs" />
     <Compile Include="SalesLibraryExtensions\ExtensionsManager.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\ImageLinkData.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\PdfLinkData.cs" />
@@ -161,17 +164,23 @@
     <Compile Include="SalesLibraryExtensions\FileLinks\ExcelLinkData.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\WordLinkData.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\PowerPointLinkData.cs" />
-    <Compile Include="SalesLibraryExtensions\SlideContent\SlideContentData.cs" />
-    <Compile Include="SalesLibraryExtensions\SlideContent\SlideContentExtension.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\IPrintableContent.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\PageContent.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\ExcelContent.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\ViewContent.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\LinkViewContentExtension.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\LanData.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\BaseLinkData.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\LinkType.cs" />
-    <Compile Include="SalesLibraryExtensions\SlideContent\PowerPointData.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\PowerPointContent.cs" />
     <Compile Include="Helpers\UrlParseHelper.cs" />
     <Compile Include="SalesLibraryExtensions\FileLinks\AppLinkData.cs" />
-    <Compile Include="SalesLibraryExtensions\SlideContent\SlideContentType.cs" />
-    <Compile Include="SalesLibraryExtensions\SlideContent\SlideSettings.cs" />
-    <Compile Include="SalesLibraryExtensions\SlideContent\VideoData.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\LinkContentType.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\SlideSettings.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\VideoContent.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\PdfContent.cs" />
+    <Compile Include="SalesLibraryExtensions\LinkViewContent\WordContent.cs" />
+    <Compile Include="WebPage\AfterDownloadAction.cs" />
     <Compile Include="WebPage\ClosePageEventArgs.cs" />
     <Compile Include="WebPage\NewPageEventArgs.cs" />
     <Compile Include="Program.cs" />
@@ -188,7 +197,7 @@
     <Compile Include="WebPage\WebKitPage.Extensions.LinkOpen.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WebPage\WebKitPage.Extensions.SlideContent.cs">
+    <Compile Include="WebPage\WebKitPage.Extensions.ViewContent.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebPage\WebKitPage.Extensions.YouTube.cs">
@@ -219,7 +228,7 @@
     <EmbeddedResource Include="FormVideoDownloadComplete.resx">
       <DependentUpon>FormVideoDownloadComplete.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PowerPoint\FormSlideSize.resx">
+    <EmbeddedResource Include="Interops\FormSlideSize.resx">
       <DependentUpon>FormSlideSize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -251,6 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\ExtensionsPrint.png" />
     <None Include="Resources\FloaterMenu.png" />
     <None Include="Resources\UrlDetailsMenu.png" />
     <None Include="Resources\UrlDetailsForm.png" />
@@ -278,6 +288,15 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

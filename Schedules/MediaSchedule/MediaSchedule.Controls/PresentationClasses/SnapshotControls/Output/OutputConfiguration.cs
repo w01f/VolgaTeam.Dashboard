@@ -6,6 +6,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 	public class OutputConfiguration
 	{
 		public SnapshotOutputType OutputType { get; }
+		public int SlidesCount { get; }
 
 		public string DisplayName
 		{
@@ -29,9 +30,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			}
 		}
 
-		public OutputConfiguration(SnapshotOutputType outputType)
+		public OutputConfiguration(SnapshotOutputType outputType, int slidesCount)
 		{
 			OutputType = outputType;
+			SlidesCount = slidesCount;
 		}
 	}
 }

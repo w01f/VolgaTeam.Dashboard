@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
-using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Option;
-using Asa.Business.Media.Enums;
-using Asa.Common.Core.Enums;
-using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
-using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;

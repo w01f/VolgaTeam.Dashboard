@@ -230,7 +230,7 @@
 			this.advBandedGridViewSchedule.OptionsCustomization.ShowBandsInCustomizationForm = false;
 			this.advBandedGridViewSchedule.OptionsFilter.AllowFilterEditor = false;
 			this.advBandedGridViewSchedule.OptionsFind.AllowFindPanel = false;
-			this.advBandedGridViewSchedule.OptionsMenu.EnableColumnMenu = false;
+			this.advBandedGridViewSchedule.OptionsMenu.EnableColumnMenu = true;
 			this.advBandedGridViewSchedule.OptionsMenu.EnableFooterMenu = false;
 			this.advBandedGridViewSchedule.OptionsMenu.EnableGroupPanelMenu = false;
 			this.advBandedGridViewSchedule.OptionsMenu.ShowAutoFilterRowItem = false;

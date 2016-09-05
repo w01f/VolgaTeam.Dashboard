@@ -9,6 +9,7 @@ using Asa.Business.Common.Enums;
 using Asa.Business.Common.Helpers;
 using Asa.Business.Common.Interfaces;
 using Asa.Business.Media.Contexts;
+using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
@@ -76,6 +77,13 @@ namespace Asa.Business.Media.Entities.Persistent
 		{
 			get { return GetSchedulePartitionContent<SnapshotContent>(SchedulePartitionType.Snapshots); }
 			set { ApplySchedulePartitionContent(SchedulePartitionType.Snapshots, value); }
+		}
+
+		[NotMapped, JsonIgnore]
+		public OptionsContent OptionsContent
+		{
+			get { return GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options); }
+			set { ApplySchedulePartitionContent(SchedulePartitionType.Options, value); }
 		}
 		#endregion
 

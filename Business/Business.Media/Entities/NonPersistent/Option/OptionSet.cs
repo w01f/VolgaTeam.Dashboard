@@ -36,7 +36,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Option
 		public int? TotalPeriods { get; set; }
 		public List<OptionProgram> Programs { get; private set; }
 
-		public MediaDigitalInfo DigitalInfo { get; private set; }
+		public MediaDigitalInfo DigitalInfo { get; set; }
 		public ContractSettings ContractSettings { get; private set; }
 
 		#region Options

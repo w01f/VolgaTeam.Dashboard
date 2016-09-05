@@ -244,7 +244,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			}
 		}
 
-		private IEnumerable<DXMenuItem> GetContextMenuItems(ColumnView targetView, GridColumn targetColumn, int targetRowHandle)
+		private IEnumerable<DXMenuItem> GetCellContextMenuItems(ColumnView targetView, GridColumn targetColumn, int targetRowHandle)
 		{
 			var items = new List<DXMenuItem>();
 			if (new[]
@@ -411,7 +411,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		private void OnGridViewPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
 		{
 			if (!e.HitInfo.InRowCell) return;
-			foreach (var menuItem in GetContextMenuItems(advBandedGridView, e.HitInfo.Column, e.HitInfo.RowHandle))
+			foreach (var menuItem in GetCellContextMenuItems(advBandedGridView, e.HitInfo.Column, e.HitInfo.RowHandle))
 				e.Menu.Items.Add(menuItem);
 		}
 
@@ -434,7 +434,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 		private void OnPropertiesMenuBeforeShow(object sender, BeforeShowMenuEventArgs e)
 		{
-			var items = GetContextMenuItems(advBandedGridView, advBandedGridView.FocusedColumn, advBandedGridView.FocusedRowHandle).ToList();
+			var items = GetCellContextMenuItems(advBandedGridView, advBandedGridView.FocusedColumn, advBandedGridView.FocusedRowHandle).ToList();
 			if (!items.Any()) return;
 			e.Menu.Items.Clear();
 			foreach (var menuItem in items)
@@ -524,9 +524,14 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			var outputConfigurations = new List<OutputConfiguration>();
 			if (_data.Programs.Any() && (_data.ShowStation || _data.ShowProgram || _data.ShowTime || _data.ShowDaypart))
 			{
-				outputConfigurations.Add(new OutputConfiguration(SnapshotOutputType.Program));
+				outputConfigurations.Add(new OutputConfiguration(
+					SnapshotOutputType.Program,
+					_data.Programs.Count / GetProgramsPerSlide(false) + (_data.Programs.Count % GetProgramsPerSlide(false) > 0 ? 1 : 0)));
 				if (_data.DigitalInfo.Records.Any())
-					outputConfigurations.Add(new OutputConfiguration(SnapshotOutputType.ProgramAndDigital));
+					outputConfigurations.Add(new OutputConfiguration(
+						SnapshotOutputType.ProgramAndDigital,
+						(_data.Programs.Count + _data.DigitalInfo.Records.Count) / GetProgramsPerSlide(true) +
+							((_data.Programs.Count + _data.DigitalInfo.Records.Count) % GetProgramsPerSlide(true) > 0 ? 1 : 0)));
 			}
 			return outputConfigurations;
 		}
@@ -682,31 +687,31 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 							};
 						if ((totalMonday > 0 || mergedWeekDaySpots.Any()) &&
 							weekDayValues.Any(v => v > 0))
-							mergedWeekDaySpots.Add("t1", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+							mergedWeekDaySpots.Add("t1", weekDayValues.Skip(1).Any(v => v > 0) ? "MergeSnapshot" : String.Empty);
 						weekDayValues = weekDayValues.Skip(1).ToArray();
 						if ((totalTuesday > 0 || mergedWeekDaySpots.Any()) &&
 							 weekDayValues.Any(v => v > 0))
-							mergedWeekDaySpots.Add("t2", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+							mergedWeekDaySpots.Add("t2", weekDayValues.Skip(1).Any(v => v > 0) ? "MergeSnapshot" : String.Empty);
 						weekDayValues = weekDayValues.Skip(1).ToArray();
 						if ((totalWednesday > 0 || mergedWeekDaySpots.Any()) &&
 							 weekDayValues.Any(v => v > 0))
-							mergedWeekDaySpots.Add("t3", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+							mergedWeekDaySpots.Add("t3", weekDayValues.Skip(1).Any(v => v > 0) ? "MergeSnapshot" : String.Empty);
 						weekDayValues = weekDayValues.Skip(1).ToArray();
 						if ((totalThursday > 0 || mergedWeekDaySpots.Any()) &&
 							weekDayValues.Any(v => v > 0))
-							mergedWeekDaySpots.Add("t4", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+							mergedWeekDaySpots.Add("t4", weekDayValues.Skip(1).Any(v => v > 0) ? "MergeSnapshot" : String.Empty);
 						weekDayValues = weekDayValues.Skip(1).ToArray();
 						if ((totalFriday > 0 || mergedWeekDaySpots.Any()) &&
 							weekDayValues.Any(v => v > 0))
-							mergedWeekDaySpots.Add("t5", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+							mergedWeekDaySpots.Add("t5", weekDayValues.Skip(1).Any(v => v > 0) ? "MergeSnapshot" : String.Empty);
 						weekDayValues = weekDayValues.Skip(1).ToArray();
 						if ((totalSaturday > 0 || mergedWeekDaySpots.Any()) &&
 							weekDayValues.Any(v => v > 0))
-							mergedWeekDaySpots.Add("t6", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+							mergedWeekDaySpots.Add("t6", weekDayValues.Skip(1).Any(v => v > 0) ? "MergeSnapshot" : String.Empty);
 						weekDayValues = weekDayValues.Skip(1).ToArray();
 						if ((totalSunday > 0 || mergedWeekDaySpots.Any()) &&
 							weekDayValues.Any(v => v > 0))
-							mergedWeekDaySpots.Add("t7", weekDayValues.Skip(1).Any(v => v > 0) ? "Merge" : String.Empty);
+							mergedWeekDaySpots.Add("t7", weekDayValues.Skip(1).Any(v => v > 0) ? "MergeSnapshot" : String.Empty);
 
 						string mergedSpotValueFormat;
 						switch (mergedWeekDaySpots.Values.Count)
@@ -725,7 +730,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 						var mergedSpotsValue = String.Format(mergedSpotValueFormat, _data.WeeklySpots.ToString("#,##0"), _data.ShowSpotsX ? "x" : String.Empty);
 						foreach (var dictionaryKey in mergedWeekDaySpots.Keys.ToList())
 						{
-							if (mergedWeekDaySpots[dictionaryKey] == "Merge") continue;
+							if (mergedWeekDaySpots[dictionaryKey] == "MergeSnapshot") continue;
 							mergedWeekDaySpots[dictionaryKey] = mergedSpotsValue;
 						}
 					}
@@ -794,7 +799,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 						var program = _data.Programs[i + j];
 
 						key = (j + 1).ToString("00");
-						value = program.Index.ToString(_data.ShowLineId ? "00" : "Merge");
+						value = program.Index.ToString(_data.ShowLineId ? "00" : "MergeSnapshot");
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
@@ -856,31 +861,31 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 							};
 							if ((program.MondaySpot.HasValue || mergedWeekDaySpots.Any()) &&
 								weekDayValues.Any(v => v.HasValue))
-								mergedWeekDaySpots.Add(String.Format("{0}a", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+								mergedWeekDaySpots.Add(String.Format("{0}a", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "MergeSnapshot" : String.Empty);
 							weekDayValues = weekDayValues.Skip(1).ToArray();
 							if ((program.TuesdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
 								 weekDayValues.Any(v => v.HasValue))
-								mergedWeekDaySpots.Add(String.Format("{0}b", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+								mergedWeekDaySpots.Add(String.Format("{0}b", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "MergeSnapshot" : String.Empty);
 							weekDayValues = weekDayValues.Skip(1).ToArray();
 							if ((program.WednesdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
 								 weekDayValues.Any(v => v.HasValue))
-								mergedWeekDaySpots.Add(String.Format("{0}c", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+								mergedWeekDaySpots.Add(String.Format("{0}c", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "MergeSnapshot" : String.Empty);
 							weekDayValues = weekDayValues.Skip(1).ToArray();
 							if ((program.ThursdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
 								weekDayValues.Any(v => v.HasValue))
-								mergedWeekDaySpots.Add(String.Format("{0}d", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+								mergedWeekDaySpots.Add(String.Format("{0}d", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "MergeSnapshot" : String.Empty);
 							weekDayValues = weekDayValues.Skip(1).ToArray();
 							if ((program.FridaySpot.HasValue || mergedWeekDaySpots.Any()) &&
 								weekDayValues.Any(v => v.HasValue))
-								mergedWeekDaySpots.Add(String.Format("{0}e", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+								mergedWeekDaySpots.Add(String.Format("{0}e", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "MergeSnapshot" : String.Empty);
 							weekDayValues = weekDayValues.Skip(1).ToArray();
 							if ((program.SaturdaySpot.HasValue || mergedWeekDaySpots.Any()) &&
 								weekDayValues.Any(v => v.HasValue))
-								mergedWeekDaySpots.Add(String.Format("{0}f", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+								mergedWeekDaySpots.Add(String.Format("{0}f", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "MergeSnapshot" : String.Empty);
 							weekDayValues = weekDayValues.Skip(1).ToArray();
 							if ((program.SundaySpot.HasValue || mergedWeekDaySpots.Any()) &&
 								weekDayValues.Any(v => v.HasValue))
-								mergedWeekDaySpots.Add(String.Format("{0}g", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "Merge" : String.Empty);
+								mergedWeekDaySpots.Add(String.Format("{0}g", j + 1), weekDayValues.Skip(1).Any(v => v.HasValue) ? "MergeSnapshot" : String.Empty);
 
 							string mergedSpotValueFormat;
 							switch (mergedWeekDaySpots.Values.Count)
@@ -899,7 +904,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 							var mergedSpotsValue = String.Format(mergedSpotValueFormat, program.TotalSpots.ToString("#,##0"), _data.ShowSpotsX ? "x" : String.Empty);
 							foreach (var dictionaryKey in mergedWeekDaySpots.Keys.ToList())
 							{
-								if (mergedWeekDaySpots[dictionaryKey] == "Merge") continue;
+								if (mergedWeekDaySpots[dictionaryKey] == "MergeSnapshot") continue;
 								mergedWeekDaySpots[dictionaryKey] = mergedSpotsValue;
 							}
 						}
@@ -957,7 +962,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 						var digitalInfoRecord = _data.DigitalInfo.Records[(i + j) - digitalStartIndex];
 
 						key = (j + 1).ToString("00");
-						value = (digitalInfoRecord.Index + digitalStartIndex).ToString(_data.ShowLineId ? "00" : "Merge");
+						value = (digitalInfoRecord.Index + digitalStartIndex).ToString(_data.ShowLineId ? "00" : "MergeDigital");
 						if (!pageDictionary.Keys.Contains(key))
 							pageDictionary.Add(key, value);
 
@@ -981,47 +986,47 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 						key = String.Format("len{0}", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("rt{0}", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("sp{0}", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("cs{0}", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("{0}a", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("{0}b", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("{0}c", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("{0}d", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("{0}e", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("{0}f", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 
 						key = String.Format("{0}g", j + 1);
 						if (!pageDictionary.Keys.Contains(key))
-							pageDictionary.Add(key, "Merge");
+							pageDictionary.Add(key, "MergeDigital");
 					}
 					else
 					{
@@ -1042,26 +1047,41 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			const string separator = "        ";
 			var summaryData = _data.Parent.SnapshotSummary;
 			var hasSeveralSnapshots = _data.Parent.Snapshots.Count > 1;
-			var totalCostValue = String.Format("Total Cost: {0}",
-				summaryData.TotalCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-			var totalSpotsValue = String.Format("Total Spots: {0}x", summaryData.TotalSpots);
+
+			var totalValues = new List<string>();
+			if (_data.ShowTotalCost)
+				totalValues.Add(String.Format("Total Cost: {0}",
+					summaryData.TotalCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
+			if (_data.ShowTotalSpots)
+				totalValues.Add(String.Format("Total Spots: {0}x", summaryData.TotalSpots));
+
 			var values = new List<string>();
 			if (hasSeveralSnapshots)
 			{
-				values.Add(String.Format("Weekly Spots: {0}x", _data.WeeklySpots));
-				values.Add(String.Format("Weekly Cost: {0}",
+				if (_data.ShowWeeklySpots)
+					values.Add(String.Format("Weekly Spots: {0}x", _data.WeeklySpots));
+				if (_data.ShowWeeklyCost)
+					values.Add(String.Format("Weekly Cost: {0}",
 					_data.WeeklyCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
 				values.Add(String.Format("Weeks: {0}", _data.TotalWeeks));
-				values.Add(String.Format("({0}{2}{1})", totalSpotsValue, totalCostValue, separator));
+				if (_data.ShowAverageRate)
+					values.Add(String.Format("Average Rate: {0}",
+					_data.AvgRate.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
+				if (totalValues.Any())
+					values.Add(String.Format("({0})", String.Join(separator, totalValues)));
 			}
 			else
 			{
-				values.Add(totalSpotsValue);
-				values.Add(totalCostValue);
-				values.Add(String.Format("Weekly Spots: {0}x", _data.WeeklySpots));
-				values.Add(String.Format("Weekly Cost: {0}",
+				values.AddRange(totalValues);
+				if (_data.ShowWeeklySpots)
+					values.Add(String.Format("Weekly Spots: {0}x", _data.WeeklySpots));
+				if (_data.ShowWeeklyCost)
+					values.Add(String.Format("Weekly Cost: {0}",
 					_data.WeeklyCost.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
 				values.Add(String.Format("Weeks: {0}", _data.TotalWeeks));
+				if (_data.ShowAverageRate)
+					values.Add(String.Format("Average Rate: {0}",
+					_data.AvgRate.ToString(_data.UseDecimalRates ? "$#,##0.00" : "$#,##0")));
 			}
 			var scheduleSummary = String.Format("{1}{0}", String.Join(separator, values), separator);
 			if (includeDigital)

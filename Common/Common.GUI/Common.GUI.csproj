@@ -293,6 +293,7 @@
     <Compile Include="Slides\SlidesContainerControl.Designer.cs">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Summary\SummaryConstants.cs" />
     <Compile Include="Summary\SummaryCustomItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

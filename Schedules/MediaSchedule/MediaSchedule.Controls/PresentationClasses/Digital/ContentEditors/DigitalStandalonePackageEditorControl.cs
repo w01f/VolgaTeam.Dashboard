@@ -414,6 +414,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				return BusinessObjects.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(selectedTheme) || String.IsNullOrEmpty(selectedTheme));
 			}
 		}
+		public int SlidesCount => PackageRecords.Count / RowsPerSlide + (PackageRecords.Count % RowsPerSlide > 0 ? 1 : 0);
 		public int RowsPerSlide
 		{
 			get
@@ -432,7 +433,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		public void PopulateReplacementsList()
 		{
-			var recordsCount = PackageRecords.Count();
+			var recordsCount = PackageRecords.Count;
 			var rowsPerSlide = RowsPerSlide;
 			OutputReplacementsLists = new List<Dictionary<string, string>>();
 			for (var i = 0; i < recordsCount; i += rowsPerSlide)

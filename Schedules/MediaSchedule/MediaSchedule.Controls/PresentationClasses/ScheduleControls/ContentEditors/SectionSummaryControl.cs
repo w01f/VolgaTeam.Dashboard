@@ -93,7 +93,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		protected void RaiseDataChanged()
 		{
-			_sectionContainer.RaiseDataChanged();
+			_sectionContainer.RaiseDataChanged(new SectionDataChangedEventArgs());
 		}
 
 		#region Settings Management
@@ -222,14 +222,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			{
 				if (!TableOutput)
 				{
-					var main = ItemsCount / 5;
-					var rest = ItemsCount % 5;
+					var main = ItemsCount / SummaryConstants.MaxOneSheetItems;
+					var rest = ItemsCount % SummaryConstants.MaxOneSheetItems;
 					return main + (rest > 0 ? 1 : 0);
 				}
 				else
 				{
-					var main = ItemsCount / 18;
-					var rest = ItemsCount % 18;
+					var main = ItemsCount / SummaryConstants.MaxTableItems;
+					var rest = ItemsCount % SummaryConstants.MaxTableItems;
 					return main + (rest > 0 ? 1 : 0);
 				}
 			}
@@ -343,7 +343,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public bool TableOutput => SummarySettings.TableOutput;
 
-		public int ItemsPerTable => ItemsCount > 18 ? 18 : ItemsCount;
+		public int ItemsPerTable => ItemsCount > SummaryConstants.MaxTableItems ? SummaryConstants.MaxTableItems : ItemsCount;
 
 		public bool ShowIcons => false;
 
@@ -391,11 +391,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
+		public IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems()
 		{
 			return Items.Any() ?
-				new[] { ScheduleSectionOutputType.Summary } :
-				new ScheduleSectionOutputType[] { };
+				new[] { new ScheduleSectionOutputItem
+				{
+					OutputType = ScheduleSectionOutputType.Summary,
+					SlidesCount = SlidesCount
+				} } :
+				new ScheduleSectionOutputItem[] { };
 		}
 
 		public void GenerateOutput()

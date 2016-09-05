@@ -23,6 +23,7 @@ using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using DevExpress.Data;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -141,7 +142,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
 
-			_sectionContainer.RaiseDataChanged();
+			_sectionContainer.RaiseDataChanged(new SectionDataChangedEventArgs());
 		}
 
 		private void CloneProgram(int sourceIndex, bool fullClone)
@@ -153,7 +154,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			else
 				advBandedGridViewSchedule.FocusedRowHandle = sourceIndex + 1;
 
-			_sectionContainer.RaiseDataChanged();
+			_sectionContainer.RaiseDataChanged(new SectionDataChangedEventArgs());
 		}
 
 		public void DeleteItem()
@@ -166,7 +167,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_sectionContainer.SectionData.DeleteProgram(advBandedGridViewSchedule.GetDataSourceRowIndex(advBandedGridViewSchedule.FocusedRowHandle));
 			UpdateGridData(true);
 
-			_sectionContainer.RaiseDataChanged();
+			_sectionContainer.RaiseDataChanged(new SectionDataChangedEventArgs());
 		}
 
 		public void UpdateGridView()
@@ -407,7 +408,34 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		private IEnumerable<DXMenuItem> GetContextMenuItems(ColumnView targetView, GridColumn targetColumn, int targetRowHandle)
+		private IEnumerable<DXMenuItem> GetColumnContextMenuItems(ColumnView targetView, GridColumn targetColumn)
+		{
+			var items = new List<DXMenuItem>();
+			if (_spotColumns.Any(sc => sc.Visible && sc == targetColumn))
+			{
+				items.Add(new DXMenuItem("Create Weekly Snapshot", (o, args) =>
+				{
+					targetView.CloseEditor();
+					using (var form = new FormSnapshotFromSection())
+					{
+						form.SnapshotName = _sectionContainer.SectionData.Name;
+						if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+						{
+							_sectionContainer.SectionData.CopyScheduleToSnapshot(
+								form.SnapshotName,
+								(DateTime)((object[])targetColumn.Tag)[3],
+								form.CopySpots);
+							_sectionContainer.RaiseDataChanged(new SectionDataChangedEventArgs { SnapshotsChanged = true });
+							PopupMessageHelper.Instance.ShowInformation("Snapshot successfully added");
+						}
+					}
+
+				}));
+			}
+			return items;
+		}
+
+		private IEnumerable<DXMenuItem> GetCellContextMenuItems(ColumnView targetView, GridColumn targetColumn, int targetRowHandle)
 		{
 			var items = new List<DXMenuItem>();
 			if (_spotColumns.Any(sc => sc.Visible && sc == targetColumn))
@@ -587,7 +615,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnMenuBeforeShow(object sender, BeforeShowMenuEventArgs e)
 		{
-			var items = GetContextMenuItems(advBandedGridViewSchedule, advBandedGridViewSchedule.FocusedColumn, advBandedGridViewSchedule.FocusedRowHandle);
+			var items = GetCellContextMenuItems(advBandedGridViewSchedule, advBandedGridViewSchedule.FocusedColumn, advBandedGridViewSchedule.FocusedRowHandle);
 			if (!items.Any()) return;
 			e.Menu.Items.Clear();
 			foreach (var menuItem in items)
@@ -596,9 +624,17 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void OnGridViewPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
 		{
-			if (!e.HitInfo.InRowCell) return;
-			foreach (var menuItem in GetContextMenuItems(advBandedGridViewSchedule, e.HitInfo.Column, e.HitInfo.RowHandle))
-				e.Menu.Items.Add(menuItem);
+			if (e.HitInfo.InRowCell)
+			{
+				foreach (var menuItem in GetCellContextMenuItems(advBandedGridViewSchedule, e.HitInfo.Column, e.HitInfo.RowHandle))
+					e.Menu.Items.Add(menuItem);
+			}
+			else if (e.HitInfo.InColumn)
+			{
+				e.Menu.Items.Clear();
+				foreach (var menuItem in GetColumnContextMenuItems(advBandedGridViewSchedule, e.HitInfo.Column))
+					e.Menu.Items.Add(menuItem);
+			}
 		}
 
 		private void OnGridViewScheduleRowCellClick(object sender, RowCellClickEventArgs e)
@@ -608,7 +644,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (advBandedGridViewSchedule.FocusedRowHandle == GridControl.InvalidRowHandle) return;
 			using (var form = new FormImageGallery(MediaMetaData.Instance.ListManager.Images))
 			{
-				if (form.ShowDialog() != DialogResult.OK) return;
+				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK) return;
 				if (form.SelectedImageSource == null) return;
 				advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoSource, form.SelectedImageSource.Serialize());
 				advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLogoImage, form.SelectedImageSource.SmallImage);
@@ -645,7 +681,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		private const string TotalPeriodsTag = "Total Weeks";
+		private const string TotalWeeksTag = "Total Weeks";
+		private const string TotalMonthsTag = "Total Months";
 		private const string TotalSpotsTag = "Total Spots";
 		private const string TotalGRPTag = "Total GRPs";
 		private const string TotalImpsTag = "Total IMPs";
@@ -656,14 +693,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private const string NetRateTag = "Net Investment";
 		private const string TotalDiscountTag = "Agency Discount";
 
-		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
+		public IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems()
 		{
-			var outputOptions = new List<ScheduleSectionOutputType>();
+			var outputOptions = new List<ScheduleSectionOutputItem>();
 			if (_sectionContainer.SectionData.Programs.Any())
 			{
-				outputOptions.Add(ScheduleSectionOutputType.Program);
+				outputOptions.Add(new ScheduleSectionOutputItem
+				{
+					OutputType = ScheduleSectionOutputType.Program,
+					SlidesCount = GetSlidesCount(false)
+				});
 				if (_sectionContainer.SectionData.DigitalInfo.Records.Any())
-					outputOptions.Add(ScheduleSectionOutputType.ProgramAndDigital);
+					outputOptions.Add(new ScheduleSectionOutputItem
+					{
+						OutputType = ScheduleSectionOutputType.ProgramAndDigital,
+						SlidesCount = GetSlidesCount(true)
+					});
 			}
 			return outputOptions;
 		}
@@ -684,21 +729,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public IEnumerable<ProgramScheduleOutputModel> PrepareOutput(bool includeDigital)
+		private IEnumerable<OutputSpotInterval> GetSpotIntervals()
 		{
-			var outputPages = new List<ProgramScheduleOutputModel>();
+			var spotIntervals = new List<OutputSpotInterval>();
 			var defaultProgram = _sectionContainer.SectionData.Programs.FirstOrDefault();
-			if (defaultProgram == null) return outputPages;
-			var defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
-			var programsPerSlide = includeDigital ? ProgramScheduleOutputModel.MaxMediaProductsCobinedWithDigital : ProgramScheduleOutputModel.MaxSingleMediaProducts;
-			programsPerSlide = _sectionContainer.SectionData.Programs.Count > programsPerSlide ? programsPerSlide : _sectionContainer.SectionData.Programs.Count;
+			var defaultSpotsNotEmpy = defaultProgram?.SpotsNotEmpty;
+			if (defaultProgram == null || defaultSpotsNotEmpy == null)
+				return spotIntervals;
+
 			var totalSpotsCount = 0;
 			if (_sectionContainer.SectionData.ShowSpots)
 				totalSpotsCount = _sectionContainer.SectionData.ShowEmptySpots ? defaultProgram.Spots.Count : defaultSpotsNotEmpy.Length;
 			var spotsIteratorLimit = totalSpotsCount;
-			var spotsPerSlide = _sectionContainer.SectionData.OutputMaxPeriods.HasValue ? _sectionContainer.SectionData.OutputMaxPeriods.Value : 26;
-			spotsPerSlide = totalSpotsCount == 0 || totalSpotsCount > spotsPerSlide ? spotsPerSlide : totalSpotsCount;
-			var spotIntervals = new List<OutputSpotInterval>();
+
 			if (_sectionContainer.SectionData.OutputPerQuater)
 			{
 				var spots = _sectionContainer.SectionData.ShowEmptySpots ? defaultProgram.Spots.ToArray() : defaultSpotsNotEmpy;
@@ -714,6 +757,38 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 			else
 				spotIntervals.Add(new OutputSpotInterval { Start = 0, End = spotsIteratorLimit });
+			return spotIntervals;
+		}
+
+		public int GetSlidesCount(bool includeDigital)
+		{
+			var slidesCount = 0;
+			var programsPerSlide = includeDigital ? ProgramScheduleOutputModel.MaxMediaProductsCobinedWithDigital : ProgramScheduleOutputModel.MaxSingleMediaProducts;
+			programsPerSlide = _sectionContainer.SectionData.Programs.Count > programsPerSlide ? programsPerSlide : _sectionContainer.SectionData.Programs.Count;
+			var spotsPerSlide = _sectionContainer.SectionData.OutputMaxPeriods ?? 26;
+			var spotIntervals = GetSpotIntervals().ToList();
+			foreach (var spotInterval in spotIntervals)
+				for (var i = 0; i < _sectionContainer.SectionData.Programs.Count; i += programsPerSlide)
+					for (var k = spotInterval.Start; k < (spotInterval.End == 0 ? 1 : spotInterval.End); k += spotsPerSlide)
+						slidesCount++;
+			return slidesCount;
+		}
+
+		public
+			IEnumerable<ProgramScheduleOutputModel> PrepareOutput(bool includeDigital)
+		{
+			var outputPages = new List<ProgramScheduleOutputModel>();
+			var defaultProgram = _sectionContainer.SectionData.Programs.FirstOrDefault();
+			if (defaultProgram == null) return outputPages;
+			var defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
+			var programsPerSlide = includeDigital ? ProgramScheduleOutputModel.MaxMediaProductsCobinedWithDigital : ProgramScheduleOutputModel.MaxSingleMediaProducts;
+			programsPerSlide = _sectionContainer.SectionData.Programs.Count > programsPerSlide ? programsPerSlide : _sectionContainer.SectionData.Programs.Count;
+			var totalSpotsCount = 0;
+			if (_sectionContainer.SectionData.ShowSpots)
+				totalSpotsCount = _sectionContainer.SectionData.ShowEmptySpots ? defaultProgram.Spots.Count : defaultSpotsNotEmpy.Length;
+			var spotsPerSlide = _sectionContainer.SectionData.OutputMaxPeriods ?? 26;
+			spotsPerSlide = totalSpotsCount == 0 || totalSpotsCount > spotsPerSlide ? spotsPerSlide : totalSpotsCount;
+			var spotIntervals = GetSpotIntervals().ToList();
 			foreach (var spotInterval in spotIntervals)
 			{
 				for (var i = 0; i < _sectionContainer.SectionData.Programs.Count; i += programsPerSlide)
@@ -765,7 +840,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						#region Set Totals
 
 						if (_sectionContainer.SectionData.ShowTotalPeriods)
-							outputPage.Totals.Add(TotalPeriodsTag, _sectionContainer.TotalPeriodsValueFormatted);
+							outputPage.Totals.Add(
+								_sectionContainer.SectionData.ParentScheduleSettings.SelectedSpotType == SpotType.Week ? TotalWeeksTag : TotalMonthsTag,
+								_sectionContainer.TotalPeriodsValueFormatted);
 						if (_sectionContainer.SectionData.ShowTotalSpots)
 							outputPage.Totals.Add(TotalSpotsTag, _sectionContainer.TotalSpotsValueFormatted);
 						if (_sectionContainer.SectionData.ShowTotalGRP)

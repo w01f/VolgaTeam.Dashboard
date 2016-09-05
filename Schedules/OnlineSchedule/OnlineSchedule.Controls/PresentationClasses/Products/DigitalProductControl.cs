@@ -631,6 +631,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 		#region Output Staff
 		public string SlideName => Product.Name;
+		public int SlidesCount => 1;
 
 		public void GenerateOutput()
 		{

@@ -4,6 +4,7 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 
@@ -63,8 +64,12 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			var outputConfigurations = new List<OutputConfiguration>();
 			if (_digitalInfo.Records.Any())
 			{
-				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.Digital));
-				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.DigitalStrategy));
+				outputConfigurations.Add(new OutputConfiguration(
+					OptionSetOutputType.Digital,
+					BaseDigitalInfoOneSheetOutputModel.SlideCount));
+				outputConfigurations.Add(new OutputConfiguration(
+					OptionSetOutputType.DigitalStrategy,
+					BaseDigitalInfoOneSheetOutputModel.SlideCount));
 			}
 			return outputConfigurations;
 		}

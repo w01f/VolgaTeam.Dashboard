@@ -82,6 +82,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 					Destrination = new[]
 					{
 						ContentIdentifiers.BroadcastCalendar,
+						ContentIdentifiers.Snapshots,
+						ContentIdentifiers.Options,
 					}
 				},
 				new ContentEditorRelation

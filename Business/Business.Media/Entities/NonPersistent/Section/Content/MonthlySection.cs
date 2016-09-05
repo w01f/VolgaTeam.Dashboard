@@ -23,6 +23,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			ShowRate = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowRate;
 			ShowSpots = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowSpots;
 			ShowCost = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowCost;
+			ShowLogo = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowLogo;
 
 			ShowTotalPeriods = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowTotalPeriods;
 			ShowTotalSpots = MediaMetaData.Instance.ListManager.DefaultMonthlyScheduleSettings.ShowTotalSpots;

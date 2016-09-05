@@ -5,8 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Media.Configuration;
-using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
@@ -15,9 +13,12 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
+using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using DevExpress.XtraTab;
+using DevExpress.XtraTab.ViewInfo;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
@@ -31,7 +32,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private SectionSummaryControl _customSummaryControl;
 		private bool _sectionDataChanged;
 
-		public event EventHandler<EventArgs> DataChanged;
+		public event EventHandler<SectionDataChangedEventArgs> DataChanged;
 		public event EventHandler<EventArgs> SectionEditorChanged;
 
 		public ISectionEditorControl ActiveEditor => (ISectionEditorControl)xtraTabControl.SelectedTabPage;
@@ -155,17 +156,17 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public void RaiseDataChanged()
+		public void RaiseDataChanged(SectionDataChangedEventArgs e)
 		{
 			_sectionDataChanged = true;
 			UpdateCollectionItemsInfo();
 			UpdateSummaryState();
-			DataChanged?.Invoke(ActiveEditor, EventArgs.Empty);
+			DataChanged?.Invoke(ActiveEditor, e);
 		}
 
 		private void OnSectionDataChanged(object sender, EventArgs e)
 		{
-			RaiseDataChanged();
+			RaiseDataChanged(new SectionDataChangedEventArgs());
 		}
 
 		private void OnSelectedSectionEditorChanged(object sender, TabPageChangedEventArgs e)
@@ -226,6 +227,97 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 			labelControlWarnings.Text = String.Join("    ", warnings);
 		}
+
+		private void OnTabControlMouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Right) return;
+			var menuHitInfo = xtraTabControl.CalcHitInfo(new Point(e.X, e.Y));
+			if (menuHitInfo.HitTest != XtraTabHitTest.PageHeader) return;
+			if (menuHitInfo.Page == _sectionControl && SectionData.Programs.Any())
+				contextMenuStripSchedule.Show((Control)sender, e.Location);
+			else if (menuHitInfo.Page == _digitalInfoControl && SectionData.DigitalInfo.Records.Any())
+			{
+				toolStripMenuItemDigitalToSnapshot.DropDownItems.Clear();
+				toolStripMenuItemDigitalToSnapshot.DropDownItems.Add(new ToolStripMenuItem(
+					"Create New...",
+					null,
+					(s, args) =>
+					{
+						_digitalInfoControl.SaveData();
+						using (var form = new FormSnapshotName())
+						{
+							form.SnapshotName = SectionData.Name;
+							if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+							{
+								SectionData.CopyDigitalToSnapshot(form.SnapshotName);
+								RaiseDataChanged(new SectionDataChangedEventArgs { SnapshotsChanged = true });
+								PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+							}
+						}
+					}));
+				foreach (var snapshot in SectionData.ParentSchedule.SnapshotContent.Snapshots)
+				{
+					toolStripMenuItemDigitalToSnapshot.DropDownItems.Add(new ToolStripMenuItem(
+					snapshot.Name.Replace("&", "&&"),
+					null,
+					(s, args) =>
+					{
+						_digitalInfoControl.SaveData();
+						SectionData.CopyDigitalToSnapshot(snapshot);
+						RaiseDataChanged(new SectionDataChangedEventArgs { SnapshotsChanged = true });
+						PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+					}));
+				}
+
+				toolStripMenuItemDigitalToOptions.DropDownItems.Clear();
+				toolStripMenuItemDigitalToOptions.DropDownItems.Add(new ToolStripMenuItem(
+					"Create New...",
+					null,
+					(s, args) =>
+					{
+						_digitalInfoControl.SaveData();
+						using (var form = new FormOptionSetName())
+						{
+							form.OptionSetName = SectionData.Name;
+							if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+							{
+								SectionData.CopyDigitalToOptionsSet(form.OptionSetName);
+								RaiseDataChanged(new SectionDataChangedEventArgs { OptionsSetsChanged = true });
+								PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+							}
+						}
+					}));
+				foreach (var optionSet in SectionData.ParentSchedule.OptionsContent.Options)
+				{
+					toolStripMenuItemDigitalToOptions.DropDownItems.Add(new ToolStripMenuItem(
+					optionSet.Name.Replace("&", "&&"),
+					null,
+					(s, args) =>
+					{
+						_digitalInfoControl.SaveData();
+						SectionData.CopyDigitalToOptionsSet(optionSet);
+						RaiseDataChanged(new SectionDataChangedEventArgs { OptionsSetsChanged = true });
+						PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+					}));
+				}
+
+				contextMenuStripDigital.Show((Control)sender, e.Location);
+			}
+		}
+
+		private void OnScheduleConvertToOptionsSetClick(object sender, EventArgs e)
+		{
+			using (var form = new FormOptionSetName())
+			{
+				form.OptionSetName = SectionData.Name;
+				if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+				{
+					SectionData.CopyScheduleToOptionsSet(form.OptionSetName);
+					RaiseDataChanged(new SectionDataChangedEventArgs { OptionsSetsChanged = true });
+					PopupMessageHelper.Instance.ShowInformation("Flex-Grid successfully added");
+				}
+			}
+		}
 		#endregion
 
 		#region Schedule Management
@@ -241,7 +333,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Output Stuff
-		public bool ReadyForOutput => GetAvailableOutputOptions().Any(option => option == ScheduleSectionOutputType.Program || option == ScheduleSectionOutputType.DigitalOneSheet);
+		public bool ReadyForOutput => GetAvailableOutputItems().Any(outputItem => outputItem.OutputType == ScheduleSectionOutputType.Program || outputItem.OutputType == ScheduleSectionOutputType.DigitalOneSheet);
 
 		public void OutputPowerPoint()
 		{
@@ -337,16 +429,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		private IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
+		private IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems()
 		{
 			return xtraTabControl.TabPages.OfType<ISectionOutputControl>()
-				.SelectMany(sectionOutput => sectionOutput.GetAvailableOutputOptions())
-				.Distinct();
+				.SelectMany(sectionOutput => sectionOutput.GetAvailableOutputItems());
 		}
 
 		private IEnumerable<ScheduleSectionOutputType> SelectedOutputOptions()
 		{
-			var availableOptions = GetAvailableOutputOptions();
+			var availableOptions = GetAvailableOutputItems();
 			using (var form = new FormConfigureOutput(SectionData.Name, availableOptions))
 			{
 				if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)

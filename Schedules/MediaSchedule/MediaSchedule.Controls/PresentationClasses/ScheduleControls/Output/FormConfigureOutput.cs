@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Media.Configuration;
 using DevComponents.DotNetBar.Metro;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
@@ -11,7 +10,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 	public partial class FormConfigureOutput : MetroForm
 	{
 		private bool _handleNodeEvents;
-		public FormConfigureOutput(string scheduleName, IEnumerable<ScheduleSectionOutputType> outputOptionItems)
+		public FormConfigureOutput(string scheduleName, IEnumerable<ScheduleSectionOutputItem> outputItems)
 		{
 			InitializeComponent();
 
@@ -20,34 +19,33 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 			var groupNode = treeView.Nodes.Add(scheduleName);
 			groupNode.Checked = true;
 
-			foreach (var optionItem in outputOptionItems.OrderBy(v => v))
+			foreach (var optionItem in outputItems.OrderBy(outputItem => outputItem.OutputType))
 			{
-				var itemName = String.Empty;
-				switch (optionItem)
-				{
-					case ScheduleSectionOutputType.Program:
-						itemName = MediaMetaData.Instance.DataTypeString;
-						break;
-					case ScheduleSectionOutputType.DigitalOneSheet:
-						itemName = "Digital";
-						break;
-					case ScheduleSectionOutputType.ProgramAndDigital:
-						itemName = String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString);
-						break;
-					case ScheduleSectionOutputType.Summary:
-						itemName = "Summary";
-						break;
-					case ScheduleSectionOutputType.DigitalStrategy:
-						itemName = "Digital Strategies";
-						break;
-				}
-
-				var configNode = groupNode.Nodes.Add(itemName);
+				var configNode = groupNode.Nodes.Add(optionItem.DisplayName);
 				configNode.Tag = optionItem;
 				configNode.Checked = true;
 			}
 			treeView.ExpandAll();
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
+
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+
+				buttonXSelectAll.Font = new Font(buttonXSelectAll.Font.FontFamily, buttonXSelectAll.Font.Size - 2, buttonXSelectAll.Font.Style);
+				buttonXSelectNone.Font = new Font(buttonXSelectNone.Font.FontFamily, buttonXSelectNone.Font.Size - 2, buttonXSelectNone.Font.Style);
+				buttonXContinue.Font = new Font(buttonXContinue.Font.FontFamily, buttonXContinue.Font.Size - 2, buttonXContinue.Font.Style);
+				buttonXClose.Font = new Font(buttonXClose.Font.FontFamily, buttonXClose.Font.Size - 2, buttonXClose.Font.Style);
+			}
 		}
 
 		public IEnumerable<ScheduleSectionOutputType> GetSelectedOutputTypes()
@@ -55,9 +53,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 			return treeView.Nodes[0].Nodes
 				.OfType<TreeNode>()
 				.Where(n => n.Checked)
-				.Select(node => (ScheduleSectionOutputType)node.Tag)
+				.Select(node => ((ScheduleSectionOutputItem)node.Tag).OutputType)
 				.OrderBy(selectedOption => selectedOption)
 				.ToList();
+		}
+
+		private void UpdateSlidesCount()
+		{
+			labelControlSlidesCount.Text = String.Format("<color=gray>Estimated Slides: {0}</color>",
+				treeView.Nodes[0].Nodes
+					.OfType<TreeNode>()
+					.Where(n => n.Checked)
+					.Sum(node => ((ScheduleSectionOutputItem)node.Tag).SlidesCount)
+				);
 		}
 
 		private void CheckWithDecendants(TreeNode node)
@@ -80,6 +88,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 			foreach (var treeNode in treeView.Nodes.OfType<TreeNode>())
 				CheckWithDecendants(treeNode);
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
 		}
 
 		private void OnSelectNoneClick(object sender, EventArgs e)
@@ -88,6 +98,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 			foreach (var treeNode in treeView.Nodes.OfType<TreeNode>())
 				UncheckWithDecendants(treeNode);
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
 		}
 
 		private void OnTreeViewAfterCheck(object sender, TreeViewEventArgs e)
@@ -107,6 +119,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Output
 			else if (e.Node.Parent != null)
 				e.Node.Parent.Checked = e.Node.Parent.Nodes.OfType<TreeNode>().Any(n => n.Checked);
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
 		}
 
 		private void OnTreeViewBeforeCollapse(object sender, TreeViewCancelEventArgs e)

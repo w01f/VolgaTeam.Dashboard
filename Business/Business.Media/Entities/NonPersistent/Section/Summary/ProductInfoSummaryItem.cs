@@ -57,9 +57,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 					break;
 				case SummaryItemDataSourceType.Digital:
 					ShowDescription = true;
-					Description = String.Format("Digital Marketing Strategies: {0}",
-						String.Join(" ", _summaryContent.Parent.Parent.DigitalInfo.Records
-						.Select(p => String.Format("({0}{1})",
+					Description = String.Format("Digital Marketing Strategies: ({0})",
+						String.Join(",   ", _summaryContent.Parent.Parent.DigitalInfo.Records
+						.Select(p => String.Format("{0}{1}",
 							p.Category,
 							!String.IsNullOrEmpty(p.Info) ? String.Format(" - {0}", p.Info) : String.Empty))));
 					break;

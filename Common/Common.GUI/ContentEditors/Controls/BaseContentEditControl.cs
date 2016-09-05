@@ -75,6 +75,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 				UpdateEditedContet();
 			});
 			ContentUpdateInfo.NeedToUpdate = false;
+			ContentUpdateInfo.ChangeInfo.Reset();
 		}
 
 		protected virtual void SaveData() { }

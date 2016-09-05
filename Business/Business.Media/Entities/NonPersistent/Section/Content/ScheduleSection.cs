@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Digital;
+using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using Asa.Business.Media.Entities.Persistent;
@@ -270,7 +271,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 					column = new DataColumn(columnName, typeof(int)) { Caption = spot.ColumnName };
 					totalSpotsExpression.Add(string.Format("ISNULL({0},0)", columnName));
 					column.ExtendedProperties.Add("Tooltip", tooltip);
-					column.ExtendedProperties.Add("SpotSettings", new object[] { spot.Quarter, spot.FullColumnName, isFullSpot });
+					column.ExtendedProperties.Add("SpotSettings", new object[] { spot.Quarter, spot.FullColumnName, isFullSpot, spot.Date });
 					table.Columns.Add(column);
 					spotIndex++;
 				}
@@ -477,6 +478,200 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			OutputPerQuater = templateData.OutputPerQuater;
 			OutputMaxPeriods = templateData.OutputMaxPeriods;
 			CloneLineToTheEnd = templateData.CloneLineToTheEnd;
+		}
+
+		public void CopyScheduleToSnapshot(string name, DateTime spotDate, bool copySpots)
+		{
+			var snapshot = new Snapshot.Snapshot(ParentSchedule.SnapshotContent);
+
+			snapshot.Name = name;
+
+			var defaultLogo = Programs.FirstOrDefault()?.Logo;
+			if (defaultLogo != null)
+				snapshot.Logo = defaultLogo.Clone<ImageSource, ImageSource>(); 
+
+			foreach (var program in Programs)
+			{
+				var snaphotProgram = new Snapshot.SnapshotProgram(snapshot);
+				snaphotProgram.Name = program.Name;
+				snaphotProgram.Logo = program.Logo.Clone<ImageSource, ImageSource>();
+				snaphotProgram.Station = program.Station;
+				snaphotProgram.Daypart = program.Daypart;
+				snaphotProgram.Time = program.Time;
+				snaphotProgram.Length = program.Length;
+				snaphotProgram.Rate = (Decimal?)program.Rate;
+
+				var weekDaysRange = program.WeekDays.ToList();
+				if (copySpots && weekDaysRange.Any())
+				{
+
+					var weekDaysInOrder = new[]
+					{
+						DayOfWeek.Monday,
+						DayOfWeek.Tuesday,
+						DayOfWeek.Wednesday,
+						DayOfWeek.Thursday,
+						DayOfWeek.Friday,
+						DayOfWeek.Saturday,
+						DayOfWeek.Sunday,
+					}.ToList();
+
+					var firstWeekDay = weekDaysInOrder.IndexOf(weekDaysRange.First());
+					var lastWeekDay = weekDaysInOrder.IndexOf(weekDaysRange.Count == 2 ? weekDaysRange.ElementAt(1) : weekDaysRange.First());
+
+					var templateSpotCount = program.Spots.FirstOrDefault(s => s.Date == spotDate)?.Count;
+					if (templateSpotCount.HasValue)
+					{
+						while (templateSpotCount > 0)
+						{
+							if (!ParentScheduleSettings.MondayBased)
+							{
+								if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Sunday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Sunday))
+								{
+									if (!snaphotProgram.SundaySpot.HasValue)
+										snaphotProgram.SundaySpot = 1;
+									else
+										snaphotProgram.SundaySpot++;
+									templateSpotCount--;
+								}
+							}
+							if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Monday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Monday))
+							{
+								if (!snaphotProgram.MondaySpot.HasValue)
+									snaphotProgram.MondaySpot = 1;
+								else
+									snaphotProgram.MondaySpot++;
+								templateSpotCount--;
+							}
+							if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Tuesday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Tuesday))
+							{
+								if (!snaphotProgram.TuesdaySpot.HasValue)
+									snaphotProgram.TuesdaySpot = 1;
+								else
+									snaphotProgram.TuesdaySpot++;
+								templateSpotCount--;
+							}
+							if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Wednesday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Wednesday))
+							{
+								if (!snaphotProgram.WednesdaySpot.HasValue)
+									snaphotProgram.WednesdaySpot = 1;
+								else
+									snaphotProgram.WednesdaySpot++;
+								templateSpotCount--;
+							}
+							if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Thursday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Thursday))
+							{
+								if (!snaphotProgram.ThursdaySpot.HasValue)
+									snaphotProgram.ThursdaySpot = 1;
+								else
+									snaphotProgram.ThursdaySpot++;
+								templateSpotCount--;
+							}
+							if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Friday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Friday))
+							{
+								if (!snaphotProgram.FridaySpot.HasValue)
+									snaphotProgram.FridaySpot = 1;
+								else
+									snaphotProgram.FridaySpot++;
+								templateSpotCount--;
+							}
+							if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Saturday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Saturday))
+							{
+								if (!snaphotProgram.SaturdaySpot.HasValue)
+									snaphotProgram.SaturdaySpot = 1;
+								else
+									snaphotProgram.SaturdaySpot++;
+								templateSpotCount--;
+							}
+							if (ParentScheduleSettings.MondayBased)
+							{
+								if (templateSpotCount > 0 && firstWeekDay <= weekDaysInOrder.IndexOf(DayOfWeek.Sunday) && lastWeekDay >= weekDaysInOrder.IndexOf(DayOfWeek.Sunday))
+								{
+									if (!snaphotProgram.SundaySpot.HasValue)
+										snaphotProgram.SundaySpot = 1;
+									else
+										snaphotProgram.SundaySpot++;
+									templateSpotCount--;
+								}
+							}
+						}
+					}
+				}
+				snapshot.Programs.Add(snaphotProgram);
+			}
+
+			ParentSchedule.SnapshotContent.Snapshots.Add(snapshot);
+		}
+
+		public void CopyDigitalToSnapshot(string name)
+		{
+			var snapshot = new Snapshot.Snapshot(ParentSchedule.SnapshotContent);
+
+			snapshot.Name = name;
+
+			var defaultLogo = Programs.FirstOrDefault()?.Logo;
+			if (defaultLogo != null)
+				snapshot.Logo = defaultLogo.Clone<ImageSource, ImageSource>();
+
+			ParentSchedule.SnapshotContent.Snapshots.Add(snapshot);
+
+			CopyDigitalToSnapshot(snapshot);
+		}
+
+		public void CopyDigitalToSnapshot(Snapshot.Snapshot targetSnapshot)
+		{
+			targetSnapshot.DigitalInfo = DigitalInfo.Clone<MediaDigitalInfo, MediaDigitalInfo>();
+		}
+
+		public void CopyScheduleToOptionsSet(string name)
+		{
+			var optionSet = new OptionSet(ParentSchedule.OptionsContent);
+
+			optionSet.Name = name;
+
+			var defaultLogo = Programs.FirstOrDefault()?.Logo;
+			if (defaultLogo != null)
+				optionSet.Logo = defaultLogo.Clone<ImageSource, ImageSource>();
+
+			optionSet.ShowSpots = true;
+			optionSet.SpotType = SpotType.Total;
+
+			foreach (var program in Programs)
+			{
+				var optionProgram = new OptionProgram(optionSet);
+				optionProgram.Name = program.Name;
+				optionProgram.Logo = program.Logo.Clone<ImageSource, ImageSource>();
+				optionProgram.Station = program.Station;
+				optionProgram.Day = program.Day;
+				optionProgram.Time = program.Time;
+				optionProgram.Length = program.Length;
+				optionProgram.Rate = (Decimal?)program.Rate; ;
+				optionProgram.Spot = program.TotalSpots;
+				optionSet.Programs.Add(optionProgram);
+			}
+
+			ParentSchedule.OptionsContent.Options.Add(optionSet);
+
+		}
+
+		public void CopyDigitalToOptionsSet(string name)
+		{
+			var optionSet = new OptionSet(ParentSchedule.OptionsContent);
+
+			optionSet.Name = name;
+
+			var defaultLogo = Programs.FirstOrDefault()?.Logo;
+			if (defaultLogo != null)
+				optionSet.Logo = defaultLogo.Clone<ImageSource, ImageSource>();
+
+			ParentSchedule.OptionsContent.Options.Add(optionSet);
+
+			CopyDigitalToOptionsSet(optionSet);
+		}
+
+		public void CopyDigitalToOptionsSet(OptionSet targetOptionsSet)
+		{
+			targetOptionsSet.DigitalInfo = DigitalInfo.Clone<MediaDigitalInfo, MediaDigitalInfo>();
 		}
 	}
 }

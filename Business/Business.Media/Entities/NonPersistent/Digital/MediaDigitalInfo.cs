@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Interfaces;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Digital
 {
-	public class MediaDigitalInfo
+	public class MediaDigitalInfo : IJsonCloneable<MediaDigitalInfo>
 	{
 		public List<MediaDigitalInfoRecord> Records { get; private set; }
 
@@ -52,6 +54,15 @@ namespace Asa.Business.Media.Entities.NonPersistent.Digital
 			InitProducts();
 			foreach (var digitalInfoRecord in Records)
 				digitalInfoRecord.Parent = this;
+		}
+
+		public void AfterClone(MediaDigitalInfo source, bool fullClone = true)
+		{
+			Records.ForEach(digitalInfoRecord =>
+			{
+				digitalInfoRecord.AfterClone(source.Records.First(sourceProgram => sourceProgram.UniqueID == digitalInfoRecord.UniqueID), fullClone);
+				digitalInfoRecord.Parent = this;
+			});
 		}
 
 		public void AddProduct()

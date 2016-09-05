@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -30,6 +31,25 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 			}
 			treeView.ExpandAll();
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
+
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
+					styleController.Appearance.Font.Style);
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+
+				buttonXSelectAll.Font = new Font(buttonXSelectAll.Font.FontFamily, buttonXSelectAll.Font.Size - 2, buttonXSelectAll.Font.Style);
+				buttonXSelectNone.Font = new Font(buttonXSelectNone.Font.FontFamily, buttonXSelectNone.Font.Size - 2, buttonXSelectNone.Font.Style);
+				buttonXContinue.Font = new Font(buttonXContinue.Font.FontFamily, buttonXContinue.Font.Size - 2, buttonXContinue.Font.Style);
+				buttonXClose.Font = new Font(buttonXClose.Font.FontFamily, buttonXClose.Font.Size - 2, buttonXClose.Font.Style);
+			}
 		}
 
 		private void OnFormClosed(object sender, FormClosedEventArgs e)
@@ -47,6 +67,24 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 				else if (!groupNode.Checked)
 					outputGroup.OutputItems = new List<IDigitalOutputItem>();
 			}
+		}
+
+		private void UpdateSlidesCount()
+		{
+			var slidesCount = treeView.Nodes
+				.OfType<TreeNode>()
+				.Where(n => n.Checked)
+				.Sum(n =>
+				{
+					if (n.Nodes.Count > 0)
+						return n.Nodes
+							.OfType<TreeNode>()
+							.Where(childNode => childNode.Checked)
+							.Sum(childNode => ((IDigitalOutputItem)childNode.Tag).SlidesCount);
+					return ((OutputGroup)n.Tag).OutputItems.Sum(c => c.SlidesCount);
+				});
+
+			labelControlSlidesCount.Text = String.Format("<color=gray>Estimated Slides: {0}</color>", slidesCount);
 		}
 
 		private void CheckWithDecendants(TreeNode node)
@@ -69,6 +107,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 			foreach (var treeNode in treeView.Nodes.OfType<TreeNode>())
 				CheckWithDecendants(treeNode);
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
 		}
 
 		private void OnSelectNoneClick(object sender, System.EventArgs e)
@@ -77,6 +117,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 			foreach (var treeNode in treeView.Nodes.OfType<TreeNode>())
 				UncheckWithDecendants(treeNode);
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
 		}
 
 		private void OnTreeViewAfterCheck(object sender, TreeViewEventArgs e)
@@ -94,6 +136,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 			else if (e.Node.Parent != null)
 				e.Node.Parent.Checked = e.Node.Parent.Nodes.OfType<TreeNode>().Any(n => n.Checked);
 			_handleNodeEvents = true;
+
+			UpdateSlidesCount();
 		}
 
 		private void OnTreeViewBeforeCollapse(object sender, TreeViewCancelEventArgs e)

@@ -72,22 +72,23 @@ namespace Asa.Media.Controls.InteropClasses
 									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
 									var key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
 									if (String.IsNullOrEmpty(key)) continue;
-									//while (copyOfReplacementList[key] == "Merge")
-									//{
-									//	//copyOfReplacementList.Remove(key);
-									//	var nextColumnIndex = j + 1;
-									//	tableShape.TextFrame.TextRange.Text = String.Empty;
-									//	if (nextColumnIndex >= table.Columns.Count) break;
-									//	table.Cell(i, j).Merge(table.Cell(i, nextColumnIndex));
+									while (copyOfReplacementList[key] == "MergeSnapshot")
+									{
+										copyOfReplacementList.Remove(key);
+										key = null;
+										var nextColumnIndex = j + 1;
+										tableShape.TextFrame.TextRange.Text = String.Empty;
+										if (nextColumnIndex >= table.Columns.Count) break;
+										table.Cell(i, j).Merge(table.Cell(i, nextColumnIndex));
 
-									//	tableShape = table.Cell(i, j).Shape;
-									//	if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
-									//	cellText = tableShape.TextFrame.TextRange.Text.Trim();
-									//	key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
-									//	if (copyOfReplacementList[key] == "Merge")
-									//		j++;
-									//}
-									//if (String.IsNullOrEmpty(key)) continue;
+										tableShape = table.Cell(i, j).Shape;
+										if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
+										cellText = tableShape.TextFrame.TextRange.Text.Trim();
+										key = copyOfReplacementList.Keys.FirstOrDefault(k => k.Trim().ToLower().Equals(cellText.ToLower()));
+										if (copyOfReplacementList[key] == "MergeSnapshot")
+											j++;
+									}
+									if (String.IsNullOrEmpty(key)) continue;
 									tableShape.TextFrame.TextRange.Text = copyOfReplacementList[key];
 									copyOfReplacementList.Remove(key);
 								}
@@ -101,7 +102,7 @@ namespace Asa.Media.Controls.InteropClasses
 									var tableShape = table.Cell(i, j).Shape;
 									if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
 									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
-									while (cellText == "Merge")
+									while (cellText == "MergeDigital")
 									{
 										if (j == 1)
 										{
@@ -119,7 +120,7 @@ namespace Asa.Media.Controls.InteropClasses
 										if (tableShape.HasTextFrame != MsoTriState.msoTrue) break;
 										tableShape.TextFrame.TextRange.ParagraphFormat.Alignment = PpParagraphAlignment.ppAlignLeft;
 										cellText = tableShape.TextFrame.TextRange.Text.Trim();
-										if (cellText == "Merge")
+										if (cellText == "MergeDigital")
 											j--;
 									}
 								}

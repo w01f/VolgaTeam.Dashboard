@@ -26,7 +26,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 		public string Comment { get; set; }
 
 		public List<SnapshotProgram> Programs { get; private set; }
-		public MediaDigitalInfo DigitalInfo { get; private set; }
+		public MediaDigitalInfo DigitalInfo { get; set; }
 		public MediaScheduleSettings ParentScheduleSettings => Parent.ScheduleSettings;
 		public List<DateRange> ActiveWeeks { get; private set; }
 		

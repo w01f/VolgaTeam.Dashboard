@@ -6,6 +6,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 	public class OutputConfiguration
 	{
 		public OptionSetOutputType OutputType { get; }
+		public int SlidesCount { get; }
 
 		public string DisplayName
 		{
@@ -29,9 +30,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 			}
 		}
 
-		public OutputConfiguration(OptionSetOutputType outputType)
+		public OutputConfiguration(OptionSetOutputType outputType, int slidesCount)
 		{
 			OutputType = outputType;
+			SlidesCount = slidesCount;
 		}
 	}
 }

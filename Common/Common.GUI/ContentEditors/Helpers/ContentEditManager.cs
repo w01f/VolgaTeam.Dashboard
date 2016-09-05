@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
-using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.ContentEditors.Enums;
 using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Interfaces;

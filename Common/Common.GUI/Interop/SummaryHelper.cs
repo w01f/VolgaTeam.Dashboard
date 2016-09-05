@@ -26,11 +26,11 @@ namespace Asa.Common.GUI.Interop
 		private void AppendSlideSummary(ISummaryControl summary, Presentation destinationPresentation = null)
 		{
 			var itemsCount = summary.ItemsCount;
-			var mainFileTemplateIndex = itemsCount >= 5 ? 5 : itemsCount;
+			var mainFileTemplateIndex = itemsCount >= SummaryConstants.MaxOneSheetItems ? SummaryConstants.MaxOneSheetItems : itemsCount;
 
-			var additionalFileTemplateIndex = itemsCount > 5 ? itemsCount % 5 : 0;
+			var additionalFileTemplateIndex = itemsCount > SummaryConstants.MaxOneSheetItems ? itemsCount % SummaryConstants.MaxOneSheetItems : 0;
 
-			var mainFilesCount = itemsCount / 5;
+			var mainFilesCount = itemsCount / SummaryConstants.MaxOneSheetItems;
 			if (mainFilesCount == 0 && itemsCount > 0)
 				mainFilesCount++;
 

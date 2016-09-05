@@ -241,7 +241,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			var outputConfigurations = new List<OutputConfiguration>();
 			if (Data.Enabled && Data.Parent.Options.Any(s => s.Programs.Any()))
-				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.Summary));
+				outputConfigurations.Add(new OutputConfiguration(
+					OptionSetOutputType.Summary,
+					Data.Parent.Options.Count / ProgramsPerSlide + (Data.Parent.Options.Count % ProgramsPerSlide > 0 ? 1 : 0)));
 			return outputConfigurations;
 		}
 

@@ -34,9 +34,16 @@
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnInfo = new System.Windows.Forms.Panel();
 			this.labelControlCollectionItemsInfo = new DevExpress.XtraEditors.LabelControl();
+			this.contextMenuStripSchedule = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripMenuItemScheduleConvertToOptionsSet = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenuStripDigital = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripMenuItemDigitalToSnapshot = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemDigitalToOptions = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnInfo.SuspendLayout();
+			this.contextMenuStripSchedule.SuspendLayout();
+			this.contextMenuStripDigital.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// xtraTabControl
@@ -59,6 +66,7 @@
 			this.xtraTabControl.Size = new System.Drawing.Size(712, 533);
 			this.xtraTabControl.TabIndex = 0;
 			this.xtraTabControl.UseMnemonic = false;
+			this.xtraTabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnTabControlMouseDown);
 			// 
 			// labelControlWarnings
 			// 
@@ -121,15 +129,54 @@
 			this.labelControlCollectionItemsInfo.StyleController = this.styleController;
 			this.labelControlCollectionItemsInfo.TabIndex = 10;
 			// 
+			// contextMenuStripSchedule
+			// 
+			this.contextMenuStripSchedule.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemScheduleConvertToOptionsSet});
+			this.contextMenuStripSchedule.Name = "contextMenuStripSchedule";
+			this.contextMenuStripSchedule.ShowImageMargin = false;
+			this.contextMenuStripSchedule.Size = new System.Drawing.Size(134, 26);
+			// 
+			// toolStripMenuItemScheduleConvertToOptionsSet
+			// 
+			this.toolStripMenuItemScheduleConvertToOptionsSet.Name = "toolStripMenuItemScheduleConvertToOptionsSet";
+			this.toolStripMenuItemScheduleConvertToOptionsSet.Size = new System.Drawing.Size(133, 22);
+			this.toolStripMenuItemScheduleConvertToOptionsSet.Text = "Create Flex-Grid";
+			this.toolStripMenuItemScheduleConvertToOptionsSet.Click += new System.EventHandler(this.OnScheduleConvertToOptionsSetClick);
+			// 
+			// contextMenuStripDigital
+			// 
+			this.contextMenuStripDigital.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemDigitalToSnapshot,
+            this.toolStripMenuItemDigitalToOptions});
+			this.contextMenuStripDigital.Name = "contextMenuStripSchedule";
+			this.contextMenuStripDigital.ShowImageMargin = false;
+			this.contextMenuStripDigital.Size = new System.Drawing.Size(142, 48);
+			// 
+			// toolStripMenuItemDigitalToSnapshot
+			// 
+			this.toolStripMenuItemDigitalToSnapshot.Name = "toolStripMenuItemDigitalToSnapshot";
+			this.toolStripMenuItemDigitalToSnapshot.Size = new System.Drawing.Size(141, 22);
+			this.toolStripMenuItemDigitalToSnapshot.Text = "Send to Snapshot";
+			// 
+			// toolStripMenuItemDigitalToOptions
+			// 
+			this.toolStripMenuItemDigitalToOptions.Name = "toolStripMenuItemDigitalToOptions";
+			this.toolStripMenuItemDigitalToOptions.Size = new System.Drawing.Size(141, 22);
+			this.toolStripMenuItemDigitalToOptions.Text = "Send to Flex-Grid";
+			// 
 			// SectionContainer
 			// 
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.pnInfo);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "SectionContainer";
 			this.Size = new System.Drawing.Size(712, 565);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnInfo.ResumeLayout(false);
+			this.contextMenuStripSchedule.ResumeLayout(false);
+			this.contextMenuStripDigital.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -141,5 +188,10 @@
 		private DevExpress.XtraEditors.StyleController styleController;
 		private System.Windows.Forms.Panel pnInfo;
 		private DevExpress.XtraEditors.LabelControl labelControlCollectionItemsInfo;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStripSchedule;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemScheduleConvertToOptionsSet;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStripDigital;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDigitalToSnapshot;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDigitalToOptions;
 	}
 }

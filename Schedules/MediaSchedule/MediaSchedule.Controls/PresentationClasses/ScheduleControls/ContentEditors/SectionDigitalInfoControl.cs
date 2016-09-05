@@ -4,6 +4,7 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 
@@ -36,7 +37,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		protected override void RaiseDataChanged()
 		{
-			_sectionContainer.RaiseDataChanged();
+			_sectionContainer.RaiseDataChanged(new SectionDataChangedEventArgs());
 		}
 		#endregion
 
@@ -59,11 +60,23 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			SlideType.TVScheduleDigital :
 			SlideType.RadioScheduleDigital;
 
-		public IEnumerable<ScheduleSectionOutputType> GetAvailableOutputOptions()
+		public IEnumerable<ScheduleSectionOutputItem> GetAvailableOutputItems()
 		{
 			return _digitalInfo != null && _digitalInfo.Records.Any() ?
-				new[] { ScheduleSectionOutputType.DigitalOneSheet, ScheduleSectionOutputType.DigitalStrategy, } :
-				new ScheduleSectionOutputType[] { };
+				new[]
+				{
+					new ScheduleSectionOutputItem
+					{
+						OutputType = ScheduleSectionOutputType.DigitalOneSheet,
+						SlidesCount = BaseDigitalInfoOneSheetOutputModel.SlideCount
+					},
+					new ScheduleSectionOutputItem
+					{
+						OutputType = ScheduleSectionOutputType.DigitalStrategy,
+						SlidesCount = BaseDigitalInfoOneSheetOutputModel.SlideCount
+					}
+				} :
+				new ScheduleSectionOutputItem[] { };
 		}
 		#endregion
 	}

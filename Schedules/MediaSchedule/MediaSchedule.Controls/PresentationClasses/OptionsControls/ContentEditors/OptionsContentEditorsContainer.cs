@@ -111,12 +111,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			var quickLoad = EditedContent != null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
 				ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
 				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
-				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
+				ContentUpdateInfo.ChangeInfo.SpotTypeChanged ||
+				ContentUpdateInfo.ChangeInfo.OptionsChanged);
 
 			EditedContent?.Dispose();
-			EditedContent = Schedule
-				.GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options)
-				.Clone<OptionsContent, OptionsContent>();
+			EditedContent = Schedule.OptionsContent.Clone<OptionsContent, OptionsContent>();
 
 			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
 
@@ -142,7 +141,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		protected override void SaveData()
 		{
-			Schedule.ApplySchedulePartitionContent(SchedulePartitionType.Options, EditedContent.Clone<OptionsContent, OptionsContent>());
+			Schedule.OptionsContent = EditedContent.Clone<OptionsContent, OptionsContent>();
 		}
 
 		public override void GetHelp()
@@ -155,8 +154,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			base.LoadThemes();
 
 			FormThemeSelector.Link(
-				Controller.Instance.OptionsTheme, 
-				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), 
+				Controller.Instance.OptionsTheme,
+				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType),
 				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType),
 				MediaMetaData.Instance.SettingsManager,
 				(theme, applyForAllSlideTypes) =>
@@ -254,6 +253,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				xtraTabControlContentEditors.SelectedTabPage = optionControl;
 				Summary.UpdateView();
 				UpdateSplash();
+				SettingsNotSaved = true;
 			}
 		}
 
@@ -271,6 +271,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				var newControl = AddOptionSetEditorsContainerControl(optionSet, (Int32)optionSet.Index);
 				xtraTabControlContentEditors.SelectedTabPage = newControl;
 				Summary.UpdateView();
+				SettingsNotSaved = true;
 			}
 		}
 

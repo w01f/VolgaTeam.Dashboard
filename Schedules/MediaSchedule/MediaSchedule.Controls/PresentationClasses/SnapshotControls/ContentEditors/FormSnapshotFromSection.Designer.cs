@@ -1,7 +1,7 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
+﻿namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
-	partial class FormOptionSetName
-    {
+	partial class FormSnapshotFromSection
+	{
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -29,16 +29,29 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.textEditScheduleName = new DevExpress.XtraEditors.TextEdit();
-			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
-			((System.ComponentModel.ISupportInitialize)(this.textEditScheduleName.Properties)).BeginInit();
+			this.checkEditCopySpots = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEditScheduleName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditCopySpots.Properties)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// pbLogo
+			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
+			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.SnapshotNew;
+			this.pbLogo.Location = new System.Drawing.Point(12, 12);
+			this.pbLogo.Name = "pbLogo";
+			this.pbLogo.Size = new System.Drawing.Size(72, 75);
+			this.pbLogo.TabIndex = 0;
+			this.pbLogo.TabStop = false;
 			// 
 			// buttonXOK
 			// 
@@ -46,7 +59,7 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(168, 96);
+			this.buttonXOK.Location = new System.Drawing.Point(168, 139);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(92, 32);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -60,7 +73,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(280, 96);
+			this.buttonXCancel.Location = new System.Drawing.Point(280, 139);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(92, 32);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -70,6 +83,8 @@
 			// 
 			// textEditScheduleName
 			// 
+			this.textEditScheduleName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textEditScheduleName.Location = new System.Drawing.Point(90, 65);
 			this.textEditScheduleName.Name = "textEditScheduleName";
 			this.textEditScheduleName.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -83,17 +98,6 @@
 			this.textEditScheduleName.StyleController = this.styleController;
 			this.textEditScheduleName.TabIndex = 0;
 			this.textEditScheduleName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textEditScheduleName_KeyDown);
-			// 
-			// pbLogo
-			// 
-			this.pbLogo.BackColor = System.Drawing.Color.White;
-			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.OptionsNew;
-			this.pbLogo.Location = new System.Drawing.Point(12, 12);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(72, 75);
-			this.pbLogo.TabIndex = 0;
-			this.pbLogo.TabStop = false;
 			// 
 			// styleController
 			// 
@@ -115,40 +119,51 @@
 			this.labelControlTitle.AllowHtmlString = true;
 			this.labelControlTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlTitle.Appearance.BackColor = System.Drawing.Color.White;
-			this.labelControlTitle.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlTitle.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlTitle.Location = new System.Drawing.Point(90, 12);
 			this.labelControlTitle.Name = "labelControlTitle";
 			this.labelControlTitle.Size = new System.Drawing.Size(282, 47);
 			this.labelControlTitle.StyleController = this.styleController;
-			this.labelControlTitle.TabIndex = 5;
-			this.labelControlTitle.Text = "<size=+4>Name this Flex-Grid</size>";
+			this.labelControlTitle.TabIndex = 3;
+			this.labelControlTitle.Text = "<size=+4>Name your NEW Weekly Snapshot Schedule…</size>";
 			// 
-			// FormOptionSetName
+			// checkEditCopySpots
+			// 
+			this.checkEditCopySpots.EditValue = true;
+			this.checkEditCopySpots.Location = new System.Drawing.Point(90, 103);
+			this.checkEditCopySpots.Name = "checkEditCopySpots";
+			this.checkEditCopySpots.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditCopySpots.Properties.Caption = "<color=gray>Evenly spread spots in the week</color>";
+			this.checkEditCopySpots.Size = new System.Drawing.Size(282, 20);
+			this.checkEditCopySpots.StyleController = this.styleController;
+			this.checkEditCopySpots.TabIndex = 4;
+			// 
+			// FormSnapshotFromSection
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(384, 131);
+			this.ClientSize = new System.Drawing.Size(384, 174);
+			this.Controls.Add(this.checkEditCopySpots);
+			this.Controls.Add(this.labelControlTitle);
 			this.Controls.Add(this.textEditScheduleName);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
 			this.Controls.Add(this.pbLogo);
-			this.Controls.Add(this.labelControlTitle);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "FormOptionSetName";
+			this.Name = "FormSnapshotFromSection";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Flex-Grid";
+			this.Text = "Snapshot";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSnapshotName_FormClosing);
-			((System.ComponentModel.ISupportInitialize)(this.textEditScheduleName.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEditScheduleName.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditCopySpots.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -161,5 +176,6 @@
         private DevExpress.XtraEditors.TextEdit textEditScheduleName;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraEditors.LabelControl labelControlTitle;
+		private DevExpress.XtraEditors.CheckEdit checkEditCopySpots;
 	}
 }

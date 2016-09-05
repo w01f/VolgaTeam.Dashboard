@@ -183,9 +183,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			var changeInfo = new MediaScheduleChangeInfo();
 			changeInfo.SpotTypeChanged = SelectedSpotType != changedInstance.SelectedSpotType;
 			changeInfo.CalendarTypeChanged = MondayBased != changedInstance.MondayBased;
-			changeInfo.ScheduleDatesChanged = (UserFlightDateStart.HasValue &&
-				UserFlightDateEnd.HasValue &&
-				(UserFlightDateStart != changedInstance.UserFlightDateStart || UserFlightDateEnd != changedInstance.UserFlightDateEnd));
+			if (UserFlightDateStart.HasValue && UserFlightDateEnd.HasValue)
+				changeInfo.ScheduleDatesChanged =
+					UserFlightDateStart != changedInstance.UserFlightDateStart ||
+					UserFlightDateEnd != changedInstance.UserFlightDateEnd;
+			else
+				changeInfo.ScheduleDatesChanged = changedInstance.UserFlightDateStart.HasValue && 
+					changedInstance.UserFlightDateEnd.HasValue;
 			return changeInfo;
 		}
 

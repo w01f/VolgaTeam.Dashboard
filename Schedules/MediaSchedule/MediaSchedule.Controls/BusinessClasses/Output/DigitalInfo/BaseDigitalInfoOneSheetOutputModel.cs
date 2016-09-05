@@ -9,6 +9,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output.DigitalInfo
 	public class BaseDigitalInfoOneSheetOutputModel
 	{
 		public const int MaxRecords = 6;
+		public const int SlideCount = 1;
 
 		private readonly MediaDigitalInfo _parent;
 		public string SummaryInfo { get; set; }

@@ -208,7 +208,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		{
 			var outputConfigurations = new List<OutputConfiguration>();
 			if (Data.Parent.Snapshots.Any(s => s.Programs.Any()))
-				outputConfigurations.Add(new OutputConfiguration(SnapshotOutputType.Summary));
+				outputConfigurations.Add(new OutputConfiguration(
+					SnapshotOutputType.Summary,
+					Data.Parent.Snapshots.Count / ProgramsPerSlide + (Data.Parent.Snapshots.Count % ProgramsPerSlide > 0 ? 1 : 0)
+					));
 			return outputConfigurations;
 		}
 

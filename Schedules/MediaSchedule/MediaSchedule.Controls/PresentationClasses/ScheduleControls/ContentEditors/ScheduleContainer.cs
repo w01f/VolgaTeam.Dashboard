@@ -179,8 +179,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			base.LoadThemes();
 
 			FormThemeSelector.Link(
-				Controller.Instance.ProgramScheduleTheme, 
-				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType), 
+				Controller.Instance.ProgramScheduleTheme,
+				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType),
 				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType),
 				MediaMetaData.Instance.SettingsManager,
 				(theme, applyForAllSlideTypes) =>
@@ -380,7 +380,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				.Any(sectionTabControl => sectionTabControl.ReadyForOutput);
 		}
 
-		private void OnSectionDataChanged(object sender, EventArgs e)
+		private void OnSectionDataChanged(object sender, SectionDataChangedEventArgs e)
 		{
 			if (ActiveSection == null) return;
 			if (!_allowToSave) return;
@@ -390,6 +390,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			UpdateCollectionChangeButtons();
 			UpdateOutputStatus();
 			SettingsNotSaved = true;
+			if (e.SnapshotsChanged)
+				ChangeInfo.SnapshotsChanged= true;
+			if (e.OptionsSetsChanged)
+				ChangeInfo.OptionsChanged = true;
 		}
 
 		private void OnSectionSettingsChanged(object sender, SettingsChangedEventArgs e)
@@ -422,7 +426,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 			foreach (var sectionTabControl in xtraTabControlSections.TabPages.OfType<SectionContainer>())
 				sectionTabControl.UpdateAccordingSettings(e);
-			OnSectionDataChanged(sender, e);
+			OnSectionDataChanged(sender, new SectionDataChangedEventArgs());
 		}
 
 		private void OnSectionEditorChanged(object sender, EventArgs e)

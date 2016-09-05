@@ -6,7 +6,7 @@ using DevComponents.DotNetBar.Metro;
 
 namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
-	public partial class FormSnapshotName : MetroForm
+	public partial class FormSnapshotFromSection : MetroForm
 	{
 		public string SnapshotName
 		{
@@ -20,7 +20,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			}
 		}
 
-		public FormSnapshotName()
+		public bool CopySpots => checkEditCopySpots.Checked;
+
+		public FormSnapshotFromSection()
 		{
 			InitializeComponent();
 			if ((CreateGraphics()).DpiX > 96)
@@ -38,7 +40,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);
 			}
 		}
-
+		
 		private void textEditScheduleName_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode != Keys.Enter) return;

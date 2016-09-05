@@ -314,7 +314,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			}
 		}
 
-		private IEnumerable<DXMenuItem> GetContextMenuItems(ColumnView targetView, int targetRowHandle)
+		private IEnumerable<DXMenuItem> GetCellContextMenuItems(ColumnView targetView, int targetRowHandle)
 		{
 			var items = new List<DXMenuItem>();
 			var sourceIndex = targetView.GetDataSourceRowIndex(targetRowHandle);
@@ -405,7 +405,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private void OnGridViewPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
 		{
 			if (!e.HitInfo.InRowCell) return;
-			foreach (var menuItem in GetContextMenuItems(advBandedGridView, e.HitInfo.RowHandle))
+			foreach (var menuItem in GetCellContextMenuItems(advBandedGridView, e.HitInfo.RowHandle))
 				e.Menu.Items.Add(menuItem);
 		}
 
@@ -444,7 +444,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		private void OnPropertiesMenuBeforeShow(object sender, BeforeShowMenuEventArgs e)
 		{
-			var items = GetContextMenuItems(advBandedGridView, advBandedGridView.FocusedRowHandle);
+			var items = GetCellContextMenuItems(advBandedGridView, advBandedGridView.FocusedRowHandle);
 			if (!items.Any()) return;
 			e.Menu.Items.Clear();
 			foreach (var menuItem in items)
@@ -511,9 +511,14 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			var outputConfigurations = new List<OutputConfiguration>();
 			if (_data.Programs.Any() && (_data.ShowLineId || _data.ShowStation || _data.ShowProgram || _data.ShowDay || _data.ShowTime || _data.ShowSpots || _data.ShowRate || _data.ShowLenght || _data.ShowCost))
 			{
-				outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.Program));
+				outputConfigurations.Add(new OutputConfiguration(
+					OptionSetOutputType.Program,
+					_data.Programs.Count / ProgramsPerSlide + (_data.Programs.Count % ProgramsPerSlide > 0 ? 1 : 0)));
 				if (_data.DigitalInfo.Records.Any())
-					outputConfigurations.Add(new OutputConfiguration(OptionSetOutputType.ProgramAndDigital));
+					outputConfigurations.Add(new OutputConfiguration(
+						OptionSetOutputType.ProgramAndDigital,
+						(_data.Programs.Count + _data.DigitalInfo.Records.Count) / ProgramsPerSlide +
+							((_data.Programs.Count + _data.DigitalInfo.Records.Count) % ProgramsPerSlide > 0 ? 1 : 0)));
 			}
 			return outputConfigurations;
 		}

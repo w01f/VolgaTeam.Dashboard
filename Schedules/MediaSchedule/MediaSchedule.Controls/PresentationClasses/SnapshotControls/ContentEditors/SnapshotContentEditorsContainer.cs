@@ -115,7 +115,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			var quickLoad = EditedContent != null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
 				ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
 				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
-				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
+				ContentUpdateInfo.ChangeInfo.SpotTypeChanged ||
+				ContentUpdateInfo.ChangeInfo.SnapshotsChanged);
 
 			EditedContent?.Dispose();
 			EditedContent = Schedule.SnapshotContent.Clone<SnapshotContent, SnapshotContent>();
@@ -256,6 +257,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				xtraTabControlContentEditors.SelectedTabPage = snapshotEditorsContainer;
 				Summary.UpdateView();
 				UpdateSplash();
+				SettingsNotSaved = true;
 			}
 		}
 
@@ -273,6 +275,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				var newControl = AddSnapshotSetEditorsContainerControl(snapshot, (Int32)snapshot.Index);
 				xtraTabControlContentEditors.SelectedTabPage = newControl;
 				Summary.UpdateView();
+				SettingsNotSaved = true;
 			}
 		}
 

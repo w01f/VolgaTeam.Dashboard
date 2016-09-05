@@ -323,6 +323,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionItemCollectionControl.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDataChangedEventArgs.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -352,6 +353,7 @@
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionSummaryControl.Designer.cs">
       <DependentUpon>SectionSummaryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputItem.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputType.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.cs">
       <SubType>Form</SubType>
@@ -459,6 +461,12 @@
     </Compile>
     <Compile Include="PresentationClasses\Slides\MediaSlidesControl.Designer.cs">
       <DependentUpon>MediaSlidesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\FormSnapshotFromSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\FormSnapshotFromSection.Designer.cs">
+      <DependentUpon>FormSnapshotFromSection.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotCollectionEditorControl.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotContentEditorControl.cs" />
@@ -731,6 +739,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Slides\MediaSlidesControl.resx">
       <DependentUpon>MediaSlidesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\FormSnapshotFromSection.resx">
+      <DependentUpon>FormSnapshotFromSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.resx">
       <DependentUpon>SnapshotContentEditorsContainer.cs</DependentUpon>

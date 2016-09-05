@@ -1,4 +1,5 @@
-﻿using Asa.Business.Common.Entities.NonPersistent.Schedule;
+﻿using System;
+using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Online.Entities.NonPersistent;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Schedule
@@ -10,6 +11,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 		public bool CalendarTypeChanged { get; set; }
 		public bool ProgramScheduleChanged { get; set; }
 		public bool SnapshotsChanged { get; set; }
+		public bool OptionsChanged { get; set; }
 
 		public override void Reset()
 		{
@@ -18,6 +20,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			CalendarTypeChanged = false;
 			ProgramScheduleChanged = false;
 			SnapshotsChanged = false;
+			OptionsChanged = false;
 		}
 
 		public override void Merge(BaseScheduleChangeInfo newInfo)
@@ -29,6 +32,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			CalendarTypeChanged |= newMediaInfo.CalendarTypeChanged;
 			ProgramScheduleChanged |= newMediaInfo.ProgramScheduleChanged;
 			SnapshotsChanged |= newMediaInfo.SnapshotsChanged;
+			OptionsChanged |= newMediaInfo.OptionsChanged;
 		}
 	}
 }

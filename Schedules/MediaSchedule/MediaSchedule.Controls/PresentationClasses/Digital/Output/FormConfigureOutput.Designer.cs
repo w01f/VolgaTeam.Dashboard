@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.buttonXContinue = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
 			this.treeView = new Asa.Common.GUI.Common.NoDoubleClickTreeView();
 			this.buttonXSelectNone = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSelectAll = new DevComponents.DotNetBar.ButtonX();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.labelControlSlidesCount = new DevExpress.XtraEditors.LabelControl();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonXContinue
@@ -75,7 +79,7 @@
 			this.treeView.ShowLines = false;
 			this.treeView.ShowPlusMinus = false;
 			this.treeView.ShowRootLines = false;
-			this.treeView.Size = new System.Drawing.Size(322, 311);
+			this.treeView.Size = new System.Drawing.Size(322, 284);
 			this.treeView.TabIndex = 12;
 			this.treeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.OnTreeViewAfterCheck);
 			this.treeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.OnTreeViewBeforeCollapse);
@@ -111,11 +115,43 @@
 			this.buttonXSelectAll.TextColor = System.Drawing.Color.Black;
 			this.buttonXSelectAll.Click += new System.EventHandler(this.OnSelectAllClick);
 			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
+			// labelControlSlidesCount
+			// 
+			this.labelControlSlidesCount.AllowHtmlString = true;
+			this.labelControlSlidesCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlSlidesCount.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlSlidesCount.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlSlidesCount.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.labelControlSlidesCount.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlSlidesCount.Location = new System.Drawing.Point(14, 343);
+			this.labelControlSlidesCount.Name = "labelControlSlidesCount";
+			this.labelControlSlidesCount.Size = new System.Drawing.Size(322, 21);
+			this.labelControlSlidesCount.StyleController = this.styleController;
+			this.labelControlSlidesCount.TabIndex = 24;
+			this.labelControlSlidesCount.Text = "Estimated Slides";
+			// 
 			// FormConfigureOutput
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(350, 420);
+			this.Controls.Add(this.labelControlSlidesCount);
 			this.Controls.Add(this.buttonXSelectNone);
 			this.Controls.Add(this.buttonXSelectAll);
 			this.Controls.Add(this.treeView);
@@ -131,6 +167,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Slide Output Options";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -142,5 +179,7 @@
 		private Common.GUI.Common.NoDoubleClickTreeView treeView;
 		public DevComponents.DotNetBar.ButtonX buttonXSelectNone;
 		public DevComponents.DotNetBar.ButtonX buttonXSelectAll;
+		private DevExpress.XtraEditors.StyleController styleController;
+		private DevExpress.XtraEditors.LabelControl labelControlSlidesCount;
 	}
 }

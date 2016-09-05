@@ -19,8 +19,7 @@ namespace Asa.Media.LegacyConverter.Converters
 			Application.DoEvents();
 			target.SnapshotContent.ImportData(source);
 			Application.DoEvents();
-			target.GetSchedulePartitionContent<OptionsContent>(SchedulePartitionType.Options)
-				.ImportData(source);
+			target.OptionsContent.ImportData(source);
 			Application.DoEvents();
 			target.GetSchedulePartitionContent<BroadcastCalendar>(SchedulePartitionType.BroadcastCalendar)
 				.ImportData(source.BroadcastCalendar);

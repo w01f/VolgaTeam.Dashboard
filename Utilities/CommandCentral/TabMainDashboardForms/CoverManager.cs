@@ -125,12 +125,14 @@ namespace CommandCentral.TabMainDashboardForms
 				}
 				xml.AppendLine(@"</CoverSlide>");
 
-				string xmlPath = Path.Combine(Application.StartupPath, CoverDestinationFileName);
+				var xmlPath = Path.Combine(Application.StartupPath, CoverDestinationFileName);
 				using (var sw = new StreamWriter(xmlPath, false))
 				{
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 
 				AppManager.Instance.ShowInformation("Data was updated.");
 			}

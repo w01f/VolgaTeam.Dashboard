@@ -149,6 +149,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="InteropClasses\WinAPIHelper.cs" />
+    <Compile Include="ProductionFilesUpdateHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TabMainDashboardForms\QuickListManager.cs" />

@@ -564,12 +564,14 @@ namespace CommandCentral.TabMainDashboardForms
 
 			xml.AppendLine(@"</RadioStrategy>");
 
-			string xmlPath = Path.Combine(Application.StartupPath, DestinationFileName);
+			var xmlPath = Path.Combine(Application.StartupPath, DestinationFileName);
 			using (var sw = new StreamWriter(xmlPath, false))
 			{
 				sw.Write(xml.ToString());
 				sw.Flush();
 			}
+
+			ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 
 			AppManager.Instance.ShowInformation("Data was updated.");
 		}

@@ -164,12 +164,14 @@ namespace CommandCentral.TabSalesDepotForms
 				}
 				xml.AppendLine(@"</SDSearch>");
 
-				string xmlPath = Path.Combine(Application.StartupPath, SalesDepotSearchDestinationFileName);
+				var xmlPath = Path.Combine(Application.StartupPath, SalesDepotSearchDestinationFileName);
 				using (var sw = new StreamWriter(xmlPath, false))
 				{
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 
 				AppManager.Instance.ShowInformation("Data was updated.");
 			}

@@ -185,12 +185,15 @@ namespace CommandCentral.TabMainDashboardForms
 				}
 				xml.AppendLine(@"</Users>");
 
-				string xmlPath = Path.Combine(Application.StartupPath, UsersDestinationFileName);
+				var xmlPath = Path.Combine(Application.StartupPath, UsersDestinationFileName);
 				using (var sw = new StreamWriter(xmlPath, false))
 				{
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
+
 				AppManager.Instance.ShowInformation("Data was updated.");
 			}
 		}

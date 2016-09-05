@@ -1225,6 +1225,8 @@ namespace CommandCentral.TabMainDashboardForms
 				sw.Flush();
 			}
 
+			ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
+
 			AppManager.Instance.ShowInformation("Data was updated.");
 		}
 	}

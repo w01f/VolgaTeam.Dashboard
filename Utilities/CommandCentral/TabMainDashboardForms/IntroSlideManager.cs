@@ -123,12 +123,14 @@ namespace CommandCentral.TabMainDashboardForms
 				}
 				xml.AppendLine(@"</LeadOff>");
 
-				string xmlPath = Path.Combine(Application.StartupPath, IntroSlideDestinationFileName);
+				var xmlPath = Path.Combine(Application.StartupPath, IntroSlideDestinationFileName);
 				using (var sw = new StreamWriter(xmlPath, false))
 				{
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 
 				AppManager.Instance.ShowInformation("Data was updated.");
 			}

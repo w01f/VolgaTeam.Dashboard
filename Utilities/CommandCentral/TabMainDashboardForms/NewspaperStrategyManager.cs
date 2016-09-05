@@ -2780,6 +2780,8 @@ namespace CommandCentral.TabMainDashboardForms
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 				#endregion
 
 				AppManager.Instance.ShowInformation("Data was updated.");

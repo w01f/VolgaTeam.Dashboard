@@ -224,12 +224,14 @@ namespace CommandCentral.TabSalesDepotForms
 				}
 				xml.AppendLine(@"</ApprovedLibraries>");
 
-				string xmlPath = Path.Combine(Application.StartupPath, SalesDepotAccessRightsDestinationFileName);
+				var xmlPath = Path.Combine(Application.StartupPath, SalesDepotAccessRightsDestinationFileName);
 				using (var sw = new StreamWriter(xmlPath, false))
 				{
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 
 				AppManager.Instance.ShowInformation("Data was updated.");
 			}

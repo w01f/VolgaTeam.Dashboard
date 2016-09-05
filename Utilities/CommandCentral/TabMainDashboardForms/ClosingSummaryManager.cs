@@ -121,12 +121,14 @@ namespace CommandCentral.TabMainDashboardForms
 				}
 				xml.AppendLine(@"</SimpleSummary>");
 
-				string xmlPath = Path.Combine(Application.StartupPath, ClosingSummaryDestinationFileName);
+				var xmlPath = Path.Combine(Application.StartupPath, ClosingSummaryDestinationFileName);
 				using (var sw = new StreamWriter(xmlPath, false))
 				{
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 
 				AppManager.Instance.ShowInformation("Data was updated.");
 			}

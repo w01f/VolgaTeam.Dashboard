@@ -93,12 +93,14 @@ namespace CommandCentral.TabSalesProForms
 				}
 				xml.AppendLine(@"</CampaignSummary>");
 
-				string xmlPath = Path.Combine(Application.StartupPath, CampaignSummaryDestinationFileName);
+				var xmlPath = Path.Combine(Application.StartupPath, CampaignSummaryDestinationFileName);
 				using (var sw = new StreamWriter(xmlPath, false))
 				{
 					sw.Write(xml.ToString());
 					sw.Flush();
 				}
+
+				ProductionFilesUpdateHelper.UpdateProductionFies(xmlPath);
 
 				AppManager.Instance.ShowInformation("Data was updated.");
 			}

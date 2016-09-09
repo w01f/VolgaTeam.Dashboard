@@ -104,10 +104,12 @@ namespace CommandCentral.TabSalesDepotForms
 						foreach (DataRow row in dataTable.Rows)
 						{
 							string groupName = row[0].ToString().Trim();
-							SearchGroup searchGroup = _categories.Where(x => x.Name.Equals(groupName)).FirstOrDefault();
+							SearchGroup searchGroup = _categories.FirstOrDefault(x => x.Name.Equals(groupName));
 							if (searchGroup != null)
+							{
 								searchGroup.Description = row[1].ToString().Trim();
-							searchGroups.Add(searchGroup);
+								searchGroups.Add(searchGroup);
+							}
 						}
 				}
 				catch { }

@@ -256,16 +256,19 @@ namespace AdSalesBrowser.Interops
 			if (destinationPresentation == null)
 				destinationPresentation = GetActivePresentation();
 
+			var activeSlideIndex = GetActiveSlideIndex();
+
 			for (var i = 1; i <= sourcePresentation.Slides.Count; i++)
 			{
 				sourcePresentation.Slides[i].Copy();
 				try
 				{
 					destinationPresentation.Application.CommandBars.ExecuteMso("PasteSourceFormatting");
+					activeSlideIndex++;
+					destinationPresentation.Slides[activeSlideIndex].Select();
 				}
 				catch { }
 			}
-			destinationPresentation.Slides[destinationPresentation.Slides.Count].Select();
 		}
 
 		public void PrintPresentation(string presentationPath, int currentSlideIndex, Action<Action> printActionWrapper)

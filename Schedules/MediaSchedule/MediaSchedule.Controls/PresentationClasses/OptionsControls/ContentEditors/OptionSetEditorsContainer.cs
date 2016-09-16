@@ -64,6 +64,14 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			xtraTabControl.SelectedPageChanged += OnSelectedOptionsSetEditorChanged;
 		}
 
+		public void ShowEditor(OptionEditorType editorType)
+		{
+			var editorToShow = xtraTabControl.TabPages
+				.OfType<IOptionSetEditorControl>()
+				.First(e => e.EditorType == editorType);
+			xtraTabControl.SelectedTabPage = (XtraTabPage)editorToShow;
+		}
+
 		public void Release()
 		{
 			_optionsControl.Release();

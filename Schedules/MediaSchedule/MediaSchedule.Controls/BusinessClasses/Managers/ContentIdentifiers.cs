@@ -1,6 +1,6 @@
 ﻿namespace Asa.Media.Controls.BusinessClasses.Managers
 {
-	static class ContentIdentifiers
+	public static class ContentIdentifiers
 	{
 		public const string ScheduleSettings = "Home";
 		public const string ProgramSchedule = "Schedule";

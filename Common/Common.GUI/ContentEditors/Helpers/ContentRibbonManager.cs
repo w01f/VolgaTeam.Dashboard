@@ -20,9 +20,13 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 			_controller.ContentRibbon.SelectedRibbonTabChanged += OnSelectedRibbonTabChanged;
 		}
 
-		public static void RaiseTabChanged()
+		public static void ShowRibbonTab(string contentIdentifier, ContentOpenEventArgs args = null)
 		{
-			OnSelectedRibbonTabChanged(null, EventArgs.Empty);
+			var tabPage = _controller.ContentControls.FirstOrDefault(c => c.Identifier == contentIdentifier)?.TabPage;
+			_tabChangeInProgress = true;
+			_controller.ContentRibbon.SelectedRibbonTabItem = tabPage;
+			_tabChangeInProgress = false;
+			OnSelectedRibbonTabChanged(null, args ?? EventArgs.Empty);
 		}
 
 		private static void OnSelectedRibbonTabChanged(object sender, EventArgs e)
@@ -50,17 +54,17 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 				foreach (var contentControl in _controller.ContentControls)
 				{
 					contentControl.IsActive = false;
-					((Control) contentControl).Visible = false;
+					((Control)contentControl).Visible = false;
 				}
 				_controller.ActiveControl = _controller.ContentControls
 					.First(c => c.Identifier == (String)_controller.ContentRibbon.SelectedRibbonTabItem.Tag);
-				if (!_controller.MainPanel.Controls.Contains((Control) _controller.ActiveControl))
+				if (!_controller.MainPanel.Controls.Contains((Control)_controller.ActiveControl))
 				{
-					_controller.MainPanel.Controls.Add((Control) _controller.ActiveControl);
+					_controller.MainPanel.Controls.Add((Control)_controller.ActiveControl);
 					_controller.ActiveControl.InitControl();
 				}
-				_controller.ActiveControl.ShowControl();
-				((Control) _controller.ActiveControl).Visible = true;
+				_controller.ActiveControl.ShowControl(e as ContentOpenEventArgs);
+				((Control)_controller.ActiveControl).Visible = true;
 				((Control)_controller.ActiveControl).BringToFront();
 				_controller.MainPanel.BringToFront();
 

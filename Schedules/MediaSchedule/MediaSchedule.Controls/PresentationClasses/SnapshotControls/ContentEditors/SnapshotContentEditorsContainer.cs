@@ -16,6 +16,7 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ContentEditors.Controls;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
 using Asa.Common.GUI.ToolForms;
@@ -106,6 +107,19 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				laTotalCostValue.Font = font;
 				laAvgRateValue.Font = font;
 			}
+		}
+
+		public override void ShowControl(ContentOpenEventArgs args = null)
+		{
+			base.ShowControl(args);
+			var snapshotOpenEventArgs = args as SnapshotOpenEventArgs;
+			if (snapshotOpenEventArgs == null) return;
+			var editorsContainer = xtraTabControlContentEditors.TabPages
+				.OfType<SnapshotEditorsContainer>()
+				.FirstOrDefault(c => c.SnapshotData.UniqueID == snapshotOpenEventArgs.SnapshotId);
+			if (editorsContainer == null) return;
+			xtraTabControlContentEditors.SelectedTabPage = editorsContainer;
+			editorsContainer.ShowEditor(snapshotOpenEventArgs.EditorType);
 		}
 
 		protected override void UpdateEditedContet()

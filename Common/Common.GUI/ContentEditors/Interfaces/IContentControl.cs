@@ -1,4 +1,5 @@
-﻿using DevComponents.DotNetBar;
+﻿using Asa.Common.GUI.ContentEditors.Events;
+using DevComponents.DotNetBar;
 
 namespace Asa.Common.GUI.ContentEditors.Interfaces
 {
@@ -9,7 +10,7 @@ namespace Asa.Common.GUI.ContentEditors.Interfaces
 		RibbonTabItem TabPage { get; }
 		void InitMetaData();
 		void InitControl();
-		void ShowControl();
+		void ShowControl(ContentOpenEventArgs args = null);
 		void GetHelp();
 	}
 }

@@ -480,7 +480,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			CloneLineToTheEnd = templateData.CloneLineToTheEnd;
 		}
 
-		public void CopyScheduleToSnapshot(string name, DateTime spotDate, bool copySpots)
+		public Snapshot.Snapshot CopyScheduleToSnapshot(string name, DateTime spotDate, bool copySpots)
 		{
 			var snapshot = new Snapshot.Snapshot(ParentSchedule.SnapshotContent);
 
@@ -601,9 +601,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			}
 
 			ParentSchedule.SnapshotContent.Snapshots.Add(snapshot);
+
+			return snapshot;
 		}
 
-		public void CopyDigitalToSnapshot(string name)
+		public Snapshot.Snapshot CopyDigitalToSnapshot(string name)
 		{
 			var snapshot = new Snapshot.Snapshot(ParentSchedule.SnapshotContent);
 
@@ -616,6 +618,8 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			ParentSchedule.SnapshotContent.Snapshots.Add(snapshot);
 
 			CopyDigitalToSnapshot(snapshot);
+
+			return snapshot;
 		}
 
 		public void CopyDigitalToSnapshot(Snapshot.Snapshot targetSnapshot)
@@ -623,7 +627,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			targetSnapshot.DigitalInfo = DigitalInfo.Clone<MediaDigitalInfo, MediaDigitalInfo>();
 		}
 
-		public void CopyScheduleToOptionsSet(string name)
+		public OptionSet CopyScheduleToOptionsSet(string name)
 		{
 			var optionSet = new OptionSet(ParentSchedule.OptionsContent);
 
@@ -652,9 +656,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 
 			ParentSchedule.OptionsContent.Options.Add(optionSet);
 
+			return optionSet;
 		}
 
-		public void CopyDigitalToOptionsSet(string name)
+		public OptionSet CopyDigitalToOptionsSet(string name)
 		{
 			var optionSet = new OptionSet(ParentSchedule.OptionsContent);
 
@@ -667,6 +672,8 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Content
 			ParentSchedule.OptionsContent.Options.Add(optionSet);
 
 			CopyDigitalToOptionsSet(optionSet);
+
+			return optionSet;
 		}
 
 		public void CopyDigitalToOptionsSet(OptionSet targetOptionsSet)

@@ -1,4 +1,5 @@
 ﻿using Asa.Business.Common.Entities.NonPersistent.Schedule;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Interfaces;
 using Asa.Common.GUI.ContentEditors.Objects;
 
@@ -19,9 +20,9 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 			ThemeUpdateInfo = new ThemeUpdateInfo();
 		}
 
-		public override void ShowControl()
+		public override void ShowControl(ContentOpenEventArgs args = null)
 		{
-			base.ShowControl();
+			base.ShowControl(args);
 			if (ThemeUpdateInfo.NeedToUpdate)
 				LoadThemes();
 		}

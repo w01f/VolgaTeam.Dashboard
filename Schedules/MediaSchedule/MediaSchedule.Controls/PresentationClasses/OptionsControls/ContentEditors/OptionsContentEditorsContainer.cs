@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Business.Common.Enums;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
@@ -17,6 +16,7 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ContentEditors.Controls;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
 using Asa.Common.GUI.ToolForms;
@@ -102,6 +102,19 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				laAvgRateValue.Font = font;
 				laTotalCostValue.Font = font;
 			}
+		}
+
+		public override void ShowControl(ContentOpenEventArgs args = null)
+		{
+			base.ShowControl(args);
+			var optionsSetOpenEventArgs = args as OptionsSetOpenEventArgs;
+			if (optionsSetOpenEventArgs == null) return;
+			var editorsContainer = xtraTabControlContentEditors.TabPages
+				.OfType<OptionSetEditorsContainer>()
+				.FirstOrDefault(c => c.OptionSetData.UniqueID == optionsSetOpenEventArgs.OptionsSetId);
+			if (editorsContainer == null) return;
+			xtraTabControlContentEditors.SelectedTabPage = editorsContainer;
+			editorsContainer.ShowEditor(optionsSetOpenEventArgs.EditorType);
 		}
 
 		protected override void UpdateEditedContet()

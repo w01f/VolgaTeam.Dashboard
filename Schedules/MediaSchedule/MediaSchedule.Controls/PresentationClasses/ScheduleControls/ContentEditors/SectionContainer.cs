@@ -5,9 +5,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.ContentEditors.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
@@ -249,9 +251,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 							form.SnapshotName = SectionData.Name;
 							if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 							{
-								SectionData.CopyDigitalToSnapshot(form.SnapshotName);
+								var newSnapshot = SectionData.CopyDigitalToSnapshot(form.SnapshotName);
 								RaiseDataChanged(new SectionDataChangedEventArgs { SnapshotsChanged = true });
-								PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+								using (var confirmation = new FormCopyContentConfirmation())
+								{
+									confirmation.Text = "Send to Snapshot";
+									confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+									confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabSnapshot.Text);
+									if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+										ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
+											ContentIdentifiers.Snapshots,
+											new SnapshotOpenEventArgs
+											{
+												SnapshotId = newSnapshot.UniqueID,
+												EditorType = SnapshotEditorType.DigitalInfo
+											});
+								}
 							}
 						}
 					}));
@@ -265,7 +280,20 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						_digitalInfoControl.SaveData();
 						SectionData.CopyDigitalToSnapshot(snapshot);
 						RaiseDataChanged(new SectionDataChangedEventArgs { SnapshotsChanged = true });
-						PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+						using (var confirmation = new FormCopyContentConfirmation())
+						{
+							confirmation.Text = "Send to Snapshot";
+							confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+							confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabSnapshot.Text);
+							if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+								ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
+									ContentIdentifiers.Snapshots,
+									new SnapshotOpenEventArgs
+									{
+										SnapshotId = snapshot.UniqueID,
+										EditorType = SnapshotEditorType.DigitalInfo
+									});
+						}
 					}));
 				}
 
@@ -281,9 +309,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 							form.OptionSetName = SectionData.Name;
 							if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 							{
-								SectionData.CopyDigitalToOptionsSet(form.OptionSetName);
+								var newOptionsSet = SectionData.CopyDigitalToOptionsSet(form.OptionSetName);
 								RaiseDataChanged(new SectionDataChangedEventArgs { OptionsSetsChanged = true });
-								PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+								using (var confirmation = new FormCopyContentConfirmation())
+								{
+									confirmation.Text = "Send to Flex-Grid";
+									confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+									confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabOptions.Text);
+									if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+										ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
+											ContentIdentifiers.Options,
+											new OptionsSetOpenEventArgs
+											{
+												OptionsSetId = newOptionsSet.UniqueID,
+												EditorType = OptionEditorType.DigitalInfo
+											});
+								}
 							}
 						}
 					}));
@@ -297,7 +338,20 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						_digitalInfoControl.SaveData();
 						SectionData.CopyDigitalToOptionsSet(optionSet);
 						RaiseDataChanged(new SectionDataChangedEventArgs { OptionsSetsChanged = true });
-						PopupMessageHelper.Instance.ShowInformation("Digital successfully copied");
+						using (var confirmation = new FormCopyContentConfirmation())
+						{
+							confirmation.Text = "Send to Flex-Grid";
+							confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+							confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabOptions.Text);
+							if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+								ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
+									ContentIdentifiers.Options,
+									new OptionsSetOpenEventArgs
+									{
+										OptionsSetId = optionSet.UniqueID,
+										EditorType = OptionEditorType.DigitalInfo
+									});
+						}
 					}));
 				}
 
@@ -312,9 +366,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				form.OptionSetName = SectionData.Name;
 				if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 				{
-					SectionData.CopyScheduleToOptionsSet(form.OptionSetName);
+					var newOptionSet = SectionData.CopyScheduleToOptionsSet(form.OptionSetName);
 					RaiseDataChanged(new SectionDataChangedEventArgs { OptionsSetsChanged = true });
-					PopupMessageHelper.Instance.ShowInformation("Flex-Grid successfully added");
+					using (var confirmation = new FormCopyContentConfirmation())
+					{
+						confirmation.Text = "Create Flex-Grid";
+						confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Flex-Grid successfully added");
+						confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabOptions.Text);
+						if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+							ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
+								ContentIdentifiers.Options,
+								new OptionsSetOpenEventArgs
+								{
+									OptionsSetId = newOptionSet.UniqueID,
+									EditorType = OptionEditorType.Schedule
+								});
+					}
 				}
 			}
 		}

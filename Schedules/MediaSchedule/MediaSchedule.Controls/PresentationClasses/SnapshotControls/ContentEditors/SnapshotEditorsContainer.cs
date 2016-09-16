@@ -64,6 +64,14 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			xtraTabControl.SelectedPageChanged += OnSelectedSnapshotsSetEditorChanged;
 		}
 
+		public void ShowEditor(SnapshotEditorType editorType)
+		{
+			var editorToShow = xtraTabControl.TabPages
+				.OfType<ISnapshotEditorControl>()
+				.First(e => e.EditorType == editorType);
+			xtraTabControl.SelectedTabPage = (XtraTabPage)editorToShow;
+		}
+
 		public void Release()
 		{
 			_snapshotControl.Release();

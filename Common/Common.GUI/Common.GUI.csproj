@@ -119,6 +119,7 @@
     <Compile Include="ContentEditors\Controls\BaseContentOutputControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ContentEditors\Events\ContentOpenEventArgs.cs" />
     <Compile Include="ContentEditors\Helpers\ContentEditManager.cs" />
     <Compile Include="ContentEditors\Interfaces\IThemeManagementControl.cs" />
     <Compile Include="ContentEditors\Objects\ContentEditorRelation.cs" />

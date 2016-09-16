@@ -330,8 +330,7 @@ namespace Asa.Media.Single
 		private void LoadData()
 		{
 			UpdateFormTitle();
-			ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
-			ContentRibbonManager<MediaScheduleChangeInfo>.RaiseTabChanged();
+			ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(ContentIdentifiers.ScheduleSettings);
 			Controller.Instance.CheckPowerPointRunning();
 		}
 

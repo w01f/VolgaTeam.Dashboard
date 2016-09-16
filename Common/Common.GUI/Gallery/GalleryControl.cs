@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Gallery;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -90,7 +91,7 @@ namespace Asa.Common.GUI.Gallery
 			Copy.Click += Copy_Click;
 		}
 
-		public void ShowControl()
+		public void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
 			LoadData();

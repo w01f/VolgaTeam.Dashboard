@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Slides;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Interfaces;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Slides;
@@ -64,7 +65,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			PowerPointManager.Instance.SettingsChanged += (o, e) => LoadSlides();
 		}
 
-		public void ShowControl()
+		public void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
 		}

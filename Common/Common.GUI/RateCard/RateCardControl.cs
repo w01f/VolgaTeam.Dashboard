@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -37,7 +38,7 @@ namespace Asa.Common.GUI.RateCard
 			Disposed += RateCardControl_Disposed;
 		}
 
-		public void ShowControl()
+		public void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
 			LoadRateCards();

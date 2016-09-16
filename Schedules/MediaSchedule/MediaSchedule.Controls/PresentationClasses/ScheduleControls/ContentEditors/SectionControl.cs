@@ -16,6 +16,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.ContentEditors.Helpers;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
@@ -421,15 +422,27 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						form.SnapshotName = _sectionContainer.SectionData.Name;
 						if (form.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 						{
-							_sectionContainer.SectionData.CopyScheduleToSnapshot(
+							var newSnapshot = _sectionContainer.SectionData.CopyScheduleToSnapshot(
 								form.SnapshotName,
 								(DateTime)((object[])targetColumn.Tag)[3],
 								form.CopySpots);
 							_sectionContainer.RaiseDataChanged(new SectionDataChangedEventArgs { SnapshotsChanged = true });
-							PopupMessageHelper.Instance.ShowInformation("Snapshot successfully added");
+							using (var confirmation = new FormCopyContentConfirmation())
+							{
+								confirmation.Text = "Create Snapshot";
+								confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Snapshot successfully added");
+								confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabSnapshot.Text);
+								if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
+									ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
+										ContentIdentifiers.Snapshots,
+										new SnapshotOpenEventArgs
+										{
+											SnapshotId = newSnapshot.UniqueID,
+											EditorType = SnapshotEditorType.Schedule
+										});
+							}
 						}
 					}
-
 				}));
 			}
 			return items;

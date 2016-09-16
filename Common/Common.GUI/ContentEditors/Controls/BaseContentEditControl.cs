@@ -39,7 +39,7 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 
 		public virtual void InitControl() { }
 
-		public virtual void ShowControl()
+		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
 			if (ContentUpdateInfo.NeedToUpdate)

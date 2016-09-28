@@ -50,6 +50,10 @@ namespace Asa.Media.Controls.InteropClasses
 											if (!string.IsNullOrEmpty(monthOutputData.LogoFile))
 											{
 												var logoShape = slide.Shapes.AddPicture(monthOutputData.LogoFile, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+												logoShape.Top = shape.Top;
+												logoShape.Left = shape.Left;
+												logoShape.Width = shape.Width;
+												logoShape.Height = shape.Height;
 												if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 													logoShape.Rotation = 90;
 											}
@@ -404,12 +408,20 @@ namespace Asa.Media.Controls.InteropClasses
 					if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 					{
 						imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + shape.Width - ((shape.Width - shape.Height) / 2) - dayLogo.XtraTinyImage.Width + ((dayLogo.XtraTinyImage.Width - dayLogo.XtraTinyImage.Height) / 2), shape.Top + (shape.Height - dayLogo.XtraTinyImage.Height) / 2, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
+						imageShape.Top = shape.Top + (shape.Height - dayLogo.XtraTinyImage.Height) / 2;
+						imageShape.Left = shape.Left + shape.Width - ((shape.Width - shape.Height) / 2) - dayLogo.XtraTinyImage.Width + ((dayLogo.XtraTinyImage.Width - dayLogo.XtraTinyImage.Height) / 2);
+						imageShape.Width = dayLogo.XtraTinyImage.Width;
+						imageShape.Height = dayLogo.XtraTinyImage.Height;
 						imageShape.Rotation = 90;
 					}
 					else
 					{
 						var heightOffset = ((!String.IsNullOrEmpty(dayText) || hasNote) ? 0 : ((shape.Height - dayLogo.XtraTinyImage.Height) / 2)) + 5;
 						imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + (shape.Width - dayLogo.XtraTinyImage.Width) / 2, shape.Top + heightOffset, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
+						imageShape.Top = shape.Top + heightOffset;
+						imageShape.Left = shape.Left + (shape.Width - dayLogo.XtraTinyImage.Width) / 2;
+						imageShape.Width = dayLogo.XtraTinyImage.Width;
+						imageShape.Height = dayLogo.XtraTinyImage.Height;
 					}
 				}
 				if (!String.IsNullOrEmpty(dayText))

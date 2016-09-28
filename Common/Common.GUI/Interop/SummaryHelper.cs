@@ -285,7 +285,11 @@ namespace Asa.Common.GUI.Interop
 														!String.IsNullOrEmpty(summary.TableIcons[j + startIndex]))
 													{
 														var filePath = MasterWizardManager.Instance.SelectedWizard.GetSimpleSummaryIconFile(summary.TableIcons[j + startIndex]);
-														slide.Shapes.AddPicture(filePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+														var newShape = slide.Shapes.AddPicture(filePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+														newShape.Top = shape.Top;
+														newShape.Left = shape.Left;
+														newShape.Width = shape.Width;
+														newShape.Height = shape.Height;
 													}
 													shape.Visible = MsoTriState.msoFalse;
 												}

@@ -44,8 +44,15 @@ namespace Asa.Media.Controls.InteropClasses
 									{
 										var fileName = page.Logos.Length > j ? page.Logos[j] : String.Empty;
 										if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
-											logoShapes.Add(taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left,
-												shape.Top, shape.Width, shape.Height));
+										{
+											var newShape = taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left,
+												shape.Top, shape.Width, shape.Height);
+											newShape.Top = shape.Top;
+											newShape.Left = shape.Left;
+											newShape.Width = shape.Width;
+											newShape.Height = shape.Height;
+											logoShapes.Add(newShape);
+										}
 										shape.Visible = MsoTriState.msoFalse;
 									}
 								}
@@ -55,8 +62,15 @@ namespace Asa.Media.Controls.InteropClasses
 									{
 										var fileName = page.DigitalInfo.Logos.Length > j ? page.DigitalInfo.Logos[j] : String.Empty;
 										if (!String.IsNullOrEmpty(fileName) && File.Exists(fileName))
-											logoShapes.Add(taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left,
-												shape.Top, shape.Width, shape.Height));
+										{
+											var newShape = taggedSlide.Shapes.AddPicture(fileName, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left,
+												shape.Top, shape.Width, shape.Height);
+											newShape.Top = shape.Top;
+											newShape.Left = shape.Left;
+											newShape.Width = shape.Width;
+											newShape.Height = shape.Height;
+											logoShapes.Add(newShape);
+										}
 										shape.Visible = MsoTriState.msoFalse;
 									}
 								}

@@ -13,6 +13,8 @@ namespace CommandCentral.Entities.SalesDepot
 
 		public string Name { get; set; }
 		public string Description { get; set; }
+		public string TopGroupName { get; set; }
+		public string TopGroupIcon { get; set; }
 		public List<string> Tags { get; set; }
 	}
 }

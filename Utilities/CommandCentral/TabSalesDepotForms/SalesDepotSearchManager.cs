@@ -40,7 +40,9 @@ namespace CommandCentral.TabSalesDepotForms
 					var searchGroup = new SearchGroup();
 					searchGroup.Name = row["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "").Replace("#", ".");
 
-					if (!searchGroup.Name.Trim().Equals("Categories") && !searchGroup.Name.Trim().Equals("Settings"))
+					if (!searchGroup.Name.Trim().Equals("Categories") &&
+						!searchGroup.Name.Trim().Equals("Settings") &&
+						!searchGroup.Name.Trim().Equals("Groups"))
 						_categories.Add(searchGroup);
 				}
 			}
@@ -50,6 +52,7 @@ namespace CommandCentral.TabSalesDepotForms
 		public static void UpdateData()
 		{
 			var searchGroups = new List<SearchGroup>();
+			var searchTopGroupIcons = new Dictionary<string, string>();
 			var maxTags = 0;
 			var tagCount = false;
 
@@ -72,7 +75,7 @@ namespace CommandCentral.TabSalesDepotForms
 				bool tempBool;
 				int tempInt;
 
-				//Load Groups
+				//Load Settings
 				dataAdapter = new OleDbDataAdapter("SELECT * FROM [Settings$]", connection);
 				dataTable = new DataTable();
 				try
@@ -84,6 +87,26 @@ namespace CommandCentral.TabSalesDepotForms
 							maxTags = tempInt;
 						else if (row[0].ToString().Equals("Tag Count") && bool.TryParse(row[1].ToString(), out tempBool))
 							tagCount = tempBool;
+					}
+				}
+				catch { }
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
+				//Load Top Group Icons
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [Groups$]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					foreach (DataRow row in dataTable.Rows)
+					{
+						var topGroupName = row[0].ToString().Trim();
+						var topGroupIcon = row[1].ToString().Trim();
+						searchTopGroupIcons.Add(topGroupName, topGroupIcon);
 					}
 				}
 				catch { }
@@ -108,6 +131,12 @@ namespace CommandCentral.TabSalesDepotForms
 							if (searchGroup != null)
 							{
 								searchGroup.Description = row[1].ToString().Trim();
+
+								var topGroupName = row[2].ToString().Trim();
+								searchGroup.TopGroupName = topGroupName;
+								if (searchTopGroupIcons.ContainsKey(topGroupName))
+									searchGroup.TopGroupIcon = searchTopGroupIcons[topGroupName];
+
 								searchGroups.Add(searchGroup);
 							}
 						}
@@ -155,6 +184,8 @@ namespace CommandCentral.TabSalesDepotForms
 					xml.Append(@"<Category ");
 					xml.Append("Name = \"" + group.Name.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("Description = \"" + group.Description.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("Group = \"" + group.TopGroupName.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("GroupIcon = \"" + group.TopGroupIcon.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + "\" ");
 					xml.AppendLine(@">");
 					foreach (string tag in group.Tags)
 					{

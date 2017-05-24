@@ -8,9 +8,10 @@ namespace Asa.Bar.App.Configuration
 	{
 		public float VirtualDpi { get; private set; }
 
-		public int CollapsedHeight { get; private set; }
-		public int UncollapsedHeight { get; private set; }
+		public float FontSize { get; private set; }
 		public int Width { get; private set; }
+		public int Height { get; private set; }
+		public int CollapsedHeight { get; private set; }
 
 		public int MaxShortButtons { get; private set; }
 		public int MultiHorizontalPadding { get; private set; }
@@ -31,15 +32,8 @@ namespace Asa.Bar.App.Configuration
 
 		public void Load()
 		{
-			using (var graphics = Graphics.FromHwnd(IntPtr.Zero))
-			{
-				VirtualDpi = 1 / (96 / graphics.DpiX);
-			}
-
 			var configContent = ConfigHelper.GetTextFromFile(ResourceManager.Instance.AppConfigFile.LocalPath);
-			UncollapsedHeight = (Int32)((0.5 + (0.5 * VirtualDpi)) * float.Parse(ConfigHelper.GetValueRegex("<height>(.*)</height>", configContent)));
-			CollapsedHeight = (Int32)(((0.25 + (0.75 * VirtualDpi))) * float.Parse(ConfigHelper.GetValueRegex("<collapsedheight>(.*)</collapsedheight>", configContent)));
-
+			Height = (Int32)((0.5 + (0.5 * VirtualDpi)) * float.Parse(ConfigHelper.GetValueRegex("<height>(.*)</height>", configContent)));
 			Width = (Int32)((0.5 + (0.5 * VirtualDpi)) * float.Parse(ConfigHelper.GetValueRegex("<width>(.*)</width>", configContent)));
 			MultiHorizontalPadding = Int32.Parse(ConfigHelper.GetValueRegex("<multihorizontalpadding>(.*)</multihorizontalpadding>", configContent));
 			MultiVerticalPadding = Int32.Parse(ConfigHelper.GetValueRegex("<multiverticalpadding>(.*)</multiverticalpadding>", configContent));
@@ -62,8 +56,15 @@ namespace Asa.Bar.App.Configuration
 
 		private void Reset()
 		{
-			CollapsedHeight = 24;
-			UncollapsedHeight = 200;
+			using (var graphics = Graphics.FromHwnd(IntPtr.Zero))
+			{
+				VirtualDpi = 1 / (96 / graphics.DpiX);
+			}
+
+			FontSize = VirtualDpi > 1 ? 9.25f : 8.25f;
+			Height = 200;
+			CollapsedHeight = (Int32)(22 * VirtualDpi) - (VirtualDpi >= 2 ? 1 : 0) + (VirtualDpi > 1 && VirtualDpi < 1.5 ? 2 : 0);
+
 			MaxShortButtons = 4;
 			MultiHorizontalPadding = 40;
 			MultiVerticalPadding = 40;

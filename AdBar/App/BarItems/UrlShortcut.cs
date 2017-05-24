@@ -27,11 +27,14 @@ namespace Asa.Bar.App.BarItems
 				if (!String.IsNullOrEmpty(browserPath) &&
 					AppManager.Instance.WebBrowserManager.AvailableBrowsers.ContainsKey(AppManager.Instance.Settings.UserSettings.SelectedBrowser))
 				{
-					Process.Start(
-						new ProcessStartInfo(
-							AppManager.Instance.WebBrowserManager.AvailableBrowsers[AppManager.Instance.Settings.UserSettings.SelectedBrowser],
-							_url
-						));
+					if (String.Equals(browserPath,"edge",StringComparison.OrdinalIgnoreCase))
+						Process.Start(String.Format(AppManager.Instance.WebBrowserManager.AvailableBrowsers[AppManager.Instance.Settings.UserSettings.SelectedBrowser], _url));
+					else
+						Process.Start(
+							new ProcessStartInfo(
+								AppManager.Instance.WebBrowserManager.AvailableBrowsers[AppManager.Instance.Settings.UserSettings.SelectedBrowser],
+								_url
+							));
 				}
 				else
 					Process.Start(browserPath);

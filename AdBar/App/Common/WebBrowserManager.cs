@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar;
 using Microsoft.Win32;
 
@@ -13,7 +14,7 @@ namespace Asa.Bar.App.Common
 		{
 			"chrome",
 			"firefox",
-			"opera",
+			"edge",
 			"iexplore"
 		};
 
@@ -47,6 +48,9 @@ namespace Asa.Bar.App.Common
 						AvailableBrowsers.Add(browserTag, path);
 					}
 				}
+
+				if (Utilities.IsWindows10())
+					AvailableBrowsers.Add("edge", "microsoft-edge:{0}");
 			}
 			catch { }
 

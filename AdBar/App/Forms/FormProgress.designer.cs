@@ -96,6 +96,7 @@
 			this.pnText.Controls.Add(this.laTitle);
 			this.pnText.Controls.Add(this.laDetails);
 			this.pnText.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnText.ForeColor = System.Drawing.Color.Black;
 			this.pnText.Location = new System.Drawing.Point(0, 0);
 			this.pnText.Name = "pnText";
 			this.pnText.Size = new System.Drawing.Size(350, 52);
@@ -118,13 +119,13 @@
 			// 
 			// FormProgress
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(354, 102);
 			this.ControlBox = false;
 			this.Controls.Add(this.panelEx);
 			this.DoubleBuffered = true;
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FormProgress";
 			this.Opacity = 0.85D;

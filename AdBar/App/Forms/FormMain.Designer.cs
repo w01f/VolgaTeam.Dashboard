@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.superTabControlMain = new DevComponents.DotNetBar.SuperTabControl();
 			this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
@@ -47,15 +48,15 @@
 			this.checkBoxItemLoadAtStartup = new DevComponents.DotNetBar.CheckBoxItem();
 			this.ribbonBarBrowsers = new DevComponents.DotNetBar.RibbonBar();
 			this.itemContainer1 = new DevComponents.DotNetBar.ItemContainer();
-			this.buttonItemBrowserCh = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBrowserOp = new DevComponents.DotNetBar.ButtonItem();
 			this.itemContainer2 = new DevComponents.DotNetBar.ItemContainer();
-			this.buttonItemBrowserFF = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			this.superTabItemTemplates = new DevComponents.DotNetBar.SuperTabItem();
 			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager();
-			this.timerUpdateWindow = new System.Windows.Forms.Timer();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.timerUpdateWindow = new System.Windows.Forms.Timer(this.components);
+			this.buttonItemBrowserCh = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemBrowserEdge = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemBrowserFF = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.superTabControlMain)).BeginInit();
 			this.superTabControlMain.SuspendLayout();
 			this.superTabControlPanel2.SuspendLayout();
@@ -89,10 +90,10 @@
 			this.superTabControlMain.Location = new System.Drawing.Point(0, 0);
 			this.superTabControlMain.Name = "superTabControlMain";
 			this.superTabControlMain.ReorderTabsEnabled = false;
-			this.superTabControlMain.SelectedTabFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.superTabControlMain.SelectedTabFont = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.superTabControlMain.SelectedTabIndex = 0;
 			this.superTabControlMain.Size = new System.Drawing.Size(600, 200);
-			this.superTabControlMain.TabFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.superTabControlMain.TabFont = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.superTabControlMain.TabIndex = 0;
 			this.superTabControlMain.TabLayoutType = DevComponents.DotNetBar.eSuperTabLayoutType.SingleLineFit;
 			this.superTabControlMain.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -107,9 +108,9 @@
 			this.superTabControlPanel2.Controls.Add(this.ribbonBarSettings);
 			this.superTabControlPanel2.Controls.Add(this.ribbonBarBrowsers);
 			this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superTabControlPanel2.Location = new System.Drawing.Point(0, 27);
+			this.superTabControlPanel2.Location = new System.Drawing.Point(0, 30);
 			this.superTabControlPanel2.Name = "superTabControlPanel2";
-			this.superTabControlPanel2.Size = new System.Drawing.Size(600, 173);
+			this.superTabControlPanel2.Size = new System.Drawing.Size(600, 170);
 			this.superTabControlPanel2.TabIndex = 2;
 			this.superTabControlPanel2.TabItem = this.superTabItemTemplates;
 			// 
@@ -319,31 +320,11 @@
 			this.itemContainer1.Name = "itemContainer1";
 			this.itemContainer1.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemBrowserCh,
-            this.buttonItemBrowserOp});
+            this.buttonItemBrowserEdge});
 			// 
 			// 
 			// 
 			this.itemContainer1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemBrowserCh
-			// 
-			this.buttonItemBrowserCh.Enabled = false;
-			this.buttonItemBrowserCh.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemBrowserCh.Image")));
-			this.buttonItemBrowserCh.Name = "buttonItemBrowserCh";
-			this.buttonItemBrowserCh.Tag = "chrome";
-			this.buttonItemBrowserCh.Text = "buttonItem1";
-			this.buttonItemBrowserCh.Tooltip = "Google Chrome";
-			this.buttonItemBrowserCh.Click += new System.EventHandler(this.OnBrowserSelectorClick);
-			// 
-			// buttonItemBrowserOp
-			// 
-			this.buttonItemBrowserOp.Enabled = false;
-			this.buttonItemBrowserOp.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemBrowserOp.Image")));
-			this.buttonItemBrowserOp.Name = "buttonItemBrowserOp";
-			this.buttonItemBrowserOp.Tag = "opera";
-			this.buttonItemBrowserOp.Text = "buttonItem3";
-			this.buttonItemBrowserOp.Tooltip = "Opera Browser";
-			this.buttonItemBrowserOp.Click += new System.EventHandler(this.OnBrowserSelectorClick);
 			// 
 			// itemContainer2
 			// 
@@ -360,26 +341,6 @@
 			// 
 			// 
 			this.itemContainer2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemBrowserFF
-			// 
-			this.buttonItemBrowserFF.Enabled = false;
-			this.buttonItemBrowserFF.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemBrowserFF.Image")));
-			this.buttonItemBrowserFF.Name = "buttonItemBrowserFF";
-			this.buttonItemBrowserFF.Tag = "firefox";
-			this.buttonItemBrowserFF.Text = "buttonItem2";
-			this.buttonItemBrowserFF.Tooltip = "Mozilla Firefox";
-			this.buttonItemBrowserFF.Click += new System.EventHandler(this.OnBrowserSelectorClick);
-			// 
-			// buttonItemBrowserIE
-			// 
-			this.buttonItemBrowserIE.Enabled = false;
-			this.buttonItemBrowserIE.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemBrowserIE.Image")));
-			this.buttonItemBrowserIE.Name = "buttonItemBrowserIE";
-			this.buttonItemBrowserIE.Tag = "iexplore";
-			this.buttonItemBrowserIE.Text = "buttonItem4";
-			this.buttonItemBrowserIE.Tooltip = "Internet Explorer";
-			this.buttonItemBrowserIE.Click += new System.EventHandler(this.OnBrowserSelectorClick);
 			// 
 			// superTabItemTemplates
 			// 
@@ -407,14 +368,54 @@
 			this.timerUpdateWindow.Interval = 5000;
 			this.timerUpdateWindow.Tick += new System.EventHandler(this.OnUpdateWindowTimerTick);
 			// 
+			// buttonItemBrowserCh
+			// 
+			this.buttonItemBrowserCh.Enabled = false;
+			this.buttonItemBrowserCh.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemBrowserCh.Image")));
+			this.buttonItemBrowserCh.Name = "buttonItemBrowserCh";
+			this.buttonItemBrowserCh.Tag = "chrome";
+			this.buttonItemBrowserCh.Text = "buttonItem1";
+			this.buttonItemBrowserCh.Tooltip = "Google Chrome";
+			this.buttonItemBrowserCh.Click += new System.EventHandler(this.OnBrowserSelectorClick);
+			// 
+			// buttonItemBrowserEdge
+			// 
+			this.buttonItemBrowserEdge.Enabled = false;
+			this.buttonItemBrowserEdge.Image = global::Asa.Bar.App.Properties.Resources.edge;
+			this.buttonItemBrowserEdge.Name = "buttonItemBrowserEdge";
+			this.buttonItemBrowserEdge.Tag = "edge";
+			this.buttonItemBrowserEdge.Text = "buttonItem3";
+			this.buttonItemBrowserEdge.Tooltip = "Edge";
+			this.buttonItemBrowserEdge.Click += new System.EventHandler(this.OnBrowserSelectorClick);
+			// 
+			// buttonItemBrowserFF
+			// 
+			this.buttonItemBrowserFF.Enabled = false;
+			this.buttonItemBrowserFF.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemBrowserFF.Image")));
+			this.buttonItemBrowserFF.Name = "buttonItemBrowserFF";
+			this.buttonItemBrowserFF.Tag = "firefox";
+			this.buttonItemBrowserFF.Text = "buttonItem2";
+			this.buttonItemBrowserFF.Tooltip = "Mozilla Firefox";
+			this.buttonItemBrowserFF.Click += new System.EventHandler(this.OnBrowserSelectorClick);
+			// 
+			// buttonItemBrowserIE
+			// 
+			this.buttonItemBrowserIE.Enabled = false;
+			this.buttonItemBrowserIE.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemBrowserIE.Image")));
+			this.buttonItemBrowserIE.Name = "buttonItemBrowserIE";
+			this.buttonItemBrowserIE.Tag = "iexplore";
+			this.buttonItemBrowserIE.Text = "buttonItem4";
+			this.buttonItemBrowserIE.Tooltip = "Internet Explorer";
+			this.buttonItemBrowserIE.Click += new System.EventHandler(this.OnBrowserSelectorClick);
+			// 
 			// FormMain
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(600, 200);
 			this.ControlBox = false;
 			this.Controls.Add(this.superTabControlMain);
-			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormMain";
@@ -443,7 +444,7 @@
         private DevComponents.DotNetBar.RibbonBar ribbonBarBrowsers;
         private DevComponents.DotNetBar.ItemContainer itemContainer1;
         private DevComponents.DotNetBar.ButtonItem buttonItemBrowserCh;
-        private DevComponents.DotNetBar.ButtonItem buttonItemBrowserOp;
+        private DevComponents.DotNetBar.ButtonItem buttonItemBrowserEdge;
         private DevComponents.DotNetBar.ItemContainer itemContainer2;
         private DevComponents.DotNetBar.ButtonItem buttonItemBrowserFF;
         private DevComponents.DotNetBar.ButtonItem buttonItemBrowserIE;

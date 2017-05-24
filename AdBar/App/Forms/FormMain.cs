@@ -24,8 +24,12 @@ namespace Asa.Bar.App.Forms
 
 		private void InitFromConfig()
 		{
+			Font = new Font(Font.FontFamily, AppManager.Instance.Settings.Config.FontSize, Font.Style);
+			superTabControlMain.TabFont = new Font(superTabControlMain.TabFont.FontFamily, AppManager.Instance.Settings.Config.FontSize, superTabControlMain.TabFont.Style);
+			superTabControlMain.SelectedTabFont = new Font(superTabControlMain.SelectedTabFont.FontFamily, AppManager.Instance.Settings.Config.FontSize, superTabControlMain.SelectedTabFont.Style);
+
 			Width = AppManager.Instance.Settings.Config.Width;
-			Height = AppManager.Instance.Settings.Config.UncollapsedHeight;
+			Height = AppManager.Instance.Settings.Config.Height;
 			superTabControlMain.TabStyle = AppManager.Instance.Settings.Config.TabStyle;
 			styleManager.ManagerStyle = AppManager.Instance.Settings.Config.ManagerStyle;
 			ApplyAccentColor(AppManager.Instance.Settings.UserSettings.AccentColor);
@@ -63,7 +67,7 @@ namespace Asa.Bar.App.Forms
 
 		public void UncollapseWindow()
 		{
-			ChangeWindowHeight(AppManager.Instance.Settings.Config.UncollapsedHeight);
+			ChangeWindowHeight(AppManager.Instance.Settings.Config.Height);
 		}
 
 		public void AdjustWindowPosition(bool forced = false)
@@ -105,7 +109,9 @@ namespace Asa.Bar.App.Forms
 		#region Bar Content Management
 		private void LoadBarContent()
 		{
-			// Create interface
+			var heightCoeff = 1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi));
+			var itemHeight = heightCoeff * (Height - superTabControlMain.TabStrip.Height - 3);
+
 			superTabControlMain.Tabs.Clear();
 			foreach (var tabPage in AppManager.Instance.BarItemsManager.Tabs.Where(tab => tab.Visible))
 			{
@@ -113,7 +119,7 @@ namespace Asa.Bar.App.Forms
 				var left = 0;
 				var shortItemWidth = (superTabControlMain.Width / AppManager.Instance.Settings.Config.MaxShortButtons) + 1;
 				var longItemWidth = shortItemWidth * 2;
-				var itemHeight = Height - superTabControlMain.TabStrip.Height - 2;
+				
 				tab.Enabled = tabPage.Enabled;
 
 				foreach (var tabGroup in tabPage.Groups)
@@ -125,7 +131,7 @@ namespace Asa.Bar.App.Forms
 							{
 								var ribbonBar = CreateGroupBar(tabGroup);
 								ribbonBar.Width = shortItemWidth;
-								ribbonBar.Height = (Int32)((1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi))) * itemHeight);
+								ribbonBar.Height = (Int32)itemHeight;
 								ribbonBar.Left = left;
 								tab.AttachedControl.Controls.Add(ribbonBar);
 								left += shortItemWidth;
@@ -136,7 +142,7 @@ namespace Asa.Bar.App.Forms
 							{
 								var ribbonBar = CreateGroupBar(tabGroup);
 								ribbonBar.Width = longItemWidth;
-								ribbonBar.Height = (Int32)((1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi))) * itemHeight);
+								ribbonBar.Height = (Int32)itemHeight;
 								ribbonBar.Left = left;
 								tab.AttachedControl.Controls.Add(ribbonBar);
 								left += shortItemWidth;
@@ -146,7 +152,7 @@ namespace Asa.Bar.App.Forms
 							{
 								var ribbonBar = CreateBrowserBar(tabGroup);
 								ribbonBar.Width = shortItemWidth;
-								ribbonBar.Height = (Int32)((1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi))) * itemHeight);
+								ribbonBar.Height = (Int32)itemHeight;
 								ribbonBar.Left = left;
 								tab.AttachedControl.Controls.Add(ribbonBar);
 								_browsersPanels.Add(ribbonBar);
@@ -157,7 +163,7 @@ namespace Asa.Bar.App.Forms
 							ribbonBarSettings.Text = tabGroup.Name;
 							ribbonBarSettings.Top = 0;
 							ribbonBarSettings.Width = shortItemWidth;
-							ribbonBarSettings.Height = (Int32)((1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi))) * itemHeight);
+							ribbonBarSettings.Height = (Int32)itemHeight;
 							ribbonBarSettings.Left = left;
 							tab.AttachedControl.Controls.Add(ribbonBarSettings);
 							left += shortItemWidth;
@@ -171,7 +177,7 @@ namespace Asa.Bar.App.Forms
 							foreach (var ribbonBar in plugin.RibbonBars)
 							{
 								ribbonBar.Name = tabGroup.Name;
-								ribbonBar.Height = (Int32)((1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi))) * itemHeight);
+								ribbonBar.Height = (Int32)itemHeight;
 								ribbonBar.Width = longItemWidth;
 								ribbonBar.Left = left;
 								ribbonBar.Text = tabGroup.Name;

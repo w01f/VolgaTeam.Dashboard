@@ -73,6 +73,16 @@ namespace Asa.Bar.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap edge {
+            get {
+                object obj = ResourceManager.GetObject("edge", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EmailLogo {
             get {
                 object obj = ResourceManager.GetObject("EmailLogo", resourceCulture);
@@ -106,16 +116,6 @@ namespace Asa.Bar.App.Properties {
         internal static System.Drawing.Bitmap LoginLogo {
             get {
                 object obj = ResourceManager.GetObject("LoginLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap op {
-            get {
-                object obj = ResourceManager.GetObject("op", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

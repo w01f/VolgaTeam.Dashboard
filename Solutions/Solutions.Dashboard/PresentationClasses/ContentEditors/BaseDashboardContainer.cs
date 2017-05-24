@@ -79,7 +79,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				AssignCloseActiveEditorsOnOutsideClick(slideControl);
 		}
 
-		private void OnSelectedSlideChanged(Object sender, TabPageChangedEventArgs e)
+		private void OnSelectedSlideChanged(object sender, TabPageChangedEventArgs e)
 		{
 			var prevSlide = e.PrevPage as DashboardSlideControl;
 			prevSlide?.ApplyChanges();

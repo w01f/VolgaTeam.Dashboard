@@ -2,6 +2,7 @@
 using System.Xml;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
+using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -37,6 +38,9 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 			{
 				case "6ms":
 					solutionInfo = new DashboardSolutionInfo();
+					break;
+				case "starapp":
+					solutionInfo = new StarAppSolutionInfo();
 					break;
 				default:
 					throw new ArgumentOutOfRangeException("Solution Type is undefined");

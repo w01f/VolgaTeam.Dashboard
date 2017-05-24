@@ -580,6 +580,9 @@
     <Compile Include="PresentationClasses\ScheduleControls\Settings\CustomSummaryInfoControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\Solutions\MediaStarAppContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Solutions\MediaDashboardContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -966,6 +969,10 @@
     <ProjectReference Include="..\..\..\Solutions\Solutions.Dashboard\Solutions.Dashboard.csproj">
       <Project>{9399d618-8c42-483c-8b87-3bd111b07b88}</Project>
       <Name>Solutions.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Solutions\Solutions.StarApp\Solutions.StarApp.csproj">
+      <Project>{D3C4FE3F-D410-4FDF-ABFE-4359487DB9DB}</Project>
+      <Name>Solutions.StarApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Calendar\Calendar.Controls\Calendar.Controls.csproj">
       <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>

@@ -78,6 +78,34 @@
     <Compile Include="Dashboard\Entities\NonPersistent\SimpleSummaryState.cs" />
     <Compile Include="Dashboard\Entities\NonPersistent\TargetCustomersState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StarApp\Configuration\IStarAppSettingsContainer.cs" />
+    <Compile Include="StarApp\Configuration\ResourceManager.cs" />
+    <Compile Include="StarApp\Configuration\TitlesConfiguration.cs" />
+    <Compile Include="StarApp\Dictionaries\ClosersLists.cs" />
+    <Compile Include="StarApp\Dictionaries\SolutionLists.cs" />
+    <Compile Include="StarApp\Dictionaries\CNALists.cs" />
+    <Compile Include="StarApp\Dictionaries\CoverLists.cs" />
+    <Compile Include="StarApp\Dictionaries\AudienceLists.cs" />
+    <Compile Include="StarApp\Dictionaries\VideoLists.cs" />
+    <Compile Include="StarApp\Dictionaries\MarketLists.cs" />
+    <Compile Include="StarApp\Dictionaries\ROILists.cs" />
+    <Compile Include="StarApp\Dictionaries\ShareLists.cs" />
+    <Compile Include="StarApp\Dictionaries\CustomerLists.cs" />
+    <Compile Include="StarApp\Dictionaries\FishingLists.cs" />
+    <Compile Include="StarApp\Dictionaries\SlideHeader.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\VideoState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\SolutionState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\ShareState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\ROIState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\MarketState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\FishingState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\CustomerState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\ClosersState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\AudienceState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\CNAState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\CoverState.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\StarAppContent.cs" />
+    <Compile Include="StarApp\Entities\NonPersistent\StarAppSolutionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">

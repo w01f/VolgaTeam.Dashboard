@@ -4,5 +4,6 @@
 	{
 		None = 0,
 		Dashboard = 100,
+		StarApp = 200,
 	}
 }

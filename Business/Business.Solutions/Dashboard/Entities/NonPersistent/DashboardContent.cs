@@ -13,7 +13,7 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 		public TargetCustomersState TargetCustomersState { get; private set; }
 		public SimpleSummaryState SimpleSummaryState { get; private set; }
 
-		public DashboardContent()
+		protected DashboardContent()
 		{
 			CoverState = new CoverState();
 			LeadoffStatementState = new LeadoffStatementState();

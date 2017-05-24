@@ -47,5 +47,19 @@
 		DigitalProductPackage = 303,
 		DigitalStandalonePackage = 304,
 		#endregion
+
+		#region StarApp
+		StarAppCover = 401,
+		StarAppCNA = 402,
+		StarAppFishing = 403,
+		StarAppCustomer = 404,
+		StarAppShare = 405,
+		StarAppROI = 406,
+		StarAppMarket = 407,
+		StarAppVideo = 408,
+		StarAppAudience = 409,
+		StarAppSolution = 410,
+		StarAppClosers = 411,
+		#endregion
 	}
 }

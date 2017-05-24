@@ -14,7 +14,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		public abstract SolutionType SolutionType { get; }
 		public abstract SlideType SelectedSlideType { get; }
-		public string HomeText => SolutionInfo.Title;
+		public virtual string HomeText => SolutionInfo.Title;
 		public abstract Image HomeLogo { get; }
 		public abstract string HelpKey { get; }
 

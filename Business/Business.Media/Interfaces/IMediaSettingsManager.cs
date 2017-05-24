@@ -1,10 +1,11 @@
 ﻿using Asa.Business.Calendar.Configuration;
 using Asa.Business.Common.Interfaces;
 using Asa.Business.Solutions.Dashboard.Configuration;
+using Asa.Business.Solutions.StarApp.Configuration;
 
 namespace Asa.Business.Media.Interfaces
 {
-	public interface IMediaSettingsManager : IThemeSettingsContainer, IDashboardSettingsContainer
+	public interface IMediaSettingsManager : IThemeSettingsContainer, IDashboardSettingsContainer, IStarAppSettingsContainer
 	{
 		string SelectedColor { get; set; }
 		bool UseSlideMaster { get; set; }

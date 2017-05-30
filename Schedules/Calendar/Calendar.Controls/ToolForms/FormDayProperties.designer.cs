@@ -60,22 +60,22 @@ namespace Asa.Calendar.Controls.ToolForms
 			// 
 			// checkEditComment
 			// 
-			this.checkEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditComment.Location = new System.Drawing.Point(4, 9);
 			this.checkEditComment.Name = "checkEditComment";
 			this.checkEditComment.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditComment.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditComment.Properties.Caption = "Show Comment";
-			this.checkEditComment.Size = new System.Drawing.Size(328, 19);
+			this.checkEditComment.Size = new System.Drawing.Size(328, 20);
 			this.checkEditComment.StyleController = this.styleController;
 			this.checkEditComment.TabIndex = 36;
 			this.checkEditComment.CheckedChanged += new System.EventHandler(this.checkEditComment_CheckedChanged);
 			// 
 			// memoEditComment
 			// 
-			this.memoEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.memoEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditComment.Enabled = false;
 			this.memoEditComment.Location = new System.Drawing.Point(5, 36);
 			this.memoEditComment.Name = "memoEditComment";
@@ -87,12 +87,11 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.memoEditComment.Size = new System.Drawing.Size(340, 70);
 			this.memoEditComment.StyleController = this.styleController;
 			this.memoEditComment.TabIndex = 37;
-			this.memoEditComment.UseOptimizedRendering = true;
 			// 
 			// labelControlCommentDisclaimer
 			// 
-			this.labelControlCommentDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlCommentDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelControlCommentDisclaimer.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlCommentDisclaimer.Appearance.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlCommentDisclaimer.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -151,7 +150,8 @@ namespace Asa.Calendar.Controls.ToolForms
 			// 
 			// FormDayProperties
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(479, 139);
 			this.Controls.Add(this.pnComment);

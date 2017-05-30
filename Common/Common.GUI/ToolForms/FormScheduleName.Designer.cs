@@ -134,6 +134,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditSaveAsTemplate.Location = new System.Drawing.Point(90, 100);
 			this.checkEditSaveAsTemplate.Name = "checkEditSaveAsTemplate";
+			this.checkEditSaveAsTemplate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditSaveAsTemplate.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditSaveAsTemplate.Properties.Caption = "Also save a Schedule Template in the cloud";
 			this.checkEditSaveAsTemplate.Size = new System.Drawing.Size(282, 20);
 			this.checkEditSaveAsTemplate.StyleController = this.styleController;
@@ -141,7 +143,8 @@
 			// 
 			// FormScheduleName
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(384, 171);
 			this.Controls.Add(this.checkEditSaveAsTemplate);
@@ -152,7 +155,6 @@
 			this.Controls.Add(this.pbLogo);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

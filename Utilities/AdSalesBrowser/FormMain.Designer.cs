@@ -28,11 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.barMain = new DevComponents.DotNetBar.Bar();
 			this.buttonItemMenuNavigationBack = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuNavigationForward = new DevComponents.DotNetBar.ButtonItem();
@@ -280,7 +279,8 @@
 			// 
 			// FormMain
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(737, 555);
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.barMain);

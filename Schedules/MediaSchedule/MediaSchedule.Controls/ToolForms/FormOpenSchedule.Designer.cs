@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barToolButtons = new DevExpress.XtraBars.Bar();
 			this.barStaticItemLogo = new DevExpress.XtraBars.BarStaticItem();
 			this.barLargeButtonItemOpen = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemDelete = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemExit = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController(this.components);
+			this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -479,7 +478,8 @@
 			// 
 			// FormOpenSchedule
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(667, 603);
 			this.Controls.Add(this.xtraTabControl);
@@ -489,7 +489,6 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

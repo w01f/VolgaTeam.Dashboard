@@ -108,7 +108,7 @@
 			// 
 			// FormMain
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(406, 115);
 			this.Controls.Add(this.buttonEditSource);
 			this.Controls.Add(this.labelControlSourceTitle);

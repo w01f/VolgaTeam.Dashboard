@@ -28,11 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.buttonXSave = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
 			this.pnBottomButtons = new System.Windows.Forms.Panel();
@@ -171,7 +170,8 @@
 			// 
 			// FormFlightDatesChangeWarning
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(461, 354);
 			this.Controls.Add(this.buttonXDoNotKeepSpots);
 			this.Controls.Add(this.buttonXKeepSpots);

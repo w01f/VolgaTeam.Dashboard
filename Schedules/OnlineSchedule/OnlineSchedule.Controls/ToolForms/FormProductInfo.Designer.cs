@@ -32,9 +32,9 @@
 			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
 			this.pictureBoxInfoType = new System.Windows.Forms.PictureBox();
 			this.pnFooter = new System.Windows.Forms.Panel();
-			this.xtraTabControlGroups = new DevExpress.XtraTab.XtraTabControl();
-			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
+			this.xtraTabControlGroups = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfoType)).BeginInit();
 			this.pnFooter.SuspendLayout();
@@ -87,6 +87,30 @@
 			this.pnFooter.Size = new System.Drawing.Size(624, 49);
 			this.pnFooter.TabIndex = 1;
 			// 
+			// buttonXCancel
+			// 
+			this.buttonXCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.buttonXCancel.Location = new System.Drawing.Point(507, 7);
+			this.buttonXCancel.Name = "buttonXCancel";
+			this.buttonXCancel.Size = new System.Drawing.Size(105, 34);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXCancel.TabIndex = 3;
+			this.buttonXCancel.Text = "Cancel";
+			// 
+			// buttonXOK
+			// 
+			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.buttonXOK.Location = new System.Drawing.Point(378, 7);
+			this.buttonXOK.Name = "buttonXOK";
+			this.buttonXOK.Size = new System.Drawing.Size(105, 34);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXOK.TabIndex = 2;
+			this.buttonXOK.Text = "OK";
+			// 
 			// xtraTabControlGroups
 			// 
 			this.xtraTabControlGroups.Appearance.BackColor = System.Drawing.Color.White;
@@ -111,33 +135,10 @@
 			this.xtraTabControlGroups.Size = new System.Drawing.Size(624, 351);
 			this.xtraTabControlGroups.TabIndex = 2;
 			// 
-			// buttonXOK
-			// 
-			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(378, 7);
-			this.buttonXOK.Name = "buttonXOK";
-			this.buttonXOK.Size = new System.Drawing.Size(105, 34);
-			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOK.TabIndex = 2;
-			this.buttonXOK.Text = "OK";
-			// 
-			// buttonXCancel
-			// 
-			this.buttonXCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(507, 7);
-			this.buttonXCancel.Name = "buttonXCancel";
-			this.buttonXCancel.Size = new System.Drawing.Size(105, 34);
-			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXCancel.TabIndex = 3;
-			this.buttonXCancel.Text = "Cancel";
-			// 
 			// FormProductInfo
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(624, 442);
 			this.Controls.Add(this.xtraTabControlGroups);

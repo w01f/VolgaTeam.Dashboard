@@ -28,8 +28,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.labelControlDescriptionLockToMaster = new DevExpress.XtraEditors.LabelControl();
@@ -225,7 +224,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Output
 			// 
 			// FormOutputSettings
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(409, 304);
 			this.Controls.Add(this.labelControlDescriptionShowSpotX);
 			this.Controls.Add(this.labelControlDescriptionUseDecimalRate);

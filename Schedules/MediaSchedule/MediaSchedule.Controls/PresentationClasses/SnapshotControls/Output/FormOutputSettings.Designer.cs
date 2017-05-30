@@ -28,8 +28,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
@@ -268,7 +267,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			// 
 			// FormOutputSettings
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(407, 366);
 			this.Controls.Add(this.labelControlDescriptionShowSpotsPerWeek);
 			this.Controls.Add(this.labelControlDescriptionShowSpotX);

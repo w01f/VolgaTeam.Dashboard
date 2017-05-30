@@ -30,7 +30,7 @@ namespace Asa.Calendar.Controls.ToolForms
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.laTitle = new System.Windows.Forms.Label();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
@@ -111,7 +111,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXClearAll.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXClearAll.Location = new System.Drawing.Point(268, 53);
+			this.buttonXClearAll.Location = new System.Drawing.Point(264, 53);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
 			this.buttonXClearAll.TabIndex = 12;
@@ -224,7 +224,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.xtraTabPageDays.Controls.Add(this.buttonXClearAll);
 			this.xtraTabPageDays.Name = "xtraTabPageDays";
 			this.xtraTabPageDays.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.xtraTabPageDays.Size = new System.Drawing.Size(430, 217);
+			this.xtraTabPageDays.Size = new System.Drawing.Size(426, 213);
 			this.xtraTabPageDays.Text = "Days";
 			// 
 			// labelControlTooltip
@@ -238,7 +238,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.labelControlTooltip.Dock = System.Windows.Forms.DockStyle.Top;
 			this.labelControlTooltip.Location = new System.Drawing.Point(5, 0);
 			this.labelControlTooltip.Name = "labelControlTooltip";
-			this.labelControlTooltip.Size = new System.Drawing.Size(425, 47);
+			this.labelControlTooltip.Size = new System.Drawing.Size(421, 47);
 			this.labelControlTooltip.TabIndex = 19;
 			this.labelControlTooltip.Text = "Add Date Ranges selecting first and last days in week \r\nby Mouse Click holding Ct" +
     "rl or Shift Key";
@@ -360,7 +360,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			// repositoryItemButtonEdit
 			// 
 			this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Calendar.Controls.Properties.Resources.DeleteData, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
 			this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";
@@ -398,7 +398,8 @@ namespace Asa.Calendar.Controls.ToolForms
 			// 
 			// FormCloneNote
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(605, 398);
 			this.Controls.Add(this.pnMain);

@@ -161,7 +161,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			// 
 			// DigitalEditorsContainer
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControlEditors);
 			this.Controls.Add(this.pnTop);

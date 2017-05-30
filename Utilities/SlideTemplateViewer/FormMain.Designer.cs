@@ -29,7 +29,6 @@ namespace Asa.SlideTemplateViewer
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
@@ -48,8 +47,8 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
 			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
 			this.SuspendLayout();
@@ -394,7 +393,8 @@ namespace Asa.SlideTemplateViewer
 			// 
 			// FormMain
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(925, 699);
 			this.Controls.Add(this.ribbonControl);

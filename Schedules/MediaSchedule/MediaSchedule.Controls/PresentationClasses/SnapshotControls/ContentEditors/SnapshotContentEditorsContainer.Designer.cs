@@ -463,7 +463,7 @@
 			// 
 			// SnapshotContentEditorsContainer
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnNoRecords);
 			this.Controls.Add(this.pnData);

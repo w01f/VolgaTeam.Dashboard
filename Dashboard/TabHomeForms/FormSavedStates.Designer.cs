@@ -111,7 +111,7 @@
 			this.gridControlFiles.Name = "gridControlFiles";
 			this.gridControlFiles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEditFiles});
-			this.gridControlFiles.Size = new System.Drawing.Size(597, 327);
+			this.gridControlFiles.Size = new System.Drawing.Size(593, 324);
 			this.gridControlFiles.TabIndex = 18;
 			this.gridControlFiles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewFiles});
@@ -229,7 +229,7 @@
 			this.xtraTabPageFiles.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageFiles.Controls.Add(this.gridControlFiles);
 			this.xtraTabPageFiles.Name = "xtraTabPageFiles";
-			this.xtraTabPageFiles.Size = new System.Drawing.Size(597, 327);
+			this.xtraTabPageFiles.Size = new System.Drawing.Size(593, 324);
 			this.xtraTabPageFiles.Text = "My Files";
 			// 
 			// xtraTabPageTemplates
@@ -238,7 +238,7 @@
 			this.xtraTabPageTemplates.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
-			this.xtraTabPageTemplates.Size = new System.Drawing.Size(597, 327);
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(593, 324);
 			this.xtraTabPageTemplates.Text = "My Templates";
 			// 
 			// gridControlTemplates
@@ -253,7 +253,7 @@
 			this.gridControlTemplates.Name = "gridControlTemplates";
 			this.gridControlTemplates.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEditTemplates});
-			this.gridControlTemplates.Size = new System.Drawing.Size(597, 327);
+			this.gridControlTemplates.Size = new System.Drawing.Size(593, 324);
 			this.gridControlTemplates.TabIndex = 19;
 			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTemplates});
@@ -337,7 +337,8 @@
 			// 
 			// FormSavedStates
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(623, 478);
 			this.Controls.Add(this.buttonXCancel);

@@ -11,11 +11,6 @@ namespace Asa.Common.GUI.ToolForms
 		private FormDownloadProgress()
 		{
 			InitializeComponent();
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 2, laTitle.Font.Style);
-				laDetails.Font = new Font(laDetails.Font.FontFamily, laDetails.Font.Size - 2, laDetails.Font.Style);
-			}
 		}
 
 		public static void ShowProgress(Form parent)

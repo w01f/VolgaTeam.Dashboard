@@ -42,7 +42,9 @@
 			// 
 			// pb34
 			// 
+			this.pb34.BackColor = System.Drawing.Color.White;
 			this.pb34.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pb34.ForeColor = System.Drawing.Color.Black;
 			this.pb34.Image = global::AdSalesBrowser.Properties.Resources.SlideSize34;
 			this.pb34.Location = new System.Drawing.Point(300, 108);
 			this.pb34.Name = "pb34";
@@ -54,7 +56,9 @@
 			// 
 			// pb43
 			// 
+			this.pb43.BackColor = System.Drawing.Color.White;
 			this.pb43.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pb43.ForeColor = System.Drawing.Color.Black;
 			this.pb43.Image = global::AdSalesBrowser.Properties.Resources.SlideSize43;
 			this.pb43.Location = new System.Drawing.Point(156, 108);
 			this.pb43.Name = "pb43";
@@ -66,7 +70,9 @@
 			// 
 			// pb169
 			// 
+			this.pb169.BackColor = System.Drawing.Color.White;
 			this.pb169.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pb169.ForeColor = System.Drawing.Color.Black;
 			this.pb169.Image = global::AdSalesBrowser.Properties.Resources.SlideSize169;
 			this.pb169.Location = new System.Drawing.Point(12, 108);
 			this.pb169.Name = "pb169";
@@ -80,6 +86,8 @@
 			// 
 			this.pbTitlelText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbTitlelText.BackColor = System.Drawing.Color.White;
+			this.pbTitlelText.ForeColor = System.Drawing.Color.Black;
 			this.pbTitlelText.Image = global::AdSalesBrowser.Properties.Resources.SlideSizeTitleText;
 			this.pbTitlelText.Location = new System.Drawing.Point(77, 12);
 			this.pbTitlelText.Name = "pbTitlelText";
@@ -90,6 +98,8 @@
 			// 
 			// pbTitleLogo
 			// 
+			this.pbTitleLogo.BackColor = System.Drawing.Color.White;
+			this.pbTitleLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbTitleLogo.Image = global::AdSalesBrowser.Properties.Resources.SlideSizeTitleLogo;
 			this.pbTitleLogo.Location = new System.Drawing.Point(12, 12);
 			this.pbTitleLogo.Name = "pbTitleLogo";
@@ -99,7 +109,8 @@
 			// 
 			// FormSlideSize
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(384, 192);
 			this.Controls.Add(this.pb34);
 			this.Controls.Add(this.pb43);

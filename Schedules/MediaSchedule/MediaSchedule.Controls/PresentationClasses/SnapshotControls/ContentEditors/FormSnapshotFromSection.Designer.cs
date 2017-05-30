@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.textEditScheduleName = new DevExpress.XtraEditors.TextEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditCopySpots = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
@@ -119,6 +118,8 @@
 			this.labelControlTitle.AllowHtmlString = true;
 			this.labelControlTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlTitle.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlTitle.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlTitle.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlTitle.Location = new System.Drawing.Point(90, 12);
@@ -134,6 +135,8 @@
 			this.checkEditCopySpots.Location = new System.Drawing.Point(90, 103);
 			this.checkEditCopySpots.Name = "checkEditCopySpots";
 			this.checkEditCopySpots.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditCopySpots.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditCopySpots.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditCopySpots.Properties.Caption = "<color=gray>Evenly spread spots in the week</color>";
 			this.checkEditCopySpots.Size = new System.Drawing.Size(282, 20);
 			this.checkEditCopySpots.StyleController = this.styleController;
@@ -141,7 +144,8 @@
 			// 
 			// FormSnapshotFromSection
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(384, 174);
 			this.Controls.Add(this.checkEditCopySpots);

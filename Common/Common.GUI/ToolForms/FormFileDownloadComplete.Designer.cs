@@ -79,7 +79,9 @@
 			// 
 			this.laTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laTitle.BackColor = System.Drawing.Color.White;
 			this.laTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTitle.ForeColor = System.Drawing.Color.Black;
 			this.laTitle.Location = new System.Drawing.Point(12, 9);
 			this.laTitle.Name = "laTitle";
 			this.laTitle.Size = new System.Drawing.Size(371, 52);
@@ -88,7 +90,8 @@
 			// 
 			// FormFileDownloadComplete
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(395, 121);
 			this.Controls.Add(this.laTitle);
 			this.Controls.Add(this.buttonXCancel);

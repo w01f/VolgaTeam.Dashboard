@@ -28,19 +28,20 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnButtons = new System.Windows.Forms.Panel();
+			this.checkEditApplyThemeForAllSlideTypes = new DevExpress.XtraEditors.CheckEdit();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.labelControlSlideSize = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlThemName = new DevExpress.XtraEditors.LabelControl();
-			this.checkEditApplyThemeForAllSlideTypes = new DevExpress.XtraEditors.CheckEdit();
+			this.labelControlSlideSize = new DevExpress.XtraEditors.LabelControl();
 			this.pnButtons.SuspendLayout();
-			this.pnHeader.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			this.pnHeader.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -65,6 +66,32 @@
 			this.pnButtons.Name = "pnButtons";
 			this.pnButtons.Size = new System.Drawing.Size(894, 46);
 			this.pnButtons.TabIndex = 4;
+			// 
+			// checkEditApplyThemeForAllSlideTypes
+			// 
+			this.checkEditApplyThemeForAllSlideTypes.Location = new System.Drawing.Point(12, 13);
+			this.checkEditApplyThemeForAllSlideTypes.Name = "checkEditApplyThemeForAllSlideTypes";
+			this.checkEditApplyThemeForAllSlideTypes.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditApplyThemeForAllSlideTypes.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditApplyThemeForAllSlideTypes.Properties.Caption = "Use this Slide Theme for everything";
+			this.checkEditApplyThemeForAllSlideTypes.Size = new System.Drawing.Size(227, 20);
+			this.checkEditApplyThemeForAllSlideTypes.StyleController = this.styleController;
+			this.checkEditApplyThemeForAllSlideTypes.TabIndex = 6;
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// buttonXOK
 			// 
@@ -106,36 +133,11 @@
 			this.pnHeader.Size = new System.Drawing.Size(894, 40);
 			this.pnHeader.TabIndex = 6;
 			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
-			// labelControlSlideSize
-			// 
-			this.labelControlSlideSize.AllowHtmlString = true;
-			this.labelControlSlideSize.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlSlideSize.Dock = System.Windows.Forms.DockStyle.Left;
-			this.labelControlSlideSize.Location = new System.Drawing.Point(0, 0);
-			this.labelControlSlideSize.Name = "labelControlSlideSize";
-			this.labelControlSlideSize.Size = new System.Drawing.Size(327, 40);
-			this.labelControlSlideSize.StyleController = this.styleController;
-			this.labelControlSlideSize.TabIndex = 4;
-			this.labelControlSlideSize.Text = "<b><size=+4>Slide Size: {0}</size></b>";
-			// 
 			// labelControlThemName
 			// 
 			this.labelControlThemName.AllowHtmlString = true;
+			this.labelControlThemName.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlThemName.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlThemName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.labelControlThemName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlThemName.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -146,18 +148,24 @@
 			this.labelControlThemName.TabIndex = 5;
 			this.labelControlThemName.Text = "<b><size=+4>Theme Name</size></b>";
 			// 
-			// checkEditApplyThemeForAllSlideTypes
+			// labelControlSlideSize
 			// 
-			this.checkEditApplyThemeForAllSlideTypes.Location = new System.Drawing.Point(12, 13);
-			this.checkEditApplyThemeForAllSlideTypes.Name = "checkEditApplyThemeForAllSlideTypes";
-			this.checkEditApplyThemeForAllSlideTypes.Properties.Caption = "Use this Slide Theme for everything";
-			this.checkEditApplyThemeForAllSlideTypes.Size = new System.Drawing.Size(227, 20);
-			this.checkEditApplyThemeForAllSlideTypes.StyleController = this.styleController;
-			this.checkEditApplyThemeForAllSlideTypes.TabIndex = 6;
+			this.labelControlSlideSize.AllowHtmlString = true;
+			this.labelControlSlideSize.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlSlideSize.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.labelControlSlideSize.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlSlideSize.Dock = System.Windows.Forms.DockStyle.Left;
+			this.labelControlSlideSize.Location = new System.Drawing.Point(0, 0);
+			this.labelControlSlideSize.Name = "labelControlSlideSize";
+			this.labelControlSlideSize.Size = new System.Drawing.Size(327, 40);
+			this.labelControlSlideSize.StyleController = this.styleController;
+			this.labelControlSlideSize.TabIndex = 4;
+			this.labelControlSlideSize.Text = "<b><size=+4>Slide Size: {0}</size></b>";
 			// 
 			// FormThemeSelector
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(894, 494);
 			this.Controls.Add(this.pnMain);
@@ -165,7 +173,6 @@
 			this.Controls.Add(this.pnButtons);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -175,9 +182,9 @@
 			this.Text = "Select Theme";
 			this.TopMost = true;
 			this.pnButtons.ResumeLayout(false);
-			this.pnHeader.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			this.pnHeader.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

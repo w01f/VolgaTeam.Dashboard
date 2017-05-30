@@ -28,9 +28,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditOutputNoBrackets = new DevExpress.XtraEditors.CheckEdit();
 			this.spinEditOutputLimitPeriods = new DevExpress.XtraEditors.SpinEdit();
@@ -398,7 +397,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			// 
 			// FormOutputSettings
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(423, 535);
 			this.Controls.Add(this.labelControlDescriptionLockToMaster);
 			this.Controls.Add(this.labelControlDescriptionOutputNoBrackets);

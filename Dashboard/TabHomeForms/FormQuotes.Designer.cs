@@ -99,7 +99,8 @@
 			// 
 			// FormQuotes
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(694, 454);
 			this.Controls.Add(this.buttonXOK);
@@ -107,6 +108,7 @@
 			this.Controls.Add(this.laDescription);
 			this.Controls.Add(this.laTitle);
 			this.DoubleBuffered = true;
+			this.ForeColor = System.Drawing.Color.Black;
 			this.Name = "FormQuotes";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

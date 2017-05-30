@@ -118,7 +118,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXClearAll.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXClearAll.Location = new System.Drawing.Point(268, 148);
+			this.buttonXClearAll.Location = new System.Drawing.Point(264, 148);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
 			this.buttonXClearAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -219,7 +219,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.xtraTabPageDays.Controls.Add(this.monthCalendarClone);
 			this.xtraTabPageDays.Controls.Add(this.buttonXClearAll);
 			this.xtraTabPageDays.Name = "xtraTabPageDays";
-			this.xtraTabPageDays.Size = new System.Drawing.Size(430, 223);
+			this.xtraTabPageDays.Size = new System.Drawing.Size(426, 220);
 			this.xtraTabPageDays.Text = "Days";
 			// 
 			// buttonXSelectFirstDays
@@ -228,7 +228,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.buttonXSelectFirstDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSelectFirstDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSelectFirstDays.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSelectFirstDays.Location = new System.Drawing.Point(268, 70);
+			this.buttonXSelectFirstDays.Location = new System.Drawing.Point(264, 70);
 			this.buttonXSelectFirstDays.Name = "buttonXSelectFirstDays";
 			this.buttonXSelectFirstDays.Size = new System.Drawing.Size(159, 33);
 			this.buttonXSelectFirstDays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -243,7 +243,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.buttonXSelectAllDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSelectAllDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSelectAllDays.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXSelectAllDays.Location = new System.Drawing.Point(268, 31);
+			this.buttonXSelectAllDays.Location = new System.Drawing.Point(264, 31);
 			this.buttonXSelectAllDays.Name = "buttonXSelectAllDays";
 			this.buttonXSelectAllDays.Size = new System.Drawing.Size(159, 33);
 			this.buttonXSelectAllDays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -262,7 +262,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.labelControlDayTitle.Dock = System.Windows.Forms.DockStyle.Top;
 			this.labelControlDayTitle.Location = new System.Drawing.Point(0, 0);
 			this.labelControlDayTitle.Name = "labelControlDayTitle";
-			this.labelControlDayTitle.Size = new System.Drawing.Size(430, 28);
+			this.labelControlDayTitle.Size = new System.Drawing.Size(426, 28);
 			this.labelControlDayTitle.TabIndex = 19;
 			this.labelControlDayTitle.Text = "  <b>DOUBLE-CLICK</b> the DAY you want to Add:";
 			// 
@@ -272,7 +272,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.buttonXAddAllWeekdays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddAllWeekdays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddAllWeekdays.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(268, 109);
+			this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(264, 109);
 			this.buttonXAddAllWeekdays.Name = "buttonXAddAllWeekdays";
 			this.buttonXAddAllWeekdays.Size = new System.Drawing.Size(159, 33);
 			this.buttonXAddAllWeekdays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -344,7 +344,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.xtraTabPageOptions.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
 			this.xtraTabPageOptions.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageOptions.Name = "xtraTabPageOptions";
-			this.xtraTabPageOptions.Size = new System.Drawing.Size(430, 223);
+			this.xtraTabPageOptions.Size = new System.Drawing.Size(426, 220);
 			this.xtraTabPageOptions.Text = "Options";
 			// 
 			// labelControlFlightDates
@@ -458,7 +458,8 @@ namespace Asa.Calendar.Controls.ToolForms
 			// 
 			// FormCloneDay
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(605, 434);
 			this.Controls.Add(this.pnMain);

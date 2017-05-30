@@ -42,7 +42,7 @@
             // 
             // WeekEmptySpaceControl
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.pnMain);
             this.Name = "WeekEmptySpaceControl";

@@ -164,7 +164,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			// 
 			// CalendarNoteControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.LemonChiffon;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.ContextMenuStrip = this.contextMenuStrip;

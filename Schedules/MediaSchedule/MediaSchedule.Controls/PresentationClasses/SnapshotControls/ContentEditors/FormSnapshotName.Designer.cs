@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.textEditScheduleName = new DevExpress.XtraEditors.TextEdit();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.textEditScheduleName.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonXOK
@@ -82,17 +81,6 @@
 			this.textEditScheduleName.TabIndex = 0;
 			this.textEditScheduleName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textEditScheduleName_KeyDown);
 			// 
-			// pbLogo
-			// 
-			this.pbLogo.BackColor = System.Drawing.Color.White;
-			this.pbLogo.ForeColor = System.Drawing.Color.Black;
-			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.SnapshotNew;
-			this.pbLogo.Location = new System.Drawing.Point(12, 12);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(72, 75);
-			this.pbLogo.TabIndex = 0;
-			this.pbLogo.TabStop = false;
-			// 
 			// styleController
 			// 
 			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -108,11 +96,24 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
+			// pbLogo
+			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
+			this.pbLogo.Image = global::Asa.Media.Controls.Properties.Resources.SnapshotNew;
+			this.pbLogo.Location = new System.Drawing.Point(12, 12);
+			this.pbLogo.Name = "pbLogo";
+			this.pbLogo.Size = new System.Drawing.Size(72, 75);
+			this.pbLogo.TabIndex = 0;
+			this.pbLogo.TabStop = false;
+			// 
 			// labelControlTitle
 			// 
 			this.labelControlTitle.AllowHtmlString = true;
 			this.labelControlTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlTitle.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlTitle.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlTitle.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlTitle.Location = new System.Drawing.Point(90, 12);
@@ -124,7 +125,8 @@
 			// 
 			// FormSnapshotName
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(384, 131);
 			this.Controls.Add(this.labelControlTitle);
@@ -143,8 +145,8 @@
 			this.Text = "Snapshot";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSnapshotName_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.textEditScheduleName.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.ResumeLayout(false);
 
         }

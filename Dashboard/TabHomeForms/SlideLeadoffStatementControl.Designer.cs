@@ -179,7 +179,7 @@
 			// 
 			// SlideLeadoffStatementControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "SlideLeadoffStatementControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnMain.PerformLayout();

@@ -32,7 +32,6 @@ namespace Asa.Media.Single
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
-				ribbonControl.Font = font;
 				styleController.Appearance.Font = font;
 				styleController.AppearanceDisabled.Font = font;
 				styleController.AppearanceDropDown.Font = font;
@@ -42,15 +41,6 @@ namespace Asa.Media.Single
 				comboBoxEditBusinessName.Font = font;
 				comboBoxEditDecisionMaker.Font = font;
 				dateEditPresentationDate.Font = font;
-
-				labelItemHomeFlightDatesStartTitle.Font = new Font(labelItemHomeFlightDatesStartTitle.Font.FontFamily,
-					labelItemHomeFlightDatesStartTitle.Font.Size - 1, labelItemHomeFlightDatesStartTitle.Font.Style);
-				labelItemHomeFlightDatesEndTitle.Font = new Font(labelItemHomeFlightDatesEndTitle.Font.FontFamily,
-					labelItemHomeFlightDatesEndTitle.Font.Size - 1, labelItemHomeFlightDatesEndTitle.Font.Style);
-				labelItemHomeFlightDatesStartValue.Font = new Font(labelItemHomeFlightDatesStartValue.Font.FontFamily,
-					labelItemHomeFlightDatesStartValue.Font.Size - 2, labelItemHomeFlightDatesStartValue.Font.Style);
-				labelItemHomeFlightDatesEndValue.Font = new Font(labelItemHomeFlightDatesEndValue.Font.FontFamily,
-					labelItemHomeFlightDatesEndValue.Font.Size - 2, labelItemHomeFlightDatesEndValue.Font.Style);
 
 				ribbonBarHomeBasicInfo.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();

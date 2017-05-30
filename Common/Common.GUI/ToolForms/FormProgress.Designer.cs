@@ -119,12 +119,13 @@
 			// 
 			// FormProgress
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(354, 102);
 			this.ControlBox = false;
 			this.Controls.Add(this.panelEx);
-			this.ForeColor = System.Drawing.Color.Black;
+			this.DoubleBuffered = true;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FormProgress";
 			this.Opacity = 0.85D;

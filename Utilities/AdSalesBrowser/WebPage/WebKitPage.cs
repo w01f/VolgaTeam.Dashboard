@@ -64,6 +64,7 @@ namespace AdSalesBrowser.WebPage
 			_webKit.WebView.TitleChanged += OnWebViewTitleChanged;
 			_webKit.WebView.LoadCompleted += OnWebViewLoadCompleted;
 			_webKit.WebView.LoadFailed += OnWebViewLoadFailed;
+			_webKit.WebView.CertificateError += OnWebViewCertificateError;
 			_webKit.WebView.UrlChanged += OnWebViewUrlChanged;
 			_webKit.WebView.BeforeContextMenu += OnWebViewBeforeContextMenu;
 			_webKit.WebView.NewWindow += OnWebViewNewWindow;
@@ -111,6 +112,11 @@ namespace AdSalesBrowser.WebPage
 				pnProgress.SendToBack();
 				_webKit.BringToFront();
 			}
+		}
+
+		private void OnWebViewCertificateError(Object sender, CertificateErrorEventArgs e)
+		{
+			e.Continue();
 		}
 
 		private void OnWebViewLoadCompleted(object sender, LoadCompletedEventArgs e)

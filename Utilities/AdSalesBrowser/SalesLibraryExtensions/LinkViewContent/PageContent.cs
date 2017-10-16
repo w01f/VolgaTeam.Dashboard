@@ -16,7 +16,7 @@ namespace AdSalesBrowser.SalesLibraryExtensions.LinkViewContent
 		public override void Load(object[] data)
 		{
 			base.Load(data);
-			_partFileUrls = (from object item in (JSArray)data[3] select item.ToString()).ToArray();
+			_partFileUrls = (from object item in (object[])data[3] select item.ToString()).ToArray();
 		}
 		
 		public void SwitchCurrentPart(int partIndex)

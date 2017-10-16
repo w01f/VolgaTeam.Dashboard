@@ -49,16 +49,16 @@
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.Base, Version=16.1.39.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.16.1.39.0\lib\EO.Base.dll</HintPath>
+    <Reference Include="EO.Base, Version=17.2.92.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.17.2.92.0\lib\EO.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=16.1.39.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.16.1.39.0\lib\EO.WebBrowser.dll</HintPath>
+    <Reference Include="EO.WebBrowser, Version=17.2.92.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.17.2.92.0\lib\EO.WebBrowser.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebEngine, Version=16.1.39.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.16.1.39.0\lib\EO.WebEngine.dll</HintPath>
+    <Reference Include="EO.WebEngine, Version=17.2.92.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EO.WebBrowser.17.2.92.0\lib\EO.WebEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

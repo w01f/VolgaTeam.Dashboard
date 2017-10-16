@@ -5,9 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
-using SharpCompress.Common;
-using SharpCompress.Reader;
-using SharpCompress.Reader.Rar;
+using SharpCompress.Readers;
+using SharpCompress.Readers.Rar;
 
 namespace Asa.Common.Core.Objects.RemoteStorage
 {
@@ -85,7 +84,7 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 							while (reader.MoveToNextEntry())
 							{
 								alreadyRead += reader.Entry.CompressedSize;
-								reader.WriteEntryToDirectory(targetPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+								reader.WriteEntryToDirectory(targetPath, new ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
 								FileStorageManager.Instance.ShowExtractionProgress(new FileProcessingProgressEventArgs(NameOnly, contentLenght,
 									alreadyRead));
 							}

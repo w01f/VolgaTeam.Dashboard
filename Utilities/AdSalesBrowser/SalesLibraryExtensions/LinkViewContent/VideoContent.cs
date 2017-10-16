@@ -12,7 +12,7 @@ namespace AdSalesBrowser.SalesLibraryExtensions.LinkViewContent
 		public override void Load(object[] data)
 		{
 			base.Load(data);
-			_mp4Url = (from object item in (JSArray)data[3] select item.ToString()).FirstOrDefault();
+			_mp4Url = (from object item in (object[])data[3] select item.ToString()).FirstOrDefault();
 		}
 
 		public string GetMp4Url()

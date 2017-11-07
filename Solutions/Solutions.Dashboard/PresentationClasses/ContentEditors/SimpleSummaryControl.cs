@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Common.Dictionaries;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Extensions;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.RemoteStorage;
-using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Summary;
 using Asa.Solutions.Dashboard.InteropClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
+using DevExpress.Skins;
+using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
@@ -29,24 +31,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = SlideName;
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				ckAdvertiser.Font = new Font(ckAdvertiser.Font.FontFamily, ckAdvertiser.Font.Size - 2, ckAdvertiser.Font.Style);
-				comboBoxEditAdvertiser.Font = new Font(comboBoxEditAdvertiser.Font.FontFamily, comboBoxEditAdvertiser.Font.Size - 2, comboBoxEditAdvertiser.Font.Style);
-				ckDecisionMaker.Font = new Font(ckDecisionMaker.Font.FontFamily, ckDecisionMaker.Font.Size - 2, ckDecisionMaker.Font.Style);
-				comboBoxEditDecisionMaker.Font = new Font(comboBoxEditDecisionMaker.Font.FontFamily, comboBoxEditDecisionMaker.Font.Size - 2, comboBoxEditDecisionMaker.Font.Style);
-				ckDate.Font = new Font(ckDate.Font.FontFamily, ckDate.Font.Size - 2, ckDate.Font.Style);
-				dateEditDate.Font = new Font(dateEditDate.Font.FontFamily, dateEditDate.Font.Size - 2, dateEditDate.Font.Style);
-				ckFlightDates.Font = new Font(ckFlightDates.Font.FontFamily, ckFlightDates.Font.Size - 2, ckFlightDates.Font.Style);
-				dateEditFligtDatesStart.Font = new Font(dateEditFligtDatesStart.Font.FontFamily, dateEditFligtDatesStart.Font.Size - 2, dateEditFligtDatesStart.Font.Style);
-				dateEditFligtDatesEnd.Font = new Font(dateEditFligtDatesEnd.Font.FontFamily, dateEditFligtDatesEnd.Font.Size - 2, dateEditFligtDatesEnd.Font.Style);
-				laFlightDatesStart.Font = new Font(laFlightDatesStart.Font.FontFamily, laFlightDatesStart.Font.Size - 2, laFlightDatesStart.Font.Style);
-				laFlightDatesEnd.Font = new Font(laFlightDatesEnd.Font.FontFamily, laFlightDatesEnd.Font.Size - 2, laFlightDatesEnd.Font.Style);
-				labelControlFlightDatesWeeks.Font = new Font(labelControlFlightDatesWeeks.Font.FontFamily, labelControlFlightDatesWeeks.Font.Size - 2, labelControlFlightDatesWeeks.Font.Style);
-				checkEditMonthlyInvestment.Font = new Font(checkEditMonthlyInvestment.Font.FontFamily, checkEditMonthlyInvestment.Font.Size - 2, checkEditMonthlyInvestment.Font.Style);
-				checkEditTotalInvestment.Font = new Font(checkEditTotalInvestment.Font.FontFamily, checkEditTotalInvestment.Font.Size - 2, checkEditTotalInvestment.Font.Style);
-				checkEditTableOutput.Font = new Font(checkEditTableOutput.Font.FontFamily, checkEditTableOutput.Font.Size - 2, checkEditTableOutput.Font.Style);
-			}
+
+			comboBoxEditSlideHeader.EnableSelectAll();
 			comboBoxEditAdvertiser.EnableSelectAll();
 			comboBoxEditDecisionMaker.EnableSelectAll();
 			spinEditMonthly.EnableSelectAll();
@@ -58,8 +44,47 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				comboBoxEditSlideHeader.SelectedIndex = 0;
 
 			simpleSummaryItemContainer.ItemCollectionChanged += OnItemCollectionChanged;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.SimpleSummarySplashLogo;
 
-			pbSplash.Image = SlideContainer.DashboardInfo.SimpleSummarySplashLogo;
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
+			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
+			layoutControlItemAdvertiserToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserToggle.MaxSize, scaleFactor);
+			layoutControlItemAdvertiserToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserToggle.MinSize, scaleFactor);
+			layoutControlItemAdvertiserLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserLogo.MaxSize, scaleFactor);
+			layoutControlItemAdvertiserLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserLogo.MinSize, scaleFactor);
+			layoutControlItemAdvertiserValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserValue.MaxSize, scaleFactor);
+			layoutControlItemAdvertiserValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserValue.MinSize, scaleFactor);
+			layoutControlItemDecisionMakerToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerToggle.MaxSize, scaleFactor);
+			layoutControlItemDecisionMakerToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerToggle.MinSize, scaleFactor);
+			layoutControlItemDecisionMakerLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerLogo.MaxSize, scaleFactor);
+			layoutControlItemDecisionMakerLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerLogo.MinSize, scaleFactor);
+			layoutControlItemDecisionMakerValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerValue.MaxSize, scaleFactor);
+			layoutControlItemDecisionMakerValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerValue.MinSize, scaleFactor);
+			layoutControlItemDateToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateToggle.MaxSize, scaleFactor);
+			layoutControlItemDateToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateToggle.MinSize, scaleFactor);
+			layoutControlItemDateLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateLogo.MaxSize, scaleFactor);
+			layoutControlItemDateLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateLogo.MinSize, scaleFactor);
+			layoutControlItemDateValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateValue.MaxSize, scaleFactor);
+			layoutControlItemDateValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateValue.MinSize, scaleFactor);
+			layoutControlItemFlightDatesToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesToggle.MaxSize, scaleFactor);
+			layoutControlItemFlightDatesToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesToggle.MinSize, scaleFactor);
+			layoutControlItemFlightDatesLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesLogo.MaxSize, scaleFactor);
+			layoutControlItemFlightDatesLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesLogo.MinSize, scaleFactor);
+			layoutControlItemFlightDatesStart.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesStart.MaxSize, scaleFactor);
+			layoutControlItemFlightDatesStart.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesStart.MinSize, scaleFactor);
+			layoutControlItemFlightDatesEnd.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesEnd.MaxSize, scaleFactor);
+			layoutControlItemFlightDatesEnd.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesEnd.MinSize, scaleFactor);
+			layoutControlItemMonthlyInvestmentToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyInvestmentToggle.MaxSize, scaleFactor);
+			layoutControlItemMonthlyInvestmentToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyInvestmentToggle.MinSize, scaleFactor);
+			layoutControlItemMonthlyInvestmentValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyInvestmentValue.MaxSize, scaleFactor);
+			layoutControlItemMonthlyInvestmentValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyInvestmentValue.MinSize, scaleFactor);
+			layoutControlItemTotalInvestmentToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalInvestmentToggle.MaxSize, scaleFactor);
+			layoutControlItemTotalInvestmentToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalInvestmentToggle.MinSize, scaleFactor);
+			layoutControlItemTotalInvestementValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalInvestementValue.MaxSize, scaleFactor);
+			layoutControlItemTotalInvestementValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalInvestementValue.MinSize, scaleFactor);
+			layoutControlItemAddItem.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAddItem.MaxSize, scaleFactor);
+			layoutControlItemAddItem.MinSize = RectangleHelper.ScaleSize(layoutControlItemAddItem.MinSize, scaleFactor);
 		}
 
 		private void OnItemCollectionChanged(object sender, EventArgs e)
@@ -72,6 +97,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public void UpdateTotalItems()
 		{
 			buttonXAddItem.Text = String.Format("Add Item{0}", simpleSummaryItemContainer.ItemsCount > 0 ? String.Format(" ({0})", simpleSummaryItemContainer.ItemsCount) : String.Empty);
+			layoutControlItemAddItem.Enabled = simpleSummaryItemContainer.ItemsCount < 20;
 		}
 
 		public override void LoadData()
@@ -85,22 +111,22 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			else
 				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.SimpleSummaryState.SlideHeader;
 
-			ckAdvertiser.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser;
-			ckDecisionMaker.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowDecisionMaker;
+			checkEditAdvertiser.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser;
+			checkEditDecisionMaker.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowDecisionMaker;
 
 			comboBoxEditAdvertiser.EditValue = SlideContainer.EditedContent.SimpleSummaryState.Advertiser ?? SlideContainer.EditedContent.ScheduleSettings.BusinessName;
 			comboBoxEditDecisionMaker.EditValue = SlideContainer.EditedContent.SimpleSummaryState.DecisionMaker ?? SlideContainer.EditedContent.ScheduleSettings.DecisionMaker;
 
-			ckDate.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowPresentationDate;
-			if (ckDate.Checked)
+			checkEditDate.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowPresentationDate;
+			if (checkEditDate.Checked)
 				dateEditDate.EditValue = SlideContainer.EditedContent.SimpleSummaryState.PresentationDate != DateTime.MinValue ?
 					SlideContainer.EditedContent.SimpleSummaryState.PresentationDate :
 					SlideContainer.EditedContent.ScheduleSettings.PresentationDate;
 			else
 				dateEditDate.EditValue = null;
 
-			ckFlightDates.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowFlightDates;
-			if (ckFlightDates.Checked)
+			checkEditFlightDates.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowFlightDates;
+			if (checkEditFlightDates.Checked)
 			{
 				dateEditFligtDatesStart.EditValue = SlideContainer.EditedContent.SimpleSummaryState.FlightDatesStart != DateTime.MinValue ? (object)SlideContainer.EditedContent.SimpleSummaryState.FlightDatesStart : null;
 				dateEditFligtDatesEnd.EditValue = SlideContainer.EditedContent.SimpleSummaryState.FlightDatesEnd != DateTime.MinValue ? (object)SlideContainer.EditedContent.SimpleSummaryState.FlightDatesEnd : null;
@@ -132,17 +158,17 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.SimpleSummaryState.ItemsState.AddRange(simpleSummaryItemContainer.GetItems());
 
 			SlideContainer.EditedContent.SimpleSummaryState.SlideHeader = comboBoxEditSlideHeader.EditValue?.ToString();
-			SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser = ckAdvertiser.Checked;
+			SlideContainer.EditedContent.SimpleSummaryState.ShowAdvertiser = checkEditAdvertiser.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.Advertiser = comboBoxEditAdvertiser.EditValue?.ToString() ?? string.Empty;
 
-			SlideContainer.EditedContent.SimpleSummaryState.ShowDecisionMaker = ckDecisionMaker.Checked;
+			SlideContainer.EditedContent.SimpleSummaryState.ShowDecisionMaker = checkEditDecisionMaker.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.DecisionMaker = comboBoxEditDecisionMaker.EditValue?.ToString() ?? string.Empty;
-			SlideContainer.EditedContent.SimpleSummaryState.ShowPresentationDate = ckDate.Checked;
+			SlideContainer.EditedContent.SimpleSummaryState.ShowPresentationDate = checkEditDate.Checked;
 
-			SlideContainer.EditedContent.SimpleSummaryState.ShowPresentationDate = ckDate.Checked;
+			SlideContainer.EditedContent.SimpleSummaryState.ShowPresentationDate = checkEditDate.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.PresentationDate = dateEditDate.EditValue != null ? dateEditDate.DateTime : DateTime.MinValue;
 
-			SlideContainer.EditedContent.SimpleSummaryState.ShowFlightDates = ckFlightDates.Checked;
+			SlideContainer.EditedContent.SimpleSummaryState.ShowFlightDates = checkEditFlightDates.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.FlightDatesStart = dateEditFligtDatesStart.EditValue != null ? dateEditFligtDatesStart.DateTime : DateTime.MinValue;
 			SlideContainer.EditedContent.SimpleSummaryState.FlightDatesEnd = dateEditFligtDatesEnd.EditValue != null ? dateEditFligtDatesEnd.DateTime : DateTime.MinValue;
 
@@ -166,7 +192,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		private void UpdateFlightDatesWeeks()
 		{
-			labelControlFlightDatesWeeks.Text = String.Empty;
+			simpleLabelItemFlightDatesWeeks.Text = " ";
 			if (dateEditFligtDatesStart.EditValue == null || dateEditFligtDatesEnd.EditValue == null)
 				return;
 			var startDate = dateEditFligtDatesStart.DateTime;
@@ -177,104 +203,73 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				endDate = endDate.AddDays(1);
 			var datesRange = endDate - startDate;
 			if (datesRange.Days <= 0) return;
-			labelControlFlightDatesWeeks.Text = String.Format("<color=\"gray\">{0} weeks</color>", datesRange.Days / 7 + 1);
+			simpleLabelItemFlightDatesWeeks.Text = String.Format("<color=\"gray\">{0} weeks</color>", datesRange.Days / 7 + 1);
 		}
 
-		private void xtraTabControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+		private void OnSelectedTabPageChanged(object sender, LayoutTabPageChangedEventArgs e)
 		{
-			pnTotals.Visible = e.Page == xtraTabPagePaymentDetails;
+			layoutControlGroupInvestments.Visibility = e.Page == layoutControlGroupPaymentDetails ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
-		private void buttonXAddItem_Click(object sender, EventArgs e)
+		private void OnAddItemClick(object sender, EventArgs e)
 		{
 			simpleSummaryItemContainer.AddItem();
-			if (simpleSummaryItemContainer.ItemsCount >= 20)
-				buttonXAddItem.Enabled = false;
 			UpdateTotalItems();
 			SlideContainer.RaiseDataChanged();
 		}
 
-		private void ckAdvertiser_CheckedChanged(object sender, EventArgs e)
+		private void OnAdvertiserCheckedChanged(object sender, EventArgs e)
 		{
-			comboBoxEditAdvertiser.Enabled = ckAdvertiser.Checked;
-			pbAdvertiser.Image = ckAdvertiser.Checked ? Properties.Resources.SummaryBusinessName : Properties.Resources.SummaryBusinessName.MakeGrayscale();
-			laAdvertiser.ForeColor = ckAdvertiser.Checked ? Color.Black : Color.Gray;
-			if (AllowToSave)
-				SlideContainer.RaiseDataChanged();
+			layoutControlGroupAdvertiser.Enabled = checkEditAdvertiser.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
-		private void ckDecisionMaker_CheckedChanged(object sender, EventArgs e)
+		private void OnDecisionMakerCheckedChanged(object sender, EventArgs e)
 		{
-			comboBoxEditDecisionMaker.Enabled = ckDecisionMaker.Checked;
-			pbDecisionMaker.Image = ckDecisionMaker.Checked ? Properties.Resources.SummaryDecisionMaker : Properties.Resources.SummaryDecisionMaker.MakeGrayscale();
-			laDecisionMaker.ForeColor = ckDecisionMaker.Checked ? Color.Black : Color.Gray;
-			if (AllowToSave)
-				SlideContainer.RaiseDataChanged();
+			layoutControlGroupDecisionMaker.Enabled = checkEditDecisionMaker.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
-		private void ckDate_CheckedChanged(object sender, EventArgs e)
+		private void OnDateCheckedChanged(object sender, EventArgs e)
 		{
-			dateEditDate.Enabled = ckDate.Checked;
-			pbDate.Image = ckDate.Checked ? Properties.Resources.SummaryPresentationDate : Properties.Resources.SummaryPresentationDate.MakeGrayscale();
-			pbDate.Enabled = ckDate.Checked;
-			laDate.ForeColor = ckDate.Checked ? Color.Black : Color.Gray;
-			if (AllowToSave)
-				SlideContainer.RaiseDataChanged();
+			layoutControlGroupDate.Enabled = checkEditDate.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
-		private void ckFlightDates_CheckedChanged(object sender, EventArgs e)
+		private void OnFlightDatesCheckedChanged(object sender, EventArgs e)
 		{
-			dateEditFligtDatesStart.Enabled = ckFlightDates.Checked;
-			dateEditFligtDatesEnd.Enabled = ckFlightDates.Checked;
-			pbFlightDates.Image = ckFlightDates.Checked ? Properties.Resources.SummaryFlightDates : Properties.Resources.SummaryFlightDates.MakeGrayscale();
-			laFlightDates.ForeColor = ckFlightDates.Checked ? Color.Black : Color.Gray;
-			laFlightDatesStart.ForeColor = ckFlightDates.Checked ? Color.Black : Color.Gray;
-			laFlightDatesEnd.ForeColor = ckFlightDates.Checked ? Color.Black : Color.Gray;
-			if (AllowToSave)
-				SlideContainer.RaiseDataChanged();
+			layoutControlGroupFlightDates.Enabled = checkEditFlightDates.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
-		private void dateEditFligtDatesStart_EditValueChanged(object sender, EventArgs e)
+		private void OnFlightDatesStartEditValueChanged(object sender, EventArgs e)
 		{
 			dateEditFligtDatesEnd.Properties.NullDate = dateEditFligtDatesStart.DateTime;
 			UpdateFlightDatesWeeks();
-			EditValueChanged(sender, e);
-			if (AllowToSave)
-				SlideContainer.RaiseDataChanged();
+			OnEditValueChanged(sender, e);
 		}
 
-		private void dateEditFligtDatesEnd_EditValueChanged(object sender, EventArgs e)
+		private void OnFligtDatesEndEditValueChanged(object sender, EventArgs e)
 		{
 			UpdateFlightDatesWeeks();
-			EditValueChanged(sender, e);
+			OnEditValueChanged(sender, e);
 		}
 
-		private void checkEdit_CheckedChanged(object sender, EventArgs e)
+		private void OnInvestmentCheckedChanged(object sender, EventArgs e)
 		{
-			checkEditMonthlyInvestment.ForeColor =
-				checkEditMonthlyInvestment.Properties.Appearance.ForeColor =
-				checkEditMonthlyInvestment.Properties.AppearanceFocused.ForeColor =
-				 checkEditMonthlyInvestment.Checked ? Color.Black : Color.Gray;
-			checkEditMonthlyInvestment.Refresh();
-			checkEditTotalInvestment.ForeColor =
-				checkEditTotalInvestment.Properties.Appearance.ForeColor =
-				checkEditTotalInvestment.Properties.AppearanceFocused.ForeColor =
-				 checkEditTotalInvestment.Checked ? Color.Black : Color.Gray;
-			checkEditTotalInvestment.Refresh();
-			spinEditMonthly.Enabled = checkEditMonthlyInvestment.Checked;
-			spinEditTotal.Enabled = checkEditTotalInvestment.Checked;
+			layoutControlItemMonthlyInvestmentValue.Enabled = checkEditMonthlyInvestment.Checked;
+			layoutControlItemTotalInvestementValue.Enabled = checkEditTotalInvestment.Checked;
 			UpdateTotalItems();
-			if (AllowToSave)
-				SlideContainer.RaiseDataChanged();
+			OnEditValueChanged(sender, e);
 		}
 
-		private void EditValueChanged(object sender, EventArgs e)
+		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (AllowToSave)
 				SlideContainer.RaiseDataChanged();
 		}
 
-		private void spinEditTotals_EditValueChanged(object sender, EventArgs e)
+		private void OnInvestmentEditValueChanged(object sender, EventArgs e)
 		{
 			if (!AllowToSave) return;
 			SlideContainer.EditedContent.SimpleSummaryState.MonthlyValue = simpleSummaryItemContainer.TotalMonthlyValue == (decimal?)spinEditMonthly.EditValue ? null : (decimal?)spinEditMonthly.EditValue;
@@ -282,12 +277,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.RaiseDataChanged();
 		}
 
-		private void spinEditMonthly_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void OnMonthlyInvestmentButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
 		{
 			spinEditMonthly.EditValue = simpleSummaryItemContainer.TotalMonthlyValue;
 		}
 
-		private void spinEditTotal_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void OnTotalInvestmentButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
 		{
 			spinEditTotal.EditValue = simpleSummaryItemContainer.TotalTotalValue;
 		}
@@ -343,7 +338,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			get
 			{
-				if (ckAdvertiser.Checked)
+				if (checkEditAdvertiser.Checked)
 					return comboBoxEditAdvertiser.EditValue?.ToString() ?? string.Empty;
 				return string.Empty;
 			}
@@ -353,7 +348,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			get
 			{
-				if (ckDecisionMaker.Checked)
+				if (checkEditDecisionMaker.Checked)
 					return comboBoxEditDecisionMaker.EditValue?.ToString() ?? string.Empty;
 				return string.Empty;
 			}
@@ -363,7 +358,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			get
 			{
-				if (ckDate.Checked)
+				if (checkEditDate.Checked)
 					return dateEditDate.EditValue != null ? !dateEditDate.DateTime.Equals(DateTime.MinValue) ? dateEditDate.DateTime.ToString("MMMM dd, yyyy") : string.Empty : string.Empty;
 				return string.Empty;
 			}
@@ -373,7 +368,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			get
 			{
-				if (ckFlightDates.Checked)
+				if (checkEditFlightDates.Checked)
 					return (dateEditFligtDatesStart.EditValue != null ? !dateEditFligtDatesStart.DateTime.Equals(DateTime.MinValue) ? dateEditFligtDatesStart.DateTime.ToString("M/d/yyyy") : string.Empty : string.Empty) +
 						   (dateEditFligtDatesEnd.EditValue != null ? !dateEditFligtDatesEnd.DateTime.Equals(DateTime.MinValue) ? " - " + dateEditFligtDatesEnd.DateTime.ToString("M/d/yyyy") : string.Empty : string.Empty);
 				return string.Empty;

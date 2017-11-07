@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,6 +10,7 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Section.Summary;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.Core.Objects.Themes;
@@ -19,6 +19,7 @@ using Asa.Common.GUI.Summary;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
@@ -51,11 +52,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			Text = "Summary Slide";
 			buttonXAddItem.Visible = true;
 			buttonXAddItem.Click += OnAddItem;
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laHeaderTitle.Font = new Font(laHeaderTitle.Font.FontFamily, laHeaderTitle.Font.Size - 2, laHeaderTitle.Font.Style);
-				buttonXAddItem.Font = new Font(buttonXAddItem.Font.FontFamily, buttonXAddItem.Font.Size - 2, buttonXAddItem.Font.Style);
-			}
+
+			layoutControlItemAddItem.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAddItem.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemAddItem.MinSize = RectangleHelper.ScaleSize(layoutControlItemAddItem.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		#region ISectionEditorControl Memebers

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Digital;
 using Asa.Business.Online.Configuration;
 using Asa.Business.Online.Dictionaries;
+using Asa.Common.Core.Helpers;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
@@ -29,27 +30,21 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			buttonXMonthlyInvestment.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsMontlyInvestmentTitle ?? buttonXMonthlyInvestment.Text);
 			buttonXTotalInvestment.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.DigitalInfoSettingsTotalInvestmentTitle ?? buttonXTotalInvestment.Text);
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				font = new Font(buttonXCategory.Font.FontFamily, buttonXCategory.Font.Size - 2, buttonXCategory.Font.Style);
-				buttonXCategory.Font = font;
-				buttonXLogo.Font = font;
-				buttonXSubCategory.Font = font;
-				buttonXProduct.Font = font;
-				buttonXLogo.Font = font;
-				buttonXMonthlyInvestment.Font = font;
-				buttonXTotalInvestment.Font = font;
-				buttonXInfo.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemCategory.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCategory.MaxSize, scaleFactor);
+			layoutControlItemCategory.MinSize = RectangleHelper.ScaleSize(layoutControlItemCategory.MinSize, scaleFactor);
+			layoutControlItemSubCategory.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSubCategory.MaxSize, scaleFactor);
+			layoutControlItemSubCategory.MinSize = RectangleHelper.ScaleSize(layoutControlItemSubCategory.MinSize, scaleFactor);
+			layoutControlItemProduct.MaxSize = RectangleHelper.ScaleSize(layoutControlItemProduct.MaxSize, scaleFactor);
+			layoutControlItemProduct.MinSize = RectangleHelper.ScaleSize(layoutControlItemProduct.MinSize, scaleFactor);
+			layoutControlItemInfo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemInfo.MaxSize, scaleFactor);
+			layoutControlItemInfo.MinSize = RectangleHelper.ScaleSize(layoutControlItemInfo.MinSize, scaleFactor);
+			layoutControlItemLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MaxSize, scaleFactor);
+			layoutControlItemLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MinSize, scaleFactor);
+			layoutControlItemMonthlyInvestment.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyInvestment.MaxSize, scaleFactor);
+			layoutControlItemMonthlyInvestment.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyInvestment.MinSize, scaleFactor);
+			layoutControlItemTotalInvestment.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalInvestment.MaxSize, scaleFactor);
+			layoutControlItemTotalInvestment.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalInvestment.MinSize, scaleFactor);
 		}
 
 		protected abstract void RaiseDataChanged();

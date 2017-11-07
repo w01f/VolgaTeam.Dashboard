@@ -120,11 +120,7 @@
   <metadata name="styleController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="labelControl.Text" xml:space="preserve">
-    <value>&lt;size=+2&gt;You already have several PowerPoint presentations running on this machine.
-
-This app will only add slides to the ACTIVE presentation that you are working in.
-
-You MAY want to save and close any presentations that you do not need to use with this app.&lt;/size&gt;</value>
+  <data name="simpleLabelItem1.Text" xml:space="preserve">
+    <value>&lt;size=+2&gt;You already have several PowerPoint presentations&lt;br&gt;running on this machine.&lt;br&gt;&lt;br&gt;This app will only add slides to the ACTIVE&lt;br&gt;presentation that you are working in.&lt;br&gt;&lt;br&gt;You MAY want to save and close any presentations&lt;br&gt;that you do not need to use with this app.&lt;/size&gt;</value>
   </data>
 </root>

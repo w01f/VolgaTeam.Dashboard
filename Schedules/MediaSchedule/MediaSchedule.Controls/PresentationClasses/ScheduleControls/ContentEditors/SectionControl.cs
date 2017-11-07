@@ -37,6 +37,7 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
@@ -84,12 +85,29 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			repositoryItemSpinEditRating.EnableSelectAll();
 			repositoryItemSpinEditSpot.EnableSelectAll();
 
-			pbNoPrograms.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoProgramsLogo ?? pbNoPrograms.Image;
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoProgramsLogo ?? pictureEditDefaultLogo.Image;
 
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laProgramSourceInfo.Font = new Font(laProgramSourceInfo.Font.FontFamily, laProgramSourceInfo.Font.Size - 2, laProgramSourceInfo.Font.Style);
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
+			gridBandLogo.Width = (Int32)(gridBandLogo.Width * scaleFactor.Width);
+			gridBandStation.Width = (Int32)(gridBandStation.Width * scaleFactor.Width);
+			bandedGridColumnDay.Width = (Int32)(bandedGridColumnDay.Width * scaleFactor.Width);
+			bandedGridColumnTime.Width = (Int32)(bandedGridColumnTime.Width * scaleFactor.Width);
+			bandedGridColumnLength.Width = (Int32)(bandedGridColumnLength.Width * scaleFactor.Width);
+			gridBandRate.Width = (Int32)(gridBandRate.Width * scaleFactor.Width);
+			bandedGridColumnRate.Width = (Int32)(bandedGridColumnRate.Width * scaleFactor.Width);
+			bandedGridColumnRating.Width = (Int32)(bandedGridColumnRating.Width * scaleFactor.Width);
+			gridBandTotals.Width = (Int32)(gridBandTotals.Width * scaleFactor.Width);
+			bandedGridColumnTotalSpots.Width = (Int32)(bandedGridColumnTotalSpots.Width * scaleFactor.Width);
+			bandedGridColumnCost.Width = (Int32)(bandedGridColumnCost.Width * scaleFactor.Width);
+			bandedGridColumnGRP.Width = (Int32)(bandedGridColumnGRP.Width * scaleFactor.Width);
+			bandedGridColumnCPP.Width = (Int32)(bandedGridColumnCPP.Width * scaleFactor.Width);
+
+			gridColumnProgramSourceStation.Width = (Int32)(gridColumnProgramSourceStation.Width * scaleFactor.Width);
+			gridColumnProgramSourceDaypart.Width = (Int32)(gridColumnProgramSourceDaypart.Width * scaleFactor.Width);
+			gridColumnProgramSourceDay.Width = (Int32)(gridColumnProgramSourceDay.Width * scaleFactor.Width);
+			gridColumnProgramSourceTime.Width = (Int32)(gridColumnProgramSourceTime.Width * scaleFactor.Width);
 		}
 
 		public void Release()
@@ -304,21 +322,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				BuildSpotColumns();
 			if (_sectionContainer.SectionData.Programs.Any())
 			{
-				pbNoPrograms.Visible = false;
-				gridControlSchedule.Visible = true;
-				gridControlSchedule.BringToFront();
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlItemPrograms.Visibility = LayoutVisibility.Always;
 				gridControlSchedule.DataSource = _sectionContainer.SectionData.DataSource;
 			}
 			else
 			{
-				gridControlSchedule.Visible = false;
-				pbNoPrograms.Visible = true;
-				pbNoPrograms.BringToFront();
+				layoutControlItemPrograms.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
 			}
 			advBandedGridViewSchedule.EndUpdate();
 			if (_dragDropHelper == null && _sectionContainer.SectionData.Programs.Any())
 			{
-				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, 40, handledColumns: new[] { bandedGridColumnIndex, bandedGridColumnLogoImage });
+				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, handledColumns: new[] { bandedGridColumnIndex, bandedGridColumnLogoImage });
 				_dragDropHelper.AfterDrop += OnGridControlAfterDrop;
 			}
 			if (focussedRow >= 0 && focussedRow < advBandedGridViewSchedule.RowCount)
@@ -336,6 +352,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			_spotColumns.Clear();
 
 			gridBandSpots.Visible = false;
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			foreach (DataColumn column in _sectionContainer.SectionData.DataSource.Columns)
 			{
 				if (!column.ColumnName.Contains(ScheduleSection.ProgramSpotDataColumnNamePrefix)) continue;
@@ -353,7 +370,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				bandedGridColumn.Tag = column.ExtendedProperties["SpotSettings"];
 				bandedGridColumn.OptionsColumn.FixedWidth = true;
 				bandedGridColumn.RowCount = 2;
-				bandedGridColumn.Width = 45;
+				bandedGridColumn.Width = (Int32)(45 * scaleFactor.Width);
 				bandedGridColumn.Visible = true;
 				bandedGridColumn.SummaryItem.FieldName = column.ColumnName;
 				bandedGridColumn.SummaryItem.SummaryType = SummaryItemType.Sum;
@@ -430,7 +447,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 							using (var confirmation = new FormCopyContentConfirmation())
 							{
 								confirmation.Text = "Create Snapshot";
-								confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Snapshot successfully added");
+								confirmation.simpleLabelItemTitle.Text = String.Format(confirmation.simpleLabelItemTitle.Text, "Snapshot successfully added");
 								confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabSnapshot.Text);
 								if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 									ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
@@ -547,9 +564,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				var x = viewInfo.ColumnsInfo[column].Bounds.X;
 				var width = viewInfo.ColumnsInfo[column].Bounds.Width;
 				const string spotTotalTitle = "Totals: ";
-				var size = e.Appearance.CalcTextSize(e.Cache, spotTotalTitle, 50);
+				var titleWidth = (Int32) (50 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Width);
+				var size = e.Appearance.CalcTextSize(e.Cache, spotTotalTitle, titleWidth);
 				var textWidth = Convert.ToInt32(size.Width) + 1;
-				var textRect = new Rectangle(x + width - 50, e.Bounds.Y, textWidth, e.Bounds.Height);
+				var textRect = new Rectangle(x + width - titleWidth, e.Bounds.Y, textWidth, e.Bounds.Height);
 				e.Appearance.DrawString(e.Cache, spotTotalTitle, textRect);
 				e.Handled = true;
 			}

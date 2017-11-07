@@ -19,6 +19,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.InteropClasses;
+using DevExpress.Skins;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
@@ -29,6 +30,7 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
@@ -49,8 +51,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		{
 			InitializeComponent();
 			Text = "Digital";
-			pnContent.Dock = DockStyle.Fill;
-			pnNoProducts.Dock = DockStyle.Fill;
 		}
 
 		public virtual void InitControls()
@@ -60,24 +60,16 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			bandedGridColumnProduct.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsProductTitle ?? bandedGridColumnProduct.Caption;
 			bandedGridColumnInfo.Caption = ListManager.Instance.DefaultControlsConfiguration.DigitalInfoColumnsInfoTitle ?? bandedGridColumnInfo.Caption;
 
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				advBandedGridView.Appearance.BandPanel.Font = font;
-				advBandedGridView.Appearance.EvenRow.Font = font;
-				advBandedGridView.Appearance.FocusedCell.Font = font;
-				advBandedGridView.Appearance.FocusedRow.Font = font;
-				advBandedGridView.Appearance.HeaderPanel.Font = new Font(font.FontFamily, font.Size, FontStyle.Bold);
-				advBandedGridView.Appearance.OddRow.Font = font;
-				advBandedGridView.Appearance.Row.Font = font;
-				advBandedGridView.Appearance.SelectedRow.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			bandedGridColumnId.Width = (Int32)(bandedGridColumnId.Width * scaleFactor.Width);
+			bandedGridColumnLogo.Width = (Int32)(bandedGridColumnLogo.Width * scaleFactor.Width);
+			spinEditMonthlyInvestment.MaximumSize = RectangleHelper.ScaleSize(spinEditMonthlyInvestment.MaximumSize, scaleFactor);
+			spinEditMonthlyInvestment.MinimumSize = RectangleHelper.ScaleSize(spinEditMonthlyInvestment.MinimumSize, scaleFactor);
+			spinEditTotalInvestment.MaximumSize = RectangleHelper.ScaleSize(spinEditTotalInvestment.MaximumSize, scaleFactor);
+			spinEditTotalInvestment.MinimumSize = RectangleHelper.ScaleSize(spinEditTotalInvestment.MinimumSize, scaleFactor);
+
+			advBandedGridView.BestFitColumns(true);
 		}
 
 		#region Data Methods
@@ -101,6 +93,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			UpdateGridView();
 			UpdateProductsSplash();
 			InitDargDropHelper();
+
 			_allowToSave = true;
 		}
 
@@ -159,19 +152,29 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			bandedGridColumnInfo.Visible = _digitalInfo.ShowInfo;
 			bandedGridColumnLogo.Visible = _digitalInfo.ShowLogo;
 
-			pnTotalInvestment.Visible = _digitalInfo.ShowTotalInvestemt;
-			pnTotalInvestment.BringToFront();
-
-			pnMonthlyInvestment.Visible = _digitalInfo.ShowMonthlyInvestemt;
-			pnMonthlyInvestment.BringToFront();
+			layoutControlItemTotalInvestment.Visibility = _digitalInfo.ShowTotalInvestemt
+				? LayoutVisibility.Always
+				: LayoutVisibility.Never;
+			layoutControlItemMonthlyInvestment.Visibility = _digitalInfo.ShowMonthlyInvestemt
+				? LayoutVisibility.Always
+				: LayoutVisibility.Never;
+			emptySpaceItemInvestemt.Visibility = _digitalInfo.ShowTotalInvestemt && _digitalInfo.ShowMonthlyInvestemt
+				? LayoutVisibility.Always
+				: LayoutVisibility.Never;
 		}
 
 		private void UpdateProductsSplash()
 		{
 			if (_digitalInfo.Records.Any())
-				pnContent.BringToFront();
+			{
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlGroupActiveContent.Visibility = LayoutVisibility.Always;
+			}
 			else
-				pnNoProducts.BringToFront();
+			{
+				layoutControlGroupActiveContent.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
+			}
 		}
 		#endregion
 

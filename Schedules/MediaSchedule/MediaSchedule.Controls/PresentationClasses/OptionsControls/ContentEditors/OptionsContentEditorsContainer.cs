@@ -25,6 +25,8 @@ using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;
 using DevComponents.DotNetBar;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
@@ -64,9 +66,8 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		public override void InitControl()
 		{
 			base.InitControl();
-			pnData.Dock = DockStyle.Fill;
-			pnNoRecords.Dock = DockStyle.Fill;
 
+			retractableBarControl.ContentSize = retractableBarControl.Width;
 			retractableBarControl.Collapse(true);
 
 			_tabDragDropHelper = new XtraTabDragDropHelper<OptionSetEditorsContainer>(xtraTabControlContentEditors);
@@ -80,28 +81,25 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			Controller.Instance.OptionsProgramAdd.Click += OnAddItem;
 			Controller.Instance.OptionsProgramDelete.Click += OnDeleteItem;
 
-			pbNoRecords.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsNoRecordsLogo ?? pbNoRecords.Image;
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsNoRecordsLogo ?? pictureEditDefaultLogo.Image;
 
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				font = new Font(laAvgRateTitle.Font.FontFamily, laAvgRateTitle.Font.Size - 2, laAvgRateTitle.Font.Style);
-				laTotalSpotsTitle.Font = font;
-				laAvgRateTitle.Font = font;
-				laTotalCostTitle.Font = font;
-				font = new Font(laAvgRateValue.Font.FontFamily, laAvgRateValue.Font.Size - 2, laAvgRateValue.Font.Style);
-				laTotalSpotsValue.Font = font;
-				laAvgRateValue.Font = font;
-				laTotalCostValue.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
+			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
+			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
+			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
+			simpleLabelItemTotalSpotsTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MaxSize, scaleFactor);
+			simpleLabelItemTotalSpotsTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MinSize, scaleFactor);
+			simpleLabelItemTotalSpotsValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MaxSize, scaleFactor);
+			simpleLabelItemTotalSpotsValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MinSize, scaleFactor);
+			simpleLabelItemTotalCostTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MaxSize, scaleFactor);
+			simpleLabelItemTotalCostTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MinSize, scaleFactor);
+			simpleLabelItemTotalCostValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MaxSize, scaleFactor);
+			simpleLabelItemTotalCostValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MinSize, scaleFactor);
+			simpleLabelItemAvgRateTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MaxSize, scaleFactor);
+			simpleLabelItemAvgRateTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MinSize, scaleFactor);
+			simpleLabelItemAvgRateValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MaxSize, scaleFactor);
+			simpleLabelItemAvgRateValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MinSize, scaleFactor);
 		}
 
 		public override void ShowControl(ContentOpenEventArgs args = null)
@@ -130,9 +128,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			EditedContent?.Dispose();
 			EditedContent = Schedule.OptionsContent.Clone<OptionsContent, OptionsContent>();
 
-			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
+			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
 
-			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
+			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
 				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
@@ -217,6 +215,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				{
 					if (!_allowToSave) return;
 					UpdateTotalsValues();
+					UpdateTotalsVisibility();
 					SettingsNotSaved = true;
 				};
 
@@ -319,26 +318,24 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			if (ActiveOptionSetContainer != null)
 			{
-				pnTotalSpots.Visible = ActiveOptionSetContainer.OptionSetData.ShowTotalSpots;
-				pnTotalSpots.BringToFront();
-				pnTotalCost.Visible = ActiveOptionSetContainer.OptionSetData.ShowTotalCost;
-				pnTotalCost.BringToFront();
-				pnAvgRate.Visible = ActiveOptionSetContainer.OptionSetData.ShowAverageRate;
-				pnAvgRate.BringToFront();
+				layoutControlGroupTotals.Visibility = ActiveOptionSetContainer.OptionSetData.Programs.Any() && (ActiveOptionSetContainer.OptionSetData.ShowTotalSpots || ActiveOptionSetContainer.OptionSetData.ShowTotalCost || ActiveOptionSetContainer.OptionSetData.ShowAverageRate) ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupTotalSpots.Visibility = ActiveOptionSetContainer.OptionSetData.ShowTotalSpots ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupTotalCost.Visibility = ActiveOptionSetContainer.OptionSetData.ShowTotalCost ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupAvgRate.Visibility = ActiveOptionSetContainer.OptionSetData.ShowAverageRate ? LayoutVisibility.Always : LayoutVisibility.Never;
 			}
 			else if (ActiveSummary != null)
 			{
-				pnTotalSpots.Visible = ActiveSummary.Data.ShowTallySpots;
-				pnTotalSpots.SendToBack();
-				pnTotalCost.Visible = ActiveSummary.Data.ShowTallyCost;
-				pnTotalCost.BringToFront();
-				pnAvgRate.Visible = false;
+				layoutControlGroupTotals.Visibility = ActiveSummary.Data.ShowTallySpots || ActiveSummary.Data.ShowTallyCost ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupTotalSpots.Visibility = ActiveSummary.Data.ShowTallySpots ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupTotalCost.Visibility = ActiveSummary.Data.ShowTallyCost ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupAvgRate.Visibility = LayoutVisibility.Never;
 			}
 			else
 			{
-				pnTotalSpots.Visible = false;
-				pnTotalCost.Visible = false;
-				pnAvgRate.Visible = false;
+				layoutControlGroupTotals.Visibility = LayoutVisibility.Never;
+				layoutControlGroupTotalSpots.Visibility = LayoutVisibility.Never;
+				layoutControlGroupTotalCost.Visibility = LayoutVisibility.Never;
+				layoutControlGroupAvgRate.Visibility = LayoutVisibility.Never;
 			}
 		}
 
@@ -346,39 +343,36 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			if (ActiveOptionSetContainer != null && ActiveOptionSetContainer.OptionSetData.Programs.Any())
 			{
-				pnBottom.Visible = true;
 				switch (ActiveOptionSetContainer.OptionSetData.SpotType)
 				{
 					case SpotType.Week:
-						laTotalSpotsTitle.Text = "Weekly Spots";
-						laTotalCostTitle.Text = "Weekly Cost";
+						simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Weekly Spots");
+						simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Weekly Cost");
 						break;
 					case SpotType.Month:
-						laTotalSpotsTitle.Text = "Monthly Spots";
-						laTotalCostTitle.Text = "Monthly Cost";
+						simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Monthly Spots");
+						simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Monthly Cost");
 						break;
 					case SpotType.Total:
-						laTotalSpotsTitle.Text = "Total Spots";
-						laTotalCostTitle.Text = "Total Cost";
+						simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Total Spots");
+						simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Total Cost");
 						break;
 				}
-				laTotalSpotsValue.Text = ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0");
-				laTotalCostValue.Text = ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-				laAvgRateValue.Text = ActiveOptionSetContainer.OptionSetData.AvgRate.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0");
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0"));
+				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemAvgRateValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveOptionSetContainer.OptionSetData.AvgRate.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
 			}
 			else if (ActiveSummary != null)
 			{
-				pnBottom.Visible = true;
-				laTotalSpotsTitle.Text = "Total Spots";
-				laTotalCostTitle.Text = "Total Cost";
-				laTotalSpotsValue.Text = ActiveSummary.Data.TotalSpots.ToString("#,##0");
-				laTotalCostValue.Text = ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0");
-				laAvgRateValue.Text = String.Empty;
+				simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Total Spots");
+				simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Total Cost");
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
+				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemAvgRateValue.Text = " ";
 			}
 			else
 			{
-				pnBottom.Visible = false;
-				laTotalSpotsValue.Text = laAvgRateValue.Text = String.Empty;
+				simpleLabelItemTotalSpotsValue.Text = simpleLabelItemAvgRateValue.Text = " ";
 			}
 		}
 
@@ -442,13 +436,15 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			if (EditedContent.Options.Any())
 			{
-				pnData.BringToFront();
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlItemData.Visibility = LayoutVisibility.Always;
 				Controller.Instance.OptionsProgramAdd.Enabled = true;
 				Controller.Instance.OptionsProgramDelete.Enabled = true;
 			}
 			else
 			{
-				pnNoRecords.BringToFront();
+				layoutControlItemData.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
 				Controller.Instance.OptionsProgramAdd.Enabled = false;
 				Controller.Instance.OptionsProgramDelete.Enabled = false;
 			}

@@ -114,9 +114,9 @@
 			// barStaticItemLogo
 			// 
 			this.barStaticItemLogo.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
-			this.barStaticItemLogo.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-			this.barStaticItemLogo.Glyph = global::Asa.Media.Controls.Properties.Resources.RibbonLogo;
 			this.barStaticItemLogo.Id = 20;
+			this.barStaticItemLogo.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+			this.barStaticItemLogo.ImageOptions.Image = global::Asa.Media.Controls.Properties.Resources.RibbonLogo;
 			this.barStaticItemLogo.Name = "barStaticItemLogo";
 			this.barStaticItemLogo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
 			this.barStaticItemLogo.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -125,8 +125,8 @@
 			// 
 			this.barLargeButtonItemOpen.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemOpen.Caption = "Open";
-			this.barLargeButtonItemOpen.Glyph = global::Asa.Media.Controls.Properties.Resources.OpenSchedule;
 			this.barLargeButtonItemOpen.Id = 15;
+			this.barLargeButtonItemOpen.ImageOptions.Image = global::Asa.Media.Controls.Properties.Resources.OpenSchedule;
 			this.barLargeButtonItemOpen.Name = "barLargeButtonItemOpen";
 			this.barLargeButtonItemOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.OnScheduleOpenItemClick);
 			// 
@@ -134,8 +134,8 @@
 			// 
 			this.barLargeButtonItemDelete.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemDelete.Caption = "Delete";
-			this.barLargeButtonItemDelete.Glyph = global::Asa.Media.Controls.Properties.Resources.DeleteSchedule;
 			this.barLargeButtonItemDelete.Id = 16;
+			this.barLargeButtonItemDelete.ImageOptions.Image = global::Asa.Media.Controls.Properties.Resources.DeleteSchedule;
 			this.barLargeButtonItemDelete.Name = "barLargeButtonItemDelete";
 			this.barLargeButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.OnScheduleDeleteDeleteItemClick);
 			// 
@@ -143,8 +143,8 @@
 			// 
 			this.barLargeButtonItemExit.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 			this.barLargeButtonItemExit.Caption = "Exit";
-			this.barLargeButtonItemExit.Glyph = global::Asa.Media.Controls.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 18;
+			this.barLargeButtonItemExit.ImageOptions.Image = global::Asa.Media.Controls.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
 			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.OnExitItemClick);
 			// 
@@ -160,7 +160,8 @@
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(667, 87);
+			this.barDockControlTop.Manager = this.barManager;
+			this.barDockControlTop.Size = new System.Drawing.Size(667, 84);
 			// 
 			// barDockControlBottom
 			// 
@@ -168,6 +169,7 @@
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.barDockControlBottom.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlBottom.Location = new System.Drawing.Point(0, 603);
+			this.barDockControlBottom.Manager = this.barManager;
 			this.barDockControlBottom.Size = new System.Drawing.Size(667, 0);
 			// 
 			// barDockControlLeft
@@ -175,16 +177,18 @@
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
 			this.barDockControlLeft.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 87);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 516);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 84);
+			this.barDockControlLeft.Manager = this.barManager;
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 519);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
 			this.barDockControlRight.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlRight.Location = new System.Drawing.Point(667, 87);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 516);
+			this.barDockControlRight.Location = new System.Drawing.Point(667, 84);
+			this.barDockControlRight.Manager = this.barManager;
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 519);
 			// 
 			// gridControlSchedules
 			// 
@@ -200,7 +204,7 @@
 			this.gridControlSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlSchedules.Size = new System.Drawing.Size(661, 485);
+			this.gridControlSchedules.Size = new System.Drawing.Size(665, 491);
 			this.gridControlSchedules.TabIndex = 40;
 			this.gridControlSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSchedules});
@@ -345,10 +349,10 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 87);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 84);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageSchedules;
-			this.xtraTabControl.Size = new System.Drawing.Size(667, 516);
+			this.xtraTabControl.Size = new System.Drawing.Size(667, 519);
 			this.xtraTabControl.TabIndex = 45;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageSchedules,
@@ -361,7 +365,7 @@
 			this.xtraTabPageSchedules.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageSchedules.Controls.Add(this.gridControlSchedules);
 			this.xtraTabPageSchedules.Name = "xtraTabPageSchedules";
-			this.xtraTabPageSchedules.Size = new System.Drawing.Size(661, 485);
+			this.xtraTabPageSchedules.Size = new System.Drawing.Size(665, 491);
 			this.xtraTabPageSchedules.Text = "My Schedules";
 			// 
 			// xtraTabPageTemplates
@@ -370,7 +374,7 @@
 			this.xtraTabPageTemplates.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
-			this.xtraTabPageTemplates.Size = new System.Drawing.Size(661, 485);
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(665, 320);
 			this.xtraTabPageTemplates.Text = "Public Cloud";
 			// 
 			// gridControlTemplates
@@ -384,7 +388,7 @@
 			this.gridControlTemplates.Location = new System.Drawing.Point(0, 0);
 			this.gridControlTemplates.MainView = this.gridViewTemplates;
 			this.gridControlTemplates.Name = "gridControlTemplates";
-			this.gridControlTemplates.Size = new System.Drawing.Size(661, 485);
+			this.gridControlTemplates.Size = new System.Drawing.Size(665, 320);
 			this.gridControlTemplates.TabIndex = 41;
 			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTemplates});

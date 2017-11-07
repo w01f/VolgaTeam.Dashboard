@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
-using DevExpress.XtraTab;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
+using DevExpress.Skins;
+using DevExpress.XtraLayout;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -23,26 +24,24 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = SlideName;
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-			}
+
 			comboBoxEditSlideHeader.EnableSelectAll();
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersLists.Headers);
 
-			xtraTabPageA.Text = SlideContainer.StarInfo.Titles.Tab11SubATitle;
-			xtraTabPageB.Text = SlideContainer.StarInfo.Titles.Tab11SubBTitle;
-			xtraTabPageC.Text = SlideContainer.StarInfo.Titles.Tab11SubCTitle;
-			OnSelectedPageChanged(null, new TabPageChangedEventArgs(null, xtraTabPageA));
+			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab11SubATitle;
+			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab11SubBTitle;
+			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab11SubCTitle;
+			OnSelectedPageChanged(null, new LayoutTabPageChangedEventArgs(null, layoutControlGroupTabA));
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
+			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
+			layoutControlItemLogoRight.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MaxSize, scaleFactor);
+			layoutControlItemLogoRight.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MinSize, scaleFactor);
+			layoutControlItemLogoFooter.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MaxSize, scaleFactor);
+			layoutControlItemLogoFooter.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MinSize, scaleFactor);
 		}
 
 		public override void LoadData()
@@ -62,27 +61,27 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			SlideContainer.SettingsContainer.SaveSettings();
 		}
 
-		private void EditValueChanged(object sender, EventArgs e)
+		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			SlideContainer.RaiseDataChanged();
 		}
 
-		private void OnSelectedPageChanged(object sender, TabPageChangedEventArgs e)
+		private void OnSelectedPageChanged(object sender, LayoutTabPageChangedEventArgs e)
 		{
-			switch (e.Page.TabIndex)
+			switch (tabbedControlGroupData.SelectedTabPageIndex)
 			{
 				case 0:
-					pbLogoRight.Image = SlideContainer.StarInfo.Tab11SubARightLogo;
-					pbLogoFooter.Image = SlideContainer.StarInfo.Tab11SubAFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubARightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubAFooterLogo;
 					break;
 				case 1:
-					pbLogoRight.Image = SlideContainer.StarInfo.Tab11SubBRightLogo;
-					pbLogoFooter.Image = SlideContainer.StarInfo.Tab11SubBFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubBRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubBFooterLogo;
 					break;
 				case 2:
-					pbLogoRight.Image = SlideContainer.StarInfo.Tab11SubCRightLogo;
-					pbLogoFooter.Image = SlideContainer.StarInfo.Tab11SubCFooterLogo;
+					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab11SubCRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab11SubCFooterLogo;
 					break;
 			}
 		}

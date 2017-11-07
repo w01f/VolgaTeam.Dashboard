@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Objects.Themes;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.Dashboard.InteropClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
+using DevExpress.Skins;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
@@ -23,15 +24,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = SlideName;
-			if ((CreateGraphics()).DpiX > 96)
-			{
 
-				laGoal1.Font = new Font(laGoal1.Font.FontFamily, laGoal1.Font.Size - 3, laGoal1.Font.Style);
-				laGoal2.Font = new Font(laGoal2.Font.FontFamily, laGoal2.Font.Size - 3, laGoal2.Font.Style);
-				laGoal3.Font = new Font(laGoal3.Font.FontFamily, laGoal3.Font.Size - 3, laGoal3.Font.Style);
-				laGoal4.Font = new Font(laGoal4.Font.FontFamily, laGoal4.Font.Size - 3, laGoal4.Font.Style);
-				laGoal5.Font = new Font(laGoal5.Font.FontFamily, laGoal5.Font.Size - 3, laGoal5.Font.Style);
-			}
+			comboBoxEditSlideHeader.EnableSelectAll();
 			comboBoxEditGoal1.EnableSelectAll();
 			comboBoxEditGoal2.EnableSelectAll();
 			comboBoxEditGoal3.EnableSelectAll();
@@ -56,7 +50,11 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditGoal5.Properties.Items.Clear();
 			comboBoxEditGoal5.Properties.Items.AddRange(SlideContainer.DashboardInfo.ClientGoalsLists.Goals);
 
-			pbSplash.Image = SlideContainer.DashboardInfo.ClientGoalsSplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.ClientGoalsSplashLogo;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
+			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
 		}
 
 		public override void LoadData()
@@ -89,7 +87,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.ClientGoalsState.Goal5 = comboBoxEditGoal5.EditValue?.ToString() ?? String.Empty;
 		}
 
-		private void EditValueChanged(object sender, EventArgs e)
+		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (_allowToSave)
 				SlideContainer.RaiseDataChanged();

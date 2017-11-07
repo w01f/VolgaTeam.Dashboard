@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Online.Entities.NonPersistent;
@@ -29,18 +28,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 		{
 			InitSettingsControls();
 			InitContentEditorSettingsRelations();
-
-			if (CreateGraphics().DpiX > 96)
-			{
-				var regularFont = xtraTabControlOptions.AppearancePage.Header.Font;
-				var activeFont = xtraTabControlOptions.AppearancePage.HeaderActive.Font;
-				regularFont = new Font(regularFont.FontFamily, regularFont.Size - 2, regularFont.Style);
-				activeFont = new Font(activeFont.FontFamily, activeFont.Size - 2, activeFont.Style);
-				xtraTabControlOptions.AppearancePage.Header.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderActive.Font = activeFont;
-				xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = regularFont;
-			}
 		}
 
 		private void InitContentEditorSettingsRelations()

@@ -14,6 +14,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 using DevComponents.DotNetBar;
+using DevExpress.Skins;
 
 namespace Asa.Media.Controls.PresentationClasses.Slides
 {
@@ -29,6 +30,10 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			simpleLabelItemSlideSize.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSlideSize.MaxSize, scaleFactor);
+			simpleLabelItemSlideSize.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSlideSize.MinSize, scaleFactor);
 		}
 
 		private void LoadSlides()
@@ -39,7 +44,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 				_slideContainer.Dispose();
 			}
 
-			laSlideSize.Text = string.Format("Slide Size: {0}", PowerPointManager.Instance.SlideSettings.SizeFormatted);
+			simpleLabelItemSlideSize.Text = string.Format("<size=+4>Slide Size: {0}</size>", PowerPointManager.Instance.SlideSettings.SizeFormatted);
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;

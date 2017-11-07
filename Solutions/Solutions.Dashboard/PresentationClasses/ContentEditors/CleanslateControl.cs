@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
@@ -13,8 +14,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = SlideContainer.DashboardInfo.Title;
-			pbHeader.Image = SlideContainer.DashboardInfo.CleanslateHeaderLogo;
-			pbCleanslateSplash.Image = SlideContainer.DashboardInfo.CleanslateSplashLogo;
+			pictureEditHeader.Image = SlideContainer.DashboardInfo.CleanslateHeaderLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.CleanslateSplashLogo;
 		}
 
 		public override void LoadData() { }

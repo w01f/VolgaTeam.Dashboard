@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using DevComponents.DotNetBar;
 
@@ -53,7 +54,7 @@ namespace Asa.Common.GUI.OutputColors
 				button.ColumnOrder = columOrder;
 				button.RowOrder = rowOrder;
 				button.Text = color.Name;
-				button.Height = ButtonHeight;
+				button.Height = (Int32)(ButtonHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height); 
 				button.TextAlignment = eButtonTextAlignment.Center;
 				button.ColorTable = eButtonColor.OrangeWithBackground;
 				button.Style = eDotNetBarStyle.StyleManagerControlled;
@@ -96,7 +97,7 @@ namespace Asa.Common.GUI.OutputColors
 			{
 				colorButton.Width = buttonWidth;
 				var left = LeftPadding + colorButton.ColumnOrder * (buttonWidth + RightPadding + LeftPadding);
-				var top = TopPadding / 2 + colorButton.RowOrder * (ButtonHeight + TopPadding);
+				var top = TopPadding / 2 + colorButton.RowOrder * ((Int32)(ButtonHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height) + TopPadding);
 				colorButton.Location = new Point(left, top);
 			}
 			xtraScrollableControlColors.ResumeLayout();

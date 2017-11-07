@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Images;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 using DevExpress.Utils;
 
 namespace Asa.Common.GUI.ImageGallery
@@ -17,6 +19,11 @@ namespace Asa.Common.GUI.ImageGallery
 		{
 			_imageGroups = imageGroups;
 			InitializeComponent();
+
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		public Image SelectedImage { get; private set; }

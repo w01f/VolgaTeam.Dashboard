@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
@@ -34,27 +36,23 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 			quarterSelectorControl.QuarterSelected += OnQuarterChanged;
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				font = new Font(buttonXAvgRate.Font.FontFamily, buttonXAvgRate.Font.Size - 2, buttonXAvgRate.Font.Style);
-				buttonXAvgRate.Font = font;
-				buttonXDiscount.Font = font;
-				buttonXNetRate.Font = font;
-				buttonXTotalCPP.Font = font;
-				buttonXTotalCost.Font = font;
-				buttonXTotalPeriods.Font = font;
-				buttonXTotalSpots.Font = font;
-				buttonXTotalGRP.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemAvgRate.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAvgRate.MaxSize, scaleFactor);
+			layoutControlItemAvgRate.MinSize = RectangleHelper.ScaleSize(layoutControlItemAvgRate.MinSize, scaleFactor);
+			layoutControlItemDiscount.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDiscount.MaxSize, scaleFactor);
+			layoutControlItemDiscount.MinSize = RectangleHelper.ScaleSize(layoutControlItemDiscount.MinSize, scaleFactor);
+			layoutControlItemNetRate.MaxSize = RectangleHelper.ScaleSize(layoutControlItemNetRate.MaxSize, scaleFactor);
+			layoutControlItemNetRate.MinSize = RectangleHelper.ScaleSize(layoutControlItemNetRate.MinSize, scaleFactor);
+			layoutControlItemTotalCPP.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalCPP.MaxSize, scaleFactor);
+			layoutControlItemTotalCPP.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalCPP.MinSize, scaleFactor);
+			layoutControlItemTotalCost.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalCost.MaxSize, scaleFactor);
+			layoutControlItemTotalCost.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalCost.MinSize, scaleFactor);
+			layoutControlItemTotalPeriods.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalPeriods.MaxSize, scaleFactor);
+			layoutControlItemTotalPeriods.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalPeriods.MinSize, scaleFactor);
+			layoutControlItemTotalSpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalSpots.MaxSize, scaleFactor);
+			layoutControlItemTotalSpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalSpots.MinSize, scaleFactor);
+			layoutControlItemTotalGRP.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalGRP.MaxSize, scaleFactor);
+			layoutControlItemTotalGRP.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalGRP.MinSize, scaleFactor);
 		}
 
 		public void LoadSectionData(ScheduleSection sectionData)
@@ -113,8 +111,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 		private void InitQuarters()
 		{
-			labelControlQuarterSelectorTitle.Visible =
-			quarterSelectorControl.Visible = _sectionData.ParentScheduleSettings.Quarters.Count > 0;
+			layoutControlItemQuarterSelector.Visibility = _sectionData.ParentScheduleSettings.Quarters.Count > 0 ? LayoutVisibility.Always : LayoutVisibility.Never;
 			quarterSelectorControl.InitControls(
 				_sectionData.ParentScheduleSettings.Quarters,
 				_sectionData.ParentScheduleSettings.Quarters.FirstOrDefault(q => q.DateAnchor == _sectionData.Parent.SelectedQuarter));
@@ -122,7 +119,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 		public void UpdateQuarterState()
 		{
-			quarterSelectorControl.Enabled = _sectionData.ShowSpots;
+			layoutControlItemQuarterSelector.Enabled = _sectionData.ShowSpots;
 			if (!_sectionData.ShowSpots)
 				quarterSelectorControl.InitControls(
 				_sectionData.ParentScheduleSettings.Quarters,

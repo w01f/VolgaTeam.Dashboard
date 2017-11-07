@@ -120,14 +120,10 @@
   <metadata name="superTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>148, 17</value>
   </metadata>
+  <data name="simpleLabelItemScheduleOptionsDemosInfo.Text" xml:space="preserve">
+    <value>&lt;b&gt;IMPORTANT INFORMATION:&lt;/b&gt;&lt;br&gt;&lt;br&gt;ONLY use demo ratings estimates in your&lt;br&gt;SellerPoint Schedule, if you are confident in your ability&lt;br&gt;to accurately project the ratings.&lt;br&gt;&lt;br&gt;SellerPoint DOES NOT import ratings from services&lt;br&gt;like Nielsen or Arbitron.&lt;/b&gt;</value>
+  </data>
   <metadata name="styleController.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="labelControlDemosInfo.Text" xml:space="preserve">
-    <value>&lt;b&gt;IMPORTANT INFORMATION:&lt;/b&gt;
-
-ONLY use demo ratings estimates in your SellerPoint Schedule, if you are confident in your ability to accurately project the ratings.
-
-SellerPoint DOES NOT import ratings from services like Nielsen or Arbitron.</value>
-  </data>
 </root>

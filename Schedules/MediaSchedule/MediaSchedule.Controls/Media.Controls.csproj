@@ -363,10 +363,10 @@
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputItem.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\Output\ScheduleSectionOutputType.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.Designer.cs">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormSectionName.cs">
@@ -376,10 +376,10 @@
       <DependentUpon>FormSectionName.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionEditorControl.cs" />
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\QuarterSelectorControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\Settings\QuarterSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\QuarterSelectorControl.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\Settings\QuarterSelectorControl.Designer.cs">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ScheduleContainer.cs">
@@ -706,13 +706,13 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormConfigureOutput.resx">
       <DependentUpon>FormConfigureOutput.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\FormOutputSettings.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Output\FormOutputSettings.resx">
       <DependentUpon>FormOutputSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\FormSectionName.resx">
       <DependentUpon>FormSectionName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\QuarterSelectorControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\Settings\QuarterSelectorControl.resx">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ContentEditors\ScheduleContainer.resx">

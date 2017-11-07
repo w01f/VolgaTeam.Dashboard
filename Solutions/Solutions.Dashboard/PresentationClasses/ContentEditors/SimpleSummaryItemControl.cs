@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
+using DevExpress.Skins;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
@@ -22,18 +22,36 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			InitializeComponent();
 			Dock = DockStyle.Top;
 			_parent = parent;
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 2, laTotal.Font.Style);
-			}
 			textEditItem.EnableSelectAll();
 			spinEditMonthly.EnableSelectAll();
 			spinEditTotal.EnableSelectAll();
 			memoEditDetails.EnableSelectAll();
 
-			pbUp.Buttonize();
-			pbDown.Buttonize();
-			pbDelete.Buttonize();
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			simpleLabelItemNumber.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemNumber.MaxSize, scaleFactor);
+			simpleLabelItemNumber.MinSize = RectangleHelper.ScaleSize(simpleLabelItemNumber.MinSize, scaleFactor);
+			layoutControlItemUp.MaxSize = RectangleHelper.ScaleSize(layoutControlItemUp.MaxSize, scaleFactor);
+			layoutControlItemUp.MinSize = RectangleHelper.ScaleSize(layoutControlItemUp.MinSize, scaleFactor);
+			layoutControlItemDown.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDown.MaxSize, scaleFactor);
+			layoutControlItemDown.MinSize = RectangleHelper.ScaleSize(layoutControlItemDown.MinSize, scaleFactor);
+			layoutControlItemTitleToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTitleToggle.MaxSize, scaleFactor);
+			layoutControlItemTitleToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemTitleToggle.MinSize, scaleFactor);
+			layoutControlItemTitleValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTitleValue.MaxSize, scaleFactor);
+			layoutControlItemTitleValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemTitleValue.MinSize, scaleFactor);
+			layoutControlItemMonthlyToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyToggle.MaxSize, scaleFactor);
+			layoutControlItemMonthlyToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyToggle.MinSize, scaleFactor);
+			layoutControlItemMonthlyValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyValue.MaxSize, scaleFactor);
+			layoutControlItemMonthlyValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyValue.MinSize, scaleFactor);
+			layoutControlItemTotalToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalToggle.MaxSize, scaleFactor);
+			layoutControlItemTotalToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalToggle.MinSize, scaleFactor);
+			layoutControlItemTotalValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalValue.MaxSize, scaleFactor);
+			layoutControlItemTotalValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalValue.MinSize, scaleFactor);
+			layoutControlItemDetailsToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDetailsToggle.MaxSize, scaleFactor);
+			layoutControlItemDetailsToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDetailsToggle.MinSize, scaleFactor);
+			layoutControlItemDelete.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDelete.MaxSize, scaleFactor);
+			layoutControlItemDelete.MinSize = RectangleHelper.ScaleSize(layoutControlItemDelete.MinSize, scaleFactor);
 		}
 
 		public int ItemNumber
@@ -42,7 +60,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			set
 			{
 				_itemNumber = value;
-				laNumber.Text = _itemNumber.ToString();
+				simpleLabelItemNumber.Text = String.Format("<size=+4><b>{0}</b></size>", _itemNumber);
 			}
 		}
 
@@ -50,10 +68,10 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			ckItem.Checked = itemState.ShowValue;
-			ckDetails.Checked = itemState.ShowDescription;
-			ckMonthly.Checked = itemState.ShowMonthly;
-			ckTotal.Checked = itemState.ShowTotal;
+			checkEditItem.Checked = itemState.ShowValue;
+			checkEditDetails.Checked = itemState.ShowDescription;
+			checkEditMonthly.Checked = itemState.ShowMonthly;
+			checkEditTotal.Checked = itemState.ShowTotal;
 
 			textEditItem.EditValue = !string.IsNullOrEmpty(itemState.Value) ? itemState.Value : null;
 			memoEditDetails.EditValue = !string.IsNullOrEmpty(itemState.Description) ? itemState.Description : null;
@@ -81,30 +99,30 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		private void ckMonthly_CheckedChanged(object sender, EventArgs e)
 		{
-			spinEditMonthly.Enabled = ckMonthly.Checked;
+			spinEditMonthly.Enabled = checkEditMonthly.Checked;
 			if (!_allowToSave) return;
-			spinEditMonthly.EditValue = ckMonthly.Checked ? spinEditMonthly.EditValue : null;
+			spinEditMonthly.EditValue = checkEditMonthly.Checked ? spinEditMonthly.EditValue : null;
 			Changed?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void ckTotal_CheckedChanged(object sender, EventArgs e)
 		{
-			spinEditTotal.Enabled = ckTotal.Checked;
+			spinEditTotal.Enabled = checkEditTotal.Checked;
 			if (!_allowToSave) return;
-			spinEditTotal.EditValue = ckTotal.Checked ? spinEditTotal.EditValue : null;
+			spinEditTotal.EditValue = checkEditTotal.Checked ? spinEditTotal.EditValue : null;
 			Changed?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
 		{
-			textEditItem.Enabled = ckItem.Checked;
+			textEditItem.Enabled = checkEditItem.Checked;
 			if (!_allowToSave) return;
 			Changed?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void ckDetails_CheckedChanged(object sender, EventArgs e)
 		{
-			memoEditDetails.Enabled = ckDetails.Checked;
+			memoEditDetails.Enabled = checkEditDetails.Checked;
 			if (_allowToSave)
 				Changed?.Invoke(this, EventArgs.Empty);
 		}
@@ -134,23 +152,23 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		}
 
 		#region Output Stuff
-		public bool ShowMonthly => ckMonthly.Checked && spinEditMonthly.EditValue != null;
+		public bool ShowMonthly => checkEditMonthly.Checked && spinEditMonthly.EditValue != null;
 
-		public bool ShowTotal => ckTotal.Checked && spinEditTotal.EditValue != null;
+		public bool ShowTotal => checkEditTotal.Checked && spinEditTotal.EditValue != null;
 
-		public bool ShowValue => ckItem.Checked;
+		public bool ShowValue => checkEditItem.Checked;
 
-		public bool ShowDescription => ckDetails.Checked;
+		public bool ShowDescription => checkEditDetails.Checked;
 
-		public string ItemTitle => textEditItem.EditValue != null && ckItem.Checked ? textEditItem.EditValue.ToString() : string.Empty;
+		public string ItemTitle => textEditItem.EditValue != null && checkEditItem.Checked ? textEditItem.EditValue.ToString() : string.Empty;
 
-		public string ItemDetail => memoEditDetails.EditValue != null && ckDetails.Checked ? memoEditDetails.EditValue.ToString() : string.Empty;
+		public string ItemDetail => memoEditDetails.EditValue != null && checkEditDetails.Checked ? memoEditDetails.EditValue.ToString() : string.Empty;
 
 		public decimal? MonthlyValue => (decimal?)spinEditMonthly.EditValue;
 
 		public decimal? TotalValue => (decimal?)spinEditTotal.EditValue;
 
-		public bool Complited => !ckItem.Checked || !string.IsNullOrEmpty(ItemTitle);
+		public bool Complited => !checkEditItem.Checked || !string.IsNullOrEmpty(ItemTitle);
 		#endregion
 	}
 }

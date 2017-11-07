@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -131,6 +132,17 @@ namespace Asa.Common.Core.Helpers
 			WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
 			WinAPIHelper.SetForegroundWindow(taskBarHandle);
 			WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
+		}
+
+		public static SizeF GetScaleFactor(float dpi)
+		{
+			if (dpi >= 192)
+				return new SizeF(2, 2);
+			if (dpi >= 144)
+				return new SizeF(1.5f, 1.5f);
+			if (dpi >= 120)
+				return new SizeF(1.25f, 1.25f);
+			return new SizeF(1, 1);
 		}
 	}
 }

@@ -72,7 +72,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			_slides.Add(new SimpleSummaryControl(this));
 
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
-			xtraTabControl.SelectedTabPage = _slides.FirstOrDefault();
+			xtraTabControl.SelectedTabPage =_slides.FirstOrDefault();
 			xtraTabControl.SelectedPageChanged += OnSelectedSlideChanged;
 
 			foreach (var slideControl in _slides)

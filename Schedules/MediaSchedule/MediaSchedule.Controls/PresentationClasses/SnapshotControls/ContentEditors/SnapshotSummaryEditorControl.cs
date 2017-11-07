@@ -28,7 +28,7 @@ using DevExpress.XtraTab;
 namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public sealed partial class SnapshotSummaryEditorControl : UserControl
+	//public sealed partial class SnapshotSummaryEditorControl : UserControl,
 	public sealed partial class SnapshotSummaryEditorControl : XtraTabPage,
 		ISnapshotContentEditorControl,
 		ISnapshotEditorControl,
@@ -51,6 +51,15 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public void InitControls()
 		{
 			ShowCloseButton = DefaultBoolean.False;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
+			gridBandLogo.Width = (Int32)(gridBandLogo.Width * scaleFactor.Width);
+			bandedGridColumnSpots.Width = (Int32)(bandedGridColumnSpots.Width * scaleFactor.Width);
+			bandedGridColumnRate.Width = (Int32)(bandedGridColumnRate.Width * scaleFactor.Width);
+			bandedGridColumnTotalWeeks.Width = (Int32)(bandedGridColumnTotalWeeks.Width * scaleFactor.Width);
+			bandedGridColumnCost.Width = (Int32)(bandedGridColumnCost.Width * scaleFactor.Width);
 		}
 
 		public void LoadData(SnapshotSummary data)

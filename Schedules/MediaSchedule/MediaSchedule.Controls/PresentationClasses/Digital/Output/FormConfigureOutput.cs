@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using Asa.Online.Controls.PresentationClasses.Products;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 {
@@ -34,22 +36,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 
 			UpdateSlidesCount();
 
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				buttonXSelectAll.Font = new Font(buttonXSelectAll.Font.FontFamily, buttonXSelectAll.Font.Size - 2, buttonXSelectAll.Font.Style);
-				buttonXSelectNone.Font = new Font(buttonXSelectNone.Font.FontFamily, buttonXSelectNone.Font.Size - 2, buttonXSelectNone.Font.Style);
-				buttonXContinue.Font = new Font(buttonXContinue.Font.FontFamily, buttonXContinue.Font.Size - 2, buttonXContinue.Font.Style);
-				buttonXClose.Font = new Font(buttonXClose.Font.FontFamily, buttonXClose.Font.Size - 2, buttonXClose.Font.Style);
-			}
+			treeView.ItemHeight = (Int32)(treeView.ItemHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
+			layoutControlItemSelectAll.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSelectAll.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemSelectAll.MinSize = RectangleHelper.ScaleSize(layoutControlItemSelectAll.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemSelectNone.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSelectNone.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemSelectNone.MinSize = RectangleHelper.ScaleSize(layoutControlItemSelectNone.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		private void OnFormClosed(object sender, FormClosedEventArgs e)
@@ -84,7 +79,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Output
 					return ((OutputGroup)n.Tag).OutputItems.Sum(c => c.SlidesCount);
 				});
 
-			labelControlSlidesCount.Text = String.Format("<color=gray>Estimated Slides: {0}</color>", slidesCount);
+			simpleLabelItemSlideCount.Text = String.Format("<color=gray>Estimated Slides: {0}</color>", slidesCount);
 		}
 
 		private void CheckWithDecendants(TreeNode node)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
@@ -28,24 +27,6 @@ namespace Asa.Media.Single
 		private FormMain()
 		{
 			InitializeComponent();
-
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				comboBoxEditBusinessName.Font = font;
-				comboBoxEditDecisionMaker.Font = font;
-				dateEditPresentationDate.Font = font;
-
-				ribbonBarHomeBasicInfo.RecalcLayout();
-				ribbonBarHomeFlightDates.RecalcLayout();
-				ribbonPanelHome.PerformLayout();
-			}
 		}
 
 		public static FormMain Instance
@@ -103,8 +84,8 @@ namespace Asa.Media.Single
 			}
 
 			Controller.Instance.FormMain = this;
-			Controller.Instance.MainPanel = pnMain;
-			Controller.Instance.EmptyPanel = pnEmpty;
+			Controller.Instance.MainPanel = layoutControlItemMainContainer;
+			Controller.Instance.EmptyPanel = emptySpaceItem;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
 			Controller.Instance.TabHome = ribbonTabItemHome;
@@ -136,10 +117,8 @@ namespace Asa.Media.Single
 			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
 			Controller.Instance.HomePresentationDate = dateEditPresentationDate;
 			Controller.Instance.HomeFlightDates = ribbonBarHomeFlightDates;
-			Controller.Instance.HomeFlightDatesStartLogo = labelItemHomeFlightDatesStartLogo;
 			Controller.Instance.HomeFlightDatesStartTitle = labelItemHomeFlightDatesStartTitle;
 			Controller.Instance.HomeFlightDatesStartValue = labelItemHomeFlightDatesStartValue;
-			Controller.Instance.HomeFlightDatesEndLogo = labelItemHomeFlightDatesEndLogo;
 			Controller.Instance.HomeFlightDatesEndTitle = labelItemHomeFlightDatesEndTitle;
 			Controller.Instance.HomeFlightDatesEndValue = labelItemHomeFlightDatesEndValue;
 			#endregion

@@ -39,16 +39,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				{
 					//case SlideType.Cleanslate:
 					//	return "Home";
-					//case SlideType.Cover:
-					//	return "Cover";
-					//case SlideType.LeadoffStatement:
-					//	return "Intro";
-					//case SlideType.ClientGoals:
-					//	return "Needs";
-					//case SlideType.TargetCustomers:
-					//	return "Target";
-					//case SlideType.SimpleSummary:
-					//	return "Closing";
 					default:
 						return String.Empty;
 				}

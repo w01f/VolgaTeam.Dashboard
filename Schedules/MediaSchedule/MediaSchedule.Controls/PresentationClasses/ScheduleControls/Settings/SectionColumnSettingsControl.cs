@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
@@ -34,32 +36,34 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 					MediaMetaData.Instance.DataTypeString),
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
 
-				font = new Font(buttonXStation.Font.FontFamily, buttonXStation.Font.Size - 2, buttonXStation.Font.Style);
-				buttonXStation.Font = font;
-				buttonXCPP.Font = font;
-				buttonXCost.Font = font;
-				buttonXDay.Font = font;
-				buttonXDaypart.Font = font;
-				buttonXGRP.Font = font;
-				buttonXLength.Font = font;
-				buttonXLogo.Font = font;
-				buttonXProgram.Font = font;
-				buttonXRate.Font = font;
-				buttonXRating.Font = font;
-				buttonXSpots.Font = font;
-				buttonXTime.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemStation.MaxSize = RectangleHelper.ScaleSize(layoutControlItemStation.MaxSize, scaleFactor);
+			layoutControlItemStation.MinSize = RectangleHelper.ScaleSize(layoutControlItemStation.MinSize, scaleFactor);
+			layoutControlItemLength.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLength.MaxSize, scaleFactor);
+			layoutControlItemLength.MinSize = RectangleHelper.ScaleSize(layoutControlItemLength.MinSize, scaleFactor);
+			layoutControlItemDaypart.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDaypart.MaxSize, scaleFactor);
+			layoutControlItemDaypart.MinSize = RectangleHelper.ScaleSize(layoutControlItemDaypart.MinSize, scaleFactor);
+			layoutControlItemSpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSpots.MaxSize, scaleFactor);
+			layoutControlItemSpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemSpots.MinSize, scaleFactor);
+			layoutControlItemDay.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDay.MaxSize, scaleFactor);
+			layoutControlItemDay.MinSize = RectangleHelper.ScaleSize(layoutControlItemDay.MinSize, scaleFactor);
+			layoutControlItemTime.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTime.MaxSize, scaleFactor);
+			layoutControlItemTime.MinSize = RectangleHelper.ScaleSize(layoutControlItemTime.MinSize, scaleFactor);
+			layoutControlItemProgram.MaxSize = RectangleHelper.ScaleSize(layoutControlItemProgram.MaxSize, scaleFactor);
+			layoutControlItemProgram.MinSize = RectangleHelper.ScaleSize(layoutControlItemProgram.MinSize, scaleFactor);
+			layoutControlItemCost.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCost.MaxSize, scaleFactor);
+			layoutControlItemCost.MinSize = RectangleHelper.ScaleSize(layoutControlItemCost.MinSize, scaleFactor);
+			layoutControlItemRate.MaxSize = RectangleHelper.ScaleSize(layoutControlItemRate.MaxSize, scaleFactor);
+			layoutControlItemRate.MinSize = RectangleHelper.ScaleSize(layoutControlItemRate.MinSize, scaleFactor);
+			layoutControlItemLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MaxSize, scaleFactor);
+			layoutControlItemLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MinSize, scaleFactor);
+			layoutControlItemCPP.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCPP.MaxSize, scaleFactor);
+			layoutControlItemCPP.MinSize = RectangleHelper.ScaleSize(layoutControlItemCPP.MinSize, scaleFactor);
+			layoutControlItemRating.MaxSize = RectangleHelper.ScaleSize(layoutControlItemRating.MaxSize, scaleFactor);
+			layoutControlItemRating.MinSize = RectangleHelper.ScaleSize(layoutControlItemRating.MinSize, scaleFactor);
+			layoutControlItemGRP.MaxSize = RectangleHelper.ScaleSize(layoutControlItemGRP.MaxSize, scaleFactor);
+			layoutControlItemGRP.MinSize = RectangleHelper.ScaleSize(layoutControlItemGRP.MinSize, scaleFactor);
 		}
 
 		public void LoadSectionData(ScheduleSection sectionData)
@@ -99,7 +103,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 		public void UpdateUniversalSettingsToggleVisibility()
 		{
-			pnApplyForAll.Visible = _sectionData.Parent.Sections.Count > 1;
+			layoutControlItemApplyForAll.Visibility = _sectionData.Parent.Sections.Count > 1 ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
 		private void OnSettingsChanged(object sender, EventArgs e)

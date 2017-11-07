@@ -3,10 +3,12 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Objects.Themes;
+using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.Dashboard.InteropClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
+using DevExpress.Skins;
 using DevExpress.XtraEditors.Controls;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 
@@ -25,6 +27,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 			Text = SlideName;
 
+			comboBoxEditSlideHeader.EnableSelectAll();
+
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Headers);
 
@@ -37,7 +41,14 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			checkedListBoxControlGeographicResidence.Items.Clear();
 			checkedListBoxControlGeographicResidence.Items.AddRange(SlideContainer.DashboardInfo.TargetCustomersLists.Geographies.ToArray());
 
-			pbSplash.Image = SlideContainer.DashboardInfo.TargeCustomersSplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.TargeCustomersSplashLogo;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
+			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
+			checkedListBoxControlTargetDemo.ItemHeight = (Int32)(checkedListBoxControlTargetDemo.ItemHeight * scaleFactor.Height);
+			checkedListBoxControlHouseholdIncome.ItemHeight = (Int32)(checkedListBoxControlHouseholdIncome.ItemHeight * scaleFactor.Height);
+			checkedListBoxControlGeographicResidence.ItemHeight = (Int32)(checkedListBoxControlGeographicResidence.ItemHeight * scaleFactor.Height);
 		}
 
 		public override void LoadData()
@@ -85,16 +96,15 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 					SlideContainer.EditedContent.TargetCustomersState.Geographic.Add(item.Value.ToString());
 		}
 
-		private void checkedListBoxControl_ItemCheck(object sender, ItemCheckEventArgs e)
-		{
-			if (!_allowToSave) return;
-			SlideContainer.RaiseDataChanged();
-		}
-
-		private void EditValueChanged(object sender, EventArgs e)
+		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (_allowToSave)
 				SlideContainer.RaiseDataChanged();
+		}
+
+		private void OnCheckedListBoxControlItemCheck(object sender, ItemCheckEventArgs e)
+		{
+			OnEditValueChanged(sender, e);
 		}
 
 		#region Output Staff

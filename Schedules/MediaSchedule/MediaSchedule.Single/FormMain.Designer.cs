@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
@@ -37,16 +38,14 @@
 			this.ribbonBarHomeSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
 			this.itemContainerHomeFlightDatesStart = new DevComponents.DotNetBar.ItemContainer();
-			this.labelItemHomeFlightDatesStartLogo = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesStartTitle = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesStartValue = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainerHomeFlightDatesEnd = new DevComponents.DotNetBar.ItemContainer();
-			this.labelItemHomeFlightDatesEndLogo = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesEndTitle = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemHomeFlightDatesEndValue = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
 			this.comboBoxEditBusinessName = new Asa.Common.GUI.Common.ComboBoxListEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
 			this.dateEditPresentationDate = new Asa.Common.GUI.Common.TabbedDateEdit();
 			this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
@@ -149,7 +148,7 @@
 			this.buttonItemCalendar2Clone = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarCalendar2Calendar = new DevComponents.DotNetBar.RibbonBar();
 			this.listBoxControlCalendar2 = new DevExpress.XtraEditors.ImageListBoxControl();
-			this.imageList = new System.Windows.Forms.ImageList();
+			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.itemContainerCalendar2Calendar = new DevComponents.DotNetBar.ItemContainer();
 			this.controlContainerItemCalendar2 = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonPanelCalendar1 = new DevComponents.DotNetBar.RibbonPanel();
@@ -264,11 +263,14 @@
 			this.buttonItemQatSaveAs = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.emptySpaceItem = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemMainContainer = new DevExpress.XtraLayout.LayoutControlItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonBarHomeBasicInfo.SuspendLayout();
@@ -300,11 +302,15 @@
 			this.ribbonBarGallery1Browse.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGallery1Sections.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGallery1Groups.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
+			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainContainer)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// ribbonControl
 			// 
-			this.ribbonControl.AutoExpand = false;
 			this.ribbonControl.BackColor = System.Drawing.Color.White;
 			// 
 			// 
@@ -350,7 +356,7 @@
             this.buttonItemQatSaveAs,
             this.buttonItemQatFloater,
             this.buttonItemQatHelp});
-			this.ribbonControl.Size = new System.Drawing.Size(990, 190);
+			this.ribbonControl.Size = new System.Drawing.Size(1040, 190);
 			this.ribbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonControl.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
 			this.ribbonControl.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
@@ -383,7 +389,7 @@
 			this.ribbonPanelHome.Location = new System.Drawing.Point(0, 53);
 			this.ribbonPanelHome.Name = "ribbonPanelHome";
 			this.ribbonPanelHome.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelHome.Size = new System.Drawing.Size(990, 137);
+			this.ribbonPanelHome.Size = new System.Drawing.Size(1040, 137);
 			// 
 			// 
 			// 
@@ -415,7 +421,7 @@
 			this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(471, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(481, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(89, 135);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -454,7 +460,7 @@
 			this.ribbonBarHomeSpecialButtons.Dock = System.Windows.Forms.DockStyle.Left;
 			this.ribbonBarHomeSpecialButtons.DragDropSupport = true;
 			this.ribbonBarHomeSpecialButtons.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeSpecialButtons.Location = new System.Drawing.Point(371, 0);
+			this.ribbonBarHomeSpecialButtons.Location = new System.Drawing.Point(381, 0);
 			this.ribbonBarHomeSpecialButtons.Name = "ribbonBarHomeSpecialButtons";
 			this.ribbonBarHomeSpecialButtons.Size = new System.Drawing.Size(100, 135);
 			this.ribbonBarHomeSpecialButtons.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -491,7 +497,7 @@
 			this.ribbonBarHomeFlightDates.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeFlightDates.Location = new System.Drawing.Point(258, 0);
 			this.ribbonBarHomeFlightDates.Name = "ribbonBarHomeFlightDates";
-			this.ribbonBarHomeFlightDates.Size = new System.Drawing.Size(113, 135);
+			this.ribbonBarHomeFlightDates.Size = new System.Drawing.Size(123, 135);
 			this.ribbonBarHomeFlightDates.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeFlightDates.TabIndex = 25;
 			this.ribbonBarHomeFlightDates.Text = "Weeks";
@@ -512,38 +518,38 @@
 			this.itemContainerHomeFlightDatesStart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerHomeFlightDatesStart.Name = "itemContainerHomeFlightDatesStart";
 			this.itemContainerHomeFlightDatesStart.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItemHomeFlightDatesStartLogo,
             this.labelItemHomeFlightDatesStartTitle,
             this.labelItemHomeFlightDatesStartValue});
 			// 
 			// 
 			// 
+			this.itemContainerHomeFlightDatesStart.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerHomeFlightDatesStart.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// labelItemHomeFlightDatesStartLogo
-			// 
-			this.labelItemHomeFlightDatesStartLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.labelItemHomeFlightDatesStartLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesStartLogo.Image")));
-			this.labelItemHomeFlightDatesStartLogo.Name = "labelItemHomeFlightDatesStartLogo";
-			this.superTooltip.SetSuperTooltip(this.labelItemHomeFlightDatesStartLogo, new DevComponents.DotNetBar.SuperTooltipInfo("Start Date", "", "When will your campaign begin?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// labelItemHomeFlightDatesStartTitle
 			// 
 			this.labelItemHomeFlightDatesStartTitle.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.labelItemHomeFlightDatesStartTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelItemHomeFlightDatesStartTitle.Height = 24;
+			this.labelItemHomeFlightDatesStartTitle.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesStartTitle.Image")));
 			this.labelItemHomeFlightDatesStartTitle.Name = "labelItemHomeFlightDatesStartTitle";
 			this.superTooltip.SetSuperTooltip(this.labelItemHomeFlightDatesStartTitle, new DevComponents.DotNetBar.SuperTooltipInfo("Start Date", "", "When will your campaign begin?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.labelItemHomeFlightDatesStartTitle.Text = "Start:";
-			this.labelItemHomeFlightDatesStartTitle.Width = 30;
+			this.labelItemHomeFlightDatesStartTitle.Width = 60;
 			// 
 			// labelItemHomeFlightDatesStartValue
 			// 
 			this.labelItemHomeFlightDatesStartValue.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.labelItemHomeFlightDatesStartValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelItemHomeFlightDatesStartValue.ForeColor = System.Drawing.Color.Blue;
+			this.labelItemHomeFlightDatesStartValue.Height = 24;
 			this.labelItemHomeFlightDatesStartValue.Name = "labelItemHomeFlightDatesStartValue";
 			this.superTooltip.SetSuperTooltip(this.labelItemHomeFlightDatesStartValue, new DevComponents.DotNetBar.SuperTooltipInfo("Start Date", "", "When will your campaign begin?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.labelItemHomeFlightDatesStartValue.Text = "Select  ";
+			this.labelItemHomeFlightDatesStartValue.Width = 50;
 			// 
 			// itemContainerHomeFlightDatesEnd
 			// 
@@ -552,39 +558,40 @@
 			// 
 			this.itemContainerHomeFlightDatesEnd.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerHomeFlightDatesEnd.Name = "itemContainerHomeFlightDatesEnd";
+			this.itemContainerHomeFlightDatesEnd.ReserveLeftSpace = true;
 			this.itemContainerHomeFlightDatesEnd.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItemHomeFlightDatesEndLogo,
             this.labelItemHomeFlightDatesEndTitle,
             this.labelItemHomeFlightDatesEndValue});
 			// 
 			// 
 			// 
+			this.itemContainerHomeFlightDatesEnd.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerHomeFlightDatesEnd.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// labelItemHomeFlightDatesEndLogo
-			// 
-			this.labelItemHomeFlightDatesEndLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.labelItemHomeFlightDatesEndLogo.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesEndLogo.Image")));
-			this.labelItemHomeFlightDatesEndLogo.Name = "labelItemHomeFlightDatesEndLogo";
-			this.superTooltip.SetSuperTooltip(this.labelItemHomeFlightDatesEndLogo, new DevComponents.DotNetBar.SuperTooltipInfo("End Date", "", "When will your campaign end?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// labelItemHomeFlightDatesEndTitle
 			// 
 			this.labelItemHomeFlightDatesEndTitle.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.labelItemHomeFlightDatesEndTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelItemHomeFlightDatesEndTitle.Height = 24;
+			this.labelItemHomeFlightDatesEndTitle.Image = ((System.Drawing.Image)(resources.GetObject("labelItemHomeFlightDatesEndTitle.Image")));
 			this.labelItemHomeFlightDatesEndTitle.Name = "labelItemHomeFlightDatesEndTitle";
 			this.superTooltip.SetSuperTooltip(this.labelItemHomeFlightDatesEndTitle, new DevComponents.DotNetBar.SuperTooltipInfo("End Date", "", "When will your campaign end?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.labelItemHomeFlightDatesEndTitle.Text = "End:";
-			this.labelItemHomeFlightDatesEndTitle.Width = 30;
+			this.labelItemHomeFlightDatesEndTitle.Width = 60;
 			// 
 			// labelItemHomeFlightDatesEndValue
 			// 
 			this.labelItemHomeFlightDatesEndValue.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.labelItemHomeFlightDatesEndValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelItemHomeFlightDatesEndValue.ForeColor = System.Drawing.Color.Blue;
+			this.labelItemHomeFlightDatesEndValue.Height = 24;
 			this.labelItemHomeFlightDatesEndValue.Name = "labelItemHomeFlightDatesEndValue";
 			this.superTooltip.SetSuperTooltip(this.labelItemHomeFlightDatesEndValue, new DevComponents.DotNetBar.SuperTooltipInfo("End Date", "", "When will your campaign end?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.labelItemHomeFlightDatesEndValue.Text = "Select  ";
+			this.labelItemHomeFlightDatesEndValue.Width = 50;
 			// 
 			// ribbonBarHomeBasicInfo
 			// 
@@ -744,6 +751,10 @@
 			this.itemContainerHomeSchedule.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeNewSchedule,
             this.buttonItemHomeOpenSchedule});
+			// 
+			// 
+			// 
+			this.itemContainerHomeSchedule.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -1508,6 +1519,10 @@
             this.buttonItemDigitalScheduleProductAdd,
             this.buttonItemDigitalScheduleProductClone,
             this.buttonItemDigitalScheduleProductDelete});
+			// 
+			// 
+			// 
+			this.itemContainerDigitalScheduleProduct.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -2552,6 +2567,10 @@
 			// 
 			// 
 			// 
+			this.itemContainerCalendar2Calendar.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerCalendar2Calendar.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// controlContainerItemCalendar2
@@ -2925,6 +2944,10 @@
 			this.itemContainerCalendar1Calendar.Name = "itemContainerCalendar1Calendar";
 			this.itemContainerCalendar1Calendar.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.controlContainerItemCalendar1});
+			// 
+			// 
+			// 
+			this.itemContainerCalendar1Calendar.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -3394,6 +3417,10 @@
 			// 
 			// 
 			// 
+			this.itemContainerRateCardRateCards.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerRateCardRateCards.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// labelItemRateCardRateCards
@@ -3596,6 +3623,10 @@
 			// 
 			// 
 			// 
+			this.itemContainerGallery2Zoom.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerGallery2Zoom.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// buttonItemGallery2ZoomIn
@@ -3657,6 +3688,10 @@
 			this.itemContainerGallery2Image.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemGallery2ImageSelect,
             this.buttonItemGallery2ImageCrop});
+			// 
+			// 
+			// 
+			this.itemContainerGallery2Image.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -3839,6 +3874,10 @@
 			// 
 			// 
 			// 
+			this.itemContainerGallery2BrowseContentType.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerGallery2BrowseContentType.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerGallery2BrowseContentType.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			// 
@@ -3854,6 +3893,10 @@
 			this.itemContainerGallery2ContentGroups.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.controlContainerItemGallery2Sections,
             this.controlContainerItemGallery2Groups});
+			// 
+			// 
+			// 
+			this.itemContainerGallery2ContentGroups.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -4062,6 +4105,10 @@
 			// 
 			// 
 			// 
+			this.itemContainerGallery1Zoom.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerGallery1Zoom.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// buttonItemGallery1ZoomIn
@@ -4123,6 +4170,10 @@
 			this.itemContainerGallery1Image.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemGallery1ImageSelect,
             this.buttonItemGallery1ImageCrop});
+			// 
+			// 
+			// 
+			this.itemContainerGallery1Image.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -4305,6 +4356,10 @@
 			// 
 			// 
 			// 
+			this.itemContainerGallery1BrowseContentType.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerGallery1BrowseContentType.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerGallery1BrowseContentType.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			// 
@@ -4320,6 +4375,10 @@
 			this.itemContainerGallery1BrowseContentGroups.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.controlContainerItemGallery1Sections,
             this.controlContainerItemGallery1Groups});
+			// 
+			// 
+			// 
+			this.itemContainerGallery1BrowseContentGroups.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -4460,38 +4519,103 @@
 			// pnMain
 			// 
 			this.pnMain.BackColor = System.Drawing.Color.Transparent;
-			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMain.Location = new System.Drawing.Point(5, 191);
+			this.pnMain.Location = new System.Drawing.Point(2, 2);
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-			this.pnMain.Size = new System.Drawing.Size(990, 556);
+			this.pnMain.Size = new System.Drawing.Size(516, 553);
 			this.pnMain.TabIndex = 1;
-			// 
-			// pnEmpty
-			// 
-			this.pnEmpty.BackColor = System.Drawing.Color.Transparent;
-			this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnEmpty.Location = new System.Drawing.Point(5, 191);
-			this.pnEmpty.Name = "pnEmpty";
-			this.pnEmpty.Size = new System.Drawing.Size(990, 556);
-			this.pnEmpty.TabIndex = 2;
 			// 
 			// styleManager
 			// 
 			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
 			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
 			// 
+			// layoutControl
+			// 
+			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControl.Appearance.Control.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.pnMain);
+			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControl.ForeColor = System.Drawing.Color.Black;
+			this.layoutControl.Location = new System.Drawing.Point(5, 191);
+			this.layoutControl.Name = "layoutControl";
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControl.Root = this.layoutControlGroupRoot;
+			this.layoutControl.Size = new System.Drawing.Size(1040, 557);
+			this.layoutControl.StyleController = this.styleController;
+			this.layoutControl.TabIndex = 65;
+			this.layoutControl.Text = "layoutControl1";
+			// 
+			// layoutControlGroupRoot
+			// 
+			this.layoutControlGroupRoot.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRoot.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRoot.GroupBordersVisible = false;
+			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem,
+            this.layoutControlItemMainContainer});
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(1040, 557);
+			this.layoutControlGroupRoot.TextVisible = false;
+			// 
+			// emptySpaceItem
+			// 
+			this.emptySpaceItem.AllowHotTrack = false;
+			this.emptySpaceItem.Location = new System.Drawing.Point(520, 0);
+			this.emptySpaceItem.Name = "emptySpaceItem";
+			this.emptySpaceItem.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.emptySpaceItem.Size = new System.Drawing.Size(520, 557);
+			this.emptySpaceItem.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemMainContainer
+			// 
+			this.layoutControlItemMainContainer.Control = this.pnMain;
+			this.layoutControlItemMainContainer.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainContainer.FillControlToClientArea = false;
+			this.layoutControlItemMainContainer.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemMainContainer.Name = "layoutControlItemMainContainer";
+			this.layoutControlItemMainContainer.Size = new System.Drawing.Size(520, 557);
+			this.layoutControlItemMainContainer.Text = "Main Container";
+			this.layoutControlItemMainContainer.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainContainer.TextVisible = false;
+			this.layoutControlItemMainContainer.TrimClientAreaToControl = false;
+			this.layoutControlItemMainContainer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1000, 749);
-			this.Controls.Add(this.pnEmpty);
-			this.Controls.Add(this.pnMain);
+			this.ClientSize = new System.Drawing.Size(1050, 750);
+			this.Controls.Add(this.layoutControl);
 			this.Controls.Add(this.ribbonControl);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MinimumSize = new System.Drawing.Size(1000, 750);
+			this.MinimumSize = new System.Drawing.Size(1050, 750);
 			this.Name = "FormMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Schedule Builder      ";
@@ -4530,6 +4654,11 @@
 			this.ribbonBarGallery1Browse.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGallery1Sections.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGallery1Groups.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
+			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainContainer)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -4693,8 +4822,6 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemSlideSettings;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarProgramScheduleNew;
 		private DevComponents.DotNetBar.ButtonItem buttonItemProgramScheduleNew;
-		public System.Windows.Forms.Panel pnMain;
-		public System.Windows.Forms.Panel pnEmpty;
 		private DevComponents.DotNetBar.ItemContainer itemContainerRateCardRateCards;
 		private DevComponents.DotNetBar.LabelItem labelItemRateCardRateCards;
 		private DevComponents.DotNetBar.ControlContainerItem controlContainerItemRateCards;
@@ -4742,8 +4869,6 @@
 		private DevComponents.DotNetBar.RibbonBar ribbonBarDigitalScheduleLogo;
 		private DevComponents.DotNetBar.ButtonItem buttonItemDigitalScheduleLogo;
 		public DevComponents.DotNetBar.ButtonItem buttonItemDigitalScheduleProductDelete;
-		private DevComponents.DotNetBar.LabelItem labelItemHomeFlightDatesStartLogo;
-		private DevComponents.DotNetBar.LabelItem labelItemHomeFlightDatesEndLogo;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarCalendar2Reset;
 		private DevComponents.DotNetBar.ButtonItem buttonItemCalendar2Reset;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarCalendar1Reset;
@@ -4775,6 +4900,11 @@
 		public DevComponents.DotNetBar.ButtonItem buttonItemSlidesPreview;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesPowerPoint;
 		public DevComponents.DotNetBar.ButtonItem buttonItemSlidesPowerPoint;
+		private DevExpress.XtraLayout.LayoutControl layoutControl;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainContainer;
+		private System.Windows.Forms.Panel pnMain;
 	}
 }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -20,6 +19,7 @@ using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Packages;
 using Asa.Online.Controls.PresentationClasses.Products;
+using DevExpress.Skins;
 using DevExpress.Utils;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
@@ -30,9 +30,12 @@ using ResourceManager = Asa.Common.Core.Configuration.ResourceManager;
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalProductPackageEditorControl:UserControl
-	public partial class DigitalProductPackageEditorControl : XtraTabPage, IDigitalEditor, IDigitalOutputContainer,
-		IDigitalOutputItem, IWebPackageOutput
+	//public partial class DigitalProductPackageEditorControl:UserControl,
+	public partial class DigitalProductPackageEditorControl : XtraTabPage, 
+		IDigitalEditor, 
+		IDigitalOutputContainer,
+		IDigitalOutputItem, 
+		IWebPackageOutput
 	{
 		private bool _allowApplyValues;
 		private bool _needToReload;
@@ -95,25 +98,18 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			bandedGridColumnCPM.Caption = ListManager.Instance.DefaultControlsConfiguration.ProductPackageColumnsCPMTitle ??
 										  bandedGridColumnCPM.Caption;
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				advBandedGridView.Appearance.BandPanel.Font = font;
-				advBandedGridView.Appearance.EvenRow.Font = font;
-				advBandedGridView.Appearance.FocusedCell.Font = font;
-				advBandedGridView.Appearance.FocusedRow.Font = font;
-				advBandedGridView.Appearance.HeaderPanel.Font = new Font(font.FontFamily, font.Size, FontStyle.Bold);
-				advBandedGridView.Appearance.OddRow.Font = font;
-				advBandedGridView.Appearance.Row.Font = font;
-				advBandedGridView.Appearance.SelectedRow.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
+			bandedGridColumnImpressions.Width = (Int32)(bandedGridColumnImpressions.Width * scaleFactor.Width);
+			bandedGridColumnCPM.Width = (Int32)(bandedGridColumnCPM.Width * scaleFactor.Width);
+			gridBandImpressions.Width = (Int32)(gridBandImpressions.Width * scaleFactor.Width);
+			bandedGridColumnInvestment.Width = (Int32)(bandedGridColumnInvestment.Width * scaleFactor.Width);
+			bandedGridColumnRate.Width = (Int32)(bandedGridColumnRate.Width * scaleFactor.Width);
+			gridBandInvestment.Width = (Int32)(gridBandInvestment.Width * scaleFactor.Width);
+			gridBandFormula.Width = (Int32)(gridBandFormula.Width * scaleFactor.Width);
+			emptySpaceItemTop.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemTop.MaxSize, scaleFactor);
+			emptySpaceItemTop.MinSize = RectangleHelper.ScaleSize(emptySpaceItemTop.MinSize, scaleFactor);
 		}
 
 		public void LoadData()

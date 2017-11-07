@@ -1,7 +1,6 @@
 ﻿using System;
 using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
-using Asa.Common.GUI.RetractableBar;
 using DevExpress.XtraEditors.Controls;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings

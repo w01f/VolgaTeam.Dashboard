@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
-using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using DevExpress.XtraTab;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
@@ -11,7 +10,7 @@ using Asa.Solutions.StarApp.PresentationClasses.Output;
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public partial class StarAppSlideControl : UserControl
+	//public partial class StarAppControl : UserControl
 	public abstract partial class StarAppControl : XtraTabPage, IStarAppSlide
 	{
 		protected BaseStarAppContainer SlideContainer { get; }
@@ -23,17 +22,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public StarAppControl()
 		{
 			InitializeComponent();
+			Dock = DockStyle.Fill;
 		}
 
-		protected StarAppControl(BaseStarAppContainer slideContainer)
+		protected StarAppControl(BaseStarAppContainer slideContainer) : this()
 		{
-			InitializeComponent();
-			Dock = DockStyle.Fill;
 			SlideContainer = slideContainer;
-			comboBoxEditSlideHeader.EnableSelectAll();
-			if (CreateGraphics().DpiX > 96)
-			{
-			}
 		}
 
 		public virtual void LoadData()

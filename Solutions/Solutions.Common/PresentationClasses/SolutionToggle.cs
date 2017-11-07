@@ -1,5 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar;
 
 namespace Asa.Solutions.Common.PresentationClasses
@@ -16,7 +18,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 			SolutionInfo = solutionInfo;
 			Text = SolutionInfo.Title;
 			UseMnemonic = false;
-			Height = ButtonHeight;
+			Height = (Int32)(ButtonHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 
 			AccessibleRole = AccessibleRole.PushButton;
 			Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;

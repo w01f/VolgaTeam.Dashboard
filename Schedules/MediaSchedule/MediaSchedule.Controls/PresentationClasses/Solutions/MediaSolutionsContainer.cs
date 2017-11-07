@@ -34,9 +34,9 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		{
 			base.UpdateEditedContet();
 
-			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
+			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
 
-			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
+			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
 				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 		}

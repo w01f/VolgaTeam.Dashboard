@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 {
@@ -22,22 +23,15 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		public FormFlightDatesEdit()
 		{
 			InitializeComponent();
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
 
-				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 2, laTitle.Font.Style);
-				buttonXSave.Font = new Font(buttonXSave.Font.FontFamily, buttonXSave.Font.Size - 2, buttonXSave.Font.Style);
-				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);
-				Width += 20;
-			}
+			layoutControlItemDateStart.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateStart.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemDateStart.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateStart.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemDateEnd.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateEnd.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemDateEnd.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateEnd.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		private void OnFormLoad(object sender, EventArgs e)
@@ -84,9 +78,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		private void UpdateDates()
 		{
-			labelControlStartTitle.Text = String.Format("<color=\"Gray\">Start: {0}</color>",
+			layoutControlItemDateStart.Text = String.Format("<color=\"Gray\">Start: {0}</color>",
 				DateStart?.ToString("M/d/yy") ?? String.Empty);
-			labelControlEndTitle.Text = String.Format("<color=\"Gray\">End: {0}</color>",
+			layoutControlItemDateEnd.Text = String.Format("<color=\"Gray\">End: {0}</color>",
 					DateEnd?.ToString("M/d/yy") ?? String.Empty);
 		}
 
@@ -101,12 +95,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			if (weeksCount.HasValue)
 			{
-				laTitle.Text = String.Format("Select your campaign dates: {0} {1}",
+				simpleLabelItemTitle.Text = String.Format("<size=+4>Select your campaign dates: {0} {1}</size>",
 					weeksCount,
 					weeksCount > 1 ? " Weeks" : " Week");
 			}
 			else
-				laTitle.Text = "Select your campaign dates";
+				simpleLabelItemTitle.Text = "Select your campaign dates";
 		}
 
 		private void UpdateFlexFlightDatesWarning()
@@ -139,14 +133,14 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			if (warningText.Any())
 			{
-				labelControlWarnings.Text = String.Format("<color=\"Red\">{0}</color>",
+				simpleLabelItemWarnings.Text = String.Format("<color=\"Red\">{0}</color>",
 					String.Join("<br>", warningText));
-				labelControlWarnings.Visible = true;
+				simpleLabelItemWarnings.Visibility = LayoutVisibility.Always;
 			}
 			else
 			{
-				labelControlWarnings.Text = String.Empty;
-				labelControlWarnings.Visible = false;
+				simpleLabelItemWarnings.Text = String.Empty;
+				simpleLabelItemWarnings.Visibility = LayoutVisibility.Never;
 			}
 		}
 

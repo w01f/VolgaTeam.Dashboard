@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Common.GUI.ContentEditors.Objects;
 using DevComponents.DotNetBar;
+using DevExpress.XtraLayout;
 
 namespace Asa.Common.GUI.ContentEditors.Interfaces
 {
@@ -15,7 +15,7 @@ namespace Asa.Common.GUI.ContentEditors.Interfaces
 		List<IContentControl> ContentControls { get; }
 		List<ContentEditorRelation> EditorRelations { get; }
 		RibbonControl ContentRibbon { get; }
-		Panel MainPanel { get; }
-		Panel EmptyPanel { get; }
+		LayoutControlItem MainPanel { get; }
+		LayoutControlItem EmptyPanel { get; }
 	}
 }

@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Option;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
+using DevExpress.Skins;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
@@ -37,22 +39,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 			InitSettingsControls();
 			InitContentEditorSettingsRelations();
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var regularFont = xtraTabControlOptions.AppearancePage.Header.Font;
-				var activeFont = xtraTabControlOptions.AppearancePage.HeaderActive.Font;
-				regularFont = new Font(regularFont.FontFamily, regularFont.Size - 2, regularFont.Style);
-				activeFont = new Font(activeFont.FontFamily, activeFont.Size - 2, activeFont.Style);
-				xtraTabControlOptions.AppearancePage.Header.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderActive.Font = activeFont;
-				xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = regularFont;
-
-				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
-					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
-				hyperLinkEditInfoContract.Font = new Font(hyperLinkEditInfoContract.Font.FontFamily,
-					hyperLinkEditInfoContract.Font.Size - 2, hyperLinkEditInfoContract.Font.Style);
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemInfoAdvanced.MaxSize = RectangleHelper.ScaleSize(layoutControlItemInfoAdvanced.MaxSize, scaleFactor);
+			layoutControlItemInfoAdvanced.MinSize = RectangleHelper.ScaleSize(layoutControlItemInfoAdvanced.MinSize, scaleFactor);
+			layoutControlItemInfoContract.MaxSize = RectangleHelper.ScaleSize(layoutControlItemInfoContract.MaxSize, scaleFactor);
+			layoutControlItemInfoContract.MinSize = RectangleHelper.ScaleSize(layoutControlItemInfoContract.MinSize, scaleFactor);
 		}
 
 		private void InitContentEditorSettingsRelations()
@@ -145,15 +136,21 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 				if (selectedTabPage != null && xtraTabControlOptions.TabPages.Contains(selectedTabPage))
 					xtraTabControlOptions.SelectedTabPage = selectedTabPage;
 			}
-			hyperLinkEditInfoAdvanced.Visible =
+
+			layoutControlItemInfoAdvanced.Visibility =
 				contentRelation != null &&
-				contentRelation.SettingsTypes.Contains(OptionSettingsType.AdvancedColumns);
-			hyperLinkEditInfoAdvanced.BringToFront();
-			hyperLinkEditInfoContract.Visible =
+				contentRelation.SettingsTypes.Contains(OptionSettingsType.AdvancedColumns) ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlItemInfoContract.Visibility =
 				BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal() &&
 				contentRelation != null &&
-				contentRelation.SettingsTypes.Contains(OptionSettingsType.Contract);
-			hyperLinkEditInfoContract.BringToFront();
+				contentRelation.SettingsTypes.Contains(OptionSettingsType.Contract) ? LayoutVisibility.Always : LayoutVisibility.Never;
+			emptySpaceItemInfo.Visibility =
+				contentRelation != null &&
+				contentRelation.SettingsTypes.Contains(OptionSettingsType.AdvancedColumns) &&
+				contentRelation.SettingsTypes.Contains(OptionSettingsType.Contract) &&
+				BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal()
+				? LayoutVisibility.Always : LayoutVisibility.Never;
+
 			SettingsControlsUpdated?.Invoke(this, EventArgs.Empty);
 		}
 
@@ -191,17 +188,17 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 					case OptionEditorType.Schedule:
 						form.checkEditUseDecimalRate.Checked = _editedOptionSet.UseDecimalRates;
 						form.checkEditShowSpotX.Checked = _editedOptionSet.ShowSpotsX;
-
-						form.checkEditCloneLineToTheEnd.Enabled = true;
-						form.labelControlDescriptionCloneLineToTheEnd.Enabled = true;
+						
+						form.layoutControlItemCloneLineToTheEnd.Enabled = true;
+						form.simpleLabelItemCloneLineToTheEnd.Enabled = true;
 						form.checkEditCloneLineToTheEnd.Checked = _editedOptionSet.CloneLineToTheEnd;
 						break;
 					case OptionEditorType.Summary:
 						form.checkEditUseDecimalRate.Checked = _editedContent.OptionsSummary.UseDecimalRates;
 						form.checkEditShowSpotX.Checked = _editedContent.OptionsSummary.ShowSpotsX;
 
-						form.checkEditCloneLineToTheEnd.Enabled = false;
-						form.labelControlDescriptionCloneLineToTheEnd.Enabled = false;
+						form.layoutControlItemCloneLineToTheEnd.Enabled = false;
+						form.simpleLabelItemCloneLineToTheEnd.Enabled = false;
 						form.checkEditCloneLineToTheEnd.Checked = false;
 						break;
 					default:
@@ -292,11 +289,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 					ChangedSettingsType = OptionSettingsType.Contract
 				});
 			}
-		}
-
-		private void OnBottomPanelResize(object sender, EventArgs e)
-		{
-			hyperLinkEditInfoAdvanced.Width = pnInfoBottom.Width / (hyperLinkEditInfoContract.Visible ? 2 : 1);
 		}
 		#endregion
 	}

@@ -16,6 +16,7 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
+using DevExpress.XtraLayout;
 
 namespace Asa.Media.Controls
 {
@@ -27,8 +28,8 @@ namespace Asa.Media.Controls
 		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		public Form FormMain { get; set; }
-		public Panel MainPanel { get; set; }
-		public Panel EmptyPanel { get; set; }
+		public LayoutControlItem MainPanel { get; set; }
+		public LayoutControlItem EmptyPanel { get; set; }
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
 		public RibbonTabItem TabHome { get; set; }
@@ -372,10 +373,8 @@ namespace Asa.Media.Controls
 		public ComboBoxEdit HomeDecisionMaker { get; set; }
 		public DateEdit HomePresentationDate { get; set; }
 		public RibbonBar HomeFlightDates { get; set; }
-		public LabelItem HomeFlightDatesStartLogo { get; set; }
 		public LabelItem HomeFlightDatesStartTitle { get; set; }
 		public LabelItem HomeFlightDatesStartValue { get; set; }
-		public LabelItem HomeFlightDatesEndLogo { get; set; }
 		public LabelItem HomeFlightDatesEndTitle { get; set; }
 		public LabelItem HomeFlightDatesEndValue { get; set; }
 		#endregion

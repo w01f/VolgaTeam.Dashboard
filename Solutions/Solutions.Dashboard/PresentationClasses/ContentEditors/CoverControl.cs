@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Dashboard.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
-using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Solutions.Dashboard.InteropClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using Asa.Solutions.Dashboard.Properties;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
@@ -30,27 +30,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = SlideName;
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
 
-				laAdvertiser.Font = new Font(laAdvertiser.Font.FontFamily, laAdvertiser.Font.Size - 2, laAdvertiser.Font.Style);
-				laDecisionMaker.Font = new Font(laDecisionMaker.Font.FontFamily, laDecisionMaker.Font.Size - 2, laDecisionMaker.Font.Style);
-				checkEditPresentationDate.Font = new Font(checkEditPresentationDate.Font.FontFamily, checkEditPresentationDate.Font.Size - 2, checkEditPresentationDate.Font.Style);
-				checkEditSalesRep.Font = new Font(checkEditSalesRep.Font.FontFamily, checkEditSalesRep.Font.Size - 2, checkEditSalesRep.Font.Style);
-				buttonXSalesQuote.Font = new Font(buttonXSalesQuote.Font.FontFamily, buttonXSalesQuote.Font.Size - 2, buttonXSalesQuote.Font.Style);
-				textEditSalesQuoteAuthor.Font = new Font(textEditSalesQuoteAuthor.Font.FontFamily, textEditSalesQuoteAuthor.Font.Size - 2, textEditSalesQuoteAuthor.Font.Style);
-				memoEditSalesQuote.Font = new Font(memoEditSalesQuote.Font.FontFamily, memoEditSalesQuote.Font.Size - 2, memoEditSalesQuote.Font.Style);
-				laSalesRepEmail.Font = new Font(laSalesRepEmail.Font.FontFamily, laSalesRepEmail.Font.Size - 2, laSalesRepEmail.Font.Style);
-				laSalesRepPhone.Font = new Font(laSalesRepPhone.Font.FontFamily, laSalesRepPhone.Font.Size - 2, laSalesRepPhone.Font.Style);
-			}
 			comboBoxEditSlideHeader.EnableSelectAll();
 			comboBoxEditAdvertiser.EnableSelectAll();
 			comboBoxEditDecisionMaker.EnableSelectAll();
@@ -63,7 +43,41 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			comboBoxEditSalesRep.Properties.Items.Clear();
 			comboBoxEditSalesRep.Properties.Items.AddRange(_users.Select(it => it.FullName).ToArray());
 
-			pbSplash.Image = SlideContainer.DashboardInfo.CoverSplashLogo;
+			pictureEditSplash.Image = SlideContainer.DashboardInfo.CoverSplashLogo;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
+			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
+			layoutControlItemAdvertiserLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserLogo.MaxSize, scaleFactor);
+			layoutControlItemAdvertiserLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserLogo.MinSize, scaleFactor);
+			layoutControlItemAdvertiserValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserValue.MaxSize, scaleFactor);
+			layoutControlItemAdvertiserValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserValue.MinSize, scaleFactor);
+			layoutControlItemDecisionMakerLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerLogo.MaxSize, scaleFactor);
+			layoutControlItemDecisionMakerLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerLogo.MinSize, scaleFactor);
+			layoutControlItemDecisionMakerValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerValue.MaxSize, scaleFactor);
+			layoutControlItemDecisionMakerValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerValue.MinSize, scaleFactor);
+			layoutControlItemSalesRepLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepLogo.MaxSize, scaleFactor);
+			layoutControlItemSalesRepLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepLogo.MinSize, scaleFactor);
+			layoutControlItemSalesRepToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepToggle.MaxSize, scaleFactor);
+			layoutControlItemSalesRepToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepToggle.MinSize, scaleFactor);
+			layoutControlItemSalesRepValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepValue.MaxSize, scaleFactor);
+			layoutControlItemSalesRepValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepValue.MinSize, scaleFactor);
+			simpleLabelItemSalesRepEmail.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepEmail.MaxSize, scaleFactor);
+			simpleLabelItemSalesRepEmail.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepEmail.MinSize, scaleFactor);
+			simpleLabelItemSalesRepPhone.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepPhone.MaxSize, scaleFactor);
+			simpleLabelItemSalesRepPhone.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepPhone.MinSize, scaleFactor);
+			layoutControlItemDateLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateLogo.MaxSize, scaleFactor);
+			layoutControlItemDateLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateLogo.MinSize, scaleFactor);
+			layoutControlItemDateValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateValue.MaxSize, scaleFactor);
+			layoutControlItemDateValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateValue.MinSize, scaleFactor);
+			layoutControlItemSalesQuoteButton.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSalesQuoteButton.MaxSize, scaleFactor);
+			layoutControlItemSalesQuoteButton.MinSize = RectangleHelper.ScaleSize(layoutControlItemSalesQuoteButton.MinSize, scaleFactor);
+			simpleLabelItemSalesQuoteDefault.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesQuoteDefault.MaxSize, scaleFactor);
+			simpleLabelItemSalesQuoteDefault.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesQuoteDefault.MinSize, scaleFactor);
+			simpleLabelItemSalesQuoteAuthor.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesQuoteAuthor.MaxSize, scaleFactor);
+			simpleLabelItemSalesQuoteAuthor.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesQuoteAuthor.MinSize, scaleFactor);
+			simpleLabelItemSalesQuoteValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesQuoteValue.MaxSize, scaleFactor);
+			simpleLabelItemSalesQuoteValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesQuoteValue.MinSize, scaleFactor);
 		}
 
 		public override void LoadData()
@@ -83,8 +97,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			checkEditPresentationDate.Checked = SlideContainer.EditedContent.CoverState.ShowPresentationDate;
 			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
 			if (checkEditPresentationDate.Checked)
-				dateEditPresentationDate.EditValue = SlideContainer.EditedContent.CoverState.PresentationDate != DateTime.MinValue ? 
-					SlideContainer.EditedContent.CoverState.PresentationDate : 
+				dateEditPresentationDate.EditValue = SlideContainer.EditedContent.CoverState.PresentationDate != DateTime.MinValue ?
+					SlideContainer.EditedContent.CoverState.PresentationDate :
 					SlideContainer.EditedContent.ScheduleSettings.PresentationDate;
 			else
 				dateEditPresentationDate.EditValue = null;
@@ -96,23 +110,25 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 			if (SlideContainer.EditedContent.CoverState.Quote.IsSet)
 			{
-				textEditSalesQuoteAuthor.EditValue = SlideContainer.EditedContent.CoverState.Quote.Author;
-				memoEditSalesQuote.EditValue = SlideContainer.EditedContent.CoverState.Quote.Text;
+				simpleLabelItemSalesQuoteAuthor.CustomizationFormText = SlideContainer.EditedContent.CoverState.Quote.Author;
+				simpleLabelItemSalesQuoteValue.CustomizationFormText = SlideContainer.EditedContent.CoverState.Quote.Text;
+				simpleLabelItemSalesQuoteAuthor.Text = String.Format("<size=+2><b>{0}</b></size>", SlideContainer.EditedContent.CoverState.Quote.Author);
+				simpleLabelItemSalesQuoteValue.Text = String.Format("<size=+1><b><i>{0}</i></b></size>", SlideContainer.EditedContent.CoverState.Quote.Text);
+				layoutControlGroupSalesQuoteDefault.Visibility = LayoutVisibility.Never;
+				layoutControlGroupSalesQuoteValue.Visibility = LayoutVisibility.Always;
 				buttonXSalesQuote.Image = null;
 				buttonXSalesQuote.Text = "Remove";
-				textEditSalesQuoteAuthor.Visible = true;
-				memoEditSalesQuote.Visible = true;
-				laSalesQuotesHint.Visible = false;
 			}
 			else
 			{
-				textEditSalesQuoteAuthor.EditValue = null;
-				memoEditSalesQuote.EditValue = null;
+				simpleLabelItemSalesQuoteAuthor.CustomizationFormText = " ";
+				simpleLabelItemSalesQuoteValue.CustomizationFormText = " ";
+				simpleLabelItemSalesQuoteAuthor.Text = " ";
+				simpleLabelItemSalesQuoteValue.Text = " ";
+				layoutControlGroupSalesQuoteValue.Visibility = LayoutVisibility.Never;
+				layoutControlGroupSalesQuoteDefault.Visibility = LayoutVisibility.Always;
 				buttonXSalesQuote.Image = Resources.SalesQuotes;
 				buttonXSalesQuote.Text = String.Empty;
-				textEditSalesQuoteAuthor.Visible = false;
-				memoEditSalesQuote.Visible = false;
-				laSalesQuotesHint.Visible = true;
 			}
 
 			_allowToSave = true;
@@ -123,8 +139,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.CoverState.SlideHeader = comboBoxEditSlideHeader.EditValue as String;
 			SlideContainer.EditedContent.CoverState.ShowPresentationDate = checkEditPresentationDate.Checked;
 			SlideContainer.EditedContent.CoverState.PresentationDate = dateEditPresentationDate.DateTime;
-			SlideContainer.EditedContent.CoverState.Quote.Author = textEditSalesQuoteAuthor.EditValue as String;
-			SlideContainer.EditedContent.CoverState.Quote.Text = memoEditSalesQuote.EditValue as String;
+			SlideContainer.EditedContent.CoverState.Quote.Author = simpleLabelItemSalesQuoteAuthor.CustomizationFormText;
+			SlideContainer.EditedContent.CoverState.Quote.Text = simpleLabelItemSalesQuoteValue.CustomizationFormText;
 			SlideContainer.EditedContent.CoverState.Advertiser = comboBoxEditAdvertiser.EditValue as String;
 			SlideContainer.EditedContent.CoverState.DecisionMaker = comboBoxEditDecisionMaker.EditValue as String;
 			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
@@ -139,70 +155,70 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.SettingsContainer.SaveSettings();
 		}
 
-		private void EditValueChanged(object sender, EventArgs e)
+		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			SlideContainer.RaiseDataChanged();
 		}
 
-		private void checkEditSalesRep_CheckedChanged(object sender, EventArgs e)
+		private void OnSalesRepCheckedChanged(object sender, EventArgs e)
 		{
-			if (!_allowToSave) return;
-			comboBoxEditSalesRep.Enabled = checkEditSalesRep.Checked;
+			layoutControlItemSalesRepValue.Enabled = checkEditSalesRep.Checked;
+			simpleLabelItemSalesRepEmail.Enabled = checkEditSalesRep.Checked;
+			simpleLabelItemSalesRepPhone.Enabled = checkEditSalesRep.Checked;
 			if (!checkEditSalesRep.Checked)
 				comboBoxEditSalesRep.EditValue = null;
-			SlideContainer.RaiseDataChanged();
+			OnEditValueChanged(sender, e);
 		}
 
-		private void comboBoxEditSalesRep_EditValueChanged(object sender, EventArgs e)
+		private void OnSalesRepEditValueChanged(object sender, EventArgs e)
 		{
 			var user = _users.FirstOrDefault(u => u.FullName.Equals(comboBoxEditSalesRep.EditValue as String));
-			laSalesRepEmail.Text = user?.Email;
-			laSalesRepPhone.Text = user?.Phone;
-			if (!_allowToSave) return;
-			SlideContainer.RaiseDataChanged();
+			simpleLabelItemSalesRepEmail.Text = user?.Email ?? " ";
+			simpleLabelItemSalesRepPhone.Text = user?.Phone ?? " ";
+			OnEditValueChanged(sender, e);
 		}
 
-		private void ckPresentationDate_CheckedChanged(object sender, EventArgs e)
+		private void OnDateCheckedChanged(object sender, EventArgs e)
 		{
-			if (!_allowToSave) return;
-			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
+			layoutControlItemDateValue.Enabled = checkEditPresentationDate.Checked;
 			if (!checkEditPresentationDate.Checked)
 				dateEditPresentationDate.EditValue = null;
-			SlideContainer.RaiseDataChanged();
+			OnEditValueChanged(sender, e);
 		}
 
-		private void buttonXSalesQuote_Click(object sender, EventArgs e)
+		private void OnSalesQuoteClick(object sender, EventArgs e)
 		{
-			if (textEditSalesQuoteAuthor.EditValue == null && memoEditSalesQuote.EditValue == null)
+			if (simpleLabelItemSalesQuoteAuthor.Text == " " && simpleLabelItemSalesQuoteValue.Text == " ")
 			{
 				using (var form = new FormQuotes(SlideContainer.DashboardInfo.CoverLists.Quotes))
 				{
 					if (form.ShowDialog() != DialogResult.OK) return;
 					if (form.SelectedQuote == null) return;
 
-					textEditSalesQuoteAuthor.EditValue = form.SelectedQuote.Author;
-					memoEditSalesQuote.EditValue = "\"" + form.SelectedQuote.Text + "\"";
-					textEditSalesQuoteAuthor.Visible = true;
-					memoEditSalesQuote.Visible = true;
-					laSalesQuotesHint.Visible = false;
-
+					simpleLabelItemSalesQuoteAuthor.CustomizationFormText = form.SelectedQuote.Author;
+					simpleLabelItemSalesQuoteValue.CustomizationFormText = "\"" + form.SelectedQuote.Text + "\"";
+					simpleLabelItemSalesQuoteAuthor.Text = String.Format("<size=+2><b>{0}</b></size>", form.SelectedQuote.Author);
+					simpleLabelItemSalesQuoteValue.Text = String.Format("<size=+1><b><i>{0}</i></b></size>", "\"" + form.SelectedQuote.Text + "\"");
+					layoutControlGroupSalesQuoteDefault.Visibility = LayoutVisibility.Never;
+					layoutControlGroupSalesQuoteValue.Visibility = LayoutVisibility.Always;
 					buttonXSalesQuote.Image = null;
 					buttonXSalesQuote.Text = "Remove";
 				}
 			}
 			else
 			{
-				textEditSalesQuoteAuthor.EditValue = null;
-				memoEditSalesQuote.EditValue = null;
-				textEditSalesQuoteAuthor.Visible = false;
-				memoEditSalesQuote.Visible = false;
-				laSalesQuotesHint.Visible = true;
-
+				simpleLabelItemSalesQuoteAuthor.CustomizationFormText = " ";
+				simpleLabelItemSalesQuoteValue.CustomizationFormText = " ";
+				simpleLabelItemSalesQuoteAuthor.Text = " ";
+				simpleLabelItemSalesQuoteValue.Text = " ";
+				layoutControlGroupSalesQuoteValue.Visibility = LayoutVisibility.Never;
+				layoutControlGroupSalesQuoteDefault.Visibility = LayoutVisibility.Always;
 				buttonXSalesQuote.Image = Resources.SalesQuotes;
 				buttonXSalesQuote.Text = String.Empty;
 			}
-			SlideContainer.RaiseDataChanged();
+
+			OnEditValueChanged(sender, e);
 		}
 
 		#region Output Staff
@@ -231,8 +247,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public string PresentationDate => dateEditPresentationDate.EditValue != null ? dateEditPresentationDate.DateTime.ToString("MMMM d, yyyy") : String.Empty;
 
-		public string Quote => (memoEditSalesQuote.EditValue?.ToString() ?? string.Empty)
-							   + (char)13 + (textEditSalesQuoteAuthor.EditValue?.ToString() ?? string.Empty);
+		public string Quote => simpleLabelItemSalesQuoteValue.CustomizationFormText
+							   + (char)13 + simpleLabelItemSalesQuoteValue.CustomizationFormText;
 
 		public void GenerateOutput()
 		{

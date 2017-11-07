@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Drawing;
 using Asa.Business.Media.Configuration;
+using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 
 namespace Asa.Media.Controls.ToolForms
 {
@@ -12,14 +13,13 @@ namespace Asa.Media.Controls.ToolForms
 		{
 			InitializeComponent();
 			Text = String.Format(Text, MediaMetaData.Instance.DataTypeString);
-			pbLogo.Image = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? pbLogo.Image;
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 3, laTitle.Font.Style);
-				buttonXNew.Font = new Font(buttonXNew.Font.FontFamily, buttonXNew.Font.Size - 2, buttonXNew.Font.Style);
-				buttonXOpen.Font = new Font(buttonXOpen.Font.FontFamily, buttonXOpen.Font.Size - 2, buttonXOpen.Font.Style);
-				buttonXExit.Font = new Font(buttonXExit.Font.FontFamily, buttonXExit.Font.Size - 2, buttonXExit.Font.Style);
-			}
+			pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? pictureEditLogo.Image;
+			layoutControlItemNew.MaxSize = RectangleHelper.ScaleSize(layoutControlItemNew.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemNew.MinSize = RectangleHelper.ScaleSize(layoutControlItemNew.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOpen.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOpen.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOpen.MinSize = RectangleHelper.ScaleSize(layoutControlItemOpen.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemExit.MaxSize = RectangleHelper.ScaleSize(layoutControlItemExit.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemExit.MinSize = RectangleHelper.ScaleSize(layoutControlItemExit.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 	}
 }

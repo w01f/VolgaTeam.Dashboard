@@ -17,6 +17,8 @@ using Asa.Common.GUI.Themes;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
 using DevComponents.DotNetBar;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
@@ -53,49 +55,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public override void InitControl()
 		{
 			base.InitControl();
-			pnSections.Dock = DockStyle.Fill;
-			pnNoSections.Dock = DockStyle.Fill;
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				labelControlFlexFlightDatesWarning.Font = new Font(labelControlFlexFlightDatesWarning.Font.FontFamily,
-					labelControlFlexFlightDatesWarning.Font.Size - 2, labelControlFlexFlightDatesWarning.Font.Style);
-
-				font = new Font(laTotalPeriodsTitle.Font.FontFamily, laTotalPeriodsTitle.Font.Size - 2,
-					laTotalPeriodsTitle.Font.Style);
-				laTotalPeriodsTitle.Font = font;
-				laTotalGRPTitle.Font = font;
-				laTotalCPPTitle.Font = font;
-				laAvgRateTitle.Font = font;
-				laTotalCostTitle.Font = font;
-				laNetRateTitle.Font = font;
-				laAgencyDiscountTitle.Font = font;
-				font = new Font(laTotalPeriodsValue.Font.FontFamily, laTotalPeriodsValue.Font.Size - 2,
-					laTotalPeriodsValue.Font.Style);
-				laTotalPeriodsValue.Font = font;
-				laTotalGRPValue.Font = font;
-				laTotalCPPValue.Font = font;
-				laAvgRateValue.Font = font;
-				laTotalCostValue.Font = font;
-				laNetRateValue.Font = font;
-				laAgencyDiscountValue.Font = font;
-			}
-
-			pbNoSections.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoRecordsLogo ?? pbNoSections.Image;
+			pictureEditDefaulLogo.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoRecordsLogo ?? pictureEditDefaulLogo.Image;
 
 			settingsContainer.InitControl();
 			settingsContainer.SettingsChanged += OnSectionSettingsChanged;
 			settingsContainer.SettingsControlsUpdated += OnSettingsControlsUpdated;
 
+			retractableBarControl.ContentSize = retractableBarControl.Width;
 			retractableBarControl.Collapse(true);
 
 			_tabDragDropHelper = new XtraTabDragDropHelper<SectionContainer>(xtraTabControlSections);
@@ -106,6 +73,44 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			Controller.Instance.ProgramScheduleNew.Click += OnAddSection;
 			Controller.Instance.ProgramScheduleProgramAdd.Click += OnAddItem;
 			Controller.Instance.ProgramScheduleProgramDelete.Click += OnDeleteItem;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
+			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
+			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
+			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
+			simpleLabelItemTotalPeriodsTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalPeriodsTitle.MaxSize, scaleFactor);
+			simpleLabelItemTotalPeriodsTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalPeriodsTitle.MinSize, scaleFactor);
+			simpleLabelItemTotalPeriodsValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalPeriodsValue.MaxSize, scaleFactor);
+			simpleLabelItemTotalPeriodsValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalPeriodsValue.MinSize, scaleFactor);
+			simpleLabelItemTotalSpotsTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MaxSize, scaleFactor);
+			simpleLabelItemTotalSpotsTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MinSize, scaleFactor);
+			simpleLabelItemTotalSpotsValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MaxSize, scaleFactor);
+			simpleLabelItemTotalSpotsValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MinSize, scaleFactor);
+			simpleLabelItemTotalGRPTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalGRPTitle.MaxSize, scaleFactor);
+			simpleLabelItemTotalGRPTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalGRPTitle.MinSize, scaleFactor);
+			simpleLabelItemTotalGRPValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalGRPValue.MaxSize, scaleFactor);
+			simpleLabelItemTotalGRPValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalGRPValue.MinSize, scaleFactor);
+			simpleLabelItemTotalCPPTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCPPTitle.MaxSize, scaleFactor);
+			simpleLabelItemTotalCPPTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCPPTitle.MinSize, scaleFactor);
+			simpleLabelItemTotalCPPValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCPPValue.MaxSize, scaleFactor);
+			simpleLabelItemTotalCPPValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCPPValue.MinSize, scaleFactor);
+			simpleLabelItemAvgRateTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MaxSize, scaleFactor);
+			simpleLabelItemAvgRateTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MinSize, scaleFactor);
+			simpleLabelItemAvgRateValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MaxSize, scaleFactor);
+			simpleLabelItemAvgRateValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MinSize, scaleFactor);
+			simpleLabelItemTotalCostTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MaxSize, scaleFactor);
+			simpleLabelItemTotalCostTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MinSize, scaleFactor);
+			simpleLabelItemTotalCostValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MaxSize, scaleFactor);
+			simpleLabelItemTotalCostValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MinSize, scaleFactor);
+			simpleLabelItemNetRateTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemNetRateTitle.MaxSize, scaleFactor);
+			simpleLabelItemNetRateTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemNetRateTitle.MinSize, scaleFactor);
+			simpleLabelItemNetRateValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemNetRateValue.MaxSize, scaleFactor);
+			simpleLabelItemNetRateValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemNetRateValue.MinSize, scaleFactor);
+			simpleLabelItemAgencyDiscountTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAgencyDiscountTitle.MaxSize, scaleFactor);
+			simpleLabelItemAgencyDiscountTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAgencyDiscountTitle.MinSize, scaleFactor);
+			simpleLabelItemAgencyDiscountValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAgencyDiscountValue.MaxSize, scaleFactor);
+			simpleLabelItemAgencyDiscountValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAgencyDiscountValue.MinSize, scaleFactor);
 		}
 
 		protected override void UpdateEditedContet()
@@ -120,22 +125,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			EditedContent?.Dispose();
 			EditedContent = Schedule.ProgramSchedule.Clone<ProgramScheduleContent, ProgramScheduleContent>();
 
-			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
+			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
 
-			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
+			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
 				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
-			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
+			simpleLabelItemTotalPeriodsTitle.Text = String.Format("<size=-1>Total {0}s:</size>", SpotTitle);
 			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed &&
 				(ScheduleSettings.FlightDateStart != ScheduleSettings.UserFlightDateStart ||
 					ScheduleSettings.FlightDateEnd != ScheduleSettings.UserFlightDateEnd))
-				labelControlFlexFlightDatesWarning.Visible = true;
+				layoutControlGroupFlexFlightDatesWarning.Visibility = LayoutVisibility.Always;
 			else
-				labelControlFlexFlightDatesWarning.Visible = false;
+				layoutControlGroupFlexFlightDatesWarning.Visibility = LayoutVisibility.Never;
 
-			laTotalCPPTitle.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Overall CPP:" : "Overall CPM:";
-			laTotalGRPTitle.Text = ScheduleSettings.DemoType == DemoType.Rtg ? "Total GRPs:" : "Total Impr:";
+			simpleLabelItemTotalCPPTitle.Text = String.Format("<size=-1>{0}</size>", ScheduleSettings.DemoType == DemoType.Rtg ? "Overall CPP:" : "Overall CPM:");
+			simpleLabelItemTotalGRPTitle.Text = String.Format("<size=-1>{0}</size>", ScheduleSettings.DemoType == DemoType.Rtg ? "Total GRPs:" : "Total Impr:");
 
 			settingsContainer.LoadContent(EditedContent);
 
@@ -316,7 +321,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (ActiveSection == null) return;
 
-			pnBottom.Visible = ActiveSection.SectionData.Programs.Any() &&
+			layoutControlGroupTotals.Visibility = ActiveSection.SectionData.Programs.Any() &&
 				(ActiveSection.SectionData.ShowTotalCPP ||
 				ActiveSection.SectionData.ShowTotalGRP ||
 				ActiveSection.SectionData.ShowTotalSpots ||
@@ -324,49 +329,41 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				ActiveSection.SectionData.ShowAverageRate ||
 				ActiveSection.SectionData.ShowTotalRate ||
 				ActiveSection.SectionData.ShowNetRate ||
-				ActiveSection.SectionData.ShowDiscount);
+				ActiveSection.SectionData.ShowDiscount) ? LayoutVisibility.Always : LayoutVisibility.Never;
 
-			pnTotalCPP.Visible = ActiveSection.SectionData.ShowTotalCPP;
-			pnTotalCPP.SendToBack();
-			pnTotalGRP.Visible = ActiveSection.SectionData.ShowTotalGRP;
-			pnTotalGRP.SendToBack();
-			pnTotalSpots.Visible = ActiveSection.SectionData.ShowTotalSpots;
-			pnTotalSpots.SendToBack();
-			pnTotalPeriods.Visible = ActiveSection.SectionData.ShowTotalPeriods;
-			pnTotalPeriods.SendToBack();
-			pnAvgRate.Visible = ActiveSection.SectionData.ShowAverageRate;
-			pnAvgRate.BringToFront();
-			pnTotalCost.Visible = ActiveSection.SectionData.ShowTotalRate;
-			pnTotalCost.BringToFront();
-			pnNetRate.Visible = ActiveSection.SectionData.ShowNetRate;
-			pnNetRate.BringToFront();
-			pnAgencyDiscount.Visible = ActiveSection.SectionData.ShowDiscount;
-			pnAgencyDiscount.BringToFront();
+			layoutControlGroupTotalCPP.Visibility = ActiveSection.SectionData.ShowTotalCPP ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupTotalGRP.Visibility = ActiveSection.SectionData.ShowTotalGRP ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupTotalSpots.Visibility = ActiveSection.SectionData.ShowTotalSpots ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupTotalPeriods.Visibility = ActiveSection.SectionData.ShowTotalPeriods ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupAvgRate.Visibility = ActiveSection.SectionData.ShowAverageRate ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupTotalCost.Visibility = ActiveSection.SectionData.ShowTotalRate ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupNetRate.Visibility = ActiveSection.SectionData.ShowNetRate ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupAgencyDiscount.Visibility = ActiveSection.SectionData.ShowDiscount ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
 		private void UpdateTotalsValues()
 		{
 			if (ActiveSection != null && ActiveSection.SectionData.Programs.Any())
 			{
-				laTotalPeriodsValue.Text = ActiveSection.TotalPeriodsValueFormatted;
-				laTotalSpotsValue.Text = ActiveSection.TotalSpotsValueFormatted;
-				laTotalGRPValue.Text = ActiveSection.TotalGRPValueFormatted;
-				laTotalCPPValue.Text = ActiveSection.TotalCPPValueFormatted;
-				laAvgRateValue.Text = ActiveSection.AvgRateValueFormatted;
-				laTotalCostValue.Text = ActiveSection.TotalCostValuesFormatted;
-				laNetRateValue.Text = ActiveSection.NetRateValueFormatted;
-				laAgencyDiscountValue.Text = ActiveSection.TotalDiscountValueFormatted;
+				simpleLabelItemTotalPeriodsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalPeriodsValueFormatted);
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalSpotsValueFormatted);
+				simpleLabelItemTotalGRPValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalGRPValueFormatted);
+				simpleLabelItemTotalCPPValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalCPPValueFormatted);
+				simpleLabelItemAvgRateValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.AvgRateValueFormatted);
+				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalCostValuesFormatted);
+				simpleLabelItemNetRateValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.NetRateValueFormatted);
+				simpleLabelItemAgencyDiscountValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalDiscountValueFormatted);
 			}
 			else
 			{
-				laTotalPeriodsValue.Text =
-				laTotalSpotsValue.Text =
-				laTotalGRPValue.Text =
-				laTotalCPPValue.Text =
-				laAvgRateValue.Text =
-				laTotalCostValue.Text =
-				laNetRateValue.Text =
-					laAgencyDiscountValue.Text = String.Empty;
+				simpleLabelItemTotalPeriodsValue.Text =
+				simpleLabelItemTotalSpotsValue.Text =
+				simpleLabelItemTotalGRPValue.Text =
+				simpleLabelItemTotalCPPValue.Text =
+				simpleLabelItemAvgRateValue.Text =
+				simpleLabelItemTotalCostValue.Text =
+				simpleLabelItemNetRateValue.Text =
+					simpleLabelItemAgencyDiscountValue.Text = String.Empty;
 			}
 		}
 
@@ -391,7 +388,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			UpdateOutputStatus();
 			SettingsNotSaved = true;
 			if (e.SnapshotsChanged)
-				ChangeInfo.SnapshotsChanged= true;
+				ChangeInfo.SnapshotsChanged = true;
 			if (e.OptionsSetsChanged)
 				ChangeInfo.OptionsChanged = true;
 		}
@@ -450,13 +447,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (EditedContent.Sections.Any())
 			{
-				pnSections.BringToFront();
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlItemSectionsContainer.Visibility = LayoutVisibility.Always;
 				Controller.Instance.ProgramScheduleProgramAdd.Enabled = true;
 				Controller.Instance.ProgramScheduleProgramDelete.Enabled = true;
 			}
 			else
 			{
-				pnNoSections.BringToFront();
+				layoutControlItemSectionsContainer.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
 				Controller.Instance.ProgramScheduleProgramAdd.Enabled = false;
 				Controller.Instance.ProgramScheduleProgramDelete.Enabled = false;
 			}

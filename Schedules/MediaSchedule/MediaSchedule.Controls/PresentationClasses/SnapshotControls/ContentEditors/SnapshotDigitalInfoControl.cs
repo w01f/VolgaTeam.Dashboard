@@ -44,7 +44,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public override void InitControls()
 		{
 			base.InitControls();
-			pbNoProducts.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNoDigitalItemsLogo ?? pbNoProducts.Image;
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNoDigitalItemsLogo ?? pictureEditDefaultLogo.Image;
 		}
 
 		public override void Release()

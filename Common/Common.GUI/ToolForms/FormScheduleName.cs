@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Common.GUI.ToolForms
 {
@@ -13,17 +15,22 @@ namespace Asa.Common.GUI.ToolForms
 			if (saveForm)
 			{
 				Text = "Save Schedule";
-				laLogo.Text = "Save a copy of this schedule:";
-				checkEditSaveAsTemplate.Visible = true;
-				Height = 210;
+				layoutControlItemScheduleName.Text = "<size=+2>Save a copy of this schedule:</size>";
+				layoutControlItemSaveAsTemplate.Visibility = LayoutVisibility.Always;
+				Height = (Int32)(210 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 			}
 			else
 			{
 				Text = "Build a New Schedule";
-				laLogo.Text = "File Name:";
-				checkEditSaveAsTemplate.Visible = false;
-				Height = 190;
+				layoutControlItemScheduleName.Text = "<size=+2>File Name:</size>";
+				layoutControlItemSaveAsTemplate.Visibility = LayoutVisibility.Never;
+				Height = (Int32)(190 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 			}
+
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		public string ScheduleName

@@ -60,7 +60,7 @@ namespace Asa.Common.GUI.FavoriteImages
 			using (var form = new FormAddFavoriteImage(image, defaultName, _manager.Images.Select(i => i.Name.ToLower())))
 			{
 				form.Text = "Add Image to Favorites";
-				form.laTitle.Text = "Save this Image in your Favorites folder for future presentations";
+				form.simpleLabelItemTitle.Text = "Save this Image in your Favorites folder for future<br>presentations";
 				if (form.ShowDialog() != DialogResult.OK) return;
 				_manager.SaveImage(image, form.ImageName);
 			}
@@ -171,7 +171,7 @@ namespace Asa.Common.GUI.FavoriteImages
 			using (var form = new FormAddFavoriteImage(image, null, _manager.Images.Select(i => i.Name.ToLower())))
 			{
 				form.Text = "Rename Favorite Image";
-				form.laTitle.Text = "Set new name for your Favorite Image";
+				form.simpleLabelItemTitle.Text = "Set new name for your Favorite Image";
 				if (form.ShowDialog() != DialogResult.OK) return;
 				_manager.DeleteImage(imageSource);
 				_manager.SaveImage(image, form.ImageName);
@@ -187,6 +187,5 @@ namespace Asa.Common.GUI.FavoriteImages
 			_manager.DeleteImage(imageSource);
 			_menuHitInfo = null;
 		}
-
 	}
 }

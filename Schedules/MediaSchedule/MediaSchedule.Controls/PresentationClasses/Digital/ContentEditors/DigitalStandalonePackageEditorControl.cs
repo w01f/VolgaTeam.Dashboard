@@ -29,6 +29,7 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 using ResourceManager = Asa.Common.Core.Configuration.ResourceManager;
 
@@ -55,8 +56,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public DigitalStandalonePackageEditorControl(DigitalEditorsContainer container)
 		{
 			InitializeComponent();
-			pnData.Dock = DockStyle.Fill;
-			pnNoRecords.Dock = DockStyle.Fill;
 
 			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsStandalonePackageTitle ?? "Speed Builder";
 			_container = container;
@@ -80,26 +79,17 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			bandedGridColumnImpressions.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsImpressionsTitle ?? bandedGridColumnImpressions.Caption;
 			bandedGridColumnCPM.Caption = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageColumnsCPMTitle ?? bandedGridColumnCPM.Caption;
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				advBandedGridView.Appearance.BandPanel.Font = font;
-				advBandedGridView.Appearance.EvenRow.Font = font;
-				advBandedGridView.Appearance.FocusedCell.Font = font;
-				advBandedGridView.Appearance.FocusedRow.Font = font;
-				advBandedGridView.Appearance.HeaderPanel.Font = new Font(font.FontFamily, font.Size, FontStyle.Bold);
-				advBandedGridView.Appearance.OddRow.Font = font;
-				advBandedGridView.Appearance.Row.Font = font;
-				advBandedGridView.Appearance.SelectedRow.Font = font;
-			}
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalStandalonePackageNoRecordsLogo ?? pictureEditDefaultLogo.Image;
 
-			pbNoRecords.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalStandalonePackageNoRecordsLogo ?? pbNoRecords.Image;
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
+			bandedGridColumnImpressions.Width = (Int32)(bandedGridColumnImpressions.Width * scaleFactor.Width);
+			bandedGridColumnCPM.Width = (Int32)(bandedGridColumnCPM.Width * scaleFactor.Width);
+			gridBandImpressions.Width = (Int32)(gridBandImpressions.Width * scaleFactor.Width);
+			bandedGridColumnInvestment.Width = (Int32)(bandedGridColumnInvestment.Width * scaleFactor.Width);
+			bandedGridColumnRate.Width = (Int32)(bandedGridColumnRate.Width * scaleFactor.Width);
+			gridBandInvestment.Width = (Int32)(gridBandInvestment.Width * scaleFactor.Width);
+			gridBandFormula.Width = (Int32)(gridBandFormula.Width * scaleFactor.Width);
 		}
 
 		public void LoadData()
@@ -295,9 +285,15 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private void UpdateRecordsSplash()
 		{
 			if (PackageRecords.Any())
-				pnData.BringToFront();
+			{
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlItemGrid.Visibility = LayoutVisibility.Always;
+			}
 			else
-				pnNoRecords.BringToFront();
+			{
+				layoutControlItemGrid.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
+			}
 		}
 
 		#region Control Event Handlers

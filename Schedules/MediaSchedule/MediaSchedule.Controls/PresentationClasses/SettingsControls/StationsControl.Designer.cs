@@ -64,7 +64,6 @@
 			this.gridViewItems.Appearance.Row.Options.UseFont = true;
 			this.gridViewItems.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.gridViewItems.Appearance.SelectedRow.Options.UseFont = true;
-			this.gridViewItems.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.gridViewItems.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnLogo,
             this.gridColumnAvailable});
@@ -107,6 +106,7 @@
 			this.repositoryItemPictureEdit.ReadOnly = true;
 			this.repositoryItemPictureEdit.ShowMenu = false;
 			this.repositoryItemPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+			this.repositoryItemPictureEdit.ZoomAccelerationFactor = 1D;
 			// 
 			// gridColumnAvailable
 			// 
@@ -128,6 +128,7 @@
 			// 
 			// StationsControl
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.gridControlItems);

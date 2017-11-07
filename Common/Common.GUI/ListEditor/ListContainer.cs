@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
+using DevExpress.Skins;
 using DevExpress.XtraGrid;
 using DevExpress.XtraTab;
 
@@ -16,6 +18,9 @@ namespace Asa.Common.GUI.ListEditor
 			Text = listName;
 			_dataSource.AddRange(records);
 			gridControl.DataSource = _dataSource;
+
+			layoutControlItemAdd.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdd.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemAdd.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdd.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		private void repositoryItemButtonEditButtons_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

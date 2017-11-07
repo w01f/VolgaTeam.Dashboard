@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Online.Dictionaries;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
@@ -16,14 +16,19 @@ using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Products;
 using Asa.Online.Controls.PresentationClasses.Summary;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 using ResourceManager = Asa.Common.Core.Configuration.ResourceManager;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalSummaryControl : UserControl, IDigitalSlideControl
-	public partial class DigitalSummaryEditorControl : XtraTabPage, IDigitalEditor, IDigitalSummaryContainerControl, IDigitalOutputContainer, IDigitalOutputItem
+	//public partial class DigitalSummaryEditorControl : UserControl,
+	public partial class DigitalSummaryEditorControl : XtraTabPage, 
+		IDigitalEditor, 
+		IDigitalSummaryContainerControl, 
+		IDigitalOutputContainer, 
+		IDigitalOutputItem
 	{
 		private bool _allowToSave;
 		private bool _needToReload;
@@ -38,17 +43,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			InitializeComponent();
 			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsSummaryTitle ?? "Digital Summary";
 			_container = container;
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-			}
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemStatementToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemStatementToggle.MaxSize, scaleFactor);
+			layoutControlItemStatementToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemStatementToggle.MinSize, scaleFactor);
+			emptySpaceItemInvestemtsSeparator.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemInvestemtsSeparator.MaxSize, scaleFactor);
+			emptySpaceItemInvestemtsSeparator.MinSize = RectangleHelper.ScaleSize(emptySpaceItemInvestemtsSeparator.MinSize, scaleFactor);
 		}
 
 		public void LoadData()
@@ -73,7 +73,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				SetFocus();
 			}
 
-			checkEditStatement.Checked = !String.IsNullOrEmpty(_container.EditedContent.DigitalProductSummary.Statement);
+			checkEditStatementValue.Checked = !String.IsNullOrEmpty(_container.EditedContent.DigitalProductSummary.Statement);
 			memoEditStatement.EditValue = _container.EditedContent.DigitalProductSummary.Statement;
 			checkEditMonthlyInvestment.Checked = _container.EditedContent.DigitalProductSummary.MonthlyInvestment.HasValue;
 			spinEditMonthlyInvestment.EditValue = _container.EditedContent.DigitalProductSummary.MonthlyInvestment;
@@ -93,7 +93,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public void SaveData()
 		{
 			_summaryControls.ForEach(sc => sc.SaveData());
-			_container.EditedContent.DigitalProductSummary.Statement = checkEditStatement.Checked ? memoEditStatement.EditValue as String : null;
+			_container.EditedContent.DigitalProductSummary.Statement = checkEditStatementValue.Checked ? memoEditStatement.EditValue as String : null;
 			_container.EditedContent.DigitalProductSummary.MonthlyInvestment = checkEditMonthlyInvestment.Checked ? spinEditMonthlyInvestment.EditValue as decimal? : null;
 			_container.EditedContent.DigitalProductSummary.TotalInvestment = checkEditTotalInvestment.Checked ? spinEditTotalInvestment.EditValue as decimal? : null;
 		}
@@ -108,8 +108,8 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 		private void checkEditStatement_CheckedChanged(object sender, EventArgs e)
 		{
-			memoEditStatement.Enabled = checkEditStatement.Checked;
-			if (!checkEditStatement.Checked)
+			memoEditStatement.Enabled = checkEditStatementValue.Checked;
+			if (!checkEditStatementValue.Checked)
 				memoEditStatement.EditValue = null;
 			EditValueChanged(sender, e);
 		}
@@ -173,10 +173,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 						slideRows.Add(String.Format("product{0}", j + 1), "DeleteRow");
 				}
 
-				if (checkEditStatement.Checked || checkEditMonthlyInvestment.Checked || checkEditTotalInvestment.Checked)
+				if (checkEditStatementValue.Checked || checkEditMonthlyInvestment.Checked || checkEditTotalInvestment.Checked)
 				{
 					var statements = new List<string>();
-					if (checkEditStatement.Checked && memoEditStatement.EditValue != null)
+					if (checkEditStatementValue.Checked && memoEditStatement.EditValue != null)
 						statements.Add(memoEditStatement.EditValue as String);
 					if (checkEditMonthlyInvestment.Checked || checkEditTotalInvestment.Checked)
 					{

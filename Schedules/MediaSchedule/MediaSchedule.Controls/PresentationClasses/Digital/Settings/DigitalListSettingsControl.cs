@@ -5,8 +5,10 @@ using Asa.Business.Media.Configuration;
 using Asa.Business.Online.Configuration;
 using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
@@ -40,15 +42,17 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			buttonXLocation.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.ListSettingsLocationTitle ?? buttonXLocation.Text);
 			buttonXTargeting.Text = DigitalControlsConfiguration.WrapTitle(ListManager.Instance.DefaultControlsConfiguration.ListSettingsTargetingTitle ?? buttonXTargeting.Text);
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(buttonXDimensions.Font.FontFamily, buttonXDimensions.Font.Size - 2, buttonXDimensions.Font.Style);
-				buttonXDimensions.Font = font;
-				buttonXRichMedia.Font = font;
-				buttonXStrategy.Font = font;
-				buttonXLocation.Font = font;
-				buttonXTargeting.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemDimensions.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDimensions.MaxSize, scaleFactor);
+			layoutControlItemDimensions.MinSize = RectangleHelper.ScaleSize(layoutControlItemDimensions.MinSize, scaleFactor);
+			layoutControlItemRichMedia.MaxSize = RectangleHelper.ScaleSize(layoutControlItemRichMedia.MaxSize, scaleFactor);
+			layoutControlItemRichMedia.MinSize = RectangleHelper.ScaleSize(layoutControlItemRichMedia.MinSize, scaleFactor);
+			layoutControlItemStrategy.MaxSize = RectangleHelper.ScaleSize(layoutControlItemStrategy.MaxSize, scaleFactor);
+			layoutControlItemStrategy.MinSize = RectangleHelper.ScaleSize(layoutControlItemStrategy.MinSize, scaleFactor);
+			layoutControlItemLocation.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLocation.MaxSize, scaleFactor);
+			layoutControlItemLocation.MinSize = RectangleHelper.ScaleSize(layoutControlItemLocation.MinSize, scaleFactor);
+			layoutControlItemTargeting.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTargeting.MaxSize, scaleFactor);
+			layoutControlItemTargeting.MinSize = RectangleHelper.ScaleSize(layoutControlItemTargeting.MinSize, scaleFactor);
 		}
 
 		public void LoadContentData(DigitalProductsContent content)

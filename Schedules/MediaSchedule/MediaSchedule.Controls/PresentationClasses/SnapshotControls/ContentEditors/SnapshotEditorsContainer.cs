@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
-	//public partial class SnapshotEditorsContainer : UserControl
-	public partial class SnapshotEditorsContainer :
-		XtraTabPage,
+	//public partial class SnapshotEditorsContainer : UserControl,
+	public partial class SnapshotEditorsContainer : XtraTabPage,
 		ISnapshotContentEditorControl,
 		IOutputContainer
 	{
@@ -31,18 +33,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public SnapshotEditorsContainer()
 		{
 			InitializeComponent();
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				labelControlCollectionItemsInfo.Font = font;
-			}
+
+			simpleLabelItemCollectionItemsInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemCollectionItemsInfo.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			simpleLabelItemCollectionItemsInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemCollectionItemsInfo.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		public void InitControls()
@@ -120,18 +113,18 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			switch (ActiveEditor?.EditorType)
 			{
 				case SnapshotEditorType.Schedule:
-					labelControlCollectionItemsInfo.Visible = true;
-					labelControlCollectionItemsInfo.Text = String.Format("<color=gray>Total Programs: {0}</color>", SnapshotData.Programs.Count);
+					simpleLabelItemCollectionItemsInfo.Visibility = LayoutVisibility.Always;
+					simpleLabelItemCollectionItemsInfo.Text = String.Format("<color=gray>Total Programs: {0}</color>", SnapshotData.Programs.Count);
 					break;
 				case SnapshotEditorType.DigitalInfo:
-					labelControlCollectionItemsInfo.Visible = true;
+					simpleLabelItemCollectionItemsInfo.Visibility = LayoutVisibility.Always;
 					if (SnapshotData.DigitalInfo.Records.Count < BaseDigitalInfoOneSheetOutputModel.MaxRecords)
-						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SnapshotData.DigitalInfo.Records.Count);
+						simpleLabelItemCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SnapshotData.DigitalInfo.Records.Count);
 					else
-						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
+						simpleLabelItemCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
 					break;
 				default:
-					labelControlCollectionItemsInfo.Visible = false;
+					simpleLabelItemCollectionItemsInfo.Visibility = LayoutVisibility.Never;
 					break;
 			}
 		}

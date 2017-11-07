@@ -31,51 +31,95 @@
 			this.components = new System.ComponentModel.Container();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.xtraTabControlContentEditors = new DevExpress.XtraTab.XtraTabControl();
-			this.pbNoRecords = new System.Windows.Forms.PictureBox();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings.SettingsContainer();
 			this.pnData = new System.Windows.Forms.Panel();
-			this.pnTop = new System.Windows.Forms.Panel();
-			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
-			this.pnBottom = new System.Windows.Forms.Panel();
-			this.pnAvgRate = new System.Windows.Forms.Panel();
-			this.laAvgRateValue = new System.Windows.Forms.Label();
-			this.laAvgRateTitle = new System.Windows.Forms.Label();
-			this.pnTotalCost = new System.Windows.Forms.Panel();
-			this.laTotalCostValue = new System.Windows.Forms.Label();
-			this.laTotalCostTitle = new System.Windows.Forms.Label();
-			this.pnTotalSpots = new System.Windows.Forms.Panel();
-			this.laTotalSpotsValue = new System.Windows.Forms.Label();
-			this.laTotalSpotsTitle = new System.Windows.Forms.Label();
-			this.pnNoRecords = new System.Windows.Forms.Panel();
+			this.layoutControlData = new DevExpress.XtraLayout.LayoutControl();
+			this.layoutControlGroupRootData = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemEditors = new DevExpress.XtraLayout.LayoutControlItem();
+			this.simpleLabelItemScheduleInfo = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.simpleLabelItemFlightDates = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlGroupTotals = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlGroupActiveWeeks = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemActiveWeeksTitle = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemActiveWeeksValue = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.layoutControlGroupWeeklySpots = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemWeeklySpotsTitle = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemWeeklySpotsValue = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.layoutControlGroupWeeklyCost = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemWeeklyCostTitle = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemWeeklyCostValue = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.layoutControlGroupTotalSpots = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemTotalSpotsTitle = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemTotalSpotsValue = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.layoutControlGroupTotalCost = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemTotalCostTitle = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemTotalCostValue = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.layoutControlGroupAvgRate = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemAvgRateTitle = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.simpleLabelItemAvgRateValue = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
-			this.pnWeeklySpots = new System.Windows.Forms.Panel();
-			this.laWeeklySpotsValue = new System.Windows.Forms.Label();
-			this.laWeeklySpotsTitle = new System.Windows.Forms.Label();
-			this.pnWeeklyCost = new System.Windows.Forms.Panel();
-			this.laWeeklyCostValue = new System.Windows.Forms.Label();
-			this.laWeeklyCostTitle = new System.Windows.Forms.Label();
-			this.pnActiveWeeks = new System.Windows.Forms.Panel();
-			this.laActiveWeeksValue = new System.Windows.Forms.Label();
-			this.laActiveWeeksTitle = new System.Windows.Forms.Label();
+			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
+			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
+			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemDefaultLogo = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemData = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlContentEditors)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).BeginInit();
 			this.retractableBarControl.Content.SuspendLayout();
 			this.pnData.SuspendLayout();
-			this.pnTop.SuspendLayout();
-			this.pnBottom.SuspendLayout();
-			this.pnAvgRate.SuspendLayout();
-			this.pnTotalCost.SuspendLayout();
-			this.pnTotalSpots.SuspendLayout();
-			this.pnNoRecords.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlData)).BeginInit();
+			this.layoutControlData.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootData)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemEditors)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTotals)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupActiveWeeks)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemActiveWeeksTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemActiveWeeksValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupWeeklySpots)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklySpotsTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklySpotsValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupWeeklyCost)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklyCostTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklyCostValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTotalSpots)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalSpotsTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalSpotsValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTotalCost)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalCostTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalCostValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupAvgRate)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemAvgRateTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemAvgRateValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
 			this.contextMenuStrip.SuspendLayout();
-			this.pnWeeklySpots.SuspendLayout();
-			this.pnWeeklyCost.SuspendLayout();
-			this.pnActiveWeeks.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).BeginInit();
+			this.layoutControlMain.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemData)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -113,25 +157,14 @@
 			this.xtraTabControlContentEditors.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlContentEditors.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlContentEditors.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
-			this.xtraTabControlContentEditors.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlContentEditors.Location = new System.Drawing.Point(300, 40);
+			this.xtraTabControlContentEditors.Location = new System.Drawing.Point(2, 42);
 			this.xtraTabControlContentEditors.Name = "xtraTabControlContentEditors";
-			this.xtraTabControlContentEditors.Size = new System.Drawing.Size(792, 458);
+			this.xtraTabControlContentEditors.Size = new System.Drawing.Size(601, 492);
 			this.xtraTabControlContentEditors.TabIndex = 5;
 			this.xtraTabControlContentEditors.UseMnemonic = false;
 			this.xtraTabControlContentEditors.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.OnSelectedContentEditorChanged);
 			this.xtraTabControlContentEditors.CloseButtonClick += new System.EventHandler(this.OnContentEditorTabCloseClick);
 			this.xtraTabControlContentEditors.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnContentEditorTabMouseDown);
-			// 
-			// pbNoRecords
-			// 
-			this.pbNoRecords.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoRecords.Image = global::Asa.Media.Controls.Properties.Resources.SnapshotNoRecords;
-			this.pbNoRecords.Location = new System.Drawing.Point(40, 20);
-			this.pbNoRecords.Name = "pbNoRecords";
-			this.pbNoRecords.Size = new System.Drawing.Size(140, 60);
-			this.pbNoRecords.TabIndex = 1;
-			this.pbNoRecords.TabStop = false;
 			// 
 			// retractableBarControl
 			// 
@@ -144,7 +177,7 @@
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
-			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 497);
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 549);
 			this.retractableBarControl.Content.TabIndex = 1;
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -160,7 +193,7 @@
 			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarControl.Name = "retractableBarControl";
-			this.retractableBarControl.Size = new System.Drawing.Size(300, 541);
+			this.retractableBarControl.Size = new System.Drawing.Size(300, 593);
 			this.retractableBarControl.TabIndex = 4;
 			// 
 			// settingsContainer
@@ -171,177 +204,473 @@
 			this.settingsContainer.Location = new System.Drawing.Point(0, 0);
 			this.settingsContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.settingsContainer.Name = "settingsContainer";
-			this.settingsContainer.Size = new System.Drawing.Size(296, 497);
+			this.settingsContainer.Size = new System.Drawing.Size(296, 549);
 			this.settingsContainer.TabIndex = 0;
 			// 
 			// pnData
 			// 
-			this.pnData.Controls.Add(this.xtraTabControlContentEditors);
-			this.pnData.Controls.Add(this.pnTop);
-			this.pnData.Controls.Add(this.pnBottom);
+			this.pnData.Controls.Add(this.layoutControlData);
 			this.pnData.Controls.Add(this.retractableBarControl);
-			this.pnData.Location = new System.Drawing.Point(3, 3);
+			this.pnData.Location = new System.Drawing.Point(304, 0);
 			this.pnData.Name = "pnData";
-			this.pnData.Size = new System.Drawing.Size(1092, 541);
+			this.pnData.Size = new System.Drawing.Size(638, 593);
 			this.pnData.TabIndex = 6;
 			// 
-			// pnTop
+			// layoutControlData
 			// 
-			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
-			this.pnTop.Controls.Add(this.labelControlFlightDates);
-			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTop.Location = new System.Drawing.Point(300, 0);
-			this.pnTop.Name = "pnTop";
-			this.pnTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.pnTop.Size = new System.Drawing.Size(792, 40);
-			this.pnTop.TabIndex = 7;
+			this.layoutControlData.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControlData.Appearance.Control.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControlData.BackColor = System.Drawing.Color.White;
+			this.layoutControlData.Controls.Add(this.xtraTabControlContentEditors);
+			this.layoutControlData.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControlData.ForeColor = System.Drawing.Color.Black;
+			this.layoutControlData.Location = new System.Drawing.Point(300, 0);
+			this.layoutControlData.Name = "layoutControlData";
+			this.layoutControlData.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(31, 437, 250, 350);
+			this.layoutControlData.Root = this.layoutControlGroupRootData;
+			this.layoutControlData.Size = new System.Drawing.Size(338, 593);
+			this.layoutControlData.StyleController = this.styleController;
+			this.layoutControlData.TabIndex = 65;
+			this.layoutControlData.Text = "layoutControl1";
 			// 
-			// labelControlScheduleInfo
+			// layoutControlGroupRootData
 			// 
-			this.labelControlScheduleInfo.AllowHtmlString = true;
-			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(5, 0);
-			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
-			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(532, 40);
-			this.labelControlScheduleInfo.StyleController = this.styleController;
-			this.labelControlScheduleInfo.TabIndex = 126;
+			this.layoutControlGroupRootData.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRootData.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRootData.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRootData.GroupBordersVisible = false;
+			this.layoutControlGroupRootData.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemEditors,
+            this.simpleLabelItemScheduleInfo,
+            this.simpleLabelItemFlightDates,
+            this.emptySpaceItem1,
+            this.emptySpaceItem9,
+            this.layoutControlGroupTotals});
+			this.layoutControlGroupRootData.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootData.Name = "Root";
+			this.layoutControlGroupRootData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootData.Size = new System.Drawing.Size(605, 576);
+			this.layoutControlGroupRootData.TextVisible = false;
 			// 
-			// labelControlFlightDates
+			// layoutControlItemEditors
 			// 
-			this.labelControlFlightDates.AllowHtmlString = true;
-			this.labelControlFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.labelControlFlightDates.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlFlightDates.Dock = System.Windows.Forms.DockStyle.Right;
-			this.labelControlFlightDates.Location = new System.Drawing.Point(537, 0);
-			this.labelControlFlightDates.Name = "labelControlFlightDates";
-			this.labelControlFlightDates.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlFlightDates.Size = new System.Drawing.Size(250, 40);
-			this.labelControlFlightDates.StyleController = this.styleController;
-			this.labelControlFlightDates.TabIndex = 127;
+			this.layoutControlItemEditors.Control = this.xtraTabControlContentEditors;
+			this.layoutControlItemEditors.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemEditors.FillControlToClientArea = false;
+			this.layoutControlItemEditors.Location = new System.Drawing.Point(0, 40);
+			this.layoutControlItemEditors.Name = "layoutControlItemEditors";
+			this.layoutControlItemEditors.Size = new System.Drawing.Size(605, 496);
+			this.layoutControlItemEditors.Text = "Editors";
+			this.layoutControlItemEditors.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemEditors.TextVisible = false;
+			this.layoutControlItemEditors.TrimClientAreaToControl = false;
 			// 
-			// pnBottom
+			// simpleLabelItemScheduleInfo
 			// 
-			this.pnBottom.Controls.Add(this.pnAvgRate);
-			this.pnBottom.Controls.Add(this.pnTotalCost);
-			this.pnBottom.Controls.Add(this.pnTotalSpots);
-			this.pnBottom.Controls.Add(this.pnWeeklyCost);
-			this.pnBottom.Controls.Add(this.pnWeeklySpots);
-			this.pnBottom.Controls.Add(this.pnActiveWeeks);
-			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBottom.Location = new System.Drawing.Point(300, 498);
-			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.pnBottom.Size = new System.Drawing.Size(792, 43);
-			this.pnBottom.TabIndex = 6;
+			this.simpleLabelItemScheduleInfo.AllowHotTrack = false;
+			this.simpleLabelItemScheduleInfo.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemScheduleInfo.Location = new System.Drawing.Point(10, 0);
+			this.simpleLabelItemScheduleInfo.MaxSize = new System.Drawing.Size(0, 40);
+			this.simpleLabelItemScheduleInfo.MinSize = new System.Drawing.Size(1, 40);
+			this.simpleLabelItemScheduleInfo.Name = "simpleLabelItemScheduleInfo";
+			this.simpleLabelItemScheduleInfo.Size = new System.Drawing.Size(344, 40);
+			this.simpleLabelItemScheduleInfo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemScheduleInfo.Text = " ";
+			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(81, 16);
 			// 
-			// pnAvgRate
+			// simpleLabelItemFlightDates
 			// 
-			this.pnAvgRate.Controls.Add(this.laAvgRateValue);
-			this.pnAvgRate.Controls.Add(this.laAvgRateTitle);
-			this.pnAvgRate.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnAvgRate.Location = new System.Drawing.Point(585, 0);
-			this.pnAvgRate.Name = "pnAvgRate";
-			this.pnAvgRate.Size = new System.Drawing.Size(115, 43);
-			this.pnAvgRate.TabIndex = 3;
+			this.simpleLabelItemFlightDates.AllowHotTrack = false;
+			this.simpleLabelItemFlightDates.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemFlightDates.Location = new System.Drawing.Point(354, 0);
+			this.simpleLabelItemFlightDates.Name = "simpleLabelItemFlightDates";
+			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(241, 40);
+			this.simpleLabelItemFlightDates.Text = " ";
+			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(81, 16);
 			// 
-			// laAvgRateValue
+			// emptySpaceItem1
 			// 
-			this.laAvgRateValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laAvgRateValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laAvgRateValue.Location = new System.Drawing.Point(0, 19);
-			this.laAvgRateValue.Name = "laAvgRateValue";
-			this.laAvgRateValue.Size = new System.Drawing.Size(115, 19);
-			this.laAvgRateValue.TabIndex = 2;
-			this.laAvgRateValue.Text = "Average Rate:";
-			this.laAvgRateValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.emptySpaceItem1.AllowHotTrack = false;
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem1.Name = "emptySpaceItem1";
+			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// laAvgRateTitle
+			// emptySpaceItem9
 			// 
-			this.laAvgRateTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laAvgRateTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laAvgRateTitle.Location = new System.Drawing.Point(0, 0);
-			this.laAvgRateTitle.Name = "laAvgRateTitle";
-			this.laAvgRateTitle.Size = new System.Drawing.Size(115, 19);
-			this.laAvgRateTitle.TabIndex = 1;
-			this.laAvgRateTitle.Text = "Average Rate:";
-			this.laAvgRateTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.emptySpaceItem9.AllowHotTrack = false;
+			this.emptySpaceItem9.Location = new System.Drawing.Point(595, 0);
+			this.emptySpaceItem9.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem9.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem9.Name = "emptySpaceItem9";
+			this.emptySpaceItem9.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// pnTotalCost
+			// layoutControlGroupTotals
 			// 
-			this.pnTotalCost.Controls.Add(this.laTotalCostValue);
-			this.pnTotalCost.Controls.Add(this.laTotalCostTitle);
-			this.pnTotalCost.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnTotalCost.Location = new System.Drawing.Point(470, 0);
-			this.pnTotalCost.Name = "pnTotalCost";
-			this.pnTotalCost.Size = new System.Drawing.Size(115, 43);
-			this.pnTotalCost.TabIndex = 8;
+			this.layoutControlGroupTotals.GroupBordersVisible = false;
+			this.layoutControlGroupTotals.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem3,
+            this.layoutControlGroupActiveWeeks,
+            this.layoutControlGroupWeeklySpots,
+            this.layoutControlGroupWeeklyCost,
+            this.layoutControlGroupTotalSpots,
+            this.layoutControlGroupTotalCost,
+            this.layoutControlGroupAvgRate,
+            this.emptySpaceItem8});
+			this.layoutControlGroupTotals.Location = new System.Drawing.Point(0, 536);
+			this.layoutControlGroupTotals.Name = "layoutControlGroupTotals";
+			this.layoutControlGroupTotals.Size = new System.Drawing.Size(605, 40);
+			this.layoutControlGroupTotals.Text = "Totals";
+			this.layoutControlGroupTotals.TextVisible = false;
+			this.layoutControlGroupTotals.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
-			// laTotalCostValue
+			// emptySpaceItem3
 			// 
-			this.laTotalCostValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalCostValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalCostValue.Location = new System.Drawing.Point(0, 19);
-			this.laTotalCostValue.Name = "laTotalCostValue";
-			this.laTotalCostValue.Size = new System.Drawing.Size(115, 19);
-			this.laTotalCostValue.TabIndex = 2;
-			this.laTotalCostValue.Text = "Total Cost:";
-			this.laTotalCostValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.emptySpaceItem3.AllowHotTrack = false;
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
+			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem3.Name = "emptySpaceItem3";
+			this.emptySpaceItem3.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// laTotalCostTitle
+			// layoutControlGroupActiveWeeks
 			// 
-			this.laTotalCostTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalCostTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalCostTitle.Location = new System.Drawing.Point(0, 0);
-			this.laTotalCostTitle.Name = "laTotalCostTitle";
-			this.laTotalCostTitle.Size = new System.Drawing.Size(115, 19);
-			this.laTotalCostTitle.TabIndex = 1;
-			this.laTotalCostTitle.Text = "Total Cost:";
-			this.laTotalCostTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlGroupActiveWeeks.GroupBordersVisible = false;
+			this.layoutControlGroupActiveWeeks.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.simpleLabelItemActiveWeeksTitle,
+            this.emptySpaceItem2,
+            this.simpleLabelItemActiveWeeksValue});
+			this.layoutControlGroupActiveWeeks.Location = new System.Drawing.Point(10, 0);
+			this.layoutControlGroupActiveWeeks.Name = "layoutControlGroupActiveWeeks";
+			this.layoutControlGroupActiveWeeks.Size = new System.Drawing.Size(105, 40);
+			this.layoutControlGroupActiveWeeks.Text = "Active Weeks";
+			this.layoutControlGroupActiveWeeks.TextVisible = false;
+			this.layoutControlGroupActiveWeeks.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
-			// pnTotalSpots
+			// simpleLabelItemActiveWeeksTitle
 			// 
-			this.pnTotalSpots.Controls.Add(this.laTotalSpotsValue);
-			this.pnTotalSpots.Controls.Add(this.laTotalSpotsTitle);
-			this.pnTotalSpots.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnTotalSpots.Location = new System.Drawing.Point(355, 0);
-			this.pnTotalSpots.Name = "pnTotalSpots";
-			this.pnTotalSpots.Size = new System.Drawing.Size(115, 43);
-			this.pnTotalSpots.TabIndex = 7;
+			this.simpleLabelItemActiveWeeksTitle.AllowHotTrack = false;
+			this.simpleLabelItemActiveWeeksTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemActiveWeeksTitle.CustomizationFormText = "<size=-1>Active Weeks:</size>";
+			this.simpleLabelItemActiveWeeksTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemActiveWeeksTitle.MaxSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemActiveWeeksTitle.MinSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemActiveWeeksTitle.Name = "simpleLabelItemActiveWeeksTitle";
+			this.simpleLabelItemActiveWeeksTitle.Size = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemActiveWeeksTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemActiveWeeksTitle.Text = "<size=-1>Active Weeks:</size>";
+			this.simpleLabelItemActiveWeeksTitle.TextSize = new System.Drawing.Size(81, 15);
 			// 
-			// laTotalSpotsValue
+			// emptySpaceItem2
 			// 
-			this.laTotalSpotsValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalSpotsValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalSpotsValue.Location = new System.Drawing.Point(0, 19);
-			this.laTotalSpotsValue.Name = "laTotalSpotsValue";
-			this.laTotalSpotsValue.Size = new System.Drawing.Size(115, 19);
-			this.laTotalSpotsValue.TabIndex = 2;
-			this.laTotalSpotsValue.Text = "Total Spots:";
-			this.laTotalSpotsValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(95, 0);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// laTotalSpotsTitle
+			// simpleLabelItemActiveWeeksValue
 			// 
-			this.laTotalSpotsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laTotalSpotsTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalSpotsTitle.Location = new System.Drawing.Point(0, 0);
-			this.laTotalSpotsTitle.Name = "laTotalSpotsTitle";
-			this.laTotalSpotsTitle.Size = new System.Drawing.Size(115, 19);
-			this.laTotalSpotsTitle.TabIndex = 1;
-			this.laTotalSpotsTitle.Text = "Total Spots:";
-			this.laTotalSpotsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.simpleLabelItemActiveWeeksValue.AllowHotTrack = false;
+			this.simpleLabelItemActiveWeeksValue.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemActiveWeeksValue.Location = new System.Drawing.Point(0, 20);
+			this.simpleLabelItemActiveWeeksValue.MaxSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemActiveWeeksValue.MinSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemActiveWeeksValue.Name = "simpleLabelItemActiveWeeksValue";
+			this.simpleLabelItemActiveWeeksValue.Size = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemActiveWeeksValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemActiveWeeksValue.Text = "<size=-1><b>Active Weeks:</b></size>";
+			this.simpleLabelItemActiveWeeksValue.TextSize = new System.Drawing.Size(81, 15);
 			// 
-			// pnNoRecords
+			// layoutControlGroupWeeklySpots
 			// 
-			this.pnNoRecords.Controls.Add(this.pbNoRecords);
-			this.pnNoRecords.Location = new System.Drawing.Point(196, 565);
-			this.pnNoRecords.Name = "pnNoRecords";
-			this.pnNoRecords.Padding = new System.Windows.Forms.Padding(40, 20, 20, 20);
-			this.pnNoRecords.Size = new System.Drawing.Size(200, 100);
-			this.pnNoRecords.TabIndex = 7;
+			this.layoutControlGroupWeeklySpots.GroupBordersVisible = false;
+			this.layoutControlGroupWeeklySpots.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.simpleLabelItemWeeklySpotsTitle,
+            this.emptySpaceItem4,
+            this.simpleLabelItemWeeklySpotsValue});
+			this.layoutControlGroupWeeklySpots.Location = new System.Drawing.Point(115, 0);
+			this.layoutControlGroupWeeklySpots.Name = "layoutControlGroupWeeklySpots";
+			this.layoutControlGroupWeeklySpots.Size = new System.Drawing.Size(105, 40);
+			this.layoutControlGroupWeeklySpots.Text = "Weekly Spots";
+			this.layoutControlGroupWeeklySpots.TextVisible = false;
+			this.layoutControlGroupWeeklySpots.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// simpleLabelItemWeeklySpotsTitle
+			// 
+			this.simpleLabelItemWeeklySpotsTitle.AllowHotTrack = false;
+			this.simpleLabelItemWeeklySpotsTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemWeeklySpotsTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemWeeklySpotsTitle.MaxSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemWeeklySpotsTitle.MinSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemWeeklySpotsTitle.Name = "simpleLabelItemWeeklySpotsTitle";
+			this.simpleLabelItemWeeklySpotsTitle.Size = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemWeeklySpotsTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemWeeklySpotsTitle.Text = "<size=-1>Weekly Spots:</size>";
+			this.simpleLabelItemWeeklySpotsTitle.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// emptySpaceItem4
+			// 
+			this.emptySpaceItem4.AllowHotTrack = false;
+			this.emptySpaceItem4.Location = new System.Drawing.Point(95, 0);
+			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem4.Name = "emptySpaceItem4";
+			this.emptySpaceItem4.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemWeeklySpotsValue
+			// 
+			this.simpleLabelItemWeeklySpotsValue.AllowHotTrack = false;
+			this.simpleLabelItemWeeklySpotsValue.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemWeeklySpotsValue.Location = new System.Drawing.Point(0, 20);
+			this.simpleLabelItemWeeklySpotsValue.MaxSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemWeeklySpotsValue.MinSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemWeeklySpotsValue.Name = "simpleLabelItemWeeklySpotsValue";
+			this.simpleLabelItemWeeklySpotsValue.Size = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemWeeklySpotsValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemWeeklySpotsValue.Text = "<size=-1><b>Weekly Spots:</b></size>";
+			this.simpleLabelItemWeeklySpotsValue.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// layoutControlGroupWeeklyCost
+			// 
+			this.layoutControlGroupWeeklyCost.GroupBordersVisible = false;
+			this.layoutControlGroupWeeklyCost.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.simpleLabelItemWeeklyCostTitle,
+            this.emptySpaceItem5,
+            this.simpleLabelItemWeeklyCostValue});
+			this.layoutControlGroupWeeklyCost.Location = new System.Drawing.Point(220, 0);
+			this.layoutControlGroupWeeklyCost.Name = "layoutControlGroupWeeklyCost";
+			this.layoutControlGroupWeeklyCost.Size = new System.Drawing.Size(100, 40);
+			this.layoutControlGroupWeeklyCost.Text = "Weekly Cost";
+			this.layoutControlGroupWeeklyCost.TextVisible = false;
+			this.layoutControlGroupWeeklyCost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// simpleLabelItemWeeklyCostTitle
+			// 
+			this.simpleLabelItemWeeklyCostTitle.AllowHotTrack = false;
+			this.simpleLabelItemWeeklyCostTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemWeeklyCostTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemWeeklyCostTitle.MaxSize = new System.Drawing.Size(90, 20);
+			this.simpleLabelItemWeeklyCostTitle.MinSize = new System.Drawing.Size(90, 20);
+			this.simpleLabelItemWeeklyCostTitle.Name = "simpleLabelItemWeeklyCostTitle";
+			this.simpleLabelItemWeeklyCostTitle.Size = new System.Drawing.Size(90, 20);
+			this.simpleLabelItemWeeklyCostTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemWeeklyCostTitle.Text = "<size=-1>Weekly Cost:</size>";
+			this.simpleLabelItemWeeklyCostTitle.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// emptySpaceItem5
+			// 
+			this.emptySpaceItem5.AllowHotTrack = false;
+			this.emptySpaceItem5.Location = new System.Drawing.Point(90, 0);
+			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem5.Name = "emptySpaceItem5";
+			this.emptySpaceItem5.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemWeeklyCostValue
+			// 
+			this.simpleLabelItemWeeklyCostValue.AllowHotTrack = false;
+			this.simpleLabelItemWeeklyCostValue.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemWeeklyCostValue.Location = new System.Drawing.Point(0, 20);
+			this.simpleLabelItemWeeklyCostValue.MaxSize = new System.Drawing.Size(90, 20);
+			this.simpleLabelItemWeeklyCostValue.MinSize = new System.Drawing.Size(90, 20);
+			this.simpleLabelItemWeeklyCostValue.Name = "simpleLabelItemWeeklyCostValue";
+			this.simpleLabelItemWeeklyCostValue.Size = new System.Drawing.Size(90, 20);
+			this.simpleLabelItemWeeklyCostValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemWeeklyCostValue.Text = "<size=-1><b>Weekly Cost:</b></size>";
+			this.simpleLabelItemWeeklyCostValue.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// layoutControlGroupTotalSpots
+			// 
+			this.layoutControlGroupTotalSpots.GroupBordersVisible = false;
+			this.layoutControlGroupTotalSpots.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.simpleLabelItemTotalSpotsTitle,
+            this.emptySpaceItem6,
+            this.simpleLabelItemTotalSpotsValue});
+			this.layoutControlGroupTotalSpots.Location = new System.Drawing.Point(320, 0);
+			this.layoutControlGroupTotalSpots.Name = "layoutControlGroupTotalSpots";
+			this.layoutControlGroupTotalSpots.Size = new System.Drawing.Size(90, 40);
+			this.layoutControlGroupTotalSpots.Text = "Total Spots";
+			this.layoutControlGroupTotalSpots.TextVisible = false;
+			this.layoutControlGroupTotalSpots.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// simpleLabelItemTotalSpotsTitle
+			// 
+			this.simpleLabelItemTotalSpotsTitle.AllowHotTrack = false;
+			this.simpleLabelItemTotalSpotsTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemTotalSpotsTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemTotalSpotsTitle.MaxSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalSpotsTitle.MinSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalSpotsTitle.Name = "simpleLabelItemTotalSpotsTitle";
+			this.simpleLabelItemTotalSpotsTitle.Size = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalSpotsTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemTotalSpotsTitle.Text = "<size=-1>Total Spots:</size>";
+			this.simpleLabelItemTotalSpotsTitle.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// emptySpaceItem6
+			// 
+			this.emptySpaceItem6.AllowHotTrack = false;
+			this.emptySpaceItem6.Location = new System.Drawing.Point(80, 0);
+			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem6.Name = "emptySpaceItem6";
+			this.emptySpaceItem6.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemTotalSpotsValue
+			// 
+			this.simpleLabelItemTotalSpotsValue.AllowHotTrack = false;
+			this.simpleLabelItemTotalSpotsValue.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemTotalSpotsValue.Location = new System.Drawing.Point(0, 20);
+			this.simpleLabelItemTotalSpotsValue.MaxSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalSpotsValue.MinSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalSpotsValue.Name = "simpleLabelItemTotalSpotsValue";
+			this.simpleLabelItemTotalSpotsValue.Size = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalSpotsValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemTotalSpotsValue.Text = "<size=-1><b>Total Spots:</b></size>";
+			this.simpleLabelItemTotalSpotsValue.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// layoutControlGroupTotalCost
+			// 
+			this.layoutControlGroupTotalCost.GroupBordersVisible = false;
+			this.layoutControlGroupTotalCost.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.simpleLabelItemTotalCostTitle,
+            this.emptySpaceItem7,
+            this.simpleLabelItemTotalCostValue});
+			this.layoutControlGroupTotalCost.Location = new System.Drawing.Point(410, 0);
+			this.layoutControlGroupTotalCost.Name = "layoutControlGroupTotalCost";
+			this.layoutControlGroupTotalCost.Size = new System.Drawing.Size(90, 40);
+			this.layoutControlGroupTotalCost.Text = "Total Cost";
+			this.layoutControlGroupTotalCost.TextVisible = false;
+			this.layoutControlGroupTotalCost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// simpleLabelItemTotalCostTitle
+			// 
+			this.simpleLabelItemTotalCostTitle.AllowHotTrack = false;
+			this.simpleLabelItemTotalCostTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemTotalCostTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemTotalCostTitle.MaxSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalCostTitle.MinSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalCostTitle.Name = "simpleLabelItemTotalCostTitle";
+			this.simpleLabelItemTotalCostTitle.Size = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalCostTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemTotalCostTitle.Text = "<size=-1>Total Cost:</size>";
+			this.simpleLabelItemTotalCostTitle.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// emptySpaceItem7
+			// 
+			this.emptySpaceItem7.AllowHotTrack = false;
+			this.emptySpaceItem7.Location = new System.Drawing.Point(80, 0);
+			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem7.Name = "emptySpaceItem7";
+			this.emptySpaceItem7.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemTotalCostValue
+			// 
+			this.simpleLabelItemTotalCostValue.AllowHotTrack = false;
+			this.simpleLabelItemTotalCostValue.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemTotalCostValue.Location = new System.Drawing.Point(0, 20);
+			this.simpleLabelItemTotalCostValue.MaxSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalCostValue.MinSize = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalCostValue.Name = "simpleLabelItemTotalCostValue";
+			this.simpleLabelItemTotalCostValue.Size = new System.Drawing.Size(80, 20);
+			this.simpleLabelItemTotalCostValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemTotalCostValue.Text = "<size=-1><b>Total Cost:</b></size>";
+			this.simpleLabelItemTotalCostValue.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// layoutControlGroupAvgRate
+			// 
+			this.layoutControlGroupAvgRate.GroupBordersVisible = false;
+			this.layoutControlGroupAvgRate.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.simpleLabelItemAvgRateTitle,
+            this.simpleLabelItemAvgRateValue});
+			this.layoutControlGroupAvgRate.Location = new System.Drawing.Point(500, 0);
+			this.layoutControlGroupAvgRate.Name = "layoutControlGroupAvgRate";
+			this.layoutControlGroupAvgRate.Size = new System.Drawing.Size(95, 40);
+			this.layoutControlGroupAvgRate.Text = "Avg Rate";
+			this.layoutControlGroupAvgRate.TextVisible = false;
+			this.layoutControlGroupAvgRate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// simpleLabelItemAvgRateTitle
+			// 
+			this.simpleLabelItemAvgRateTitle.AllowHotTrack = false;
+			this.simpleLabelItemAvgRateTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemAvgRateTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemAvgRateTitle.MaxSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemAvgRateTitle.MinSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemAvgRateTitle.Name = "simpleLabelItemAvgRateTitle";
+			this.simpleLabelItemAvgRateTitle.Size = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemAvgRateTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemAvgRateTitle.Text = "<size=-1>Average Rate:</size>";
+			this.simpleLabelItemAvgRateTitle.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// simpleLabelItemAvgRateValue
+			// 
+			this.simpleLabelItemAvgRateValue.AllowHotTrack = false;
+			this.simpleLabelItemAvgRateValue.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemAvgRateValue.Location = new System.Drawing.Point(0, 20);
+			this.simpleLabelItemAvgRateValue.MaxSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemAvgRateValue.MinSize = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemAvgRateValue.Name = "simpleLabelItemAvgRateValue";
+			this.simpleLabelItemAvgRateValue.Size = new System.Drawing.Size(95, 20);
+			this.simpleLabelItemAvgRateValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemAvgRateValue.Text = "<size=-1><b>Average Rate:</b></size>";
+			this.simpleLabelItemAvgRateValue.TextSize = new System.Drawing.Size(81, 15);
+			// 
+			// emptySpaceItem8
+			// 
+			this.emptySpaceItem8.AllowHotTrack = false;
+			this.emptySpaceItem8.Location = new System.Drawing.Point(595, 0);
+			this.emptySpaceItem8.Name = "emptySpaceItem8";
+			this.emptySpaceItem8.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// contextMenuStrip
 			// 
@@ -365,126 +694,159 @@
 			this.toolStripMenuItemClone.Text = "Clone";
 			this.toolStripMenuItemClone.Click += new System.EventHandler(this.OnCloneSnapshotClick);
 			// 
-			// pnWeeklySpots
+			// layoutControlMain
 			// 
-			this.pnWeeklySpots.Controls.Add(this.laWeeklySpotsValue);
-			this.pnWeeklySpots.Controls.Add(this.laWeeklySpotsTitle);
-			this.pnWeeklySpots.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnWeeklySpots.Location = new System.Drawing.Point(125, 0);
-			this.pnWeeklySpots.Name = "pnWeeklySpots";
-			this.pnWeeklySpots.Size = new System.Drawing.Size(115, 43);
-			this.pnWeeklySpots.TabIndex = 9;
+			this.layoutControlMain.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControlMain.Appearance.Control.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControlMain.BackColor = System.Drawing.Color.White;
+			this.layoutControlMain.Controls.Add(this.pnData);
+			this.layoutControlMain.Controls.Add(this.pictureEditDefaultLogo);
+			this.layoutControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControlMain.ForeColor = System.Drawing.Color.Black;
+			this.layoutControlMain.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlMain.Name = "layoutControlMain";
+			this.layoutControlMain.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControlMain.Root = this.layoutControlGroupRootMain;
+			this.layoutControlMain.Size = new System.Drawing.Size(942, 593);
+			this.layoutControlMain.StyleController = this.styleController;
+			this.layoutControlMain.TabIndex = 65;
+			this.layoutControlMain.Text = "layoutControl1";
 			// 
-			// laWeeklySpotsValue
+			// pictureEditDefaultLogo
 			// 
-			this.laWeeklySpotsValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laWeeklySpotsValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laWeeklySpotsValue.Location = new System.Drawing.Point(0, 19);
-			this.laWeeklySpotsValue.Name = "laWeeklySpotsValue";
-			this.laWeeklySpotsValue.Size = new System.Drawing.Size(115, 19);
-			this.laWeeklySpotsValue.TabIndex = 2;
-			this.laWeeklySpotsValue.Text = "Weekly Spots:";
-			this.laWeeklySpotsValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.pictureEditDefaultLogo.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditDefaultLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.SnapshotNoRecords;
+			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(40, 20);
+			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
+			this.pictureEditDefaultLogo.Properties.ReadOnly = true;
+			this.pictureEditDefaultLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditDefaultLogo.Properties.ShowMenu = false;
+			this.pictureEditDefaultLogo.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditDefaultLogo.Size = new System.Drawing.Size(244, 553);
+			this.pictureEditDefaultLogo.StyleController = this.layoutControlMain;
+			this.pictureEditDefaultLogo.TabIndex = 4;
 			// 
-			// laWeeklySpotsTitle
+			// layoutControlGroupRootMain
 			// 
-			this.laWeeklySpotsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laWeeklySpotsTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laWeeklySpotsTitle.Location = new System.Drawing.Point(0, 0);
-			this.laWeeklySpotsTitle.Name = "laWeeklySpotsTitle";
-			this.laWeeklySpotsTitle.Size = new System.Drawing.Size(115, 19);
-			this.laWeeklySpotsTitle.TabIndex = 1;
-			this.laWeeklySpotsTitle.Text = "Weekly Spots:";
-			this.laWeeklySpotsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlGroupRootMain.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRootMain.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRootMain.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRootMain.GroupBordersVisible = false;
+			this.layoutControlGroupRootMain.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemDefaultLogo,
+            this.layoutControlItemData});
+			this.layoutControlGroupRootMain.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootMain.Name = "layoutControlGroupRootMain";
+			this.layoutControlGroupRootMain.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootMain.Size = new System.Drawing.Size(942, 593);
+			this.layoutControlGroupRootMain.TextVisible = false;
 			// 
-			// pnWeeklyCost
+			// layoutControlItemDefaultLogo
 			// 
-			this.pnWeeklyCost.Controls.Add(this.laWeeklyCostValue);
-			this.pnWeeklyCost.Controls.Add(this.laWeeklyCostTitle);
-			this.pnWeeklyCost.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnWeeklyCost.Location = new System.Drawing.Point(240, 0);
-			this.pnWeeklyCost.Name = "pnWeeklyCost";
-			this.pnWeeklyCost.Size = new System.Drawing.Size(115, 43);
-			this.pnWeeklyCost.TabIndex = 10;
+			this.layoutControlItemDefaultLogo.Control = this.pictureEditDefaultLogo;
+			this.layoutControlItemDefaultLogo.FillControlToClientArea = false;
+			this.layoutControlItemDefaultLogo.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemDefaultLogo.Name = "layoutControlItemDefaultLogo";
+			this.layoutControlItemDefaultLogo.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 20, 20, 20);
+			this.layoutControlItemDefaultLogo.Size = new System.Drawing.Size(304, 593);
+			this.layoutControlItemDefaultLogo.Text = "Default Logo";
+			this.layoutControlItemDefaultLogo.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemDefaultLogo.TextVisible = false;
+			this.layoutControlItemDefaultLogo.TrimClientAreaToControl = false;
+			this.layoutControlItemDefaultLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
-			// laWeeklyCostValue
+			// layoutControlItemData
 			// 
-			this.laWeeklyCostValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laWeeklyCostValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laWeeklyCostValue.Location = new System.Drawing.Point(0, 19);
-			this.laWeeklyCostValue.Name = "laWeeklyCostValue";
-			this.laWeeklyCostValue.Size = new System.Drawing.Size(115, 19);
-			this.laWeeklyCostValue.TabIndex = 2;
-			this.laWeeklyCostValue.Text = "Weekly Cost:";
-			this.laWeeklyCostValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// laWeeklyCostTitle
-			// 
-			this.laWeeklyCostTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laWeeklyCostTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laWeeklyCostTitle.Location = new System.Drawing.Point(0, 0);
-			this.laWeeklyCostTitle.Name = "laWeeklyCostTitle";
-			this.laWeeklyCostTitle.Size = new System.Drawing.Size(115, 19);
-			this.laWeeklyCostTitle.TabIndex = 1;
-			this.laWeeklyCostTitle.Text = "Weekly Cost:";
-			this.laWeeklyCostTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// pnActiveWeeks
-			// 
-			this.pnActiveWeeks.Controls.Add(this.laActiveWeeksValue);
-			this.pnActiveWeeks.Controls.Add(this.laActiveWeeksTitle);
-			this.pnActiveWeeks.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnActiveWeeks.Location = new System.Drawing.Point(10, 0);
-			this.pnActiveWeeks.Name = "pnActiveWeeks";
-			this.pnActiveWeeks.Size = new System.Drawing.Size(115, 43);
-			this.pnActiveWeeks.TabIndex = 11;
-			// 
-			// laActiveWeeksValue
-			// 
-			this.laActiveWeeksValue.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laActiveWeeksValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laActiveWeeksValue.Location = new System.Drawing.Point(0, 19);
-			this.laActiveWeeksValue.Name = "laActiveWeeksValue";
-			this.laActiveWeeksValue.Size = new System.Drawing.Size(115, 19);
-			this.laActiveWeeksValue.TabIndex = 2;
-			this.laActiveWeeksValue.Text = "Active Weeks:";
-			this.laActiveWeeksValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// laActiveWeeksTitle
-			// 
-			this.laActiveWeeksTitle.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laActiveWeeksTitle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laActiveWeeksTitle.Location = new System.Drawing.Point(0, 0);
-			this.laActiveWeeksTitle.Name = "laActiveWeeksTitle";
-			this.laActiveWeeksTitle.Size = new System.Drawing.Size(115, 19);
-			this.laActiveWeeksTitle.TabIndex = 1;
-			this.laActiveWeeksTitle.Text = "Active Weeks:";
-			this.laActiveWeeksTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemData.Control = this.pnData;
+			this.layoutControlItemData.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemData.FillControlToClientArea = false;
+			this.layoutControlItemData.Location = new System.Drawing.Point(304, 0);
+			this.layoutControlItemData.Name = "layoutControlItemData";
+			this.layoutControlItemData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemData.Size = new System.Drawing.Size(638, 593);
+			this.layoutControlItemData.Text = "Data Container";
+			this.layoutControlItemData.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemData.TextVisible = false;
+			this.layoutControlItemData.TrimClientAreaToControl = false;
+			this.layoutControlItemData.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
 			// SnapshotContentEditorsContainer
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.pnNoRecords);
-			this.Controls.Add(this.pnData);
+			this.Controls.Add(this.layoutControlMain);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "SnapshotContentEditorsContainer";
 			this.Size = new System.Drawing.Size(942, 593);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlContentEditors)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbNoRecords)).EndInit();
 			this.retractableBarControl.Content.ResumeLayout(false);
 			this.pnData.ResumeLayout(false);
-			this.pnTop.ResumeLayout(false);
-			this.pnBottom.ResumeLayout(false);
-			this.pnAvgRate.ResumeLayout(false);
-			this.pnTotalCost.ResumeLayout(false);
-			this.pnTotalSpots.ResumeLayout(false);
-			this.pnNoRecords.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlData)).EndInit();
+			this.layoutControlData.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootData)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemEditors)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTotals)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupActiveWeeks)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemActiveWeeksTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemActiveWeeksValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupWeeklySpots)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklySpotsTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklySpotsValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupWeeklyCost)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklyCostTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemWeeklyCostValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTotalSpots)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalSpotsTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalSpotsValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTotalCost)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalCostTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTotalCostValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupAvgRate)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemAvgRateTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemAvgRateValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
 			this.contextMenuStrip.ResumeLayout(false);
-			this.pnWeeklySpots.ResumeLayout(false);
-			this.pnWeeklyCost.ResumeLayout(false);
-			this.pnActiveWeeks.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).EndInit();
+			this.layoutControlMain.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemData)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -492,35 +854,49 @@
 		#endregion
 		private DevExpress.XtraEditors.StyleController styleController;
 		protected Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
-		private System.Windows.Forms.PictureBox pbNoRecords;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlContentEditors;
 		private System.Windows.Forms.Panel pnData;
-		private System.Windows.Forms.Panel pnNoRecords;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRename;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClone;
-		protected System.Windows.Forms.Panel pnBottom;
-		private System.Windows.Forms.Panel pnAvgRate;
-		private System.Windows.Forms.Label laAvgRateValue;
-		private System.Windows.Forms.Label laAvgRateTitle;
-		private System.Windows.Forms.Panel pnTotalCost;
-		private System.Windows.Forms.Label laTotalCostValue;
-		private System.Windows.Forms.Label laTotalCostTitle;
-		private System.Windows.Forms.Panel pnTotalSpots;
-		private System.Windows.Forms.Label laTotalSpotsValue;
-		private System.Windows.Forms.Label laTotalSpotsTitle;
 		private SnapshotControls.Settings.SettingsContainer settingsContainer;
-		protected System.Windows.Forms.Panel pnTop;
-		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
-		protected DevExpress.XtraEditors.LabelControl labelControlFlightDates;
-		private System.Windows.Forms.Panel pnWeeklyCost;
-		private System.Windows.Forms.Label laWeeklyCostValue;
-		private System.Windows.Forms.Label laWeeklyCostTitle;
-		private System.Windows.Forms.Panel pnWeeklySpots;
-		private System.Windows.Forms.Label laWeeklySpotsValue;
-		private System.Windows.Forms.Label laWeeklySpotsTitle;
-		private System.Windows.Forms.Panel pnActiveWeeks;
-		private System.Windows.Forms.Label laActiveWeeksValue;
-		private System.Windows.Forms.Label laActiveWeeksTitle;
+		private DevExpress.XtraLayout.LayoutControl layoutControlData;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootData;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemActiveWeeksTitle;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemActiveWeeksValue;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupActiveWeeks;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupWeeklySpots;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemWeeklySpotsTitle;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemWeeklySpotsValue;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemWeeklyCostTitle;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemWeeklyCostValue;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupWeeklyCost;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTotalSpots;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTotalSpotsTitle;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTotalSpotsValue;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTotalCost;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTotalCostTitle;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTotalCostValue;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupAvgRate;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemAvgRateTitle;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemAvgRateValue;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemEditors;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemScheduleInfo;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemFlightDates;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
+		private DevExpress.XtraLayout.LayoutControl layoutControlMain;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootMain;
+		private DevExpress.XtraEditors.PictureEdit pictureEditDefaultLogo;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDefaultLogo;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemData;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTotals;
 	}
 }

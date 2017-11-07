@@ -31,14 +31,14 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public partial class OptionsControl : UserControl, IOptionsSlideControl
-	public sealed partial class OptionScheduleEditorControl :
-		XtraTabPage,
+	//public partial class OptionScheduleEditorControl : UserControl,
+	public sealed partial class OptionScheduleEditorControl : XtraTabPage,
 		IOptionSetEditorControl,
 		IOptionSetCollectionEditorControl,
 		IOutputItem,
@@ -59,8 +59,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		public OptionScheduleEditorControl()
 		{
 			InitializeComponent();
-			pnNoPrograms.Dock = DockStyle.Fill;
-			gridControl.Dock = DockStyle.Fill;
 			Text = MediaMetaData.Instance.DataTypeString;
 		}
 
@@ -74,7 +72,17 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			repositoryItemComboBoxTimes.Items.Clear();
 			repositoryItemComboBoxTimes.Items.AddRange(MediaMetaData.Instance.ListManager.Times);
 
-			pbNoPrograms.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsNoProgramsLogo ?? pbNoPrograms.Image;
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsNoProgramsLogo ?? pictureEditDefaultLogo.Image;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
+			gridBandLogo.Width = (Int32)(gridBandLogo.Width * scaleFactor.Width);
+			
+			gridColumnProgramSourceStation.Width = (Int32)(gridColumnProgramSourceStation.Width * scaleFactor.Width);
+			gridColumnProgramSourceDaypart.Width = (Int32)(gridColumnProgramSourceDaypart.Width * scaleFactor.Width);
+			gridColumnProgramSourceDay.Width = (Int32)(gridColumnProgramSourceDay.Width * scaleFactor.Width);
+			gridColumnProgramSourceTime.Width = (Int32)(gridColumnProgramSourceTime.Width * scaleFactor.Width);
 		}
 
 		public void LoadData(OptionSet data)
@@ -149,9 +157,15 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private void UpdateProgramSplash()
 		{
 			if (_data.Programs.Any())
-				gridControl.BringToFront();
+			{
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlItemPrograms.Visibility = LayoutVisibility.Always;
+			}
 			else
-				pnNoPrograms.BringToFront();
+			{
+				layoutControlItemPrograms.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
+			}
 		}
 
 		public void UpdateView()
@@ -332,7 +346,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			pbNoPrograms.Focus();
+			pictureEditDefaultLogo.Focus();
 			advBandedGridView.CloseEditor();
 			advBandedGridView.FocusedColumn = null;
 		}

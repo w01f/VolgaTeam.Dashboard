@@ -28,9 +28,8 @@ using DevExpress.XtraTab;
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public sealed partial class OptionsSummaryEditorControl : UserControl
-	public sealed partial class OptionsSummaryEditorControl :
-		XtraTabPage,
+	//public sealed partial class OptionsSummaryEditorControl : UserControl,
+	public sealed partial class OptionsSummaryEditorControl : XtraTabPage,
 		IOptionContentEditorControl,
 		IOptionSetEditorControl,
 		IOutputContainer,
@@ -130,6 +129,15 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0";
 				repositoryItemSpinEditRate.IsFloatValue = false;
 			}
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
+			gridBandLogo.Width = (Int32)(gridBandLogo.Width * scaleFactor.Width);
+			bandedGridColumnSpots.Width = (Int32)(bandedGridColumnSpots.Width * scaleFactor.Width);
+			bandedGridColumnCost.Width = (Int32)(bandedGridColumnCost.Width * scaleFactor.Width);
+			bandedGridColumnTotalPeriods.Width = (Int32)(bandedGridColumnTotalPeriods.Width * scaleFactor.Width);
+			bandedGridColumnPeriodCost.Width = (Int32)(bandedGridColumnPeriodCost.Width * scaleFactor.Width);
 		}
 
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)

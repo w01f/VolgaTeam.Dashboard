@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.Properties;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
@@ -36,17 +37,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 				Tooltip = "Open Slide Style",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-			}
+
+			simpleLabelItemTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTitle.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			simpleLabelItemTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTitle.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+
 			LoadData();
 		}
 

@@ -9,6 +9,7 @@ using Asa.Common.Core.Objects.Themes;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using Asa.Common.GUI.Properties;
+using DevExpress.Skins;
 
 namespace Asa.Common.GUI.Themes
 {
@@ -27,20 +28,13 @@ namespace Asa.Common.GUI.Themes
 		public FormThemeSelector()
 		{
 			InitializeComponent();
-			labelControlSlideSize.Text = String.Format(labelControlSlideSize.Text,
+			simpleLabelItemSlideSize.Text = String.Format(simpleLabelItemSlideSize.Text,
 				PowerPointManager.Instance.SlideSettings.SizeFormatted);
 
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-			}
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		public void LoadThemes(IEnumerable<Theme> themes)
@@ -48,7 +42,7 @@ namespace Asa.Common.GUI.Themes
 			_themeContainer = new ThemeContainerControl();
 			_themeContainer.ThemeChanged += (o, e) =>
 			{
-				labelControlThemName.Text = String.Format("<b><size=+4>{0}</size></b>", e.SelectedTheme != null ? e.SelectedTheme.Name : String.Empty);
+				simpleLabelItemThemName.Text = String.Format("<b><size=+4>{0}</size></b>", e.SelectedTheme != null ? e.SelectedTheme.Name : String.Empty);
 			};
 			_themeContainer.ThemeSelected += (o, e) =>
 			{
@@ -63,7 +57,7 @@ namespace Asa.Common.GUI.Themes
 		public void SetSelectedTheme(string selectedTheme)
 		{
 			_themeContainer.SelectTheme(selectedTheme);
-		   labelControlThemName.Text = String.Format("<b><size=+4>{0}</size></b>", selectedTheme);
+			simpleLabelItemThemName.Text = String.Format("<b><size=+4>{0}</size></b>", selectedTheme);
 		}
 
 		public static void Link(
@@ -93,25 +87,25 @@ namespace Asa.Common.GUI.Themes
 					};
 				}
 				((ThemeButtonInfo)selectorButton.Tag).CurrentTheme = currentTheme;
-				((ThemeButtonInfo) selectorButton.Tag).ClickHandler = () =>
-				{
-					using (var form = new FormThemeSelector())
-					{
-						form.ApplyThemeForAllSlideTypes = settingsContainer.ApplyThemeForAllSlideTypes;
-						form.LoadThemes(themes);
-						form.Shown += (o, args) =>
-						{
-							form.SetSelectedTheme(((ThemeButtonInfo)selectorButton.Tag).CurrentTheme.Name);
-						};
-						if (form.ShowDialog() != DialogResult.OK) return;
-						var selectedTheme = form.SelectedTheme;
-						if (selectedTheme == null) return;
-						selectorButton.Image = selectedTheme.RibbonLogo;
-						((RibbonBar)selectorButton.ContainerControl).Text = String.Format("{0}", selectedTheme.Name);
-						((ThemeButtonInfo)selectorButton.Tag).CurrentTheme = selectedTheme;
-						themeSelected(selectedTheme, form.ApplyThemeForAllSlideTypes);
-					}
-				};
+				((ThemeButtonInfo)selectorButton.Tag).ClickHandler = () =>
+			   {
+				   using (var form = new FormThemeSelector())
+				   {
+					   form.ApplyThemeForAllSlideTypes = settingsContainer.ApplyThemeForAllSlideTypes;
+					   form.LoadThemes(themes);
+					   form.Shown += (o, args) =>
+					   {
+						   form.SetSelectedTheme(((ThemeButtonInfo)selectorButton.Tag).CurrentTheme.Name);
+					   };
+					   if (form.ShowDialog() != DialogResult.OK) return;
+					   var selectedTheme = form.SelectedTheme;
+					   if (selectedTheme == null) return;
+					   selectorButton.Image = selectedTheme.RibbonLogo;
+					   ((RibbonBar)selectorButton.ContainerControl).Text = String.Format("{0}", selectedTheme.Name);
+					   ((ThemeButtonInfo)selectorButton.Tag).CurrentTheme = selectedTheme;
+					   themeSelected(selectedTheme, form.ApplyThemeForAllSlideTypes);
+				   }
+			   };
 			}
 			else
 				selectorButton.Image = Resources.OutputDisabled;

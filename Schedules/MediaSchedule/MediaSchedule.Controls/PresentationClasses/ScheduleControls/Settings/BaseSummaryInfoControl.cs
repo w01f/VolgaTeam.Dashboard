@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Interfaces;
@@ -36,19 +37,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				Logo = Resources.SummaryOptionsInfo,
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				laInvestment.Font = new Font(laInvestment.Font.FontFamily, laInvestment.Font.Size - 2, laInvestment.Font.Style);
-			}
 		}
 
 		public virtual void LoadSectionData(ScheduleSection sectionData)
@@ -103,8 +91,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				checkEditTotalInvestment.Properties.AppearanceFocused.ForeColor =
 				 checkEditTotalInvestment.Checked ? Color.Black : Color.Gray;
 			checkEditTotalInvestment.Refresh();
-			spinEditMonthly.Enabled = checkEditMonthlyInvestment.Checked;
-			spinEditTotal.Enabled = checkEditTotalInvestment.Checked;
+			layoutControlItemMonthlyInvestmentValue.Enabled = checkEditMonthlyInvestment.Checked;
+			layoutControlItemTotalInvetsmentValue.Enabled = checkEditTotalInvestment.Checked;
 
 			if (!_allowToSave) return;
 			SaveData();

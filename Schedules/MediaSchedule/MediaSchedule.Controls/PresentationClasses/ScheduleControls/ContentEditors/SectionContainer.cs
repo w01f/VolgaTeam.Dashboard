@@ -19,6 +19,8 @@ using Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
@@ -62,19 +64,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public SectionContainer()
 		{
 			InitializeComponent();
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				labelControlWarnings.Font = font;
-				labelControlCollectionItemsInfo.Font = font;
-			}
+
+			simpleLabelItemCollectionItemsInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemCollectionItemsInfo.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			simpleLabelItemCollectionItemsInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemCollectionItemsInfo.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			simpleLabelItemWarnings.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemWarnings.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			simpleLabelItemWarnings.MinSize = RectangleHelper.ScaleSize(simpleLabelItemWarnings.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		public void InitControls()
@@ -191,22 +185,22 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			switch (ActiveEditor?.EditorType)
 			{
 				case SectionEditorType.Schedule:
-					labelControlCollectionItemsInfo.Visible = true;
-					labelControlCollectionItemsInfo.Text = String.Format("<color=gray>Total Programs: {0}</color>", SectionData.Programs.Count);
+					simpleLabelItemCollectionItemsInfo.Visibility = LayoutVisibility.Always;
+					simpleLabelItemCollectionItemsInfo.Text = String.Format("<color=gray>Total Programs: {0}</color>", SectionData.Programs.Count);
 					break;
 				case SectionEditorType.DigitalInfo:
-					labelControlCollectionItemsInfo.Visible = true;
+					simpleLabelItemCollectionItemsInfo.Visibility = LayoutVisibility.Always;
 					if (SectionData.DigitalInfo.Records.Count < BaseDigitalInfoOneSheetOutputModel.MaxRecords)
-						labelControlCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Records.Count);
+						simpleLabelItemCollectionItemsInfo.Text = String.Format("<color=gray>DIGITAL Marketing Products: {0}</color>", SectionData.DigitalInfo.Records.Count);
 					else
-						labelControlCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
+						simpleLabelItemCollectionItemsInfo.Text = "<color=red>Maximum DIGITAL Marketing Products: <b><u>6</u></b></color>";
 					break;
 				case SectionEditorType.CustomSummary:
-					labelControlCollectionItemsInfo.Visible = true;
-					labelControlCollectionItemsInfo.Text = String.Format("<color=gray>Summary Items: {0}</color>", SectionData.Summary.CustomSummary.Items.Count);
+					simpleLabelItemCollectionItemsInfo.Visibility = LayoutVisibility.Always;
+					simpleLabelItemCollectionItemsInfo.Text = String.Format("<color=gray>Summary Items: {0}</color>", SectionData.Summary.CustomSummary.Items.Count);
 					break;
 				default:
-					labelControlCollectionItemsInfo.Visible = false;
+					simpleLabelItemCollectionItemsInfo.Visibility = LayoutVisibility.Never;
 					break;
 			}
 		}
@@ -227,7 +221,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				if (SectionData.UseDecimalRates)
 					warnings.Add("*Decimals Enabled");
 			}
-			labelControlWarnings.Text = String.Join("    ", warnings);
+			if (warnings.Any())
+			{
+				simpleLabelItemWarnings.Visibility = LayoutVisibility.Always;
+				simpleLabelItemWarnings.Text = String.Format("<color=red>{0}</color>", String.Join("    ", warnings));
+			}
+			else
+				simpleLabelItemWarnings.Visibility = LayoutVisibility.Never;
 		}
 
 		private void OnTabControlMouseDown(object sender, MouseEventArgs e)
@@ -256,7 +256,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 								using (var confirmation = new FormCopyContentConfirmation())
 								{
 									confirmation.Text = "Send to Snapshot";
-									confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+									confirmation.simpleLabelItemTitle.Text = String.Format(confirmation.simpleLabelItemTitle.Text, "Digital successfully copied");
 									confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabSnapshot.Text);
 									if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 										ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
@@ -283,7 +283,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						using (var confirmation = new FormCopyContentConfirmation())
 						{
 							confirmation.Text = "Send to Snapshot";
-							confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+							confirmation.simpleLabelItemTitle.Text = String.Format(confirmation.simpleLabelItemTitle.Text, "Digital successfully copied");
 							confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabSnapshot.Text);
 							if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 								ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
@@ -314,7 +314,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 								using (var confirmation = new FormCopyContentConfirmation())
 								{
 									confirmation.Text = "Send to Flex-Grid";
-									confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+									confirmation.simpleLabelItemTitle.Text = String.Format(confirmation.simpleLabelItemTitle.Text, "Digital successfully copied");
 									confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabOptions.Text);
 									if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 										ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
@@ -341,7 +341,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 						using (var confirmation = new FormCopyContentConfirmation())
 						{
 							confirmation.Text = "Send to Flex-Grid";
-							confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Digital successfully copied");
+							confirmation.simpleLabelItemTitle.Text = String.Format(confirmation.simpleLabelItemTitle.Text, "Digital successfully copied");
 							confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabOptions.Text);
 							if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 								ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(
@@ -371,7 +371,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					using (var confirmation = new FormCopyContentConfirmation())
 					{
 						confirmation.Text = "Create Flex-Grid";
-						confirmation.labelControlTitle.Text = String.Format(confirmation.labelControlTitle.Text, "Flex-Grid successfully added");
+						confirmation.simpleLabelItemTitle.Text = String.Format(confirmation.simpleLabelItemTitle.Text, "Flex-Grid successfully added");
 						confirmation.buttonXOK.Text = String.Format("Go to {0}", Controller.Instance.TabOptions.Text);
 						if (confirmation.ShowDialog(Controller.Instance.FormMain) == DialogResult.OK)
 							ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(

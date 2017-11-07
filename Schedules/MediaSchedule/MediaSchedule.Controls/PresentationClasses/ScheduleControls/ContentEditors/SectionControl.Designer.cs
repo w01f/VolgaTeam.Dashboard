@@ -49,6 +49,7 @@
 			this.bandedGridColumnName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemPopupContainerEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
 			this.popupContainerControlProgramSource = new DevExpress.XtraEditors.PopupContainerControl();
+			this.layoutControlProgramSource = new DevExpress.XtraLayout.LayoutControl();
 			this.gridControlProgramSource = new DevExpress.XtraGrid.GridControl();
 			this.gridViewProgramSource = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumnProgramSourceId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -57,7 +58,11 @@
 			this.gridColumnProgramSourceDaypart = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumnProgramSourceDay = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumnProgramSourceTime = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.laProgramSourceInfo = new System.Windows.Forms.Label();
+			this.layoutControlGroupRootProgramSource = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.simpleLabelItemProgramSourceInfo = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemProgramSourceRecords = new DevExpress.XtraLayout.LayoutControlItem();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.bandedGridColumnDay = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxDays = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.bandedGridColumnTime = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -79,9 +84,12 @@
 			this.repositoryItemSpinEditSpot = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEdit000s = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.pbNoPrograms = new System.Windows.Forms.PictureBox();
 			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
+			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
+			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemPrograms = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemDefaultLogo = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -90,8 +98,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditProgram)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).BeginInit();
 			this.popupContainerControlProgramSource.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlProgramSource)).BeginInit();
+			this.layoutControlProgramSource.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlProgramSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewProgramSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootProgramSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemProgramSourceInfo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemProgramSourceRecords)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDays)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxTimes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLengths)).BeginInit();
@@ -100,14 +115,17 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditSpot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit000s)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditProgram)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).BeginInit();
+			this.layoutControlMain.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPrograms)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlSchedule
 			// 
 			this.gridControlSchedule.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControlSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControlSchedule.Location = new System.Drawing.Point(0, 0);
 			this.gridControlSchedule.MainView = this.advBandedGridViewSchedule;
 			this.gridControlSchedule.Name = "gridControlSchedule";
@@ -124,7 +142,7 @@
             this.repositoryItemPopupContainerEditProgram,
             this.repositoryItemTextEditProgram,
             this.repositoryItemPictureEdit});
-			this.gridControlSchedule.Size = new System.Drawing.Size(1132, 593);
+			this.gridControlSchedule.Size = new System.Drawing.Size(951, 593);
 			this.gridControlSchedule.TabIndex = 0;
 			this.gridControlSchedule.ToolTipController = this.toolTipController;
 			this.gridControlSchedule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -230,7 +248,6 @@
 			this.advBandedGridViewSchedule.OptionsCustomization.ShowBandsInCustomizationForm = false;
 			this.advBandedGridViewSchedule.OptionsFilter.AllowFilterEditor = false;
 			this.advBandedGridViewSchedule.OptionsFind.AllowFindPanel = false;
-			this.advBandedGridViewSchedule.OptionsMenu.EnableColumnMenu = true;
 			this.advBandedGridViewSchedule.OptionsMenu.EnableFooterMenu = false;
 			this.advBandedGridViewSchedule.OptionsMenu.EnableGroupPanelMenu = false;
 			this.advBandedGridViewSchedule.OptionsMenu.ShowAutoFilterRowItem = false;
@@ -280,7 +297,6 @@
 			this.bandedGridColumnIndex.Name = "bandedGridColumnIndex";
 			this.bandedGridColumnIndex.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnIndex.OptionsColumn.AllowSize = false;
-			this.bandedGridColumnIndex.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnIndex.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnIndex.RowCount = 2;
 			this.bandedGridColumnIndex.Visible = true;
@@ -307,7 +323,6 @@
 			this.bandedGridColumnLogoImage.Name = "bandedGridColumnLogoImage";
 			this.bandedGridColumnLogoImage.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnLogoImage.OptionsColumn.AllowSize = false;
-			this.bandedGridColumnLogoImage.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnLogoImage.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnLogoImage.Visible = true;
 			this.bandedGridColumnLogoImage.Width = 120;
@@ -329,6 +344,7 @@
 			this.repositoryItemPictureEdit.ShowMenu = false;
 			this.repositoryItemPictureEdit.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.False;
 			this.repositoryItemPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			this.repositoryItemPictureEdit.ZoomAccelerationFactor = 1D;
 			// 
 			// gridBandStation
 			// 
@@ -483,20 +499,45 @@
 			// 
 			// popupContainerControlProgramSource
 			// 
-			this.popupContainerControlProgramSource.Controls.Add(this.gridControlProgramSource);
-			this.popupContainerControlProgramSource.Controls.Add(this.laProgramSourceInfo);
+			this.popupContainerControlProgramSource.Controls.Add(this.layoutControlProgramSource);
 			this.popupContainerControlProgramSource.Location = new System.Drawing.Point(145, 379);
 			this.popupContainerControlProgramSource.Name = "popupContainerControlProgramSource";
 			this.popupContainerControlProgramSource.Size = new System.Drawing.Size(474, 199);
 			this.popupContainerControlProgramSource.TabIndex = 3;
 			// 
+			// layoutControlProgramSource
+			// 
+			this.layoutControlProgramSource.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControlProgramSource.Appearance.Control.Options.UseFont = true;
+			this.layoutControlProgramSource.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlProgramSource.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControlProgramSource.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlProgramSource.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControlProgramSource.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlProgramSource.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControlProgramSource.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlProgramSource.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControlProgramSource.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlProgramSource.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControlProgramSource.BackColor = System.Drawing.Color.White;
+			this.layoutControlProgramSource.Controls.Add(this.gridControlProgramSource);
+			this.layoutControlProgramSource.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControlProgramSource.ForeColor = System.Drawing.Color.Black;
+			this.layoutControlProgramSource.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlProgramSource.Name = "layoutControlProgramSource";
+			this.layoutControlProgramSource.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControlProgramSource.Root = this.layoutControlGroupRootProgramSource;
+			this.layoutControlProgramSource.Size = new System.Drawing.Size(474, 199);
+			this.layoutControlProgramSource.StyleController = this.styleController;
+			this.layoutControlProgramSource.TabIndex = 65;
+			this.layoutControlProgramSource.Text = "layoutControl1";
+			// 
 			// gridControlProgramSource
 			// 
-			this.gridControlProgramSource.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControlProgramSource.Location = new System.Drawing.Point(0, 0);
+			this.gridControlProgramSource.Location = new System.Drawing.Point(2, 2);
 			this.gridControlProgramSource.MainView = this.gridViewProgramSource;
 			this.gridControlProgramSource.Name = "gridControlProgramSource";
-			this.gridControlProgramSource.Size = new System.Drawing.Size(474, 168);
+			this.gridControlProgramSource.Size = new System.Drawing.Size(470, 165);
 			this.gridControlProgramSource.TabIndex = 0;
 			this.gridControlProgramSource.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewProgramSource});
@@ -593,17 +634,83 @@
 			this.gridColumnProgramSourceTime.VisibleIndex = 4;
 			this.gridColumnProgramSourceTime.Width = 100;
 			// 
-			// laProgramSourceInfo
+			// layoutControlGroupRootProgramSource
 			// 
-			this.laProgramSourceInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.laProgramSourceInfo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laProgramSourceInfo.ForeColor = System.Drawing.Color.DarkRed;
-			this.laProgramSourceInfo.Location = new System.Drawing.Point(0, 168);
-			this.laProgramSourceInfo.Name = "laProgramSourceInfo";
-			this.laProgramSourceInfo.Size = new System.Drawing.Size(474, 31);
-			this.laProgramSourceInfo.TabIndex = 2;
-			this.laProgramSourceInfo.Text = "Double-Click to Select a Program";
-			this.laProgramSourceInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlGroupRootProgramSource.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRootProgramSource.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootProgramSource.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRootProgramSource.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootProgramSource.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootProgramSource.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRootProgramSource.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRootProgramSource.GroupBordersVisible = false;
+			this.layoutControlGroupRootProgramSource.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.simpleLabelItemProgramSourceInfo,
+            this.emptySpaceItem2,
+            this.layoutControlItemProgramSourceRecords});
+			this.layoutControlGroupRootProgramSource.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootProgramSource.Name = "Root";
+			this.layoutControlGroupRootProgramSource.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootProgramSource.Size = new System.Drawing.Size(474, 199);
+			this.layoutControlGroupRootProgramSource.TextVisible = false;
+			// 
+			// simpleLabelItemProgramSourceInfo
+			// 
+			this.simpleLabelItemProgramSourceInfo.AllowHotTrack = false;
+			this.simpleLabelItemProgramSourceInfo.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemProgramSourceInfo.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemProgramSourceInfo.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.simpleLabelItemProgramSourceInfo.Location = new System.Drawing.Point(0, 179);
+			this.simpleLabelItemProgramSourceInfo.Name = "simpleLabelItemProgramSourceInfo";
+			this.simpleLabelItemProgramSourceInfo.Size = new System.Drawing.Size(474, 20);
+			this.simpleLabelItemProgramSourceInfo.Text = "<size=+1><color=darkred><b>Double-Click to Select a Program</b></color></size>";
+			this.simpleLabelItemProgramSourceInfo.TextSize = new System.Drawing.Size(230, 16);
+			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 169);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(474, 10);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemProgramSourceRecords
+			// 
+			this.layoutControlItemProgramSourceRecords.Control = this.gridControlProgramSource;
+			this.layoutControlItemProgramSourceRecords.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemProgramSourceRecords.FillControlToClientArea = false;
+			this.layoutControlItemProgramSourceRecords.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemProgramSourceRecords.Name = "layoutControlItemProgramSourceRecords";
+			this.layoutControlItemProgramSourceRecords.Size = new System.Drawing.Size(474, 169);
+			this.layoutControlItemProgramSourceRecords.Text = "Program Source Records";
+			this.layoutControlItemProgramSourceRecords.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemProgramSourceRecords.TextVisible = false;
+			this.layoutControlItemProgramSourceRecords.TrimClientAreaToControl = false;
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// bandedGridColumnDay
 			// 
@@ -879,11 +986,12 @@
 			this.bandedGridColumnTotalSpots.Name = "bandedGridColumnTotalSpots";
 			this.bandedGridColumnTotalSpots.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnTotalSpots.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnTotalSpots.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnTotalSpots.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnTotalSpots.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSpots", "{0:n0}")});
 			this.bandedGridColumnTotalSpots.Visible = true;
-			this.bandedGridColumnTotalSpots.Width = 69;
+			this.bandedGridColumnTotalSpots.Width = 70;
 			// 
 			// bandedGridColumnCost
 			// 
@@ -902,11 +1010,12 @@
 			this.bandedGridColumnCost.Name = "bandedGridColumnCost";
 			this.bandedGridColumnCost.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnCost.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnCost.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnCost.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnCost.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCost", "{0:c0}")});
 			this.bandedGridColumnCost.Visible = true;
-			this.bandedGridColumnCost.Width = 71;
+			this.bandedGridColumnCost.Width = 70;
 			// 
 			// bandedGridColumnGRP
 			// 
@@ -921,12 +1030,13 @@
 			this.bandedGridColumnGRP.Name = "bandedGridColumnGRP";
 			this.bandedGridColumnGRP.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnGRP.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnGRP.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnGRP.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnGRP.RowIndex = 1;
 			this.bandedGridColumnGRP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)});
 			this.bandedGridColumnGRP.Visible = true;
-			this.bandedGridColumnGRP.Width = 69;
+			this.bandedGridColumnGRP.Width = 70;
 			// 
 			// bandedGridColumnCPP
 			// 
@@ -942,12 +1052,13 @@
 			this.bandedGridColumnCPP.Name = "bandedGridColumnCPP";
 			this.bandedGridColumnCPP.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnCPP.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnCPP.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnCPP.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumnCPP.RowIndex = 1;
 			this.bandedGridColumnCPP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "CPP", "{0:c2}", "")});
 			this.bandedGridColumnCPP.Visible = true;
-			this.bandedGridColumnCPP.Width = 71;
+			this.bandedGridColumnCPP.Width = 70;
 			// 
 			// bandedGridColumnLogoSource
 			// 
@@ -1035,42 +1146,116 @@
 			this.repositoryItemTextEditProgram.AutoHeight = false;
 			this.repositoryItemTextEditProgram.Name = "repositoryItemTextEditProgram";
 			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
-			// pbNoPrograms
-			// 
-			this.pbNoPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoPrograms.Image = global::Asa.Media.Controls.Properties.Resources.SectionNoPrograms;
-			this.pbNoPrograms.Location = new System.Drawing.Point(0, 0);
-			this.pbNoPrograms.Name = "pbNoPrograms";
-			this.pbNoPrograms.Size = new System.Drawing.Size(1132, 593);
-			this.pbNoPrograms.TabIndex = 1;
-			this.pbNoPrograms.TabStop = false;
-			// 
 			// toolTipController
 			// 
 			this.toolTipController.Rounded = true;
 			this.toolTipController.ShowShadow = false;
 			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
 			// 
+			// layoutControlMain
+			// 
+			this.layoutControlMain.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControlMain.Appearance.Control.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControlMain.BackColor = System.Drawing.Color.White;
+			this.layoutControlMain.Controls.Add(this.gridControlSchedule);
+			this.layoutControlMain.Controls.Add(this.pictureEditDefaultLogo);
+			this.layoutControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControlMain.ForeColor = System.Drawing.Color.Black;
+			this.layoutControlMain.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlMain.Name = "layoutControlMain";
+			this.layoutControlMain.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(788, 383, 250, 350);
+			this.layoutControlMain.Root = this.layoutControlGroupRootMain;
+			this.layoutControlMain.Size = new System.Drawing.Size(1132, 593);
+			this.layoutControlMain.StyleController = this.styleController;
+			this.layoutControlMain.TabIndex = 65;
+			this.layoutControlMain.Text = "layoutControl1";
+			// 
+			// pictureEditDefaultLogo
+			// 
+			this.pictureEditDefaultLogo.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditDefaultLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.SectionNoPrograms;
+			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(961, 10);
+			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
+			this.pictureEditDefaultLogo.Properties.ReadOnly = true;
+			this.pictureEditDefaultLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditDefaultLogo.Properties.ShowMenu = false;
+			this.pictureEditDefaultLogo.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditDefaultLogo.Size = new System.Drawing.Size(161, 573);
+			this.pictureEditDefaultLogo.StyleController = this.layoutControlMain;
+			this.pictureEditDefaultLogo.TabIndex = 4;
+			// 
+			// layoutControlGroupRootMain
+			// 
+			this.layoutControlGroupRootMain.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRootMain.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRootMain.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRootMain.GroupBordersVisible = false;
+			this.layoutControlGroupRootMain.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemPrograms,
+            this.layoutControlItemDefaultLogo});
+			this.layoutControlGroupRootMain.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootMain.Name = "Root";
+			this.layoutControlGroupRootMain.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootMain.Size = new System.Drawing.Size(1132, 593);
+			this.layoutControlGroupRootMain.TextVisible = false;
+			// 
+			// layoutControlItemPrograms
+			// 
+			this.layoutControlItemPrograms.Control = this.gridControlSchedule;
+			this.layoutControlItemPrograms.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemPrograms.FillControlToClientArea = false;
+			this.layoutControlItemPrograms.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemPrograms.Name = "layoutControlItemPrograms";
+			this.layoutControlItemPrograms.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemPrograms.Size = new System.Drawing.Size(951, 593);
+			this.layoutControlItemPrograms.Text = "Programs";
+			this.layoutControlItemPrograms.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemPrograms.TextVisible = false;
+			this.layoutControlItemPrograms.TrimClientAreaToControl = false;
+			this.layoutControlItemPrograms.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// layoutControlItemDefaultLogo
+			// 
+			this.layoutControlItemDefaultLogo.Control = this.pictureEditDefaultLogo;
+			this.layoutControlItemDefaultLogo.FillControlToClientArea = false;
+			this.layoutControlItemDefaultLogo.Location = new System.Drawing.Point(951, 0);
+			this.layoutControlItemDefaultLogo.Name = "layoutControlItemDefaultLogo";
+			this.layoutControlItemDefaultLogo.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+			this.layoutControlItemDefaultLogo.Size = new System.Drawing.Size(181, 593);
+			this.layoutControlItemDefaultLogo.Text = "Default Logo";
+			this.layoutControlItemDefaultLogo.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemDefaultLogo.TextVisible = false;
+			this.layoutControlItemDefaultLogo.TrimClientAreaToControl = false;
+			this.layoutControlItemDefaultLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
 			// SectionControl
 			// 
-			this.Controls.Add(this.gridControlSchedule);
+			this.Controls.Add(this.layoutControlMain);
 			this.Controls.Add(this.popupContainerControlProgramSource);
-			this.Controls.Add(this.pbNoPrograms);
+			this.Name = "SectionControl";
 			this.Size = new System.Drawing.Size(1132, 593);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).EndInit();
@@ -1080,8 +1265,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditProgram)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).EndInit();
 			this.popupContainerControlProgramSource.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlProgramSource)).EndInit();
+			this.layoutControlProgramSource.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlProgramSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewProgramSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootProgramSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemProgramSourceInfo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemProgramSourceRecords)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDays)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxTimes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLengths)).EndInit();
@@ -1090,8 +1282,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditSpot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit000s)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditProgram)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).EndInit();
+			this.layoutControlMain.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPrograms)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1133,9 +1329,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceDaypart;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceDay;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceTime;
-		private System.Windows.Forms.Label laProgramSourceInfo;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditProgram;
-		private System.Windows.Forms.PictureBox pbNoPrograms;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnLogoImage;
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnLogoSource;
@@ -1147,5 +1341,15 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		private DevExpress.XtraLayout.LayoutControl layoutControlMain;
+		private DevExpress.XtraEditors.PictureEdit pictureEditDefaultLogo;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootMain;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemPrograms;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDefaultLogo;
+		private DevExpress.XtraLayout.LayoutControl layoutControlProgramSource;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootProgramSource;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemProgramSourceInfo;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemProgramSourceRecords;
 	}
 }

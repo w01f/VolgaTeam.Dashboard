@@ -45,7 +45,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public override void InitControls()
 		{
 			base.InitControls();
-			pbNoProducts.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoDigitalItemsLogo ?? pbNoProducts.Image;
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleNoDigitalItemsLogo ?? pictureEditDefaultLogo.Image;
 		}
 
 		public override void Release()

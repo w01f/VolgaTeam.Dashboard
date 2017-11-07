@@ -8,7 +8,7 @@ namespace Asa.Business.Solutions.Dashboard.Dictionaries
 		public string Text { get; set; }
 		public string Author { get; set; }
 
-		public bool IsSet => !string.IsNullOrEmpty(Text + Author);
+		public bool IsSet => !string.IsNullOrEmpty((Text + Author).Trim());
 
 		public Quote()
 		{

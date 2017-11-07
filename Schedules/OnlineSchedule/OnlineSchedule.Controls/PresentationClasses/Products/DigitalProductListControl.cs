@@ -58,6 +58,16 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			repositoryItemComboBoxProductType.EnableSelectAll();
 			repositoryItemComboBoxProductName.EnableSelectAll();
 			repositoryItemSpinEditSize.EnableSelectAll();
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			gridBandNumber.Width = (Int32)(gridBandNumber.Width * scaleFactor.Width);
+			gridBandWidth.Width = (Int32)(gridBandWidth.Width * scaleFactor.Width);
+			gridBandHeight.Width = (Int32)(gridBandHeight.Width * scaleFactor.Width);
+			gridBandRate.Width = (Int32)(gridBandRate.Width * scaleFactor.Width);
+			gridColumnRateType.Width = (Int32)(gridColumnRateType.Width * scaleFactor.Width);
+			gridColumnRate.Width = (Int32)(gridColumnRate.Width * scaleFactor.Width);
+			gridBandOptions.Width = (Int32)(gridBandOptions.Width * scaleFactor.Width);
 		}
 
 		public void UpdateData(

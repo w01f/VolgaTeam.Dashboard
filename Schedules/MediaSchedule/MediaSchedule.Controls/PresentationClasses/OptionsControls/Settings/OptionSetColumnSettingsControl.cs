@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Option;
 using Asa.Business.Media.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
 using DevComponents.DotNetBar;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
@@ -33,35 +34,38 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 				Tooltip = "Open Schedule Info",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				font = new Font(buttonXAvgRate.Font.FontFamily, buttonXAvgRate.Font.Size - 2,
-					buttonXAvgRate.Font.Style);
-				buttonXAvgRate.Font = font;
-				buttonXCost.Font = font;
-				buttonXDay.Font = font;
-				buttonXLength.Font = font;
-				buttonXLineId.Font = font;
-				buttonXLogo.Font = font;
-				buttonXProgram.Font = font;
-				buttonXRate.Font = font;
-				buttonXStation.Font = font;
-				buttonXTime.Font = font;
-				buttonXMonthlySpots.Font = font;
-				buttonXWeeklySpots.Font = font;
-				buttonXTotalSpots.Font = font;
-				buttonXTallySpots.Font = font;
-				buttonXTallyCost.Font = font;
-			}
+			
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemStation.MaxSize = RectangleHelper.ScaleSize(layoutControlItemStation.MaxSize, scaleFactor);
+			layoutControlItemStation.MinSize = RectangleHelper.ScaleSize(layoutControlItemStation.MinSize, scaleFactor);
+			layoutControlItemProgram.MaxSize = RectangleHelper.ScaleSize(layoutControlItemProgram.MaxSize, scaleFactor);
+			layoutControlItemProgram.MinSize = RectangleHelper.ScaleSize(layoutControlItemProgram.MinSize, scaleFactor);
+			layoutControlItemDay.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDay.MaxSize, scaleFactor);
+			layoutControlItemDay.MinSize = RectangleHelper.ScaleSize(layoutControlItemDay.MinSize, scaleFactor);
+			layoutControlItemTime.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTime.MaxSize, scaleFactor);
+			layoutControlItemTime.MinSize = RectangleHelper.ScaleSize(layoutControlItemTime.MinSize, scaleFactor);
+			layoutControlItemRate.MaxSize = RectangleHelper.ScaleSize(layoutControlItemRate.MaxSize, scaleFactor);
+			layoutControlItemRate.MinSize = RectangleHelper.ScaleSize(layoutControlItemRate.MinSize, scaleFactor);
+			layoutControlItemLength.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLength.MaxSize, scaleFactor);
+			layoutControlItemLength.MinSize = RectangleHelper.ScaleSize(layoutControlItemLength.MinSize, scaleFactor);
+			layoutControlItemLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MaxSize, scaleFactor);
+			layoutControlItemLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MinSize, scaleFactor);
+			layoutControlItemWeeklySpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemWeeklySpots.MaxSize, scaleFactor);
+			layoutControlItemWeeklySpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemWeeklySpots.MinSize, scaleFactor);
+			layoutControlItemMonthlySpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlySpots.MaxSize, scaleFactor);
+			layoutControlItemMonthlySpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlySpots.MinSize, scaleFactor);
+			layoutControlItemTotalSpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalSpots.MaxSize, scaleFactor);
+			layoutControlItemTotalSpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalSpots.MinSize, scaleFactor);
+			layoutControlItemLineId.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLineId.MaxSize, scaleFactor);
+			layoutControlItemLineId.MinSize = RectangleHelper.ScaleSize(layoutControlItemLineId.MinSize, scaleFactor);
+			layoutControlItemCost.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCost.MaxSize, scaleFactor);
+			layoutControlItemCost.MinSize = RectangleHelper.ScaleSize(layoutControlItemCost.MinSize, scaleFactor);
+			layoutControlItemTallySpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTallySpots.MaxSize, scaleFactor);
+			layoutControlItemTallySpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemTallySpots.MinSize, scaleFactor);
+			layoutControlItemTallyCost.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTallyCost.MaxSize, scaleFactor);
+			layoutControlItemTallyCost.MinSize = RectangleHelper.ScaleSize(layoutControlItemTallyCost.MinSize, scaleFactor);
+			layoutControlItemAvgRate.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAvgRate.MaxSize, scaleFactor);
+			layoutControlItemAvgRate.MinSize = RectangleHelper.ScaleSize(layoutControlItemAvgRate.MinSize, scaleFactor);
 		}
 
 		public void LoadOptionsSetData(OptionSet optionSetData)

@@ -5,6 +5,7 @@ using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Common.GUI.ContentEditors.Enums;
 using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.ContentEditors.Interfaces;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Common.GUI.ContentEditors.Helpers
 {
@@ -50,7 +51,8 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 						return;
 					}
 				}
-				_controller.EmptyPanel.BringToFront();
+				_controller.MainPanel.Visibility = LayoutVisibility.Never;
+				_controller.EmptyPanel.Visibility = LayoutVisibility.Always;
 				foreach (var contentControl in _controller.ContentControls)
 				{
 					contentControl.IsActive = false;
@@ -58,15 +60,16 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 				}
 				_controller.ActiveControl = _controller.ContentControls
 					.First(c => c.Identifier == (String)_controller.ContentRibbon.SelectedRibbonTabItem.Tag);
-				if (!_controller.MainPanel.Controls.Contains((Control)_controller.ActiveControl))
+				if (!_controller.MainPanel.Control.Controls.Contains((Control)_controller.ActiveControl))
 				{
-					_controller.MainPanel.Controls.Add((Control)_controller.ActiveControl);
+					_controller.MainPanel.Control.Controls.Add((Control)_controller.ActiveControl);
 					_controller.ActiveControl.InitControl();
 				}
 				_controller.ActiveControl.ShowControl(e as ContentOpenEventArgs);
 				((Control)_controller.ActiveControl).Visible = true;
 				((Control)_controller.ActiveControl).BringToFront();
-				_controller.MainPanel.BringToFront();
+				_controller.EmptyPanel.Visibility = LayoutVisibility.Never;
+				_controller.MainPanel.Visibility = LayoutVisibility.Always;
 
 				_controller.ContentRibbon.Enabled = true;
 			}

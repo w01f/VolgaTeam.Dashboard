@@ -17,6 +17,7 @@ using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.PresentationClasses.Products;
 using Asa.Online.Controls.ToolForms;
+using DevExpress.Skins;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
@@ -43,21 +44,22 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			InitializeComponent();
 			Text = ListManager.Instance.DefaultControlsConfiguration.SectionsProductTitle ?? "Digital Onesheets";
 			_container = container;
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				checkEditDuration.Font = font;
-				checkEditMonths.Font = font;
-				checkEditWeeks.Font = font;
-			}
+
 			spinEditDuration.EnableSelectAll();
-			AssignCloseActiveEditorsOnOutsideClick(pnHeader);
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			emptySpaceItemTop.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemTop.MaxSize, scaleFactor);
+			emptySpaceItemTop.MinSize = RectangleHelper.ScaleSize(emptySpaceItemTop.MinSize, scaleFactor);
+			layoutControlItemFlightDatesToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesToggle.MaxSize, scaleFactor);
+			layoutControlItemFlightDatesToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesToggle.MinSize, scaleFactor);
+			layoutControlItemDurationToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDurationToggle.MaxSize, scaleFactor);
+			layoutControlItemDurationToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDurationToggle.MinSize, scaleFactor);
+			layoutControlItemDurationEditor.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDurationEditor.MaxSize, scaleFactor);
+			layoutControlItemDurationEditor.MinSize = RectangleHelper.ScaleSize(layoutControlItemDurationEditor.MinSize, scaleFactor);
+			layoutControlItemWeeksToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemWeeksToggle.MaxSize, scaleFactor);
+			layoutControlItemWeeksToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemWeeksToggle.MinSize, scaleFactor);
+			layoutControlItemMonthsToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthsToggle.MaxSize, scaleFactor);
+			layoutControlItemMonthsToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthsToggle.MinSize, scaleFactor);
 		}
 
 		public void LoadData()
@@ -77,7 +79,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			foreach (var product in _container.EditedContent.DigitalProducts.Where(p => !String.IsNullOrEmpty(p.Name)))
 			{
 				var productTab = new DigitalProductControl(this);
-				AssignCloseActiveEditorsOnOutsideClick(productTab);
 				_tabPages.Add(productTab);
 				Application.DoEvents();
 				productTab.Product = product;
@@ -128,7 +129,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 			var product = productControl.Product;
 
-			labelControlCategory.Text = product.Category;
+			simpleLabelItemCategory.Text = product.Category;
 			checkEditShowFlightDates.Checked = product.ShowFlightDates;
 
 			checkEditDuration.Checked = product.ShowDuration;
@@ -261,30 +262,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private void OnDigitalProductContainerResize(object sender, EventArgs e)
 		{
 			checkEditShowFlightDates.Left = (Width - checkEditShowFlightDates.Width) / 2;
-		}
-		#endregion
-
-		#region Common Methods
-		private void AssignCloseActiveEditorsOnOutsideClick(Control control)
-		{
-			if (control.GetType() != typeof(TextEdit) &&
-				control.GetType() != typeof(MemoEdit) &&
-				control.GetType() != typeof(ComboBoxEdit) &&
-				control.GetType() != typeof(LookUpEdit) &&
-				control.GetType() != typeof(DateEdit) &&
-				control.GetType() != typeof(CheckedListBoxControl) &&
-				control.GetType() != typeof(SpinEdit) &&
-				control.GetType() != typeof(CheckEdit))
-			{
-				control.Click += CloseActiveEditorsOnOutSideClick;
-				foreach (Control childControl in control.Controls)
-					AssignCloseActiveEditorsOnOutsideClick(childControl);
-			}
-		}
-
-		protected void CloseActiveEditorsOnOutSideClick(object sender, EventArgs e)
-		{
-			labelControlCategory.Focus();
 		}
 		#endregion
 

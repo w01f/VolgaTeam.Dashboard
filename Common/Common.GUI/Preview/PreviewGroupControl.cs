@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Common.GUI.Preview
@@ -13,7 +15,7 @@ namespace Asa.Common.GUI.Preview
 	public partial class PreviewGroupControl : XtraTabPage
 	{
 		private readonly List<Image> _previewImages = new List<Image>();
-		public PreviewGroup PreviewGroup { get; private set; }
+		public PreviewGroup PreviewGroup { get; }
 
 		public PreviewGroupControl(PreviewGroup previewGroup)
 		{
@@ -21,9 +23,8 @@ namespace Asa.Common.GUI.Preview
 			PreviewGroup = previewGroup;
 
 			Text = PreviewGroup.Name;
-			laSlideSize.Text = String.Format("{0} {1} x {2}", PowerPointManager.Instance.SlideSettings.SlideSize.Orientation, PowerPointManager.Instance.SlideSettings.SlideSize.Width.ToString("#.##"), PowerPointManager.Instance.SlideSettings.SlideSize.Height.ToString("#.##"));
+			simpleLabelItemSlideSize.Text = String.Format("<size=+2>{0} {1:#.##} x {2:#.##}</size>", PowerPointManager.Instance.SlideSettings.SlideSize.Orientation, PowerPointManager.Instance.SlideSettings.SlideSize.Width, PowerPointManager.Instance.SlideSettings.SlideSize.Height);
 			GetPreviewImages();
-			Resize += OnResize;
 			if (_previewImages.Any())
 			{
 				comboBoxEditSlides.SelectedIndexChanged -= comboBoxEditSlides_SelectedIndexChanged;
@@ -31,7 +32,7 @@ namespace Asa.Common.GUI.Preview
 				for (var i = 1; i <= _previewImages.Count; i++)
 					comboBoxEditSlides.Properties.Items.Add(i.ToString());
 			}
-			pnNavigationArea.Visible = _previewImages.Count > 1;
+			layoutControlGroupNavigation.Visibility = _previewImages.Count > 1 ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
 		public void Load()
@@ -43,16 +44,11 @@ namespace Asa.Common.GUI.Preview
 		}
 
 		#region Other Event Handlers
-		private void OnResize(object sender, EventArgs e)
-		{
-			comboBoxEditSlides.Left = (pnNavigationArea.Width - comboBoxEditSlides.Width) / 2;
-		}
-
 		private void comboBoxEditSlides_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			pictureBoxPreview.BackColor = Color.WhiteSmoke;
-			pictureBoxPreview.Image = _previewImages[comboBoxEditSlides.SelectedIndex];
-			laSlideNumber.Text = String.Format("Slide {0} of {1}", (comboBoxEditSlides.SelectedIndex + 1), _previewImages.Count);
+			pictureEditPreview.BackColor = Color.WhiteSmoke;
+			pictureEditPreview.Image = _previewImages[comboBoxEditSlides.SelectedIndex];
+			simpleLabelItemSlideNumber.Text = String.Format("<size=+2>Slide {0} of {1}<>", (comboBoxEditSlides.SelectedIndex + 1), _previewImages.Count);
 		}
 
 		private void comboBoxEditSlides_ButtonClick(object sender, ButtonPressedEventArgs e)
@@ -90,7 +86,7 @@ namespace Asa.Common.GUI.Preview
 		{
 			try
 			{
-				pictureBoxPreview.Image = null;
+				pictureEditPreview.Image = null;
 				foreach (var image in _previewImages)
 					image.Dispose();
 				_previewImages.Clear();

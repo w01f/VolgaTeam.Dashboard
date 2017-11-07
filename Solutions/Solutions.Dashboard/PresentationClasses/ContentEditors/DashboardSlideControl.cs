@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
-using Asa.Common.GUI.Common;
 using DevExpress.XtraTab;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
@@ -23,16 +22,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			InitializeComponent();
 		}
 
-		protected DashboardSlideControl(BaseDashboardContainer slideContainer)
+		protected DashboardSlideControl(BaseDashboardContainer slideContainer) : this()
 		{
-			InitializeComponent();
-			Dock = DockStyle.Fill;
 			SlideContainer = slideContainer;
-			comboBoxEditSlideHeader.EnableSelectAll();
-			if (CreateGraphics().DpiX > 96)
-			{
-			}
-			OnSplashResize(this, EventArgs.Empty);
 		}
 
 		public virtual void LoadData()
@@ -43,12 +35,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public virtual void ApplyChanges()
 		{
 			throw new NotImplementedException();
-		}
-
-		private void OnSplashResize(object sender, EventArgs e)
-		{
-			var splashWidth = pnSplash.Width;
-			pbSplash.Visible = splashWidth >= 411;
 		}
 	}
 }

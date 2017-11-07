@@ -12,8 +12,9 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Online.Controls.InteropClasses;
 using Asa.Online.Controls.PresentationClasses.Summary;
-using DevExpress.XtraEditors;
+using DevExpress.Skins;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Online.Controls.PresentationClasses.Products
@@ -30,38 +31,38 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			InitializeComponent();
 			_container = container;
 			Dock = DockStyle.Fill;
-			if ((base.CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-				font = new Font(labelControlWebsite.Font.FontFamily, labelControlWebsite.Font.Size - 3, labelControlWebsite.Font.Style);
-				labelControlWebsite.Font = font;
-				labelControlProduct.Font = font;
-				labelControlDescription.Font = font;
-				labelControlPriceType.Font = font;
-				labelControlComments.Font = font;
-				checkEditFormulaCPM.Font = new Font(checkEditFormulaCPM.Font.FontFamily, checkEditFormulaCPM.Font.Size - 2, checkEditFormulaCPM.Font.Style);
-				checkEditFormulaImpressions.Font = new Font(checkEditFormulaImpressions.Font.FontFamily, checkEditFormulaImpressions.Font.Size - 2, checkEditFormulaImpressions.Font.Style);
-				checkEditFormulaInvestment.Font = new Font(checkEditFormulaInvestment.Font.FontFamily, checkEditFormulaInvestment.Font.Size - 2, checkEditFormulaInvestment.Font.Style);
-				hyperLinkEditResetProductName.Font = new Font(hyperLinkEditResetProductName.Font.FontFamily, hyperLinkEditResetProductName.Font.Size - 2, hyperLinkEditResetProductName.Font.Style);
-				hyperLinkEditReset.Font = new Font(hyperLinkEditReset.Font.FontFamily, hyperLinkEditReset.Font.Size - 2, hyperLinkEditReset.Font.Style);
-			}
 
-			labelControlWebsite.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesLogo;
-			labelControlWebsite.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesTitle ?? labelControlWebsite.Text);
-			labelControlProduct.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameLogo;
-			labelControlProduct.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameTitle ?? labelControlProduct.Text);
-			labelControlDescription.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionLogo;
-			labelControlDescription.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionTitle ?? labelControlDescription.Text);
-			labelControlPriceType.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingLogo;
-			labelControlPriceType.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingTitle ?? labelControlPriceType.Text);
-			labelControlComments.Appearance.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsLogo;
-			labelControlComments.Text = String.Format("<color=#838383>{0}</color>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsTitle ?? labelControlComments.Text);
+			layoutControlItemWebsiteLogo.Visibility =
+				ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesLogo != null
+					? LayoutVisibility.Always
+					: LayoutVisibility.Never;
+			pictureEditWebsiteLogo.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesLogo;
+			layoutControlItemProductNameLogo.Visibility =
+					ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameLogo != null
+						? LayoutVisibility.Always
+						: LayoutVisibility.Never;
+			pictureEditProductNameLogo.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameLogo;
+			layoutControlItemDescriptionLogo.Visibility =
+					ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionLogo != null
+						? LayoutVisibility.Always
+						: LayoutVisibility.Never;
+			pictureEditDescriptionLogo.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionLogo;
+			layoutControlItemPriceLogo.Visibility =
+					ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingLogo != null
+						? LayoutVisibility.Always
+						: LayoutVisibility.Never;
+			pictureEditPriceLogo.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingLogo;
+			layoutControlItemCommentsLogo.Visibility =
+					ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsLogo != null
+						? LayoutVisibility.Always
+						: LayoutVisibility.Never;
+			pictureEditCommentsLogo.Image = ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsLogo;
+
+			simpleLabelItemWebsiteTitle.Text = String.Format("<image=WebsiteLogo><size=+2><color=#838383>{0}</color></size>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsSitesTitle ?? simpleLabelItemWebsiteTitle.Text);
+			simpleLabelItemProductNameTitle.Text = String.Format("<image=ProductNameLogo><size=+2><color=#838383>{0}</color></size>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsNameTitle ?? simpleLabelItemProductNameTitle.Text);
+			simpleLabelItemDescriptionTitle.Text = String.Format("<image=DescriptionLogo><size=+2><color=#838383>{0}</color></size>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsDescriptionTitle ?? simpleLabelItemDescriptionTitle.Text);
+			simpleLabelItemPriceTitle.Text = String.Format("<image=PriceLogo><size=+2><color=#838383>{0}</color></size>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsPricingTitle ?? simpleLabelItemPriceTitle.Text);
+			simpleLabelItemCommentsTitle.Text = String.Format("<image=CommentsLogo><size=+2><color=#838383>{0}</color></size>", ListManager.Instance.DefaultControlsConfiguration.ProductEditorsCommentsTitle ?? simpleLabelItemCommentsTitle.Text);
 
 			spinEditImpressions.EnableSelectAll();
 			spinEditImpressionsOnly.EnableSelectAll();
@@ -73,35 +74,59 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			spinEditImpressions.EditValue = null;
 			spinEditInvestment.EditValue = null;
 
-			AssignCloseActiveEditorsonOutSideClick(this);
-
 			SummaryControl = new DigitalProductSummaryControl();
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			checkedListBoxControlWebsite.ItemHeight = (Int32)(checkedListBoxControlWebsite.ItemHeight * scaleFactor.Height);
+
+			simpleLabelItemWebsiteTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemWebsiteTitle.MaxSize, scaleFactor);
+			simpleLabelItemWebsiteTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemWebsiteTitle.MinSize, scaleFactor);
+			layoutControlItemWebsiteEditor.MaxSize = RectangleHelper.ScaleSize(layoutControlItemWebsiteEditor.MaxSize, scaleFactor);
+			layoutControlItemWebsiteEditor.MinSize = RectangleHelper.ScaleSize(layoutControlItemWebsiteEditor.MinSize, scaleFactor);
+			emptySpaceItemWebsites.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemWebsites.MaxSize, scaleFactor);
+			emptySpaceItemWebsites.MinSize = RectangleHelper.ScaleSize(emptySpaceItemWebsites.MinSize, scaleFactor);
+
+			simpleLabelItemProductNameTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemProductNameTitle.MaxSize, scaleFactor);
+			simpleLabelItemProductNameTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemProductNameTitle.MinSize, scaleFactor);
+			layoutControlItemProductNameReset.MaxSize = RectangleHelper.ScaleSize(layoutControlItemProductNameReset.MaxSize, scaleFactor);
+			layoutControlItemProductNameReset.MinSize = RectangleHelper.ScaleSize(layoutControlItemProductNameReset.MinSize, scaleFactor);
+			emptySpaceItemProductName.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemProductName.MaxSize, scaleFactor);
+			emptySpaceItemProductName.MinSize = RectangleHelper.ScaleSize(emptySpaceItemProductName.MinSize, scaleFactor);
+
+			simpleLabelItemDescriptionTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemDescriptionTitle.MaxSize, scaleFactor);
+			simpleLabelItemDescriptionTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemDescriptionTitle.MinSize, scaleFactor);
+			layoutControlItemDescriptionTargetingToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDescriptionTargetingToggle.MaxSize, scaleFactor);
+			layoutControlItemDescriptionTargetingToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDescriptionTargetingToggle.MinSize, scaleFactor);
+			layoutControlItemDescriptionRichMediaToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDescriptionRichMediaToggle.MaxSize, scaleFactor);
+			layoutControlItemDescriptionRichMediaToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDescriptionRichMediaToggle.MinSize, scaleFactor);
+			emptySpaceItemDescription.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemDescription.MaxSize, scaleFactor);
+			emptySpaceItemDescription.MinSize = RectangleHelper.ScaleSize(emptySpaceItemDescription.MinSize, scaleFactor);
+
+			simpleLabelItemPriceTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemPriceTitle.MaxSize, scaleFactor);
+			simpleLabelItemPriceTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemPriceTitle.MinSize, scaleFactor);
+
+			simpleLabelItemCommentsTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemCommentsTitle.MaxSize, scaleFactor);
+			simpleLabelItemCommentsTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemCommentsTitle.MinSize, scaleFactor);
+			layoutControlItemCommentsStrengths1Toggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCommentsStrengths1Toggle.MaxSize, scaleFactor);
+			layoutControlItemCommentsStrengths1Toggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemCommentsStrengths1Toggle.MinSize, scaleFactor);
+			layoutControlItemCommentsStrengths2Toggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCommentsStrengths2Toggle.MaxSize, scaleFactor);
+			layoutControlItemCommentsStrengths2Toggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemCommentsStrengths2Toggle.MinSize, scaleFactor);
+			layoutControlItemCommentsToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCommentsToggle.MaxSize, scaleFactor);
+			layoutControlItemCommentsToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemCommentsToggle.MinSize, scaleFactor);
+			layoutControlItemCommentsEditor.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCommentsEditor.MaxSize, scaleFactor);
+			layoutControlItemCommentsEditor.MinSize = RectangleHelper.ScaleSize(layoutControlItemCommentsEditor.MinSize, scaleFactor);
+			layoutControlItemCommentsTargetingToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCommentsTargetingToggle.MaxSize, scaleFactor);
+			layoutControlItemCommentsTargetingToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemCommentsTargetingToggle.MinSize, scaleFactor);
+			layoutControlItemCommentsRichMediaToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCommentsRichMediaToggle.MaxSize, scaleFactor);
+			layoutControlItemCommentsRichMediaToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemCommentsRichMediaToggle.MinSize, scaleFactor);
+
+			layoutControlItemReset.MaxSize = RectangleHelper.ScaleSize(layoutControlItemReset.MaxSize, scaleFactor);
+			layoutControlItemReset.MinSize = RectangleHelper.ScaleSize(layoutControlItemReset.MinSize, scaleFactor);
 		}
 
 		public DigitalProduct Product { get; set; }
 		public DigitalProductSummaryControl SummaryControl { get; private set; }
-
-		private void AssignCloseActiveEditorsonOutSideClick(Control control)
-		{
-			if (control.GetType() != typeof(TextEdit) &&
-				control.GetType() != typeof(MemoEdit) &&
-				control.GetType() != typeof(ComboBoxEdit) &&
-				control.GetType() != typeof(LookUpEdit) &&
-				control.GetType() != typeof(DateEdit) &&
-				control.GetType() != typeof(CheckedListBoxControl) &&
-				control.GetType() != typeof(SpinEdit) &&
-				control.GetType() != typeof(CheckEdit))
-			{
-				control.Click += CloseActiveEditorsOnOutSideClick;
-				foreach (Control childControl in control.Controls)
-					AssignCloseActiveEditorsonOutSideClick(childControl);
-			}
-		}
-
-		private void CloseActiveEditorsOnOutSideClick(object sender, EventArgs e)
-		{
-			labelControlWebsite.Focus();
-		}
 
 		private void UpdateFormula()
 		{
@@ -264,7 +289,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			checkEditStrengths2.Checked = !String.IsNullOrEmpty(Product.Strength2);
 			comboBoxEditStrengths2.EditValue = Product.Strength2;
 
-			hyperLinkEditResetProductName.Visible = !String.Equals(memoEditProductName.EditValue as String, Product.ExtendedName, StringComparison.OrdinalIgnoreCase);
+			layoutControlItemProductNameReset.Visibility = !String.Equals(memoEditProductName.EditValue as String, Product.ExtendedName, StringComparison.OrdinalIgnoreCase) ? LayoutVisibility.Always : LayoutVisibility.Never;
 			_allowToSave = true;
 
 			comboBoxEditPriceType_SelectedIndexChanged(comboBoxEditPriceType, EventArgs.Empty);
@@ -347,16 +372,10 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			switch (comboBoxEditPriceType.SelectedIndex)
 			{
 				case 0:
-					pnPricyTypeAll.Visible = true;
-					checkEditFormulaImpressions.Visible = true;
-					checkEditFormulaInvestment.Visible = true;
-					checkEditFormulaCPM.Visible = true;
-					spinEditImpressions.Visible = true;
-					spinEditInvestment.Visible = true;
-					spinEditCPM.Visible = true;
-
-					pnPriceTypeImpressions.Visible = false;
-					pnPriceTypeInvestment.Visible = false;
+					layoutControlGroupPriceTypeAll.Visibility = LayoutVisibility.Always;
+					layoutControlGroupPriceTypeImpressions.Visibility = LayoutVisibility.Never;
+					layoutControlGroupPriceTypeInvestment.Visibility = LayoutVisibility.Never;
+					emptySpaceItemPriceType.Visibility = LayoutVisibility.Always;
 
 					Product.ShowAllPricingMonthly = true;
 					Product.ShowAllPricingTotal = false;
@@ -375,16 +394,10 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 					spinEditImpressionsOnly.EditValue = null;
 					break;
 				case 1:
-					pnPricyTypeAll.Visible = true;
-					checkEditFormulaImpressions.Visible = true;
-					checkEditFormulaInvestment.Visible = true;
-					checkEditFormulaCPM.Visible = true;
-					spinEditImpressions.Visible = true;
-					spinEditInvestment.Visible = true;
-					spinEditCPM.Visible = true;
-
-					pnPriceTypeImpressions.Visible = false;
-					pnPriceTypeInvestment.Visible = false;
+					layoutControlGroupPriceTypeAll.Visibility = LayoutVisibility.Always;
+					layoutControlGroupPriceTypeImpressions.Visibility = LayoutVisibility.Never;
+					layoutControlGroupPriceTypeInvestment.Visibility = LayoutVisibility.Never;
+					emptySpaceItemPriceType.Visibility = LayoutVisibility.Always;
 
 					Product.ShowAllPricingMonthly = false;
 					Product.ShowAllPricingTotal = true;
@@ -403,9 +416,10 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 					spinEditImpressionsOnly.EditValue = null;
 					break;
 				case 2:
-					pnPricyTypeAll.Visible = false;
-					pnPriceTypeImpressions.Visible = true;
-					pnPriceTypeInvestment.Visible = false;
+					layoutControlGroupPriceTypeAll.Visibility = LayoutVisibility.Never;
+					layoutControlGroupPriceTypeImpressions.Visibility = LayoutVisibility.Always;
+					layoutControlGroupPriceTypeInvestment.Visibility = LayoutVisibility.Never;
+					emptySpaceItemPriceType.Visibility = LayoutVisibility.Always;
 
 					Product.ShowAllPricingMonthly = false;
 					Product.ShowAllPricingTotal = false;
@@ -426,9 +440,10 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 					UpdateSinglePricing();
 					break;
 				case 3:
-					pnPricyTypeAll.Visible = false;
-					pnPriceTypeImpressions.Visible = false;
-					pnPriceTypeInvestment.Visible = true;
+					layoutControlGroupPriceTypeAll.Visibility = LayoutVisibility.Never;
+					layoutControlGroupPriceTypeImpressions.Visibility = LayoutVisibility.Never;
+					layoutControlGroupPriceTypeInvestment.Visibility = LayoutVisibility.Always;
+					emptySpaceItemPriceType.Visibility = LayoutVisibility.Always;
 
 					Product.ShowAllPricingMonthly = false;
 					Product.ShowAllPricingTotal = false;
@@ -449,16 +464,10 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 					UpdateSinglePricing();
 					break;
 				default:
-					pnPricyTypeAll.Visible = false;
-					pnPriceTypeImpressions.Visible = false;
-					pnPriceTypeInvestment.Visible = false;
-
-					checkEditFormulaImpressions.Visible = false;
-					checkEditFormulaInvestment.Visible = false;
-					checkEditFormulaCPM.Visible = false;
-					spinEditImpressions.Visible = false;
-					spinEditInvestment.Visible = false;
-					spinEditCPM.Visible = false;
+					layoutControlGroupPriceTypeAll.Visibility = LayoutVisibility.Never;
+					layoutControlGroupPriceTypeImpressions.Visibility = LayoutVisibility.Never;
+					layoutControlGroupPriceTypeInvestment.Visibility = LayoutVisibility.Never;
+					emptySpaceItemPriceType.Visibility = LayoutVisibility.Never;
 
 					Product.ShowAllPricingMonthly = false;
 					Product.ShowAllPricingTotal = false;
@@ -553,12 +562,12 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			if (String.Equals(userDefinedName, Product.ExtendedName, StringComparison.OrdinalIgnoreCase))
 			{
 				memoEditProductName.ForeColor = Color.Black;
-				hyperLinkEditResetProductName.Visible = false;
+				layoutControlItemProductNameReset.Visibility = LayoutVisibility.Never;
 			}
 			else
 			{
 				memoEditProductName.ForeColor = Color.Green;
-				hyperLinkEditResetProductName.Visible = true;
+				layoutControlItemProductNameReset.Visibility = LayoutVisibility.Always;
 			}
 			if (_allowToSave)
 				_container.RaiseDataChanged();

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Summary;
 using Asa.Business.Media.Configuration;
@@ -9,6 +8,7 @@ using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Summary;
+using DevExpress.Skins;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
@@ -32,21 +32,48 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			spinEditMonthly.EnableSelectAll();
 			spinEditTotal.EnableSelectAll();
 
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 2, laTotal.Font.Style);
-			}
 			DataChanged += (o, e) => { Data.Commited = true; };
 			toolTip.SetToolTip(buttonXImportMedia, String.Format("Import {0} Info", MediaMetaData.Instance.DataTypeString));
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			simpleLabelItemNumber.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemNumber.MaxSize, scaleFactor);
+			simpleLabelItemNumber.MinSize = RectangleHelper.ScaleSize(simpleLabelItemNumber.MinSize, scaleFactor);
+			layoutControlItemUp.MaxSize = RectangleHelper.ScaleSize(layoutControlItemUp.MaxSize, scaleFactor);
+			layoutControlItemUp.MinSize = RectangleHelper.ScaleSize(layoutControlItemUp.MinSize, scaleFactor);
+			layoutControlItemDown.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDown.MaxSize, scaleFactor);
+			layoutControlItemDown.MinSize = RectangleHelper.ScaleSize(layoutControlItemDown.MinSize, scaleFactor);
+			layoutControlItemTitleToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTitleToggle.MaxSize, scaleFactor);
+			layoutControlItemTitleToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemTitleToggle.MinSize, scaleFactor);
+			layoutControlItemTitleValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTitleValue.MaxSize, scaleFactor);
+			layoutControlItemTitleValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemTitleValue.MinSize, scaleFactor);
+			layoutControlItemMonthlyToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyToggle.MaxSize, scaleFactor);
+			layoutControlItemMonthlyToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyToggle.MinSize, scaleFactor);
+			layoutControlItemMonthlyValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyValue.MaxSize, scaleFactor);
+			layoutControlItemMonthlyValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemMonthlyValue.MinSize, scaleFactor);
+			layoutControlItemTotalToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalToggle.MaxSize, scaleFactor);
+			layoutControlItemTotalToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalToggle.MinSize, scaleFactor);
+			layoutControlItemTotalValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalValue.MaxSize, scaleFactor);
+			layoutControlItemTotalValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalValue.MinSize, scaleFactor);
+			layoutControlItemDetailsToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDetailsToggle.MaxSize, scaleFactor);
+			layoutControlItemDetailsToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDetailsToggle.MinSize, scaleFactor);
+			layoutControlItemMedia.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMedia.MaxSize, scaleFactor);
+			layoutControlItemMedia.MinSize = RectangleHelper.ScaleSize(layoutControlItemMedia.MinSize, scaleFactor);
+			layoutControlItemDigital.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDigital.MaxSize, scaleFactor);
+			layoutControlItemDigital.MinSize = RectangleHelper.ScaleSize(layoutControlItemDigital.MinSize, scaleFactor);
+			layoutControlItemReset.MaxSize = RectangleHelper.ScaleSize(layoutControlItemReset.MaxSize, scaleFactor);
+			layoutControlItemReset.MinSize = RectangleHelper.ScaleSize(layoutControlItemReset.MinSize, scaleFactor);
+			layoutControlItemDelete.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDelete.MaxSize, scaleFactor);
+			layoutControlItemDelete.MinSize = RectangleHelper.ScaleSize(layoutControlItemDelete.MinSize, scaleFactor);
 		}
 
 		public virtual void LoadData()
 		{
 			_loading = true;
-			ckItem.Checked = Data.ShowValue;
-			ckDetails.Checked = Data.ShowDescription;
-			ckMonthly.Checked = Data.ShowMonthly;
-			ckTotal.Checked = Data.ShowTotal;
+			checkEditItem.Checked = Data.ShowValue;
+			checkEditDetails.Checked = Data.ShowDescription;
+			checkEditMonthly.Checked = Data.ShowMonthly;
+			checkEditTotal.Checked = Data.ShowTotal;
 
 			textEditItem.EditValue = Data.Value;
 			memoEditDetails.EditValue = Data.Description;
@@ -80,14 +107,13 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void UpdateNumber()
 		{
-			laNumber.Text = (Data.Order + 1).ToString();
-
+			simpleLabelItemNumber.Text = String.Format("<size=+4><b>{0}</b></size>", Data.Order + 1);
 		}
 
 		public void UpdatePositionButtons()
 		{
-			buttonXUp.Enabled = !ProductSummaryData.IsFirstInCollection;
-			buttonXDown.Enabled = !ProductSummaryData.IsLastInCollection;
+			layoutControlItemUp.Enabled = !ProductSummaryData.IsFirstInCollection;
+			layoutControlItemDown.Enabled = !ProductSummaryData.IsLastInCollection;
 		}
 
 		private void OnDeleteItemClick(object sender, EventArgs e)
@@ -118,7 +144,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			ProductSummaryData.Synchronize();
 
 			_loading = true;
-			ckDetails.Checked = true;
+			checkEditDetails.Checked = true;
 			memoEditDetails.EditValue = Data.Description;
 			_loading = false;
 		}
@@ -133,50 +159,48 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			ProductSummaryData.Synchronize();
 
 			_loading = true;
-			ckDetails.Checked = true;
+			checkEditDetails.Checked = true;
 			memoEditDetails.EditValue = Data.Description;
 			_loading = false;
 		}
 
 		private void OnResetItemClick(object sender, EventArgs e)
 		{
-			if(!String.IsNullOrEmpty(Data.Description))
+			if (!String.IsNullOrEmpty(Data.Description))
 				if (PopupMessageHelper.Instance.ShowWarningQuestion(
 					"Are you SURE you want to DELETE the data for this product?")
 					!= DialogResult.Yes) return;
 
 			ProductSummaryData.ResetToDefault();
-			ckDetails.Checked = false;
+			checkEditDetails.Checked = false;
 			memoEditDetails.EditValue = Data.Description;
 		}
 
 		private void ckMonthly_CheckedChanged(object sender, EventArgs e)
 		{
-			spinEditMonthly.Enabled = ckMonthly.Checked;
-			laMonthly.Enabled = ckMonthly.Checked;
+			layoutControlItemMonthlyValue.Enabled = checkEditMonthly.Checked;
 			if (_loading) return;
-			spinEditMonthly.Value = ckMonthly.Checked ? spinEditMonthly.Value : 0;
-			Data.ShowMonthly = ckMonthly.Checked;
+			spinEditMonthly.Value = checkEditMonthly.Checked ? spinEditMonthly.Value : 0;
+			Data.ShowMonthly = checkEditMonthly.Checked;
 			InvestmentChanged?.Invoke(this, EventArgs.Empty);
 			RaiseDataChanged();
 		}
 
 		private void ckTotal_CheckedChanged(object sender, EventArgs e)
 		{
-			spinEditTotal.Enabled = ckTotal.Checked;
-			laTotal.Enabled = ckTotal.Checked;
+			layoutControlItemTotalValue.Enabled = checkEditTotal.Checked;
 			if (_loading) return;
-			spinEditTotal.Value = ckTotal.Checked ? spinEditTotal.Value : 0;
-			Data.ShowTotal = ckTotal.Checked;
+			spinEditTotal.Value = checkEditTotal.Checked ? spinEditTotal.Value : 0;
+			Data.ShowTotal = checkEditTotal.Checked;
 			InvestmentChanged?.Invoke(this, EventArgs.Empty);
 			RaiseDataChanged();
 		}
 
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
 		{
-			textEditItem.Enabled = ckItem.Checked;
+			layoutControlItemTitleValue.Enabled = checkEditItem.Checked;
 			if (_loading) return;
-			Data.ShowValue = ckItem.Checked;
+			Data.ShowValue = checkEditItem.Checked;
 			RaiseDescriptionChanged();
 		}
 
@@ -189,11 +213,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		private void ckDetails_CheckedChanged(object sender, EventArgs e)
 		{
-			memoEditDetails.Enabled = ckDetails.Checked;
+			layoutControlItemDetailsValue.Enabled = checkEditDetails.Checked;
 			if (_loading) return;
-			memoEditDetails.EditValue = ckDetails.Checked ? memoEditDetails.EditValue : null;
-			Data.ShowDescription = ckDetails.Checked;
-			if (!ckDetails.Checked)
+			memoEditDetails.EditValue = checkEditDetails.Checked ? memoEditDetails.EditValue : null;
+			Data.ShowDescription = checkEditDetails.Checked;
+			if (!checkEditDetails.Checked)
 				ProductSummaryData.DataSourceType = SummaryItemDataSourceType.None;
 			RaiseDescriptionChanged();
 		}
@@ -249,9 +273,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public decimal? TotalValue => Data.ShowTotal ? Data.Total : null;
 
-		public decimal? OutputMonthlyValue => ckMonthly.Checked ? MonthlyValue : null;
+		public decimal? OutputMonthlyValue => checkEditMonthly.Checked ? MonthlyValue : null;
 
-		public decimal? OutputTotalValue => ckTotal.Checked ? TotalValue : null;
+		public decimal? OutputTotalValue => checkEditTotal.Checked ? TotalValue : null;
 
 		public bool Complited => Data.ShowValue && !String.IsNullOrEmpty(ItemTitle);
 

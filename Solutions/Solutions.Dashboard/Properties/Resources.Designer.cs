@@ -73,6 +73,16 @@ namespace Asa.Solutions.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CalendarMonth {
+            get {
+                object obj = ResourceManager.GetObject("CalendarMonth", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Date {
             get {
                 object obj = ResourceManager.GetObject("Date", resourceCulture);
@@ -93,19 +103,9 @@ namespace Asa.Solutions.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DeleteButton {
+        internal static System.Drawing.Bitmap FormulaLogo {
             get {
-                object obj = ResourceManager.GetObject("DeleteButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DownArrow {
-            get {
-                object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
+                object obj = ResourceManager.GetObject("FormulaLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace Asa.Solutions.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SummaryPresentationDate {
+        internal static System.Drawing.Bitmap SummaryItemDelete {
             get {
-                object obj = ResourceManager.GetObject("SummaryPresentationDate", resourceCulture);
+                object obj = ResourceManager.GetObject("SummaryItemDelete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,29 @@ namespace Asa.Solutions.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap UpArrow {
+        internal static System.Drawing.Bitmap SummaryItemDown {
             get {
-                object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
+                object obj = ResourceManager.GetObject("SummaryItemDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SummaryItemUp {
+            get {
+                object obj = ResourceManager.GetObject("SummaryItemUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SummaryPresentationDate {
+            get {
+                object obj = ResourceManager.GetObject("SummaryPresentationDate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

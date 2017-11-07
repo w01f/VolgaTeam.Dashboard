@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Drawing;
+using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
@@ -29,21 +31,28 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 				Tooltip = "Open Schedule Info",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(buttonXCampaign.Font.FontFamily, buttonXCampaign.Font.Size - 2,
-					buttonXCampaign.Font.Style);
-				buttonXCampaign.Font = font;
-				buttonXComments.Font = font;
-				buttonXCost.Font = font;
-				buttonXLineId.Font = font;
-				buttonXLogo.Font = font;
-				buttonXSpots.Font = font;
-				buttonXTallyCost.Font = font;
-				buttonXTallySpots.Font = font;
-				buttonXTotalCost.Font = font;
-				buttonXTotalWeeks.Font = font;
-			}
+			
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemLineId.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLineId.MaxSize, scaleFactor);
+			layoutControlItemLineId.MinSize = RectangleHelper.ScaleSize(layoutControlItemLineId.MinSize, scaleFactor);
+			layoutControlItemLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MaxSize, scaleFactor);
+			layoutControlItemLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MinSize, scaleFactor);
+			layoutControlItemCampaign.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCampaign.MaxSize, scaleFactor);
+			layoutControlItemCampaign.MinSize = RectangleHelper.ScaleSize(layoutControlItemCampaign.MinSize, scaleFactor);
+			layoutControlItemComments.MaxSize = RectangleHelper.ScaleSize(layoutControlItemComments.MaxSize, scaleFactor);
+			layoutControlItemComments.MinSize = RectangleHelper.ScaleSize(layoutControlItemComments.MinSize, scaleFactor);
+			layoutControlItemSpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSpots.MaxSize, scaleFactor);
+			layoutControlItemSpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemSpots.MinSize, scaleFactor);
+			layoutControlItemCost.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCost.MaxSize, scaleFactor);
+			layoutControlItemCost.MinSize = RectangleHelper.ScaleSize(layoutControlItemCost.MinSize, scaleFactor);
+			layoutControlItemTotalWeeks.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalWeeks.MaxSize, scaleFactor);
+			layoutControlItemTotalWeeks.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalWeeks.MinSize, scaleFactor);
+			layoutControlItemTotalCost.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTotalCost.MaxSize, scaleFactor);
+			layoutControlItemTotalCost.MinSize = RectangleHelper.ScaleSize(layoutControlItemTotalCost.MinSize, scaleFactor);
+			layoutControlItemTallySpots.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTallySpots.MaxSize, scaleFactor);
+			layoutControlItemTallySpots.MinSize = RectangleHelper.ScaleSize(layoutControlItemTallySpots.MinSize, scaleFactor);
+			layoutControlItemTallyCost.MaxSize = RectangleHelper.ScaleSize(layoutControlItemTallyCost.MaxSize, scaleFactor);
+			layoutControlItemTallyCost.MinSize = RectangleHelper.ScaleSize(layoutControlItemTallyCost.MinSize, scaleFactor);
 		}
 
 		public void LoadContentData(SnapshotContent content)

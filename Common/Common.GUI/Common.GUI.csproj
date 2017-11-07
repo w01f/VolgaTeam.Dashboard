@@ -293,12 +293,6 @@
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Summary\SummaryConstants.cs" />
-    <Compile Include="Summary\SummaryCustomItemControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Summary\SummaryCustomItemControl.Designer.cs">
-      <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Summary\ISummaryControl.cs" />
     <Compile Include="Summary\ISummaryItemControl.cs" />
     <Compile Include="Themes\FormThemeSelector.cs">
@@ -463,9 +457,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Slides\SlidesContainerControl.resx">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Summary\SummaryCustomItemControl.resx">
-      <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Themes\FormThemeSelector.resx">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>

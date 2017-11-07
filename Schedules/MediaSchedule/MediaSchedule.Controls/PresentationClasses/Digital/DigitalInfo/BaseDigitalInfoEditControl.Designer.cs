@@ -38,7 +38,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.pbNoProducts = new System.Windows.Forms.PictureBox();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -55,16 +54,19 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			this.bandedGridColumnInfo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
 			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
-			this.pnContent = new System.Windows.Forms.Panel();
-			this.pnContentBottom = new System.Windows.Forms.Panel();
-			this.pnMonthlyInvestment = new System.Windows.Forms.Panel();
-			this.labelControlMonthlyInvestment = new DevExpress.XtraEditors.LabelControl();
 			this.spinEditMonthlyInvestment = new DevExpress.XtraEditors.SpinEdit();
-			this.pnTotalInvestment = new System.Windows.Forms.Panel();
-			this.labelControlTotalInvestment = new DevExpress.XtraEditors.LabelControl();
+			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.spinEditTotalInvestment = new DevExpress.XtraEditors.SpinEdit();
-			this.pnNoProducts = new System.Windows.Forms.Panel();
-			((System.ComponentModel.ISupportInitialize)(this.pbNoProducts)).BeginInit();
+			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlGroupActiveContent = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemGrid = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemTotalInvestment = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMonthlyInvestment = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItemInvestemt = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemDefaultLogo = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).BeginInit();
@@ -73,25 +75,21 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxGroup)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxProduct)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit)).BeginInit();
-			this.pnContent.SuspendLayout();
-			this.pnContentBottom.SuspendLayout();
-			this.pnMonthlyInvestment.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyInvestment.Properties)).BeginInit();
-			this.pnTotalInvestment.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
+			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalInvestment.Properties)).BeginInit();
-			this.pnNoProducts.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupActiveContent)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGrid)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTotalInvestment)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMonthlyInvestment)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemInvestemt)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// pbNoProducts
-			// 
-			this.pbNoProducts.BackColor = System.Drawing.Color.White;
-			this.pbNoProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pbNoProducts.Image = global::Asa.Media.Controls.Properties.Resources.DigitalInfoNoItems;
-			this.pbNoProducts.Location = new System.Drawing.Point(10, 10);
-			this.pbNoProducts.Name = "pbNoProducts";
-			this.pbNoProducts.Size = new System.Drawing.Size(180, 80);
-			this.pbNoProducts.TabIndex = 2;
-			this.pbNoProducts.TabStop = false;
 			// 
 			// styleController
 			// 
@@ -111,8 +109,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			// gridControl
 			// 
 			this.gridControl.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl.Location = new System.Drawing.Point(0, 0);
+			this.gridControl.Location = new System.Drawing.Point(225, 10);
 			this.gridControl.MainView = this.advBandedGridView;
 			this.gridControl.Name = "gridControl";
 			this.gridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -121,7 +118,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
             this.repositoryItemComboBoxGroup,
             this.repositoryItemComboBoxProduct,
             this.repositoryItemPictureEdit});
-			this.gridControl.Size = new System.Drawing.Size(669, 259);
+			this.gridControl.Size = new System.Drawing.Size(526, 406);
 			this.gridControl.TabIndex = 5;
 			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -250,6 +247,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			this.repositoryItemPictureEdit.NullText = "No Logo";
 			this.repositoryItemPictureEdit.ShowMenu = false;
 			this.repositoryItemPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			this.repositoryItemPictureEdit.ZoomAccelerationFactor = 1D;
 			// 
 			// bandedGridColumnCategory
 			// 
@@ -375,48 +373,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			this.toolTipController.ShowShadow = false;
 			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
 			// 
-			// pnContent
-			// 
-			this.pnContent.BackColor = System.Drawing.Color.Transparent;
-			this.pnContent.Controls.Add(this.gridControl);
-			this.pnContent.Controls.Add(this.pnContentBottom);
-			this.pnContent.Location = new System.Drawing.Point(37, 48);
-			this.pnContent.Name = "pnContent";
-			this.pnContent.Size = new System.Drawing.Size(669, 308);
-			this.pnContent.TabIndex = 6;
-			// 
-			// pnContentBottom
-			// 
-			this.pnContentBottom.Controls.Add(this.pnMonthlyInvestment);
-			this.pnContentBottom.Controls.Add(this.pnTotalInvestment);
-			this.pnContentBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnContentBottom.Location = new System.Drawing.Point(0, 259);
-			this.pnContentBottom.Name = "pnContentBottom";
-			this.pnContentBottom.Size = new System.Drawing.Size(669, 49);
-			this.pnContentBottom.TabIndex = 0;
-			// 
-			// pnMonthlyInvestment
-			// 
-			this.pnMonthlyInvestment.Controls.Add(this.labelControlMonthlyInvestment);
-			this.pnMonthlyInvestment.Controls.Add(this.spinEditMonthlyInvestment);
-			this.pnMonthlyInvestment.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pnMonthlyInvestment.Location = new System.Drawing.Point(33, 0);
-			this.pnMonthlyInvestment.Name = "pnMonthlyInvestment";
-			this.pnMonthlyInvestment.Size = new System.Drawing.Size(318, 49);
-			this.pnMonthlyInvestment.TabIndex = 1;
-			// 
-			// labelControlMonthlyInvestment
-			// 
-			this.labelControlMonthlyInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlMonthlyInvestment.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.labelControlMonthlyInvestment.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlMonthlyInvestment.Location = new System.Drawing.Point(16, 14);
-			this.labelControlMonthlyInvestment.Name = "labelControlMonthlyInvestment";
-			this.labelControlMonthlyInvestment.Size = new System.Drawing.Size(167, 21);
-			this.labelControlMonthlyInvestment.StyleController = this.styleController;
-			this.labelControlMonthlyInvestment.TabIndex = 126;
-			this.labelControlMonthlyInvestment.Text = "Monthly Investment:";
-			// 
 			// spinEditMonthlyInvestment
 			// 
 			this.spinEditMonthlyInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -425,7 +381,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
             0,
             0,
             0});
-			this.spinEditMonthlyInvestment.Location = new System.Drawing.Point(189, 9);
+			this.spinEditMonthlyInvestment.Location = new System.Drawing.Point(372, 428);
+			this.spinEditMonthlyInvestment.MaximumSize = new System.Drawing.Size(120, 0);
+			this.spinEditMonthlyInvestment.MinimumSize = new System.Drawing.Size(120, 0);
 			this.spinEditMonthlyInvestment.Name = "spinEditMonthlyInvestment";
 			this.spinEditMonthlyInvestment.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.spinEditMonthlyInvestment.Properties.Appearance.Options.UseForeColor = true;
@@ -442,32 +400,55 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			this.spinEditMonthlyInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatString = "$#,###.00";
 			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthlyInvestment.Size = new System.Drawing.Size(121, 30);
-			this.spinEditMonthlyInvestment.StyleController = this.styleController;
+			this.spinEditMonthlyInvestment.Size = new System.Drawing.Size(120, 30);
+			this.spinEditMonthlyInvestment.StyleController = this.layoutControl;
 			this.spinEditMonthlyInvestment.TabIndex = 125;
 			this.spinEditMonthlyInvestment.EditValueChanged += new System.EventHandler(this.OnInvestmentEditValueChanged);
 			// 
-			// pnTotalInvestment
+			// layoutControl
 			// 
-			this.pnTotalInvestment.Controls.Add(this.labelControlTotalInvestment);
-			this.pnTotalInvestment.Controls.Add(this.spinEditTotalInvestment);
-			this.pnTotalInvestment.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pnTotalInvestment.Location = new System.Drawing.Point(351, 0);
-			this.pnTotalInvestment.Name = "pnTotalInvestment";
-			this.pnTotalInvestment.Size = new System.Drawing.Size(318, 49);
-			this.pnTotalInvestment.TabIndex = 0;
+			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControl.Appearance.Control.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.pictureEditDefaultLogo);
+			this.layoutControl.Controls.Add(this.gridControl);
+			this.layoutControl.Controls.Add(this.spinEditMonthlyInvestment);
+			this.layoutControl.Controls.Add(this.spinEditTotalInvestment);
+			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControl.ForeColor = System.Drawing.Color.Black;
+			this.layoutControl.Location = new System.Drawing.Point(0, 0);
+			this.layoutControl.Name = "layoutControl";
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControl.Root = this.layoutControlGroupRoot;
+			this.layoutControl.Size = new System.Drawing.Size(761, 470);
+			this.layoutControl.TabIndex = 65;
+			this.layoutControl.Text = "layoutControl1";
 			// 
-			// labelControlTotalInvestment
+			// pictureEditDefaultLogo
 			// 
-			this.labelControlTotalInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlTotalInvestment.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.labelControlTotalInvestment.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlTotalInvestment.Location = new System.Drawing.Point(16, 14);
-			this.labelControlTotalInvestment.Name = "labelControlTotalInvestment";
-			this.labelControlTotalInvestment.Size = new System.Drawing.Size(167, 21);
-			this.labelControlTotalInvestment.StyleController = this.styleController;
-			this.labelControlTotalInvestment.TabIndex = 127;
-			this.labelControlTotalInvestment.Text = "Total Investment:";
+			this.pictureEditDefaultLogo.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditDefaultLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.DigitalInfoNoItems;
+			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(20, 20);
+			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
+			this.pictureEditDefaultLogo.Properties.ReadOnly = true;
+			this.pictureEditDefaultLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditDefaultLogo.Properties.ShowMenu = false;
+			this.pictureEditDefaultLogo.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditDefaultLogo.Size = new System.Drawing.Size(195, 430);
+			this.pictureEditDefaultLogo.StyleController = this.layoutControl;
+			this.pictureEditDefaultLogo.TabIndex = 66;
 			// 
 			// spinEditTotalInvestment
 			// 
@@ -477,7 +458,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
             0,
             0,
             0});
-			this.spinEditTotalInvestment.Location = new System.Drawing.Point(189, 9);
+			this.spinEditTotalInvestment.Location = new System.Drawing.Point(629, 428);
+			this.spinEditTotalInvestment.MaximumSize = new System.Drawing.Size(120, 0);
+			this.spinEditTotalInvestment.MinimumSize = new System.Drawing.Size(120, 0);
 			this.spinEditTotalInvestment.Name = "spinEditTotalInvestment";
 			this.spinEditTotalInvestment.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.spinEditTotalInvestment.Properties.Appearance.Options.UseForeColor = true;
@@ -494,28 +477,146 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			this.spinEditTotalInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotalInvestment.Properties.EditFormat.FormatString = "$#,###.00";
 			this.spinEditTotalInvestment.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotalInvestment.Size = new System.Drawing.Size(121, 30);
-			this.spinEditTotalInvestment.StyleController = this.styleController;
+			this.spinEditTotalInvestment.Size = new System.Drawing.Size(120, 30);
+			this.spinEditTotalInvestment.StyleController = this.layoutControl;
 			this.spinEditTotalInvestment.TabIndex = 126;
 			this.spinEditTotalInvestment.EditValueChanged += new System.EventHandler(this.OnInvestmentEditValueChanged);
 			// 
-			// pnNoProducts
+			// layoutControlGroupRoot
 			// 
-			this.pnNoProducts.BackColor = System.Drawing.Color.Transparent;
-			this.pnNoProducts.Controls.Add(this.pbNoProducts);
-			this.pnNoProducts.Location = new System.Drawing.Point(169, 370);
-			this.pnNoProducts.Name = "pnNoProducts";
-			this.pnNoProducts.Padding = new System.Windows.Forms.Padding(10);
-			this.pnNoProducts.Size = new System.Drawing.Size(200, 100);
-			this.pnNoProducts.TabIndex = 7;
+			this.layoutControlGroupRoot.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRoot.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRoot.GroupBordersVisible = false;
+			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroupActiveContent,
+            this.layoutControlItemDefaultLogo});
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(761, 470);
+			this.layoutControlGroupRoot.TextVisible = false;
+			// 
+			// layoutControlGroupActiveContent
+			// 
+			this.layoutControlGroupActiveContent.GroupBordersVisible = false;
+			this.layoutControlGroupActiveContent.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemGrid,
+            this.emptySpaceItem2,
+            this.emptySpaceItem3,
+            this.layoutControlItemTotalInvestment,
+            this.layoutControlItemMonthlyInvestment,
+            this.emptySpaceItemInvestemt});
+			this.layoutControlGroupActiveContent.Location = new System.Drawing.Point(215, 0);
+			this.layoutControlGroupActiveContent.Name = "layoutControlGroupActiveContent";
+			this.layoutControlGroupActiveContent.Size = new System.Drawing.Size(526, 450);
+			this.layoutControlGroupActiveContent.Text = "Active Content";
+			this.layoutControlGroupActiveContent.TextVisible = false;
+			this.layoutControlGroupActiveContent.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// layoutControlItemGrid
+			// 
+			this.layoutControlItemGrid.Control = this.gridControl;
+			this.layoutControlItemGrid.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemGrid.Name = "layoutControlItemGrid";
+			this.layoutControlItemGrid.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemGrid.Size = new System.Drawing.Size(526, 406);
+			this.layoutControlItemGrid.Text = "Grid";
+			this.layoutControlItemGrid.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemGrid.TextVisible = false;
+			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 406);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(526, 10);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem3
+			// 
+			this.emptySpaceItem3.AllowHotTrack = false;
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 416);
+			this.emptySpaceItem3.Name = "emptySpaceItem3";
+			this.emptySpaceItem3.Size = new System.Drawing.Size(24, 34);
+			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemTotalInvestment
+			// 
+			this.layoutControlItemTotalInvestment.Control = this.spinEditTotalInvestment;
+			this.layoutControlItemTotalInvestment.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemTotalInvestment.CustomizationFormText = "Total Investment";
+			this.layoutControlItemTotalInvestment.FillControlToClientArea = false;
+			this.layoutControlItemTotalInvestment.Location = new System.Drawing.Point(299, 416);
+			this.layoutControlItemTotalInvestment.Name = "layoutControlItemTotalInvestment";
+			this.layoutControlItemTotalInvestment.Size = new System.Drawing.Size(227, 34);
+			this.layoutControlItemTotalInvestment.Text = "Total Investment:";
+			this.layoutControlItemTotalInvestment.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+			this.layoutControlItemTotalInvestment.TextSize = new System.Drawing.Size(98, 16);
+			this.layoutControlItemTotalInvestment.TextToControlDistance = 5;
+			this.layoutControlItemTotalInvestment.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMonthlyInvestment
+			// 
+			this.layoutControlItemMonthlyInvestment.Control = this.spinEditMonthlyInvestment;
+			this.layoutControlItemMonthlyInvestment.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemMonthlyInvestment.CustomizationFormText = "Monthly Investment";
+			this.layoutControlItemMonthlyInvestment.FillControlToClientArea = false;
+			this.layoutControlItemMonthlyInvestment.Location = new System.Drawing.Point(24, 416);
+			this.layoutControlItemMonthlyInvestment.Name = "layoutControlItemMonthlyInvestment";
+			this.layoutControlItemMonthlyInvestment.Size = new System.Drawing.Size(245, 34);
+			this.layoutControlItemMonthlyInvestment.Text = "Monthly Investment:";
+			this.layoutControlItemMonthlyInvestment.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+			this.layoutControlItemMonthlyInvestment.TextSize = new System.Drawing.Size(116, 16);
+			this.layoutControlItemMonthlyInvestment.TextToControlDistance = 5;
+			this.layoutControlItemMonthlyInvestment.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItemInvestemt
+			// 
+			this.emptySpaceItemInvestemt.AllowHotTrack = false;
+			this.emptySpaceItemInvestemt.Location = new System.Drawing.Point(269, 416);
+			this.emptySpaceItemInvestemt.MaxSize = new System.Drawing.Size(30, 0);
+			this.emptySpaceItemInvestemt.MinSize = new System.Drawing.Size(30, 10);
+			this.emptySpaceItemInvestemt.Name = "emptySpaceItemInvestemt";
+			this.emptySpaceItemInvestemt.Size = new System.Drawing.Size(30, 34);
+			this.emptySpaceItemInvestemt.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItemInvestemt.TextSize = new System.Drawing.Size(0, 0);
+			this.emptySpaceItemInvestemt.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// layoutControlItemDefaultLogo
+			// 
+			this.layoutControlItemDefaultLogo.Control = this.pictureEditDefaultLogo;
+			this.layoutControlItemDefaultLogo.FillControlToClientArea = false;
+			this.layoutControlItemDefaultLogo.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemDefaultLogo.Name = "layoutControlItemDefaultLogo";
+			this.layoutControlItemDefaultLogo.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+			this.layoutControlItemDefaultLogo.Size = new System.Drawing.Size(215, 450);
+			this.layoutControlItemDefaultLogo.Text = "Default Logo";
+			this.layoutControlItemDefaultLogo.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+			this.layoutControlItemDefaultLogo.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemDefaultLogo.TextToControlDistance = 0;
+			this.layoutControlItemDefaultLogo.TextVisible = false;
+			this.layoutControlItemDefaultLogo.TrimClientAreaToControl = false;
+			this.layoutControlItemDefaultLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
 			// BaseDigitalInfoEditControl
 			// 
-			this.Controls.Add(this.pnNoProducts);
-			this.Controls.Add(this.pnContent);
+			this.Controls.Add(this.layoutControl);
 			this.Name = "BaseDigitalInfoEditControl";
 			this.Size = new System.Drawing.Size(761, 470);
-			((System.ComponentModel.ISupportInitialize)(this.pbNoProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).EndInit();
@@ -524,20 +625,25 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxGroup)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxProduct)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit)).EndInit();
-			this.pnContent.ResumeLayout(false);
-			this.pnContentBottom.ResumeLayout(false);
-			this.pnMonthlyInvestment.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyInvestment.Properties)).EndInit();
-			this.pnTotalInvestment.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
+			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalInvestment.Properties)).EndInit();
-			this.pnNoProducts.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupActiveContent)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGrid)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTotalInvestment)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMonthlyInvestment)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemInvestemt)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		protected System.Windows.Forms.PictureBox pbNoProducts;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView advBandedGridView;
@@ -551,17 +657,21 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnInfo;
 		private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnLogo;
-		private System.Windows.Forms.Panel pnContent;
-		private System.Windows.Forms.Panel pnContentBottom;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandMain;
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
-		private System.Windows.Forms.Panel pnMonthlyInvestment;
-		private System.Windows.Forms.Panel pnTotalInvestment;
 		protected DevExpress.XtraEditors.SpinEdit spinEditMonthlyInvestment;
 		protected DevExpress.XtraEditors.SpinEdit spinEditTotalInvestment;
-		private DevExpress.XtraEditors.LabelControl labelControlMonthlyInvestment;
-		private DevExpress.XtraEditors.LabelControl labelControlTotalInvestment;
-		private System.Windows.Forms.Panel pnNoProducts;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		private DevExpress.XtraLayout.LayoutControl layoutControl;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupActiveContent;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemGrid;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTotalInvestment;
+		protected DevExpress.XtraEditors.PictureEdit pictureEditDefaultLogo;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDefaultLogo;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMonthlyInvestment;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemInvestemt;
 	}
 }

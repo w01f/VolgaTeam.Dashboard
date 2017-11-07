@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Helpers;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Solutions.Common.Common;
 using DevComponents.DotNetBar;
+using DevExpress.Skins;
 
 namespace Asa.Solutions.Common.PresentationClasses
 {
-	//public partial class BaseSolutionContainerControl : UserControl
+	//public abstract partial class BaseSolutionContainerControl<TChangeInfo> : UserControl where TChangeInfo : BaseScheduleChangeInfo
 	public abstract partial class BaseSolutionContainerControl<TChangeInfo> : BaseContentOutputControl<TChangeInfo> where TChangeInfo : BaseScheduleChangeInfo
 	{
 		private bool _allowToHandleEvents;
@@ -37,17 +38,15 @@ namespace Asa.Solutions.Common.PresentationClasses
 			Dock = DockStyle.Fill;
 			SolutionToggles = new List<SolutionToggle>();
 			SolutionEditors = new List<ISolutionEditor>();
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-			}
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
+			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
+			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
+			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
+			layoutControlItemSolutionToggles.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSolutionToggles.MaxSize, scaleFactor);
+			layoutControlItemSolutionToggles.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionToggles.MinSize, scaleFactor);
 		}
 
 		#region BaseContentEditControl Override
@@ -96,8 +95,8 @@ namespace Asa.Solutions.Common.PresentationClasses
 				newEditor.LoadData();
 			}
 			var activeEditorControl = (Control)ActiveSolutionEditor;
-			if (!splitContainerControl.Panel1.Controls.Contains(activeEditorControl))
-				splitContainerControl.Panel1.Controls.Add(activeEditorControl);
+			if (!pnContent.Controls.Contains(activeEditorControl))
+				pnContent.Controls.Add(activeEditorControl);
 			ActiveSolutionEditor.ShowEditor();
 			UpdateHomeButton();
 		}
@@ -155,7 +154,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 				solutionToggle.Top = top;
 				solutionToggle.Left = left;
 				solutionToggle.Width = buttonWidth;
-				top += (SolutionToggle.ButtonHeight + SolutionToggle.ButtonPadding);
+				top += (Int32)(SolutionToggle.ButtonHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height) + SolutionToggle.ButtonPadding;
 			}
 		}
 

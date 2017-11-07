@@ -14,7 +14,9 @@ using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
-using DevExpress.XtraTab;
+using DevExpress.Skins;
+using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 {
@@ -39,8 +41,45 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		public HomeControl()
 		{
 			InitializeComponent();
-			xtraTabPageSolution.PageVisible = false;
-			if ((CreateGraphics()).DpiX > 96) { }
+			layoutControlGroupMainSolution.Visibility = LayoutVisibility.Never;
+			tabbedControlGroupSolutionOptions.Visibility = LayoutVisibility.Never;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			layoutControlItemMainScheduleTypeWeekly.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleTypeWeekly.MaxSize, scaleFactor);
+			layoutControlItemMainScheduleTypeWeekly.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleTypeWeekly.MinSize, scaleFactor);
+			layoutControlItemMainScheduleTypeMonthly.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleTypeMonthly.MaxSize, scaleFactor);
+			layoutControlItemMainScheduleTypeMonthly.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleTypeMonthly.MinSize, scaleFactor);
+			layoutControlItemMainScheduleSnapshot.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleSnapshot.MaxSize, scaleFactor);
+			layoutControlItemMainScheduleSnapshot.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleSnapshot.MinSize, scaleFactor);
+			layoutControlItemMainScheduleOptions.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleOptions.MaxSize, scaleFactor);
+			layoutControlItemMainScheduleOptions.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleOptions.MinSize, scaleFactor);
+			layoutControlItemMainScheduleCalendar.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleCalendar.MaxSize, scaleFactor);
+			layoutControlItemMainScheduleCalendar.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleCalendar.MinSize, scaleFactor);
+
+			layoutControlItemScheduleOptionsStations.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsStations.MinSize, scaleFactor);
+
+			layoutControlItemScheduleOptionsDayparts.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDayparts.MinSize, scaleFactor);
+
+			layoutControlItemScheduleOptionsDemosUseDemos.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosUseDemos.MaxSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosUseDemos.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosUseDemos.MinSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosCustom.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosCustom.MaxSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosCustom.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosCustom.MinSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosImport.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImport.MaxSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosImport.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImport.MinSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosImps.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImps.MaxSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosImps.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImps.MinSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosRtg.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosRtg.MaxSize, scaleFactor);
+			layoutControlItemScheduleOptionsDemosRtg.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosRtg.MinSize, scaleFactor);
+
+			layoutControlItemScheduleOptionsCalendarTypeMondayBased.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeMondayBased.MaxSize, scaleFactor);
+			layoutControlItemScheduleOptionsCalendarTypeMondayBased.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeMondayBased.MinSize, scaleFactor);
+			layoutControlItemScheduleOptionsCalendarTypeSundayBased.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeSundayBased.MaxSize, scaleFactor);
+			layoutControlItemScheduleOptionsCalendarTypeSundayBased.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeSundayBased.MinSize, scaleFactor);
+
+			layoutControlItemSolutionOptionsTab1.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionOptionsTab1.MinSize, scaleFactor);
+			layoutControlItemSolutionOptionsTab2.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionOptionsTab2.MinSize, scaleFactor);
+			layoutControlItemSolutionOptionsTab3.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionOptionsTab3.MinSize, scaleFactor);
 		}
 
 		#region BaseContentEditControl Override
@@ -56,10 +95,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			Controller.Instance.HomeBusinessName.EditValueChanged += OnSchedulePropertyValueChanged;
 			Controller.Instance.HomeDecisionMaker.EditValueChanged += OnSchedulePropertyValueChanged;
-			Controller.Instance.HomeFlightDatesStartLogo.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesStartTitle.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesStartValue.Click += OnFlightDatesEditClick;
-			Controller.Instance.HomeFlightDatesEndLogo.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesEndTitle.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesEndValue.Click += OnFlightDatesEditClick;
 
@@ -107,9 +144,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				if (!importedDemos.Any())
 				{
 					buttonXUseDemos.Text = "Show Demo Estimates";
-					pnDemosCustom.Visible = false;
-					pnDemosImport.Visible = false;
-					pnSelectSource.Visible = false;
+					layoutControlItemScheduleOptionsDemosCustom.Visibility = LayoutVisibility.Never;
+					layoutControlItemScheduleOptionsDemosImport.Visibility = LayoutVisibility.Never;
+					layoutControlItemScheduleOptionsDemosSource.Visibility = LayoutVisibility.Never;
 				}
 
 				comboBoxEditSource.Properties.Items.Clear();
@@ -211,8 +248,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				#endregion
 			}
 
-			OnProductsTabPageChanged(this, new TabPageChangedEventArgs(null, xtraTabControlMain.SelectedTabPage));
-
 			UpdateScheduleControls();
 
 			_allowToSave = true;
@@ -301,7 +336,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		public override void GetHelp()
 		{
-			if (xtraTabControlMain.SelectedTabPage == xtraTabPageSchedule)
+			if (tabbedControlGroupMain.SelectedTabPage == layoutControlGroupMainSchedule)
 				BusinessObjects.Instance.HelpManager.OpenHelpLink(
 					String.Format("home{0}", MediaMetaData.Instance.DataType == MediaDataType.TVSchedule ? "tv" : "rd"));
 		}
@@ -319,9 +354,19 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			buttonXWeeklySchedule.Enabled = enableSchedules;
 			buttonXMonthlySchedule.Enabled = enableSchedules;
 			if (enableSchedules)
-				pnSchedule.BringToFront();
+			{
+				layoutControlItemMainScheduleDefaultTitle.Visibility = LayoutVisibility.Never;
+				tabbedControlGroupMain.Visibility = LayoutVisibility.Always;
+				splitterItemMain.Visibility = LayoutVisibility.Always;
+				OnProductsTabPageChanged(this, new LayoutTabPageChangedEventArgs(null, layoutControlGroupMainSchedule));
+			}
 			else
-				pnMediaDefault.BringToFront();
+			{
+				tabbedControlGroupMain.Visibility = LayoutVisibility.Never;
+				splitterItemMain.Visibility = LayoutVisibility.Never;
+				layoutControlItemMainScheduleDefaultTitle.Visibility = LayoutVisibility.Always;
+				OnProductsTabPageChanged(this, new LayoutTabPageChangedEventArgs(null, null));
+			}
 		}
 
 		private void UpdateFlightDates()
@@ -347,10 +392,14 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomePanel.PerformLayout();
 		}
 
-		private void OnProductsTabPageChanged(object sender, TabPageChangedEventArgs e)
+		private void OnProductsTabPageChanged(object sender, LayoutTabPageChangedEventArgs e)
 		{
-			xtraTabControlScheduleOptions.Visible = e.Page == xtraTabPageSchedule;
-			xtraTabControlSolutionOptions.Visible = e.Page == xtraTabPageSolution;
+			tabbedControlGroupScheduleOptions.Visibility = e.Page == layoutControlGroupMainSchedule
+				? LayoutVisibility.Always
+				: LayoutVisibility.Never;
+			tabbedControlGroupSolutionOptions.Visibility = e.Page == layoutControlGroupMainSolution
+				? LayoutVisibility.Always
+				: LayoutVisibility.Never;
 		}
 
 		private void OnRibbonRibbonTabsStateChanged(object sender, EventArgs e)
@@ -358,24 +407,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			buttonXSnapshot.Enabled = Controller.Instance.TabSnapshot.Visible && Controller.Instance.TabSnapshot.Enabled;
 			buttonXOptions.Enabled = Controller.Instance.TabOptions.Visible && Controller.Instance.TabOptions.Enabled;
 			buttonXCalendar.Enabled = Controller.Instance.TabCalendar2.Visible && Controller.Instance.TabCalendar2.Enabled;
-		}
-
-		private void OnDefaultPanelResize(object sender, EventArgs e)
-		{
-			if (pnMediaDefault.Width > pbMediaDefault.Image.Width)
-			{
-				pbMediaDefault.SizeMode = PictureBoxSizeMode.Normal;
-				pbMediaDefault.Dock = DockStyle.Fill;
-			}
-			else
-			{
-				pbMediaDefault.SizeMode = PictureBoxSizeMode.Zoom;
-				pbMediaDefault.Dock = DockStyle.None;
-				pbMediaDefault.Top = 0;
-				pbMediaDefault.Left = 0;
-				pbMediaDefault.Width = pnMediaDefault.Width;
-				pbMediaDefault.Height = (Int32)(pbMediaDefault.Image.Height * ((decimal)pbMediaDefault.Width / pbMediaDefault.Image.Width));
-			}
 		}
 		#endregion
 

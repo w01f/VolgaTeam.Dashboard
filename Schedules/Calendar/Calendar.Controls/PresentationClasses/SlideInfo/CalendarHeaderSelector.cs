@@ -192,7 +192,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 			using (var form = new FormAddFavoriteImage(imageSource.BigImage, imageName, FavoriteImagesManager.Instance.Images.Select(i => i.Name.ToLower())))
 			{
 				form.Text = "Add Image to Favorites";
-				form.laTitle.Text = "Save this Image in your Favorites folder for future presentations";
+				form.simpleLabelItemTitle.Text = "Save this Image in your Favorites folder for future<br>presentations";
 				if (form.ShowDialog() != DialogResult.OK) return;
 				imageName = form.ImageName;
 			}

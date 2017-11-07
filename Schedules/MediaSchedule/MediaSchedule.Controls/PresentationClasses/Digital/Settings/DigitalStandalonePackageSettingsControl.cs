@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Drawing;
+using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Online.Dictionaries;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.Properties;
+using DevExpress.Skins;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 {
-	//public partial class DigitalPackageSettingsControl : UserControl, ISettingsControl
+	//public partial class DigitalStandalonePackageSettingsControl : UserControl, ISettingsControl
 	public partial class DigitalStandalonePackageSettingsControl : XtraTabPage, ISettingsControl
 	{
 		private bool _allowToSave;
@@ -43,33 +45,31 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.Settings
 			buttonXInfo.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsInfoTitle ?? buttonXInfo.Text;
 			buttonXLocation.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsLocationTitle ?? buttonXLocation.Text;
 			buttonXScreenshot.Text = ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsScreenshotTitle ?? buttonXScreenshot.Text;
-			labelControlFormula.Text = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsFormulaTitle) ?
+			simpleLabelItemFormulaTitle.Text = !String.IsNullOrEmpty(ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsFormulaTitle) ?
 				String.Format("<b>{0}</b>", ListManager.Instance.DefaultControlsConfiguration.StandalonePackageSettingsFormulaTitle) :
-				labelControlFormula.Text;
+				simpleLabelItemFormulaTitle.Text;
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-
-				font = new Font(buttonXCategory.Font.FontFamily, buttonXCategory.Font.Size - 2, buttonXCategory.Font.Style);
-				buttonXCategory.Font = font;
-				buttonXGroup.Font = font;
-				buttonXProduct.Font = font;
-				buttonXImpressions.Font = font;
-				buttonXCPM.Font = font;
-				buttonXRate.Font = font;
-				buttonXInvestment.Font = font;
-				buttonXInfo.Font = font;
-				buttonXLocation.Font = font;
-				buttonXScreenshot.Font = font;
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemCategory.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCategory.MaxSize, scaleFactor);
+			layoutControlItemCategory.MinSize = RectangleHelper.ScaleSize(layoutControlItemCategory.MinSize, scaleFactor);
+			layoutControlItemGroup.MaxSize = RectangleHelper.ScaleSize(layoutControlItemGroup.MaxSize, scaleFactor);
+			layoutControlItemGroup.MinSize = RectangleHelper.ScaleSize(layoutControlItemGroup.MinSize, scaleFactor);
+			layoutControlItemProduct.MaxSize = RectangleHelper.ScaleSize(layoutControlItemProduct.MaxSize, scaleFactor);
+			layoutControlItemProduct.MinSize = RectangleHelper.ScaleSize(layoutControlItemProduct.MinSize, scaleFactor);
+			layoutControlItemImpressions.MaxSize = RectangleHelper.ScaleSize(layoutControlItemImpressions.MaxSize, scaleFactor);
+			layoutControlItemImpressions.MinSize = RectangleHelper.ScaleSize(layoutControlItemImpressions.MinSize, scaleFactor);
+			layoutControlItemCPM.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCPM.MaxSize, scaleFactor);
+			layoutControlItemCPM.MinSize = RectangleHelper.ScaleSize(layoutControlItemCPM.MinSize, scaleFactor);
+			layoutControlItemRate.MaxSize = RectangleHelper.ScaleSize(layoutControlItemRate.MaxSize, scaleFactor);
+			layoutControlItemRate.MinSize = RectangleHelper.ScaleSize(layoutControlItemRate.MinSize, scaleFactor);
+			layoutControlItemInvestment.MaxSize = RectangleHelper.ScaleSize(layoutControlItemInvestment.MaxSize, scaleFactor);
+			layoutControlItemInvestment.MinSize = RectangleHelper.ScaleSize(layoutControlItemInvestment.MinSize, scaleFactor);
+			layoutControlItemInfo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemInfo.MaxSize, scaleFactor);
+			layoutControlItemInfo.MinSize = RectangleHelper.ScaleSize(layoutControlItemInfo.MinSize, scaleFactor);
+			layoutControlItemLocation.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLocation.MaxSize, scaleFactor);
+			layoutControlItemLocation.MinSize = RectangleHelper.ScaleSize(layoutControlItemLocation.MinSize, scaleFactor);
+			layoutControlItemScreenshot.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScreenshot.MaxSize, scaleFactor);
+			layoutControlItemScreenshot.MinSize = RectangleHelper.ScaleSize(layoutControlItemScreenshot.MinSize, scaleFactor);
 		}
 
 		public void LoadContentData(DigitalProductsContent content)

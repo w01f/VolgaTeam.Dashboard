@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
+using DevExpress.Skins;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
@@ -35,22 +38,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			InitSettingsControls();
 			InitContentEditorSettingsRelations();
 
-			if (CreateGraphics().DpiX > 96)
-			{
-				var regularFont = xtraTabControlOptions.AppearancePage.Header.Font;
-				var activeFont = xtraTabControlOptions.AppearancePage.HeaderActive.Font;
-				regularFont = new Font(regularFont.FontFamily, regularFont.Size - 2, regularFont.Style);
-				activeFont = new Font(activeFont.FontFamily, activeFont.Size - 2, activeFont.Style);
-				xtraTabControlOptions.AppearancePage.Header.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderActive.Font = activeFont;
-				xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = regularFont;
-				xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = regularFont;
-
-				hyperLinkEditInfoAdvanced.Font = new Font(hyperLinkEditInfoAdvanced.Font.FontFamily,
-					hyperLinkEditInfoAdvanced.Font.Size - 2, hyperLinkEditInfoAdvanced.Font.Style);
-				hyperLinkEditInfoContract.Font = new Font(hyperLinkEditInfoContract.Font.FontFamily,
-					hyperLinkEditInfoContract.Font.Size - 2, hyperLinkEditInfoContract.Font.Style);
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemInfoAdvanced.MaxSize = RectangleHelper.ScaleSize(layoutControlItemInfoAdvanced.MaxSize, scaleFactor);
+			layoutControlItemInfoAdvanced.MinSize = RectangleHelper.ScaleSize(layoutControlItemInfoAdvanced.MinSize, scaleFactor);
+			layoutControlItemInfoContract.MaxSize = RectangleHelper.ScaleSize(layoutControlItemInfoContract.MaxSize, scaleFactor);
+			layoutControlItemInfoContract.MinSize = RectangleHelper.ScaleSize(layoutControlItemInfoContract.MinSize, scaleFactor);
 		}
 
 		private void InitContentEditorSettingsRelations()
@@ -142,15 +134,19 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 				if (selectedTabPage != null && xtraTabControlOptions.TabPages.Contains(selectedTabPage))
 					xtraTabControlOptions.SelectedTabPage = selectedTabPage;
 			}
-			hyperLinkEditInfoAdvanced.Visible =
+			layoutControlItemInfoAdvanced.Visibility =
 				contentRelation != null &&
-				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.AdvancedColumns);
-			hyperLinkEditInfoAdvanced.BringToFront();
-			hyperLinkEditInfoContract.Visible =
+				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.AdvancedColumns) ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlItemInfoContract.Visibility =
 				BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal() &&
 				contentRelation != null &&
-				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.Contract);
-			hyperLinkEditInfoContract.BringToFront();
+				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.Contract) ? LayoutVisibility.Always : LayoutVisibility.Never;
+			emptySpaceItemInfo.Visibility =
+				contentRelation != null &&
+				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.AdvancedColumns) &&
+				contentRelation.SettingsTypes.Contains(ScheduleSettingsType.Contract) &&
+				BusinessObjects.Instance.OutputManager.ContractTemplateFolder.ExistsLocal()
+				? LayoutVisibility.Always : LayoutVisibility.Never;
 			SettingsControlsUpdated?.Invoke(this, EventArgs.Empty);
 		}
 
@@ -187,15 +183,15 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			using (var form = new FormOutputSettings())
 			{
 				form.checkEditEmptySports.Text = String.Format(form.checkEditEmptySports.Text, String.Format("{0}s:", _editedSection.Parent.ScheduleSettings.SelectedSpotType));
-				form.checkEditEmptySports.Enabled = _editedSection.ShowSpots;
-				form.labelControlDescriptionEmptySports.Enabled = _editedSection.ShowSpots;
+				form.layoutControlItemEmptySports.Enabled = _editedSection.ShowSpots;
+				form.simpleLabelItemEmptySports.Enabled = _editedSection.ShowSpots;
 				form.checkEditEmptySports.Checked = !_editedSection.ShowEmptySpots;
 				form.checkEditOutputNoBrackets.Checked = _editedSection.OutputNoBrackets;
 				form.checkEditUseGenericDates.Checked = _editedSection.UseGenericDateColumns;
 				form.checkEditUseDecimalRate.Checked = _editedSection.UseDecimalRates;
 				form.checkEditCloneLineToTheEnd.Checked = _editedSection.CloneLineToTheEnd;
-				form.checkEditOutputLimitQuarters.Enabled = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1;
-				form.labelControlDescriptionOutputLimitQuarters.Enabled = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1;
+				form.layoutControlItemOutputLimitQuarters.Enabled = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1;
+				form.simpleLabelItemOutputLimitQuarters.Enabled = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1;
 				form.checkEditOutputLimitQuarters.Checked = _editedSection.Parent.ScheduleSettings.Quarters.Count > 1 && _editedSection.OutputPerQuater;
 				form.checkEditOutputLimitPeriods.Checked = _editedSection.OutputMaxPeriods.HasValue;
 				form.spinEditOutputLimitPeriods.EditValue = _editedSection.OutputMaxPeriods;
@@ -242,11 +238,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 					ChangedSettingsType = ScheduleSettingsType.Contract
 				});
 			}
-		}
-
-		private void OnBottomPanelResize(object sender, EventArgs e)
-		{
-			hyperLinkEditInfoAdvanced.Width = pnInfoBottom.Width / (hyperLinkEditInfoContract.Visible ? 2 : 1);
 		}
 		#endregion
 	}

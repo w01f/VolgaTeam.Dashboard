@@ -6,6 +6,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 
 namespace Asa.Common.GUI.SlideSettingsEditors
 {
@@ -14,6 +15,11 @@ namespace Asa.Common.GUI.SlideSettingsEditors
 		public FormEditSlideSettings()
 		{
 			InitializeComponent();
+
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		private void FormEditSlideSettings_Load(object sender, System.EventArgs e)

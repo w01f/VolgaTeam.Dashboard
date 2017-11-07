@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ContentEditors.Events;
@@ -19,6 +18,7 @@ using Asa.Media.Controls.PresentationClasses.Slides;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.Solutions;
 using DevComponents.DotNetBar;
+using DevExpress.XtraLayout;
 
 namespace Asa.Media.Controls.BusinessClasses.Managers
 {
@@ -32,8 +32,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public event EventHandler<EventArgs> RibbonTabsStateChanged;
 
 		public RibbonControl ContentRibbon => Controller.Instance.Ribbon;
-		public Panel MainPanel => Controller.Instance.MainPanel;
-		public Panel EmptyPanel => Controller.Instance.EmptyPanel;
+		public LayoutControlItem MainPanel => Controller.Instance.MainPanel;
+		public LayoutControlItem EmptyPanel => Controller.Instance.EmptyPanel;
 
 		public IContentEditControl<MediaScheduleChangeInfo> ActiveEditor
 			=> ActiveControl as IContentEditControl<MediaScheduleChangeInfo>;

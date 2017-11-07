@@ -37,40 +37,42 @@
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.pnData = new System.Windows.Forms.Panel();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
-			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnId = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandCategory = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnCategory = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.bandedGridColumnGroup = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxGroup = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridBandProduct = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnProduct = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.bandedGridColumnLocation = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxLocation = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridBandInfo = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnInfo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-			this.gridBandImpressions = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnImpressions = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditImpressions = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.bandedGridColumnCPM = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditInvestment = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.gridBandInvestment = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnInvestment = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandFormula = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnFormula = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemCheckEditFormula = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
-			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
+			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.emptySpaceItemTop = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemGrid = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemReset = new DevExpress.XtraLayout.LayoutControlItem();
+			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandCategory = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandProduct = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandInfo = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandImpressions = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandInvestment = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandFormula = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			this.pnData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxCategory)).BeginInit();
@@ -81,8 +83,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditImpressions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditInvestment)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditFormula)).BeginInit();
-			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
+			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemTop)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGrid)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemReset)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -100,21 +107,10 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// pnData
-			// 
-			this.pnData.BackColor = System.Drawing.Color.White;
-			this.pnData.Controls.Add(this.gridControl);
-			this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnData.Location = new System.Drawing.Point(0, 36);
-			this.pnData.Name = "pnData";
-			this.pnData.Size = new System.Drawing.Size(1033, 551);
-			this.pnData.TabIndex = 5;
-			// 
 			// gridControl
 			// 
 			this.gridControl.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl.Location = new System.Drawing.Point(0, 0);
+			this.gridControl.Location = new System.Drawing.Point(0, 36);
 			this.gridControl.MainView = this.advBandedGridView;
 			this.gridControl.Name = "gridControl";
 			this.gridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -127,7 +123,7 @@
             this.repositoryItemComboBoxProduct,
             this.repositoryItemComboBoxLocation});
 			this.gridControl.Size = new System.Drawing.Size(1033, 551);
-			this.gridControl.TabIndex = 4;
+			this.gridControl.TabIndex = 2;
 			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridView});
@@ -205,15 +201,6 @@
 			this.advBandedGridView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.OnGridViewShowingEditor);
 			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.OnGridViewCellValueChanged);
 			// 
-			// gridBandId
-			// 
-			this.gridBandId.Caption = "ID";
-			this.gridBandId.Columns.Add(this.bandedGridColumnId);
-			this.gridBandId.Name = "gridBandId";
-			this.gridBandId.OptionsBand.FixedWidth = true;
-			this.gridBandId.VisibleIndex = 0;
-			this.gridBandId.Width = 53;
-			// 
 			// bandedGridColumnId
 			// 
 			this.bandedGridColumnId.AppearanceCell.Options.UseTextOptions = true;
@@ -227,15 +214,6 @@
 			this.bandedGridColumnId.Visible = true;
 			this.bandedGridColumnId.Width = 53;
 			// 
-			// gridBandCategory
-			// 
-			this.gridBandCategory.Caption = "Category";
-			this.gridBandCategory.Columns.Add(this.bandedGridColumnCategory);
-			this.gridBandCategory.Columns.Add(this.bandedGridColumnGroup);
-			this.gridBandCategory.Name = "gridBandCategory";
-			this.gridBandCategory.VisibleIndex = 1;
-			this.gridBandCategory.Width = 171;
-			// 
 			// bandedGridColumnCategory
 			// 
 			this.bandedGridColumnCategory.Caption = "Digital Category";
@@ -243,7 +221,7 @@
 			this.bandedGridColumnCategory.FieldName = "Category";
 			this.bandedGridColumnCategory.Name = "bandedGridColumnCategory";
 			this.bandedGridColumnCategory.Visible = true;
-			this.bandedGridColumnCategory.Width = 171;
+			this.bandedGridColumnCategory.Width = 236;
 			// 
 			// repositoryItemComboBoxCategory
 			// 
@@ -272,7 +250,7 @@
 			this.bandedGridColumnGroup.Name = "bandedGridColumnGroup";
 			this.bandedGridColumnGroup.RowIndex = 1;
 			this.bandedGridColumnGroup.Visible = true;
-			this.bandedGridColumnGroup.Width = 171;
+			this.bandedGridColumnGroup.Width = 236;
 			// 
 			// repositoryItemComboBoxGroup
 			// 
@@ -294,15 +272,6 @@
 			this.repositoryItemComboBoxGroup.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.OnRepositoryItemComboBoxClosed);
 			this.repositoryItemComboBoxGroup.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.OnButtonsRepositoryItemButtonClick);
 			// 
-			// gridBandProduct
-			// 
-			this.gridBandProduct.Caption = "Product";
-			this.gridBandProduct.Columns.Add(this.bandedGridColumnProduct);
-			this.gridBandProduct.Columns.Add(this.bandedGridColumnLocation);
-			this.gridBandProduct.Name = "gridBandProduct";
-			this.gridBandProduct.VisibleIndex = 2;
-			this.gridBandProduct.Width = 171;
-			// 
 			// bandedGridColumnProduct
 			// 
 			this.bandedGridColumnProduct.Caption = "Specific Digital Product";
@@ -310,7 +279,7 @@
 			this.bandedGridColumnProduct.FieldName = "Name";
 			this.bandedGridColumnProduct.Name = "bandedGridColumnProduct";
 			this.bandedGridColumnProduct.Visible = true;
-			this.bandedGridColumnProduct.Width = 171;
+			this.bandedGridColumnProduct.Width = 236;
 			// 
 			// repositoryItemComboBoxProduct
 			// 
@@ -339,7 +308,7 @@
 			this.bandedGridColumnLocation.Name = "bandedGridColumnLocation";
 			this.bandedGridColumnLocation.RowIndex = 1;
 			this.bandedGridColumnLocation.Visible = true;
-			this.bandedGridColumnLocation.Width = 123;
+			this.bandedGridColumnLocation.Width = 236;
 			// 
 			// repositoryItemComboBoxLocation
 			// 
@@ -359,14 +328,6 @@
 			this.repositoryItemComboBoxLocation.Name = "repositoryItemComboBoxLocation";
 			this.repositoryItemComboBoxLocation.NullText = "(campaign)";
 			// 
-			// gridBandInfo
-			// 
-			this.gridBandInfo.Caption = "Info";
-			this.gridBandInfo.Columns.Add(this.bandedGridColumnInfo);
-			this.gridBandInfo.Name = "gridBandInfo";
-			this.gridBandInfo.VisibleIndex = 3;
-			this.gridBandInfo.Width = 128;
-			// 
 			// bandedGridColumnInfo
 			// 
 			this.bandedGridColumnInfo.AppearanceCell.Options.UseTextOptions = true;
@@ -377,7 +338,7 @@
 			this.bandedGridColumnInfo.Name = "bandedGridColumnInfo";
 			this.bandedGridColumnInfo.RowCount = 2;
 			this.bandedGridColumnInfo.Visible = true;
-			this.bandedGridColumnInfo.Width = 128;
+			this.bandedGridColumnInfo.Width = 179;
 			// 
 			// repositoryItemMemoEdit
 			// 
@@ -387,22 +348,13 @@
 			this.repositoryItemMemoEdit.AppearanceFocused.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.repositoryItemMemoEdit.Name = "repositoryItemMemoEdit";
 			// 
-			// gridBandImpressions
-			// 
-			this.gridBandImpressions.Caption = "Impressions";
-			this.gridBandImpressions.Columns.Add(this.bandedGridColumnImpressions);
-			this.gridBandImpressions.Columns.Add(this.bandedGridColumnCPM);
-			this.gridBandImpressions.Name = "gridBandImpressions";
-			this.gridBandImpressions.OptionsBand.FixedWidth = true;
-			this.gridBandImpressions.VisibleIndex = 4;
-			this.gridBandImpressions.Width = 131;
-			// 
 			// bandedGridColumnImpressions
 			// 
 			this.bandedGridColumnImpressions.Caption = "Impressions";
 			this.bandedGridColumnImpressions.ColumnEdit = this.repositoryItemSpinEditImpressions;
 			this.bandedGridColumnImpressions.FieldName = "ImpressionsCalculated";
 			this.bandedGridColumnImpressions.Name = "bandedGridColumnImpressions";
+			this.bandedGridColumnImpressions.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnImpressions.Visible = true;
 			this.bandedGridColumnImpressions.Width = 131;
 			// 
@@ -435,6 +387,7 @@
 			this.bandedGridColumnCPM.ColumnEdit = this.repositoryItemSpinEditInvestment;
 			this.bandedGridColumnCPM.FieldName = "CPMCalculated";
 			this.bandedGridColumnCPM.Name = "bandedGridColumnCPM";
+			this.bandedGridColumnCPM.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnCPM.RowIndex = 1;
 			this.bandedGridColumnCPM.Visible = true;
 			this.bandedGridColumnCPM.Width = 131;
@@ -455,24 +408,15 @@
             0});
 			this.repositoryItemSpinEditInvestment.Name = "repositoryItemSpinEditInvestment";
 			// 
-			// gridBandInvestment
-			// 
-			this.gridBandInvestment.Caption = "Investment";
-			this.gridBandInvestment.Columns.Add(this.bandedGridColumnInvestment);
-			this.gridBandInvestment.Columns.Add(this.bandedGridColumnRate);
-			this.gridBandInvestment.Name = "gridBandInvestment";
-			this.gridBandInvestment.OptionsBand.FixedWidth = true;
-			this.gridBandInvestment.VisibleIndex = 5;
-			this.gridBandInvestment.Width = 131;
-			// 
 			// bandedGridColumnInvestment
 			// 
 			this.bandedGridColumnInvestment.Caption = "Investment";
 			this.bandedGridColumnInvestment.ColumnEdit = this.repositoryItemSpinEditInvestment;
 			this.bandedGridColumnInvestment.FieldName = "InvestmentCalculated";
 			this.bandedGridColumnInvestment.Name = "bandedGridColumnInvestment";
+			this.bandedGridColumnInvestment.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnInvestment.Visible = true;
-			this.bandedGridColumnInvestment.Width = 109;
+			this.bandedGridColumnInvestment.Width = 131;
 			// 
 			// bandedGridColumnRate
 			// 
@@ -480,18 +424,10 @@
 			this.bandedGridColumnRate.ColumnEdit = this.repositoryItemSpinEditInvestment;
 			this.bandedGridColumnRate.FieldName = "Rate";
 			this.bandedGridColumnRate.Name = "bandedGridColumnRate";
+			this.bandedGridColumnRate.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnRate.RowIndex = 1;
 			this.bandedGridColumnRate.Visible = true;
 			this.bandedGridColumnRate.Width = 131;
-			// 
-			// gridBandFormula
-			// 
-			this.gridBandFormula.Caption = "Formula";
-			this.gridBandFormula.Columns.Add(this.bandedGridColumnFormula);
-			this.gridBandFormula.Name = "gridBandFormula";
-			this.gridBandFormula.OptionsBand.FixedWidth = true;
-			this.gridBandFormula.VisibleIndex = 6;
-			this.gridBandFormula.Width = 65;
 			// 
 			// bandedGridColumnFormula
 			// 
@@ -522,20 +458,11 @@
 			this.toolTipController.ShowShadow = false;
 			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.OnTooltipGetActiveObjectInfo);
 			// 
-			// pnHeader
-			// 
-			this.pnHeader.Controls.Add(this.hyperLinkEditReset);
-			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 0);
-			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(1033, 36);
-			this.pnHeader.TabIndex = 3;
-			// 
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(963, 7);
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(2, 7);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.AllowFocused = false;
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -547,22 +474,171 @@
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(1019, 22);
+			this.hyperLinkEditReset.StyleController = this.layoutControl;
 			toolTipItem1.Text = "Reset your Data to original settings";
 			superToolTip1.Items.Add(toolTipItem1);
 			this.hyperLinkEditReset.SuperTip = superToolTip1;
-			this.hyperLinkEditReset.TabIndex = 102;
+			this.hyperLinkEditReset.TabIndex = 0;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.OnResetClick);
+			// 
+			// layoutControl
+			// 
+			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControl.Appearance.Control.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.hyperLinkEditReset);
+			this.layoutControl.Controls.Add(this.gridControl);
+			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControl.ForeColor = System.Drawing.Color.Black;
+			this.layoutControl.Location = new System.Drawing.Point(0, 0);
+			this.layoutControl.Name = "layoutControl";
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControl.Root = this.layoutControlGroupRoot;
+			this.layoutControl.Size = new System.Drawing.Size(1033, 587);
+			this.layoutControl.StyleController = this.styleController;
+			this.layoutControl.TabIndex = 65;
+			this.layoutControl.Text = "layoutControl1";
+			// 
+			// layoutControlGroupRoot
+			// 
+			this.layoutControlGroupRoot.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRoot.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRoot.GroupBordersVisible = false;
+			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItemTop,
+            this.layoutControlItemGrid,
+            this.layoutControlItemReset});
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(1033, 587);
+			this.layoutControlGroupRoot.TextVisible = false;
+			// 
+			// emptySpaceItemTop
+			// 
+			this.emptySpaceItemTop.AllowHotTrack = false;
+			this.emptySpaceItemTop.Location = new System.Drawing.Point(1023, 0);
+			this.emptySpaceItemTop.MaxSize = new System.Drawing.Size(10, 36);
+			this.emptySpaceItemTop.MinSize = new System.Drawing.Size(10, 36);
+			this.emptySpaceItemTop.Name = "emptySpaceItemTop";
+			this.emptySpaceItemTop.Size = new System.Drawing.Size(10, 36);
+			this.emptySpaceItemTop.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItemTop.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemGrid
+			// 
+			this.layoutControlItemGrid.Control = this.gridControl;
+			this.layoutControlItemGrid.Location = new System.Drawing.Point(0, 36);
+			this.layoutControlItemGrid.Name = "layoutControlItemGrid";
+			this.layoutControlItemGrid.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemGrid.Size = new System.Drawing.Size(1033, 551);
+			this.layoutControlItemGrid.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemGrid.TextVisible = false;
+			// 
+			// layoutControlItemReset
+			// 
+			this.layoutControlItemReset.Control = this.hyperLinkEditReset;
+			this.layoutControlItemReset.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
+			this.layoutControlItemReset.FillControlToClientArea = false;
+			this.layoutControlItemReset.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemReset.Name = "layoutControlItemReset";
+			this.layoutControlItemReset.Size = new System.Drawing.Size(1023, 36);
+			this.layoutControlItemReset.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemReset.TextVisible = false;
+			this.layoutControlItemReset.TrimClientAreaToControl = false;
+			// 
+			// gridBandId
+			// 
+			this.gridBandId.Caption = "ID";
+			this.gridBandId.Columns.Add(this.bandedGridColumnId);
+			this.gridBandId.Name = "gridBandId";
+			this.gridBandId.OptionsBand.FixedWidth = true;
+			this.gridBandId.VisibleIndex = 0;
+			this.gridBandId.Width = 53;
+			// 
+			// gridBandCategory
+			// 
+			this.gridBandCategory.Caption = "Category";
+			this.gridBandCategory.Columns.Add(this.bandedGridColumnCategory);
+			this.gridBandCategory.Columns.Add(this.bandedGridColumnGroup);
+			this.gridBandCategory.Name = "gridBandCategory";
+			this.gridBandCategory.VisibleIndex = 1;
+			this.gridBandCategory.Width = 236;
+			// 
+			// gridBandProduct
+			// 
+			this.gridBandProduct.Caption = "Product";
+			this.gridBandProduct.Columns.Add(this.bandedGridColumnProduct);
+			this.gridBandProduct.Columns.Add(this.bandedGridColumnLocation);
+			this.gridBandProduct.Name = "gridBandProduct";
+			this.gridBandProduct.VisibleIndex = 2;
+			this.gridBandProduct.Width = 236;
+			// 
+			// gridBandInfo
+			// 
+			this.gridBandInfo.Caption = "Info";
+			this.gridBandInfo.Columns.Add(this.bandedGridColumnInfo);
+			this.gridBandInfo.Name = "gridBandInfo";
+			this.gridBandInfo.VisibleIndex = 3;
+			this.gridBandInfo.Width = 179;
+			// 
+			// gridBandImpressions
+			// 
+			this.gridBandImpressions.Caption = "Impressions";
+			this.gridBandImpressions.Columns.Add(this.bandedGridColumnImpressions);
+			this.gridBandImpressions.Columns.Add(this.bandedGridColumnCPM);
+			this.gridBandImpressions.Name = "gridBandImpressions";
+			this.gridBandImpressions.OptionsBand.FixedWidth = true;
+			this.gridBandImpressions.VisibleIndex = 4;
+			this.gridBandImpressions.Width = 131;
+			// 
+			// gridBandInvestment
+			// 
+			this.gridBandInvestment.Caption = "Investment";
+			this.gridBandInvestment.Columns.Add(this.bandedGridColumnInvestment);
+			this.gridBandInvestment.Columns.Add(this.bandedGridColumnRate);
+			this.gridBandInvestment.Name = "gridBandInvestment";
+			this.gridBandInvestment.OptionsBand.FixedWidth = true;
+			this.gridBandInvestment.VisibleIndex = 5;
+			this.gridBandInvestment.Width = 131;
+			// 
+			// gridBandFormula
+			// 
+			this.gridBandFormula.Caption = "Formula";
+			this.gridBandFormula.Columns.Add(this.bandedGridColumnFormula);
+			this.gridBandFormula.Name = "gridBandFormula";
+			this.gridBandFormula.OptionsBand.FixedWidth = true;
+			this.gridBandFormula.VisibleIndex = 6;
+			this.gridBandFormula.Width = 65;
 			// 
 			// DigitalProductPackageEditorControl
 			// 
-			this.Appearance.PageClient.BackColor = System.Drawing.Color.White;
-			this.Appearance.PageClient.Options.UseBackColor = true;
-			this.Controls.Add(this.pnData);
-			this.Controls.Add(this.pnHeader);
+			this.Controls.Add(this.layoutControl);
 			this.Size = new System.Drawing.Size(1033, 587);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			this.pnData.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxCategory)).EndInit();
@@ -573,8 +649,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditImpressions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditInvestment)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditFormula)).EndInit();
-			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
+			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemTop)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGrid)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemReset)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -582,8 +663,6 @@
         #endregion
 
 		private DevExpress.XtraEditors.StyleController styleController;
-		private System.Windows.Forms.Panel pnData;
-		protected System.Windows.Forms.Panel pnHeader;
 		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditImpressions;
@@ -607,6 +686,11 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnFormula;
 		private DevExpress.Utils.ToolTipController toolTipController;
 		private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxLocation;
+		private DevExpress.XtraLayout.LayoutControl layoutControl;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemTop;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemGrid;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemReset;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandCategory;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandProduct;

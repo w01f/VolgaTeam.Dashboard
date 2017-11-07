@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Dashboard.Dictionaries;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
@@ -15,6 +17,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public FormQuotes(IList<Quote> quotes)
 		{
 			InitializeComponent();
+
 			checkedListBoxControlQuotes.Items.Clear();
 			foreach (Quote quote in quotes)
 			{
@@ -22,6 +25,11 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				checkedListBoxControlQuotes.Items.Add(quote, quote.Author, CheckState.Unchecked, false);
 				checkedListBoxControlQuotes.Items.Add(quote, "", CheckState.Unchecked, false);
 			}
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			checkedListBoxControlQuotes.ItemHeight = (Int32)(checkedListBoxControlQuotes.ItemHeight * scaleFactor.Height);
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, scaleFactor);
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, scaleFactor);
 		}
 
 		public Quote SelectedQuote
@@ -36,8 +44,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		private void FormQuotes_Load(object sender, EventArgs e)
 		{
-
-			laTitle.Focus();
+			buttonXOK.Focus();
 		}
 
 		private void checkedListBoxControlQuotes_ItemCheck(object sender, ItemCheckEventArgs e)

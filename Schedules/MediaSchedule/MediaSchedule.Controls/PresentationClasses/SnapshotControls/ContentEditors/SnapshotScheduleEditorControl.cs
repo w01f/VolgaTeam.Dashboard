@@ -31,6 +31,7 @@ using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTab;
 
 namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
@@ -58,12 +59,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		{
 			InitializeComponent();
 			Text = MediaMetaData.Instance.DataTypeString;
-			pnNoPrograms.Dock = DockStyle.Fill;
-			gridControl.Dock = DockStyle.Fill;
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laProgramSourceInfo.Font = new Font(laProgramSourceInfo.Font.FontFamily, laProgramSourceInfo.Font.Size - 2, laProgramSourceInfo.Font.Style);
-			}
 		}
 
 		#region Methods
@@ -74,7 +69,25 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			repositoryItemComboBoxTimes.Items.Clear();
 			repositoryItemComboBoxTimes.Items.AddRange(MediaMetaData.Instance.ListManager.Times);
 
-			pbNoPrograms.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNoProgramsLogo ?? pbNoPrograms.Image;
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNoProgramsLogo ?? pictureEditDefaultLogo.Image;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
+			gridBandLogo.Width = (Int32)(gridBandLogo.Width * scaleFactor.Width);
+			gridBandStation.Width = (Int32)(gridBandStation.Width * scaleFactor.Width);
+			bandedGridColumnTime.Width = (Int32)(bandedGridColumnTime.Width * scaleFactor.Width);
+			bandedGridColumnLength.Width = (Int32)(bandedGridColumnLength.Width * scaleFactor.Width);
+			gridBandRate.Width = (Int32)(gridBandRate.Width * scaleFactor.Width);
+			bandedGridColumnRate.Width = (Int32)(bandedGridColumnRate.Width * scaleFactor.Width);
+			gridBandTotals.Width = (Int32)(gridBandTotals.Width * scaleFactor.Width);
+			bandedGridColumnTotalSpots.Width = (Int32)(bandedGridColumnTotalSpots.Width * scaleFactor.Width);
+			bandedGridColumnCost.Width = (Int32)(bandedGridColumnCost.Width * scaleFactor.Width);
+
+			gridColumnProgramSourceStation.Width = (Int32)(gridColumnProgramSourceStation.Width * scaleFactor.Width);
+			gridColumnProgramSourceDaypart.Width = (Int32)(gridColumnProgramSourceDaypart.Width * scaleFactor.Width);
+			gridColumnProgramSourceDay.Width = (Int32)(gridColumnProgramSourceDay.Width * scaleFactor.Width);
+			gridColumnProgramSourceTime.Width = (Int32)(gridColumnProgramSourceTime.Width * scaleFactor.Width);
 		}
 
 		public void LoadData(Snapshot data)
@@ -155,9 +168,15 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		private void UpdateProgramSplash()
 		{
 			if (_data.Programs.Any())
-				gridControl.BringToFront();
+			{
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlItemPrograms.Visibility = LayoutVisibility.Always;
+			}
 			else
-				pnNoPrograms.BringToFront();
+			{
+				layoutControlItemPrograms.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
+			}
 		}
 
 		public void UpdateView()
@@ -304,7 +323,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			pbNoPrograms.Focus();
+			pictureEditDefaultLogo.Focus();
 			advBandedGridView.CloseEditor();
 			advBandedGridView.FocusedColumn = null;
 		}
@@ -376,9 +395,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (String.IsNullOrEmpty(title)) return;
 			var x = viewInfo.ColumnsInfo[column].Bounds.X;
 			var width = viewInfo.ColumnsInfo[column].Bounds.Width;
-			var size = e.Appearance.CalcTextSize(e.Cache, title, 50);
+			var titleWidth = (Int32)(50 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Width);
+			var size = e.Appearance.CalcTextSize(e.Cache, title, titleWidth);
 			var textWidth = Convert.ToInt32(size.Width) + 1;
-			var textRect = new Rectangle(x + width - 50, e.Bounds.Y, textWidth, e.Bounds.Height);
+			var textRect = new Rectangle(x + width - titleWidth, e.Bounds.Y, textWidth, e.Bounds.Height);
 			e.Appearance.DrawString(e.Cache, title, textRect);
 			e.Handled = true;
 		}

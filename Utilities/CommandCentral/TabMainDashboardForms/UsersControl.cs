@@ -91,7 +91,7 @@ namespace CommandCentral.TabMainDashboardForms
 				{
 					connection.Open();
 				}
-				catch
+				catch (Exception ex)
 				{
 					AppManager.Instance.ShowWarning("Couldn't open source file");
 					return;

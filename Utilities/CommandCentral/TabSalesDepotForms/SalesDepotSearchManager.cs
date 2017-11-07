@@ -56,7 +56,7 @@ namespace CommandCentral.TabSalesDepotForms
 			var maxTags = 0;
 			var tagCount = false;
 
-			string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SalesDepotSearchSourceFileName));
+			string connnectionString = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SalesDepotSearchSourceFileName));
 			var connection = new OleDbConnection(connnectionString);
 			try
 			{

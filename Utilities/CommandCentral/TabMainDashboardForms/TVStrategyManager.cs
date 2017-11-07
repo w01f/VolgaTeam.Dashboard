@@ -91,7 +91,7 @@ namespace CommandCentral.TabMainDashboardForms
 			var defaultBroadcastCalendarSettings = new CalendarToggleSettings();
 			var defaultCustomCalendarSettings = new CalendarToggleSettings();
 
-			var connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
+			var connnectionString = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
 			try
 			{
@@ -419,7 +419,7 @@ namespace CommandCentral.TabMainDashboardForms
 
 			//Load TV Programs
 			_programs.Clear();
-			connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=No;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
+			connnectionString = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=No;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			connection = new OleDbConnection(connnectionString);
 			try
 			{

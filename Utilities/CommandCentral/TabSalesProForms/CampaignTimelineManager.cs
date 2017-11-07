@@ -33,7 +33,7 @@ namespace CommandCentral.TabSalesProForms
 			var steps = new List<Step>();
 
 
-			string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, CampaignTimelineSourceFileName));
+			string connnectionString = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, CampaignTimelineSourceFileName));
 			var connection = new OleDbConnection(connnectionString);
 			try
 			{

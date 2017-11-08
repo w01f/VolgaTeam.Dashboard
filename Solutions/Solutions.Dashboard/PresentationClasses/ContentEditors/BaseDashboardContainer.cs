@@ -129,7 +129,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		#endregion
 
 		#region Output Processing
-		protected override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
+		public override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
 		public IList<IDashboardSlide> GetOutputSlides()

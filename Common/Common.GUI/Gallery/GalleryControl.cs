@@ -91,7 +91,7 @@ namespace Asa.Common.GUI.Gallery
 			Copy.Click += Copy_Click;
 		}
 
-		public void ShowControl(ContentOpenEventArgs args = null)
+		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
 			LoadData();

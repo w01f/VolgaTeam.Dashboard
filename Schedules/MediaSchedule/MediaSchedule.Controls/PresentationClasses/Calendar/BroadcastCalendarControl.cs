@@ -101,9 +101,9 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			Controller.Instance.Calendar1Reset.Enabled = enable;
 
 			Controller.Instance.Calendar1PowerPoint.Enabled = enable;
-			Controller.Instance.Calendar1Pdf.Enabled = enable;
+			Controller.Instance.MenuOutputPdfButton.Enabled = enable;
 			Controller.Instance.Calendar1Preview.Enabled = enable;
-			Controller.Instance.Calendar1Email.Enabled = enable;
+			Controller.Instance.MenuEmailButton.Enabled = enable;
 		}
 		#endregion
 	}

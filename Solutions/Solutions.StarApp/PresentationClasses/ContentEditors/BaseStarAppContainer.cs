@@ -128,8 +128,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		#endregion
 
 		#region Output Processing
+		public override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
 
-		protected override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
 		public IList<IStarAppSlide> GetOutputSlides()

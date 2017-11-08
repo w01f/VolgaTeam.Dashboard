@@ -2,6 +2,7 @@
 {
 	public static class ContentIdentifiers
 	{
+		public const string MainMenu = "File";
 		public const string ScheduleSettings = "Home";
 		public const string ProgramSchedule = "Schedule";
 		public const string DigitalProducts = "Digital Slides";

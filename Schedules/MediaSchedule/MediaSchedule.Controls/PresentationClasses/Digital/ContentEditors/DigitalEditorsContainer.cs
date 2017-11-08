@@ -144,6 +144,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			Controller.Instance.DigitalProductThemeBar.RecalcLayout();
 			Controller.Instance.DigitalProductPanel.PerformLayout();
 		}
+
+		protected override void UpdateMenuOutputButtons()
+		{
+			UpdateOutputStatus();
+		}
 		#endregion
 
 		#region Editors Management
@@ -250,9 +255,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.DigitalProductPowerPoint.Enabled =
-			Controller.Instance.DigitalProductPdf.Enabled =
+			Controller.Instance.MenuOutputPdfButton.Enabled =
 			Controller.Instance.DigitalProductPreview.Enabled =
-			Controller.Instance.DigitalProductEmail.Enabled =
+			Controller.Instance.MenuEmailButton.Enabled =
 				EditedContent.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)) ||
 				EditedContent.StandalonePackage.Items.Any();
 		}

@@ -13,12 +13,12 @@ namespace Asa.Common.Core.Helpers
 		{
 			_contentFile = contentFile;
 			TabPageSettings = new List<TabPageConfig>();
-			LoadHelpLinks();
+			LoadConfig();
 		}
 
 		public List<TabPageConfig> TabPageSettings { get; private set; }
 
-		private void LoadHelpLinks()
+		private void LoadConfig()
 		{
 			TabPageSettings.Clear();
 			if (!_contentFile.ExistsLocal()) return;

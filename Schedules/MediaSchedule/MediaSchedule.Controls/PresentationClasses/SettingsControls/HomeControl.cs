@@ -112,6 +112,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		protected override void UpdateEditedContet()
 		{
 			_allowToSave = false;
+
 			if (EditedSettings == null || ContentUpdateInfo.ChangeInfo.WholeScheduleChanged)
 			{
 				EditedSettings?.Dispose();
@@ -251,6 +252,12 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			UpdateScheduleControls();
 
 			_allowToSave = true;
+		}
+
+		public override void ShowControl(ContentOpenEventArgs args = null)
+		{
+			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = false;
+			base.ShowControl(args);
 		}
 
 		protected override void ApplyChanges()

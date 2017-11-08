@@ -72,6 +72,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 
 		public void ShowControl(ContentOpenEventArgs args = null)
 		{
+			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = true;
 			IsActive = true;
 		}
 

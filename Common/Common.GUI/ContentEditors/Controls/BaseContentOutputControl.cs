@@ -10,6 +10,8 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 	{
 		protected ThemeUpdateInfo ThemeUpdateInfo { get; }
 
+		protected abstract void UpdateMenuOutputButtons();
+
 		public abstract void OutputPowerPoint();
 		public abstract void OutputPdf();
 		public abstract void Preview();
@@ -22,6 +24,8 @@ namespace Asa.Common.GUI.ContentEditors.Controls
 
 		public override void ShowControl(ContentOpenEventArgs args = null)
 		{
+			if (!ContentUpdateInfo.NeedToUpdate)
+				UpdateMenuOutputButtons();
 			base.ShowControl(args);
 			if (ThemeUpdateInfo.NeedToUpdate)
 				LoadThemes();

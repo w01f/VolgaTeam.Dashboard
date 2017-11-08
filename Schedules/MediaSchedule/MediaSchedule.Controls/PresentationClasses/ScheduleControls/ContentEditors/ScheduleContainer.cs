@@ -199,6 +199,11 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			Controller.Instance.ProgramScheduleThemeBar.RecalcLayout();
 			Controller.Instance.ProgramSchedulePanel.PerformLayout();
 		}
+
+		protected override void UpdateMenuOutputButtons()
+		{
+			UpdateOutputStatus();
+		}
 		#endregion
 
 		#region Sections Management
@@ -370,9 +375,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.ProgramSchedulePowerPoint.Enabled =
-				Controller.Instance.ProgramSchedulePdf.Enabled =
+				Controller.Instance.MenuOutputPdfButton.Enabled =
 				Controller.Instance.ProgramSchedulePreview.Enabled =
-				Controller.Instance.ProgramScheduleEmail.Enabled = xtraTabControlSections.TabPages
+				Controller.Instance.MenuEmailButton.Enabled = xtraTabControlSections.TabPages
 				.OfType<SectionContainer>()
 				.Any(sectionTabControl => sectionTabControl.ReadyForOutput);
 		}

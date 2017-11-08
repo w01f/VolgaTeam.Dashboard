@@ -19,6 +19,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public HelpManager HelpManager { get; }
 		public OutputManager OutputManager { get; }
 		public TabPageManager TabPageManager { get; private set; }
+		public FormStyleManager FormStyleManager { get; private set; }
 		public ThemeManager ThemeManager { get; }
 		public ActivityManager ActivityManager { get; private set; }
 		public GalleryManager Gallery1Manager { get; private set; }
@@ -57,6 +58,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			SlideManager.Load();
 
 			TabPageManager = new TabPageManager(ResourceManager.Instance.TabsConfigFile);
+			FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();
 			Gallery1Manager = new GalleryManager(ResourceManager.Instance.Gallery1ConfigFile);
 			Gallery2Manager = new GalleryManager(ResourceManager.Instance.Gallery2ConfigFile);

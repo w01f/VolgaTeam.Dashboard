@@ -25,8 +25,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 		protected ISolutionEditor ActiveSolutionEditor => SolutionEditors.FirstOrDefault(e => e.SolutionType == SelectedSolutionToggle?.SolutionInfo.Type);
 
 		public abstract RibbonPanel PanelSolutions { get; }
-		public abstract RibbonBar BarHome { get; }
-		public abstract LabelItem LabelHome { get; }
 		public abstract ButtonItem ButtonPowerPoint { get; }
 		public abstract ButtonItem ButtonPdf { get; }
 		public abstract ButtonItem ButtonPreview { get; }
@@ -98,7 +96,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 			if (!pnContent.Controls.Contains(activeEditorControl))
 				pnContent.Controls.Add(activeEditorControl);
 			ActiveSolutionEditor.ShowEditor();
-			UpdateHomeButton();
 		}
 
 		protected abstract ISolutionEditor CreateSolutionEditor(BaseSolutionInfo solutionInfo);
@@ -109,14 +106,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 			editor.DataChanged += OnEditorDataChanged;
 			editor.SlideTypeChanged += OnSelectedSlideChanged;
 			editor.OutputStatusChanged += OnEditorOutputStatusChanged;
-		}
-
-		private void UpdateHomeButton()
-		{
-			BarHome.Text = ActiveSolutionEditor?.HomeText;
-			LabelHome.Image = ActiveSolutionEditor?.HomeLogo;
-			BarHome.RecalcLayout();
-			PanelSolutions.PerformLayout();
 		}
 
 		private void OnEditorDataChanged(object sender, EventArgs e)

@@ -820,15 +820,6 @@
     <None Include="Resources\HelpSmall.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DeleteProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AddProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CloneProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\DeleteButton.png" />
   </ItemGroup>
   <ItemGroup>
@@ -854,22 +845,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AddProgram.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DeleteProgram.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\DeleteSchedule.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\NewScheduleRibbon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\OpenSchedule.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OpenScheduleRibbon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WeeklySchedule.png" />
@@ -1018,12 +997,6 @@
     <None Include="Resources\QatSaveAs.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\RibbonEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RibbonPdf.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\RibbonPowerPoint.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1071,7 +1044,48 @@
   <ItemGroup>
     <None Include="Resources\DigitalInfoNoItems.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuExit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuHelp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuSave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuSaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonAddItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonCloneItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonDeleteItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonCopyItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonPasteItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationMenuOutputPdf.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

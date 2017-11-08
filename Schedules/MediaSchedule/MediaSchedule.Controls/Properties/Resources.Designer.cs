@@ -72,11 +72,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap AddProduct
+		public static System.Drawing.Bitmap ApplicationMenuEmail
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("AddProduct", resourceCulture);
+				object obj = ResourceManager.GetObject("ApplicationMenuEmail", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -84,11 +84,95 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap AddProgram
+		public static System.Drawing.Bitmap ApplicationMenuExit
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("AddProgram", resourceCulture);
+				object obj = ResourceManager.GetObject("ApplicationMenuExit", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap ApplicationMenuHelp
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("ApplicationMenuHelp", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap ApplicationMenuNew
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("ApplicationMenuNew", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap ApplicationMenuOpen
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("ApplicationMenuOpen", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap ApplicationMenuOutputPdf
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("ApplicationMenuOutputPdf", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap ApplicationMenuSave
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("ApplicationMenuSave", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap ApplicationMenuSaveAs
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("ApplicationMenuSaveAs", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap ApplicationMenuSettings
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("ApplicationMenuSettings", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -113,54 +197,6 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("CalendarOptionsDataSource", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap CloneProduct
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("CloneProduct", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap DeleteButton
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("DeleteButton", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap DeleteProduct
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("DeleteProduct", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap DeleteProgram
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("DeleteProgram", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -372,35 +408,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap NewScheduleRibbon
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("NewScheduleRibbon", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
 		public static System.Drawing.Bitmap OpenSchedule
 		{
 			get
 			{
 				object obj = ResourceManager.GetObject("OpenSchedule", resourceCulture);
-				return ((System.Drawing.Bitmap)(obj));
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized resource of type System.Drawing.Bitmap.
-		/// </summary>
-		public static System.Drawing.Bitmap OpenScheduleRibbon
-		{
-			get
-			{
-				object obj = ResourceManager.GetObject("OpenScheduleRibbon", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -504,11 +516,47 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap RibbonEmail
+		public static System.Drawing.Bitmap RibbonAddItem
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("RibbonEmail", resourceCulture);
+				object obj = ResourceManager.GetObject("RibbonAddItem", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonCloneItem
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonCloneItem", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonCopyItem
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonCopyItem", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonDeleteItem
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonDeleteItem", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -552,11 +600,11 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
-		public static System.Drawing.Bitmap RibbonPdf
+		public static System.Drawing.Bitmap RibbonPasteItem
 		{
 			get
 			{
-				object obj = ResourceManager.GetObject("RibbonPdf", resourceCulture);
+				object obj = ResourceManager.GetObject("RibbonPasteItem", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

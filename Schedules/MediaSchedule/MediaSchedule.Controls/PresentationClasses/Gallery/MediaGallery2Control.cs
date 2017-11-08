@@ -1,4 +1,5 @@
 ﻿using Asa.Common.Core.Helpers;
+using Asa.Common.GUI.ContentEditors.Events;
 using Asa.Common.GUI.Gallery;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -43,6 +44,12 @@ namespace Asa.Media.Controls.PresentationClasses.Gallery
 		public override string Identifier => ContentIdentifiers.Gallery2;
 
 		public override RibbonTabItem TabPage => Controller.Instance.TabGallery2;
+
+		public override void ShowControl(ContentOpenEventArgs args = null)
+		{
+			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = false;
+			base.ShowControl(args);
+		}
 
 		public override void GetHelp()
 		{

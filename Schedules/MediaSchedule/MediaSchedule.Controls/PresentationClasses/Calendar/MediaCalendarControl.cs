@@ -96,6 +96,11 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		#endregion
 
 		#region Output Staff
+		protected override void UpdateMenuOutputButtons()
+		{
+			UpdateDataManagementAndOutputFunctions();
+		}
+
 		protected override void OutpuPowerPointSlides(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;

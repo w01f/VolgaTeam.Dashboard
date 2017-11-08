@@ -23,12 +23,10 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override RibbonTabItem TabPage => Controller.Instance.TabSolutions;
 		protected override SolutionsManager SolutionManager => BusinessObjects.Instance.SolutionsManager;
 		public override RibbonPanel PanelSolutions => Controller.Instance.SolutionsPanel;
-		public override RibbonBar BarHome => Controller.Instance.SolutionsHomeBar;
-		public override LabelItem LabelHome => Controller.Instance.SolutionsHomeLabel;
 		public override ButtonItem ButtonPowerPoint => Controller.Instance.SolutionsPowerPoint;
-		public override ButtonItem ButtonPdf => Controller.Instance.SolutionsPdf;
+		public override ButtonItem ButtonPdf => Controller.Instance.MenuOutputPdfButton;
 		public override ButtonItem ButtonPreview => Controller.Instance.SolutionsPreview;
-		public override ButtonItem ButtonEmail => Controller.Instance.SolutionsEmail;
+		public override ButtonItem ButtonEmail => Controller.Instance.MenuEmailButton;
 
 		protected override void UpdateEditedContet()
 		{
@@ -39,6 +37,8 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				ScheduleSettings.FlightDates,
 				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
+
+			UpdateMenuOutputButtons();
 		}
 
 		protected override ISolutionEditor CreateSolutionEditor(BaseSolutionInfo solutionInfo)
@@ -78,6 +78,11 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		{
 			if (ActiveSolutionEditor == null) return;
 			LoadThemes(ActiveSolutionEditor.SelectedSlideType);
+		}
+
+		protected override void UpdateMenuOutputButtons()
+		{
+			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = ActiveSolutionEditor.ReadyForOutput;
 		}
 
 		public override void GetHelp()

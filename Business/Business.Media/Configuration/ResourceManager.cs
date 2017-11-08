@@ -13,6 +13,7 @@ namespace Asa.Business.Media.Configuration
 		public StorageFile TabsConfigFile { get; private set; }
 		public StorageFile Gallery1ConfigFile { get; private set; }
 		public StorageFile Gallery2ConfigFile { get; private set; }
+		public StorageFile FormStyleConfigFile { get; private set; }
 
 		public StorageFile MediaListsFile { get; private set; }
 
@@ -59,6 +60,15 @@ namespace Asa.Business.Media.Configuration
 				"Gallery2.xml"
 			});
 			await Gallery2ConfigFile.Download();
+
+			FormStyleConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"style.xml"
+			});
+			await FormStyleConfigFile.Download();
 
 			MediaListsFile = new StorageFile(
 				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge(

@@ -13,6 +13,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		string HomeText { get; }
 		Image HomeLogo { get; }
 		string HelpKey { get; }
+		bool ReadyForOutput { get; }
 		void InitControl();
 		void ShowEditor();
 		void ShowHomeSlide();

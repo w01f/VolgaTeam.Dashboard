@@ -38,7 +38,7 @@ namespace Asa.Common.GUI.RateCard
 			Disposed += RateCardControl_Disposed;
 		}
 
-		public void ShowControl(ContentOpenEventArgs args = null)
+		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
 			LoadRateCards();

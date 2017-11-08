@@ -47,7 +47,7 @@ namespace Asa.Common.Core.Objects.Themes
 			{
 				Logo = new Bitmap(bigLogoFile.LocalPath);
 				BrowseLogo = Logo.GetThumbnailImage(Logo.Width * 144 / Logo.Height, 144, null, IntPtr.Zero);
-				var ribbonLogo = Logo.GetThumbnailImage(Logo.Width * 72 / Logo.Height, 72, null, IntPtr.Zero);
+				var ribbonLogo = Logo.GetThumbnailImage(Logo.Width * 64 / Logo.Height, 64, null, IntPtr.Zero);
 				RibbonLogo = ribbonLogo.DrawBorder();
 			}
 

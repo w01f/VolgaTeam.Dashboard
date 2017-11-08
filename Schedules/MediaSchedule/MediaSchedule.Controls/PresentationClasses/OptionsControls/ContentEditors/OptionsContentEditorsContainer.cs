@@ -180,6 +180,11 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			Controller.Instance.OptionsThemeBar.RecalcLayout();
 			Controller.Instance.OptionsPanel.PerformLayout();
 		}
+
+		protected override void UpdateMenuOutputButtons()
+		{
+			UpdateOutputStatus();
+		}
 		#endregion
 
 		#region Editors Management
@@ -379,9 +384,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.OptionsPowerPoint.Enabled =
-				Controller.Instance.OptionsPdf.Enabled =
+				Controller.Instance.MenuOutputPdfButton.Enabled =
 				Controller.Instance.OptionsPreview.Enabled =
-				Controller.Instance.OptionsEmail.Enabled =
+				Controller.Instance.MenuEmailButton.Enabled =
 				xtraTabControlContentEditors.TabPages.OfType<IOutputContainer>().Any(oc => oc.GetOutputGroup().Configurations.Any());
 		}
 

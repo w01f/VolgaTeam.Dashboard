@@ -23,7 +23,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
 	[ToolboxItem(false)]
 	//public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : UserControl
-	public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>, ICalendarControl
+	public abstract partial class BaseCalendarControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo> : BasePartitionEditControl<TPartitionContet, TSchedule, TScheduleSettings, TChangeInfo>, 
+		ICalendarControl
 		where TPartitionContet : BaseSchedulePartitionContent<TSchedule, TScheduleSettings>, ICalendarContent
 		where TSchedule : ISchedule<TScheduleSettings>
 		where TScheduleSettings : IBaseScheduleSettings

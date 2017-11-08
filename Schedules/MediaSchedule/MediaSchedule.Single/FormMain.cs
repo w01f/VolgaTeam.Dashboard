@@ -16,6 +16,7 @@ using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.Properties;
 using Asa.Media.Controls.ToolForms;
 using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Metro.ColorTables;
 using FormStart = Asa.Media.Controls.ToolForms.FormStart;
 
 namespace Asa.Media.Single
@@ -83,6 +84,11 @@ namespace Asa.Media.Single
 				ribbonPanelDigitalSchedule.PerformLayout();
 			}
 
+			if (BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue)
+				styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
+						styleManager.MetroColorParameters.CanvasColor, 
+						BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value);
+
 			Controller.Instance.FormMain = this;
 			Controller.Instance.MainPanel = layoutControlItemMainContainer;
 			Controller.Instance.EmptyPanel = emptySpaceItem;
@@ -108,7 +114,13 @@ namespace Asa.Media.Single
 			Controller.Instance.QatSaveAsButton = buttonItemQatSaveAs;
 			Controller.Instance.QatHelpButton = buttonItemQatHelp;
 
-			Controller.Instance.SlideSettingsButton = buttonItemSlideSettings;
+			Controller.Instance.MenuButtonMain = applicationButtonApplicationMenu;
+			Controller.Instance.MenuSaveButton = buttonItemApplicationMenuSave;
+			Controller.Instance.MenuSaveAsButton = buttonItemApplicationMenuSaveAs;
+			Controller.Instance.MenuOutputPdfButton = buttonItemApplicationMenuOutputPdf;
+			Controller.Instance.MenuEmailButton = buttonItemApplicationMenuEmail;
+			Controller.Instance.MenuSlideSettingsButton = buttonItemApplicationMenuSlideSettings;
+			Controller.Instance.MenuHelpButton = buttonItemApplicationMenuHelp;
 
 			#region Home
 			Controller.Instance.HomePanel = ribbonPanelHome;
@@ -125,12 +137,10 @@ namespace Asa.Media.Single
 
 			#region Program Schedule
 			Controller.Instance.ProgramSchedulePanel = ribbonPanelProgramSchedule;
-			Controller.Instance.ProgramScheduleThemeBar = ribbonBarProgramSchedulePowerPoint;
+			Controller.Instance.ProgramScheduleThemeBar = ribbonBarProgramScheduleTheme;
 			Controller.Instance.ProgramScheduleSpecialButtons = ribbonBarProgramScheduleSpecialButtons;
 			Controller.Instance.ProgramSchedulePreview = buttonItemProgramSchedulePreview;
-			Controller.Instance.ProgramScheduleEmail = buttonItemProgramScheduleEmail;
 			Controller.Instance.ProgramSchedulePowerPoint = buttonItemProgramSchedulePowerPoint;
-			Controller.Instance.ProgramSchedulePdf = buttonItemProgramSchedulePdf;
 			Controller.Instance.ProgramScheduleTheme = buttonItemProgramScheduleTheme;
 			Controller.Instance.ProgramScheduleNew = buttonItemProgramScheduleNew;
 			Controller.Instance.ProgramScheduleProgramAdd = buttonItemProgramScheduleProgramAdd;
@@ -140,12 +150,10 @@ namespace Asa.Media.Single
 			#region Digital Product
 			Controller.Instance.DigitalProductPanel = ribbonPanelDigitalSchedule;
 			Controller.Instance.DigitalProductLogoBar = ribbonBarDigitalScheduleLogo;
-			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalSchedulePowerPoint;
+			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
-			Controller.Instance.DigitalProductPdf = buttonItemDigitalSchedulePdf;
-			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalProductAdd = buttonItemDigitalScheduleProductAdd;
 			Controller.Instance.DigitalProductClone = buttonItemDigitalScheduleProductClone;
@@ -159,9 +167,7 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
 			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
 			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
-			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
 			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
-			Controller.Instance.Calendar1Pdf = buttonItemCalendar1Pdf;
 			Controller.Instance.Calendar1Reset = buttonItemCalendar1Reset;
 			#endregion
 
@@ -172,20 +178,16 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
 			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
 			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
-			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
 			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
-			Controller.Instance.Calendar2Pdf = buttonItemCalendar2Pdf;
 			Controller.Instance.Calendar2Reset = buttonItemCalendar2Reset;
 			#endregion
 
 			#region Snapshot
 			Controller.Instance.SnapshotPanel = ribbonPanelSnapshot;
-			Controller.Instance.SnapshotThemeBar = ribbonBarSnapshotPowerPoint;
+			Controller.Instance.SnapshotThemeBar = ribbonBarSnapshotTheme;
 			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
-			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
-			Controller.Instance.SnapshotPdf = buttonItemSnapshotPdf;
 			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
 			Controller.Instance.SnapshotNew = buttonItemSnapshotNew;
 			Controller.Instance.SnapshotProgramAdd = buttonItemSnapshotProgramAdd;
@@ -194,12 +196,10 @@ namespace Asa.Media.Single
 
 			#region Options
 			Controller.Instance.OptionsPanel = ribbonPanelOptions;
-			Controller.Instance.OptionsThemeBar = ribbonBarOptionsPowerPoint;
+			Controller.Instance.OptionsThemeBar = ribbonBarOptionsTheme;
 			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
 			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
-			Controller.Instance.OptionsEmail = buttonItemOptionsEmail;
 			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
-			Controller.Instance.OptionsPdf = buttonItemOptionsPdf;
 			Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
 			Controller.Instance.OptionsNew = buttonItemOptionsNew;
 			Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
@@ -208,14 +208,10 @@ namespace Asa.Media.Single
 
 			#region Solutions
 			Controller.Instance.SolutionsPanel = ribbonPanelSolutions;
-			Controller.Instance.SolutionsHomeBar = ribbonBarSolutionsHome;
-			Controller.Instance.SolutionsThemeBar = ribbonBarSolutionsPowerPoint;
+			Controller.Instance.SolutionsThemeBar = ribbonBarSolutionsTheme;
 			Controller.Instance.SolutionsSpecialButtons = ribbonBarSolutionsSpecialButtons;
-			Controller.Instance.SolutionsHomeLabel = labelItemSolutionsHome;
 			Controller.Instance.SolutionsPreview = buttonItemSolutionsPreview;
-			Controller.Instance.SolutionsEmail = buttonItemSolutionsEmail;
 			Controller.Instance.SolutionsPowerPoint = buttonItemSolutionsPowerPoint;
-			Controller.Instance.SolutionsPdf = buttonItemSolutionsPdf;
 			Controller.Instance.SolutionsTheme = buttonItemSolutionsTheme;
 			#endregion
 
@@ -225,9 +221,7 @@ namespace Asa.Media.Single
 			Controller.Instance.SlidesSpecialButtons = ribbonBarSlidesSpecialButtons;
 			Controller.Instance.SlidesLogoLabel = labelItemSlideHome;
 			Controller.Instance.SlidesPreview = buttonItemSlidesPreview;
-			Controller.Instance.SlidesEmail = buttonItemSlidesEmail;
 			Controller.Instance.SlidesPowerPoint = buttonItemSlidesPowerPoint;
-			Controller.Instance.SlidesPdf = buttonItemSlidesPdf;
 			#endregion
 
 			#region Gallery 1

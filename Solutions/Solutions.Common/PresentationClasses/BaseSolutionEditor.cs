@@ -50,7 +50,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		#endregion
 
 		#region Output
-		protected abstract bool ReadyForOutput { get; }
+		public abstract bool ReadyForOutput { get; }
 
 		public void RaiseSlideTypeChanged()
 		{

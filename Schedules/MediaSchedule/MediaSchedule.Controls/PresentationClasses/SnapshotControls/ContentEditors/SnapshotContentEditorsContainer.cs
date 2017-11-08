@@ -192,6 +192,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			Controller.Instance.SnapshotThemeBar.RecalcLayout();
 			Controller.Instance.SnapshotPanel.PerformLayout();
 		}
+
+		protected override void UpdateMenuOutputButtons()
+		{
+			UpdateOutputStatus();
+		}
 		#endregion
 
 		#region Editors Management
@@ -381,9 +386,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.SnapshotPowerPoint.Enabled =
-				Controller.Instance.SnapshotPdf.Enabled =
+				Controller.Instance.MenuOutputPdfButton.Enabled =
 				Controller.Instance.SnapshotPreview.Enabled =
-				Controller.Instance.SnapshotEmail.Enabled =
+				Controller.Instance.MenuEmailButton.Enabled =
 				xtraTabControlContentEditors.TabPages.OfType<IOutputContainer>().Any(oc => oc.GetOutputGroup().Configurations.Any());
 		}
 

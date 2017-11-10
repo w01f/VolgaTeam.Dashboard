@@ -29,42 +29,41 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
         /// </summary>
         private void InitializeComponent()
         {
-			this.pnTop = new System.Windows.Forms.Panel();
-			this.labelControlScheduleInfo = new DevExpress.XtraEditors.LabelControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.labelControlFlightDates = new DevExpress.XtraEditors.LabelControl();
-			this.pnEmpty = new System.Windows.Forms.Panel();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
-			this.pictureBoxNoData = new System.Windows.Forms.PictureBox();
-			this.pnTop.SuspendLayout();
+			this.pnData = new System.Windows.Forms.Panel();
+			this.layoutControlData = new DevExpress.XtraLayout.LayoutControl();
+			this.layoutControlGroupRootData = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemScheduleInfo = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.layoutControlItemContainer = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItemSplash = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemFlightDates = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
+			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
+			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemDefaultLogo = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemData = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNoData)).BeginInit();
+			this.pnData.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlData)).BeginInit();
+			this.layoutControlData.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootData)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSplash)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).BeginInit();
+			this.layoutControlMain.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemData)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// pnTop
-			// 
-			this.pnTop.Controls.Add(this.labelControlScheduleInfo);
-			this.pnTop.Controls.Add(this.labelControlFlightDates);
-			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTop.Location = new System.Drawing.Point(270, 0);
-			this.pnTop.Name = "pnTop";
-			this.pnTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.pnTop.Size = new System.Drawing.Size(383, 40);
-			this.pnTop.TabIndex = 1;
-			// 
-			// labelControlScheduleInfo
-			// 
-			this.labelControlScheduleInfo.AllowHtmlString = true;
-			this.labelControlScheduleInfo.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlScheduleInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlScheduleInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlScheduleInfo.Location = new System.Drawing.Point(5, 0);
-			this.labelControlScheduleInfo.Name = "labelControlScheduleInfo";
-			this.labelControlScheduleInfo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlScheduleInfo.Size = new System.Drawing.Size(123, 40);
-			this.labelControlScheduleInfo.StyleController = this.styleController;
-			this.labelControlScheduleInfo.TabIndex = 126;
 			// 
 			// styleController
 			// 
@@ -81,32 +80,11 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// labelControlFlightDates
-			// 
-			this.labelControlFlightDates.AllowHtmlString = true;
-			this.labelControlFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.labelControlFlightDates.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlFlightDates.Dock = System.Windows.Forms.DockStyle.Right;
-			this.labelControlFlightDates.Location = new System.Drawing.Point(128, 0);
-			this.labelControlFlightDates.Name = "labelControlFlightDates";
-			this.labelControlFlightDates.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlFlightDates.Size = new System.Drawing.Size(250, 40);
-			this.labelControlFlightDates.StyleController = this.styleController;
-			this.labelControlFlightDates.TabIndex = 127;
-			// 
-			// pnEmpty
-			// 
-			this.pnEmpty.Location = new System.Drawing.Point(485, 60);
-			this.pnEmpty.Name = "pnEmpty";
-			this.pnEmpty.Size = new System.Drawing.Size(139, 175);
-			this.pnEmpty.TabIndex = 3;
-			// 
 			// pnMain
 			// 
-			this.pnMain.Location = new System.Drawing.Point(485, 287);
+			this.pnMain.Location = new System.Drawing.Point(0, 40);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(139, 175);
+			this.pnMain.Size = new System.Drawing.Size(136, 479);
 			this.pnMain.TabIndex = 4;
 			// 
 			// retractableBarControl
@@ -119,7 +97,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
-			this.retractableBarControl.Content.Size = new System.Drawing.Size(266, 475);
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 475);
 			this.retractableBarControl.Content.TabIndex = 1;
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -130,52 +108,306 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.retractableBarControl.Header.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Header.Location = new System.Drawing.Point(49, 2);
 			this.retractableBarControl.Header.Name = "Header";
-			this.retractableBarControl.Header.Size = new System.Drawing.Size(215, 36);
+			this.retractableBarControl.Header.Size = new System.Drawing.Size(245, 36);
 			this.retractableBarControl.Header.TabIndex = 2;
 			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarControl.Name = "retractableBarControl";
-			this.retractableBarControl.Size = new System.Drawing.Size(270, 519);
+			this.retractableBarControl.Size = new System.Drawing.Size(300, 519);
 			this.retractableBarControl.TabIndex = 6;
 			// 
-			// pictureBoxNoData
+			// pnData
 			// 
-			this.pictureBoxNoData.BackColor = System.Drawing.Color.White;
-			this.pictureBoxNoData.Location = new System.Drawing.Point(322, 279);
-			this.pictureBoxNoData.Name = "pictureBoxNoData";
-			this.pictureBoxNoData.Size = new System.Drawing.Size(111, 183);
-			this.pictureBoxNoData.TabIndex = 5;
-			this.pictureBoxNoData.TabStop = false;
-			this.pictureBoxNoData.Visible = false;
+			this.pnData.Controls.Add(this.layoutControlData);
+			this.pnData.Controls.Add(this.retractableBarControl);
+			this.pnData.Location = new System.Drawing.Point(80, 0);
+			this.pnData.Name = "pnData";
+			this.pnData.Size = new System.Drawing.Size(573, 519);
+			this.pnData.TabIndex = 7;
+			// 
+			// layoutControlData
+			// 
+			this.layoutControlData.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControlData.Appearance.Control.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControlData.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlData.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControlData.BackColor = System.Drawing.Color.White;
+			this.layoutControlData.Controls.Add(this.pnMain);
+			this.layoutControlData.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControlData.ForeColor = System.Drawing.Color.Black;
+			this.layoutControlData.Location = new System.Drawing.Point(300, 0);
+			this.layoutControlData.Name = "layoutControlData";
+			this.layoutControlData.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControlData.Root = this.layoutControlGroupRootData;
+			this.layoutControlData.Size = new System.Drawing.Size(273, 519);
+			this.layoutControlData.StyleController = this.styleController;
+			this.layoutControlData.TabIndex = 65;
+			this.layoutControlData.Text = "layoutControl1";
+			// 
+			// layoutControlGroupRootData
+			// 
+			this.layoutControlGroupRootData.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRootData.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootData.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRootData.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRootData.GroupBordersVisible = false;
+			this.layoutControlGroupRootData.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem1,
+            this.simpleLabelItemScheduleInfo,
+            this.layoutControlItemContainer,
+            this.emptySpaceItemSplash,
+            this.simpleLabelItemFlightDates,
+            this.emptySpaceItem2});
+			this.layoutControlGroupRootData.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootData.Name = "Root";
+			this.layoutControlGroupRootData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootData.Size = new System.Drawing.Size(273, 519);
+			this.layoutControlGroupRootData.TextVisible = false;
+			// 
+			// emptySpaceItem1
+			// 
+			this.emptySpaceItem1.AllowHotTrack = false;
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem1.Name = "emptySpaceItem1";
+			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemScheduleInfo
+			// 
+			this.simpleLabelItemScheduleInfo.AllowHotTrack = false;
+			this.simpleLabelItemScheduleInfo.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemScheduleInfo.Location = new System.Drawing.Point(10, 0);
+			this.simpleLabelItemScheduleInfo.MaxSize = new System.Drawing.Size(0, 40);
+			this.simpleLabelItemScheduleInfo.MinSize = new System.Drawing.Size(1, 40);
+			this.simpleLabelItemScheduleInfo.Name = "simpleLabelItemScheduleInfo";
+			this.simpleLabelItemScheduleInfo.Size = new System.Drawing.Size(125, 40);
+			this.simpleLabelItemScheduleInfo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemScheduleInfo.Text = " ";
+			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(0, 16);
+			// 
+			// layoutControlItemContainer
+			// 
+			this.layoutControlItemContainer.Control = this.pnMain;
+			this.layoutControlItemContainer.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemContainer.FillControlToClientArea = false;
+			this.layoutControlItemContainer.Location = new System.Drawing.Point(0, 40);
+			this.layoutControlItemContainer.Name = "layoutControlItemContainer";
+			this.layoutControlItemContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemContainer.Size = new System.Drawing.Size(136, 479);
+			this.layoutControlItemContainer.Text = "Container";
+			this.layoutControlItemContainer.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemContainer.TextVisible = false;
+			this.layoutControlItemContainer.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItemSplash
+			// 
+			this.emptySpaceItemSplash.AllowHotTrack = false;
+			this.emptySpaceItemSplash.Location = new System.Drawing.Point(136, 40);
+			this.emptySpaceItemSplash.Name = "emptySpaceItemSplash";
+			this.emptySpaceItemSplash.Size = new System.Drawing.Size(137, 479);
+			this.emptySpaceItemSplash.TextSize = new System.Drawing.Size(0, 0);
+			this.emptySpaceItemSplash.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// simpleLabelItemFlightDates
+			// 
+			this.simpleLabelItemFlightDates.AllowHotTrack = false;
+			this.simpleLabelItemFlightDates.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemFlightDates.Location = new System.Drawing.Point(135, 0);
+			this.simpleLabelItemFlightDates.MaxSize = new System.Drawing.Size(0, 40);
+			this.simpleLabelItemFlightDates.MinSize = new System.Drawing.Size(1, 40);
+			this.simpleLabelItemFlightDates.Name = "simpleLabelItemFlightDates";
+			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(128, 40);
+			this.simpleLabelItemFlightDates.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemFlightDates.Text = " ";
+			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(0, 16);
+			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(263, 0);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 40);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlMain
+			// 
+			this.layoutControlMain.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControlMain.Appearance.Control.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControlMain.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlMain.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControlMain.BackColor = System.Drawing.Color.White;
+			this.layoutControlMain.Controls.Add(this.pnData);
+			this.layoutControlMain.Controls.Add(this.pictureEditDefaultLogo);
+			this.layoutControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControlMain.ForeColor = System.Drawing.Color.Black;
+			this.layoutControlMain.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlMain.Name = "layoutControlMain";
+			this.layoutControlMain.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControlMain.Root = this.layoutControlGroupRootMain;
+			this.layoutControlMain.Size = new System.Drawing.Size(653, 519);
+			this.layoutControlMain.StyleController = this.styleController;
+			this.layoutControlMain.TabIndex = 65;
+			this.layoutControlMain.Text = "layoutControl1";
+			// 
+			// pictureEditDefaultLogo
+			// 
+			this.pictureEditDefaultLogo.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(40, 20);
+			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.AllowFocused = false;
+			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
+			this.pictureEditDefaultLogo.Properties.ReadOnly = true;
+			this.pictureEditDefaultLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditDefaultLogo.Properties.ShowMenu = false;
+			this.pictureEditDefaultLogo.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditDefaultLogo.Size = new System.Drawing.Size(20, 479);
+			this.pictureEditDefaultLogo.StyleController = this.layoutControlMain;
+			this.pictureEditDefaultLogo.TabIndex = 4;
+			// 
+			// layoutControlGroupRootMain
+			// 
+			this.layoutControlGroupRootMain.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRootMain.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRootMain.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRootMain.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRootMain.GroupBordersVisible = false;
+			this.layoutControlGroupRootMain.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemDefaultLogo,
+            this.layoutControlItemData});
+			this.layoutControlGroupRootMain.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootMain.Name = "layoutControlGroupRootMain";
+			this.layoutControlGroupRootMain.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootMain.Size = new System.Drawing.Size(653, 519);
+			this.layoutControlGroupRootMain.TextVisible = false;
+			// 
+			// layoutControlItemDefaultLogo
+			// 
+			this.layoutControlItemDefaultLogo.Control = this.pictureEditDefaultLogo;
+			this.layoutControlItemDefaultLogo.FillControlToClientArea = false;
+			this.layoutControlItemDefaultLogo.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemDefaultLogo.Name = "layoutControlItemDefaultLogo";
+			this.layoutControlItemDefaultLogo.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 20, 20, 20);
+			this.layoutControlItemDefaultLogo.Size = new System.Drawing.Size(80, 519);
+			this.layoutControlItemDefaultLogo.Text = "Default Logo";
+			this.layoutControlItemDefaultLogo.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemDefaultLogo.TextVisible = false;
+			this.layoutControlItemDefaultLogo.TrimClientAreaToControl = false;
+			this.layoutControlItemDefaultLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+			// 
+			// layoutControlItemData
+			// 
+			this.layoutControlItemData.Control = this.pnData;
+			this.layoutControlItemData.FillControlToClientArea = false;
+			this.layoutControlItemData.Location = new System.Drawing.Point(80, 0);
+			this.layoutControlItemData.Name = "layoutControlItemData";
+			this.layoutControlItemData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemData.Size = new System.Drawing.Size(573, 519);
+			this.layoutControlItemData.Text = "Data";
+			this.layoutControlItemData.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemData.TextVisible = false;
+			this.layoutControlItemData.TrimClientAreaToControl = false;
+			this.layoutControlItemData.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
 			// BaseCalendarControl
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.pictureBoxNoData);
-			this.Controls.Add(this.pnMain);
-			this.Controls.Add(this.pnTop);
-			this.Controls.Add(this.pnEmpty);
-			this.Controls.Add(this.retractableBarControl);
+			this.Controls.Add(this.layoutControlMain);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "BaseCalendarControl";
 			this.Size = new System.Drawing.Size(653, 519);
-			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNoData)).EndInit();
+			this.pnData.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlData)).EndInit();
+			this.layoutControlData.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootData)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSplash)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).EndInit();
+			this.layoutControlMain.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemData)).EndInit();
 			this.ResumeLayout(false);
 
         }
 
         #endregion
-
-		protected System.Windows.Forms.Panel pnTop;
 		private DevExpress.XtraEditors.StyleController styleController;
-		private System.Windows.Forms.Panel pnEmpty;
 		protected System.Windows.Forms.Panel pnMain;
-		protected System.Windows.Forms.PictureBox pictureBoxNoData;
 		protected Asa.Common.GUI.RetractableBar.RetractableBarLeft retractableBarControl;
-		protected DevExpress.XtraEditors.LabelControl labelControlScheduleInfo;
-		protected DevExpress.XtraEditors.LabelControl labelControlFlightDates;
+		private System.Windows.Forms.Panel pnData;
+		private DevExpress.XtraLayout.LayoutControl layoutControlData;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootData;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemContainer;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemSplash;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+		protected DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemScheduleInfo;
+		protected DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemFlightDates;
+		private DevExpress.XtraLayout.LayoutControl layoutControlMain;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootMain;
+	    protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemDefaultLogo;
+		protected DevExpress.XtraEditors.PictureEdit pictureEditDefaultLogo;
+	    protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemData;
 	}
 }

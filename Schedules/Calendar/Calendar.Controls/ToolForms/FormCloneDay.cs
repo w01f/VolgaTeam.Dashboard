@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 using DevExpress.XtraEditors.Controls;
 using Pabo.Calendar;
 
 namespace Asa.Calendar.Controls.ToolForms
 {
-	public partial class FormCloneDay: MetroForm
+	public partial class FormCloneDay : MetroForm
 	{
 		private readonly CalendarDay _day;
 		private readonly DateTime _flightDateEnd;
@@ -27,10 +27,10 @@ namespace Asa.Calendar.Controls.ToolForms
 			_day = day;
 			_flightDateStart = flightDateStart;
 			_flightDateEnd = flightDateEnd;
-			labelControlFlightDates.Text = string.Format(labelControlFlightDates.Text, string.Format("{0} - {1}", new object[] { _flightDateStart.ToString("M/d/yy"), _flightDateEnd.ToString("M/d/yy") }));
-			laOriginalDate.Text = _day.Date.ToString(@"dddd, MM/dd/yy");
-			checkEditHighlightWeekdays.Text = string.Format(checkEditHighlightWeekdays.Text, _day.Date.ToString("dddd"));
-			buttonXAddAllWeekdays.Text = string.Format(buttonXAddAllWeekdays.Text, _day.Date.ToString("dddd"));
+			simpleLabelItemFlightDates.Text = String.Format(simpleLabelItemFlightDates.Text, String.Format("{0} - {1}", new object[] { _flightDateStart.ToString("M/d/yy"), _flightDateEnd.ToString("M/d/yy") }));
+			simpleLabelItemTitle.Text = String.Format("<size=+14><b>{0:dddd, MM/dd/yy}</b></size>", _day.Date);
+			checkEditHighlightWeekdays.Text = String.Format(checkEditHighlightWeekdays.Text, _day.Date.ToString("dddd"));
+			buttonXAddAllWeekdays.Text = String.Format(buttonXAddAllWeekdays.Text, _day.Date.ToString("dddd"));
 			monthCalendarClone.ActiveMonth.Month = _day.Date.Month;
 			monthCalendarClone.ActiveMonth.Year = _day.Date.Year;
 			monthCalendarClone.Header.TextColor = Color.Black;
@@ -39,18 +39,23 @@ namespace Asa.Calendar.Controls.ToolForms
 
 			UpdateTotals();
 
-			if ((base.CreateGraphics()).DpiX > 96)
-			{
-				laOriginalDate.Font = new Font(laOriginalDate.Font.FontFamily, laOriginalDate.Font.Size - 4, laOriginalDate.Font.Style);
-				labelControlDayTitle.Font = new Font(labelControlDayTitle.Font.FontFamily, labelControlDayTitle.Font.Size - 2, labelControlDayTitle.Font.Style);
-				labelControlFlightDates.Font = new Font(labelControlFlightDates.Font.FontFamily, labelControlFlightDates.Font.Size - 2, labelControlFlightDates.Font.Style);
-				labelControlClonedNumber.Font = new Font(labelControlClonedNumber.Font.FontFamily, labelControlClonedNumber.Font.Size - 2, labelControlClonedNumber.Font.Style);
-				checkEditHighlightWeekdays.Font = new Font(checkEditHighlightWeekdays.Font.FontFamily, checkEditHighlightWeekdays.Font.Size - 2, checkEditHighlightWeekdays.Font.Style);
-				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);
-				buttonXAddAllWeekdays.Font = new Font(buttonXAddAllWeekdays.Font.FontFamily, buttonXAddAllWeekdays.Font.Size - 2, buttonXAddAllWeekdays.Font.Style);
-				buttonXClearAll.Font = new Font(buttonXClearAll.Font.FontFamily, buttonXClearAll.Font.Size - 2, buttonXClearAll.Font.Style);
-				buttonXOK.Font = new Font(buttonXOK.Font.FontFamily, buttonXOK.Font.Size - 2, buttonXOK.Font.Style);
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MaxSize, scaleFactor);
+			layoutControlItemLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MinSize, scaleFactor);
+			layoutControlItemHelp.MaxSize = RectangleHelper.ScaleSize(layoutControlItemHelp.MaxSize, scaleFactor);
+			layoutControlItemHelp.MinSize = RectangleHelper.ScaleSize(layoutControlItemHelp.MinSize, scaleFactor);
+			layoutControlItemSelectAllDays.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSelectAllDays.MaxSize, scaleFactor);
+			layoutControlItemSelectAllDays.MinSize = RectangleHelper.ScaleSize(layoutControlItemSelectAllDays.MinSize, scaleFactor);
+			layoutControlItemSelectFirstDays.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSelectFirstDays.MaxSize, scaleFactor);
+			layoutControlItemSelectFirstDays.MinSize = RectangleHelper.ScaleSize(layoutControlItemSelectFirstDays.MinSize, scaleFactor);
+			layoutControlItemAddAllWeekdays.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAddAllWeekdays.MaxSize, scaleFactor);
+			layoutControlItemAddAllWeekdays.MinSize = RectangleHelper.ScaleSize(layoutControlItemAddAllWeekdays.MinSize, scaleFactor);
+			layoutControlItemClearAll.MaxSize = RectangleHelper.ScaleSize(layoutControlItemClearAll.MaxSize, scaleFactor);
+			layoutControlItemClearAll.MinSize = RectangleHelper.ScaleSize(layoutControlItemClearAll.MinSize, scaleFactor);
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, scaleFactor);
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, scaleFactor);
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, scaleFactor);
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
 		public DateTime[] SelectedDates
@@ -67,7 +72,7 @@ namespace Asa.Calendar.Controls.ToolForms
 
 		private void UpdateTotals()
 		{
-			labelControlClonedNumber.Text = string.Format("Cloned Days: <b>{0}</b>", _selectedDates.Count);
+			simpleLabelItemClonedNumber.Text = string.Format("<size=+2>Cloned Days: <b>{0}</b></size>", _selectedDates.Count);
 		}
 
 		private void AddSelectedDate(DateTime selectedDate)
@@ -80,13 +85,13 @@ namespace Asa.Calendar.Controls.ToolForms
 			UpdateSelectedDates();
 		}
 
-		private void repositoryItemButtonEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+		private void OnDayGridButtonEditButtonClick(object sender, ButtonPressedEventArgs e)
 		{
 			_selectedDates.RemoveAt(gridViewDays.GetDataSourceRowIndex(gridViewDays.FocusedRowHandle));
 			UpdateSelectedDates();
 		}
 
-		private void monthCalendarClone_DayQueryInfo(object sender, DayQueryInfoEventArgs e)
+		private void OnCloneCalendarDayQueryInfo(object sender, DayQueryInfoEventArgs e)
 		{
 			if (_selectedDates.Select(x => x.Date).Contains(e.Date))
 			{
@@ -116,13 +121,13 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void buttonXClearAll_Click(object sender, EventArgs e)
+		private void OnClearAllClick(object sender, EventArgs e)
 		{
 			_selectedDates.Clear();
 			UpdateSelectedDates();
 		}
 
-		private void buttonXAddAllWeekdays_Click(object sender, EventArgs e)
+		private void OnAddAllWeekdaysClick(object sender, EventArgs e)
 		{
 			DateTime startDate = _flightDateStart;
 			while (!startDate.DayOfWeek.Equals(_day.Date.DayOfWeek))
@@ -135,7 +140,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void buttonXSelectAllDays_Click(object sender, EventArgs e)
+		private void OnSelectAllDaysClick(object sender, EventArgs e)
 		{
 			DateTime startDate = _flightDateStart;
 			while (startDate <= _flightDateEnd)
@@ -146,7 +151,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void buttonXSelectFirstDays_Click(object sender, EventArgs e)
+		private void OnSelectFirstDaysClick(object sender, EventArgs e)
 		{
 			DateTime startDate = _flightDateStart;
 			while (startDate <= _flightDateEnd)
@@ -157,12 +162,12 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void checkEditHighlightWeekdays_CheckedChanged(object sender, EventArgs e)
+		private void OnHighlightWeekdaysCheckedChanged(object sender, EventArgs e)
 		{
 			monthCalendarClone.Refresh();
 		}
 
-		private void monthCalendarClone_DayClick(object sender, DayClickEventArgs e)
+		private void OnCloneCalendarDayClick(object sender, DayClickEventArgs e)
 		{
 			DateTime temp;
 			if (DateTime.TryParse(e.Date, out temp))
@@ -174,28 +179,9 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void pbHelp_Click(object sender, EventArgs e)
+		private void OnHelpButtonClick(object sender, EventArgs e)
 		{
 			OnHelpClick?.Invoke();
 		}
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
 	}
 }

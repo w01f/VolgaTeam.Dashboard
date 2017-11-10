@@ -18,6 +18,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 	[ToolboxItem(false)]
 	public partial class DayControl : UserControl
 	{
+		public const int HeaderHeight = 25;
+
 		private bool _allowToSave;
 		private bool _isCopySource;
 		private bool _isSelected;
@@ -55,6 +57,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 			memoEditSimpleComment.EnableSelectAll();
 			toolStripMenuItemAddNote.Visible = toolStripMenuItemPasteNote.Visible = toolStripSeparator1.Visible = Day.Parent.AllowCustomNotes;
+
+			laSmallDayCaption.Height = Math.Max(HeaderHeight, (Int32)(HeaderHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height * 0.85f));
 		}
 
 		#region Common Methods
@@ -157,7 +161,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			_isSelected = select;
 			Padding = new Padding(select ? 5 : 1);
-			pnCalendarNoteArea.Height = select ? 35 : 40;
+			pnCalendarNoteArea.Height = Math.Max(CalendarNoteControl.NoteHeight, (Int32)(CalendarNoteControl.NoteHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height * 0.85f) + (select ? 0 : 5));
 			RefreshColor();
 			Refresh();
 		}

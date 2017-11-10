@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Calendar.Configuration;
@@ -18,6 +17,9 @@ using DevExpress.XtraEditors.Controls;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
 using Asa.Calendar.Controls.PresentationClasses.Views;
 using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
+using Asa.Common.Core.Helpers;
+using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 {
@@ -57,39 +59,31 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		{
 			base.InitControl();
 
-			pnEmpty.Dock = DockStyle.Fill;
-			pnMain.Dock = DockStyle.Fill;
-			pictureBoxNoData.Dock = DockStyle.Fill;
-
 			CalendarView = new MonthViewControl(this);
 			CalendarView.DataSaved += OnDataChanged;
 			pnMain.Controls.Add((Control)CalendarView);
-
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2,
-					styleController.Appearance.Font.Style);
-				styleController.Appearance.Font = font;
-				styleController.AppearanceDisabled.Font = font;
-				styleController.AppearanceDropDown.Font = font;
-				styleController.AppearanceDropDownHeader.Font = font;
-				styleController.AppearanceFocused.Font = font;
-				styleController.AppearanceReadOnly.Font = font;
-			}
 
 			MonthList.SelectedIndexChanged += OnMonthListSelectedIndexChanged;
 			CopyButton.Click += OnCalendarCopyClick;
 			PasteButton.Click += OnCalendarPasteClick;
 			CloneButton.Click += OnCalendarCloneClick;
+
+			retractableBarControl.ContentSize = retractableBarControl.Width;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
+			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
+			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
+			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
 		}
 
 		protected override void UpdateEditedContet()
 		{
 			AllowToSave = false;
 
-			labelControlScheduleInfo.Text = String.Format("<color=gray>{0}</color>",CalendarContent.Settings.BusinessName);
+			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>",CalendarContent.Settings.BusinessName);
 
-			labelControlFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
+			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
 				CalendarContent.Settings.FlightDates,
 				String.Format("{0} {1}s", CalendarContent.Settings.TotalWeeks, "week"));
 
@@ -131,8 +125,16 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		#region Common Methods
 		public void Splash(bool show)
 		{
-			if (show) { pnEmpty.BringToFront(); }
-			else { pnMain.BringToFront(); }
+			if (show)
+			{
+				layoutControlItemContainer.Visibility = LayoutVisibility.Never;
+				emptySpaceItemSplash.Visibility = LayoutVisibility.Always;
+			}
+			else
+			{
+				emptySpaceItemSplash.Visibility = LayoutVisibility.Never;
+				layoutControlItemContainer.Visibility = LayoutVisibility.Always;
+			}
 			Ribbon.Enabled = !show;
 			SlideInfo.ContainedControl.Enabled = !show;
 		}

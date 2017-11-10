@@ -8,6 +8,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
@@ -90,14 +91,21 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		{
 			var enable = IsOutputEnabled;
 
-			retractableBarControl.Visible = enable;
 			MonthList.Enabled = enable;
-			pnTop.Visible = enable;
-			pnMain.Visible = enable;
-			pictureBoxNoData.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarNoDataLogo ?? Properties.Resources.CalendarDisabled;
-			pictureBoxNoData.Visible = !enable;
-			pictureBoxNoData.BringToFront();
 
+			if (enable)
+			{
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+				layoutControlItemData.Visibility = LayoutVisibility.Always;
+			}
+			else
+			{
+				layoutControlItemData.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
+			}
+
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarNoDataLogo ?? Properties.Resources.CalendarDisabled;
+			
 			Controller.Instance.Calendar1Reset.Enabled = enable;
 
 			Controller.Instance.Calendar1PowerPoint.Enabled = enable;

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 
 namespace Asa.Calendar.Controls.ToolForms
 {
@@ -12,17 +14,22 @@ namespace Asa.Calendar.Controls.ToolForms
 			InitializeComponent();
 			NoteColor = Color.LemonChiffon;
 			ApplyForAll = false;
+
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		public Color NoteColor { get; set; }
 		public bool ApplyForAll { get; set; }
 
-		private void FormNoteColor_Load(object sender, EventArgs e)
+		private void OnFormLoad(object sender, EventArgs e)
 		{
 			pnSelectedColor.BackColor = NoteColor;
 		}
 
-		private void pnSelectedColor_DoubleClick(object sender, EventArgs e)
+		private void OnSelectedColorPanelDoubleClick(object sender, EventArgs e)
 		{
 			using (var colorDialog = new ColorDialog())
 			{
@@ -40,9 +47,9 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void checkBoxApplyForAll_CheckedChanged(object sender, EventArgs e)
+		private void OnApplyForAllCheckedChanged(object sender, EventArgs e)
 		{
-			ApplyForAll = checkBoxApplyForAll.Checked;
+			ApplyForAll = checkEditApplyForAll.Checked;
 		}
 	}
 }

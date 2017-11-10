@@ -239,14 +239,13 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			// memoEditSimpleComment
 			// 
 			this.memoEditSimpleComment.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.memoEditSimpleComment.Location = new System.Drawing.Point(3, 60);
+			this.memoEditSimpleComment.Location = new System.Drawing.Point(3, 59);
 			this.memoEditSimpleComment.Name = "memoEditSimpleComment";
 			this.memoEditSimpleComment.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditSimpleComment.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditSimpleComment.Size = new System.Drawing.Size(291, 122);
+			this.memoEditSimpleComment.Size = new System.Drawing.Size(291, 123);
 			this.memoEditSimpleComment.StyleController = this.styleController;
 			this.memoEditSimpleComment.TabIndex = 2;
-			this.memoEditSimpleComment.UseOptimizedRendering = true;
 			this.memoEditSimpleComment.Visible = false;
 			this.memoEditSimpleComment.EditValueChanged += new System.EventHandler(this.memoEditSimpleComment_EditValueChanged);
 			this.memoEditSimpleComment.Leave += new System.EventHandler(this.memoEditSimpleComment_Leave);
@@ -273,7 +272,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.labelControlData.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
 			this.labelControlData.ContextMenuStrip = this.contextMenuStrip;
 			this.labelControlData.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelControlData.Location = new System.Drawing.Point(3, 44);
+			this.labelControlData.Location = new System.Drawing.Point(3, 43);
 			this.labelControlData.Name = "labelControlData";
 			this.labelControlData.Size = new System.Drawing.Size(291, 16);
 			this.labelControlData.StyleController = this.styleController;
@@ -289,7 +288,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pbLogo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pbLogo.Location = new System.Drawing.Point(3, 3);
 			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(291, 41);
+			this.pbLogo.Size = new System.Drawing.Size(291, 40);
 			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbLogo.TabIndex = 1;
 			this.pbLogo.TabStop = false;
@@ -318,6 +317,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			// DayControl
 			// 
 			this.AllowDrop = true;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.DarkGray;
 			this.Controls.Add(this.pnData);

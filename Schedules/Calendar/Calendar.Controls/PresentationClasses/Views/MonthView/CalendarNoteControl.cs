@@ -15,6 +15,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 	[IntendForClass(typeof(CommonCalendarNote))]
 	public partial class CalendarNoteControl : UserControl
 	{
+		public const int NoteHeight = 35;
+
+
 		private readonly bool _allowToSave;
 
 		public CalendarNote CalendarNote { get; private set; }
@@ -28,6 +31,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		public CalendarNoteControl(CalendarNote calendarNote)
 		{
 			InitializeComponent();
+
+			Height = Math.Max(NoteHeight, (Int32)(NoteHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height * 0.85f));
+
 			CalendarNote = calendarNote;
 
 			_allowToSave = false;
@@ -88,7 +94,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		private void memoEdit_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			var newText = memoEdit.EditValue != null ? memoEdit.EditValue.ToString() : null;
+			var newText = memoEdit.EditValue?.ToString();
 			if (CalendarNote.Note.SimpleText != newText)
 				CalendarNote.Note = !String.IsNullOrEmpty(newText) ? new TextItem(newText, false) : null;
 			NoteChanged?.Invoke(this, new EventArgs());
@@ -96,11 +102,11 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void memoEdit_EditValueChanging(object sender, ChangingEventArgs e)
 		{
-			textBox.Text = e.NewValue != null ? e.NewValue.ToString() : string.Empty;
+			textBox.Text = e.NewValue?.ToString() ?? string.Empty;
 			if (!_allowToSave) return;
 			var linesCount = WinAPIHelper.SendMessage(textBox.Handle, 0x00BA, IntPtr.Zero, IntPtr.Zero);
 			if (linesCount <= 2) return;
-			textBox.Text = e.OldValue != null ? e.OldValue.ToString() : string.Empty;
+			textBox.Text = e.OldValue?.ToString() ?? string.Empty;
 			e.Cancel = true;
 		}
 

@@ -4,6 +4,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
@@ -61,11 +62,10 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		{
 			var enable = IsOutputEnabled;
 
-			retractableBarControl.Visible = true;
 			MonthList.Enabled = true;
-			pnTop.Visible = true;
-			pnMain.Visible = true;
-			pictureBoxNoData.Visible = false;
+
+			layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+			layoutControlItemData.Visibility = LayoutVisibility.Always;
 
 			Controller.Instance.Calendar2Reset.Enabled = enable;
 

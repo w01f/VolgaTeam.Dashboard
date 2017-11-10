@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
-	public partial class WeekControl: UserControl
+	public partial class WeekControl : UserControl
 	{
 		private readonly List<DayControl> _dayControls = new List<DayControl>();
 		private WeekEmptySpaceControl _footer;
@@ -126,7 +127,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				var finishDay = _dayControls.FirstOrDefault(x => x.Day.Date.Equals(note.CalendarNote.FinishDay));
 				if (startDay == null || finishDay == null) continue;
 				note.Left = startDay.Left + 5;
-				note.Top = startDay.Top + 25;
+				note.Top = startDay.Top + Math.Max(DayControl.HeaderHeight, (Int32)(DayControl.HeaderHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height * 0.85f));
 				note.Width = (finishDay.Right - startDay.Left) - 10;
 				note.BringToFront();
 			}

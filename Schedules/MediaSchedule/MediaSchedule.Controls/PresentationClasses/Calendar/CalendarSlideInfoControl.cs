@@ -11,6 +11,7 @@ using Asa.Common.Core.Objects.Images;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.RetractableBar;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using DevExpress.Skins;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
@@ -35,7 +36,6 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
-			xtraTabPageData.PageVisible = false;
 
 			favoriteImagesControl.Init();
 
@@ -56,7 +56,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			#endregion
 
 			#region Logo
-			xtraTabPageStyleLogo.PageEnabled = MediaMetaData.Instance.ListManager.Images.Any();
+			layoutControlGroupHeader.PageEnabled = MediaMetaData.Instance.ListManager.Images.Any();
 			checkEditShowLogo.CheckedChanged += OnPropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += OnPropertiesChanged;
 			calendarHeaderSelector.SelectionChanged += OnPropertiesChanged;
@@ -67,6 +67,10 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 			BusinessObjects.Instance.OutputManager.ColorCollectionChanged += (o, e) => InitColorControls();
 			BusinessObjects.Instance.OutputManager.SelectedColorChanged += (o, e) => InitColorControls();
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemAddComment.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAddComment.MaxSize, scaleFactor);
+			layoutControlItemAddComment.MinSize = RectangleHelper.ScaleSize(layoutControlItemAddComment.MinSize, scaleFactor);
 		}
 
 		public void OnPropertyChanged(EventArgs e)
@@ -88,19 +92,28 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				{
 					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
 					Tooltip = "Open My Gallery",
-					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageFavorites; }
+					Action = () =>
+					{
+						tabbedControlGroup.SelectedTabPage = layoutControlGroupFavorites;
+					}
 				},
 				new ButtonInfo
 				{
 					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
 					Tooltip = "Open Slide Style",
-					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageStyle; }
+					Action = () =>
+					{
+						tabbedControlGroup.SelectedTabPage = layoutControlGroupStyle;
+					}
 				},
 				new ButtonInfo
 				{
 					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
 					Tooltip = "Open Comments",
-					Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageComments; }
+					Action = () =>
+					{
+						tabbedControlGroup.SelectedTabPage = layoutControlGroupComments;
+					}
 				},
 			};
 		}
@@ -112,7 +125,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 			var isFirstMonth = Month.Parent.Months.OrderBy(m => m.DaysRangeBegin).FirstOrDefault() == Month;
 			MonthTitle = "Slide Info - " + Month.Date.ToString("MMMM yyyy");
-			laCommentMonth.Text = Month.Date.ToString("MMMM, yyyy");
+			simpleLabelItemCommentMonth.Text = Month.Date.ToString("MMMM, yyyy");
 
 			#region Comment
 			buttonXComment.Checked = Month.OutputData.ShowCustomComment;

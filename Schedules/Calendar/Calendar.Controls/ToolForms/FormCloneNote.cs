@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 using DevExpress.XtraEditors.Controls;
 using Pabo.Calendar;
 using DateRange = Asa.Business.Common.Entities.NonPersistent.Common.DateRange;
@@ -29,24 +30,25 @@ namespace Asa.Calendar.Controls.ToolForms
 			_sourceNote = sourceNote;
 			_flightDateStart = flightDateStart;
 			_flightDateEnd = flightDateEnd;
-			labelControlFlightDates.Text = string.Format(labelControlFlightDates.Text, string.Format("{0} - {1}", new object[] { _flightDateStart.ToString("M/d/yy"), _flightDateEnd.ToString("M/d/yy") }));
-			laClonedNote.Text = _sourceNote.Note.SimpleText;
+			simpleLabelItemFlightDates.Text = String.Format(simpleLabelItemFlightDates.Text, String.Format("{0} - {1}", new object[] { _flightDateStart.ToString("M/d/yy"), _flightDateEnd.ToString("M/d/yy") }));
+			simpleLabelItemClonedNote.Text = _sourceNote.Note.SimpleText;
 			monthCalendarClone.ActiveMonth.Month = _sourceNote.StartDay.Month;
 			monthCalendarClone.ActiveMonth.Year = _sourceNote.StartDay.Year;
 			monthCalendarClone.Header.TextColor = Color.Black;
 
 			UpdateTotals();
 
-			if ((base.CreateGraphics()).DpiX > 96)
-			{
-				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 4, laTitle.Font.Style);
-				labelControlTooltip.Font = new Font(labelControlTooltip.Font.FontFamily, labelControlTooltip.Font.Size - 2, labelControlTooltip.Font.Style);
-				labelControlFlightDates.Font = new Font(labelControlFlightDates.Font.FontFamily, labelControlFlightDates.Font.Size - 2, labelControlFlightDates.Font.Style);
-				labelControlClonedNumber.Font = new Font(labelControlClonedNumber.Font.FontFamily, labelControlClonedNumber.Font.Size - 2, labelControlClonedNumber.Font.Style);
-				buttonXCancel.Font = new Font(buttonXCancel.Font.FontFamily, buttonXCancel.Font.Size - 2, buttonXCancel.Font.Style);
-				buttonXClearAll.Font = new Font(buttonXClearAll.Font.FontFamily, buttonXClearAll.Font.Size - 2, buttonXClearAll.Font.Style);
-				buttonXOK.Font = new Font(buttonXOK.Font.FontFamily, buttonXOK.Font.Size - 2, buttonXOK.Font.Style);
-			}
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MaxSize, scaleFactor);
+			layoutControlItemLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogo.MinSize, scaleFactor);
+			layoutControlItemHelp.MaxSize = RectangleHelper.ScaleSize(layoutControlItemHelp.MaxSize, scaleFactor);
+			layoutControlItemHelp.MinSize = RectangleHelper.ScaleSize(layoutControlItemHelp.MinSize, scaleFactor);
+			layoutControlItemClearAll.MaxSize = RectangleHelper.ScaleSize(layoutControlItemClearAll.MaxSize, scaleFactor);
+			layoutControlItemClearAll.MinSize = RectangleHelper.ScaleSize(layoutControlItemClearAll.MinSize, scaleFactor);
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, scaleFactor);
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, scaleFactor);
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, scaleFactor);
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
 		public DateRange[] SelectedRanges => _selectedRanges.ToArray();
@@ -60,16 +62,16 @@ namespace Asa.Calendar.Controls.ToolForms
 
 		private void UpdateTotals()
 		{
-			labelControlClonedNumber.Text = string.Format("Cloned Notes: <b>{0}</b>", _selectedRanges.Count.ToString());
+			simpleLabelItemClonedNumber.Text = string.Format("<size=+2>Cloned Notes: <b>{0}</b></size>", _selectedRanges.Count.ToString());
 		}
 
-		private void repositoryItemButtonEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+		private void OnDayGridButtonEditButtonClick(object sender, ButtonPressedEventArgs e)
 		{
 			_selectedRanges.RemoveAt(gridViewDays.GetDataSourceRowIndex(gridViewDays.FocusedRowHandle));
 			UpdateSelectedDates();
 		}
 
-		private void monthCalendarClone_DayQueryInfo(object sender, DayQueryInfoEventArgs e)
+		private void OnCloneCalendarDayQueryInfo(object sender, DayQueryInfoEventArgs e)
 		{
 			if (_sourceNote.StartDay <= e.Date && _sourceNote.FinishDay >= e.Date)
 			{
@@ -101,13 +103,13 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void buttonXClearAll_Click(object sender, EventArgs e)
+		private void OnClearAllClick(object sender, EventArgs e)
 		{
 			_selectedRanges.Clear();
 			UpdateSelectedDates();
 		}
 
-		private void monthCalendarClone_DayClick(object sender, DayClickEventArgs e)
+		private void OnCloneCalendarDayClick(object sender, DayClickEventArgs e)
 		{
 			if ((ModifierKeys & Keys.Shift) == Keys.Shift || (ModifierKeys & Keys.Control) == Keys.Control)
 			{
@@ -120,10 +122,10 @@ namespace Asa.Calendar.Controls.ToolForms
 						{
 							if (_selectedDate.HasValue)
 							{
-								if (_selectedRanges.Where(x => (x.StartDate <= temp && x.FinishDate >= temp)).Count() == 0)
+								if (!_selectedRanges.Any(x => x.StartDate <= temp && x.FinishDate >= temp))
 								{
-									DateTime startDate = _selectedDate.Value < temp ? _selectedDate.Value : temp;
-									DateTime finishDate = _selectedDate.Value > temp ? _selectedDate.Value : temp;
+									var startDate = _selectedDate.Value < temp ? _selectedDate.Value : temp;
+									var finishDate = _selectedDate.Value > temp ? _selectedDate.Value : temp;
 									if (startDate < _sourceNote.StartDay && finishDate > _sourceNote.FinishDay)
 										startDate = _sourceNote.FinishDay.AddDays(1);
 									var _rangesToDelete = new List<DateRange>();
@@ -151,28 +153,9 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void pbHelp_Click(object sender, EventArgs e)
+		private void OnHelpButtonClick(object sender, EventArgs e)
 		{
 			OnHelpClick?.Invoke();
 		}
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
 	}
 }

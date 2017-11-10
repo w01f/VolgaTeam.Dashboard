@@ -7,6 +7,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
@@ -31,7 +32,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 					{
 						Logo = Properties.Resources.CalendarOptionsDataSource,
 						Tooltip = "Open Data Options",
-						Action = () => { xtraTabControl.SelectedTabPage = xtraTabPageData; }
+						Action = () => { tabbedControlGroup.SelectedTabPage = layoutControlGroupDataSettings; }
 					});
 			chapters.AddRange(base.GetChapters());
 			return chapters;
@@ -45,7 +46,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			_allowToSave = false;
 
 			#region Data Source
-			xtraTabPageData.PageVisible = ((BroadcastCalendar)Month.Parent).AllowSelectDataSource;
+			layoutControlGroupDataSettings.Visibility = ((BroadcastCalendar)Month.Parent).AllowSelectDataSource ? LayoutVisibility.Always : LayoutVisibility.Never;
 
 			var broadcastCalendar = (BroadcastCalendar)Month.Parent;
 

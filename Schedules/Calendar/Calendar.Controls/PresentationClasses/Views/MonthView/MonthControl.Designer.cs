@@ -62,9 +62,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			// pnData
 			// 
 			this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnData.Location = new System.Drawing.Point(0, 26);
+			this.pnData.Location = new System.Drawing.Point(0, 25);
 			this.pnData.Name = "pnData";
-			this.pnData.Size = new System.Drawing.Size(1000, 474);
+			this.pnData.Size = new System.Drawing.Size(1000, 475);
 			this.pnData.TabIndex = 1;
 			// 
 			// pnMain
@@ -90,7 +90,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(1000, 26);
+			this.pnHeader.Size = new System.Drawing.Size(1000, 25);
 			this.pnHeader.TabIndex = 2;
 			// 
 			// pnSaturday
@@ -101,7 +101,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnSaturday.Location = new System.Drawing.Point(556, 0);
 			this.pnSaturday.Name = "pnSaturday";
 			this.pnSaturday.Padding = new System.Windows.Forms.Padding(1);
-			this.pnSaturday.Size = new System.Drawing.Size(99, 26);
+			this.pnSaturday.Size = new System.Drawing.Size(99, 25);
 			this.pnSaturday.TabIndex = 13;
 			// 
 			// laSaturday
@@ -111,7 +111,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.laSaturday.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laSaturday.Location = new System.Drawing.Point(1, 1);
 			this.laSaturday.Name = "laSaturday";
-			this.laSaturday.Size = new System.Drawing.Size(97, 24);
+			this.laSaturday.Size = new System.Drawing.Size(97, 23);
 			this.laSaturday.TabIndex = 5;
 			this.laSaturday.Text = "Saturday";
 			this.laSaturday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -124,7 +124,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnFriday.Location = new System.Drawing.Point(457, 0);
 			this.pnFriday.Name = "pnFriday";
 			this.pnFriday.Padding = new System.Windows.Forms.Padding(1);
-			this.pnFriday.Size = new System.Drawing.Size(99, 26);
+			this.pnFriday.Size = new System.Drawing.Size(99, 25);
 			this.pnFriday.TabIndex = 12;
 			// 
 			// laFriday
@@ -134,7 +134,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.laFriday.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laFriday.Location = new System.Drawing.Point(1, 1);
 			this.laFriday.Name = "laFriday";
-			this.laFriday.Size = new System.Drawing.Size(97, 24);
+			this.laFriday.Size = new System.Drawing.Size(97, 23);
 			this.laFriday.TabIndex = 4;
 			this.laFriday.Text = "Friday";
 			this.laFriday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -147,7 +147,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnThursday.Location = new System.Drawing.Point(358, 0);
 			this.pnThursday.Name = "pnThursday";
 			this.pnThursday.Padding = new System.Windows.Forms.Padding(1);
-			this.pnThursday.Size = new System.Drawing.Size(99, 26);
+			this.pnThursday.Size = new System.Drawing.Size(99, 25);
 			this.pnThursday.TabIndex = 11;
 			// 
 			// laThursday
@@ -157,7 +157,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.laThursday.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laThursday.Location = new System.Drawing.Point(1, 1);
 			this.laThursday.Name = "laThursday";
-			this.laThursday.Size = new System.Drawing.Size(97, 24);
+			this.laThursday.Size = new System.Drawing.Size(97, 23);
 			this.laThursday.TabIndex = 1;
 			this.laThursday.Text = "Thursday";
 			this.laThursday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -170,7 +170,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnWednesday.Location = new System.Drawing.Point(259, 0);
 			this.pnWednesday.Name = "pnWednesday";
 			this.pnWednesday.Padding = new System.Windows.Forms.Padding(1);
-			this.pnWednesday.Size = new System.Drawing.Size(99, 26);
+			this.pnWednesday.Size = new System.Drawing.Size(99, 25);
 			this.pnWednesday.TabIndex = 10;
 			// 
 			// laWednesday
@@ -180,7 +180,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.laWednesday.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laWednesday.Location = new System.Drawing.Point(1, 1);
 			this.laWednesday.Name = "laWednesday";
-			this.laWednesday.Size = new System.Drawing.Size(97, 24);
+			this.laWednesday.Size = new System.Drawing.Size(97, 23);
 			this.laWednesday.TabIndex = 2;
 			this.laWednesday.Text = "Wednesday";
 			this.laWednesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -193,7 +193,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnTuesday.Location = new System.Drawing.Point(160, 0);
 			this.pnTuesday.Name = "pnTuesday";
 			this.pnTuesday.Padding = new System.Windows.Forms.Padding(1);
-			this.pnTuesday.Size = new System.Drawing.Size(99, 26);
+			this.pnTuesday.Size = new System.Drawing.Size(99, 25);
 			this.pnTuesday.TabIndex = 9;
 			// 
 			// laTuesday
@@ -203,7 +203,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.laTuesday.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTuesday.Location = new System.Drawing.Point(1, 1);
 			this.laTuesday.Name = "laTuesday";
-			this.laTuesday.Size = new System.Drawing.Size(97, 24);
+			this.laTuesday.Size = new System.Drawing.Size(97, 23);
 			this.laTuesday.TabIndex = 3;
 			this.laTuesday.Text = "Tuesday";
 			this.laTuesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -216,7 +216,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnMonday.Location = new System.Drawing.Point(79, 0);
 			this.pnMonday.Name = "pnMonday";
 			this.pnMonday.Padding = new System.Windows.Forms.Padding(1);
-			this.pnMonday.Size = new System.Drawing.Size(81, 26);
+			this.pnMonday.Size = new System.Drawing.Size(81, 25);
 			this.pnMonday.TabIndex = 8;
 			// 
 			// laMonday
@@ -226,7 +226,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.laMonday.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laMonday.Location = new System.Drawing.Point(1, 1);
 			this.laMonday.Name = "laMonday";
-			this.laMonday.Size = new System.Drawing.Size(79, 24);
+			this.laMonday.Size = new System.Drawing.Size(79, 23);
 			this.laMonday.TabIndex = 0;
 			this.laMonday.Text = "Monday";
 			this.laMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -239,7 +239,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pnSunday.Location = new System.Drawing.Point(0, 0);
 			this.pnSunday.Name = "pnSunday";
 			this.pnSunday.Padding = new System.Windows.Forms.Padding(1);
-			this.pnSunday.Size = new System.Drawing.Size(79, 26);
+			this.pnSunday.Size = new System.Drawing.Size(79, 25);
 			this.pnSunday.TabIndex = 7;
 			// 
 			// laSunday
@@ -249,7 +249,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.laSunday.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laSunday.Location = new System.Drawing.Point(1, 1);
 			this.laSunday.Name = "laSunday";
-			this.laSunday.Size = new System.Drawing.Size(77, 24);
+			this.laSunday.Size = new System.Drawing.Size(77, 23);
 			this.laSunday.TabIndex = 6;
 			this.laSunday.Text = "Sunday";
 			this.laSunday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -264,6 +264,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			// 
 			// MonthControl
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnMain);

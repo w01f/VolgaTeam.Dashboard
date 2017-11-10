@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
 
 namespace Asa.Calendar.Controls.ToolForms
 {
@@ -15,6 +17,11 @@ namespace Asa.Calendar.Controls.ToolForms
 			_day = day;
 			Text = _day.Date.ToString("dddd, MMMM dd, yyyy");
 			LoadData();
+
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 		}
 
 		private void LoadData()
@@ -28,7 +35,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			_day.Comment = checkEditComment.Checked ? memoEditComment.EditValue as String : null;
 		}
 
-		private void FormDayProperties_FormClosing(object sender, FormClosingEventArgs e)
+		private void OnFormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (DialogResult == DialogResult.OK)
 			{
@@ -36,7 +43,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void checkEditComment_CheckedChanged(object sender, System.EventArgs e)
+		private void OnCommentCheckedChanged(object sender, System.EventArgs e)
 		{
 			memoEditComment.Enabled = checkEditComment.Checked;
 			memoEditComment.EditValue = checkEditComment.Checked ? memoEditComment.EditValue : null;

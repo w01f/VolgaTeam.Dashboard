@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Common.Core.Attributes;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
@@ -22,6 +23,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			Dock = DockStyle.Fill;
 			HasData = false;
 			pnMain.Resize += OnResize;
+			pnHeader.Height = Math.Max(pnHeader.Height, (Int32)(pnHeader.Height * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height * 0.85f));
 		}
 
 		public bool HasData { get; private set; }

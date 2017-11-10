@@ -52,14 +52,6 @@
 			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
 			this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
 			this.controlContainerItemDecisionMaker = new DevComponents.DotNetBar.ControlContainerItem();
-			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarSlidesSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
-			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSlidesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
-			this.labelItemSlideHome = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonPanelSolutions = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarSolutionsSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
 			this.ribbonBarSolutionsPreview = new DevComponents.DotNetBar.RibbonBar();
@@ -68,6 +60,14 @@
 			this.buttonItemSolutionsPowerPoint = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSolutionsTheme = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSolutionsTheme = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
+			this.ribbonBarSlidesSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
+			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarSlidesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.labelItemSlideHome = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonPanelOptions = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarOptionsSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
 			this.ribbonBarOptionsPreview = new DevComponents.DotNetBar.RibbonBar();
@@ -225,6 +225,9 @@
 			this.ribbonTabItemOptions = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSolutions = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
+			this.buttonItemExpand = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemCollapse = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemPin = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatSave = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatSaveAs = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
@@ -246,8 +249,8 @@
 			this.ribbonBarHomeBasicInfo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).BeginInit();
-			this.ribbonPanelSlides.SuspendLayout();
 			this.ribbonPanelSolutions.SuspendLayout();
+			this.ribbonPanelSlides.SuspendLayout();
 			this.ribbonPanelOptions.SuspendLayout();
 			this.ribbonPanelSnapshot.SuspendLayout();
 			this.ribbonPanelRateCard.SuspendLayout();
@@ -313,7 +316,10 @@
             this.ribbonTabItemSnapshot,
             this.ribbonTabItemOptions,
             this.ribbonTabItemSolutions,
-            this.ribbonTabItemSlides});
+            this.ribbonTabItemSlides,
+            this.buttonItemExpand,
+            this.buttonItemCollapse,
+            this.buttonItemPin});
 			this.ribbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
 			this.ribbonControl.Location = new System.Drawing.Point(5, 1);
 			this.ribbonControl.MdiSystemItemVisible = false;
@@ -343,6 +349,9 @@
 			this.ribbonControl.TabGroupHeight = 14;
 			this.ribbonControl.TabIndex = 0;
 			this.ribbonControl.UseCustomizeDialog = false;
+			this.ribbonControl.AfterRibbonPanelPopup += new System.EventHandler(this.OnRibbonAfterPanelPopup);
+			this.ribbonControl.AfterRibbonPanelPopupClose += new System.EventHandler(this.OnRibbonAfterPanelPopupClose);
+			this.ribbonControl.ExpandedChanged += new System.EventHandler(this.OnRibbonExpandedChanged);
 			// 
 			// ribbonPanelHome
 			// 
@@ -692,181 +701,6 @@
 			this.controlContainerItemDecisionMaker.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
 			this.controlContainerItemDecisionMaker.Name = "controlContainerItemDecisionMaker";
 			// 
-			// ribbonPanelSlides
-			// 
-			this.ribbonPanelSlides.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesSpecialButtons);
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPreview);
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPowerPoint);
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesLogo);
-			this.ribbonPanelSlides.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 54);
-			this.ribbonPanelSlides.Name = "ribbonPanelSlides";
-			this.ribbonPanelSlides.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelSlides.Size = new System.Drawing.Size(1040, 102);
-			// 
-			// 
-			// 
-			this.ribbonPanelSlides.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelSlides.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelSlides.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelSlides.TabIndex = 23;
-			this.ribbonPanelSlides.Visible = false;
-			// 
-			// ribbonBarSlidesSpecialButtons
-			// 
-			this.ribbonBarSlidesSpecialButtons.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesSpecialButtons.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesSpecialButtons.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesSpecialButtons.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesSpecialButtons.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesSpecialButtons.DragDropSupport = true;
-			this.ribbonBarSlidesSpecialButtons.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesSpecialButtons.Location = new System.Drawing.Point(387, 0);
-			this.ribbonBarSlidesSpecialButtons.Name = "ribbonBarSlidesSpecialButtons";
-			this.ribbonBarSlidesSpecialButtons.Size = new System.Drawing.Size(100, 100);
-			this.ribbonBarSlidesSpecialButtons.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesSpecialButtons.TabIndex = 113;
-			this.ribbonBarSlidesSpecialButtons.Text = "Special Buttons";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesSpecialButtons.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesSpecialButtons.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// ribbonBarSlidesPreview
-			// 
-			this.ribbonBarSlidesPreview.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesPreview.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesPreview.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesPreview.DragDropSupport = true;
-			this.ribbonBarSlidesPreview.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSlidesPreview});
-			this.ribbonBarSlidesPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesPreview.Location = new System.Drawing.Point(299, 0);
-			this.ribbonBarSlidesPreview.Name = "ribbonBarSlidesPreview";
-			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(88, 100);
-			this.ribbonBarSlidesPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesPreview.TabIndex = 115;
-			this.ribbonBarSlidesPreview.Text = "Preview";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSlidesPreview
-			// 
-			this.buttonItemSlidesPreview.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-			this.buttonItemSlidesPreview.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSlidesPreview.Image")));
-			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
-			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Review this slide BEFORE\r\nyou send it to your PowerPoint\r\nPresentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// ribbonBarSlidesPowerPoint
-			// 
-			this.ribbonBarSlidesPowerPoint.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPowerPoint.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPowerPoint.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesPowerPoint.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesPowerPoint.DragDropSupport = true;
-			this.ribbonBarSlidesPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSlidesPowerPoint});
-			this.ribbonBarSlidesPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(204, 0);
-			this.ribbonBarSlidesPowerPoint.Name = "ribbonBarSlidesPowerPoint";
-			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(95, 100);
-			this.ribbonBarSlidesPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesPowerPoint.TabIndex = 111;
-			this.ribbonBarSlidesPowerPoint.Text = "PowerPoint";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPowerPoint.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSlidesPowerPoint
-			// 
-			this.buttonItemSlidesPowerPoint.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSlidesPowerPoint.Image")));
-			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
-			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// ribbonBarSlidesLogo
-			// 
-			this.ribbonBarSlidesLogo.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesLogo.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesLogo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesLogo.DragDropSupport = true;
-			this.ribbonBarSlidesLogo.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-			this.ribbonBarSlidesLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItemSlideHome});
-			this.ribbonBarSlidesLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesLogo.Location = new System.Drawing.Point(3, 0);
-			this.ribbonBarSlidesLogo.Name = "ribbonBarSlidesLogo";
-			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 100);
-			this.ribbonBarSlidesLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesLogo.TabIndex = 24;
-			this.ribbonBarSlidesLogo.Text = "Add Slides";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-			// 
-			// labelItemSlideHome
-			// 
-			this.labelItemSlideHome.Image = ((System.Drawing.Image)(resources.GetObject("labelItemSlideHome.Image")));
-			this.labelItemSlideHome.Name = "labelItemSlideHome";
-			// 
 			// ribbonPanelSolutions
 			// 
 			this.ribbonPanelSolutions.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1043,6 +877,181 @@
 			this.buttonItemSolutionsTheme.Name = "buttonItemSolutionsTheme";
 			this.buttonItemSolutionsTheme.SubItemsExpandWidth = 14;
 			this.buttonItemSolutionsTheme.Text = "Theme:\r\nDefault";
+			// 
+			// ribbonPanelSlides
+			// 
+			this.ribbonPanelSlides.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesSpecialButtons);
+			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPreview);
+			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPowerPoint);
+			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesLogo);
+			this.ribbonPanelSlides.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 54);
+			this.ribbonPanelSlides.Name = "ribbonPanelSlides";
+			this.ribbonPanelSlides.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
+			this.ribbonPanelSlides.Size = new System.Drawing.Size(1040, 102);
+			// 
+			// 
+			// 
+			this.ribbonPanelSlides.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelSlides.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelSlides.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelSlides.TabIndex = 23;
+			this.ribbonPanelSlides.Visible = false;
+			// 
+			// ribbonBarSlidesSpecialButtons
+			// 
+			this.ribbonBarSlidesSpecialButtons.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesSpecialButtons.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesSpecialButtons.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesSpecialButtons.ContainerControlProcessDialogKey = true;
+			this.ribbonBarSlidesSpecialButtons.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSlidesSpecialButtons.DragDropSupport = true;
+			this.ribbonBarSlidesSpecialButtons.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarSlidesSpecialButtons.Location = new System.Drawing.Point(387, 0);
+			this.ribbonBarSlidesSpecialButtons.Name = "ribbonBarSlidesSpecialButtons";
+			this.ribbonBarSlidesSpecialButtons.Size = new System.Drawing.Size(100, 100);
+			this.ribbonBarSlidesSpecialButtons.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarSlidesSpecialButtons.TabIndex = 113;
+			this.ribbonBarSlidesSpecialButtons.Text = "Special Buttons";
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesSpecialButtons.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesSpecialButtons.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// ribbonBarSlidesPreview
+			// 
+			this.ribbonBarSlidesPreview.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesPreview.ContainerControlProcessDialogKey = true;
+			this.ribbonBarSlidesPreview.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSlidesPreview.DragDropSupport = true;
+			this.ribbonBarSlidesPreview.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSlidesPreview});
+			this.ribbonBarSlidesPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarSlidesPreview.Location = new System.Drawing.Point(299, 0);
+			this.ribbonBarSlidesPreview.Name = "ribbonBarSlidesPreview";
+			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(88, 100);
+			this.ribbonBarSlidesPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarSlidesPreview.TabIndex = 115;
+			this.ribbonBarSlidesPreview.Text = "Preview";
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemSlidesPreview
+			// 
+			this.buttonItemSlidesPreview.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+			this.buttonItemSlidesPreview.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSlidesPreview.Image")));
+			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
+			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Review this slide BEFORE\r\nyou send it to your PowerPoint\r\nPresentation…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
+			// ribbonBarSlidesPowerPoint
+			// 
+			this.ribbonBarSlidesPowerPoint.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPowerPoint.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPowerPoint.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesPowerPoint.ContainerControlProcessDialogKey = true;
+			this.ribbonBarSlidesPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSlidesPowerPoint.DragDropSupport = true;
+			this.ribbonBarSlidesPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSlidesPowerPoint});
+			this.ribbonBarSlidesPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(204, 0);
+			this.ribbonBarSlidesPowerPoint.Name = "ribbonBarSlidesPowerPoint";
+			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(95, 100);
+			this.ribbonBarSlidesPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarSlidesPowerPoint.TabIndex = 111;
+			this.ribbonBarSlidesPowerPoint.Text = "PowerPoint";
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPowerPoint.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemSlidesPowerPoint
+			// 
+			this.buttonItemSlidesPowerPoint.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSlidesPowerPoint.Image")));
+			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
+			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
+			// ribbonBarSlidesLogo
+			// 
+			this.ribbonBarSlidesLogo.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesLogo.ContainerControlProcessDialogKey = true;
+			this.ribbonBarSlidesLogo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSlidesLogo.DragDropSupport = true;
+			this.ribbonBarSlidesLogo.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
+			this.ribbonBarSlidesLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItemSlideHome});
+			this.ribbonBarSlidesLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarSlidesLogo.Location = new System.Drawing.Point(3, 0);
+			this.ribbonBarSlidesLogo.Name = "ribbonBarSlidesLogo";
+			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 100);
+			this.ribbonBarSlidesLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarSlidesLogo.TabIndex = 24;
+			this.ribbonBarSlidesLogo.Text = "Add Slides";
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// labelItemSlideHome
+			// 
+			this.labelItemSlideHome.Image = ((System.Drawing.Image)(resources.GetObject("labelItemSlideHome.Image")));
+			this.labelItemSlideHome.Name = "labelItemSlideHome";
 			// 
 			// ribbonPanelOptions
 			// 
@@ -3866,6 +3875,35 @@
 			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
 			this.ribbonTabItemSlides.Text = "Slides";
 			// 
+			// buttonItemExpand
+			// 
+			this.buttonItemExpand.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemExpand.Image")));
+			this.buttonItemExpand.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemExpand.Name = "buttonItemExpand";
+			this.superTooltip.SetSuperTooltip(this.buttonItemExpand, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Expand", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, true, new System.Drawing.Size(60, 18)));
+			this.buttonItemExpand.Text = "buttonItem1";
+			this.buttonItemExpand.Visible = false;
+			this.buttonItemExpand.Click += new System.EventHandler(this.OnRibbonExpandClick);
+			// 
+			// buttonItemCollapse
+			// 
+			this.buttonItemCollapse.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemCollapse.Image")));
+			this.buttonItemCollapse.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemCollapse.Name = "buttonItemCollapse";
+			this.superTooltip.SetSuperTooltip(this.buttonItemCollapse, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Collpase", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(60, 18)));
+			this.buttonItemCollapse.Text = "buttonItem2";
+			this.buttonItemCollapse.Click += new System.EventHandler(this.OnRibbonCollapseClick);
+			// 
+			// buttonItemPin
+			// 
+			this.buttonItemPin.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemPin.Image")));
+			this.buttonItemPin.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemPin.Name = "buttonItemPin";
+			this.superTooltip.SetSuperTooltip(this.buttonItemPin, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Lock", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, true, new System.Drawing.Size(40, 18)));
+			this.buttonItemPin.Text = "buttonItem3";
+			this.buttonItemPin.Visible = false;
+			this.buttonItemPin.Click += new System.EventHandler(this.OnRibbonPinClick);
+			// 
 			// buttonItemQatSave
 			// 
 			this.buttonItemQatSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemQatSave.Image")));
@@ -4020,8 +4058,8 @@
 			this.ribbonBarHomeBasicInfo.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).EndInit();
-			this.ribbonPanelSlides.ResumeLayout(false);
 			this.ribbonPanelSolutions.ResumeLayout(false);
+			this.ribbonPanelSlides.ResumeLayout(false);
 			this.ribbonPanelOptions.ResumeLayout(false);
 			this.ribbonPanelSnapshot.ResumeLayout(false);
 			this.ribbonPanelRateCard.ResumeLayout(false);
@@ -4260,6 +4298,9 @@
 		public DevComponents.DotNetBar.ButtonItem buttonItemSolutionsPowerPoint;
 		private DevComponents.DotNetBar.ButtonItem buttonItemApplicationMenuOutputPdf;
 		private DevComponents.DotNetBar.ButtonItem buttonItemApplicationMenuEmail;
+		private DevComponents.DotNetBar.ButtonItem buttonItemExpand;
+		private DevComponents.DotNetBar.ButtonItem buttonItemCollapse;
+		private DevComponents.DotNetBar.ButtonItem buttonItemPin;
 	}
 }
 

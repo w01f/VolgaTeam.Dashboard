@@ -118,6 +118,10 @@ namespace Asa.Media.Controls
 			QatSaveAsButton.Click += ContentController.OnSaveAsSchedule;
 			QatHelpButton.Click += ContentController.OnGetHelp;
 
+			Ribbon.Items.Add(RibbonExpandButton);
+			Ribbon.Items.Add(RibbonCollapseButton);
+			Ribbon.Items.Add(RibbonPinButton);
+
 			foreach (var ribbonButton in new[]
 			{
 				ProgramSchedulePowerPoint,
@@ -359,6 +363,10 @@ namespace Asa.Media.Controls
 		public ButtonItem MenuOutputPdfButton { get; set; }
 		public ButtonItem MenuSlideSettingsButton { get; set; }
 		public ButtonItem MenuHelpButton { get; set; }
+
+		public ButtonItem RibbonCollapseButton { get; set; }
+		public ButtonItem RibbonExpandButton { get; set; }
+		public ButtonItem RibbonPinButton { get; set; }
 
 		#region Home
 		public RibbonPanel HomePanel { get; set; }

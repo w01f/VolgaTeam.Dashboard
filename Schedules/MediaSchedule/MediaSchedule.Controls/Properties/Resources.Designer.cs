@@ -540,6 +540,18 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap RibbonCollapse
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonCollapse", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap RibbonCopyItem
 		{
 			get
@@ -557,6 +569,18 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("RibbonDeleteItem", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonExpand
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonExpand", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}
@@ -605,6 +629,18 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("RibbonPasteItem", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonPin
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonPin", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

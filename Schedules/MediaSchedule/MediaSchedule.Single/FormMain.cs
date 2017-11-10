@@ -86,7 +86,7 @@ namespace Asa.Media.Single
 
 			if (BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue)
 				styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
-						styleManager.MetroColorParameters.CanvasColor, 
+						styleManager.MetroColorParameters.CanvasColor,
 						BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value);
 
 			Controller.Instance.FormMain = this;
@@ -121,6 +121,10 @@ namespace Asa.Media.Single
 			Controller.Instance.MenuEmailButton = buttonItemApplicationMenuEmail;
 			Controller.Instance.MenuSlideSettingsButton = buttonItemApplicationMenuSlideSettings;
 			Controller.Instance.MenuHelpButton = buttonItemApplicationMenuHelp;
+
+			Controller.Instance.RibbonCollapseButton = buttonItemCollapse;
+			Controller.Instance.RibbonExpandButton = buttonItemExpand;
+			Controller.Instance.RibbonPinButton = buttonItemPin;
 
 			#region Home
 			Controller.Instance.HomePanel = ribbonPanelHome;
@@ -388,6 +392,45 @@ namespace Asa.Media.Single
 				{
 					Logo = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Resources.RibbonLogo
 				});
+		}
+
+		private void OnRibbonExpandedChanged(object sender, EventArgs e)
+		{
+			buttonItemExpand.Visible = !ribbonControl.Expanded;
+			buttonItemCollapse.Visible = ribbonControl.Expanded;
+			buttonItemPin.Visible = false;
+			ribbonControl.RecalcLayout();
+		}
+
+		private void OnRibbonAfterPanelPopup(object sender, EventArgs e)
+		{
+			buttonItemExpand.Visible = false;
+			buttonItemCollapse.Visible = false;
+			buttonItemPin.Visible = true;
+			ribbonControl.RecalcLayout();
+		}
+
+		private void OnRibbonAfterPanelPopupClose(object sender, EventArgs e)
+		{
+			buttonItemExpand.Visible = !ribbonControl.Expanded;
+			buttonItemCollapse.Visible = ribbonControl.Expanded;
+			buttonItemPin.Visible = false;
+			ribbonControl.RecalcLayout();
+		}
+
+		private void OnRibbonExpandClick(object sender, EventArgs e)
+		{
+			ribbonControl.Expanded = true;
+		}
+
+		private void OnRibbonCollapseClick(object sender, EventArgs e)
+		{
+			ribbonControl.Expanded = false;
+		}
+
+		private void OnRibbonPinClick(object sender, EventArgs e)
+		{
+			ribbonControl.Expanded = true;
 		}
 	}
 }

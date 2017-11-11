@@ -95,7 +95,7 @@
 			// 
 			this.Controls.Add(this.slidesListView);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "ImageGroupPage";
+			this.Name = "SlideGroupPage";
 			this.Size = new System.Drawing.Size(521, 446);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);

@@ -86,7 +86,7 @@
 			this.xtraTabControl.MaxTabPageWidth = 200;
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-			this.xtraTabControl.Size = new System.Drawing.Size(737, 522);
+			this.xtraTabControl.Size = new System.Drawing.Size(863, 522);
 			this.xtraTabControl.TabIndex = 0;
 			// 
 			// defaultLookAndFeel
@@ -128,7 +128,7 @@
             this.labelItemMenuWarning});
 			this.barMain.Location = new System.Drawing.Point(0, 0);
 			this.barMain.Name = "barMain";
-			this.barMain.Size = new System.Drawing.Size(737, 33);
+			this.barMain.Size = new System.Drawing.Size(863, 33);
 			this.barMain.Stretch = true;
 			this.barMain.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.barMain.TabIndex = 0;
@@ -281,7 +281,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(737, 555);
+			this.ClientSize = new System.Drawing.Size(863, 555);
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.barMain);
 			this.DoubleBuffered = true;

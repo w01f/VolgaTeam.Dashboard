@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFloater));
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.buttonXHide = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXBack = new DevComponents.DotNetBar.ButtonX();
@@ -49,10 +48,10 @@
 			this.buttonXHide.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXHide.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXHide.FocusCuesEnabled = false;
-			this.buttonXHide.Image = ((System.Drawing.Image)(resources.GetObject("buttonXHide.Image")));
-			this.buttonXHide.Location = new System.Drawing.Point(267, 5);
+			this.buttonXHide.Image = global::Asa.Common.GUI.Properties.Resources.FloaterHide;
+			this.buttonXHide.Location = new System.Drawing.Point(251, 5);
 			this.buttonXHide.Name = "buttonXHide";
-			this.buttonXHide.Size = new System.Drawing.Size(68, 106);
+			this.buttonXHide.Size = new System.Drawing.Size(84, 106);
 			this.buttonXHide.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.superTooltip.SetSuperTooltip(this.buttonXHide, new DevComponents.DotNetBar.SuperTooltipInfo("Hide", "", "Hide Application", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonXHide.TabIndex = 1;
@@ -65,7 +64,7 @@
 			this.buttonXBack.FocusCuesEnabled = false;
 			this.buttonXBack.Location = new System.Drawing.Point(5, 5);
 			this.buttonXBack.Name = "buttonXBack";
-			this.buttonXBack.Size = new System.Drawing.Size(255, 106);
+			this.buttonXBack.Size = new System.Drawing.Size(240, 106);
 			this.buttonXBack.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXBack.TabIndex = 0;
 			this.buttonXBack.Click += new System.EventHandler(this.buttonItemBack_Click);

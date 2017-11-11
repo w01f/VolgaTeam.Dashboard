@@ -14,8 +14,10 @@ namespace Asa.Common.Core.Objects.Themes
 		private readonly StorageDirectory _root;
 		private StorageFile _themeFile;
 
+		public Guid Identifier { get; set; }
 		public string Name { get; private set; }
 		public int Order { get; private set; }
+		public string LocalPath { get; private set; }
 		public Image Logo { get; private set; }
 		public Image BrowseLogo { get; private set; }
 		public Image RibbonLogo { get; private set; }
@@ -24,6 +26,7 @@ namespace Asa.Common.Core.Objects.Themes
 		public Theme(StorageDirectory root)
 		{
 			_root = root;
+			Identifier = Guid.NewGuid();
 		}
 
 		public override string ToString()
@@ -45,6 +48,7 @@ namespace Asa.Common.Core.Objects.Themes
 			var bigLogoFile = files.FirstOrDefault(file => file.Name == "preview.png");
 			if (bigLogoFile != null)
 			{
+				LocalPath = bigLogoFile.LocalPath;
 				Logo = new Bitmap(bigLogoFile.LocalPath);
 				BrowseLogo = Logo.GetThumbnailImage(Logo.Width * 144 / Logo.Height, 144, null, IntPtr.Zero);
 				var ribbonLogo = Logo.GetThumbnailImage(Logo.Width * 64 / Logo.Height, 64, null, IntPtr.Zero);

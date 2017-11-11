@@ -156,7 +156,7 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 		{
 			if (!Directory.Exists(LocalPath))
 				Directory.CreateDirectory(LocalPath);
-			if (remoteToo && !await ExistsRemote())
+			if (!FileStorageManager.Instance.UseLocalMode && remoteToo && !await ExistsRemote())
 			{
 				await GetParentFolder().Allocate(true);
 				await CreateSubFolder(RelativePathParts, String.Empty, true);

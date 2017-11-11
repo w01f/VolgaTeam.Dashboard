@@ -1,6 +1,4 @@
-﻿using System;
-using Asa.Business.Media.Configuration;
-using Asa.Common.Core.Helpers;
+﻿using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
@@ -12,7 +10,6 @@ namespace Asa.Media.Controls.ToolForms
 		public FormStart()
 		{
 			InitializeComponent();
-			Text = String.Format(Text, MediaMetaData.Instance.DataTypeString);
 			pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? pictureEditLogo.Image;
 			layoutControlItemNew.MaxSize = RectangleHelper.ScaleSize(layoutControlItemNew.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 			layoutControlItemNew.MinSize = RectangleHelper.ScaleSize(layoutControlItemNew.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));

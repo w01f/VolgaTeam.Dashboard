@@ -139,8 +139,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			else
 				layoutControlGroupFlexFlightDatesWarning.Visibility = LayoutVisibility.Never;
 
-			simpleLabelItemTotalCPPTitle.Text = String.Format("<size=-1>{0}</size>", ScheduleSettings.DemoType == DemoType.Rtg ? "Overall CPP:" : "Overall CPM:");
-			simpleLabelItemTotalGRPTitle.Text = String.Format("<size=-1>{0}</size>", ScheduleSettings.DemoType == DemoType.Rtg ? "Total GRPs:" : "Total Impr:");
+			simpleLabelItemTotalCPPTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", ScheduleSettings.DemoType == DemoType.Rtg ? "Overall CPP:" : "Overall CPM:");
+			simpleLabelItemTotalGRPTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", ScheduleSettings.DemoType == DemoType.Rtg ? "Total GRPs:" : "Total Impr:");
 
 			settingsContainer.LoadContent(EditedContent);
 
@@ -350,14 +350,14 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			if (ActiveSection != null && ActiveSection.SectionData.Programs.Any())
 			{
-				simpleLabelItemTotalPeriodsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalPeriodsValueFormatted);
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalSpotsValueFormatted);
-				simpleLabelItemTotalGRPValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalGRPValueFormatted);
-				simpleLabelItemTotalCPPValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalCPPValueFormatted);
-				simpleLabelItemAvgRateValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.AvgRateValueFormatted);
-				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalCostValuesFormatted);
-				simpleLabelItemNetRateValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.NetRateValueFormatted);
-				simpleLabelItemAgencyDiscountValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSection.TotalDiscountValueFormatted);
+				simpleLabelItemTotalPeriodsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.TotalPeriodsValueFormatted);
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.TotalSpotsValueFormatted);
+				simpleLabelItemTotalGRPValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.TotalGRPValueFormatted);
+				simpleLabelItemTotalCPPValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.TotalCPPValueFormatted);
+				simpleLabelItemAvgRateValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.AvgRateValueFormatted);
+				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.TotalCostValuesFormatted);
+				simpleLabelItemNetRateValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.NetRateValueFormatted);
+				simpleLabelItemAgencyDiscountValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSection.TotalDiscountValueFormatted);
 			}
 			else
 			{

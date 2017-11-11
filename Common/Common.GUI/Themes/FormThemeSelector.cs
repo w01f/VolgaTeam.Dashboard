@@ -28,6 +28,9 @@ namespace Asa.Common.GUI.Themes
 		public FormThemeSelector()
 		{
 			InitializeComponent();
+
+			Closed += OnFormClosed;
+
 			simpleLabelItemSlideSize.Text = String.Format(simpleLabelItemSlideSize.Text,
 				PowerPointManager.Instance.SlideSettings.SizeFormatted);
 
@@ -35,6 +38,12 @@ namespace Asa.Common.GUI.Themes
 			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
+		}
+
+		private void OnFormClosed(Object sender, EventArgs e)
+		{
+			pnMain.Controls.Clear();
+			_themeContainer.Release();
 		}
 
 		public void LoadThemes(IEnumerable<Theme> themes)

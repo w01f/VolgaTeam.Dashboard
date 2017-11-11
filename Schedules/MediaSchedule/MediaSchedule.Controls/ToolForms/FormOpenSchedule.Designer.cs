@@ -266,7 +266,7 @@
 			// 
 			this.gridColumnSchedulesFile.AppearanceCell.Options.UseTextOptions = true;
 			this.gridColumnSchedulesFile.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.gridColumnSchedulesFile.Caption = "Schedule File";
+			this.gridColumnSchedulesFile.Caption = "File";
 			this.gridColumnSchedulesFile.FieldName = "Name";
 			this.gridColumnSchedulesFile.Name = "gridColumnSchedulesFile";
 			this.gridColumnSchedulesFile.OptionsColumn.AllowEdit = false;
@@ -366,7 +366,7 @@
 			this.xtraTabPageSchedules.Controls.Add(this.gridControlSchedules);
 			this.xtraTabPageSchedules.Name = "xtraTabPageSchedules";
 			this.xtraTabPageSchedules.Size = new System.Drawing.Size(665, 491);
-			this.xtraTabPageSchedules.Text = "My Schedules";
+			this.xtraTabPageSchedules.Text = "My Solutions";
 			// 
 			// xtraTabPageTemplates
 			// 
@@ -374,7 +374,7 @@
 			this.xtraTabPageTemplates.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
-			this.xtraTabPageTemplates.Size = new System.Drawing.Size(665, 320);
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(665, 491);
 			this.xtraTabPageTemplates.Text = "Public Cloud";
 			// 
 			// gridControlTemplates
@@ -388,7 +388,7 @@
 			this.gridControlTemplates.Location = new System.Drawing.Point(0, 0);
 			this.gridControlTemplates.MainView = this.gridViewTemplates;
 			this.gridControlTemplates.Name = "gridControlTemplates";
-			this.gridControlTemplates.Size = new System.Drawing.Size(665, 320);
+			this.gridControlTemplates.Size = new System.Drawing.Size(665, 491);
 			this.gridControlTemplates.TabIndex = 41;
 			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTemplates});
@@ -460,7 +460,7 @@
 			// 
 			this.gridColumnTemplatesFile.AppearanceCell.Options.UseTextOptions = true;
 			this.gridColumnTemplatesFile.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.gridColumnTemplatesFile.Caption = "Schedule File";
+			this.gridColumnTemplatesFile.Caption = "File";
 			this.gridColumnTemplatesFile.FieldName = "Name";
 			this.gridColumnTemplatesFile.Name = "gridColumnTemplatesFile";
 			this.gridColumnTemplatesFile.OptionsColumn.AllowEdit = false;
@@ -499,7 +499,7 @@
 			this.Name = "FormOpenSchedule";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Open Schedule";
+			this.Text = "Open Previous Solutions";
 			this.Load += new System.EventHandler(this.OnFormLoad);
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).EndInit();

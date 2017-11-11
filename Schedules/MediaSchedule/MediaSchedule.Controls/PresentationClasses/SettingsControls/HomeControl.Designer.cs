@@ -30,7 +30,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
 			this.stationsControl = new Asa.Media.Controls.PresentationClasses.SettingsControls.StationsControl();
 			this.buttonXCalendar = new DevComponents.DotNetBar.ButtonX();
@@ -117,7 +116,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlGroupMainSolution = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlGroupMainSolutionTitle = new DevExpress.XtraLayout.LayoutControlItem();
 			this.splitterItemMain = new DevExpress.XtraLayout.SplitterItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -195,9 +194,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.stationsControl.BackColor = System.Drawing.Color.White;
 			this.stationsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.stationsControl.HasChanged = false;
-			this.stationsControl.Location = new System.Drawing.Point(698, 47);
+			this.stationsControl.Location = new System.Drawing.Point(705, 48);
 			this.stationsControl.Name = "stationsControl";
-			this.stationsControl.Size = new System.Drawing.Size(350, 531);
+			this.stationsControl.Size = new System.Drawing.Size(346, 530);
 			this.stationsControl.TabIndex = 6;
 			// 
 			// buttonXCalendar
@@ -244,7 +243,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXMonthlySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMonthlySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXMonthlySchedule.Image = global::Asa.Media.Controls.Properties.Resources.MonthlySchedule;
-			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(328, 145);
+			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(328, 146);
 			this.buttonXMonthlySchedule.Name = "buttonXMonthlySchedule";
 			this.buttonXMonthlySchedule.Size = new System.Drawing.Size(216, 86);
 			this.buttonXMonthlySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -259,7 +258,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXWeeklySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXWeeklySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXWeeklySchedule.Image = global::Asa.Media.Controls.Properties.Resources.WeeklySchedule;
-			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(58, 145);
+			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(58, 146);
 			this.buttonXWeeklySchedule.Name = "buttonXWeeklySchedule";
 			this.buttonXWeeklySchedule.Size = new System.Drawing.Size(216, 86);
 			this.buttonXWeeklySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -276,9 +275,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlCoomingSoon1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.labelControlCoomingSoon1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.labelControlCoomingSoon1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlCoomingSoon1.Location = new System.Drawing.Point(48, 49);
+			this.labelControlCoomingSoon1.Location = new System.Drawing.Point(48, 50);
 			this.labelControlCoomingSoon1.Name = "labelControlCoomingSoon1";
-			this.labelControlCoomingSoon1.Size = new System.Drawing.Size(619, 527);
+			this.labelControlCoomingSoon1.Size = new System.Drawing.Size(619, 526);
 			this.labelControlCoomingSoon1.StyleController = this.layoutControl;
 			this.labelControlCoomingSoon1.TabIndex = 1;
 			this.labelControlCoomingSoon1.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
@@ -356,9 +355,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlComingSoon4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.labelControlComingSoon4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.labelControlComingSoon4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlComingSoon4.Location = new System.Drawing.Point(1074, 49);
+			this.labelControlComingSoon4.Location = new System.Drawing.Point(1077, 50);
 			this.labelControlComingSoon4.Name = "labelControlComingSoon4";
-			this.labelControlComingSoon4.Size = new System.Drawing.Size(346, 527);
+			this.labelControlComingSoon4.Size = new System.Drawing.Size(343, 526);
 			this.labelControlComingSoon4.StyleController = this.layoutControl;
 			this.labelControlComingSoon4.TabIndex = 1;
 			this.labelControlComingSoon4.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
@@ -370,9 +369,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlComingSoon3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.labelControlComingSoon3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.labelControlComingSoon3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlComingSoon3.Location = new System.Drawing.Point(1074, 49);
+			this.labelControlComingSoon3.Location = new System.Drawing.Point(1077, 50);
 			this.labelControlComingSoon3.Name = "labelControlComingSoon3";
-			this.labelControlComingSoon3.Size = new System.Drawing.Size(346, 527);
+			this.labelControlComingSoon3.Size = new System.Drawing.Size(343, 526);
 			this.labelControlComingSoon3.StyleController = this.layoutControl;
 			this.labelControlComingSoon3.TabIndex = 1;
 			this.labelControlComingSoon3.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
@@ -384,9 +383,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.labelControlComingSoon2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.labelControlComingSoon2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.labelControlComingSoon2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlComingSoon2.Location = new System.Drawing.Point(1074, 297);
+			this.labelControlComingSoon2.Location = new System.Drawing.Point(1077, 297);
 			this.labelControlComingSoon2.Name = "labelControlComingSoon2";
-			this.labelControlComingSoon2.Size = new System.Drawing.Size(346, 31);
+			this.labelControlComingSoon2.Size = new System.Drawing.Size(343, 31);
 			this.labelControlComingSoon2.StyleController = this.layoutControl;
 			this.labelControlComingSoon2.TabIndex = 1;
 			this.labelControlComingSoon2.Text = "<size=+10><color=gray>Coming Soon!</color></size>";
@@ -396,9 +395,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXCalendarTypeMondayBased.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCalendarTypeMondayBased.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCalendarTypeMondayBased.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXCalendarTypeMondayBased.Location = new System.Drawing.Point(700, 89);
+			this.buttonXCalendarTypeMondayBased.Location = new System.Drawing.Point(707, 90);
 			this.buttonXCalendarTypeMondayBased.Name = "buttonXCalendarTypeMondayBased";
-			this.buttonXCalendarTypeMondayBased.Size = new System.Drawing.Size(346, 36);
+			this.buttonXCalendarTypeMondayBased.Size = new System.Drawing.Size(342, 36);
 			this.buttonXCalendarTypeMondayBased.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCalendarTypeMondayBased.TabIndex = 1;
 			this.buttonXCalendarTypeMondayBased.Text = "Monday - Sunday";
@@ -410,9 +409,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXCalendarTypeSundayBased.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCalendarTypeSundayBased.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCalendarTypeSundayBased.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXCalendarTypeSundayBased.Location = new System.Drawing.Point(700, 169);
+			this.buttonXCalendarTypeSundayBased.Location = new System.Drawing.Point(707, 170);
 			this.buttonXCalendarTypeSundayBased.Name = "buttonXCalendarTypeSundayBased";
-			this.buttonXCalendarTypeSundayBased.Size = new System.Drawing.Size(346, 36);
+			this.buttonXCalendarTypeSundayBased.Size = new System.Drawing.Size(342, 36);
 			this.buttonXCalendarTypeSundayBased.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCalendarTypeSundayBased.TabIndex = 1;
 			this.buttonXCalendarTypeSundayBased.Text = "Sunday - Saturday";
@@ -424,13 +423,13 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.comboBoxEditDemos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBoxEditDemos.Enabled = false;
-			this.comboBoxEditDemos.Location = new System.Drawing.Point(700, 319);
+			this.comboBoxEditDemos.Location = new System.Drawing.Point(707, 320);
 			this.comboBoxEditDemos.Name = "comboBoxEditDemos";
 			this.comboBoxEditDemos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditDemos.Properties.NullText = "Select Demo";
 			this.comboBoxEditDemos.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditDemos.Size = new System.Drawing.Size(346, 22);
+			this.comboBoxEditDemos.Size = new System.Drawing.Size(342, 22);
 			this.comboBoxEditDemos.StyleController = this.layoutControl;
 			this.comboBoxEditDemos.TabIndex = 1;
 			this.comboBoxEditDemos.EditValueChanged += new System.EventHandler(this.comboBoxEditDemos_EditValueChanged);
@@ -440,13 +439,13 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.comboBoxEditSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBoxEditSource.Enabled = false;
-			this.comboBoxEditSource.Location = new System.Drawing.Point(700, 283);
+			this.comboBoxEditSource.Location = new System.Drawing.Point(707, 284);
 			this.comboBoxEditSource.Name = "comboBoxEditSource";
 			this.comboBoxEditSource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditSource.Properties.NullText = "Select Source";
 			this.comboBoxEditSource.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSource.Size = new System.Drawing.Size(346, 22);
+			this.comboBoxEditSource.Size = new System.Drawing.Size(342, 22);
 			this.comboBoxEditSource.StyleController = this.layoutControl;
 			this.comboBoxEditSource.TabIndex = 1;
 			this.comboBoxEditSource.EditValueChanged += new System.EventHandler(this.comboBoxEditSource_EditValueChanged);
@@ -456,9 +455,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.daypartsControl.BackColor = System.Drawing.Color.White;
 			this.daypartsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.daypartsControl.HasChanged = false;
-			this.daypartsControl.Location = new System.Drawing.Point(698, 47);
+			this.daypartsControl.Location = new System.Drawing.Point(705, 48);
 			this.daypartsControl.Name = "daypartsControl";
-			this.daypartsControl.Size = new System.Drawing.Size(350, 531);
+			this.daypartsControl.Size = new System.Drawing.Size(346, 530);
 			this.daypartsControl.TabIndex = 1;
 			// 
 			// buttonXUseDemos
@@ -469,9 +468,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXUseDemos.AutoCheckOnClick = true;
 			this.buttonXUseDemos.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXUseDemos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXUseDemos.Location = new System.Drawing.Point(700, 81);
+			this.buttonXUseDemos.Location = new System.Drawing.Point(707, 82);
 			this.buttonXUseDemos.Name = "buttonXUseDemos";
-			this.buttonXUseDemos.Size = new System.Drawing.Size(346, 36);
+			this.buttonXUseDemos.Size = new System.Drawing.Size(342, 36);
 			this.buttonXUseDemos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.superTooltip.SetSuperTooltip(this.buttonXUseDemos, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Show Ratings or Impressions", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonXUseDemos.TabIndex = 1;
@@ -487,9 +486,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosCustom.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosCustom.Enabled = false;
 			this.buttonXDemosCustom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXDemosCustom.Location = new System.Drawing.Point(700, 131);
+			this.buttonXDemosCustom.Location = new System.Drawing.Point(707, 132);
 			this.buttonXDemosCustom.Name = "buttonXDemosCustom";
-			this.buttonXDemosCustom.Size = new System.Drawing.Size(346, 38);
+			this.buttonXDemosCustom.Size = new System.Drawing.Size(342, 38);
 			this.buttonXDemosCustom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosCustom.TabIndex = 1;
 			this.buttonXDemosCustom.Text = "Use your Own Estimates?";
@@ -505,9 +504,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosImport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImport.Enabled = false;
 			this.buttonXDemosImport.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXDemosImport.Location = new System.Drawing.Point(700, 183);
+			this.buttonXDemosImport.Location = new System.Drawing.Point(707, 184);
 			this.buttonXDemosImport.Name = "buttonXDemosImport";
-			this.buttonXDemosImport.Size = new System.Drawing.Size(346, 36);
+			this.buttonXDemosImport.Size = new System.Drawing.Size(342, 36);
 			this.buttonXDemosImport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosImport.TabIndex = 1;
 			this.buttonXDemosImport.Text = "Use Imported Estimates?";
@@ -522,7 +521,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosImps.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImps.Enabled = false;
 			this.buttonXDemosImps.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXDemosImps.Location = new System.Drawing.Point(920, 233);
+			this.buttonXDemosImps.Location = new System.Drawing.Point(923, 234);
 			this.buttonXDemosImps.Name = "buttonXDemosImps";
 			this.buttonXDemosImps.Size = new System.Drawing.Size(126, 36);
 			this.buttonXDemosImps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -539,7 +538,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXDemosRtg.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosRtg.Enabled = false;
 			this.buttonXDemosRtg.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXDemosRtg.Location = new System.Drawing.Point(700, 233);
+			this.buttonXDemosRtg.Location = new System.Drawing.Point(707, 234);
 			this.buttonXDemosRtg.Name = "buttonXDemosRtg";
 			this.buttonXDemosRtg.Size = new System.Drawing.Size(126, 36);
 			this.buttonXDemosRtg.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -554,7 +553,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.pictureEditScheduleTypeTitle.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditScheduleTypeTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeScheduleTitleLogo;
-			this.pictureEditScheduleTypeTitle.Location = new System.Drawing.Point(58, 89);
+			this.pictureEditScheduleTypeTitle.Location = new System.Drawing.Point(58, 90);
 			this.pictureEditScheduleTypeTitle.Name = "pictureEditScheduleTypeTitle";
 			this.pictureEditScheduleTypeTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditScheduleTypeTitle.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -571,6 +570,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pictureEditDefaultTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeDefaultLogo;
 			this.pictureEditDefaultTitle.Location = new System.Drawing.Point(12, 12);
 			this.pictureEditDefaultTitle.Name = "pictureEditDefaultTitle";
+			this.pictureEditDefaultTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDefaultTitle.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.pictureEditDefaultTitle.Properties.ReadOnly = true;
 			this.pictureEditDefaultTitle.Properties.ShowMenu = false;
@@ -619,11 +619,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.tabbedControlGroupScheduleOptions.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
 			this.tabbedControlGroupScheduleOptions.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.tabbedControlGroupScheduleOptions.AppearanceTabPage.PageClient.Options.UseFont = true;
-			this.tabbedControlGroupScheduleOptions.Location = new System.Drawing.Point(676, 0);
+			this.tabbedControlGroupScheduleOptions.Location = new System.Drawing.Point(683, 0);
 			this.tabbedControlGroupScheduleOptions.Name = "tabbedControlGroupScheduleOptions";
 			this.tabbedControlGroupScheduleOptions.SelectedTabPage = this.layoutControlGroupScheduleOptionsStations;
 			this.tabbedControlGroupScheduleOptions.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupScheduleOptions.Size = new System.Drawing.Size(374, 580);
+			this.tabbedControlGroupScheduleOptions.Size = new System.Drawing.Size(370, 580);
 			this.tabbedControlGroupScheduleOptions.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupScheduleOptionsStations,
             this.layoutControlGroupScheduleOptionsDayparts,
@@ -639,7 +639,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlGroupScheduleOptionsStations.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupScheduleOptionsStations.Name = "layoutControlGroupScheduleOptionsStations";
 			this.layoutControlGroupScheduleOptionsStations.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupScheduleOptionsStations.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlGroupScheduleOptionsStations.Size = new System.Drawing.Size(346, 530);
 			this.layoutControlGroupScheduleOptionsStations.Text = "Stations";
 			// 
 			// layoutControlItemScheduleOptionsStations
@@ -651,7 +651,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsStations.MinSize = new System.Drawing.Size(300, 1);
 			this.layoutControlItemScheduleOptionsStations.Name = "layoutControlItemScheduleOptionsStations";
 			this.layoutControlItemScheduleOptionsStations.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemScheduleOptionsStations.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlItemScheduleOptionsStations.Size = new System.Drawing.Size(346, 530);
 			this.layoutControlItemScheduleOptionsStations.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsStations.Text = "Stations";
 			this.layoutControlItemScheduleOptionsStations.TextSize = new System.Drawing.Size(0, 0);
@@ -665,7 +665,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlGroupScheduleOptionsDayparts.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupScheduleOptionsDayparts.Name = "layoutControlGroupScheduleOptionsDayparts";
 			this.layoutControlGroupScheduleOptionsDayparts.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupScheduleOptionsDayparts.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlGroupScheduleOptionsDayparts.Size = new System.Drawing.Size(346, 530);
 			this.layoutControlGroupScheduleOptionsDayparts.Text = "Dayparts";
 			// 
 			// layoutControlItemScheduleOptionsDayparts
@@ -677,7 +677,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsDayparts.MinSize = new System.Drawing.Size(300, 1);
 			this.layoutControlItemScheduleOptionsDayparts.Name = "layoutControlItemScheduleOptionsDayparts";
 			this.layoutControlItemScheduleOptionsDayparts.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemScheduleOptionsDayparts.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlItemScheduleOptionsDayparts.Size = new System.Drawing.Size(346, 530);
 			this.layoutControlItemScheduleOptionsDayparts.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsDayparts.Text = "Dayparts";
 			this.layoutControlItemScheduleOptionsDayparts.TextSize = new System.Drawing.Size(0, 0);
@@ -706,7 +706,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.simpleLabelItemScheduleOptionsDemosInfo});
 			this.layoutControlGroupScheduleOptionsDemos.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupScheduleOptionsDemos.Name = "layoutControlGroupScheduleOptionsDemos";
-			this.layoutControlGroupScheduleOptionsDemos.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlGroupScheduleOptionsDemos.Size = new System.Drawing.Size(346, 530);
 			this.layoutControlGroupScheduleOptionsDemos.Text = "Demos";
 			// 
 			// simpleLabelItemScheduleOptionsDemosTitle
@@ -717,7 +717,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.simpleLabelItemScheduleOptionsDemosTitle.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.simpleLabelItemScheduleOptionsDemosTitle.Location = new System.Drawing.Point(0, 0);
 			this.simpleLabelItemScheduleOptionsDemosTitle.Name = "simpleLabelItemScheduleOptionsDemosTitle";
-			this.simpleLabelItemScheduleOptionsDemosTitle.Size = new System.Drawing.Size(350, 22);
+			this.simpleLabelItemScheduleOptionsDemosTitle.Size = new System.Drawing.Size(346, 22);
 			this.simpleLabelItemScheduleOptionsDemosTitle.Text = "<size=+2>Are you working with an agency?</size>";
 			this.simpleLabelItemScheduleOptionsDemosTitle.TextSize = new System.Drawing.Size(319, 18);
 			// 
@@ -730,7 +730,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsDemosUseDemos.MaxSize = new System.Drawing.Size(0, 40);
 			this.layoutControlItemScheduleOptionsDemosUseDemos.MinSize = new System.Drawing.Size(300, 40);
 			this.layoutControlItemScheduleOptionsDemosUseDemos.Name = "layoutControlItemScheduleOptionsDemosUseDemos";
-			this.layoutControlItemScheduleOptionsDemosUseDemos.Size = new System.Drawing.Size(350, 40);
+			this.layoutControlItemScheduleOptionsDemosUseDemos.Size = new System.Drawing.Size(346, 40);
 			this.layoutControlItemScheduleOptionsDemosUseDemos.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsDemosUseDemos.Text = "Use Demos";
 			this.layoutControlItemScheduleOptionsDemosUseDemos.TextSize = new System.Drawing.Size(0, 0);
@@ -744,7 +744,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(350, 10);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(346, 10);
 			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -755,7 +755,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(350, 10);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(346, 10);
 			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -766,7 +766,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(350, 10);
+			this.emptySpaceItem5.Size = new System.Drawing.Size(346, 10);
 			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -778,7 +778,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsDemosCustom.Location = new System.Drawing.Point(0, 82);
 			this.layoutControlItemScheduleOptionsDemosCustom.MinSize = new System.Drawing.Size(300, 40);
 			this.layoutControlItemScheduleOptionsDemosCustom.Name = "layoutControlItemScheduleOptionsDemosCustom";
-			this.layoutControlItemScheduleOptionsDemosCustom.Size = new System.Drawing.Size(350, 42);
+			this.layoutControlItemScheduleOptionsDemosCustom.Size = new System.Drawing.Size(346, 42);
 			this.layoutControlItemScheduleOptionsDemosCustom.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsDemosCustom.Text = "Custom";
 			this.layoutControlItemScheduleOptionsDemosCustom.TextSize = new System.Drawing.Size(0, 0);
@@ -792,7 +792,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(350, 10);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(346, 10);
 			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -805,7 +805,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsDemosImport.MaxSize = new System.Drawing.Size(0, 40);
 			this.layoutControlItemScheduleOptionsDemosImport.MinSize = new System.Drawing.Size(300, 40);
 			this.layoutControlItemScheduleOptionsDemosImport.Name = "layoutControlItemScheduleOptionsDemosImport";
-			this.layoutControlItemScheduleOptionsDemosImport.Size = new System.Drawing.Size(350, 40);
+			this.layoutControlItemScheduleOptionsDemosImport.Size = new System.Drawing.Size(346, 40);
 			this.layoutControlItemScheduleOptionsDemosImport.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsDemosImport.Text = "Import";
 			this.layoutControlItemScheduleOptionsDemosImport.TextSize = new System.Drawing.Size(0, 0);
@@ -819,7 +819,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(350, 10);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(346, 10);
 			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -828,7 +828,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsDemosImps.Control = this.buttonXDemosImps;
 			this.layoutControlItemScheduleOptionsDemosImps.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemScheduleOptionsDemosImps.FillControlToClientArea = false;
-			this.layoutControlItemScheduleOptionsDemosImps.Location = new System.Drawing.Point(220, 184);
+			this.layoutControlItemScheduleOptionsDemosImps.Location = new System.Drawing.Point(216, 184);
 			this.layoutControlItemScheduleOptionsDemosImps.MaxSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemScheduleOptionsDemosImps.MinSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemScheduleOptionsDemosImps.Name = "layoutControlItemScheduleOptionsDemosImps";
@@ -860,7 +860,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem8.AllowHotTrack = false;
 			this.emptySpaceItem8.Location = new System.Drawing.Point(130, 184);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(90, 40);
+			this.emptySpaceItem8.Size = new System.Drawing.Size(86, 40);
 			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem9
@@ -870,7 +870,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem9.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem9.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem9.Name = "emptySpaceItem9";
-			this.emptySpaceItem9.Size = new System.Drawing.Size(350, 10);
+			this.emptySpaceItem9.Size = new System.Drawing.Size(346, 10);
 			this.emptySpaceItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -881,7 +881,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsDemosSource.FillControlToClientArea = false;
 			this.layoutControlItemScheduleOptionsDemosSource.Location = new System.Drawing.Point(0, 234);
 			this.layoutControlItemScheduleOptionsDemosSource.Name = "layoutControlItemScheduleOptionsDemosSource";
-			this.layoutControlItemScheduleOptionsDemosSource.Size = new System.Drawing.Size(350, 26);
+			this.layoutControlItemScheduleOptionsDemosSource.Size = new System.Drawing.Size(346, 26);
 			this.layoutControlItemScheduleOptionsDemosSource.Text = "Source";
 			this.layoutControlItemScheduleOptionsDemosSource.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemScheduleOptionsDemosSource.TextVisible = false;
@@ -894,7 +894,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem10.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem10.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem10.Name = "emptySpaceItem10";
-			this.emptySpaceItem10.Size = new System.Drawing.Size(350, 10);
+			this.emptySpaceItem10.Size = new System.Drawing.Size(346, 10);
 			this.emptySpaceItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -905,7 +905,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsDemosItems.FillControlToClientArea = false;
 			this.layoutControlItemScheduleOptionsDemosItems.Location = new System.Drawing.Point(0, 270);
 			this.layoutControlItemScheduleOptionsDemosItems.Name = "layoutControlItemScheduleOptionsDemosItems";
-			this.layoutControlItemScheduleOptionsDemosItems.Size = new System.Drawing.Size(350, 26);
+			this.layoutControlItemScheduleOptionsDemosItems.Size = new System.Drawing.Size(346, 26);
 			this.layoutControlItemScheduleOptionsDemosItems.Text = "Items";
 			this.layoutControlItemScheduleOptionsDemosItems.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemScheduleOptionsDemosItems.TextVisible = false;
@@ -921,7 +921,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.simpleLabelItemScheduleOptionsDemosInfo.Location = new System.Drawing.Point(0, 306);
 			this.simpleLabelItemScheduleOptionsDemosInfo.MinSize = new System.Drawing.Size(300, 1);
 			this.simpleLabelItemScheduleOptionsDemosInfo.Name = "simpleLabelItemScheduleOptionsDemosInfo";
-			this.simpleLabelItemScheduleOptionsDemosInfo.Size = new System.Drawing.Size(350, 225);
+			this.simpleLabelItemScheduleOptionsDemosInfo.Size = new System.Drawing.Size(346, 224);
 			this.simpleLabelItemScheduleOptionsDemosInfo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemScheduleOptionsDemosInfo.Text = resources.GetString("simpleLabelItemScheduleOptionsDemosInfo.Text");
 			this.simpleLabelItemScheduleOptionsDemosInfo.TextSize = new System.Drawing.Size(319, 128);
@@ -936,7 +936,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.emptySpaceItem12});
 			this.layoutControlGroupScheduleOptionsCalendar.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupScheduleOptionsCalendar.Name = "layoutControlGroupScheduleOptionsCalendar";
-			this.layoutControlGroupScheduleOptionsCalendar.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlGroupScheduleOptionsCalendar.Size = new System.Drawing.Size(346, 530);
 			this.layoutControlGroupScheduleOptionsCalendar.Text = "Calendar";
 			// 
 			// layoutControlItemScheduleOptionsCalendarTypeMondayBased
@@ -948,7 +948,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.MaxSize = new System.Drawing.Size(0, 40);
 			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.MinSize = new System.Drawing.Size(300, 40);
 			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.Name = "layoutControlItemScheduleOptionsCalendarTypeMondayBased";
-			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.Size = new System.Drawing.Size(350, 40);
+			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.Size = new System.Drawing.Size(346, 40);
 			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.Text = "Monday Based";
 			this.layoutControlItemScheduleOptionsCalendarTypeMondayBased.TextSize = new System.Drawing.Size(0, 0);
@@ -964,7 +964,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.MaxSize = new System.Drawing.Size(0, 40);
 			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.MinSize = new System.Drawing.Size(300, 40);
 			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.Name = "layoutControlItemScheduleOptionsCalendarTypeSundayBased";
-			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.Size = new System.Drawing.Size(350, 40);
+			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.Size = new System.Drawing.Size(346, 40);
 			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.Text = "Sunday Based";
 			this.layoutControlItemScheduleOptionsCalendarTypeSundayBased.TextSize = new System.Drawing.Size(0, 0);
@@ -978,7 +978,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem11.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem11.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem11.Name = "emptySpaceItem11";
-			this.emptySpaceItem11.Size = new System.Drawing.Size(350, 40);
+			this.emptySpaceItem11.Size = new System.Drawing.Size(346, 40);
 			this.emptySpaceItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -987,7 +987,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem13.AllowHotTrack = false;
 			this.emptySpaceItem13.Location = new System.Drawing.Point(0, 160);
 			this.emptySpaceItem13.Name = "emptySpaceItem13";
-			this.emptySpaceItem13.Size = new System.Drawing.Size(350, 371);
+			this.emptySpaceItem13.Size = new System.Drawing.Size(346, 370);
 			this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem12
@@ -997,17 +997,17 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem12.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem12.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem12.Name = "emptySpaceItem12";
-			this.emptySpaceItem12.Size = new System.Drawing.Size(350, 40);
+			this.emptySpaceItem12.Size = new System.Drawing.Size(346, 40);
 			this.emptySpaceItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// tabbedControlGroupSolutionOptions
 			// 
-			this.tabbedControlGroupSolutionOptions.Location = new System.Drawing.Point(1050, 0);
+			this.tabbedControlGroupSolutionOptions.Location = new System.Drawing.Point(1053, 0);
 			this.tabbedControlGroupSolutionOptions.Name = "tabbedControlGroupSolutionOptions";
 			this.tabbedControlGroupSolutionOptions.SelectedTabPage = this.layoutControlGroupSolutionOptions1;
 			this.tabbedControlGroupSolutionOptions.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupSolutionOptions.Size = new System.Drawing.Size(374, 580);
+			this.tabbedControlGroupSolutionOptions.Size = new System.Drawing.Size(371, 580);
 			this.tabbedControlGroupSolutionOptions.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupSolutionOptions1,
             this.layoutControlGroupSolutionOptions2,
@@ -1021,7 +1021,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.layoutControlItemSolutionOptionsTab1});
 			this.layoutControlGroupSolutionOptions1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupSolutionOptions1.Name = "layoutControlGroupSolutionOptions1";
-			this.layoutControlGroupSolutionOptions1.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlGroupSolutionOptions1.Size = new System.Drawing.Size(347, 530);
 			this.layoutControlGroupSolutionOptions1.Text = "Tab 1";
 			// 
 			// layoutControlItemSolutionOptionsTab1
@@ -1032,7 +1032,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemSolutionOptionsTab1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemSolutionOptionsTab1.MinSize = new System.Drawing.Size(300, 35);
 			this.layoutControlItemSolutionOptionsTab1.Name = "layoutControlItemSolutionOptionsTab1";
-			this.layoutControlItemSolutionOptionsTab1.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlItemSolutionOptionsTab1.Size = new System.Drawing.Size(347, 530);
 			this.layoutControlItemSolutionOptionsTab1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSolutionOptionsTab1.Text = "Tab 1";
 			this.layoutControlItemSolutionOptionsTab1.TextSize = new System.Drawing.Size(0, 0);
@@ -1045,7 +1045,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.layoutControlItemSolutionOptionsTab2});
 			this.layoutControlGroupSolutionOptions2.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupSolutionOptions2.Name = "layoutControlGroupSolutionOptions2";
-			this.layoutControlGroupSolutionOptions2.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlGroupSolutionOptions2.Size = new System.Drawing.Size(347, 530);
 			this.layoutControlGroupSolutionOptions2.Text = "Tab 2";
 			// 
 			// layoutControlItemSolutionOptionsTab2
@@ -1056,7 +1056,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemSolutionOptionsTab2.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemSolutionOptionsTab2.MinSize = new System.Drawing.Size(300, 1);
 			this.layoutControlItemSolutionOptionsTab2.Name = "layoutControlItemSolutionOptionsTab2";
-			this.layoutControlItemSolutionOptionsTab2.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlItemSolutionOptionsTab2.Size = new System.Drawing.Size(347, 530);
 			this.layoutControlItemSolutionOptionsTab2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSolutionOptionsTab2.Text = "Tab 2";
 			this.layoutControlItemSolutionOptionsTab2.TextSize = new System.Drawing.Size(0, 0);
@@ -1069,7 +1069,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.layoutControlItemSolutionOptionsTab3});
 			this.layoutControlGroupSolutionOptions3.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupSolutionOptions3.Name = "layoutControlGroupSolutionOptions3";
-			this.layoutControlGroupSolutionOptions3.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlGroupSolutionOptions3.Size = new System.Drawing.Size(347, 530);
 			this.layoutControlGroupSolutionOptions3.Text = "Tab 3";
 			// 
 			// layoutControlItemSolutionOptionsTab3
@@ -1080,7 +1080,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemSolutionOptionsTab3.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemSolutionOptionsTab3.MinSize = new System.Drawing.Size(1, 350);
 			this.layoutControlItemSolutionOptionsTab3.Name = "layoutControlItemSolutionOptionsTab3";
-			this.layoutControlItemSolutionOptionsTab3.Size = new System.Drawing.Size(350, 531);
+			this.layoutControlItemSolutionOptionsTab3.Size = new System.Drawing.Size(347, 530);
 			this.layoutControlItemSolutionOptionsTab3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSolutionOptionsTab3.Text = "Tab 3";
 			this.layoutControlItemSolutionOptionsTab3.TextSize = new System.Drawing.Size(0, 0);
@@ -1147,7 +1147,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.emptySpaceItem22});
 			this.layoutControlGroupMainSchedule.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupMainSchedule.Name = "layoutControlGroupMainSchedule";
-			this.layoutControlGroupMainSchedule.Size = new System.Drawing.Size(623, 531);
+			this.layoutControlGroupMainSchedule.Size = new System.Drawing.Size(623, 530);
 			this.layoutControlGroupMainSchedule.Text = "Build Schedule";
 			// 
 			// emptySpaceItem14
@@ -1157,7 +1157,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem14.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem14.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem14.Name = "emptySpaceItem14";
-			this.emptySpaceItem14.Size = new System.Drawing.Size(10, 531);
+			this.emptySpaceItem14.Size = new System.Drawing.Size(10, 530);
 			this.emptySpaceItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1253,14 +1253,14 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem17.AllowHotTrack = false;
 			this.emptySpaceItem17.Location = new System.Drawing.Point(10, 186);
 			this.emptySpaceItem17.Name = "emptySpaceItem17";
-			this.emptySpaceItem17.Size = new System.Drawing.Size(613, 126);
+			this.emptySpaceItem17.Size = new System.Drawing.Size(613, 125);
 			this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemMainScheduleConceptTypeTitle
 			// 
 			this.layoutControlItemMainScheduleConceptTypeTitle.Control = this.pictureEditScheduleConceptTypeTitle;
 			this.layoutControlItemMainScheduleConceptTypeTitle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemMainScheduleConceptTypeTitle.Location = new System.Drawing.Point(10, 312);
+			this.layoutControlItemMainScheduleConceptTypeTitle.Location = new System.Drawing.Point(10, 311);
 			this.layoutControlItemMainScheduleConceptTypeTitle.MaxSize = new System.Drawing.Size(0, 36);
 			this.layoutControlItemMainScheduleConceptTypeTitle.MinSize = new System.Drawing.Size(1, 36);
 			this.layoutControlItemMainScheduleConceptTypeTitle.Name = "layoutControlItemMainScheduleConceptTypeTitle";
@@ -1273,7 +1273,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// emptySpaceItem20
 			// 
 			this.emptySpaceItem20.AllowHotTrack = false;
-			this.emptySpaceItem20.Location = new System.Drawing.Point(10, 348);
+			this.emptySpaceItem20.Location = new System.Drawing.Point(10, 347);
 			this.emptySpaceItem20.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem20.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem20.Name = "emptySpaceItem20";
@@ -1286,7 +1286,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemMainScheduleSnapshot.Control = this.buttonXSnapshot;
 			this.layoutControlItemMainScheduleSnapshot.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemMainScheduleSnapshot.FillControlToClientArea = false;
-			this.layoutControlItemMainScheduleSnapshot.Location = new System.Drawing.Point(10, 368);
+			this.layoutControlItemMainScheduleSnapshot.Location = new System.Drawing.Point(10, 367);
 			this.layoutControlItemMainScheduleSnapshot.MaxSize = new System.Drawing.Size(160, 45);
 			this.layoutControlItemMainScheduleSnapshot.MinSize = new System.Drawing.Size(160, 45);
 			this.layoutControlItemMainScheduleSnapshot.Name = "layoutControlItemMainScheduleSnapshot";
@@ -1300,7 +1300,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// emptySpaceItem21
 			// 
 			this.emptySpaceItem21.AllowHotTrack = false;
-			this.emptySpaceItem21.Location = new System.Drawing.Point(170, 368);
+			this.emptySpaceItem21.Location = new System.Drawing.Point(170, 367);
 			this.emptySpaceItem21.MaxSize = new System.Drawing.Size(50, 0);
 			this.emptySpaceItem21.MinSize = new System.Drawing.Size(50, 10);
 			this.emptySpaceItem21.Name = "emptySpaceItem21";
@@ -1313,7 +1313,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemMainScheduleOptions.Control = this.buttonXOptions;
 			this.layoutControlItemMainScheduleOptions.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemMainScheduleOptions.FillControlToClientArea = false;
-			this.layoutControlItemMainScheduleOptions.Location = new System.Drawing.Point(220, 368);
+			this.layoutControlItemMainScheduleOptions.Location = new System.Drawing.Point(220, 367);
 			this.layoutControlItemMainScheduleOptions.MaxSize = new System.Drawing.Size(160, 45);
 			this.layoutControlItemMainScheduleOptions.MinSize = new System.Drawing.Size(160, 45);
 			this.layoutControlItemMainScheduleOptions.Name = "layoutControlItemMainScheduleOptions";
@@ -1329,7 +1329,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemMainScheduleCalendar.Control = this.buttonXCalendar;
 			this.layoutControlItemMainScheduleCalendar.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemMainScheduleCalendar.FillControlToClientArea = false;
-			this.layoutControlItemMainScheduleCalendar.Location = new System.Drawing.Point(430, 368);
+			this.layoutControlItemMainScheduleCalendar.Location = new System.Drawing.Point(430, 367);
 			this.layoutControlItemMainScheduleCalendar.MaxSize = new System.Drawing.Size(160, 45);
 			this.layoutControlItemMainScheduleCalendar.MinSize = new System.Drawing.Size(160, 45);
 			this.layoutControlItemMainScheduleCalendar.Name = "layoutControlItemMainScheduleCalendar";
@@ -1343,7 +1343,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// emptySpaceItem23
 			// 
 			this.emptySpaceItem23.AllowHotTrack = false;
-			this.emptySpaceItem23.Location = new System.Drawing.Point(380, 368);
+			this.emptySpaceItem23.Location = new System.Drawing.Point(380, 367);
 			this.emptySpaceItem23.MaxSize = new System.Drawing.Size(50, 0);
 			this.emptySpaceItem23.MinSize = new System.Drawing.Size(50, 10);
 			this.emptySpaceItem23.Name = "emptySpaceItem23";
@@ -1354,7 +1354,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// emptySpaceItem24
 			// 
 			this.emptySpaceItem24.AllowHotTrack = false;
-			this.emptySpaceItem24.Location = new System.Drawing.Point(590, 368);
+			this.emptySpaceItem24.Location = new System.Drawing.Point(590, 367);
 			this.emptySpaceItem24.Name = "emptySpaceItem24";
 			this.emptySpaceItem24.Size = new System.Drawing.Size(33, 45);
 			this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
@@ -1362,7 +1362,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// emptySpaceItem22
 			// 
 			this.emptySpaceItem22.AllowHotTrack = false;
-			this.emptySpaceItem22.Location = new System.Drawing.Point(10, 413);
+			this.emptySpaceItem22.Location = new System.Drawing.Point(10, 412);
 			this.emptySpaceItem22.Name = "emptySpaceItem22";
 			this.emptySpaceItem22.Size = new System.Drawing.Size(613, 118);
 			this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
@@ -1373,7 +1373,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.layoutControlGroupMainSolutionTitle});
 			this.layoutControlGroupMainSolution.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupMainSolution.Name = "layoutControlGroupMainSolution";
-			this.layoutControlGroupMainSolution.Size = new System.Drawing.Size(623, 531);
+			this.layoutControlGroupMainSolution.Size = new System.Drawing.Size(623, 530);
 			this.layoutControlGroupMainSolution.Text = "The Solution";
 			// 
 			// layoutControlGroupMainSolutionTitle
@@ -1383,7 +1383,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlGroupMainSolutionTitle.FillControlToClientArea = false;
 			this.layoutControlGroupMainSolutionTitle.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupMainSolutionTitle.Name = "layoutControlGroupMainSolutionTitle";
-			this.layoutControlGroupMainSolutionTitle.Size = new System.Drawing.Size(623, 531);
+			this.layoutControlGroupMainSolutionTitle.Size = new System.Drawing.Size(623, 530);
 			this.layoutControlGroupMainSolutionTitle.Text = "Title";
 			this.layoutControlGroupMainSolutionTitle.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlGroupMainSolutionTitle.TextVisible = false;
@@ -1395,7 +1395,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.splitterItemMain.FixedStyle = DevExpress.XtraLayout.SplitterItemFixedStyles.RightBottom;
 			this.splitterItemMain.Location = new System.Drawing.Point(671, 0);
 			this.splitterItemMain.Name = "splitterItemMain";
-			this.splitterItemMain.Size = new System.Drawing.Size(5, 580);
+			this.splitterItemMain.Size = new System.Drawing.Size(12, 580);
 			// 
 			// styleController
 			// 

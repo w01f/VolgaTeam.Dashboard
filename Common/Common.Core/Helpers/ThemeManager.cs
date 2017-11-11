@@ -170,7 +170,7 @@ namespace Asa.Common.Core.Helpers
 			}
 			_themes.Sort((x, y) => x.Order.CompareTo(y.Order));
 
-			ThemesChanged?.Invoke(this, EventArgs.Empty);
+			ThemesChanged?.Invoke(null, EventArgs.Empty);
 		}
 
 		public IEnumerable<Theme> GetThemes(SlideType slideType)

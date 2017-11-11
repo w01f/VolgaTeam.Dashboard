@@ -335,17 +335,17 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		{
 			if (ActiveSnapshotContainer != null && ActiveSnapshotContainer.SnapshotData.Programs.Any())
 			{
-				simpleLabelItemActiveWeeksValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSnapshotContainer.SnapshotData.TotalWeeks.ToString("#0"));
-				simpleLabelItemWeeklySpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSnapshotContainer.SnapshotData.WeeklySpots.ToString("#,##0"));
-				simpleLabelItemWeeklyCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSnapshotContainer.SnapshotData.WeeklyCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSnapshotContainer.SnapshotData.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSnapshotContainer.SnapshotData.TotalCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-				simpleLabelItemAvgRateValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSnapshotContainer.SnapshotData.AvgRate.ToString(ActiveSnapshotContainer.SnapshotData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemActiveWeeksValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.TotalWeeks.ToString("#0"));
+				simpleLabelItemWeeklySpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.WeeklySpots.ToString("#,##0"));
+				simpleLabelItemWeeklyCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.WeeklyCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.TotalSpots.ToString("#,##0"));
+				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.TotalCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemAvgRateValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.AvgRate.ToString(ActiveSnapshotContainer.SnapshotData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
 			}
 			else if (ActiveSummary != null)
 			{
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
+				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
 			}
 		}
 

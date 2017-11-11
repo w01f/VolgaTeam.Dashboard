@@ -39,8 +39,6 @@
 			this.layoutControlItemNew = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemTitle = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemLogo = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -52,8 +50,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemNew)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTitle)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
 			this.SuspendLayout();
@@ -64,12 +60,12 @@
 			this.buttonXNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXNew.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXNew.DialogResult = System.Windows.Forms.DialogResult.Yes;
-			this.buttonXNew.Location = new System.Drawing.Point(2, 117);
+			this.buttonXNew.Location = new System.Drawing.Point(2, 93);
 			this.buttonXNew.Name = "buttonXNew";
 			this.buttonXNew.Size = new System.Drawing.Size(126, 36);
 			this.buttonXNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXNew.TabIndex = 1;
-			this.buttonXNew.Text = "New Schedule";
+			this.buttonXNew.Text = "New";
 			this.buttonXNew.TextColor = System.Drawing.Color.Black;
 			// 
 			// buttonXOpen
@@ -78,12 +74,12 @@
 			this.buttonXOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOpen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOpen.DialogResult = System.Windows.Forms.DialogResult.No;
-			this.buttonXOpen.Location = new System.Drawing.Point(161, 117);
+			this.buttonXOpen.Location = new System.Drawing.Point(161, 93);
 			this.buttonXOpen.Name = "buttonXOpen";
 			this.buttonXOpen.Size = new System.Drawing.Size(126, 36);
 			this.buttonXOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOpen.TabIndex = 2;
-			this.buttonXOpen.Text = "Open Schedule";
+			this.buttonXOpen.Text = "Open";
 			this.buttonXOpen.TextColor = System.Drawing.Color.Black;
 			// 
 			// buttonXExit
@@ -92,12 +88,12 @@
 			this.buttonXExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXExit.Location = new System.Drawing.Point(318, 117);
+			this.buttonXExit.Location = new System.Drawing.Point(318, 93);
 			this.buttonXExit.Name = "buttonXExit";
 			this.buttonXExit.Size = new System.Drawing.Size(126, 36);
 			this.buttonXExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXExit.TabIndex = 3;
-			this.buttonXExit.Text = "CANCEL && EXIT";
+			this.buttonXExit.Text = "CANCEL";
 			this.buttonXExit.TextColor = System.Drawing.Color.Red;
 			// 
 			// layoutControl
@@ -125,7 +121,7 @@
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(446, 155);
+			this.layoutControl.Size = new System.Drawing.Size(446, 131);
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
 			// 
@@ -145,7 +141,7 @@
 			this.pictureEditLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditLogo.Properties.ShowMenu = false;
 			this.pictureEditLogo.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditLogo.Size = new System.Drawing.Size(442, 69);
+			this.pictureEditLogo.Size = new System.Drawing.Size(442, 74);
 			this.pictureEditLogo.StyleController = this.layoutControl;
 			this.pictureEditLogo.TabIndex = 4;
 			// 
@@ -172,14 +168,12 @@
             this.layoutControlItemNew,
             this.emptySpaceItem2,
             this.emptySpaceItem3,
-            this.simpleLabelItemTitle,
-            this.emptySpaceItem4,
             this.layoutControlItemLogo,
             this.emptySpaceItem5});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(446, 155);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(446, 131);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemExit
@@ -187,7 +181,7 @@
 			this.layoutControlItemExit.Control = this.buttonXExit;
 			this.layoutControlItemExit.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemExit.FillControlToClientArea = false;
-			this.layoutControlItemExit.Location = new System.Drawing.Point(316, 115);
+			this.layoutControlItemExit.Location = new System.Drawing.Point(316, 91);
 			this.layoutControlItemExit.MaxSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemExit.MinSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemExit.Name = "layoutControlItemExit";
@@ -203,7 +197,7 @@
 			this.layoutControlItemOpen.Control = this.buttonXOpen;
 			this.layoutControlItemOpen.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemOpen.FillControlToClientArea = false;
-			this.layoutControlItemOpen.Location = new System.Drawing.Point(159, 115);
+			this.layoutControlItemOpen.Location = new System.Drawing.Point(159, 91);
 			this.layoutControlItemOpen.MaxSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemOpen.MinSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemOpen.Name = "layoutControlItemOpen";
@@ -219,7 +213,7 @@
 			this.layoutControlItemNew.Control = this.buttonXNew;
 			this.layoutControlItemNew.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemNew.FillControlToClientArea = false;
-			this.layoutControlItemNew.Location = new System.Drawing.Point(0, 115);
+			this.layoutControlItemNew.Location = new System.Drawing.Point(0, 91);
 			this.layoutControlItemNew.MaxSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemNew.MinSize = new System.Drawing.Size(130, 40);
 			this.layoutControlItemNew.Name = "layoutControlItemNew";
@@ -233,7 +227,7 @@
 			// emptySpaceItem2
 			// 
 			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(130, 115);
+			this.emptySpaceItem2.Location = new System.Drawing.Point(130, 91);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
 			this.emptySpaceItem2.Size = new System.Drawing.Size(29, 40);
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -241,31 +235,10 @@
 			// emptySpaceItem3
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(289, 115);
+			this.emptySpaceItem3.Location = new System.Drawing.Point(289, 91);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
 			this.emptySpaceItem3.Size = new System.Drawing.Size(27, 40);
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// simpleLabelItemTitle
-			// 
-			this.simpleLabelItemTitle.AllowHotTrack = false;
-			this.simpleLabelItemTitle.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTitle.Location = new System.Drawing.Point(0, 83);
-			this.simpleLabelItemTitle.Name = "simpleLabelItemTitle";
-			this.simpleLabelItemTitle.Size = new System.Drawing.Size(446, 22);
-			this.simpleLabelItemTitle.Text = "<size=+2>Create a New Schedule, or open a saved schedule?</size>";
-			this.simpleLabelItemTitle.TextSize = new System.Drawing.Size(360, 18);
-			// 
-			// emptySpaceItem4
-			// 
-			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(0, 105);
-			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(446, 10);
-			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemLogo
 			// 
@@ -274,7 +247,7 @@
 			this.layoutControlItemLogo.FillControlToClientArea = false;
 			this.layoutControlItemLogo.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemLogo.Name = "layoutControlItemLogo";
-			this.layoutControlItemLogo.Size = new System.Drawing.Size(446, 73);
+			this.layoutControlItemLogo.Size = new System.Drawing.Size(446, 78);
 			this.layoutControlItemLogo.Text = "Logo";
 			this.layoutControlItemLogo.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemLogo.TextVisible = false;
@@ -283,9 +256,9 @@
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 73);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 78);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(446, 10);
+			this.emptySpaceItem5.Size = new System.Drawing.Size(446, 13);
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// FormStart
@@ -293,7 +266,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(446, 155);
+			this.ClientSize = new System.Drawing.Size(446, 131);
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -303,7 +276,7 @@
 			this.Name = "FormStart";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "SellerPoint for {0}";
+			this.Text = "adSALESapps.com";
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogo.Properties)).EndInit();
@@ -313,8 +286,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemNew)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTitle)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
 			this.ResumeLayout(false);
@@ -333,8 +304,6 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemNew;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTitle;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemLogo;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
 	}

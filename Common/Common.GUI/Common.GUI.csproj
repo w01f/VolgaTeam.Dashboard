@@ -301,6 +301,7 @@
     <Compile Include="Themes\FormThemeSelector.Designer.cs">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Themes\ThemeAdaptor.cs" />
     <Compile Include="Themes\ThemeButtonInfo.cs" />
     <Compile Include="Themes\ThemeContainerControl.cs">
       <SubType>UserControl</SubType>

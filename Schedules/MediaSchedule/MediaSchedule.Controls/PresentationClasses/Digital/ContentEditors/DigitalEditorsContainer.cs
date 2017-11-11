@@ -32,7 +32,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class DigitalEditorsContainer : BasePartitionEditControl<DigitalProductsContent, IDigitalSchedule<IDigitalScheduleSettings>, IDigitalScheduleSettings, MediaScheduleChangeInfo>
-	//public partial class DigitalEditorsContainer :System.Windows.Forms.UserControl
+	//public partial class DigitalEditorsContainer :UserControl
 	{
 		#region Properties
 		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;

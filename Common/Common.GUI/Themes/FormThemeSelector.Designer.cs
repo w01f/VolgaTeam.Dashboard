@@ -31,7 +31,6 @@
 			this.components = new System.ComponentModel.Container();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.checkEditApplyThemeForAllSlideTypes = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
@@ -40,14 +39,15 @@
 			this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemContainer = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemApplyThemeForAllSlideTypes = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemSlideSize = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.simpleLabelItemThemName = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlGroupContainer = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemContainer = new DevExpress.XtraLayout.LayoutControlItem();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
@@ -55,21 +55,23 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemApplyThemeForAllSlideTypes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideSize)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemThemName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupContainer)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
 			// 
 			this.pnMain.BackColor = System.Drawing.Color.Transparent;
 			this.pnMain.ForeColor = System.Drawing.Color.Black;
-			this.pnMain.Location = new System.Drawing.Point(12, 47);
+			this.pnMain.Location = new System.Drawing.Point(11, 46);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(870, 385);
+			this.pnMain.Size = new System.Drawing.Size(872, 387);
 			this.pnMain.TabIndex = 3;
 			// 
 			// checkEditApplyThemeForAllSlideTypes
@@ -82,21 +84,6 @@
 			this.checkEditApplyThemeForAllSlideTypes.Size = new System.Drawing.Size(303, 20);
 			this.checkEditApplyThemeForAllSlideTypes.StyleController = this.layoutControl;
 			this.checkEditApplyThemeForAllSlideTypes.TabIndex = 6;
-			// 
-			// styleController
-			// 
-			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.styleController.Appearance.Options.UseFont = true;
-			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDisabled.Options.UseFont = true;
-			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDown.Options.UseFont = true;
-			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceFocused.Options.UseFont = true;
-			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
 			// layoutControl
 			// 
@@ -177,12 +164,12 @@
             this.layoutControlItemCancel,
             this.layoutControlItemOK,
             this.emptySpaceItem5,
-            this.layoutControlItemContainer,
             this.layoutControlItemApplyThemeForAllSlideTypes,
             this.simpleLabelItemSlideSize,
             this.simpleLabelItemThemName,
             this.emptySpaceItem1,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.layoutControlGroupContainer});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(894, 494);
@@ -239,29 +226,6 @@
 			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// emptySpaceItem3
-			// 
-			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 25);
-			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(874, 10);
-			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemContainer
-			// 
-			this.layoutControlItemContainer.Control = this.pnMain;
-			this.layoutControlItemContainer.FillControlToClientArea = false;
-			this.layoutControlItemContainer.Location = new System.Drawing.Point(0, 35);
-			this.layoutControlItemContainer.Name = "layoutControlItemContainer";
-			this.layoutControlItemContainer.Size = new System.Drawing.Size(874, 389);
-			this.layoutControlItemContainer.Text = "Container";
-			this.layoutControlItemContainer.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemContainer.TextVisible = false;
-			this.layoutControlItemContainer.TrimClientAreaToControl = false;
-			// 
 			// layoutControlItemApplyThemeForAllSlideTypes
 			// 
 			this.layoutControlItemApplyThemeForAllSlideTypes.Control = this.checkEditApplyThemeForAllSlideTypes;
@@ -308,6 +272,56 @@
 			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
+			// emptySpaceItem3
+			// 
+			this.emptySpaceItem3.AllowHotTrack = false;
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 25);
+			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem3.Name = "emptySpaceItem3";
+			this.emptySpaceItem3.Size = new System.Drawing.Size(874, 10);
+			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlGroupContainer
+			// 
+			this.layoutControlGroupContainer.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemContainer});
+			this.layoutControlGroupContainer.Location = new System.Drawing.Point(0, 35);
+			this.layoutControlGroupContainer.Name = "layoutControlGroupContainer";
+			this.layoutControlGroupContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupContainer.Size = new System.Drawing.Size(874, 389);
+			this.layoutControlGroupContainer.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupContainer.TextVisible = false;
+			// 
+			// layoutControlItemContainer
+			// 
+			this.layoutControlItemContainer.Control = this.pnMain;
+			this.layoutControlItemContainer.FillControlToClientArea = false;
+			this.layoutControlItemContainer.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemContainer.Name = "layoutControlItemContainer";
+			this.layoutControlItemContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemContainer.Size = new System.Drawing.Size(872, 387);
+			this.layoutControlItemContainer.Text = "Container";
+			this.layoutControlItemContainer.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemContainer.TextVisible = false;
+			this.layoutControlItemContainer.TrimClientAreaToControl = false;
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
 			// FormThemeSelector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -326,7 +340,6 @@
 			this.Text = "Select Theme";
 			this.TopMost = true;
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
@@ -334,12 +347,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemApplyThemeForAllSlideTypes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSlideSize)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemThemName)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupContainer)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -363,5 +378,6 @@
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemSlideSize;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemThemName;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupContainer;
 	}
 }

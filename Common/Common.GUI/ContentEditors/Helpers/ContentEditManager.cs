@@ -67,7 +67,7 @@ namespace Asa.Common.GUI.ContentEditors.Helpers
 
 		public static void OnThemeChanged(object sender, EventArgs e)
 		{
-			RaiseThemeChanged((IThemeManagementControl)sender);
+			RaiseThemeChanged(sender as IThemeManagementControl);
 		}
 
 		public static void ProcessContentEditChanges(IContentEditControl<TChangeInfo> contentEditor, ContentSavingEventArgs savingArgs)

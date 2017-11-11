@@ -28,8 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.xtraTabControlContentEditors = new DevExpress.XtraTab.XtraTabControl();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings.SettingsContainer();
@@ -67,7 +66,7 @@
 			this.simpleLabelItemAvgRateTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.simpleLabelItemAvgRateValue = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
@@ -301,7 +300,7 @@
 			this.simpleLabelItemScheduleInfo.Size = new System.Drawing.Size(344, 40);
 			this.simpleLabelItemScheduleInfo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemScheduleInfo.Text = " ";
-			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(81, 16);
+			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(77, 16);
 			// 
 			// simpleLabelItemFlightDates
 			// 
@@ -315,7 +314,7 @@
 			this.simpleLabelItemFlightDates.Name = "simpleLabelItemFlightDates";
 			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(241, 40);
 			this.simpleLabelItemFlightDates.Text = " ";
-			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(81, 16);
+			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(77, 16);
 			// 
 			// emptySpaceItem1
 			// 
@@ -394,8 +393,8 @@
 			this.simpleLabelItemActiveWeeksTitle.Name = "simpleLabelItemActiveWeeksTitle";
 			this.simpleLabelItemActiveWeeksTitle.Size = new System.Drawing.Size(95, 20);
 			this.simpleLabelItemActiveWeeksTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemActiveWeeksTitle.Text = "<size=-1>Active Weeks:</size>";
-			this.simpleLabelItemActiveWeeksTitle.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemActiveWeeksTitle.Text = "<color=darkgray><size=-1>Active Weeks:</size></color>";
+			this.simpleLabelItemActiveWeeksTitle.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// emptySpaceItem2
 			// 
@@ -418,8 +417,8 @@
 			this.simpleLabelItemActiveWeeksValue.Name = "simpleLabelItemActiveWeeksValue";
 			this.simpleLabelItemActiveWeeksValue.Size = new System.Drawing.Size(95, 20);
 			this.simpleLabelItemActiveWeeksValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemActiveWeeksValue.Text = "<size=-1><b>Active Weeks:</b></size>";
-			this.simpleLabelItemActiveWeeksValue.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemActiveWeeksValue.Text = "<color=dimgray><size=-1>Active Weeks:</size></color>";
+			this.simpleLabelItemActiveWeeksValue.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// layoutControlGroupWeeklySpots
 			// 
@@ -445,8 +444,8 @@
 			this.simpleLabelItemWeeklySpotsTitle.Name = "simpleLabelItemWeeklySpotsTitle";
 			this.simpleLabelItemWeeklySpotsTitle.Size = new System.Drawing.Size(95, 20);
 			this.simpleLabelItemWeeklySpotsTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemWeeklySpotsTitle.Text = "<size=-1>Weekly Spots:</size>";
-			this.simpleLabelItemWeeklySpotsTitle.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemWeeklySpotsTitle.Text = "<color=darkgray><size=-1>Weekly Spots:</size></color>";
+			this.simpleLabelItemWeeklySpotsTitle.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// emptySpaceItem4
 			// 
@@ -469,8 +468,8 @@
 			this.simpleLabelItemWeeklySpotsValue.Name = "simpleLabelItemWeeklySpotsValue";
 			this.simpleLabelItemWeeklySpotsValue.Size = new System.Drawing.Size(95, 20);
 			this.simpleLabelItemWeeklySpotsValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemWeeklySpotsValue.Text = "<size=-1><b>Weekly Spots:</b></size>";
-			this.simpleLabelItemWeeklySpotsValue.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemWeeklySpotsValue.Text = "<color=dimgray><size=-1>Weekly Spots:</size></color>";
+			this.simpleLabelItemWeeklySpotsValue.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// layoutControlGroupWeeklyCost
 			// 
@@ -496,8 +495,8 @@
 			this.simpleLabelItemWeeklyCostTitle.Name = "simpleLabelItemWeeklyCostTitle";
 			this.simpleLabelItemWeeklyCostTitle.Size = new System.Drawing.Size(90, 20);
 			this.simpleLabelItemWeeklyCostTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemWeeklyCostTitle.Text = "<size=-1>Weekly Cost:</size>";
-			this.simpleLabelItemWeeklyCostTitle.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemWeeklyCostTitle.Text = "<color=darkgray><size=-1>Weekly Cost:</size></color>";
+			this.simpleLabelItemWeeklyCostTitle.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// emptySpaceItem5
 			// 
@@ -520,8 +519,8 @@
 			this.simpleLabelItemWeeklyCostValue.Name = "simpleLabelItemWeeklyCostValue";
 			this.simpleLabelItemWeeklyCostValue.Size = new System.Drawing.Size(90, 20);
 			this.simpleLabelItemWeeklyCostValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemWeeklyCostValue.Text = "<size=-1><b>Weekly Cost:</b></size>";
-			this.simpleLabelItemWeeklyCostValue.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemWeeklyCostValue.Text = "<color=dimgray><size=-1>Weekly Cost:</size></color>";
+			this.simpleLabelItemWeeklyCostValue.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// layoutControlGroupTotalSpots
 			// 
@@ -547,8 +546,8 @@
 			this.simpleLabelItemTotalSpotsTitle.Name = "simpleLabelItemTotalSpotsTitle";
 			this.simpleLabelItemTotalSpotsTitle.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalSpotsTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemTotalSpotsTitle.Text = "<size=-1>Total Spots:</size>";
-			this.simpleLabelItemTotalSpotsTitle.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemTotalSpotsTitle.Text = "<color=darkgray><size=-1>Total Spots:</size></color>";
+			this.simpleLabelItemTotalSpotsTitle.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// emptySpaceItem6
 			// 
@@ -571,8 +570,8 @@
 			this.simpleLabelItemTotalSpotsValue.Name = "simpleLabelItemTotalSpotsValue";
 			this.simpleLabelItemTotalSpotsValue.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalSpotsValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemTotalSpotsValue.Text = "<size=-1><b>Total Spots:</b></size>";
-			this.simpleLabelItemTotalSpotsValue.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemTotalSpotsValue.Text = "<color=dimgray><size=-1>Total Spots:</size></color>";
+			this.simpleLabelItemTotalSpotsValue.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// layoutControlGroupTotalCost
 			// 
@@ -598,8 +597,8 @@
 			this.simpleLabelItemTotalCostTitle.Name = "simpleLabelItemTotalCostTitle";
 			this.simpleLabelItemTotalCostTitle.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalCostTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemTotalCostTitle.Text = "<size=-1>Total Cost:</size>";
-			this.simpleLabelItemTotalCostTitle.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemTotalCostTitle.Text = "<color=darkgray><size=-1>Total Cost:</size></color>";
+			this.simpleLabelItemTotalCostTitle.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// emptySpaceItem7
 			// 
@@ -622,8 +621,8 @@
 			this.simpleLabelItemTotalCostValue.Name = "simpleLabelItemTotalCostValue";
 			this.simpleLabelItemTotalCostValue.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalCostValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemTotalCostValue.Text = "<size=-1><b>Total Cost:</b></size>";
-			this.simpleLabelItemTotalCostValue.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemTotalCostValue.Text = "<color=dimgray><size=-1>Total Cost:</size></color>";
+			this.simpleLabelItemTotalCostValue.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// layoutControlGroupAvgRate
 			// 
@@ -648,8 +647,8 @@
 			this.simpleLabelItemAvgRateTitle.Name = "simpleLabelItemAvgRateTitle";
 			this.simpleLabelItemAvgRateTitle.Size = new System.Drawing.Size(95, 20);
 			this.simpleLabelItemAvgRateTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemAvgRateTitle.Text = "<size=-1>Average Rate:</size>";
-			this.simpleLabelItemAvgRateTitle.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemAvgRateTitle.Text = "<color=darkgray><size=-1>Average Rate:</size></color>";
+			this.simpleLabelItemAvgRateTitle.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// simpleLabelItemAvgRateValue
 			// 
@@ -661,8 +660,8 @@
 			this.simpleLabelItemAvgRateValue.Name = "simpleLabelItemAvgRateValue";
 			this.simpleLabelItemAvgRateValue.Size = new System.Drawing.Size(95, 20);
 			this.simpleLabelItemAvgRateValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemAvgRateValue.Text = "<size=-1><b>Average Rate:</b></size>";
-			this.simpleLabelItemAvgRateValue.TextSize = new System.Drawing.Size(81, 15);
+			this.simpleLabelItemAvgRateValue.Text = "<color=dimgray><size=-1>Average Rate:</size></color>";
+			this.simpleLabelItemAvgRateValue.TextSize = new System.Drawing.Size(77, 15);
 			// 
 			// emptySpaceItem8
 			// 

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Objects.Themes;
-using DevExpress.XtraGrid.Views.Layout;
+using Manina.Windows.Forms;
 
 namespace Asa.Common.GUI.Themes
 {
@@ -13,9 +12,12 @@ namespace Asa.Common.GUI.Themes
 	public partial class ThemeContainerControl : UserControl
 	{
 		private readonly List<Theme> _themes = new List<Theme>();
+		private ThemeAdaptor _themeAdaptor;
 		public event EventHandler<ThemeEventArgs> ThemeChanged;
 		public event EventHandler<ThemeEventArgs> ThemeSelected;
-		public Theme SelectedTheme => layoutViewThemes.GetFocusedRow() as Theme;
+		public Theme SelectedTheme => themesListView.SelectedItems.Count > 0 ?
+					themesListView.SelectedItems.Select(item => item.Tag as Theme).FirstOrDefault() :
+					null;
 
 		public ThemeContainerControl()
 		{
@@ -23,42 +25,49 @@ namespace Asa.Common.GUI.Themes
 			Dock = DockStyle.Fill;
 		}
 
-		public void LoadThemes(IEnumerable<Theme> slides)
+		public void LoadThemes(IEnumerable<Theme> themes)
 		{
 			_themes.Clear();
-			_themes.AddRange(slides);
-			gridControlThemes.DataSource = _themes;
+			_themes.AddRange(themes);
+			var minOrder = _themes.Min(s => s.Order);
+			_themeAdaptor = new ThemeAdaptor(_themes);
+			themesListView.Items.Clear();
+			themesListView.Items.AddRange(
+				_themes
+					.Select(theme => new ImageListViewItem(theme.Identifier)
+					{
+						Text = theme.Name,
+						Tag = theme,
+						Selected = theme.Order == minOrder,
+					}).ToArray(),
+				_themeAdaptor);
 		}
 
 		public void SelectTheme(string themeName)
 		{
-			var themeToSelect = _themes.FirstOrDefault(s => s.Name.Equals(themeName));
-			if (themeToSelect == null) return;
-			layoutViewThemes.FocusedRowHandle = _themes.IndexOf(themeToSelect);
-			layoutViewThemes.VisibleRecordIndex = layoutViewThemes.FocusedRowHandle;
+			themesListView.ClearSelection();
+			var itemToSelect = themesListView.Items.FirstOrDefault(item => ((Theme)item.Tag).Name == themeName);
+			if(itemToSelect!= null)
+				itemToSelect.Selected = true;
 		}
 
-		private void layoutViewThemes_DoubleClick(object sender, EventArgs e)
+		public void Release()
 		{
-			var layoutView = sender as LayoutView;
-			var hitInfo = layoutView.CalcHitInfo(layoutView.GridControl.PointToClient(MousePosition));
-			if (!hitInfo.InCard) return;
-			var theme = layoutView.GetRow(hitInfo.RowHandle) as Theme;
-			if (theme == null) return;
-			ThemeSelected?.Invoke(this, new ThemeEventArgs { SelectedTheme = theme });
+			themesListView.ClearSelection();
+			themesListView.Items.Clear();
+			_themeAdaptor.Dispose();
+			_themeAdaptor = null;
+			_themes.Clear();
 		}
 
-		private void layoutViewThemes_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
+		private void OnListViewItemDoubleClick(object sender, ItemClickEventArgs e)
 		{
-			var view = sender as LayoutView;
-			if (view.FocusedRowHandle == e.RowHandle)
-			{
-				e.Appearance.BackColor = Color.NavajoWhite;
-				e.Appearance.BackColor2 = Color.NavajoWhite;
-			}
+			themesListView.ClearSelection();
+			e.Item.Selected = true;
+			ThemeSelected?.Invoke(this, new ThemeEventArgs { SelectedTheme = (Theme)e.Item.Tag });
 		}
-
-		private void layoutViewThemes_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+		
+		private void OnListViewSelectionChanged(object sender, EventArgs e)
 		{
 			ThemeChanged?.Invoke(this, new ThemeEventArgs { SelectedTheme = SelectedTheme });
 		}

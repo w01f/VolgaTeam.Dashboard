@@ -351,28 +351,28 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				switch (ActiveOptionSetContainer.OptionSetData.SpotType)
 				{
 					case SpotType.Week:
-						simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Weekly Spots");
-						simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Weekly Cost");
+						simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Weekly Spots");
+						simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Weekly Cost");
 						break;
 					case SpotType.Month:
-						simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Monthly Spots");
-						simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Monthly Cost");
+						simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Monthly Spots");
+						simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Monthly Cost");
 						break;
 					case SpotType.Total:
-						simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Total Spots");
-						simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Total Cost");
+						simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Spots");
+						simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Cost");
 						break;
 				}
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-				simpleLabelItemAvgRateValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveOptionSetContainer.OptionSetData.AvgRate.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0"));
+				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemAvgRateValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveOptionSetContainer.OptionSetData.AvgRate.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
 			}
 			else if (ActiveSummary != null)
 			{
-				simpleLabelItemTotalSpotsTitle.Text = String.Format("<size=-1>{0}</size>", "Total Spots");
-				simpleLabelItemTotalCostTitle.Text = String.Format("<size=-1>{0}</size>", "Total Cost");
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<size=-1><b>{0}</b></size>", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Spots");
+				simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Cost");
+				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
+				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
 				simpleLabelItemAvgRateValue.Text = " ";
 			}
 			else

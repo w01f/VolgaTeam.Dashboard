@@ -14,14 +14,14 @@ namespace Asa.Common.GUI.ToolForms
 			InitializeComponent();
 			if (saveForm)
 			{
-				Text = "Save Schedule";
+				Text = "Save Solution";
 				layoutControlItemScheduleName.Text = "<size=+2>Save a copy of this schedule:</size>";
 				layoutControlItemSaveAsTemplate.Visibility = LayoutVisibility.Always;
 				Height = (Int32)(210 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 			}
 			else
 			{
-				Text = "Build a New Schedule";
+				Text = "Build a NEW Solution";
 				layoutControlItemScheduleName.Text = "<size=+2>File Name:</size>";
 				layoutControlItemSaveAsTemplate.Visibility = LayoutVisibility.Never;
 				Height = (Int32)(190 * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);

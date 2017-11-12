@@ -7,11 +7,12 @@ using System.Xml;
 using Asa.Business.Common.Interfaces;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Themes;
 
 namespace Asa.Business.Dashboard.Configuration
 {
-	public class SettingsManager : IThemeSettingsContainer
+	public class SettingsManager : IThemeSettingsContainer, IBaseSettingsContainer
 	{
 		private ThemeSaveHelper _themeSaveHelper;
 

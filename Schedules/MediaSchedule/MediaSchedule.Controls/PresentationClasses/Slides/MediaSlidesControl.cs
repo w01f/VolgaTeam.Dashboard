@@ -6,13 +6,13 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Slides;
-using Asa.Common.GUI.ContentEditors.Events;
-using Asa.Common.GUI.ContentEditors.Interfaces;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Slides;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
+using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
 

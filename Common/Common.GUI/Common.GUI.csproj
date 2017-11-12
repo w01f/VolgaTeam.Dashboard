@@ -35,15 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.12, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Pdf.v16.2.Drawing, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -56,28 +47,10 @@
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraPdfViewer.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EO.Base, Version=17.2.92.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.17.2.92.0\lib\EO.Base.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EO.WebBrowser, Version=17.2.92.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.17.2.92.0\lib\EO.WebBrowser.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EO.WebEngine, Version=17.2.92.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EO.WebBrowser.17.2.92.0\lib\EO.WebEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ImageListView_noWPF, Version=11.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -94,10 +67,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Vintasoft.Imaging">
-      <HintPath>..\..\Assemblies\Vintasoft.Imaging\Vintasoft.Imaging.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ComboBoxListEdit.cs">
@@ -114,22 +83,6 @@
     <Compile Include="Common\TabbedControls.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ContentEditors\Controls\BaseContentOutputControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContentEditors\Events\ContentOpenEventArgs.cs" />
-    <Compile Include="ContentEditors\Helpers\ContentEditManager.cs" />
-    <Compile Include="ContentEditors\Interfaces\IThemeManagementControl.cs" />
-    <Compile Include="ContentEditors\Objects\ContentEditorRelation.cs" />
-    <Compile Include="ContentEditors\Helpers\ContentRibbonManager.cs" />
-    <Compile Include="ContentEditors\Events\ContentSavingEventArgs.cs" />
-    <Compile Include="ContentEditors\Enums\ContentSavingReason.cs" />
-    <Compile Include="ContentEditors\Objects\ContentUpdateInfo.cs" />
-    <Compile Include="ContentEditors\Interfaces\IContentController.cs" />
-    <Compile Include="ContentEditors\Interfaces\IContentControl.cs" />
-    <Compile Include="ContentEditors\Interfaces\IOutputControl.cs" />
-    <Compile Include="ContentEditors\Events\ScheduleSavingEventArgs.cs" />
-    <Compile Include="ContentEditors\Objects\ThemeUpdateInfo.cs" />
     <Compile Include="FavoriteImages\FavoriteImagesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,12 +110,6 @@
     </Compile>
     <Compile Include="Floater\FormFloater.designer.cs">
       <DependentUpon>FormFloater.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gallery\GalleryControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Gallery\GalleryControl.Designer.cs">
-      <DependentUpon>GalleryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Interop\SummaryHelper.cs" />
     <Compile Include="ListEditor\ListContainer.cs">
@@ -193,50 +140,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RateCard\DefaultViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="RateCard\DefaultViewer.Designer.cs">
-      <DependentUpon>DefaultViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RateCard\ExcelViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="RateCard\ExcelViewer.Designer.cs">
-      <DependentUpon>ExcelViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RateCard\PDFViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="RateCard\PDFViewer.Designer.cs">
-      <DependentUpon>PDFViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RateCard\RateCardControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RateCard\RateCardControl.Designer.cs">
-      <DependentUpon>RateCardControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RateCard\RateCardManager.cs" />
-    <Compile Include="RateCard\RateFolderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RateCard\RateFolderControl.Designer.cs">
-      <DependentUpon>RateFolderControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RateCard\WebViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="RateCard\WebViewer.Designer.cs">
-      <DependentUpon>WebViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RateCard\WordViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="RateCard\WordViewer.Designer.cs">
-      <DependentUpon>WordViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Common\LicenseHelper.cs" />
     <Compile Include="RetractableBar\RetractableBarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,17 +158,6 @@
     <Compile Include="RetractableBar\RetractableBarRight.Designer.cs">
       <DependentUpon>RetractableBarRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="ContentEditors\Controls\BaseContentEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContentEditors\Controls\BaseScheduleSettingsEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContentEditors\Controls\BasePartitionEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContentEditors\Events\ContentSavedEventArgs.cs" />
-    <Compile Include="ContentEditors\Interfaces\IContentEditControl.cs" />
     <Compile Include="SlideSettingsEditors\FormEditSlideSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,7 +186,6 @@
     </Compile>
     <Compile Include="Summary\SummaryConstants.cs" />
     <Compile Include="Summary\ISummaryControl.cs" />
-    <Compile Include="Summary\ISummaryItemControl.cs" />
     <Compile Include="Themes\FormThemeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,9 +289,6 @@
     <EmbeddedResource Include="Floater\FormFloater.resx">
       <DependentUpon>FormFloater.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gallery\GalleryControl.resx">
-      <DependentUpon>GalleryControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ImageGallery\ImageGroupPage.resx">
       <DependentUpon>ImageGroupPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -416,27 +304,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\DefaultViewer.resx">
-      <DependentUpon>DefaultViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\ExcelViewer.resx">
-      <DependentUpon>ExcelViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\PDFViewer.resx">
-      <DependentUpon>PDFViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\RateCardControl.resx">
-      <DependentUpon>RateCardControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\RateFolderControl.resx">
-      <DependentUpon>RateFolderControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\WebViewer.resx">
-      <DependentUpon>WebViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RateCard\WordViewer.resx">
-      <DependentUpon>WordViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RetractableBar\RetractableBarControl.resx">
       <DependentUpon>RetractableBarControl.cs</DependentUpon>
@@ -600,10 +467,6 @@
     <None Include="Resources\StartLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Business\Business.Common\Business.Common.csproj">
-      <Project>{CCFAD4DA-48C4-454B-930D-6A81D2626E76}</Project>
-      <Name>Business.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common.Core\Common.Core.csproj">
       <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
       <Name>Common.Core</Name>

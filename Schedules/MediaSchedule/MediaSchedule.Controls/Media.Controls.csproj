@@ -331,6 +331,7 @@
       <DependentUpon>FormCopyContentConfirmation.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISectionItemCollectionControl.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ISummaryItemControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDataChangedEventArgs.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\SectionDigitalInfoControl.cs">
       <SubType>Component</SubType>
@@ -942,25 +943,29 @@
       <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
       <Name>Common.GUI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Solutions\Solutions.Common\Solutions.Common.csproj">
-      <Project>{5265e59c-b925-4494-aa69-a40d8a8e50e0}</Project>
-      <Name>Solutions.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Solutions\Solutions.Dashboard\Solutions.Dashboard.csproj">
-      <Project>{9399d618-8c42-483c-8b87-3bd111b07b88}</Project>
-      <Name>Solutions.Dashboard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Solutions\Solutions.StarApp\Solutions.StarApp.csproj">
-      <Project>{D3C4FE3F-D410-4FDF-ABFE-4359487DB9DB}</Project>
-      <Name>Solutions.StarApp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Calendar\Calendar.Controls\Calendar.Controls.csproj">
       <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>
       <Name>Calendar.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
+      <Project>{18F20EB4-6552-4F0A-AB13-D417A2D53CD4}</Project>
+      <Name>Common.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OnlineSchedule\OnlineSchedule.Controls\Online.Controls.csproj">
       <Project>{1c9b33cd-0fe1-431c-bbc4-88463568f891}</Project>
       <Name>Online.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solutions\Solutions.Common\Solutions.Common.csproj">
+      <Project>{5265E59C-B925-4494-AA69-A40D8A8E50E0}</Project>
+      <Name>Solutions.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solutions\Solutions.Dashboard\Solutions.Dashboard.csproj">
+      <Project>{9399D618-8C42-483C-8B87-3BD111B07B88}</Project>
+      <Name>Solutions.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solutions\Solutions.StarApp\Solutions.StarApp.csproj">
+      <Project>{D3C4FE3F-D410-4FDF-ABFE-4359487DB9DB}</Project>
+      <Name>Solutions.StarApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

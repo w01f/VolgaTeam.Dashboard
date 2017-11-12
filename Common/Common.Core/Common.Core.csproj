@@ -77,6 +77,11 @@
     <Compile Include="Configuration\SiteCredentialsManager.cs" />
     <Compile Include="Configuration\GlobalSettings.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
+    <Compile Include="Dictionaries\AdvertisersManager.cs" />
+    <Compile Include="Dictionaries\DecisionMakersManager.cs" />
+    <Compile Include="Dictionaries\ListManager.cs" />
+    <Compile Include="Dictionaries\NameCodePair.cs" />
+    <Compile Include="Dictionaries\SimpleSummaryList.cs" />
     <Compile Include="Enums\AppType.cs" />
     <Compile Include="Enums\BrowserType.cs" />
     <Compile Include="Enums\DataActualityState.cs" />
@@ -119,6 +124,7 @@
     <Compile Include="Interfaces\IJsonCloneable.cs" />
     <Compile Include="Interfaces\IJsonCloneSource.cs" />
     <Compile Include="Interfaces\ITextItem.cs" />
+    <Compile Include="Interfaces\IThemeSettingsContainer.cs" />
     <Compile Include="Json\DefaultSerializeSettings.cs" />
     <Compile Include="Json\JsonImageConverter.cs" />
     <Compile Include="Json\ContentResolver.cs" />

@@ -317,6 +317,10 @@
       <Project>{898ECB12-D464-4514-AE2E-45FE430FE04E}</Project>
       <Name>MonthCalendar</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
+      <Project>{18F20EB4-6552-4F0A-AB13-D417A2D53CD4}</Project>
+      <Name>Common.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Clone.png" />

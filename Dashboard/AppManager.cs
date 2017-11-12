@@ -59,8 +59,6 @@ namespace Asa.Dashboard
 
 			PopupMessageHelper.Instance.Title = appTitle;
 
-			LicenseHelper.Register();
-
 			AppProfileManager.Instance.InitApplication(AppTypeEnum.Dashboard);
 
 			FileStorageManager.Instance.UsingLocalMode += (o, e) =>

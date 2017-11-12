@@ -33,3 +33,4 @@ packages
 packages
 /Common/Common.GUI/Common/LicenseHelper.cs
 /Utilities/AdSalesBrowser/AppManager.cs
+/Schedules/Common/Common.Controls/LicenseHelper.cs

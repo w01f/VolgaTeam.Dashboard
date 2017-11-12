@@ -1,5 +1,5 @@
 ﻿using System;
-using Asa.Common.GUI.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Events;
 
 namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 {

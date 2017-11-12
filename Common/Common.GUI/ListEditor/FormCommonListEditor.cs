@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Dictionaries;
+using Asa.Common.Core.Dictionaries;
 using Asa.Common.Core.Helpers;
 using DevExpress.Skins;
 

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Slides;
-using DevExpress.XtraPrinting.Native;
 
 namespace Asa.Common.GUI.Slides
 {
@@ -34,7 +33,7 @@ namespace Asa.Common.GUI.Slides
 		public void InitSlides(SlideManager slideManager)
 		{
 			_slideManager = slideManager;
-			xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ForEach(g => g.Release());
+			xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ToList().ForEach(g => g.Release());
 			xtraTabControlSlides.TabPages.Clear();
 			foreach (var group in _slideManager.Slides.Where(s => s.Format == PowerPointManager.Instance.SlideSettings.Format).Select(s => s.Group).Distinct())
 			{

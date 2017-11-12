@@ -72,11 +72,6 @@
     <Compile Include="Contexts\ScheduleContext.cs" />
     <Compile Include="Contexts\ScheduleManager.cs" />
     <Compile Include="Contexts\SqLiteContext.cs" />
-    <Compile Include="Dictionaries\AdvertisersManager.cs" />
-    <Compile Include="Dictionaries\DecisionMakersManager.cs" />
-    <Compile Include="Dictionaries\ListManager.cs" />
-    <Compile Include="Dictionaries\NameCodePair.cs" />
-    <Compile Include="Dictionaries\SimpleSummaryList.cs" />
     <Compile Include="Helpers\PartitionContentChangedEventArgs.cs" />
     <Compile Include="Helpers\ScheduleDatesChangedEventArgs.cs" />
     <Compile Include="Helpers\ShortScheduleHelper.cs" />
@@ -114,7 +109,6 @@
     <Compile Include="Interfaces\IScheduleSolutionContent.cs" />
     <Compile Include="Interfaces\ISchedulePartitionContent.cs" />
     <Compile Include="Interfaces\ITemplatedSchedule.cs" />
-    <Compile Include="Interfaces\IThemeSettingsContainer.cs" />
     <Compile Include="Mappers\ScheduleSolutionMap.cs" />
     <Compile Include="Mappers\SchedulePartitionMap.cs" />
     <Compile Include="Mappers\ScheduleMap.cs" />

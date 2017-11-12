@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFloater));
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.buttonXHide = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXBack = new DevComponents.DotNetBar.ButtonX();
@@ -48,7 +49,7 @@
 			this.buttonXHide.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXHide.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXHide.FocusCuesEnabled = false;
-			this.buttonXHide.Image = global::Asa.Common.GUI.Properties.Resources.FloaterHide;
+			this.buttonXHide.Image = ((System.Drawing.Image)(resources.GetObject("buttonXHide.Image")));
 			this.buttonXHide.Location = new System.Drawing.Point(251, 5);
 			this.buttonXHide.Name = "buttonXHide";
 			this.buttonXHide.Size = new System.Drawing.Size(84, 106);

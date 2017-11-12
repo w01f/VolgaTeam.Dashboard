@@ -9,7 +9,6 @@ using Asa.Business.Calendar.Interfaces;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Common.Interfaces;
 using Asa.Common.Core.Objects.Output;
-using Asa.Common.GUI.ContentEditors.Controls;
 using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -18,6 +17,7 @@ using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
 using Asa.Calendar.Controls.PresentationClasses.Views;
 using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
 using Asa.Common.Core.Helpers;
+using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
 

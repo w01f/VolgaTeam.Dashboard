@@ -11,11 +11,11 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.RemoteStorage;
-using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.InteropClasses;
+using Asa.Schedules.Common.Controls;
 
 namespace Asa.Media.Single
 {

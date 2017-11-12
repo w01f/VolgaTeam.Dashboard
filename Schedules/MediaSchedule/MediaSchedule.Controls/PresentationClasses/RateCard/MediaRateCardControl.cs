@@ -1,6 +1,6 @@
-﻿using Asa.Common.GUI.ContentEditors.Events;
-using Asa.Common.GUI.RateCard;
-using Asa.Media.Controls.BusinessClasses.Managers;
+﻿using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.RateCard;
 using DevComponents.DotNetBar;
 
 namespace Asa.Media.Controls.PresentationClasses.RateCard

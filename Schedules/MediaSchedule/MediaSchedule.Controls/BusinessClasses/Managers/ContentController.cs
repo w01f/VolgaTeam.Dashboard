@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
-using Asa.Common.GUI.ContentEditors.Events;
-using Asa.Common.GUI.ContentEditors.Helpers;
-using Asa.Common.GUI.ContentEditors.Interfaces;
-using Asa.Common.GUI.ContentEditors.Objects;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.PresentationClasses.Calendar;
 using Asa.Media.Controls.PresentationClasses.Digital.ContentEditors;
@@ -17,6 +13,10 @@ using Asa.Media.Controls.PresentationClasses.SettingsControls;
 using Asa.Media.Controls.PresentationClasses.Slides;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.Solutions;
+using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
+using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
+using Asa.Schedules.Common.Controls.ContentEditors.Objects;
 using DevComponents.DotNetBar;
 using DevExpress.XtraLayout;
 

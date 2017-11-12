@@ -2,6 +2,7 @@
 using Asa.Business.Common.Interfaces;
 using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.StarApp.Configuration;
+using Asa.Common.Core.Interfaces;
 
 namespace Asa.Business.Media.Interfaces
 {

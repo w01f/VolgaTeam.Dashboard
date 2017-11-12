@@ -1,9 +1,9 @@
 ﻿using Asa.Common.Core.Helpers;
-using Asa.Common.GUI.ContentEditors.Events;
-using Asa.Common.GUI.Gallery;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.Gallery;
 
 namespace Asa.Media.Controls.PresentationClasses.Gallery
 {

@@ -7,8 +7,6 @@ namespace Asa.Common.Core.Helpers
 {
 	public class MasterWizardManager
 	{
-		private static readonly MasterWizardManager _instance = new MasterWizardManager();
-
 		public const string LeadOffSlideTemplate = @"intro-{0}.pptx";
 		public const string ClientGoalsSlideTemplate = @"needs-{0}.pptx";
 		public const string TargetCustomersSlideTemplate = @"target-{0}.pptx";
@@ -22,7 +20,7 @@ namespace Asa.Common.Core.Helpers
 
 		public Dictionary<string, MasterWizard> MasterWizards { get; set; }
 
-		public static MasterWizardManager Instance => _instance;
+		public static MasterWizardManager Instance { get; } = new MasterWizardManager();
 
 		public MasterWizard SelectedWizard { get; set; }
 

@@ -11,6 +11,7 @@ using Asa.Business.Online.Interfaces;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Common;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
@@ -18,7 +19,6 @@ using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.PresentationClasses.Products;
 using Asa.Online.Controls.ToolForms;
 using DevExpress.Skins;
-using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 
@@ -37,6 +37,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public SlideType SlideType => SlideType.DigitalProducts;
 		public string HelpTag => "digitalsl";
 		public IDigitalProductsContent DigitalProductsContent => _container.EditedContent;
+		public PowerPointProcessor PowerPointProcessor => BusinessObjects.Instance.PowerPointManager.Processor;
 		public event EventHandler<DataChangedEventArgs> DataChanged;
 
 		public DigitalProductEditorControl(DigitalEditorsContainer container)

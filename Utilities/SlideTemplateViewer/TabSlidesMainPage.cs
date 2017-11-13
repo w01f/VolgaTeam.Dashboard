@@ -23,7 +23,7 @@ namespace Asa.SlideTemplateViewer
 
 			LoadSlides();
 
-			PowerPointManager.Instance.SettingsChanged += (o, e) => LoadSlides();
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) => LoadSlides();
 		}
 
 		public static TabSlidesMainPage Instance
@@ -44,7 +44,7 @@ namespace Asa.SlideTemplateViewer
 				_slideContainer.Dispose();
 			}
 
-			laSlideSize.Text = String.Format("Slide Size: {0}", PowerPointManager.Instance.SlideSettings.SizeFormatted);
+			laSlideSize.Text = String.Format("Slide Size: {0}", SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
@@ -62,7 +62,7 @@ namespace Asa.SlideTemplateViewer
 			AppManager.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				SlideTemplateViewerPowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath());
+				AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath());
 				FormProgress.CloseProgress();
 			});
 		}
@@ -73,11 +73,11 @@ namespace Asa.SlideTemplateViewer
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideTemplateViewerPowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => SlideTemplateViewerPowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
+			AppManager.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
 			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, SlideTemplateViewerPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater,AppManager.Instance.CheckPowerPointRunning))
 			{
 				formPreview.Text = "Preview Slides";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

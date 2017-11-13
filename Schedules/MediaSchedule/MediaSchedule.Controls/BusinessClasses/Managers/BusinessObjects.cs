@@ -5,6 +5,7 @@ using Asa.Business.Solutions.Common.Helpers;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RateCard;
 using Asa.Media.Controls.BusinessClasses.Output;
+using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Controls.BusinessClasses.Managers
 {
@@ -25,7 +26,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public GalleryManager Gallery1Manager { get; private set; }
 		public GalleryManager Gallery2Manager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
-		public ImageResourcesManager ImageResourcesManager { get; private set; }
+		public ImageResourcesManager ImageResourcesManager { get; }
+
+		public PowerPointManager<MediaSchedulePowerPointProcessor> PowerPointManager { get; }
 
 		private BusinessObjects()
 		{
@@ -37,6 +40,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
 			ImageResourcesManager = new ImageResourcesManager();
+			PowerPointManager = new PowerPointManager<MediaSchedulePowerPointProcessor>();
 		}
 
 		public void Init()
@@ -48,12 +52,12 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			SolutionsManager.LoadSolutionData(AppProfileManager.Instance.AppDataFolder);
 
 			OutputManager.Init();
-			PowerPointManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();
 
 			HelpManager.LoadHelpLinks();
 
 			ThemeManager.Load();
-			PowerPointManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
 
 			SlideManager.Load();
 
@@ -66,6 +70,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			RateCardManager.LoadRateCards();
 
 			ImageResourcesManager.Load();
+
+			PowerPointManager.Init();
 		}
 	}
 }

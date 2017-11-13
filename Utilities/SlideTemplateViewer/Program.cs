@@ -29,7 +29,7 @@ namespace Asa.SlideTemplateViewer
 			}
 			else
 			{
-				Utilities.ActivatePowerPoint(SlideTemplateViewerPowerPointHelper.Instance.PowerPointObject);
+				Utilities.ActivatePowerPoint(AppManager.Instance.PowerPointManager.Processor.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}
 		}

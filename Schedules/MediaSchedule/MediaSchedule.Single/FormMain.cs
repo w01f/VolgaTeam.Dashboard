@@ -9,7 +9,6 @@ using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.Properties;
 using Asa.Media.Controls.ToolForms;
 using Asa.Schedules.Common.Controls.ContentEditors.Enums;
@@ -278,7 +277,7 @@ namespace Asa.Media.Single
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened += (o, e) => UpdateFormTitle();
 			BusinessObjects.Instance.ScheduleManager.ScheduleNameChanged += (o, e) => UpdateFormTitle();
 			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
-			PowerPointManager.Instance.SettingsChanged += (o, e) => UpdateFormTitle();
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) => UpdateFormTitle();
 		}
 
 		private void UpdateFormTitle()
@@ -289,7 +288,7 @@ namespace Asa.Media.Single
 				PopupMessageHelper.Instance.Title,
 				FileStorageManager.Instance.Version,
 				MasterWizardManager.Instance.SelectedWizard.Name,
-				PowerPointManager.Instance.SlideSettings.SizeFormatted,
+				SlideSettingsManager.Instance.SlideSettings.SizeFormatted,
 				schedule != null ? String.Format("({0})", schedule.Name) : String.Empty
 				);
 		}
@@ -320,7 +319,7 @@ namespace Asa.Media.Single
 
 		private void OnFormMainShown(object sender, EventArgs e)
 		{
-			Utilities.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
+			Utilities.ActivatePowerPoint(BusinessObjects.Instance.PowerPointManager.Processor.PowerPointObject);
 			UpdateFormTitle();
 			AppManager.Instance.ActivateMainForm(WindowState == FormWindowState.Maximized);
 
@@ -343,7 +342,7 @@ namespace Asa.Media.Single
 			}
 		}
 
-		private void FormMain_Resize(object sender, EventArgs e)
+		private void FormMainResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
 			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
@@ -356,6 +355,11 @@ namespace Asa.Media.Single
 			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
 				Controller.Instance.ContentController.ActiveEditor,
 				savingArgs);
+		}
+
+		private void OnFormMainClosed(object sender, FormClosedEventArgs e)
+		{
+			BusinessObjects.Instance.PowerPointManager.Processor.Disconnect();
 		}
 
 		private void OnNewScheduleClick(object sender, EventArgs e)

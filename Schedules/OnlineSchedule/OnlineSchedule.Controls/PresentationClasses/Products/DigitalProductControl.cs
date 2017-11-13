@@ -644,7 +644,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 
 		public void GenerateOutput()
 		{
-			OnlineSchedulePowerPointHelper.Instance.AppendOneSheets(new[] { Product }, _container.SelectedTheme);
+			_container.PowerPointProcessor.AppendOneSheets(new[] { Product }, _container.SelectedTheme);
 		}
 
 		public PreviewGroup GeneratePreview()
@@ -654,7 +654,7 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 				Name = Product.Name,
 				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, Product, _container.SelectedTheme);
+			_container.PowerPointProcessor.PrepareScheduleEmail(previewGroup.PresentationSourcePath, Product, _container.SelectedTheme);
 			return previewGroup;
 		}
 		#endregion

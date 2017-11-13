@@ -15,17 +15,17 @@ namespace Asa.Common.GUI.Preview
 {
 	public partial class FormEmail : MetroForm
 	{
-		private readonly IPowerPointHelper _powerPointHelper;
+		private readonly PowerPointProcessor _powerPointProcessor;
 		private readonly HelpManager _helpManager;
 
-		public List<PreviewGroupControl> GroupControls { get; private set; }
+		public List<PreviewGroupControl> GroupControls { get; }
 
 		private PreviewGroup _mergedGroup;
 
-		public FormEmail(IPowerPointHelper powerPointHelper, HelpManager helpManager)
+		public FormEmail(PowerPointProcessor powerPointProcessor, HelpManager helpManager)
 		{
 			InitializeComponent();
-			_powerPointHelper = powerPointHelper;
+			_powerPointProcessor = powerPointProcessor;
 			_helpManager = helpManager;
 			GroupControls = new List<PreviewGroupControl>();
 		}
@@ -48,7 +48,7 @@ namespace Asa.Common.GUI.Preview
 
 				FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading slides...");
 				FormProgress.ShowProgress();
-				var thread = new Thread(() => _powerPointHelper.MergeFiles(_mergedGroup.PresentationSourcePath, previewGroups.Select(pg => pg.PresentationSourcePath).ToArray()));
+				var thread = new Thread(() => _powerPointProcessor.MergeFiles(_mergedGroup.PresentationSourcePath, previewGroups.Select(pg => pg.PresentationSourcePath).ToArray()));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
@@ -118,7 +118,7 @@ namespace Asa.Common.GUI.Preview
 						form.FileName + ".pdf");
 					try
 					{
-						_powerPointHelper.ConvertToPDF(_mergedGroup.PresentationSourcePath, emailFile);
+						_powerPointProcessor.ConvertToPDF(_mergedGroup.PresentationSourcePath, emailFile);
 						if (File.Exists(emailFile))
 						{
 							if (OutlookHelper.Instance.Open())

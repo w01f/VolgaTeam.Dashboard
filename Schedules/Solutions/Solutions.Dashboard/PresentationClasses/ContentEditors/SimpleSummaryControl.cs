@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using Asa.Business.Common.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.GUI.Common;
+using Asa.Common.GUI.Interop;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Summary;
-using Asa.Solutions.Dashboard.InteropClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
@@ -459,13 +458,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public void GenerateOutput()
 		{
-			SolutionDashboardPowerPointHelper.Instance.AppendSummary(this);
+			SlideContainer.PowerPointProcessor.AppendSummary(this);
 		}
 
 		public PreviewGroup GeneratePreview()
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SolutionDashboardPowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
+			SlideContainer.PowerPointProcessor.PrepareSummaryEmail(tempFileName, this);
 			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion

@@ -13,7 +13,6 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
-using Asa.Dashboard.InteropClasses;
 using Asa.Dashboard.Properties;
 
 namespace Asa.Dashboard.TabHomeForms
@@ -317,14 +316,14 @@ namespace Asa.Dashboard.TabHomeForms
 			if (checkEditUseEmptyCover.Checked)
 				AppManager.Instance.ShowFloater(() =>
 				{
-					DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked);
+					AppManager.Instance.PowerPointManager.Processor.AppendGenericCover(checkEditFirstSlide.Checked);
 					FormProgress.CloseProgress();
 				});
 
 			else
 				AppManager.Instance.ShowFloater(() =>
 				{
-					DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked);
+					AppManager.Instance.PowerPointManager.Processor.AppendCover(checkEditFirstSlide.Checked);
 					FormProgress.CloseProgress();
 				});
 		}
@@ -336,13 +335,13 @@ namespace Asa.Dashboard.TabHomeForms
 			FormProgress.ShowProgress();
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			if (checkEditUseEmptyCover.Checked)
-				DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName);
+				AppManager.Instance.PowerPointManager.Processor.PrepareGenericCover(tempFileName);
 			else
-				DashboardPowerPointHelper.Instance.PrepareCover(tempFileName);
+				AppManager.Instance.PowerPointManager.Processor.PrepareCover(tempFileName);
 			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, AppManager.Instance.CheckPowerPointRunning))
 			{
 				formPreview.Text = "Preview Slides";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName, InsertOnTop = checkEditFirstSlide.Checked } });

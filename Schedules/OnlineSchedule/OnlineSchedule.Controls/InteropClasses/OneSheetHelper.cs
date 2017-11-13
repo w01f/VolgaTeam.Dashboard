@@ -13,15 +13,15 @@ using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Online.Controls.InteropClasses
 {
-	public partial class OnlineSchedulePowerPointHelper
+	public static partial class OnlineSchedulePowerPointExtensions
 	{
-		public void AppendOneSheets(DigitalProduct[] sources, Theme theme, Presentation destinationPresentation = null)
+		public static void AppendOneSheets(this PowerPointProcessor target, DigitalProduct[] sources, Theme theme, Presentation destinationPresentation = null)
 		{
 			foreach (var source in sources)
-				AppendOneSheet(source, theme, destinationPresentation);
+				target.AppendOneSheet(source, theme, destinationPresentation);
 		}
 
-		public void AppendOneSheet(DigitalProduct source, Theme theme, Presentation destinationPresentation = null)
+		public static void AppendOneSheet(this PowerPointProcessor target, DigitalProduct source, Theme theme, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -32,7 +32,7 @@ namespace Asa.Online.Controls.InteropClasses
 					if (!File.Exists(presentationTemplatePath)) return;
 
 					MessageFilter.Register();
-					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -41,8 +41,8 @@ namespace Asa.Online.Controls.InteropClasses
 							{
 								switch (shape.Tags.Name(i))
 								{
-										#region Top Part
-										case "HEADER":
+									#region Top Part
+									case "HEADER":
 										shape.TextFrame.TextRange.Text = String.Format(source.OutputData.Header, shape.TextFrame.TextRange.Text);
 										break;
 									case "WEBSITEURL":
@@ -66,9 +66,9 @@ namespace Asa.Online.Controls.InteropClasses
 									case "WEBDESCRIPT":
 										shape.TextFrame.TextRange.Text = source.OutputData.Description;
 										break;
-										#endregion
+									#endregion
 
-										case "MTHIMPLABEL":
+									case "MTHIMPLABEL":
 										shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() ? source.OutputData.MonthlyData.ElementAt(0).Name : String.Empty;
 										break;
 									case "MONTHLYIMPVALUE":
@@ -119,7 +119,7 @@ namespace Asa.Online.Controls.InteropClasses
 					}
 					if (theme != null)
 						presentation.ApplyTheme(theme.GetThemePath());
-					AppendSlide(presentation, -1, destinationPresentation);
+					target.AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});
 				thread.Start();
@@ -136,14 +136,14 @@ namespace Asa.Online.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareScheduleEmails(string fileName, DigitalProduct[] products, Theme theme)
+		public static void PrepareScheduleEmails(this PowerPointProcessor target, string fileName, DigitalProduct[] products, Theme theme)
 		{
-			PreparePresentation(fileName, presentation => AppendOneSheets(products, theme, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendOneSheets(products, theme, presentation));
 		}
 
-		public void PrepareScheduleEmail(string fileName, DigitalProduct product, Theme theme)
+		public static void PrepareScheduleEmail(this PowerPointProcessor target, string fileName, DigitalProduct product, Theme theme)
 		{
-			PreparePresentation(fileName, presentation => AppendOneSheet(product, theme, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendOneSheet(product, theme, presentation));
 		}
 	}
 }

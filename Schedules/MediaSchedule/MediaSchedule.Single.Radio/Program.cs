@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
-using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 
 namespace Asa.Media.Single.Radio
 {
@@ -26,7 +26,7 @@ namespace Asa.Media.Single.Radio
 			}
 			else
 			{
-				Utilities.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
+				Utilities.ActivatePowerPoint(BusinessObjects.Instance.PowerPointManager.Processor.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}
 			GC.KeepAlive(mutex);

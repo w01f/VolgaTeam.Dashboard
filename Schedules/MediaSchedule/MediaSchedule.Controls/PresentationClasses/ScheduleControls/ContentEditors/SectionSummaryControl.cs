@@ -14,10 +14,10 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.GUI.Interop;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Summary;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using DevExpress.Skins;
 using DevExpress.XtraTab;
@@ -403,7 +403,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void GenerateOutput()
 		{
-			RegularMediaSchedulePowerPointHelper.Instance.AppendSummary(this);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendSummary(this);
 		}
 
 		public PreviewGroup GeneratePreview()
@@ -413,7 +413,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				Name = Text,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryEmail(previewGroup.PresentationSourcePath, this);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSummaryEmail(previewGroup.PresentationSourcePath, this);
 			return previewGroup;
 		}
 		#endregion

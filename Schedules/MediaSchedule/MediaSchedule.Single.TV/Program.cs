@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Single.TV
@@ -27,7 +28,7 @@ namespace Asa.Media.Single.TV
 			}
 			else
 			{
-				Utilities.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
+				Utilities.ActivatePowerPoint(BusinessObjects.Instance.PowerPointManager.Processor.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}
 			GC.KeepAlive(mutex);

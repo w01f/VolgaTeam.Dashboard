@@ -9,7 +9,6 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
-using Asa.Dashboard.InteropClasses;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 
 namespace Asa.Dashboard.TabHomeForms
@@ -206,7 +205,7 @@ namespace Asa.Dashboard.TabHomeForms
 			FormProgress.ShowProgress();
 			AppManager.Instance.ShowFloater(() =>
 			{
-				DashboardPowerPointHelper.Instance.AppendTargetCustomers();
+				AppManager.Instance.PowerPointManager.Processor.AppendTargetCustomers();
 				FormProgress.CloseProgress();
 			});
 		}
@@ -217,11 +216,11 @@ namespace Asa.Dashboard.TabHomeForms
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			DashboardPowerPointHelper.Instance.PrepareTargetCustomers(tempFileName);
+			AppManager.Instance.PowerPointManager.Processor.PrepareTargetCustomers(tempFileName);
 			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, AppManager.Instance.CheckPowerPointRunning))
 			{
 				formPreview.Text = "Preview Slides";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

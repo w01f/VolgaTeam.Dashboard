@@ -18,7 +18,6 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -1134,7 +1133,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				Name = String.Format("{0} ({1})", _data.Name, includeDigital ? String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString) : MediaMetaData.Instance.DataTypeString),
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 
@@ -1144,7 +1143,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			PopulateReplacementsList(includeDigital);
 			PrepareTotalRow(includeDigital);
 			GetTemplatePath(includeDigital);
-			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 		#endregion
 	}

@@ -15,7 +15,7 @@ using Theme = Asa.Common.Core.Objects.Themes.Theme;
 
 namespace Asa.Media.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointHelper<T> where T : class, new()
+	public partial class MediaSchedulePowerPointProcessor
 	{
 		public void AppendMediaOneSheet(IEnumerable<ProgramScheduleOutputModel> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{

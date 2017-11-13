@@ -18,7 +18,6 @@ using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
-using Asa.Media.Controls.InteropClasses;
 using DevExpress.Skins;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
@@ -394,7 +393,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		public void GenerateOneSheetOutput()
 		{
 			var outputPage = PrepareOneSheetOutput();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendDigitalOneSheet(outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendDigitalOneSheet(outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
 		public PreviewGroup GenerateOneSheetPreview(string groupName = "")
@@ -405,7 +404,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 				Name = !String.IsNullOrEmpty(groupName) ? groupName : Text,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareDigitalOneSheetEmail(previewGroup.PresentationSourcePath, outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareDigitalOneSheetEmail(previewGroup.PresentationSourcePath, outputPage, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 		#endregion
@@ -455,7 +454,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 		public void GenerateStrategyOutput()
 		{
 			var dataModel = PrepareStrategyOutput();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendStrategy(dataModel, SelectedTheme);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendStrategy(dataModel, SelectedTheme);
 		}
 
 		public PreviewGroup GenerateStrategyPreview(string groupName = "")
@@ -466,7 +465,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 				Name = !String.IsNullOrEmpty(groupName) ? groupName : "Digital Strategies",
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyEmail(previewGroup.PresentationSourcePath, dataModel, SelectedTheme);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareStrategyEmail(previewGroup.PresentationSourcePath, dataModel, SelectedTheme);
 			return previewGroup;
 		}
 		#endregion

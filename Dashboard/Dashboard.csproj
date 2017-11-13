@@ -135,8 +135,7 @@
     </Compile>
     <Compile Include="InteropClasses\CleanslateHelper.cs" />
     <Compile Include="InteropClasses\CoverHelper.cs" />
-    <Compile Include="InteropClasses\PowerPointHelper.cs">
-    </Compile>
+    <Compile Include="InteropClasses\DashboardPowerPointProcessor.cs" />
     <Compile Include="InteropClasses\ClientGoalsHelper.cs" />
     <Compile Include="InteropClasses\TargetCustomersHelper.cs" />
     <Compile Include="InteropClasses\LeadoffStatementsHelper.cs" />

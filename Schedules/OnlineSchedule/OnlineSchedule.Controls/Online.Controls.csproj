@@ -115,7 +115,6 @@
       <DependentUpon>DigitalProductControl.cs</DependentUpon>
     </Compile>
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
-    <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="PresentationClasses\Products\DigitalProductListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

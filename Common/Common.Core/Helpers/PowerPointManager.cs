@@ -12,81 +12,60 @@ using Asa.Common.Core.OfficeInterops;
 
 namespace Asa.Common.Core.Helpers
 {
-	public class PowerPointManager
+	public class PowerPointManager<TProcessor> where TProcessor : PowerPointProcessor
 	{
-		private IPowerPointHelper _powerPointHelper;
-
-		public static PowerPointManager Instance { get; } = new PowerPointManager();
+		public TProcessor Processor { get; }
 
 		public SettingsSourceEnum SettingsSource { get; private set; }
-		public SlideSettings SlideSettings { get; private set; }
 
-		public event EventHandler<SlideSettingsChangingEventArgs> SettingsChanging;
-		public event EventHandler<EventArgs> SettingsChanged;
-
-		private PowerPointManager()
+		public PowerPointManager()
 		{
-			SlideSettings = new SlideSettings();
+			Processor = Activator.CreateInstance<TProcessor>();
 		}
 
-		public void Init(IPowerPointHelper powerPointHelper)
+		public void Init()
 		{
 			SlideFormatParser.LoadAvailableFormats();
-			_powerPointHelper = powerPointHelper;
-			if (_powerPointHelper.Connect(false))
+			if (Processor.Connect())
 			{
 				SettingsSource = SettingsSourceEnum.PowerPoint;
-				GetActiveSettings();
+				SlideSettingsManager.Instance.GetActiveSettings(Processor);
 			}
 			else
 			{
 				KillPowerPoint();
 				SettingsSource = SettingsSourceEnum.Application;
-				GetDefaultSettings();
+				SlideSettingsManager.Instance.GetDefaultSettings();
 			}
-		}
-
-		public void ApplySettings(SlideSettings newSettings)
-		{
-			var args = new SlideSettingsChangingEventArgs();
-			SettingsChanging?.Invoke(this, args);
-			if (args.Cancel) return;
-			SlideSettings = newSettings;
-			_powerPointHelper.SetSlideSettings(SlideSettings);
-			SettingsChanged?.Invoke(this, EventArgs.Empty);
-		}
-
-		public string GetLauncherTemplatePath()
-		{
-			var launcherTemplate = new StorageFile(ResourceManager.Instance.LauncherTemplatesFolder.RelativePathParts.Merge(SlideSettings.LauncherTemplateName));
-			if (!launcherTemplate.ExistsLocal())
-				throw new FileNotFoundException(String.Format("There is no {0} found", launcherTemplate.Name));
-
-			return launcherTemplate.LocalPath;
 		}
 
 		public void RunPowerPointLoader()
 		{
 			KillPowerPoint();
 
-			var launcherTemplatePath = GetLauncherTemplatePath();
+			var launcherTemplatePath = SlideSettingsManager.Instance.GetLauncherTemplatePath();
 
-			var process = new Process();
-			process.StartInfo.FileName = launcherTemplatePath;
-			process.StartInfo.UseShellExecute = true;
-			process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+			var process = new Process
+			{
+				StartInfo =
+				{
+					FileName = launcherTemplatePath,
+					UseShellExecute = true,
+					WindowStyle = ProcessWindowStyle.Maximized
+				}
+			};
 			process.Start();
 		}
 
-		public static bool IsPowerPointMultipleInstances(IPowerPointHelper powerPointHelper)
+		public bool IsPowerPointMultipleInstances()
 		{
 			if (Process.GetProcesses().Count(p => p.ProcessName.ToUpper().Contains("POWERPNT")) > 1)
 				return true;
 			try
 			{
-				if (!powerPointHelper.Connect(false))
+				if (!Processor.Connect(false))
 					return false;
-				return powerPointHelper.PowerPointObject.Presentations.Count > 1;
+				return Processor.PowerPointObject.Presentations.Count > 1;
 			}
 			catch
 			{
@@ -103,21 +82,6 @@ namespace Asa.Common.Core.Helpers
 			catch
 			{
 			}
-		}
-
-		private void GetDefaultSettings()
-		{
-			if (!ResourceManager.Instance.DefaultSlideSettingsFile.ExistsLocal()) return;
-			var document = new XmlDocument();
-			document.Load(ResourceManager.Instance.DefaultSlideSettingsFile.LocalPath);
-			var node = document.SelectSingleNode(@"/Settings/Size");
-			if (node != null)
-				SlideSettings = SlideSettings.ReadFromString(node.InnerText.Trim());
-		}
-
-		private void GetActiveSettings()
-		{
-			SlideSettings = _powerPointHelper.GetSlideSettings() ?? SlideSettings;
 		}
 	}
 }

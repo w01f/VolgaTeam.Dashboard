@@ -480,7 +480,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public void GenerateOutput()
 		{
 			PopulateReplacementsList();
-			OnlineSchedulePowerPointHelper.Instance.AppendWebPackage(this);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendWebPackage(this);
 		}
 
 		public PreviewGroup GeneratePreview()
@@ -491,7 +491,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				PresentationSourcePath = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
 			PopulateReplacementsList();
-			OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, previewGroup.PresentationSourcePath);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareWebPackageEmail(this, previewGroup.PresentationSourcePath);
 			return previewGroup;
 		}
 		#endregion

@@ -131,13 +131,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public void GenerateOutput()
 		{
-			SolutionDashboardPowerPointHelper.Instance.AppendLeadoffStatements(this);
+			SlideContainer.PowerPointProcessor.AppendLeadoffStatements(this);
 		}
 
 		public PreviewGroup GeneratePreview()
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SolutionDashboardPowerPointHelper.Instance.PrepareLeadoffStatements(this, tempFileName);
+			SlideContainer.PowerPointProcessor.PrepareLeadoffStatements(this, tempFileName);
 			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion

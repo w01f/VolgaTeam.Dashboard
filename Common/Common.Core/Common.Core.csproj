@@ -115,6 +115,7 @@
     <Compile Include="Helpers\SlideFormatParser.cs" />
     <Compile Include="Helpers\SlideManager.cs" />
     <Compile Include="Helpers\FormStyleManager.cs" />
+    <Compile Include="Helpers\SlideSettingsManager.cs" />
     <Compile Include="Helpers\TabPageManager.cs" />
     <Compile Include="Helpers\ThemeManager.cs" />
     <Compile Include="Helpers\ThemeSaveHelper.cs" />
@@ -162,7 +163,8 @@
     <Compile Include="OfficeInterops\ExcelHelper.cs" />
     <Compile Include="OfficeInterops\MessageFilter.cs" />
     <Compile Include="OfficeInterops\OutlookHelper.cs" />
-    <Compile Include="OfficeInterops\PowerPointHelper.cs" />
+    <Compile Include="OfficeInterops\PowerPointProcessor.cs" />
+    <Compile Include="OfficeInterops\PowerPointSingletonProcessor.cs" />
     <Compile Include="OfficeInterops\WordHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

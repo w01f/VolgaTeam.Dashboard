@@ -107,7 +107,7 @@
     <Compile Include="InteropClasses\DigitalInfoHelper.cs" />
     <Compile Include="InteropClasses\ProgramScheduleHelper.cs" />
     <Compile Include="InteropClasses\OptionsHelper.cs" />
-    <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="InteropClasses\MediaSchedulePowerPointProcessor.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>

@@ -9,9 +9,9 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Online.Controls.InteropClasses
 {
-	public partial class OnlineSchedulePowerPointHelper
+	public static partial class OnlineSchedulePowerPointExtensions
 	{
-		public void AppendDigitalSummary(IDigitalSummaryContainerControl digitalSummary, Presentation destinationPresentation = null)
+		public static void AppendDigitalSummary(this PowerPointProcessor target, IDigitalSummaryContainerControl digitalSummary, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -23,7 +23,7 @@ namespace Asa.Online.Controls.InteropClasses
 					{
 						var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetOnlineSummaryFile();
 						if (!File.Exists(presentationTemplatePath)) continue;
-						var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
 						{
 							foreach (Shape shape in slide.Shapes)
@@ -60,7 +60,7 @@ namespace Asa.Online.Controls.InteropClasses
 						var selectedTheme = digitalSummary.SelectedTheme;
 						if (selectedTheme != null)
 							presentation.ApplyTheme(selectedTheme.GetThemePath());
-						AppendSlide(presentation, -1, destinationPresentation);
+						target.AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}
 				});
@@ -76,9 +76,9 @@ namespace Asa.Online.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareDigitalSummaryEmail(string fileName, IDigitalSummaryContainerControl digitalSummary)
+		public static void PrepareDigitalSummaryEmail(this PowerPointProcessor target, string fileName, IDigitalSummaryContainerControl digitalSummary)
 		{
-			PreparePresentation(fileName, presentation => AppendDigitalSummary(digitalSummary, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendDigitalSummary(digitalSummary, presentation));
 		}
 	}
 }

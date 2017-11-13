@@ -48,7 +48,7 @@ namespace Asa.Business.Dashboard.Configuration
 
 			ThemeManager = new ThemeManager();
 			ThemeManager.Load();
-			PowerPointManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
 			InitThemeHelper(ThemeManager);
 
 			SlideManager = new SlideManager();

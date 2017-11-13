@@ -22,12 +22,15 @@ namespace Asa.SlideTemplateViewer
 		public SlideManager SlideManager { get; }
 		public HelpManager HelpManager { get; }
 		public ActivityManager ActivityManager { get; private set; }
+		public PowerPointManager<SlideTemplateViewerPowerPointHelper> PowerPointManager { get; }
+
 		private readonly FloaterManager _floater = new FloaterManager();
 
 		private AppManager()
 		{
 			SlideManager = new SlideManager();
 			HelpManager = new HelpManager();
+			PowerPointManager = new PowerPointManager<SlideTemplateViewerPowerPointHelper>();
 		}
 
 		public static AppManager Instance { get; } = new AppManager();
@@ -35,14 +38,14 @@ namespace Asa.SlideTemplateViewer
 		public string FormCaption => String.Format("{0} v{1}- {2}",
 			SlideManager.FormTitle ?? "Add Slides",
 			FileStorageManager.Instance.Version,
-			PowerPointManager.Instance.SlideSettings.SizeFormatted);
+			SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
 
 		public void RunForm()
 		{
 			bool stopRun = false;
 
 			var appTitle = "Add Slides";
-			if (PowerPointManager.IsPowerPointMultipleInstances(SlideTemplateViewerPowerPointHelper.Instance))
+			if (PowerPointManager.IsPowerPointMultipleInstances())
 			{
 				using (var form = new FormPowerPointSeveralInstancesWarning())
 				{
@@ -53,8 +56,6 @@ namespace Asa.SlideTemplateViewer
 			}
 
 			PopupMessageHelper.Instance.Title = appTitle;
-
-			LicenseHelper.Register();
 
 			AppProfileManager.Instance.InitApplication(AppTypeEnum.Dashboard);
 
@@ -126,11 +127,11 @@ namespace Asa.SlideTemplateViewer
 
 			if (FileStorageManager.Instance.Activated)
 			{
-				if (PowerPointManager.Instance.SettingsSource == SettingsSourceEnum.PowerPoint &&
+				if (PowerPointManager.SettingsSource == SettingsSourceEnum.PowerPoint &&
 					MasterWizardManager.Instance.SelectedWizard != null &&
-					!MasterWizardManager.Instance.SelectedWizard.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings))
+					!MasterWizardManager.Instance.SelectedWizard.HasSlideConfiguration(SlideSettingsManager.Instance.SlideSettings))
 				{
-					var availableMasterWizards = MasterWizardManager.Instance.MasterWizards.Values.Where(w => w.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings)).ToList();
+					var availableMasterWizards = MasterWizardManager.Instance.MasterWizards.Values.Where(w => w.HasSlideConfiguration(SlideSettingsManager.Instance.SlideSettings)).ToList();
 					if (availableMasterWizards.Any())
 					{
 						using (var form = new FormSelectMasterWizard())
@@ -160,7 +161,7 @@ namespace Asa.SlideTemplateViewer
 			await AppProfileManager.Instance.LoadProfile();
 			await Business.Dashboard.Configuration.ResourceManager.Instance.Load();
 
-			PowerPointManager.Instance.Init(SlideTemplateViewerPowerPointHelper.Instance);
+			PowerPointManager.Init();
 
 			MasterWizardManager.Instance.Load();
 			SettingsManager.Instance.LoadSharedSettings();
@@ -186,10 +187,10 @@ namespace Asa.SlideTemplateViewer
 
 		public bool CheckPowerPointRunning()
 		{
-			if (SlideTemplateViewerPowerPointHelper.Instance.Connect(false))
+			if (PowerPointManager.Processor.Connect(false))
 				return true;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
+				ShowFloater(() => PowerPointManager.RunPowerPointLoader());
 			return false;
 		}
 

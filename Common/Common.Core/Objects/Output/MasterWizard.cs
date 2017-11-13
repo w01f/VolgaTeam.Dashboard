@@ -60,7 +60,7 @@ namespace Asa.Common.Core.Objects.Output
 		#region Dashboard Slides
 		private string GetBasicTemplateFile(IEnumerable<string> fileName)
 		{
-			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Basic Slides" }).Merge(fileName));
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "Basic Slides" }).Merge(fileName));
 			return file.LocalPath;
 		}
 
@@ -113,7 +113,7 @@ namespace Asa.Common.Core.Objects.Output
 		#region Online Slides
 		private string GetOnlineTemplateFile(IEnumerable<string> fileName)
 		{
-			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Online Slides" }).Merge(fileName));
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "Online Slides" }).Merge(fileName));
 			return file.LocalPath;
 		}
 
@@ -173,7 +173,7 @@ namespace Asa.Common.Core.Objects.Output
 		#region Newspapaer Slides
 		private string GetNewspaperTemplateFile(IEnumerable<string> fileName)
 		{
-			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { PowerPointManager.Instance.SlideSettings.SlideFolder, "Newspaper Slides" }).Merge(fileName));
+			var file = new StorageFile(_sourceFolder.RelativePathParts.Merge(new[] { SlideSettingsManager.Instance.SlideSettings.SlideFolder, "Newspaper Slides" }).Merge(fileName));
 			return file.LocalPath;
 		}
 

@@ -13,7 +13,7 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Dashboard.InteropClasses
 {
-	public partial class DashboardPowerPointHelper
+	public partial class DashboardPowerPointProcessor
 	{
 		public void AppendClientGoals(Presentation destinationPresentation = null)
 		{
@@ -24,7 +24,7 @@ namespace Asa.Dashboard.InteropClasses
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)

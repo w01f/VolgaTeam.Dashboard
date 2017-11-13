@@ -11,10 +11,10 @@ using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Themes;
+using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.ContentEditors;
 using DevExpress.XtraPrinting.Native;
 using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
@@ -23,6 +23,8 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 {
 	class MediaDashboardContainer : BaseDashboardContainer
 	{
+		public override PowerPointProcessor PowerPointProcessor => BusinessObjects.Instance.PowerPointManager.Processor;
+
 		public MediaDashboardContainer(BaseSolutionInfo solutionInfo) : base(solutionInfo) { }
 
 		public override IDashboardSettingsContainer SettingsContainer => MediaMetaData.Instance.SettingsManager;
@@ -74,7 +76,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
 					String.Format("{0}-{1}.pdf", SolutionInfo.Title, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				PowerPointProcessor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try
 					{
@@ -100,9 +102,10 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 			using (var formPreview = new FormPreview(
 				Controller.Instance.FormMain,
-				RegularMediaSchedulePowerPointHelper.Instance,
+				PowerPointProcessor,
 				BusinessObjects.Instance.HelpManager,
-				Controller.Instance.ShowFloater))
+				Controller.Instance.ShowFloater,
+				Controller.Instance.CheckPowerPointRunning))
 			{
 				formPreview.Text = "Preview Solution";
 				formPreview.LoadGroups(previewGroups);
@@ -128,7 +131,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
+			using (var formEmail = new FormEmail(PowerPointProcessor, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Schedule";
 				formEmail.LoadGroups(previewGroups);

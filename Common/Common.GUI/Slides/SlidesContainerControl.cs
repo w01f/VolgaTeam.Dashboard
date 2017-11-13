@@ -35,11 +35,11 @@ namespace Asa.Common.GUI.Slides
 			_slideManager = slideManager;
 			xtraTabControlSlides.TabPages.OfType<SlideGroupPage>().ToList().ForEach(g => g.Release());
 			xtraTabControlSlides.TabPages.Clear();
-			foreach (var group in _slideManager.Slides.Where(s => s.Format == PowerPointManager.Instance.SlideSettings.Format).Select(s => s.Group).Distinct())
+			foreach (var group in _slideManager.Slides.Where(s => s.Format == SlideSettingsManager.Instance.SlideSettings.Format).Select(s => s.Group).Distinct())
 			{
 				var groupPage = new SlideGroupPage(
 					group,
-					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == PowerPointManager.Instance.SlideSettings.Format));
+					_slideManager.Slides.Where(s => s.Group.Equals(group) && s.Format == SlideSettingsManager.Instance.SlideSettings.Format));
 				groupPage.SlideOutput += OnSlideOutput;
 				groupPage.SlidePreview += OnSlidePreview;
 				xtraTabControlSlides.TabPages.Add(groupPage);

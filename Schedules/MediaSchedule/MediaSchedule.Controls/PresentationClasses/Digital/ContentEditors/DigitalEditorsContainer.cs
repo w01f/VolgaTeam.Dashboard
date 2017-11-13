@@ -17,7 +17,6 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Themes;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.Digital.Output;
 using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.PresentationClasses.Products;
@@ -394,7 +393,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
 					String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try
 					{
@@ -420,9 +419,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 			using (var formPreview = new FormPreview(
 				Controller.Instance.FormMain,
-				RegularMediaSchedulePowerPointHelper.Instance,
+				BusinessObjects.Instance.PowerPointManager.Processor,
 				BusinessObjects.Instance.HelpManager,
-				Controller.Instance.ShowFloater))
+				Controller.Instance.ShowFloater,
+				Controller.Instance.CheckPowerPointRunning))
 			{
 				formPreview.Text = "Preview Schedule";
 				formPreview.LoadGroups(previewGroups);
@@ -448,7 +448,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
+			using (var formEmail = new FormEmail(BusinessObjects.Instance.PowerPointManager.Processor, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Schedule";
 				formEmail.LoadGroups(previewGroups);

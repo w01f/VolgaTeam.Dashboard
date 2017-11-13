@@ -21,7 +21,6 @@ using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Media.Controls.BusinessClasses.Output.DigitalInfo;
 using Asa.Media.Controls.BusinessClasses.Output.ProgramSchedule;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
@@ -1007,7 +1006,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		public void GenerateOutput(bool includeDigital)
 		{
 			var outputPages = PrepareOutput(includeDigital);
-			RegularMediaSchedulePowerPointHelper.Instance.AppendMediaOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendMediaOneSheet(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
 		public PreviewGroup GeneratePreview(bool includeDigital)
@@ -1018,7 +1017,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				Name = includeDigital ? String.Format("{0} + Digital", MediaMetaData.Instance.DataTypeString) : MediaMetaData.Instance.DataTypeString,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareMediaOneSheetEmail(previewGroup.PresentationSourcePath, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareMediaOneSheetEmail(previewGroup.PresentationSourcePath, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 			return previewGroup;
 		}
 		#endregion

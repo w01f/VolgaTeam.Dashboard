@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
-using Asa.Dashboard.InteropClasses;
 
 namespace Asa.Dashboard
 {
@@ -27,7 +26,7 @@ namespace Asa.Dashboard
 			}
 			else
 			{
-				Utilities.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
+				Utilities.ActivatePowerPoint(AppManager.Instance.PowerPointManager.Processor.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}
 		}

@@ -102,7 +102,6 @@
       <DependentUpon>ImageGroupPage.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageGallery\ImageSourceAdaptor.cs" />
-    <Compile Include="Interop\CommonPowerPointHelper.cs" />
     <Compile Include="Floater\FloaterManager.cs" />
     <Compile Include="Floater\FloaterRequestedEventArgs.cs" />
     <Compile Include="Floater\FormFloater.cs">
@@ -111,7 +110,7 @@
     <Compile Include="Floater\FormFloater.designer.cs">
       <DependentUpon>FormFloater.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interop\SummaryHelper.cs" />
+    <Compile Include="Interop\SummaryPowerPointExtensions.cs" />
     <Compile Include="ListEditor\ListContainer.cs">
       <SubType>Component</SubType>
     </Compile>

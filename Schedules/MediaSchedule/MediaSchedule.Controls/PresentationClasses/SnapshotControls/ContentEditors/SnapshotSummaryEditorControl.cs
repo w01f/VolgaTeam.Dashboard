@@ -15,7 +15,6 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ImageGallery;
 using Asa.Common.GUI.Preview;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings;
 using DevExpress.Utils;
@@ -372,7 +371,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (!configurations.Any()) return;
 			Logos = GetLogos();
 			PopulateReplacementsList();
-			RegularMediaSchedulePowerPointHelper.Instance.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendSnapshot(new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 		}
 
 		public IList<PreviewGroup> GeneratePreview(IList<OutputConfiguration> configurations)
@@ -388,7 +387,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				Name = OutputName,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			RegularMediaSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSnapshotEmail(previewGroup.PresentationSourcePath, new[] { this }, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 
 			groupList.Add(previewGroup);
 			return groupList;

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
+using Asa.Common.Core.OfficeInterops;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
@@ -12,8 +13,11 @@ namespace Asa.Common.GUI.SlideSettingsEditors
 {
 	public partial class FormEditSlideSettings : MetroForm
 	{
-		public FormEditSlideSettings()
+		private readonly PowerPointProcessor _powerPointProcessor;
+
+		public FormEditSlideSettings(PowerPointProcessor powerPointProcessor)
 		{
+			_powerPointProcessor = powerPointProcessor;
 			InitializeComponent();
 
 			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
@@ -34,7 +38,7 @@ namespace Asa.Common.GUI.SlideSettingsEditors
 
 			var buttons = GetSizeButtons().ToList();
 			buttons.ForEach(b => b.Checked = false);
-			buttons.First(b => ((SlideSettings)b.Tag).IsEqual(PowerPointManager.Instance.SlideSettings)).Checked = true;
+			buttons.First(b => ((SlideSettings)b.Tag).IsEqual(SlideSettingsManager.Instance.SlideSettings)).Checked = true;
 		}
 
 		private IEnumerable<ButtonX> GetSizeButtons()
@@ -78,7 +82,7 @@ namespace Asa.Common.GUI.SlideSettingsEditors
 			MasterWizardManager.Instance.SetMasterWizard();
 
 			var buttons = GetSizeButtons().ToList();
-			PowerPointManager.Instance.ApplySettings((SlideSettings)buttons.First(b => b.Checked).Tag);
+			SlideSettingsManager.Instance.ApplySettings((SlideSettings)buttons.First(b => b.Checked).Tag, _powerPointProcessor);
 		}
 
 		private void FormEditSlideSettings_FormClosing(object sender, FormClosingEventArgs e)

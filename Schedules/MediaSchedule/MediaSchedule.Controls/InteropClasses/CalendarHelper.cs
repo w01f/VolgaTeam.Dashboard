@@ -15,7 +15,7 @@ using Asa.Media.Controls.BusinessClasses.Managers;
 
 namespace Asa.Media.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointHelper<T> where T : class, new()
+	public partial class MediaSchedulePowerPointProcessor
 	{
 		public void AppendCalendar(CalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
 		{
@@ -54,7 +54,7 @@ namespace Asa.Media.Controls.InteropClasses
 												logoShape.Left = shape.Left;
 												logoShape.Width = shape.Width;
 												logoShape.Height = shape.Height;
-												if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+												if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 													logoShape.Rotation = 90;
 											}
 											shape.Visible = MsoTriState.msoFalse;
@@ -284,7 +284,7 @@ namespace Asa.Media.Controls.InteropClasses
 							foreach (var note in monthOutputData.Notes)
 							{
 								Shape noteShape = null;
-								if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+								if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 									noteShape = slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationVertical, note.Left, note.Top, note.StaticWidth, note.Bottom - note.Top);
 								else
 									noteShape = slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, note.Left, note.Top, note.Right - note.Left, note.StaticHeight);
@@ -312,7 +312,7 @@ namespace Asa.Media.Controls.InteropClasses
 						if (!String.IsNullOrEmpty(backgroundFilePath) && File.Exists(backgroundFilePath))
 						{
 							var backgroundShape = presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0);
-							if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+							if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 							{
 								backgroundShape.Height = presentation.SlideMaster.Width;
 								backgroundShape.Width = presentation.SlideMaster.Height;
@@ -356,7 +356,7 @@ namespace Asa.Media.Controls.InteropClasses
 				shape.TextFrame.TextRange.Font.Size = monthOutputData.FontSize;
 				foreach (var note in monthOutputData.Notes.Where(note => note.StartDay.Date == day.Date.Date))
 				{
-					if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+					if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 					{
 						note.Left = shape.Left + shape.Height - 15;
 						note.Top = shape.Top - ((shape.Width - shape.Height) / 2) + 5;
@@ -375,7 +375,7 @@ namespace Asa.Media.Controls.InteropClasses
 				}
 				foreach (var note in monthOutputData.Notes.Where(note => note.FinishDay.Date == day.Date.Date))
 				{
-					if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+					if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 					{
 						note.Bottom = shape.Top - ((shape.Width - shape.Height) / 2) + shape.Width - 10;
 					}
@@ -388,7 +388,7 @@ namespace Asa.Media.Controls.InteropClasses
 				var middleNote = monthOutputData.Notes.FirstOrDefault(note => note.StartDay.Date < day.Date.Date && note.FinishDay.Date >= day.Date.Date);
 				if (middleNote != null)
 				{
-					if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+					if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 					{
 						shape.Left -= (middleNote.StaticWidth + 10);
 					}
@@ -405,7 +405,7 @@ namespace Asa.Media.Controls.InteropClasses
 				var dayLogo = monthOutputData.DayLogoPaths[dayNumber - 1];
 				if (dayLogo.ContainsData)
 				{
-					if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+					if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 					{
 						imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + shape.Width - ((shape.Width - shape.Height) / 2) - dayLogo.XtraTinyImage.Width + ((dayLogo.XtraTinyImage.Width - dayLogo.XtraTinyImage.Height) / 2), shape.Top + (shape.Height - dayLogo.XtraTinyImage.Height) / 2, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
 						imageShape.Top = shape.Top + (shape.Height - dayLogo.XtraTinyImage.Height) / 2;
@@ -429,7 +429,7 @@ namespace Asa.Media.Controls.InteropClasses
 					shape.TextFrame.TextRange.Text = dayText;
 					if (imageShape != null)
 					{
-						if (PowerPointManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
+						if (SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation == SlideOrientationEnum.Portrait)
 						{
 							shape.Left -= imageShape.Height;
 						}

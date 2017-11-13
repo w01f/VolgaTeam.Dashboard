@@ -32,7 +32,7 @@ namespace Asa.Common.GUI.Themes
 			Closed += OnFormClosed;
 
 			simpleLabelItemSlideSize.Text = String.Format(simpleLabelItemSlideSize.Text,
-				PowerPointManager.Instance.SlideSettings.SizeFormatted);
+				SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
 
 			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));

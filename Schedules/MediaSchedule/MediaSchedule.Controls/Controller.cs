@@ -15,7 +15,6 @@ using Asa.Common.GUI.SlideSettingsEditors;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 using DevExpress.XtraLayout;
 
 namespace Asa.Media.Controls
@@ -55,8 +54,6 @@ namespace Asa.Media.Controls
 			await AppProfileManager.Instance.LoadProfile();
 
 			await ResourceManager.Instance.Load();
-
-			PowerPointManager.Instance.Init(RegularMediaSchedulePowerPointHelper.Instance);
 
 			MasterWizardManager.Instance.Load();
 
@@ -336,16 +333,16 @@ namespace Asa.Media.Controls
 
 		public bool CheckPowerPointRunning()
 		{
-			if (RegularMediaSchedulePowerPointHelper.Instance.Connect(false))
+			if (BusinessObjects.Instance.PowerPointManager.Processor.Connect())
 				return true;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
+				ShowFloater(() => BusinessObjects.Instance.PowerPointManager.RunPowerPointLoader());
 			return false;
 		}
 
 		private void OnSlideSettingsClick(object sender, EventArgs e)
 		{
-			using (var form = new FormEditSlideSettings())
+			using (var form = new FormEditSlideSettings(BusinessObjects.Instance.PowerPointManager.Processor))
 			{
 				form.ShowDialog(FormMain);
 			}

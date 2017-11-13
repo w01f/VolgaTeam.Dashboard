@@ -252,13 +252,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public void GenerateOutput()
 		{
-			SolutionDashboardPowerPointHelper.Instance.AppendCover(this);
+			SlideContainer.PowerPointProcessor.AppendCover(this);
 		}
 
 		public PreviewGroup GeneratePreview()
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SolutionDashboardPowerPointHelper.Instance.PrepareCover(this, tempFileName);
+			SlideContainer.PowerPointProcessor.PrepareCover(this, tempFileName);
 			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
 		}
 		#endregion

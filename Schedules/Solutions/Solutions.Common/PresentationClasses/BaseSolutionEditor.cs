@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.OfficeInterops;
 using Asa.Solutions.Common.Common;
 
 namespace Asa.Solutions.Common.PresentationClasses
@@ -17,6 +18,8 @@ namespace Asa.Solutions.Common.PresentationClasses
 		public virtual string HomeText => SolutionInfo.Title;
 		public abstract Image HomeLogo { get; }
 		public abstract string HelpKey { get; }
+
+		public abstract PowerPointProcessor PowerPointProcessor { get; }
 
 		public event EventHandler<EventArgs> DataChanged;
 		public event EventHandler<SelectedSlideTypeChanged> SlideTypeChanged;

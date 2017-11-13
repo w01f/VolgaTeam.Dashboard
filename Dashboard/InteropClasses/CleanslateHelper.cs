@@ -9,7 +9,7 @@ using Application = System.Windows.Forms.Application;
 
 namespace Asa.Dashboard.InteropClasses
 {
-	public partial class DashboardPowerPointHelper
+	public partial class DashboardPowerPointProcessor
 	{
 		public void AppendCleanslate(Presentation destinationPresentation = null)
 		{

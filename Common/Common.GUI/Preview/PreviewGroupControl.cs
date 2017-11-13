@@ -23,7 +23,7 @@ namespace Asa.Common.GUI.Preview
 			PreviewGroup = previewGroup;
 
 			Text = PreviewGroup.Name;
-			simpleLabelItemSlideSize.Text = String.Format("<size=+2>{0} {1:#.##} x {2:#.##}</size>", PowerPointManager.Instance.SlideSettings.SlideSize.Orientation, PowerPointManager.Instance.SlideSettings.SlideSize.Width, PowerPointManager.Instance.SlideSettings.SlideSize.Height);
+			simpleLabelItemSlideSize.Text = String.Format("<size=+2>{0} {1:#.##} x {2:#.##}</size>", SlideSettingsManager.Instance.SlideSettings.SlideSize.Orientation, SlideSettingsManager.Instance.SlideSettings.SlideSize.Width, SlideSettingsManager.Instance.SlideSettings.SlideSize.Height);
 			GetPreviewImages();
 			if (_previewImages.Any())
 			{

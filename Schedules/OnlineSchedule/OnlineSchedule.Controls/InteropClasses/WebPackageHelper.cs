@@ -9,13 +9,13 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Online.Controls.InteropClasses
 {
-	public partial class OnlineSchedulePowerPointHelper
+	public static partial class OnlineSchedulePowerPointExtensions
 	{
-		public void AppendWebPackage(IWebPackageOutput digitalPackage, Presentation destinationPresentation = null)
+		public static void AppendWebPackage(this PowerPointProcessor target, IWebPackageOutput digitalPackage, Presentation destinationPresentation = null)
 		{
 			try
 			{
-				var thread = new Thread(delegate()
+				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
 					var slidesCount = digitalPackage.OutputReplacementsLists.Count;
@@ -24,7 +24,7 @@ namespace Asa.Online.Controls.InteropClasses
 					{
 						var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetOnlinePackageFile(rowsCount, digitalPackage.PackageSettings.ShowScreenshot);
 						if (!File.Exists(presentationTemplatePath)) continue;
-						var presentation = PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						var presentation = target.PowerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)
 						{
 							foreach (Shape shape in slide.Shapes)
@@ -78,7 +78,7 @@ namespace Asa.Online.Controls.InteropClasses
 						var selectedTheme = digitalPackage.SelectedTheme;
 						if (selectedTheme != null)
 							presentation.ApplyTheme(selectedTheme.GetThemePath());
-						AppendSlide(presentation, -1, destinationPresentation);
+						target.AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					}
 				});
@@ -94,16 +94,16 @@ namespace Asa.Online.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareWebPackageEmail(IWebPackageOutput digitalPackage, string fileName)
+		public static void PrepareWebPackageEmail(this PowerPointProcessor target, IWebPackageOutput digitalPackage, string fileName)
 		{
-			PreparePresentation(fileName, presentation => AppendWebPackage(digitalPackage, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendWebPackage(digitalPackage, presentation));
 		}
 
-		public void PrepareWebPackagePdf(IWebPackageOutput digitalPackage, string targetFileName)
+		public static void PrepareWebPackagePdf(this PowerPointProcessor target, IWebPackageOutput digitalPackage, string targetFileName)
 		{
 			var sourceFileName = Path.GetTempFileName();
-			PreparePresentation(sourceFileName, presentation => AppendWebPackage(digitalPackage, presentation));
-			BuildPdf(sourceFileName, targetFileName);
+			target.PreparePresentation(sourceFileName, presentation => target.AppendWebPackage(digitalPackage, presentation));
+			target.BuildPdf(sourceFileName, targetFileName);
 		}
 	}
 }

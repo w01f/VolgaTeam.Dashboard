@@ -11,9 +11,9 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Solutions.Dashboard.InteropClasses
 {
-	public partial class SolutionDashboardPowerPointHelper
+	public static partial class SolutionPowerPointHelperExtensions
 	{
-		public void AppendTargetCustomers(ITargetCustomersOutputData outputData, Presentation destinationPresentation = null)
+		public static void AppendTargetCustomers(this PowerPointProcessor target, ITargetCustomersOutputData outputData, Presentation destinationPresentation = null)
 		{
 			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetTargetCustomersFile(String.Format(MasterWizardManager.TargetCustomersSlideTemplate, 1));
 			if (!File.Exists(presentationTemplatePath)) return;
@@ -22,7 +22,7 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
-					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -50,7 +50,7 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 					var selectedTheme = outputData.SelectedTheme;
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.GetThemePath());
-					AppendSlide(presentation, -1, destinationPresentation);
+					target.AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});
 				thread.Start();
@@ -64,9 +64,9 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 			}
 		}
 
-		public void PrepareTargetCustomers(ITargetCustomersOutputData outputData, string fileName)
+		public static void PrepareTargetCustomers(this PowerPointProcessor target, ITargetCustomersOutputData outputData, string fileName)
 		{
-			PreparePresentation(fileName, presentation => AppendTargetCustomers(outputData, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendTargetCustomers(outputData, presentation));
 		}
 	}
 }

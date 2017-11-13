@@ -9,7 +9,6 @@ using Asa.Common.Core.Objects.Slides;
 using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Slides;
 using Asa.Common.GUI.ToolForms;
-using Asa.Dashboard.InteropClasses;
 
 namespace Asa.Dashboard.TabSlides
 {
@@ -28,7 +27,7 @@ namespace Asa.Dashboard.TabSlides
 
 			AppManager.Instance.SetClickEventHandler(this);
 
-			PowerPointManager.Instance.SettingsChanged += (o, e) => LoadSlides();
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) => LoadSlides();
 		}
 
 		public static TabSlidesMainPage Instance
@@ -49,8 +48,8 @@ namespace Asa.Dashboard.TabSlides
 				_slideContainer.Dispose();
 			}
 
-			FormMain.Instance.ribbonTabItemSlides.Enabled = SettingsManager.Instance.SlideManager.Slides.Any(s => s.Format == PowerPointManager.Instance.SlideSettings.Format);
-			laSlideSize.Text = String.Format("Slide Size: {0}", PowerPointManager.Instance.SlideSettings.SizeFormatted);
+			FormMain.Instance.ribbonTabItemSlides.Enabled = SettingsManager.Instance.SlideManager.Slides.Any(s => s.Format == SlideSettingsManager.Instance.SlideSettings.Format);
+			laSlideSize.Text = String.Format("Slide Size: {0}", SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
@@ -68,7 +67,7 @@ namespace Asa.Dashboard.TabSlides
 			AppManager.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				DashboardPowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath());
+				AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath());
 				FormProgress.CloseProgress();
 			});
 		}
@@ -79,11 +78,11 @@ namespace Asa.Dashboard.TabSlides
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			DashboardPowerPointHelper.Instance.PreparePresentation(tempFileName, presentation => DashboardPowerPointHelper.Instance.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
+			AppManager.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
 			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(FormMain.Instance, AppManager.Instance.PowerPointManager.Processor, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, AppManager.Instance.CheckPowerPointRunning))
 			{
 				formPreview.Text = "Preview Slides";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

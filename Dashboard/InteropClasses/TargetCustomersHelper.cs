@@ -13,7 +13,7 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Dashboard.InteropClasses
 {
-	public partial class DashboardPowerPointHelper
+	public partial class DashboardPowerPointProcessor
 	{
 		public void AppendTargetCustomers(Presentation destinationPresentation = null)
 		{

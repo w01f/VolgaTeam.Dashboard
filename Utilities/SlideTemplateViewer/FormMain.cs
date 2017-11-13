@@ -26,7 +26,7 @@ namespace Asa.SlideTemplateViewer
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
-			PowerPointManager.Instance.SettingsChanged += (o, e) =>
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) =>
 			{
 				Text = AppManager.Instance.FormCaption;
 			};
@@ -64,7 +64,7 @@ namespace Asa.SlideTemplateViewer
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
-			Utilities.ActivatePowerPoint(SlideTemplateViewerPowerPointHelper.Instance.PowerPointObject);
+			Utilities.ActivatePowerPoint(AppManager.Instance.PowerPointManager.Processor.PowerPointObject);
 			Controls.Add(TabSlidesMainPage.Instance);
 			TabSlidesMainPage.Instance.BringToFront();
 			AppManager.Instance.ActivateMainForm();
@@ -105,7 +105,7 @@ namespace Asa.SlideTemplateViewer
 
 		private void buttonItemSlideSettings_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormEditSlideSettings())
+			using (var form = new FormEditSlideSettings(AppManager.Instance.PowerPointManager.Processor))
 			{
 				form.ShowDialog(this);
 			}

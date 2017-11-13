@@ -155,7 +155,7 @@ namespace Asa.Common.Core.Helpers
 		public void Load()
 		{
 			_themes.Clear();
-			var storageDirectory = new StorageDirectory(ResourceManager.Instance.ThemesFolder.RelativePathParts.Merge(PowerPointManager.Instance.SlideSettings.SlideMasterFolder));
+			var storageDirectory = new StorageDirectory(ResourceManager.Instance.ThemesFolder.RelativePathParts.Merge(SlideSettingsManager.Instance.SlideSettings.SlideMasterFolder));
 			if (!storageDirectory.ExistsLocal()) return;
 
 			LoadApprovedThemes(storageDirectory);

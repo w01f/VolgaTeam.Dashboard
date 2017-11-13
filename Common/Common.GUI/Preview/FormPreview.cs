@@ -14,20 +14,27 @@ namespace Asa.Common.GUI.Preview
 {
 	public partial class FormPreview : MetroForm
 	{
-		private readonly IPowerPointHelper _powerPointHelper;
+		private readonly PowerPointProcessor _powerPointProcessor;
 		private readonly HelpManager _helpManager;
 		private readonly Form _parentForm;
 		private readonly Action<Action> _showFloater;
-		
-		public List<PreviewGroupControl> GroupControls { get; private set; }
+		private readonly Func<bool> _checkPowerPoint;
 
-		public FormPreview(Form parentForm, IPowerPointHelper powerPointHelper, HelpManager helpManager, Action<Action> showFloater)
+		public List<PreviewGroupControl> GroupControls { get; }
+
+		public FormPreview(
+			Form parentForm,
+			PowerPointProcessor powerPointProcessor,
+			HelpManager helpManager,
+			Action<Action> showFloater,
+			Func<bool> checkPowerPoint)
 		{
 			InitializeComponent();
 			_parentForm = parentForm;
-			_powerPointHelper = powerPointHelper;
+			_powerPointProcessor = powerPointProcessor;
 			_helpManager = helpManager;
 			_showFloater = showFloater;
+			_checkPowerPoint = checkPowerPoint;
 			GroupControls = new List<PreviewGroupControl>();
 		}
 
@@ -41,13 +48,6 @@ namespace Asa.Common.GUI.Preview
 			xtraTabControlGroups.ShowTabHeader = GroupControls.Count > 1 ? DefaultBoolean.True : DefaultBoolean.False;
 		}
 
-		public bool CheckPowerPointRunning()
-		{
-			if (_powerPointHelper.IsLinkedWithApplication) return true;
-			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
-				_showFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
-			return false;
-		}
 
 		#region Form GUI Event Habdlers
 		private void FormPreview_Shown(object sender, EventArgs e)
@@ -72,19 +72,19 @@ namespace Asa.Common.GUI.Preview
 			RegistryHelper.MaximizeMainForm = _parentForm.WindowState == FormWindowState.Maximized;
 			RegistryHelper.MainFormHandle = _parentForm.Handle;
 
-			if (_powerPointHelper.IsLinkedWithApplication)
+			if (_powerPointProcessor.IsLinkedWithApplication)
 			{
 				FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 				FormProgress.ShowProgress();
 				_showFloater(() =>
 				{
 					foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
-						_powerPointHelper.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
+						_powerPointProcessor.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
 					FormProgress.CloseProgress();
 				});
 			}
 			else
-				CheckPowerPointRunning();
+				_checkPowerPoint();
 			DialogResult = DialogResult.OK;
 		}
 

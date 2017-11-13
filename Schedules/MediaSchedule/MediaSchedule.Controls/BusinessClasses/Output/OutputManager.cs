@@ -20,7 +20,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 		public StorageDirectory ContractTemplateFolder => new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 			.Merge(new[]
 			{
-				PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
+				SlideSettingsManager.Instance.SlideSettings.SlideFolder.ToLower(),
 				String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString),
 				"legal"
 			}));
@@ -41,7 +41,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 				new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
-						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
+						SlideSettingsManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
 						"tables"
 					})));
@@ -49,7 +49,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 				new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
-						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
+						SlideSettingsManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
 						"snapshot"
 					})));
@@ -57,7 +57,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 				new StorageDirectory(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 					.Merge(new[]
 					{
-						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
+						SlideSettingsManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides", MediaMetaData.Instance.DataTypeString),
 						"options"
 					})));
@@ -81,7 +81,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 			var file = new StorageFile(Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.RelativePathParts
 				.Merge(new[]
 					{
-						PowerPointManager.Instance.SlideSettings.SlideFolder.ToLower(),
+						SlideSettingsManager.Instance.SlideSettings.SlideFolder.ToLower(),
 						String.Format("{0} Slides",MediaMetaData.Instance.DataTypeString)
 					})
 				.Merge(fileName));
@@ -208,7 +208,7 @@ namespace Asa.Media.Controls.BusinessClasses.Output
 				String.Format("Broadcast_{0}_{1}_{2}.pptx",
 					showLogo ? "logo" : "no_logo",
 					daysCount,
-					PowerPointManager.Instance.SlideSettings.SlideFolder.Replace("Slides", ""))
+					SlideSettingsManager.Instance.SlideSettings.SlideFolder.Replace("Slides", ""))
 			});
 		}
 

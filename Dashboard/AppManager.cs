@@ -28,11 +28,14 @@ namespace Asa.Dashboard
 
 		public HelpManager HelpManager { get; private set; }
 		public ActivityManager ActivityManager { get; private set; }
+		public PowerPointManager<DashboardPowerPointProcessor> PowerPointManager { get; }
+
 		private readonly FloaterManager _floater = new FloaterManager();
 
 		private AppManager()
 		{
 			HelpManager = new HelpManager();
+			PowerPointManager = new PowerPointManager<DashboardPowerPointProcessor>();
 		}
 
 		public static AppManager Instance { get; } = new AppManager();
@@ -40,14 +43,15 @@ namespace Asa.Dashboard
 		public string FormCaption => String.Format("{0} v{1}- {2}",
 			"6ms",
 			FileStorageManager.Instance.Version,
-			PowerPointManager.Instance.SlideSettings.SizeFormatted);
+			SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
 
 		public void RunForm()
 		{
 			bool stopRun = false;
 
 			var appTitle = "6 Minute Seller";
-			if (PowerPointManager.IsPowerPointMultipleInstances(DashboardPowerPointHelper.Instance))
+
+			if (PowerPointManager.IsPowerPointMultipleInstances())
 			{
 				using (var form = new FormPowerPointSeveralInstancesWarning())
 				{
@@ -129,11 +133,11 @@ namespace Asa.Dashboard
 
 			if (FileStorageManager.Instance.Activated)
 			{
-				if (PowerPointManager.Instance.SettingsSource == SettingsSourceEnum.PowerPoint &&
+				if (PowerPointManager.SettingsSource == SettingsSourceEnum.PowerPoint &&
 					MasterWizardManager.Instance.SelectedWizard != null &&
-					!MasterWizardManager.Instance.SelectedWizard.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings))
+					!MasterWizardManager.Instance.SelectedWizard.HasSlideConfiguration(SlideSettingsManager.Instance.SlideSettings))
 				{
-					var availableMasterWizards = MasterWizardManager.Instance.MasterWizards.Values.Where(w => w.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings)).ToList();
+					var availableMasterWizards = MasterWizardManager.Instance.MasterWizards.Values.Where(w => w.HasSlideConfiguration(SlideSettingsManager.Instance.SlideSettings)).ToList();
 					if (availableMasterWizards.Any())
 					{
 						using (var form = new FormSelectMasterWizard())
@@ -163,7 +167,7 @@ namespace Asa.Dashboard
 			await AppProfileManager.Instance.LoadProfile();
 			await Business.Dashboard.Configuration.ResourceManager.Instance.Load();
 
-			PowerPointManager.Instance.Init(DashboardPowerPointHelper.Instance);
+			PowerPointManager.Init();
 
 			MasterWizardManager.Instance.Load();
 			await Business.Dashboard.Configuration.SettingsManager.Instance.LoadSettings();
@@ -211,10 +215,10 @@ namespace Asa.Dashboard
 
 		public bool CheckPowerPointRunning()
 		{
-			if (DashboardPowerPointHelper.Instance.Connect(false))
+			if (PowerPointManager.Processor.Connect(false))
 				return true;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => PowerPointManager.Instance.RunPowerPointLoader());
+				ShowFloater(() => PowerPointManager.RunPowerPointLoader());
 			return false;
 		}
 

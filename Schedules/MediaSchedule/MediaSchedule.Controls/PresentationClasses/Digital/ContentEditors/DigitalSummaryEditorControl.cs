@@ -211,7 +211,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		public void GenerateOutput()
 		{
 			PopulateReplacementsList();
-			OnlineSchedulePowerPointHelper.Instance.AppendDigitalSummary(this);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendDigitalSummary(this);
 		}
 
 		public PreviewGroup GetPreviewGroup()
@@ -227,7 +227,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		{
 			var previewGroup = GetPreviewGroup();
 			PopulateReplacementsList();
-			OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, this);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, this);
 			return previewGroup;
 		}
 		#endregion

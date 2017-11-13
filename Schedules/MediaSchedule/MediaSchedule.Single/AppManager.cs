@@ -14,7 +14,7 @@ using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
 using Asa.Common.GUI.ToolForms;
-using Asa.Media.Controls.InteropClasses;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls;
 
 namespace Asa.Media.Single
@@ -39,7 +39,7 @@ namespace Asa.Media.Single
 			MediaMetaData.Instance.Init(mediaType);
 			var appTitle = String.Format("SellerPoint for {0}", MediaMetaData.Instance.DataTypeString);
 
-			if (PowerPointManager.IsPowerPointMultipleInstances(RegularMediaSchedulePowerPointHelper.Instance))
+			if (BusinessObjects.Instance.PowerPointManager.IsPowerPointMultipleInstances())
 			{
 				using (var form = new FormPowerPointSeveralInstancesWarning())
 				{
@@ -121,11 +121,11 @@ namespace Asa.Media.Single
 
 			if (FileStorageManager.Instance.Activated)
 			{
-				if (PowerPointManager.Instance.SettingsSource == SettingsSourceEnum.PowerPoint &&
+				if (BusinessObjects.Instance.PowerPointManager.SettingsSource == SettingsSourceEnum.PowerPoint &&
 				MasterWizardManager.Instance.SelectedWizard != null &&
-				!MasterWizardManager.Instance.SelectedWizard.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings))
+				!MasterWizardManager.Instance.SelectedWizard.HasSlideConfiguration(SlideSettingsManager.Instance.SlideSettings))
 				{
-					var availableMasterWizards = MasterWizardManager.Instance.MasterWizards.Values.Where(w => w.HasSlideConfiguration(PowerPointManager.Instance.SlideSettings)).ToList();
+					var availableMasterWizards = MasterWizardManager.Instance.MasterWizards.Values.Where(w => w.HasSlideConfiguration(SlideSettingsManager.Instance.SlideSettings)).ToList();
 					if (availableMasterWizards.Any())
 					{
 						using (var form = new FormSelectMasterWizard())

@@ -11,7 +11,6 @@ using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
 using DevComponents.DotNetBar;
-using Asa.Dashboard.InteropClasses;
 using Asa.Dashboard.Properties;
 using Asa.Dashboard.TabHomeForms;
 using Asa.Dashboard.TabSlides;
@@ -32,7 +31,7 @@ namespace Asa.Dashboard
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
-			PowerPointManager.Instance.SettingsChanged += (o, e) =>
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) =>
 			{
 				Text = AppManager.Instance.FormCaption;
 			};
@@ -97,7 +96,7 @@ namespace Asa.Dashboard
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
-			Utilities.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
+			Utilities.ActivatePowerPoint(AppManager.Instance.PowerPointManager.Processor.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
 		}
 
@@ -197,7 +196,7 @@ namespace Asa.Dashboard
 
 		private void buttonItemSlideSettings_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormEditSlideSettings())
+			using (var form = new FormEditSlideSettings(AppManager.Instance.PowerPointManager.Processor))
 			{
 				form.ShowDialog(this);
 			}

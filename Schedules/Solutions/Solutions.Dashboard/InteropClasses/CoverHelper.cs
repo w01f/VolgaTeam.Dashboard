@@ -9,9 +9,9 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Solutions.Dashboard.InteropClasses
 {
-	public partial class SolutionDashboardPowerPointHelper
+	public static partial class SolutionPowerPointHelperExtensions
 	{
-		public void AppendCover(ICoverOutputData outputData, Presentation destinationPresentation = null)
+		public static void AppendCover(this PowerPointProcessor target, ICoverOutputData outputData, Presentation destinationPresentation = null)
 		{
 			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GetCoverFile();
 			try
@@ -19,7 +19,7 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
-					var presentation = PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -53,7 +53,7 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 					var selectedTheme = outputData.SelectedTheme;
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.GetThemePath());
-					AppendSlide(presentation, -1, destinationPresentation, outputData.AddAsPageOne);
+					target.AppendSlide(presentation, -1, destinationPresentation, outputData.AddAsPageOne);
 					presentation.Close();
 				});
 				thread.Start();
@@ -67,9 +67,9 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 			}
 		}
 
-		public void PrepareCover(ICoverOutputData outputData, string fileName)
+		public static void PrepareCover(this PowerPointProcessor target, ICoverOutputData outputData, string fileName)
 		{
-			PreparePresentation(fileName, presentation => AppendCover(outputData, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendCover(outputData, presentation));
 		}
 	}
 }

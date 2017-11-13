@@ -16,7 +16,6 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.ToolForms;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
@@ -109,7 +108,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
 				FormProgress.ShowProgress();
 				Enabled = false;
-				RegularMediaSchedulePowerPointHelper.Instance.AppendCalendar(outputData.ToArray());
+				BusinessObjects.Instance.PowerPointManager.Processor.AppendCalendar(outputData.ToArray());
 				Enabled = true;
 				FormProgress.CloseProgress();
 			});
@@ -131,11 +130,11 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 						Name = outputItem.MonthText,
 						PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 					};
-					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
 				}
 				var pdfFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), String.Format("{0}-{1}.pdf", Schedule.Name, DateTime.Now.ToString("MM-dd-yy-hmmss")));
-				RegularMediaSchedulePowerPointHelper.Instance.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
+				BusinessObjects.Instance.PowerPointManager.Processor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try
 					{
@@ -161,14 +160,19 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 					Name = outputItem.MonthText,
 					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 				};
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 				previewGroups.Add(previewGroup);
 			}
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			Enabled = true;
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(
+				Controller.Instance.FormMain, 
+				BusinessObjects.Instance.PowerPointManager.Processor, 
+				BusinessObjects.Instance.HelpManager, 
+				Controller.Instance.ShowFloater,
+				Controller.Instance.CheckPowerPointRunning))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);
@@ -196,14 +200,14 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 					Name = outputItem.MonthText,
 					PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 				};
-				RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+				BusinessObjects.Instance.PowerPointManager.Processor.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 				previewGroups.Add(previewGroup);
 			}
 			Enabled = true;
 			FormProgress.CloseProgress();
 
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessObjects.Instance.HelpManager))
+			using (var formEmail = new FormEmail(BusinessObjects.Instance.PowerPointManager.Processor, BusinessObjects.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Calendar";
 				formEmail.LoadGroups(previewGroups);

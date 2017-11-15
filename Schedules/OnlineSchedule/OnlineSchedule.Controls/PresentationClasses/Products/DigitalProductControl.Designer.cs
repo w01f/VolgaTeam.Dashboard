@@ -1939,6 +1939,7 @@
 			this.pictureEditWebsiteLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditWebsiteLogo.Location = new System.Drawing.Point(22, 22);
 			this.pictureEditWebsiteLogo.Name = "pictureEditWebsiteLogo";
+			this.pictureEditWebsiteLogo.Properties.AllowFocused = false;
 			this.pictureEditWebsiteLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditWebsiteLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditWebsiteLogo.Properties.ReadOnly = true;
@@ -1970,6 +1971,7 @@
 			this.pictureEditProductNameLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditProductNameLogo.Location = new System.Drawing.Point(352, 22);
 			this.pictureEditProductNameLogo.Name = "pictureEditProductNameLogo";
+	        this.pictureEditProductNameLogo.Properties.AllowFocused = false;
 			this.pictureEditProductNameLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditProductNameLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditProductNameLogo.Properties.ReadOnly = true;
@@ -2001,6 +2003,7 @@
 			this.pictureEditDescriptionLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDescriptionLogo.Location = new System.Drawing.Point(632, 22);
 			this.pictureEditDescriptionLogo.Name = "pictureEditDescriptionLogo";
+	        this.pictureEditDescriptionLogo.Properties.AllowFocused = false;
 			this.pictureEditDescriptionLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDescriptionLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditDescriptionLogo.Properties.ReadOnly = true;
@@ -2032,6 +2035,7 @@
 			this.pictureEditPriceLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditPriceLogo.Location = new System.Drawing.Point(22, 440);
 			this.pictureEditPriceLogo.Name = "pictureEditPriceLogo";
+	        this.pictureEditPriceLogo.Properties.AllowFocused = false;
 			this.pictureEditPriceLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditPriceLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditPriceLogo.Properties.ReadOnly = true;
@@ -2063,6 +2067,7 @@
 			this.pictureEditCommentsLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditCommentsLogo.Location = new System.Drawing.Point(512, 440);
 			this.pictureEditCommentsLogo.Name = "pictureEditCommentsLogo";
+	        this.pictureEditCommentsLogo.Properties.AllowFocused = false;
 			this.pictureEditCommentsLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditCommentsLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditCommentsLogo.Properties.ReadOnly = true;
@@ -2341,3 +2346,4 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDescriptionLogo;
 	}
 }
+

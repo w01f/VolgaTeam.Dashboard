@@ -339,6 +339,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pictureEditScheduleConceptTypeTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeConceptTitleLogo;
 			this.pictureEditScheduleConceptTypeTitle.Location = new System.Drawing.Point(58, 361);
 			this.pictureEditScheduleConceptTypeTitle.Name = "pictureEditScheduleConceptTypeTitle";
+	        this.pictureEditScheduleConceptTypeTitle.Properties.AllowFocused = false;
 			this.pictureEditScheduleConceptTypeTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditScheduleConceptTypeTitle.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditScheduleConceptTypeTitle.Properties.ReadOnly = true;
@@ -555,6 +556,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pictureEditScheduleTypeTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeScheduleTitleLogo;
 			this.pictureEditScheduleTypeTitle.Location = new System.Drawing.Point(58, 90);
 			this.pictureEditScheduleTypeTitle.Name = "pictureEditScheduleTypeTitle";
+	        this.pictureEditScheduleTypeTitle.Properties.AllowFocused = false;
 			this.pictureEditScheduleTypeTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditScheduleTypeTitle.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditScheduleTypeTitle.Properties.ReadOnly = true;
@@ -570,6 +572,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pictureEditDefaultTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeDefaultLogo;
 			this.pictureEditDefaultTitle.Location = new System.Drawing.Point(12, 12);
 			this.pictureEditDefaultTitle.Name = "pictureEditDefaultTitle";
+	        this.pictureEditDefaultTitle.Properties.AllowFocused = false;
 			this.pictureEditDefaultTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDefaultTitle.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.pictureEditDefaultTitle.Properties.ReadOnly = true;

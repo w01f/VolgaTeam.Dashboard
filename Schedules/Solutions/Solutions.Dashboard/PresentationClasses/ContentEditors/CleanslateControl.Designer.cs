@@ -80,6 +80,7 @@
 			this.pictureEditSplash.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditSplash.Location = new System.Drawing.Point(555, 10);
 			this.pictureEditSplash.Name = "pictureEditSplash";
+	        this.pictureEditSplash.Properties.AllowFocused = false;
 			this.pictureEditSplash.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditSplash.Properties.NullText = " ";
 			this.pictureEditSplash.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;
@@ -96,6 +97,7 @@
 			this.pictureEditHeader.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditHeader.Location = new System.Drawing.Point(40, 40);
 			this.pictureEditHeader.Name = "pictureEditHeader";
+	        this.pictureEditHeader.Properties.AllowFocused = false;
 			this.pictureEditHeader.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditHeader.Properties.NullText = " ";
 			this.pictureEditHeader.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;

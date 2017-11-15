@@ -200,6 +200,7 @@
 			this.pictureEditLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.FlightDatesFormEditLogo;
 			this.pictureEditLogo.Location = new System.Drawing.Point(12, 12);
 			this.pictureEditLogo.Name = "pictureEditLogo";
+			this.pictureEditLogo.Properties.AllowFocused = false;
 			this.pictureEditLogo.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.pictureEditLogo.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.pictureEditLogo.Properties.Appearance.Options.UseBackColor = true;

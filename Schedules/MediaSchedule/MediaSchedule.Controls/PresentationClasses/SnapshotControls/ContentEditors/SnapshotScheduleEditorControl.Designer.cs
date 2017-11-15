@@ -1129,6 +1129,7 @@
 			this.pictureEditDefaultLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(783, 20);
 			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.AllowFocused = false;
 			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.pictureEditDefaultLogo.Properties.ReadOnly = true;

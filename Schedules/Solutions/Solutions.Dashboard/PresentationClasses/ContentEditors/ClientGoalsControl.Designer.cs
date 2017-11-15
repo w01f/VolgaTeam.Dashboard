@@ -144,6 +144,7 @@
 			this.pictureEditSplash.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditSplash.Location = new System.Drawing.Point(475, 60);
 			this.pictureEditSplash.Name = "pictureEditSplash";
+	        this.pictureEditSplash.Properties.AllowFocused = false;
 			this.pictureEditSplash.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditSplash.Properties.NullText = " ";
 			this.pictureEditSplash.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;

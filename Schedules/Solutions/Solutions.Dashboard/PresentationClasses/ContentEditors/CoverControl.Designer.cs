@@ -366,6 +366,7 @@
 			this.pictureEditDateLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.Date;
 			this.pictureEditDateLogo.Location = new System.Drawing.Point(522, 100);
 			this.pictureEditDateLogo.Name = "pictureEditDateLogo";
+	        this.pictureEditDateLogo.Properties.AllowFocused = false;
 			this.pictureEditDateLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDateLogo.Properties.ReadOnly = true;
 			this.pictureEditDateLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -381,6 +382,7 @@
 			this.pictureEditSalesRepLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SalesRep;
 			this.pictureEditSalesRepLogo.Location = new System.Drawing.Point(12, 294);
 			this.pictureEditSalesRepLogo.Name = "pictureEditSalesRepLogo";
+	        this.pictureEditSalesRepLogo.Properties.AllowFocused = false;
 			this.pictureEditSalesRepLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditSalesRepLogo.Properties.ReadOnly = true;
 			this.pictureEditSalesRepLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -396,6 +398,7 @@
 			this.pictureEditDecisionMakerLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.DecisionMaker;
 			this.pictureEditDecisionMakerLogo.Location = new System.Drawing.Point(12, 195);
 			this.pictureEditDecisionMakerLogo.Name = "pictureEditDecisionMakerLogo";
+	        this.pictureEditDecisionMakerLogo.Properties.AllowFocused = false;
 			this.pictureEditDecisionMakerLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDecisionMakerLogo.Properties.ReadOnly = true;
 			this.pictureEditDecisionMakerLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -439,6 +442,7 @@
 			this.pictureEditAdvertiserLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.Advertiser;
 			this.pictureEditAdvertiserLogo.Location = new System.Drawing.Point(12, 94);
 			this.pictureEditAdvertiserLogo.Name = "pictureEditAdvertiserLogo";
+	        this.pictureEditAdvertiserLogo.Properties.AllowFocused = false;
 			this.pictureEditAdvertiserLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditAdvertiserLogo.Properties.ReadOnly = true;
 			this.pictureEditAdvertiserLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;

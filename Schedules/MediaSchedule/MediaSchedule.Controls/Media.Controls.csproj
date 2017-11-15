@@ -86,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessClasses\Managers\BrowserManager.cs" />
     <Compile Include="BusinessClasses\Managers\BusinessObjects.cs" />
     <Compile Include="BusinessClasses\Managers\ContentController.cs" />
     <Compile Include="BusinessClasses\Managers\ContentIdentifiers.cs" />
@@ -109,6 +110,15 @@
     <Compile Include="InteropClasses\OptionsHelper.cs" />
     <Compile Include="InteropClasses\MediaSchedulePowerPointProcessor.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
+    <Compile Include="PresentationClasses\Browser\BrowserContentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Browser\BrowserContentControl.Designer.cs">
+      <DependentUpon>BrowserContentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Browser\MediaSiteContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -611,6 +621,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\Browser\BrowserContentControl.resx">
+      <DependentUpon>BrowserContentControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -915,6 +928,10 @@
     <None Include="Resources\SummaryOptionsInfo.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Browser\Browser.Controls\Browser.Controls.csproj">
+      <Project>{0DB1BAD7-D7AA-46F8-BDE6-0212C8A4CAA6}</Project>
+      <Name>Browser.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Calendar\Business.Calendar.csproj">
       <Project>{d8982923-ed22-4102-a228-6bb5111f07e4}</Project>
       <Name>Business.Calendar</Name>

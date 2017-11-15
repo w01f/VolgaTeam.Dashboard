@@ -43,6 +43,7 @@ namespace Asa.Media.Controls
 		public RibbonTabItem TabOptions { get; set; }
 		public RibbonTabItem TabSolutions { get; set; }
 		public RibbonTabItem TabSlides { get; set; }
+		public RibbonTabItem TabBrowser { get; set; }
 
 		private Controller()
 		{
@@ -103,7 +104,8 @@ namespace Asa.Media.Controls
 				TabSlides,
 				TabGallery1,
 				TabGallery2,
-				TabRateCard
+				TabRateCard,
+				TabBrowser
 			})
 				tabPage.Visible = false;
 
@@ -148,6 +150,9 @@ namespace Asa.Media.Controls
 			{
 				ribbonButton.Click += ContentController.OnPreview;
 			}
+
+			BrowserSitesBar.Text = BusinessObjects.Instance.BrowserManager.RibbonBarTitle;
+			BrowserSitesTitle.Text = BusinessObjects.Instance.BrowserManager.SiteListTitle;
 		}
 
 		private void ConfigureMainMenu()
@@ -274,7 +279,8 @@ namespace Asa.Media.Controls
 				SlidesSpecialButtons,
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
-				Gallery2SpecialButtons
+				Gallery2SpecialButtons,
+				BrowserSpecialButtons
 			};
 			foreach (var ribbonBar in specialLinkContainers)
 			{
@@ -308,11 +314,12 @@ namespace Asa.Media.Controls
 			}
 		}
 
-		public void ShowFloater(Action afterShow)
+		public void ShowFloater(Action afterShow, Action afterBack = null)
 		{
 			var args = new FloaterRequestedEventArgs
 			{
 				AfterShow = afterShow,
+				AfterBack = afterBack,
 				Logo = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Properties.Resources.RibbonLogo
 			};
 			FloaterRequested?.Invoke(null, args);
@@ -331,12 +338,12 @@ namespace Asa.Media.Controls
 			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
 
-		public bool CheckPowerPointRunning()
+		public bool CheckPowerPointRunning(Action afterRun = null)
 		{
 			if (BusinessObjects.Instance.PowerPointManager.Processor.Connect())
 				return true;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => BusinessObjects.Instance.PowerPointManager.RunPowerPointLoader());
+				ShowFloater(() => BusinessObjects.Instance.PowerPointManager.RunPowerPointLoader(), afterRun);
 			return false;
 		}
 
@@ -508,6 +515,13 @@ namespace Asa.Media.Controls
 		public ButtonItem Gallery2Copy { get; set; }
 		public ComboBoxEdit Gallery2Sections { get; set; }
 		public ComboBoxEdit Gallery2Groups { get; set; }
+		#endregion
+
+		#region Browser
+		public RibbonBar BrowserSpecialButtons { get; set; }
+		public RibbonBar BrowserSitesBar { get; set; }
+		public LabelItem BrowserSitesTitle { get; set; }
+		public ComboBoxEdit BrowserSitesCombo { get; set; }
 		#endregion
 
 		#endregion

@@ -163,6 +163,7 @@
     <Compile Include="OfficeInterops\ExcelHelper.cs" />
     <Compile Include="OfficeInterops\MessageFilter.cs" />
     <Compile Include="OfficeInterops\OutlookHelper.cs" />
+    <Compile Include="OfficeInterops\PowerPointHidden.cs" />
     <Compile Include="OfficeInterops\PowerPointProcessor.cs" />
     <Compile Include="OfficeInterops\PowerPointSingletonProcessor.cs" />
     <Compile Include="OfficeInterops\WordHelper.cs" />

@@ -105,6 +105,7 @@ namespace Asa.Media.Single
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
 			Controller.Instance.TabSolutions = ribbonTabItemSolutions;
 			Controller.Instance.TabSlides = ribbonTabItemSlides;
+			Controller.Instance.TabBrowser = ribbonTabItemBrowser;
 
 			FormProgress.Init(this);
 
@@ -268,6 +269,13 @@ namespace Asa.Media.Single
 			#region Rate Card
 			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
+			#endregion
+
+			#region Browser
+			Controller.Instance.BrowserSpecialButtons = ribbonBarBrowserSpecialButtons;
+			Controller.Instance.BrowserSitesBar = ribbonBarBrowserSites;
+			Controller.Instance.BrowserSitesTitle = labelItemBrowserSites;
+			Controller.Instance.BrowserSitesCombo = comboBoxEditBrowserSites;
 			#endregion
 
 			#endregion

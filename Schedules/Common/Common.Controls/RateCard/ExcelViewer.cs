@@ -37,14 +37,15 @@ namespace Asa.Schedules.Common.Controls.RateCard
 			if (Loaded) return;
 			var thread = new Thread(() => Invoke((MethodInvoker)delegate()
 			{
-				var excelHelper = new ExcelHelper();
-				if (!excelHelper.Connect()) return;
-				var g = Guid.NewGuid();
-				var newFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, g + ".html");
-				excelHelper.ConvertToHtml(File.FullName, newFileName);
-				excelHelper.Disconnect();
-				webBrowser.Url = new Uri(newFileName);
-				Loaded = true;
+				if (ExcelHelper.Instance.Connect())
+				{
+					var g = Guid.NewGuid();
+					var newFileName = Path.Combine(ResourceManager.Instance.TempFolder.LocalPath, g + ".html");
+					ExcelHelper.Instance.ConvertToHtml(File.FullName, newFileName);
+					ExcelHelper.Instance.Disconnect();
+					webBrowser.Url = new Uri(newFileName);
+					Loaded = true;
+				}
 			}));
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Page...");
 			FormProgress.ShowProgress();

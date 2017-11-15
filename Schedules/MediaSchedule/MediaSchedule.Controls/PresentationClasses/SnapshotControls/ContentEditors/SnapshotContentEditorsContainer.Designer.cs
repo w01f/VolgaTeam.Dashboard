@@ -727,6 +727,7 @@
 			this.pictureEditDefaultLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.SnapshotNoRecords;
 			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(40, 20);
 			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.AllowFocused = false;
 			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.pictureEditDefaultLogo.Properties.ReadOnly = true;

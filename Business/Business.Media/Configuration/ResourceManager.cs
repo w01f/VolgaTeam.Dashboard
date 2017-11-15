@@ -11,6 +11,7 @@ namespace Asa.Business.Media.Configuration
 		public static ResourceManager Instance { get; } = new ResourceManager();
 
 		public StorageFile TabsConfigFile { get; private set; }
+		public StorageFile BrowserConfigFile { get; private set; }
 		public StorageFile Gallery1ConfigFile { get; private set; }
 		public StorageFile Gallery2ConfigFile { get; private set; }
 		public StorageFile FormStyleConfigFile { get; private set; }
@@ -42,6 +43,14 @@ namespace Asa.Business.Media.Configuration
 				String.Format("{0}_tab_names.xml",MediaMetaData.Instance.DataTypeString.ToLower())
 			});
 			await TabsConfigFile.Download();
+
+			BrowserConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"eo.xml"
+			});
 
 			Gallery1ConfigFile = new StorageFile(new[]
 			{

@@ -16,7 +16,7 @@ namespace Asa.Schedules.Common.Controls.RateCard
 		protected RateCardManager _manager;
 		protected ComboBoxEdit _listControl;
 
-		public RateCardControl()
+		protected RateCardControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
@@ -34,8 +34,8 @@ namespace Asa.Schedules.Common.Controls.RateCard
 
 		public virtual void InitControl()
 		{
-			_listControl.SelectedIndexChanged -= comboBoxEditRateCards_EditValueChanged;
-			_listControl.SelectedIndexChanged += comboBoxEditRateCards_EditValueChanged;
+			_listControl.SelectedIndexChanged -= OnRateCardsListEditValueChanged;
+			_listControl.SelectedIndexChanged += OnRateCardsListEditValueChanged;
 			Disposed += RateCardControl_Disposed;
 		}
 
@@ -53,7 +53,7 @@ namespace Asa.Schedules.Common.Controls.RateCard
 			_manager.ReleaseRateCards();
 		}
 
-		public void LoadRateCards()
+		private void LoadRateCards()
 		{
 			if (!_manager.RateCardFolders.Any()) return;
 			if (_listControl.Properties.Items.Count != 0) return;
@@ -62,7 +62,7 @@ namespace Asa.Schedules.Common.Controls.RateCard
 			_listControl.SelectedIndex = 0;
 		}
 
-		private void comboBoxEditRateCards_EditValueChanged(object sender, EventArgs e)
+		private void OnRateCardsListEditValueChanged(object sender, EventArgs e)
 		{
 			var comboBox = sender as ComboBoxEdit;
 			if (comboBox == null) return;

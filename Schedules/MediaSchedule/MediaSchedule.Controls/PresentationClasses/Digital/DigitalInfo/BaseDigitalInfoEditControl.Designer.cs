@@ -440,6 +440,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.DigitalInfo
 			this.pictureEditDefaultLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.DigitalInfoNoItems;
 			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(20, 20);
 			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.AllowFocused = false;
 			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.pictureEditDefaultLogo.Properties.ReadOnly = true;

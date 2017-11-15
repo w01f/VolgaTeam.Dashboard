@@ -52,19 +52,29 @@ namespace Asa.Common.GUI.ToolForms
 		{
 			if (_instance == null)
 				_instance = new FormDownloadProgress();
-			_instance.BeginInvoke(new MethodInvoker(() =>
+			if (_instance.InvokeRequired)
+				_instance.BeginInvoke(new MethodInvoker(() =>
+				{
+					_instance.laTitle.Text = text;
+					Application.DoEvents();
+					SetDetails(String.Empty);
+					Application.DoEvents();
+				}));
+			else
 			{
 				_instance.laTitle.Text = text;
+				Application.DoEvents();
 				SetDetails(String.Empty);
 				Application.DoEvents();
-			}));
+			}
 		}
 
 		public static void SetDetails(string text)
 		{
 			if (_instance == null)
 				_instance = new FormDownloadProgress();
-			_instance.BeginInvoke(new MethodInvoker(() =>
+			if (_instance.InvokeRequired)
+				_instance.BeginInvoke(new MethodInvoker(() =>
 			{
 				_instance.laDetails.Text = text;
 				if (!String.IsNullOrEmpty(text))
@@ -73,6 +83,15 @@ namespace Asa.Common.GUI.ToolForms
 					_instance.laDetails.SendToBack();
 				Application.DoEvents();
 			}));
+			else
+			{
+				_instance.laDetails.Text = text;
+				if (!String.IsNullOrEmpty(text))
+					_instance.laDetails.BringToFront();
+				else
+					_instance.laDetails.SendToBack();
+				Application.DoEvents();
+			}
 		}
 
 		private void OnFormShown(object sender, EventArgs e)

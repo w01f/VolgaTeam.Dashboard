@@ -27,6 +27,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public GalleryManager Gallery2Manager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
 		public ImageResourcesManager ImageResourcesManager { get; }
+		public BrowserManager BrowserManager { get; }
 
 		public PowerPointManager<MediaSchedulePowerPointProcessor> PowerPointManager { get; }
 
@@ -41,6 +42,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ThemeManager = new ThemeManager();
 			ImageResourcesManager = new ImageResourcesManager();
 			PowerPointManager = new PowerPointManager<MediaSchedulePowerPointProcessor>();
+			BrowserManager = new BrowserManager();
 		}
 
 		public void Init()
@@ -72,6 +74,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ImageResourcesManager.Load();
 
 			PowerPointManager.Init();
+
+			BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
 		}
 	}
 }

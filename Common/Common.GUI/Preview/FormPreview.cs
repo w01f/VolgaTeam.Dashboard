@@ -17,8 +17,8 @@ namespace Asa.Common.GUI.Preview
 		private readonly PowerPointProcessor _powerPointProcessor;
 		private readonly HelpManager _helpManager;
 		private readonly Form _parentForm;
-		private readonly Action<Action> _showFloater;
-		private readonly Func<bool> _checkPowerPoint;
+		private readonly Action<Action, Action> _showFloater;
+		private readonly Func<Action, bool> _checkPowerPoint;
 
 		public List<PreviewGroupControl> GroupControls { get; }
 
@@ -26,8 +26,8 @@ namespace Asa.Common.GUI.Preview
 			Form parentForm,
 			PowerPointProcessor powerPointProcessor,
 			HelpManager helpManager,
-			Action<Action> showFloater,
-			Func<bool> checkPowerPoint)
+			Action<Action, Action> showFloater,
+			Func<Action, bool> checkPowerPoint)
 		{
 			InitializeComponent();
 			_parentForm = parentForm;
@@ -81,10 +81,10 @@ namespace Asa.Common.GUI.Preview
 					foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))
 						_powerPointProcessor.AppendSlidesFromFile(previewGroup.PresentationSourcePath, previewGroup.InsertOnTop);
 					FormProgress.CloseProgress();
-				});
+				}, null);
 			}
 			else
-				_checkPowerPoint();
+				_checkPowerPoint(null);
 			DialogResult = DialogResult.OK;
 		}
 

@@ -15,5 +15,6 @@
 		public const string Gallery1 = "Gallery1";
 		public const string Gallery2 = "Gallery2";
 		public const string RateCard = "Rate Card";
+		public const string Browser = "EO";
 	}
 }

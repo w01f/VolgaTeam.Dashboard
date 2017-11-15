@@ -139,6 +139,7 @@
 			this.pictureEditImage.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditImage.Location = new System.Drawing.Point(12, 94);
 			this.pictureEditImage.Name = "pictureEditImage";
+	        this.pictureEditImage.Properties.AllowFocused = false;
 			this.pictureEditImage.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.pictureEditImage.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.pictureEditImage.Properties.Appearance.Options.UseBackColor = true;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
+using Asa.Media.Controls.PresentationClasses.Browser;
 using Asa.Media.Controls.PresentationClasses.Calendar;
 using Asa.Media.Controls.PresentationClasses.Digital.ContentEditors;
 using Asa.Media.Controls.PresentationClasses.Gallery;
@@ -163,6 +164,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 					return new MediaGallery2Control();
 				case ContentIdentifiers.RateCard:
 					return new MediaRateCardControl();
+				case ContentIdentifiers.Browser:
+					return new BrowserContentControl();
 				default:
 					return null;
 			}

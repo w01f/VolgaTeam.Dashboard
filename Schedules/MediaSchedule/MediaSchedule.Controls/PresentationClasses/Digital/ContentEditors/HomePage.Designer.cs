@@ -80,6 +80,7 @@
 			this.pictureEditBottomLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditBottomLogo.Location = new System.Drawing.Point(22, 291);
 			this.pictureEditBottomLogo.Name = "pictureEditBottomLogo";
+			this.pictureEditBottomLogo.Properties.AllowFocused = false;
 			this.pictureEditBottomLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditBottomLogo.Properties.NullText = " ";
 			this.pictureEditBottomLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;
@@ -96,6 +97,7 @@
 			this.pictureEditRightLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditRightLogo.Location = new System.Drawing.Point(505, 22);
 			this.pictureEditRightLogo.Name = "pictureEditRightLogo";
+			this.pictureEditRightLogo.Properties.AllowFocused = false;
 			this.pictureEditRightLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditRightLogo.Properties.NullText = " ";
 			this.pictureEditRightLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopRight;
@@ -112,6 +114,7 @@
 			this.pictureEditMainLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditMainLogo.Location = new System.Drawing.Point(22, 22);
 			this.pictureEditMainLogo.Name = "pictureEditMainLogo";
+			this.pictureEditMainLogo.Properties.AllowFocused = false;
 			this.pictureEditMainLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditMainLogo.Properties.NullText = " ";
 			this.pictureEditMainLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;

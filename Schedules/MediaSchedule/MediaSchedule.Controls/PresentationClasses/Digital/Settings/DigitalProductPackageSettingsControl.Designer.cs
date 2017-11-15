@@ -418,6 +418,7 @@
 			this.pictureEditFormulaLogo.EditValue = ((object)(resources.GetObject("pictureEditFormulaLogo.EditValue")));
 			this.pictureEditFormulaLogo.Location = new System.Drawing.Point(12, 287);
 			this.pictureEditFormulaLogo.Name = "pictureEditFormulaLogo";
+			this.pictureEditFormulaLogo.Properties.AllowFocused = false;
 			this.pictureEditFormulaLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditFormulaLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.pictureEditFormulaLogo.Properties.ReadOnly = true;

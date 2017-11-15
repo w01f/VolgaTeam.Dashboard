@@ -343,6 +343,7 @@
 			this.pictureEditFlightDates.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryFlightDates;
 			this.pictureEditFlightDates.Location = new System.Drawing.Point(384, 290);
 			this.pictureEditFlightDates.Name = "pictureEditFlightDates";
+			this.pictureEditFlightDates.Properties.AllowFocused = false;
 			this.pictureEditFlightDates.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.pictureEditFlightDates.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditFlightDates.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -398,6 +399,7 @@
 			this.pictureEditDateLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryPresentationDate;
 			this.pictureEditDateLogo.Location = new System.Drawing.Point(50, 290);
 			this.pictureEditDateLogo.Name = "pictureEditDateLogo";
+			this.pictureEditDateLogo.Properties.AllowFocused = false;
 			this.pictureEditDateLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.pictureEditDateLogo.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditDateLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -464,6 +466,7 @@
 			this.pictureEditDecisionMakerLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryDecisionMaker;
 			this.pictureEditDecisionMakerLogo.Location = new System.Drawing.Point(383, 98);
 			this.pictureEditDecisionMakerLogo.Name = "pictureEditDecisionMakerLogo";
+			this.pictureEditDecisionMakerLogo.Properties.AllowFocused = false;
 			this.pictureEditDecisionMakerLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.pictureEditDecisionMakerLogo.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditDecisionMakerLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -615,6 +618,7 @@
 			this.pictureEditSplash.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditSplash.Location = new System.Drawing.Point(706, 60);
 			this.pictureEditSplash.Name = "pictureEditSplash";
+			this.pictureEditSplash.Properties.AllowFocused = false;
 			this.pictureEditSplash.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditSplash.Properties.NullText = " ";
 			this.pictureEditSplash.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;
@@ -632,6 +636,7 @@
 			this.pictureEditAdvertiserLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryBusinessName;
 			this.pictureEditAdvertiserLogo.Location = new System.Drawing.Point(48, 98);
 			this.pictureEditAdvertiserLogo.Name = "pictureEditAdvertiserLogo";
+			this.pictureEditAdvertiserLogo.Properties.AllowFocused = false;
 			this.pictureEditAdvertiserLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.pictureEditAdvertiserLogo.Properties.Appearance.Options.UseBackColor = true;
 			this.pictureEditAdvertiserLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;

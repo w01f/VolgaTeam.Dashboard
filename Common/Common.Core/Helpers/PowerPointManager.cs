@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Xml;
-using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
-using Asa.Common.Core.Extensions;
-using Asa.Common.Core.Objects.Output;
-using Asa.Common.Core.Objects.RemoteStorage;
 using Asa.Common.Core.OfficeInterops;
 
 namespace Asa.Common.Core.Helpers

@@ -16,7 +16,7 @@ namespace Asa.Common.Core.Helpers
 		private bool _isConfigured;
 
 		public bool AutoLoad { get; private set; }
-		public List<SourceUrl> SourceUrls { get; private set; }
+		public List<SourceUrl> SourceUrls { get; }
 
 		public GalleryManager(StorageFile settingsFile)
 		{

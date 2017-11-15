@@ -262,6 +262,7 @@
 			this.pictureEditLogo.EditValue = global::Asa.Online.Controls.Properties.Resources.TargetButton;
 			this.pictureEditLogo.Location = new System.Drawing.Point(12, 12);
 			this.pictureEditLogo.Name = "pictureEditLogo";
+			this.pictureEditLogo.Properties.AllowFocused = false;
 			this.pictureEditLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopCenter;
 			this.pictureEditLogo.Properties.ReadOnly = true;

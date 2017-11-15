@@ -906,6 +906,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.pictureEditDefaulLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.SectionNoRecords;
 			this.pictureEditDefaulLogo.Location = new System.Drawing.Point(40, 20);
 			this.pictureEditDefaulLogo.Name = "pictureEditDefaulLogo";
+	        this.pictureEditDefaulLogo.Properties.AllowFocused = false;
 			this.pictureEditDefaulLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDefaulLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.pictureEditDefaulLogo.Properties.ReadOnly = true;

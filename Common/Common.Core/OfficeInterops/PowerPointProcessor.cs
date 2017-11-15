@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
@@ -12,6 +13,7 @@ using Asa.Common.Core.Objects.Output;
 using Asa.Common.Core.Objects.RemoteStorage;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
+using Application = Microsoft.Office.Interop.PowerPoint.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace Asa.Common.Core.OfficeInterops
@@ -548,6 +550,72 @@ namespace Asa.Common.Core.OfficeInterops
 				}
 			}
 			return shapes;
+		}
+
+		public void PrintPresentation(string presentationPath, int currentSlideIndex, Action<Action> printActionWrapper)
+		{
+			using (var dlg = new PrintDialog
+			{
+				AllowCurrentPage = true,
+				AllowPrintToFile = false,
+				AllowSelection = false,
+				AllowSomePages = true,
+				ShowNetwork = true,
+				UseEXDialog = true
+			})
+			{
+				if (dlg.ShowDialog() != DialogResult.OK) return;
+
+				var fromPage = dlg.PrinterSettings.FromPage;
+				var toPage = 1;
+				var collate = dlg.PrinterSettings.Collate;
+				var copies = dlg.PrinterSettings.Copies;
+				var printRange = dlg.PrinterSettings.PrintRange;
+				var printerName = dlg.PrinterSettings.PrinterName;
+
+				printActionWrapper(() =>
+				{
+					try
+					{
+						MessageFilter.Register();
+						var presentation = PowerPointObject.Presentations.Open(presentationPath, WithWindow: MsoTriState.msoFalse);
+						switch (printRange)
+						{
+							case System.Drawing.Printing.PrintRange.AllPages:
+								fromPage = 1;
+								toPage = presentation.Slides.Count;
+								break;
+							case System.Drawing.Printing.PrintRange.CurrentPage:
+								fromPage = currentSlideIndex;
+								toPage = currentSlideIndex;
+								break;
+							case System.Drawing.Printing.PrintRange.SomePages:
+								if (fromPage < 1)
+									fromPage = 1;
+								toPage = currentSlideIndex;
+								if (toPage > presentation.Slides.Count)
+									toPage = presentation.Slides.Count;
+								break;
+						}
+						presentation.PrintOptions.PrintInBackground = MsoTriState.msoFalse;
+						presentation.PrintOptions.ActivePrinter = printerName;
+						presentation.PrintOptions.NumberOfCopies = copies;
+						presentation.PrintOut(
+							fromPage,
+							toPage,
+							String.Empty,
+							copies,
+							collate ? MsoTriState.msoTrue : MsoTriState.msoFalse);
+						presentation.Close();
+						Utilities.ReleaseComObject(presentationPath);
+					}
+					catch { }
+					finally
+					{
+						MessageFilter.Revoke();
+					}
+				});
+			}
 		}
 	}
 }

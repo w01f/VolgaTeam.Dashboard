@@ -28,8 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.buttonXStation = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXLength = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXTallySpots = new DevComponents.DotNetBar.ButtonX();
@@ -142,7 +141,7 @@
 			this.buttonXStation.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.buttonXStation.Location = new System.Drawing.Point(12, 12);
 			this.buttonXStation.Name = "buttonXStation";
-			this.buttonXStation.Size = new System.Drawing.Size(123, 29);
+			this.buttonXStation.Size = new System.Drawing.Size(116, 26);
 			this.buttonXStation.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXStation.TabIndex = 56;
 			this.buttonXStation.Text = "Station";
@@ -156,9 +155,9 @@
 			this.buttonXLength.AutoCheckOnClick = true;
 			this.buttonXLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXLength.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXLength.Location = new System.Drawing.Point(149, 125);
+			this.buttonXLength.Location = new System.Drawing.Point(151, 122);
 			this.buttonXLength.Name = "buttonXLength";
-			this.buttonXLength.Size = new System.Drawing.Size(118, 26);
+			this.buttonXLength.Size = new System.Drawing.Size(116, 26);
 			this.buttonXLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXLength.TabIndex = 57;
 			this.buttonXLength.Text = "Length";
@@ -171,9 +170,9 @@
 			this.buttonXTallySpots.AutoCheckOnClick = true;
 			this.buttonXTallySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXTallySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXTallySpots.Location = new System.Drawing.Point(12, 345);
+			this.buttonXTallySpots.Location = new System.Drawing.Point(12, 342);
 			this.buttonXTallySpots.Name = "buttonXTallySpots";
-			this.buttonXTallySpots.Size = new System.Drawing.Size(123, 26);
+			this.buttonXTallySpots.Size = new System.Drawing.Size(116, 26);
 			this.buttonXTallySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXTallySpots.TabIndex = 121;
 			this.buttonXTallySpots.Text = "Tally Spots";
@@ -186,9 +185,9 @@
 			this.buttonXDay.AutoCheckOnClick = true;
 			this.buttonXDay.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDay.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXDay.Location = new System.Drawing.Point(12, 70);
+			this.buttonXDay.Location = new System.Drawing.Point(12, 67);
 			this.buttonXDay.Name = "buttonXDay";
-			this.buttonXDay.Size = new System.Drawing.Size(123, 26);
+			this.buttonXDay.Size = new System.Drawing.Size(116, 26);
 			this.buttonXDay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDay.TabIndex = 58;
 			this.buttonXDay.Text = "Day";
@@ -200,9 +199,9 @@
 			this.buttonXMonthlySpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMonthlySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXMonthlySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXMonthlySpots.Location = new System.Drawing.Point(12, 235);
+			this.buttonXMonthlySpots.Location = new System.Drawing.Point(12, 232);
 			this.buttonXMonthlySpots.Name = "buttonXMonthlySpots";
-			this.buttonXMonthlySpots.Size = new System.Drawing.Size(123, 26);
+			this.buttonXMonthlySpots.Size = new System.Drawing.Size(116, 26);
 			this.buttonXMonthlySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMonthlySpots.TabIndex = 120;
 			this.buttonXMonthlySpots.Text = "Monthly Spots";
@@ -216,9 +215,9 @@
 			this.buttonXLineId.AutoCheckOnClick = true;
 			this.buttonXLineId.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXLineId.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXLineId.Location = new System.Drawing.Point(12, 290);
+			this.buttonXLineId.Location = new System.Drawing.Point(12, 287);
 			this.buttonXLineId.Name = "buttonXLineId";
-			this.buttonXLineId.Size = new System.Drawing.Size(123, 26);
+			this.buttonXLineId.Size = new System.Drawing.Size(116, 26);
 			this.buttonXLineId.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXLineId.TabIndex = 118;
 			this.buttonXLineId.Text = "Line ID";
@@ -231,9 +230,9 @@
 			this.buttonXRate.AutoCheckOnClick = true;
 			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXRate.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXRate.Location = new System.Drawing.Point(12, 125);
+			this.buttonXRate.Location = new System.Drawing.Point(12, 122);
 			this.buttonXRate.Name = "buttonXRate";
-			this.buttonXRate.Size = new System.Drawing.Size(123, 26);
+			this.buttonXRate.Size = new System.Drawing.Size(116, 26);
 			this.buttonXRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXRate.TabIndex = 60;
 			this.buttonXRate.Text = "Rate";
@@ -247,9 +246,9 @@
 			this.buttonXCost.AutoCheckOnClick = true;
 			this.buttonXCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXCost.Location = new System.Drawing.Point(149, 290);
+			this.buttonXCost.Location = new System.Drawing.Point(151, 287);
 			this.buttonXCost.Name = "buttonXCost";
-			this.buttonXCost.Size = new System.Drawing.Size(118, 26);
+			this.buttonXCost.Size = new System.Drawing.Size(116, 26);
 			this.buttonXCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCost.TabIndex = 117;
 			this.buttonXCost.Text = "Cost Column";
@@ -262,9 +261,9 @@
 			this.buttonXWeeklySpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXWeeklySpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXWeeklySpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXWeeklySpots.Location = new System.Drawing.Point(149, 180);
+			this.buttonXWeeklySpots.Location = new System.Drawing.Point(151, 177);
 			this.buttonXWeeklySpots.Name = "buttonXWeeklySpots";
-			this.buttonXWeeklySpots.Size = new System.Drawing.Size(118, 26);
+			this.buttonXWeeklySpots.Size = new System.Drawing.Size(116, 26);
 			this.buttonXWeeklySpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXWeeklySpots.TabIndex = 119;
 			this.buttonXWeeklySpots.Text = "Weekly Spots";
@@ -279,9 +278,9 @@
 			this.buttonXProgram.AutoCheckOnClick = true;
 			this.buttonXProgram.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXProgram.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXProgram.Location = new System.Drawing.Point(149, 12);
+			this.buttonXProgram.Location = new System.Drawing.Point(151, 12);
 			this.buttonXProgram.Name = "buttonXProgram";
-			this.buttonXProgram.Size = new System.Drawing.Size(118, 29);
+			this.buttonXProgram.Size = new System.Drawing.Size(116, 26);
 			this.buttonXProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXProgram.TabIndex = 62;
 			this.buttonXProgram.Text = "Program";
@@ -295,9 +294,9 @@
 			this.buttonXTallyCost.AutoCheckOnClick = true;
 			this.buttonXTallyCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXTallyCost.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXTallyCost.Location = new System.Drawing.Point(149, 345);
+			this.buttonXTallyCost.Location = new System.Drawing.Point(151, 342);
 			this.buttonXTallyCost.Name = "buttonXTallyCost";
-			this.buttonXTallyCost.Size = new System.Drawing.Size(118, 26);
+			this.buttonXTallyCost.Size = new System.Drawing.Size(116, 26);
 			this.buttonXTallyCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXTallyCost.TabIndex = 61;
 			this.buttonXTallyCost.Text = "Tally Cost";
@@ -311,9 +310,9 @@
 			this.buttonXTime.AutoCheckOnClick = true;
 			this.buttonXTime.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXTime.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXTime.Location = new System.Drawing.Point(149, 70);
+			this.buttonXTime.Location = new System.Drawing.Point(151, 67);
 			this.buttonXTime.Name = "buttonXTime";
-			this.buttonXTime.Size = new System.Drawing.Size(118, 26);
+			this.buttonXTime.Size = new System.Drawing.Size(116, 26);
 			this.buttonXTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXTime.TabIndex = 63;
 			this.buttonXTime.Text = "Time";
@@ -326,9 +325,9 @@
 			this.buttonXTotalSpots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTotalSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXTotalSpots.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXTotalSpots.Location = new System.Drawing.Point(149, 235);
+			this.buttonXTotalSpots.Location = new System.Drawing.Point(151, 232);
 			this.buttonXTotalSpots.Name = "buttonXTotalSpots";
-			this.buttonXTotalSpots.Size = new System.Drawing.Size(118, 26);
+			this.buttonXTotalSpots.Size = new System.Drawing.Size(116, 26);
 			this.buttonXTotalSpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXTotalSpots.TabIndex = 55;
 			this.buttonXTotalSpots.Text = "Total Spots";
@@ -342,9 +341,9 @@
 			this.buttonXLogo.AutoCheckOnClick = true;
 			this.buttonXLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXLogo.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXLogo.Location = new System.Drawing.Point(12, 180);
+			this.buttonXLogo.Location = new System.Drawing.Point(12, 177);
 			this.buttonXLogo.Name = "buttonXLogo";
-			this.buttonXLogo.Size = new System.Drawing.Size(123, 26);
+			this.buttonXLogo.Size = new System.Drawing.Size(116, 26);
 			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXLogo.TabIndex = 64;
 			this.buttonXLogo.Text = "Logo";
@@ -357,9 +356,9 @@
 			this.buttonXAvgRate.AutoCheckOnClick = true;
 			this.buttonXAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAvgRate.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.buttonXAvgRate.Location = new System.Drawing.Point(12, 400);
+			this.buttonXAvgRate.Location = new System.Drawing.Point(12, 397);
 			this.buttonXAvgRate.Name = "buttonXAvgRate";
-			this.buttonXAvgRate.Size = new System.Drawing.Size(126, 26);
+			this.buttonXAvgRate.Size = new System.Drawing.Size(116, 26);
 			this.buttonXAvgRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXAvgRate.TabIndex = 54;
 			this.buttonXAvgRate.Text = "Average Rate";
@@ -493,10 +492,11 @@
 			this.layoutControlItemProgram.Control = this.buttonXProgram;
 			this.layoutControlItemProgram.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemProgram.FillControlToClientArea = false;
-			this.layoutControlItemProgram.Location = new System.Drawing.Point(137, 0);
+			this.layoutControlItemProgram.Location = new System.Drawing.Point(139, 0);
+			this.layoutControlItemProgram.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemProgram.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemProgram.Name = "layoutControlItemProgram";
-			this.layoutControlItemProgram.Size = new System.Drawing.Size(122, 33);
+			this.layoutControlItemProgram.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemProgram.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemProgram.Text = "Program";
 			this.layoutControlItemProgram.TextSize = new System.Drawing.Size(0, 0);
@@ -506,7 +506,7 @@
 			// emptySpaceItem2
 			// 
 			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 33);
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 30);
 			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 25);
 			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 25);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
@@ -517,9 +517,9 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(127, 0);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(120, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 33);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(19, 30);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemStation
@@ -528,9 +528,10 @@
 			this.layoutControlItemStation.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemStation.FillControlToClientArea = false;
 			this.layoutControlItemStation.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemStation.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemStation.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemStation.Name = "layoutControlItemStation";
-			this.layoutControlItemStation.Size = new System.Drawing.Size(127, 33);
+			this.layoutControlItemStation.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemStation.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemStation.Text = "Station";
 			this.layoutControlItemStation.TextSize = new System.Drawing.Size(0, 0);
@@ -542,10 +543,11 @@
 			this.layoutControlItemTime.Control = this.buttonXTime;
 			this.layoutControlItemTime.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTime.FillControlToClientArea = false;
-			this.layoutControlItemTime.Location = new System.Drawing.Point(137, 58);
+			this.layoutControlItemTime.Location = new System.Drawing.Point(139, 55);
+			this.layoutControlItemTime.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTime.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTime.Name = "layoutControlItemTime";
-			this.layoutControlItemTime.Size = new System.Drawing.Size(122, 30);
+			this.layoutControlItemTime.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTime.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTime.Text = "Time";
 			this.layoutControlItemTime.TextSize = new System.Drawing.Size(0, 0);
@@ -555,7 +557,7 @@
 			// emptySpaceItem4
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(0, 88);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(0, 85);
 			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 25);
 			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 25);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
@@ -566,9 +568,9 @@
 			// emptySpaceItem3
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(127, 58);
+			this.emptySpaceItem3.Location = new System.Drawing.Point(120, 55);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(10, 30);
+			this.emptySpaceItem3.Size = new System.Drawing.Size(19, 30);
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemDay
@@ -576,10 +578,11 @@
 			this.layoutControlItemDay.Control = this.buttonXDay;
 			this.layoutControlItemDay.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemDay.FillControlToClientArea = false;
-			this.layoutControlItemDay.Location = new System.Drawing.Point(0, 58);
+			this.layoutControlItemDay.Location = new System.Drawing.Point(0, 55);
+			this.layoutControlItemDay.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemDay.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemDay.Name = "layoutControlItemDay";
-			this.layoutControlItemDay.Size = new System.Drawing.Size(127, 30);
+			this.layoutControlItemDay.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemDay.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemDay.Text = "Day";
 			this.layoutControlItemDay.TextSize = new System.Drawing.Size(0, 0);
@@ -591,10 +594,11 @@
 			this.layoutControlItemLength.Control = this.buttonXLength;
 			this.layoutControlItemLength.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemLength.FillControlToClientArea = false;
-			this.layoutControlItemLength.Location = new System.Drawing.Point(137, 113);
+			this.layoutControlItemLength.Location = new System.Drawing.Point(139, 110);
+			this.layoutControlItemLength.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLength.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLength.Name = "layoutControlItemLength";
-			this.layoutControlItemLength.Size = new System.Drawing.Size(122, 30);
+			this.layoutControlItemLength.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLength.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemLength.Text = "Length";
 			this.layoutControlItemLength.TextSize = new System.Drawing.Size(0, 0);
@@ -604,7 +608,7 @@
 			// emptySpaceItem6
 			// 
 			this.emptySpaceItem6.AllowHotTrack = false;
-			this.emptySpaceItem6.Location = new System.Drawing.Point(0, 143);
+			this.emptySpaceItem6.Location = new System.Drawing.Point(0, 140);
 			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(0, 25);
 			this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 25);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
@@ -615,9 +619,9 @@
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(127, 113);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(120, 110);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(10, 30);
+			this.emptySpaceItem5.Size = new System.Drawing.Size(19, 30);
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemRate
@@ -625,10 +629,11 @@
 			this.layoutControlItemRate.Control = this.buttonXRate;
 			this.layoutControlItemRate.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemRate.FillControlToClientArea = false;
-			this.layoutControlItemRate.Location = new System.Drawing.Point(0, 113);
+			this.layoutControlItemRate.Location = new System.Drawing.Point(0, 110);
+			this.layoutControlItemRate.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemRate.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemRate.Name = "layoutControlItemRate";
-			this.layoutControlItemRate.Size = new System.Drawing.Size(127, 30);
+			this.layoutControlItemRate.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemRate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemRate.Text = "Rate";
 			this.layoutControlItemRate.TextSize = new System.Drawing.Size(0, 0);
@@ -640,10 +645,11 @@
 			this.layoutControlItemWeeklySpots.Control = this.buttonXWeeklySpots;
 			this.layoutControlItemWeeklySpots.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemWeeklySpots.FillControlToClientArea = false;
-			this.layoutControlItemWeeklySpots.Location = new System.Drawing.Point(137, 168);
+			this.layoutControlItemWeeklySpots.Location = new System.Drawing.Point(139, 165);
+			this.layoutControlItemWeeklySpots.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemWeeklySpots.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemWeeklySpots.Name = "layoutControlItemWeeklySpots";
-			this.layoutControlItemWeeklySpots.Size = new System.Drawing.Size(122, 30);
+			this.layoutControlItemWeeklySpots.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemWeeklySpots.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemWeeklySpots.Text = "Weekly Spots";
 			this.layoutControlItemWeeklySpots.TextSize = new System.Drawing.Size(0, 0);
@@ -653,7 +659,7 @@
 			// emptySpaceItem8
 			// 
 			this.emptySpaceItem8.AllowHotTrack = false;
-			this.emptySpaceItem8.Location = new System.Drawing.Point(0, 198);
+			this.emptySpaceItem8.Location = new System.Drawing.Point(0, 195);
 			this.emptySpaceItem8.MaxSize = new System.Drawing.Size(0, 25);
 			this.emptySpaceItem8.MinSize = new System.Drawing.Size(10, 25);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
@@ -664,9 +670,9 @@
 			// emptySpaceItem7
 			// 
 			this.emptySpaceItem7.AllowHotTrack = false;
-			this.emptySpaceItem7.Location = new System.Drawing.Point(127, 168);
+			this.emptySpaceItem7.Location = new System.Drawing.Point(120, 165);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(10, 30);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(19, 30);
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemLogo
@@ -674,10 +680,11 @@
 			this.layoutControlItemLogo.Control = this.buttonXLogo;
 			this.layoutControlItemLogo.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemLogo.FillControlToClientArea = false;
-			this.layoutControlItemLogo.Location = new System.Drawing.Point(0, 168);
+			this.layoutControlItemLogo.Location = new System.Drawing.Point(0, 165);
+			this.layoutControlItemLogo.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLogo.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLogo.Name = "layoutControlItemLogo";
-			this.layoutControlItemLogo.Size = new System.Drawing.Size(127, 30);
+			this.layoutControlItemLogo.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLogo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemLogo.Text = "Logo";
 			this.layoutControlItemLogo.TextSize = new System.Drawing.Size(0, 0);
@@ -687,7 +694,7 @@
 			// emptySpaceItem10
 			// 
 			this.emptySpaceItem10.AllowHotTrack = false;
-			this.emptySpaceItem10.Location = new System.Drawing.Point(0, 253);
+			this.emptySpaceItem10.Location = new System.Drawing.Point(0, 250);
 			this.emptySpaceItem10.MaxSize = new System.Drawing.Size(0, 25);
 			this.emptySpaceItem10.MinSize = new System.Drawing.Size(10, 25);
 			this.emptySpaceItem10.Name = "emptySpaceItem10";
@@ -700,10 +707,11 @@
 			this.layoutControlItemTotalSpots.Control = this.buttonXTotalSpots;
 			this.layoutControlItemTotalSpots.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTotalSpots.FillControlToClientArea = false;
-			this.layoutControlItemTotalSpots.Location = new System.Drawing.Point(137, 223);
+			this.layoutControlItemTotalSpots.Location = new System.Drawing.Point(139, 220);
+			this.layoutControlItemTotalSpots.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTotalSpots.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTotalSpots.Name = "layoutControlItemTotalSpots";
-			this.layoutControlItemTotalSpots.Size = new System.Drawing.Size(122, 30);
+			this.layoutControlItemTotalSpots.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTotalSpots.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTotalSpots.Text = "Total Spots";
 			this.layoutControlItemTotalSpots.TextSize = new System.Drawing.Size(0, 0);
@@ -713,9 +721,9 @@
 			// emptySpaceItem9
 			// 
 			this.emptySpaceItem9.AllowHotTrack = false;
-			this.emptySpaceItem9.Location = new System.Drawing.Point(127, 223);
+			this.emptySpaceItem9.Location = new System.Drawing.Point(120, 220);
 			this.emptySpaceItem9.Name = "emptySpaceItem9";
-			this.emptySpaceItem9.Size = new System.Drawing.Size(10, 30);
+			this.emptySpaceItem9.Size = new System.Drawing.Size(19, 30);
 			this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemMonthlySpots
@@ -723,10 +731,11 @@
 			this.layoutControlItemMonthlySpots.Control = this.buttonXMonthlySpots;
 			this.layoutControlItemMonthlySpots.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemMonthlySpots.FillControlToClientArea = false;
-			this.layoutControlItemMonthlySpots.Location = new System.Drawing.Point(0, 223);
+			this.layoutControlItemMonthlySpots.Location = new System.Drawing.Point(0, 220);
+			this.layoutControlItemMonthlySpots.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemMonthlySpots.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemMonthlySpots.Name = "layoutControlItemMonthlySpots";
-			this.layoutControlItemMonthlySpots.Size = new System.Drawing.Size(127, 30);
+			this.layoutControlItemMonthlySpots.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemMonthlySpots.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemMonthlySpots.Text = "Monthly Spots";
 			this.layoutControlItemMonthlySpots.TextSize = new System.Drawing.Size(0, 0);
@@ -738,10 +747,11 @@
 			this.layoutControlItemCost.Control = this.buttonXCost;
 			this.layoutControlItemCost.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCost.FillControlToClientArea = false;
-			this.layoutControlItemCost.Location = new System.Drawing.Point(137, 278);
+			this.layoutControlItemCost.Location = new System.Drawing.Point(139, 275);
+			this.layoutControlItemCost.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemCost.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemCost.Name = "layoutControlItemCost";
-			this.layoutControlItemCost.Size = new System.Drawing.Size(122, 30);
+			this.layoutControlItemCost.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemCost.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemCost.Text = "Cost";
 			this.layoutControlItemCost.TextSize = new System.Drawing.Size(0, 0);
@@ -751,7 +761,7 @@
 			// emptySpaceItem12
 			// 
 			this.emptySpaceItem12.AllowHotTrack = false;
-			this.emptySpaceItem12.Location = new System.Drawing.Point(0, 308);
+			this.emptySpaceItem12.Location = new System.Drawing.Point(0, 305);
 			this.emptySpaceItem12.MaxSize = new System.Drawing.Size(0, 25);
 			this.emptySpaceItem12.MinSize = new System.Drawing.Size(10, 25);
 			this.emptySpaceItem12.Name = "emptySpaceItem12";
@@ -762,9 +772,9 @@
 			// emptySpaceItem11
 			// 
 			this.emptySpaceItem11.AllowHotTrack = false;
-			this.emptySpaceItem11.Location = new System.Drawing.Point(127, 278);
+			this.emptySpaceItem11.Location = new System.Drawing.Point(120, 275);
 			this.emptySpaceItem11.Name = "emptySpaceItem11";
-			this.emptySpaceItem11.Size = new System.Drawing.Size(10, 30);
+			this.emptySpaceItem11.Size = new System.Drawing.Size(19, 30);
 			this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemLineId
@@ -772,10 +782,11 @@
 			this.layoutControlItemLineId.Control = this.buttonXLineId;
 			this.layoutControlItemLineId.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemLineId.FillControlToClientArea = false;
-			this.layoutControlItemLineId.Location = new System.Drawing.Point(0, 278);
+			this.layoutControlItemLineId.Location = new System.Drawing.Point(0, 275);
+			this.layoutControlItemLineId.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLineId.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLineId.Name = "layoutControlItemLineId";
-			this.layoutControlItemLineId.Size = new System.Drawing.Size(127, 30);
+			this.layoutControlItemLineId.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemLineId.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemLineId.Text = "Line Id";
 			this.layoutControlItemLineId.TextSize = new System.Drawing.Size(0, 0);
@@ -787,10 +798,11 @@
 			this.layoutControlItemTallyCost.Control = this.buttonXTallyCost;
 			this.layoutControlItemTallyCost.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTallyCost.FillControlToClientArea = false;
-			this.layoutControlItemTallyCost.Location = new System.Drawing.Point(137, 333);
+			this.layoutControlItemTallyCost.Location = new System.Drawing.Point(139, 330);
+			this.layoutControlItemTallyCost.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTallyCost.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTallyCost.Name = "layoutControlItemTallyCost";
-			this.layoutControlItemTallyCost.Size = new System.Drawing.Size(122, 30);
+			this.layoutControlItemTallyCost.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTallyCost.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTallyCost.Text = "Tally Cost";
 			this.layoutControlItemTallyCost.TextSize = new System.Drawing.Size(0, 0);
@@ -800,7 +812,7 @@
 			// emptySpaceItem14
 			// 
 			this.emptySpaceItem14.AllowHotTrack = false;
-			this.emptySpaceItem14.Location = new System.Drawing.Point(0, 363);
+			this.emptySpaceItem14.Location = new System.Drawing.Point(0, 360);
 			this.emptySpaceItem14.MaxSize = new System.Drawing.Size(0, 25);
 			this.emptySpaceItem14.MinSize = new System.Drawing.Size(10, 25);
 			this.emptySpaceItem14.Name = "emptySpaceItem14";
@@ -811,9 +823,9 @@
 			// emptySpaceItem13
 			// 
 			this.emptySpaceItem13.AllowHotTrack = false;
-			this.emptySpaceItem13.Location = new System.Drawing.Point(127, 333);
+			this.emptySpaceItem13.Location = new System.Drawing.Point(120, 330);
 			this.emptySpaceItem13.Name = "emptySpaceItem13";
-			this.emptySpaceItem13.Size = new System.Drawing.Size(10, 30);
+			this.emptySpaceItem13.Size = new System.Drawing.Size(19, 30);
 			this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemTallySpots
@@ -821,10 +833,11 @@
 			this.layoutControlItemTallySpots.Control = this.buttonXTallySpots;
 			this.layoutControlItemTallySpots.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTallySpots.FillControlToClientArea = false;
-			this.layoutControlItemTallySpots.Location = new System.Drawing.Point(0, 333);
+			this.layoutControlItemTallySpots.Location = new System.Drawing.Point(0, 330);
+			this.layoutControlItemTallySpots.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTallySpots.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTallySpots.Name = "layoutControlItemTallySpots";
-			this.layoutControlItemTallySpots.Size = new System.Drawing.Size(127, 30);
+			this.layoutControlItemTallySpots.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemTallySpots.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTallySpots.Text = "Tally Spots";
 			this.layoutControlItemTallySpots.TextSize = new System.Drawing.Size(0, 0);
@@ -834,9 +847,9 @@
 			// emptySpaceItem15
 			// 
 			this.emptySpaceItem15.AllowHotTrack = false;
-			this.emptySpaceItem15.Location = new System.Drawing.Point(0, 418);
+			this.emptySpaceItem15.Location = new System.Drawing.Point(0, 415);
 			this.emptySpaceItem15.Name = "emptySpaceItem15";
-			this.emptySpaceItem15.Size = new System.Drawing.Size(259, 14);
+			this.emptySpaceItem15.Size = new System.Drawing.Size(259, 17);
 			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemAvgRate
@@ -844,10 +857,11 @@
 			this.layoutControlItemAvgRate.Control = this.buttonXAvgRate;
 			this.layoutControlItemAvgRate.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemAvgRate.FillControlToClientArea = false;
-			this.layoutControlItemAvgRate.Location = new System.Drawing.Point(0, 388);
+			this.layoutControlItemAvgRate.Location = new System.Drawing.Point(0, 385);
+			this.layoutControlItemAvgRate.MaxSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemAvgRate.MinSize = new System.Drawing.Size(120, 30);
 			this.layoutControlItemAvgRate.Name = "layoutControlItemAvgRate";
-			this.layoutControlItemAvgRate.Size = new System.Drawing.Size(130, 30);
+			this.layoutControlItemAvgRate.Size = new System.Drawing.Size(120, 30);
 			this.layoutControlItemAvgRate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemAvgRate.Text = "AvgRate";
 			this.layoutControlItemAvgRate.TextSize = new System.Drawing.Size(0, 0);
@@ -857,9 +871,9 @@
 			// emptySpaceItem16
 			// 
 			this.emptySpaceItem16.AllowHotTrack = false;
-			this.emptySpaceItem16.Location = new System.Drawing.Point(130, 388);
+			this.emptySpaceItem16.Location = new System.Drawing.Point(120, 385);
 			this.emptySpaceItem16.Name = "emptySpaceItem16";
-			this.emptySpaceItem16.Size = new System.Drawing.Size(129, 30);
+			this.emptySpaceItem16.Size = new System.Drawing.Size(139, 30);
 			this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemApplyForAll

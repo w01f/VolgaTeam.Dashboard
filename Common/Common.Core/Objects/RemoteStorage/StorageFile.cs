@@ -118,7 +118,7 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 			}
 			catch (WebDAVException)
 			{
-				throw new FileNotFoundException(String.Format("Error downloading file {0}", LocalPath));
+				throw new FileNotFoundException(String.Format("File {0} not found", LocalPath));
 			}
 			catch (HttpRequestException)
 			{

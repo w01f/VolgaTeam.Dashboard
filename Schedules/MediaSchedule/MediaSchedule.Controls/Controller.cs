@@ -342,7 +342,7 @@ namespace Asa.Media.Controls
 		{
 			if (BusinessObjects.Instance.PowerPointManager.Processor.Connect())
 				return true;
-			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
+			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint needs to be running.{0}Launch it now?", Environment.NewLine)) == DialogResult.Yes)
 				ShowFloater(() => BusinessObjects.Instance.PowerPointManager.RunPowerPointLoader(), afterRun);
 			return false;
 		}

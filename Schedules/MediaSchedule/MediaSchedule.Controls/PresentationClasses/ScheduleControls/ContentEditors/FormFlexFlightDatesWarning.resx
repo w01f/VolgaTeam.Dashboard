@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="simpleLabelItemTitle.Text" xml:space="preserve">
-    <value>&lt;size=+6&gt;&lt;color=red&gt;Your schedule has PARTIAL WEEKS:&lt;/color&gt;&lt;/size&gt;&lt;br&gt;&lt;br&gt;&lt;size=+2&gt;The FIRST WEEK of your schedule is &lt;u&gt;&lt;b&gt;NOT&lt;/b&gt;&lt;/u&gt; a Full Week.&lt;br&gt;&lt;br&gt;Therefore, you need to think &lt;u&gt;&lt;b&gt;CAREFULLY&lt;/b&gt;&lt;/u&gt; about how you want&lt;br&gt;place your spots in that first week.&lt;br&gt;&lt;br&gt;&lt;br&gt;The LAST WEEK of your schedule is &lt;u&gt;&lt;b&gt;NOT&lt;/b&gt;&lt;/u&gt; a Full Week.&lt;br&gt;So you may also need to pay close attention to the spots&lt;br&gt;you place in that week.&lt;/size&gt;</value>
+    <value>&lt;size=+6&gt;&lt;color=red&gt;Your schedule has PARTIAL WEEKS:&lt;/color&gt;&lt;/size&gt;&lt;br&gt;&lt;br&gt;&lt;size=+2&gt;The FIRST WEEK of your schedule is &lt;u&gt;&lt;b&gt;NOT&lt;/b&gt;&lt;/u&gt; a Full Week.&lt;br&gt;&lt;br&gt;Therefore, you need to think &lt;u&gt;&lt;b&gt;CAREFULLY&lt;/b&gt;&lt;/u&gt; about how you want place your spots in that first week.&lt;br&gt;&lt;br&gt;&lt;br&gt;The LAST WEEK of your schedule is &lt;u&gt;&lt;b&gt;NOT&lt;/b&gt;&lt;/u&gt; a Full Week. &lt;br&gt;So you may also need to pay close attention to the spots you place in that week.&lt;/size&gt;</value>
   </data>
 </root>

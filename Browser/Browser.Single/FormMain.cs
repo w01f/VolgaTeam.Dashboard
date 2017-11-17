@@ -7,11 +7,10 @@ using Asa.Browser.Single.InteropClasses;
 using Asa.Browser.Single.Properties;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
-using DevComponents.DotNetBar.Metro;
 
 namespace Asa.Browser.Single
 {
-	public partial class FormMain : MetroForm
+	public partial class FormMain : Form
 	{
 		private static FormMain _instance;
 		private readonly SingleSiteContainerControl _siteContainer;

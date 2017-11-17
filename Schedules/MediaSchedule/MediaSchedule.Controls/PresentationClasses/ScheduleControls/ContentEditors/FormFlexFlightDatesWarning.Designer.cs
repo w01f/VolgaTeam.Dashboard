@@ -32,14 +32,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.simpleLabelItemTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTitle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
@@ -51,7 +49,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(346, 266);
+			this.buttonXOK.Location = new System.Drawing.Point(449, 272);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(116, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -80,7 +78,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(474, 314);
+			this.layoutControl.Size = new System.Drawing.Size(577, 320);
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
 			// 
@@ -102,42 +100,37 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
 			this.layoutControlGroupRoot.GroupBordersVisible = false;
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
             this.simpleLabelItemTitle,
             this.layoutControlItemOK,
             this.emptySpaceItem2});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(474, 314);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(577, 320);
 			this.layoutControlGroupRoot.TextVisible = false;
-			// 
-			// emptySpaceItem1
-			// 
-			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 218);
-			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(454, 36);
-			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// simpleLabelItemTitle
 			// 
 			this.simpleLabelItemTitle.AllowHotTrack = false;
 			this.simpleLabelItemTitle.AllowHtmlStringInCaption = true;
 			this.simpleLabelItemTitle.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemTitle.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemTitle.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
 			this.simpleLabelItemTitle.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemTitle.MinSize = new System.Drawing.Size(1, 1);
 			this.simpleLabelItemTitle.Name = "simpleLabelItemTitle";
-			this.simpleLabelItemTitle.Size = new System.Drawing.Size(454, 218);
+			this.simpleLabelItemTitle.Size = new System.Drawing.Size(557, 260);
+			this.simpleLabelItemTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTitle.Text = resources.GetString("simpleLabelItemTitle.Text");
 			this.simpleLabelItemTitle.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-			this.simpleLabelItemTitle.TextSize = new System.Drawing.Size(433, 214);
+			this.simpleLabelItemTitle.TextSize = new System.Drawing.Size(669, 180);
 			// 
 			// layoutControlItemOK
 			// 
 			this.layoutControlItemOK.Control = this.buttonXOK;
 			this.layoutControlItemOK.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemOK.FillControlToClientArea = false;
-			this.layoutControlItemOK.Location = new System.Drawing.Point(334, 254);
+			this.layoutControlItemOK.Location = new System.Drawing.Point(437, 260);
 			this.layoutControlItemOK.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.Name = "layoutControlItemOK";
@@ -153,16 +146,16 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			// emptySpaceItem2
 			// 
 			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 254);
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 260);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(334, 40);
+			this.emptySpaceItem2.Size = new System.Drawing.Size(437, 40);
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// FormFlexFlightDatesWarning
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(474, 314);
+			this.ClientSize = new System.Drawing.Size(577, 320);
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -176,7 +169,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTitle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
@@ -189,7 +181,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		private DevComponents.DotNetBar.ButtonX buttonXOK;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTitle;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOK;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;

@@ -40,28 +40,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 			calendarControlDateStart.FirstDayOfWeek =
 				calendarControlDateEnd.FirstDayOfWeek = StartDayOfWeek;
-
-			if (DateStart.HasValue)
-			{
-				calendarControlDateStart.DateTime = DateStart.Value;
-				calendarControlDateStart.SetSelection(DateStart.Value);
-			}
-			else
-			{
-				calendarControlDateStart.DateTime = DateTime.Today;
-				calendarControlDateStart.SetSelection(DateTime.Today);
-			}
-
-			if (DateEnd.HasValue)
-			{
-				calendarControlDateEnd.DateTime = DateEnd.Value;
-				calendarControlDateEnd.SetSelection(DateEnd.Value);
-			}
-			else
-			{
-				calendarControlDateEnd.DateTime = DateTime.Today;
-				calendarControlDateEnd.SetSelection(DateTime.Today);
-			}
+			calendarControlDateStart.DateTime = DateStart ?? DateTime.Today;
+			calendarControlDateEnd.DateTime = DateEnd ?? DateTime.Today;
 
 			UpdateDates();
 			UpdateSaveAvailability();
@@ -155,10 +135,10 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			{
 				if (dateStart.DayOfWeek != StartDayOfWeek)
 					if (PopupMessageHelper.Instance.ShowWarningQuestion(
-						String.Format(
-							"Are you sure you want to start your schedule on a {0}?{1}{1}The broadcast week normally starts on a {2}.",
-							dateStart.DayOfWeek, Environment.NewLine,
-							StartDayOfWeek)) == DialogResult.Yes)
+							String.Format(
+								"Are you sure you want to start your schedule on a {0}?{1}{1}The broadcast week normally starts on a {2}.",
+								dateStart.DayOfWeek, Environment.NewLine,
+								StartDayOfWeek)) == DialogResult.Yes)
 						moveDateToWeekStart = false;
 			}
 			if (moveDateToWeekStart)
@@ -167,7 +147,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 					dateStart = dateStart.AddDays(-1);
 				_loading = true;
 				calendarControlDateStart.DateTime = dateStart;
-				calendarControlDateStart.SetSelection(dateStart);
 				_loading = false;
 			}
 
@@ -177,7 +156,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				while (dateStart.DayOfWeek != EndDayOfWeek)
 					dateStart = dateStart.AddDays(1);
 				calendarControlDateEnd.DateTime = dateStart;
-				calendarControlDateEnd.SetSelection(dateStart);
 			}
 			else
 				OnDateChanged(sender, e);
@@ -205,7 +183,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 					dateEnd = dateEnd.AddDays(1);
 				_loading = true;
 				calendarControlDateEnd.DateTime = dateEnd;
-				calendarControlDateEnd.SetSelection(dateEnd);
 				_loading = false;
 			}
 
@@ -215,7 +192,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				while (dateEnd.DayOfWeek != StartDayOfWeek)
 					dateEnd = dateEnd.AddDays(-1);
 				calendarControlDateStart.DateTime = dateEnd;
-				calendarControlDateStart.SetSelection(dateEnd);
 			}
 			else
 				OnDateChanged(sender, e);

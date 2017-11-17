@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.popupContainerControlProgramSource = new DevExpress.XtraEditors.PopupContainerControl();
@@ -80,7 +79,7 @@
 			this.bandedGridColumnTotalSpots = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
 			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();

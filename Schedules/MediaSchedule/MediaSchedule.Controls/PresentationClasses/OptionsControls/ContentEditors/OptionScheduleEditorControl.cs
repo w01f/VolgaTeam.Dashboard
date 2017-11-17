@@ -77,7 +77,15 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 			gridBandId.Width = (Int32)(gridBandId.Width * scaleFactor.Width);
 			gridBandLogo.Width = (Int32)(gridBandLogo.Width * scaleFactor.Width);
-			
+			bandedGridColumnStation.Width = (Int32)(bandedGridColumnStation.Width * scaleFactor.Width);
+			bandedGridColumnDay.Width = (Int32)(bandedGridColumnDay.Width * scaleFactor.Width);
+			bandedGridColumnName.Width = (Int32)(bandedGridColumnName.Width * scaleFactor.Width);
+			bandedGridColumnTime.Width = (Int32)(bandedGridColumnTime.Width * scaleFactor.Width);
+			bandedGridColumnLength.Width = (Int32)(bandedGridColumnLength.Width * scaleFactor.Width);
+			bandedGridColumnRate.Width = (Int32)(bandedGridColumnRate.Width * scaleFactor.Width);
+			bandedGridColumnSpots.Width = (Int32)(bandedGridColumnSpots.Width * scaleFactor.Width);
+			bandedGridColumnCost.Width = (Int32)(bandedGridColumnCost.Width * scaleFactor.Width);
+
 			gridColumnProgramSourceStation.Width = (Int32)(gridColumnProgramSourceStation.Width * scaleFactor.Width);
 			gridColumnProgramSourceDaypart.Width = (Int32)(gridColumnProgramSourceDaypart.Width * scaleFactor.Width);
 			gridColumnProgramSourceDay.Width = (Int32)(gridColumnProgramSourceDay.Width * scaleFactor.Width);

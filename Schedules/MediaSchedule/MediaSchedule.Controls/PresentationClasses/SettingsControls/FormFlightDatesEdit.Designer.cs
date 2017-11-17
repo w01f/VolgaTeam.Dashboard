@@ -51,7 +51,6 @@
 			this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
 			((System.ComponentModel.ISupportInitialize)(this.calendarControlDateStart.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -72,7 +71,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonXSave
@@ -117,7 +115,8 @@
 			this.calendarControlDateStart.DateTime = new System.DateTime(2016, 3, 6, 0, 0, 0, 0);
 			this.calendarControlDateStart.EditValue = new System.DateTime(2016, 3, 6, 0, 0, 0, 0);
 			this.calendarControlDateStart.FirstDayOfWeek = System.DayOfWeek.Monday;
-			this.calendarControlDateStart.HighlightTodayCell = DevExpress.Utils.DefaultBoolean.False;
+			this.calendarControlDateStart.HighlightSelection = false;
+			this.calendarControlDateStart.HighlightTodayCell = DevExpress.Utils.DefaultBoolean.True;
 			this.calendarControlDateStart.Location = new System.Drawing.Point(12, 118);
 			this.calendarControlDateStart.Name = "calendarControlDateStart";
 			this.calendarControlDateStart.ShowFooter = false;
@@ -180,7 +179,8 @@
 			this.calendarControlDateEnd.DateTime = new System.DateTime(2016, 3, 6, 0, 0, 0, 0);
 			this.calendarControlDateEnd.EditValue = new System.DateTime(2016, 3, 6, 0, 0, 0, 0);
 			this.calendarControlDateEnd.FirstDayOfWeek = System.DayOfWeek.Monday;
-			this.calendarControlDateEnd.HighlightTodayCell = DevExpress.Utils.DefaultBoolean.False;
+			this.calendarControlDateEnd.HighlightSelection = false;
+			this.calendarControlDateEnd.HighlightTodayCell = DevExpress.Utils.DefaultBoolean.True;
 			this.calendarControlDateEnd.Location = new System.Drawing.Point(305, 118);
 			this.calendarControlDateEnd.Name = "calendarControlDateEnd";
 			this.calendarControlDateEnd.ShowFooter = false;
@@ -244,8 +244,7 @@
             this.simpleLabelItemWarnings,
             this.layoutControlItemCancel,
             this.layoutControlItemOK,
-            this.emptySpaceItem6,
-            this.emptySpaceItem8});
+            this.emptySpaceItem6});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(563, 431);
@@ -367,12 +366,17 @@
 			// simpleLabelItemWarnings
 			// 
 			this.simpleLabelItemWarnings.AllowHotTrack = false;
+			this.simpleLabelItemWarnings.AllowHtmlStringInCaption = true;
 			this.simpleLabelItemWarnings.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemWarnings.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemWarnings.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.simpleLabelItemWarnings.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
 			this.simpleLabelItemWarnings.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemWarnings.Location = new System.Drawing.Point(0, 305);
+			this.simpleLabelItemWarnings.MinSize = new System.Drawing.Size(1, 1);
 			this.simpleLabelItemWarnings.Name = "simpleLabelItemWarnings";
-			this.simpleLabelItemWarnings.Size = new System.Drawing.Size(543, 20);
+			this.simpleLabelItemWarnings.Size = new System.Drawing.Size(543, 66);
+			this.simpleLabelItemWarnings.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemWarnings.Text = "Warning";
 			this.simpleLabelItemWarnings.TextSize = new System.Drawing.Size(48, 16);
 			this.simpleLabelItemWarnings.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -435,14 +439,6 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// emptySpaceItem8
-			// 
-			this.emptySpaceItem8.AllowHotTrack = false;
-			this.emptySpaceItem8.Location = new System.Drawing.Point(0, 325);
-			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(543, 46);
-			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// FormFlightDatesEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -480,7 +476,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -507,6 +502,5 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCancel;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOK;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
 	}
 }

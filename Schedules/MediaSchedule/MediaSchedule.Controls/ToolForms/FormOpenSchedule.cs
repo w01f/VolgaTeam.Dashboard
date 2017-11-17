@@ -98,7 +98,7 @@ namespace Asa.Media.Controls.ToolForms
 				PopupMessageHelper.Instance.ShowWarning("Please select schedule in list");
 				return;
 			}
-			if (PopupMessageHelper.Instance.ShowWarningQuestion("Delete this Schedule?") != DialogResult.Yes) return;
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Delete this file?") != DialogResult.Yes) return;
 			_scheduleList.Remove(schedule);
 			BusinessObjects.Instance.ScheduleManager.DeleteSchedule(schedule.Parent);
 			gridViewSchedules.RefreshData();

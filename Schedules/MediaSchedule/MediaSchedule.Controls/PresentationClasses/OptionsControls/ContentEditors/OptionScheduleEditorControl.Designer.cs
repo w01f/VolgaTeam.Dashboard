@@ -28,9 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.popupContainerControlProgramSource = new DevExpress.XtraEditors.PopupContainerControl();
 			this.layoutControlProgramSource = new DevExpress.XtraLayout.LayoutControl();
 			this.gridControlProgramSource = new DevExpress.XtraGrid.GridControl();
@@ -69,7 +68,7 @@
 			this.repositoryItemComboBoxLengths = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
 			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -382,7 +381,6 @@
             this.gridBandId,
             this.gridBandLogo,
             this.gridBandOtherColumns});
-			this.advBandedGridView.ColumnPanelRowHeight = 40;
 			this.advBandedGridView.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.bandedGridColumnIndex,
             this.bandedGridColumnLogo,
@@ -422,7 +420,7 @@
 			this.advBandedGridView.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
 			this.advBandedGridView.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridView.OptionsView.ShowIndicator = false;
-			this.advBandedGridView.RowHeight = 40;
+			this.advBandedGridView.RowHeight = 30;
 			this.advBandedGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.OnGridViewRowCellClick);
 			this.advBandedGridView.DragObjectOver += new DevExpress.XtraGrid.Views.Base.DragObjectOverEventHandler(this.OnGridViewDragObjectOver);
 			this.advBandedGridView.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.OnGridViewCustomRowCellEditForEditing);
@@ -483,6 +481,7 @@
 			this.bandedGridColumnLogo.OptionsColumn.AllowMove = false;
 			this.bandedGridColumnLogo.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnLogo.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumnLogo.RowCount = 2;
 			this.bandedGridColumnLogo.Visible = true;
 			this.bandedGridColumnLogo.Width = 120;
 			// 
@@ -532,6 +531,7 @@
 			this.bandedGridColumnStation.MinWidth = 100;
 			this.bandedGridColumnStation.Name = "bandedGridColumnStation";
 			this.bandedGridColumnStation.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnStation.RowCount = 2;
 			this.bandedGridColumnStation.Width = 85;
 			// 
 			// repositoryItemComboBoxStations
@@ -576,7 +576,8 @@
 			this.bandedGridColumnName.FieldName = "Name";
 			this.bandedGridColumnName.MinWidth = 238;
 			this.bandedGridColumnName.Name = "bandedGridColumnName";
-			this.bandedGridColumnName.Width = 238;
+			this.bandedGridColumnName.RowCount = 2;
+			this.bandedGridColumnName.Width = 240;
 			// 
 			// repositoryItemPopupContainerEditProgram
 			// 
@@ -613,6 +614,7 @@
 			this.bandedGridColumnDay.MinWidth = 100;
 			this.bandedGridColumnDay.Name = "bandedGridColumnDay";
 			this.bandedGridColumnDay.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnDay.RowCount = 2;
 			this.bandedGridColumnDay.Width = 85;
 			// 
 			// repositoryItemComboBoxDays
@@ -656,6 +658,7 @@
 			this.bandedGridColumnTime.MinWidth = 100;
 			this.bandedGridColumnTime.Name = "bandedGridColumnTime";
 			this.bandedGridColumnTime.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnTime.RowCount = 2;
 			this.bandedGridColumnTime.Width = 85;
 			// 
 			// repositoryItemComboBoxTimes
@@ -703,6 +706,7 @@
 			this.bandedGridColumnSpots.MinWidth = 100;
 			this.bandedGridColumnSpots.Name = "bandedGridColumnSpots";
 			this.bandedGridColumnSpots.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnSpots.RowCount = 2;
 			this.bandedGridColumnSpots.Width = 85;
 			// 
 			// repositoryItemSpinEditSpot
@@ -726,7 +730,7 @@
 			this.repositoryItemSpinEditSpot.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEditSpot.AutoHeight = false;
 			this.repositoryItemSpinEditSpot.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.repositoryItemSpinEditSpot.DisplayFormat.FormatString = "#,##0";
 			this.repositoryItemSpinEditSpot.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditSpot.EditFormat.FormatString = "#,##0";
@@ -754,6 +758,7 @@
 			this.bandedGridColumnRate.MinWidth = 100;
 			this.bandedGridColumnRate.Name = "bandedGridColumnRate";
 			this.bandedGridColumnRate.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnRate.RowCount = 2;
 			this.bandedGridColumnRate.Width = 85;
 			// 
 			// repositoryItemSpinEditRate
@@ -772,7 +777,7 @@
 			this.repositoryItemSpinEditRate.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRate.AutoHeight = false;
 			this.repositoryItemSpinEditRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatString = "$#,##0";
 			this.repositoryItemSpinEditRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditRate.EditFormat.FormatString = "$#,##0";
@@ -799,6 +804,7 @@
 			this.bandedGridColumnLength.MinWidth = 100;
 			this.bandedGridColumnLength.Name = "bandedGridColumnLength";
 			this.bandedGridColumnLength.OptionsColumn.AllowSize = false;
+			this.bandedGridColumnLength.RowCount = 2;
 			this.bandedGridColumnLength.Width = 85;
 			// 
 			// repositoryItemComboBoxLengths
@@ -847,6 +853,7 @@
 			this.bandedGridColumnCost.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnCost.OptionsColumn.AllowSize = false;
 			this.bandedGridColumnCost.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumnCost.RowCount = 2;
 			this.bandedGridColumnCost.Width = 85;
 			// 
 			// repositoryItemTextEditProgram
@@ -971,7 +978,6 @@
 			this.Controls.Add(this.layoutControlMain);
 			this.Controls.Add(this.popupContainerControlProgramSource);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "OptionScheduleEditorControl";
 			this.Size = new System.Drawing.Size(830, 699);
 			((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).EndInit();
 			this.popupContainerControlProgramSource.ResumeLayout(false);

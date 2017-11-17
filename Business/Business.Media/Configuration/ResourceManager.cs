@@ -51,6 +51,7 @@ namespace Asa.Business.Media.Configuration
 				"AppSettings",
 				"eo.xml"
 			});
+			await BrowserConfigFile.Download();
 
 			Gallery1ConfigFile = new StorageFile(new[]
 			{

@@ -49,17 +49,18 @@
 		#endregion
 
 		#region StarApp
-		StarAppCover = 401,
-		StarAppCNA = 402,
-		StarAppFishing = 403,
-		StarAppCustomer = 404,
-		StarAppShare = 405,
-		StarAppROI = 406,
-		StarAppMarket = 407,
-		StarAppVideo = 408,
-		StarAppAudience = 409,
-		StarAppSolution = 410,
-		StarAppClosers = 411,
+		StarAppCleanslate = 401,
+		StarAppCover = 402,
+		StarAppCNA = 403,
+		StarAppFishing = 404,
+		StarAppCustomer = 405,
+		StarAppShare = 406,
+		StarAppROI = 407,
+		StarAppMarket = 408,
+		StarAppVideo = 409,
+		StarAppAudience = 410,
+		StarAppSolution = 411,
+		StarAppClosers = 412,
 		#endregion
 	}
 }

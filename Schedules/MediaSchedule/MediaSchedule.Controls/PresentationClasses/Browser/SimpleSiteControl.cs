@@ -1,26 +1,26 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using Asa.Common.GUI.RateCard;
+using Asa.Browser.Controls.BusinessClasses.Objects;
 using Asa.Common.GUI.ToolForms;
-using DevExpress.XtraTab;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
 
-namespace Asa.Schedules.Common.Controls.RateCard
+namespace Asa.Media.Controls.PresentationClasses.Browser
 {
-	public partial class WebViewer : XtraTabPage, IRateCardViewer
+	public partial class SimpleSiteControl : UserControl, IMediaSite
 	{
+		private bool _loaded;
 		private readonly WebControl _browser;
 		private readonly WebControl _childBrowser;
-		public bool Loaded { get; set; }
-		public FileInfo File { get; }
 
-		public WebViewer(FileInfo file)
+		public SiteSettings SiteSettings { get; }
+
+		public SimpleSiteControl(SiteSettings siteSettings)
 		{
 			InitializeComponent();
-			File = file;
-			Text = Path.GetFileNameWithoutExtension(File.FullName);
+
+			SiteSettings = siteSettings;
 
 			_childBrowser = new WebControl();
 			_childBrowser.WebView = new WebView();
@@ -44,24 +44,19 @@ namespace Asa.Schedules.Common.Controls.RateCard
 			_browser.BringToFront();
 		}
 
-		public void ReleaseResources() { }
-
-		public void LoadViewer()
+		public void LoadSite()
 		{
-			if (Loaded) return;
-			TabControl.Enabled = false;
+			if(_loaded) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Page...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
-			var url = System.IO.File.ReadAllText(File.FullName).Trim();
-			_browser.WebView.LoadUrl(url.Replace(" ", "%20"));
+			_browser.WebView.LoadUrl(SiteSettings.BaseUrl);
 		}
 
 		private void OnMainWebViewLoadComplete(Object sender, LoadCompletedEventArgs e)
 		{
 			FormProgress.CloseProgress();
-			TabControl.Enabled = true;
-			Loaded = true;
+			_loaded = true;
 		}
 
 		private void OnMainWebViewNewWindow(object sender, NewWindowEventArgs e)
@@ -85,7 +80,6 @@ namespace Asa.Schedules.Common.Controls.RateCard
 							FormProgress.ShowProgress();
 							FormProgress.SetTitle("Downloading…", true);
 							FormProgress.SetDetails(Path.GetFileName(saveDialog.FileName));
-							TabControl.Enabled = false;
 							Application.DoEvents();
 							e.Continue(saveDialog.FileName);
 						}
@@ -113,18 +107,16 @@ namespace Asa.Schedules.Common.Controls.RateCard
 
 		private void OnWebViewDownloadCompleted(Object sender, DownloadEventArgs e)
 		{
-			TabControl.Enabled = true;
 			FormProgress.CloseProgress();
 			using (var formComplete = new FormFileDownloadComplete(e.Item.FullPath))
 			{
-				formComplete.StartPosition = FormStartPosition.CenterScreen;
+				formComplete.StartPosition=FormStartPosition.CenterScreen;
 				formComplete.ShowDialog();
 			}
 		}
 
 		private void OnWebViewDownloadCanceled(Object sender, DownloadEventArgs e)
 		{
-			TabControl.Enabled = true;
 			FormProgress.CloseProgress();
 		}
 	}

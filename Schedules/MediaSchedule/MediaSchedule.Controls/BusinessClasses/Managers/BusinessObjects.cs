@@ -58,6 +58,8 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			HelpManager.LoadHelpLinks();
 
+			PowerPointManager.Init();
+
 			ThemeManager.Load();
 			SlideSettingsManager.Instance.SettingsChanged += (o, e) => ThemeManager.Load();
 
@@ -72,8 +74,6 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			RateCardManager.LoadRateCards();
 
 			ImageResourcesManager.Load();
-
-			PowerPointManager.Init();
 
 			BrowserManager.Init(ResourceManager.Instance.BrowserConfigFile);
 		}

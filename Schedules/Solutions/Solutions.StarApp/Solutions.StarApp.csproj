@@ -58,6 +58,12 @@
     <Compile Include="PresentationClasses\ContentEditors\BaseStarAppContainer.Designer.cs">
       <DependentUpon>BaseStarAppContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.Designer.cs">
+      <DependentUpon>CleanslateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CustomerControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -132,6 +138,11 @@
     </Compile>
     <Compile Include="PresentationClasses\Output\IStarAppSlide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
@@ -195,6 +206,13 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\StarAppControl.resx">
       <DependentUpon>StarAppControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,7 +7,7 @@ using Asa.Media.Controls.BusinessClasses.Managers;
 
 namespace Asa.Media.Controls.PresentationClasses.Browser
 {
-	class MediaSiteContainer : SiteContainerControl
+	class MediaSiteContainer : SiteContainerControl, IMediaSite
 	{
 		public override PowerPointSingletonProcessor PowerPointSingleton
 			=> BusinessObjects.Instance.PowerPointManager.Processor;

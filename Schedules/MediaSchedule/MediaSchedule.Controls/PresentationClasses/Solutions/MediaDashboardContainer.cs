@@ -75,7 +75,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 				var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-					String.Format("{0}-{1}.pdf", SolutionInfo.Title, DateTime.Now.ToString("MM-dd-yy-hmmss")));
+					String.Format("{0}-{1}.pdf", SolutionInfo.ToggleTitle, DateTime.Now.ToString("MM-dd-yy-hmmss")));
 				PowerPointProcessor.BuildPdf(pdfFileName, previewGroups.Select(pg => pg.PresentationSourcePath));
 				if (File.Exists(pdfFileName))
 					try

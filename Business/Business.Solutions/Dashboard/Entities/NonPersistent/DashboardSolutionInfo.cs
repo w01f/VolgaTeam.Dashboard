@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Xml;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Configuration;
@@ -16,6 +17,13 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 		public LeadoffStatementLists LeadoffStatementLists { get; }
 		public TargetCustomersLists TargetCustomersLists { get; }
 		public SimpleSummaryLists SimpleSummaryLists { get; }
+
+		public string CleanslateTitle { get; private set; }
+		public string CoverTitle { get; private set; }
+		public string LeadoffStatementTitle { get; private set; }
+		public string ClientGoalsTitle { get; private set; }
+		public string TargeCustomersTitle { get; private set; }
+		public string SimpleSummaryTitle { get; private set; }
 
 		public Image CleanslateHeaderLogo { get; private set; }
 		public Image CleanslateSplashLogo { get; private set; }
@@ -44,6 +52,21 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 			var resourceManager = new ResourceManager();
 
 			AsyncHelper.RunSync(() => resourceManager.Load(DataFolder));
+
+			var document = new XmlDocument();
+			if (resourceManager.SettingsFile.ExistsLocal())
+			{
+				document.Load(resourceManager.SettingsFile.LocalPath);
+
+				ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
+				CleanslateTitle = document.SelectSingleNode(@"//Settings/Tab_0")?.InnerText;
+				CoverTitle = document.SelectSingleNode(@"//Settings/Tab_1/Name")?.InnerText;
+				LeadoffStatementTitle = document.SelectSingleNode(@"//Settings/Tab_2/Name")?.InnerText;
+				ClientGoalsTitle = document.SelectSingleNode(@"//Settings/Tab_3/Name")?.InnerText;
+				TargeCustomersTitle = document.SelectSingleNode(@"//Settings/Tab_4/Name")?.InnerText;
+				SimpleSummaryTitle = document.SelectSingleNode(@"//Settings/Tab_5/Name")?.InnerText;
+			}
+
 
 			UsersList.Load(resourceManager.DataUsersFile);
 			CoverLists.Load(resourceManager.DataCoverFile);

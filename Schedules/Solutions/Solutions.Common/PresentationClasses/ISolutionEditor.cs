@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Solutions.Common.Common;
@@ -10,8 +9,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 	{
 		SolutionType SolutionType { get; }
 		SlideType SelectedSlideType { get; }
-		string HomeText { get; }
-		Image HomeLogo { get; }
 		string HelpKey { get; }
 		bool ReadyForOutput { get; }
 		void InitControl();

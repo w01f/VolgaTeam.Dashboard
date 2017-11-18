@@ -18,7 +18,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.ClientGoals;
-		public string SlideName => "C. Needs Analysis";
+		public string SlideName => SlideContainer.DashboardInfo.ClientGoalsTitle;
 
 		public ClientGoalsControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{

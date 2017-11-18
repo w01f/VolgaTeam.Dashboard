@@ -44,8 +44,6 @@
 			this.tabbedControlGroupData = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.emptySpaceItemMain = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlGroupTabB = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemAddAsPageOne = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
@@ -63,8 +61,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemMain)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -301,8 +297,7 @@
 			this.tabbedControlGroupData.SelectedTabPageIndex = 0;
 			this.tabbedControlGroupData.Size = new System.Drawing.Size(657, 362);
 			this.tabbedControlGroupData.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroupTabA,
-            this.layoutControlGroupTabB});
+            this.layoutControlGroupTabA});
 			this.tabbedControlGroupData.SelectedPageChanged += new DevExpress.XtraLayout.LayoutTabPageChangedEventHandler(this.OnSelectedPageChanged);
 			// 
 			// layoutControlGroupTabA
@@ -321,23 +316,6 @@
 			this.emptySpaceItemMain.Name = "emptySpaceItemMain";
 			this.emptySpaceItemMain.Size = new System.Drawing.Size(633, 313);
 			this.emptySpaceItemMain.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlGroupTabB
-			// 
-			this.layoutControlGroupTabB.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem3});
-			this.layoutControlGroupTabB.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupTabB.Name = "layoutControlGroupTabB";
-			this.layoutControlGroupTabB.Size = new System.Drawing.Size(633, 313);
-			this.layoutControlGroupTabB.Text = "Tab B";
-			// 
-			// emptySpaceItem3
-			// 
-			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(633, 313);
-			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemAddAsPageOne
 			// 
@@ -374,8 +352,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemMain)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).EndInit();
 			this.ResumeLayout(false);
 
@@ -397,8 +373,6 @@
 		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroupData;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabA;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemMain;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabB;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemAddAsPageOne;
 	}
 }

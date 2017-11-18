@@ -27,14 +27,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			
 			comboBoxEditSlideHeader.EnableSelectAll();
 
-			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CustomerLists.Headers);
-
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab4SubATitle;
 			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab4SubBTitle;
 			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab4SubCTitle;
-			OnSelectedPageChanged(null, new LayoutTabPageChangedEventArgs(null, layoutControlGroupTabA));
-
+			
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
@@ -46,12 +42,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override void LoadData()
 		{
-			_allowToSave = false;
-			comboBoxEditSlideHeader.EditValue =
-					SlideContainer.StarInfo.CustomerLists.Headers.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CustomerState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
-					SlideContainer.StarInfo.CustomerLists.Headers.OrderByDescending(h => h.IsDefault).FirstOrDefault();
-
-			_allowToSave = true;
+			LoadPartData();
 		}
 
 		public override void ApplyChanges()
@@ -59,6 +50,45 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.CustomerState.SlideHeader = comboBoxEditSlideHeader.EditValue as String;
 
 			SlideContainer.SettingsContainer.SaveSettings();
+		}
+
+		private void LoadPartData()
+		{
+			_allowToSave = false;
+			switch (tabbedControlGroupData.SelectedTabPageIndex)
+			{
+				case 0:
+					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab4SubARightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab4SubAFooterLogo;
+
+					comboBoxEditSlideHeader.Properties.Items.Clear();
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CustomerLists.HeadersPartA);
+					comboBoxEditSlideHeader.EditValue =
+							SlideContainer.StarInfo.CustomerLists.HeadersPartA.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CustomerState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+							SlideContainer.StarInfo.CustomerLists.HeadersPartA.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+					break;
+				case 1:
+					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab4SubBRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab4SubBFooterLogo;
+
+					comboBoxEditSlideHeader.Properties.Items.Clear();
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CustomerLists.HeadersPartB);
+					comboBoxEditSlideHeader.EditValue =
+							SlideContainer.StarInfo.CustomerLists.HeadersPartB.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CustomerState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+							SlideContainer.StarInfo.CustomerLists.HeadersPartB.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+					break;
+				case 2:
+					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab4SubCRightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab4SubCFooterLogo;
+
+					comboBoxEditSlideHeader.Properties.Items.Clear();
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CustomerLists.HeadersPartC);
+					comboBoxEditSlideHeader.EditValue =
+							SlideContainer.StarInfo.CustomerLists.HeadersPartC.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CustomerState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+							SlideContainer.StarInfo.CustomerLists.HeadersPartC.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+					break;
+			}
+			_allowToSave = true;
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
@@ -69,21 +99,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnSelectedPageChanged(object sender, LayoutTabPageChangedEventArgs e)
 		{
-			switch (tabbedControlGroupData.SelectedTabPageIndex)
-			{
-				case 0:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab4SubARightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab4SubAFooterLogo;
-					break;
-				case 1:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab4SubBRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab4SubBFooterLogo;
-					break;
-				case 2:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab4SubCRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab4SubCFooterLogo;
-					break;
-			}
+			if (_allowToSave)
+				ApplyChanges();
+			LoadPartData();
 		}
 
 		#region Output Staff

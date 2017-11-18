@@ -72,6 +72,18 @@
       <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EO.Base, Version=17.3.13.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.17.3.13\lib\EO.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=17.3.13.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.17.3.13\lib\EO.WebBrowser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=17.3.13.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EO.WebBrowser.17.3.13\lib\EO.WebEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Private>True</Private>
     </Reference>
@@ -116,8 +128,15 @@
     <Compile Include="PresentationClasses\Browser\BrowserContentControl.Designer.cs">
       <DependentUpon>BrowserContentControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Browser\IMediaSite.cs" />
     <Compile Include="PresentationClasses\Browser\MediaSiteContainer.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Browser\SimpleSiteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Browser\SimpleSiteControl.designer.cs">
+      <DependentUpon>SimpleSiteControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
@@ -623,6 +642,9 @@
   <ItemGroup>
     <EmbeddedResource Include="PresentationClasses\Browser\BrowserContentControl.resx">
       <DependentUpon>BrowserContentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Browser\SimpleSiteControl.resx">
+      <DependentUpon>SimpleSiteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>

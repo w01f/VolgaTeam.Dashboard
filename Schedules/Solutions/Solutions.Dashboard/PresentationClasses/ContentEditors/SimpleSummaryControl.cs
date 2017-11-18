@@ -24,7 +24,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	{
 		public bool AllowToSave { get; set; }
 		public override SlideType SlideType => SlideType.SimpleSummary;
-		public string SlideName => "E. Closing Summary";
+		public string SlideName => SlideContainer.DashboardInfo.SimpleSummaryTitle;
 
 		public SimpleSummaryControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{

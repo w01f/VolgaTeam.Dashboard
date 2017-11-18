@@ -24,15 +24,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = SlideName;
-			
+
 			comboBoxEditSlideHeader.EnableSelectAll();
 
-			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverLists.Headers);
-
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab1SubATitle;
-			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab1SubBTitle;
-			OnSelectedPageChanged(null, new LayoutTabPageChangedEventArgs(null, layoutControlGroupTabA));
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -46,13 +41,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
-			comboBoxEditSlideHeader.EditValue =
-					SlideContainer.StarInfo.CoverLists.Headers.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CoverState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
-					SlideContainer.StarInfo.CoverLists.Headers.OrderByDescending(h => h.IsDefault).FirstOrDefault();
-
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
-
 			_allowToSave = true;
+
+			LoadPartData();
 		}
 
 		public override void ApplyChanges()
@@ -63,6 +55,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			SlideContainer.SettingsContainer.SaveSettings();
 		}
 
+		private void LoadPartData()
+		{
+			_allowToSave = false;
+			switch (tabbedControlGroupData.SelectedTabPageIndex)
+			{
+				case 0:
+					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubARightLogo;
+					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubAFooterLogo;
+
+					comboBoxEditSlideHeader.Properties.Items.Clear();
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverLists.HeadersPartA);
+
+					comboBoxEditSlideHeader.EditValue =
+					SlideContainer.StarInfo.CoverLists.HeadersPartA.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CoverState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+					SlideContainer.StarInfo.CoverLists.HeadersPartA.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+					break;
+			}
+			_allowToSave = true;
+		}
+
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -71,17 +83,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnSelectedPageChanged(object sender, LayoutTabPageChangedEventArgs e)
 		{
-			switch (tabbedControlGroupData.SelectedTabPageIndex)
-			{
-				case 0:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubARightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubAFooterLogo;
-					break;
-				case 1:
-					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab1SubBRightLogo;
-					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubBFooterLogo;
-					break;
-			}
+			if (_allowToSave)
+				ApplyChanges();
+
+			LoadPartData();
 		}
 
 		#region Output Staff

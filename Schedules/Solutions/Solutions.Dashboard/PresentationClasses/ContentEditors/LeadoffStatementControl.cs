@@ -18,7 +18,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.LeadoffStatement;
-		public string SlideName => "B. Intro Slide";
+		public string SlideName => SlideContainer.DashboardInfo.LeadoffStatementTitle;
 
 		public LeadoffStatementControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{

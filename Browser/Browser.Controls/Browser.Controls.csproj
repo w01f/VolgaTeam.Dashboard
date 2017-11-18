@@ -69,6 +69,7 @@
     <Compile Include="BusinessClasses\Enums\AfterDownloadAction.cs" />
     <Compile Include="BusinessClasses\Enums\LinkContentType.cs" />
     <Compile Include="BusinessClasses\Enums\LinkType.cs" />
+    <Compile Include="BusinessClasses\Enums\SiteType.cs" />
     <Compile Include="BusinessClasses\Events\ClosePageEventArgs.cs" />
     <Compile Include="BusinessClasses\Events\NewPageEventArgs.cs" />
     <Compile Include="BusinessClasses\Helpers\ExtensionsManager.cs" />

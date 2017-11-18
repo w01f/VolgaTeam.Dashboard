@@ -5,13 +5,10 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class TitlesConfiguration
 	{
-		public string RibbonTitle { get; private set; }
-
 		public string Tab0Title { get; private set; }
 
 		public string Tab1Title { get; private set; }
 		public string Tab1SubATitle { get; private set; }
-		public string Tab1SubBTitle { get; private set; }
 
 		public string Tab2Title { get; private set; }
 		public string Tab2SubATitle { get; private set; }
@@ -72,116 +69,64 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			var document = new XmlDocument();
 			document.Load(dataFile.LocalPath);
 
-			var node = document.SelectSingleNode(@"//Settings/RibbonGroupName");
-			RibbonTitle = node?.InnerText;
+			Tab0Title = document.SelectSingleNode(@"//Settings/Tab_0")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_0");
-			Tab0Title = node?.InnerText;
+			Tab1Title = document.SelectSingleNode(@"//Settings/Tab_1/Name")?.InnerText;
+			Tab1SubATitle = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_A")?.InnerText;
+			
+			Tab2Title = document.SelectSingleNode(@"//Settings/Tab_2/Name")?.InnerText;
+			Tab2SubATitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_A")?.InnerText;
+			Tab2SubBTitle = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_B")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_1/Name");
-			Tab1Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_A");
-			Tab1SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_1/SubTab_B");
-			Tab1SubBTitle = node?.InnerText;
+			Tab3Title = document.SelectSingleNode(@"//Settings/Tab_3/Name")?.InnerText;
+			Tab3SubATitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_A")?.InnerText;
+			Tab3SubBTitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_B")?.InnerText;
+			Tab3SubCTitle = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_C")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_2/Name");
-			Tab2Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_A");
-			Tab2SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_2/SubTab_B");
-			Tab2SubBTitle = node?.InnerText;
+			Tab4Title = document.SelectSingleNode(@"//Settings/Tab_4/Name")?.InnerText;
+			Tab4SubATitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_A")?.InnerText;
+			Tab4SubBTitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_B")?.InnerText;
+			Tab4SubCTitle = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_C")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_3/Name");
-			Tab3Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_A");
-			Tab3SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_B");
-			Tab3SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_3/SubTab_C");
-			Tab3SubCTitle = node?.InnerText;
+			Tab5Title = document.SelectSingleNode(@"//Settings/Tab_5/Name")?.InnerText;
+			Tab5SubATitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_A")?.InnerText;
+			Tab5SubBTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_B")?.InnerText;
+			Tab5SubCTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_C")?.InnerText;
+			Tab5SubDTitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_D")?.InnerText;
+			Tab5SubETitle = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_E")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_4/Name");
-			Tab4Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_A");
-			Tab4SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_B");
-			Tab4SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_4/SubTab_C");
-			Tab4SubCTitle = node?.InnerText;
+			Tab6Title = document.SelectSingleNode(@"//Settings/Tab_6/Name")?.InnerText;
+			Tab6SubATitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_A")?.InnerText;
+			Tab6SubBTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_B")?.InnerText;
+			Tab6SubCTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_C")?.InnerText;
+			Tab6SubDTitle = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_D")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_5/Name");
-			Tab5Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_A");
-			Tab5SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_B");
-			Tab5SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_C");
-			Tab5SubCTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_D");
-			Tab5SubDTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_5/SubTab_E");
-			Tab5SubETitle = node?.InnerText;
+			Tab7Title = document.SelectSingleNode(@"//Settings/Tab_7/Name")?.InnerText;
+			Tab7SubATitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_A")?.InnerText;
+			Tab7SubBTitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_B")?.InnerText;
+			Tab7SubCTitle = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_C")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_6/Name");
-			Tab6Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_A");
-			Tab6SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_B");
-			Tab6SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_C");
-			Tab6SubCTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_6/SubTab_D");
-			Tab6SubDTitle = node?.InnerText;
+			Tab8Title = document.SelectSingleNode(@"//Settings/Tab_8/Name")?.InnerText;
+			Tab8SubATitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_A")?.InnerText;
+			Tab8SubBTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_B")?.InnerText;
+			Tab8SubCTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_C")?.InnerText;
+			Tab8SubDTitle = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_D")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_7/Name");
-			Tab7Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_A");
-			Tab7SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_B");
-			Tab7SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_7/SubTab_C");
-			Tab7SubCTitle = node?.InnerText;
+			Tab9Title = document.SelectSingleNode(@"//Settings/Tab_9/Name")?.InnerText;
+			Tab9SubATitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_A")?.InnerText;
+			Tab9SubBTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_B")?.InnerText;
+			Tab9SubCTitle = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_C")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_8/Name");
-			Tab8Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_A");
-			Tab8SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_B");
-			Tab8SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_C");
-			Tab8SubCTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_8/SubTab_D");
-			Tab8SubDTitle = node?.InnerText;
+			Tab10Title = document.SelectSingleNode(@"//Settings/Tab_10/Name")?.InnerText;
+			Tab10SubATitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_A")?.InnerText;
+			Tab10SubBTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_B")?.InnerText;
+			Tab10SubCTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_C")?.InnerText;
+			Tab10SubDTitle = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_D")?.InnerText;
 
-			node = document.SelectSingleNode(@"//Settings/Tab_9/Name");
-			Tab9Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_A");
-			Tab9SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_B");
-			Tab9SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_9/SubTab_C");
-			Tab9SubCTitle = node?.InnerText;
-
-			node = document.SelectSingleNode(@"//Settings/Tab_10/Name");
-			Tab10Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_A");
-			Tab10SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_B");
-			Tab10SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_C");
-			Tab10SubCTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_10/SubTab_D");
-			Tab10SubDTitle = node?.InnerText;
-
-			node = document.SelectSingleNode(@"//Settings/Tab_11/Name");
-			Tab11Title = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_A");
-			Tab11SubATitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_B");
-			Tab11SubBTitle = node?.InnerText;
-			node = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_C");
-			Tab11SubCTitle = node?.InnerText;
+			Tab11Title = document.SelectSingleNode(@"//Settings/Tab_11/Name")?.InnerText;
+			Tab11SubATitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_A")?.InnerText;
+			Tab11SubBTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_B")?.InnerText;
+			Tab11SubCTitle = document.SelectSingleNode(@"//Settings/Tab_11/SubTab_C")?.InnerText;
 		}
 	}
 }

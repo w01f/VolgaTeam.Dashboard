@@ -1,10 +1,12 @@
 ﻿using System;
+using Asa.Browser.Controls.BusinessClasses.Enums;
 
 namespace Asa.Browser.Controls.BusinessClasses.Objects
 {
 	public class SiteSettings
 	{
 		public Guid Id { get; private set; }
+		public SiteType SiteType { get; set; }
 		public string BaseUrl { get; set; }
 		public string Title { get; set; }
 		public bool EnableMenu { get; set; }

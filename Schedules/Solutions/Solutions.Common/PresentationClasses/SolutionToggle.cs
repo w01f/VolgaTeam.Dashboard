@@ -16,7 +16,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		private SolutionToggle(BaseSolutionInfo solutionInfo)
 		{
 			SolutionInfo = solutionInfo;
-			Text = SolutionInfo.Title;
+			Text = SolutionInfo.ToggleTitle;
 			UseMnemonic = false;
 			Height = (Int32)(ButtonHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 

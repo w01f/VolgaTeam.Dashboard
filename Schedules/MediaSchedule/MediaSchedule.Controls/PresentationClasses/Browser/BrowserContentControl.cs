@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Browser.Controls.BusinessClasses.Enums;
 using Asa.Browser.Controls.BusinessClasses.Objects;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
@@ -64,16 +65,31 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			var selectedSiteSettings = comboBox?.EditValue as SiteSettings;
 			if (selectedSiteSettings == null) return;
 
-			var siteContainer = Controls.OfType<MediaSiteContainer>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
+			var siteContainer = Controls.OfType<IMediaSite>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
 			if (siteContainer == null)
 			{
-				siteContainer = new MediaSiteContainer();
-				siteContainer.Dock = DockStyle.Fill;
-				Controls.Add(siteContainer);
-				siteContainer.InitSite(selectedSiteSettings);
-				siteContainer.LoadPages();
+				switch (selectedSiteSettings.SiteType)
+				{
+					case SiteType.SalesCloud:
+						var mediaSiteContainer = new MediaSiteContainer();
+						mediaSiteContainer.Dock = DockStyle.Fill;
+						Controls.Add(mediaSiteContainer);
+						mediaSiteContainer.InitSite(selectedSiteSettings);
+						mediaSiteContainer.LoadPages();
+						siteContainer = mediaSiteContainer;
+						break;
+					case SiteType.SimpleSite:
+						var simpleSiteControl = new SimpleSiteControl(selectedSiteSettings);
+						simpleSiteControl.Dock = DockStyle.Fill;
+						Controls.Add(simpleSiteControl);
+						simpleSiteControl.LoadSite();
+						siteContainer = simpleSiteControl;
+						break;
+					default:
+						throw new ArgumentOutOfRangeException("Undefined site type");
+				}
 			}
-			siteContainer.BringToFront();
+			((Control)siteContainer).BringToFront();
 		}
 	}
 }

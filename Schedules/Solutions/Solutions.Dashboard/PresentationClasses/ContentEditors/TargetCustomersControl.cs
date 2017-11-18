@@ -19,7 +19,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.TargetCustomers;
-		public string SlideName => "D. Target Customer";
+		public string SlideName => SlideContainer.DashboardInfo.TargeCustomersTitle;
 
 		public TargetCustomersControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{

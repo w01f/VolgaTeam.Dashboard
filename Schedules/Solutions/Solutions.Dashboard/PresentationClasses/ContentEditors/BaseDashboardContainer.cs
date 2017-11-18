@@ -12,7 +12,6 @@ using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.ToolForms;
 using Asa.Solutions.Common.PresentationClasses;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
-using Asa.Solutions.Dashboard.Properties;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
@@ -30,7 +29,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public abstract IDashboardSettingsContainer SettingsContainer { get; }
 		public override SolutionType SolutionType => SolutionType.Dashboard;
 		public override SlideType SelectedSlideType => ActiveSlide.SlideType;
-		public override Image HomeLogo => Resources.RibbonLogo;
 		public override string HelpKey
 		{
 			get

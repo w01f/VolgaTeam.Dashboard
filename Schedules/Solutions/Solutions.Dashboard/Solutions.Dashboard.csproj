@@ -204,9 +204,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\RibbonLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SalesQuotes.png" />
   </ItemGroup>
   <ItemGroup>

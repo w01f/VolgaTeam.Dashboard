@@ -29,8 +29,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public abstract IStarAppSettingsContainer SettingsContainer { get; }
 		public override SolutionType SolutionType => SolutionType.StarApp;
 		public override SlideType SelectedSlideType => ActiveSlide?.SlideType ?? SlideType.Cleanslate;
-		public override Image HomeLogo => StarInfo.RibbonLogo;
-		public override string HomeText => StarInfo.Titles.RibbonTitle;
 		public override string HelpKey
 		{
 			get
@@ -140,7 +138,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				form.Text = "Slide Output Options";
 				foreach (var slideControl in _slides.OfType<StarAppControl>().ToList().Where(s => s.ReadyForOutput))
 				{
-					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName, ActiveSlide.SlideType == SlideType.Cleanslate || slideControl == ActiveSlide ? CheckState.Checked : CheckState.Unchecked);
+					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName, ActiveSlide.SlideType == SlideType.StarAppCleanslate || slideControl == ActiveSlide ? CheckState.Checked : CheckState.Unchecked);
 					form.checkedListBoxControlOutputItems.Items.Add(item);
 					if (slideControl == ActiveSlide)
 						form.buttonXSelectCurrent.Tag = item;

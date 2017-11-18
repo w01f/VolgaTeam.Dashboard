@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using Asa.Browser.Controls.BusinessClasses.Enums;
 using Asa.Browser.Controls.BusinessClasses.Objects;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -30,6 +31,18 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			foreach (var siteNode in document.SelectNodes(@"//Root/Site").OfType<XmlNode>())
 			{
 				var siteSettings = new SiteSettings();
+				switch (siteNode.SelectSingleNode("./Type")?.InnerText.ToLower())
+				{
+					case "website":
+						siteSettings.SiteType = SiteType.SimpleSite;
+						break;
+					case "salesvloud":
+						siteSettings.SiteType = SiteType.SalesCloud;
+						break;
+					default:
+						siteSettings.SiteType = SiteType.SalesCloud;
+						break;
+				}
 				siteSettings.BaseUrl = siteNode.SelectSingleNode("./Url")?.InnerText;
 				siteSettings.Title = siteNode.SelectSingleNode("./ComboName")?.InnerText ?? siteSettings.BaseUrl;
 				if (!String.IsNullOrEmpty(siteSettings.BaseUrl))

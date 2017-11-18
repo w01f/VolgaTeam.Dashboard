@@ -24,7 +24,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		private readonly List<User> _users = new List<User>();
 
 		public override SlideType SlideType => SlideType.Cover;
-		public string SlideName => "A. Cover";
+		public string SlideName => SlideContainer.DashboardInfo.CoverTitle;
 
 		public CoverControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{

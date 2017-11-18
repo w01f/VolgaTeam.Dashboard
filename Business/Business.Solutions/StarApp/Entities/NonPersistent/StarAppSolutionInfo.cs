@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Xml;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Dictionaries;
@@ -12,7 +13,6 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 {
 	public class StarAppSolutionInfo : BaseSolutionInfo
 	{
-		public Image RibbonLogo { get; private set; }
 		public TitlesConfiguration Titles { get; } = new TitlesConfiguration();
 
 		public CoverLists CoverLists { get; }
@@ -29,9 +29,6 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 
 		public Image Tab1SubARightLogo { get; private set; }
 		public Image Tab1SubAFooterLogo { get; private set; }
-		public Image Tab1SubBRightLogo { get; private set; }
-		public Image Tab1SubBFooterLogo { get; private set; }
-
 		public Image Tab2SubARightLogo { get; private set; }
 		public Image Tab2SubAFooterLogo { get; private set; }
 		public Image Tab2SubBRightLogo { get; private set; }
@@ -135,35 +132,33 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 
 			AsyncHelper.RunSync(() => resourceManager.Load(DataFolder));
 
-			Titles.Load(resourceManager.TitlesConfigFile);
+			var document = new XmlDocument();
+			if (resourceManager.SettingsFile.ExistsLocal())
+			{
+				document.Load(resourceManager.SettingsFile.LocalPath);
 
-			RibbonLogo = resourceManager.LogoRibbonFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoRibbonFile.LocalPath)
-				: null;
+				ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
+			}
 
-			CoverLists.Load(resourceManager.DataCoverFile);
-			CNALists.Load(resourceManager.DataCNAFile);
-			FishingLists.Load(resourceManager.DataFishingFile);
-			CustomerLists.Load(resourceManager.DataCustomerFile);
-			ShareLists.Load(resourceManager.DataShareFile);
-			ROILists.Load(resourceManager.DataROIFile);
-			MarketLists.Load(resourceManager.DataMarketFile);
-			VideoLists.Load(resourceManager.DataVideoFile);
-			AudienceLists.Load(resourceManager.DataAudienceFile);
-			SolutionLists.Load(resourceManager.DataSolutionFile);
-			ClosersLists.Load(resourceManager.DataClosersFile);
+			Titles.Load(resourceManager.SettingsFile);
+
+			CoverLists.Load(resourceManager);
+			CNALists.Load(resourceManager);
+			FishingLists.Load(resourceManager);
+			CustomerLists.Load(resourceManager);
+			ShareLists.Load(resourceManager);
+			ROILists.Load(resourceManager);
+			MarketLists.Load(resourceManager);
+			VideoLists.Load(resourceManager);
+			AudienceLists.Load(resourceManager);
+			SolutionLists.Load(resourceManager);
+			ClosersLists.Load(resourceManager);
 
 			Tab1SubARightLogo = resourceManager.LogoTab1SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab1SubARightFile.LocalPath)
 				: null;
 			Tab1SubAFooterLogo = resourceManager.LogoTab1SubAFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab1SubAFooterFile.LocalPath)
-				: null;
-			Tab1SubBRightLogo = resourceManager.LogoTab1SubBRightFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubBRightFile.LocalPath)
-				: null;
-			Tab1SubBFooterLogo = resourceManager.LogoTab1SubBFooterFile.ExistsLocal()
-				? Image.FromFile(resourceManager.LogoTab1SubBFooterFile.LocalPath)
 				: null;
 
 			Tab2SubARightLogo = resourceManager.LogoTab2SubARightFile.ExistsLocal()

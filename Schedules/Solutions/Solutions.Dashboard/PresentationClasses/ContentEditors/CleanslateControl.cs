@@ -13,7 +13,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public CleanslateControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
-			Text = SlideContainer.DashboardInfo.Title;
+			Text = SlideContainer.DashboardInfo.CleanslateTitle;
 			pictureEditHeader.Image = SlideContainer.DashboardInfo.CleanslateHeaderLogo;
 			pictureEditSplash.Image = SlideContainer.DashboardInfo.CleanslateSplashLogo;
 		}

@@ -29,39 +29,57 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOutputSettings));
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditShowSpotX = new DevExpress.XtraEditors.CheckEdit();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditShowSpotsPerWeek = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLockToMaster = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditCloneLineToTheEnd = new DevExpress.XtraEditors.CheckEdit();
-			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditUseDecimalRate = new DevExpress.XtraEditors.CheckEdit();
-			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
+			this.checkEditShowSignatureLine = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditShowRatesExpiration = new DevExpress.XtraEditors.CheckEdit();
+			this.dateEditRatesExpirationDate = new DevExpress.XtraEditors.DateEdit();
+			this.checkEditShowDisclaimer = new DevExpress.XtraEditors.CheckEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemUseDecimalRate = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemUseDecimalRate = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemCloneLineToTheEnd = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem16 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemCloneLineToTheEnd = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemLockToMaster = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemLockToMaster = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.tabbedControlGroupSettings = new DevExpress.XtraLayout.TabbedControlGroup();
+			this.layoutControlGroupAdvancedSettings = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemUseDecimalRate = new DevExpress.XtraLayout.LayoutControlItem();
+			this.simpleLabelItemUseDecimalRate = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemShowSpotX = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.simpleLabelItemShowSpotX = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemShowSpotsPerWeek = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemShowSpotsPerWeek = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemShowSpotsPerWeek = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemCloneLineToTheEnd = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemCloneLineToTheEnd = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem16 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemLockToMaster = new DevExpress.XtraLayout.LayoutControlItem();
+			this.simpleLabelItemLockToMaster = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlGroupContractSettings = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemShowSignatureLine = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemShowRatesExpiration = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem20 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemRatesExpirationDate = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemShowDisclaimer = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem21 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemContractSettingsTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -70,30 +88,47 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCloneLineToTheEnd.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSignatureLine.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowRatesExpiration.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditRatesExpirationDate.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditRatesExpirationDate.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowDisclaimer.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUseDecimalRate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemUseDecimalRate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCloneLineToTheEnd)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCloneLineToTheEnd)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLockToMaster)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemLockToMaster)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupSettings)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupAdvancedSettings)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUseDecimalRate)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemUseDecimalRate)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSpotX)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemShowSpotX)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSpotsPerWeek)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSpotsPerWeek)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemShowSpotsPerWeek)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCloneLineToTheEnd)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCloneLineToTheEnd)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLockToMaster)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemLockToMaster)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupContractSettings)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSignatureLine)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowRatesExpiration)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemRatesExpirationDate)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowDisclaimer)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemContractSettingsTitle)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -115,13 +150,13 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			// 
 			this.checkEditShowSpotX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditShowSpotX.Location = new System.Drawing.Point(12, 73);
+			this.checkEditShowSpotX.Location = new System.Drawing.Point(24, 101);
 			this.checkEditShowSpotX.Name = "checkEditShowSpotX";
 			this.checkEditShowSpotX.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditShowSpotX.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditShowSpotX.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditShowSpotX.Properties.Caption = "<b>B.</b> Show “X” in spot #s";
-			this.checkEditShowSpotX.Size = new System.Drawing.Size(383, 20);
+			this.checkEditShowSpotX.Size = new System.Drawing.Size(369, 20);
 			this.checkEditShowSpotX.StyleController = this.layoutControl;
 			this.checkEditShowSpotX.TabIndex = 125;
 			// 
@@ -140,29 +175,60 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.buttonXOK);
+			this.layoutControl.Controls.Add(this.buttonXCancel);
 			this.layoutControl.Controls.Add(this.checkEditShowSpotsPerWeek);
 			this.layoutControl.Controls.Add(this.checkEditShowSpotX);
 			this.layoutControl.Controls.Add(this.checkEditLockToMaster);
 			this.layoutControl.Controls.Add(this.checkEditCloneLineToTheEnd);
-			this.layoutControl.Controls.Add(this.buttonXOK);
 			this.layoutControl.Controls.Add(this.checkEditUseDecimalRate);
-			this.layoutControl.Controls.Add(this.buttonXCancel);
+			this.layoutControl.Controls.Add(this.checkEditShowSignatureLine);
+			this.layoutControl.Controls.Add(this.checkEditShowRatesExpiration);
+			this.layoutControl.Controls.Add(this.dateEditRatesExpirationDate);
+			this.layoutControl.Controls.Add(this.checkEditShowDisclaimer);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
 			this.layoutControl.Name = "layoutControl";
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 490);
+			this.layoutControl.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(407, 364);
+			this.layoutControl.Size = new System.Drawing.Size(417, 397);
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 138;
 			this.layoutControl.Text = "layoutControl1";
+			// 
+			// buttonXOK
+			// 
+			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.buttonXOK.Location = new System.Drawing.Point(12, 349);
+			this.buttonXOK.Name = "buttonXOK";
+			this.buttonXOK.Size = new System.Drawing.Size(116, 36);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXOK.TabIndex = 122;
+			this.buttonXOK.Text = "OK";
+			// 
+			// buttonXCancel
+			// 
+			this.buttonXCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.buttonXCancel.Location = new System.Drawing.Point(289, 349);
+			this.buttonXCancel.Name = "buttonXCancel";
+			this.buttonXCancel.Size = new System.Drawing.Size(116, 36);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXCancel.TabIndex = 123;
+			this.buttonXCancel.Text = "Cancel";
 			// 
 			// checkEditShowSpotsPerWeek
 			// 
 			this.checkEditShowSpotsPerWeek.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditShowSpotsPerWeek.Location = new System.Drawing.Point(12, 134);
+			this.checkEditShowSpotsPerWeek.Location = new System.Drawing.Point(24, 162);
 			this.checkEditShowSpotsPerWeek.Name = "checkEditShowSpotsPerWeek";
 			this.checkEditShowSpotsPerWeek.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditShowSpotsPerWeek.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -179,7 +245,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.checkEditShowSpotsPerWeek.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditShowSpotsPerWeek.Properties.AutoHeight = false;
 			this.checkEditShowSpotsPerWeek.Properties.Caption = "<b>C.</b> Show “Spots per Week” line";
-			this.checkEditShowSpotsPerWeek.Size = new System.Drawing.Size(383, 21);
+			this.checkEditShowSpotsPerWeek.Size = new System.Drawing.Size(369, 20);
 			this.checkEditShowSpotsPerWeek.StyleController = this.layoutControl;
 			this.checkEditShowSpotsPerWeek.TabIndex = 127;
 			// 
@@ -187,7 +253,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			// 
 			this.checkEditLockToMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLockToMaster.Location = new System.Drawing.Point(12, 257);
+			this.checkEditLockToMaster.Location = new System.Drawing.Point(24, 284);
 			this.checkEditLockToMaster.Name = "checkEditLockToMaster";
 			this.checkEditLockToMaster.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditLockToMaster.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -202,7 +268,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.checkEditLockToMaster.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditLockToMaster.Properties.AutoHeight = false;
 			this.checkEditLockToMaster.Properties.Caption = "<b>E.</b> Lock Schedule on the Slide Master";
-			this.checkEditLockToMaster.Size = new System.Drawing.Size(383, 20);
+			this.checkEditLockToMaster.Size = new System.Drawing.Size(369, 20);
 			this.checkEditLockToMaster.StyleController = this.layoutControl;
 			this.checkEditLockToMaster.TabIndex = 124;
 			// 
@@ -210,7 +276,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			// 
 			this.checkEditCloneLineToTheEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCloneLineToTheEnd.Location = new System.Drawing.Point(12, 196);
+			this.checkEditCloneLineToTheEnd.Location = new System.Drawing.Point(24, 223);
 			this.checkEditCloneLineToTheEnd.Name = "checkEditCloneLineToTheEnd";
 			this.checkEditCloneLineToTheEnd.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditCloneLineToTheEnd.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -225,49 +291,102 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.checkEditCloneLineToTheEnd.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditCloneLineToTheEnd.Properties.AutoHeight = false;
 			this.checkEditCloneLineToTheEnd.Properties.Caption = "<b>D.</b> Cloned lines go to the end";
-			this.checkEditCloneLineToTheEnd.Size = new System.Drawing.Size(383, 20);
+			this.checkEditCloneLineToTheEnd.Size = new System.Drawing.Size(369, 20);
 			this.checkEditCloneLineToTheEnd.StyleController = this.layoutControl;
 			this.checkEditCloneLineToTheEnd.TabIndex = 135;
-			// 
-			// buttonXOK
-			// 
-			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(12, 316);
-			this.buttonXOK.Name = "buttonXOK";
-			this.buttonXOK.Size = new System.Drawing.Size(116, 36);
-			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOK.TabIndex = 122;
-			this.buttonXOK.Text = "OK";
 			// 
 			// checkEditUseDecimalRate
 			// 
 			this.checkEditUseDecimalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(12, 12);
+			this.checkEditUseDecimalRate.Location = new System.Drawing.Point(24, 40);
 			this.checkEditUseDecimalRate.Name = "checkEditUseDecimalRate";
 			this.checkEditUseDecimalRate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditUseDecimalRate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseDecimalRate.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditUseDecimalRate.Properties.Caption = "<b>A.</b> Use Decimals with Rates";
-			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(383, 20);
+			this.checkEditUseDecimalRate.Size = new System.Drawing.Size(369, 20);
 			this.checkEditUseDecimalRate.StyleController = this.layoutControl;
 			this.checkEditUseDecimalRate.TabIndex = 121;
 			// 
-			// buttonXCancel
+			// checkEditShowSignatureLine
 			// 
-			this.buttonXCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(279, 316);
-			this.buttonXCancel.Name = "buttonXCancel";
-			this.buttonXCancel.Size = new System.Drawing.Size(116, 36);
-			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXCancel.TabIndex = 123;
-			this.buttonXCancel.Text = "Cancel";
+			this.checkEditShowSignatureLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditShowSignatureLine.Location = new System.Drawing.Point(24, 90);
+			this.checkEditShowSignatureLine.Name = "checkEditShowSignatureLine";
+			this.checkEditShowSignatureLine.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditShowSignatureLine.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditShowSignatureLine.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditShowSignatureLine.Properties.Caption = "<b>A.</b> Client Signature Line";
+			this.checkEditShowSignatureLine.Size = new System.Drawing.Size(369, 20);
+			this.checkEditShowSignatureLine.StyleController = this.layoutControl;
+			this.checkEditShowSignatureLine.TabIndex = 121;
+			// 
+			// checkEditShowRatesExpiration
+			// 
+			this.checkEditShowRatesExpiration.Location = new System.Drawing.Point(24, 134);
+			this.checkEditShowRatesExpiration.Name = "checkEditShowRatesExpiration";
+			this.checkEditShowRatesExpiration.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditShowRatesExpiration.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditShowRatesExpiration.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditShowRatesExpiration.Properties.Caption = "<b>B.</b> Rates Expiration Date";
+			this.checkEditShowRatesExpiration.Size = new System.Drawing.Size(216, 20);
+			this.checkEditShowRatesExpiration.StyleController = this.layoutControl;
+			this.checkEditShowRatesExpiration.TabIndex = 125;
+			this.checkEditShowRatesExpiration.CheckedChanged += new System.EventHandler(this.checkEditShowRatesExpiration_CheckedChanged);
+			// 
+			// dateEditRatesExpirationDate
+			// 
+			this.dateEditRatesExpirationDate.EditValue = null;
+			this.dateEditRatesExpirationDate.Enabled = false;
+			this.dateEditRatesExpirationDate.Location = new System.Drawing.Point(244, 134);
+			this.dateEditRatesExpirationDate.Name = "dateEditRatesExpirationDate";
+			this.dateEditRatesExpirationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+			this.dateEditRatesExpirationDate.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.dateEditRatesExpirationDate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.dateEditRatesExpirationDate.Properties.Appearance.Options.UseBackColor = true;
+			this.dateEditRatesExpirationDate.Properties.Appearance.Options.UseForeColor = true;
+			this.dateEditRatesExpirationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditRatesExpirationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+			this.dateEditRatesExpirationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.dateEditRatesExpirationDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
+			this.dateEditRatesExpirationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditRatesExpirationDate.Properties.EditFormat.FormatString = "MM/dd/yyyy";
+			this.dateEditRatesExpirationDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.dateEditRatesExpirationDate.Properties.Mask.EditMask = "MM/dd/yyyy";
+			this.dateEditRatesExpirationDate.Properties.NullText = "Select";
+			this.dateEditRatesExpirationDate.Properties.ShowPopupShadow = false;
+			this.dateEditRatesExpirationDate.Properties.ShowToday = false;
+			this.dateEditRatesExpirationDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dateEditRatesExpirationDate.Size = new System.Drawing.Size(149, 22);
+			this.dateEditRatesExpirationDate.StyleController = this.layoutControl;
+			this.dateEditRatesExpirationDate.TabIndex = 129;
+			// 
+			// checkEditShowDisclaimer
+			// 
+			this.checkEditShowDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditShowDisclaimer.Location = new System.Drawing.Point(24, 180);
+			this.checkEditShowDisclaimer.Name = "checkEditShowDisclaimer";
+			this.checkEditShowDisclaimer.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditShowDisclaimer.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.checkEditShowDisclaimer.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditShowDisclaimer.Properties.Appearance.Options.UseBackColor = true;
+			this.checkEditShowDisclaimer.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditShowDisclaimer.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditShowDisclaimer.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowDisclaimer.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditShowDisclaimer.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowDisclaimer.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditShowDisclaimer.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowDisclaimer.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditShowDisclaimer.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditShowDisclaimer.Properties.Caption = "<b>C.</b> Legal disclaimer and cancellation policy";
+			this.checkEditShowDisclaimer.Size = new System.Drawing.Size(369, 20);
+			this.checkEditShowDisclaimer.StyleController = this.layoutControl;
+			this.checkEditShowDisclaimer.TabIndex = 127;
 			// 
 			// layoutControlGroupRoot
 			// 
@@ -290,29 +409,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
             this.layoutControlItemOK,
             this.layoutControlItemCancel,
             this.emptySpaceItem4,
-            this.emptySpaceItem11,
-            this.layoutControlItemUseDecimalRate,
-            this.emptySpaceItem12,
-            this.simpleLabelItemUseDecimalRate,
-            this.emptySpaceItem15,
-            this.layoutControlItemCloneLineToTheEnd,
-            this.emptySpaceItem16,
-            this.simpleLabelItemCloneLineToTheEnd,
-            this.emptySpaceItem17,
-            this.layoutControlItemLockToMaster,
             this.emptySpaceItem18,
-            this.simpleLabelItemLockToMaster,
-            this.emptySpaceItem1,
-            this.layoutControlItemShowSpotX,
-            this.emptySpaceItem2,
-            this.simpleLabelItemShowSpotX,
-            this.emptySpaceItem3,
-            this.layoutControlItemShowSpotsPerWeek,
-            this.emptySpaceItem5,
-            this.simpleLabelItemShowSpotsPerWeek});
+            this.tabbedControlGroupSettings});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(407, 364);
+			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 10);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(417, 397);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemOK
@@ -320,7 +422,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.layoutControlItemOK.Control = this.buttonXOK;
 			this.layoutControlItemOK.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemOK.FillControlToClientArea = false;
-			this.layoutControlItemOK.Location = new System.Drawing.Point(0, 304);
+			this.layoutControlItemOK.Location = new System.Drawing.Point(0, 347);
 			this.layoutControlItemOK.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.Name = "layoutControlItemOK";
@@ -336,7 +438,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.layoutControlItemCancel.Control = this.buttonXCancel;
 			this.layoutControlItemCancel.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCancel.FillControlToClientArea = false;
-			this.layoutControlItemCancel.Location = new System.Drawing.Point(267, 304);
+			this.layoutControlItemCancel.Location = new System.Drawing.Point(277, 347);
 			this.layoutControlItemCancel.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.Name = "layoutControlItemCancel";
@@ -350,10 +452,98 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			// emptySpaceItem4
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(120, 304);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(120, 347);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(147, 40);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(157, 40);
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem18
+			// 
+			this.emptySpaceItem18.AllowHotTrack = false;
+			this.emptySpaceItem18.Location = new System.Drawing.Point(0, 337);
+			this.emptySpaceItem18.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem18.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem18.Name = "emptySpaceItem18";
+			this.emptySpaceItem18.Size = new System.Drawing.Size(397, 10);
+			this.emptySpaceItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// tabbedControlGroupSettings
+			// 
+			this.tabbedControlGroupSettings.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.tabbedControlGroupSettings.AppearanceTabPage.Header.Options.UseFont = true;
+			this.tabbedControlGroupSettings.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tabbedControlGroupSettings.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.tabbedControlGroupSettings.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.tabbedControlGroupSettings.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.tabbedControlGroupSettings.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.tabbedControlGroupSettings.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.tabbedControlGroupSettings.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.tabbedControlGroupSettings.AppearanceTabPage.PageClient.Options.UseFont = true;
+			this.tabbedControlGroupSettings.Location = new System.Drawing.Point(0, 0);
+			this.tabbedControlGroupSettings.Name = "tabbedControlGroupSettings";
+			this.tabbedControlGroupSettings.Padding = new DevExpress.XtraLayout.Utils.Padding(9, 9, 9, 0);
+			this.tabbedControlGroupSettings.SelectedTabPage = this.layoutControlGroupAdvancedSettings;
+			this.tabbedControlGroupSettings.SelectedTabPageIndex = 0;
+			this.tabbedControlGroupSettings.Size = new System.Drawing.Size(397, 337);
+			this.tabbedControlGroupSettings.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroupAdvancedSettings,
+            this.layoutControlGroupContractSettings});
+			this.tabbedControlGroupSettings.Text = "Settings";
+			// 
+			// layoutControlGroupAdvancedSettings
+			// 
+			this.layoutControlGroupAdvancedSettings.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemUseDecimalRate,
+            this.simpleLabelItemUseDecimalRate,
+            this.emptySpaceItem11,
+            this.emptySpaceItem12,
+            this.layoutControlItemShowSpotX,
+            this.emptySpaceItem2,
+            this.simpleLabelItemShowSpotX,
+            this.emptySpaceItem1,
+            this.emptySpaceItem5,
+            this.layoutControlItemShowSpotsPerWeek,
+            this.simpleLabelItemShowSpotsPerWeek,
+            this.emptySpaceItem3,
+            this.layoutControlItemCloneLineToTheEnd,
+            this.emptySpaceItem15,
+            this.simpleLabelItemCloneLineToTheEnd,
+            this.emptySpaceItem16,
+            this.layoutControlItemLockToMaster,
+            this.simpleLabelItemLockToMaster,
+            this.emptySpaceItem6,
+            this.emptySpaceItem17});
+			this.layoutControlGroupAdvancedSettings.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupAdvancedSettings.Name = "layoutControlGroupAdvancedSettings";
+			this.layoutControlGroupAdvancedSettings.Size = new System.Drawing.Size(373, 296);
+			this.layoutControlGroupAdvancedSettings.Text = "Advanced Settings";
+			// 
+			// layoutControlItemUseDecimalRate
+			// 
+			this.layoutControlItemUseDecimalRate.Control = this.checkEditUseDecimalRate;
+			this.layoutControlItemUseDecimalRate.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemUseDecimalRate.FillControlToClientArea = false;
+			this.layoutControlItemUseDecimalRate.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemUseDecimalRate.MaxSize = new System.Drawing.Size(0, 24);
+			this.layoutControlItemUseDecimalRate.MinSize = new System.Drawing.Size(1, 24);
+			this.layoutControlItemUseDecimalRate.Name = "layoutControlItemUseDecimalRate";
+			this.layoutControlItemUseDecimalRate.Size = new System.Drawing.Size(373, 24);
+			this.layoutControlItemUseDecimalRate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemUseDecimalRate.Text = "Use Decimal Rate";
+			this.layoutControlItemUseDecimalRate.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemUseDecimalRate.TextVisible = false;
+			this.layoutControlItemUseDecimalRate.TrimClientAreaToControl = false;
+			// 
+			// simpleLabelItemUseDecimalRate
+			// 
+			this.simpleLabelItemUseDecimalRate.AllowHotTrack = false;
+			this.simpleLabelItemUseDecimalRate.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemUseDecimalRate.Location = new System.Drawing.Point(20, 24);
+			this.simpleLabelItemUseDecimalRate.Name = "simpleLabelItemUseDecimalRate";
+			this.simpleLabelItemUseDecimalRate.Size = new System.Drawing.Size(353, 17);
+			this.simpleLabelItemUseDecimalRate.Text = "<size=-2><i><color=Gray>Show $100.00  instead of just $100…</color></i></size>";
+			this.simpleLabelItemUseDecimalRate.TextSize = new System.Drawing.Size(349, 13);
 			// 
 			// emptySpaceItem11
 			// 
@@ -366,19 +556,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.emptySpaceItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// layoutControlItemUseDecimalRate
-			// 
-			this.layoutControlItemUseDecimalRate.Control = this.checkEditUseDecimalRate;
-			this.layoutControlItemUseDecimalRate.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemUseDecimalRate.FillControlToClientArea = false;
-			this.layoutControlItemUseDecimalRate.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlItemUseDecimalRate.Name = "layoutControlItemUseDecimalRate";
-			this.layoutControlItemUseDecimalRate.Size = new System.Drawing.Size(387, 24);
-			this.layoutControlItemUseDecimalRate.Text = "Use Decimal Rate";
-			this.layoutControlItemUseDecimalRate.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemUseDecimalRate.TextVisible = false;
-			this.layoutControlItemUseDecimalRate.TrimClientAreaToControl = false;
-			// 
 			// emptySpaceItem12
 			// 
 			this.emptySpaceItem12.AllowHotTrack = false;
@@ -386,119 +563,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.emptySpaceItem12.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem12.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem12.Name = "emptySpaceItem12";
-			this.emptySpaceItem12.Size = new System.Drawing.Size(387, 20);
+			this.emptySpaceItem12.Size = new System.Drawing.Size(373, 20);
 			this.emptySpaceItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// simpleLabelItemUseDecimalRate
-			// 
-			this.simpleLabelItemUseDecimalRate.AllowHotTrack = false;
-			this.simpleLabelItemUseDecimalRate.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemUseDecimalRate.Location = new System.Drawing.Point(20, 24);
-			this.simpleLabelItemUseDecimalRate.Name = "simpleLabelItemUseDecimalRate";
-			this.simpleLabelItemUseDecimalRate.Size = new System.Drawing.Size(367, 17);
-			this.simpleLabelItemUseDecimalRate.Text = "<size=-2><i><color=Gray>Show $100.00  instead of just $100…</color></i></size>";
-			this.simpleLabelItemUseDecimalRate.TextSize = new System.Drawing.Size(349, 13);
-			// 
-			// emptySpaceItem15
-			// 
-			this.emptySpaceItem15.AllowHotTrack = false;
-			this.emptySpaceItem15.Location = new System.Drawing.Point(0, 208);
-			this.emptySpaceItem15.MaxSize = new System.Drawing.Size(20, 0);
-			this.emptySpaceItem15.MinSize = new System.Drawing.Size(20, 10);
-			this.emptySpaceItem15.Name = "emptySpaceItem15";
-			this.emptySpaceItem15.Size = new System.Drawing.Size(20, 17);
-			this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemCloneLineToTheEnd
-			// 
-			this.layoutControlItemCloneLineToTheEnd.Control = this.checkEditCloneLineToTheEnd;
-			this.layoutControlItemCloneLineToTheEnd.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemCloneLineToTheEnd.FillControlToClientArea = false;
-			this.layoutControlItemCloneLineToTheEnd.Location = new System.Drawing.Point(0, 184);
-			this.layoutControlItemCloneLineToTheEnd.Name = "layoutControlItemCloneLineToTheEnd";
-			this.layoutControlItemCloneLineToTheEnd.Size = new System.Drawing.Size(387, 24);
-			this.layoutControlItemCloneLineToTheEnd.Text = "Clone Line To The End";
-			this.layoutControlItemCloneLineToTheEnd.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemCloneLineToTheEnd.TextVisible = false;
-			this.layoutControlItemCloneLineToTheEnd.TrimClientAreaToControl = false;
-			// 
-			// emptySpaceItem16
-			// 
-			this.emptySpaceItem16.AllowHotTrack = false;
-			this.emptySpaceItem16.Location = new System.Drawing.Point(0, 225);
-			this.emptySpaceItem16.MaxSize = new System.Drawing.Size(0, 20);
-			this.emptySpaceItem16.MinSize = new System.Drawing.Size(10, 20);
-			this.emptySpaceItem16.Name = "emptySpaceItem16";
-			this.emptySpaceItem16.Size = new System.Drawing.Size(387, 20);
-			this.emptySpaceItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// simpleLabelItemCloneLineToTheEnd
-			// 
-			this.simpleLabelItemCloneLineToTheEnd.AllowHotTrack = false;
-			this.simpleLabelItemCloneLineToTheEnd.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemCloneLineToTheEnd.Location = new System.Drawing.Point(20, 208);
-			this.simpleLabelItemCloneLineToTheEnd.Name = "simpleLabelItemCloneLineToTheEnd";
-			this.simpleLabelItemCloneLineToTheEnd.Size = new System.Drawing.Size(367, 17);
-			this.simpleLabelItemCloneLineToTheEnd.Text = "<size=-2><i><color=Gray>When you clone a line, then it will be placed at the end " +
-    "of the schedule…</color></i></size>";
-			this.simpleLabelItemCloneLineToTheEnd.TextSize = new System.Drawing.Size(349, 13);
-			// 
-			// emptySpaceItem17
-			// 
-			this.emptySpaceItem17.AllowHotTrack = false;
-			this.emptySpaceItem17.Location = new System.Drawing.Point(0, 269);
-			this.emptySpaceItem17.MaxSize = new System.Drawing.Size(20, 0);
-			this.emptySpaceItem17.MinSize = new System.Drawing.Size(20, 10);
-			this.emptySpaceItem17.Name = "emptySpaceItem17";
-			this.emptySpaceItem17.Size = new System.Drawing.Size(20, 17);
-			this.emptySpaceItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemLockToMaster
-			// 
-			this.layoutControlItemLockToMaster.Control = this.checkEditLockToMaster;
-			this.layoutControlItemLockToMaster.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemLockToMaster.FillControlToClientArea = false;
-			this.layoutControlItemLockToMaster.Location = new System.Drawing.Point(0, 245);
-			this.layoutControlItemLockToMaster.Name = "layoutControlItemLockToMaster";
-			this.layoutControlItemLockToMaster.Size = new System.Drawing.Size(387, 24);
-			this.layoutControlItemLockToMaster.Text = "Lock To Master";
-			this.layoutControlItemLockToMaster.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemLockToMaster.TextVisible = false;
-			this.layoutControlItemLockToMaster.TrimClientAreaToControl = false;
-			// 
-			// emptySpaceItem18
-			// 
-			this.emptySpaceItem18.AllowHotTrack = false;
-			this.emptySpaceItem18.Location = new System.Drawing.Point(0, 286);
-			this.emptySpaceItem18.Name = "emptySpaceItem18";
-			this.emptySpaceItem18.Size = new System.Drawing.Size(387, 18);
-			this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// simpleLabelItemLockToMaster
-			// 
-			this.simpleLabelItemLockToMaster.AllowHotTrack = false;
-			this.simpleLabelItemLockToMaster.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemLockToMaster.Location = new System.Drawing.Point(20, 269);
-			this.simpleLabelItemLockToMaster.Name = "simpleLabelItemLockToMaster";
-			this.simpleLabelItemLockToMaster.Size = new System.Drawing.Size(367, 17);
-			this.simpleLabelItemLockToMaster.Text = "<size=-2><i><color=Gray>The schedule will be protected on the powerpoint slide Ma" +
-    "ster</color></i></size>";
-			this.simpleLabelItemLockToMaster.TextSize = new System.Drawing.Size(349, 13);
-			// 
-			// emptySpaceItem1
-			// 
-			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 102);
-			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 20);
-			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 20);
-			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(387, 20);
-			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemShowSpotX
 			// 
@@ -506,8 +573,11 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.layoutControlItemShowSpotX.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemShowSpotX.FillControlToClientArea = false;
 			this.layoutControlItemShowSpotX.Location = new System.Drawing.Point(0, 61);
+			this.layoutControlItemShowSpotX.MaxSize = new System.Drawing.Size(0, 24);
+			this.layoutControlItemShowSpotX.MinSize = new System.Drawing.Size(1, 24);
 			this.layoutControlItemShowSpotX.Name = "layoutControlItemShowSpotX";
-			this.layoutControlItemShowSpotX.Size = new System.Drawing.Size(387, 24);
+			this.layoutControlItemShowSpotX.Size = new System.Drawing.Size(373, 24);
+			this.layoutControlItemShowSpotX.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemShowSpotX.Text = "Show Spot X";
 			this.layoutControlItemShowSpotX.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemShowSpotX.TextVisible = false;
@@ -530,39 +600,26 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.simpleLabelItemShowSpotX.AllowHtmlStringInCaption = true;
 			this.simpleLabelItemShowSpotX.Location = new System.Drawing.Point(20, 85);
 			this.simpleLabelItemShowSpotX.Name = "simpleLabelItemShowSpotX";
-			this.simpleLabelItemShowSpotX.Size = new System.Drawing.Size(367, 17);
+			this.simpleLabelItemShowSpotX.Size = new System.Drawing.Size(353, 17);
 			this.simpleLabelItemShowSpotX.Text = "<size=-2><i><color=Gray>Show “2x” in the schedule instead of just “2”</color></i>" +
     "</size>";
 			this.simpleLabelItemShowSpotX.TextSize = new System.Drawing.Size(349, 13);
 			// 
-			// emptySpaceItem3
+			// emptySpaceItem1
 			// 
-			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 164);
-			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 20);
-			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 20);
-			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(387, 20);
-			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemShowSpotsPerWeek
-			// 
-			this.layoutControlItemShowSpotsPerWeek.Control = this.checkEditShowSpotsPerWeek;
-			this.layoutControlItemShowSpotsPerWeek.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemShowSpotsPerWeek.FillControlToClientArea = false;
-			this.layoutControlItemShowSpotsPerWeek.Location = new System.Drawing.Point(0, 122);
-			this.layoutControlItemShowSpotsPerWeek.Name = "layoutControlItemShowSpotsPerWeek";
-			this.layoutControlItemShowSpotsPerWeek.Size = new System.Drawing.Size(387, 25);
-			this.layoutControlItemShowSpotsPerWeek.Text = "Show Spots Per Week";
-			this.layoutControlItemShowSpotsPerWeek.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemShowSpotsPerWeek.TextVisible = false;
-			this.layoutControlItemShowSpotsPerWeek.TrimClientAreaToControl = false;
+			this.emptySpaceItem1.AllowHotTrack = false;
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 102);
+			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 20);
+			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem1.Name = "emptySpaceItem1";
+			this.emptySpaceItem1.Size = new System.Drawing.Size(373, 20);
+			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 147);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 146);
 			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(20, 0);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(20, 10);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
@@ -570,21 +627,269 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
+			// layoutControlItemShowSpotsPerWeek
+			// 
+			this.layoutControlItemShowSpotsPerWeek.Control = this.checkEditShowSpotsPerWeek;
+			this.layoutControlItemShowSpotsPerWeek.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemShowSpotsPerWeek.FillControlToClientArea = false;
+			this.layoutControlItemShowSpotsPerWeek.Location = new System.Drawing.Point(0, 122);
+			this.layoutControlItemShowSpotsPerWeek.MaxSize = new System.Drawing.Size(0, 24);
+			this.layoutControlItemShowSpotsPerWeek.MinSize = new System.Drawing.Size(1, 24);
+			this.layoutControlItemShowSpotsPerWeek.Name = "layoutControlItemShowSpotsPerWeek";
+			this.layoutControlItemShowSpotsPerWeek.Size = new System.Drawing.Size(373, 24);
+			this.layoutControlItemShowSpotsPerWeek.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemShowSpotsPerWeek.Text = "Show Spots Per Week";
+			this.layoutControlItemShowSpotsPerWeek.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemShowSpotsPerWeek.TextVisible = false;
+			this.layoutControlItemShowSpotsPerWeek.TrimClientAreaToControl = false;
+			// 
 			// simpleLabelItemShowSpotsPerWeek
 			// 
 			this.simpleLabelItemShowSpotsPerWeek.AllowHotTrack = false;
 			this.simpleLabelItemShowSpotsPerWeek.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemShowSpotsPerWeek.Location = new System.Drawing.Point(20, 147);
+			this.simpleLabelItemShowSpotsPerWeek.Location = new System.Drawing.Point(20, 146);
 			this.simpleLabelItemShowSpotsPerWeek.Name = "simpleLabelItemShowSpotsPerWeek";
-			this.simpleLabelItemShowSpotsPerWeek.Size = new System.Drawing.Size(367, 17);
+			this.simpleLabelItemShowSpotsPerWeek.Size = new System.Drawing.Size(353, 17);
 			this.simpleLabelItemShowSpotsPerWeek.Text = "<size=-2><i><color=Gray>Use the flexible  <------spots-----></color></i></size>";
 			this.simpleLabelItemShowSpotsPerWeek.TextSize = new System.Drawing.Size(349, 13);
+			// 
+			// emptySpaceItem3
+			// 
+			this.emptySpaceItem3.AllowHotTrack = false;
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 163);
+			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 20);
+			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem3.Name = "emptySpaceItem3";
+			this.emptySpaceItem3.Size = new System.Drawing.Size(373, 20);
+			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemCloneLineToTheEnd
+			// 
+			this.layoutControlItemCloneLineToTheEnd.Control = this.checkEditCloneLineToTheEnd;
+			this.layoutControlItemCloneLineToTheEnd.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemCloneLineToTheEnd.FillControlToClientArea = false;
+			this.layoutControlItemCloneLineToTheEnd.Location = new System.Drawing.Point(0, 183);
+			this.layoutControlItemCloneLineToTheEnd.MaxSize = new System.Drawing.Size(0, 24);
+			this.layoutControlItemCloneLineToTheEnd.MinSize = new System.Drawing.Size(1, 24);
+			this.layoutControlItemCloneLineToTheEnd.Name = "layoutControlItemCloneLineToTheEnd";
+			this.layoutControlItemCloneLineToTheEnd.Size = new System.Drawing.Size(373, 24);
+			this.layoutControlItemCloneLineToTheEnd.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemCloneLineToTheEnd.Text = "Clone Line To The End";
+			this.layoutControlItemCloneLineToTheEnd.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemCloneLineToTheEnd.TextVisible = false;
+			this.layoutControlItemCloneLineToTheEnd.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem15
+			// 
+			this.emptySpaceItem15.AllowHotTrack = false;
+			this.emptySpaceItem15.Location = new System.Drawing.Point(0, 207);
+			this.emptySpaceItem15.MaxSize = new System.Drawing.Size(20, 0);
+			this.emptySpaceItem15.MinSize = new System.Drawing.Size(20, 10);
+			this.emptySpaceItem15.Name = "emptySpaceItem15";
+			this.emptySpaceItem15.Size = new System.Drawing.Size(20, 17);
+			this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemCloneLineToTheEnd
+			// 
+			this.simpleLabelItemCloneLineToTheEnd.AllowHotTrack = false;
+			this.simpleLabelItemCloneLineToTheEnd.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemCloneLineToTheEnd.Location = new System.Drawing.Point(20, 207);
+			this.simpleLabelItemCloneLineToTheEnd.Name = "simpleLabelItemCloneLineToTheEnd";
+			this.simpleLabelItemCloneLineToTheEnd.Size = new System.Drawing.Size(353, 17);
+			this.simpleLabelItemCloneLineToTheEnd.Text = "<size=-2><i><color=Gray>When you clone a line, then it will be placed at the end " +
+    "of the schedule…</color></i></size>";
+			this.simpleLabelItemCloneLineToTheEnd.TextSize = new System.Drawing.Size(349, 13);
+			// 
+			// emptySpaceItem16
+			// 
+			this.emptySpaceItem16.AllowHotTrack = false;
+			this.emptySpaceItem16.Location = new System.Drawing.Point(0, 224);
+			this.emptySpaceItem16.MaxSize = new System.Drawing.Size(0, 20);
+			this.emptySpaceItem16.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem16.Name = "emptySpaceItem16";
+			this.emptySpaceItem16.Size = new System.Drawing.Size(373, 20);
+			this.emptySpaceItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemLockToMaster
+			// 
+			this.layoutControlItemLockToMaster.Control = this.checkEditLockToMaster;
+			this.layoutControlItemLockToMaster.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemLockToMaster.FillControlToClientArea = false;
+			this.layoutControlItemLockToMaster.Location = new System.Drawing.Point(0, 244);
+			this.layoutControlItemLockToMaster.MaxSize = new System.Drawing.Size(0, 24);
+			this.layoutControlItemLockToMaster.MinSize = new System.Drawing.Size(1, 24);
+			this.layoutControlItemLockToMaster.Name = "layoutControlItemLockToMaster";
+			this.layoutControlItemLockToMaster.Size = new System.Drawing.Size(373, 24);
+			this.layoutControlItemLockToMaster.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemLockToMaster.Text = "Lock To Master";
+			this.layoutControlItemLockToMaster.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemLockToMaster.TextVisible = false;
+			this.layoutControlItemLockToMaster.TrimClientAreaToControl = false;
+			// 
+			// simpleLabelItemLockToMaster
+			// 
+			this.simpleLabelItemLockToMaster.AllowHotTrack = false;
+			this.simpleLabelItemLockToMaster.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemLockToMaster.Location = new System.Drawing.Point(20, 268);
+			this.simpleLabelItemLockToMaster.Name = "simpleLabelItemLockToMaster";
+			this.simpleLabelItemLockToMaster.Size = new System.Drawing.Size(353, 17);
+			this.simpleLabelItemLockToMaster.Text = "<size=-2><i><color=Gray>The schedule will be protected on the powerpoint slide Ma" +
+    "ster</color></i></size>";
+			this.simpleLabelItemLockToMaster.TextSize = new System.Drawing.Size(349, 13);
+			// 
+			// emptySpaceItem6
+			// 
+			this.emptySpaceItem6.AllowHotTrack = false;
+			this.emptySpaceItem6.Location = new System.Drawing.Point(0, 285);
+			this.emptySpaceItem6.Name = "emptySpaceItem6";
+			this.emptySpaceItem6.Size = new System.Drawing.Size(373, 11);
+			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem17
+			// 
+			this.emptySpaceItem17.AllowHotTrack = false;
+			this.emptySpaceItem17.Location = new System.Drawing.Point(0, 268);
+			this.emptySpaceItem17.MaxSize = new System.Drawing.Size(20, 0);
+			this.emptySpaceItem17.MinSize = new System.Drawing.Size(20, 10);
+			this.emptySpaceItem17.Name = "emptySpaceItem17";
+			this.emptySpaceItem17.Size = new System.Drawing.Size(20, 17);
+			this.emptySpaceItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlGroupContractSettings
+			// 
+			this.layoutControlGroupContractSettings.CustomizationFormText = "Contract Settings";
+			this.layoutControlGroupContractSettings.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemShowSignatureLine,
+            this.emptySpaceItem19,
+            this.layoutControlItemShowRatesExpiration,
+            this.emptySpaceItem20,
+            this.layoutControlItemRatesExpirationDate,
+            this.layoutControlItemShowDisclaimer,
+            this.emptySpaceItem21,
+            this.simpleLabelItemContractSettingsTitle});
+			this.layoutControlGroupContractSettings.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupContractSettings.Name = "layoutControlGroupContractSettings";
+			this.layoutControlGroupContractSettings.Size = new System.Drawing.Size(373, 296);
+			this.layoutControlGroupContractSettings.Text = "Contract Settings";
+			// 
+			// layoutControlItemShowSignatureLine
+			// 
+			this.layoutControlItemShowSignatureLine.Control = this.checkEditShowSignatureLine;
+			this.layoutControlItemShowSignatureLine.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemShowSignatureLine.CustomizationFormText = "Show Signature Line";
+			this.layoutControlItemShowSignatureLine.Location = new System.Drawing.Point(0, 50);
+			this.layoutControlItemShowSignatureLine.Name = "layoutControlItemShowSignatureLine";
+			this.layoutControlItemShowSignatureLine.Size = new System.Drawing.Size(373, 24);
+			this.layoutControlItemShowSignatureLine.Text = "Show Signature Line";
+			this.layoutControlItemShowSignatureLine.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemShowSignatureLine.TextVisible = false;
+			this.layoutControlItemShowSignatureLine.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem19
+			// 
+			this.emptySpaceItem19.AllowHotTrack = false;
+			this.emptySpaceItem19.CustomizationFormText = "emptySpaceItem1";
+			this.emptySpaceItem19.Location = new System.Drawing.Point(0, 74);
+			this.emptySpaceItem19.MaxSize = new System.Drawing.Size(0, 20);
+			this.emptySpaceItem19.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem19.Name = "emptySpaceItem19";
+			this.emptySpaceItem19.Size = new System.Drawing.Size(373, 20);
+			this.emptySpaceItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem19.Text = "emptySpaceItem1";
+			this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemShowRatesExpiration
+			// 
+			this.layoutControlItemShowRatesExpiration.Control = this.checkEditShowRatesExpiration;
+			this.layoutControlItemShowRatesExpiration.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemShowRatesExpiration.CustomizationFormText = "Show Rates Expiration";
+			this.layoutControlItemShowRatesExpiration.Location = new System.Drawing.Point(0, 94);
+			this.layoutControlItemShowRatesExpiration.Name = "layoutControlItemShowRatesExpiration";
+			this.layoutControlItemShowRatesExpiration.Size = new System.Drawing.Size(220, 26);
+			this.layoutControlItemShowRatesExpiration.Text = "Show Rates Expiration";
+			this.layoutControlItemShowRatesExpiration.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemShowRatesExpiration.TextVisible = false;
+			this.layoutControlItemShowRatesExpiration.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem20
+			// 
+			this.emptySpaceItem20.AllowHotTrack = false;
+			this.emptySpaceItem20.CustomizationFormText = "emptySpaceItem2";
+			this.emptySpaceItem20.Location = new System.Drawing.Point(0, 120);
+			this.emptySpaceItem20.MaxSize = new System.Drawing.Size(0, 20);
+			this.emptySpaceItem20.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem20.Name = "emptySpaceItem20";
+			this.emptySpaceItem20.Size = new System.Drawing.Size(373, 20);
+			this.emptySpaceItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem20.Text = "emptySpaceItem2";
+			this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemRatesExpirationDate
+			// 
+			this.layoutControlItemRatesExpirationDate.Control = this.dateEditRatesExpirationDate;
+			this.layoutControlItemRatesExpirationDate.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemRatesExpirationDate.CustomizationFormText = "Rates Expiration Date";
+			this.layoutControlItemRatesExpirationDate.Location = new System.Drawing.Point(220, 94);
+			this.layoutControlItemRatesExpirationDate.Name = "layoutControlItemRatesExpirationDate";
+			this.layoutControlItemRatesExpirationDate.Size = new System.Drawing.Size(153, 26);
+			this.layoutControlItemRatesExpirationDate.Text = "Rates Expiration Date";
+			this.layoutControlItemRatesExpirationDate.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemRatesExpirationDate.TextVisible = false;
+			this.layoutControlItemRatesExpirationDate.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemShowDisclaimer
+			// 
+			this.layoutControlItemShowDisclaimer.Control = this.checkEditShowDisclaimer;
+			this.layoutControlItemShowDisclaimer.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemShowDisclaimer.CustomizationFormText = "Show Disclaimer";
+			this.layoutControlItemShowDisclaimer.Location = new System.Drawing.Point(0, 140);
+			this.layoutControlItemShowDisclaimer.Name = "layoutControlItemShowDisclaimer";
+			this.layoutControlItemShowDisclaimer.Size = new System.Drawing.Size(373, 24);
+			this.layoutControlItemShowDisclaimer.Text = "Show Disclaimer";
+			this.layoutControlItemShowDisclaimer.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemShowDisclaimer.TextVisible = false;
+			this.layoutControlItemShowDisclaimer.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem21
+			// 
+			this.emptySpaceItem21.AllowHotTrack = false;
+			this.emptySpaceItem21.CustomizationFormText = "emptySpaceItem3";
+			this.emptySpaceItem21.Location = new System.Drawing.Point(0, 164);
+			this.emptySpaceItem21.Name = "emptySpaceItem21";
+			this.emptySpaceItem21.Size = new System.Drawing.Size(373, 132);
+			this.emptySpaceItem21.Text = "emptySpaceItem3";
+			this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemContractSettingsTitle
+			// 
+			this.simpleLabelItemContractSettingsTitle.AllowHotTrack = false;
+			this.simpleLabelItemContractSettingsTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemContractSettingsTitle.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemContractSettingsTitle.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemContractSettingsTitle.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemContractSettingsTitle.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+			this.simpleLabelItemContractSettingsTitle.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemContractSettingsTitle.CustomizationFormText = "Do you want to place informal contract or client agreement language on your Sched" +
+    "ule slides?";
+			this.simpleLabelItemContractSettingsTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemContractSettingsTitle.MinSize = new System.Drawing.Size(1, 50);
+			this.simpleLabelItemContractSettingsTitle.Name = "simpleLabelItemContractSettingsTitle";
+			this.simpleLabelItemContractSettingsTitle.Size = new System.Drawing.Size(373, 50);
+			this.simpleLabelItemContractSettingsTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemContractSettingsTitle.Text = "Do you want to place informal contract or client agreement language on your Sched" +
+    "ule slides?";
+			this.simpleLabelItemContractSettingsTitle.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+			this.simpleLabelItemContractSettingsTitle.TextSize = new System.Drawing.Size(543, 16);
 			// 
 			// FormOutputSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(407, 364);
+			this.ClientSize = new System.Drawing.Size(417, 397);
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -595,7 +900,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			this.Name = "FormOutputSettings";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Advanced Settings";
+			this.Text = "Settings";
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSpotX.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
@@ -604,30 +909,47 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCloneLineToTheEnd.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditUseDecimalRate.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowSignatureLine.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowRatesExpiration.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditRatesExpirationDate.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditRatesExpirationDate.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditShowDisclaimer.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUseDecimalRate)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemUseDecimalRate)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCloneLineToTheEnd)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCloneLineToTheEnd)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLockToMaster)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemLockToMaster)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupSettings)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupAdvancedSettings)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemUseDecimalRate)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemUseDecimalRate)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSpotX)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemShowSpotX)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSpotsPerWeek)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSpotsPerWeek)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemShowSpotsPerWeek)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCloneLineToTheEnd)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCloneLineToTheEnd)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLockToMaster)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemLockToMaster)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupContractSettings)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowSignatureLine)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowRatesExpiration)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemRatesExpirationDate)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemShowDisclaimer)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemContractSettingsTitle)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -642,30 +964,46 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Output
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOK;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCancel;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemUseDecimalRate;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem12;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemUseDecimalRate;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem15;
-		public DevExpress.XtraLayout.LayoutControlItem layoutControlItemCloneLineToTheEnd;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem16;
-		public DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemCloneLineToTheEnd;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem17;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemLockToMaster;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem18;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemLockToMaster;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemShowSpotX;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemShowSpotX;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-		public DevExpress.XtraLayout.LayoutControlItem layoutControlItemShowSpotsPerWeek;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
-		public DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemShowSpotsPerWeek;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotX;
 		public DevExpress.XtraEditors.CheckEdit checkEditShowSpotsPerWeek;
 		public DevExpress.XtraEditors.CheckEdit checkEditLockToMaster;
 		public DevExpress.XtraEditors.CheckEdit checkEditCloneLineToTheEnd;
 		public DevExpress.XtraEditors.CheckEdit checkEditUseDecimalRate;
+		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroupSettings;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupAdvancedSettings;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemUseDecimalRate;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemUseDecimalRate;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem12;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemShowSpotX;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemShowSpotX;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+		public DevExpress.XtraLayout.LayoutControlItem layoutControlItemShowSpotsPerWeek;
+		public DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemShowSpotsPerWeek;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+		public DevExpress.XtraLayout.LayoutControlItem layoutControlItemCloneLineToTheEnd;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem15;
+		public DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemCloneLineToTheEnd;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem16;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemLockToMaster;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem17;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemLockToMaster;
+		public DevExpress.XtraEditors.CheckEdit checkEditShowSignatureLine;
+		public DevExpress.XtraEditors.CheckEdit checkEditShowRatesExpiration;
+		public DevExpress.XtraEditors.DateEdit dateEditRatesExpirationDate;
+		public DevExpress.XtraEditors.CheckEdit checkEditShowDisclaimer;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupContractSettings;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemShowSignatureLine;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem19;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemShowRatesExpiration;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem20;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemRatesExpirationDate;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemShowDisclaimer;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem21;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemContractSettingsTitle;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
 	}
 }

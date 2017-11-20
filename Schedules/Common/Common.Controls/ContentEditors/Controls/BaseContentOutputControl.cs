@@ -1,4 +1,5 @@
-﻿using Asa.Business.Common.Entities.NonPersistent.Schedule;
+﻿using System;
+using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using Asa.Schedules.Common.Controls.ContentEditors.Objects;
@@ -12,6 +13,8 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 
 		protected abstract void UpdateMenuOutputButtons();
 
+
+		public virtual void EditSettings() { throw new NotImplementedException(); }
 		public abstract void OutputPowerPoint();
 		public abstract void OutputPdf();
 		public abstract void Preview();

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -15,6 +17,8 @@ using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraLayout;
 using DevExpress.XtraLayout.Utils;
 
@@ -25,6 +29,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 	public partial class HomeControl : BaseScheduleSettingsEditControl<MediaScheduleSettings, MediaScheduleChangeInfo>
 	{
 		private bool _allowToSave;
+
 		public DigitalProductsContent DigitalContent { get; set; }
 		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
 
@@ -41,10 +46,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		public HomeControl()
 		{
 			InitializeComponent();
-			layoutControlGroupMainSolution.Visibility = LayoutVisibility.Never;
-			tabbedControlGroupSolutionOptions.Visibility = LayoutVisibility.Never;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+
+			layoutControl.BeginInit();
+			layoutControl.SuspendLayout();
 
 			layoutControlItemMainScheduleTypeWeekly.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleTypeWeekly.MaxSize, scaleFactor);
 			layoutControlItemMainScheduleTypeWeekly.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleTypeWeekly.MinSize, scaleFactor);
@@ -56,30 +62,30 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			layoutControlItemMainScheduleOptions.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleOptions.MinSize, scaleFactor);
 			layoutControlItemMainScheduleCalendar.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleCalendar.MaxSize, scaleFactor);
 			layoutControlItemMainScheduleCalendar.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleCalendar.MinSize, scaleFactor);
+			emptySpaceItemDaypartsSeparator.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemDaypartsSeparator.MaxSize, scaleFactor);
+			emptySpaceItemDaypartsSeparator.MinSize = RectangleHelper.ScaleSize(emptySpaceItemDaypartsSeparator.MinSize, scaleFactor);
 
+			layoutControlItemDemosDisabled.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosDisabled.MaxSize, scaleFactor);
+			layoutControlItemDemosDisabled.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosDisabled.MinSize, scaleFactor);
+			layoutControlItemDemosRtg.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosRtg.MaxSize, scaleFactor);
+			layoutControlItemDemosRtg.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosRtg.MinSize, scaleFactor);
+			layoutControlItemDemosImps.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosImps.MaxSize, scaleFactor);
+			layoutControlItemDemosImps.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosImps.MinSize, scaleFactor);
+			layoutControlItemDemosItems.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosItems.MaxSize, scaleFactor);
+			layoutControlItemDemosItems.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosItems.MinSize, scaleFactor);
+			simpleLabelItemDemosDescription.Size = RectangleHelper.ScaleSize(simpleLabelItemDemosDescription.Size, scaleFactor);
+			emptySpaceItemDemosSeparator.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemDemosSeparator.MaxSize, scaleFactor);
+			emptySpaceItemDemosSeparator.MinSize = RectangleHelper.ScaleSize(emptySpaceItemDemosSeparator.MinSize, scaleFactor);
+
+			layoutControlItemCalendarTypeMonday.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeMonday.MaxSize, scaleFactor);
+			layoutControlItemCalendarTypeMonday.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeMonday.MinSize, scaleFactor);
+			layoutControlItemCalendarTypeSunday.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeSunday.MaxSize, scaleFactor);
+			layoutControlItemCalendarTypeSunday.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeSunday.MinSize, scaleFactor);
+			
 			layoutControlItemScheduleOptionsStations.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsStations.MinSize, scaleFactor);
 
-			layoutControlItemScheduleOptionsDayparts.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDayparts.MinSize, scaleFactor);
-
-			layoutControlItemScheduleOptionsDemosUseDemos.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosUseDemos.MaxSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosUseDemos.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosUseDemos.MinSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosCustom.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosCustom.MaxSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosCustom.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosCustom.MinSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosImport.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImport.MaxSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosImport.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImport.MinSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosImps.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImps.MaxSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosImps.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosImps.MinSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosRtg.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosRtg.MaxSize, scaleFactor);
-			layoutControlItemScheduleOptionsDemosRtg.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsDemosRtg.MinSize, scaleFactor);
-
-			layoutControlItemScheduleOptionsCalendarTypeMondayBased.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeMondayBased.MaxSize, scaleFactor);
-			layoutControlItemScheduleOptionsCalendarTypeMondayBased.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeMondayBased.MinSize, scaleFactor);
-			layoutControlItemScheduleOptionsCalendarTypeSundayBased.MaxSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeSundayBased.MaxSize, scaleFactor);
-			layoutControlItemScheduleOptionsCalendarTypeSundayBased.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsCalendarTypeSundayBased.MinSize, scaleFactor);
-
-			layoutControlItemSolutionOptionsTab1.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionOptionsTab1.MinSize, scaleFactor);
-			layoutControlItemSolutionOptionsTab2.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionOptionsTab2.MinSize, scaleFactor);
-			layoutControlItemSolutionOptionsTab3.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionOptionsTab3.MinSize, scaleFactor);
+			layoutControl.ResumeLayout(true);
+			layoutControl.EndInit();
 		}
 
 		#region BaseContentEditControl Override
@@ -87,9 +93,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			base.InitControl();
 
-
 			stationsControl.Changed += (o, e) => { SettingsNotSaved = true; };
-			daypartsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 
 			Controller.Instance.ContentController.RibbonTabsStateChanged += OnRibbonRibbonTabsStateChanged;
 
@@ -121,7 +125,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 				#region Media Tab
 
-
 				Controller.Instance.HomeBusinessName.EditValue = EditedSettings.BusinessName;
 				Controller.Instance.HomeDecisionMaker.EditValue = EditedSettings.DecisionMaker;
 
@@ -141,111 +144,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 						break;
 				}
 
-				var importedDemos = MediaMetaData.Instance.ListManager.SourcePrograms.SelectMany(sp => sp.Demos);
-				if (!importedDemos.Any())
-				{
-					buttonXUseDemos.Text = "Show Demo Estimates";
-					layoutControlItemScheduleOptionsDemosCustom.Visibility = LayoutVisibility.Never;
-					layoutControlItemScheduleOptionsDemosImport.Visibility = LayoutVisibility.Never;
-					layoutControlItemScheduleOptionsDemosSource.Visibility = LayoutVisibility.Never;
-				}
-
-				comboBoxEditSource.Properties.Items.Clear();
-				comboBoxEditSource.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.SourcePrograms
-					.SelectMany(sp => sp.Demos)
-					.Select(d => d.Source)
-					.Distinct()
-					.ToArray());
-
-				if (EditedSettings.UseDemo)
-				{
-					buttonXUseDemos.Checked = true;
-
-					buttonXDemosCustom.Enabled = true;
-					buttonXDemosCustom.Checked = !EditedSettings.ImportDemo;
-
-					buttonXDemosImport.Enabled = true;
-					buttonXDemosImport.Checked = EditedSettings.ImportDemo;
-
-					if (EditedSettings.ImportDemo)
-					{
-						comboBoxEditSource.Enabled = true;
-						comboBoxEditSource.EditValue = EditedSettings.Source;
-
-						buttonXDemosRtg.Enabled = false;
-						buttonXDemosRtg.Checked = false;
-
-						buttonXDemosImps.Enabled = false;
-						buttonXDemosImps.Checked = true;
-
-						comboBoxEditDemos.Properties.Items.Clear();
-						var demos = MediaMetaData.Instance.ListManager.SourcePrograms
-							.SelectMany(sp => sp.Demos)
-							.Where(d => d.Source == EditedSettings.Source);
-						if (demos.Any())
-						{
-							comboBoxEditDemos.Enabled = true;
-							comboBoxEditDemos.Properties.Items.AddRange(demos.GroupBy(d => d.DisplayString).Select(g => g.First()).ToArray());
-							comboBoxEditDemos.EditValue = demos
-								.FirstOrDefault(d =>
-									d.DemoType == EditedSettings.DemoType &&
-									d.Source == EditedSettings.Source &&
-									d.Name == EditedSettings.Demo);
-						}
-						else
-						{
-							comboBoxEditDemos.Enabled = false;
-							comboBoxEditDemos.EditValue = null;
-						}
-					}
-					else
-					{
-						comboBoxEditDemos.Enabled = true;
-
-						comboBoxEditSource.Enabled = false;
-						comboBoxEditSource.EditValue = null;
-
-						buttonXDemosRtg.Enabled = true;
-						buttonXDemosRtg.Checked = EditedSettings.DemoType == DemoType.Rtg;
-
-						buttonXDemosImps.Enabled = true;
-						buttonXDemosImps.Checked = EditedSettings.DemoType == DemoType.Imp;
-
-						comboBoxEditDemos.Properties.Items.Clear();
-						comboBoxEditDemos.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.CustomDemos);
-						comboBoxEditDemos.EditValue = EditedSettings.Demo;
-					}
-				}
-				else
-				{
-					buttonXUseDemos.Checked = false;
-
-					buttonXDemosCustom.Enabled = false;
-					buttonXDemosCustom.Checked = true;
-
-					buttonXDemosImport.Enabled = false;
-					buttonXDemosImport.Checked = false;
-
-					comboBoxEditDemos.Enabled = false;
-					comboBoxEditDemos.Properties.Items.Clear();
-					comboBoxEditDemos.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.CustomDemos);
-					comboBoxEditDemos.EditValue = null;
-
-					comboBoxEditSource.Enabled = false;
-					comboBoxEditSource.EditValue = null;
-
-					buttonXDemosRtg.Enabled = false;
-					buttonXDemosRtg.Checked = false;
-					buttonXDemosImps.Enabled = false;
-					buttonXDemosImps.Checked = true;
-				}
-
-				buttonXCalendarTypeMondayBased.Checked = EditedSettings.MondayBased;
-				buttonXCalendarTypeSundayBased.Checked = !EditedSettings.MondayBased;
-				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
+				LoadDayparts();
+				LoadDemos();
+				LoadCalendarType();
 
 				stationsControl.LoadData(EditedSettings);
-				daypartsControl.LoadData(EditedSettings);
 				#endregion
 			}
 
@@ -258,6 +161,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = false;
 			base.ShowControl(args);
+			layoutControlGroupDemosValues.Invalidate();
+			layoutControl.Refresh();
+			layoutControl.Update();
 		}
 
 		protected override void ApplyChanges()
@@ -265,36 +171,18 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			EditedSettings.BusinessName = Controller.Instance.HomeBusinessName.EditValue as String;
 			EditedSettings.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
 			EditedSettings.PresentationDate = (DateTime?)Controller.Instance.HomePresentationDate.EditValue;
-			EditedSettings.UseDemo = buttonXUseDemos.Checked;
-			EditedSettings.ImportDemo = buttonXDemosImport.Checked;
-			EditedSettings.Source = comboBoxEditSource.EditValue as String;
-			if (buttonXDemosImport.Checked)
-			{
-				var demo = comboBoxEditDemos.EditValue as Demo;
-				EditedSettings.Demo = demo?.Name;
-				EditedSettings.DemoType = demo?.DemoType ?? DemoType.Rtg;
-			}
-			else
-			{
-				if (buttonXDemosRtg.Checked)
-					EditedSettings.DemoType = DemoType.Rtg;
-				else if (buttonXDemosImps.Checked)
-					EditedSettings.DemoType = DemoType.Imp;
-				EditedSettings.Demo = comboBoxEditDemos.EditValue as String;
-			}
+			EditedSettings.UseDemo = !checkEditDemosDisabled.Checked;
+			if (checkEditDemosRtg.Checked)
+				EditedSettings.DemoType = DemoType.Rtg;
+			else if (checkEditDemosImps.Checked)
+				EditedSettings.DemoType = DemoType.Imp;
+			EditedSettings.Demo = comboBoxEditDemos.EditValue as String;
 
 			if (stationsControl.HasChanged)
 			{
 				EditedSettings.Stations.Clear();
 				EditedSettings.Stations.AddRange(stationsControl.GetData());
 				stationsControl.HasChanged = false;
-			}
-
-			if (daypartsControl.HasChanged)
-			{
-				EditedSettings.Dayparts.Clear();
-				EditedSettings.Dayparts.AddRange(daypartsControl.GetData());
-				daypartsControl.HasChanged = false;
 			}
 
 			UpdateScheduleControls();
@@ -365,14 +253,14 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				layoutControlItemMainScheduleDefaultTitle.Visibility = LayoutVisibility.Never;
 				tabbedControlGroupMain.Visibility = LayoutVisibility.Always;
 				splitterItemMain.Visibility = LayoutVisibility.Always;
-				OnProductsTabPageChanged(this, new LayoutTabPageChangedEventArgs(null, layoutControlGroupMainSchedule));
+				tabbedControlGroupScheduleOptions.Visibility = LayoutVisibility.Always;
 			}
 			else
 			{
 				tabbedControlGroupMain.Visibility = LayoutVisibility.Never;
 				splitterItemMain.Visibility = LayoutVisibility.Never;
+				tabbedControlGroupScheduleOptions.Visibility = LayoutVisibility.Never;
 				layoutControlItemMainScheduleDefaultTitle.Visibility = LayoutVisibility.Always;
-				OnProductsTabPageChanged(this, new LayoutTabPageChangedEventArgs(null, null));
 			}
 		}
 
@@ -399,16 +287,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomePanel.PerformLayout();
 		}
 
-		private void OnProductsTabPageChanged(object sender, LayoutTabPageChangedEventArgs e)
-		{
-			tabbedControlGroupScheduleOptions.Visibility = e.Page == layoutControlGroupMainSchedule
-				? LayoutVisibility.Always
-				: LayoutVisibility.Never;
-			tabbedControlGroupSolutionOptions.Visibility = e.Page == layoutControlGroupMainSolution
-				? LayoutVisibility.Always
-				: LayoutVisibility.Never;
-		}
-
 		private void OnRibbonRibbonTabsStateChanged(object sender, EventArgs e)
 		{
 			buttonXSnapshot.Enabled = Controller.Instance.TabSnapshot.Visible && Controller.Instance.TabSnapshot.Enabled;
@@ -418,7 +296,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#endregion
 
 		#region Editors Events
-
 		public void OnSchedulePropertyValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
@@ -481,102 +358,87 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		}
 		#endregion
 
+		#region Dayparts processing
+		private void LoadDayparts()
+		{
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			var layoutItems = new List<BaseLayoutItem>();
+			foreach (var daypart in EditedSettings.Dayparts)
+			{
+				var control = new CheckEdit();
+				control.Properties.AllowFocused = false;
+				control.Properties.AutoWidth = true;
+				control.Properties.Caption = daypart.Name;
+				control.StyleController = this.layoutControl;
+				control.Tag = daypart;
+				control.Checked = daypart.Available;
+				control.CheckedChanged += OnDaypartStateChanged;
+				layoutControl.Controls.Add(control);
+
+				var layoutItem = new LayoutControlItem();
+				layoutItem.Control = control;
+				layoutItem.FillControlToClientArea = false;
+				layoutItem.TextVisible = false;
+				layoutItem.TrimClientAreaToControl = false;
+				layoutItem.ControlAlignment = ContentAlignment.MiddleLeft;
+				layoutItem.SizeConstraintsType = SizeConstraintsType.Custom;
+				layoutItem.MinSize = new Size(control.Width + (Int32)(30 * scaleFactor.Width), (Int32)(30 * scaleFactor.Width));
+				layoutItems.Add(layoutItem);
+			}
+			layoutControlGroupDaypartValues.Items.AddRange(layoutItems.ToArray());
+		}
+
+		private void OnDaypartStateChanged(Object sender, EventArgs e)
+		{
+			var control = (CheckEdit)sender;
+			var daypart = (Daypart)control.Tag;
+			daypart.Available = control.Checked;
+			SettingsNotSaved = true;
+		}
+		#endregion
+
 		#region Demos Processing
-		private void buttonXDemosNo_CheckedChanged(object sender, EventArgs e)
+		private void LoadDemos()
 		{
-			if (!_allowToSave) return;
-			if (buttonXUseDemos.Checked)
-			{
-				buttonXDemosCustom.Enabled = true;
-				buttonXDemosImport.Enabled = true;
-				buttonXDemos_CheckedChanged(sender, e);
-			}
-			else
-			{
-				buttonXDemosCustom.Enabled = false;
-				buttonXDemosCustom.Checked = true;
-
-				buttonXDemosImport.Enabled = false;
-				buttonXDemosImport.Checked = false;
-
-				comboBoxEditDemos.Enabled = false;
-				comboBoxEditDemos.Properties.Items.Clear();
-				comboBoxEditDemos.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.CustomDemos);
-				comboBoxEditDemos.EditValue = null;
-
-				comboBoxEditSource.Enabled = false;
-				comboBoxEditSource.EditValue = null;
-
-				buttonXDemosRtg.Enabled = false;
-				buttonXDemosRtg.Checked = false;
-				buttonXDemosImps.Enabled = false;
-				buttonXDemosImps.Checked = true;
-			}
-			SettingsNotSaved = true;
-		}
-
-		private void buttonXDemos_Click(object sender, EventArgs e)
-		{
-			var button = sender as ButtonX;
-			if (button == null || button.Checked) return;
-			buttonXDemosCustom.Checked = false;
-			buttonXDemosImport.Checked = false;
-			button.Checked = true;
-		}
-
-		private void buttonXDemos_CheckedChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			if (buttonXDemosImport.Checked)
-			{
-				comboBoxEditSource.Enabled = true;
-				buttonXDemosRtg.Enabled = false;
-				buttonXDemosRtg.Checked = false;
-				buttonXDemosImps.Enabled = false;
-				buttonXDemosImps.Checked = true;
-				comboBoxEditSource_EditValueChanged(sender, e);
-			}
-			else
-			{
-				comboBoxEditDemos.Enabled = true;
-				comboBoxEditSource.Enabled = false;
-				comboBoxEditSource.EditValue = null;
-				buttonXDemosRtg.Enabled = true;
-				buttonXDemosImps.Enabled = true;
-				comboBoxEditDemos.Properties.Items.Clear();
-				comboBoxEditDemos.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.CustomDemos);
-				comboBoxEditDemos.EditValue = null;
-			}
-			SettingsNotSaved = true;
-		}
-
-		private void comboBoxEditSource_EditValueChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
 			comboBoxEditDemos.Properties.Items.Clear();
-			var demos = MediaMetaData.Instance.ListManager.SourcePrograms.SelectMany(sp => sp.Demos).Where(d => d.Source == comboBoxEditSource.EditValue as String);
-			comboBoxEditDemos.Enabled = demos.Any();
-			comboBoxEditDemos.Properties.Items.AddRange(demos.GroupBy(d => d.DisplayString).Select(g => g.First()).ToArray());
-			comboBoxEditDemos.EditValue = null;
+			comboBoxEditDemos.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.CustomDemos);
+
+			if (EditedSettings.UseDemo)
+			{
+				if (EditedSettings.DemoType == DemoType.Rtg)
+				{
+					checkEditDemosDisabled.Checked = false;
+					checkEditDemosRtg.Checked = true;
+					checkEditDemosImps.Checked = false;
+				}
+				else if (EditedSettings.DemoType == DemoType.Imp)
+				{
+					checkEditDemosDisabled.Checked = false;
+					checkEditDemosRtg.Checked = false;
+					checkEditDemosImps.Checked = true;
+				}
+				comboBoxEditDemos.EditValue = EditedSettings.Demo;
+			}
+			else
+			{
+				checkEditDemosDisabled.Checked = true;
+				checkEditDemosRtg.Checked = false;
+				checkEditDemosImps.Checked = false;
+			}
 		}
 
-		private void buttonXDemosType_Click(object sender, EventArgs e)
+		private void OnDemoTypeCheckedChanged(object sender, EventArgs e)
 		{
-			var button = sender as ButtonX;
-			if (button == null || button.Checked) return;
-			buttonXDemosRtg.Checked = false;
-			buttonXDemosImps.Checked = false;
-			button.Checked = true;
-			SettingsNotSaved = true;
-		}
-
-		private void buttonXDemosType_CheckedChanged(object sender, EventArgs e)
-		{
+			layoutControlItemDemosItems.Visibility = !checkEditDemosDisabled.Checked
+				? LayoutVisibility.Always
+				: LayoutVisibility.Never;
 			if (!_allowToSave) return;
+			if (!checkEditDemosDisabled.Checked)
+				comboBoxEditDemos.EditValue = null;
 			SettingsNotSaved = true;
 		}
 
-		private void comboBoxEditDemos_EditValueChanged(object sender, EventArgs e)
+		private void OnDemoValueEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			SettingsNotSaved = true;
@@ -584,23 +446,26 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#endregion
 
 		#region Calendar processing
-		private void buttonXCalendarType_Click(object sender, EventArgs e)
+		private void LoadCalendarType()
 		{
-			var button = sender as ButtonX;
-			if (button == null) return;
-			if (button.Checked) return;
-			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("Your current schedule will be reset.{0}Do you want to continue and change calendar type?", Environment.NewLine)) != DialogResult.Yes) return;
-			buttonXCalendarTypeMondayBased.Checked = false;
-			buttonXCalendarTypeSundayBased.Checked = false;
-			button.Checked = true;
+			checkEditCalendarTypeMonday.Checked = EditedSettings.MondayBased;
+			checkEditCalendarTypeSunday.Checked = !EditedSettings.MondayBased;
+			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
 		}
 
-		private void buttonXCalendarType_CheckedChanged(object sender, EventArgs e)
+		private void OnCalendarTypeEditValueChanging(object sender, ChangingEventArgs e)
 		{
-			var button = sender as ButtonX;
-			if (button == null) return;
-			if (!button.Checked) return;
 			if (!_allowToSave) return;
+			if ((bool)e.NewValue != true) return;
+			e.Cancel = PopupMessageHelper.Instance.ShowWarningQuestion(
+						   String.Format("Your current schedule will be reset.{0}Do you want to continue and change calendar type?",
+							   Environment.NewLine)) != DialogResult.Yes;
+		}
+
+		private void OnCalendarTypeCheckedChanged(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+			EditedSettings.MondayBased = checkEditCalendarTypeMonday.Checked;
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
 			EditedSettings.UserFlightDateStart = null;
 			EditedSettings.UserFlightDateEnd = null;
@@ -653,5 +518,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#region Digital Product Events
 
 		#endregion
+
+
 	}
 }

@@ -4,13 +4,14 @@ using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Entities.NonPersistent;
 using Asa.Business.Solutions.StarApp.Entities.NonPersistent;
 using Asa.Common.Core.Extensions;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 {
 	public abstract class BaseSolutionInfo
 	{
-		protected StorageDirectory DataFolder { get; private set; }
+		protected ArchiveDirectory DataFolder { get; private set; }
 
 		public string Id { get; private set; }
 		public SolutionType Type { get; protected set; }
@@ -19,12 +20,8 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 
 		public virtual void LoadData(StorageDirectory holderAppDataFolder)
 		{
-			DataFolder = new StorageDirectory(holderAppDataFolder.RelativePathParts.Merge(
-				new[]
-				{
-					"solution_templates",
-					Id
-				}));
+			DataFolder = new ArchiveDirectory(holderAppDataFolder.RelativePathParts.Merge(Id));
+			AsyncHelper.RunSync(() => DataFolder.Download());
 		}
 
 		public static BaseSolutionInfo CreateFromConfig(XmlNode configNode)

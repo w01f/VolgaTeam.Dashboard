@@ -7,6 +7,5 @@
 		Summary,
 		Colors,
 		AdvancedColumns,
-		Contract
 	}
 }

@@ -14,6 +14,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Themes;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Media.Controls.PresentationClasses.ScheduleControls.Output;
 using Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using DevComponents.DotNetBar;
@@ -409,19 +410,17 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 					case ScheduleSettingsType.Columns:
 					case ScheduleSettingsType.Totals:
 					case ScheduleSettingsType.AdvancedColumns:
+						var templateContractSettings = ActiveSection.SectionData.ContractSettings;
 						foreach (var sectionTabControl in xtraTabControlSections.TabPages
 							.OfType<SectionContainer>()
 							.Where(oc => oc.SectionData.UniqueID != ActiveSection.SectionData.UniqueID)
-							)
-							sectionTabControl.SectionData.ApplyFromTemplate(ActiveSection.SectionData);
-						break;
-					case ScheduleSettingsType.Contract:
-						var templateSettings = ActiveSection.SectionData.ContractSettings;
-						foreach (var sectionTabControl in xtraTabControlSections.TabPages.OfType<SectionContainer>())
+							.ToList()
+						)
 						{
-							sectionTabControl.SectionData.ContractSettings.ShowSignatureLine = templateSettings.ShowSignatureLine;
-							sectionTabControl.SectionData.ContractSettings.ShowDisclaimer = templateSettings.ShowDisclaimer;
-							sectionTabControl.SectionData.ContractSettings.RateExpirationDate = templateSettings.RateExpirationDate;
+							sectionTabControl.SectionData.ApplyFromTemplate(ActiveSection.SectionData);
+							sectionTabControl.SectionData.ContractSettings.ShowSignatureLine = templateContractSettings.ShowSignatureLine;
+							sectionTabControl.SectionData.ContractSettings.ShowDisclaimer = templateContractSettings.ShowDisclaimer;
+							sectionTabControl.SectionData.ContractSettings.RateExpirationDate = templateContractSettings.RateExpirationDate;
 						}
 						break;
 				}
@@ -456,6 +455,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				layoutControlItemSectionsContainer.Visibility = LayoutVisibility.Always;
 				Controller.Instance.ProgramScheduleProgramAdd.Enabled = true;
 				Controller.Instance.ProgramScheduleProgramDelete.Enabled = true;
+				Controller.Instance.ProgramScheduleSettings.Enabled = true;
 			}
 			else
 			{
@@ -463,6 +463,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
 				Controller.Instance.ProgramScheduleProgramAdd.Enabled = false;
 				Controller.Instance.ProgramScheduleProgramDelete.Enabled = false;
+				Controller.Instance.ProgramScheduleSettings.Enabled = false;
 			}
 		}
 
@@ -551,6 +552,62 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		#endregion
 
 		#region Settings management
+		public override void EditSettings()
+		{
+			using (var form = new FormOutputSettings())
+			{
+				form.checkEditEmptySports.Text = String.Format(form.checkEditEmptySports.Text,
+					String.Format("{0}s:", ActiveSection.SectionData.Parent.ScheduleSettings.SelectedSpotType));
+				form.layoutControlItemEmptySports.Enabled = ActiveSection.SectionData.ShowSpots;
+				form.simpleLabelItemEmptySports.Enabled = ActiveSection.SectionData.ShowSpots;
+				form.checkEditEmptySports.Checked = !ActiveSection.SectionData.ShowEmptySpots;
+				form.checkEditOutputNoBrackets.Checked = ActiveSection.SectionData.OutputNoBrackets;
+				form.checkEditUseGenericDates.Checked = ActiveSection.SectionData.UseGenericDateColumns;
+				form.checkEditUseDecimalRate.Checked = ActiveSection.SectionData.UseDecimalRates;
+				form.checkEditCloneLineToTheEnd.Checked = ActiveSection.SectionData.CloneLineToTheEnd;
+				form.layoutControlItemOutputLimitQuarters.Enabled = ActiveSection.SectionData.Parent.ScheduleSettings.Quarters.Count > 1;
+				form.simpleLabelItemOutputLimitQuarters.Enabled = ActiveSection.SectionData.Parent.ScheduleSettings.Quarters.Count > 1;
+				form.checkEditOutputLimitQuarters.Checked = ActiveSection.SectionData.Parent.ScheduleSettings.Quarters.Count > 1 &&
+															ActiveSection.SectionData.OutputPerQuater;
+				form.checkEditOutputLimitPeriods.Checked = ActiveSection.SectionData.OutputMaxPeriods.HasValue;
+				form.spinEditOutputLimitPeriods.EditValue = ActiveSection.SectionData.OutputMaxPeriods;
+				form.checkEditOutputLimitPeriods.Text = String.Format(form.checkEditOutputLimitPeriods.Text,
+					ActiveSection.SectionData.Parent.ScheduleSettings.SelectedSpotType);
+				form.checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+
+				form.checkEditShowSignatureLine.Checked = ActiveSection.SectionData.ContractSettings.ShowSignatureLine;
+				form.checkEditShowRatesExpiration.Checked = ActiveSection.SectionData.ContractSettings.RateExpirationDate.HasValue;
+				form.checkEditShowDisclaimer.Checked = ActiveSection.SectionData.ContractSettings.ShowDisclaimer;
+				form.dateEditRatesExpirationDate.EditValue = ActiveSection.SectionData.ContractSettings.RateExpirationDate;
+
+				if (form.ShowDialog() != DialogResult.OK) return;
+
+				var updateColumns = ActiveSection.SectionData.UseGenericDateColumns != form.checkEditUseGenericDates.Checked;
+
+				ActiveSection.SectionData.ShowEmptySpots = !form.checkEditEmptySports.Checked;
+				ActiveSection.SectionData.OutputNoBrackets = form.checkEditOutputNoBrackets.Checked;
+				ActiveSection.SectionData.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+				ActiveSection.SectionData.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
+				ActiveSection.SectionData.UseGenericDateColumns = form.checkEditUseGenericDates.Checked;
+				ActiveSection.SectionData.OutputPerQuater = form.checkEditOutputLimitQuarters.Checked;
+				ActiveSection.SectionData.OutputMaxPeriods = form.spinEditOutputLimitPeriods.EditValue != null
+					? (Int32?)form.spinEditOutputLimitPeriods.Value
+					: null;
+
+				ActiveSection.SectionData.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+				ActiveSection.SectionData.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+				ActiveSection.SectionData.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+
+				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
+
+				OnSectionSettingsChanged(this, new SettingsChangedEventArgs
+				{
+					UpdateGridColums = updateColumns,
+					ChangedSettingsType = ScheduleSettingsType.AdvancedColumns
+				});
+			}
+		}
+
 		private void OnSettingsControlsUpdated(object sender, EventArgs e)
 		{
 			retractableBarControl.AddButtons(settingsContainer.GetSettingsButtons());

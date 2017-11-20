@@ -191,6 +191,11 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			ContentEditManager<MediaScheduleChangeInfo>.RaiseThemeChanged(ActiveThemeManagementControl);
 		}
 
+		public void OnEditOutputSettings(object sender, EventArgs e)
+		{
+			ContentEditManager<MediaScheduleChangeInfo>.EditOutputSettings();
+		}
+
 		public void OnOutputPowerPoint(object sender, EventArgs e)
 		{
 			if (Controller.Instance.CheckPowerPointRunning())

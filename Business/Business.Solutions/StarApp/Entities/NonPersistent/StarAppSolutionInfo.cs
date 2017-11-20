@@ -2,10 +2,8 @@
 using System.Xml;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
-using Asa.Business.Solutions.Dashboard.Dictionaries;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Dictionaries;
-using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 using CoverLists = Asa.Business.Solutions.StarApp.Dictionaries.CoverLists;
 
@@ -130,7 +128,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 
 			var resourceManager = new ResourceManager();
 
-			AsyncHelper.RunSync(() => resourceManager.Load(DataFolder));
+			resourceManager.Init(DataFolder);
 
 			var document = new XmlDocument();
 			if (resourceManager.SettingsFile.ExistsLocal())

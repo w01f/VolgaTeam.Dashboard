@@ -151,6 +151,16 @@ namespace Asa.Media.Controls
 				ribbonButton.Click += ContentController.OnPreview;
 			}
 
+			foreach (var ribbonButton in new[]
+			{
+				ProgramScheduleSettings,
+				SnapshotSettings,
+				OptionsSettings,
+			})
+			{
+				ribbonButton.Click += ContentController.OnEditOutputSettings;
+			}
+
 			BrowserSitesBar.Text = BusinessObjects.Instance.BrowserManager.RibbonBarTitle;
 			BrowserSitesTitle.Text = BusinessObjects.Instance.BrowserManager.SiteListTitle;
 		}
@@ -395,6 +405,7 @@ namespace Asa.Media.Controls
 		public ButtonItem ProgramSchedulePreview { get; set; }
 		public ButtonItem ProgramSchedulePowerPoint { get; set; }
 		public ButtonItem ProgramScheduleTheme { get; set; }
+		public ButtonItem ProgramScheduleSettings { get; set; }
 		#endregion
 
 		#region Digital Product
@@ -442,6 +453,7 @@ namespace Asa.Media.Controls
 		public ButtonItem SnapshotPreview { get; set; }
 		public ButtonItem SnapshotPowerPoint { get; set; }
 		public ButtonItem SnapshotTheme { get; set; }
+		public ButtonItem SnapshotSettings { get; set; }
 		#endregion
 
 		#region Options
@@ -454,6 +466,7 @@ namespace Asa.Media.Controls
 		public ButtonItem OptionsPreview { get; set; }
 		public ButtonItem OptionsPowerPoint { get; set; }
 		public ButtonItem OptionsTheme { get; set; }
+		public ButtonItem OptionsSettings { get; set; }
 		#endregion
 
 		#region Solutions

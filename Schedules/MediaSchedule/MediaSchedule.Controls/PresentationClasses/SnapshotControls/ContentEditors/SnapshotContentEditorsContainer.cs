@@ -446,6 +446,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				layoutControlItemData.Visibility = LayoutVisibility.Always;
 				Controller.Instance.SnapshotProgramAdd.Enabled = true;
 				Controller.Instance.SnapshotProgramDelete.Enabled = true;
+				Controller.Instance.SnapshotSettings.Enabled = true;
 			}
 			else
 			{
@@ -453,6 +454,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
 				Controller.Instance.SnapshotProgramAdd.Enabled = false;
 				Controller.Instance.SnapshotProgramDelete.Enabled = false;
+				Controller.Instance.SnapshotSettings.Enabled = false;
 			}
 		}
 
@@ -542,6 +544,92 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		#endregion
 
 		#region Settings management
+		public override void EditSettings()
+		{
+			using (var form = new FormOutputSettings())
+			{
+				switch (ActiveContentEditor.ActiveEditor.EditorType)
+				{
+					case SnapshotEditorType.Schedule:
+					case SnapshotEditorType.DigitalInfo:
+						form.checkEditUseDecimalRate.Checked = ActiveSnapshotContainer.SnapshotData.UseDecimalRates;
+						form.checkEditShowSpotX.Checked = ActiveSnapshotContainer.SnapshotData.ShowSpotsX;
+						form.layoutControlItemShowSpotsPerWeek.Enabled = true;
+						form.simpleLabelItemShowSpotsPerWeek.Enabled = true;
+						form.checkEditShowSpotsPerWeek.Checked = ActiveSnapshotContainer.SnapshotData.ShowSpotsPerWeek;
+						form.layoutControlItemCloneLineToTheEnd.Enabled = true;
+						form.simpleLabelItemCloneLineToTheEnd.Enabled = true;
+						form.checkEditCloneLineToTheEnd.Checked = ActiveSnapshotContainer.SnapshotData.CloneLineToTheEnd;
+
+						form.checkEditShowSignatureLine.Checked = ActiveSnapshotContainer.SnapshotData.ContractSettings.ShowSignatureLine;
+						form.checkEditShowRatesExpiration.Checked = ActiveSnapshotContainer.SnapshotData.ContractSettings.RateExpirationDate.HasValue;
+						form.checkEditShowDisclaimer.Checked = ActiveSnapshotContainer.SnapshotData.ContractSettings.ShowDisclaimer;
+						form.dateEditRatesExpirationDate.EditValue = ActiveSnapshotContainer.SnapshotData.ContractSettings.RateExpirationDate;
+						break;
+					case SnapshotEditorType.Summary:
+						form.layoutControlItemShowSpotsPerWeek.Enabled = false;
+						form.simpleLabelItemShowSpotsPerWeek.Enabled = false;
+						form.checkEditUseDecimalRate.Checked = EditedContent.SnapshotSummary.UseDecimalRates;
+						form.checkEditShowSpotX.Checked = EditedContent.SnapshotSummary.ShowSpotsX;
+						form.layoutControlItemCloneLineToTheEnd.Enabled = false;
+						form.simpleLabelItemCloneLineToTheEnd.Enabled = false;
+						form.checkEditCloneLineToTheEnd.Checked = false;
+
+						form.checkEditShowSignatureLine.Checked = EditedContent.SnapshotSummary.ContractSettings.ShowSignatureLine;
+						form.checkEditShowRatesExpiration.Checked = EditedContent.SnapshotSummary.ContractSettings.RateExpirationDate.HasValue;
+						form.checkEditShowDisclaimer.Checked = EditedContent.SnapshotSummary.ContractSettings.ShowDisclaimer;
+						form.dateEditRatesExpirationDate.EditValue = EditedContent.SnapshotSummary.ContractSettings.RateExpirationDate;
+						break;
+					default:
+						return;
+				}
+				form.checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				switch (ActiveContentEditor.ActiveEditor.EditorType)
+				{
+					case SnapshotEditorType.Schedule:
+					case SnapshotEditorType.DigitalInfo:
+						ActiveSnapshotContainer.SnapshotData.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+						ActiveSnapshotContainer.SnapshotData.ShowSpotsX = form.checkEditShowSpotX.Checked;
+						ActiveSnapshotContainer.SnapshotData.ShowSpotsPerWeek = form.checkEditShowSpotsPerWeek.Checked;
+						ActiveSnapshotContainer.SnapshotData.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
+
+						ActiveSnapshotContainer.SnapshotData.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+						ActiveSnapshotContainer.SnapshotData.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+						ActiveSnapshotContainer.SnapshotData.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+
+						if (EditedContent.SnapshotSummary.ApplySettingsForAll)
+						{
+							foreach (var snapshot in EditedContent.Snapshots.Where(os => os.UniqueID != ActiveSnapshotContainer.SnapshotData.UniqueID))
+							{
+								snapshot.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+								snapshot.ShowSpotsX = form.checkEditShowSpotX.Checked;
+								snapshot.ShowSpotsPerWeek = form.checkEditShowSpotsPerWeek.Checked;
+								snapshot.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
+
+								snapshot.ContractSettings.ShowSignatureLine = ActiveSnapshotContainer.SnapshotData.ContractSettings.ShowSignatureLine;
+								snapshot.ContractSettings.ShowDisclaimer = ActiveSnapshotContainer.SnapshotData.ContractSettings.ShowDisclaimer;
+								snapshot.ContractSettings.RateExpirationDate = ActiveSnapshotContainer.SnapshotData.ContractSettings.RateExpirationDate;
+							}
+						}
+						break;
+					case SnapshotEditorType.Summary:
+						EditedContent.SnapshotSummary.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+						EditedContent.SnapshotSummary.ShowSpotsX = form.checkEditShowSpotX.Checked;
+
+						EditedContent.SnapshotSummary.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+						EditedContent.SnapshotSummary.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+						EditedContent.SnapshotSummary.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+						break;
+				}
+				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
+				OnSettingsChanged(this, new SettingsChangedEventArgs
+				{
+					ChangedSettingsType = SnapshotSettingsType.AdvancedColumns,
+				});
+			}
+		}
+
 		private void LoadBarButtons()
 		{
 			retractableBarControl.AddButtons(settingsContainer.GetSettingsButtons());

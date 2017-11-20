@@ -4,7 +4,6 @@ using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Configuration;
 using Asa.Business.Solutions.Dashboard.Dictionaries;
-using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
@@ -51,7 +50,7 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 
 			var resourceManager = new ResourceManager();
 
-			AsyncHelper.RunSync(() => resourceManager.Load(DataFolder));
+			resourceManager.Init(DataFolder);
 
 			var document = new XmlDocument();
 			if (resourceManager.SettingsFile.ExistsLocal())

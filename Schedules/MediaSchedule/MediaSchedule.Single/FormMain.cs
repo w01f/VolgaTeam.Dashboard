@@ -149,6 +149,7 @@ namespace Asa.Media.Single
 			Controller.Instance.ProgramScheduleNew = buttonItemProgramScheduleNew;
 			Controller.Instance.ProgramScheduleProgramAdd = buttonItemProgramScheduleProgramAdd;
 			Controller.Instance.ProgramScheduleProgramDelete = buttonItemProgramScheduleProgramDelete;
+			Controller.Instance.ProgramScheduleSettings = buttonItemProgramScheduleSettings;
 			#endregion
 
 			#region Digital Product
@@ -196,6 +197,7 @@ namespace Asa.Media.Single
 			Controller.Instance.SnapshotNew = buttonItemSnapshotNew;
 			Controller.Instance.SnapshotProgramAdd = buttonItemSnapshotProgramAdd;
 			Controller.Instance.SnapshotProgramDelete = buttonItemSnapshotProgramDelete;
+			Controller.Instance.SnapshotSettings = buttonItemSnapshotSettings;
 			#endregion
 
 			#region Options
@@ -208,6 +210,7 @@ namespace Asa.Media.Single
 			Controller.Instance.OptionsNew = buttonItemOptionsNew;
 			Controller.Instance.OptionsProgramAdd = buttonItemOptionsProgramAdd;
 			Controller.Instance.OptionsProgramDelete = buttonItemOptionsProgramDelete;
+			Controller.Instance.OptionsSettings = buttonItemOptionsSettings;
 			#endregion
 
 			#region Solutions

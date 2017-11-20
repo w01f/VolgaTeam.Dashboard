@@ -7,8 +7,7 @@
 		Colors,
 		DigitalInfo,
 		CustomSummary,
-		AdvancedColumns,
-		Contract,
 		Quarters,
+		AdvancedColumns
 	}
 }

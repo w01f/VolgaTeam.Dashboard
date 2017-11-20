@@ -247,12 +247,6 @@
     <Compile Include="ToolForms\FormScheduleName.Designer.cs">
       <DependentUpon>FormScheduleName.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormContractSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormContractSettings.Designer.cs">
-      <DependentUpon>FormContractSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,9 +348,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormScheduleName.resx">
       <DependentUpon>FormScheduleName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormContractSettings.resx">
-      <DependentUpon>FormContractSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>

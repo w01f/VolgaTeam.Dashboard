@@ -185,5 +185,10 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 			}
 		}
+
+		public void EditSettings()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

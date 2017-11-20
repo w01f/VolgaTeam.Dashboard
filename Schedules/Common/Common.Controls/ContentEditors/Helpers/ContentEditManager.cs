@@ -127,6 +127,11 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 			}
 		}
 
+		public static void EditOutputSettings()
+		{
+			_controller.ActiveOutputControl?.EditSettings();
+		}
+
 		public static void OutputPowerPoint()
 		{
 			if (_controller.ActiveOutputControl == null) return;

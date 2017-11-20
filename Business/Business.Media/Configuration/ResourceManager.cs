@@ -19,6 +19,7 @@ namespace Asa.Business.Media.Configuration
 		public StorageFile MediaListsFile { get; private set; }
 
 		public StorageFile SolutionsConfigFile { get; private set; }
+		public StorageDirectory SolutionsDataFolder { get; private set; }
 
 		public StorageFile MainAppTitleTextFile { get; private set; }
 
@@ -93,6 +94,12 @@ namespace Asa.Business.Media.Configuration
 				"solution_templates.xml"
 			});
 			await SolutionsConfigFile.Download();
+			SolutionsDataFolder = new StorageDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Solution Templates"
+			});
 
 			MainAppTitleTextFile = new StorageFile(new[]
 			{

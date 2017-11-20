@@ -8,6 +8,5 @@
 		Summary,
 		Colors,
 		AdvancedColumns,
-		Contract
 	}
 }

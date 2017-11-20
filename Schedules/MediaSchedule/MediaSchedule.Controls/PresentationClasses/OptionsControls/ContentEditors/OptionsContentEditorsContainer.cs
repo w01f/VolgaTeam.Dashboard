@@ -549,6 +549,85 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			LoadBarButtons();
 		}
+
+		public override void EditSettings()
+		{
+			using (var form = new FormOutputSettings())
+			{
+				switch (ActiveOptionSetContainer.ActiveEditor.EditorType)
+				{
+					case OptionEditorType.Schedule:
+					case OptionEditorType.DigitalInfo:
+						form.checkEditUseDecimalRate.Checked = ActiveOptionSetContainer.OptionSetData.UseDecimalRates;
+						form.checkEditShowSpotX.Checked = ActiveOptionSetContainer.OptionSetData.ShowSpotsX;
+
+						form.layoutControlItemCloneLineToTheEnd.Enabled = true;
+						form.simpleLabelItemCloneLineToTheEnd.Enabled = true;
+						form.checkEditCloneLineToTheEnd.Checked = ActiveOptionSetContainer.OptionSetData.CloneLineToTheEnd;
+
+						form.checkEditShowSignatureLine.Checked = ActiveOptionSetContainer.OptionSetData.ContractSettings.ShowSignatureLine;
+						form.checkEditShowRatesExpiration.Checked = ActiveOptionSetContainer.OptionSetData.ContractSettings.RateExpirationDate.HasValue;
+						form.checkEditShowDisclaimer.Checked = ActiveOptionSetContainer.OptionSetData.ContractSettings.ShowDisclaimer;
+						form.dateEditRatesExpirationDate.EditValue = ActiveOptionSetContainer.OptionSetData.ContractSettings.RateExpirationDate;
+						break;
+					case OptionEditorType.Summary:
+						form.checkEditUseDecimalRate.Checked = EditedContent.OptionsSummary.UseDecimalRates;
+						form.checkEditShowSpotX.Checked = EditedContent.OptionsSummary.ShowSpotsX;
+
+						form.layoutControlItemCloneLineToTheEnd.Enabled = false;
+						form.simpleLabelItemCloneLineToTheEnd.Enabled = false;
+						form.checkEditCloneLineToTheEnd.Checked = false;
+
+						form.checkEditShowSignatureLine.Checked = EditedContent.OptionsSummary.ContractSettings.ShowSignatureLine;
+						form.checkEditShowRatesExpiration.Checked = EditedContent.OptionsSummary.ContractSettings.RateExpirationDate.HasValue;
+						form.checkEditShowDisclaimer.Checked = EditedContent.OptionsSummary.ContractSettings.ShowDisclaimer;
+						form.dateEditRatesExpirationDate.EditValue = EditedContent.OptionsSummary.ContractSettings.RateExpirationDate;
+						break;
+					default:
+						return;
+				}
+				form.checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				switch (ActiveOptionSetContainer.ActiveEditor.EditorType)
+				{
+					case OptionEditorType.Schedule:
+					case OptionEditorType.DigitalInfo:
+						ActiveOptionSetContainer.OptionSetData.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+						ActiveOptionSetContainer.OptionSetData.ShowSpotsX = form.checkEditShowSpotX.Checked;
+						ActiveOptionSetContainer.OptionSetData.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
+						ActiveOptionSetContainer.OptionSetData.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+						ActiveOptionSetContainer.OptionSetData.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+						ActiveOptionSetContainer.OptionSetData.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+						if (EditedContent.OptionsSummary.ApplySettingsForAll)
+						{
+							foreach (var optionSet in EditedContent.Options.Where(os => os.UniqueID != ActiveOptionSetContainer.OptionSetData.UniqueID))
+							{
+								optionSet.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+								optionSet.ShowSpotsX = form.checkEditShowSpotX.Checked;
+								optionSet.CloneLineToTheEnd = form.checkEditCloneLineToTheEnd.Checked;
+
+								optionSet.ContractSettings.ShowSignatureLine = ActiveOptionSetContainer.OptionSetData.ContractSettings.ShowSignatureLine;
+								optionSet.ContractSettings.ShowDisclaimer = ActiveOptionSetContainer.OptionSetData.ContractSettings.ShowDisclaimer;
+								optionSet.ContractSettings.RateExpirationDate = ActiveOptionSetContainer.OptionSetData.ContractSettings.RateExpirationDate;
+							}
+						}
+						break;
+					case OptionEditorType.Summary:
+						EditedContent.OptionsSummary.UseDecimalRates = form.checkEditUseDecimalRate.Checked;
+						EditedContent.OptionsSummary.ShowSpotsX = form.checkEditShowSpotX.Checked;
+
+						EditedContent.OptionsSummary.ContractSettings.ShowSignatureLine = form.checkEditShowSignatureLine.Checked;
+						EditedContent.OptionsSummary.ContractSettings.ShowDisclaimer = form.checkEditShowDisclaimer.Checked;
+						EditedContent.OptionsSummary.ContractSettings.RateExpirationDate = (DateTime?)form.dateEditRatesExpirationDate.EditValue;
+						break;
+				}
+				MediaMetaData.Instance.SettingsManager.UseSlideMaster = form.checkEditLockToMaster.Checked;
+				OnSettingsChanged(this, new SettingsChangedEventArgs
+				{
+					ChangedSettingsType = OptionSettingsType.AdvancedColumns
+				});
+			}
+		}
 		#endregion
 
 		#region Ribbon Operations Events

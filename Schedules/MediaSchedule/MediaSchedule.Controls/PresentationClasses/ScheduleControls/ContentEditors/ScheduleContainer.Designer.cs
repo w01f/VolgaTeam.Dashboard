@@ -30,7 +30,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
         /// </summary>
         private void InitializeComponent()
         {
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.components = new System.ComponentModel.Container();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.xtraTabControlSections = new DevExpress.XtraTab.XtraTabControl();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings.SettingsContainer();
@@ -80,7 +81,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemAgencyDiscountValue = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.simpleLabelItemAgencyDiscountTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.contextMenuStripSections = new System.Windows.Forms.ContextMenuStrip();
+			this.contextMenuStripSections = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemSnapshotRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemSnapshotClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
@@ -182,7 +183,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.xtraTabControlSections.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlSections.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlSections.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
-			this.xtraTabControlSections.Location = new System.Drawing.Point(2, 75);
+			this.xtraTabControlSections.Location = new System.Drawing.Point(-95, 75);
 			this.xtraTabControlSections.Name = "xtraTabControlSections";
 			this.xtraTabControlSections.Size = new System.Drawing.Size(811, 459);
 			this.xtraTabControlSections.TabIndex = 5;
@@ -286,7 +287,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.layoutControlGroupRootSections.GroupBordersVisible = false;
 			this.layoutControlGroupRootSections.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupActiveContent});
-			this.layoutControlGroupRootSections.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRootSections.Location = new System.Drawing.Point(-97, 0);
 			this.layoutControlGroupRootSections.Name = "Root";
 			this.layoutControlGroupRootSections.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupRootSections.Size = new System.Drawing.Size(815, 576);
@@ -335,7 +336,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemScheduleInfo.Size = new System.Drawing.Size(462, 40);
 			this.simpleLabelItemScheduleInfo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemScheduleInfo.Text = " ";
-			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(135, 16);
+			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(100, 16);
 			// 
 			// simpleLabelItemFlightDates
 			// 
@@ -352,7 +353,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(333, 40);
 			this.simpleLabelItemFlightDates.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemFlightDates.Text = " ";
-			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(135, 16);
+			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(100, 16);
 			// 
 			// emptySpaceItem11
 			// 
@@ -472,7 +473,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalPeriodsTitle.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalPeriodsTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalPeriodsTitle.Text = "<color=darkgray><size=-1>Total Weeks:</size></color>";
-			this.simpleLabelItemTotalPeriodsTitle.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalPeriodsTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem3
 			// 
@@ -496,7 +497,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalPeriodsValue.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalPeriodsValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalPeriodsValue.Text = "<color=dimgray><size=-1>Total Weeks:</size></color>";
-			this.simpleLabelItemTotalPeriodsValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalPeriodsValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// layoutControlGroupTotalSpots
 			// 
@@ -523,7 +524,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalSpotsTitle.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalSpotsTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalSpotsTitle.Text = "<color=darkgray><size=-1>Total Spots:</size></color>";
-			this.simpleLabelItemTotalSpotsTitle.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalSpotsTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// simpleLabelItemTotalSpotsValue
 			// 
@@ -536,7 +537,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalSpotsValue.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalSpotsValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalSpotsValue.Text = "<color=dimgray><size=-1>Total Spots:</size></color>";
-			this.simpleLabelItemTotalSpotsValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalSpotsValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem4
 			// 
@@ -574,7 +575,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalGRPTitle.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalGRPTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalGRPTitle.Text = "<color=darkgray><size=-1>Total GRPs:</size></color>";
-			this.simpleLabelItemTotalGRPTitle.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalGRPTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// simpleLabelItemTotalGRPValue
 			// 
@@ -587,7 +588,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalGRPValue.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalGRPValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalGRPValue.Text = "<color=dimgray><size=-1>Total GRPs:</size></color>";
-			this.simpleLabelItemTotalGRPValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalGRPValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem5
 			// 
@@ -625,7 +626,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalCPPTitle.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalCPPTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalCPPTitle.Text = "<color=darkgray><size=-1>Overall CPP:</size></color>";
-			this.simpleLabelItemTotalCPPTitle.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalCPPTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// simpleLabelItemTotalCPPValue
 			// 
@@ -638,7 +639,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalCPPValue.Size = new System.Drawing.Size(80, 20);
 			this.simpleLabelItemTotalCPPValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalCPPValue.Text = "<color=dimgray><size=-1>Overall CPP:</size></color>";
-			this.simpleLabelItemTotalCPPValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalCPPValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem2
 			// 
@@ -676,7 +677,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemAvgRateTitle.Size = new System.Drawing.Size(90, 20);
 			this.simpleLabelItemAvgRateTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemAvgRateTitle.Text = "<color=darkgray><size=-1>Average Rate:</size></color>";
-			this.simpleLabelItemAvgRateTitle.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemAvgRateTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem6
 			// 
@@ -700,7 +701,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemAvgRateValue.Size = new System.Drawing.Size(90, 20);
 			this.simpleLabelItemAvgRateValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemAvgRateValue.Text = "<color=dimgray><size=-1>Average Rate:</size></color>";
-			this.simpleLabelItemAvgRateValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemAvgRateValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// layoutControlGroupTotalCost
 			// 
@@ -727,7 +728,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalCostTitle.Size = new System.Drawing.Size(110, 20);
 			this.simpleLabelItemTotalCostTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalCostTitle.Text = "<color=darkgray><size=-1>Gross Investment:</size></color>";
-			this.simpleLabelItemTotalCostTitle.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalCostTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem8
 			// 
@@ -751,7 +752,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemTotalCostValue.Size = new System.Drawing.Size(110, 20);
 			this.simpleLabelItemTotalCostValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTotalCostValue.Text = "<color=dimgray><size=-1>Gross Investment:</size></color>";
-			this.simpleLabelItemTotalCostValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemTotalCostValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// layoutControlGroupNetRate
 			// 
@@ -778,7 +779,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemNetRateTitle.Size = new System.Drawing.Size(100, 20);
 			this.simpleLabelItemNetRateTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemNetRateTitle.Text = "<color=darkgray><size=-1>Net Investment:</size></color>";
-			this.simpleLabelItemNetRateTitle.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemNetRateTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem7
 			// 
@@ -802,7 +803,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemNetRateValue.Size = new System.Drawing.Size(100, 20);
 			this.simpleLabelItemNetRateValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemNetRateValue.Text = "<color=dimgray><size=-1>Net Investment:</size></color>";
-			this.simpleLabelItemNetRateValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemNetRateValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// layoutControlGroupAgencyDiscount
 			// 
@@ -828,7 +829,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemAgencyDiscountValue.Size = new System.Drawing.Size(105, 20);
 			this.simpleLabelItemAgencyDiscountValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemAgencyDiscountValue.Text = "<color=dimgray><size=-1>Agency Discount:</size></color>";
-			this.simpleLabelItemAgencyDiscountValue.TextSize = new System.Drawing.Size(135, 15);
+			this.simpleLabelItemAgencyDiscountValue.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// simpleLabelItemAgencyDiscountTitle
 			// 
@@ -840,8 +841,8 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.simpleLabelItemAgencyDiscountTitle.Name = "simpleLabelItemAgencyDiscountTitle";
 			this.simpleLabelItemAgencyDiscountTitle.Size = new System.Drawing.Size(105, 20);
 			this.simpleLabelItemAgencyDiscountTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemAgencyDiscountTitle.Text = "<color=darkgray><size=-1>Agency Discount:</size></color";
-			this.simpleLabelItemAgencyDiscountTitle.TextSize = new System.Drawing.Size(135, 16);
+			this.simpleLabelItemAgencyDiscountTitle.Text = "<color=darkgray><size=-1>Agency Discount:</size></color>";
+			this.simpleLabelItemAgencyDiscountTitle.TextSize = new System.Drawing.Size(100, 15);
 			// 
 			// emptySpaceItem12
 			// 
@@ -906,7 +907,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			this.pictureEditDefaulLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.SectionNoRecords;
 			this.pictureEditDefaulLogo.Location = new System.Drawing.Point(40, 20);
 			this.pictureEditDefaulLogo.Name = "pictureEditDefaulLogo";
-	        this.pictureEditDefaulLogo.Properties.AllowFocused = false;
+			this.pictureEditDefaulLogo.Properties.AllowFocused = false;
 			this.pictureEditDefaulLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDefaulLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
 			this.pictureEditDefaulLogo.Properties.ReadOnly = true;

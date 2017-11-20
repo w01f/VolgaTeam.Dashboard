@@ -384,6 +384,42 @@ namespace Asa.Media.Controls.Properties
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap HomeSettingsCalendarFormat
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("HomeSettingsCalendarFormat", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap HomeSettingsDayparts
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("HomeSettingsDayparts", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap HomeSettingsDemos
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("HomeSettingsDemos", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap HomeSnapshot
 		{
 			get
@@ -665,6 +701,18 @@ namespace Asa.Media.Controls.Properties
 			get
 			{
 				object obj = ResourceManager.GetObject("RibbonPreview", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap RibbonSettings
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("RibbonSettings", resourceCulture);
 				return ((System.Drawing.Bitmap)(obj));
 			}
 		}

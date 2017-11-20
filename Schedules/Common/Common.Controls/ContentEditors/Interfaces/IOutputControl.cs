@@ -2,6 +2,7 @@
 {
 	public interface IOutputControl
 	{
+		void EditSettings();
 		void OutputPowerPoint();
 		void OutputPdf();
 		void Preview();

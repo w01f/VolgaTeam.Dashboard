@@ -275,7 +275,7 @@
 			// checkEditFlightDates
 			// 
 			this.checkEditFlightDates.EditValue = true;
-			this.checkEditFlightDates.Location = new System.Drawing.Point(359, 320);
+			this.checkEditFlightDates.Location = new System.Drawing.Point(359, 332);
 			this.checkEditFlightDates.Name = "checkEditFlightDates";
 			this.checkEditFlightDates.Properties.Caption = "";
 			this.checkEditFlightDates.Size = new System.Drawing.Size(21, 19);
@@ -287,7 +287,7 @@
 			// 
 			this.dateEditFligtDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesEnd.EditValue = null;
-			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(561, 368);
+			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(561, 380);
 			this.dateEditFligtDatesEnd.Name = "dateEditFligtDatesEnd";
 			this.dateEditFligtDatesEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -314,7 +314,7 @@
 			// 
 			this.dateEditFligtDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesStart.EditValue = null;
-			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(384, 368);
+			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(384, 380);
 			this.dateEditFligtDatesStart.Name = "dateEditFligtDatesStart";
 			this.dateEditFligtDatesStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -341,7 +341,7 @@
 			// 
 			this.pictureEditFlightDates.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditFlightDates.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryFlightDates;
-			this.pictureEditFlightDates.Location = new System.Drawing.Point(384, 290);
+			this.pictureEditFlightDates.Location = new System.Drawing.Point(384, 302);
 			this.pictureEditFlightDates.Name = "pictureEditFlightDates";
 			this.pictureEditFlightDates.Properties.AllowFocused = false;
 			this.pictureEditFlightDates.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -359,7 +359,7 @@
 			// checkEditDate
 			// 
 			this.checkEditDate.EditValue = true;
-			this.checkEditDate.Location = new System.Drawing.Point(25, 320);
+			this.checkEditDate.Location = new System.Drawing.Point(25, 332);
 			this.checkEditDate.Name = "checkEditDate";
 			this.checkEditDate.Properties.Caption = "";
 			this.checkEditDate.Size = new System.Drawing.Size(21, 19);
@@ -370,7 +370,7 @@
 			// dateEditDate
 			// 
 			this.dateEditDate.EditValue = null;
-			this.dateEditDate.Location = new System.Drawing.Point(50, 369);
+			this.dateEditDate.Location = new System.Drawing.Point(50, 381);
 			this.dateEditDate.Name = "dateEditDate";
 			this.dateEditDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -397,7 +397,7 @@
 			// 
 			this.pictureEditDateLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDateLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryPresentationDate;
-			this.pictureEditDateLogo.Location = new System.Drawing.Point(50, 290);
+			this.pictureEditDateLogo.Location = new System.Drawing.Point(50, 302);
 			this.pictureEditDateLogo.Name = "pictureEditDateLogo";
 			this.pictureEditDateLogo.Properties.AllowFocused = false;
 			this.pictureEditDateLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -523,7 +523,7 @@
 			// 
 			// checkEditMonthlyInvestment
 			// 
-			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(10, 508);
+			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(10, 520);
 			this.checkEditMonthlyInvestment.Name = "checkEditMonthlyInvestment";
 			this.checkEditMonthlyInvestment.Properties.AllowFocused = false;
 			this.checkEditMonthlyInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -539,7 +539,7 @@
 			// 
 			// checkEditTotalInvestment
 			// 
-			this.checkEditTotalInvestment.Location = new System.Drawing.Point(264, 508);
+			this.checkEditTotalInvestment.Location = new System.Drawing.Point(264, 520);
 			this.checkEditTotalInvestment.Name = "checkEditTotalInvestment";
 			this.checkEditTotalInvestment.Properties.AllowFocused = false;
 			this.checkEditTotalInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -560,7 +560,7 @@
             0,
             0,
             0});
-			this.spinEditMonthly.Location = new System.Drawing.Point(92, 498);
+			this.spinEditMonthly.Location = new System.Drawing.Point(92, 510);
 			this.spinEditMonthly.Name = "spinEditMonthly";
 			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true),
@@ -581,7 +581,7 @@
 			this.buttonXAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(558, 497);
+			this.buttonXAddItem.Location = new System.Drawing.Point(558, 509);
 			this.buttonXAddItem.Name = "buttonXAddItem";
 			this.buttonXAddItem.Size = new System.Drawing.Size(136, 41);
 			this.buttonXAddItem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -598,7 +598,7 @@
             0,
             0,
             0});
-			this.spinEditTotal.Location = new System.Drawing.Point(328, 498);
+			this.spinEditTotal.Location = new System.Drawing.Point(328, 510);
 			this.spinEditTotal.Name = "spinEditTotal";
 			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true),
@@ -626,7 +626,7 @@
 			this.pictureEditSplash.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditSplash.Properties.ShowMenu = false;
 			this.pictureEditSplash.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditSplash.Size = new System.Drawing.Size(280, 490);
+			this.pictureEditSplash.Size = new System.Drawing.Size(280, 502);
 			this.pictureEditSplash.StyleController = this.layoutControl;
 			this.pictureEditSplash.TabIndex = 1;
 			// 
@@ -655,7 +655,7 @@
 			this.simpleSummaryItemContainer.Location = new System.Drawing.Point(13, 78);
 			this.simpleSummaryItemContainer.Name = "simpleSummaryItemContainer";
 			this.simpleSummaryItemContainer.SelectedIndex = -1;
-			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(680, 394);
+			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(680, 406);
 			this.simpleSummaryItemContainer.TabIndex = 1;
 			this.simpleSummaryItemContainer.TabStop = false;
 			// 
@@ -689,7 +689,7 @@
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(996, 560);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(996, 572);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemSplash
@@ -701,7 +701,7 @@
 			this.layoutControlItemSplash.MinSize = new System.Drawing.Size(300, 1);
 			this.layoutControlItemSplash.Name = "layoutControlItemSplash";
 			this.layoutControlItemSplash.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-			this.layoutControlItemSplash.Size = new System.Drawing.Size(300, 510);
+			this.layoutControlItemSplash.Size = new System.Drawing.Size(300, 522);
 			this.layoutControlItemSplash.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSplash.Text = "Splash";
 			this.layoutControlItemSplash.TextSize = new System.Drawing.Size(0, 0);
@@ -749,7 +749,7 @@
 			this.tabbedControlGroupData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.tabbedControlGroupData.SelectedTabPage = this.layoutControlGroupBasicInfo;
 			this.tabbedControlGroupData.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupData.Size = new System.Drawing.Size(686, 425);
+			this.tabbedControlGroupData.Size = new System.Drawing.Size(686, 437);
 			this.tabbedControlGroupData.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupBasicInfo,
             this.layoutControlGroupPaymentDetails});
@@ -787,7 +787,7 @@
             this.emptySpaceItem20});
 			this.layoutControlGroupBasicInfo.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupBasicInfo.Name = "layoutControlGroupBasicInfo";
-			this.layoutControlGroupBasicInfo.Size = new System.Drawing.Size(680, 394);
+			this.layoutControlGroupBasicInfo.Size = new System.Drawing.Size(680, 406);
 			this.layoutControlGroupBasicInfo.Text = "Basic Info";
 			// 
 			// emptySpaceItem4
@@ -802,8 +802,11 @@
 			// 
 			this.emptySpaceItem2.AllowHotTrack = false;
 			this.emptySpaceItem2.Location = new System.Drawing.Point(10, 122);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 100);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 100);
 			this.emptySpaceItem2.Name = "item0";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(660, 88);
+			this.emptySpaceItem2.Size = new System.Drawing.Size(660, 100);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem6
@@ -824,7 +827,7 @@
 			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(10, 374);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(10, 386);
 			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -835,7 +838,7 @@
 			this.emptySpaceItem8.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem8.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(10, 374);
+			this.emptySpaceItem8.Size = new System.Drawing.Size(10, 386);
 			this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1010,7 +1013,7 @@
 			// emptySpaceItem13
 			// 
 			this.emptySpaceItem13.AllowHotTrack = false;
-			this.emptySpaceItem13.Location = new System.Drawing.Point(249, 210);
+			this.emptySpaceItem13.Location = new System.Drawing.Point(249, 222);
 			this.emptySpaceItem13.Name = "emptySpaceItem13";
 			this.emptySpaceItem13.Size = new System.Drawing.Size(95, 164);
 			this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
@@ -1023,7 +1026,7 @@
             this.layoutControlItemDateValue,
             this.emptySpaceItem16,
             this.layoutControlItemDateLogo});
-			this.layoutControlGroupDate.Location = new System.Drawing.Point(35, 210);
+			this.layoutControlGroupDate.Location = new System.Drawing.Point(35, 222);
 			this.layoutControlGroupDate.Name = "layoutControlGroupDate";
 			this.layoutControlGroupDate.Size = new System.Drawing.Size(214, 114);
 			this.layoutControlGroupDate.Text = "Date";
@@ -1095,7 +1098,7 @@
             this.layoutControlItemFlightDatesEnd,
             this.simpleLabelItemFlightDatesWeeks,
             this.emptySpaceItem21});
-			this.layoutControlGroupFlightDates.Location = new System.Drawing.Point(369, 210);
+			this.layoutControlGroupFlightDates.Location = new System.Drawing.Point(369, 222);
 			this.layoutControlGroupFlightDates.Name = "layoutControlGroupFlightDates";
 			this.layoutControlGroupFlightDates.Size = new System.Drawing.Size(301, 164);
 			this.layoutControlGroupFlightDates.Text = "Flight Dates";
@@ -1208,7 +1211,7 @@
 			// emptySpaceItem15
 			// 
 			this.emptySpaceItem15.AllowHotTrack = false;
-			this.emptySpaceItem15.Location = new System.Drawing.Point(10, 324);
+			this.emptySpaceItem15.Location = new System.Drawing.Point(10, 336);
 			this.emptySpaceItem15.Name = "emptySpaceItem15";
 			this.emptySpaceItem15.Size = new System.Drawing.Size(239, 50);
 			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
@@ -1217,7 +1220,7 @@
 			// 
 			this.layoutControlItemFlightDatesToggle.Control = this.checkEditFlightDates;
 			this.layoutControlItemFlightDatesToggle.FillControlToClientArea = false;
-			this.layoutControlItemFlightDatesToggle.Location = new System.Drawing.Point(344, 210);
+			this.layoutControlItemFlightDatesToggle.Location = new System.Drawing.Point(344, 222);
 			this.layoutControlItemFlightDatesToggle.MaxSize = new System.Drawing.Size(25, 1);
 			this.layoutControlItemFlightDatesToggle.MinSize = new System.Drawing.Size(25, 1);
 			this.layoutControlItemFlightDatesToggle.Name = "layoutControlItemFlightDatesToggle";
@@ -1233,7 +1236,7 @@
 			// 
 			this.layoutControlItemDateToggle.Control = this.checkEditDate;
 			this.layoutControlItemDateToggle.FillControlToClientArea = false;
-			this.layoutControlItemDateToggle.Location = new System.Drawing.Point(10, 210);
+			this.layoutControlItemDateToggle.Location = new System.Drawing.Point(10, 222);
 			this.layoutControlItemDateToggle.MaxSize = new System.Drawing.Size(25, 1);
 			this.layoutControlItemDateToggle.MinSize = new System.Drawing.Size(25, 1);
 			this.layoutControlItemDateToggle.Name = "layoutControlItemDateToggle";
@@ -1248,8 +1251,7 @@
 			// emptySpaceItem20
 			// 
 			this.emptySpaceItem20.AllowHotTrack = false;
-			this.emptySpaceItem20.Location = new System.Drawing.Point(0, 374);
-			this.emptySpaceItem20.MaxSize = new System.Drawing.Size(0, 20);
+			this.emptySpaceItem20.Location = new System.Drawing.Point(0, 386);
 			this.emptySpaceItem20.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem20.Name = "emptySpaceItem20";
 			this.emptySpaceItem20.Size = new System.Drawing.Size(680, 20);
@@ -1263,7 +1265,7 @@
 			this.layoutControlGroupPaymentDetails.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupPaymentDetails.Name = "layoutControlGroupPaymentDetails";
 			this.layoutControlGroupPaymentDetails.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupPaymentDetails.Size = new System.Drawing.Size(680, 394);
+			this.layoutControlGroupPaymentDetails.Size = new System.Drawing.Size(680, 406);
 			this.layoutControlGroupPaymentDetails.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupPaymentDetails.Text = "What are you Selling?";
 			// 
@@ -1275,7 +1277,7 @@
 			this.layoutControlItemItemsContainer.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemItemsContainer.Name = "layoutControlItemItemsContainer";
 			this.layoutControlItemItemsContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemItemsContainer.Size = new System.Drawing.Size(680, 394);
+			this.layoutControlItemItemsContainer.Size = new System.Drawing.Size(680, 406);
 			this.layoutControlItemItemsContainer.Text = "Items Container";
 			this.layoutControlItemItemsContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemItemsContainer.TextVisible = false;
@@ -1309,7 +1311,7 @@
             this.layoutControlItemMonthlyInvestmentToggle,
             this.emptySpaceItem22,
             this.emptySpaceItem99});
-			this.layoutControlGroupInvestments.Location = new System.Drawing.Point(0, 475);
+			this.layoutControlGroupInvestments.Location = new System.Drawing.Point(0, 487);
 			this.layoutControlGroupInvestments.Name = "layoutControlGroupInvestments";
 			this.layoutControlGroupInvestments.Size = new System.Drawing.Size(696, 65);
 			this.layoutControlGroupInvestments.Text = "Investments";
@@ -1447,7 +1449,7 @@
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 540);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 552);
 			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
@@ -1473,7 +1475,7 @@
 			this.emptySpaceItem24.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem24.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem24.Name = "emptySpaceItem24";
-			this.emptySpaceItem24.Size = new System.Drawing.Size(10, 425);
+			this.emptySpaceItem24.Size = new System.Drawing.Size(10, 437);
 			this.emptySpaceItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
 			// 

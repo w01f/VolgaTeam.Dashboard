@@ -51,7 +51,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			AsyncHelper.RunSync(ScheduleTemplatesManager.Init);
 
 			SolutionsManager.LoadSolutions(ResourceManager.Instance.SolutionsConfigFile);
-			SolutionsManager.LoadSolutionData(AppProfileManager.Instance.AppDataFolder);
+			SolutionsManager.LoadSolutionData(ResourceManager.Instance.SolutionsDataFolder);
 
 			OutputManager.Init();
 			SlideSettingsManager.Instance.SettingsChanged += (o, e) => OutputManager.UpdateColors();

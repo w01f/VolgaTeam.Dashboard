@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
+using DevExpress.Skins;
 
 namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 {
@@ -16,6 +18,10 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			Text = SlideContainer.DashboardInfo.CleanslateTitle;
 			pictureEditHeader.Image = SlideContainer.DashboardInfo.CleanslateHeaderLogo;
 			pictureEditSplash.Image = SlideContainer.DashboardInfo.CleanslateSplashLogo;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);
+			layoutControl.MinimumSize = RectangleHelper.ScaleSize(layoutControl.MinimumSize, scaleFactor);
 		}
 
 		public override void LoadData() { }

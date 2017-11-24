@@ -29,6 +29,8 @@
 		private void InitializeComponent()
 		{
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
+			this.pictureEditSplash = new DevExpress.XtraEditors.PictureEdit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// superTooltip
@@ -36,13 +38,30 @@
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
+			// pictureEditSplash
+			// 
+			this.pictureEditSplash.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditSplash.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureEditSplash.Location = new System.Drawing.Point(0, 0);
+			this.pictureEditSplash.Name = "pictureEditSplash";
+			this.pictureEditSplash.Properties.AllowFocused = false;
+			this.pictureEditSplash.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditSplash.Properties.NullText = " ";
+			this.pictureEditSplash.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;
+			this.pictureEditSplash.Properties.ReadOnly = true;
+			this.pictureEditSplash.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditSplash.Properties.ShowMenu = false;
+			this.pictureEditSplash.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+			this.pictureEditSplash.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditSplash.Size = new System.Drawing.Size(997, 512);
+			this.pictureEditSplash.TabIndex = 2;
+			// 
 			// DashboardSlideControl
 			// 
-			this.BackColor = System.Drawing.Color.White;
-			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Controls.Add(this.pictureEditSplash);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "DashboardSlideControl";
 			this.Size = new System.Drawing.Size(997, 512);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -50,5 +69,6 @@
 		#endregion
 
 		protected DevComponents.DotNetBar.SuperTooltip superTooltip;
+		protected DevExpress.XtraEditors.PictureEdit pictureEditSplash;
 	}
 }

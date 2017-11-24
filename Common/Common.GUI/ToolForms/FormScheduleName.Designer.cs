@@ -387,7 +387,7 @@
 		private DevExpress.XtraEditors.StyleController styleController;
 		public DevExpress.XtraEditors.CheckEdit checkEditSaveAsTemplate;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
-		private DevExpress.XtraEditors.PictureEdit pictureEditLogo;
+	    public DevExpress.XtraEditors.PictureEdit pictureEditLogo;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemLogo;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;

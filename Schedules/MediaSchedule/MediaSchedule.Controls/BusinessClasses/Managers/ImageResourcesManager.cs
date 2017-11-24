@@ -9,11 +9,24 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Icon MainAppIcon { get; private set; }
 		public Image MainAppRibbonLogo { get; private set; }
 
+		#region Home Resources
+		public Image HomeDefaultLogo { get; private set; }
+		public Image HomeWeeklyScheduleImage { get; private set; }
+		public Image HomeMonthlyScheduleImage { get; private set; }
+		public Image HomeSnaphotShortcutImage { get; private set; }
+		public Image HomeOptionsShortcutImage { get; private set; }
+		public Image HomeCalendarShortcutImage { get; private set; }
+		public Image HomeNewSchedulePopupLogo { get; private set; }
+		public Image HomeOpenSchedulePopupImage { get; private set; }
+		public Image HomeDeleteSchedulePopupImage { get; private set; }
+		#endregion
+
 		#region Program Schedule Resources
 		public Image ProgramScheduleRibbonLogo { get; private set; }
 		public Image ProgramScheduleNoRecordsLogo { get; private set; }
 		public Image ProgramScheduleNoProgramsLogo { get; private set; }
 		public Image ProgramScheduleNoDigitalItemsLogo { get; private set; }
+		public Image ProgramScheduleNewPopupLogo { get; private set; }
 		#endregion
 
 		#region Snapshots Resources
@@ -21,6 +34,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image SnapshotsNoRecordsLogo { get; private set; }
 		public Image SnapshotsNoProgramsLogo { get; private set; }
 		public Image SnapshotsNoDigitalItemsLogo { get; private set; }
+		public Image SnapshotsNewPopupLogo { get; private set; }
 		#endregion
 
 		#region Options Resources
@@ -28,6 +42,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image OptionsNoRecordsLogo { get; private set; }
 		public Image OptionsNoProgramsLogo { get; private set; }
 		public Image OptionsNoDigitalItemsLogo { get; private set; }
+		public Image OptionsNewPopupLogo { get; private set; }
 		#endregion
 
 		#region Digital Resources
@@ -52,6 +67,44 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			if (File.Exists(resourceFile))
 				MainAppRibbonLogo = Image.FromFile(resourceFile);
 
+			#region Home Resources
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_default.png");
+			if (File.Exists(resourceFile))
+				HomeDefaultLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_top_1.png");
+			if (File.Exists(resourceFile))
+				HomeWeeklyScheduleImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_top_2.png");
+			if (File.Exists(resourceFile))
+				HomeMonthlyScheduleImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_bottom_3.png");
+			if (File.Exists(resourceFile))
+				HomeSnaphotShortcutImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_bottom_4.png");
+			if (File.Exists(resourceFile))
+				HomeOptionsShortcutImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_bottom_5.png");
+			if (File.Exists(resourceFile))
+				HomeCalendarShortcutImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_filename.png");
+			if (File.Exists(resourceFile))
+				HomeNewSchedulePopupLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_open.png");
+			if (File.Exists(resourceFile))
+				HomeOpenSchedulePopupImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_delete.png");
+			if (File.Exists(resourceFile))
+				HomeDeleteSchedulePopupImage = Image.FromFile(resourceFile);
+			#endregion
+
 			#region Program Schedule Resources
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "1d_schedule_group1.png");
 			if (File.Exists(resourceFile))
@@ -68,6 +121,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "1c_new_schedule_digital_line.png");
 			if (File.Exists(resourceFile))
 				ProgramScheduleNoDigitalItemsLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_schedule.png");
+			if (File.Exists(resourceFile))
+				ProgramScheduleNewPopupLogo = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Snapshots Resources
@@ -86,6 +143,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "2c_new_snapshot_digital_line.png");
 			if (File.Exists(resourceFile))
 				SnapshotsNoDigitalItemsLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_snapshot.png");
+			if (File.Exists(resourceFile))
+				SnapshotsNewPopupLogo = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Options Resources
@@ -104,6 +165,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "3c_new_options_digital_line.png");
 			if (File.Exists(resourceFile))
 				OptionsNoDigitalItemsLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_flex.png");
+			if (File.Exists(resourceFile))
+				OptionsNewPopupLogo = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Digital Resources

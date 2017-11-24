@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
@@ -44,7 +44,6 @@
 			this.pictureEditSalesRepLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.pictureEditDecisionMakerLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.checkEditAddAsPageOne = new DevExpress.XtraEditors.CheckEdit();
-			this.pictureEditSplash = new DevExpress.XtraEditors.PictureEdit();
 			this.pictureEditAdvertiserLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
@@ -79,13 +78,14 @@
 			this.simpleLabelItemSalesQuoteDefault = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemSplash = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupSalesQuoteValue = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.simpleLabelItemSalesQuoteAuthor = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.simpleLabelItemSalesQuoteValue = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -101,7 +101,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditSalesRepLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditDecisionMakerLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditAdvertiserLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
@@ -136,14 +135,17 @@
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesQuoteDefault)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSplash)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSalesQuoteValue)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesQuoteAuthor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesQuoteValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// pictureEditSplash
+			// 
 			// 
 			// styleController
 			// 
@@ -208,18 +210,19 @@
 			this.layoutControl.Controls.Add(this.pictureEditDecisionMakerLogo);
 			this.layoutControl.Controls.Add(this.checkEditAddAsPageOne);
 			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
-			this.layoutControl.Controls.Add(this.pictureEditSplash);
 			this.layoutControl.Controls.Add(this.pictureEditAdvertiserLogo);
-			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Left;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
+			this.layoutControl.MaximumSize = new System.Drawing.Size(800, 0);
+			this.layoutControl.MinimumSize = new System.Drawing.Size(800, 0);
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(628, 227, 333, 614);
 			this.layoutControl.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControl.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(1004, 548);
+			this.layoutControl.Size = new System.Drawing.Size(800, 548);
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 65;
 			// 
@@ -229,7 +232,7 @@
 			this.buttonXSalesQuote.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSalesQuote.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXSalesQuote.Image = global::Asa.Solutions.Dashboard.Properties.Resources.SalesQuotes;
-			this.buttonXSalesQuote.Location = new System.Drawing.Point(12, 400);
+			this.buttonXSalesQuote.Location = new System.Drawing.Point(12, 412);
 			this.buttonXSalesQuote.Name = "buttonXSalesQuote";
 			this.buttonXSalesQuote.Size = new System.Drawing.Size(196, 46);
 			this.buttonXSalesQuote.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -241,13 +244,13 @@
 			// dateEditPresentationDate
 			// 
 			this.dateEditPresentationDate.EditValue = null;
-			this.dateEditPresentationDate.Location = new System.Drawing.Point(578, 129);
+			this.dateEditPresentationDate.Location = new System.Drawing.Point(631, 129);
 			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
 			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Solutions.Dashboard.Properties.Resources.CalendarMonth, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::Asa.Solutions.Dashboard.Properties.Resources.CalendarMonth, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -267,7 +270,7 @@
 			// 
 			// checkEditPresentationDate
 			// 
-			this.checkEditPresentationDate.Location = new System.Drawing.Point(578, 92);
+			this.checkEditPresentationDate.Location = new System.Drawing.Point(631, 92);
 			this.checkEditPresentationDate.Name = "checkEditPresentationDate";
 			this.checkEditPresentationDate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditPresentationDate.Properties.Caption = "<size=+2>Presentation Date?</size>";
@@ -364,9 +367,9 @@
 			// 
 			this.pictureEditDateLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDateLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.Date;
-			this.pictureEditDateLogo.Location = new System.Drawing.Point(522, 100);
+			this.pictureEditDateLogo.Location = new System.Drawing.Point(575, 100);
 			this.pictureEditDateLogo.Name = "pictureEditDateLogo";
-	        this.pictureEditDateLogo.Properties.AllowFocused = false;
+			this.pictureEditDateLogo.Properties.AllowFocused = false;
 			this.pictureEditDateLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDateLogo.Properties.ReadOnly = true;
 			this.pictureEditDateLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -382,7 +385,7 @@
 			this.pictureEditSalesRepLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SalesRep;
 			this.pictureEditSalesRepLogo.Location = new System.Drawing.Point(12, 294);
 			this.pictureEditSalesRepLogo.Name = "pictureEditSalesRepLogo";
-	        this.pictureEditSalesRepLogo.Properties.AllowFocused = false;
+			this.pictureEditSalesRepLogo.Properties.AllowFocused = false;
 			this.pictureEditSalesRepLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditSalesRepLogo.Properties.ReadOnly = true;
 			this.pictureEditSalesRepLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -398,7 +401,7 @@
 			this.pictureEditDecisionMakerLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.DecisionMaker;
 			this.pictureEditDecisionMakerLogo.Location = new System.Drawing.Point(12, 195);
 			this.pictureEditDecisionMakerLogo.Name = "pictureEditDecisionMakerLogo";
-	        this.pictureEditDecisionMakerLogo.Properties.AllowFocused = false;
+			this.pictureEditDecisionMakerLogo.Properties.AllowFocused = false;
 			this.pictureEditDecisionMakerLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditDecisionMakerLogo.Properties.ReadOnly = true;
 			this.pictureEditDecisionMakerLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -411,30 +414,17 @@
 			// checkEditAddAsPageOne
 			// 
 			this.checkEditAddAsPageOne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditAddAsPageOne.Location = new System.Drawing.Point(883, 15);
+			this.checkEditAddAsPageOne.Location = new System.Drawing.Point(531, 15);
 			this.checkEditAddAsPageOne.Name = "checkEditAddAsPageOne";
 			this.checkEditAddAsPageOne.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
+			this.checkEditAddAsPageOne.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditAddAsPageOne.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.checkEditAddAsPageOne.Properties.Caption = "<color=gray>Always Output to Page 1</color>";
-			this.checkEditAddAsPageOne.Size = new System.Drawing.Size(272, 20);
+			this.checkEditAddAsPageOne.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.checkEditAddAsPageOne.Size = new System.Drawing.Size(257, 20);
 			this.checkEditAddAsPageOne.StyleController = this.layoutControl;
 			this.checkEditAddAsPageOne.TabIndex = 66;
 			this.checkEditAddAsPageOne.CheckedChanged += new System.EventHandler(this.OnEditValueChanged);
-			// 
-			// pictureEditSplash
-			// 
-			this.pictureEditSplash.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditSplash.Location = new System.Drawing.Point(747, 60);
-			this.pictureEditSplash.Name = "pictureEditSplash";
-			this.pictureEditSplash.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditSplash.Properties.NullText = " ";
-			this.pictureEditSplash.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;
-			this.pictureEditSplash.Properties.ReadOnly = true;
-			this.pictureEditSplash.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditSplash.Properties.ShowMenu = false;
-			this.pictureEditSplash.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditSplash.Size = new System.Drawing.Size(400, 461);
-			this.pictureEditSplash.StyleController = this.layoutControl;
-			this.pictureEditSplash.TabIndex = 4;
 			// 
 			// pictureEditAdvertiserLogo
 			// 
@@ -442,7 +432,7 @@
 			this.pictureEditAdvertiserLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.Advertiser;
 			this.pictureEditAdvertiserLogo.Location = new System.Drawing.Point(12, 94);
 			this.pictureEditAdvertiserLogo.Name = "pictureEditAdvertiserLogo";
-	        this.pictureEditAdvertiserLogo.Properties.AllowFocused = false;
+			this.pictureEditAdvertiserLogo.Properties.AllowFocused = false;
 			this.pictureEditAdvertiserLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditAdvertiserLogo.Properties.ReadOnly = true;
 			this.pictureEditAdvertiserLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -500,14 +490,14 @@
             this.layoutControlGroupSalesQuoteDefault,
             this.emptySpaceItem18,
             this.emptySpaceItem2,
-            this.layoutControlItemSplash,
             this.emptySpaceItem3,
             this.emptySpaceItem19,
-            this.layoutControlGroupSalesQuoteValue});
+            this.layoutControlGroupSalesQuoteValue,
+            this.emptySpaceItem4});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(1157, 531);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(800, 548);
 			// 
 			// layoutControlItemSlideHeader
 			// 
@@ -532,21 +522,20 @@
 			this.emptySpaceItem1.AllowHotTrack = false;
 			this.emptySpaceItem1.Location = new System.Drawing.Point(370, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(511, 50);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(159, 50);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemAddAsPageOneToggle
 			// 
+			this.layoutControlItemAddAsPageOneToggle.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.layoutControlItemAddAsPageOneToggle.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.layoutControlItemAddAsPageOneToggle.Control = this.checkEditAddAsPageOne;
 			this.layoutControlItemAddAsPageOneToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
-			this.layoutControlItemAddAsPageOneToggle.FillControlToClientArea = false;
-			this.layoutControlItemAddAsPageOneToggle.Location = new System.Drawing.Point(881, 0);
+			this.layoutControlItemAddAsPageOneToggle.Location = new System.Drawing.Point(529, 0);
 			this.layoutControlItemAddAsPageOneToggle.Name = "layoutControlItemAddAsPageOneToggle";
-			this.layoutControlItemAddAsPageOneToggle.Size = new System.Drawing.Size(276, 50);
+			this.layoutControlItemAddAsPageOneToggle.Size = new System.Drawing.Size(261, 50);
 			this.layoutControlItemAddAsPageOneToggle.Text = "Add As Page One Toggle";
-			this.layoutControlItemAddAsPageOneToggle.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemAddAsPageOneToggle.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemAddAsPageOneToggle.TextToControlDistance = 0;
 			this.layoutControlItemAddAsPageOneToggle.TextVisible = false;
 			this.layoutControlItemAddAsPageOneToggle.TrimClientAreaToControl = false;
 			// 
@@ -603,7 +592,7 @@
 			this.layoutControlItemDateLogo.Control = this.pictureEditDateLogo;
 			this.layoutControlItemDateLogo.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemDateLogo.FillControlToClientArea = false;
-			this.layoutControlItemDateLogo.Location = new System.Drawing.Point(520, 90);
+			this.layoutControlItemDateLogo.Location = new System.Drawing.Point(573, 90);
 			this.layoutControlItemDateLogo.MaxSize = new System.Drawing.Size(56, 56);
 			this.layoutControlItemDateLogo.MinSize = new System.Drawing.Size(56, 56);
 			this.layoutControlItemDateLogo.Name = "layoutControlItemDateLogo";
@@ -617,9 +606,9 @@
 			// emptySpaceItem6
 			// 
 			this.emptySpaceItem6.AllowHotTrack = false;
-			this.emptySpaceItem6.Location = new System.Drawing.Point(520, 162);
+			this.emptySpaceItem6.Location = new System.Drawing.Point(573, 162);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(217, 224);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(217, 236);
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem7
@@ -729,7 +718,7 @@
 			this.emptySpaceItem10.AllowHotTrack = false;
 			this.emptySpaceItem10.Location = new System.Drawing.Point(10, 348);
 			this.emptySpaceItem10.Name = "emptySpaceItem10";
-			this.emptySpaceItem10.Size = new System.Drawing.Size(56, 38);
+			this.emptySpaceItem10.Size = new System.Drawing.Size(56, 50);
 			this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem11
@@ -757,7 +746,7 @@
 			this.simpleLabelItemSalesRepEmail.MaxSize = new System.Drawing.Size(200, 0);
 			this.simpleLabelItemSalesRepEmail.MinSize = new System.Drawing.Size(200, 1);
 			this.simpleLabelItemSalesRepEmail.Name = "simpleLabelItemSalesRepEmail";
-			this.simpleLabelItemSalesRepEmail.Size = new System.Drawing.Size(200, 20);
+			this.simpleLabelItemSalesRepEmail.Size = new System.Drawing.Size(200, 32);
 			this.simpleLabelItemSalesRepEmail.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemSalesRepEmail.Text = " ";
 			this.simpleLabelItemSalesRepEmail.TextSize = new System.Drawing.Size(0, 16);
@@ -776,7 +765,7 @@
 			this.simpleLabelItemSalesRepPhone.MaxSize = new System.Drawing.Size(154, 0);
 			this.simpleLabelItemSalesRepPhone.MinSize = new System.Drawing.Size(154, 1);
 			this.simpleLabelItemSalesRepPhone.Name = "simpleLabelItemSalesRepPhone";
-			this.simpleLabelItemSalesRepPhone.Size = new System.Drawing.Size(154, 20);
+			this.simpleLabelItemSalesRepPhone.Size = new System.Drawing.Size(154, 32);
 			this.simpleLabelItemSalesRepPhone.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemSalesRepPhone.Text = " ";
 			this.simpleLabelItemSalesRepPhone.TextSize = new System.Drawing.Size(0, 16);
@@ -784,7 +773,7 @@
 			// layoutControlItemDateToggle
 			// 
 			this.layoutControlItemDateToggle.Control = this.checkEditPresentationDate;
-			this.layoutControlItemDateToggle.Location = new System.Drawing.Point(576, 90);
+			this.layoutControlItemDateToggle.Location = new System.Drawing.Point(629, 90);
 			this.layoutControlItemDateToggle.Name = "layoutControlItemDateToggle";
 			this.layoutControlItemDateToggle.Size = new System.Drawing.Size(161, 26);
 			this.layoutControlItemDateToggle.Text = "Date Toggle";
@@ -799,7 +788,7 @@
 			this.layoutControlItemDateValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemDateValue.Enabled = false;
 			this.layoutControlItemDateValue.FillControlToClientArea = false;
-			this.layoutControlItemDateValue.Location = new System.Drawing.Point(576, 126);
+			this.layoutControlItemDateValue.Location = new System.Drawing.Point(629, 126);
 			this.layoutControlItemDateValue.MaxSize = new System.Drawing.Size(154, 0);
 			this.layoutControlItemDateValue.MinSize = new System.Drawing.Size(154, 36);
 			this.layoutControlItemDateValue.Name = "layoutControlItemDateValue";
@@ -815,7 +804,7 @@
 			// emptySpaceItem12
 			// 
 			this.emptySpaceItem12.AllowHotTrack = false;
-			this.emptySpaceItem12.Location = new System.Drawing.Point(576, 116);
+			this.emptySpaceItem12.Location = new System.Drawing.Point(629, 116);
 			this.emptySpaceItem12.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem12.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem12.Name = "emptySpaceItem12";
@@ -828,7 +817,7 @@
 			this.layoutControlItemSalesQuoteButton.Control = this.buttonXSalesQuote;
 			this.layoutControlItemSalesQuoteButton.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemSalesQuoteButton.FillControlToClientArea = false;
-			this.layoutControlItemSalesQuoteButton.Location = new System.Drawing.Point(10, 398);
+			this.layoutControlItemSalesQuoteButton.Location = new System.Drawing.Point(10, 410);
 			this.layoutControlItemSalesQuoteButton.MaxSize = new System.Drawing.Size(200, 50);
 			this.layoutControlItemSalesQuoteButton.MinSize = new System.Drawing.Size(200, 50);
 			this.layoutControlItemSalesQuoteButton.Name = "layoutControlItemSalesQuoteButton";
@@ -843,41 +832,38 @@
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
 			this.emptySpaceItem5.Location = new System.Drawing.Point(420, 90);
-			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(100, 0);
-			this.emptySpaceItem5.MinSize = new System.Drawing.Size(100, 10);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(100, 296);
-			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem5.Size = new System.Drawing.Size(153, 308);
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem14
 			// 
 			this.emptySpaceItem14.AllowHotTrack = false;
-			this.emptySpaceItem14.Location = new System.Drawing.Point(210, 398);
+			this.emptySpaceItem14.Location = new System.Drawing.Point(210, 410);
 			this.emptySpaceItem14.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem14.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem14.Name = "emptySpaceItem14";
-			this.emptySpaceItem14.Size = new System.Drawing.Size(10, 113);
+			this.emptySpaceItem14.Size = new System.Drawing.Size(10, 118);
 			this.emptySpaceItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem15
 			// 
 			this.emptySpaceItem15.AllowHotTrack = false;
-			this.emptySpaceItem15.Location = new System.Drawing.Point(10, 511);
+			this.emptySpaceItem15.Location = new System.Drawing.Point(10, 528);
 			this.emptySpaceItem15.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem15.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem15.Name = "emptySpaceItem15";
-			this.emptySpaceItem15.Size = new System.Drawing.Size(727, 20);
+			this.emptySpaceItem15.Size = new System.Drawing.Size(780, 20);
 			this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem16
 			// 
 			this.emptySpaceItem16.AllowHotTrack = false;
-			this.emptySpaceItem16.Location = new System.Drawing.Point(10, 448);
+			this.emptySpaceItem16.Location = new System.Drawing.Point(10, 460);
 			this.emptySpaceItem16.Name = "emptySpaceItem16";
-			this.emptySpaceItem16.Size = new System.Drawing.Size(200, 63);
+			this.emptySpaceItem16.Size = new System.Drawing.Size(200, 68);
 			this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlGroupSalesQuoteDefault
@@ -886,9 +872,9 @@
 			this.layoutControlGroupSalesQuoteDefault.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem17,
             this.simpleLabelItemSalesQuoteDefault});
-			this.layoutControlGroupSalesQuoteDefault.Location = new System.Drawing.Point(220, 398);
+			this.layoutControlGroupSalesQuoteDefault.Location = new System.Drawing.Point(220, 410);
 			this.layoutControlGroupSalesQuoteDefault.Name = "layoutControlGroupSalesQuoteDefault";
-			this.layoutControlGroupSalesQuoteDefault.Size = new System.Drawing.Size(253, 113);
+			this.layoutControlGroupSalesQuoteDefault.Size = new System.Drawing.Size(104, 118);
 			this.layoutControlGroupSalesQuoteDefault.Text = "Sales Quote Default";
 			this.layoutControlGroupSalesQuoteDefault.TextVisible = false;
 			this.layoutControlGroupSalesQuoteDefault.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -898,7 +884,7 @@
 			this.emptySpaceItem17.AllowHotTrack = false;
 			this.emptySpaceItem17.Location = new System.Drawing.Point(0, 50);
 			this.emptySpaceItem17.Name = "emptySpaceItem17";
-			this.emptySpaceItem17.Size = new System.Drawing.Size(253, 63);
+			this.emptySpaceItem17.Size = new System.Drawing.Size(104, 68);
 			this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// simpleLabelItemSalesQuoteDefault
@@ -914,7 +900,7 @@
 			this.simpleLabelItemSalesQuoteDefault.MaxSize = new System.Drawing.Size(0, 50);
 			this.simpleLabelItemSalesQuoteDefault.MinSize = new System.Drawing.Size(1, 50);
 			this.simpleLabelItemSalesQuoteDefault.Name = "simpleLabelItemSalesQuoteDefault";
-			this.simpleLabelItemSalesQuoteDefault.Size = new System.Drawing.Size(253, 50);
+			this.simpleLabelItemSalesQuoteDefault.Size = new System.Drawing.Size(104, 50);
 			this.simpleLabelItemSalesQuoteDefault.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemSalesQuoteDefault.Text = "<size=+2><i>Add “Words of Wisdom” to your cover page…</i></size>";
 			this.simpleLabelItemSalesQuoteDefault.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -923,9 +909,9 @@
 			// emptySpaceItem18
 			// 
 			this.emptySpaceItem18.AllowHotTrack = false;
-			this.emptySpaceItem18.Location = new System.Drawing.Point(10, 386);
+			this.emptySpaceItem18.Location = new System.Drawing.Point(10, 398);
 			this.emptySpaceItem18.Name = "emptySpaceItem18";
-			this.emptySpaceItem18.Size = new System.Drawing.Size(727, 12);
+			this.emptySpaceItem18.Size = new System.Drawing.Size(780, 12);
 			this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem2
@@ -939,22 +925,6 @@
 			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// layoutControlItemSplash
-			// 
-			this.layoutControlItemSplash.Control = this.pictureEditSplash;
-			this.layoutControlItemSplash.ControlAlignment = System.Drawing.ContentAlignment.BottomRight;
-			this.layoutControlItemSplash.FillControlToClientArea = false;
-			this.layoutControlItemSplash.Location = new System.Drawing.Point(737, 50);
-			this.layoutControlItemSplash.MinSize = new System.Drawing.Size(420, 21);
-			this.layoutControlItemSplash.Name = "layoutControlItemSplash";
-			this.layoutControlItemSplash.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-			this.layoutControlItemSplash.Size = new System.Drawing.Size(420, 481);
-			this.layoutControlItemSplash.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemSplash.Text = "Splash";
-			this.layoutControlItemSplash.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemSplash.TextVisible = false;
-			this.layoutControlItemSplash.TrimClientAreaToControl = false;
-			// 
 			// emptySpaceItem3
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
@@ -962,7 +932,7 @@
 			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(727, 40);
+			this.emptySpaceItem3.Size = new System.Drawing.Size(780, 40);
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -973,7 +943,7 @@
 			this.emptySpaceItem19.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem19.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem19.Name = "emptySpaceItem19";
-			this.emptySpaceItem19.Size = new System.Drawing.Size(10, 481);
+			this.emptySpaceItem19.Size = new System.Drawing.Size(10, 498);
 			this.emptySpaceItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -984,9 +954,9 @@
             this.simpleLabelItemSalesQuoteAuthor,
             this.emptySpaceItem13,
             this.simpleLabelItemSalesQuoteValue});
-			this.layoutControlGroupSalesQuoteValue.Location = new System.Drawing.Point(473, 398);
+			this.layoutControlGroupSalesQuoteValue.Location = new System.Drawing.Point(324, 410);
 			this.layoutControlGroupSalesQuoteValue.Name = "layoutControlGroupSalesQuoteValue";
-			this.layoutControlGroupSalesQuoteValue.Size = new System.Drawing.Size(264, 113);
+			this.layoutControlGroupSalesQuoteValue.Size = new System.Drawing.Size(466, 118);
 			this.layoutControlGroupSalesQuoteValue.Text = "Sales Quote Value";
 			this.layoutControlGroupSalesQuoteValue.TextVisible = false;
 			this.layoutControlGroupSalesQuoteValue.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1004,7 +974,7 @@
 			this.simpleLabelItemSalesQuoteAuthor.MaxSize = new System.Drawing.Size(0, 25);
 			this.simpleLabelItemSalesQuoteAuthor.MinSize = new System.Drawing.Size(1, 25);
 			this.simpleLabelItemSalesQuoteAuthor.Name = "simpleLabelItemSalesQuoteAuthor";
-			this.simpleLabelItemSalesQuoteAuthor.Size = new System.Drawing.Size(264, 25);
+			this.simpleLabelItemSalesQuoteAuthor.Size = new System.Drawing.Size(466, 25);
 			this.simpleLabelItemSalesQuoteAuthor.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemSalesQuoteAuthor.Text = " ";
 			this.simpleLabelItemSalesQuoteAuthor.TextSize = new System.Drawing.Size(0, 16);
@@ -1016,7 +986,7 @@
 			this.emptySpaceItem13.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem13.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem13.Name = "emptySpaceItem13";
-			this.emptySpaceItem13.Size = new System.Drawing.Size(264, 10);
+			this.emptySpaceItem13.Size = new System.Drawing.Size(466, 10);
 			this.emptySpaceItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1032,16 +1002,30 @@
 			this.simpleLabelItemSalesQuoteValue.Location = new System.Drawing.Point(0, 35);
 			this.simpleLabelItemSalesQuoteValue.MinSize = new System.Drawing.Size(1, 1);
 			this.simpleLabelItemSalesQuoteValue.Name = "simpleLabelItemSalesQuoteValue";
-			this.simpleLabelItemSalesQuoteValue.Size = new System.Drawing.Size(264, 78);
+			this.simpleLabelItemSalesQuoteValue.Size = new System.Drawing.Size(466, 83);
 			this.simpleLabelItemSalesQuoteValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemSalesQuoteValue.Text = " ";
 			this.simpleLabelItemSalesQuoteValue.TextSize = new System.Drawing.Size(0, 16);
+			// 
+			// emptySpaceItem4
+			// 
+			this.emptySpaceItem4.AllowHotTrack = false;
+			this.emptySpaceItem4.Location = new System.Drawing.Point(790, 0);
+			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem4.Name = "emptySpaceItem4";
+			this.emptySpaceItem4.Size = new System.Drawing.Size(10, 548);
+			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// CoverControl
 			// 
 			this.Controls.Add(this.layoutControl);
 			this.Name = "CoverControl";
 			this.Size = new System.Drawing.Size(1004, 548);
+			this.Controls.SetChildIndex(this.layoutControl, 0);
+			this.Controls.SetChildIndex(this.pictureEditSplash, 0);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
@@ -1057,7 +1041,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditSalesRepLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditDecisionMakerLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditAdvertiserLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
@@ -1092,13 +1075,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesQuoteDefault)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSplash)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupSalesQuoteValue)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesQuoteAuthor)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesQuoteValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1107,9 +1090,7 @@
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
-		private DevExpress.XtraEditors.PictureEdit pictureEditSplash;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSplash;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
@@ -1160,5 +1141,6 @@
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem18;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem19;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
 	}
 }

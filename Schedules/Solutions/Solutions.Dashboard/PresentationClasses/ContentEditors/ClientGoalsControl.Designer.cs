@@ -30,7 +30,6 @@
         {
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.pictureEditSplash = new DevExpress.XtraEditors.PictureEdit();
 			this.comboBoxEditGoal1 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.comboBoxEditGoal2 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.comboBoxEditGoal3 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -53,11 +52,9 @@
 			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemGoal5 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemSplash = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal3.Properties)).BeginInit();
@@ -80,7 +77,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGoal5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSplash)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// layoutControl
@@ -99,22 +95,23 @@
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
 			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
-			this.layoutControl.Controls.Add(this.pictureEditSplash);
 			this.layoutControl.Controls.Add(this.comboBoxEditGoal1);
 			this.layoutControl.Controls.Add(this.comboBoxEditGoal2);
 			this.layoutControl.Controls.Add(this.comboBoxEditGoal3);
 			this.layoutControl.Controls.Add(this.comboBoxEditGoal4);
 			this.layoutControl.Controls.Add(this.comboBoxEditGoal5);
-			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Left;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
+			this.layoutControl.MaximumSize = new System.Drawing.Size(800, 0);
+			this.layoutControl.MinimumSize = new System.Drawing.Size(800, 0);
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControl.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(765, 621);
+			this.layoutControl.Size = new System.Drawing.Size(800, 621);
 			this.layoutControl.TabIndex = 66;
 			this.layoutControl.Text = "layoutControl1";
 			// 
@@ -139,23 +136,6 @@
 			this.comboBoxEditSlideHeader.TabIndex = 28;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
-			// pictureEditSplash
-			// 
-			this.pictureEditSplash.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditSplash.Location = new System.Drawing.Point(475, 60);
-			this.pictureEditSplash.Name = "pictureEditSplash";
-	        this.pictureEditSplash.Properties.AllowFocused = false;
-			this.pictureEditSplash.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditSplash.Properties.NullText = " ";
-			this.pictureEditSplash.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomRight;
-			this.pictureEditSplash.Properties.ReadOnly = true;
-			this.pictureEditSplash.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditSplash.Properties.ShowMenu = false;
-			this.pictureEditSplash.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditSplash.Size = new System.Drawing.Size(280, 551);
-			this.pictureEditSplash.StyleController = this.layoutControl;
-			this.pictureEditSplash.TabIndex = 4;
-			// 
 			// comboBoxEditGoal1
 			// 
 			this.comboBoxEditGoal1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -175,7 +155,7 @@
 			this.comboBoxEditGoal1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditGoal1.Properties.NullText = "Select or Type";
-			this.comboBoxEditGoal1.Size = new System.Drawing.Size(404, 22);
+			this.comboBoxEditGoal1.Size = new System.Drawing.Size(749, 22);
 			this.comboBoxEditGoal1.StyleController = this.layoutControl;
 			this.comboBoxEditGoal1.TabIndex = 66;
 			this.comboBoxEditGoal1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -199,7 +179,7 @@
 			this.comboBoxEditGoal2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditGoal2.Properties.NullText = "Select or Type";
-			this.comboBoxEditGoal2.Size = new System.Drawing.Size(404, 22);
+			this.comboBoxEditGoal2.Size = new System.Drawing.Size(749, 22);
 			this.comboBoxEditGoal2.StyleController = this.layoutControl;
 			this.comboBoxEditGoal2.TabIndex = 66;
 			this.comboBoxEditGoal2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -223,7 +203,7 @@
 			this.comboBoxEditGoal3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditGoal3.Properties.NullText = "Select or Type";
-			this.comboBoxEditGoal3.Size = new System.Drawing.Size(404, 22);
+			this.comboBoxEditGoal3.Size = new System.Drawing.Size(749, 22);
 			this.comboBoxEditGoal3.StyleController = this.layoutControl;
 			this.comboBoxEditGoal3.TabIndex = 67;
 			this.comboBoxEditGoal3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -247,7 +227,7 @@
 			this.comboBoxEditGoal4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditGoal4.Properties.NullText = "Select or Type";
-			this.comboBoxEditGoal4.Size = new System.Drawing.Size(404, 22);
+			this.comboBoxEditGoal4.Size = new System.Drawing.Size(749, 22);
 			this.comboBoxEditGoal4.StyleController = this.layoutControl;
 			this.comboBoxEditGoal4.TabIndex = 68;
 			this.comboBoxEditGoal4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -271,7 +251,7 @@
 			this.comboBoxEditGoal5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditGoal5.Properties.NullText = "Select or Type";
-			this.comboBoxEditGoal5.Size = new System.Drawing.Size(404, 22);
+			this.comboBoxEditGoal5.Size = new System.Drawing.Size(749, 22);
 			this.comboBoxEditGoal5.StyleController = this.layoutControl;
 			this.comboBoxEditGoal5.TabIndex = 69;
 			this.comboBoxEditGoal5.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -309,12 +289,11 @@
             this.layoutControlItemGoal4,
             this.emptySpaceItem8,
             this.layoutControlItemGoal5,
-            this.emptySpaceItem4,
-            this.layoutControlItemSplash});
+            this.emptySpaceItem4});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(765, 621);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(800, 621);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemSlideHeader
@@ -338,7 +317,7 @@
 			this.emptySpaceItem1.AllowHotTrack = false;
 			this.emptySpaceItem1.Location = new System.Drawing.Point(370, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(395, 50);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(430, 50);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem2
@@ -359,7 +338,7 @@
 			this.emptySpaceItemMain.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItemMain.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItemMain.Name = "emptySpaceItemMain";
-			this.emptySpaceItemMain.Size = new System.Drawing.Size(445, 40);
+			this.emptySpaceItemMain.Size = new System.Drawing.Size(790, 40);
 			this.emptySpaceItemMain.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItemMain.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -371,7 +350,7 @@
 			this.item0.MaxSize = new System.Drawing.Size(0, 50);
 			this.item0.MinSize = new System.Drawing.Size(10, 50);
 			this.item0.Name = "item0";
-			this.item0.Size = new System.Drawing.Size(435, 50);
+			this.item0.Size = new System.Drawing.Size(780, 50);
 			this.item0.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.item0.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -383,7 +362,7 @@
 			this.layoutControlItemGoal1.CustomizationFormText = "<size=+6><b>1</b></size>";
 			this.layoutControlItemGoal1.Location = new System.Drawing.Point(10, 90);
 			this.layoutControlItemGoal1.Name = "layoutControlItemGoal1";
-			this.layoutControlItemGoal1.Size = new System.Drawing.Size(435, 28);
+			this.layoutControlItemGoal1.Size = new System.Drawing.Size(780, 28);
 			this.layoutControlItemGoal1.Text = "<size=+6><b>1</b></size>";
 			this.layoutControlItemGoal1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemGoal1.TextSize = new System.Drawing.Size(12, 24);
@@ -410,7 +389,7 @@
 			this.layoutControlItemGoal2.CustomizationFormText = "<size=+6><b>2</b></size>";
 			this.layoutControlItemGoal2.Location = new System.Drawing.Point(10, 168);
 			this.layoutControlItemGoal2.Name = "layoutControlItemGoal2";
-			this.layoutControlItemGoal2.Size = new System.Drawing.Size(435, 28);
+			this.layoutControlItemGoal2.Size = new System.Drawing.Size(780, 28);
 			this.layoutControlItemGoal2.Text = "<size=+6><b>2</b></size>";
 			this.layoutControlItemGoal2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemGoal2.TextSize = new System.Drawing.Size(12, 24);
@@ -425,7 +404,7 @@
 			this.layoutControlItemGoal3.CustomizationFormText = "<size=+6><b>3</b></size>";
 			this.layoutControlItemGoal3.Location = new System.Drawing.Point(10, 246);
 			this.layoutControlItemGoal3.Name = "layoutControlItemGoal3";
-			this.layoutControlItemGoal3.Size = new System.Drawing.Size(435, 28);
+			this.layoutControlItemGoal3.Size = new System.Drawing.Size(780, 28);
 			this.layoutControlItemGoal3.Text = "<size=+6><b>3</b></size>";
 			this.layoutControlItemGoal3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemGoal3.TextSize = new System.Drawing.Size(12, 24);
@@ -440,7 +419,7 @@
 			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(0, 50);
 			this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 50);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(435, 50);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(780, 50);
 			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -452,7 +431,7 @@
 			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(0, 50);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 50);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(435, 50);
+			this.emptySpaceItem5.Size = new System.Drawing.Size(780, 50);
 			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -464,7 +443,7 @@
 			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(0, 50);
 			this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 50);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(435, 50);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(780, 50);
 			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -476,7 +455,7 @@
 			this.layoutControlItemGoal4.CustomizationFormText = "<size=+6><b>4</b></size>";
 			this.layoutControlItemGoal4.Location = new System.Drawing.Point(10, 324);
 			this.layoutControlItemGoal4.Name = "layoutControlItemGoal4";
-			this.layoutControlItemGoal4.Size = new System.Drawing.Size(435, 28);
+			this.layoutControlItemGoal4.Size = new System.Drawing.Size(780, 28);
 			this.layoutControlItemGoal4.Text = "<size=+6><b>4</b></size>";
 			this.layoutControlItemGoal4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemGoal4.TextSize = new System.Drawing.Size(12, 24);
@@ -489,7 +468,7 @@
 			this.emptySpaceItem8.CustomizationFormText = "emptySpaceItem8";
 			this.emptySpaceItem8.Location = new System.Drawing.Point(10, 430);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(435, 191);
+			this.emptySpaceItem8.Size = new System.Drawing.Size(780, 191);
 			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemGoal5
@@ -500,7 +479,7 @@
 			this.layoutControlItemGoal5.CustomizationFormText = "<size=+6><b>5</b></size>";
 			this.layoutControlItemGoal5.Location = new System.Drawing.Point(10, 402);
 			this.layoutControlItemGoal5.Name = "layoutControlItemGoal5";
-			this.layoutControlItemGoal5.Size = new System.Drawing.Size(435, 28);
+			this.layoutControlItemGoal5.Size = new System.Drawing.Size(780, 28);
 			this.layoutControlItemGoal5.Text = "<size=+6><b>5</b></size>";
 			this.layoutControlItemGoal5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemGoal5.TextSize = new System.Drawing.Size(12, 24);
@@ -511,39 +490,22 @@
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
 			this.emptySpaceItem4.CustomizationFormText = "emptySpaceItem4";
-			this.emptySpaceItem4.Location = new System.Drawing.Point(445, 50);
-			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(20, 0);
-			this.emptySpaceItem4.MinSize = new System.Drawing.Size(20, 10);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(790, 50);
+			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(20, 571);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(10, 571);
 			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemSplash
-			// 
-			this.layoutControlItemSplash.Control = this.pictureEditSplash;
-			this.layoutControlItemSplash.ControlAlignment = System.Drawing.ContentAlignment.BottomRight;
-			this.layoutControlItemSplash.FillControlToClientArea = false;
-			this.layoutControlItemSplash.Location = new System.Drawing.Point(465, 50);
-			this.layoutControlItemSplash.MinSize = new System.Drawing.Size(300, 1);
-			this.layoutControlItemSplash.Name = "layoutControlItemSplash";
-			this.layoutControlItemSplash.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-			this.layoutControlItemSplash.Size = new System.Drawing.Size(300, 571);
-			this.layoutControlItemSplash.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemSplash.Text = "Splash";
-			this.layoutControlItemSplash.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemSplash.TextVisible = false;
-			this.layoutControlItemSplash.TrimClientAreaToControl = false;
 			// 
 			// ClientGoalsControl
 			// 
 			this.Controls.Add(this.layoutControl);
 			this.Name = "ClientGoalsControl";
-			this.Size = new System.Drawing.Size(765, 621);
+			this.Size = new System.Drawing.Size(877, 621);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal3.Properties)).EndInit();
@@ -566,7 +528,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGoal5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSplash)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -575,9 +536,7 @@
 
 		protected DevExpress.XtraLayout.LayoutControl layoutControl;
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
-		protected DevExpress.XtraEditors.PictureEdit pictureEditSplash;
 		protected DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
-		protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemSplash;
 		protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 		protected DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;

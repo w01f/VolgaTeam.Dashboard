@@ -57,7 +57,7 @@ namespace Asa.Browser.Controls.InteropClasses
 				{
 					var activeSlideIndex = target.GetActiveSlideIndex();
 					var presentation = target.PowerPointObject.Presentations.Open(filePath, WithWindow: MsoTriState.msoFalse);
-					target.AppendSlide(presentation, activeSlideIndex);
+					target.AppendSlide(presentation, -1, indexToPaste: activeSlideIndex);
 					presentation.Close();
 				});
 				thread.Start();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Asa.Common.Core.Helpers;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
 
@@ -23,6 +24,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public FormSnapshotName()
 		{
 			InitializeComponent();
+
+			pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNewPopupLogo ?? pictureEditLogo.Image;
 
 			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));

@@ -23,6 +23,8 @@ namespace Asa.Media.Controls.ToolForms
 		{
 			InitializeComponent();
 			barStaticItemLogo.Glyph = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? barStaticItemLogo.Glyph;
+			barLargeButtonItemOpen.Glyph = BusinessObjects.Instance.ImageResourcesManager.HomeOpenSchedulePopupImage ?? barLargeButtonItemOpen.Glyph;
+			barLargeButtonItemDelete.Glyph = BusinessObjects.Instance.ImageResourcesManager.HomeDeleteSchedulePopupImage ?? barLargeButtonItemDelete.Glyph;
 			gridColumnSchedulesLastModifiedDate.SortIndex = 0;
 			gridColumnSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
 		}
@@ -47,12 +49,6 @@ namespace Asa.Media.Controls.ToolForms
 		private void OnScheduleDeleteDeleteItemClick(object sender, ItemClickEventArgs e)
 		{
 			DeleteSchedule();
-		}
-
-		private void OnExitItemClick(object sender, ItemClickEventArgs e)
-		{
-			DialogResult = DialogResult.None;
-			Close();
 		}
 
 		private void OnSelectedTabPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)

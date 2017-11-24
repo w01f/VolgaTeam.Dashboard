@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
-using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 {
@@ -46,7 +43,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			UpdateDates();
 			UpdateSaveAvailability();
 			UpdateWeeksCount();
-			UpdateFlexFlightDatesWarning();
 
 			_loading = false;
 		}
@@ -81,47 +77,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			}
 			else
 				simpleLabelItemTitle.Text = "Select your campaign dates";
-		}
-
-		private void UpdateFlexFlightDatesWarning()
-		{
-			if (!MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed) return;
-
-			var warningText = new List<string>();
-			if (DateStart.HasValue)
-			{
-				var startDate = DateStart.Value;
-				if (startDate.DayOfWeek != StartDayOfWeek)
-				{
-					var weekEnd = startDate;
-					while (weekEnd.DayOfWeek != EndDayOfWeek)
-						weekEnd = weekEnd.AddDays(1);
-					warningText.Add(String.Format("*The FIRST WEEK of your schedule STARTS on a {0}", startDate.DayOfWeek));
-				}
-			}
-			if (DateEnd.HasValue)
-			{
-				var endDate = DateEnd.Value;
-				if (endDate.DayOfWeek != EndDayOfWeek)
-				{
-					var weekStart = endDate;
-					while (weekStart.DayOfWeek != StartDayOfWeek)
-						weekStart = weekStart.AddDays(-1);
-					warningText.Add(String.Format("*The LAST WEEK of your schedule ENDS on a {0}", endDate.DayOfWeek));
-				}
-			}
-
-			if (warningText.Any())
-			{
-				simpleLabelItemWarnings.Text = String.Format("<color=\"Red\">{0}</color>",
-					String.Join("<br>", warningText));
-				simpleLabelItemWarnings.Visibility = LayoutVisibility.Always;
-			}
-			else
-			{
-				simpleLabelItemWarnings.Text = String.Empty;
-				simpleLabelItemWarnings.Visibility = LayoutVisibility.Never;
-			}
 		}
 
 		private void OnDateStartChanged(object sender, EventArgs e)
@@ -205,7 +160,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			UpdateDates();
 			UpdateSaveAvailability();
 			UpdateWeeksCount();
-			UpdateFlexFlightDatesWarning();
 		}
 	}
 }

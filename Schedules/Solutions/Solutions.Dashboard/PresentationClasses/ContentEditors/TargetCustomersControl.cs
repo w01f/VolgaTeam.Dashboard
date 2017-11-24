@@ -44,6 +44,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			pictureEditSplash.Image = SlideContainer.DashboardInfo.TargeCustomersSplashLogo;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControl.MaximumSize = RectangleHelper.ScaleSize(layoutControl.MaximumSize, scaleFactor);
+			layoutControl.MinimumSize = RectangleHelper.ScaleSize(layoutControl.MinimumSize, scaleFactor);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
 			checkedListBoxControlTargetDemo.ItemHeight = (Int32)(checkedListBoxControlTargetDemo.ItemHeight * scaleFactor.Height);

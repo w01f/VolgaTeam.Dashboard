@@ -93,6 +93,13 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			base.InitControl();
 
+			pictureEditDefaultTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDefaultLogo ?? pictureEditDefaultTitle.Image;
+			buttonXWeeklySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeWeeklyScheduleImage ?? buttonXWeeklySchedule.Image;
+			buttonXMonthlySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeMonthlyScheduleImage ?? buttonXMonthlySchedule.Image;
+			buttonXSnapshot.Image = BusinessObjects.Instance.ImageResourcesManager.HomeSnaphotShortcutImage ?? buttonXSnapshot.Image;
+			buttonXOptions.Image = BusinessObjects.Instance.ImageResourcesManager.HomeOptionsShortcutImage ?? buttonXOptions.Image;
+			buttonXCalendar.Image = BusinessObjects.Instance.ImageResourcesManager.HomeCalendarShortcutImage ?? buttonXCalendar.Image;
+
 			stationsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 
 			Controller.Instance.ContentController.RibbonTabsStateChanged += OnRibbonRibbonTabsStateChanged;
@@ -171,12 +178,20 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			EditedSettings.BusinessName = Controller.Instance.HomeBusinessName.EditValue as String;
 			EditedSettings.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
 			EditedSettings.PresentationDate = (DateTime?)Controller.Instance.HomePresentationDate.EditValue;
-			EditedSettings.UseDemo = !checkEditDemosDisabled.Checked;
-			if (checkEditDemosRtg.Checked)
-				EditedSettings.DemoType = DemoType.Rtg;
-			else if (checkEditDemosImps.Checked)
-				EditedSettings.DemoType = DemoType.Imp;
-			EditedSettings.Demo = comboBoxEditDemos.EditValue as String;
+			if (checkEditDemosDisabled.Checked)
+			{
+				EditedSettings.UseDemo = false;
+				EditedSettings.Demo = null;
+			}
+			else
+			{
+				EditedSettings.UseDemo = true;
+				if (checkEditDemosRtg.Checked)
+					EditedSettings.DemoType = DemoType.Rtg;
+				else if (checkEditDemosImps.Checked)
+					EditedSettings.DemoType = DemoType.Imp;
+				EditedSettings.Demo = comboBoxEditDemos.EditValue as String;
+			}
 
 			if (stationsControl.HasChanged)
 			{
@@ -402,6 +417,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			comboBoxEditDemos.Properties.Items.Clear();
 			comboBoxEditDemos.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.CustomDemos);
+			comboBoxEditDemos.EditValue = MediaMetaData.Instance.ListManager.CustomDemos.FirstOrDefault();
 
 			if (EditedSettings.UseDemo)
 			{
@@ -417,7 +433,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 					checkEditDemosRtg.Checked = false;
 					checkEditDemosImps.Checked = true;
 				}
-				comboBoxEditDemos.EditValue = EditedSettings.Demo;
+				comboBoxEditDemos.EditValue = EditedSettings.Demo ?? MediaMetaData.Instance.ListManager.CustomDemos.FirstOrDefault();
 			}
 			else
 			{
@@ -433,8 +449,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				? LayoutVisibility.Always
 				: LayoutVisibility.Never;
 			if (!_allowToSave) return;
-			if (!checkEditDemosDisabled.Checked)
-				comboBoxEditDemos.EditValue = null;
 			SettingsNotSaved = true;
 		}
 

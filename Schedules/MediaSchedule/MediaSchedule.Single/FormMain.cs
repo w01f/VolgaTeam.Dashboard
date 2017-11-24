@@ -315,6 +315,7 @@ namespace Asa.Media.Single
 		{
 			using (var form = new FormScheduleName())
 			{
+				form.pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeNewSchedulePopupLogo ?? form.pictureEditLogo.Image;
 				if (form.ShowDialog(this) != DialogResult.OK) return;
 				BusinessObjects.Instance.ScheduleManager.AddSchedule(form.ScheduleName);
 			}

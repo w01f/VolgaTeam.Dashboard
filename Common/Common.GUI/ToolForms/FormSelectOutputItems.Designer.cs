@@ -371,7 +371,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormSelectOutputItems";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Select Digital Products";
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlOutputItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();

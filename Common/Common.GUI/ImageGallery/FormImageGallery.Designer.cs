@@ -247,7 +247,7 @@
 			this.Name = "FormImageGallery";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Select Logo";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormImageGallery_FormClosed);
 			this.Load += new System.EventHandler(this.FormImageGallery_Load);

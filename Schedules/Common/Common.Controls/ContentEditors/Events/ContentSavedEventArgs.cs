@@ -7,9 +7,9 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Events
 	public class ContentSavedEventArgs<TChangeInfo> : EventArgs
 		where TChangeInfo : BaseScheduleChangeInfo
 	{
-		public string[] Source { get; private set; }
-		public TChangeInfo ChangeInfo { get; private set; }
-		public ContentSavingReason SavingReason { get; private set; }
+		public string[] Source { get; }
+		public TChangeInfo ChangeInfo { get; }
+		public ContentSavingReason SavingReason { get; }
 
 		public ContentSavedEventArgs(string[] source, TChangeInfo changeInfo)
 		{

@@ -44,18 +44,6 @@
 			this.buttonXComment = new DevComponents.DotNetBar.ButtonX();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.tabbedControlGroup = new DevExpress.XtraLayout.TabbedControlGroup();
-			this.layoutControlGroupComments = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemAddComment = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemCommentApplyForAll = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemCommentValue = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemCommentMonth = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupStyle = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.tabbedControlGroupStyle = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupColor = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -82,6 +70,18 @@
 			this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemHeaderSelector = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlGroupComments = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemAddComment = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemCommentApplyForAll = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemCommentValue = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.simpleLabelItemCommentMonth = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupFavorites = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemFavoriteImages = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupDataSettings = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -108,18 +108,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupComments)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddComment)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentApplyForAll)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentValue)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCommentMonth)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStyle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupStyle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupColor)).BeginInit();
@@ -146,6 +134,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemHeaderSelector)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupComments)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddComment)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentApplyForAll)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCommentMonth)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFavorites)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemFavoriteImages)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDataSettings)).BeginInit();
@@ -405,159 +405,6 @@
             this.layoutControlGroupFavorites,
             this.layoutControlGroupDataSettings});
 			this.tabbedControlGroup.Text = "Main Tabs";
-			// 
-			// layoutControlGroupComments
-			// 
-			this.layoutControlGroupComments.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
-            this.layoutControlItemAddComment,
-            this.layoutControlItemCommentApplyForAll,
-            this.emptySpaceItem2,
-            this.layoutControlItemCommentValue,
-            this.emptySpaceItem3,
-            this.simpleLabelItemCommentMonth,
-            this.emptySpaceItem5,
-            this.emptySpaceItem6,
-            this.emptySpaceItem7,
-            this.emptySpaceItem8});
-			this.layoutControlGroupComments.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupComments.Name = "layoutControlGroupComments";
-			this.layoutControlGroupComments.Size = new System.Drawing.Size(294, 494);
-			this.layoutControlGroupComments.Text = "Comments";
-			// 
-			// emptySpaceItem1
-			// 
-			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(10, 50);
-			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(274, 10);
-			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemAddComment
-			// 
-			this.layoutControlItemAddComment.Control = this.buttonXComment;
-			this.layoutControlItemAddComment.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemAddComment.FillControlToClientArea = false;
-			this.layoutControlItemAddComment.Location = new System.Drawing.Point(10, 10);
-			this.layoutControlItemAddComment.MaxSize = new System.Drawing.Size(0, 40);
-			this.layoutControlItemAddComment.MinSize = new System.Drawing.Size(1, 40);
-			this.layoutControlItemAddComment.Name = "layoutControlItemAddComment";
-			this.layoutControlItemAddComment.Size = new System.Drawing.Size(274, 40);
-			this.layoutControlItemAddComment.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemAddComment.Text = "Add Comment";
-			this.layoutControlItemAddComment.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemAddComment.TextVisible = false;
-			this.layoutControlItemAddComment.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemCommentApplyForAll
-			// 
-			this.layoutControlItemCommentApplyForAll.Control = this.checkEditCommentApplyForAll;
-			this.layoutControlItemCommentApplyForAll.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemCommentApplyForAll.FillControlToClientArea = false;
-			this.layoutControlItemCommentApplyForAll.Location = new System.Drawing.Point(10, 460);
-			this.layoutControlItemCommentApplyForAll.Name = "layoutControlItemCommentApplyForAll";
-			this.layoutControlItemCommentApplyForAll.Size = new System.Drawing.Size(274, 24);
-			this.layoutControlItemCommentApplyForAll.Text = "Comment Apply For All";
-			this.layoutControlItemCommentApplyForAll.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemCommentApplyForAll.TextVisible = false;
-			this.layoutControlItemCommentApplyForAll.TrimClientAreaToControl = false;
-			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(10, 450);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(274, 10);
-			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemCommentValue
-			// 
-			this.layoutControlItemCommentValue.Control = this.memoEditComment;
-			this.layoutControlItemCommentValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemCommentValue.FillControlToClientArea = false;
-			this.layoutControlItemCommentValue.Location = new System.Drawing.Point(10, 90);
-			this.layoutControlItemCommentValue.Name = "layoutControlItemCommentValue";
-			this.layoutControlItemCommentValue.Size = new System.Drawing.Size(274, 360);
-			this.layoutControlItemCommentValue.Text = "Comment Value";
-			this.layoutControlItemCommentValue.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemCommentValue.TextVisible = false;
-			this.layoutControlItemCommentValue.TrimClientAreaToControl = false;
-			// 
-			// emptySpaceItem3
-			// 
-			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(10, 80);
-			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(274, 10);
-			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// simpleLabelItemCommentMonth
-			// 
-			this.simpleLabelItemCommentMonth.AllowHotTrack = false;
-			this.simpleLabelItemCommentMonth.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemCommentMonth.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemCommentMonth.Location = new System.Drawing.Point(10, 60);
-			this.simpleLabelItemCommentMonth.Name = "simpleLabelItemCommentMonth";
-			this.simpleLabelItemCommentMonth.Size = new System.Drawing.Size(274, 20);
-			this.simpleLabelItemCommentMonth.Text = " ";
-			this.simpleLabelItemCommentMonth.TextSize = new System.Drawing.Size(170, 16);
-			// 
-			// emptySpaceItem5
-			// 
-			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 10);
-			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(10, 484);
-			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// emptySpaceItem6
-			// 
-			this.emptySpaceItem6.AllowHotTrack = false;
-			this.emptySpaceItem6.Location = new System.Drawing.Point(284, 10);
-			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(10, 484);
-			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// emptySpaceItem7
-			// 
-			this.emptySpaceItem7.AllowHotTrack = false;
-			this.emptySpaceItem7.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(294, 10);
-			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// emptySpaceItem8
-			// 
-			this.emptySpaceItem8.AllowHotTrack = false;
-			this.emptySpaceItem8.Location = new System.Drawing.Point(10, 484);
-			this.emptySpaceItem8.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem8.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(274, 10);
-			this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlGroupStyle
 			// 
@@ -873,6 +720,159 @@
 			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
+			// layoutControlGroupComments
+			// 
+			this.layoutControlGroupComments.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem1,
+            this.layoutControlItemAddComment,
+            this.layoutControlItemCommentApplyForAll,
+            this.emptySpaceItem2,
+            this.layoutControlItemCommentValue,
+            this.emptySpaceItem3,
+            this.simpleLabelItemCommentMonth,
+            this.emptySpaceItem5,
+            this.emptySpaceItem6,
+            this.emptySpaceItem7,
+            this.emptySpaceItem8});
+			this.layoutControlGroupComments.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupComments.Name = "layoutControlGroupComments";
+			this.layoutControlGroupComments.Size = new System.Drawing.Size(294, 494);
+			this.layoutControlGroupComments.Text = "Comments";
+			// 
+			// emptySpaceItem1
+			// 
+			this.emptySpaceItem1.AllowHotTrack = false;
+			this.emptySpaceItem1.Location = new System.Drawing.Point(10, 50);
+			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem1.Name = "emptySpaceItem1";
+			this.emptySpaceItem1.Size = new System.Drawing.Size(274, 10);
+			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemAddComment
+			// 
+			this.layoutControlItemAddComment.Control = this.buttonXComment;
+			this.layoutControlItemAddComment.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemAddComment.FillControlToClientArea = false;
+			this.layoutControlItemAddComment.Location = new System.Drawing.Point(10, 10);
+			this.layoutControlItemAddComment.MaxSize = new System.Drawing.Size(0, 40);
+			this.layoutControlItemAddComment.MinSize = new System.Drawing.Size(1, 40);
+			this.layoutControlItemAddComment.Name = "layoutControlItemAddComment";
+			this.layoutControlItemAddComment.Size = new System.Drawing.Size(274, 40);
+			this.layoutControlItemAddComment.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemAddComment.Text = "Add Comment";
+			this.layoutControlItemAddComment.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemAddComment.TextVisible = false;
+			this.layoutControlItemAddComment.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemCommentApplyForAll
+			// 
+			this.layoutControlItemCommentApplyForAll.Control = this.checkEditCommentApplyForAll;
+			this.layoutControlItemCommentApplyForAll.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemCommentApplyForAll.FillControlToClientArea = false;
+			this.layoutControlItemCommentApplyForAll.Location = new System.Drawing.Point(10, 460);
+			this.layoutControlItemCommentApplyForAll.Name = "layoutControlItemCommentApplyForAll";
+			this.layoutControlItemCommentApplyForAll.Size = new System.Drawing.Size(274, 24);
+			this.layoutControlItemCommentApplyForAll.Text = "Comment Apply For All";
+			this.layoutControlItemCommentApplyForAll.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemCommentApplyForAll.TextVisible = false;
+			this.layoutControlItemCommentApplyForAll.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(10, 450);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(274, 10);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemCommentValue
+			// 
+			this.layoutControlItemCommentValue.Control = this.memoEditComment;
+			this.layoutControlItemCommentValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemCommentValue.FillControlToClientArea = false;
+			this.layoutControlItemCommentValue.Location = new System.Drawing.Point(10, 90);
+			this.layoutControlItemCommentValue.Name = "layoutControlItemCommentValue";
+			this.layoutControlItemCommentValue.Size = new System.Drawing.Size(274, 360);
+			this.layoutControlItemCommentValue.Text = "Comment Value";
+			this.layoutControlItemCommentValue.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemCommentValue.TextVisible = false;
+			this.layoutControlItemCommentValue.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem3
+			// 
+			this.emptySpaceItem3.AllowHotTrack = false;
+			this.emptySpaceItem3.Location = new System.Drawing.Point(10, 80);
+			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem3.Name = "emptySpaceItem3";
+			this.emptySpaceItem3.Size = new System.Drawing.Size(274, 10);
+			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// simpleLabelItemCommentMonth
+			// 
+			this.simpleLabelItemCommentMonth.AllowHotTrack = false;
+			this.simpleLabelItemCommentMonth.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemCommentMonth.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemCommentMonth.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemCommentMonth.Location = new System.Drawing.Point(10, 60);
+			this.simpleLabelItemCommentMonth.Name = "simpleLabelItemCommentMonth";
+			this.simpleLabelItemCommentMonth.Size = new System.Drawing.Size(274, 20);
+			this.simpleLabelItemCommentMonth.Text = " ";
+			this.simpleLabelItemCommentMonth.TextSize = new System.Drawing.Size(170, 16);
+			// 
+			// emptySpaceItem5
+			// 
+			this.emptySpaceItem5.AllowHotTrack = false;
+			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 10);
+			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem5.Name = "emptySpaceItem5";
+			this.emptySpaceItem5.Size = new System.Drawing.Size(10, 484);
+			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem6
+			// 
+			this.emptySpaceItem6.AllowHotTrack = false;
+			this.emptySpaceItem6.Location = new System.Drawing.Point(284, 10);
+			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(10, 0);
+			this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem6.Name = "emptySpaceItem6";
+			this.emptySpaceItem6.Size = new System.Drawing.Size(10, 484);
+			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem7
+			// 
+			this.emptySpaceItem7.AllowHotTrack = false;
+			this.emptySpaceItem7.Location = new System.Drawing.Point(0, 0);
+			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem7.Name = "emptySpaceItem7";
+			this.emptySpaceItem7.Size = new System.Drawing.Size(294, 10);
+			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem8
+			// 
+			this.emptySpaceItem8.AllowHotTrack = false;
+			this.emptySpaceItem8.Location = new System.Drawing.Point(10, 484);
+			this.emptySpaceItem8.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem8.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem8.Name = "emptySpaceItem8";
+			this.emptySpaceItem8.Size = new System.Drawing.Size(274, 10);
+			this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
+			// 
 			// layoutControlGroupFavorites
 			// 
 			this.layoutControlGroupFavorites.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1065,18 +1065,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupComments)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddComment)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentApplyForAll)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentValue)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCommentMonth)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStyle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupStyle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupColor)).EndInit();
@@ -1103,6 +1091,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemHeaderSelector)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupComments)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddComment)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentApplyForAll)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCommentValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemCommentMonth)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFavorites)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemFavoriteImages)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDataSettings)).EndInit();

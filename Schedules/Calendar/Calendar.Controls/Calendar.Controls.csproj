@@ -142,7 +142,7 @@
       <DependentUpon>DayControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Views\MonthView\MonthControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\Views\MonthView\MonthControl.Designer.cs">
       <DependentUpon>MonthControl.cs</DependentUpon>

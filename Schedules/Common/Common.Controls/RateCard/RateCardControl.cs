@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.GUI.RateCard;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -42,6 +43,7 @@ namespace Asa.Schedules.Common.Controls.RateCard
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
+			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
 			LoadRateCards();
 		}
 

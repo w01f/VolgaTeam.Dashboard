@@ -30,29 +30,20 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.xtraTabControlEditors = new DevExpress.XtraTab.XtraTabControl();
 			this.retractableBarControl = new Asa.Common.GUI.RetractableBar.RetractableBarLeft();
 			this.settingsContainer = new Asa.Media.Controls.PresentationClasses.Digital.Settings.SettingsContainer();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemEditors = new DevExpress.XtraLayout.LayoutControlItem();
-			this.simpleLabelItemScheduleInfo = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemFlightDates = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlEditors)).BeginInit();
 			this.retractableBarControl.Content.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemEditors)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -85,9 +76,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.xtraTabControlEditors.AppearancePage.HeaderHotTracked.Options.UseFont = true;
 			this.xtraTabControlEditors.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlEditors.AppearancePage.PageClient.Options.UseFont = true;
-			this.xtraTabControlEditors.Location = new System.Drawing.Point(2, 42);
+			this.xtraTabControlEditors.Location = new System.Drawing.Point(2, 2);
 			this.xtraTabControlEditors.Name = "xtraTabControlEditors";
-			this.xtraTabControlEditors.Size = new System.Drawing.Size(560, 549);
+			this.xtraTabControlEditors.Size = new System.Drawing.Size(560, 569);
 			this.xtraTabControlEditors.TabIndex = 5;
 			// 
 			// retractableBarControl
@@ -101,7 +92,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
-			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 549);
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 529);
 			this.retractableBarControl.Content.TabIndex = 1;
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -114,10 +105,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.retractableBarControl.Header.Name = "Header";
 			this.retractableBarControl.Header.Size = new System.Drawing.Size(245, 36);
 			this.retractableBarControl.Header.TabIndex = 2;
-			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
+			this.retractableBarControl.Location = new System.Drawing.Point(0, 20);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarControl.Name = "retractableBarControl";
-			this.retractableBarControl.Size = new System.Drawing.Size(300, 593);
+			this.retractableBarControl.Size = new System.Drawing.Size(300, 573);
 			this.retractableBarControl.TabIndex = 4;
 			// 
 			// settingsContainer
@@ -128,7 +119,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.settingsContainer.Location = new System.Drawing.Point(0, 0);
 			this.settingsContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.settingsContainer.Name = "settingsContainer";
-			this.settingsContainer.Size = new System.Drawing.Size(296, 549);
+			this.settingsContainer.Size = new System.Drawing.Size(296, 529);
 			this.settingsContainer.TabIndex = 0;
 			// 
 			// layoutControl
@@ -149,11 +140,11 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.layoutControl.Controls.Add(this.xtraTabControlEditors);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
-			this.layoutControl.Location = new System.Drawing.Point(300, 0);
+			this.layoutControl.Location = new System.Drawing.Point(300, 20);
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(564, 593);
+			this.layoutControl.Size = new System.Drawing.Size(564, 573);
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
@@ -176,87 +167,25 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
 			this.layoutControlGroupRoot.GroupBordersVisible = false;
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
-            this.layoutControlItemEditors,
-            this.simpleLabelItemScheduleInfo,
-            this.simpleLabelItemFlightDates,
-            this.emptySpaceItem2});
+            this.layoutControlItemEditors});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(564, 593);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(564, 573);
 			this.layoutControlGroupRoot.TextVisible = false;
-			// 
-			// emptySpaceItem1
-			// 
-			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 40);
-			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemEditors
 			// 
 			this.layoutControlItemEditors.Control = this.xtraTabControlEditors;
 			this.layoutControlItemEditors.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemEditors.FillControlToClientArea = false;
-			this.layoutControlItemEditors.Location = new System.Drawing.Point(0, 40);
+			this.layoutControlItemEditors.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemEditors.Name = "layoutControlItemEditors";
-			this.layoutControlItemEditors.Size = new System.Drawing.Size(564, 553);
+			this.layoutControlItemEditors.Size = new System.Drawing.Size(564, 573);
 			this.layoutControlItemEditors.Text = "Editors";
 			this.layoutControlItemEditors.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemEditors.TextVisible = false;
 			this.layoutControlItemEditors.TrimClientAreaToControl = false;
-			// 
-			// simpleLabelItemScheduleInfo
-			// 
-			this.simpleLabelItemScheduleInfo.AllowHotTrack = false;
-			this.simpleLabelItemScheduleInfo.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemScheduleInfo.Location = new System.Drawing.Point(10, 0);
-			this.simpleLabelItemScheduleInfo.MaxSize = new System.Drawing.Size(0, 40);
-			this.simpleLabelItemScheduleInfo.MinSize = new System.Drawing.Size(1, 40);
-			this.simpleLabelItemScheduleInfo.Name = "simpleLabelItemScheduleInfo";
-			this.simpleLabelItemScheduleInfo.Size = new System.Drawing.Size(298, 40);
-			this.simpleLabelItemScheduleInfo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemScheduleInfo.Text = " ";
-			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(0, 16);
-			// 
-			// simpleLabelItemFlightDates
-			// 
-			this.simpleLabelItemFlightDates.AllowHotTrack = false;
-			this.simpleLabelItemFlightDates.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemFlightDates.Location = new System.Drawing.Point(308, 0);
-			this.simpleLabelItemFlightDates.MaxSize = new System.Drawing.Size(0, 40);
-			this.simpleLabelItemFlightDates.MinSize = new System.Drawing.Size(1, 40);
-			this.simpleLabelItemFlightDates.Name = "simpleLabelItemFlightDates";
-			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(246, 40);
-			this.simpleLabelItemFlightDates.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemFlightDates.Text = " ";
-			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(0, 16);
-			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(554, 0);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 40);
-			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// DigitalEditorsContainer
 			// 
@@ -267,6 +196,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			this.Controls.Add(this.retractableBarControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "DigitalEditorsContainer";
+			this.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
 			this.Size = new System.Drawing.Size(864, 593);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlEditors)).EndInit();
@@ -274,11 +204,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemEditors)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -290,10 +216,6 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 		private SettingsContainer settingsContainer;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemEditors;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemScheduleInfo;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemFlightDates;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 	}
 }

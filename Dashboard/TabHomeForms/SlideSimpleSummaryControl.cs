@@ -527,7 +527,7 @@ namespace Asa.Dashboard.TabHomeForms
 			FormProgress.ShowProgress();
 			AppManager.Instance.ShowFloater(() =>
 			{
-				AppManager.Instance.PowerPointManager.Processor.AppendSummary(this);
+				AppManager.Instance.PowerPointManager.Processor.AppendSummary(this, TableOutput);
 				FormProgress.CloseProgress();
 			});
 		}
@@ -538,7 +538,7 @@ namespace Asa.Dashboard.TabHomeForms
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			AppManager.Instance.PowerPointManager.Processor.PrepareSummaryEmail(tempFileName, this);
+			AppManager.Instance.PowerPointManager.Processor.PrepareSummaryEmail(tempFileName, this, TableOutput);
 			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);
 			FormProgress.CloseProgress();
 			if (!File.Exists(tempFileName)) return;

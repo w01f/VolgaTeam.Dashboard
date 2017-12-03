@@ -132,7 +132,7 @@
 			this.Padding = new System.Windows.Forms.Padding(2);
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "ProgressForm";
 			this.Shown += new System.EventHandler(this.FormProgress_Shown);
 			this.panelEx.ResumeLayout(false);

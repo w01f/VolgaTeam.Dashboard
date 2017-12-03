@@ -356,7 +356,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormScheduleName";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Build a New Schedule";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNewSchedule_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.textEditScheduleName.Properties)).EndInit();

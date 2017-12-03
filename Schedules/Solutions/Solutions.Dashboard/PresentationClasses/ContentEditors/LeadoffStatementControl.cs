@@ -18,12 +18,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.LeadoffStatement;
-		public string SlideName => SlideContainer.DashboardInfo.LeadoffStatementTitle;
+		public override string ControlName => SlideContainer.DashboardInfo.LeadoffStatementTitle;
 
 		public LeadoffStatementControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
-			Text = SlideName;
+			Text = ControlName;
 			
 			UpdateEditState();
 
@@ -131,16 +131,28 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 		}
 
-		public void GenerateOutput()
+		public IEnumerable<DashboardSlideInfo> GetSlideInfo()
+		{
+			return new[]
+			{
+				new DashboardSlideInfo
+				{
+					SlideContainer = this,
+					SlideName = ControlName
+				}
+			};
+		}
+
+		public void GenerateOutput(DashboardSlideInfo slideInfo)
 		{
 			SlideContainer.PowerPointProcessor.AppendLeadoffStatements(this);
 		}
 
-		public PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			SlideContainer.PowerPointProcessor.PrepareLeadoffStatements(this, tempFileName);
-			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
+			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

@@ -63,6 +63,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			_summaryControls.AddRange(_container.EditedContent.DigitalProducts.Select(product =>
 			{
 				var summaryControl = new DigitalProductSummaryControl();
+				summaryControl.Height = (Int32) (summaryControl.Height * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 				summaryControl.LoadData(product);
 				return summaryControl;
 			}));

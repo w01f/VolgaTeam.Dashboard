@@ -16,13 +16,14 @@ namespace Asa.Common.GUI.Themes
 	public partial class FormThemeSelector : MetroForm
 	{
 		private ThemeContainerControl _themeContainer;
+		private Form _parentForm;
 
 		public Theme SelectedTheme => _themeContainer.SelectedTheme;
 
 		public bool ApplyThemeForAllSlideTypes
 		{
-			get { return checkEditApplyThemeForAllSlideTypes.Checked; }
-			set { checkEditApplyThemeForAllSlideTypes.Checked = value; }
+			get => checkEditApplyThemeForAllSlideTypes.Checked;
+			set => checkEditApplyThemeForAllSlideTypes.Checked = value;
 		}
 
 		public FormThemeSelector()
@@ -71,6 +72,7 @@ namespace Asa.Common.GUI.Themes
 
 		public static void Link(
 			ButtonItem selectorButton,
+			Form parentForm,
 			IEnumerable<Theme> themes,
 			string selectedThemeName,
 			IThemeSettingsContainer settingsContainer,
@@ -106,7 +108,7 @@ namespace Asa.Common.GUI.Themes
 					   {
 						   form.SetSelectedTheme(((ThemeButtonInfo)selectorButton.Tag).CurrentTheme.Name);
 					   };
-					   if (form.ShowDialog() != DialogResult.OK) return;
+					   if (form.ShowDialog(parentForm) != DialogResult.OK) return;
 					   var selectedTheme = form.SelectedTheme;
 					   if (selectedTheme == null) return;
 					   selectorButton.Image = selectedTheme.RibbonLogo;

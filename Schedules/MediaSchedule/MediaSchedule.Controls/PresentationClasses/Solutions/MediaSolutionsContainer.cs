@@ -1,7 +1,6 @@
 ﻿using System;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
-using Asa.Business.Media.Entities.Persistent;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Common.Helpers;
@@ -15,10 +14,6 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 {
 	class MediaSolutionsContainer : BaseSolutionContainerControl<MediaScheduleChangeInfo>
 	{
-		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
-
-		private MediaScheduleSettings ScheduleSettings => Schedule.Settings;
-
 		public override string Identifier => ContentIdentifiers.Solutions;
 		public override RibbonTabItem TabPage => Controller.Instance.TabSolutions;
 		protected override SolutionsManager SolutionManager => BusinessObjects.Instance.SolutionsManager;
@@ -31,12 +26,6 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		protected override void UpdateEditedContet()
 		{
 			base.UpdateEditedContet();
-
-			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
-
-			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
-				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			UpdateMenuOutputButtons();
 		}
@@ -58,7 +47,8 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		{
 			base.LoadThemes();
 			FormThemeSelector.Link(
-				Controller.Instance.SolutionsTheme, 
+				Controller.Instance.SolutionsTheme,
+				Controller.Instance.FormMain,
 				BusinessObjects.Instance.ThemeManager.GetThemes(slideType), 
 				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(slideType),
 				MediaMetaData.Instance.SettingsManager,

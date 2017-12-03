@@ -29,15 +29,7 @@ namespace Asa.Media.Single
 			InitializeComponent();
 		}
 
-		public static FormMain Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new FormMain();
-				return _instance;
-			}
-		}
+		public static FormMain Instance => _instance ?? (_instance = new FormMain());
 
 		public static void RemoveInstance()
 		{
@@ -107,6 +99,9 @@ namespace Asa.Media.Single
 			Controller.Instance.TabSlides = ribbonTabItemSlides;
 			Controller.Instance.TabBrowser = ribbonTabItemBrowser;
 
+			ContentStatusBarManager.Instance.StatusBar = barBottom;
+			ContentStatusBarManager.Instance.StatusBarItemsContainer = itemContainerStatusBarContentInfo;
+
 			FormProgress.Init(this);
 
 			#region Command Controls
@@ -143,6 +138,8 @@ namespace Asa.Media.Single
 			Controller.Instance.ProgramSchedulePanel = ribbonPanelProgramSchedule;
 			Controller.Instance.ProgramScheduleThemeBar = ribbonBarProgramScheduleTheme;
 			Controller.Instance.ProgramScheduleSpecialButtons = ribbonBarProgramScheduleSpecialButtons;
+			Controller.Instance.ProgramScheduleInfoBar = ribbonBarProgramScheduleInfo;
+			Controller.Instance.ProgramScheduleInfo = labelControlProgramScheduleInfo;
 			Controller.Instance.ProgramSchedulePreview = buttonItemProgramSchedulePreview;
 			Controller.Instance.ProgramSchedulePowerPoint = buttonItemProgramSchedulePowerPoint;
 			Controller.Instance.ProgramScheduleTheme = buttonItemProgramScheduleTheme;
@@ -157,6 +154,8 @@ namespace Asa.Media.Single
 			Controller.Instance.DigitalProductLogoBar = ribbonBarDigitalScheduleLogo;
 			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
+			Controller.Instance.DigitalProductInfoBar = ribbonBarDigitalScheduleInfo;
+			Controller.Instance.DigitalProductInfo = labelControlDigitalScheduleInfo;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
@@ -166,8 +165,10 @@ namespace Asa.Media.Single
 			#endregion
 
 			#region Calendar 1
+			Controller.Instance.Calendar1Panel = ribbonPanelCalendar1;
 			Controller.Instance.Calendar1SpecialButtons = ribbonBarCalendar1SpecialButtons;
-			Controller.Instance.Calendar1MonthsList = listBoxControlCalendar1;
+			Controller.Instance.Calendar1InfoBar = ribbonBarCalendar1Info;
+			Controller.Instance.Calendar1Info = labelControlCalendar1Info;
 			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
 			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
 			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
@@ -177,8 +178,10 @@ namespace Asa.Media.Single
 			#endregion
 
 			#region Calendar 2
+			Controller.Instance.Calendar2Panel = ribbonPanelCalendar2;
 			Controller.Instance.Calendar2SpecialButtons = ribbonBarCalendar2SpecialButtons;
-			Controller.Instance.Calendar2MonthsList = listBoxControlCalendar2;
+			Controller.Instance.Calendar2InfoBar = ribbonBarCalendar2Info;
+			Controller.Instance.Calendar2Info = labelControlCalendar2Info;
 			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
 			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
 			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
@@ -191,6 +194,8 @@ namespace Asa.Media.Single
 			Controller.Instance.SnapshotPanel = ribbonPanelSnapshot;
 			Controller.Instance.SnapshotThemeBar = ribbonBarSnapshotTheme;
 			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
+			Controller.Instance.SnapshotInfoBar = ribbonBarSnapshotInfo;
+			Controller.Instance.SnapshotInfo = labelControlSnapshotInfo;
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
 			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
@@ -204,6 +209,8 @@ namespace Asa.Media.Single
 			Controller.Instance.OptionsPanel = ribbonPanelOptions;
 			Controller.Instance.OptionsThemeBar = ribbonBarOptionsTheme;
 			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
+			Controller.Instance.OptionsInfoBar = ribbonBarOptionsInfo;
+			Controller.Instance.OptionsInfo = labelControlOptionsInfo;
 			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
 			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
 			Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
@@ -217,6 +224,8 @@ namespace Asa.Media.Single
 			Controller.Instance.SolutionsPanel = ribbonPanelSolutions;
 			Controller.Instance.SolutionsThemeBar = ribbonBarSolutionsTheme;
 			Controller.Instance.SolutionsSpecialButtons = ribbonBarSolutionsSpecialButtons;
+			Controller.Instance.SolutionsInfoBar = ribbonBarSolutionsInfo;
+			Controller.Instance.SolutionsInfo = labelControlSolutionsInfo;
 			Controller.Instance.SolutionsPreview = buttonItemSolutionsPreview;
 			Controller.Instance.SolutionsPowerPoint = buttonItemSolutionsPowerPoint;
 			Controller.Instance.SolutionsTheme = buttonItemSolutionsTheme;
@@ -226,6 +235,8 @@ namespace Asa.Media.Single
 			Controller.Instance.SlidesPanel = ribbonPanelSlides;
 			Controller.Instance.SlidesLogoBar = ribbonBarSlidesLogo;
 			Controller.Instance.SlidesSpecialButtons = ribbonBarSlidesSpecialButtons;
+			Controller.Instance.SlidesInfoBar = ribbonBarSlidesInfo;
+			Controller.Instance.SlidesInfo = labelControlSlidesInfo;
 			Controller.Instance.SlidesLogoLabel = labelItemSlideHome;
 			Controller.Instance.SlidesPreview = buttonItemSlidesPreview;
 			Controller.Instance.SlidesPowerPoint = buttonItemSlidesPowerPoint;
@@ -238,6 +249,8 @@ namespace Asa.Media.Single
 			Controller.Instance.Gallery1ImageBar = ribbonBarGallery1Image;
 			Controller.Instance.Gallery1ZoomBar = ribbonBarGallery1Zoom;
 			Controller.Instance.Gallery1CopyBar = ribbonBarGallery1Copy;
+			Controller.Instance.Gallery1InfoBar = ribbonBarGallery1info;
+			Controller.Instance.Gallery1Info = labelControlGallery1Info;
 			Controller.Instance.Gallery1BrowseModeContainer = itemContainerGallery1BrowseContentType;
 			Controller.Instance.Gallery1View = buttonItemGallery1View;
 			Controller.Instance.Gallery1Edit = buttonItemGallery1Edit;
@@ -257,6 +270,8 @@ namespace Asa.Media.Single
 			Controller.Instance.Gallery2ImageBar = ribbonBarGallery2Image;
 			Controller.Instance.Gallery2ZoomBar = ribbonBarGallery2Zoom;
 			Controller.Instance.Gallery2CopyBar = ribbonBarGallery2Copy;
+			Controller.Instance.Gallery2InfoBar = ribbonBarGallery2Info;
+			Controller.Instance.Gallery2Info = labelControlGallery2Info;
 			Controller.Instance.Gallery2BrowseModeContainer = itemContainerGallery2BrowseContentType;
 			Controller.Instance.Gallery2View = buttonItemGallery2View;
 			Controller.Instance.Gallery2Edit = buttonItemGallery2Edit;
@@ -270,15 +285,21 @@ namespace Asa.Media.Single
 			#endregion
 
 			#region Rate Card
+			Controller.Instance.RateCardPanel = ribbonPanelRateCard;
 			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
+			Controller.Instance.RateCardInfoBar = ribbonBarRateCardsInfo;
+			Controller.Instance.RateCardInfo = labelControlRateCardsInfo;
 			#endregion
 
 			#region Browser
+			Controller.Instance.BrowserPanel = ribbonPanelBrowser;
 			Controller.Instance.BrowserSpecialButtons = ribbonBarBrowserSpecialButtons;
 			Controller.Instance.BrowserSitesBar = ribbonBarBrowserSites;
 			Controller.Instance.BrowserSitesTitle = labelItemBrowserSites;
 			Controller.Instance.BrowserSitesCombo = comboBoxEditBrowserSites;
+			Controller.Instance.BrowserInfoBar = ribbonBarBrowserInfo;
+			Controller.Instance.BrowserInfo = labelControlBrowserInfo;
 			#endregion
 
 			#endregion
@@ -288,20 +309,25 @@ namespace Asa.Media.Single
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened += (o, e) => UpdateFormTitle();
 			BusinessObjects.Instance.ScheduleManager.ScheduleNameChanged += (o, e) => UpdateFormTitle();
 			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
-			SlideSettingsManager.Instance.SettingsChanged += (o, e) => UpdateFormTitle();
+			SlideSettingsManager.Instance.SettingsChanged += (o, e) => UpdateSlideInfo();
 		}
 
 		private void UpdateFormTitle()
 		{
-			if (MasterWizardManager.Instance.SelectedWizard == null) return;
 			var schedule = BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
-			Text = String.Format("{0} v{1} - {2} - {3} {4}",
+			Text = String.Format("{0} v{1} - {2}",
 				PopupMessageHelper.Instance.Title,
 				FileStorageManager.Instance.Version,
+				schedule?.Name);
+		}
+
+		private void UpdateSlideInfo()
+		{
+			if (MasterWizardManager.Instance.SelectedWizard == null) return;
+			labelItemStatusBarSlideInfo.Text = String.Format("{0}  {1}",
 				MasterWizardManager.Instance.SelectedWizard.Name,
-				SlideSettingsManager.Instance.SlideSettings.SizeFormatted,
-				schedule != null ? String.Format("({0})", schedule.Name) : String.Empty
-				);
+				SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
+			itemContainerStatusBarSlideInfo.RecalcSize();
 		}
 
 		private void LoadData()
@@ -333,6 +359,17 @@ namespace Asa.Media.Single
 		{
 			Utilities.ActivatePowerPoint(BusinessObjects.Instance.PowerPointManager.Processor.PowerPointObject);
 			UpdateFormTitle();
+			UpdateSlideInfo();
+
+			itemContainerStatusBarContentInfo.SubItems.Clear();
+			var appInfoLabel = new LabelItem();
+			appInfoLabel.Text = String.Format("{0} v{1}",
+				PopupMessageHelper.Instance.Title,
+				FileStorageManager.Instance.Version
+			);
+			itemContainerStatusBarContentInfo.SubItems.Add(appInfoLabel);
+			barBottom.RecalcLayout();
+
 			AppManager.Instance.ActivateMainForm(WindowState == FormWindowState.Maximized);
 
 			using (var formStart = new FormStart())

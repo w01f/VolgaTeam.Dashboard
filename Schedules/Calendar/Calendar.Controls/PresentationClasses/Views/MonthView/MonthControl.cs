@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Common.Core.Attributes;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Output;
+using DevExpress.XtraTab;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
-	public partial class MonthControl : UserControl
+	//public partial class MonthControl : UserControl
+	public partial class MonthControl : XtraTabPage
 	{
 		private readonly List<CalendarNoteControl> _noteControls = new List<CalendarNoteControl>();
 		private readonly List<WeekControl> _weekControls = new List<WeekControl>();
@@ -20,7 +23,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		protected MonthControl()
 		{
 			InitializeComponent();
-			Dock = DockStyle.Fill;
 			HasData = false;
 			pnMain.Resize += OnResize;
 			pnHeader.Height = Math.Max(pnHeader.Height, (Int32)(pnHeader.Height * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height * 0.85f));
@@ -80,11 +82,20 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 									laSunday.ForeColor = colorSchema.HeaderForeColor;
 		}
 
+		public void ResizeControls()
+		{
+			pnEmpty.BringToFront();
+			FitWeekControls();
+			FitHeader();
+			pnMain.BringToFront();
+		}
+
 		public void RefreshNotes()
 		{
 			foreach (var note in _noteControls)
 				note.RefreshColor();
 		}
+
 		public void Release()
 		{
 			pnMain.Controls.Clear();
@@ -143,6 +154,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void FitWeekControls()
 		{
+			if (!_weekControls.Any()) return;
 			double height = pnData.Height / _weekControls.Count;
 			for (int i = 0; i < _weekControls.Count; i++)
 			{
@@ -156,10 +168,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void OnResize(object sender, EventArgs e)
 		{
-			pnEmpty.BringToFront();
-			FitWeekControls();
-			FitHeader();
-			pnMain.BringToFront();
+			ResizeControls();
 		}
 	}
 

@@ -5,6 +5,7 @@ using Asa.Browser.Controls.BusinessClasses.Enums;
 using Asa.Browser.Controls.BusinessClasses.Objects;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -43,6 +44,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
+			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
 			if (_listControl.EditValue == null)
 				_listControl.SelectedIndex = 0;
 		}

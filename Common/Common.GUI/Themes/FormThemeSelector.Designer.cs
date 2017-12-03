@@ -336,7 +336,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormThemeSelector";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Select Theme";
 			this.TopMost = true;
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).EndInit();

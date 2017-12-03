@@ -330,7 +330,7 @@
 			this.MinimumSize = new System.Drawing.Size(640, 480);
 			this.Name = "FormProductInfo";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "FormProductInfo";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormProductInfo_FormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).EndInit();

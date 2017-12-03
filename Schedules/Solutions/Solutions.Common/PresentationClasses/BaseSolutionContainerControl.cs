@@ -39,10 +39,6 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 
-			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
-			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
-			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
-			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
 			layoutControlItemSolutionToggles.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSolutionToggles.MaxSize, scaleFactor);
 			layoutControlItemSolutionToggles.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionToggles.MinSize, scaleFactor);
 		}

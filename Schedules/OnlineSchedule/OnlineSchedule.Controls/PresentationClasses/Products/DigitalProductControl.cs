@@ -74,8 +74,6 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			spinEditImpressions.EditValue = null;
 			spinEditInvestment.EditValue = null;
 
-			SummaryControl = new DigitalProductSummaryControl();
-
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 
 			checkedListBoxControlWebsite.ItemHeight = (Int32)(checkedListBoxControlWebsite.ItemHeight * scaleFactor.Height);
@@ -126,7 +124,6 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 		}
 
 		public DigitalProduct Product { get; set; }
-		public DigitalProductSummaryControl SummaryControl { get; private set; }
 
 		private void UpdateFormula()
 		{
@@ -293,8 +290,6 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			_allowToSave = true;
 
 			comboBoxEditPriceType_SelectedIndexChanged(comboBoxEditPriceType, EventArgs.Empty);
-
-			SummaryControl.LoadData(Product);
 		}
 
 		private void UpdateFormulaComponents()
@@ -353,15 +348,10 @@ namespace Asa.Online.Controls.PresentationClasses.Products
 			Product.Comment = checkEditComments.Checked && memoEditComments.EditValue != null ? memoEditComments.EditValue.ToString() : string.Empty;
 			Product.Strength1 = checkEditStrengths1.Checked && comboBoxEditStrengths1.EditValue != null ? comboBoxEditStrengths1.EditValue.ToString() : string.Empty;
 			Product.Strength2 = checkEditStrengths2.Checked && comboBoxEditStrengths2.EditValue != null ? comboBoxEditStrengths2.EditValue.ToString() : string.Empty;
-
-			SummaryControl.LoadData(Product);
 		}
 
 		public void Release()
 		{
-			SummaryControl.Release();
-			SummaryControl = null;
-
 			Product = null;
 		}
 

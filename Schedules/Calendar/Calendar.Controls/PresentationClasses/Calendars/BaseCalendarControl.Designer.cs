@@ -35,12 +35,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.pnData = new System.Windows.Forms.Panel();
 			this.layoutControlData = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRootData = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemScheduleInfo = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.layoutControlItemContainer = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItemSplash = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemFlightDates = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
 			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -51,12 +47,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlData)).BeginInit();
 			this.layoutControlData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootData)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSplash)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).BeginInit();
 			this.layoutControlMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).BeginInit();
@@ -82,9 +74,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			// 
 			// pnMain
 			// 
-			this.pnMain.Location = new System.Drawing.Point(0, 40);
+			this.pnMain.Location = new System.Drawing.Point(0, 0);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(136, 479);
+			this.pnMain.Size = new System.Drawing.Size(136, 499);
 			this.pnMain.TabIndex = 4;
 			// 
 			// retractableBarControl
@@ -97,7 +89,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
 			this.retractableBarControl.Content.Name = "Content";
-			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 475);
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(296, 455);
 			this.retractableBarControl.Content.TabIndex = 1;
 			this.retractableBarControl.ContentSize = 300;
 			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -113,16 +105,16 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
 			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBarControl.Name = "retractableBarControl";
-			this.retractableBarControl.Size = new System.Drawing.Size(300, 519);
+			this.retractableBarControl.Size = new System.Drawing.Size(300, 499);
 			this.retractableBarControl.TabIndex = 6;
 			// 
 			// pnData
 			// 
 			this.pnData.Controls.Add(this.layoutControlData);
 			this.pnData.Controls.Add(this.retractableBarControl);
-			this.pnData.Location = new System.Drawing.Point(80, 0);
+			this.pnData.Location = new System.Drawing.Point(80, 20);
 			this.pnData.Name = "pnData";
-			this.pnData.Size = new System.Drawing.Size(573, 519);
+			this.pnData.Size = new System.Drawing.Size(573, 499);
 			this.pnData.TabIndex = 7;
 			// 
 			// layoutControlData
@@ -147,7 +139,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.layoutControlData.Name = "layoutControlData";
 			this.layoutControlData.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControlData.Root = this.layoutControlGroupRootData;
-			this.layoutControlData.Size = new System.Drawing.Size(273, 519);
+			this.layoutControlData.Size = new System.Drawing.Size(273, 499);
 			this.layoutControlData.StyleController = this.styleController;
 			this.layoutControlData.TabIndex = 65;
 			this.layoutControlData.Text = "layoutControl1";
@@ -170,56 +162,23 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.layoutControlGroupRootData.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
 			this.layoutControlGroupRootData.GroupBordersVisible = false;
 			this.layoutControlGroupRootData.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
-            this.simpleLabelItemScheduleInfo,
             this.layoutControlItemContainer,
-            this.emptySpaceItemSplash,
-            this.simpleLabelItemFlightDates,
-            this.emptySpaceItem2});
+            this.emptySpaceItemSplash});
 			this.layoutControlGroupRootData.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRootData.Name = "Root";
 			this.layoutControlGroupRootData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRootData.Size = new System.Drawing.Size(273, 519);
+			this.layoutControlGroupRootData.Size = new System.Drawing.Size(273, 499);
 			this.layoutControlGroupRootData.TextVisible = false;
-			// 
-			// emptySpaceItem1
-			// 
-			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 40);
-			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// simpleLabelItemScheduleInfo
-			// 
-			this.simpleLabelItemScheduleInfo.AllowHotTrack = false;
-			this.simpleLabelItemScheduleInfo.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemScheduleInfo.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemScheduleInfo.Location = new System.Drawing.Point(10, 0);
-			this.simpleLabelItemScheduleInfo.MaxSize = new System.Drawing.Size(0, 40);
-			this.simpleLabelItemScheduleInfo.MinSize = new System.Drawing.Size(1, 40);
-			this.simpleLabelItemScheduleInfo.Name = "simpleLabelItemScheduleInfo";
-			this.simpleLabelItemScheduleInfo.Size = new System.Drawing.Size(125, 40);
-			this.simpleLabelItemScheduleInfo.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemScheduleInfo.Text = " ";
-			this.simpleLabelItemScheduleInfo.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlItemContainer
 			// 
 			this.layoutControlItemContainer.Control = this.pnMain;
 			this.layoutControlItemContainer.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemContainer.FillControlToClientArea = false;
-			this.layoutControlItemContainer.Location = new System.Drawing.Point(0, 40);
+			this.layoutControlItemContainer.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemContainer.Name = "layoutControlItemContainer";
 			this.layoutControlItemContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemContainer.Size = new System.Drawing.Size(136, 479);
+			this.layoutControlItemContainer.Size = new System.Drawing.Size(136, 499);
 			this.layoutControlItemContainer.Text = "Container";
 			this.layoutControlItemContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemContainer.TextVisible = false;
@@ -228,40 +187,11 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			// emptySpaceItemSplash
 			// 
 			this.emptySpaceItemSplash.AllowHotTrack = false;
-			this.emptySpaceItemSplash.Location = new System.Drawing.Point(136, 40);
+			this.emptySpaceItemSplash.Location = new System.Drawing.Point(136, 0);
 			this.emptySpaceItemSplash.Name = "emptySpaceItemSplash";
-			this.emptySpaceItemSplash.Size = new System.Drawing.Size(137, 479);
+			this.emptySpaceItemSplash.Size = new System.Drawing.Size(137, 499);
 			this.emptySpaceItemSplash.TextSize = new System.Drawing.Size(0, 0);
 			this.emptySpaceItemSplash.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-			// 
-			// simpleLabelItemFlightDates
-			// 
-			this.simpleLabelItemFlightDates.AllowHotTrack = false;
-			this.simpleLabelItemFlightDates.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemFlightDates.Location = new System.Drawing.Point(135, 0);
-			this.simpleLabelItemFlightDates.MaxSize = new System.Drawing.Size(0, 40);
-			this.simpleLabelItemFlightDates.MinSize = new System.Drawing.Size(1, 40);
-			this.simpleLabelItemFlightDates.Name = "simpleLabelItemFlightDates";
-			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(128, 40);
-			this.simpleLabelItemFlightDates.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemFlightDates.Text = " ";
-			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(0, 16);
-			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(263, 0);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 40);
-			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlMain
 			// 
@@ -294,7 +224,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			// pictureEditDefaultLogo
 			// 
 			this.pictureEditDefaultLogo.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(40, 20);
+			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(40, 40);
 			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
 			this.pictureEditDefaultLogo.Properties.AllowFocused = false;
 			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -303,7 +233,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.pictureEditDefaultLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditDefaultLogo.Properties.ShowMenu = false;
 			this.pictureEditDefaultLogo.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditDefaultLogo.Size = new System.Drawing.Size(20, 479);
+			this.pictureEditDefaultLogo.Size = new System.Drawing.Size(20, 459);
 			this.pictureEditDefaultLogo.StyleController = this.layoutControlMain;
 			this.pictureEditDefaultLogo.TabIndex = 4;
 			// 
@@ -328,8 +258,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
             this.layoutControlItemDefaultLogo,
             this.layoutControlItemData});
 			this.layoutControlGroupRootMain.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupRootMain.Name = "layoutControlGroupRootMain";
-			this.layoutControlGroupRootMain.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootMain.Name = "Root";
+			this.layoutControlGroupRootMain.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 20, 0);
 			this.layoutControlGroupRootMain.Size = new System.Drawing.Size(653, 519);
 			this.layoutControlGroupRootMain.TextVisible = false;
 			// 
@@ -340,7 +270,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.layoutControlItemDefaultLogo.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemDefaultLogo.Name = "layoutControlItemDefaultLogo";
 			this.layoutControlItemDefaultLogo.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 20, 20, 20);
-			this.layoutControlItemDefaultLogo.Size = new System.Drawing.Size(80, 519);
+			this.layoutControlItemDefaultLogo.Size = new System.Drawing.Size(80, 499);
 			this.layoutControlItemDefaultLogo.Text = "Default Logo";
 			this.layoutControlItemDefaultLogo.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemDefaultLogo.TextVisible = false;
@@ -354,7 +284,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			this.layoutControlItemData.Location = new System.Drawing.Point(80, 0);
 			this.layoutControlItemData.Name = "layoutControlItemData";
 			this.layoutControlItemData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemData.Size = new System.Drawing.Size(573, 519);
+			this.layoutControlItemData.Size = new System.Drawing.Size(573, 499);
 			this.layoutControlItemData.Text = "Data";
 			this.layoutControlItemData.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemData.TextVisible = false;
@@ -375,12 +305,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlData)).EndInit();
 			this.layoutControlData.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootData)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemScheduleInfo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemContainer)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemSplash)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).EndInit();
 			this.layoutControlMain.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).EndInit();
@@ -398,12 +324,8 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		private System.Windows.Forms.Panel pnData;
 		private DevExpress.XtraLayout.LayoutControl layoutControlData;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootData;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemContainer;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemSplash;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-		protected DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemScheduleInfo;
-		protected DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemFlightDates;
 		private DevExpress.XtraLayout.LayoutControl layoutControlMain;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootMain;
 	    protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemDefaultLogo;

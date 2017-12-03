@@ -30,7 +30,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.stationsControl = new Asa.Media.Controls.PresentationClasses.SettingsControls.StationsControl();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.checkEditCalendarTypeSunday = new DevExpress.XtraEditors.CheckEdit();
@@ -106,7 +105,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemCalendarTypeSunday = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.splitterItemMain = new DevExpress.XtraLayout.SplitterItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -186,9 +185,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.stationsControl.BackColor = System.Drawing.Color.White;
 			this.stationsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.stationsControl.HasChanged = false;
-			this.stationsControl.Location = new System.Drawing.Point(729, 47);
+			this.stationsControl.Location = new System.Drawing.Point(739, 58);
 			this.stationsControl.Name = "stationsControl";
-			this.stationsControl.Size = new System.Drawing.Size(300, 553);
+			this.stationsControl.Size = new System.Drawing.Size(300, 552);
 			this.stationsControl.TabIndex = 6;
 			// 
 			// layoutControl
@@ -239,7 +238,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			// checkEditCalendarTypeSunday
 			// 
-			this.checkEditCalendarTypeSunday.Location = new System.Drawing.Point(350, 476);
+			this.checkEditCalendarTypeSunday.Location = new System.Drawing.Point(340, 481);
 			this.checkEditCalendarTypeSunday.Name = "checkEditCalendarTypeSunday";
 			this.checkEditCalendarTypeSunday.Properties.AllowFocused = false;
 			this.checkEditCalendarTypeSunday.Properties.Caption = "Sunday - Monday";
@@ -256,7 +255,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.pictureEditCalendarTypeLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditCalendarTypeLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeSettingsCalendarFormat;
-			this.pictureEditCalendarTypeLogo.Location = new System.Drawing.Point(58, 400);
+			this.pictureEditCalendarTypeLogo.Location = new System.Drawing.Point(48, 405);
 			this.pictureEditCalendarTypeLogo.Name = "pictureEditCalendarTypeLogo";
 			this.pictureEditCalendarTypeLogo.Properties.AllowFocused = false;
 			this.pictureEditCalendarTypeLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -271,7 +270,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			// checkEditDemosImps
 			// 
-			this.checkEditDemosImps.Location = new System.Drawing.Point(280, 280);
+			this.checkEditDemosImps.Location = new System.Drawing.Point(270, 291);
 			this.checkEditDemosImps.Name = "checkEditDemosImps";
 			this.checkEditDemosImps.Properties.AllowFocused = false;
 			this.checkEditDemosImps.Properties.Caption = "000s (cpm)";
@@ -285,7 +284,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			// checkEditDemosRtg
 			// 
-			this.checkEditDemosRtg.Location = new System.Drawing.Point(410, 280);
+			this.checkEditDemosRtg.Location = new System.Drawing.Point(400, 291);
 			this.checkEditDemosRtg.Name = "checkEditDemosRtg";
 			this.checkEditDemosRtg.Properties.AllowFocused = false;
 			this.checkEditDemosRtg.Properties.Caption = "Ratings (cpp)";
@@ -301,7 +300,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.pictureEditDemosLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDemosLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeSettingsDemos;
-			this.pictureEditDemosLogo.Location = new System.Drawing.Point(58, 204);
+			this.pictureEditDemosLogo.Location = new System.Drawing.Point(48, 215);
 			this.pictureEditDemosLogo.Name = "pictureEditDemosLogo";
 			this.pictureEditDemosLogo.Properties.AllowFocused = false;
 			this.pictureEditDemosLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -318,7 +317,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.pictureEditScheduleConceptTypeTitle.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditScheduleConceptTypeTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeConceptTitleLogo;
-			this.pictureEditScheduleConceptTypeTitle.Location = new System.Drawing.Point(58, 405);
+			this.pictureEditScheduleConceptTypeTitle.Location = new System.Drawing.Point(48, 416);
 			this.pictureEditScheduleConceptTypeTitle.Name = "pictureEditScheduleConceptTypeTitle";
 			this.pictureEditScheduleConceptTypeTitle.Properties.AllowFocused = false;
 			this.pictureEditScheduleConceptTypeTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -326,7 +325,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pictureEditScheduleConceptTypeTitle.Properties.ReadOnly = true;
 			this.pictureEditScheduleConceptTypeTitle.Properties.ShowMenu = false;
 			this.pictureEditScheduleConceptTypeTitle.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditScheduleConceptTypeTitle.Size = new System.Drawing.Size(640, 32);
+			this.pictureEditScheduleConceptTypeTitle.Size = new System.Drawing.Size(653, 32);
 			this.pictureEditScheduleConceptTypeTitle.StyleController = this.layoutControl;
 			this.pictureEditScheduleConceptTypeTitle.TabIndex = 1;
 			// 
@@ -334,7 +333,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.comboBoxEditDemos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBoxEditDemos.Location = new System.Drawing.Point(540, 280);
+			this.comboBoxEditDemos.Location = new System.Drawing.Point(530, 291);
 			this.comboBoxEditDemos.Name = "comboBoxEditDemos";
 			this.comboBoxEditDemos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -349,7 +348,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.pictureEditScheduleTypeTitle.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditScheduleTypeTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeScheduleTitleLogo;
-			this.pictureEditScheduleTypeTitle.Location = new System.Drawing.Point(58, 89);
+			this.pictureEditScheduleTypeTitle.Location = new System.Drawing.Point(48, 100);
 			this.pictureEditScheduleTypeTitle.Name = "pictureEditScheduleTypeTitle";
 			this.pictureEditScheduleTypeTitle.Properties.AllowFocused = false;
 			this.pictureEditScheduleTypeTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -357,7 +356,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.pictureEditScheduleTypeTitle.Properties.ReadOnly = true;
 			this.pictureEditScheduleTypeTitle.Properties.ShowMenu = false;
 			this.pictureEditScheduleTypeTitle.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditScheduleTypeTitle.Size = new System.Drawing.Size(640, 32);
+			this.pictureEditScheduleTypeTitle.Size = new System.Drawing.Size(653, 32);
 			this.pictureEditScheduleTypeTitle.StyleController = this.layoutControl;
 			this.pictureEditScheduleTypeTitle.TabIndex = 1;
 			// 
@@ -366,7 +365,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXWeeklySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXWeeklySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXWeeklySchedule.Image = global::Asa.Media.Controls.Properties.Resources.WeeklySchedule;
-			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(58, 145);
+			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(48, 156);
 			this.buttonXWeeklySchedule.Name = "buttonXWeeklySchedule";
 			this.buttonXWeeklySchedule.Size = new System.Drawing.Size(216, 86);
 			this.buttonXWeeklySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -381,7 +380,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXMonthlySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMonthlySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXMonthlySchedule.Image = global::Asa.Media.Controls.Properties.Resources.MonthlySchedule;
-			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(328, 145);
+			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(318, 156);
 			this.buttonXMonthlySchedule.Name = "buttonXMonthlySchedule";
 			this.buttonXMonthlySchedule.Size = new System.Drawing.Size(216, 86);
 			this.buttonXMonthlySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -396,7 +395,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXSnapshot.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSnapshot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXSnapshot.Image = global::Asa.Media.Controls.Properties.Resources.HomeSnapshot;
-			this.buttonXSnapshot.Location = new System.Drawing.Point(58, 461);
+			this.buttonXSnapshot.Location = new System.Drawing.Point(48, 472);
 			this.buttonXSnapshot.Name = "buttonXSnapshot";
 			this.buttonXSnapshot.Size = new System.Drawing.Size(156, 41);
 			this.buttonXSnapshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -409,7 +408,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXOptions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXOptions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOptions.Image = global::Asa.Media.Controls.Properties.Resources.HomeOptions;
-			this.buttonXOptions.Location = new System.Drawing.Point(268, 461);
+			this.buttonXOptions.Location = new System.Drawing.Point(258, 472);
 			this.buttonXOptions.Name = "buttonXOptions";
 			this.buttonXOptions.Size = new System.Drawing.Size(156, 41);
 			this.buttonXOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -422,7 +421,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXCalendar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCalendar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCalendar.Image = global::Asa.Media.Controls.Properties.Resources.HomeCalendar;
-			this.buttonXCalendar.Location = new System.Drawing.Point(478, 461);
+			this.buttonXCalendar.Location = new System.Drawing.Point(468, 472);
 			this.buttonXCalendar.Name = "buttonXCalendar";
 			this.buttonXCalendar.Size = new System.Drawing.Size(156, 41);
 			this.buttonXCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -434,7 +433,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.pictureEditDefaultTitle.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDefaultTitle.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeDefaultLogo;
-			this.pictureEditDefaultTitle.Location = new System.Drawing.Point(12, 12);
+			this.pictureEditDefaultTitle.Location = new System.Drawing.Point(2, 22);
 			this.pictureEditDefaultTitle.Name = "pictureEditDefaultTitle";
 			this.pictureEditDefaultTitle.Properties.AllowFocused = false;
 			this.pictureEditDefaultTitle.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -450,7 +449,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			this.pictureEditDaypartLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDaypartLogo.EditValue = global::Asa.Media.Controls.Properties.Resources.HomeSettingsDayparts;
-			this.pictureEditDaypartLogo.Location = new System.Drawing.Point(56, 77);
+			this.pictureEditDaypartLogo.Location = new System.Drawing.Point(46, 88);
 			this.pictureEditDaypartLogo.Name = "pictureEditDaypartLogo";
 			this.pictureEditDaypartLogo.Properties.AllowFocused = false;
 			this.pictureEditDaypartLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -465,7 +464,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			// checkEditDemosDisabled
 			// 
-			this.checkEditDemosDisabled.Location = new System.Drawing.Point(150, 280);
+			this.checkEditDemosDisabled.Location = new System.Drawing.Point(140, 291);
 			this.checkEditDemosDisabled.Name = "checkEditDemosDisabled";
 			this.checkEditDemosDisabled.Properties.AllowFocused = false;
 			this.checkEditDemosDisabled.Properties.Caption = "Disabled";
@@ -479,7 +478,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// 
 			// checkEditCalendarTypeMonday
 			// 
-			this.checkEditCalendarTypeMonday.Location = new System.Drawing.Point(150, 476);
+			this.checkEditCalendarTypeMonday.Location = new System.Drawing.Point(140, 481);
 			this.checkEditCalendarTypeMonday.Name = "checkEditCalendarTypeMonday";
 			this.checkEditCalendarTypeMonday.Properties.AllowFocused = false;
 			this.checkEditCalendarTypeMonday.Properties.Caption = "Monday - Sunday";
@@ -516,6 +515,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.splitterItemMain});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 20, 0);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(1051, 622);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
@@ -531,7 +531,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.tabbedControlGroupScheduleOptions.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
 			this.tabbedControlGroupScheduleOptions.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.tabbedControlGroupScheduleOptions.AppearanceTabPage.PageClient.Options.UseFont = true;
-			this.tabbedControlGroupScheduleOptions.Location = new System.Drawing.Point(707, 0);
+			this.tabbedControlGroupScheduleOptions.Location = new System.Drawing.Point(727, 0);
 			this.tabbedControlGroupScheduleOptions.Name = "tabbedControlGroupScheduleOptions";
 			this.tabbedControlGroupScheduleOptions.SelectedTabPage = this.layoutControlGroupScheduleOptionsStations;
 			this.tabbedControlGroupScheduleOptions.SelectedTabPageIndex = 0;
@@ -548,7 +548,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlGroupScheduleOptionsStations.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupScheduleOptionsStations.Name = "layoutControlGroupScheduleOptionsStations";
 			this.layoutControlGroupScheduleOptionsStations.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupScheduleOptionsStations.Size = new System.Drawing.Size(300, 553);
+			this.layoutControlGroupScheduleOptionsStations.Size = new System.Drawing.Size(300, 552);
 			this.layoutControlGroupScheduleOptionsStations.Text = "Media Properties";
 			// 
 			// layoutControlItemScheduleOptionsStations
@@ -560,7 +560,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemScheduleOptionsStations.MinSize = new System.Drawing.Size(300, 1);
 			this.layoutControlItemScheduleOptionsStations.Name = "layoutControlItemScheduleOptionsStations";
 			this.layoutControlItemScheduleOptionsStations.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemScheduleOptionsStations.Size = new System.Drawing.Size(300, 553);
+			this.layoutControlItemScheduleOptionsStations.Size = new System.Drawing.Size(300, 552);
 			this.layoutControlItemScheduleOptionsStations.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemScheduleOptionsStations.Text = "Stations";
 			this.layoutControlItemScheduleOptionsStations.TextSize = new System.Drawing.Size(0, 0);
@@ -596,7 +596,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.tabbedControlGroupMain.Name = "tabbedControlGroupMain";
 			this.tabbedControlGroupMain.SelectedTabPage = this.layoutControlGroupMainSchedule;
 			this.tabbedControlGroupMain.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupMain.Size = new System.Drawing.Size(678, 602);
+			this.tabbedControlGroupMain.Size = new System.Drawing.Size(691, 602);
 			this.tabbedControlGroupMain.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupMainSchedule,
             this.layoutControlGroupScheduleSettings});
@@ -626,7 +626,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.emptySpaceItem22});
 			this.layoutControlGroupMainSchedule.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupMainSchedule.Name = "layoutControlGroupMainSchedule";
-			this.layoutControlGroupMainSchedule.Size = new System.Drawing.Size(654, 553);
+			this.layoutControlGroupMainSchedule.Size = new System.Drawing.Size(667, 552);
 			this.layoutControlGroupMainSchedule.Text = "Build Schedule";
 			// 
 			// emptySpaceItem14
@@ -636,7 +636,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem14.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem14.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem14.Name = "emptySpaceItem14";
-			this.emptySpaceItem14.Size = new System.Drawing.Size(10, 553);
+			this.emptySpaceItem14.Size = new System.Drawing.Size(10, 552);
 			this.emptySpaceItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -647,7 +647,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(644, 40);
+			this.emptySpaceItem2.Size = new System.Drawing.Size(657, 40);
 			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -659,7 +659,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemMainScheduleTypeTitle.MaxSize = new System.Drawing.Size(0, 36);
 			this.layoutControlItemMainScheduleTypeTitle.MinSize = new System.Drawing.Size(1, 36);
 			this.layoutControlItemMainScheduleTypeTitle.Name = "layoutControlItemMainScheduleTypeTitle";
-			this.layoutControlItemMainScheduleTypeTitle.Size = new System.Drawing.Size(644, 36);
+			this.layoutControlItemMainScheduleTypeTitle.Size = new System.Drawing.Size(657, 36);
 			this.layoutControlItemMainScheduleTypeTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemMainScheduleTypeTitle.Text = "Schedule Type Title";
 			this.layoutControlItemMainScheduleTypeTitle.TextSize = new System.Drawing.Size(0, 0);
@@ -672,7 +672,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem15.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem15.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem15.Name = "emptySpaceItem15";
-			this.emptySpaceItem15.Size = new System.Drawing.Size(644, 20);
+			this.emptySpaceItem15.Size = new System.Drawing.Size(657, 20);
 			this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -724,7 +724,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem18.AllowHotTrack = false;
 			this.emptySpaceItem18.Location = new System.Drawing.Point(500, 96);
 			this.emptySpaceItem18.Name = "emptySpaceItem18";
-			this.emptySpaceItem18.Size = new System.Drawing.Size(154, 90);
+			this.emptySpaceItem18.Size = new System.Drawing.Size(167, 90);
 			this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem17
@@ -734,7 +734,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem17.MaxSize = new System.Drawing.Size(0, 170);
 			this.emptySpaceItem17.MinSize = new System.Drawing.Size(10, 170);
 			this.emptySpaceItem17.Name = "emptySpaceItem17";
-			this.emptySpaceItem17.Size = new System.Drawing.Size(644, 170);
+			this.emptySpaceItem17.Size = new System.Drawing.Size(657, 170);
 			this.emptySpaceItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -746,7 +746,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlItemMainScheduleConceptTypeTitle.MaxSize = new System.Drawing.Size(0, 36);
 			this.layoutControlItemMainScheduleConceptTypeTitle.MinSize = new System.Drawing.Size(1, 36);
 			this.layoutControlItemMainScheduleConceptTypeTitle.Name = "layoutControlItemMainScheduleConceptTypeTitle";
-			this.layoutControlItemMainScheduleConceptTypeTitle.Size = new System.Drawing.Size(644, 36);
+			this.layoutControlItemMainScheduleConceptTypeTitle.Size = new System.Drawing.Size(657, 36);
 			this.layoutControlItemMainScheduleConceptTypeTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemMainScheduleConceptTypeTitle.Text = "Concept Type Title";
 			this.layoutControlItemMainScheduleConceptTypeTitle.TextSize = new System.Drawing.Size(0, 0);
@@ -759,7 +759,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem20.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem20.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem20.Name = "emptySpaceItem20";
-			this.emptySpaceItem20.Size = new System.Drawing.Size(644, 20);
+			this.emptySpaceItem20.Size = new System.Drawing.Size(657, 20);
 			this.emptySpaceItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -838,7 +838,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem24.AllowHotTrack = false;
 			this.emptySpaceItem24.Location = new System.Drawing.Point(590, 412);
 			this.emptySpaceItem24.Name = "emptySpaceItem24";
-			this.emptySpaceItem24.Size = new System.Drawing.Size(64, 45);
+			this.emptySpaceItem24.Size = new System.Drawing.Size(77, 45);
 			this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem22
@@ -846,7 +846,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem22.AllowHotTrack = false;
 			this.emptySpaceItem22.Location = new System.Drawing.Point(10, 457);
 			this.emptySpaceItem22.Name = "emptySpaceItem22";
-			this.emptySpaceItem22.Size = new System.Drawing.Size(644, 96);
+			this.emptySpaceItem22.Size = new System.Drawing.Size(657, 95);
 			this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlGroupScheduleSettings
@@ -862,7 +862,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.layoutControlGroupCalendarType});
 			this.layoutControlGroupScheduleSettings.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupScheduleSettings.Name = "layoutControlGroupScheduleSettings";
-			this.layoutControlGroupScheduleSettings.Size = new System.Drawing.Size(654, 553);
+			this.layoutControlGroupScheduleSettings.Size = new System.Drawing.Size(667, 552);
 			this.layoutControlGroupScheduleSettings.Text = "Settings";
 			// 
 			// emptySpaceItem3
@@ -872,7 +872,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 30);
 			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 30);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(644, 30);
+			this.emptySpaceItem3.Size = new System.Drawing.Size(657, 30);
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -883,7 +883,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem19.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem19.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem19.Name = "emptySpaceItem19";
-			this.emptySpaceItem19.Size = new System.Drawing.Size(10, 553);
+			this.emptySpaceItem19.Size = new System.Drawing.Size(10, 552);
 			this.emptySpaceItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -894,7 +894,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItemDaypartsSeparator.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItemDaypartsSeparator.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItemDaypartsSeparator.Name = "emptySpaceItemDaypartsSeparator";
-			this.emptySpaceItemDaypartsSeparator.Size = new System.Drawing.Size(644, 40);
+			this.emptySpaceItemDaypartsSeparator.Size = new System.Drawing.Size(657, 40);
 			this.emptySpaceItemDaypartsSeparator.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItemDaypartsSeparator.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -909,7 +909,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.emptySpaceItem1});
 			this.layoutControlGroupDayparts.Location = new System.Drawing.Point(10, 30);
 			this.layoutControlGroupDayparts.Name = "layoutControlGroupDayparts";
-			this.layoutControlGroupDayparts.Size = new System.Drawing.Size(644, 85);
+			this.layoutControlGroupDayparts.Size = new System.Drawing.Size(657, 85);
 			this.layoutControlGroupDayparts.Text = "Dayparts";
 			this.layoutControlGroupDayparts.TextVisible = false;
 			// 
@@ -942,7 +942,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem26.AllowHotTrack = false;
 			this.emptySpaceItem26.Location = new System.Drawing.Point(400, 0);
 			this.emptySpaceItem26.Name = "emptySpaceItem26";
-			this.emptySpaceItem26.Size = new System.Drawing.Size(232, 72);
+			this.emptySpaceItem26.Size = new System.Drawing.Size(245, 72);
 			this.emptySpaceItem26.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem25
@@ -962,14 +962,14 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlGroupDaypartValues.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Flow;
 			this.layoutControlGroupDaypartValues.Location = new System.Drawing.Point(92, 72);
 			this.layoutControlGroupDaypartValues.Name = "layoutControlGroupDaypartValues";
-			this.layoutControlGroupDaypartValues.Size = new System.Drawing.Size(540, 13);
+			this.layoutControlGroupDaypartValues.Size = new System.Drawing.Size(553, 13);
 			this.layoutControlGroupDaypartValues.Text = "Values";
 			this.layoutControlGroupDaypartValues.TextVisible = false;
 			// 
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(632, 0);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(645, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
 			this.emptySpaceItem1.Size = new System.Drawing.Size(12, 85);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -977,11 +977,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// emptySpaceItemDemosSeparator
 			// 
 			this.emptySpaceItemDemosSeparator.AllowHotTrack = false;
-			this.emptySpaceItemDemosSeparator.Location = new System.Drawing.Point(10, 311);
+			this.emptySpaceItemDemosSeparator.Location = new System.Drawing.Point(10, 305);
 			this.emptySpaceItemDemosSeparator.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItemDemosSeparator.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItemDemosSeparator.Name = "emptySpaceItemDemosSeparator";
-			this.emptySpaceItemDemosSeparator.Size = new System.Drawing.Size(644, 40);
+			this.emptySpaceItemDemosSeparator.Size = new System.Drawing.Size(657, 40);
 			this.emptySpaceItemDemosSeparator.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItemDemosSeparator.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -996,7 +996,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.emptySpaceItem9});
 			this.layoutControlGroupDemos.Location = new System.Drawing.Point(10, 155);
 			this.layoutControlGroupDemos.Name = "layoutControlGroupDemos";
-			this.layoutControlGroupDemos.Size = new System.Drawing.Size(644, 156);
+			this.layoutControlGroupDemos.Size = new System.Drawing.Size(657, 150);
 			this.layoutControlGroupDemos.Text = "Demos";
 			this.layoutControlGroupDemos.TextVisible = false;
 			// 
@@ -1028,7 +1028,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem29.AllowHotTrack = false;
 			this.emptySpaceItem29.Location = new System.Drawing.Point(400, 0);
 			this.emptySpaceItem29.Name = "emptySpaceItem29";
-			this.emptySpaceItem29.Size = new System.Drawing.Size(244, 76);
+			this.emptySpaceItem29.Size = new System.Drawing.Size(257, 76);
 			this.emptySpaceItem29.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem31
@@ -1038,7 +1038,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem31.MaxSize = new System.Drawing.Size(92, 0);
 			this.emptySpaceItem31.MinSize = new System.Drawing.Size(92, 10);
 			this.emptySpaceItem31.Name = "emptySpaceItem31";
-			this.emptySpaceItem31.Size = new System.Drawing.Size(92, 80);
+			this.emptySpaceItem31.Size = new System.Drawing.Size(92, 74);
 			this.emptySpaceItem31.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem31.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1054,7 +1054,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.layoutControlGroupDemosValues.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Flow;
 			this.layoutControlGroupDemosValues.Location = new System.Drawing.Point(92, 76);
 			this.layoutControlGroupDemosValues.Name = "layoutControlGroupDemosValues";
-			this.layoutControlGroupDemosValues.Size = new System.Drawing.Size(542, 80);
+			this.layoutControlGroupDemosValues.Size = new System.Drawing.Size(555, 74);
 			this.layoutControlGroupDemosValues.Text = "Values";
 			this.layoutControlGroupDemosValues.TextVisible = false;
 			// 
@@ -1145,17 +1145,17 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			// emptySpaceItem9
 			// 
 			this.emptySpaceItem9.AllowHotTrack = false;
-			this.emptySpaceItem9.Location = new System.Drawing.Point(634, 76);
+			this.emptySpaceItem9.Location = new System.Drawing.Point(647, 76);
 			this.emptySpaceItem9.Name = "emptySpaceItem9";
-			this.emptySpaceItem9.Size = new System.Drawing.Size(10, 80);
+			this.emptySpaceItem9.Size = new System.Drawing.Size(10, 74);
 			this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem7
 			// 
 			this.emptySpaceItem7.AllowHotTrack = false;
-			this.emptySpaceItem7.Location = new System.Drawing.Point(10, 457);
+			this.emptySpaceItem7.Location = new System.Drawing.Point(10, 451);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(644, 96);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(657, 101);
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlGroupCalendarType
@@ -1168,9 +1168,9 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
             this.layoutControlItemCalendarTypeMonday,
             this.layoutControlItemCalendarTypeSunday,
             this.emptySpaceItem8});
-			this.layoutControlGroupCalendarType.Location = new System.Drawing.Point(10, 351);
+			this.layoutControlGroupCalendarType.Location = new System.Drawing.Point(10, 345);
 			this.layoutControlGroupCalendarType.Name = "layoutControlGroupCalendarType";
-			this.layoutControlGroupCalendarType.Size = new System.Drawing.Size(644, 106);
+			this.layoutControlGroupCalendarType.Size = new System.Drawing.Size(657, 106);
 			this.layoutControlGroupCalendarType.Text = "Calendar Type";
 			this.layoutControlGroupCalendarType.TextVisible = false;
 			// 
@@ -1202,7 +1202,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem6.AllowHotTrack = false;
 			this.emptySpaceItem6.Location = new System.Drawing.Point(400, 0);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(244, 76);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(257, 76);
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem5
@@ -1253,16 +1253,16 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.emptySpaceItem8.AllowHotTrack = false;
 			this.emptySpaceItem8.Location = new System.Drawing.Point(492, 76);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(152, 30);
+			this.emptySpaceItem8.Size = new System.Drawing.Size(165, 30);
 			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// splitterItemMain
 			// 
 			this.splitterItemMain.AllowHotTrack = true;
 			this.splitterItemMain.FixedStyle = DevExpress.XtraLayout.SplitterItemFixedStyles.RightBottom;
-			this.splitterItemMain.Location = new System.Drawing.Point(702, 0);
+			this.splitterItemMain.Location = new System.Drawing.Point(715, 0);
 			this.splitterItemMain.Name = "splitterItemMain";
-			this.splitterItemMain.Size = new System.Drawing.Size(5, 602);
+			this.splitterItemMain.Size = new System.Drawing.Size(12, 602);
 			// 
 			// styleController
 			// 

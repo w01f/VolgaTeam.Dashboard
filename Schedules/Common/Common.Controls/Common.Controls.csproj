@@ -83,6 +83,7 @@
     <Compile Include="ContentEditors\Events\ScheduleSavingEventArgs.cs" />
     <Compile Include="ContentEditors\Helpers\ContentEditManager.cs" />
     <Compile Include="ContentEditors\Helpers\ContentRibbonManager.cs" />
+    <Compile Include="ContentEditors\Helpers\ContentStatusBarManager.cs" />
     <Compile Include="ContentEditors\Interfaces\IContentControl.cs" />
     <Compile Include="ContentEditors\Interfaces\IContentController.cs" />
     <Compile Include="ContentEditors\Interfaces\IContentEditControl.cs" />

@@ -13,7 +13,6 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 		public bool ShowFlightDates { get; set; }
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
-		public bool TableOutput { get; set; }
 
 		public string SlideHeader { get; set; }
 		public string Advertiser { get; set; }

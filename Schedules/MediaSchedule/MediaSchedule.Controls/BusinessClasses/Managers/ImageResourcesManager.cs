@@ -9,6 +9,14 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Icon MainAppIcon { get; private set; }
 		public Image MainAppRibbonLogo { get; private set; }
 
+		#region Start Form
+		public Image StartFormLogo { get; private set; }
+		public Image StartFormNewImage { get; private set; }
+		public Image StartFormOpenImage { get; private set; }
+		public Image StartFormQuickScheduleImage { get; private set; }
+		public Image StartFormCancelImage { get; private set; }
+		#endregion
+
 		#region Home Resources
 		public Image HomeDefaultLogo { get; private set; }
 		public Image HomeWeeklyScheduleImage { get; private set; }
@@ -66,6 +74,24 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "branding_image.png");
 			if (File.Exists(resourceFile))
 				MainAppRibbonLogo = Image.FromFile(resourceFile);
+
+			#region Start Form
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_brand.png");
+			if (File.Exists(resourceFile))
+				StartFormLogo = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_new.png");
+			if (File.Exists(resourceFile))
+				StartFormNewImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_open.png");
+			if (File.Exists(resourceFile))
+				StartFormOpenImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_gitrdun.png");
+			if (File.Exists(resourceFile))
+				StartFormQuickScheduleImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_cancel.png");
+			if (File.Exists(resourceFile))
+				StartFormCancelImage = Image.FromFile(resourceFile);
+			#endregion
 
 			#region Home Resources
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_default.png");

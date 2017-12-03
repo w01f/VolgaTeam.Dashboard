@@ -16,9 +16,7 @@ using DevExpress.XtraEditors.Controls;
 using Asa.Calendar.Controls.PresentationClasses.SlideInfo;
 using Asa.Calendar.Controls.PresentationClasses.Views;
 using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
-using Asa.Common.Core.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
-using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Calendars
@@ -34,7 +32,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 	{
 		protected abstract Form FormMain { get; }
 		protected abstract RibbonControl Ribbon { get; }
-		protected abstract ImageListBoxControl MonthList { get; }
 
 		#region ICalendarControl Members
 		public bool AllowToSave { get; set; }
@@ -61,48 +58,28 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 			CalendarView = new MonthViewControl(this);
 			CalendarView.DataSaved += OnDataChanged;
+			CalendarView.SelectedMonthChanged += OnMonthListSelectedIndexChanged;
 			pnMain.Controls.Add((Control)CalendarView);
 
-			MonthList.SelectedIndexChanged += OnMonthListSelectedIndexChanged;
 			CopyButton.Click += OnCalendarCopyClick;
 			PasteButton.Click += OnCalendarPasteClick;
 			CloneButton.Click += OnCalendarCloneClick;
 
 			retractableBarControl.ContentSize = retractableBarControl.Width;
-
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
-			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
-			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
-			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
 		}
 
 		protected override void UpdateEditedContet()
 		{
 			AllowToSave = false;
 
-			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>",CalendarContent.Settings.BusinessName);
-
-			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
-				CalendarContent.Settings.FlightDates,
-				String.Format("{0} {1}s", CalendarContent.Settings.TotalWeeks, "week"));
-
 			if (!CalendarContent.Months.Any()) return;
 
-			MonthList.Items.AddRange(CalendarContent.Months.Select(x => new ImageListBoxItem(x.Date.ToString("MMM, yyyy"), 0)).ToArray());
-			var selectedIndex = CalendarContent.Months
-				.Select(m => m.Date)
-				.ToList()
-				.IndexOf(CalendarSettings.SelectedMonth);
-			MonthList.SelectedIndex = selectedIndex > 0 ? selectedIndex : 0;
-
 			CalendarView.LoadData();
-			CalendarView = CalendarView;
-			CalendarView.ChangeMonth(CalendarContent.Months[MonthList.SelectedIndex].Date);
 			((Control)CalendarView).BringToFront();
 
 			SlideInfo.LoadVisibilitySettings();
-			SlideInfo.LoadData(CalendarContent.Months[MonthList.SelectedIndex], false);
+			SlideInfo.LoadData(CalendarView.SelectedMonthData);
+			CalendarSettings.SelectedMonth = CalendarView.SelectedMonthData.Date;
 
 			UpdateDataManagementAndOutputFunctions();
 
@@ -158,7 +135,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			MonthList.Focus();
+			(CalendarView as Control)?.Focus();
 		}
 
 		protected void InitSlideInfo<TControl>() where TControl : ISlideInfoControl
@@ -175,39 +152,35 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			};
 		}
 
-		protected void OnDataChanged(object sender, EventArgs e)
-		{
-			SettingsNotSaved = true;
-		}
-
 		protected void ReleaseControls()
 		{
-			MonthList.Items.Clear();
 			CalendarView.Release();
 			SlideInfo.Release();
 		}
 
-		protected void OnMonthListSelectedIndexChanged(object sender, EventArgs e)
+		private void OnDataChanged(object sender, EventArgs e)
 		{
-			if (MonthList.SelectedIndex < 0 || !AllowToSave) return;
-			SlideInfo.LoadData(CalendarContent.Months[MonthList.SelectedIndex]);
-			Splash(true);
-			Application.DoEvents();
-			FormProgress.ShowProgress("Loading Data...", () => CalendarView.ChangeMonth(CalendarContent.Months[MonthList.SelectedIndex].Date));
-			Splash(false);
-			CalendarSettings.SelectedMonth = CalendarContent.Months[MonthList.SelectedIndex].Date;
+			SettingsNotSaved = true;
 		}
-		protected void OnCalendarCopyClick(object sender, EventArgs e)
+
+		private void OnMonthListSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (!AllowToSave) return;
+			SlideInfo.LoadData(CalendarView.SelectedMonthData);
+			CalendarSettings.SelectedMonth = CalendarView.SelectedMonthData.Date;
+		}
+
+		private void OnCalendarCopyClick(object sender, EventArgs e)
 		{
 			CalendarView.CopyDay();
 		}
 
-		protected void OnCalendarPasteClick(object sender, EventArgs e)
+		private void OnCalendarPasteClick(object sender, EventArgs e)
 		{
 			CalendarView.PasteDay();
 		}
 
-		protected void OnCalendarCloneClick(object sender, EventArgs e)
+		private void OnCalendarCloneClick(object sender, EventArgs e)
 		{
 			CalendarView.CloneDay();
 		}
@@ -228,8 +201,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		public override void OutputPowerPoint()
 		{
-			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();
@@ -260,8 +232,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		public override void OutputPdf()
 		{
-			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();
@@ -292,8 +263,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		public override void Preview()
 		{
-			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();
@@ -324,8 +294,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		public override void Email()
 		{
-			if (MonthList.SelectedIndex < 0) return;
-			var currentMonth = CalendarContent.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in CalendarContent.Months)
 				month.OutputData.PrepareNotes();

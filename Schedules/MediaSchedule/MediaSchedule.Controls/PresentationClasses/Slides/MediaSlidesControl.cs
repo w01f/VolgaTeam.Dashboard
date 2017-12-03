@@ -11,6 +11,7 @@ using Asa.Common.GUI.Slides;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
@@ -73,6 +74,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		{
 			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = true;
 			IsActive = true;
+			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
 		}
 
 		public void GetHelp()

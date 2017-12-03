@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Common.GUI.ToolForms;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using Asa.Schedules.Common.Controls.ContentEditors.Objects;
 using DevComponents.DotNetBar;
@@ -44,6 +45,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 			IsActive = true;
 			if (ContentUpdateInfo.NeedToUpdate)
 				LoadData();
+			UpdateStatusBar();
 		}
 
 		public virtual void Saving(ContentSavingEventArgs savingArgs)
@@ -76,6 +78,11 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 			});
 			ContentUpdateInfo.NeedToUpdate = false;
 			ContentUpdateInfo.ChangeInfo.Reset();
+		}
+
+		protected virtual void UpdateStatusBar()
+		{
+			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
 		}
 
 		protected virtual void SaveData() { }

@@ -23,8 +23,8 @@ using Asa.Media.Controls.PresentationClasses.OptionsControls.Output;
 using Asa.Media.Controls.PresentationClasses.OptionsControls.Settings;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevComponents.DotNetBar;
-using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTab;
@@ -35,7 +35,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class OptionsContentEditorsContainer : BasePartitionEditControl<OptionsContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
-	//public partial class OptionsContentEditorsContainer : UserControl
+		//public partial class OptionsContentEditorsContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
@@ -81,24 +81,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			Controller.Instance.OptionsProgramDelete.Click += OnDeleteItem;
 
 			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsNoRecordsLogo ?? pictureEditDefaultLogo.Image;
-
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
-			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
-			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
-			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
-			simpleLabelItemTotalSpotsTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MaxSize, scaleFactor);
-			simpleLabelItemTotalSpotsTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MinSize, scaleFactor);
-			simpleLabelItemTotalSpotsValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MaxSize, scaleFactor);
-			simpleLabelItemTotalSpotsValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MinSize, scaleFactor);
-			simpleLabelItemTotalCostTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MaxSize, scaleFactor);
-			simpleLabelItemTotalCostTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MinSize, scaleFactor);
-			simpleLabelItemTotalCostValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MaxSize, scaleFactor);
-			simpleLabelItemTotalCostValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MinSize, scaleFactor);
-			simpleLabelItemAvgRateTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MaxSize, scaleFactor);
-			simpleLabelItemAvgRateTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MinSize, scaleFactor);
-			simpleLabelItemAvgRateValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MaxSize, scaleFactor);
-			simpleLabelItemAvgRateValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MinSize, scaleFactor);
 		}
 
 		public override void ShowControl(ContentOpenEventArgs args = null)
@@ -126,12 +108,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 			EditedContent?.Dispose();
 			EditedContent = Schedule.OptionsContent.Clone<OptionsContent, OptionsContent>();
-
-			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
-
-			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
-				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			settingsContainer.LoadContent(EditedContent);
 
@@ -165,6 +141,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 
 			FormThemeSelector.Link(
 				Controller.Instance.OptionsTheme,
+				Controller.Instance.FormMain,
 				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType),
 				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType),
 				MediaMetaData.Instance.SettingsManager,
@@ -218,8 +195,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				Summary.DataChanged += (o, e) =>
 				{
 					if (!_allowToSave) return;
-					UpdateTotalsValues();
-					UpdateTotalsVisibility();
+					UpdateStatusBar();
 					SettingsNotSaved = true;
 				};
 
@@ -236,8 +212,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			if (ActiveOptionSetContainer != null)
 			{
 				settingsContainer.LoadOptionSet(ActiveOptionSetContainer.OptionSetData);
-				UpdateTotalsValues();
-				UpdateTotalsVisibility();
+				UpdateStatusBar();
 			}
 			OnContentEditorChanged(ActiveContentEditor, EventArgs.Empty);
 			UpdateOutputStatus();
@@ -318,68 +293,6 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			}
 		}
 
-		private void UpdateTotalsVisibility()
-		{
-			if (ActiveOptionSetContainer != null)
-			{
-				layoutControlGroupTotals.Visibility = ActiveOptionSetContainer.OptionSetData.Programs.Any() && (ActiveOptionSetContainer.OptionSetData.ShowTotalSpots || ActiveOptionSetContainer.OptionSetData.ShowTotalCost || ActiveOptionSetContainer.OptionSetData.ShowAverageRate) ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupTotalSpots.Visibility = ActiveOptionSetContainer.OptionSetData.ShowTotalSpots ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupTotalCost.Visibility = ActiveOptionSetContainer.OptionSetData.ShowTotalCost ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupAvgRate.Visibility = ActiveOptionSetContainer.OptionSetData.ShowAverageRate ? LayoutVisibility.Always : LayoutVisibility.Never;
-			}
-			else if (ActiveSummary != null)
-			{
-				layoutControlGroupTotals.Visibility = ActiveSummary.Data.ShowTallySpots || ActiveSummary.Data.ShowTallyCost ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupTotalSpots.Visibility = ActiveSummary.Data.ShowTallySpots ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupTotalCost.Visibility = ActiveSummary.Data.ShowTallyCost ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupAvgRate.Visibility = LayoutVisibility.Never;
-			}
-			else
-			{
-				layoutControlGroupTotals.Visibility = LayoutVisibility.Never;
-				layoutControlGroupTotalSpots.Visibility = LayoutVisibility.Never;
-				layoutControlGroupTotalCost.Visibility = LayoutVisibility.Never;
-				layoutControlGroupAvgRate.Visibility = LayoutVisibility.Never;
-			}
-		}
-
-		private void UpdateTotalsValues()
-		{
-			if (ActiveOptionSetContainer != null && ActiveOptionSetContainer.OptionSetData.Programs.Any())
-			{
-				switch (ActiveOptionSetContainer.OptionSetData.SpotType)
-				{
-					case SpotType.Week:
-						simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Weekly Spots");
-						simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Weekly Cost");
-						break;
-					case SpotType.Month:
-						simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Monthly Spots");
-						simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Monthly Cost");
-						break;
-					case SpotType.Total:
-						simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Spots");
-						simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Cost");
-						break;
-				}
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-				simpleLabelItemAvgRateValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveOptionSetContainer.OptionSetData.AvgRate.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-			}
-			else if (ActiveSummary != null)
-			{
-				simpleLabelItemTotalSpotsTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Spots");
-				simpleLabelItemTotalCostTitle.Text = String.Format("<color=darkgray><size=-1>{0}</size></color>", "Total Cost");
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-				simpleLabelItemAvgRateValue.Text = " ";
-			}
-			else
-			{
-				simpleLabelItemTotalSpotsValue.Text = simpleLabelItemAvgRateValue.Text = " ";
-			}
-		}
-
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.OptionsPowerPoint.Enabled =
@@ -408,8 +321,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			if (ActiveContentEditor == null) return;
 			if (!_allowToSave) return;
 			settingsContainer.UpdateSettingsAccordingDataChanges(ActiveContentEditor.ActiveEditor.EditorType);
-			UpdateTotalsVisibility();
-			UpdateTotalsValues();
+			UpdateStatusBar();
 			UpdateCollectionChangeButtons();
 			UpdateOutputStatus();
 			UpdateSummaryState();
@@ -422,8 +334,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 			if (ActiveContentEditor == null) return;
 			settingsContainer.UpdateSettingsAccordingSelectedEditor(ActiveContentEditor.ActiveEditor.EditorType);
 			UpdateCollectionChangeButtons();
-			UpdateTotalsValues();
-			UpdateTotalsVisibility();
+			UpdateStatusBar();
 			LoadThemes();
 		}
 
@@ -644,6 +555,67 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		public void OnDeleteItem(object sender, EventArgs e)
 		{
 			ActiveContentEditor?.ActiveItemCollection?.DeleteItem();
+		}
+		#endregion
+
+		#region Status Bar management
+
+		private readonly LabelItem _statusBarTotalSpotsInfo = new LabelItem();
+		private readonly LabelItem _statusBarTotalCostInfo = new LabelItem();
+		private readonly LabelItem _statusBarAvgRateInfo = new LabelItem();
+
+		protected override void UpdateStatusBar()
+		{
+			if (ActiveOptionSetContainer != null && ActiveOptionSetContainer.OptionSetData.Programs.Any())
+			{
+				switch (ActiveOptionSetContainer.OptionSetData.SpotType)
+				{
+					case SpotType.Week:
+						_statusBarTotalSpotsInfo.Text = String.Format("Weekly Spots: {0}", ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0"));
+						_statusBarTotalCostInfo.Text = String.Format("Weekly Cost: {0}", ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.Parent.OptionsSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+						break;
+					case SpotType.Month:
+						_statusBarTotalSpotsInfo.Text = String.Format("Monthly Spots: {0}", ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0"));
+						_statusBarTotalCostInfo.Text = String.Format("Monthly Cost: {0}", ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.Parent.OptionsSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+						break;
+					case SpotType.Total:
+						_statusBarTotalSpotsInfo.Text = String.Format("Total Spots: {0}", ActiveOptionSetContainer.OptionSetData.TotalSpots.ToString("#,##0"));
+						_statusBarTotalCostInfo.Text = String.Format("Total Cost: {0}", ActiveOptionSetContainer.OptionSetData.TotalCost.ToString(ActiveOptionSetContainer.OptionSetData.Parent.OptionsSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+						break;
+				}
+				_statusBarAvgRateInfo.Text = String.Format("Average Rate: {0}", ActiveOptionSetContainer.OptionSetData.AvgRate.ToString(ActiveOptionSetContainer.OptionSetData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+
+				var statusBarItems = new List<LabelItem>();
+
+				if (ActiveOptionSetContainer.OptionSetData.ShowTotalSpots)
+					statusBarItems.Add(_statusBarTotalSpotsInfo);
+				if (ActiveOptionSetContainer.OptionSetData.ShowTotalCost)
+					statusBarItems.Add(_statusBarTotalCostInfo);
+				if (ActiveOptionSetContainer.OptionSetData.ShowAverageRate)
+					statusBarItems.Add(_statusBarAvgRateInfo);
+
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
+			}
+			else if (ActiveSummary != null)
+			{
+				_statusBarTotalSpotsInfo.Text = String.Format("Total Spots: {0}", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
+				_statusBarTotalCostInfo.Text = String.Format("Total Cost: {0}", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+
+				var statusBarItems = new List<LabelItem>();
+
+				if (ActiveSummary.Data.ShowTallySpots)
+					statusBarItems.Add(_statusBarTotalSpotsInfo);
+				if (ActiveSummary.Data.ShowTallyCost)
+					statusBarItems.Add(_statusBarTotalCostInfo);
+
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
+			}
+			else
+				base.UpdateStatusBar();
 		}
 		#endregion
 

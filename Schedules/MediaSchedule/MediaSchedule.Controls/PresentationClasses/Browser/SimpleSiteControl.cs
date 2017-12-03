@@ -110,7 +110,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			FormProgress.CloseProgress();
 			using (var formComplete = new FormFileDownloadComplete(e.Item.FullPath))
 			{
-				formComplete.StartPosition=FormStartPosition.CenterScreen;
+				formComplete.StartPosition=FormStartPosition.CenterParent;
 				formComplete.ShowDialog();
 			}
 		}

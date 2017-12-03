@@ -82,7 +82,8 @@ namespace Asa.Common.GUI.SlideSettingsEditors
 			MasterWizardManager.Instance.SetMasterWizard();
 
 			var buttons = GetSizeButtons().ToList();
-			SlideSettingsManager.Instance.ApplySettings((SlideSettings)buttons.First(b => b.Checked).Tag, _powerPointProcessor);
+			if (_powerPointProcessor.Connect())
+				SlideSettingsManager.Instance.ApplySettings((SlideSettings)buttons.First(b => b.Checked).Tag, _powerPointProcessor);
 		}
 
 		private void FormEditSlideSettings_FormClosing(object sender, FormClosingEventArgs e)

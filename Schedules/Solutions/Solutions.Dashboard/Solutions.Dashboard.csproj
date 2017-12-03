@@ -129,12 +129,14 @@
     <Compile Include="PresentationClasses\ContentEditors\TargetCustomersControl.Designer.cs">
       <DependentUpon>TargetCustomersControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\Output\DashboardSlideInfo.cs" />
     <Compile Include="PresentationClasses\Output\IClientGoalsOutputData.cs" />
     <Compile Include="PresentationClasses\Output\ICoverOutputData.cs" />
     <Compile Include="PresentationClasses\Output\IDashboardSlide.cs" />
     <Compile Include="PresentationClasses\Output\IDashboardOutputData.cs" />
     <Compile Include="PresentationClasses\Output\ILeadoffStatementOutputData.cs" />
     <Compile Include="PresentationClasses\Output\ITargetCustomersOutputData.cs" />
+    <Compile Include="PresentationClasses\Output\SummarySlideInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -202,9 +204,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SalesQuotes.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SalesRep.png" />

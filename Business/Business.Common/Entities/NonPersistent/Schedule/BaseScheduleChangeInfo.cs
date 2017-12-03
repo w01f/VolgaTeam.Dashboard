@@ -4,6 +4,7 @@
 	{
 		public bool WholeScheduleChanged { get; set; }
 		public bool ScheduleDatesChanged { get; set; }
+		public bool ScheduleInfoChanged { get; set; }
 
 		public virtual void Reset()
 		{
@@ -15,6 +16,7 @@
 		{
 			WholeScheduleChanged |= newInfo.WholeScheduleChanged;
 			ScheduleDatesChanged |= newInfo.ScheduleDatesChanged;
+			ScheduleInfoChanged |= newInfo.ScheduleInfoChanged;
 		}
 	}
 }

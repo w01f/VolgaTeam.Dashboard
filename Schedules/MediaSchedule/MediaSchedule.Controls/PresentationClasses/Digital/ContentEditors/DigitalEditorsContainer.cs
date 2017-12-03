@@ -22,7 +22,6 @@ using Asa.Media.Controls.PresentationClasses.Digital.Settings;
 using Asa.Online.Controls.PresentationClasses.Products;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using DevComponents.DotNetBar;
-using DevExpress.Skins;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTab;
 using RegistryHelper = Asa.Common.Core.Helpers.RegistryHelper;
@@ -31,7 +30,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class DigitalEditorsContainer : BasePartitionEditControl<DigitalProductsContent, IDigitalSchedule<IDigitalScheduleSettings>, IDigitalScheduleSettings, MediaScheduleChangeInfo>
-	//public partial class DigitalEditorsContainer :UserControl
+		//public partial class DigitalEditorsContainer :UserControl
 	{
 		#region Properties
 		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
@@ -69,29 +68,12 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 			Controller.Instance.DigitalProductLogoBar.Text =
 				ListManager.Instance.DefaultControlsConfiguration.RibbonGroupDigitalLogoTitle ?? Controller.Instance.DigitalProductLogoBar.Text;
-
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
-			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
-			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
-			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
 		}
 
 		protected override void UpdateEditedContet()
 		{
-			var quickLoad = EditedContent != null && !(ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
-				ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
-				ContentUpdateInfo.ChangeInfo.CalendarTypeChanged ||
-				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
-
 			EditedContent?.Dispose();
 			EditedContent = Schedule.DigitalProductsContent.Clone<DigitalProductsContent, DigitalProductsContent>();
-
-			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
-
-			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
-				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			settingsContainer.LoadContent(EditedContent);
 
@@ -129,6 +111,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 
 			FormThemeSelector.Link(
 				Controller.Instance.DigitalProductTheme,
+				Controller.Instance.FormMain,
 				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType),
 				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType),
 				MediaMetaData.Instance.SettingsManager,

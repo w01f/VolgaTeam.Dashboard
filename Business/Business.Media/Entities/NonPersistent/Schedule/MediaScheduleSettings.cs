@@ -188,8 +188,9 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 					UserFlightDateStart != changedInstance.UserFlightDateStart ||
 					UserFlightDateEnd != changedInstance.UserFlightDateEnd;
 			else
-				changeInfo.ScheduleDatesChanged = changedInstance.UserFlightDateStart.HasValue && 
+				changeInfo.ScheduleDatesChanged = changedInstance.UserFlightDateStart.HasValue &&
 					changedInstance.UserFlightDateEnd.HasValue;
+			changeInfo.ScheduleInfoChanged = changeInfo.ScheduleDatesChanged || BusinessName != changedInstance.BusinessName;
 			return changeInfo;
 		}
 
@@ -229,12 +230,12 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 				startDate = new DateTime(startDate.Year, 10, 1);
 			while (startDate <= FlightDateEnd.Value)
 			{
-				var endDate = startDate.AddMonths(3);
+				var endDate = startDate.AddMonths(3).AddDays(-1);
 				var quarter = new Quarter { DateAnchor = startDate };
 				var quarterMonths = targetMonths.Where(m => (m.StartDate.Value.Day < 15 && m.StartDate.Value >= startDate && m.StartDate <= endDate) ||
 					(m.StartDate.Value.Day > 15 && m.EndDate >= startDate && m.EndDate <= endDate)
 					).OrderBy(m => m.Month).ToList();
-				startDate = endDate;
+				startDate = endDate.AddDays(1);
 				if (!quarterMonths.Any()) continue;
 				quarter.DateStart = quarterMonths.First().StartDate.Value;
 				quarter.DateEnd = quarterMonths.Last().EndDate.Value;

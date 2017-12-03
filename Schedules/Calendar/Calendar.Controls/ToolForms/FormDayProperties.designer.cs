@@ -326,7 +326,7 @@ namespace Asa.Calendar.Controls.ToolForms
 			this.MinimizeBox = false;
 			this.Name = "FormDayProperties";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Day Properties:";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();

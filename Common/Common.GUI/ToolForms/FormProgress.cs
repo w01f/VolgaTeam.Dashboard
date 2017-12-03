@@ -49,7 +49,7 @@ namespace Asa.Common.GUI.ToolForms
 					{
 						var taskCompleted = false;
 
-						#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 						Task.Run(() =>
 						{
 							if (_mainForm.InvokeRequired)
@@ -62,7 +62,7 @@ namespace Asa.Common.GUI.ToolForms
 								backgroundAction();
 							taskCompleted = true;
 						});
-						#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
 						await Task.Run(() =>
 						{
@@ -82,8 +82,9 @@ namespace Asa.Common.GUI.ToolForms
 			}
 		}
 
-		public static void ShowProgress()
+		public static void ShowProgress(Form parentForm = null)
 		{
+			parentForm = parentForm ?? _mainForm;
 			if (_instance == null)
 				_instance = new FormProgress();
 			_instance.Closed += (o, e) =>
@@ -91,7 +92,19 @@ namespace Asa.Common.GUI.ToolForms
 				_instance.Dispose();
 				_instance = null;
 			};
-			_instance.Show(_mainForm);
+			if (parentForm != null)
+			{
+				_instance.StartPosition = FormStartPosition.Manual;
+				_instance.Top = parentForm.Top + (parentForm.Height - _instance.Height) / 2;
+				_instance.Left = parentForm.Left + (parentForm.Width - _instance.Width) / 2;
+				_instance.Show(parentForm);
+			}
+			else
+			{
+				_instance.StartPosition = FormStartPosition.CenterScreen;
+				_instance.Show();
+			}
+			Application.DoEvents();
 		}
 
 		public static void CloseProgress()

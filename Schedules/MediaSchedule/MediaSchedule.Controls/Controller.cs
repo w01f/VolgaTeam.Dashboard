@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Activities;
@@ -15,6 +16,7 @@ using Asa.Common.GUI.SlideSettingsEditors;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using Asa.Media.Controls.BusinessClasses.Managers;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevExpress.XtraLayout;
 
 namespace Asa.Media.Controls
@@ -163,6 +165,76 @@ namespace Asa.Media.Controls
 
 			BrowserSitesBar.Text = BusinessObjects.Instance.BrowserManager.RibbonBarTitle;
 			BrowserSitesTitle.Text = BusinessObjects.Instance.BrowserManager.SiteListTitle;
+
+			BusinessObjects.Instance.ScheduleManager.ScheduleOpened +=
+				OnScheduleInfoChanged;
+			ContentEditManager<MediaScheduleChangeInfo>.ScheduleInfoChanged +=
+				OnScheduleInfoChanged;
+		}
+
+		private void OnScheduleInfoChanged(Object sender, EventArgs e)
+		{
+			foreach (var labelControl in new[]
+			{
+				ProgramScheduleInfo,
+				DigitalProductInfo,
+				Calendar1Info,
+				Calendar2Info,
+				SnapshotInfo,
+				OptionsInfo,
+				SolutionsInfo,
+				SlidesInfo,
+				RateCardInfo,
+				Gallery1Info,
+				Gallery2Info,
+				BrowserInfo
+			})
+			{
+				labelControl.Text = String.Format("<color={2}><size=+1>{0}</size></color><br><br><color=lightgray><size=-1>{1}</size></color>",
+					BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.BusinessName,
+					BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.FlightDates,
+					BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue
+						? BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value.ToHex()
+						: "black");
+			}
+
+			foreach (var ribbonBar in new[]
+			{
+				ProgramScheduleInfoBar,
+				DigitalProductInfoBar,
+				Calendar1InfoBar,
+				Calendar2InfoBar,
+				SnapshotInfoBar,
+				OptionsInfoBar,
+				SolutionsInfoBar,
+				SlidesInfoBar,
+				RateCardInfoBar,
+				Gallery1InfoBar,
+				Gallery2InfoBar,
+				BrowserInfoBar
+			})
+			{
+				ribbonBar.RecalcLayout();
+			}
+
+			foreach (var ribbonPanel in new[]
+			{
+				ProgramSchedulePanel,
+				DigitalProductPanel,
+				Calendar1Panel,
+				Calendar2Panel,
+				SnapshotPanel,
+				OptionsPanel,
+				SolutionsPanel,
+				SlidesPanel,
+				RateCardPanel,
+				Gallery1Panel,
+				Gallery2Panel,
+				BrowserPanel
+			})
+			{
+				ribbonPanel.PerformLayout();
+			}
 		}
 
 		private void ConfigureMainMenu()
@@ -399,6 +471,8 @@ namespace Asa.Media.Controls
 		public RibbonPanel ProgramSchedulePanel { get; set; }
 		public RibbonBar ProgramScheduleThemeBar { get; set; }
 		public RibbonBar ProgramScheduleSpecialButtons { get; set; }
+		public RibbonBar ProgramScheduleInfoBar { get; set; }
+		public LabelControl ProgramScheduleInfo { get; set; }
 		public ButtonItem ProgramScheduleNew { get; set; }
 		public ButtonItem ProgramScheduleProgramAdd { get; set; }
 		public ButtonItem ProgramScheduleProgramDelete { get; set; }
@@ -413,6 +487,8 @@ namespace Asa.Media.Controls
 		public RibbonBar DigitalProductLogoBar { get; set; }
 		public RibbonBar DigitalProductThemeBar { get; set; }
 		public RibbonBar DigitalProductSpecialButtons { get; set; }
+		public RibbonBar DigitalProductInfoBar { get; set; }
+		public LabelControl DigitalProductInfo { get; set; }
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductTheme { get; set; }
@@ -422,8 +498,10 @@ namespace Asa.Media.Controls
 		#endregion
 
 		#region Calendar 1
+		public RibbonPanel Calendar1Panel { get; set; }
 		public RibbonBar Calendar1SpecialButtons { get; set; }
-		public ImageListBoxControl Calendar1MonthsList { get; set; }
+		public RibbonBar Calendar1InfoBar { get; set; }
+		public LabelControl Calendar1Info { get; set; }
 		public ButtonItem Calendar1Copy { get; set; }
 		public ButtonItem Calendar1Paste { get; set; }
 		public ButtonItem Calendar1Clone { get; set; }
@@ -433,8 +511,10 @@ namespace Asa.Media.Controls
 		#endregion
 
 		#region Calendar 2
+		public RibbonPanel Calendar2Panel { get; set; }
 		public RibbonBar Calendar2SpecialButtons { get; set; }
-		public ImageListBoxControl Calendar2MonthsList { get; set; }
+		public RibbonBar Calendar2InfoBar { get; set; }
+		public LabelControl Calendar2Info { get; set; }
 		public ButtonItem Calendar2Copy { get; set; }
 		public ButtonItem Calendar2Paste { get; set; }
 		public ButtonItem Calendar2Clone { get; set; }
@@ -447,6 +527,8 @@ namespace Asa.Media.Controls
 		public RibbonPanel SnapshotPanel { get; set; }
 		public RibbonBar SnapshotThemeBar { get; set; }
 		public RibbonBar SnapshotSpecialButtons { get; set; }
+		public RibbonBar SnapshotInfoBar { get; set; }
+		public LabelControl SnapshotInfo { get; set; }
 		public ButtonItem SnapshotNew { get; set; }
 		public ButtonItem SnapshotProgramAdd { get; set; }
 		public ButtonItem SnapshotProgramDelete { get; set; }
@@ -460,6 +542,8 @@ namespace Asa.Media.Controls
 		public RibbonPanel OptionsPanel { get; set; }
 		public RibbonBar OptionsThemeBar { get; set; }
 		public RibbonBar OptionsSpecialButtons { get; set; }
+		public RibbonBar OptionsInfoBar { get; set; }
+		public LabelControl OptionsInfo { get; set; }
 		public ButtonItem OptionsNew { get; set; }
 		public ButtonItem OptionsProgramAdd { get; set; }
 		public ButtonItem OptionsProgramDelete { get; set; }
@@ -473,6 +557,8 @@ namespace Asa.Media.Controls
 		public RibbonPanel SolutionsPanel { get; set; }
 		public RibbonBar SolutionsThemeBar { get; set; }
 		public RibbonBar SolutionsSpecialButtons { get; set; }
+		public RibbonBar SolutionsInfoBar { get; set; }
+		public LabelControl SolutionsInfo { get; set; }
 		public ButtonItem SolutionsPreview { get; set; }
 		public ButtonItem SolutionsPowerPoint { get; set; }
 		public ButtonItem SolutionsTheme { get; set; }
@@ -482,13 +568,18 @@ namespace Asa.Media.Controls
 		public RibbonPanel SlidesPanel { get; set; }
 		public RibbonBar SlidesLogoBar { get; set; }
 		public RibbonBar SlidesSpecialButtons { get; set; }
+		public RibbonBar SlidesInfoBar { get; set; }
+		public LabelControl SlidesInfo { get; set; }
 		public LabelItem SlidesLogoLabel { get; set; }
 		public ButtonItem SlidesPreview { get; set; }
 		public ButtonItem SlidesPowerPoint { get; set; }
 		#endregion
 
 		#region Rate Card
+		public RibbonPanel RateCardPanel { get; set; }
 		public RibbonBar RateCardSpecialButtons { get; set; }
+		public RibbonBar RateCardInfoBar { get; set; }
+		public LabelControl RateCardInfo { get; set; }
 		public ComboBoxEdit RateCardCombo { get; set; }
 		#endregion
 
@@ -499,6 +590,8 @@ namespace Asa.Media.Controls
 		public RibbonBar Gallery1ImageBar { get; set; }
 		public RibbonBar Gallery1ZoomBar { get; set; }
 		public RibbonBar Gallery1CopyBar { get; set; }
+		public RibbonBar Gallery1InfoBar { get; set; }
+		public LabelControl Gallery1Info { get; set; }
 		public ItemContainer Gallery1BrowseModeContainer { get; set; }
 		public ButtonItem Gallery1View { get; set; }
 		public ButtonItem Gallery1Edit { get; set; }
@@ -518,6 +611,8 @@ namespace Asa.Media.Controls
 		public RibbonBar Gallery2ImageBar { get; set; }
 		public RibbonBar Gallery2ZoomBar { get; set; }
 		public RibbonBar Gallery2CopyBar { get; set; }
+		public RibbonBar Gallery2InfoBar { get; set; }
+		public LabelControl Gallery2Info { get; set; }
 		public ItemContainer Gallery2BrowseModeContainer { get; set; }
 		public ButtonItem Gallery2View { get; set; }
 		public ButtonItem Gallery2Edit { get; set; }
@@ -531,10 +626,13 @@ namespace Asa.Media.Controls
 		#endregion
 
 		#region Browser
+		public RibbonPanel BrowserPanel { get; set; }
 		public RibbonBar BrowserSpecialButtons { get; set; }
 		public RibbonBar BrowserSitesBar { get; set; }
 		public LabelItem BrowserSitesTitle { get; set; }
 		public ComboBoxEdit BrowserSitesCombo { get; set; }
+		public RibbonBar BrowserInfoBar { get; set; }
+		public LabelControl BrowserInfo { get; set; }
 		#endregion
 
 		#endregion

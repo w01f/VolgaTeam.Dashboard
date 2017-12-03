@@ -14,6 +14,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Common.GUI.Summary;
 using Asa.Solutions.Dashboard.PresentationClasses.Output;
 using DevExpress.Skins;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraLayout;
 using DevExpress.XtraLayout.Utils;
 
@@ -24,12 +25,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	{
 		public bool AllowToSave { get; set; }
 		public override SlideType SlideType => SlideType.SimpleSummary;
-		public string SlideName => SlideContainer.DashboardInfo.SimpleSummaryTitle;
+		public override string ControlName => SlideContainer.DashboardInfo.SimpleSummaryTitle;
 
 		public SimpleSummaryControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
-			Text = SlideName;
+			Text = ControlName;
 
 			comboBoxEditSlideHeader.EnableSelectAll();
 			comboBoxEditAdvertiser.EnableSelectAll();
@@ -54,24 +55,32 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			layoutControlItemAdvertiserToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserToggle.MinSize, scaleFactor);
 			layoutControlItemAdvertiserLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserLogo.MaxSize, scaleFactor);
 			layoutControlItemAdvertiserLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserLogo.MinSize, scaleFactor);
+			simpleLabelItemAdvertiserTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiserTitle.MaxSize, scaleFactor);
+			simpleLabelItemAdvertiserTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiserTitle.MinSize, scaleFactor);
 			layoutControlItemAdvertiserValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserValue.MaxSize, scaleFactor);
 			layoutControlItemAdvertiserValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemAdvertiserValue.MinSize, scaleFactor);
 			layoutControlItemDecisionMakerToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerToggle.MaxSize, scaleFactor);
 			layoutControlItemDecisionMakerToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerToggle.MinSize, scaleFactor);
 			layoutControlItemDecisionMakerLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerLogo.MaxSize, scaleFactor);
 			layoutControlItemDecisionMakerLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerLogo.MinSize, scaleFactor);
+			simpleLabelItemDecisionMakerTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemDecisionMakerTitle.MaxSize, scaleFactor);
+			simpleLabelItemDecisionMakerTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemDecisionMakerTitle.MinSize, scaleFactor);
 			layoutControlItemDecisionMakerValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerValue.MaxSize, scaleFactor);
 			layoutControlItemDecisionMakerValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemDecisionMakerValue.MinSize, scaleFactor);
 			layoutControlItemDateToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateToggle.MaxSize, scaleFactor);
 			layoutControlItemDateToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateToggle.MinSize, scaleFactor);
 			layoutControlItemDateLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateLogo.MaxSize, scaleFactor);
 			layoutControlItemDateLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateLogo.MinSize, scaleFactor);
+			simpleLabelItemDateTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemDateTitle.MaxSize, scaleFactor);
+			simpleLabelItemDateTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemDateTitle.MinSize, scaleFactor);
 			layoutControlItemDateValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateValue.MaxSize, scaleFactor);
 			layoutControlItemDateValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateValue.MinSize, scaleFactor);
 			layoutControlItemFlightDatesToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesToggle.MaxSize, scaleFactor);
 			layoutControlItemFlightDatesToggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesToggle.MinSize, scaleFactor);
 			layoutControlItemFlightDatesLogo.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesLogo.MaxSize, scaleFactor);
 			layoutControlItemFlightDatesLogo.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesLogo.MinSize, scaleFactor);
+			simpleLabelItemFlightDatesTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDatesTitle.MaxSize, scaleFactor);
+			simpleLabelItemFlightDatesTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDatesTitle.MinSize, scaleFactor);
 			layoutControlItemFlightDatesStart.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesStart.MaxSize, scaleFactor);
 			layoutControlItemFlightDatesStart.MinSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesStart.MinSize, scaleFactor);
 			layoutControlItemFlightDatesEnd.MaxSize = RectangleHelper.ScaleSize(layoutControlItemFlightDatesEnd.MaxSize, scaleFactor);
@@ -143,13 +152,10 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			checkEditMonthlyInvestment.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowMonthly;
 			checkEditTotalInvestment.Checked = SlideContainer.EditedContent.SimpleSummaryState.ShowTotal;
 
-			checkEditTableOutput.Checked = SlideContainer.EditedContent.SimpleSummaryState.TableOutput;
-
 			UpdateTotalValues();
 
 			AllowToSave = true;
 
-			UpdateFlightDatesWeeks();
 			UpdateTotalItems();
 		}
 
@@ -176,8 +182,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.EditedContent.SimpleSummaryState.ShowMonthly = checkEditMonthlyInvestment.Checked;
 			SlideContainer.EditedContent.SimpleSummaryState.ShowTotal = checkEditTotalInvestment.Checked;
 
-			SlideContainer.EditedContent.SimpleSummaryState.TableOutput = checkEditTableOutput.Checked;
-
 			ListManager.Instance.Advertisers.Add(Advertiser);
 			ListManager.Instance.Advertisers.Save();
 
@@ -189,22 +193,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			spinEditMonthly.EditValue = SlideContainer.EditedContent.SimpleSummaryState.MonthlyValue ?? simpleSummaryItemContainer.TotalMonthlyValue;
 			spinEditTotal.EditValue = SlideContainer.EditedContent.SimpleSummaryState.TotalValue ?? simpleSummaryItemContainer.TotalTotalValue;
-		}
-
-		private void UpdateFlightDatesWeeks()
-		{
-			simpleLabelItemFlightDatesWeeks.Text = " ";
-			if (dateEditFligtDatesStart.EditValue == null || dateEditFligtDatesEnd.EditValue == null)
-				return;
-			var startDate = dateEditFligtDatesStart.DateTime;
-			while (startDate.DayOfWeek != DayOfWeek.Monday)
-				startDate = startDate.AddDays(-1);
-			var endDate = dateEditFligtDatesEnd.DateTime;
-			while (endDate.DayOfWeek != DayOfWeek.Sunday)
-				endDate = endDate.AddDays(1);
-			var datesRange = endDate - startDate;
-			if (datesRange.Days <= 0) return;
-			simpleLabelItemFlightDatesWeeks.Text = String.Format("<color=\"gray\">{0} weeks</color>", datesRange.Days / 7 + 1);
 		}
 
 		private void OnSelectedTabPageChanged(object sender, LayoutTabPageChangedEventArgs e)
@@ -246,13 +234,11 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		private void OnFlightDatesStartEditValueChanged(object sender, EventArgs e)
 		{
 			dateEditFligtDatesEnd.Properties.NullDate = dateEditFligtDatesStart.DateTime;
-			UpdateFlightDatesWeeks();
 			OnEditValueChanged(sender, e);
 		}
 
 		private void OnFligtDatesEndEditValueChanged(object sender, EventArgs e)
 		{
-			UpdateFlightDatesWeeks();
 			OnEditValueChanged(sender, e);
 		}
 
@@ -278,12 +264,12 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			SlideContainer.RaiseDataChanged();
 		}
 
-		private void OnMonthlyInvestmentButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void OnMonthlyInvestmentButtonClick(object sender, ButtonPressedEventArgs e)
 		{
 			spinEditMonthly.EditValue = simpleSummaryItemContainer.TotalMonthlyValue;
 		}
 
-		private void OnTotalInvestmentButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		private void OnTotalInvestmentButtonClick(object sender, ButtonPressedEventArgs e)
 		{
 			spinEditTotal.EditValue = simpleSummaryItemContainer.TotalTotalValue;
 		}
@@ -292,25 +278,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public override bool ReadyForOutput => simpleSummaryItemContainer.ItemsComplited;
 
 		public int ItemsCount => simpleSummaryItemContainer.ItemTitles.Length;
-
-		public int SlidesCount
-		{
-			get
-			{
-				if (!TableOutput)
-				{
-					var main = ItemsCount / 5;
-					var rest = ItemsCount % 5;
-					return main + (rest > 0 ? 1 : 0);
-				}
-				else
-				{
-					var main = ItemsCount / 18;
-					var rest = ItemsCount % 18;
-					return main + (rest > 0 ? 1 : 0);
-				}
-			}
-		}
 
 		public string Title => comboBoxEditSlideHeader.EditValue?.ToString() ?? string.Empty;
 
@@ -412,8 +379,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public ContractSettings ContractSettings => SlideContainer.EditedContent.SimpleSummaryState.ContractSettings;
 
-		public bool TableOutput => checkEditTableOutput.Checked;
-
 		public int ItemsPerTable => ItemsCount > 18 ? 18 : ItemsCount;
 
 		public bool ShowIcons => false;
@@ -458,16 +423,37 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 		}
 
-		public void GenerateOutput()
+		public IEnumerable<DashboardSlideInfo> GetSlideInfo()
 		{
-			SlideContainer.PowerPointProcessor.AppendSummary(this);
+			return new[]
+			{
+				new SummarySlideInfo
+				{
+					SlideContainer = this,
+					SlideName = String.Format("{0} (line - item)",ControlName),
+					TableOutput = false
+				},
+				new SummarySlideInfo
+				{
+					SlideContainer = this,
+					SlideName = String.Format("{0} (table - grid)",ControlName),
+					TableOutput = true
+				},
+			};
 		}
 
-		public PreviewGroup GeneratePreview()
+		public void GenerateOutput(DashboardSlideInfo slideInfo)
 		{
+			var sumarySlideInfo = (SummarySlideInfo)slideInfo;
+			SlideContainer.PowerPointProcessor.AppendSummary(this, sumarySlideInfo.TableOutput);
+		}
+
+		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
+		{
+			var sumarySlideInfo = (SummarySlideInfo)slideInfo;
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
-			SlideContainer.PowerPointProcessor.PrepareSummaryEmail(tempFileName, this);
-			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
+			SlideContainer.PowerPointProcessor.PrepareSummaryEmail(tempFileName, this, sumarySlideInfo.TableOutput);
+			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

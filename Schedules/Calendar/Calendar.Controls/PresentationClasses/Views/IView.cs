@@ -1,6 +1,7 @@
 ﻿using System;
 using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Calendar.Controls.PresentationClasses.Calendars;
+using Asa.Calendar.Controls.PresentationClasses.Views.MonthView;
 
 namespace Asa.Calendar.Controls.PresentationClasses.Views
 {
@@ -11,9 +12,12 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views
 		bool SettingsNotSaved { get; set; }
 		string Title { get; }
 
-		event EventHandler<EventArgs> DataSaved;
+		MonthControl SelectedMonth { get; }
+		CalendarMonth SelectedMonthData { get; }
 
-		void ChangeMonth(DateTime date);
+		event EventHandler<EventArgs> DataSaved;
+		event EventHandler<EventArgs> SelectedMonthChanged;
+
 		void LoadData();
 		void Save();
 		void RefreshData();

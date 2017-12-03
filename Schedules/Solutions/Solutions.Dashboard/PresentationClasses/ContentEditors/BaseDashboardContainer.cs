@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
@@ -28,6 +29,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public abstract IDashboardSettingsContainer SettingsContainer { get; }
 		public override SolutionType SolutionType => SolutionType.Dashboard;
 		public override SlideType SelectedSlideType => ActiveSlide.SlideType;
+		public abstract Color? AccentColor { get; }
 		public override string HelpKey
 		{
 			get
@@ -129,27 +131,29 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public override bool ReadyForOutput => ActiveSlide?.ReadyForOutput ?? false;
 		public abstract Theme GetSelectedTheme(SlideType slideType);
 
-		public IList<IDashboardSlide> GetOutputSlides()
+		public IList<DashboardSlideInfo> GetOutputSlides()
 		{
-			var selectedSlides = new List<IDashboardSlide>();
+			var selectedSlideInfos = new List<DashboardSlideInfo>();
 			using (var form = new FormSelectOutputItems())
 			{
 				form.Text = "Slide Output Options";
-				foreach (var slideControl in _slides.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>())
+				foreach (var slideInfo in _slides
+					.Where(s => s.ReadyForOutput).OfType<IDashboardSlide>()
+					.SelectMany(slide => slide.GetSlideInfo())) 
 				{
-					var item = new CheckedListBoxItem(slideControl, slideControl.SlideName, ActiveSlide.SlideType == SlideType.Cleanslate || slideControl == ActiveSlide ? CheckState.Checked : CheckState.Unchecked);
+					var item = new CheckedListBoxItem(slideInfo, slideInfo.SlideName, ActiveSlide.SlideType == SlideType.Cleanslate || slideInfo.SlideContainer == ActiveSlide ? CheckState.Checked : CheckState.Unchecked);
 					form.checkedListBoxControlOutputItems.Items.Add(item);
-					if (slideControl == ActiveSlide)
+					if (slideInfo.SlideContainer == ActiveSlide)
 						form.buttonXSelectCurrent.Tag = item;
 				}
 				if (form.ShowDialog() == DialogResult.OK)
-					selectedSlides.AddRange(form.checkedListBoxControlOutputItems.Items.
+					selectedSlideInfos.AddRange(form.checkedListBoxControlOutputItems.Items.
 						OfType<CheckedListBoxItem>().
 						Where(ci => ci.CheckState == CheckState.Checked).
 						Select(ci => ci.Value).
-						OfType<IDashboardSlide>());
+						OfType<DashboardSlideInfo>());
 			}
-			return selectedSlides;
+			return selectedSlideInfos;
 		}
 		#endregion
 	}

@@ -16,6 +16,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		protected BaseDashboardContainer SlideContainer { get; }
 
 		public virtual SlideType SlideType { get; }
+		public virtual string ControlName { get; }
 		public virtual bool ReadyForOutput { get; }
 		public Theme SelectedTheme => SlideContainer.GetSelectedTheme(SlideType);
 

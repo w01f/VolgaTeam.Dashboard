@@ -15,6 +15,7 @@ using Asa.Common.GUI.Common;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
 using DevExpress.XtraEditors;
@@ -81,7 +82,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			layoutControlItemCalendarTypeMonday.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeMonday.MinSize, scaleFactor);
 			layoutControlItemCalendarTypeSunday.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeSunday.MaxSize, scaleFactor);
 			layoutControlItemCalendarTypeSunday.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeSunday.MinSize, scaleFactor);
-			
+
 			layoutControlItemScheduleOptionsStations.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsStations.MinSize, scaleFactor);
 
 			layoutControl.ResumeLayout(true);

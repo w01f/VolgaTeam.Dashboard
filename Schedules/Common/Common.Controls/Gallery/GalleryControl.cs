@@ -14,6 +14,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Gallery;
 using Asa.Common.GUI.FavoriteImages;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -94,6 +95,7 @@ namespace Asa.Schedules.Common.Controls.Gallery
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
+			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
 			LoadData();
 		}
 

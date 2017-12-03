@@ -12,9 +12,9 @@ namespace Asa.Common.GUI.Interop
 {
 	public static class SummaryPowerPointExtensions
 	{
-		public static void AppendSummary(this PowerPointProcessor target, ISummaryControl summary, Presentation destinationPresentation = null)
+		public static void AppendSummary(this PowerPointProcessor target, ISummaryControl summary, bool tabelOutput, Presentation destinationPresentation = null)
 		{
-			if (summary.TableOutput)
+			if (tabelOutput)
 			{
 				summary.PopulateReplacementsList();
 				target.AppendTableSummary(summary, destinationPresentation);
@@ -361,15 +361,15 @@ namespace Asa.Common.GUI.Interop
 			}
 		}
 
-		public static void PrepareSummaryEmail(this PowerPointProcessor target, string fileName, ISummaryControl summary)
+		public static void PrepareSummaryEmail(this PowerPointProcessor target, string fileName, ISummaryControl summary, bool tabelOutput)
 		{
-			target.PreparePresentation(fileName, presentation => target.AppendSummary(summary, presentation));
+			target.PreparePresentation(fileName, presentation => target.AppendSummary(summary, tabelOutput, presentation));
 		}
 
-		public static void PrepareSummaryPdf(this PowerPointProcessor target, string targetFileName, ISummaryControl summary)
+		public static void PrepareSummaryPdf(this PowerPointProcessor target, string targetFileName, ISummaryControl summary, bool tabelOutput)
 		{
 			var sourceFileName = Path.GetTempFileName();
-			target.PreparePresentation(sourceFileName, presentation => target.AppendSummary(summary, presentation));
+			target.PreparePresentation(sourceFileName, presentation => target.AppendSummary(summary, tabelOutput, presentation));
 			target.BuildPdf(sourceFileName, targetFileName);
 		}
 	}

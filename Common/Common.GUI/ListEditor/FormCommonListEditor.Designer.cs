@@ -72,9 +72,9 @@ namespace Asa.Common.GUI.ListEditor
 			this.xtraTabControl.AppearancePage.HeaderHotTracked.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
-			this.xtraTabControl.Location = new System.Drawing.Point(56, 12);
+			this.xtraTabControl.Location = new System.Drawing.Point(12, 12);
 			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.Size = new System.Drawing.Size(456, 413);
+			this.xtraTabControl.Size = new System.Drawing.Size(500, 413);
 			this.xtraTabControl.TabIndex = 2;
 			// 
 			// layoutControl
@@ -94,6 +94,7 @@ namespace Asa.Common.GUI.ListEditor
 			this.layoutControl.BackColor = System.Drawing.Color.White;
 			this.layoutControl.Controls.Add(this.buttonXOK);
 			this.layoutControl.Controls.Add(this.buttonXCancel);
+			this.layoutControl.Controls.Add(this.xtraTabControl);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
@@ -223,7 +224,7 @@ namespace Asa.Common.GUI.ListEditor
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// layoutControlItemGallery
+			// layoutControlItemContaner
 			// 
 			this.layoutControlItemContaner.Control = this.xtraTabControl;
 			this.layoutControlItemContaner.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -244,11 +245,12 @@ namespace Asa.Common.GUI.ListEditor
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormCommonListEditor";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Edit Lists";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCommonListEditor_FormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();

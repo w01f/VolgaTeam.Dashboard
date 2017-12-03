@@ -99,6 +99,7 @@
     <Compile Include="Helpers\AuthManager.cs" />
     <Compile Include="Helpers\BrowserHelper.cs" />
     <Compile Include="Helpers\CloneHelper.cs" />
+    <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\FavoriteImagesManager.cs" />
     <Compile Include="Helpers\FileStorageManager.cs" />
     <Compile Include="Helpers\ClipboardHelper.cs" />

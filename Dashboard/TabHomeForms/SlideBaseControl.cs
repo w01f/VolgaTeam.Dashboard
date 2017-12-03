@@ -57,6 +57,7 @@ namespace Asa.Dashboard.TabHomeForms
 			ThemeButton.Visible = true;
 			FormThemeSelector.Link(
 				ThemeButton,
+				FormMain.Instance,
 				themes,
 				(SettingsManager.Instance.GetSelectedTheme(slideType) ?? new Theme(null)).Name,
 				SettingsManager.Instance,

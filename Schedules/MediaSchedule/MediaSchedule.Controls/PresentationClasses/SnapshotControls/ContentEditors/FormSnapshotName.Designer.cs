@@ -302,7 +302,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormSnapshotName";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Snapshot";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSnapshotName_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();

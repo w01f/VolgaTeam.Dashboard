@@ -20,8 +20,6 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 		protected override RibbonControl Ribbon => Controller.Instance.Ribbon;
 
-		protected override ImageListBoxControl MonthList => Controller.Instance.Calendar1MonthsList;
-
 		public override ButtonItem CopyButton => Controller.Instance.Calendar1Copy;
 
 		public override ButtonItem PasteButton => Controller.Instance.Calendar1Paste;
@@ -90,8 +88,6 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override void UpdateDataManagementAndOutputFunctions()
 		{
 			var enable = IsOutputEnabled;
-
-			MonthList.Enabled = enable;
 
 			if (enable)
 			{

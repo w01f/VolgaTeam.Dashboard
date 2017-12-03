@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
@@ -19,13 +20,13 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 	{
 		private bool _allowToSave;
 		public override SlideType SlideType => SlideType.TargetCustomers;
-		public string SlideName => SlideContainer.DashboardInfo.TargeCustomersTitle;
+		public override string ControlName => SlideContainer.DashboardInfo.TargeCustomersTitle;
 
 		public TargetCustomersControl(BaseDashboardContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
 
-			Text = SlideName;
+			Text = ControlName;
 
 			comboBoxEditSlideHeader.EnableSelectAll();
 
@@ -156,16 +157,28 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 		}
 
-		public void GenerateOutput()
+		public IEnumerable<DashboardSlideInfo> GetSlideInfo()
+		{
+			return new[]
+			{
+				new DashboardSlideInfo
+				{
+					SlideContainer = this,
+					SlideName = ControlName
+				}
+			};
+		}
+
+		public void GenerateOutput(DashboardSlideInfo slideInfo)
 		{
 			SlideContainer.PowerPointProcessor.AppendTargetCustomers(this);
 		}
 
-		public PreviewGroup GeneratePreview()
+		public PreviewGroup GeneratePreview(DashboardSlideInfo slideInfo)
 		{
 			var tempFileName = Path.Combine(Asa.Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			SlideContainer.PowerPointProcessor.PrepareTargetCustomers(this, tempFileName);
-			return new PreviewGroup { Name = SlideName, PresentationSourcePath = tempFileName };
+			return new PreviewGroup { Name = ControlName, PresentationSourcePath = tempFileName };
 		}
 		#endregion
 	}

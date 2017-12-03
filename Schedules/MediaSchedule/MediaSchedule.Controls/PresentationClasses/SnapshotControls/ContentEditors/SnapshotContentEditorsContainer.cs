@@ -23,8 +23,8 @@ using Asa.Media.Controls.PresentationClasses.SnapshotControls.Output;
 using Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
+using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevComponents.DotNetBar;
-using DevExpress.Skins;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTab;
@@ -35,7 +35,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class SnapshotContentEditorsContainer : BasePartitionEditControl<SnapshotContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
-	//public partial class SnapshotContentEditorsContainer : UserControl
+		//public partial class SnapshotContentEditorsContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
@@ -81,36 +81,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			Controller.Instance.SnapshotProgramDelete.Click += OnDeleteItem;
 
 			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsNoRecordsLogo ?? pictureEditDefaultLogo.Image;
-
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			simpleLabelItemScheduleInfo.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MaxSize, scaleFactor);
-			simpleLabelItemScheduleInfo.MinSize = RectangleHelper.ScaleSize(simpleLabelItemScheduleInfo.MinSize, scaleFactor);
-			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
-			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
-			simpleLabelItemActiveWeeksTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemActiveWeeksTitle.MaxSize, scaleFactor);
-			simpleLabelItemActiveWeeksTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemActiveWeeksTitle.MinSize, scaleFactor);
-			simpleLabelItemActiveWeeksValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemActiveWeeksValue.MaxSize, scaleFactor);
-			simpleLabelItemActiveWeeksValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemActiveWeeksValue.MinSize, scaleFactor);
-			simpleLabelItemWeeklySpotsTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklySpotsTitle.MaxSize, scaleFactor);
-			simpleLabelItemWeeklySpotsTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklySpotsTitle.MinSize, scaleFactor);
-			simpleLabelItemWeeklySpotsValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklySpotsValue.MaxSize, scaleFactor);
-			simpleLabelItemWeeklySpotsValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklySpotsValue.MinSize, scaleFactor);
-			simpleLabelItemWeeklyCostTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklyCostTitle.MaxSize, scaleFactor);
-			simpleLabelItemWeeklyCostTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklyCostTitle.MinSize, scaleFactor);
-			simpleLabelItemWeeklyCostValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklyCostValue.MaxSize, scaleFactor);
-			simpleLabelItemWeeklyCostValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemWeeklyCostValue.MinSize, scaleFactor);
-			simpleLabelItemTotalSpotsTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MaxSize, scaleFactor);
-			simpleLabelItemTotalSpotsTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsTitle.MinSize, scaleFactor);
-			simpleLabelItemTotalSpotsValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MaxSize, scaleFactor);
-			simpleLabelItemTotalSpotsValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalSpotsValue.MinSize, scaleFactor);
-			simpleLabelItemTotalCostTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MaxSize, scaleFactor);
-			simpleLabelItemTotalCostTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostTitle.MinSize, scaleFactor);
-			simpleLabelItemTotalCostValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MaxSize, scaleFactor);
-			simpleLabelItemTotalCostValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemTotalCostValue.MinSize, scaleFactor);
-			simpleLabelItemAvgRateTitle.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MaxSize, scaleFactor);
-			simpleLabelItemAvgRateTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateTitle.MinSize, scaleFactor);
-			simpleLabelItemAvgRateValue.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MaxSize, scaleFactor);
-			simpleLabelItemAvgRateValue.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAvgRateValue.MinSize, scaleFactor);
 		}
 
 		public override void ShowControl(ContentOpenEventArgs args = null)
@@ -138,12 +108,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 			EditedContent?.Dispose();
 			EditedContent = Schedule.SnapshotContent.Clone<SnapshotContent, SnapshotContent>();
-
-			simpleLabelItemScheduleInfo.Text = String.Format("<color=gray>{0}</color>", ScheduleSettings.BusinessName);
-
-			simpleLabelItemFlightDates.Text = String.Format("<color=gray>{0} <i>({1})</i></color>",
-				ScheduleSettings.FlightDates,
-				String.Format("{0} {1}s", ScheduleSettings.TotalWeeks, "week"));
 
 			settingsContainer.LoadContent(EditedContent);
 
@@ -177,6 +141,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 
 			FormThemeSelector.Link(
 				Controller.Instance.SnapshotTheme,
+				Controller.Instance.FormMain,
 				BusinessObjects.Instance.ThemeManager.GetThemes(SlideType),
 				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(SlideType),
 				MediaMetaData.Instance.SettingsManager,
@@ -230,8 +195,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				Summary.DataChanged += (o, e) =>
 				{
 					if (!_allowToSave) return;
-					UpdateTotalsValues();
-					UpdateTotalsVisibility();
+					UpdateStatusBar();
 					SettingsNotSaved = true;
 				};
 
@@ -248,8 +212,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (ActiveSnapshotContainer != null)
 			{
 				settingsContainer.LoadSnapshot(ActiveSnapshotContainer.SnapshotData);
-				UpdateTotalsValues();
-				UpdateTotalsVisibility();
+				UpdateStatusBar();
 			}
 			OnContentEditorChanged(ActiveContentEditor, EventArgs.Empty);
 			UpdateOutputStatus();
@@ -330,58 +293,6 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			}
 		}
 
-		private void UpdateTotalsValues()
-		{
-			if (ActiveSnapshotContainer != null && ActiveSnapshotContainer.SnapshotData.Programs.Any())
-			{
-				simpleLabelItemActiveWeeksValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.TotalWeeks.ToString("#0"));
-				simpleLabelItemWeeklySpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.WeeklySpots.ToString("#,##0"));
-				simpleLabelItemWeeklyCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.WeeklyCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.TotalCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-				simpleLabelItemAvgRateValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSnapshotContainer.SnapshotData.AvgRate.ToString(ActiveSnapshotContainer.SnapshotData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-			}
-			else if (ActiveSummary != null)
-			{
-				simpleLabelItemTotalSpotsValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
-				simpleLabelItemTotalCostValue.Text = String.Format("<color=dimgray><size=-1>{0}</size></color>", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
-			}
-		}
-
-		private void UpdateTotalsVisibility()
-		{
-			if (ActiveSnapshotContainer != null)
-			{
-				layoutControlGroupTotals.Visibility = ActiveSnapshotContainer.SnapshotData.Programs.Any() ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupTotalSpots.Visibility = ActiveSnapshotContainer.SnapshotData.ShowTotalSpots ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupWeeklyCost.Visibility = ActiveSnapshotContainer.SnapshotData.ShowWeeklyCost ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupWeeklySpots.Visibility = ActiveSnapshotContainer.SnapshotData.ShowWeeklySpots ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupActiveWeeks.Visibility = LayoutVisibility.Always;
-				layoutControlGroupTotalCost.Visibility = ActiveSnapshotContainer.SnapshotData.ShowTotalCost ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupAvgRate.Visibility = ActiveSnapshotContainer.SnapshotData.ShowAverageRate ? LayoutVisibility.Always : LayoutVisibility.Never;
-			}
-			else if (ActiveSummary != null)
-			{
-				layoutControlGroupTotals.Visibility = ActiveSummary.Data.ShowTallySpots || ActiveSummary.Data.ShowTallyCost ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupActiveWeeks.Visibility = LayoutVisibility.Never;
-				layoutControlGroupWeeklySpots.Visibility = LayoutVisibility.Never;
-				layoutControlGroupWeeklyCost.Visibility = LayoutVisibility.Never;
-				layoutControlGroupAvgRate.Visibility = LayoutVisibility.Never;
-				layoutControlGroupTotalSpots.Visibility = ActiveSummary.Data.ShowTallySpots ? LayoutVisibility.Always : LayoutVisibility.Never;
-				layoutControlGroupTotalCost.Visibility = ActiveSummary.Data.ShowTallyCost ? LayoutVisibility.Always : LayoutVisibility.Never;
-			}
-			else
-			{
-				layoutControlGroupTotals.Visibility = LayoutVisibility.Never;
-				layoutControlGroupActiveWeeks.Visibility = LayoutVisibility.Never;
-				layoutControlGroupWeeklySpots.Visibility = LayoutVisibility.Never;
-				layoutControlGroupWeeklyCost.Visibility = LayoutVisibility.Never;
-				layoutControlGroupTotalSpots.Visibility = LayoutVisibility.Never;
-				layoutControlGroupTotalCost.Visibility = LayoutVisibility.Never;
-				layoutControlGroupAvgRate.Visibility = LayoutVisibility.Never;
-			}
-		}
-
 		private void UpdateOutputStatus()
 		{
 			Controller.Instance.SnapshotPowerPoint.Enabled =
@@ -410,8 +321,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (ActiveContentEditor == null) return;
 			if (!_allowToSave) return;
 			settingsContainer.UpdateSettingsAccordingDataChanges(ActiveContentEditor.ActiveEditor.EditorType);
-			UpdateTotalsVisibility();
-			UpdateTotalsValues();
+			UpdateStatusBar();
 			UpdateCollectionChangeButtons();
 			UpdateOutputStatus();
 			UpdateSummaryState();
@@ -424,8 +334,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (ActiveContentEditor == null) return;
 			settingsContainer.UpdateSettingsAccordingSelectedEditor(ActiveContentEditor.ActiveEditor.EditorType);
 			UpdateCollectionChangeButtons();
-			UpdateTotalsValues();
-			UpdateTotalsVisibility();
+			UpdateStatusBar();
 			LoadThemes();
 		}
 
@@ -655,6 +564,65 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		public void OnDeleteItem(object sender, EventArgs e)
 		{
 			ActiveContentEditor?.ActiveItemCollection?.DeleteItem();
+		}
+		#endregion
+
+		#region Status Bar management
+
+		private readonly LabelItem _statusBarActiveWeeksInfo = new LabelItem();
+		private readonly LabelItem _statusBarWeeklySpotsInfo = new LabelItem();
+		private readonly LabelItem _statusBarWeeklyCostInfo = new LabelItem();
+		private readonly LabelItem _statusBarTotalSpotsInfo = new LabelItem();
+		private readonly LabelItem _statusBarTotalCostInfo = new LabelItem();
+		private readonly LabelItem _statusBarAvgRateInfo = new LabelItem();
+
+		protected override void UpdateStatusBar()
+		{
+			if (ActiveSnapshotContainer != null && ActiveSnapshotContainer.SnapshotData.Programs.Any())
+			{
+				_statusBarActiveWeeksInfo.Text = String.Format("Active Weeks: {0}", ActiveSnapshotContainer.SnapshotData.TotalWeeks.ToString("#0"));
+				_statusBarWeeklySpotsInfo.Text = String.Format("Weekly Spots: {0}", ActiveSnapshotContainer.SnapshotData.WeeklySpots.ToString("#,##0"));
+				_statusBarWeeklyCostInfo.Text = String.Format("Weekly Cost: {0}", ActiveSnapshotContainer.SnapshotData.WeeklyCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				_statusBarTotalSpotsInfo.Text = String.Format("Total Spots: {0}", ActiveSnapshotContainer.SnapshotData.TotalSpots.ToString("#,##0"));
+				_statusBarTotalCostInfo.Text = String.Format("Total Cost: {0}", ActiveSnapshotContainer.SnapshotData.TotalCost.ToString(ActiveSnapshotContainer.SnapshotData.Parent.SnapshotSummary.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+				_statusBarAvgRateInfo.Text = String.Format("Average Rate: {0}", ActiveSnapshotContainer.SnapshotData.AvgRate.ToString(ActiveSnapshotContainer.SnapshotData.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+
+				var statusBarItems = new List<LabelItem>();
+
+				statusBarItems.Add(_statusBarActiveWeeksInfo);
+				if (ActiveSnapshotContainer.SnapshotData.ShowWeeklySpots)
+					statusBarItems.Add(_statusBarWeeklySpotsInfo);
+				if (ActiveSnapshotContainer.SnapshotData.ShowWeeklyCost)
+					statusBarItems.Add(_statusBarWeeklyCostInfo);
+				if (ActiveSnapshotContainer.SnapshotData.ShowTotalSpots)
+					statusBarItems.Add(_statusBarTotalSpotsInfo);
+				if (ActiveSnapshotContainer.SnapshotData.ShowTotalCost)
+					statusBarItems.Add(_statusBarTotalCostInfo);
+				if (ActiveSnapshotContainer.SnapshotData.ShowAverageRate)
+					statusBarItems.Add(_statusBarAvgRateInfo);
+
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
+			}
+			else if (ActiveSummary != null)
+			{
+				_statusBarTotalSpotsInfo.Text = String.Format("Total Spots: {0}", ActiveSummary.Data.TotalSpots.ToString("#,##0"));
+				_statusBarTotalCostInfo.Text = String.Format("Total Cost: {0}", ActiveSummary.Data.TotalCost.ToString(ActiveSummary.Data.UseDecimalRates ? "$#,##0.00" : "$#,##0"));
+
+				var statusBarItems = new List<LabelItem>();
+
+				if (ActiveSummary.Data.ShowTallySpots)
+					statusBarItems.Add(_statusBarTotalSpotsInfo);
+				if (ActiveSummary.Data.ShowTallyCost)
+					statusBarItems.Add(_statusBarTotalCostInfo);
+
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
+			}
+			else
+				base.UpdateStatusBar();
 		}
 		#endregion
 

@@ -8,7 +8,6 @@ namespace Asa.Common.GUI.Summary
 	public interface ISummaryControl
 	{
 		int ItemsCount { get; }
-		int SlidesCount { get; }
 		string Title { get; }
 		string SummaryData { get; }
 		string Advertiser { get; }
@@ -29,7 +28,6 @@ namespace Asa.Common.GUI.Summary
 		
 		Theme SelectedTheme { get; }
 
-		bool TableOutput { get; }
 		int ItemsPerTable { get; }
 		bool ShowIcons { get; }
 		string[] TableIcons { get; }

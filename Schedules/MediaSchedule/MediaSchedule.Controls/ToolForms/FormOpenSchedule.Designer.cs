@@ -487,7 +487,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormOpenSchedule";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Open Previous Solutions";
 			this.Load += new System.EventHandler(this.OnFormLoad);
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();

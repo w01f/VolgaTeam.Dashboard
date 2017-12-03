@@ -239,7 +239,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormSelectMasterWizard";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Select Slide Format";
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideFormat.Properties)).EndInit();

@@ -219,7 +219,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 		{
 			get
 			{
-				if (!TableOutput)
+				if (!SummarySettings.TableOutput)
 				{
 					var main = ItemsCount / SummaryConstants.MaxOneSheetItems;
 					var rest = ItemsCount % SummaryConstants.MaxOneSheetItems;
@@ -340,8 +340,6 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			}
 		}
 
-		public bool TableOutput => SummarySettings.TableOutput;
-
 		public int ItemsPerTable => ItemsCount > SummaryConstants.MaxTableItems ? SummaryConstants.MaxTableItems : ItemsCount;
 
 		public bool ShowIcons => false;
@@ -403,7 +401,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		public void GenerateOutput()
 		{
-			BusinessObjects.Instance.PowerPointManager.Processor.AppendSummary(this);
+			BusinessObjects.Instance.PowerPointManager.Processor.AppendSummary(this, SummarySettings.TableOutput);
 		}
 
 		public PreviewGroup GeneratePreview()
@@ -413,7 +411,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				Name = Text,
 				PresentationSourcePath = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()))
 			};
-			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSummaryEmail(previewGroup.PresentationSourcePath, this);
+			BusinessObjects.Instance.PowerPointManager.Processor.PrepareSummaryEmail(previewGroup.PresentationSourcePath, this, SummarySettings.TableOutput);
 			return previewGroup;
 		}
 		#endregion

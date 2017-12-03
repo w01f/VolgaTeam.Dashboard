@@ -16,8 +16,6 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 		protected override RibbonControl Ribbon => Controller.Instance.Ribbon;
 
-		protected override ImageListBoxControl MonthList => Controller.Instance.Calendar2MonthsList;
-
 		public override ButtonItem CopyButton => Controller.Instance.Calendar2Copy;
 
 		public override ButtonItem PasteButton => Controller.Instance.Calendar2Paste;
@@ -61,8 +59,6 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override void UpdateDataManagementAndOutputFunctions()
 		{
 			var enable = IsOutputEnabled;
-
-			MonthList.Enabled = true;
 
 			layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
 			layoutControlItemData.Visibility = LayoutVisibility.Always;

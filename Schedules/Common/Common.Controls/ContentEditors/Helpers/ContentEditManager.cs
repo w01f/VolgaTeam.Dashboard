@@ -16,6 +16,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 		public const string DefaultContentIdentifier = "Default";
 		private static IContentController<TChangeInfo> _controller;
 
+		public static event EventHandler<EventArgs> ScheduleInfoChanged;
 		public static event EventHandler<ScheduleSavingEventArgs> ScheduleSaving;
 		public static event EventHandler<ScheduleSavingEventArgs> ScheduleSavingAs;
 		public static event EventHandler<ScheduleSavingEventArgs> ScheduleSavingTemplate;
@@ -47,6 +48,8 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 
 		private static void OnContentChanged(object sender, ContentSavedEventArgs<TChangeInfo> e)
 		{
+			if (e.ChangeInfo.ScheduleInfoChanged || e.ChangeInfo.WholeScheduleChanged)
+				ScheduleInfoChanged?.Invoke(null, EventArgs.Empty);
 			if (e.SavingReason != ContentSavingReason.ScheduleChanged)
 				ScheduleSaving?.Invoke(null, new ScheduleSavingEventArgs());
 			if (e.SavingReason == ContentSavingReason.TabChanged ||

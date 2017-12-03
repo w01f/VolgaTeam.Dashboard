@@ -311,7 +311,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FormAddFavoriteImage";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Add Image to Favorites";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddFavoriteImage_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.textEditImageName.Properties)).EndInit();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -28,6 +29,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public MediaDashboardContainer(BaseSolutionInfo solutionInfo) : base(solutionInfo) { }
 
 		public override IDashboardSettingsContainer SettingsContainer => MediaMetaData.Instance.SettingsManager;
+		public override Color? AccentColor => BusinessObjects.Instance.FormStyleManager.Style.AccentColor;
 
 		public override void LoadData()
 		{
@@ -51,14 +53,14 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 		public override void OutputPowerPoint()
 		{
-			var slides = GetOutputSlides();
-			if (!slides.Any()) return;
+			var slideInfos = GetOutputSlides();
+			if (!slideInfos.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				slides.ForEach(s => s.GenerateOutput());
+				slideInfos.ForEach(s => s.SlideContainer.GenerateOutput(s));
 				FormProgress.CloseProgress();
 			});
 		}
@@ -72,7 +74,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			Controller.Instance.ShowFloater(() =>
 			{
 				FormProgress.ShowProgress();
-				var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
+				var previewGroups = slides.Select(s => s.SlideContainer.GeneratePreview(s)).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
 					String.Format("{0}-{1}.pdf", SolutionInfo.ToggleTitle, DateTime.Now.ToString("MM-dd-yy-hmmss")));
@@ -94,7 +96,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
 			FormProgress.ShowProgress();
-			var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
+			var previewGroups = slides.Select(s => s.SlideContainer.GeneratePreview(s)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 
@@ -126,7 +128,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Solution...");
 			FormProgress.ShowProgress();
-			var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
+			var previewGroups = slides.Select(s => s.SlideContainer.GeneratePreview(s)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
 

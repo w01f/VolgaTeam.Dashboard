@@ -138,18 +138,14 @@
       <DependentUpon>BrowserContentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Browser\IMediaSite.cs" />
-    <Compile Include="PresentationClasses\Browser\MediaSiteContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\Browser\MediaSiteContainer.cs" />
     <Compile Include="PresentationClasses\Browser\SimpleSiteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\Browser\SimpleSiteControl.designer.cs">
       <DependentUpon>SimpleSiteControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs" />
     <Compile Include="PresentationClasses\Calendar\BroadcastSlideInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -159,20 +155,14 @@
     <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.Designer.cs">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Calendar\CustomCalendarControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Calendar\MediaCalendarControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\Calendar\CustomCalendarControl.cs" />
+    <Compile Include="PresentationClasses\Calendar\MediaCalendarControl.cs" />
     <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorSettingsRelation.cs" />
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalSectionType.cs" />
-    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorsContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorsContainer.cs" />
     <Compile Include="PresentationClasses\Digital\ContentEditors\DigitalEditorsContainer.Designer.cs">
       <DependentUpon>DigitalEditorsContainer.cs</DependentUpon>
     </Compile>
@@ -263,19 +253,13 @@
     <Compile Include="PresentationClasses\Digital\Settings\SettingsContainer.Designer.cs">
       <DependentUpon>SettingsContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Gallery\MediaGallery2Control.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Gallery\MediaGallery1Control.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\Gallery\MediaGallery2Control.cs" />
+    <Compile Include="PresentationClasses\Gallery\MediaGallery1Control.cs" />
     <Compile Include="PresentationClasses\OptionsControls\ContentEditors\IOptionContentEditorControl.cs" />
     <Compile Include="PresentationClasses\OptionsControls\ContentEditors\IOptionSetEditorControl.cs" />
     <Compile Include="PresentationClasses\OptionsControls\ContentEditors\IOptionSetCollectionEditorControl.cs" />
     <Compile Include="PresentationClasses\OptionsControls\ContentEditors\OptionEditorType.cs" />
-    <Compile Include="PresentationClasses\OptionsControls\ContentEditors\OptionsContentEditorsContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\OptionsControls\ContentEditors\OptionsContentEditorsContainer.cs" />
     <Compile Include="PresentationClasses\OptionsControls\ContentEditors\OptionsContentEditorsContainer.Designer.cs">
       <DependentUpon>OptionsContentEditorsContainer.cs</DependentUpon>
     </Compile>
@@ -359,9 +343,7 @@
     <Compile Include="PresentationClasses\OptionsControls\Settings\SettingsContainer.Designer.cs">
       <DependentUpon>SettingsContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\RateCard\MediaRateCardControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\RateCard\MediaRateCardControl.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\FormCopyContentConfirmation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -421,9 +403,7 @@
     <Compile Include="PresentationClasses\ScheduleControls\Settings\QuarterSelectorControl.Designer.cs">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ScheduleContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ScheduleContainer.cs" />
     <Compile Include="PresentationClasses\ScheduleControls\ContentEditors\ScheduleContainer.Designer.cs">
       <DependentUpon>ScheduleContainer.cs</DependentUpon>
     </Compile>
@@ -485,9 +465,7 @@
     <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.Designer.cs">
       <DependentUpon>FormFlightDatesEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\SettingsControls\HomeControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\HomeControl.cs" />
     <Compile Include="PresentationClasses\SettingsControls\HomeControl.Designer.cs">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </Compile>
@@ -512,9 +490,7 @@
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotCollectionEditorControl.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotContentEditorControl.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\ISnapshotEditorControl.cs" />
-    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.cs" />
     <Compile Include="PresentationClasses\SnapshotControls\ContentEditors\SnapshotContentEditorsContainer.Designer.cs">
       <DependentUpon>SnapshotContentEditorsContainer.cs</DependentUpon>
     </Compile>
@@ -614,15 +590,9 @@
     <Compile Include="PresentationClasses\ScheduleControls\Settings\CustomSummaryInfoControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Solutions\MediaStarAppContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Solutions\MediaDashboardContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Solutions\MediaSolutionsContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="PresentationClasses\Solutions\MediaStarAppContainer.cs" />
+    <Compile Include="PresentationClasses\Solutions\MediaDashboardContainer.cs" />
+    <Compile Include="PresentationClasses\Solutions\MediaSolutionsContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolForms\FormOpenSchedule.cs">
       <SubType>Form</SubType>

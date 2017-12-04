@@ -16,6 +16,7 @@ using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro.ColorTables;
+using DevExpress.Skins;
 using FormStart = Asa.Media.Controls.ToolForms.FormStart;
 
 namespace Asa.Media.Single
@@ -27,6 +28,12 @@ namespace Asa.Media.Single
 		private FormMain()
 		{
 			InitializeComponent();
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			simpleLabelItemAdvertiser.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiser.MaxSize, scaleFactor);
+			simpleLabelItemAdvertiser.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiser.MinSize, scaleFactor);
+			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
+			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
 		}
 
 		public static FormMain Instance => _instance ?? (_instance = new FormMain());
@@ -81,6 +88,7 @@ namespace Asa.Media.Single
 						BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value);
 
 			Controller.Instance.FormMain = this;
+			Controller.Instance.MainPanelContainer = layoutControlGroupContainer;
 			Controller.Instance.MainPanel = layoutControlItemMainContainer;
 			Controller.Instance.EmptyPanel = emptySpaceItem;
 			Controller.Instance.Supertip = superTooltip;
@@ -121,6 +129,10 @@ namespace Asa.Media.Single
 			Controller.Instance.RibbonExpandButton = buttonItemExpand;
 			Controller.Instance.RibbonPinButton = buttonItemPin;
 
+			Controller.Instance.ScheduleInfoContainer = layoutControlGroupHeader;
+			Controller.Instance.ScheduleInfoAdvertiser = simpleLabelItemAdvertiser;
+			Controller.Instance.ScheduleInfoFlightDates = simpleLabelItemFlightDates;
+
 			#region Home
 			Controller.Instance.HomePanel = ribbonPanelHome;
 			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
@@ -138,8 +150,6 @@ namespace Asa.Media.Single
 			Controller.Instance.ProgramSchedulePanel = ribbonPanelProgramSchedule;
 			Controller.Instance.ProgramScheduleThemeBar = ribbonBarProgramScheduleTheme;
 			Controller.Instance.ProgramScheduleSpecialButtons = ribbonBarProgramScheduleSpecialButtons;
-			Controller.Instance.ProgramScheduleInfoBar = ribbonBarProgramScheduleInfo;
-			Controller.Instance.ProgramScheduleInfo = labelControlProgramScheduleInfo;
 			Controller.Instance.ProgramSchedulePreview = buttonItemProgramSchedulePreview;
 			Controller.Instance.ProgramSchedulePowerPoint = buttonItemProgramSchedulePowerPoint;
 			Controller.Instance.ProgramScheduleTheme = buttonItemProgramScheduleTheme;
@@ -154,8 +164,6 @@ namespace Asa.Media.Single
 			Controller.Instance.DigitalProductLogoBar = ribbonBarDigitalScheduleLogo;
 			Controller.Instance.DigitalProductThemeBar = ribbonBarDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
-			Controller.Instance.DigitalProductInfoBar = ribbonBarDigitalScheduleInfo;
-			Controller.Instance.DigitalProductInfo = labelControlDigitalScheduleInfo;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
@@ -167,8 +175,6 @@ namespace Asa.Media.Single
 			#region Calendar 1
 			Controller.Instance.Calendar1Panel = ribbonPanelCalendar1;
 			Controller.Instance.Calendar1SpecialButtons = ribbonBarCalendar1SpecialButtons;
-			Controller.Instance.Calendar1InfoBar = ribbonBarCalendar1Info;
-			Controller.Instance.Calendar1Info = labelControlCalendar1Info;
 			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
 			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
 			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
@@ -180,8 +186,6 @@ namespace Asa.Media.Single
 			#region Calendar 2
 			Controller.Instance.Calendar2Panel = ribbonPanelCalendar2;
 			Controller.Instance.Calendar2SpecialButtons = ribbonBarCalendar2SpecialButtons;
-			Controller.Instance.Calendar2InfoBar = ribbonBarCalendar2Info;
-			Controller.Instance.Calendar2Info = labelControlCalendar2Info;
 			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
 			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
 			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
@@ -194,8 +198,6 @@ namespace Asa.Media.Single
 			Controller.Instance.SnapshotPanel = ribbonPanelSnapshot;
 			Controller.Instance.SnapshotThemeBar = ribbonBarSnapshotTheme;
 			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
-			Controller.Instance.SnapshotInfoBar = ribbonBarSnapshotInfo;
-			Controller.Instance.SnapshotInfo = labelControlSnapshotInfo;
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
 			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
@@ -209,8 +211,6 @@ namespace Asa.Media.Single
 			Controller.Instance.OptionsPanel = ribbonPanelOptions;
 			Controller.Instance.OptionsThemeBar = ribbonBarOptionsTheme;
 			Controller.Instance.OptionsSpecialButtons = ribbonBarOptionsSpecialButtons;
-			Controller.Instance.OptionsInfoBar = ribbonBarOptionsInfo;
-			Controller.Instance.OptionsInfo = labelControlOptionsInfo;
 			Controller.Instance.OptionsPreview = buttonItemOptionsPreview;
 			Controller.Instance.OptionsPowerPoint = buttonItemOptionsPowerPoint;
 			Controller.Instance.OptionsTheme = buttonItemOptionsTheme;
@@ -224,8 +224,6 @@ namespace Asa.Media.Single
 			Controller.Instance.SolutionsPanel = ribbonPanelSolutions;
 			Controller.Instance.SolutionsThemeBar = ribbonBarSolutionsTheme;
 			Controller.Instance.SolutionsSpecialButtons = ribbonBarSolutionsSpecialButtons;
-			Controller.Instance.SolutionsInfoBar = ribbonBarSolutionsInfo;
-			Controller.Instance.SolutionsInfo = labelControlSolutionsInfo;
 			Controller.Instance.SolutionsPreview = buttonItemSolutionsPreview;
 			Controller.Instance.SolutionsPowerPoint = buttonItemSolutionsPowerPoint;
 			Controller.Instance.SolutionsTheme = buttonItemSolutionsTheme;
@@ -235,8 +233,6 @@ namespace Asa.Media.Single
 			Controller.Instance.SlidesPanel = ribbonPanelSlides;
 			Controller.Instance.SlidesLogoBar = ribbonBarSlidesLogo;
 			Controller.Instance.SlidesSpecialButtons = ribbonBarSlidesSpecialButtons;
-			Controller.Instance.SlidesInfoBar = ribbonBarSlidesInfo;
-			Controller.Instance.SlidesInfo = labelControlSlidesInfo;
 			Controller.Instance.SlidesLogoLabel = labelItemSlideHome;
 			Controller.Instance.SlidesPreview = buttonItemSlidesPreview;
 			Controller.Instance.SlidesPowerPoint = buttonItemSlidesPowerPoint;
@@ -249,8 +245,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Gallery1ImageBar = ribbonBarGallery1Image;
 			Controller.Instance.Gallery1ZoomBar = ribbonBarGallery1Zoom;
 			Controller.Instance.Gallery1CopyBar = ribbonBarGallery1Copy;
-			Controller.Instance.Gallery1InfoBar = ribbonBarGallery1info;
-			Controller.Instance.Gallery1Info = labelControlGallery1Info;
 			Controller.Instance.Gallery1BrowseModeContainer = itemContainerGallery1BrowseContentType;
 			Controller.Instance.Gallery1View = buttonItemGallery1View;
 			Controller.Instance.Gallery1Edit = buttonItemGallery1Edit;
@@ -270,8 +264,6 @@ namespace Asa.Media.Single
 			Controller.Instance.Gallery2ImageBar = ribbonBarGallery2Image;
 			Controller.Instance.Gallery2ZoomBar = ribbonBarGallery2Zoom;
 			Controller.Instance.Gallery2CopyBar = ribbonBarGallery2Copy;
-			Controller.Instance.Gallery2InfoBar = ribbonBarGallery2Info;
-			Controller.Instance.Gallery2Info = labelControlGallery2Info;
 			Controller.Instance.Gallery2BrowseModeContainer = itemContainerGallery2BrowseContentType;
 			Controller.Instance.Gallery2View = buttonItemGallery2View;
 			Controller.Instance.Gallery2Edit = buttonItemGallery2Edit;
@@ -288,8 +280,6 @@ namespace Asa.Media.Single
 			Controller.Instance.RateCardPanel = ribbonPanelRateCard;
 			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
-			Controller.Instance.RateCardInfoBar = ribbonBarRateCardsInfo;
-			Controller.Instance.RateCardInfo = labelControlRateCardsInfo;
 			#endregion
 
 			#region Browser
@@ -298,8 +288,6 @@ namespace Asa.Media.Single
 			Controller.Instance.BrowserSitesBar = ribbonBarBrowserSites;
 			Controller.Instance.BrowserSitesTitle = labelItemBrowserSites;
 			Controller.Instance.BrowserSitesCombo = comboBoxEditBrowserSites;
-			Controller.Instance.BrowserInfoBar = ribbonBarBrowserInfo;
-			Controller.Instance.BrowserInfo = labelControlBrowserInfo;
 			#endregion
 
 			#endregion
@@ -337,14 +325,19 @@ namespace Asa.Media.Single
 			Controller.Instance.CheckPowerPointRunning();
 		}
 
-		private void AddNewSchedule()
+		private void AddNewRegularSchedule()
 		{
 			using (var form = new FormScheduleName())
 			{
 				form.pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeNewSchedulePopupLogo ?? form.pictureEditLogo.Image;
 				if (form.ShowDialog(this) != DialogResult.OK) return;
-				BusinessObjects.Instance.ScheduleManager.AddSchedule(form.ScheduleName);
+				BusinessObjects.Instance.ScheduleManager.AddReqularSchedule(form.ScheduleName);
 			}
+		}
+
+		private void AddNewQuickEditSchedule()
+		{
+			BusinessObjects.Instance.ScheduleManager.AddQuickEditSchedule();
 		}
 
 		private void OpenSchedule()
@@ -377,13 +370,12 @@ namespace Asa.Media.Single
 				formStart.buttonXOpen.Enabled = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>().Any() ||
 					!FileStorageManager.Instance.UseLocalMode;
 				var result = formStart.ShowDialog(this);
-				if (result == DialogResult.Yes || result == DialogResult.No)
-				{
-					if (result == DialogResult.Yes)
-						AddNewSchedule();
-					else
-						OpenSchedule();
-				}
+				if (result == DialogResult.Yes)
+					AddNewRegularSchedule();
+				else if (result == DialogResult.No)
+					OpenSchedule();
+				else if (result == DialogResult.Abort)
+					AddNewQuickEditSchedule();
 				if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule != null)
 					LoadData();
 				else
@@ -418,7 +410,7 @@ namespace Asa.Media.Single
 				Controller.Instance.ContentController.ActiveEditor,
 				savingArgs);
 			if (!savingArgs.Cancel)
-				AddNewSchedule();
+				AddNewRegularSchedule();
 		}
 
 		private void OnOpenScheduleClick(object sender, EventArgs e)

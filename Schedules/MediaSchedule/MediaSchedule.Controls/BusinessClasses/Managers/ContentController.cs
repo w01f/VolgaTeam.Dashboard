@@ -33,6 +33,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public event EventHandler<EventArgs> RibbonTabsStateChanged;
 
 		public RibbonControl ContentRibbon => Controller.Instance.Ribbon;
+		public LayoutControlGroup MainPanelContainer => Controller.Instance.MainPanelContainer;
 		public LayoutControlItem MainPanel => Controller.Instance.MainPanel;
 		public LayoutControlItem EmptyPanel => Controller.Instance.EmptyPanel;
 

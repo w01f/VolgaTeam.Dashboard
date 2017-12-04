@@ -32,7 +32,7 @@
 			this.buttonXOpen = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXExit = new DevComponents.DotNetBar.ButtonX();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
-			this.buttonXQuickSchedule = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXQuickEditSchedule = new DevComponents.DotNetBar.ButtonX();
 			this.pictureEditLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemLogo = new DevExpress.XtraLayout.LayoutControlItem();
@@ -42,7 +42,7 @@
 			this.layoutControlItemExit = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemQuickSchedule = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemQuickEditSchedule = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -55,7 +55,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemExit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemQuickSchedule)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemQuickEditSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -116,7 +116,7 @@
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
-			this.layoutControl.Controls.Add(this.buttonXQuickSchedule);
+			this.layoutControl.Controls.Add(this.buttonXQuickEditSchedule);
 			this.layoutControl.Controls.Add(this.buttonXNew);
 			this.layoutControl.Controls.Add(this.buttonXOpen);
 			this.layoutControl.Controls.Add(this.buttonXExit);
@@ -131,19 +131,19 @@
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
 			// 
-			// buttonXQuickSchedule
+			// buttonXQuickEditSchedule
 			// 
-			this.buttonXQuickSchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXQuickSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonXQuickSchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXQuickSchedule.DialogResult = System.Windows.Forms.DialogResult.No;
-			this.buttonXQuickSchedule.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonXQuickSchedule.Location = new System.Drawing.Point(279, 127);
-			this.buttonXQuickSchedule.Name = "buttonXQuickSchedule";
-			this.buttonXQuickSchedule.Size = new System.Drawing.Size(176, 92);
-			this.buttonXQuickSchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXQuickSchedule.TabIndex = 5;
-			this.buttonXQuickSchedule.TextColor = System.Drawing.Color.Black;
+			this.buttonXQuickEditSchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXQuickEditSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXQuickEditSchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXQuickEditSchedule.DialogResult = System.Windows.Forms.DialogResult.Abort;
+			this.buttonXQuickEditSchedule.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonXQuickEditSchedule.Location = new System.Drawing.Point(279, 127);
+			this.buttonXQuickEditSchedule.Name = "buttonXQuickEditSchedule";
+			this.buttonXQuickEditSchedule.Size = new System.Drawing.Size(176, 92);
+			this.buttonXQuickEditSchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXQuickEditSchedule.TabIndex = 5;
+			this.buttonXQuickEditSchedule.TextColor = System.Drawing.Color.Black;
 			// 
 			// pictureEditLogo
 			// 
@@ -191,7 +191,7 @@
             this.layoutControlItemExit,
             this.emptySpaceItem2,
             this.emptySpaceItem3,
-            this.layoutControlItemQuickSchedule,
+            this.layoutControlItemQuickEditSchedule,
             this.emptySpaceItem4});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
@@ -290,22 +290,21 @@
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
-			// layoutControlItemQuickSchedule
+			// layoutControlItemQuickEditSchedule
 			// 
-			this.layoutControlItemQuickSchedule.Control = this.buttonXQuickSchedule;
-			this.layoutControlItemQuickSchedule.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemQuickSchedule.Enabled = false;
-			this.layoutControlItemQuickSchedule.FillControlToClientArea = false;
-			this.layoutControlItemQuickSchedule.Location = new System.Drawing.Point(277, 125);
-			this.layoutControlItemQuickSchedule.MaxSize = new System.Drawing.Size(180, 96);
-			this.layoutControlItemQuickSchedule.MinSize = new System.Drawing.Size(180, 96);
-			this.layoutControlItemQuickSchedule.Name = "layoutControlItemQuickSchedule";
-			this.layoutControlItemQuickSchedule.Size = new System.Drawing.Size(180, 96);
-			this.layoutControlItemQuickSchedule.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemQuickSchedule.Text = "Quick Schedule";
-			this.layoutControlItemQuickSchedule.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemQuickSchedule.TextVisible = false;
-			this.layoutControlItemQuickSchedule.TrimClientAreaToControl = false;
+			this.layoutControlItemQuickEditSchedule.Control = this.buttonXQuickEditSchedule;
+			this.layoutControlItemQuickEditSchedule.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemQuickEditSchedule.FillControlToClientArea = false;
+			this.layoutControlItemQuickEditSchedule.Location = new System.Drawing.Point(277, 125);
+			this.layoutControlItemQuickEditSchedule.MaxSize = new System.Drawing.Size(180, 96);
+			this.layoutControlItemQuickEditSchedule.MinSize = new System.Drawing.Size(180, 96);
+			this.layoutControlItemQuickEditSchedule.Name = "layoutControlItemQuickEditSchedule";
+			this.layoutControlItemQuickEditSchedule.Size = new System.Drawing.Size(180, 96);
+			this.layoutControlItemQuickEditSchedule.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemQuickEditSchedule.Text = "Quick Edit Schedule";
+			this.layoutControlItemQuickEditSchedule.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemQuickEditSchedule.TextVisible = false;
+			this.layoutControlItemQuickEditSchedule.TrimClientAreaToControl = false;
 			// 
 			// emptySpaceItem4
 			// 
@@ -345,7 +344,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemExit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemQuickSchedule)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemQuickEditSchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
 			this.ResumeLayout(false);
 
@@ -364,9 +363,9 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemLogo;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-		public DevComponents.DotNetBar.ButtonX buttonXQuickSchedule;
+		public DevComponents.DotNetBar.ButtonX buttonXQuickEditSchedule;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemQuickSchedule;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemQuickEditSchedule;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
 	}
 }

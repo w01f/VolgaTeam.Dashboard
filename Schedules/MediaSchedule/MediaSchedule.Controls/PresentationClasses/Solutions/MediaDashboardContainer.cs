@@ -57,9 +57,9 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slideInfos.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowProgress(Controller.Instance.FormMain);
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				slideInfos.ForEach(s => s.SlideContainer.GenerateOutput(s));
 				FormProgress.CloseProgress();
 			});
@@ -71,9 +71,9 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slides.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowProgress(Controller.Instance.FormMain);
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				var previewGroups = slides.Select(s => s.SlideContainer.GeneratePreview(s)).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
@@ -95,7 +95,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slides.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
+			FormProgress.ShowProgress(Controller.Instance.FormMain);
 			var previewGroups = slides.Select(s => s.SlideContainer.GeneratePreview(s)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();
@@ -127,7 +127,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slides.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Solution...");
-			FormProgress.ShowProgress();
+			FormProgress.ShowProgress(Controller.Instance.FormMain);
 			var previewGroups = slides.Select(s => s.SlideContainer.GeneratePreview(s)).ToList();
 			Utilities.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 			FormProgress.CloseProgress();

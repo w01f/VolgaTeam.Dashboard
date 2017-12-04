@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Asa.Business.Common.Dictionaries;
 using Asa.Business.Common.Entities.NonPersistent.Common;
+using Asa.Business.Common.Enums;
 using Asa.Business.Common.Interfaces;
 using Asa.Common.Core.Interfaces;
 
@@ -10,6 +11,7 @@ namespace Asa.Business.Common.Entities.NonPersistent.Schedule
 {
 	public abstract class BaseScheduleSettings : SettingsContainer, IBaseScheduleSettings, IJsonCloneable<BaseScheduleSettings>
 	{
+		public ScheduleEditMode EditMode { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public string Status { get; set; }
@@ -19,11 +21,12 @@ namespace Asa.Business.Common.Entities.NonPersistent.Schedule
 
 		public abstract string FlightDates { get; }
 
-		public virtual bool IsNew => String.IsNullOrEmpty(BusinessName) ||
-									 String.IsNullOrEmpty(DecisionMaker) ||
-									 !PresentationDate.HasValue ||
-									 !FlightDateStart.HasValue ||
-									 !FlightDateEnd.HasValue;
+		public virtual bool IsNew => (EditMode == ScheduleEditMode.Regular && 
+									(String.IsNullOrEmpty(BusinessName) ||
+									String.IsNullOrEmpty(DecisionMaker) ||
+									!PresentationDate.HasValue)) ||
+									!FlightDateStart.HasValue ||
+									!FlightDateEnd.HasValue;
 
 		public int TotalWeeks => GetWeeks().Count();
 

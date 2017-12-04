@@ -5,6 +5,7 @@ using System.Linq;
 using Asa.Business.Common.Entities.NonPersistent.Schedule;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
 using Asa.Business.Common.Entities.Persistent;
+using Asa.Business.Common.Enums;
 using Asa.Business.Common.Helpers;
 using Asa.Business.Common.Interfaces;
 using Asa.Common.Core.Configuration;
@@ -61,10 +62,20 @@ namespace Asa.Business.Common.Contexts
 			OpenSchedule(schedule);
 		}
 
-		public void AddSchedule(string name)
+		public void AddReqularSchedule(string name)
 		{
 			var schedule = CreateSchedule();
 			schedule.Name = name;
+			schedule.Save();
+			OpenSchedule(schedule);
+		}
+
+		public void AddQuickEditSchedule()
+		{
+			var schedule = CreateSchedule();
+			var scheduleDate = DateTime.Now;
+			schedule.Name = String.Format("{0:MMddyy_hhmmsstt}", scheduleDate);
+			schedule.Settings.EditMode = ScheduleEditMode.Quick;
 			schedule.Save();
 			OpenSchedule(schedule);
 		}
@@ -86,6 +97,7 @@ namespace Asa.Business.Common.Contexts
 			schedule.Save();
 
 			ActiveSchedule.Name = name;
+			ActiveSchedule.Settings.EditMode = ScheduleEditMode.Regular;
 			ActiveSchedule.Save();
 
 			ScheduleNameChanged?.Invoke(this, EventArgs.Empty);

@@ -15,6 +15,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Interfaces
 		List<IContentControl> ContentControls { get; }
 		List<ContentEditorRelation> EditorRelations { get; }
 		RibbonControl ContentRibbon { get; }
+		LayoutControlGroup MainPanelContainer { get; }
 		LayoutControlItem MainPanel { get; }
 		LayoutControlItem EmptyPanel { get; }
 	}

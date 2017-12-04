@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using Asa.Business.Common.Enums;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.Persistent;
@@ -208,22 +209,27 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		protected override void ValidateChanges(ContentSavingEventArgs savingArgs)
 		{
+			if (EditedSettings.EditMode != ScheduleEditMode.Regular) return;
+
 			if (String.IsNullOrEmpty(EditedSettings.BusinessName))
 			{
 				savingArgs.Cancel = true;
-				savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Business Name before you proceed.");
+				savingArgs.ErrorMessages.Add(
+					"Your schedule is missing important information!\nPlease make sure you have a Business Name before you proceed.");
 				return;
 			}
 			if (String.IsNullOrEmpty(EditedSettings.DecisionMaker))
 			{
 				savingArgs.Cancel = true;
-				savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
+				savingArgs.ErrorMessages.Add(
+					"Your schedule is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
 				return;
 			}
 			if (!EditedSettings.PresentationDate.HasValue)
 			{
 				savingArgs.Cancel = true;
-				savingArgs.ErrorMessages.Add("Your schedule is missing important information!\nPlease make sure you have a Presentation Date before you proceed.");
+				savingArgs.ErrorMessages.Add(
+					"Your schedule is missing important information!\nPlease make sure you have a Presentation Date before you proceed.");
 				return;
 			}
 			if (!EditedSettings.UserFlightDateStart.HasValue || !EditedSettings.UserFlightDateEnd.HasValue)
@@ -256,11 +262,11 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#region Common Methods
 		private void UpdateScheduleControls()
 		{
-			var enableSchedules = !String.IsNullOrEmpty(EditedSettings.BusinessName) &
-								   !String.IsNullOrEmpty(EditedSettings.DecisionMaker) &
-								   EditedSettings.PresentationDate.HasValue &
-								   EditedSettings.UserFlightDateStart.HasValue &
-								   EditedSettings.UserFlightDateEnd.HasValue;
+			var enableSchedules = EditedSettings.EditMode == ScheduleEditMode.Quick || (!String.IsNullOrEmpty(EditedSettings.BusinessName) &&
+				!String.IsNullOrEmpty(EditedSettings.DecisionMaker) &&
+				EditedSettings.PresentationDate.HasValue &&
+				EditedSettings.UserFlightDateStart.HasValue &&
+				EditedSettings.UserFlightDateEnd.HasValue);
 			Controller.Instance.ContentController.UpdateTabsSate();
 			buttonXWeeklySchedule.Enabled = enableSchedules;
 			buttonXMonthlySchedule.Enabled = enableSchedules;

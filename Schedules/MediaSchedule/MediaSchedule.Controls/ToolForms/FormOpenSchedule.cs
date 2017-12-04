@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Business.Common.Entities.NonPersistent.ScheduleTemplates;
+using Asa.Business.Common.Enums;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
@@ -25,22 +26,29 @@ namespace Asa.Media.Controls.ToolForms
 			barStaticItemLogo.Glyph = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? barStaticItemLogo.Glyph;
 			barLargeButtonItemOpen.Glyph = BusinessObjects.Instance.ImageResourcesManager.HomeOpenSchedulePopupImage ?? barLargeButtonItemOpen.Glyph;
 			barLargeButtonItemDelete.Glyph = BusinessObjects.Instance.ImageResourcesManager.HomeDeleteSchedulePopupImage ?? barLargeButtonItemDelete.Glyph;
-			gridColumnSchedulesLastModifiedDate.SortIndex = 0;
-			gridColumnSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
+			gridColumnRegularSchedulesLastModifiedDate.SortIndex = 0;
+			gridColumnRegularSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
+			gridColumnQuickEditSchedulesLastModifiedDate.SortIndex = 0;
+			gridColumnQuickEditSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
 		}
 
 		private void OnFormLoad(object sender, EventArgs e)
 		{
 			LoadSchedules();
-			xtraTabPageSchedules.PageEnabled = _scheduleList.Any();
+			xtraTabPageRegularSchedules.PageEnabled = _regularScheduleList.Any();
+			xtraTabPageQuickEditSchedules.PageEnabled = _quickScheduleList.Any();
 			xtraTabPageTemplates.PageEnabled = !FileStorageManager.Instance.UseLocalMode;
-			if (!xtraTabPageSchedules.PageEnabled && FileStorageManager.Instance.UseLocalMode)
+			if (_regularScheduleList.Any())
+				xtraTabControl.SelectedTabPage = xtraTabPageRegularSchedules;
+			else if (_quickScheduleList.Any())
+				xtraTabControl.SelectedTabPage = xtraTabPageQuickEditSchedules;
+			else if (FileStorageManager.Instance.UseLocalMode)
 				xtraTabControl.SelectedTabPage = xtraTabPageTemplates;
 		}
 
 		private void OnScheduleOpenItemClick(object sender, ItemClickEventArgs e)
 		{
-			if (xtraTabControl.SelectedTabPage == xtraTabPageSchedules)
+			if (xtraTabControl.SelectedTabPage == xtraTabPageRegularSchedules || xtraTabControl.SelectedTabPage == xtraTabPageQuickEditSchedules)
 				OpenSchedule();
 			else if (xtraTabControl.SelectedTabPage == xtraTabPageTemplates)
 				OpenTemplate();
@@ -55,27 +63,34 @@ namespace Asa.Media.Controls.ToolForms
 		{
 			if (e.Page == xtraTabPageTemplates && _scheduleTemplateList == null)
 				LoadTemplates();
-			barLargeButtonItemDelete.Enabled = e.Page == xtraTabPageSchedules;
+			barLargeButtonItemDelete.Enabled = e.Page == xtraTabPageRegularSchedules || e.Page == xtraTabPageQuickEditSchedules;
 		}
 
 		#region Schedule Management
-		private readonly List<MediaScheduleModel> _scheduleList = new List<MediaScheduleModel>();
-		private MediaScheduleModel SelectedScheduleModel => gridViewSchedules.GetFocusedRow() as MediaScheduleModel;
+		private readonly List<MediaScheduleModel> _regularScheduleList = new List<MediaScheduleModel>();
+		private readonly List<MediaScheduleModel> _quickScheduleList = new List<MediaScheduleModel>();
 
 		public void LoadSchedules()
 		{
-			_scheduleList.AddRange(BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>()
-				.Where(scheduleModel => scheduleModel.Parent != BusinessObjects.Instance.ScheduleManager.ActiveSchedule));
+			var allSchedules = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>()
+				.Where(scheduleModel => scheduleModel.Parent != BusinessObjects.Instance.ScheduleManager.ActiveSchedule).ToList();
+			_regularScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Regular));
+			_quickScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Quick));
 			repositoryItemComboBoxStatus.Items.Clear();
 			repositoryItemComboBoxStatus.Items.AddRange(MediaMetaData.Instance.ListManager.Statuses);
-			gridControlSchedules.DataSource = _scheduleList;
-			if (gridViewSchedules.RowCount > 0)
-				gridViewSchedules.FocusedRowHandle = 0;
+			gridControlRegularSchedules.DataSource = _regularScheduleList;
+			gridControlQuickEditSchedules.DataSource = _quickScheduleList;
+			if (gridViewRegularSchedules.RowCount > 0)
+				gridViewRegularSchedules.FocusedRowHandle = 0;
 		}
 
 		private void OpenSchedule()
 		{
-			var schedule = SelectedScheduleModel;
+			MediaScheduleModel schedule = null;
+			if (xtraTabControl.SelectedTabPage == xtraTabPageRegularSchedules)
+				schedule = gridViewRegularSchedules.GetFocusedRow() as MediaScheduleModel;
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageQuickEditSchedules)
+				schedule = gridViewQuickEditSchedules.GetFocusedRow() as MediaScheduleModel;
 			if (schedule == null)
 			{
 				PopupMessageHelper.Instance.ShowWarning("Please select schedule in list");
@@ -88,16 +103,28 @@ namespace Asa.Media.Controls.ToolForms
 
 		private void DeleteSchedule()
 		{
-			var schedule = SelectedScheduleModel;
+			MediaScheduleModel schedule = null;
+			if (xtraTabControl.SelectedTabPage == xtraTabPageRegularSchedules)
+				schedule = gridViewRegularSchedules.GetFocusedRow() as MediaScheduleModel;
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageQuickEditSchedules)
+				schedule = gridViewQuickEditSchedules.GetFocusedRow() as MediaScheduleModel;
 			if (schedule == null)
 			{
 				PopupMessageHelper.Instance.ShowWarning("Please select schedule in list");
 				return;
 			}
 			if (PopupMessageHelper.Instance.ShowWarningQuestion("Delete this file?") != DialogResult.Yes) return;
-			_scheduleList.Remove(schedule);
 			BusinessObjects.Instance.ScheduleManager.DeleteSchedule(schedule.Parent);
-			gridViewSchedules.RefreshData();
+			if (xtraTabControl.SelectedTabPage == xtraTabPageRegularSchedules)
+			{
+				_regularScheduleList.Remove(schedule);
+				gridViewRegularSchedules.RefreshData();
+			}
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageQuickEditSchedules)
+			{
+				_quickScheduleList.Remove(schedule);
+				gridViewQuickEditSchedules.RefreshData();
+			}
 		}
 
 		private void OnSchedulesViewRowClick(object sender, RowClickEventArgs e)
@@ -108,13 +135,13 @@ namespace Asa.Media.Controls.ToolForms
 
 		private void OnScheduleStatusChanged(object sender, CellValueChangedEventArgs e)
 		{
-			var schedule = SelectedScheduleModel;
+			var schedule = gridViewRegularSchedules.GetFocusedRow() as MediaScheduleModel;
 			BusinessObjects.Instance.ScheduleManager.SaveScheduleModel(schedule);
 		}
 
 		private void OnStatusComboBoxClosed(object sender, ClosedEventArgs e)
 		{
-			gridViewSchedules.CloseEditor();
+			gridViewRegularSchedules.CloseEditor();
 		}
 		#endregion
 

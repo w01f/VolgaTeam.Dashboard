@@ -45,7 +45,7 @@ namespace Asa.Media.LegacyConverter
 
 					if (_sceduleManager.SchedulesContainer.Schedules.Any(s => s.Name.Equals(oldSchedule.Name, StringComparison.OrdinalIgnoreCase)))
 						continue;
-					_sceduleManager.AddSchedule(oldSchedule.Name);
+					_sceduleManager.AddReqularSchedule(oldSchedule.Name);
 					Application.DoEvents();
 
 					_sceduleManager.ActiveSchedule.ImportData(oldSchedule);

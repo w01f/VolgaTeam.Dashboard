@@ -51,7 +51,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 						return;
 					}
 				}
-				_controller.MainPanel.Visibility = LayoutVisibility.Never;
+				_controller.MainPanelContainer.Visibility = LayoutVisibility.Never;
 				_controller.EmptyPanel.Visibility = LayoutVisibility.Always;
 				foreach (var contentControl in _controller.ContentControls)
 				{
@@ -69,7 +69,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 				((Control)_controller.ActiveControl).Visible = true;
 				((Control)_controller.ActiveControl).BringToFront();
 				_controller.EmptyPanel.Visibility = LayoutVisibility.Never;
-				_controller.MainPanel.Visibility = LayoutVisibility.Always;
+				_controller.MainPanelContainer.Visibility = LayoutVisibility.Always;
 
 				_controller.ContentRibbon.Enabled = true;
 			}

@@ -22,7 +22,7 @@ namespace Asa.Solutions.Dashboard.InteropClasses
 				var thread = new Thread(delegate ()
 				{
 					MessageFilter.Register();
-					var presentation =target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = target.PowerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)

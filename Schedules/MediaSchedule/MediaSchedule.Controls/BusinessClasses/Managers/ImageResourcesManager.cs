@@ -13,7 +13,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image StartFormLogo { get; private set; }
 		public Image StartFormNewImage { get; private set; }
 		public Image StartFormOpenImage { get; private set; }
-		public Image StartFormQuickScheduleImage { get; private set; }
+		public Image StartFormQuickEditScheduleImage { get; private set; }
 		public Image StartFormCancelImage { get; private set; }
 		#endregion
 
@@ -87,7 +87,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				StartFormOpenImage = Image.FromFile(resourceFile);
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_gitrdun.png");
 			if (File.Exists(resourceFile))
-				StartFormQuickScheduleImage = Image.FromFile(resourceFile);
+				StartFormQuickEditScheduleImage = Image.FromFile(resourceFile);
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_cancel.png");
 			if (File.Exists(resourceFile))
 				StartFormCancelImage = Image.FromFile(resourceFile);

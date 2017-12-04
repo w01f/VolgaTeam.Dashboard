@@ -13,6 +13,7 @@ namespace Asa.Business.Common.Helpers
 		{
 			var model = Activator.CreateInstance<TScheduleModel>();
 			model.Parent = source;
+			model.EditMode = source.Settings.EditMode;
 			model.Name = source.Name;
 			model.Advertiser = source.Settings.BusinessName;
 			model.LastModified = source.LastModified;

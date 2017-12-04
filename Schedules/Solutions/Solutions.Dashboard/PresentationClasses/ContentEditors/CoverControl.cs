@@ -267,7 +267,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public string PresentationDate => dateEditPresentationDate.EditValue != null ? dateEditPresentationDate.DateTime.ToString("MMMM d, yyyy") : String.Empty;
 
-		public string Quote => simpleLabelItemSalesQuoteValue.CustomizationFormText
+		public string Quote => simpleLabelItemSalesQuoteAuthor.CustomizationFormText
 							   + (char)13 + simpleLabelItemSalesQuoteValue.CustomizationFormText;
 
 		public IEnumerable<DashboardSlideInfo> GetSlideInfo()

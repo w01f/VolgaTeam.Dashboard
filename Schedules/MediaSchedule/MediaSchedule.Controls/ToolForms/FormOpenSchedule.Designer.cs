@@ -39,16 +39,21 @@
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.gridControlSchedules = new DevExpress.XtraGrid.GridControl();
-			this.gridViewSchedules = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.gridColumnSchedulesBusinessName = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumnSchedulesFile = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumnSchedulesLastModifiedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridControlRegularSchedules = new DevExpress.XtraGrid.GridControl();
+			this.gridViewRegularSchedules = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridColumnRegularSchedulesBusinessName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumnRegularSchedulesFile = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumnRegularSchedulesLastModifiedDate = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.gridColumnSchedulesStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumnRegularSchedulesStatus = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemComboBoxStatus = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-			this.xtraTabPageSchedules = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraTabPageRegularSchedules = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraTabPageQuickEditSchedules = new DevExpress.XtraTab.XtraTabPage();
+			this.gridControlQuickEditSchedules = new DevExpress.XtraGrid.GridControl();
+			this.gridViewQuickEditSchedules = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridColumnQuickEditSchedulesFile = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumnQuickEditSchedulesLastModifiedDate = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.xtraTabPageTemplates = new DevExpress.XtraTab.XtraTabPage();
 			this.gridControlTemplates = new DevExpress.XtraGrid.GridControl();
 			this.gridViewTemplates = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -58,13 +63,16 @@
 			this.gridColumnTemplatesDate = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridViewSchedules)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlRegularSchedules)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewRegularSchedules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
-			this.xtraTabPageSchedules.SuspendLayout();
+			this.xtraTabPageRegularSchedules.SuspendLayout();
+			this.xtraTabPageQuickEditSchedules.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlQuickEditSchedules)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewQuickEditSchedules)).BeginInit();
 			this.xtraTabPageTemplates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlTemplates)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTemplates)).BeginInit();
@@ -179,102 +187,102 @@
 			this.barDockControlRight.Manager = this.barManager;
 			this.barDockControlRight.Size = new System.Drawing.Size(0, 516);
 			// 
-			// gridControlSchedules
+			// gridControlRegularSchedules
 			// 
-			this.gridControlSchedules.Cursor = System.Windows.Forms.Cursors.Default;
-			this.gridControlSchedules.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControlSchedules.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
-			this.gridControlSchedules.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.gridControlSchedules.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
-			this.gridControlSchedules.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
-			this.gridControlSchedules.Location = new System.Drawing.Point(0, 0);
-			this.gridControlSchedules.MainView = this.gridViewSchedules;
-			this.gridControlSchedules.Name = "gridControlSchedules";
-			this.gridControlSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+			this.gridControlRegularSchedules.Cursor = System.Windows.Forms.Cursors.Default;
+			this.gridControlRegularSchedules.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControlRegularSchedules.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
+			this.gridControlRegularSchedules.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.gridControlRegularSchedules.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+			this.gridControlRegularSchedules.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
+			this.gridControlRegularSchedules.Location = new System.Drawing.Point(0, 0);
+			this.gridControlRegularSchedules.MainView = this.gridViewRegularSchedules;
+			this.gridControlRegularSchedules.Name = "gridControlRegularSchedules";
+			this.gridControlRegularSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlSchedules.Size = new System.Drawing.Size(661, 485);
-			this.gridControlSchedules.TabIndex = 40;
-			this.gridControlSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewSchedules});
+			this.gridControlRegularSchedules.Size = new System.Drawing.Size(661, 485);
+			this.gridControlRegularSchedules.TabIndex = 40;
+			this.gridControlRegularSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewRegularSchedules});
 			// 
-			// gridViewSchedules
+			// gridViewRegularSchedules
 			// 
-			this.gridViewSchedules.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-			this.gridViewSchedules.Appearance.HeaderPanel.Options.UseFont = true;
-			this.gridViewSchedules.Appearance.HeaderPanel.Options.UseTextOptions = true;
-			this.gridViewSchedules.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.gridViewSchedules.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.gridViewSchedules.Appearance.Row.Options.UseFont = true;
-			this.gridViewSchedules.Appearance.Row.Options.UseTextOptions = true;
-			this.gridViewSchedules.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.gridViewSchedules.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnSchedulesBusinessName,
-            this.gridColumnSchedulesFile,
-            this.gridColumnSchedulesLastModifiedDate,
-            this.gridColumnSchedulesStatus});
-			this.gridViewSchedules.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-			this.gridViewSchedules.GridControl = this.gridControlSchedules;
-			this.gridViewSchedules.Name = "gridViewSchedules";
-			this.gridViewSchedules.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-			this.gridViewSchedules.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-			this.gridViewSchedules.OptionsCustomization.AllowColumnMoving = false;
-			this.gridViewSchedules.OptionsCustomization.AllowFilter = false;
-			this.gridViewSchedules.OptionsCustomization.AllowGroup = false;
-			this.gridViewSchedules.OptionsCustomization.AllowQuickHideColumns = false;
-			this.gridViewSchedules.OptionsFilter.AllowColumnMRUFilterList = false;
-			this.gridViewSchedules.OptionsMenu.EnableColumnMenu = false;
-			this.gridViewSchedules.OptionsMenu.EnableFooterMenu = false;
-			this.gridViewSchedules.OptionsMenu.EnableGroupPanelMenu = false;
-			this.gridViewSchedules.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
-			this.gridViewSchedules.OptionsMenu.ShowGroupSortSummaryItems = false;
-			this.gridViewSchedules.OptionsSelection.EnableAppearanceFocusedCell = false;
-			this.gridViewSchedules.OptionsSelection.EnableAppearanceHideSelection = false;
-			this.gridViewSchedules.OptionsView.ShowDetailButtons = false;
-			this.gridViewSchedules.OptionsView.ShowGroupExpandCollapseButtons = false;
-			this.gridViewSchedules.OptionsView.ShowGroupPanel = false;
-			this.gridViewSchedules.OptionsView.ShowIndicator = false;
-			this.gridViewSchedules.RowHeight = 40;
-			this.gridViewSchedules.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.OnSchedulesViewRowClick);
-			this.gridViewSchedules.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.OnScheduleStatusChanged);
+			this.gridViewRegularSchedules.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+			this.gridViewRegularSchedules.Appearance.HeaderPanel.Options.UseFont = true;
+			this.gridViewRegularSchedules.Appearance.HeaderPanel.Options.UseTextOptions = true;
+			this.gridViewRegularSchedules.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridViewRegularSchedules.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.gridViewRegularSchedules.Appearance.Row.Options.UseFont = true;
+			this.gridViewRegularSchedules.Appearance.Row.Options.UseTextOptions = true;
+			this.gridViewRegularSchedules.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridViewRegularSchedules.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnRegularSchedulesBusinessName,
+            this.gridColumnRegularSchedulesFile,
+            this.gridColumnRegularSchedulesLastModifiedDate,
+            this.gridColumnRegularSchedulesStatus});
+			this.gridViewRegularSchedules.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+			this.gridViewRegularSchedules.GridControl = this.gridControlRegularSchedules;
+			this.gridViewRegularSchedules.Name = "gridViewRegularSchedules";
+			this.gridViewRegularSchedules.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewRegularSchedules.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewRegularSchedules.OptionsCustomization.AllowColumnMoving = false;
+			this.gridViewRegularSchedules.OptionsCustomization.AllowFilter = false;
+			this.gridViewRegularSchedules.OptionsCustomization.AllowGroup = false;
+			this.gridViewRegularSchedules.OptionsCustomization.AllowQuickHideColumns = false;
+			this.gridViewRegularSchedules.OptionsFilter.AllowColumnMRUFilterList = false;
+			this.gridViewRegularSchedules.OptionsMenu.EnableColumnMenu = false;
+			this.gridViewRegularSchedules.OptionsMenu.EnableFooterMenu = false;
+			this.gridViewRegularSchedules.OptionsMenu.EnableGroupPanelMenu = false;
+			this.gridViewRegularSchedules.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
+			this.gridViewRegularSchedules.OptionsMenu.ShowGroupSortSummaryItems = false;
+			this.gridViewRegularSchedules.OptionsSelection.EnableAppearanceFocusedCell = false;
+			this.gridViewRegularSchedules.OptionsSelection.EnableAppearanceHideSelection = false;
+			this.gridViewRegularSchedules.OptionsView.ShowDetailButtons = false;
+			this.gridViewRegularSchedules.OptionsView.ShowGroupExpandCollapseButtons = false;
+			this.gridViewRegularSchedules.OptionsView.ShowGroupPanel = false;
+			this.gridViewRegularSchedules.OptionsView.ShowIndicator = false;
+			this.gridViewRegularSchedules.RowHeight = 40;
+			this.gridViewRegularSchedules.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.OnSchedulesViewRowClick);
+			this.gridViewRegularSchedules.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.OnScheduleStatusChanged);
 			// 
-			// gridColumnSchedulesBusinessName
+			// gridColumnRegularSchedulesBusinessName
 			// 
-			this.gridColumnSchedulesBusinessName.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnSchedulesBusinessName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.gridColumnSchedulesBusinessName.Caption = "Advertiser";
-			this.gridColumnSchedulesBusinessName.FieldName = "Advertiser";
-			this.gridColumnSchedulesBusinessName.Name = "gridColumnSchedulesBusinessName";
-			this.gridColumnSchedulesBusinessName.OptionsColumn.AllowEdit = false;
-			this.gridColumnSchedulesBusinessName.OptionsColumn.ReadOnly = true;
-			this.gridColumnSchedulesBusinessName.Visible = true;
-			this.gridColumnSchedulesBusinessName.VisibleIndex = 0;
-			this.gridColumnSchedulesBusinessName.Width = 181;
+			this.gridColumnRegularSchedulesBusinessName.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnRegularSchedulesBusinessName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.gridColumnRegularSchedulesBusinessName.Caption = "Advertiser";
+			this.gridColumnRegularSchedulesBusinessName.FieldName = "Advertiser";
+			this.gridColumnRegularSchedulesBusinessName.Name = "gridColumnRegularSchedulesBusinessName";
+			this.gridColumnRegularSchedulesBusinessName.OptionsColumn.AllowEdit = false;
+			this.gridColumnRegularSchedulesBusinessName.OptionsColumn.ReadOnly = true;
+			this.gridColumnRegularSchedulesBusinessName.Visible = true;
+			this.gridColumnRegularSchedulesBusinessName.VisibleIndex = 0;
+			this.gridColumnRegularSchedulesBusinessName.Width = 181;
 			// 
-			// gridColumnSchedulesFile
+			// gridColumnRegularSchedulesFile
 			// 
-			this.gridColumnSchedulesFile.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnSchedulesFile.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.gridColumnSchedulesFile.Caption = "File";
-			this.gridColumnSchedulesFile.FieldName = "Name";
-			this.gridColumnSchedulesFile.Name = "gridColumnSchedulesFile";
-			this.gridColumnSchedulesFile.OptionsColumn.AllowEdit = false;
-			this.gridColumnSchedulesFile.OptionsColumn.ReadOnly = true;
-			this.gridColumnSchedulesFile.Visible = true;
-			this.gridColumnSchedulesFile.VisibleIndex = 1;
-			this.gridColumnSchedulesFile.Width = 186;
+			this.gridColumnRegularSchedulesFile.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnRegularSchedulesFile.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.gridColumnRegularSchedulesFile.Caption = "File";
+			this.gridColumnRegularSchedulesFile.FieldName = "Name";
+			this.gridColumnRegularSchedulesFile.Name = "gridColumnRegularSchedulesFile";
+			this.gridColumnRegularSchedulesFile.OptionsColumn.AllowEdit = false;
+			this.gridColumnRegularSchedulesFile.OptionsColumn.ReadOnly = true;
+			this.gridColumnRegularSchedulesFile.Visible = true;
+			this.gridColumnRegularSchedulesFile.VisibleIndex = 1;
+			this.gridColumnRegularSchedulesFile.Width = 186;
 			// 
-			// gridColumnSchedulesLastModifiedDate
+			// gridColumnRegularSchedulesLastModifiedDate
 			// 
-			this.gridColumnSchedulesLastModifiedDate.Caption = "Last Modified";
-			this.gridColumnSchedulesLastModifiedDate.ColumnEdit = this.repositoryItemButtonEdit;
-			this.gridColumnSchedulesLastModifiedDate.FieldName = "LastModified";
-			this.gridColumnSchedulesLastModifiedDate.Name = "gridColumnSchedulesLastModifiedDate";
-			this.gridColumnSchedulesLastModifiedDate.OptionsColumn.AllowEdit = false;
-			this.gridColumnSchedulesLastModifiedDate.OptionsColumn.ReadOnly = true;
-			this.gridColumnSchedulesLastModifiedDate.Visible = true;
-			this.gridColumnSchedulesLastModifiedDate.VisibleIndex = 2;
-			this.gridColumnSchedulesLastModifiedDate.Width = 150;
+			this.gridColumnRegularSchedulesLastModifiedDate.Caption = "Last Modified";
+			this.gridColumnRegularSchedulesLastModifiedDate.ColumnEdit = this.repositoryItemButtonEdit;
+			this.gridColumnRegularSchedulesLastModifiedDate.FieldName = "LastModified";
+			this.gridColumnRegularSchedulesLastModifiedDate.Name = "gridColumnRegularSchedulesLastModifiedDate";
+			this.gridColumnRegularSchedulesLastModifiedDate.OptionsColumn.AllowEdit = false;
+			this.gridColumnRegularSchedulesLastModifiedDate.OptionsColumn.ReadOnly = true;
+			this.gridColumnRegularSchedulesLastModifiedDate.Visible = true;
+			this.gridColumnRegularSchedulesLastModifiedDate.VisibleIndex = 2;
+			this.gridColumnRegularSchedulesLastModifiedDate.Width = 150;
 			// 
 			// repositoryItemButtonEdit
 			// 
@@ -286,19 +294,19 @@
 			this.repositoryItemButtonEdit.Name = "repositoryItemButtonEdit";
 			this.repositoryItemButtonEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			// 
-			// gridColumnSchedulesStatus
+			// gridColumnRegularSchedulesStatus
 			// 
-			this.gridColumnSchedulesStatus.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.gridColumnSchedulesStatus.AppearanceCell.Options.UseFont = true;
-			this.gridColumnSchedulesStatus.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnSchedulesStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.gridColumnSchedulesStatus.Caption = "Status";
-			this.gridColumnSchedulesStatus.ColumnEdit = this.repositoryItemComboBoxStatus;
-			this.gridColumnSchedulesStatus.FieldName = "Status";
-			this.gridColumnSchedulesStatus.Name = "gridColumnSchedulesStatus";
-			this.gridColumnSchedulesStatus.Visible = true;
-			this.gridColumnSchedulesStatus.VisibleIndex = 3;
-			this.gridColumnSchedulesStatus.Width = 124;
+			this.gridColumnRegularSchedulesStatus.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.gridColumnRegularSchedulesStatus.AppearanceCell.Options.UseFont = true;
+			this.gridColumnRegularSchedulesStatus.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnRegularSchedulesStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridColumnRegularSchedulesStatus.Caption = "Status";
+			this.gridColumnRegularSchedulesStatus.ColumnEdit = this.repositoryItemComboBoxStatus;
+			this.gridColumnRegularSchedulesStatus.FieldName = "Status";
+			this.gridColumnRegularSchedulesStatus.Name = "gridColumnRegularSchedulesStatus";
+			this.gridColumnRegularSchedulesStatus.Visible = true;
+			this.gridColumnRegularSchedulesStatus.VisibleIndex = 3;
+			this.gridColumnRegularSchedulesStatus.Width = 124;
 			// 
 			// repositoryItemComboBoxStatus
 			// 
@@ -340,22 +348,110 @@
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControl.Location = new System.Drawing.Point(0, 87);
 			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.SelectedTabPage = this.xtraTabPageSchedules;
+			this.xtraTabControl.SelectedTabPage = this.xtraTabPageRegularSchedules;
 			this.xtraTabControl.Size = new System.Drawing.Size(667, 516);
 			this.xtraTabControl.TabIndex = 45;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPageSchedules,
+            this.xtraTabPageRegularSchedules,
+            this.xtraTabPageQuickEditSchedules,
             this.xtraTabPageTemplates});
 			this.xtraTabControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.OnSelectedTabPageChanged);
 			// 
-			// xtraTabPageSchedules
+			// xtraTabPageRegularSchedules
 			// 
-			this.xtraTabPageSchedules.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
-			this.xtraTabPageSchedules.Appearance.PageClient.Options.UseForeColor = true;
-			this.xtraTabPageSchedules.Controls.Add(this.gridControlSchedules);
-			this.xtraTabPageSchedules.Name = "xtraTabPageSchedules";
-			this.xtraTabPageSchedules.Size = new System.Drawing.Size(661, 485);
-			this.xtraTabPageSchedules.Text = "My Solutions";
+			this.xtraTabPageRegularSchedules.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabPageRegularSchedules.Appearance.PageClient.Options.UseForeColor = true;
+			this.xtraTabPageRegularSchedules.Controls.Add(this.gridControlRegularSchedules);
+			this.xtraTabPageRegularSchedules.Name = "xtraTabPageRegularSchedules";
+			this.xtraTabPageRegularSchedules.Size = new System.Drawing.Size(661, 485);
+			this.xtraTabPageRegularSchedules.Text = "My Solutions";
+			// 
+			// xtraTabPageQuickEditSchedules
+			// 
+			this.xtraTabPageQuickEditSchedules.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabPageQuickEditSchedules.Appearance.PageClient.Options.UseForeColor = true;
+			this.xtraTabPageQuickEditSchedules.Controls.Add(this.gridControlQuickEditSchedules);
+			this.xtraTabPageQuickEditSchedules.Name = "xtraTabPageQuickEditSchedules";
+			this.xtraTabPageQuickEditSchedules.Size = new System.Drawing.Size(661, 485);
+			this.xtraTabPageQuickEditSchedules.Text = "GitRDun";
+			// 
+			// gridControlQuickEditSchedules
+			// 
+			this.gridControlQuickEditSchedules.Cursor = System.Windows.Forms.Cursors.Default;
+			this.gridControlQuickEditSchedules.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControlQuickEditSchedules.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
+			this.gridControlQuickEditSchedules.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.gridControlQuickEditSchedules.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+			this.gridControlQuickEditSchedules.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
+			this.gridControlQuickEditSchedules.Location = new System.Drawing.Point(0, 0);
+			this.gridControlQuickEditSchedules.MainView = this.gridViewQuickEditSchedules;
+			this.gridControlQuickEditSchedules.Name = "gridControlQuickEditSchedules";
+			this.gridControlQuickEditSchedules.Size = new System.Drawing.Size(661, 485);
+			this.gridControlQuickEditSchedules.TabIndex = 42;
+			this.gridControlQuickEditSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewQuickEditSchedules});
+			// 
+			// gridViewQuickEditSchedules
+			// 
+			this.gridViewQuickEditSchedules.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+			this.gridViewQuickEditSchedules.Appearance.HeaderPanel.Options.UseFont = true;
+			this.gridViewQuickEditSchedules.Appearance.HeaderPanel.Options.UseTextOptions = true;
+			this.gridViewQuickEditSchedules.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridViewQuickEditSchedules.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.gridViewQuickEditSchedules.Appearance.Row.Options.UseFont = true;
+			this.gridViewQuickEditSchedules.Appearance.Row.Options.UseTextOptions = true;
+			this.gridViewQuickEditSchedules.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridViewQuickEditSchedules.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnQuickEditSchedulesFile,
+            this.gridColumnQuickEditSchedulesLastModifiedDate});
+			this.gridViewQuickEditSchedules.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+			this.gridViewQuickEditSchedules.GridControl = this.gridControlQuickEditSchedules;
+			this.gridViewQuickEditSchedules.Name = "gridViewQuickEditSchedules";
+			this.gridViewQuickEditSchedules.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewQuickEditSchedules.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewQuickEditSchedules.OptionsBehavior.Editable = false;
+			this.gridViewQuickEditSchedules.OptionsBehavior.ReadOnly = true;
+			this.gridViewQuickEditSchedules.OptionsCustomization.AllowColumnMoving = false;
+			this.gridViewQuickEditSchedules.OptionsCustomization.AllowFilter = false;
+			this.gridViewQuickEditSchedules.OptionsCustomization.AllowGroup = false;
+			this.gridViewQuickEditSchedules.OptionsCustomization.AllowQuickHideColumns = false;
+			this.gridViewQuickEditSchedules.OptionsFilter.AllowColumnMRUFilterList = false;
+			this.gridViewQuickEditSchedules.OptionsMenu.EnableColumnMenu = false;
+			this.gridViewQuickEditSchedules.OptionsMenu.EnableFooterMenu = false;
+			this.gridViewQuickEditSchedules.OptionsMenu.EnableGroupPanelMenu = false;
+			this.gridViewQuickEditSchedules.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
+			this.gridViewQuickEditSchedules.OptionsMenu.ShowGroupSortSummaryItems = false;
+			this.gridViewQuickEditSchedules.OptionsSelection.EnableAppearanceFocusedCell = false;
+			this.gridViewQuickEditSchedules.OptionsSelection.EnableAppearanceHideSelection = false;
+			this.gridViewQuickEditSchedules.OptionsView.ShowDetailButtons = false;
+			this.gridViewQuickEditSchedules.OptionsView.ShowGroupExpandCollapseButtons = false;
+			this.gridViewQuickEditSchedules.OptionsView.ShowGroupPanel = false;
+			this.gridViewQuickEditSchedules.OptionsView.ShowIndicator = false;
+			this.gridViewQuickEditSchedules.RowHeight = 40;
+			this.gridViewQuickEditSchedules.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.OnSchedulesViewRowClick);
+			// 
+			// gridColumnQuickEditSchedulesFile
+			// 
+			this.gridColumnQuickEditSchedulesFile.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnQuickEditSchedulesFile.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.gridColumnQuickEditSchedulesFile.Caption = "File";
+			this.gridColumnQuickEditSchedulesFile.FieldName = "Name";
+			this.gridColumnQuickEditSchedulesFile.Name = "gridColumnQuickEditSchedulesFile";
+			this.gridColumnQuickEditSchedulesFile.Visible = true;
+			this.gridColumnQuickEditSchedulesFile.VisibleIndex = 0;
+			this.gridColumnQuickEditSchedulesFile.Width = 489;
+			// 
+			// gridColumnQuickEditSchedulesLastModifiedDate
+			// 
+			this.gridColumnQuickEditSchedulesLastModifiedDate.Caption = "Last Modified";
+			this.gridColumnQuickEditSchedulesLastModifiedDate.DisplayFormat.FormatString = "MM/dd/yy h:mmtt";
+			this.gridColumnQuickEditSchedulesLastModifiedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.gridColumnQuickEditSchedulesLastModifiedDate.FieldName = "LastModified";
+			this.gridColumnQuickEditSchedulesLastModifiedDate.Name = "gridColumnQuickEditSchedulesLastModifiedDate";
+			this.gridColumnQuickEditSchedulesLastModifiedDate.OptionsColumn.FixedWidth = true;
+			this.gridColumnQuickEditSchedulesLastModifiedDate.Visible = true;
+			this.gridColumnQuickEditSchedulesLastModifiedDate.VisibleIndex = 1;
+			this.gridColumnQuickEditSchedulesLastModifiedDate.Width = 200;
 			// 
 			// xtraTabPageTemplates
 			// 
@@ -363,7 +459,7 @@
 			this.xtraTabPageTemplates.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
-			this.xtraTabPageTemplates.Size = new System.Drawing.Size(661, 488);
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(661, 485);
 			this.xtraTabPageTemplates.Text = "Public Cloud";
 			// 
 			// gridControlTemplates
@@ -377,7 +473,7 @@
 			this.gridControlTemplates.Location = new System.Drawing.Point(0, 0);
 			this.gridControlTemplates.MainView = this.gridViewTemplates;
 			this.gridControlTemplates.Name = "gridControlTemplates";
-			this.gridControlTemplates.Size = new System.Drawing.Size(661, 488);
+			this.gridControlTemplates.Size = new System.Drawing.Size(661, 485);
 			this.gridControlTemplates.TabIndex = 41;
 			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTemplates});
@@ -402,6 +498,8 @@
 			this.gridViewTemplates.Name = "gridViewTemplates";
 			this.gridViewTemplates.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
 			this.gridViewTemplates.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewTemplates.OptionsBehavior.Editable = false;
+			this.gridViewTemplates.OptionsBehavior.ReadOnly = true;
 			this.gridViewTemplates.OptionsCustomization.AllowColumnMoving = false;
 			this.gridViewTemplates.OptionsCustomization.AllowFilter = false;
 			this.gridViewTemplates.OptionsCustomization.AllowGroup = false;
@@ -426,8 +524,6 @@
 			this.gridColumnTemplatesLogin.Caption = "User Account";
 			this.gridColumnTemplatesLogin.FieldName = "User";
 			this.gridColumnTemplatesLogin.Name = "gridColumnTemplatesLogin";
-			this.gridColumnTemplatesLogin.OptionsColumn.AllowEdit = false;
-			this.gridColumnTemplatesLogin.OptionsColumn.ReadOnly = true;
 			this.gridColumnTemplatesLogin.Visible = true;
 			this.gridColumnTemplatesLogin.VisibleIndex = 0;
 			this.gridColumnTemplatesLogin.Width = 150;
@@ -439,8 +535,6 @@
 			this.gridColumnTemplatesBusinessName.Caption = "Advertiser";
 			this.gridColumnTemplatesBusinessName.FieldName = "Advertiser";
 			this.gridColumnTemplatesBusinessName.Name = "gridColumnTemplatesBusinessName";
-			this.gridColumnTemplatesBusinessName.OptionsColumn.AllowEdit = false;
-			this.gridColumnTemplatesBusinessName.OptionsColumn.ReadOnly = true;
 			this.gridColumnTemplatesBusinessName.Visible = true;
 			this.gridColumnTemplatesBusinessName.VisibleIndex = 1;
 			this.gridColumnTemplatesBusinessName.Width = 178;
@@ -452,8 +546,6 @@
 			this.gridColumnTemplatesFile.Caption = "File";
 			this.gridColumnTemplatesFile.FieldName = "Name";
 			this.gridColumnTemplatesFile.Name = "gridColumnTemplatesFile";
-			this.gridColumnTemplatesFile.OptionsColumn.AllowEdit = false;
-			this.gridColumnTemplatesFile.OptionsColumn.ReadOnly = true;
 			this.gridColumnTemplatesFile.Visible = true;
 			this.gridColumnTemplatesFile.VisibleIndex = 2;
 			this.gridColumnTemplatesFile.Width = 183;
@@ -463,8 +555,6 @@
 			this.gridColumnTemplatesDate.Caption = "Last Modified";
 			this.gridColumnTemplatesDate.FieldName = "Date";
 			this.gridColumnTemplatesDate.Name = "gridColumnTemplatesDate";
-			this.gridColumnTemplatesDate.OptionsColumn.AllowEdit = false;
-			this.gridColumnTemplatesDate.OptionsColumn.ReadOnly = true;
 			this.gridColumnTemplatesDate.Visible = true;
 			this.gridColumnTemplatesDate.VisibleIndex = 3;
 			this.gridColumnTemplatesDate.Width = 152;
@@ -492,13 +582,16 @@
 			this.Load += new System.EventHandler(this.OnFormLoad);
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridViewSchedules)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlRegularSchedules)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewRegularSchedules)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.xtraTabControl.ResumeLayout(false);
-			this.xtraTabPageSchedules.ResumeLayout(false);
+			this.xtraTabPageRegularSchedules.ResumeLayout(false);
+			this.xtraTabPageQuickEditSchedules.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gridControlQuickEditSchedules)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewQuickEditSchedules)).EndInit();
 			this.xtraTabPageTemplates.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlTemplates)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTemplates)).EndInit();
@@ -517,18 +610,18 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
 		private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraGrid.GridControl gridControlSchedules;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewSchedules;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSchedulesBusinessName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSchedulesFile;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSchedulesLastModifiedDate;
+        private DevExpress.XtraGrid.GridControl gridControlRegularSchedules;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewRegularSchedules;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRegularSchedulesBusinessName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRegularSchedulesFile;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRegularSchedulesLastModifiedDate;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSchedulesStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRegularSchedulesStatus;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxStatus;
 		private DevExpress.XtraBars.BarStaticItem barStaticItemLogo;
 		private DevExpress.XtraBars.BarAndDockingController barAndDockingController;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageSchedules;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageRegularSchedules;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageTemplates;
 		private DevExpress.XtraGrid.GridControl gridControlTemplates;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTemplates;
@@ -536,5 +629,10 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumnTemplatesFile;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumnTemplatesDate;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumnTemplatesLogin;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageQuickEditSchedules;
+		private DevExpress.XtraGrid.GridControl gridControlQuickEditSchedules;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridViewQuickEditSchedules;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumnQuickEditSchedulesFile;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumnQuickEditSchedulesLastModifiedDate;
 	}
 }

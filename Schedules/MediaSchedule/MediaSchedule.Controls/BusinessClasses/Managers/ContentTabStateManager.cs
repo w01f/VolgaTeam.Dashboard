@@ -1,4 +1,5 @@
 ﻿using System;
+using Asa.Business.Common.Enums;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Media.Controls.PresentationClasses.SettingsControls;
 
@@ -34,22 +35,25 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			else
 				scheduleSettings = BusinessObjects.Instance.ScheduleManager.ActiveSchedule?.Settings;
 
-			var scheduleInitialized = scheduleSettings != null &&
-									!String.IsNullOrEmpty(scheduleSettings.BusinessName) &
-								   !String.IsNullOrEmpty(scheduleSettings.DecisionMaker) &
-								   scheduleSettings.PresentationDate.HasValue &
-								   scheduleSettings.UserFlightDateStart.HasValue &
-								   scheduleSettings.UserFlightDateEnd.HasValue;
+			var commonPartisionsAvailable =
+				scheduleSettings?.EditMode == ScheduleEditMode.Quick ||
+					(!String.IsNullOrEmpty(scheduleSettings?.BusinessName) &&
+					!String.IsNullOrEmpty(scheduleSettings.DecisionMaker) &&
+					scheduleSettings.PresentationDate.HasValue);
 
-			Controller.Instance.TabProgramSchedule.Enabled = scheduleInitialized;
-			Controller.Instance.TabDigitalProduct.Enabled = scheduleInitialized;
-			Controller.Instance.TabCalendar1.Enabled = scheduleInitialized;
-			Controller.Instance.TabCalendar2.Enabled = scheduleInitialized;
-			Controller.Instance.TabSnapshot.Enabled = scheduleInitialized;
-			Controller.Instance.TabOptions.Enabled = scheduleInitialized;
-			Controller.Instance.TabGallery1.Enabled = scheduleInitialized;
-			Controller.Instance.TabGallery2.Enabled = scheduleInitialized;
-			Controller.Instance.TabRateCard.Enabled = scheduleInitialized;
+			var dateSensiblePartitionsAvailable = commonPartisionsAvailable &&
+				scheduleSettings.UserFlightDateStart.HasValue &&
+				scheduleSettings.UserFlightDateEnd.HasValue;
+
+			Controller.Instance.TabProgramSchedule.Enabled = dateSensiblePartitionsAvailable;
+			Controller.Instance.TabDigitalProduct.Enabled = commonPartisionsAvailable;
+			Controller.Instance.TabCalendar1.Enabled = dateSensiblePartitionsAvailable;
+			Controller.Instance.TabCalendar2.Enabled = dateSensiblePartitionsAvailable;
+			Controller.Instance.TabSnapshot.Enabled = dateSensiblePartitionsAvailable;
+			Controller.Instance.TabOptions.Enabled = commonPartisionsAvailable;
+			Controller.Instance.TabGallery1.Enabled = commonPartisionsAvailable;
+			Controller.Instance.TabGallery2.Enabled = commonPartisionsAvailable;
+			Controller.Instance.TabRateCard.Enabled = commonPartisionsAvailable;
 		}
 	}
 }

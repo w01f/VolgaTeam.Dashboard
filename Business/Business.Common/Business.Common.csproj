@@ -72,6 +72,7 @@
     <Compile Include="Contexts\ScheduleContext.cs" />
     <Compile Include="Contexts\ScheduleManager.cs" />
     <Compile Include="Contexts\SqLiteContext.cs" />
+    <Compile Include="Enums\ScheduleEditMode.cs" />
     <Compile Include="Helpers\PartitionContentChangedEventArgs.cs" />
     <Compile Include="Helpers\ScheduleDatesChangedEventArgs.cs" />
     <Compile Include="Helpers\ShortScheduleHelper.cs" />

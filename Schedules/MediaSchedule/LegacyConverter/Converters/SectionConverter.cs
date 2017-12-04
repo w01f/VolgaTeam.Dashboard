@@ -79,7 +79,6 @@ namespace Asa.Media.LegacyConverter.Converters
 			target.Length = source.Length;
 			target.Rate = source.Rate;
 			target.Rating = source.Rating;
-			target.SummaryItem.ImportData(source.SummaryItem);
 			foreach (var oldSpot in source.Spots)
 			{
 				var spot = new Business.Media.Entities.NonPersistent.Section.Content.Spot(target);

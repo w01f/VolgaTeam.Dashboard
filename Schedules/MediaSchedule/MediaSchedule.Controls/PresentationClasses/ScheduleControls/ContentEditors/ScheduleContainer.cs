@@ -87,6 +87,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				ContentUpdateInfo.ChangeInfo.SpotTypeChanged);
 
 			EditedContent?.Dispose();
+
+			if (!Schedule.Settings.Quarters.Any())
+				Schedule.Settings.LoadQuarters();
+
 			EditedContent = Schedule.ProgramSchedule.Clone<ProgramScheduleContent, ProgramScheduleContent>();
 
 			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed &&

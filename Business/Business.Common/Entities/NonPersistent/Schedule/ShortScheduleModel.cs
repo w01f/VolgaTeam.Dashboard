@@ -1,4 +1,5 @@
 ﻿using System;
+using Asa.Business.Common.Enums;
 using Asa.Business.Common.Interfaces;
 
 namespace Asa.Business.Common.Entities.NonPersistent.Schedule
@@ -8,6 +9,7 @@ namespace Asa.Business.Common.Entities.NonPersistent.Schedule
 		where TScheduleSettings : IBaseScheduleSettings
 	{
 		public TSchedule Parent { get; set; }
+		public ScheduleEditMode EditMode { get; set; }
 		public string Name { get; set; }
 		public string Advertiser { get; set; }
 		public DateTime? LastModified { get; set; }

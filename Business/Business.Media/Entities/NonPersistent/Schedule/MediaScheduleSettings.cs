@@ -37,14 +37,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 
 
 		private DateTime? _userFlightDateStart;
-
 		[JsonIgnore]
 		public DateTime? UserFlightDateStart
 		{
-			get
-			{
-				return _userFlightDateStart;
-			}
+			get => _userFlightDateStart;
 			set
 			{
 				_userFlightDateStart = value;
@@ -56,14 +52,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 		}
 
 		private DateTime? _userFlightDateEnd;
-
 		[JsonIgnore]
 		public DateTime? UserFlightDateEnd
 		{
-			get
-			{
-				return _userFlightDateEnd;
-			}
+			get => _userFlightDateEnd;
 			set
 			{
 				_userFlightDateEnd = value;
@@ -124,11 +116,10 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 		[JsonIgnore]
 		public string DisplayedSpotType
 		{
-			get { return String.Format("{0}ly", SelectedSpotType); }
+			get => String.Format("{0}ly", SelectedSpotType);
 			set
 			{
-				SpotType temp;
-				if (!String.IsNullOrEmpty(value) && Enum.TryParse(value.Replace("ly", ""), true, out temp))
+				if (!String.IsNullOrEmpty(value) && Enum.TryParse(value.Replace("ly", ""), true, out SpotType temp))
 					SelectedSpotType = temp;
 				else
 					SelectedSpotType = SpotType.Week;
@@ -175,7 +166,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			Stations.AddRange(MediaMetaData.Instance.ListManager.Stations.Where(x => !Stations.Select(y => y.Name).Contains(x.Name)));
 
 			Quarters = new List<Quarter>();
-			LoadQuarters();
 		}
 
 		public MediaScheduleChangeInfo GetChangeInfo(MediaScheduleSettings changedInstance)
@@ -194,21 +184,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			return changeInfo;
 		}
 
-		public static Int32? CalcWeeksCount(DateTime? UserFlightDateStart, DateTime? UserFlightDateEnd, DayOfWeek startDayOfWeek, DayOfWeek endDayOfWeek)
-		{
-			if (!UserFlightDateStart.HasValue || !UserFlightDateEnd.HasValue)
-				return null;
-			var startDate = UserFlightDateStart.Value;
-			while (startDate.DayOfWeek != startDayOfWeek)
-				startDate = startDate.AddDays(-1);
-			var endDate = UserFlightDateEnd.Value;
-			while (endDate.DayOfWeek != endDayOfWeek)
-				endDate = endDate.AddDays(1);
-			var datesRange = endDate - startDate;
-			return datesRange.Days / 7 + 1;
-		}
-
-		private void LoadQuarters()
+		public void LoadQuarters()
 		{
 			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
 			Quarters.Clear();
@@ -241,6 +217,20 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 				quarter.DateEnd = quarterMonths.Last().EndDate.Value;
 				Quarters.Add(quarter);
 			}
+		}
+
+		public static Int32? CalcWeeksCount(DateTime? userFlightDateStart, DateTime? userFlightDateEnd, DayOfWeek startDayOfWeek, DayOfWeek endDayOfWeek)
+		{
+			if (!userFlightDateStart.HasValue || !userFlightDateEnd.HasValue)
+				return null;
+			var startDate = userFlightDateStart.Value;
+			while (startDate.DayOfWeek != startDayOfWeek)
+				startDate = startDate.AddDays(-1);
+			var endDate = userFlightDateEnd.Value;
+			while (endDate.DayOfWeek != endDayOfWeek)
+				endDate = endDate.AddDays(1);
+			var datesRange = endDate - startDate;
+			return datesRange.Days / 7 + 1;
 		}
 	}
 }

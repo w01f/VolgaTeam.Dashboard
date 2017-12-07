@@ -166,6 +166,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			Stations.AddRange(MediaMetaData.Instance.ListManager.Stations.Where(x => !Stations.Select(y => y.Name).Contains(x.Name)));
 
 			Quarters = new List<Quarter>();
+			LoadQuarters();
 		}
 
 		public MediaScheduleChangeInfo GetChangeInfo(MediaScheduleSettings changedInstance)
@@ -184,7 +185,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 			return changeInfo;
 		}
 
-		public void LoadQuarters()
+		private void LoadQuarters()
 		{
 			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
 			Quarters.Clear();

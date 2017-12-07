@@ -5,7 +5,6 @@ using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Business.Solutions.StarApp.Dictionaries;
 using Asa.Common.Core.Objects.RemoteStorage;
-using CoverLists = Asa.Business.Solutions.StarApp.Dictionaries.CoverLists;
 
 namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 {
@@ -13,24 +12,30 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 	{
 		public TitlesConfiguration Titles { get; } = new TitlesConfiguration();
 
-		public CoverLists CoverLists { get; }
-		public CNALists CNALists { get; }
-		public FishingLists FishingLists { get; }
-		public CustomerLists CustomerLists { get; }
-		public ShareLists ShareLists { get; }
-		public ROILists ROILists { get; }
-		public MarketLists MarketLists { get; }
-		public VideoLists VideoLists { get; }
-		public AudienceLists AudienceLists { get; }
-		public SolutionLists SolutionLists { get; }
-		public ClosersLists ClosersLists { get; }
+		#region Tab 1
+		public CoverConfiguration CoverConfiguration { get; }
 
 		public Image Tab1SubARightLogo { get; private set; }
 		public Image Tab1SubAFooterLogo { get; private set; }
+
+		public Image Tab1SubAClipart1Image { get; private set; }
+		#endregion
+
+		#region Tab 2
+		public CNAConfiguration CNAConfiguration { get; }
+
 		public Image Tab2SubARightLogo { get; private set; }
 		public Image Tab2SubAFooterLogo { get; private set; }
 		public Image Tab2SubBRightLogo { get; private set; }
 		public Image Tab2SubBFooterLogo { get; private set; }
+
+		public Image Tab2SubAClipart1Image { get; private set; }
+		public Image Tab2SubBClipart1Image { get; private set; }
+		public Image Tab2SubBClipart2Image { get; private set; }
+		#endregion
+
+		#region Tab 3
+		public FishingConfiguration FishingConfiguration { get; }
 
 		public Image Tab3SubARightLogo { get; private set; }
 		public Image Tab3SubAFooterLogo { get; private set; }
@@ -39,12 +44,29 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab3SubCRightLogo { get; private set; }
 		public Image Tab3SubCFooterLogo { get; private set; }
 
+		public Image Tab3SubAClipart1Image { get; private set; }
+		public Image Tab3SubBClipart1Image { get; private set; }
+		public Image Tab3SubBClipart2Image { get; private set; }
+		#endregion
+
+		#region Tab 4
+		public CustomerConfiguration CustomerConfiguration { get; }
+
 		public Image Tab4SubARightLogo { get; private set; }
 		public Image Tab4SubAFooterLogo { get; private set; }
 		public Image Tab4SubBRightLogo { get; private set; }
 		public Image Tab4SubBFooterLogo { get; private set; }
 		public Image Tab4SubCRightLogo { get; private set; }
 		public Image Tab4SubCFooterLogo { get; private set; }
+
+		public Image Tab4SubAClipart1Image { get; private set; }
+		public Image Tab4SubAClipart2Image { get; private set; }
+		public Image Tab4SubBClipart1Image { get; private set; }
+		public Image Tab4SubBClipart2Image { get; private set; }
+		#endregion
+
+		#region Tab 5
+		public ShareLists ShareLists { get; }
 
 		public Image Tab5SubARightLogo { get; private set; }
 		public Image Tab5SubAFooterLogo { get; private set; }
@@ -56,6 +78,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab5SubDFooterLogo { get; private set; }
 		public Image Tab5SubERightLogo { get; private set; }
 		public Image Tab5SubEFooterLogo { get; private set; }
+		#endregion
+
+		#region Tab 6
+		public ROILists ROILists { get; }
 
 		public Image Tab6SubARightLogo { get; private set; }
 		public Image Tab6SubAFooterLogo { get; private set; }
@@ -65,6 +91,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab6SubCFooterLogo { get; private set; }
 		public Image Tab6SubDRightLogo { get; private set; }
 		public Image Tab6SubDFooterLogo { get; private set; }
+		#endregion
+
+		#region Tab 7
+		public MarketConfiguration MarketConfiguration { get; }
 
 		public Image Tab7SubARightLogo { get; private set; }
 		public Image Tab7SubAFooterLogo { get; private set; }
@@ -72,6 +102,23 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab7SubBFooterLogo { get; private set; }
 		public Image Tab7SubCRightLogo { get; private set; }
 		public Image Tab7SubCFooterLogo { get; private set; }
+
+		public Image Tab7SubAClipart1Image { get; private set; }
+
+		public Image Tab7SubBClipart1Image { get; private set; }
+		public Image Tab7SubBClipart2Image { get; private set; }
+		public Image Tab7SubBClipart3Image { get; private set; }
+		public Image Tab7SubBClipart4Image { get; private set; }
+		public Image Tab7SubBClipart5Image { get; private set; }
+
+		public Image Tab7SubCClipart1Image { get; private set; }
+		public Image Tab7SubCClipart2Image { get; private set; }
+		public Image Tab7SubCClipart3Image { get; private set; }
+		public Image Tab7SubCClipart4Image { get; private set; }
+		#endregion
+
+		#region Tab 8
+		public VideoConfiguration VideoConfiguration { get; }
 
 		public Image Tab8SubARightLogo { get; private set; }
 		public Image Tab8SubAFooterLogo { get; private set; }
@@ -82,12 +129,37 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab8SubDRightLogo { get; private set; }
 		public Image Tab8SubDFooterLogo { get; private set; }
 
+		public Image Tab8SubAClipart1Image { get; private set; }
+		public Image Tab8SubBClipart1Image { get; private set; }
+		public Image Tab8SubCClipart1Image { get; private set; }
+		public Image Tab8SubDClipart1Image { get; private set; }
+		#endregion
+
+		#region Tab 9
+		public AudienceConfiguration AudienceConfiguration { get; }
+
 		public Image Tab9SubARightLogo { get; private set; }
 		public Image Tab9SubAFooterLogo { get; private set; }
 		public Image Tab9SubBRightLogo { get; private set; }
 		public Image Tab9SubBFooterLogo { get; private set; }
 		public Image Tab9SubCRightLogo { get; private set; }
 		public Image Tab9SubCFooterLogo { get; private set; }
+
+		public Image Tab9SubAClipart1Image { get; private set; }
+		public Image Tab9SubAClipart2Image { get; private set; }
+
+		public Image Tab9SubBClipart1Image { get; private set; }
+		public Image Tab9SubBClipart2Image { get; private set; }
+		public Image Tab9SubBClipart3Image { get; private set; }
+
+		public Image Tab9SubCClipart1Image { get; private set; }
+		public Image Tab9SubCClipart2Image { get; private set; }
+		public Image Tab9SubCClipart3Image { get; private set; }
+		public Image Tab9SubCClipart4Image { get; private set; }
+		#endregion
+
+		#region Tab 10
+		public SolutionLists SolutionLists { get; }
 
 		public Image Tab10SubARightLogo { get; private set; }
 		public Image Tab10SubAFooterLogo { get; private set; }
@@ -97,6 +169,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab10SubCFooterLogo { get; private set; }
 		public Image Tab10SubDRightLogo { get; private set; }
 		public Image Tab10SubDFooterLogo { get; private set; }
+		#endregion
+
+		#region Tab 11
+		public ClosersLists ClosersLists { get; }
 
 		public Image Tab11SubARightLogo { get; private set; }
 		public Image Tab11SubAFooterLogo { get; private set; }
@@ -104,20 +180,21 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab11SubBFooterLogo { get; private set; }
 		public Image Tab11SubCRightLogo { get; private set; }
 		public Image Tab11SubCFooterLogo { get; private set; }
+		#endregion
 
 		public StarAppSolutionInfo()
 		{
 			Type = SolutionType.StarApp;
 
-			CoverLists = new CoverLists();
-			CNALists = new CNALists();
-			FishingLists = new FishingLists();
-			CustomerLists = new CustomerLists();
+			CoverConfiguration = new CoverConfiguration();
+			CNAConfiguration = new CNAConfiguration();
+			FishingConfiguration = new FishingConfiguration();
+			CustomerConfiguration = new CustomerConfiguration();
 			ShareLists = new ShareLists();
 			ROILists = new ROILists();
-			MarketLists = new MarketLists();
-			VideoLists = new VideoLists();
-			AudienceLists = new AudienceLists();
+			MarketConfiguration = new MarketConfiguration();
+			VideoConfiguration = new VideoConfiguration();
+			AudienceConfiguration = new AudienceConfiguration();
 			SolutionLists = new SolutionLists();
 			ClosersLists = new ClosersLists();
 		}
@@ -140,17 +217,8 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 
 			Titles.Load(resourceManager.SettingsFile);
 
-			CoverLists.Load(resourceManager);
-			CNALists.Load(resourceManager);
-			FishingLists.Load(resourceManager);
-			CustomerLists.Load(resourceManager);
-			ShareLists.Load(resourceManager);
-			ROILists.Load(resourceManager);
-			MarketLists.Load(resourceManager);
-			VideoLists.Load(resourceManager);
-			AudienceLists.Load(resourceManager);
-			SolutionLists.Load(resourceManager);
-			ClosersLists.Load(resourceManager);
+			#region Tab 1
+			CoverConfiguration.Load(resourceManager);
 
 			Tab1SubARightLogo = resourceManager.LogoTab1SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab1SubARightFile.LocalPath)
@@ -158,6 +226,14 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab1SubAFooterLogo = resourceManager.LogoTab1SubAFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab1SubAFooterFile.LocalPath)
 				: null;
+
+			Tab1SubAClipart1Image = resourceManager.ClipartTab1SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab1SubA1File.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 2
+			CNAConfiguration.Load(resourceManager);
 
 			Tab2SubARightLogo = resourceManager.LogoTab2SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab2SubARightFile.LocalPath)
@@ -171,6 +247,21 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab2SubBFooterLogo = resourceManager.LogoTab2SubBFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab2SubBFooterFile.LocalPath)
 				: null;
+
+			Tab2SubAClipart1Image = resourceManager.ClipartTab2SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab2SubA1File.LocalPath)
+				: null;
+
+			Tab2SubBClipart1Image = resourceManager.ClipartTab2SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab2SubB1File.LocalPath)
+				: null;
+			Tab2SubBClipart2Image = resourceManager.ClipartTab2SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab2SubB2File.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 3
+			FishingConfiguration.Load(resourceManager);
 
 			Tab3SubARightLogo = resourceManager.LogoTab3SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab3SubARightFile.LocalPath)
@@ -191,6 +282,21 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				? Image.FromFile(resourceManager.LogoTab3SubCFooterFile.LocalPath)
 				: null;
 
+			Tab3SubAClipart1Image = resourceManager.ClipartTab3SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab3SubA1File.LocalPath)
+				: null;
+
+			Tab3SubBClipart1Image = resourceManager.ClipartTab3SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab3SubB1File.LocalPath)
+				: null;
+			Tab3SubBClipart2Image = resourceManager.ClipartTab3SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab3SubB2File.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 4
+			CustomerConfiguration.Load(resourceManager);
+
 			Tab4SubARightLogo = resourceManager.LogoTab4SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab4SubARightFile.LocalPath)
 				: null;
@@ -209,6 +315,24 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab4SubCFooterLogo = resourceManager.LogoTab4SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab4SubCFooterFile.LocalPath)
 				: null;
+
+			Tab4SubAClipart1Image = resourceManager.ClipartTab4SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab4SubA1File.LocalPath)
+				: null;
+			Tab4SubAClipart2Image = resourceManager.ClipartTab4SubA2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab4SubA2File.LocalPath)
+				: null;
+
+			Tab4SubBClipart1Image = resourceManager.ClipartTab4SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab4SubB1File.LocalPath)
+				: null;
+			Tab4SubBClipart2Image = resourceManager.ClipartTab4SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab4SubB2File.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 5
+			ShareLists.Load(resourceManager);
 
 			Tab5SubARightLogo = resourceManager.LogoTab5SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubARightFile.LocalPath)
@@ -240,6 +364,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab5SubEFooterLogo = resourceManager.LogoTab5SubEFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubEFooterFile.LocalPath)
 				: null;
+			#endregion
+
+			#region Tab 6
+			ROILists.Load(resourceManager);
 
 			Tab6SubARightLogo = resourceManager.LogoTab6SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubARightFile.LocalPath)
@@ -265,6 +393,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab6SubDFooterLogo = resourceManager.LogoTab6SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubDFooterFile.LocalPath)
 				: null;
+			#endregion
+
+			#region Tab 7
+			MarketConfiguration.Load(resourceManager);
 
 			Tab7SubARightLogo = resourceManager.LogoTab7SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab7SubARightFile.LocalPath)
@@ -284,6 +416,43 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab7SubCFooterLogo = resourceManager.LogoTab7SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab7SubCFooterFile.LocalPath)
 				: null;
+
+			Tab7SubAClipart1Image = resourceManager.ClipartTab7SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubA1File.LocalPath)
+				: null;
+
+			Tab7SubBClipart1Image = resourceManager.ClipartTab7SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubB1File.LocalPath)
+				: null;
+			Tab7SubBClipart2Image = resourceManager.ClipartTab7SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubB2File.LocalPath)
+				: null;
+			Tab7SubBClipart3Image = resourceManager.ClipartTab7SubB3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubB3File.LocalPath)
+				: null;
+			Tab7SubBClipart4Image = resourceManager.ClipartTab7SubB4File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubB4File.LocalPath)
+				: null;
+			Tab7SubBClipart5Image = resourceManager.ClipartTab7SubB5File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubB5File.LocalPath)
+				: null;
+
+			Tab7SubCClipart1Image = resourceManager.ClipartTab7SubC1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubC1File.LocalPath)
+				: null;
+			Tab7SubCClipart2Image = resourceManager.ClipartTab7SubC2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubC2File.LocalPath)
+				: null;
+			Tab7SubCClipart3Image = resourceManager.ClipartTab7SubC3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubC3File.LocalPath)
+				: null;
+			Tab7SubCClipart4Image = resourceManager.ClipartTab7SubC4File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab7SubC4File.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 8
+			VideoConfiguration.Load(resourceManager);
 
 			Tab8SubARightLogo = resourceManager.LogoTab8SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab8SubARightFile.LocalPath)
@@ -310,6 +479,23 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				? Image.FromFile(resourceManager.LogoTab8SubDFooterFile.LocalPath)
 				: null;
 
+			Tab8SubAClipart1Image = resourceManager.ClipartTab8SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab8SubA1File.LocalPath)
+				: null;
+			Tab8SubBClipart1Image = resourceManager.ClipartTab8SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab8SubB1File.LocalPath)
+				: null;
+			Tab8SubCClipart1Image = resourceManager.ClipartTab8SubC1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab8SubC1File.LocalPath)
+				: null;
+			Tab8SubDClipart1Image = resourceManager.ClipartTab8SubD1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab8SubD1File.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 9
+			AudienceConfiguration.Load(resourceManager);
+
 			Tab9SubARightLogo = resourceManager.LogoTab9SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab9SubARightFile.LocalPath)
 				: null;
@@ -328,6 +514,40 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab9SubCFooterLogo = resourceManager.LogoTab9SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab9SubCFooterFile.LocalPath)
 				: null;
+
+			Tab9SubAClipart1Image = resourceManager.ClipartTab9SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubA1File.LocalPath)
+				: null;
+			Tab9SubAClipart2Image = resourceManager.ClipartTab9SubA2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubA2File.LocalPath)
+				: null;
+
+			Tab9SubBClipart1Image = resourceManager.ClipartTab9SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubB1File.LocalPath)
+				: null;
+			Tab9SubBClipart2Image = resourceManager.ClipartTab9SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubB2File.LocalPath)
+				: null;
+			Tab9SubBClipart3Image = resourceManager.ClipartTab9SubB3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubB3File.LocalPath)
+				: null;
+
+			Tab9SubCClipart1Image = resourceManager.ClipartTab9SubC1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubC1File.LocalPath)
+				: null;
+			Tab9SubCClipart2Image = resourceManager.ClipartTab9SubC2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubC2File.LocalPath)
+				: null;
+			Tab9SubCClipart3Image = resourceManager.ClipartTab9SubC3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubC3File.LocalPath)
+				: null;
+			Tab9SubCClipart4Image = resourceManager.ClipartTab9SubC4File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab9SubC4File.LocalPath)
+				: null;
+			#endregion
+
+			#region Tab 10
+			SolutionLists.Load(resourceManager);
 
 			Tab10SubARightLogo = resourceManager.LogoTab10SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab10SubARightFile.LocalPath)
@@ -353,6 +573,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab10SubDFooterLogo = resourceManager.LogoTab10SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab10SubDFooterFile.LocalPath)
 				: null;
+			#endregion
+
+			#region Tab 11
+			ClosersLists.Load(resourceManager);
 
 			Tab11SubARightLogo = resourceManager.LogoTab11SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab11SubARightFile.LocalPath)
@@ -372,6 +596,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab11SubCFooterLogo = resourceManager.LogoTab11SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab11SubCFooterFile.LocalPath)
 				: null;
+			#endregion
 		}
 	}
 }

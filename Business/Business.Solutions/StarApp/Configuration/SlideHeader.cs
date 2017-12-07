@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Xml;
 
-namespace Asa.Business.Solutions.StarApp.Dictionaries
+namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class SlideHeader
 	{
+		public string Value { get; set; }
+		public bool IsDefault { get; set; }
+
 		public SlideHeader()
 		{
 			Value = string.Empty;
 			IsDefault = false;
 		}
-
-		public string Value { get; set; }
-		public bool IsDefault { get; set; }
 
 		public override string ToString()
 		{

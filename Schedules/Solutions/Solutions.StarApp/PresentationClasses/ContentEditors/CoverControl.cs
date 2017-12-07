@@ -26,8 +26,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			Text = SlideName;
 
 			comboBoxEditSlideHeader.EnableSelectAll();
+			memoEditSubheader1.EnableSelectAll();
+			comboBoxEditCombo1.EnableSelectAll();
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab1SubATitle;
+
+			pictureEditClipart1.Image = SlideContainer.StarInfo.Tab1SubAClipart1Image;
+			pictureEditClipart1.Properties.PictureAlignment =
+				SlideContainer.StarInfo.CoverConfiguration.PartAClipart1Configuration.Alignment;
+
+			comboBoxEditCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.PartACombo1Items);
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -36,12 +44,20 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlItemLogoRight.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MinSize, scaleFactor);
 			layoutControlItemLogoFooter.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MaxSize, scaleFactor);
 			layoutControlItemLogoFooter.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MinSize, scaleFactor);
+			layoutControlItemCalendar1Toggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCalendar1Toggle.MaxSize, scaleFactor);
+			layoutControlItemCalendar1Toggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendar1Toggle.MinSize, scaleFactor);
 		}
 
 		public override void LoadData()
 		{
 			_allowToSave = false;
+
+			memoEditSubheader1.EditValue = SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
+
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
+			comboBoxEditCombo1.EditValue =
+				SlideContainer.StarInfo.CoverConfiguration.PartACombo1Items.FirstOrDefault(item => item.IsDefault);
+
 			_allowToSave = true;
 
 			LoadPartData();
@@ -65,11 +81,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab1SubAFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverLists.HeadersPartA);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems);
 
 					comboBoxEditSlideHeader.EditValue =
-					SlideContainer.StarInfo.CoverLists.HeadersPartA.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CoverState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
-					SlideContainer.StarInfo.CoverLists.HeadersPartA.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+					SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CoverState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+					SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 			}
 			_allowToSave = true;
@@ -87,6 +103,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				ApplyChanges();
 
 			LoadPartData();
+		}
+
+		private void OnCalendar1ToggleCheckedChanged(object sender, EventArgs e)
+		{
+			layoutControlItemCalendar1Value.Enabled = checkEditCalendar1.Checked;
 		}
 
 		#region Output Staff

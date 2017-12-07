@@ -26,10 +26,47 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			Text = SlideName;
 			
 			comboBoxEditSlideHeader.EnableSelectAll();
+			memoEditTabASubheader1.EnableSelectAll();
+			textEditTabBSubheader1.EnableSelectAll();
+			memoEditTabBSubheader2.EnableSelectAll();
+			comboBoxEditTabCCombo1.EnableSelectAll();
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab7SubATitle;
 			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab7SubBTitle;
 			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab7SubCTitle;
+
+			pictureEditTabAClipart1.Image = SlideContainer.StarInfo.Tab7SubAClipart1Image;
+			pictureEditTabAClipart1.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartAClipart1Configuration.Alignment;
+			pictureEditTabBClipart1.Image = SlideContainer.StarInfo.Tab7SubBClipart1Image;
+			pictureEditTabBClipart1.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartBClipart1Configuration.Alignment;
+			pictureEditTabBClipart2.Image = SlideContainer.StarInfo.Tab7SubBClipart2Image;
+			pictureEditTabBClipart2.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartBClipart2Configuration.Alignment;
+			pictureEditTabBClipart3.Image = SlideContainer.StarInfo.Tab7SubBClipart3Image;
+			pictureEditTabBClipart3.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartBClipart3Configuration.Alignment;
+			pictureEditTabBClipart4.Image = SlideContainer.StarInfo.Tab7SubBClipart4Image;
+			pictureEditTabBClipart4.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartBClipart4Configuration.Alignment;
+			pictureEditTabBClipart5.Image = SlideContainer.StarInfo.Tab7SubBClipart5Image;
+			pictureEditTabBClipart5.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartBClipart5Configuration.Alignment;
+			pictureEditTabCClipart1.Image = SlideContainer.StarInfo.Tab7SubCClipart1Image;
+			pictureEditTabCClipart1.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartCClipart1Configuration.Alignment;
+			pictureEditTabCClipart2.Image = SlideContainer.StarInfo.Tab7SubCClipart2Image;
+			pictureEditTabCClipart2.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartCClipart2Configuration.Alignment;
+			pictureEditTabCClipart3.Image = SlideContainer.StarInfo.Tab7SubCClipart3Image;
+			pictureEditTabCClipart3.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartCClipart3Configuration.Alignment;
+			pictureEditTabCClipart4.Image = SlideContainer.StarInfo.Tab7SubCClipart4Image;
+			pictureEditTabCClipart4.Properties.PictureAlignment =
+				SlideContainer.StarInfo.MarketConfiguration.PartCClipart4Configuration.Alignment;
+
+			comboBoxEditTabCCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items);
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -42,6 +79,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override void LoadData()
 		{
+			_allowToSave = false;
+
+			comboBoxEditTabCCombo1.EditValue =
+				SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items.FirstOrDefault(item => item.IsDefault);
+
+			_allowToSave = true;
+
 			LoadPartData();
 		}
 
@@ -62,30 +106,30 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubAFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketLists.HeadersPartA);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems);
 					comboBoxEditSlideHeader.EditValue =
-							SlideContainer.StarInfo.MarketLists.HeadersPartA.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.MarketState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
-							SlideContainer.StarInfo.MarketLists.HeadersPartA.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+							SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.MarketState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+							SlideContainer.StarInfo.MarketConfiguration.HeadersPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 				case 1:
 					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab7SubBRightLogo;
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubBFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketLists.HeadersPartB);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems);
 					comboBoxEditSlideHeader.EditValue =
-							SlideContainer.StarInfo.MarketLists.HeadersPartB.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.MarketState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
-							SlideContainer.StarInfo.MarketLists.HeadersPartB.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+							SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.MarketState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+							SlideContainer.StarInfo.MarketConfiguration.HeadersPartBItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 				case 2:
 					pictureEditLogoRight.Image = SlideContainer.StarInfo.Tab7SubCRightLogo;
 					pictureEditLogoFooter.Image = SlideContainer.StarInfo.Tab7SubCFooterLogo;
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
-					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketLists.HeadersPartC);
+					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems);
 					comboBoxEditSlideHeader.EditValue =
-							SlideContainer.StarInfo.MarketLists.HeadersPartC.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.MarketState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
-							SlideContainer.StarInfo.MarketLists.HeadersPartC.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+							SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.MarketState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
+							SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 			}
 			_allowToSave = true;

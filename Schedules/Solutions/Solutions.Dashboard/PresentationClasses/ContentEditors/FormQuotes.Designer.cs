@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
 			this.checkedListBoxControlQuotes = new DevExpress.XtraEditors.CheckedListBoxControl();
-			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.simpleLabelItemTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.simpleLabelItemDescription = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemQuotes = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlQuotes)).BeginInit();
@@ -47,9 +47,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTitle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemDescription)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemQuotes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
 			this.SuspendLayout();
@@ -78,20 +78,6 @@
 			this.checkedListBoxControlQuotes.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxControlQuotes_SelectedIndexChanged);
 			this.checkedListBoxControlQuotes.DrawItem += new DevExpress.XtraEditors.ListBoxDrawItemEventHandler(this.checkedListBoxControlQuotes_DrawItem);
 			// 
-			// buttonXOK
-			// 
-			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXOK.Location = new System.Drawing.Point(566, 406);
-			this.buttonXOK.Name = "buttonXOK";
-			this.buttonXOK.Size = new System.Drawing.Size(116, 36);
-			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOK.TabIndex = 12;
-			this.buttonXOK.Text = "Return to Cover";
-			// 
 			// layoutControl
 			// 
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -118,6 +104,20 @@
 			this.layoutControl.Size = new System.Drawing.Size(694, 454);
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
+			// 
+			// buttonXOK
+			// 
+			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.buttonXOK.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.buttonXOK.Location = new System.Drawing.Point(566, 406);
+			this.buttonXOK.Name = "buttonXOK";
+			this.buttonXOK.Size = new System.Drawing.Size(116, 36);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXOK.TabIndex = 12;
+			this.buttonXOK.Text = "Return to Cover";
 			// 
 			// layoutControlGroupRoot
 			// 
@@ -191,17 +191,6 @@
 			this.simpleLabelItemDescription.Text = "<size=+6><i>Add a Creative \"Quote\" to your Cover Slide...</i></size>";
 			this.simpleLabelItemDescription.TextSize = new System.Drawing.Size(424, 24);
 			// 
-			// emptySpaceItem3
-			// 
-			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 71);
-			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(674, 10);
-			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// layoutControlItemQuotes
 			// 
 			this.layoutControlItemQuotes.Control = this.checkedListBoxControlQuotes;
@@ -221,6 +210,17 @@
 			this.emptySpaceItem2.Size = new System.Drawing.Size(674, 10);
 			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem3
+			// 
+			this.emptySpaceItem3.AllowHotTrack = false;
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 71);
+			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem3.Name = "emptySpaceItem3";
+			this.emptySpaceItem3.Size = new System.Drawing.Size(674, 10);
+			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem4
 			// 
@@ -253,11 +253,10 @@
 			this.ClientSize = new System.Drawing.Size(694, 454);
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
-			this.ForeColor = System.Drawing.Color.Black;
 			this.Name = "FormQuotes";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Sales Quotes Library";
 			this.Load += new System.EventHandler(this.FormQuotes_Load);
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlQuotes)).EndInit();
@@ -267,9 +266,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTitle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemDescription)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemQuotes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
 			this.ResumeLayout(false);

@@ -479,6 +479,12 @@
     <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesChangeWarning.Designer.cs">
       <DependentUpon>FormFlightDatesChangeWarning.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\SettingsControls\FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -778,6 +784,9 @@
     <EmbeddedResource Include="PresentationClasses\SettingsControls\FormFlightDatesChangeWarning.resx">
       <DependentUpon>FormFlightDatesChangeWarning.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\SettingsControls\FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\SettingsControls\FormFlightDatesEdit.resx">
       <DependentUpon>FormFlightDatesEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -951,7 +960,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Browser\Browser.Controls\Browser.Controls.csproj">
-      <Project>{0db1bad7-d7aa-46f8-bde6-0212c8a4caa6}</Project>
+      <Project>{0DB1BAD7-D7AA-46F8-BDE6-0212C8A4CAA6}</Project>
       <Name>Browser.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Calendar\Business.Calendar.csproj">
@@ -962,10 +971,6 @@
       <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
       <Name>Business.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Business\Business.Dashboard\Business.Dashboard.csproj">
-      <Project>{b256a0ef-6fa9-4eb0-ba85-581ee07fa9ee}</Project>
-      <Name>Business.Dashboard</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
       <Project>{8248763f-1b88-43c4-bb98-30bedeef6434}</Project>
       <Name>Business.Media</Name>
@@ -975,7 +980,7 @@
       <Name>Business.Online</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">
-      <Project>{4f118ea5-97aa-43f9-a8f5-601b8596825c}</Project>
+      <Project>{4F118EA5-97AA-43F9-A8F5-601B8596825C}</Project>
       <Name>Business.Solutions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">

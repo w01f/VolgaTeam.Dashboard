@@ -275,6 +275,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			Summary.UpdateView();
 			UpdateSplash();
 			UpdateSummaryState();
+			UpdateStatusBar();
 			settingsContainer.UpdateSettingsAccordingDataChanges(SnapshotEditorType.Schedule);
 			SettingsNotSaved = true;
 		}
@@ -601,8 +602,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				if (ActiveSnapshotContainer.SnapshotData.ShowAverageRate)
 					statusBarItems.Add(_statusBarAvgRateInfo);
 
+				if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
+					statusBarItems.ForEach(item => item.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value);
+
 				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
 				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.RecalcSize();
 				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
 			}
 			else if (ActiveSummary != null)
@@ -617,8 +622,12 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 				if (ActiveSummary.Data.ShowTallyCost)
 					statusBarItems.Add(_statusBarTotalCostInfo);
 
+				if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
+					statusBarItems.ForEach(item => item.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value);
+
 				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
 				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.RecalcSize();
 				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
 			}
 			else
@@ -638,9 +647,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (!outputGroups.Any(g => g.Configurations.Any())) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				outputGroups.ForEach(g => g.OutputContainer.GenerateOutput(g.Configurations));
 				FormProgress.CloseProgress();
 			});
@@ -654,9 +663,9 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			if (!outputGroups.Any(g => g.Configurations.Any())) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				var previewGroups = outputGroups.SelectMany(g => g.OutputContainer.GeneratePreview(g.Configurations)).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),

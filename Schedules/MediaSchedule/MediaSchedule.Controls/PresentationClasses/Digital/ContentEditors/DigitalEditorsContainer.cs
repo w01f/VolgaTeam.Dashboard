@@ -355,9 +355,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			if (!outputItems.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				outputItems.ForEach(item => item.GenerateOutput());
 				FormProgress.CloseProgress();
 			});
@@ -369,9 +369,9 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			if (!outputItems.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				var previewGroups = outputItems.Select(item => item.GeneratePreview()).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),

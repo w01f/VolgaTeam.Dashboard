@@ -203,6 +203,7 @@
 			this.pictureEditTabBClipart2.Location = new System.Drawing.Point(406, 345);
 			this.pictureEditTabBClipart2.Name = "pictureEditTabBClipart2";
 			this.pictureEditTabBClipart2.Properties.AllowFocused = false;
+			this.pictureEditTabBClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditTabBClipart2.Properties.NullText = " ";
 			this.pictureEditTabBClipart2.Properties.ReadOnly = true;
 			this.pictureEditTabBClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -282,6 +283,7 @@
 			this.pictureEditTabBClipart1.Location = new System.Drawing.Point(406, 119);
 			this.pictureEditTabBClipart1.Name = "pictureEditTabBClipart1";
 			this.pictureEditTabBClipart1.Properties.AllowFocused = false;
+			this.pictureEditTabBClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditTabBClipart1.Properties.NullText = " ";
 			this.pictureEditTabBClipart1.Properties.ReadOnly = true;
 			this.pictureEditTabBClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -306,6 +308,7 @@
 			this.pictureEditTabAClipart1.Location = new System.Drawing.Point(14, 119);
 			this.pictureEditTabAClipart1.Name = "pictureEditTabAClipart1";
 			this.pictureEditTabAClipart1.Properties.AllowFocused = false;
+			this.pictureEditTabAClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditTabAClipart1.Properties.NullText = " ";
 			this.pictureEditTabAClipart1.Properties.ReadOnly = true;
 			this.pictureEditTabAClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -321,6 +324,7 @@
 			this.pictureEditTabAClipart2.Location = new System.Drawing.Point(14, 430);
 			this.pictureEditTabAClipart2.Name = "pictureEditTabAClipart2";
 			this.pictureEditTabAClipart2.Properties.AllowFocused = false;
+			this.pictureEditTabAClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEditTabAClipart2.Properties.NullText = " ";
 			this.pictureEditTabAClipart2.Properties.ReadOnly = true;
 			this.pictureEditTabAClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;

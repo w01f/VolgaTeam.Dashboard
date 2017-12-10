@@ -55,9 +55,9 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slides.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				slides.ForEach(s => s.GenerateOutput());
 				FormProgress.CloseProgress();
 			});
@@ -69,9 +69,9 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slides.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				var previewGroups = slides.Select(s => s.GeneratePreview()).ToList();
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),

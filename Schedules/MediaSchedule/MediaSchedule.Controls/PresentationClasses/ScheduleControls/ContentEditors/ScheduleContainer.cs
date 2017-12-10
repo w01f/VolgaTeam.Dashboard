@@ -259,6 +259,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			EditedContent.RebuildSectionIndexes();
 			xtraTabControlSections.TabPages.Remove(sectionControl);
 			UpdateSectionSplash();
+			UpdateStatusBar();
 			settingsContainer.UpdateSettingsAccordingDataChanges(SectionEditorType.Schedule);
 			SettingsNotSaved = true;
 		}
@@ -584,8 +585,12 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 				if (ActiveSection.SectionData.ShowDiscount)
 					statusBarItems.Add(_statusBarAgencyDiscountInfo);
 
+				if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
+					statusBarItems.ForEach(item => item.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value);
+
 				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
 				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBarItemsContainer.RecalcSize();
 				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
 			}
 			else

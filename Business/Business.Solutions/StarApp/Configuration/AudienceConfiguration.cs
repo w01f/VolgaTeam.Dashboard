@@ -137,6 +137,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 									HeadersPartCItems.Add(item);
 							}
 							break;
+						case "CP09CCombo1":
+							{
+								var item = ComboboxItem.FromXml(childNode);
+								if (!String.IsNullOrEmpty(item.Value))
+									PartCCombo1Items.Add(item);
+							}
+							break;
 					}
 				}
 

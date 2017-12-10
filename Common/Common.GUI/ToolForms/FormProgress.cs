@@ -107,6 +107,22 @@ namespace Asa.Common.GUI.ToolForms
 			Application.DoEvents();
 		}
 
+		public static void ShowOutputProgress()
+		{
+			if (_instance == null)
+				_instance = new FormProgress();
+			_instance.Closed += (o, e) =>
+			{
+				_instance.Dispose();
+				_instance = null;
+			};
+			_instance.StartPosition = FormStartPosition.Manual;
+			_instance.Top = (Screen.PrimaryScreen.WorkingArea.Height - _instance.Height) / 2;
+			_instance.Left = (Screen.PrimaryScreen.WorkingArea.Width - _instance.Width) / 2;
+			_instance.Show(null);
+			Application.DoEvents();
+		}
+
 		public static void CloseProgress()
 		{
 			if (_instance == null) return;

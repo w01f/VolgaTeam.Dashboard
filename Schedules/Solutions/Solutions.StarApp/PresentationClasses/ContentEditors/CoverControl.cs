@@ -9,6 +9,7 @@ using Asa.Common.GUI.Preview;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -23,6 +24,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public CoverControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
+
+			Resize += OnResize;
+
 			Text = SlideName;
 
 			comboBoxEditSlideHeader.EnableSelectAll();
@@ -46,6 +50,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlItemLogoFooter.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MinSize, scaleFactor);
 			layoutControlItemCalendar1Toggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCalendar1Toggle.MaxSize, scaleFactor);
 			layoutControlItemCalendar1Toggle.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendar1Toggle.MinSize, scaleFactor);
+
+			OnResize(this, EventArgs.Empty);
 		}
 
 		public override void LoadData()
@@ -108,6 +114,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void OnCalendar1ToggleCheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlItemCalendar1Value.Enabled = checkEditCalendar1.Checked;
+		}
+
+		private void OnResize(object sender, EventArgs e)
+		{
+			var showLogos = Width > 1000;
+			layoutControlItemLogoFooter.Visibility =
+			layoutControlItemLogoRight.Visibility =
+				showLogos ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
 		#region Output Staff

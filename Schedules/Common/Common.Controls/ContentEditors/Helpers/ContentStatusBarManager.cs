@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar;
 
@@ -8,6 +9,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 	{
 		public Bar StatusBar { get; set; }
 		public ItemContainer StatusBarItemsContainer { get; set; }
+		public Color? TextColor { get; set; }
 
 		public static ContentStatusBarManager Instance { get; } = new ContentStatusBarManager();
 
@@ -22,8 +24,12 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 				FileStorageManager.Instance.Version
 			);
 
+			if (TextColor.HasValue)
+				appInfoLabel.ForeColor = TextColor.Value;
+
 			StatusBarItemsContainer.SubItems.Add(appInfoLabel);
 			StatusBarItemsContainer.RecalcSize();
+			StatusBar.RecalcLayout();
 		}
 	}
 }

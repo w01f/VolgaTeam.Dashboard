@@ -17,6 +17,7 @@ using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro.ColorTables;
 using DevExpress.Skins;
+using DevExpress.XtraLayout.Utils;
 using FormStart = Asa.Media.Controls.ToolForms.FormStart;
 
 namespace Asa.Media.Single
@@ -29,11 +30,20 @@ namespace Asa.Media.Single
 		{
 			InitializeComponent();
 
+			Width = (Int32)(Screen.PrimaryScreen.Bounds.Width * 0.8);
+			Height = (Int32)(Screen.PrimaryScreen.Bounds.Height * 0.8);
+			Left = (Screen.PrimaryScreen.Bounds.Width - Width) / 2;
+			Top = (Screen.PrimaryScreen.Bounds.Height - Height) / 2;
+
+			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.StartFormBackgroundLogo;
+
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			simpleLabelItemAdvertiser.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiser.MaxSize, scaleFactor);
 			simpleLabelItemAdvertiser.MinSize = RectangleHelper.ScaleSize(simpleLabelItemAdvertiser.MinSize, scaleFactor);
 			simpleLabelItemFlightDates.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MaxSize, scaleFactor);
 			simpleLabelItemFlightDates.MinSize = RectangleHelper.ScaleSize(simpleLabelItemFlightDates.MinSize, scaleFactor);
+
+			PopupMessageHelper.Instance.MainForm = this;
 		}
 
 		public static FormMain Instance => _instance ?? (_instance = new FormMain());
@@ -49,43 +59,128 @@ namespace Asa.Media.Single
 			FormStateHelper.Init(this,
 					Common.Core.Configuration.ResourceManager.Instance.AppSettingsFolder,
 					MediaMetaData.Instance.DataTypeString,
-					true)
+					false)
 				.LoadState();
 
 			Icon = BusinessObjects.Instance.ImageResourcesManager.MainAppIcon ?? Icon;
+
+			buttonItemApplicationMenuNew.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuNewImage ??
+												 buttonItemApplicationMenuNew.Image;
+			buttonItemApplicationMenuOpen.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuOpenImage ??
+												 buttonItemApplicationMenuOpen.Image;
+			buttonItemApplicationMenuSave.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuSaveImage ??
+												 buttonItemApplicationMenuSave.Image;
+			buttonItemApplicationMenuSaveAs.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuSaveAsImage ??
+												 buttonItemApplicationMenuSaveAs.Image;
+			buttonItemApplicationMenuOutputPdf.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuOutputPdfImage ??
+												 buttonItemApplicationMenuOutputPdf.Image;
+			buttonItemApplicationMenuEmail.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuEmailImage ??
+												 buttonItemApplicationMenuEmail.Image;
+			buttonItemApplicationMenuSlideSettings.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuSlideSettingsImage ??
+												 buttonItemApplicationMenuSlideSettings.Image;
+			buttonItemApplicationMenuHelp.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuHelpImage ??
+												 buttonItemApplicationMenuHelp.Image;
+			buttonItemApplicationMenuExit.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuExitImage ??
+												 buttonItemApplicationMenuExit.Image;
+
+			if (BusinessObjects.Instance.ImageResourcesManager.HomeDateStartImage != null)
+			{
+				labelItemHomeFlightDatesStartTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDateStartImage;
+				labelItemHomeFlightDatesStartTitle.Width +=
+					BusinessObjects.Instance.ImageResourcesManager.HomeDateStartImage.Width - 24;
+			}
+			if (BusinessObjects.Instance.ImageResourcesManager.HomeDateEndImage != null)
+			{
+				labelItemHomeFlightDatesEndTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDateEndImage;
+				labelItemHomeFlightDatesEndTitle.Width +=
+					BusinessObjects.Instance.ImageResourcesManager.HomeDateEndImage.Width - 24;
+			}
+			ribbonBarHomeFlightDates.RecalcLayout();
+			buttonItemHomeSettings.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonSettingsImage ?? buttonItemHomeSettings.Image;
+			ribbonBarHomeSettings.RecalcLayout();
+			ribbonPanelHome.PerformLayout();
 
 			if (BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRibbonLogo != null)
 			{
 				buttonItemProgramScheduleNew.Image = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRibbonLogo;
 				ribbonBarProgramScheduleNew.RecalcLayout();
-				ribbonPanelProgramSchedule.PerformLayout();
 			}
+			buttonItemProgramSchedulePowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemProgramSchedulePowerPoint.Image;
+			ribbonBarProgramSchedulePowerPoint.RecalcLayout();
+			buttonItemProgramSchedulePreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemProgramSchedulePreview.Image;
+			ribbonBarProgramSchedulePreview.RecalcLayout();
+			buttonItemProgramScheduleSettings.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonSettingsImage ?? buttonItemProgramScheduleSettings.Image;
+			ribbonBarProgramScheduleSettings.RecalcLayout();
+			ribbonPanelProgramSchedule.PerformLayout();
 
 			if (BusinessObjects.Instance.ImageResourcesManager.SnapshotsRibbonLogo != null)
 			{
 				buttonItemSnapshotNew.Image = BusinessObjects.Instance.ImageResourcesManager.SnapshotsRibbonLogo;
 				ribbonBarSnapshotNew.RecalcLayout();
-				ribbonPanelSnapshot.PerformLayout();
 			}
+			buttonItemSnapshotPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSnapshotPowerPoint.Image;
+			ribbonBarSnapshotPowerPoint.RecalcLayout();
+			buttonItemSnapshotPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSnapshotPreview.Image;
+			ribbonBarSnapshotPreview.RecalcLayout();
+			buttonItemSnapshotSettings.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonSettingsImage ?? buttonItemSnapshotSettings.Image;
+			ribbonBarSnapshotSettings.RecalcLayout();
+			ribbonPanelSnapshot.PerformLayout();
 
 			if (BusinessObjects.Instance.ImageResourcesManager.OptionsRibbonLogo != null)
 			{
 				buttonItemOptionsNew.Image = BusinessObjects.Instance.ImageResourcesManager.OptionsRibbonLogo;
 				ribbonBarOptionsNew.RecalcLayout();
-				ribbonPanelOptions.PerformLayout();
 			}
+			buttonItemOptionsPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemOptionsPowerPoint.Image;
+			ribbonBarOptionsPowerPoint.RecalcLayout();
+			buttonItemOptionsPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemOptionsPreview.Image;
+			ribbonBarOptionsPreview.RecalcLayout();
+			buttonItemOptionsSettings.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonSettingsImage ?? buttonItemOptionsSettings.Image;
+			ribbonBarOptionsSettings.RecalcLayout();
+			ribbonPanelOptions.PerformLayout();
 
 			if (BusinessObjects.Instance.ImageResourcesManager.DigitalProductsRibbonLogo != null)
 			{
 				buttonItemDigitalScheduleLogo.Image = BusinessObjects.Instance.ImageResourcesManager.DigitalProductsRibbonLogo;
 				ribbonBarDigitalScheduleLogo.RecalcLayout();
-				ribbonPanelDigitalSchedule.PerformLayout();
 			}
+			buttonItemDigitalSchedulePowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemDigitalSchedulePowerPoint.Image;
+			ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
+			buttonItemDigitalSchedulePreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemDigitalSchedulePreview.Image;
+			ribbonBarDigitalSchedulePreview.RecalcLayout();
+			ribbonPanelDigitalSchedule.PerformLayout();
+
+			buttonItemCalendar1PowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemCalendar1PowerPoint.Image;
+			ribbonBarCalendar1PowerPoint.RecalcLayout();
+			buttonItemCalendar1Preview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemCalendar1Preview.Image;
+			ribbonBarCalendar1Preview.RecalcLayout();
+			ribbonPanelCalendar1.PerformLayout();
+
+			buttonItemCalendar2PowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemCalendar2PowerPoint.Image;
+			ribbonBarCalendar2PowerPoint.RecalcLayout();
+			buttonItemCalendar2Preview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemCalendar2Preview.Image;
+			ribbonBarCalendar2Preview.RecalcLayout();
+			ribbonPanelCalendar2.PerformLayout();
+
+			buttonItemSolutionsPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSolutionsPowerPoint.Image;
+			ribbonBarSolutionsPowerPoint.RecalcLayout();
+			buttonItemSolutionsPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSolutionsPreview.Image;
+			ribbonBarSolutionsPreview.RecalcLayout();
+			ribbonPanelSolutions.PerformLayout();
+
+			buttonItemSlidesPowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSlidesPowerPoint.Image;
+			ribbonBarSlidesPowerPoint.RecalcLayout();
+			buttonItemSlidesPreview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSlidesPreview.Image;
+			ribbonBarSlidesPreview.RecalcLayout();
+			ribbonPanelSlides.PerformLayout();
 
 			if (BusinessObjects.Instance.FormStyleManager.Style.AccentColor.HasValue)
 				styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
 						styleManager.MetroColorParameters.CanvasColor,
 						BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value);
+
+			if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
+				labelItemStatusBarSlideInfo.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value;
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.MainPanelContainer = layoutControlGroupContainer;
@@ -109,6 +204,7 @@ namespace Asa.Media.Single
 
 			ContentStatusBarManager.Instance.StatusBar = barBottom;
 			ContentStatusBarManager.Instance.StatusBarItemsContainer = itemContainerStatusBarContentInfo;
+			ContentStatusBarManager.Instance.TextColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor;
 
 			FormProgress.Init(this);
 
@@ -144,6 +240,7 @@ namespace Asa.Media.Single
 			Controller.Instance.HomeFlightDatesStartValue = labelItemHomeFlightDatesStartValue;
 			Controller.Instance.HomeFlightDatesEndTitle = labelItemHomeFlightDatesEndTitle;
 			Controller.Instance.HomeFlightDatesEndValue = labelItemHomeFlightDatesEndValue;
+			Controller.Instance.HomeSettings = buttonItemHomeSettings;
 			#endregion
 
 			#region Program Schedule
@@ -360,6 +457,8 @@ namespace Asa.Media.Single
 				PopupMessageHelper.Instance.Title,
 				FileStorageManager.Instance.Version
 			);
+			if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
+				appInfoLabel.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value;
 			itemContainerStatusBarContentInfo.SubItems.Add(appInfoLabel);
 			barBottom.RecalcLayout();
 
@@ -377,7 +476,12 @@ namespace Asa.Media.Single
 				else if (result == DialogResult.Abort)
 					AddNewQuickEditSchedule();
 				if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule != null)
+				{
+					emptySpaceItem.Visibility = LayoutVisibility.Always;
+					layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
+					ribbonControl.Enabled = true;
 					LoadData();
+				}
 				else
 					Close();
 			}

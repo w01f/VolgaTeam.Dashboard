@@ -111,7 +111,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 
 		private void InitQuarters()
 		{
-			layoutControlItemQuarterSelector.Visibility = _sectionData.ParentScheduleSettings.Quarters.Count > 0 ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlItemQuarterSelector.Visibility = _sectionData.ParentScheduleSettings.Quarters.Count > 1 ? LayoutVisibility.Always : LayoutVisibility.Never;
 			quarterSelectorControl.InitControls(
 				_sectionData.ParentScheduleSettings.Quarters,
 				_sectionData.ParentScheduleSettings.Quarters.FirstOrDefault(q => q.DateAnchor == _sectionData.Parent.SelectedQuarter));

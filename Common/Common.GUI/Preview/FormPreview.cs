@@ -75,7 +75,7 @@ namespace Asa.Common.GUI.Preview
 			if (_powerPointProcessor.IsLinkedWithApplication)
 			{
 				FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-				FormProgress.ShowProgress();
+				FormProgress.ShowOutputProgress();
 				_showFloater(() =>
 				{
 					foreach (var previewGroup in GroupControls.Select(gc => gc.PreviewGroup))

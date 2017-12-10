@@ -57,7 +57,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slideInfos.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			FormProgress.ShowProgress(Controller.Instance.FormMain);
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
 				slideInfos.ForEach(s => s.SlideContainer.GenerateOutput(s));
@@ -71,7 +71,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			if (!slides.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
-			FormProgress.ShowProgress(Controller.Instance.FormMain);
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
 				var previewGroups = slides.Select(s => s.SlideContainer.GeneratePreview(s)).ToList();

@@ -407,9 +407,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (!availableOptions.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				GenerateOutput(availableOptions);
 				FormProgress.CloseProgress();
 			});
@@ -421,9 +421,9 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			if (!availableOptions.Any()) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				var previewGroups = GeneratePreview(availableOptions);
 				var pdfFileName = Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.Desktop),

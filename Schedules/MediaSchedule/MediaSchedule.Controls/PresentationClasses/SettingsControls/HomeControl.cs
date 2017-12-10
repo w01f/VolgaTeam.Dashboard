@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -16,12 +14,8 @@ using Asa.Common.GUI.Common;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
-using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
-using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraLayout;
 using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.SettingsControls
@@ -64,26 +58,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			layoutControlItemMainScheduleOptions.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleOptions.MinSize, scaleFactor);
 			layoutControlItemMainScheduleCalendar.MaxSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleCalendar.MaxSize, scaleFactor);
 			layoutControlItemMainScheduleCalendar.MinSize = RectangleHelper.ScaleSize(layoutControlItemMainScheduleCalendar.MinSize, scaleFactor);
-			emptySpaceItemDaypartsSeparator.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemDaypartsSeparator.MaxSize, scaleFactor);
-			emptySpaceItemDaypartsSeparator.MinSize = RectangleHelper.ScaleSize(emptySpaceItemDaypartsSeparator.MinSize, scaleFactor);
-
-			layoutControlItemDemosDisabled.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosDisabled.MaxSize, scaleFactor);
-			layoutControlItemDemosDisabled.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosDisabled.MinSize, scaleFactor);
-			layoutControlItemDemosRtg.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosRtg.MaxSize, scaleFactor);
-			layoutControlItemDemosRtg.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosRtg.MinSize, scaleFactor);
-			layoutControlItemDemosImps.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosImps.MaxSize, scaleFactor);
-			layoutControlItemDemosImps.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosImps.MinSize, scaleFactor);
-			layoutControlItemDemosItems.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDemosItems.MaxSize, scaleFactor);
-			layoutControlItemDemosItems.MinSize = RectangleHelper.ScaleSize(layoutControlItemDemosItems.MinSize, scaleFactor);
-			simpleLabelItemDemosDescription.Size = RectangleHelper.ScaleSize(simpleLabelItemDemosDescription.Size, scaleFactor);
-			emptySpaceItemDemosSeparator.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemDemosSeparator.MaxSize, scaleFactor);
-			emptySpaceItemDemosSeparator.MinSize = RectangleHelper.ScaleSize(emptySpaceItemDemosSeparator.MinSize, scaleFactor);
-
-			layoutControlItemCalendarTypeMonday.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeMonday.MaxSize, scaleFactor);
-			layoutControlItemCalendarTypeMonday.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeMonday.MinSize, scaleFactor);
-			layoutControlItemCalendarTypeSunday.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeSunday.MaxSize, scaleFactor);
-			layoutControlItemCalendarTypeSunday.MinSize = RectangleHelper.ScaleSize(layoutControlItemCalendarTypeSunday.MinSize, scaleFactor);
-
 			layoutControlItemScheduleOptionsStations.MinSize = RectangleHelper.ScaleSize(layoutControlItemScheduleOptionsStations.MinSize, scaleFactor);
 
 			layoutControl.ResumeLayout(true);
@@ -112,6 +86,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			Controller.Instance.HomeFlightDatesStartValue.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesEndTitle.Click += OnFlightDatesEditClick;
 			Controller.Instance.HomeFlightDatesEndValue.Click += OnFlightDatesEditClick;
+			Controller.Instance.HomeSettings.Click += OnSettingsEdit;
 
 			Controller.Instance.HomeBusinessName.EnableSelectAll();
 			Controller.Instance.HomeDecisionMaker.EnableSelectAll();
@@ -141,6 +116,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				UpdateFlightDates();
 				UpdateWeekCount();
 
+				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
+
 				switch (EditedSettings.SelectedSpotType)
 				{
 					case SpotType.Week:
@@ -152,10 +129,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 						buttonXMonthlySchedule.Checked = true;
 						break;
 				}
-
-				LoadDayparts();
-				LoadDemos();
-				LoadCalendarType();
 
 				stationsControl.LoadData(EditedSettings);
 				#endregion
@@ -170,7 +143,6 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = false;
 			base.ShowControl(args);
-			layoutControlGroupDemosValues.Invalidate();
 			layoutControl.Refresh();
 			layoutControl.Update();
 		}
@@ -180,21 +152,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			EditedSettings.BusinessName = Controller.Instance.HomeBusinessName.EditValue as String;
 			EditedSettings.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
 			EditedSettings.PresentationDate = (DateTime?)Controller.Instance.HomePresentationDate.EditValue;
-			if (checkEditDemosDisabled.Checked)
-			{
-				EditedSettings.UseDemo = false;
-				EditedSettings.Demo = null;
-			}
-			else
-			{
-				EditedSettings.UseDemo = true;
-				if (checkEditDemosRtg.Checked)
-					EditedSettings.DemoType = DemoType.Rtg;
-				else if (checkEditDemosImps.Checked)
-					EditedSettings.DemoType = DemoType.Imp;
-				EditedSettings.Demo = comboBoxEditDemos.EditValue as String;
-			}
-
+			
 			if (stationsControl.HasChanged)
 			{
 				EditedSettings.Stations.Clear();
@@ -325,7 +283,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			SettingsNotSaved = true;
 		}
 
-		private void OnFlightDatesEditClick(Object sender, EventArgs e)
+		private void OnFlightDatesEditClick(object sender, EventArgs e)
 		{
 			using (var form = new FormFlightDatesEdit())
 			{
@@ -378,124 +336,27 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				Controller.Instance.HomeBusinessName.Focus();
 			e.Handled = true;
 		}
-		#endregion
 
-		#region Dayparts processing
-		private void LoadDayparts()
+		private void OnSettingsEdit(object sender, EventArgs e)
 		{
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			var layoutItems = new List<BaseLayoutItem>();
-			foreach (var daypart in EditedSettings.Dayparts)
+			using (var form = new FormSettings(EditedSettings))
 			{
-				var control = new CheckEdit();
-				control.Properties.AllowFocused = false;
-				control.Properties.AutoWidth = true;
-				control.Properties.Caption = daypart.Name;
-				control.StyleController = this.layoutControl;
-				control.Tag = daypart;
-				control.Checked = daypart.Available;
-				control.CheckedChanged += OnDaypartStateChanged;
-				layoutControl.Controls.Add(control);
-
-				var layoutItem = new LayoutControlItem();
-				layoutItem.Control = control;
-				layoutItem.FillControlToClientArea = false;
-				layoutItem.TextVisible = false;
-				layoutItem.TrimClientAreaToControl = false;
-				layoutItem.ControlAlignment = ContentAlignment.MiddleLeft;
-				layoutItem.SizeConstraintsType = SizeConstraintsType.Custom;
-				layoutItem.MinSize = new Size(control.Width + (Int32)(30 * scaleFactor.Width), (Int32)(30 * scaleFactor.Width));
-				layoutItems.Add(layoutItem);
-			}
-			layoutControlGroupDaypartValues.Items.AddRange(layoutItems.ToArray());
-		}
-
-		private void OnDaypartStateChanged(Object sender, EventArgs e)
-		{
-			var control = (CheckEdit)sender;
-			var daypart = (Daypart)control.Tag;
-			daypart.Available = control.Checked;
-			SettingsNotSaved = true;
-		}
-		#endregion
-
-		#region Demos Processing
-		private void LoadDemos()
-		{
-			comboBoxEditDemos.Properties.Items.Clear();
-			comboBoxEditDemos.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.CustomDemos);
-			comboBoxEditDemos.EditValue = MediaMetaData.Instance.ListManager.CustomDemos.FirstOrDefault();
-
-			if (EditedSettings.UseDemo)
-			{
-				if (EditedSettings.DemoType == DemoType.Rtg)
+				form.CalendarTypeChanged += (o, args) =>
 				{
-					checkEditDemosDisabled.Checked = false;
-					checkEditDemosRtg.Checked = true;
-					checkEditDemosImps.Checked = false;
-				}
-				else if (EditedSettings.DemoType == DemoType.Imp)
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
+					EditedSettings.UserFlightDateStart = null;
+					EditedSettings.UserFlightDateEnd = null;
+					UpdateFlightDates();
+					UpdateWeekCount();
+				};
+				if (form.ShowDialog(Controller.Instance.FormMain) != DialogResult.OK)
 				{
-					checkEditDemosDisabled.Checked = false;
-					checkEditDemosRtg.Checked = false;
-					checkEditDemosImps.Checked = true;
+					SettingsNotSaved = true;
 				}
-				comboBoxEditDemos.EditValue = EditedSettings.Demo ?? MediaMetaData.Instance.ListManager.CustomDemos.FirstOrDefault();
-			}
-			else
-			{
-				checkEditDemosDisabled.Checked = true;
-				checkEditDemosRtg.Checked = false;
-				checkEditDemosImps.Checked = false;
 			}
 		}
-
-		private void OnDemoTypeCheckedChanged(object sender, EventArgs e)
-		{
-			layoutControlItemDemosItems.Visibility = !checkEditDemosDisabled.Checked
-				? LayoutVisibility.Always
-				: LayoutVisibility.Never;
-			if (!_allowToSave) return;
-			SettingsNotSaved = true;
-		}
-
-		private void OnDemoValueEditValueChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			SettingsNotSaved = true;
-		}
 		#endregion
-
-		#region Calendar processing
-		private void LoadCalendarType()
-		{
-			checkEditCalendarTypeMonday.Checked = EditedSettings.MondayBased;
-			checkEditCalendarTypeSunday.Checked = !EditedSettings.MondayBased;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
-		}
-
-		private void OnCalendarTypeEditValueChanging(object sender, ChangingEventArgs e)
-		{
-			if (!_allowToSave) return;
-			if ((bool)e.NewValue != true) return;
-			e.Cancel = PopupMessageHelper.Instance.ShowWarningQuestion(
-						   String.Format("Your current schedule will be reset.{0}Do you want to continue and change calendar type?",
-							   Environment.NewLine)) != DialogResult.Yes;
-		}
-
-		private void OnCalendarTypeCheckedChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			EditedSettings.MondayBased = checkEditCalendarTypeMonday.Checked;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = EditedSettings.StartDayOfWeek;
-			EditedSettings.UserFlightDateStart = null;
-			EditedSettings.UserFlightDateEnd = null;
-			UpdateFlightDates();
-			UpdateWeekCount();
-			SettingsNotSaved = true;
-		}
-		#endregion
-
+		
 		#region Buttons Clicks Events
 		private void buttonXScheduleType_Click(object sender, EventArgs e)
 		{
@@ -539,7 +400,5 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#region Digital Product Events
 
 		#endregion
-
-
 	}
 }

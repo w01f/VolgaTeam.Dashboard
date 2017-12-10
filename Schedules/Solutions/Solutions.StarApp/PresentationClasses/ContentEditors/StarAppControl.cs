@@ -11,7 +11,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
 	//public partial class StarAppControl : UserControl
-	public abstract partial class StarAppControl : XtraTabPage, IStarAppSlide
+	public partial class StarAppControl : XtraTabPage, IStarAppSlide
 	{
 		protected BaseStarAppContainer SlideContainer { get; }
 
@@ -22,7 +22,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public StarAppControl()
 		{
 			InitializeComponent();
-			Dock = DockStyle.Fill;
 		}
 
 		protected StarAppControl(BaseStarAppContainer slideContainer) : this()

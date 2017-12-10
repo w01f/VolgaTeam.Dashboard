@@ -6,6 +6,7 @@ namespace Asa.Common.Core.Objects.FormStyle
 	public class StyleConfiguration
 	{
 		public Color? AccentColor { get; set; }
+		public Color? StatusBarTextColor { get; set; }
 
 		public void Deserialize(XmlNode node)
 		{
@@ -14,7 +15,10 @@ namespace Asa.Common.Core.Objects.FormStyle
 				switch (childNode.Name)
 				{
 					case "AccentColor":
-						AccentColor = ColorTranslator.FromHtml(node.InnerText);
+						AccentColor = ColorTranslator.FromHtml(childNode.InnerText);
+						break;
+					case "StatusBarTextColor":
+						StatusBarTextColor = ColorTranslator.FromHtml(childNode.InnerText);
 						break;
 				}
 			}

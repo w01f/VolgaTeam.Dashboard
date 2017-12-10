@@ -10,6 +10,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image MainAppRibbonLogo { get; private set; }
 
 		#region Start Form
+		public Image StartFormBackgroundLogo { get; private set; }
 		public Image StartFormLogo { get; private set; }
 		public Image StartFormNewImage { get; private set; }
 		public Image StartFormOpenImage { get; private set; }
@@ -17,8 +18,28 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image StartFormCancelImage { get; private set; }
 		#endregion
 
+		#region Common Ribbon Resources
+		public Image RibbonOutputImage { get; private set; }
+		public Image RibbonPreviewImage { get; private set; }
+		public Image RibbonSettingsImage { get; private set; }
+		#endregion
+
+		#region Main Menu
+		public Image MainMenuNewImage { get; private set; }
+		public Image MainMenuOpenImage { get; private set; }
+		public Image MainMenuSaveImage { get; private set; }
+		public Image MainMenuSaveAsImage { get; private set; }
+		public Image MainMenuOutputPdfImage { get; private set; }
+		public Image MainMenuEmailImage { get; private set; }
+		public Image MainMenuSlideSettingsImage { get; private set; }
+		public Image MainMenuHelpImage { get; private set; }
+		public Image MainMenuExitImage { get; private set; }
+		#endregion
+
 		#region Home Resources
 		public Image HomeDefaultLogo { get; private set; }
+		public Image HomeDateStartImage { get; private set; }
+		public Image HomeDateEndImage { get; private set; }
 		public Image HomeWeeklyScheduleImage { get; private set; }
 		public Image HomeMonthlyScheduleImage { get; private set; }
 		public Image HomeSnaphotShortcutImage { get; private set; }
@@ -27,6 +48,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image HomeNewSchedulePopupLogo { get; private set; }
 		public Image HomeOpenSchedulePopupImage { get; private set; }
 		public Image HomeDeleteSchedulePopupImage { get; private set; }
+		public Image HomeSettingsDemoImage { get; private set; }
+		public Image HomeSettingsDaypartsImage { get; private set; }
+		public Image HomeSettingsCalendarTypeImage { get; private set; }
 		#endregion
 
 		#region Program Schedule Resources
@@ -68,7 +92,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public void Load()
 		{
 			var resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "form_icon.ico");
-			if(File.Exists(resourceFile))
+			if (File.Exists(resourceFile))
 				MainAppIcon = new Icon(resourceFile);
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "branding_image.png");
@@ -76,6 +100,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				MainAppRibbonLogo = Image.FromFile(resourceFile);
 
 			#region Start Form
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_brand_large.png");
+			if (File.Exists(resourceFile))
+				StartFormBackgroundLogo = Image.FromFile(resourceFile);
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_brand.png");
 			if (File.Exists(resourceFile))
 				StartFormLogo = Image.FromFile(resourceFile);
@@ -93,10 +120,62 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				StartFormCancelImage = Image.FromFile(resourceFile);
 			#endregion
 
+			#region Common Ribbon Resources
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_output.png");
+			if (File.Exists(resourceFile))
+				RibbonOutputImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_preview.png");
+			if (File.Exists(resourceFile))
+				RibbonPreviewImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_settings.png");
+			if (File.Exists(resourceFile))
+				RibbonSettingsImage = Image.FromFile(resourceFile);
+			#endregion
+
+			#region Main Menu
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_new.png");
+			if (File.Exists(resourceFile))
+				MainMenuNewImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_open.png");
+			if (File.Exists(resourceFile))
+				MainMenuOpenImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_save.png");
+			if (File.Exists(resourceFile))
+				MainMenuSaveImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_saveas.png");
+			if (File.Exists(resourceFile))
+				MainMenuSaveAsImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_savepdf.png");
+			if (File.Exists(resourceFile))
+				MainMenuOutputPdfImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_sendemail.png");
+			if (File.Exists(resourceFile))
+				MainMenuEmailImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_preferences.png");
+			if (File.Exists(resourceFile))
+				MainMenuSlideSettingsImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_help.png");
+			if (File.Exists(resourceFile))
+				MainMenuHelpImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_exit.png");
+			if (File.Exists(resourceFile))
+				MainMenuExitImage = Image.FromFile(resourceFile);
+			#endregion
+
 			#region Home Resources
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_default.png");
 			if (File.Exists(resourceFile))
 				HomeDefaultLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_home_cal_start.png");
+			if (File.Exists(resourceFile))
+				HomeDateStartImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_home_cal_end.png");
+			if (File.Exists(resourceFile))
+				HomeDateEndImage = Image.FromFile(resourceFile);
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_top_1.png");
 			if (File.Exists(resourceFile))
@@ -129,6 +208,18 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_delete.png");
 			if (File.Exists(resourceFile))
 				HomeDeleteSchedulePopupImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "preferences_demo.png");
+			if (File.Exists(resourceFile))
+				HomeSettingsDemoImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "preferences_dayparts.png");
+			if (File.Exists(resourceFile))
+				HomeSettingsDaypartsImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "preferences_calendar.png");
+			if (File.Exists(resourceFile))
+				HomeSettingsCalendarTypeImage = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Program Schedule Resources
@@ -138,7 +229,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "1a_new_schedule_default.png");
 			if (File.Exists(resourceFile))
-				ProgramScheduleNoRecordsLogo= Image.FromFile(resourceFile);
+				ProgramScheduleNoRecordsLogo = Image.FromFile(resourceFile);
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "1b_new_schedule_line_default.png");
 			if (File.Exists(resourceFile))

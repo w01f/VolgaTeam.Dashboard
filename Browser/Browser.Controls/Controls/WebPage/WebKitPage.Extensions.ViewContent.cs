@@ -120,8 +120,8 @@ namespace Asa.Browser.Controls.Controls.WebPage
 						{
 							AfterShow = () =>
 							{
-								FormProgress.ShowProgress();
 								FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+								FormProgress.ShowOutputProgress();
 								_siteContainer.PowerPointSingleton.InsertVideoIntoActivePresentation(filePath);
 								FormProgress.CloseProgress();
 							}
@@ -149,15 +149,15 @@ namespace Asa.Browser.Controls.Controls.WebPage
 						{
 							if (_extensionsManager.LinkViewContentExtension.CurrentLinkViewContent?.ContentType == LinkContentType.Video)
 							{
-								FormProgress.ShowProgress();
 								FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+								FormProgress.ShowOutputProgress();
 								_siteContainer.PowerPointSingleton.InsertVideoIntoActivePresentation(e.Item.FullPath);
 								FormProgress.CloseProgress();
 							}
 							else if (_extensionsManager.LinkViewContentExtension.CurrentLinkViewContent?.ContentType == LinkContentType.PowerPoint)
 							{
-								FormProgress.ShowProgress();
 								FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+								FormProgress.ShowOutputProgress();
 								_siteContainer.PowerPointSingleton.AppendSlidesFromFile(e.Item.FullPath);
 								FormProgress.CloseProgress();
 							}

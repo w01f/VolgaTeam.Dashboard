@@ -120,11 +120,11 @@
       <Name>Business.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
-      <Project>{8248763f-1b88-43c4-bb98-30bedeef6434}</Project>
+      <Project>{8248763F-1B88-43C4-BB98-30BEDEEF6434}</Project>
       <Name>Business.Media</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Online\Business.Online.csproj">
-      <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
+      <Project>{886DC89E-77E0-438E-9FB0-A5D76063C93A}</Project>
       <Name>Business.Online</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
@@ -136,7 +136,7 @@
       <Name>Common.GUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
-      <Project>{18F20EB4-6552-4F0A-AB13-D417A2D53CD4}</Project>
+      <Project>{18f20eb4-6552-4f0a-ab13-d417a2d53cd4}</Project>
       <Name>Common.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaSchedule.Controls\Media.Controls.csproj">

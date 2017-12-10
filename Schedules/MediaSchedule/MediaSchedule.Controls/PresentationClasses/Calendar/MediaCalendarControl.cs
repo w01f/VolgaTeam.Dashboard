@@ -103,10 +103,10 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		protected override void OutpuPowerPointSlides(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
+			FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
-				FormProgress.ShowProgress(FormMain);
 				Enabled = false;
 				BusinessObjects.Instance.PowerPointManager.Processor.AppendCalendar(outputData.ToArray());
 				Enabled = true;
@@ -118,10 +118,10 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		{
 			if (outputData == null) return;
 			var previewGroups = new List<PreviewGroup>();
+			FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.SetTitle(outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…");
-				FormProgress.ShowProgress(FormMain);
 				Enabled = false;
 				foreach (var outputItem in outputData)
 				{
@@ -191,7 +191,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			if (outputData == null) return;
 			var previewGroups = new List<PreviewGroup>();
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Calendar for Email...");
-			FormProgress.ShowProgress();
+			FormProgress.ShowProgress(FormMain);
 			Enabled = false;
 			foreach (var outputItem in outputData)
 			{

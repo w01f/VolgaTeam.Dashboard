@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barToolButtons = new DevExpress.XtraBars.Bar();
 			this.barStaticItemLogo = new DevExpress.XtraBars.BarStaticItem();
 			this.barLargeButtonItemOpen = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemDelete = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController(this.components);
+			this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -61,6 +60,17 @@
 			this.gridColumnTemplatesBusinessName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumnTemplatesFile = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumnTemplatesDate = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.buttonXCreateNew = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
+			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemCreateNew = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemGrids = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlRegularSchedules)).BeginInit();
@@ -76,6 +86,16 @@
 			this.xtraTabPageTemplates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlTemplates)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTemplates)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
+			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCreateNew)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGrids)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// barManager
@@ -158,7 +178,7 @@
 			this.barDockControlTop.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlTop.Manager = this.barManager;
-			this.barDockControlTop.Size = new System.Drawing.Size(667, 87);
+			this.barDockControlTop.Size = new System.Drawing.Size(667, 84);
 			// 
 			// barDockControlBottom
 			// 
@@ -174,18 +194,18 @@
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
 			this.barDockControlLeft.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 87);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 84);
 			this.barDockControlLeft.Manager = this.barManager;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 516);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 519);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
 			this.barDockControlRight.ForeColor = System.Drawing.Color.Black;
-			this.barDockControlRight.Location = new System.Drawing.Point(667, 87);
+			this.barDockControlRight.Location = new System.Drawing.Point(667, 84);
 			this.barDockControlRight.Manager = this.barManager;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 516);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 519);
 			// 
 			// gridControlRegularSchedules
 			// 
@@ -201,7 +221,7 @@
 			this.gridControlRegularSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlRegularSchedules.Size = new System.Drawing.Size(661, 485);
+			this.gridControlRegularSchedules.Size = new System.Drawing.Size(645, 421);
 			this.gridControlRegularSchedules.TabIndex = 40;
 			this.gridControlRegularSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewRegularSchedules});
@@ -345,11 +365,10 @@
 			this.xtraTabControl.AppearancePage.HeaderHotTracked.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
-			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 87);
+			this.xtraTabControl.Location = new System.Drawing.Point(10, 10);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageRegularSchedules;
-			this.xtraTabControl.Size = new System.Drawing.Size(667, 516);
+			this.xtraTabControl.Size = new System.Drawing.Size(647, 449);
 			this.xtraTabControl.TabIndex = 45;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageRegularSchedules,
@@ -363,7 +382,7 @@
 			this.xtraTabPageRegularSchedules.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageRegularSchedules.Controls.Add(this.gridControlRegularSchedules);
 			this.xtraTabPageRegularSchedules.Name = "xtraTabPageRegularSchedules";
-			this.xtraTabPageRegularSchedules.Size = new System.Drawing.Size(661, 485);
+			this.xtraTabPageRegularSchedules.Size = new System.Drawing.Size(645, 421);
 			this.xtraTabPageRegularSchedules.Text = "My Solutions";
 			// 
 			// xtraTabPageQuickEditSchedules
@@ -372,7 +391,7 @@
 			this.xtraTabPageQuickEditSchedules.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageQuickEditSchedules.Controls.Add(this.gridControlQuickEditSchedules);
 			this.xtraTabPageQuickEditSchedules.Name = "xtraTabPageQuickEditSchedules";
-			this.xtraTabPageQuickEditSchedules.Size = new System.Drawing.Size(661, 485);
+			this.xtraTabPageQuickEditSchedules.Size = new System.Drawing.Size(645, 421);
 			this.xtraTabPageQuickEditSchedules.Text = "GitRDun";
 			// 
 			// gridControlQuickEditSchedules
@@ -386,7 +405,7 @@
 			this.gridControlQuickEditSchedules.Location = new System.Drawing.Point(0, 0);
 			this.gridControlQuickEditSchedules.MainView = this.gridViewQuickEditSchedules;
 			this.gridControlQuickEditSchedules.Name = "gridControlQuickEditSchedules";
-			this.gridControlQuickEditSchedules.Size = new System.Drawing.Size(661, 485);
+			this.gridControlQuickEditSchedules.Size = new System.Drawing.Size(645, 421);
 			this.gridControlQuickEditSchedules.TabIndex = 42;
 			this.gridControlQuickEditSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewQuickEditSchedules});
@@ -459,7 +478,7 @@
 			this.xtraTabPageTemplates.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
-			this.xtraTabPageTemplates.Size = new System.Drawing.Size(661, 485);
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(645, 421);
 			this.xtraTabPageTemplates.Text = "Public Cloud";
 			// 
 			// gridControlTemplates
@@ -473,7 +492,7 @@
 			this.gridControlTemplates.Location = new System.Drawing.Point(0, 0);
 			this.gridControlTemplates.MainView = this.gridViewTemplates;
 			this.gridControlTemplates.Name = "gridControlTemplates";
-			this.gridControlTemplates.Size = new System.Drawing.Size(661, 485);
+			this.gridControlTemplates.Size = new System.Drawing.Size(645, 421);
 			this.gridControlTemplates.TabIndex = 41;
 			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTemplates});
@@ -559,13 +578,190 @@
 			this.gridColumnTemplatesDate.VisibleIndex = 3;
 			this.gridColumnTemplatesDate.Width = 152;
 			// 
+			// layoutControl
+			// 
+			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControl.Appearance.Control.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.xtraTabControl);
+			this.layoutControl.Controls.Add(this.buttonXCreateNew);
+			this.layoutControl.Controls.Add(this.buttonXCancel);
+			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControl.ForeColor = System.Drawing.Color.Black;
+			this.layoutControl.Location = new System.Drawing.Point(0, 84);
+			this.layoutControl.Name = "layoutControl";
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
+			this.layoutControl.Root = this.layoutControlGroupRoot;
+			this.layoutControl.Size = new System.Drawing.Size(667, 519);
+			this.layoutControl.StyleController = this.styleController;
+			this.layoutControl.TabIndex = 66;
+			this.layoutControl.Text = "layoutControl1";
+			// 
+			// buttonXCreateNew
+			// 
+			this.buttonXCreateNew.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCreateNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXCreateNew.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCreateNew.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXCreateNew.Location = new System.Drawing.Point(399, 471);
+			this.buttonXCreateNew.Name = "buttonXCreateNew";
+			this.buttonXCreateNew.Size = new System.Drawing.Size(116, 36);
+			this.buttonXCreateNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXCreateNew.TabIndex = 2;
+			this.buttonXCreateNew.Text = "Create New";
+			this.buttonXCreateNew.Click += new System.EventHandler(this.OnCreateNewScheduleClick);
+			// 
+			// buttonXCancel
+			// 
+			this.buttonXCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.buttonXCancel.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.buttonXCancel.Location = new System.Drawing.Point(539, 471);
+			this.buttonXCancel.Name = "buttonXCancel";
+			this.buttonXCancel.Size = new System.Drawing.Size(116, 36);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXCancel.TabIndex = 3;
+			this.buttonXCancel.Text = "Cancel";
+			// 
+			// layoutControlGroupRoot
+			// 
+			this.layoutControlGroupRoot.AllowHtmlStringInCaption = true;
+			this.layoutControlGroupRoot.AppearanceGroup.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceGroup.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceItemCaption.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.Header.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControlGroupRoot.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRoot.GroupBordersVisible = false;
+			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem5,
+            this.layoutControlItemCancel,
+            this.layoutControlItemCreateNew,
+            this.emptySpaceItem6,
+            this.layoutControlItemGrids,
+            this.emptySpaceItem1});
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(667, 519);
+			this.layoutControlGroupRoot.TextVisible = false;
+			// 
+			// emptySpaceItem5
+			// 
+			this.emptySpaceItem5.AllowHotTrack = false;
+			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 459);
+			this.emptySpaceItem5.Name = "emptySpaceItem5";
+			this.emptySpaceItem5.Size = new System.Drawing.Size(387, 40);
+			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemCancel
+			// 
+			this.layoutControlItemCancel.Control = this.buttonXCancel;
+			this.layoutControlItemCancel.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemCancel.FillControlToClientArea = false;
+			this.layoutControlItemCancel.Location = new System.Drawing.Point(527, 459);
+			this.layoutControlItemCancel.MaxSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCancel.MinSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCancel.Name = "layoutControlItemCancel";
+			this.layoutControlItemCancel.Size = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCancel.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemCancel.Text = "Cancel";
+			this.layoutControlItemCancel.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemCancel.TextVisible = false;
+			this.layoutControlItemCancel.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemCreateNew
+			// 
+			this.layoutControlItemCreateNew.Control = this.buttonXCreateNew;
+			this.layoutControlItemCreateNew.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemCreateNew.FillControlToClientArea = false;
+			this.layoutControlItemCreateNew.Location = new System.Drawing.Point(387, 459);
+			this.layoutControlItemCreateNew.MaxSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCreateNew.MinSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCreateNew.Name = "layoutControlItemCreateNew";
+			this.layoutControlItemCreateNew.Size = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCreateNew.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemCreateNew.Text = "Create New";
+			this.layoutControlItemCreateNew.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemCreateNew.TextVisible = false;
+			this.layoutControlItemCreateNew.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem6
+			// 
+			this.emptySpaceItem6.AllowHotTrack = false;
+			this.emptySpaceItem6.Location = new System.Drawing.Point(507, 459);
+			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(20, 0);
+			this.emptySpaceItem6.MinSize = new System.Drawing.Size(20, 10);
+			this.emptySpaceItem6.Name = "emptySpaceItem6";
+			this.emptySpaceItem6.Size = new System.Drawing.Size(20, 40);
+			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemGrids
+			// 
+			this.layoutControlItemGrids.Control = this.xtraTabControl;
+			this.layoutControlItemGrids.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemGrids.FillControlToClientArea = false;
+			this.layoutControlItemGrids.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemGrids.Name = "layoutControlItemGrids";
+			this.layoutControlItemGrids.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemGrids.Size = new System.Drawing.Size(647, 449);
+			this.layoutControlItemGrids.Text = "Grids";
+			this.layoutControlItemGrids.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemGrids.TextVisible = false;
+			this.layoutControlItemGrids.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem1
+			// 
+			this.emptySpaceItem1.AllowHotTrack = false;
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 449);
+			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem1.Name = "emptySpaceItem1";
+			this.emptySpaceItem1.Size = new System.Drawing.Size(647, 10);
+			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
 			// FormOpenSchedule
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(667, 603);
-			this.Controls.Add(this.xtraTabControl);
+			this.Controls.Add(this.layoutControl);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
 			this.Controls.Add(this.barDockControlBottom);
@@ -595,6 +791,16 @@
 			this.xtraTabPageTemplates.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlTemplates)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTemplates)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
+			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCreateNew)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemGrids)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -634,5 +840,16 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewQuickEditSchedules;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumnQuickEditSchedulesFile;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumnQuickEditSchedulesLastModifiedDate;
+		private DevExpress.XtraLayout.LayoutControl layoutControl;
+		private DevComponents.DotNetBar.ButtonX buttonXCreateNew;
+		private DevComponents.DotNetBar.ButtonX buttonXCancel;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCancel;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCreateNew;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
+		private DevExpress.XtraEditors.StyleController styleController;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemGrids;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
 	}
 }

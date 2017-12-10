@@ -7,6 +7,7 @@ using Asa.Common.GUI.Common;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -21,6 +22,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public AudienceControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
+
+			Resize += OnResize;
+
 			Text = SlideName;
 
 			comboBoxEditSlideHeader.EnableSelectAll();
@@ -74,6 +78,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			layoutControlItemLogoRight.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MinSize, scaleFactor);
 			layoutControlItemLogoFooter.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MaxSize, scaleFactor);
 			layoutControlItemLogoFooter.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MinSize, scaleFactor);
+
+			OnResize(this, EventArgs.Empty);
 		}
 
 		public override void LoadData()
@@ -152,6 +158,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			if (_allowToSave)
 				ApplyChanges();
 			LoadPartData();
+		}
+
+		private void OnResize(object sender, EventArgs e)
+		{
+			var showLogos = Width > 1000;
+			layoutControlItemLogoFooter.Visibility =
+				layoutControlItemLogoRight.Visibility =
+					showLogos ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
 		#region Output Staff

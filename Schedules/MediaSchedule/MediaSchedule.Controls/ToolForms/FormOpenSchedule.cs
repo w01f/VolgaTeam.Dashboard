@@ -11,6 +11,7 @@ using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Data;
+using DevExpress.Skins;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
@@ -30,19 +31,39 @@ namespace Asa.Media.Controls.ToolForms
 			gridColumnRegularSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
 			gridColumnQuickEditSchedulesLastModifiedDate.SortIndex = 0;
 			gridColumnQuickEditSchedulesLastModifiedDate.SortOrder = ColumnSortOrder.Descending;
+
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemCreateNew.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCreateNew.MaxSize, scaleFactor);
+			layoutControlItemCreateNew.MinSize = RectangleHelper.ScaleSize(layoutControlItemCreateNew.MinSize, scaleFactor);
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, scaleFactor);
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
 		private void OnFormLoad(object sender, EventArgs e)
 		{
+			FormProgress.ShowProgress("Loading Schedule List...", () =>
+			{
+				var allSchedules = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>()
+					.Where(scheduleModel => scheduleModel.Parent != BusinessObjects.Instance.ScheduleManager.ActiveSchedule).ToList();
+				_regularScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Regular));
+				_quickScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Quick));
+				AsyncHelper.RunSync(async () =>
+				{
+					_scheduleTemplateList = await BusinessObjects.Instance.ScheduleTemplatesManager.GetTemplatesList();
+				});
+			}, false);
+
 			LoadSchedules();
+			LoadTemplates();
+			
 			xtraTabPageRegularSchedules.PageEnabled = _regularScheduleList.Any();
 			xtraTabPageQuickEditSchedules.PageEnabled = _quickScheduleList.Any();
-			xtraTabPageTemplates.PageEnabled = !FileStorageManager.Instance.UseLocalMode;
+			xtraTabPageTemplates.PageEnabled = !FileStorageManager.Instance.UseLocalMode && _scheduleTemplateList.Items.Any();
 			if (_regularScheduleList.Any())
 				xtraTabControl.SelectedTabPage = xtraTabPageRegularSchedules;
 			else if (_quickScheduleList.Any())
 				xtraTabControl.SelectedTabPage = xtraTabPageQuickEditSchedules;
-			else if (FileStorageManager.Instance.UseLocalMode)
+			else if (!FileStorageManager.Instance.UseLocalMode && _scheduleTemplateList.Items.Any())
 				xtraTabControl.SelectedTabPage = xtraTabPageTemplates;
 		}
 
@@ -59,10 +80,20 @@ namespace Asa.Media.Controls.ToolForms
 			DeleteSchedule();
 		}
 
+		private void OnCreateNewScheduleClick(object sender, EventArgs e)
+		{
+			using (var form = new FormScheduleName())
+			{
+				form.pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeNewSchedulePopupLogo ?? form.pictureEditLogo.Image;
+				if (form.ShowDialog(this) != DialogResult.OK) return;
+				DialogResult = DialogResult.OK;
+				Close();
+				BusinessObjects.Instance.ScheduleManager.AddReqularSchedule(form.ScheduleName);
+			}
+		}
+
 		private void OnSelectedTabPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
-			if (e.Page == xtraTabPageTemplates && _scheduleTemplateList == null)
-				LoadTemplates();
 			barLargeButtonItemDelete.Enabled = e.Page == xtraTabPageRegularSchedules || e.Page == xtraTabPageQuickEditSchedules;
 		}
 
@@ -72,10 +103,6 @@ namespace Asa.Media.Controls.ToolForms
 
 		public void LoadSchedules()
 		{
-			var allSchedules = BusinessObjects.Instance.ScheduleManager.GetScheduleList<MediaScheduleModel>()
-				.Where(scheduleModel => scheduleModel.Parent != BusinessObjects.Instance.ScheduleManager.ActiveSchedule).ToList();
-			_regularScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Regular));
-			_quickScheduleList.AddRange(allSchedules.Where(s => s.EditMode == ScheduleEditMode.Quick));
 			repositoryItemComboBoxStatus.Items.Clear();
 			repositoryItemComboBoxStatus.Items.AddRange(MediaMetaData.Instance.ListManager.Statuses);
 			gridControlRegularSchedules.DataSource = _regularScheduleList;
@@ -152,13 +179,6 @@ namespace Asa.Media.Controls.ToolForms
 
 		private void LoadTemplates()
 		{
-			FormProgress.ShowProgress("Loading Schedule List...", () =>
-			{
-				AsyncHelper.RunSync(async () =>
-				{
-					_scheduleTemplateList = await BusinessObjects.Instance.ScheduleTemplatesManager.GetTemplatesList();
-				});
-			}, false);
 			gridControlTemplates.DataSource = _scheduleTemplateList.Items;
 			if (gridViewTemplates.RowCount > 0)
 				gridViewTemplates.FocusedRowHandle = 0;

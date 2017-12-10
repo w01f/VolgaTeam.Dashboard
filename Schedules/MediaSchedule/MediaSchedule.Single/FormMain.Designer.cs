@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
@@ -43,7 +42,7 @@
 			this.labelItemHomeFlightDatesEndValue = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarPresentationDate = new DevComponents.DotNetBar.RibbonBar();
 			this.dateEditPresentationDate = new Asa.Common.GUI.Common.TabbedDateEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.labelItemPresentationDateTitle = new DevComponents.DotNetBar.LabelItem();
 			this.controlContainerItemPresentationDate = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
@@ -236,12 +235,13 @@
 			this.buttonItemQatSaveAs = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.imageList = new System.Windows.Forms.ImageList(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.imageList = new System.Windows.Forms.ImageList();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.pictureEditDefaultLogo = new DevExpress.XtraEditors.PictureEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.emptySpaceItem = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupContainer = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -251,11 +251,14 @@
 			this.simpleLabelItemAdvertiser = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.simpleLabelItemFlightDates = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemDefaultLogo = new DevExpress.XtraLayout.LayoutControlItem();
 			this.barBottom = new DevComponents.DotNetBar.Bar();
 			this.itemContainerStatusBarContentInfo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemStatusBarSeparator = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainerStatusBarSlideInfo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemStatusBarSlideInfo = new DevComponents.DotNetBar.LabelItem();
+			this.ribbonBarHomeSettings = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemHomeSettings = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonBarPresentationDate.SuspendLayout();
@@ -289,6 +292,7 @@
 			this.ribbonPanelProgramSchedule.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupContainer)).BeginInit();
@@ -298,6 +302,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemAdvertiser)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barBottom)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -311,6 +316,7 @@
 			this.ribbonControl.CanCustomize = false;
 			this.ribbonControl.CaptionVisible = true;
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
+			this.ribbonControl.Controls.Add(this.ribbonPanelProgramSchedule);
 			this.ribbonControl.Controls.Add(this.ribbonPanelBrowser);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSolutions);
@@ -322,8 +328,8 @@
 			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar2);
 			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar1);
 			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
-			this.ribbonControl.Controls.Add(this.ribbonPanelProgramSchedule);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
+			this.ribbonControl.Enabled = false;
 			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -381,6 +387,7 @@
 			// 
 			this.ribbonPanelHome.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeSpecialButtons);
+			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeSettings);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeFlightDates);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarPresentationDate);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeBasicInfo);
@@ -418,7 +425,7 @@
 			this.ribbonBarHomeSpecialButtons.Dock = System.Windows.Forms.DockStyle.Left;
 			this.ribbonBarHomeSpecialButtons.DragDropSupport = true;
 			this.ribbonBarHomeSpecialButtons.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeSpecialButtons.Location = new System.Drawing.Point(493, 0);
+			this.ribbonBarHomeSpecialButtons.Location = new System.Drawing.Point(581, 0);
 			this.ribbonBarHomeSpecialButtons.Name = "ribbonBarHomeSpecialButtons";
 			this.ribbonBarHomeSpecialButtons.Size = new System.Drawing.Size(100, 100);
 			this.ribbonBarHomeSpecialButtons.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -4073,10 +4080,10 @@
 			// pnMain
 			// 
 			this.pnMain.BackColor = System.Drawing.Color.Transparent;
-			this.pnMain.Location = new System.Drawing.Point(2, 25);
+			this.pnMain.Location = new System.Drawing.Point(2, 32);
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-			this.pnMain.Size = new System.Drawing.Size(550, 638);
+			this.pnMain.Size = new System.Drawing.Size(550, 631);
 			this.pnMain.TabIndex = 1;
 			// 
 			// styleManager
@@ -4100,6 +4107,7 @@
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
 			this.layoutControl.Controls.Add(this.pnMain);
+			this.layoutControl.Controls.Add(this.pictureEditDefaultLogo);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(5, 157);
@@ -4110,6 +4118,23 @@
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
+			// 
+			// pictureEditDefaultLogo
+			// 
+			this.pictureEditDefaultLogo.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditDefaultLogo.Location = new System.Drawing.Point(594, 20);
+			this.pictureEditDefaultLogo.Name = "pictureEditDefaultLogo";
+			this.pictureEditDefaultLogo.Properties.AllowFocused = false;
+			this.pictureEditDefaultLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditDefaultLogo.Properties.NullText = " ";
+			this.pictureEditDefaultLogo.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
+			this.pictureEditDefaultLogo.Properties.ReadOnly = true;
+			this.pictureEditDefaultLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditDefaultLogo.Properties.ShowMenu = false;
+			this.pictureEditDefaultLogo.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditDefaultLogo.Size = new System.Drawing.Size(183, 625);
+			this.pictureEditDefaultLogo.StyleController = this.layoutControl;
+			this.pictureEditDefaultLogo.TabIndex = 4;
 			// 
 			// layoutControlGroupRoot
 			// 
@@ -4130,7 +4155,8 @@
 			this.layoutControlGroupRoot.GroupBordersVisible = false;
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem,
-            this.layoutControlGroupContainer});
+            this.layoutControlGroupContainer,
+            this.layoutControlItemDefaultLogo});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
@@ -4140,11 +4166,12 @@
 			// emptySpaceItem
 			// 
 			this.emptySpaceItem.AllowHotTrack = false;
-			this.emptySpaceItem.Location = new System.Drawing.Point(554, 0);
+			this.emptySpaceItem.Location = new System.Drawing.Point(797, 0);
 			this.emptySpaceItem.Name = "emptySpaceItem";
 			this.emptySpaceItem.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.emptySpaceItem.Size = new System.Drawing.Size(486, 665);
+			this.emptySpaceItem.Size = new System.Drawing.Size(243, 665);
 			this.emptySpaceItem.TextSize = new System.Drawing.Size(0, 0);
+			this.emptySpaceItem.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
 			// layoutControlGroupContainer
 			// 
@@ -4164,9 +4191,9 @@
 			this.layoutControlItemMainContainer.Control = this.pnMain;
 			this.layoutControlItemMainContainer.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemMainContainer.FillControlToClientArea = false;
-			this.layoutControlItemMainContainer.Location = new System.Drawing.Point(0, 23);
+			this.layoutControlItemMainContainer.Location = new System.Drawing.Point(0, 30);
 			this.layoutControlItemMainContainer.Name = "layoutControlItemMainContainer";
-			this.layoutControlItemMainContainer.Size = new System.Drawing.Size(554, 642);
+			this.layoutControlItemMainContainer.Size = new System.Drawing.Size(554, 635);
 			this.layoutControlItemMainContainer.Text = "Main Container";
 			this.layoutControlItemMainContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainContainer.TextVisible = false;
@@ -4182,7 +4209,7 @@
             this.emptySpaceItem2});
 			this.layoutControlGroupHeader.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupHeader.Name = "layoutControlGroupHeader";
-			this.layoutControlGroupHeader.Size = new System.Drawing.Size(554, 23);
+			this.layoutControlGroupHeader.Size = new System.Drawing.Size(554, 30);
 			this.layoutControlGroupHeader.Text = "Header";
 			this.layoutControlGroupHeader.TextVisible = false;
 			this.layoutControlGroupHeader.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -4194,7 +4221,7 @@
 			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 23);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 30);
 			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -4208,10 +4235,10 @@
 			this.simpleLabelItemAdvertiser.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
 			this.simpleLabelItemAdvertiser.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemAdvertiser.Location = new System.Drawing.Point(10, 0);
-			this.simpleLabelItemAdvertiser.MaxSize = new System.Drawing.Size(0, 23);
-			this.simpleLabelItemAdvertiser.MinSize = new System.Drawing.Size(1, 23);
+			this.simpleLabelItemAdvertiser.MaxSize = new System.Drawing.Size(0, 30);
+			this.simpleLabelItemAdvertiser.MinSize = new System.Drawing.Size(1, 30);
 			this.simpleLabelItemAdvertiser.Name = "simpleLabelItemAdvertiser";
-			this.simpleLabelItemAdvertiser.Size = new System.Drawing.Size(299, 23);
+			this.simpleLabelItemAdvertiser.Size = new System.Drawing.Size(299, 30);
 			this.simpleLabelItemAdvertiser.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemAdvertiser.Text = " ";
 			this.simpleLabelItemAdvertiser.TextSize = new System.Drawing.Size(0, 16);
@@ -4226,10 +4253,10 @@
 			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
 			this.simpleLabelItemFlightDates.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemFlightDates.Location = new System.Drawing.Point(309, 0);
-			this.simpleLabelItemFlightDates.MaxSize = new System.Drawing.Size(0, 23);
-			this.simpleLabelItemFlightDates.MinSize = new System.Drawing.Size(1, 23);
+			this.simpleLabelItemFlightDates.MaxSize = new System.Drawing.Size(0, 30);
+			this.simpleLabelItemFlightDates.MinSize = new System.Drawing.Size(1, 30);
 			this.simpleLabelItemFlightDates.Name = "simpleLabelItemFlightDates";
-			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(235, 23);
+			this.simpleLabelItemFlightDates.Size = new System.Drawing.Size(235, 30);
 			this.simpleLabelItemFlightDates.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemFlightDates.Text = " ";
 			this.simpleLabelItemFlightDates.TextSize = new System.Drawing.Size(0, 16);
@@ -4241,9 +4268,20 @@
 			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 23);
+			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 30);
 			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemDefaultLogo
+			// 
+			this.layoutControlItemDefaultLogo.Control = this.pictureEditDefaultLogo;
+			this.layoutControlItemDefaultLogo.Location = new System.Drawing.Point(554, 0);
+			this.layoutControlItemDefaultLogo.Name = "layoutControlItemDefaultLogo";
+			this.layoutControlItemDefaultLogo.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 20, 20, 20);
+			this.layoutControlItemDefaultLogo.Size = new System.Drawing.Size(243, 665);
+			this.layoutControlItemDefaultLogo.Text = "Default Logo";
+			this.layoutControlItemDefaultLogo.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemDefaultLogo.TextVisible = false;
 			// 
 			// barBottom
 			// 
@@ -4315,6 +4353,45 @@
 			// 
 			this.labelItemStatusBarSlideInfo.Name = "labelItemStatusBarSlideInfo";
 			// 
+			// ribbonBarHomeSettings
+			// 
+			this.ribbonBarHomeSettings.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarHomeSettings.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarHomeSettings.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarHomeSettings.ContainerControlProcessDialogKey = true;
+			this.ribbonBarHomeSettings.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarHomeSettings.DragDropSupport = true;
+			this.ribbonBarHomeSettings.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemHomeSettings});
+			this.ribbonBarHomeSettings.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarHomeSettings.Location = new System.Drawing.Point(493, 0);
+			this.ribbonBarHomeSettings.Name = "ribbonBarHomeSettings";
+			this.ribbonBarHomeSettings.Size = new System.Drawing.Size(88, 100);
+			this.ribbonBarHomeSettings.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarHomeSettings.TabIndex = 78;
+			this.ribbonBarHomeSettings.Text = "Settings";
+			// 
+			// 
+			// 
+			this.ribbonBarHomeSettings.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarHomeSettings.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemHomeSettings
+			// 
+			this.buttonItemHomeSettings.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeSettings.Image")));
+			this.buttonItemHomeSettings.Name = "buttonItemHomeSettings";
+			this.buttonItemHomeSettings.SubItemsExpandWidth = 14;
+			this.buttonItemHomeSettings.Text = "buttonItem1";
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -4327,7 +4404,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(1050, 850);
 			this.Name = "FormMain";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Schedule Builder      ";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormMainClosing);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormMainClosed);
@@ -4367,6 +4444,7 @@
 			this.ribbonPanelProgramSchedule.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditDefaultLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupContainer)).EndInit();
@@ -4376,6 +4454,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemAdvertiser)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemFlightDates)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDefaultLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.barBottom)).EndInit();
 			this.ResumeLayout(false);
 
@@ -4608,6 +4687,10 @@
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupHeader;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemFlightDates;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemAdvertiser;
+		private DevExpress.XtraEditors.PictureEdit pictureEditDefaultLogo;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDefaultLogo;
+		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeSettings;
+		private DevComponents.DotNetBar.ButtonItem buttonItemHomeSettings;
 	}
 }
 

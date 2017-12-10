@@ -93,9 +93,9 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		private void OutputPowerPoint(SlideMaster slideMaster)
 		{
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				BusinessObjects.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath());
 				FormProgress.CloseProgress();
 			});
@@ -107,9 +107,9 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 			if (selectedSlideMaster == null) return;
 
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			Controller.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 				BusinessObjects.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => BusinessObjects.Instance.PowerPointManager.Processor.AppendSlideMaster(selectedSlideMaster.GetMasterPath(), presentation));
 				var previewGroups = new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } };

@@ -183,11 +183,11 @@ namespace Asa.Media.Controls
 				!String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.FlightDates)))
 			{
 				ScheduleInfoAdvertiser.Text = !String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.BusinessName) ?
-					String.Format("<color=gray>{0}</color>",
+					String.Format("<color=#CBCBCB>{0}</color>",
 						BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.BusinessName) :
 					" ";
 				ScheduleInfoFlightDates.Text = !String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.FlightDates) ?
-					String.Format("<color=gray>{0}</color>",
+					String.Format("<color=#CBCBCB>{0}</color>",
 						BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.FlightDates) :
 					" ";
 				ScheduleInfoContainer.Visibility = LayoutVisibility.Always;
@@ -428,6 +428,7 @@ namespace Asa.Media.Controls
 		public LabelItem HomeFlightDatesStartValue { get; set; }
 		public LabelItem HomeFlightDatesEndTitle { get; set; }
 		public LabelItem HomeFlightDatesEndValue { get; set; }
+		public ButtonItem HomeSettings { get; set; }
 		#endregion
 
 		#region Program Schedule

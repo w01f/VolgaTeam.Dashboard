@@ -16,6 +16,8 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 		protected ContentUpdateInfo<TChangeInfo> ContentUpdateInfo { get; }
 		public bool SettingsNotSaved { get; set; }
 		public bool IsActive { get; set; }
+		public virtual bool RequreScheduleInfo => true;
+		public virtual bool ShowScheduleInfo => true;
 		public abstract string Identifier { get; }
 		public abstract RibbonTabItem TabPage { get; }
 		protected TChangeInfo ChangeInfo { get; }
@@ -82,7 +84,8 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 
 		protected virtual void UpdateStatusBar()
 		{
-			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarMainCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarAdditionalCommonInfo();
 		}
 
 		protected virtual void SaveData() { }

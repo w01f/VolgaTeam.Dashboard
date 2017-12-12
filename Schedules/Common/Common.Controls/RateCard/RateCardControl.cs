@@ -26,6 +26,8 @@ namespace Asa.Schedules.Common.Controls.RateCard
 		#region IContentControl
 		public abstract string Identifier { get; }
 		public bool IsActive { get; set; }
+		public bool RequreScheduleInfo => false;
+		public bool ShowScheduleInfo => true;
 		public abstract RibbonTabItem TabPage { get;  }
 
 		public void InitMetaData()
@@ -43,7 +45,8 @@ namespace Asa.Schedules.Common.Controls.RateCard
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
-			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarMainCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarAdditionalCommonInfo();
 			LoadRateCards();
 		}
 

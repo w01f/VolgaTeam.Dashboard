@@ -25,7 +25,7 @@ namespace Asa.Browser.Single.Properties {
 
 		[global::System.Configuration.UserScopedSettingAttribute()]
 		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-		[global::System.Configuration.DefaultSettingValueAttribute("900")]
+		[global::System.Configuration.DefaultSettingValueAttribute("-1")]
 		public int FormWidth
 		{
 			get
@@ -40,7 +40,7 @@ namespace Asa.Browser.Single.Properties {
 
 		[global::System.Configuration.UserScopedSettingAttribute()]
 		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-		[global::System.Configuration.DefaultSettingValueAttribute("700")]
+		[global::System.Configuration.DefaultSettingValueAttribute("-1")]
 		public int FormHeight
 		{
 			get

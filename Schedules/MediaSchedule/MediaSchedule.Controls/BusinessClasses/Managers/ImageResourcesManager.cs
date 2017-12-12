@@ -89,6 +89,23 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image CalendarNoDataLogo { get; private set; }
 		#endregion
 
+		#region Browser Resources
+		public Image BrowserNavigationBack { get; private set; }
+		public Image BrowserNavigationForward { get; private set; }
+		public Image BrowserNavigationRefresh { get; private set; }
+		public Image BrowserExternalChrome { get; private set; }
+		public Image BrowserExternalFirefox { get; private set; }
+		public Image BrowserExternalIE { get; private set; }
+		public Image BrowserExternalEdge { get; private set; }
+		public Image BrowserPowerPointAddSlide { get; private set; }
+		public Image BrowserPowerPointAddSlides { get; private set; }
+		public Image BrowserPowerPointPrint { get; private set; }
+		public Image BrowserVideoAdd { get; private set; }
+		public Image BrowserYoutubeAdd { get; private set; }
+		public Image BrowserUrlCopy { get; private set; }
+		public Image BrowserUrlEmail { get; private set; }
+		#endregion
+
 		public void Load()
 		{
 			var resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "form_icon.ico");
@@ -314,6 +331,51 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "5_summary_calendar_default.png");
 			if (File.Exists(resourceFile))
 				CalendarNoDataLogo = Image.FromFile(resourceFile);
+			#endregion
+
+			#region Browser Resources
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_left.png");
+			if (File.Exists(resourceFile))
+				BrowserNavigationBack = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_right.png");
+			if (File.Exists(resourceFile))
+				BrowserNavigationForward = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_refresh.png");
+			if (File.Exists(resourceFile))
+				BrowserNavigationRefresh = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_chrome.png");
+			if (File.Exists(resourceFile))
+				BrowserExternalChrome = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_firefox.png");
+			if (File.Exists(resourceFile))
+				BrowserExternalFirefox = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_ie.png");
+			if (File.Exists(resourceFile))
+				BrowserExternalIE = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_edge.png");
+			if (File.Exists(resourceFile))
+				BrowserExternalEdge = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_add_slide.png");
+			if (File.Exists(resourceFile))
+				BrowserPowerPointAddSlide = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_add_all.png");
+			if (File.Exists(resourceFile))
+				BrowserPowerPointAddSlides = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_printer.png");
+			if (File.Exists(resourceFile))
+				BrowserPowerPointPrint = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_video.png");
+			if (File.Exists(resourceFile))
+				BrowserVideoAdd = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_youtube.png");
+			if (File.Exists(resourceFile))
+				BrowserYoutubeAdd = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_copy.png");
+			if (File.Exists(resourceFile))
+				BrowserUrlCopy = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_email.png");
+			if (File.Exists(resourceFile))
+				BrowserUrlEmail = Image.FromFile(resourceFile);
 			#endregion
 		}
 	}

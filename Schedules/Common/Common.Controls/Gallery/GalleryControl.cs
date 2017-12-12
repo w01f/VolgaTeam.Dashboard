@@ -19,7 +19,7 @@ using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using EO.WebBrowser;
-using EO.WebBrowser.WinForm;
+using EO.WinForm;
 using Vintasoft.Imaging;
 using Vintasoft.Imaging.VisualTools;
 
@@ -65,6 +65,8 @@ namespace Asa.Schedules.Common.Controls.Gallery
 		#endregion
 
 		#region IContentControl
+		public bool RequreScheduleInfo => false;
+		public bool ShowScheduleInfo => true;
 		public abstract string Identifier { get; }
 		public bool IsActive { get; set; }
 		public abstract RibbonTabItem TabPage { get; }
@@ -95,7 +97,8 @@ namespace Asa.Schedules.Common.Controls.Gallery
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
-			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarMainCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarAdditionalCommonInfo();
 			LoadData();
 		}
 

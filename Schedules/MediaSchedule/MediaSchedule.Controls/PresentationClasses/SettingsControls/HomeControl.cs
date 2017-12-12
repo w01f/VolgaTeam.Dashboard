@@ -13,6 +13,7 @@ using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls.ContentEditors.Controls;
+using Asa.Schedules.Common.Controls.ContentEditors.Enums;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using DevComponents.DotNetBar;
 using DevExpress.Skins;
@@ -35,8 +36,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			set { Schedule.Settings = value; }
 		}
 
+		public override bool ShowScheduleInfo => false;
 		public override string Identifier => ContentIdentifiers.ScheduleSettings;
-
 		public override RibbonTabItem TabPage => Controller.Instance.TabHome;
 
 		public HomeControl()
@@ -152,7 +153,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			EditedSettings.BusinessName = Controller.Instance.HomeBusinessName.EditValue as String;
 			EditedSettings.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
 			EditedSettings.PresentationDate = (DateTime?)Controller.Instance.HomePresentationDate.EditValue;
-			
+
 			if (stationsControl.HasChanged)
 			{
 				EditedSettings.Stations.Clear();
@@ -167,6 +168,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 
 		protected override void ValidateChanges(ContentSavingEventArgs savingArgs)
 		{
+			if (savingArgs.SavingReason == ContentSavingReason.AppClosing) return;
+			if (!savingArgs.RequreScheduleInfoValidation) return;
 			if (EditedSettings.EditMode != ScheduleEditMode.Regular) return;
 
 			if (String.IsNullOrEmpty(EditedSettings.BusinessName))
@@ -356,7 +359,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			}
 		}
 		#endregion
-		
+
 		#region Buttons Clicks Events
 		private void buttonXScheduleType_Click(object sender, EventArgs e)
 		{

@@ -598,9 +598,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
 					statusBarItems.ForEach(item => item.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value);
 
-				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
-				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
-				ContentStatusBarManager.Instance.StatusBarItemsContainer.RecalcSize();
+				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Clear();
+				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.RecalcSize();
 				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
 			}
 			else if (ActiveSummary != null)
@@ -618,9 +618,9 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 				if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
 					statusBarItems.ForEach(item => item.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value);
 
-				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.Clear();
-				ContentStatusBarManager.Instance.StatusBarItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
-				ContentStatusBarManager.Instance.StatusBarItemsContainer.RecalcSize();
+				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Clear();
+				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.AddRange(statusBarItems.ToArray());
+				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.RecalcSize();
 				ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
 			}
 			else

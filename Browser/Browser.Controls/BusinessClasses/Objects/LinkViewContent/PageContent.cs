@@ -12,6 +12,7 @@ namespace Asa.Browser.Controls.BusinessClasses.Objects.LinkViewContent
 
 		public string PrintableFileUrl => OriginalFileUrl;
 		public int? CurrentPage => _currentPartIndex;
+		public int PartsCount=> _partFileUrls.Length;
 
 		public override void Load(object[] data)
 		{

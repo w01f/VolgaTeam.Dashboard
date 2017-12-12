@@ -12,6 +12,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 	{
 		public string RibbonBarTitle { get; private set; }
 		public string SiteListTitle { get; private set; }
+		public string StatusBarTitle { get; private set; }
 		public List<SiteSettings> Sites { get; }
 
 		public BrowserManager()
@@ -27,6 +28,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			RibbonBarTitle = document.SelectSingleNode(@"//Root/Group1Labels/Group1")?.InnerText ?? "adSALESapps.com";
 			SiteListTitle = document.SelectSingleNode(@"//Root/Group1Labels/ComboHeader")?.InnerText ?? "Sites";
+			StatusBarTitle = document.SelectSingleNode(@"//Root/Footer")?.InnerText ?? "Sales Cloud";
 
 			foreach (var siteNode in document.SelectNodes(@"//Root/Site").OfType<XmlNode>())
 			{

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using Asa.Browser.Single.Properties;
 
 namespace Asa.Browser.Single.Configuration
@@ -17,12 +18,22 @@ namespace Asa.Browser.Single.Configuration
 		public Image FloaterLogo { get; private set; }
 		public Icon FormIcon { get; private set; }
 		public string FormText { get; private set; }
+		public string StatusBarTitle { get; private set; }
+
+		public Color? AccentColor { get; set; }
+		public Color? StatusBarTextColor { get; set; }
 
 		public static AppSettingsManager Instance { get; } = new AppSettingsManager();
 
 		private AppSettingsManager() { }
 
 		public void LoadSettings()
+		{
+			LoadMainSettings();
+			LoadStyleSettings();
+		}
+
+		private void LoadMainSettings()
 		{
 			EnableMenu = true;
 			EnableScroll = true;
@@ -45,9 +56,28 @@ namespace Asa.Browser.Single.Configuration
 
 			var iconPath = Path.Combine(appFolderPath, "icon.ico");
 			FormIcon = File.Exists(iconPath) ? new Icon(iconPath) : null;
+		}
 
-			var formTextPath = Path.Combine(appFolderPath, "title.txt");
-			FormText = File.Exists(formTextPath) ? File.ReadAllText(formTextPath) : null;
+		private void LoadStyleSettings()
+		{
+			var appFileName = Process.GetCurrentProcess().MainModule.FileName;
+			var appFolderPath = Path.GetDirectoryName(appFileName);
+			var settingsFilePath = Path.Combine(appFolderPath, "eo_settings.xml");
+			if (!File.Exists(settingsFilePath)) return;
+
+			var document = new XmlDocument();
+			document.Load(settingsFilePath);
+
+			FormText = document.SelectSingleNode(@"//Config/Title")?.InnerText;
+			StatusBarTitle = document.SelectSingleNode(@"//Config/Footer")?.InnerText ?? "Sales Browser";
+
+			var colorValue = document.SelectSingleNode(@"//Config/Style/AccentColor")?.InnerText;
+			if (!String.IsNullOrEmpty(colorValue))
+				AccentColor = ColorTranslator.FromHtml(colorValue);
+
+			colorValue = document.SelectSingleNode(@"//Config/Style/StatusBarTextColor")?.InnerText;
+			if (!String.IsNullOrEmpty(colorValue))
+				StatusBarTextColor = ColorTranslator.FromHtml(colorValue);
 		}
 	}
 }

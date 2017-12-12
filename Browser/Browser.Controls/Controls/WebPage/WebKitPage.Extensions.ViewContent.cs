@@ -52,6 +52,8 @@ namespace Asa.Browser.Controls.Controls.WebPage
 				var currentPageContent = _extensionsManager.LinkViewContentExtension.CurrentPowerPointContent;
 				if (slideSettings != null && !currentPageContent.IsFitToInsert(slideSettings))
 					_siteContainer.LabelExtensionsWarning.Text = "Slide Size Conflict: The slides may not insert correctly…";
+
+				_siteContainer.ButtonExtensionsAddSlides.Text = String.Format("   ({0})", _extensionsManager.LinkViewContentExtension.CurrentPowerPointContent.PartsCount);
 			}
 			if (_extensionsManager.LinkViewContentExtension.PrintEnabled)
 			{

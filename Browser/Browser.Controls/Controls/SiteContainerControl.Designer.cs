@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.barMain = new DevComponents.DotNetBar.Bar();
 			this.buttonItemMenuNavigationBack = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuNavigationForward = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuNavigationRefresh = new DevComponents.DotNetBar.ButtonItem();
@@ -37,13 +36,13 @@
 			this.buttonItemMenuBrowserFirefox = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuBrowserEdge = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemDetails = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlide = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlides = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsPrint = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddVideo = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsDownloadYouTube = new DevComponents.DotNetBar.ButtonItem();
+			this.barMain = new DevComponents.DotNetBar.Bar();
 			this.labelItemMenuWarning = new DevComponents.DotNetBar.LabelItem();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			((System.ComponentModel.ISupportInitialize)(this.barMain)).BeginInit();
@@ -55,51 +54,11 @@
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
-			// barMain
-			// 
-			this.barMain.AntiAlias = true;
-			this.barMain.AutoCreateCaptionMenu = false;
-			this.barMain.CanCustomize = false;
-			this.barMain.CanDockBottom = false;
-			this.barMain.CanDockLeft = false;
-			this.barMain.CanDockRight = false;
-			this.barMain.CanDockTab = false;
-			this.barMain.CanDockTop = false;
-			this.barMain.CanMaximizeFloating = false;
-			this.barMain.CanMove = false;
-			this.barMain.CanReorderTabs = false;
-			this.barMain.CanUndock = false;
-			this.barMain.Dock = System.Windows.Forms.DockStyle.Top;
-			this.barMain.Font = new System.Drawing.Font("Segoe UI", 9F);
-			this.barMain.IsMaximized = false;
-			this.barMain.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemMenuNavigationBack,
-            this.buttonItemMenuNavigationForward,
-            this.buttonItemMenuNavigationRefresh,
-            this.buttonItemMenuBrowserChrome,
-            this.buttonItemMenuBrowserFirefox,
-            this.buttonItemMenuBrowserIE,
-            this.buttonItemMenuBrowserEdge,
-            this.buttonItemDetails,
-            this.buttonItemFloater,
-            this.buttonItemMenuExtensionsAddSlide,
-            this.buttonItemMenuExtensionsAddSlides,
-            this.buttonItemMenuExtensionsPrint,
-            this.buttonItemMenuExtensionsAddVideo,
-            this.buttonItemMenuExtensionsDownloadYouTube,
-            this.labelItemMenuWarning});
-			this.barMain.Location = new System.Drawing.Point(0, 0);
-			this.barMain.Name = "barMain";
-			this.barMain.Size = new System.Drawing.Size(800, 33);
-			this.barMain.Stretch = true;
-			this.barMain.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.barMain.TabIndex = 1;
-			this.barMain.TabStop = false;
-			this.barMain.Text = "Main Menu";
-			// 
 			// buttonItemMenuNavigationBack
 			// 
+			this.buttonItemMenuNavigationBack.BeginGroup = true;
 			this.buttonItemMenuNavigationBack.Image = global::Asa.Browser.Controls.Properties.Resources.NavigationBack;
+			this.buttonItemMenuNavigationBack.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
 			this.buttonItemMenuNavigationBack.Name = "buttonItemMenuNavigationBack";
 			this.superTooltip.SetSuperTooltip(this.buttonItemMenuNavigationBack, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Back", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(40, 20)));
 			this.buttonItemMenuNavigationBack.Text = "buttonItem2";
@@ -108,6 +67,7 @@
 			// buttonItemMenuNavigationForward
 			// 
 			this.buttonItemMenuNavigationForward.Image = global::Asa.Browser.Controls.Properties.Resources.NavigationForward;
+			this.buttonItemMenuNavigationForward.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
 			this.buttonItemMenuNavigationForward.Name = "buttonItemMenuNavigationForward";
 			this.superTooltip.SetSuperTooltip(this.buttonItemMenuNavigationForward, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Forward", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(50, 20)));
 			this.buttonItemMenuNavigationForward.Text = "buttonItem1";
@@ -115,7 +75,9 @@
 			// 
 			// buttonItemMenuNavigationRefresh
 			// 
+			this.buttonItemMenuNavigationRefresh.BeginGroup = true;
 			this.buttonItemMenuNavigationRefresh.Image = global::Asa.Browser.Controls.Properties.Resources.NavigationRefresh;
+			this.buttonItemMenuNavigationRefresh.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
 			this.buttonItemMenuNavigationRefresh.Name = "buttonItemMenuNavigationRefresh";
 			this.superTooltip.SetSuperTooltip(this.buttonItemMenuNavigationRefresh, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Refresh", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(50, 20)));
 			this.buttonItemMenuNavigationRefresh.Text = "buttonItem1";
@@ -162,15 +124,6 @@
 			this.buttonItemMenuBrowserEdge.Visible = false;
 			this.buttonItemMenuBrowserEdge.Click += new System.EventHandler(this.OnExternalBrowserOpenClick);
 			// 
-			// buttonItemDetails
-			// 
-			this.buttonItemDetails.BeginGroup = true;
-			this.buttonItemDetails.Image = global::Asa.Browser.Controls.Properties.Resources.UrlDetailsMenu;
-			this.buttonItemDetails.Name = "buttonItemDetails";
-			this.superTooltip.SetSuperTooltip(this.buttonItemDetails, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "URL Info", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(50, 20)));
-			this.buttonItemDetails.Text = "buttonItem1";
-			this.buttonItemDetails.Click += new System.EventHandler(this.OnMenuDetailsClick);
-			// 
 			// buttonItemFloater
 			// 
 			this.buttonItemFloater.BeginGroup = true;
@@ -192,10 +145,13 @@
 			// 
 			// buttonItemMenuExtensionsAddSlides
 			// 
+			this.buttonItemMenuExtensionsAddSlides.BeginGroup = true;
+			this.buttonItemMenuExtensionsAddSlides.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+			this.buttonItemMenuExtensionsAddSlides.ForeColor = System.Drawing.Color.LightGray;
 			this.buttonItemMenuExtensionsAddSlides.Image = global::Asa.Browser.Controls.Properties.Resources.ExtensionsAddSlides;
 			this.buttonItemMenuExtensionsAddSlides.Name = "buttonItemMenuExtensionsAddSlides";
 			this.superTooltip.SetSuperTooltip(this.buttonItemMenuExtensionsAddSlides, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Add all slides", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(80, 20)));
-			this.buttonItemMenuExtensionsAddSlides.Text = "buttonItem1";
+			this.buttonItemMenuExtensionsAddSlides.Text = "   test";
 			this.buttonItemMenuExtensionsAddSlides.Visible = false;
 			this.buttonItemMenuExtensionsAddSlides.Click += new System.EventHandler(this.OnMenuExtensionsAddSlidesClick);
 			// 
@@ -226,6 +182,48 @@
 			this.buttonItemMenuExtensionsDownloadYouTube.Text = "buttonItem1";
 			this.buttonItemMenuExtensionsDownloadYouTube.Visible = false;
 			this.buttonItemMenuExtensionsDownloadYouTube.Click += new System.EventHandler(this.OnMenuExtensionsDownloadYouTubeClick);
+			// 
+			// barMain
+			// 
+			this.barMain.AntiAlias = true;
+			this.barMain.AutoCreateCaptionMenu = false;
+			this.barMain.CanCustomize = false;
+			this.barMain.CanDockBottom = false;
+			this.barMain.CanDockLeft = false;
+			this.barMain.CanDockRight = false;
+			this.barMain.CanDockTab = false;
+			this.barMain.CanDockTop = false;
+			this.barMain.CanMaximizeFloating = false;
+			this.barMain.CanMove = false;
+			this.barMain.CanReorderTabs = false;
+			this.barMain.CanUndock = false;
+			this.barMain.Dock = System.Windows.Forms.DockStyle.Top;
+			this.barMain.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.barMain.IsMaximized = false;
+			this.barMain.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemMenuBrowserChrome,
+            this.buttonItemMenuBrowserFirefox,
+            this.buttonItemMenuBrowserIE,
+            this.buttonItemMenuBrowserEdge,
+            this.buttonItemFloater,
+            this.buttonItemMenuExtensionsAddSlide,
+            this.buttonItemMenuExtensionsAddSlides,
+            this.buttonItemMenuExtensionsPrint,
+            this.buttonItemMenuExtensionsAddVideo,
+            this.buttonItemMenuExtensionsDownloadYouTube,
+            this.labelItemMenuWarning,
+            this.buttonItemMenuNavigationRefresh,
+            this.buttonItemMenuNavigationBack,
+            this.buttonItemMenuNavigationForward});
+			this.barMain.ItemSpacing = 10;
+			this.barMain.Location = new System.Drawing.Point(0, 0);
+			this.barMain.Name = "barMain";
+			this.barMain.Size = new System.Drawing.Size(800, 33);
+			this.barMain.Stretch = true;
+			this.barMain.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.barMain.TabIndex = 1;
+			this.barMain.TabStop = false;
+			this.barMain.Text = "Main Menu";
 			// 
 			// labelItemMenuWarning
 			// 
@@ -290,7 +288,6 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuBrowserFirefox;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuBrowserIE;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuBrowserEdge;
-		private DevComponents.DotNetBar.ButtonItem buttonItemDetails;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsAddSlide;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsAddSlides;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsPrint;

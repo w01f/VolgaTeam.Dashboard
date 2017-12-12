@@ -133,12 +133,6 @@
     <Compile Include="ToolForms\FormSlideSize.designer.cs">
       <DependentUpon>FormSlideSize.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormUrlDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormUrlDetails.designer.cs">
-      <DependentUpon>FormUrlDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormVideoDownloadComplete.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,9 +170,6 @@
     <EmbeddedResource Include="ToolForms\FormSlideSize.resx">
       <DependentUpon>FormSlideSize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormUrlDetails.resx">
-      <DependentUpon>FormUrlDetails.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormVideoDownloadComplete.resx">
       <DependentUpon>FormVideoDownloadComplete.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,12 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SlideSizeTitleText.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\UrlDetailsMenu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\UrlDetailsForm.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ExtensionsAddSlides.png" />

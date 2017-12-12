@@ -17,7 +17,10 @@ namespace Asa.Browser.Single
 		{
 			LicenseHelper.Register();
 			AppSettingsManager.Instance.LoadSettings();
+			ResourceManager.Instance.LoadResources();
 			FormMain.Instance.InitForm();
+			PopupMessageHelper.Instance.Title = FormMain.Instance.Text;
+			PopupMessageHelper.Instance.MainForm = FormMain.Instance;
 			Application.Run(FormMain.Instance);
 		}
 

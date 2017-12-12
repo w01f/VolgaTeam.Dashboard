@@ -7,6 +7,8 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Interfaces
 	{
 		string Identifier { get; }
 		bool IsActive { get; set; }
+		bool RequreScheduleInfo { get; }
+		bool ShowScheduleInfo { get; }
 		RibbonTabItem TabPage { get; }
 		void InitMetaData();
 		void InitControl();

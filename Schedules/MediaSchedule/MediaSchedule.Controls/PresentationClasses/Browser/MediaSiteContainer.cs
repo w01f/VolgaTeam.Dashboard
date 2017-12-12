@@ -17,6 +17,31 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 		public MediaSiteContainer()
 		{
 			buttonItemFloater.Visible = false;
+
+			ButtonNavigationBack.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserNavigationBack ??
+										 ButtonNavigationBack.Image;
+			ButtonNavigationForward.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserNavigationForward ??
+										 ButtonNavigationForward.Image;
+			ButtonNavigationRefresh.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserNavigationRefresh ??
+										 ButtonNavigationRefresh.Image;
+			ButtonExternalBrowserChrome.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalChrome ??
+										 ButtonExternalBrowserChrome.Image;
+			ButtonExternalBrowserFirefox.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalFirefox ??
+												ButtonExternalBrowserFirefox.Image;
+			ButtonExternalBrowserIE.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalIE ??
+												ButtonExternalBrowserIE.Image;
+			ButtonExternalBrowserEdge.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalEdge ??
+												ButtonExternalBrowserEdge.Image;
+			ButtonExtensionsAddSlide.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserPowerPointAddSlide ??
+												ButtonExtensionsAddSlide.Image;
+			ButtonExtensionsAddSlides.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserPowerPointAddSlides ??
+											 ButtonExtensionsAddSlides.Image;
+			ButtonExtensionsPrint.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserPowerPointPrint ??
+											 ButtonExtensionsPrint.Image;
+			ButtonExtensionsAddVideo.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserVideoAdd ??
+											 ButtonExtensionsAddVideo.Image;
+			ButtonExtensionsDownloadYouTube.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserYoutubeAdd ??
+											 ButtonExtensionsDownloadYouTube.Image;
 		}
 
 		public override void ShowFloater(FloaterRequestedEventArgs args)

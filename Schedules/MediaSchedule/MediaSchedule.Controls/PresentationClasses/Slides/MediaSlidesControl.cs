@@ -24,6 +24,8 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		private SlidesContainerControl _slideContainer;
 		public bool IsActive { get; set; }
 		public string Identifier => ContentIdentifiers.Slides;
+		public bool RequreScheduleInfo => false;
+		public bool ShowScheduleInfo => true;
 		public RibbonTabItem TabPage => Controller.Instance.TabSlides;
 
 		public MediaSlidesControl()
@@ -74,7 +76,8 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		{
 			Controller.Instance.MenuOutputPdfButton.Enabled = Controller.Instance.MenuEmailButton.Enabled = true;
 			IsActive = true;
-			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarMainCommonInfo();
+			ContentStatusBarManager.Instance.FillStatusBarAdditionalCommonInfo();
 		}
 
 		public void GetHelp()

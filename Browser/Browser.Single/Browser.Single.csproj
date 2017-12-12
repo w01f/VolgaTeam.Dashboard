@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="AppManager.cs" />
     <Compile Include="Configuration\AppSettingsManager.cs" />
+    <Compile Include="Configuration\ResourceManager.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

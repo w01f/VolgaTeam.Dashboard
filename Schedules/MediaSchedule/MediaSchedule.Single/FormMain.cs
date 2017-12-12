@@ -179,9 +179,6 @@ namespace Asa.Media.Single
 						styleManager.MetroColorParameters.CanvasColor,
 						BusinessObjects.Instance.FormStyleManager.Style.AccentColor.Value);
 
-			if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
-				labelItemStatusBarSlideInfo.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value;
-
 			Controller.Instance.FormMain = this;
 			Controller.Instance.MainPanelContainer = layoutControlGroupContainer;
 			Controller.Instance.MainPanel = layoutControlItemMainContainer;
@@ -203,7 +200,8 @@ namespace Asa.Media.Single
 			Controller.Instance.TabBrowser = ribbonTabItemBrowser;
 
 			ContentStatusBarManager.Instance.StatusBar = barBottom;
-			ContentStatusBarManager.Instance.StatusBarItemsContainer = itemContainerStatusBarContentInfo;
+			ContentStatusBarManager.Instance.StatusBarMainItemsContainer = itemContainerStatusBarMainContentInfo;
+			ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer = itemContainerStatusBarAdditionalContentInfo;
 			ContentStatusBarManager.Instance.TextColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor;
 
 			FormProgress.Init(this);
@@ -394,7 +392,6 @@ namespace Asa.Media.Single
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened += (o, e) => UpdateFormTitle();
 			BusinessObjects.Instance.ScheduleManager.ScheduleNameChanged += (o, e) => UpdateFormTitle();
 			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
-			SlideSettingsManager.Instance.SettingsChanged += (o, e) => UpdateSlideInfo();
 		}
 
 		private void UpdateFormTitle()
@@ -404,15 +401,6 @@ namespace Asa.Media.Single
 				PopupMessageHelper.Instance.Title,
 				FileStorageManager.Instance.Version,
 				schedule?.Name);
-		}
-
-		private void UpdateSlideInfo()
-		{
-			if (MasterWizardManager.Instance.SelectedWizard == null) return;
-			labelItemStatusBarSlideInfo.Text = String.Format("{0}  {1}",
-				MasterWizardManager.Instance.SelectedWizard.Name,
-				SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
-			itemContainerStatusBarSlideInfo.RecalcSize();
 		}
 
 		private void LoadData()
@@ -449,9 +437,8 @@ namespace Asa.Media.Single
 		{
 			Utilities.ActivatePowerPoint(BusinessObjects.Instance.PowerPointManager.Processor.PowerPointObject);
 			UpdateFormTitle();
-			UpdateSlideInfo();
 
-			itemContainerStatusBarContentInfo.SubItems.Clear();
+			itemContainerStatusBarMainContentInfo.SubItems.Clear();
 			var appInfoLabel = new LabelItem();
 			appInfoLabel.Text = String.Format("{0} v{1}",
 				PopupMessageHelper.Instance.Title,
@@ -459,7 +446,7 @@ namespace Asa.Media.Single
 			);
 			if (BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
 				appInfoLabel.ForeColor = BusinessObjects.Instance.FormStyleManager.Style.StatusBarTextColor.Value;
-			itemContainerStatusBarContentInfo.SubItems.Add(appInfoLabel);
+			itemContainerStatusBarMainContentInfo.SubItems.Add(appInfoLabel);
 			barBottom.RecalcLayout();
 
 			AppManager.Instance.ActivateMainForm(WindowState == FormWindowState.Maximized);

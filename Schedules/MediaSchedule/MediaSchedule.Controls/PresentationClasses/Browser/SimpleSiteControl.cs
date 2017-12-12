@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Asa.Browser.Controls.BusinessClasses.Objects;
+using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
@@ -46,11 +48,26 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 
 		public void LoadSite()
 		{
-			if(_loaded) return;
+			if (_loaded) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Page...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
 			_browser.WebView.LoadUrl(SiteSettings.BaseUrl);
+		}
+
+		public void CopyUrl()
+		{
+			Clipboard.SetText(SiteSettings.BaseUrl);
+			PopupMessageHelper.Instance.ShowInformation("Url successfully copied");
+		}
+
+		public void EmailUrl()
+		{
+			try
+			{
+				Process.Start(Uri.EscapeUriString(String.Format("mailto:{0}?Body={1}", String.Empty, SiteSettings.BaseUrl)));
+			}
+			catch { }
 		}
 
 		private void OnMainWebViewLoadComplete(Object sender, LoadCompletedEventArgs e)
@@ -110,7 +127,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			FormProgress.CloseProgress();
 			using (var formComplete = new FormFileDownloadComplete(e.Item.FullPath))
 			{
-				formComplete.StartPosition=FormStartPosition.CenterParent;
+				formComplete.StartPosition = FormStartPosition.CenterParent;
 				formComplete.ShowDialog();
 			}
 		}

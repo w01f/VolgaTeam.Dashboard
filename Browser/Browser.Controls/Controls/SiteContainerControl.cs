@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,7 +8,7 @@ using Asa.Browser.Controls.BusinessClasses.Helpers;
 using Asa.Browser.Controls.BusinessClasses.Objects;
 using Asa.Browser.Controls.Controls.WebPage;
 using Asa.Browser.Controls.Properties;
-using Asa.Browser.Controls.ToolForms;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Floater;
 using DevComponents.DotNetBar;
@@ -129,6 +130,7 @@ namespace Asa.Browser.Controls.Controls
 		#endregion
 
 		#region Navigation
+		public ButtonItem ButtonNavigationRefresh => buttonItemMenuNavigationRefresh;
 		public ButtonItem ButtonNavigationBack => buttonItemMenuNavigationBack;
 		public ButtonItem ButtonNavigationForward => buttonItemMenuNavigationForward;
 
@@ -155,6 +157,10 @@ namespace Asa.Browser.Controls.Controls
 
 		#region External Web Browsers
 		private ButtonItem[] _externalBrowserButtons;
+		public ButtonItem ButtonExternalBrowserChrome => buttonItemMenuBrowserChrome;
+		public ButtonItem ButtonExternalBrowserFirefox => buttonItemMenuBrowserFirefox;
+		public ButtonItem ButtonExternalBrowserIE => buttonItemMenuBrowserIE;
+		public ButtonItem ButtonExternalBrowserEdge => buttonItemMenuBrowserEdge;
 
 		private void InitExternalBrowserButtons()
 		{
@@ -184,12 +190,26 @@ namespace Asa.Browser.Controls.Controls
 		#endregion
 
 		#region Url Details
-		private void OnMenuDetailsClick(object sender, EventArgs e)
+		public void CopyUrl()
 		{
-			using (var form = new FormUrlDetails(SelectedWebPage?.CurrentUrl))
+			try
 			{
-				form.ShowDialog(this);
+				Clipboard.SetText(SelectedWebPage?.CurrentUrl ?? "empty");
+				PopupMessageHelper.Instance.ShowInformation("Url successfully copied");
 			}
+			catch
+			{
+				PopupMessageHelper.Instance.ShowWarning("Url is not loaded");
+			}
+		}
+
+		public void EmailUrl()
+		{
+			try
+			{
+				Process.Start(Uri.EscapeUriString(String.Format("mailto:{0}?Body={1}", String.Empty, SelectedWebPage?.CurrentUrl ?? "Empty")));
+			}
+			catch { }
 		}
 		#endregion
 

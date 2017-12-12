@@ -18,6 +18,8 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 
 		public string Identifier => ContentIdentifiers.Browser;
 		public bool IsActive { get; set; }
+		public bool RequreScheduleInfo => false;
+		public Boolean ShowScheduleInfo => false;
 		public RibbonTabItem TabPage => Controller.Instance.TabBrowser;
 
 		public BrowserContentControl()
@@ -44,7 +46,10 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 		public virtual void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
-			ContentStatusBarManager.Instance.FillStatusBarWithCommonInfo();
+
+			UpdateMainStatusBarInfo();
+			LoadUrlActionButtons();
+
 			if (_listControl.EditValue == null)
 				_listControl.SelectedIndex = 0;
 		}
@@ -52,6 +57,48 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 		public void GetHelp()
 		{
 			BusinessObjects.Instance.HelpManager.OpenHelpLink("eo");
+		}
+
+		private void UpdateMainStatusBarInfo()
+		{
+			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Clear();
+
+			var titleLabel = new LabelItem();
+			titleLabel.Text = BusinessObjects.Instance.BrowserManager.StatusBarTitle;
+			if (ContentStatusBarManager.Instance.TextColor.HasValue)
+				titleLabel.ForeColor = ContentStatusBarManager.Instance.TextColor.Value;
+			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Add(titleLabel);
+
+			var selectedSiteSettings = _listControl?.EditValue as SiteSettings;
+			if (selectedSiteSettings != null)
+			{
+				var urlLabel = new LabelItem();
+				urlLabel.Text = selectedSiteSettings.BaseUrl;
+				if (ContentStatusBarManager.Instance.TextColor.HasValue)
+					urlLabel.ForeColor = ContentStatusBarManager.Instance.TextColor.Value;
+				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Add(urlLabel);
+			}
+
+			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.RecalcSize();
+			ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
+		}
+
+		private void LoadUrlActionButtons()
+		{
+			ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer.SubItems.Clear();
+
+			var emailUrlButton = new ButtonItem();
+			emailUrlButton.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserUrlEmail;
+			emailUrlButton.Click += OnUrlEmail;
+			ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer.SubItems.Add(emailUrlButton);
+
+			var copyUrlButton = new ButtonItem();
+			copyUrlButton.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserUrlCopy;
+			copyUrlButton.Click += OnUrlCopy;
+			ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer.SubItems.Add(copyUrlButton);
+
+			ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer.RecalcSize();
+			ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
 		}
 
 		private void LoadSites()
@@ -66,6 +113,8 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			var comboBox = sender as ComboBoxEdit;
 			var selectedSiteSettings = comboBox?.EditValue as SiteSettings;
 			if (selectedSiteSettings == null) return;
+
+			UpdateMainStatusBarInfo();
 
 			var siteContainer = Controls.OfType<IMediaSite>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
 			if (siteContainer == null)
@@ -92,6 +141,22 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 				}
 			}
 			((Control)siteContainer).BringToFront();
+		}
+
+		private void OnUrlEmail(object sender, EventArgs e)
+		{
+			var selectedSiteSettings = _listControl?.EditValue as SiteSettings;
+			if (selectedSiteSettings == null) return;
+			var siteContainer = Controls.OfType<IMediaSite>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
+			siteContainer?.EmailUrl();
+		}
+
+		private void OnUrlCopy(object sender, EventArgs e)
+		{
+			var selectedSiteSettings = _listControl?.EditValue as SiteSettings;
+			if (selectedSiteSettings == null) return;
+			var siteContainer = Controls.OfType<IMediaSite>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
+			siteContainer?.CopyUrl();
 		}
 	}
 }

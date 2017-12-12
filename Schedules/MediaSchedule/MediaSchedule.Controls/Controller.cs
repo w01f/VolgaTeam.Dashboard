@@ -16,7 +16,6 @@ using Asa.Common.GUI.SlideSettingsEditors;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.PresentationClasses.SettingsControls;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using DevExpress.XtraLayout;
 using DevExpress.XtraLayout.Utils;
@@ -179,7 +178,9 @@ namespace Asa.Media.Controls
 
 		private void OnScheduleInfoChanged(Object sender, EventArgs e)
 		{
-			if (ContentController.ActiveControl != null && !(ContentController.ActiveControl is HomeControl) && (!String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.BusinessName) ||
+			if (ContentController.ActiveControl != null && 
+				ContentController.ActiveControl.ShowScheduleInfo && 
+				(!String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.BusinessName) ||
 				!String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.FlightDates)))
 			{
 				ScheduleInfoAdvertiser.Text = !String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.BusinessName) ?

@@ -7,6 +7,7 @@ using Asa.Browser.Single.InteropClasses;
 using Asa.Browser.Single.Properties;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
+using DevComponents.DotNetBar.Metro.ColorTables;
 
 namespace Asa.Browser.Single
 {
@@ -20,6 +21,7 @@ namespace Asa.Browser.Single
 		private FormMain()
 		{
 			InitializeComponent();
+
 			Shown += (o, e) => _siteContainer.LoadPages();
 			Closing += SaveSettings;
 			Resize += OnFormResize;
@@ -37,6 +39,18 @@ namespace Asa.Browser.Single
 
 			Text = AppSettingsManager.Instance.FormText ?? Text;
 			Icon = AppSettingsManager.Instance.FormIcon ?? Icon;
+			labelItemUrl.Text = AppSettingsManager.Instance.BaseUrl;
+
+			if (AppSettingsManager.Instance.AccentColor.HasValue)
+				styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
+					styleManager.MetroColorParameters.CanvasColor,
+					AppSettingsManager.Instance.AccentColor.Value);
+
+			if (AppSettingsManager.Instance.StatusBarTextColor.HasValue)
+			{
+				labelItemAppTitle.ForeColor = AppSettingsManager.Instance.StatusBarTextColor.Value;
+				labelItemUrl.ForeColor = AppSettingsManager.Instance.StatusBarTextColor.Value;
+			}
 
 			_siteContainer.InitSite(new SiteSettings
 			{
@@ -44,6 +58,33 @@ namespace Asa.Browser.Single
 				EnableMenu = AppSettingsManager.Instance.EnableMenu,
 				EnableScroll = AppSettingsManager.Instance.EnableScroll,
 			});
+
+			_siteContainer.ButtonNavigationBack.Image = ResourceManager.Instance.BrowserNavigationBack ??
+														_siteContainer.ButtonNavigationBack.Image;
+			_siteContainer.ButtonNavigationForward.Image = ResourceManager.Instance.BrowserNavigationForward ??
+														   _siteContainer.ButtonNavigationForward.Image;
+			_siteContainer.ButtonNavigationRefresh.Image = ResourceManager.Instance.BrowserNavigationRefresh ??
+														   _siteContainer.ButtonNavigationRefresh.Image;
+			_siteContainer.ButtonExternalBrowserChrome.Image = ResourceManager.Instance.BrowserExternalChrome ??
+															   _siteContainer.ButtonExternalBrowserChrome.Image;
+			_siteContainer.ButtonExternalBrowserFirefox.Image = ResourceManager.Instance.BrowserExternalFirefox ??
+																_siteContainer.ButtonExternalBrowserFirefox.Image;
+			_siteContainer.ButtonExternalBrowserIE.Image = ResourceManager.Instance.BrowserExternalIE ??
+														   _siteContainer.ButtonExternalBrowserIE.Image;
+			_siteContainer.ButtonExternalBrowserEdge.Image = ResourceManager.Instance.BrowserExternalEdge ??
+															 _siteContainer.ButtonExternalBrowserEdge.Image;
+			_siteContainer.ButtonExtensionsAddSlide.Image = ResourceManager.Instance.BrowserPowerPointAddSlide ??
+															_siteContainer.ButtonExtensionsAddSlide.Image;
+			_siteContainer.ButtonExtensionsAddSlides.Image = ResourceManager.Instance.BrowserPowerPointAddSlides ??
+															 _siteContainer.ButtonExtensionsAddSlides.Image;
+			_siteContainer.ButtonExtensionsPrint.Image = ResourceManager.Instance.BrowserPowerPointPrint ??
+														 _siteContainer.ButtonExtensionsPrint.Image;
+			_siteContainer.ButtonExtensionsAddVideo.Image = ResourceManager.Instance.BrowserVideoAdd ??
+															_siteContainer.ButtonExtensionsAddVideo.Image;
+			_siteContainer.ButtonExtensionsDownloadYouTube.Image = ResourceManager.Instance.BrowserYoutubeAdd ??
+																   _siteContainer.ButtonExtensionsDownloadYouTube.Image;
+			buttonItemUrlEmail.Image = ResourceManager.Instance.BrowserUrlEmail;
+			buttonItemUrlCopy.Image = ResourceManager.Instance.BrowserUrlCopy;
 		}
 
 		private void OnFormResize(object sender, EventArgs e)
@@ -58,16 +99,34 @@ namespace Asa.Browser.Single
 			BrowserPowerPointSingleton.Instance.Disconnect();
 		}
 
+		private void OnUrlEmailClick(object sender, EventArgs e)
+		{
+			_siteContainer.EmailUrl();
+		}
+
+		private void OnUrlCopyClick(object sender, EventArgs e)
+		{
+			_siteContainer.CopyUrl();
+		}
+
 		#region Form Settings
 		private void LoadSettings()
 		{
-			Width = Settings.Default.FormWidth;
-			Height = Settings.Default.FormHeight;
+			Width = (Int32)(Screen.PrimaryScreen.Bounds.Width * 0.8);
+			Height = (Int32)(Screen.PrimaryScreen.Bounds.Height * 0.8);
+			Left = (Screen.PrimaryScreen.Bounds.Width - Width) / 2;
+			Top = (Screen.PrimaryScreen.Bounds.Height - Height) / 2;
+
+			if (Settings.Default.FormWidth != -1)
+			{
+				Width = Settings.Default.FormWidth;
+				Height = Settings.Default.FormHeight;
+			}
 
 			if (Settings.Default.FormTop != -1)
 			{
-				Top = Settings.Default.FormTop;
-				Left = Settings.Default.FormLeft;
+				Left = (Screen.PrimaryScreen.Bounds.Width - Width) / 2;
+				Top = (Screen.PrimaryScreen.Bounds.Height - Height) / 2;
 			}
 
 			if (Settings.Default.FormState != FormWindowState.Normal)

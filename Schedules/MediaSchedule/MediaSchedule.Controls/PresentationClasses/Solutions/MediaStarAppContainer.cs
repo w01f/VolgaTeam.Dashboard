@@ -33,7 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		{
 			EditedContent?.Dispose();
 			EditedContent = BusinessObjects.Instance.ScheduleManager.ActiveSchedule
-				.GetScheduleSolutionContent<MediaStarAppContent>(SolutionInfo.Type)
+				.GetScheduleSolutionContent<MediaStarAppContent>(SolutionInfo)
 				.Clone<MediaStarAppContent, StarAppContent>();
 			base.LoadData();
 		}
@@ -41,7 +41,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override void SaveData()
 		{
 			BusinessObjects.Instance.ScheduleManager.ActiveSchedule
-				.ApplyScheduleSolutionContent(SolutionInfo.Type, EditedContent.Clone<MediaStarAppContent, StarAppContent>());
+				.ApplyScheduleSolutionContent(SolutionInfo, EditedContent.Clone<MediaStarAppContent, StarAppContent>());
 		}
 
 		public override Theme GetSelectedTheme(SlideType slideType)

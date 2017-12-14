@@ -33,7 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 			};
 			BarButton = new ButtonInfo
 			{
-				Logo = Resources.SectionSettingsStyle,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.OptionsRetractableBarColorsImage ?? Resources.SectionSettingsStyle,
 				Tooltip = "Open Slide Style",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};
@@ -52,7 +52,7 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.Settings
 
 		private void OnColorChanged(object sender, EventArgs e)
 		{
-			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ?? 
+			MediaMetaData.Instance.SettingsManager.SelectedColor = outputColorSelector.SelectedColor ??
 				BusinessObjects.Instance.OutputManager.OptionsColors.Items.Select(ci => ci.Name).FirstOrDefault();
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 			BusinessObjects.Instance.OutputManager.RaiseSelectedColorChanged();

@@ -72,6 +72,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		{
 			AllowToSave = false;
 
+			//TODO: Need to check how to clear existed controls if month collection empty
 			if (!CalendarContent.Months.Any()) return;
 
 			CalendarView.LoadData();

@@ -55,10 +55,6 @@
 			this.simpleButtonExpand.Image = global::Asa.Common.GUI.Properties.Resources.RetractableBarCollapse;
 			this.simpleButtonExpand.Size = new System.Drawing.Size(47, 36);
 			// 
-			// pnTop
-			// 
-			this.pnTop.Size = new System.Drawing.Size(300, 40);
-			// 
 			// pnContent
 			// 
 			this.pnContent.Size = new System.Drawing.Size(300, 344);

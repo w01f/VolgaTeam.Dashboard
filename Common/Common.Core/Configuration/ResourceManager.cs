@@ -135,6 +135,8 @@ namespace Asa.Common.Core.Configuration
 				FileStorageManager.CommonIncomingFolderName,
 				"SlidesTab"
 			});
+			if (await SlideMastersFolder.Exists(true))
+				await SlideMastersFolder.Download();
 
 
 			ScheduleSlideTemplatesFolder = new ArchiveDirectory(new[]

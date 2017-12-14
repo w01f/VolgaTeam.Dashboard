@@ -21,8 +21,6 @@ namespace Asa.Business.Dashboard.Configuration
 		{
 			await Asa.Common.Core.Configuration.ResourceManager.Instance.Load();
 
-			await Asa.Common.Core.Configuration.ResourceManager.Instance.SlideMastersFolder.Download();
-
 			DataUsersFile = new StorageFile(
 				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Users.xml"));
 			await DataUsersFile.Download();

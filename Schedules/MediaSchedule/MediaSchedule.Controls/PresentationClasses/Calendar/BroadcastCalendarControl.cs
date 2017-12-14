@@ -1,13 +1,10 @@
-﻿using System.Drawing;
-using System.Linq;
+﻿using System.Linq;
 using Asa.Business.Common.Enums;
-using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar

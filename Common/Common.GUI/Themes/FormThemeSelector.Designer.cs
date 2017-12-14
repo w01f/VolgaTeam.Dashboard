@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.checkEditApplyThemeForAllSlideTypes = new DevExpress.XtraEditors.CheckEdit();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
@@ -46,7 +45,7 @@
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupContainer = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemContainer = new DevExpress.XtraLayout.LayoutControlItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyThemeForAllSlideTypes.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -71,12 +70,12 @@
 			this.pnMain.ForeColor = System.Drawing.Color.Black;
 			this.pnMain.Location = new System.Drawing.Point(11, 46);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(872, 387);
+			this.pnMain.Size = new System.Drawing.Size(872, 438);
 			this.pnMain.TabIndex = 3;
 			// 
 			// checkEditApplyThemeForAllSlideTypes
 			// 
-			this.checkEditApplyThemeForAllSlideTypes.Location = new System.Drawing.Point(12, 454);
+			this.checkEditApplyThemeForAllSlideTypes.Location = new System.Drawing.Point(12, 505);
 			this.checkEditApplyThemeForAllSlideTypes.Name = "checkEditApplyThemeForAllSlideTypes";
 			this.checkEditApplyThemeForAllSlideTypes.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditApplyThemeForAllSlideTypes.Properties.Appearance.Options.UseForeColor = true;
@@ -110,7 +109,7 @@
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(894, 494);
+			this.layoutControl.Size = new System.Drawing.Size(894, 545);
 			this.layoutControl.TabIndex = 68;
 			this.layoutControl.Text = "layoutControl1";
 			// 
@@ -120,7 +119,7 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(626, 446);
+			this.buttonXOK.Location = new System.Drawing.Point(626, 497);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(116, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -134,7 +133,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(766, 446);
+			this.buttonXCancel.Location = new System.Drawing.Point(766, 497);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(116, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -172,13 +171,13 @@
             this.layoutControlGroupContainer});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(894, 494);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(894, 545);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// emptySpaceItem4
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(307, 434);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(307, 485);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
 			this.emptySpaceItem4.Size = new System.Drawing.Size(307, 40);
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -188,7 +187,7 @@
 			this.layoutControlItemCancel.Control = this.buttonXCancel;
 			this.layoutControlItemCancel.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCancel.FillControlToClientArea = false;
-			this.layoutControlItemCancel.Location = new System.Drawing.Point(754, 434);
+			this.layoutControlItemCancel.Location = new System.Drawing.Point(754, 485);
 			this.layoutControlItemCancel.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.Name = "layoutControlItemCancel";
@@ -204,7 +203,7 @@
 			this.layoutControlItemOK.Control = this.buttonXOK;
 			this.layoutControlItemOK.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemOK.FillControlToClientArea = false;
-			this.layoutControlItemOK.Location = new System.Drawing.Point(614, 434);
+			this.layoutControlItemOK.Location = new System.Drawing.Point(614, 485);
 			this.layoutControlItemOK.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.Name = "layoutControlItemOK";
@@ -218,7 +217,7 @@
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(734, 434);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(734, 485);
 			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(20, 0);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(20, 10);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
@@ -231,7 +230,7 @@
 			this.layoutControlItemApplyThemeForAllSlideTypes.Control = this.checkEditApplyThemeForAllSlideTypes;
 			this.layoutControlItemApplyThemeForAllSlideTypes.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemApplyThemeForAllSlideTypes.FillControlToClientArea = false;
-			this.layoutControlItemApplyThemeForAllSlideTypes.Location = new System.Drawing.Point(0, 434);
+			this.layoutControlItemApplyThemeForAllSlideTypes.Location = new System.Drawing.Point(0, 485);
 			this.layoutControlItemApplyThemeForAllSlideTypes.Name = "layoutControlItemApplyThemeForAllSlideTypes";
 			this.layoutControlItemApplyThemeForAllSlideTypes.Size = new System.Drawing.Size(307, 40);
 			this.layoutControlItemApplyThemeForAllSlideTypes.Text = "Apply Theme For All Slide Types";
@@ -264,7 +263,7 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 424);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 475);
 			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -290,7 +289,7 @@
 			this.layoutControlGroupContainer.Location = new System.Drawing.Point(0, 35);
 			this.layoutControlGroupContainer.Name = "layoutControlGroupContainer";
 			this.layoutControlGroupContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupContainer.Size = new System.Drawing.Size(874, 389);
+			this.layoutControlGroupContainer.Size = new System.Drawing.Size(874, 440);
 			this.layoutControlGroupContainer.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupContainer.TextVisible = false;
 			// 
@@ -301,7 +300,7 @@
 			this.layoutControlItemContainer.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemContainer.Name = "layoutControlItemContainer";
 			this.layoutControlItemContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemContainer.Size = new System.Drawing.Size(872, 387);
+			this.layoutControlItemContainer.Size = new System.Drawing.Size(872, 438);
 			this.layoutControlItemContainer.Text = "Container";
 			this.layoutControlItemContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemContainer.TextVisible = false;
@@ -327,7 +326,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(894, 494);
+			this.ClientSize = new System.Drawing.Size(894, 545);
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

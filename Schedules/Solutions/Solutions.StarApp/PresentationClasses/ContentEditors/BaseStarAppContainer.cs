@@ -26,7 +26,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public StarAppSolutionInfo StarInfo { get; }
 		public StarAppContent EditedContent { get; protected set; }
 		public abstract IStarAppSettingsContainer SettingsContainer { get; }
-		public override SolutionType SolutionType => SolutionType.StarApp;
 		public override SlideType SelectedSlideType => ActiveSlide?.SlideType ?? SlideType.Cleanslate;
 		public override string HelpKey
 		{

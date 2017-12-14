@@ -14,7 +14,6 @@ using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Entities.NonPersistent.Section.Content;
 using Asa.Business.Media.Entities.NonPersistent.Snapshot;
 using Asa.Business.Media.Enums;
-using Asa.Business.Media.Interfaces;
 using Asa.Business.Online.Entities.NonPersistent;
 using Asa.Business.Online.Interfaces;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
@@ -213,7 +212,7 @@ namespace Asa.Business.Media.Entities.Persistent
 		{
 			var mediaChangeInfo = changeInfo as MediaScheduleChangeInfo;
 			if (changeInfo.ScheduleDatesChanged)
-				OnScheduleDatesChanged(new ScheduleDatesChangedEventArgs { KeepDatesRelatedData = mediaChangeInfo.KeepSpotsWhenDatesChanged});
+				OnScheduleDatesChanged(new ScheduleDatesChangedEventArgs { KeepDatesRelatedData = mediaChangeInfo.KeepSpotsWhenDatesChanged });
 			if (mediaChangeInfo == null) return;
 			if (mediaChangeInfo.DigitalContentChanged)
 				DigitalDataChanged?.Invoke(this, EventArgs.Empty);
@@ -256,10 +255,10 @@ namespace Asa.Business.Media.Entities.Persistent
 		#endregion
 
 		#region Solution Processing
-		private MediaSolution CreateScheduleSolution(SolutionType solutionType)
+		private MediaSolution CreateScheduleSolution(BaseSolutionInfo solutionInfo)
 		{
 			MediaSolution scheduleSolution;
-			switch (solutionType)
+			switch (solutionInfo.Type)
 			{
 				case SolutionType.Dashboard:
 					scheduleSolution = new MediaDashboardSolution();
@@ -273,23 +272,26 @@ namespace Asa.Business.Media.Entities.Persistent
 			scheduleSolution.Add(Context);
 			scheduleSolution.Schedule = this;
 			Solutions.Add(scheduleSolution);
+
+			scheduleSolution.InitSolutionInfo(solutionInfo);
+
 			MarkAsModified();
 			return scheduleSolution;
 		}
 
-		public TScheduleSolutionContent GetScheduleSolutionContent<TScheduleSolutionContent>(SolutionType solutionType)
+		public TScheduleSolutionContent GetScheduleSolutionContent<TScheduleSolutionContent>(BaseSolutionInfo solutionInfo)
 			where TScheduleSolutionContent : BaseSolutionContent
 		{
-			var scheduleSolution = Solutions.OfType<IScheduleSolution<TScheduleSolutionContent>>().FirstOrDefault(solution => solution.Type == (Int32)solutionType) ??
-				(IScheduleSolution<TScheduleSolutionContent>)CreateScheduleSolution(solutionType);
+			var scheduleSolution = Solutions.OfType<IScheduleSolution<TScheduleSolutionContent>>().FirstOrDefault(solution => solution.Content.SolutionId == solutionInfo.Id) ??
+				(IScheduleSolution<TScheduleSolutionContent>)CreateScheduleSolution(solutionInfo);
 			return scheduleSolution.Content;
 		}
 
-		public void ApplyScheduleSolutionContent<TScheduleSolutionContent>(SolutionType solutionType, TScheduleSolutionContent content)
+		public void ApplyScheduleSolutionContent<TScheduleSolutionContent>(BaseSolutionInfo solutionInfo, TScheduleSolutionContent content)
 			where TScheduleSolutionContent : BaseSolutionContent
 		{
-			var scheduleSolution = Solutions.OfType<IScheduleSolution<TScheduleSolutionContent>>().FirstOrDefault(solution => solution.Type == (Int32)solutionType) ??
-				(IScheduleSolution<TScheduleSolutionContent>)CreateScheduleSolution(solutionType);
+			var scheduleSolution = Solutions.OfType<IScheduleSolution<TScheduleSolutionContent>>().FirstOrDefault(solution => solution.Content.SolutionId == solutionInfo.Id) ??
+				(IScheduleSolution<TScheduleSolutionContent>)CreateScheduleSolution(solutionInfo);
 			var oldContent = scheduleSolution.Content;
 			if (oldContent != null)
 			{

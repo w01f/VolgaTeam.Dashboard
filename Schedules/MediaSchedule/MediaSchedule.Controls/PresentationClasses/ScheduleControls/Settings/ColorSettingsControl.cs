@@ -31,7 +31,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.Settings
 			};
 			BarButton = new ButtonInfo
 			{
-				Logo = Resources.SectionSettingsStyle,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.ProgramScheduleRetractableBarColorsImage ?? Resources.SectionSettingsStyle,
 				Tooltip = "Open Slide Style",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

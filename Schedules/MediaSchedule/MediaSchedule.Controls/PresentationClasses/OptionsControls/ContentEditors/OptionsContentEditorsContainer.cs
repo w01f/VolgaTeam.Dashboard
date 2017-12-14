@@ -66,6 +66,10 @@ namespace Asa.Media.Controls.PresentationClasses.OptionsControls.ContentEditors
 		{
 			base.InitControl();
 
+			retractableBarControl.simpleButtonExpand.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarExpandImage ??
+															 retractableBarControl.simpleButtonExpand.Image;
+			retractableBarControl.simpleButtonCollapse.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarCollpaseImage ??
+															   retractableBarControl.simpleButtonCollapse.Image;
 			retractableBarControl.ContentSize = retractableBarControl.Width;
 			retractableBarControl.Collapse(true);
 

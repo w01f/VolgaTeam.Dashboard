@@ -185,21 +185,22 @@ namespace Asa.SlideTemplateViewer
 			Utilities.ActivateForm(mainFormHandle, false, false);
 		}
 
-		public bool CheckPowerPointRunning()
+		public bool CheckPowerPointRunning(Action afterRun = null)
 		{
 			if (PowerPointManager.Processor.Connect(false))
 				return true;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion(String.Format("PowerPoint is required to run this application.{0}Do you want to go ahead and open PowerPoint?", Environment.NewLine)) == DialogResult.Yes)
-				ShowFloater(() => PowerPointManager.RunPowerPointLoader());
+				ShowFloater(() => PowerPointManager.RunPowerPointLoader(), afterRun);
 			return false;
 		}
 
-		public void ShowFloater(Action afterShow)
+		public void ShowFloater(Action afterShow, Action afterBack = null)
 		{
 			ShowFloater(null, new FloaterRequestedEventArgs
 			{
 				Logo = SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo,
-				AfterShow = afterShow
+				AfterShow = afterShow,
+				AfterBack = afterBack
 			});
 		}
 

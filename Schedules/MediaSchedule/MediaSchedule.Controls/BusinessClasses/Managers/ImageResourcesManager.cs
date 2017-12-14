@@ -24,6 +24,11 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image RibbonSettingsImage { get; private set; }
 		#endregion
 
+		#region Retractable Bar Resources
+		public Image RetractableBarExpandImage { get; private set; }
+		public Image RetractableBarCollpaseImage { get; private set; }
+		#endregion
+
 		#region Main Menu
 		public Image MainMenuNewImage { get; private set; }
 		public Image MainMenuOpenImage { get; private set; }
@@ -36,10 +41,19 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image MainMenuExitImage { get; private set; }
 		#endregion
 
+		#region Qat Menu
+		public Image QatSaveImage { get; private set; }
+		public Image QatSaveAsImage { get; private set; }
+		public Image QatFloaterImage { get; private set; }
+		public Image QatHelpImage { get; private set; }
+		#endregion
+
 		#region Home Resources
 		public Image HomeDefaultLogo { get; private set; }
 		public Image HomeDateStartImage { get; private set; }
 		public Image HomeDateEndImage { get; private set; }
+		public Image HomeTopTitleImage { get; private set; }
+		public Image HomeBottomTitleImage { get; private set; }
 		public Image HomeWeeklyScheduleImage { get; private set; }
 		public Image HomeMonthlyScheduleImage { get; private set; }
 		public Image HomeSnaphotShortcutImage { get; private set; }
@@ -51,6 +65,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image HomeSettingsDemoImage { get; private set; }
 		public Image HomeSettingsDaypartsImage { get; private set; }
 		public Image HomeSettingsCalendarTypeImage { get; private set; }
+		public Image HomeSettingsFlightDatesLogo { get; private set; }
 		#endregion
 
 		#region Program Schedule Resources
@@ -59,6 +74,11 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image ProgramScheduleNoProgramsLogo { get; private set; }
 		public Image ProgramScheduleNoDigitalItemsLogo { get; private set; }
 		public Image ProgramScheduleNewPopupLogo { get; private set; }
+		public Image ProgramScheduleRetractableBarColumnsImage { get; private set; }
+		public Image ProgramScheduleRetractableBarTotalsImage { get; private set; }
+		public Image ProgramScheduleRetractableBarDigitalImage { get; private set; }
+		public Image ProgramScheduleRetractableBarSummaryImage { get; private set; }
+		public Image ProgramScheduleRetractableBarColorsImage { get; private set; }
 		#endregion
 
 		#region Snapshots Resources
@@ -67,6 +87,11 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image SnapshotsNoProgramsLogo { get; private set; }
 		public Image SnapshotsNoDigitalItemsLogo { get; private set; }
 		public Image SnapshotsNewPopupLogo { get; private set; }
+		public Image SnapshotsRetractableBarColumnsImage { get; private set; }
+		public Image SnapshotsRetractableBarDigitalImage { get; private set; }
+		public Image SnapshotsRetractableBarSummaryImage { get; private set; }
+		public Image SnapshotsRetractableBarActiveWeeksImage { get; private set; }
+		public Image SnapshotsRetractableBarColorsImage { get; private set; }
 		#endregion
 
 		#region Options Resources
@@ -75,6 +100,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image OptionsNoProgramsLogo { get; private set; }
 		public Image OptionsNoDigitalItemsLogo { get; private set; }
 		public Image OptionsNewPopupLogo { get; private set; }
+		public Image OptionsRetractableBarColumnsImage { get; private set; }
+		public Image OptionsRetractableBarDigitalImage { get; private set; }
+		public Image OptionsRetractableBarSummaryImage { get; private set; }
+		public Image OptionsRetractableBarColorsImage { get; private set; }
 		#endregion
 
 		#region Digital Resources
@@ -83,10 +112,19 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public Image DigitalProductsHomeRightLogo { get; private set; }
 		public Image DigitalProductsHomeBottomLogo { get; private set; }
 		public Image DigitalStandalonePackageNoRecordsLogo { get; private set; }
+		public Image DigitalRetractableBarListImage { get; private set; }
+		public Image DigitalRetractableBarProductPackageImage { get; private set; }
+		public Image DigitalRetractableBarStandalonePackageImage { get; private set; }
+		public Image DigitalRetractableBarProductPackageFormulaImage { get; private set; }
+		public Image DigitalRetractableBarStandalonePackageFormulaImage { get; private set; }
 		#endregion
 
 		#region Calendar Resources
 		public Image CalendarNoDataLogo { get; private set; }
+		public Image CalendarRetractableBarDataSourceImage { get; private set; }
+		public Image CalendarRetractableBarFavoritesImage { get; private set; }
+		public Image CalendarRetractableBarStyleImage { get; private set; }
+		public Image CalendarRetractableBarCommentsImage { get; private set; }
 		#endregion
 
 		#region Browser Resources
@@ -151,6 +189,15 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				RibbonSettingsImage = Image.FromFile(resourceFile);
 			#endregion
 
+			#region Retractable Bar Resources
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_arrow_right.png");
+			if (File.Exists(resourceFile))
+				RetractableBarExpandImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_arrow_left.png");
+			if (File.Exists(resourceFile))
+				RetractableBarCollpaseImage = Image.FromFile(resourceFile);
+			#endregion
+
 			#region Main Menu
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "filetab_new.png");
 			if (File.Exists(resourceFile))
@@ -181,6 +228,21 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 				MainMenuExitImage = Image.FromFile(resourceFile);
 			#endregion
 
+			#region Qat Menu
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "titlebar_save.png");
+			if (File.Exists(resourceFile))
+				QatSaveImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "titlebar_saveas.png");
+			if (File.Exists(resourceFile))
+				QatSaveAsImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "titlebar_floater.png");
+			if (File.Exists(resourceFile))
+				QatFloaterImage = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "titlebar_help.png");
+			if (File.Exists(resourceFile))
+				QatHelpImage = Image.FromFile(resourceFile);
+			#endregion
+
 			#region Home Resources
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_default.png");
 			if (File.Exists(resourceFile))
@@ -193,6 +255,14 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_home_cal_end.png");
 			if (File.Exists(resourceFile))
 				HomeDateEndImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_subtab1_top.png");
+			if (File.Exists(resourceFile))
+				HomeTopTitleImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_subtab1_bottom.png");
+			if (File.Exists(resourceFile))
+				HomeBottomTitleImage = Image.FromFile(resourceFile);
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_top_1.png");
 			if (File.Exists(resourceFile))
@@ -237,6 +307,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "preferences_calendar.png");
 			if (File.Exists(resourceFile))
 				HomeSettingsCalendarTypeImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_dates.png");
+			if (File.Exists(resourceFile))
+				HomeSettingsFlightDatesLogo = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Program Schedule Resources
@@ -259,6 +333,26 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_schedule.png");
 			if (File.Exists(resourceFile))
 				ProgramScheduleNewPopupLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_sched_tv_radio_columns.png");
+			if (File.Exists(resourceFile))
+				ProgramScheduleRetractableBarColumnsImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_sched_tv_radio_totals.png");
+			if (File.Exists(resourceFile))
+				ProgramScheduleRetractableBarTotalsImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_sched_digital_info.png");
+			if (File.Exists(resourceFile))
+				ProgramScheduleRetractableBarDigitalImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_sched_summary_info.png");
+			if (File.Exists(resourceFile))
+				ProgramScheduleRetractableBarSummaryImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_sched_colors.png");
+			if (File.Exists(resourceFile))
+				ProgramScheduleRetractableBarColorsImage = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Snapshots Resources
@@ -281,6 +375,26 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_snapshot.png");
 			if (File.Exists(resourceFile))
 				SnapshotsNewPopupLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_snap_columns.png");
+			if (File.Exists(resourceFile))
+				SnapshotsRetractableBarColumnsImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_snap_digital_info.png");
+			if (File.Exists(resourceFile))
+				SnapshotsRetractableBarDigitalImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_snap_summary_info.png");
+			if (File.Exists(resourceFile))
+				SnapshotsRetractableBarSummaryImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_snap_active_weeks.png");
+			if (File.Exists(resourceFile))
+				SnapshotsRetractableBarActiveWeeksImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_snap_colors.png");
+			if (File.Exists(resourceFile))
+				SnapshotsRetractableBarColorsImage = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Options Resources
@@ -303,6 +417,22 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "popup_flex.png");
 			if (File.Exists(resourceFile))
 				OptionsNewPopupLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_flex_columns.png");
+			if (File.Exists(resourceFile))
+				OptionsRetractableBarColumnsImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_flex_digital_info.png");
+			if (File.Exists(resourceFile))
+				OptionsRetractableBarDigitalImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_flex_summary_info.png");
+			if (File.Exists(resourceFile))
+				OptionsRetractableBarSummaryImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_flex_colors.png");
+			if (File.Exists(resourceFile))
+				OptionsRetractableBarColorsImage = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Digital Resources
@@ -325,12 +455,48 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "4_digital_subtab_6_default.png");
 			if (File.Exists(resourceFile))
 				DigitalStandalonePackageNoRecordsLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_digital_list.png");
+			if (File.Exists(resourceFile))
+				DigitalRetractableBarListImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_digital_package.png");
+			if (File.Exists(resourceFile))
+				DigitalRetractableBarProductPackageImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_digital_alacarte.png");
+			if (File.Exists(resourceFile))
+				DigitalRetractableBarStandalonePackageImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_digital_package_calc.png");
+			if (File.Exists(resourceFile))
+				DigitalRetractableBarProductPackageFormulaImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_digital_alacarte_calc.png");
+			if (File.Exists(resourceFile))
+				DigitalRetractableBarStandalonePackageFormulaImage = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Calendar Resources
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "5_summary_calendar_default.png");
 			if (File.Exists(resourceFile))
 				CalendarNoDataLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_cal_data_source.png");
+			if (File.Exists(resourceFile))
+				CalendarRetractableBarDataSourceImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_cal_gallery.png");
+			if (File.Exists(resourceFile))
+				CalendarRetractableBarFavoritesImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_cal_slide_style.png");
+			if (File.Exists(resourceFile))
+				CalendarRetractableBarStyleImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_cal_comments.png");
+			if (File.Exists(resourceFile))
+				CalendarRetractableBarCommentsImage = Image.FromFile(resourceFile);
 			#endregion
 
 			#region Browser Resources

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.Skins;
 
@@ -20,6 +21,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		public FormFlightDatesEdit()
 		{
 			InitializeComponent();
+
+			pictureEditLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeSettingsFlightDatesLogo ?? pictureEditLogo.Image;
 
 			layoutControlItemDateStart.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateStart.MaxSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));
 			layoutControlItemDateStart.MinSize = RectangleHelper.ScaleSize(layoutControlItemDateStart.MinSize, Utilities.GetScaleFactor(CreateGraphics().DpiX));

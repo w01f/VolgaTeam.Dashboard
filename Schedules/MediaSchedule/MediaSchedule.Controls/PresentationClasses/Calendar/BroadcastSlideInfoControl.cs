@@ -5,6 +5,7 @@ using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.RetractableBar;
+using Asa.Media.Controls.BusinessClasses.Managers;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraLayout.Utils;
@@ -30,9 +31,15 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				chapters.Add(
 					new ButtonInfo
 					{
-						Logo = Properties.Resources.CalendarOptionsDataSource,
+						Logo = BusinessObjects.Instance.ImageResourcesManager.CalendarRetractableBarDataSourceImage ?? Properties.Resources.CalendarOptionsDataSource,
 						Tooltip = "Open Data Options",
-						Action = () => { tabbedControlGroup.SelectedTabPage = layoutControlGroupDataSettings; }
+						Action = () =>
+						{
+							//Bad code. Must be fixed----
+							layoutControlGroupDataSettings.Visibility = LayoutVisibility.Always;
+							//----
+							tabbedControlGroup.SelectedTabPage = layoutControlGroupDataSettings;
+						}
 					});
 			chapters.AddRange(base.GetChapters());
 			return chapters;

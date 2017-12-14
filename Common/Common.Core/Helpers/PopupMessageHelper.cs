@@ -71,7 +71,7 @@ namespace Asa.Common.Core.Helpers
 		public CenterWinDialog(Form owner)
 		{
 			mOwner = owner;
-			owner.BeginInvoke(new MethodInvoker(findDialog));
+			owner?.BeginInvoke(new MethodInvoker(findDialog));
 		}
 
 		private void findDialog()
@@ -81,11 +81,12 @@ namespace Asa.Common.Core.Helpers
 			EnumThreadWndProc callback = new EnumThreadWndProc(checkWindow);
 			if (EnumThreadWindows(GetCurrentThreadId(), callback, IntPtr.Zero))
 			{
-				if (++mTries < 10) mOwner.BeginInvoke(new MethodInvoker(findDialog));
+				if (++mTries < 10) mOwner?.BeginInvoke(new MethodInvoker(findDialog));
 			}
 		}
 		private bool checkWindow(IntPtr hWnd, IntPtr lp)
 		{
+			if (mOwner == null) return false;
 			// Checks if <hWnd> is a dialog
 			StringBuilder sb = new StringBuilder(260);
 			GetClassName(hWnd, sb, sb.Capacity);

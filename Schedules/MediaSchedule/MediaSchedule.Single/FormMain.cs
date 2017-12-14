@@ -83,6 +83,15 @@ namespace Asa.Media.Single
 			buttonItemApplicationMenuExit.Image = BusinessObjects.Instance.ImageResourcesManager.MainMenuExitImage ??
 												 buttonItemApplicationMenuExit.Image;
 
+			buttonItemQatSave.Image = BusinessObjects.Instance.ImageResourcesManager.QatSaveImage ??
+									  buttonItemQatSave.Image;
+			buttonItemQatSaveAs.Image = BusinessObjects.Instance.ImageResourcesManager.QatSaveAsImage ??
+									  buttonItemQatSaveAs.Image;
+			buttonItemQatFloater.Image = BusinessObjects.Instance.ImageResourcesManager.QatFloaterImage ??
+									  buttonItemQatFloater.Image;
+			buttonItemQatHelp.Image = BusinessObjects.Instance.ImageResourcesManager.QatHelpImage ??
+									  buttonItemQatHelp.Image;
+
 			if (BusinessObjects.Instance.ImageResourcesManager.HomeDateStartImage != null)
 			{
 				labelItemHomeFlightDatesStartTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDateStartImage;

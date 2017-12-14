@@ -1,5 +1,6 @@
 ﻿using Asa.Business.Common.Entities.Persistent;
 using Asa.Business.Media.Contexts;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 
 namespace Asa.Business.Media.Entities.Persistent
 {
@@ -11,6 +12,8 @@ namespace Asa.Business.Media.Entities.Persistent
 		{
 			Schedule = null;
 		}
+
+		public abstract void InitSolutionInfo(BaseSolutionInfo solutionInfo);
 
 		public override void MarkAsModified()
 		{

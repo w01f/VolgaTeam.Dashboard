@@ -20,6 +20,7 @@ namespace Asa.Browser.Single.Configuration
 		public Image BrowserYoutubeAdd { get; private set; }
 		public Image BrowserUrlCopy { get; private set; }
 		public Image BrowserUrlEmail { get; private set; }
+		public Image BrowserFloater { get; private set; }
 
 		public static ResourceManager Instance { get; } = new ResourceManager();
 
@@ -71,6 +72,9 @@ namespace Asa.Browser.Single.Configuration
 			resourceFile = Path.Combine(resorceFolderPath, "eo_email.png");
 			if (File.Exists(resourceFile))
 				BrowserUrlEmail = Image.FromFile(resourceFile);
+			resourceFile = Path.Combine(resorceFolderPath, "eo_floater.png");
+			if (File.Exists(resourceFile))
+				BrowserFloater = Image.FromFile(resourceFile);
 		}
 	}
 }

@@ -16,7 +16,14 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 		public string Id { get; private set; }
 		public SolutionType Type { get; protected set; }
 		public string ToggleTitle { get; protected set; }
+		public string ToggleImagePath { get; protected set; }
 		public int Order { get; private set; }
+		public bool Enabled { get; protected set; }
+
+		protected BaseSolutionInfo()
+		{
+			Enabled = true;
+		}
 
 		public virtual void LoadData(StorageDirectory holderAppDataFolder)
 		{
@@ -44,8 +51,9 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 			}
 
 			solutionInfo.Id = configNode.SelectSingleNode("Id")?.InnerText;
-			solutionInfo.ToggleTitle = configNode.SelectSingleNode("Title")?.InnerText;
 			solutionInfo.Order = Int32.Parse(configNode.SelectSingleNode("Order")?.InnerText ?? "0");
+
+			solutionInfo.ToggleTitle = configNode.SelectSingleNode("Title")?.InnerText;
 
 			return solutionInfo;
 		}

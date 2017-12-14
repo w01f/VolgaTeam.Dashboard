@@ -28,10 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.barBottom = new DevComponents.DotNetBar.Bar();
 			this.itemContainerStatusBarInfo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemAppTitle = new DevComponents.DotNetBar.LabelItem();
@@ -63,11 +62,11 @@
             this.itemContainerStatusBarInfo,
             this.labelItemStatusBarSeparator,
             this.itemContainerStatusBarActionButtons});
-			this.barBottom.Location = new System.Drawing.Point(0, 529);
+			this.barBottom.Location = new System.Drawing.Point(0, 527);
 			this.barBottom.Name = "barBottom";
 			this.barBottom.PaddingBottom = 0;
 			this.barBottom.PaddingTop = 0;
-			this.barBottom.Size = new System.Drawing.Size(884, 26);
+			this.barBottom.Size = new System.Drawing.Size(884, 28);
 			this.barBottom.Stretch = true;
 			this.barBottom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.barBottom.TabIndex = 1;
@@ -80,7 +79,7 @@
 			// 
 			this.itemContainerStatusBarInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerStatusBarInfo.ItemSpacing = 20;
-			this.itemContainerStatusBarInfo.MinimumSize = new System.Drawing.Size(0, 24);
+			this.itemContainerStatusBarInfo.MinimumSize = new System.Drawing.Size(0, 26);
 			this.itemContainerStatusBarInfo.Name = "itemContainerStatusBarInfo";
 			this.itemContainerStatusBarInfo.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.labelItemAppTitle,
@@ -116,7 +115,7 @@
 			// 
 			this.itemContainerStatusBarActionButtons.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerStatusBarActionButtons.ItemSpacing = 5;
-			this.itemContainerStatusBarActionButtons.MinimumSize = new System.Drawing.Size(0, 24);
+			this.itemContainerStatusBarActionButtons.MinimumSize = new System.Drawing.Size(0, 26);
 			this.itemContainerStatusBarActionButtons.Name = "itemContainerStatusBarActionButtons";
 			this.itemContainerStatusBarActionButtons.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemUrlEmail,

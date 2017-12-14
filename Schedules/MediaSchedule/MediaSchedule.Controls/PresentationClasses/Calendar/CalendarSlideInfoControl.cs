@@ -90,7 +90,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			{
 				new ButtonInfo
 				{
-					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
+					Logo = BusinessObjects.Instance.ImageResourcesManager.CalendarRetractableBarFavoritesImage ?? Asa.Calendar.Controls.Properties.Resources.CalendarOptionsFavorites,
 					Tooltip = "Open My Gallery",
 					Action = () =>
 					{
@@ -99,7 +99,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				},
 				new ButtonInfo
 				{
-					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
+					Logo = BusinessObjects.Instance.ImageResourcesManager.CalendarRetractableBarStyleImage ?? Asa.Calendar.Controls.Properties.Resources.CalendarOptionsStyle,
 					Tooltip = "Open Slide Style",
 					Action = () =>
 					{
@@ -108,7 +108,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 				},
 				new ButtonInfo
 				{
-					Logo = Asa.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
+					Logo = BusinessObjects.Instance.ImageResourcesManager.CalendarRetractableBarCommentsImage ?? Asa.Calendar.Controls.Properties.Resources.CalendarOptionsComments,
 					Tooltip = "Open Comments",
 					Action = () =>
 					{

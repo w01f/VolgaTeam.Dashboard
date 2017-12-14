@@ -28,7 +28,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class ScheduleContainer : BasePartitionEditControl<ProgramScheduleContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
-	//public partial class ScheduleContainer : UserControl
+		//public partial class ScheduleContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
@@ -64,6 +64,10 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			settingsContainer.SettingsChanged += OnSectionSettingsChanged;
 			settingsContainer.SettingsControlsUpdated += OnSettingsControlsUpdated;
 
+			retractableBarControl.simpleButtonExpand.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarExpandImage ??
+															 retractableBarControl.simpleButtonExpand.Image;
+			retractableBarControl.simpleButtonCollapse.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarCollpaseImage ??
+															   retractableBarControl.simpleButtonCollapse.Image;
 			retractableBarControl.ContentSize = retractableBarControl.Width;
 			retractableBarControl.Collapse(true);
 
@@ -556,7 +560,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 
 		protected override void UpdateStatusBar()
 		{
-			if (ActiveSection!= null && ActiveSection.SectionData.Programs.Any())
+			if (ActiveSection != null && ActiveSection.SectionData.Programs.Any())
 			{
 				_statusBarTotalPeriodInfo.Text = String.Format("{0}s: {1}", SpotTitle, ActiveSection.TotalPeriodsValueFormatted);
 				_statusBarTotalSpotsInfo.Text = String.Format("Spots: {0}", ActiveSection.TotalSpotsValueFormatted);

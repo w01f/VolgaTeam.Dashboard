@@ -71,6 +71,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			base.InitControl();
 
 			pictureEditDefaultTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDefaultLogo ?? pictureEditDefaultTitle.Image;
+			pictureEditScheduleTypeTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeTopTitleImage ?? pictureEditScheduleTypeTitle.Image;
+			pictureEditScheduleConceptTypeTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeBottomTitleImage ?? pictureEditScheduleConceptTypeTitle.Image;
 			buttonXWeeklySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeWeeklyScheduleImage ?? buttonXWeeklySchedule.Image;
 			buttonXMonthlySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeMonthlyScheduleImage ?? buttonXMonthlySchedule.Image;
 			buttonXSnapshot.Image = BusinessObjects.Instance.ImageResourcesManager.HomeSnaphotShortcutImage ?? buttonXSnapshot.Image;

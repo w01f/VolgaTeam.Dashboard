@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
@@ -48,7 +47,7 @@
 			this.repositoryItemSpinEditRate = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.bandedGridColumnTotalWeeks = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnCost = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemPrograms = new DevExpress.XtraLayout.LayoutControlItem();
@@ -335,7 +334,7 @@
 			this.bandedGridColumnSpots.ColumnEdit = this.repositoryItemSpinEditSpot;
 			this.bandedGridColumnSpots.DisplayFormat.FormatString = "#,##0";
 			this.bandedGridColumnSpots.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.bandedGridColumnSpots.FieldName = "TotalSpots";
+			this.bandedGridColumnSpots.FieldName = "WeeklySpots";
 			this.bandedGridColumnSpots.MinWidth = 85;
 			this.bandedGridColumnSpots.Name = "bandedGridColumnSpots";
 			this.bandedGridColumnSpots.OptionsColumn.AllowEdit = false;
@@ -400,7 +399,7 @@
 			this.bandedGridColumnRate.ColumnEdit = this.repositoryItemSpinEditRate;
 			this.bandedGridColumnRate.DisplayFormat.FormatString = "$#,##0";
 			this.bandedGridColumnRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.bandedGridColumnRate.FieldName = "TotalCost";
+			this.bandedGridColumnRate.FieldName = "WeeklyCost";
 			this.bandedGridColumnRate.MinWidth = 85;
 			this.bandedGridColumnRate.Name = "bandedGridColumnRate";
 			this.bandedGridColumnRate.OptionsColumn.AllowEdit = false;
@@ -469,7 +468,7 @@
 			this.bandedGridColumnCost.ColumnEdit = this.repositoryItemSpinEditRate;
 			this.bandedGridColumnCost.DisplayFormat.FormatString = "$#,##0";
 			this.bandedGridColumnCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.bandedGridColumnCost.FieldName = "TotalWeekCost";
+			this.bandedGridColumnCost.FieldName = "TotalCost";
 			this.bandedGridColumnCost.MinWidth = 85;
 			this.bandedGridColumnCost.Name = "bandedGridColumnCost";
 			this.bandedGridColumnCost.OptionsColumn.AllowEdit = false;
@@ -553,7 +552,6 @@
 			// SnapshotSummaryEditorControl
 			// 
 			this.Controls.Add(this.layoutControl);
-			this.Name = "SnapshotSummaryEditorControl";
 			this.Size = new System.Drawing.Size(977, 563);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).EndInit();

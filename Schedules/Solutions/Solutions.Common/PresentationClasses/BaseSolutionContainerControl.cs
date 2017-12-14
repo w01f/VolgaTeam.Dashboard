@@ -22,7 +22,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 		protected List<SolutionToggle> SolutionToggles { get; }
 		protected SolutionToggle SelectedSolutionToggle => SolutionToggles.FirstOrDefault(st => st.Checked);
 		protected List<ISolutionEditor> SolutionEditors { get; }
-		protected ISolutionEditor ActiveSolutionEditor => SolutionEditors.FirstOrDefault(e => e.SolutionType == SelectedSolutionToggle?.SolutionInfo.Type);
+		protected ISolutionEditor ActiveSolutionEditor => SolutionEditors.FirstOrDefault(e => e.SolutionId == SelectedSolutionToggle?.SolutionInfo.Id);
 
 		public abstract RibbonPanel PanelSolutions { get; }
 		public abstract ButtonItem ButtonPowerPoint { get; }
@@ -114,14 +114,14 @@ namespace Asa.Solutions.Common.PresentationClasses
 		private void LoadControlPanel()
 		{
 			SolutionToggles.Clear();
-			xtraTabPageTemplates.Controls.Clear();
+			xtraScrollableControlPageTemplates.Controls.Clear();
 			foreach (var solutionInfo in SolutionManager.Solutions)
 			{
-				var solutionToggle = SolutionToggle.Create(solutionInfo);
+				var solutionToggle = SolutionToggle.Create(solutionInfo, xtraScrollableControlPageTemplates.Width - (Int32)(SolutionToggle.ButtonPadding * Utilities.GetScaleFactor(CreateGraphics().DpiX).Width) * 2);
 				solutionToggle.Click += OnSolutionToggeleClick;
 				solutionToggle.CheckedChanged += OnSolutionToggeleCheck;
 				SolutionToggles.Add(solutionToggle);
-				xtraTabPageTemplates.Controls.Add(solutionToggle);
+				xtraScrollableControlPageTemplates.Controls.Add(solutionToggle);
 			}
 			if (SolutionToggles.Any())
 				SolutionToggles.First().Checked = true;
@@ -130,16 +130,16 @@ namespace Asa.Solutions.Common.PresentationClasses
 
 		private void ResizeControlPanel()
 		{
-			var paddings = SolutionToggle.ButtonPadding;
+			var paddings = (Int32)(SolutionToggle.ButtonPadding * Utilities.GetScaleFactor(CreateGraphics().DpiX).Width);
 			var top = paddings;
 			var left = paddings;
-			var buttonWidth = xtraTabPageTemplates.Width - (paddings * 2);
+			var buttonWidth = xtraScrollableControlPageTemplates.Width - (paddings * 2);
 			foreach (var solutionToggle in SolutionToggles)
 			{
 				solutionToggle.Top = top;
 				solutionToggle.Left = left;
 				solutionToggle.Width = buttonWidth;
-				top += (Int32)(SolutionToggle.ButtonHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height) + SolutionToggle.ButtonPadding;
+				top += solutionToggle.Height + (Int32)(SolutionToggle.ButtonPadding * Utilities.GetScaleFactor(CreateGraphics().DpiX).Width);
 			}
 		}
 

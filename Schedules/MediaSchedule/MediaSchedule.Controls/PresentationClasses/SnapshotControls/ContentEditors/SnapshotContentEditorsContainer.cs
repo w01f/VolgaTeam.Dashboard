@@ -35,7 +35,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class SnapshotContentEditorsContainer : BasePartitionEditControl<SnapshotContent, MediaSchedule, MediaScheduleSettings, MediaScheduleChangeInfo>
-		//public partial class SnapshotContentEditorsContainer : UserControl
+	//public partial class SnapshotContentEditorsContainer : UserControl
 	{
 		private bool _allowToSave;
 		private XtraTabHitInfo _menuHitInfo;
@@ -66,6 +66,10 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 		{
 			base.InitControl();
 
+			retractableBarControl.simpleButtonExpand.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarExpandImage ??
+															 retractableBarControl.simpleButtonExpand.Image;
+			retractableBarControl.simpleButtonCollapse.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarCollpaseImage ??
+															   retractableBarControl.simpleButtonCollapse.Image;
 			retractableBarControl.ContentSize = retractableBarControl.Width;
 			retractableBarControl.Collapse(true);
 

@@ -30,7 +30,7 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 {
 	[ToolboxItem(false)]
 	public partial class DigitalEditorsContainer : BasePartitionEditControl<DigitalProductsContent, IDigitalSchedule<IDigitalScheduleSettings>, IDigitalScheduleSettings, MediaScheduleChangeInfo>
-		//public partial class DigitalEditorsContainer :UserControl
+	//public partial class DigitalEditorsContainer :UserControl
 	{
 		#region Properties
 		private MediaSchedule Schedule => BusinessObjects.Instance.ScheduleManager.ActiveSchedule;
@@ -61,6 +61,10 @@ namespace Asa.Media.Controls.PresentationClasses.Digital.ContentEditors
 			settingsContainer.SettingsChanged += OnSettingsChanged;
 			settingsContainer.SettingsControlsUpdated += OnSettingsControlsUpdated;
 
+			retractableBarControl.simpleButtonExpand.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarExpandImage ??
+															 retractableBarControl.simpleButtonExpand.Image;
+			retractableBarControl.simpleButtonCollapse.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarCollpaseImage ??
+															 retractableBarControl.simpleButtonCollapse.Image;
 			retractableBarControl.ContentSize = retractableBarControl.Width;
 			retractableBarControl.Collapse(true);
 

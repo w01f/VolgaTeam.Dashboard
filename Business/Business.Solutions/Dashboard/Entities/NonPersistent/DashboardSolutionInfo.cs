@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Xml;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
@@ -57,7 +59,14 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 			{
 				document.Load(resourceManager.SettingsFile.LocalPath);
 
-				ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
+				Enabled = !Boolean.Parse(document.SelectSingleNode(@"//Settings/ButtonDisabled")?.InnerText ?? "false");
+
+				var useImage = Boolean.Parse(document.SelectSingleNode(@"//Settings/ButtonImage")?.InnerText ?? "false");
+				if (useImage)
+					ToggleImagePath = Path.Combine(DataFolder.LocalPath, String.Format("{0}.png", Id.ToLower()));
+				else
+					ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
+
 				CleanslateTitle = document.SelectSingleNode(@"//Settings/Tab_0")?.InnerText;
 				CoverTitle = document.SelectSingleNode(@"//Settings/Tab_1/Name")?.InnerText;
 				LeadoffStatementTitle = document.SelectSingleNode(@"//Settings/Tab_2/Name")?.InnerText;

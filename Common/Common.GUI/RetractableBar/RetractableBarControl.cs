@@ -5,8 +5,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using Asa.Common.Core.Helpers;
 using DevExpress.XtraEditors;
 using Asa.Common.GUI.Properties;
+using DevExpress.LookAndFeel;
 
 namespace Asa.Common.GUI.RetractableBar
 {

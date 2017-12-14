@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Asa.Business.Common.Entities.NonPersistent.Common;
 using Asa.Business.Media.Entities.NonPersistent.Solutions;
+using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Common.Interfaces;
 using Newtonsoft.Json;
@@ -33,6 +34,11 @@ namespace Asa.Business.Media.Entities.Persistent
 		public override void BeforeSave()
 		{
 			ContentEncoded = Content.Serialize();
+		}
+
+		public override void InitSolutionInfo(BaseSolutionInfo solutionInfo)
+		{
+			Content.SolutionId = solutionInfo.Id;
 		}
 	}
 }

@@ -5,6 +5,8 @@ namespace Asa.Business.Solutions.Common.Entities.NonPersistent
 {
 	public abstract class BaseSolutionContent: SettingsContainer, IJsonCloneable<BaseSolutionContent>
 	{
+		public string SolutionId { get; set; }
+
 		public virtual void AfterClone(BaseSolutionContent source, bool fullClone = true)
 		{
 			Parent = source.Parent;

@@ -77,7 +77,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Snapshot
 				if (ActiveWeeks.Any()) return ActiveWeeks.Count;
 				return Parent.ScheduleSettings.GetWeeks().Count();
 			}
-			set { _totalWeeks = value; }
+			set => _totalWeeks = value;
 		}
 
 		public decimal TotalCost => WeeklyCost * (decimal)TotalWeeks;

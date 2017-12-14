@@ -32,6 +32,7 @@
 			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageTemplates = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraScrollableControlPageTemplates = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.xtraTabPageResources = new DevExpress.XtraTab.XtraTabPage();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -41,6 +42,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
+			this.xtraTabPageTemplates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
@@ -109,14 +111,24 @@
 			// 
 			// xtraTabPageTemplates
 			// 
+			this.xtraTabPageTemplates.Controls.Add(this.xtraScrollableControlPageTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
 			this.xtraTabPageTemplates.Size = new System.Drawing.Size(348, 576);
 			this.xtraTabPageTemplates.Text = "Solution Templates";
 			// 
+			// xtraScrollableControlPageTemplates
+			// 
+			this.xtraScrollableControlPageTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraScrollableControlPageTemplates.FireScrollEventOnMouseWheel = true;
+			this.xtraScrollableControlPageTemplates.Location = new System.Drawing.Point(0, 0);
+			this.xtraScrollableControlPageTemplates.Name = "xtraScrollableControlPageTemplates";
+			this.xtraScrollableControlPageTemplates.Size = new System.Drawing.Size(348, 576);
+			this.xtraScrollableControlPageTemplates.TabIndex = 0;
+			// 
 			// xtraTabPageResources
 			// 
 			this.xtraTabPageResources.Name = "xtraTabPageResources";
-			this.xtraTabPageResources.Size = new System.Drawing.Size(344, 574);
+			this.xtraTabPageResources.Size = new System.Drawing.Size(348, 576);
 			this.xtraTabPageResources.Text = "Resources";
 			// 
 			// layoutControl
@@ -180,6 +192,7 @@
 			this.layoutControlItemSolutionToggles.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemSolutionToggles.FillControlToClientArea = false;
 			this.layoutControlItemSolutionToggles.Location = new System.Drawing.Point(601, 0);
+			this.layoutControlItemSolutionToggles.MaxSize = new System.Drawing.Size(350, 0);
 			this.layoutControlItemSolutionToggles.MinSize = new System.Drawing.Size(350, 1);
 			this.layoutControlItemSolutionToggles.Name = "layoutControlItemSolutionToggles";
 			this.layoutControlItemSolutionToggles.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
@@ -226,6 +239,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.xtraTabControl.ResumeLayout(false);
+			this.xtraTabPageTemplates.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
@@ -247,5 +261,6 @@
 		private DevExpress.XtraLayout.SplitterItem splitterItem1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSolutionToggles;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemContent;
+		private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlPageTemplates;
 	}
 }

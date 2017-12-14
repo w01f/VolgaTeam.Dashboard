@@ -27,7 +27,6 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		public DashboardSolutionInfo DashboardInfo { get; }
 		public DashboardContent EditedContent { get; protected set; }
 		public abstract IDashboardSettingsContainer SettingsContainer { get; }
-		public override SolutionType SolutionType => SolutionType.Dashboard;
 		public override SlideType SelectedSlideType => ActiveSlide.SlideType;
 		public abstract Color? AccentColor { get; }
 		public override string HelpKey

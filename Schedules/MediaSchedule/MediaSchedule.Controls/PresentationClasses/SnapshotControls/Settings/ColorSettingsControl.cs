@@ -33,7 +33,7 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.Settings
 			};
 			BarButton = new ButtonInfo
 			{
-				Logo = Resources.SectionSettingsStyle,
+				Logo = BusinessObjects.Instance.ImageResourcesManager.SnapshotsRetractableBarColorsImage ?? Resources.SectionSettingsStyle,
 				Tooltip = "Open Slide Style",
 				Action = () => { TabControl.SelectedTabPage = this; }
 			};

@@ -39,6 +39,7 @@ namespace Asa.Browser.Single
 
 			Text = AppSettingsManager.Instance.FormText ?? Text;
 			Icon = AppSettingsManager.Instance.FormIcon ?? Icon;
+			labelItemAppTitle.Text = AppSettingsManager.Instance.StatusBarTitle;
 			labelItemUrl.Text = AppSettingsManager.Instance.BaseUrl;
 
 			if (AppSettingsManager.Instance.AccentColor.HasValue)
@@ -83,6 +84,8 @@ namespace Asa.Browser.Single
 															_siteContainer.ButtonExtensionsAddVideo.Image;
 			_siteContainer.ButtonExtensionsDownloadYouTube.Image = ResourceManager.Instance.BrowserYoutubeAdd ??
 																   _siteContainer.ButtonExtensionsDownloadYouTube.Image;
+			_siteContainer.buttonItemFloater.Image = ResourceManager.Instance.BrowserFloater ??
+			                                         _siteContainer.buttonItemFloater.Image;
 			buttonItemUrlEmail.Image = ResourceManager.Instance.BrowserUrlEmail;
 			buttonItemUrlCopy.Image = ResourceManager.Instance.BrowserUrlCopy;
 		}

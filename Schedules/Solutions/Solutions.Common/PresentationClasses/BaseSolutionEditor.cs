@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
-using Asa.Business.Solutions.Common.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Solutions.Common.Common;
@@ -13,7 +11,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 	{
 		public BaseSolutionInfo SolutionInfo { get; }
 
-		public abstract SolutionType SolutionType { get; }
+		public string SolutionId => SolutionInfo.Id;
 		public abstract SlideType SelectedSlideType { get; }
 		public abstract string HelpKey { get; }
 

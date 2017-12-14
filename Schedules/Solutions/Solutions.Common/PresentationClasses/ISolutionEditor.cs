@@ -1,5 +1,4 @@
 ﻿using System;
-using Asa.Business.Solutions.Common.Enums;
 using Asa.Common.Core.Enums;
 using Asa.Solutions.Common.Common;
 
@@ -7,7 +6,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 {
 	public interface ISolutionEditor
 	{
-		SolutionType SolutionType { get; }
+		string SolutionId { get; }
 		SlideType SelectedSlideType { get; }
 		string HelpKey { get; }
 		bool ReadyForOutput { get; }

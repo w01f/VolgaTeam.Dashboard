@@ -22,7 +22,7 @@ namespace Asa.Business.Media.Configuration
 		public StorageDirectory SolutionsDataFolder { get; private set; }
 
 		public StorageFile MainAppTitleTextFile { get; private set; }
-
+		public StorageFile TextResourcesFile { get; private set; }
 		public ArchiveDirectory ImageResourcesFolder { get; private set; }
 
 		private ResourceManager() { }
@@ -110,6 +110,16 @@ namespace Asa.Business.Media.Configuration
 			});
 			if (await MainAppTitleTextFile.Exists(true))
 				await MainAppTitleTextFile.Download();
+
+			TextResourcesFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				String.Format("{0}_subtab_names.xml",MediaMetaData.Instance.DataTypeString.ToLower())
+			});
+			if (await TextResourcesFile.Exists(true))
+				await TextResourcesFile.Download();
 
 			ImageResourcesFolder = new ArchiveDirectory(new[]
 			{

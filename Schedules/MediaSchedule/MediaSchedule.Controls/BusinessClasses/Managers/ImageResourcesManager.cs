@@ -49,7 +49,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		#endregion
 
 		#region Home Resources
-		public Image HomeDefaultLogo { get; private set; }
+		public Image HomeDefaultTopLogo { get; private set; }
+		public Image HomeDefaultBottomLogo { get; private set; }
+		public Image HomeSplashBottomLogo { get; private set; }
 		public Image HomeDateStartImage { get; private set; }
 		public Image HomeDateEndImage { get; private set; }
 		public Image HomeTopTitleImage { get; private set; }
@@ -246,7 +248,15 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			#region Home Resources
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_default.png");
 			if (File.Exists(resourceFile))
-				HomeDefaultLogo = Image.FromFile(resourceFile);
+				HomeDefaultTopLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_default_bottom.png");
+			if (File.Exists(resourceFile))
+				HomeDefaultBottomLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "home_bottom_right.png");
+			if (File.Exists(resourceFile))
+				HomeSplashBottomLogo = Image.FromFile(resourceFile);
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_home_cal_start.png");
 			if (File.Exists(resourceFile))

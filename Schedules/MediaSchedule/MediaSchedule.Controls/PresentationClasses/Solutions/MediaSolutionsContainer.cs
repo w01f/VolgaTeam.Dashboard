@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
@@ -22,6 +23,29 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 		public override ButtonItem ButtonPdf => Controller.Instance.MenuOutputPdfButton;
 		public override ButtonItem ButtonPreview => Controller.Instance.SolutionsPreview;
 		public override ButtonItem ButtonEmail => Controller.Instance.MenuEmailButton;
+
+		public override void InitControl()
+		{
+			base.InitControl();
+
+			var tabPageConfig = BusinessObjects.Instance.TextResourcesManager.TabPageSettings.FirstOrDefault(item =>
+				item.Id == TextResourcesManager.SolutionsAdditionalTab1Id);
+			if (tabPageConfig != null)
+			{
+				xtraTabPageTemplates.PageVisible = xtraTabPageTemplates.Visible = tabPageConfig.Visible;
+				xtraTabPageTemplates.Enabled = xtraTabPageTemplates.PageEnabled = tabPageConfig.Enabled;
+				xtraTabPageTemplates.Text = tabPageConfig.Name;
+			}
+
+			tabPageConfig = BusinessObjects.Instance.TextResourcesManager.TabPageSettings.FirstOrDefault(item =>
+				item.Id == TextResourcesManager.SolutionsAdditionalTab2Id);
+			if (tabPageConfig != null)
+			{
+				xtraTabPageResources.PageVisible = xtraTabPageResources.Visible = tabPageConfig.Visible;
+				xtraTabPageResources.Enabled = xtraTabPageResources.PageEnabled = tabPageConfig.Enabled;
+				xtraTabPageResources.Text = tabPageConfig.Name;
+			}
+		}
 
 		protected override void UpdateEditedContet()
 		{
@@ -49,7 +73,7 @@ namespace Asa.Media.Controls.PresentationClasses.Solutions
 			FormThemeSelector.Link(
 				Controller.Instance.SolutionsTheme,
 				Controller.Instance.FormMain,
-				BusinessObjects.Instance.ThemeManager.GetThemes(slideType), 
+				BusinessObjects.Instance.ThemeManager.GetThemes(slideType),
 				MediaMetaData.Instance.SettingsManager.GetSelectedThemeName(slideType),
 				MediaMetaData.Instance.SettingsManager,
 				(theme, applyForAllSlideTypes) =>

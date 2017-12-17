@@ -19,13 +19,14 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public SlideManager SlideManager { get; }
 		public HelpManager HelpManager { get; }
 		public OutputManager OutputManager { get; }
-		public TabPageManager TabPageManager { get; private set; }
+		public RibbonTabPageManager RibbonTabPageManager { get; private set; }
 		public FormStyleManager FormStyleManager { get; private set; }
 		public ThemeManager ThemeManager { get; }
 		public ActivityManager ActivityManager { get; private set; }
 		public GalleryManager Gallery1Manager { get; private set; }
 		public GalleryManager Gallery2Manager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
+		public TextResourcesManager TextResourcesManager { get; }
 		public ImageResourcesManager ImageResourcesManager { get; }
 		public BrowserManager BrowserManager { get; }
 
@@ -40,6 +41,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			SlideManager = new SlideManager();
 			HelpManager = new HelpManager();
 			ThemeManager = new ThemeManager();
+			TextResourcesManager = new TextResourcesManager();
 			ImageResourcesManager = new ImageResourcesManager();
 			PowerPointManager = new PowerPointManager<MediaSchedulePowerPointProcessor>();
 			BrowserManager = new BrowserManager();
@@ -65,13 +67,15 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 			SlideManager.Load();
 
-			TabPageManager = new TabPageManager(ResourceManager.Instance.TabsConfigFile);
+			RibbonTabPageManager = new RibbonTabPageManager(ResourceManager.Instance.TabsConfigFile);
 			FormStyleManager = new FormStyleManager(ResourceManager.Instance.FormStyleConfigFile);
 			ActivityManager = ActivityManager.OpenStorage();
 			Gallery1Manager = new GalleryManager(ResourceManager.Instance.Gallery1ConfigFile);
 			Gallery2Manager = new GalleryManager(ResourceManager.Instance.Gallery2ConfigFile);
 			RateCardManager = new RateCardManager(Common.Core.Configuration.ResourceManager.Instance.RateCardFolder);
 			RateCardManager.LoadRateCards();
+
+			TextResourcesManager.LoadTabPageSettings(ResourceManager.Instance.TextResourcesFile);
 
 			ImageResourcesManager.Load();
 

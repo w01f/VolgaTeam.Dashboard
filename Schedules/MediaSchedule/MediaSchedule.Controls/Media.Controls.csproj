@@ -112,6 +112,7 @@
     <Compile Include="BusinessClasses\Managers\ContentController.cs" />
     <Compile Include="BusinessClasses\Managers\ContentIdentifiers.cs" />
     <Compile Include="BusinessClasses\Managers\ContentTabStateManager.cs" />
+    <Compile Include="BusinessClasses\Managers\TextResourcesManager.cs" />
     <Compile Include="BusinessClasses\Managers\ImageResourcesManager.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\BaseDigitalInfoOneSheetOutputModel.cs" />
     <Compile Include="BusinessClasses\Output\DigitalInfo\DigitalInfoRecordOutputModel.cs" />

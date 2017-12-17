@@ -8,6 +8,7 @@ namespace Asa.Common.Core.Objects.TabPages
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public bool Visible { get; set; }
+		public bool Enabled { get; set; }
 		public int Order { get; set; }
 
 		public void Deserialize(XmlNode node)
@@ -22,13 +23,20 @@ namespace Asa.Common.Core.Objects.TabPages
 					case "Name":
 						Name = childNode.InnerText;
 						break;
-					case "Visible":
+					case "Enabled":
 						{
 							bool temp;
 							if (Boolean.TryParse(childNode.InnerText, out temp))
-								Visible = temp;
+								Enabled = temp;
 							break;
 						}
+					case "Visible":
+					{
+						bool temp;
+						if (Boolean.TryParse(childNode.InnerText, out temp))
+							Visible = temp;
+						break;
+					}
 					case "Order":
 						{
 							int temp;

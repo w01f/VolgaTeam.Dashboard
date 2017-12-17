@@ -7,11 +7,12 @@ using Asa.Browser.Single.InteropClasses;
 using Asa.Browser.Single.Properties;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
+using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro.ColorTables;
 
 namespace Asa.Browser.Single
 {
-	public partial class FormMain : Form
+	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
 		private readonly SingleSiteContainerControl _siteContainer;
@@ -28,7 +29,7 @@ namespace Asa.Browser.Single
 
 			_siteContainer = new SingleSiteContainerControl();
 			_siteContainer.Dock = DockStyle.Fill;
-			Controls.Add(_siteContainer);
+			panelMain.Controls.Add(_siteContainer);
 		}
 
 		public void InitForm()

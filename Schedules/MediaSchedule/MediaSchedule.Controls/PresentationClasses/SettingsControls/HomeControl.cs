@@ -70,7 +70,27 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			base.InitControl();
 
-			pictureEditDefaultTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDefaultLogo ?? pictureEditDefaultTitle.Image;
+			var tabPageConfig = BusinessObjects.Instance.TextResourcesManager.TabPageSettings.FirstOrDefault(item =>
+					 item.Id == TextResourcesManager.HomeMainTab1Id);
+			if (tabPageConfig != null)
+			{
+				layoutControlGroupMainSchedule.Visibility = tabPageConfig.Visible ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupMainSchedule.Enabled = layoutControlGroupMainSchedule.PageEnabled = tabPageConfig.Enabled;
+				layoutControlGroupMainSchedule.Text = tabPageConfig.Name;
+			}
+
+			tabPageConfig = BusinessObjects.Instance.TextResourcesManager.TabPageSettings.FirstOrDefault(item =>
+				item.Id == TextResourcesManager.HomeAdditionalTab1Id);
+			if (tabPageConfig != null)
+			{
+				layoutControlGroupScheduleOptionsStations.Visibility = tabPageConfig.Visible ? LayoutVisibility.Always : LayoutVisibility.Never;
+				layoutControlGroupScheduleOptionsStations.Enabled = layoutControlGroupScheduleOptionsStations.PageEnabled = tabPageConfig.Enabled;
+				layoutControlGroupScheduleOptionsStations.Text = tabPageConfig.Name;
+			}
+
+			pictureEditDefaultLogoTop.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDefaultTopLogo ?? pictureEditDefaultLogoTop.Image;
+			pictureEditDefaultLogoBottom.Image = BusinessObjects.Instance.ImageResourcesManager.HomeDefaultBottomLogo;
+			pictureEditMainScheduleBottomLogo.Image = BusinessObjects.Instance.ImageResourcesManager.HomeSplashBottomLogo;
 			pictureEditScheduleTypeTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeTopTitleImage ?? pictureEditScheduleTypeTitle.Image;
 			pictureEditScheduleConceptTypeTitle.Image = BusinessObjects.Instance.ImageResourcesManager.HomeBottomTitleImage ?? pictureEditScheduleConceptTypeTitle.Image;
 			buttonXWeeklySchedule.Image = BusinessObjects.Instance.ImageResourcesManager.HomeWeeklyScheduleImage ?? buttonXWeeklySchedule.Image;
@@ -235,7 +255,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			buttonXMonthlySchedule.Enabled = enableSchedules;
 			if (enableSchedules)
 			{
-				layoutControlItemMainScheduleDefaultTitle.Visibility = LayoutVisibility.Never;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
 				tabbedControlGroupMain.Visibility = LayoutVisibility.Always;
 				splitterItemMain.Visibility = LayoutVisibility.Always;
 				tabbedControlGroupScheduleOptions.Visibility = LayoutVisibility.Always;
@@ -245,7 +265,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 				tabbedControlGroupMain.Visibility = LayoutVisibility.Never;
 				splitterItemMain.Visibility = LayoutVisibility.Never;
 				tabbedControlGroupScheduleOptions.Visibility = LayoutVisibility.Never;
-				layoutControlItemMainScheduleDefaultTitle.Visibility = LayoutVisibility.Always;
+				layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Always;
 			}
 		}
 

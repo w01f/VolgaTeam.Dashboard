@@ -117,7 +117,7 @@
     <Compile Include="Helpers\SlideManager.cs" />
     <Compile Include="Helpers\FormStyleManager.cs" />
     <Compile Include="Helpers\SlideSettingsManager.cs" />
-    <Compile Include="Helpers\TabPageManager.cs" />
+    <Compile Include="Helpers\RibbonTabPageManager.cs" />
     <Compile Include="Helpers\ThemeManager.cs" />
     <Compile Include="Helpers\ThemeSaveHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />

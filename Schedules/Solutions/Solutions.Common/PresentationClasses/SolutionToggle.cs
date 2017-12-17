@@ -43,6 +43,7 @@ namespace Asa.Solutions.Common.PresentationClasses
 				Height = (Int32)(ButtonHeight * Utilities.GetScaleFactor(CreateGraphics().DpiX).Height);
 			}
 
+			Tooltip = SolutionInfo.ToggleTitle;
 			AccessibleRole = AccessibleRole.PushButton;
 			Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 			ColorTable = eButtonColor.OrangeWithBackground;

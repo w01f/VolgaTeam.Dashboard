@@ -37,8 +37,9 @@ namespace Asa.Solutions.Common.PresentationClasses
 			SolutionToggles = new List<SolutionToggle>();
 			SolutionEditors = new List<ISolutionEditor>();
 
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			xtraScrollableControlPageTemplates.Padding = new System.Windows.Forms.Padding(0, 0, 0, SolutionToggle.ButtonPadding);
 
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSolutionToggles.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSolutionToggles.MaxSize, scaleFactor);
 			layoutControlItemSolutionToggles.MinSize = RectangleHelper.ScaleSize(layoutControlItemSolutionToggles.MinSize, scaleFactor);
 		}

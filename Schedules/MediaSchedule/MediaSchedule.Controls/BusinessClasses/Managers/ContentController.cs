@@ -109,7 +109,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		public void Init()
 		{
-			foreach (var tabPageConfig in BusinessObjects.Instance.TabPageManager.TabPageSettings)
+			foreach (var tabPageConfig in BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings)
 			{
 				var contentEditControl = CreateContentEditor(tabPageConfig.Id);
 				if (contentEditControl == null) continue;

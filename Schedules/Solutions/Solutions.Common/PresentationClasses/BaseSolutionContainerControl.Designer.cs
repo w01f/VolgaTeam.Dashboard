@@ -56,7 +56,7 @@
 			this.pnContent.BackColor = System.Drawing.Color.Transparent;
 			this.pnContent.Location = new System.Drawing.Point(0, 20);
 			this.pnContent.Name = "pnContent";
-			this.pnContent.Size = new System.Drawing.Size(589, 604);
+			this.pnContent.Size = new System.Drawing.Size(1589, 604);
 			this.pnContent.TabIndex = 0;
 			// 
 			// styleController
@@ -100,7 +100,7 @@
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseTextOptions = true;
 			this.xtraTabControl.AppearancePage.PageClient.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.xtraTabControl.Location = new System.Drawing.Point(601, 20);
+			this.xtraTabControl.Location = new System.Drawing.Point(1601, 20);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageTemplates;
 			this.xtraTabControl.Size = new System.Drawing.Size(350, 604);
@@ -122,6 +122,7 @@
 			this.xtraScrollableControlPageTemplates.FireScrollEventOnMouseWheel = true;
 			this.xtraScrollableControlPageTemplates.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControlPageTemplates.Name = "xtraScrollableControlPageTemplates";
+			this.xtraScrollableControlPageTemplates.Padding = new System.Windows.Forms.Padding(0, 0, 0, 70);
 			this.xtraScrollableControlPageTemplates.Size = new System.Drawing.Size(348, 576);
 			this.xtraScrollableControlPageTemplates.TabIndex = 0;
 			// 
@@ -154,7 +155,7 @@
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(502, 379, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(951, 624);
+			this.layoutControl.Size = new System.Drawing.Size(1951, 624);
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
@@ -183,7 +184,7 @@
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 20, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(951, 624);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(1951, 624);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemSolutionToggles
@@ -191,7 +192,7 @@
 			this.layoutControlItemSolutionToggles.Control = this.xtraTabControl;
 			this.layoutControlItemSolutionToggles.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemSolutionToggles.FillControlToClientArea = false;
-			this.layoutControlItemSolutionToggles.Location = new System.Drawing.Point(601, 0);
+			this.layoutControlItemSolutionToggles.Location = new System.Drawing.Point(1601, 0);
 			this.layoutControlItemSolutionToggles.MaxSize = new System.Drawing.Size(350, 0);
 			this.layoutControlItemSolutionToggles.MinSize = new System.Drawing.Size(350, 1);
 			this.layoutControlItemSolutionToggles.Name = "layoutControlItemSolutionToggles";
@@ -212,7 +213,7 @@
 			this.layoutControlItemContent.MinSize = new System.Drawing.Size(1, 1);
 			this.layoutControlItemContent.Name = "layoutControlItemContent";
 			this.layoutControlItemContent.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemContent.Size = new System.Drawing.Size(589, 604);
+			this.layoutControlItemContent.Size = new System.Drawing.Size(1589, 604);
 			this.layoutControlItemContent.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemContent.Text = "Content";
 			this.layoutControlItemContent.TextSize = new System.Drawing.Size(0, 0);
@@ -223,7 +224,7 @@
 			// 
 			this.splitterItem1.AllowHotTrack = true;
 			this.splitterItem1.FixedStyle = DevExpress.XtraLayout.SplitterItemFixedStyles.RightBottom;
-			this.splitterItem1.Location = new System.Drawing.Point(589, 0);
+			this.splitterItem1.Location = new System.Drawing.Point(1589, 0);
 			this.splitterItem1.Name = "splitterItem1";
 			this.splitterItem1.Size = new System.Drawing.Size(12, 604);
 			// 
@@ -235,7 +236,7 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "BaseSolutionContainerControl";
-			this.Size = new System.Drawing.Size(951, 624);
+			this.Size = new System.Drawing.Size(1951, 624);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.xtraTabControl.ResumeLayout(false);
@@ -252,8 +253,8 @@
 
 		#endregion
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageTemplates;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageResources;
+		protected DevExpress.XtraTab.XtraTabPage xtraTabPageTemplates;
+		protected DevExpress.XtraTab.XtraTabPage xtraTabPageResources;
 		private System.Windows.Forms.Panel pnContent;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;

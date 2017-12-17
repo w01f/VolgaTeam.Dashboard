@@ -202,7 +202,7 @@ namespace Asa.Media.Controls
 			var insertIndex = 0;
 			var visible = true;
 
-			var configuration = BusinessObjects.Instance.TabPageManager.TabPageSettings.FirstOrDefault(item => item.Id == ContentIdentifiers.MainMenu);
+			var configuration = BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings.FirstOrDefault(item => item.Id == ContentIdentifiers.MainMenu);
 			if (configuration != null)
 			{
 				MenuButtonMain.Text = configuration.Name;

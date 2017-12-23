@@ -56,12 +56,20 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 						String.Format("{0}x", _summaryContent.Parent.Parent.TotalSpots));
 					break;
 				case SummaryItemDataSourceType.Digital:
-					ShowDescription = true;
-					Description = String.Format("Digital Marketing Strategies: ({0})",
-						String.Join(",   ", _summaryContent.Parent.Parent.DigitalInfo.Records
+					Description = String.Join(",   ", _summaryContent.Parent.Parent.DigitalInfo.Records
 						.Select(p => String.Format("{0}{1}",
 							p.Category,
-							!String.IsNullOrEmpty(p.Info) ? String.Format(" - {0}", p.Info) : String.Empty))));
+							!String.IsNullOrEmpty(p.Info) ? String.Format(" - {0}", p.Info) : String.Empty)));
+					if (!String.IsNullOrEmpty(Description))
+					{
+						ShowDescription = true;
+						Description = String.Format("Digital Marketing Strategies: ({0})", Description);
+					}
+					else
+					{
+						ShowDescription = false;
+						Description = null;
+					}
 					break;
 			}
 		}

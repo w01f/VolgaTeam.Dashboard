@@ -46,9 +46,13 @@ namespace Asa.Business.Media.Entities.NonPersistent.Section.Summary
 		{
 			var defaultMediaItem = AddItem<ProductInfoSummaryItem>(this);
 			defaultMediaItem.Value = String.Format("Local {0} Campaign", MediaMetaData.Instance.DataTypeString);
+			defaultMediaItem.DataSourceType = SummaryItemDataSourceType.Media;
+			defaultMediaItem.Synchronize();
 
 			var defaultDigitalItem = AddItem<ProductInfoSummaryItem>(this);
 			defaultDigitalItem.Value = "Digital Campaign";
+			defaultDigitalItem.DataSourceType = SummaryItemDataSourceType.Digital;
+			defaultDigitalItem.Synchronize();
 		}
 	}
 }

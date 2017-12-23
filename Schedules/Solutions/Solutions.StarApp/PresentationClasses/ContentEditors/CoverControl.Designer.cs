@@ -45,15 +45,11 @@
 			this.memoEditSubheader1 = new DevExpress.XtraEditors.MemoEdit();
 			this.pictureEditClipart1 = new DevExpress.XtraEditors.PictureEdit();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
-			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
 			this.checkEditCalendar1 = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditCombo1 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemLogoRight = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlItemLogoFooter = new DevExpress.XtraLayout.LayoutControlItem();
 			this.tabbedControlGroupData = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -63,6 +59,10 @@
 			this.layoutControlItemCalendar1Value = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemCombo1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemAddAsPageOne = new DevExpress.XtraLayout.LayoutControlItem();
+			this.panelLogoRight = new System.Windows.Forms.Panel();
+			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
+			this.panelLogoBottom = new System.Windows.Forms.Panel();
+			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -72,15 +72,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCalendar1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogoRight)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogoFooter)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).BeginInit();
@@ -90,6 +86,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Value)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).BeginInit();
+			this.panelLogoRight.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
+			this.panelLogoBottom.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -139,8 +139,6 @@
 			this.layoutControl.Controls.Add(this.pictureEditClipart1);
 			this.layoutControl.Controls.Add(this.checkEditAddAsPageOne);
 			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
-			this.layoutControl.Controls.Add(this.pictureEditLogoRight);
-			this.layoutControl.Controls.Add(this.pictureEditLogoFooter);
 			this.layoutControl.Controls.Add(this.checkEditCalendar1);
 			this.layoutControl.Controls.Add(this.comboBoxEditCombo1);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -152,7 +150,7 @@
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControl.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(861, 821);
+			this.layoutControl.Size = new System.Drawing.Size(541, 721);
 			this.layoutControl.StyleController = this.styleController;
 			this.layoutControl.TabIndex = 69;
 			this.layoutControl.Text = "layoutControl1";
@@ -230,40 +228,6 @@
 			this.comboBoxEditSlideHeader.TabIndex = 0;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
-			// pictureEditLogoRight
-			// 
-			this.pictureEditLogoRight.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditLogoRight.Location = new System.Drawing.Point(551, 10);
-			this.pictureEditLogoRight.Name = "pictureEditLogoRight";
-			this.pictureEditLogoRight.Properties.AllowFocused = false;
-			this.pictureEditLogoRight.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditLogoRight.Properties.NullText = " ";
-			this.pictureEditLogoRight.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopRight;
-			this.pictureEditLogoRight.Properties.ReadOnly = true;
-			this.pictureEditLogoRight.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditLogoRight.Properties.ShowMenu = false;
-			this.pictureEditLogoRight.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditLogoRight.Size = new System.Drawing.Size(300, 801);
-			this.pictureEditLogoRight.StyleController = this.layoutControl;
-			this.pictureEditLogoRight.TabIndex = 1;
-			// 
-			// pictureEditLogoFooter
-			// 
-			this.pictureEditLogoFooter.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditLogoFooter.Location = new System.Drawing.Point(10, 731);
-			this.pictureEditLogoFooter.Name = "pictureEditLogoFooter";
-			this.pictureEditLogoFooter.Properties.AllowFocused = false;
-			this.pictureEditLogoFooter.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditLogoFooter.Properties.NullText = " ";
-			this.pictureEditLogoFooter.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomLeft;
-			this.pictureEditLogoFooter.Properties.ReadOnly = true;
-			this.pictureEditLogoFooter.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEditLogoFooter.Properties.ShowMenu = false;
-			this.pictureEditLogoFooter.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditLogoFooter.Size = new System.Drawing.Size(521, 80);
-			this.pictureEditLogoFooter.StyleController = this.layoutControl;
-			this.pictureEditLogoFooter.TabIndex = 1;
-			// 
 			// checkEditCalendar1
 			// 
 			this.checkEditCalendar1.Location = new System.Drawing.Point(14, 403);
@@ -305,14 +269,12 @@
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemSlideHeader,
             this.emptySpaceItem1,
-            this.layoutControlItemLogoRight,
-            this.layoutControlItemLogoFooter,
             this.tabbedControlGroupData,
             this.layoutControlItemAddAsPageOne});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(861, 821);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(541, 721);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemSlideHeader
@@ -338,40 +300,6 @@
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
 			this.emptySpaceItem1.Size = new System.Drawing.Size(10, 50);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemLogoRight
-			// 
-			this.layoutControlItemLogoRight.Control = this.pictureEditLogoRight;
-			this.layoutControlItemLogoRight.ControlAlignment = System.Drawing.ContentAlignment.TopRight;
-			this.layoutControlItemLogoRight.FillControlToClientArea = false;
-			this.layoutControlItemLogoRight.Location = new System.Drawing.Point(541, 0);
-			this.layoutControlItemLogoRight.MaxSize = new System.Drawing.Size(320, 0);
-			this.layoutControlItemLogoRight.MinSize = new System.Drawing.Size(320, 1);
-			this.layoutControlItemLogoRight.Name = "layoutControlItemLogoRight";
-			this.layoutControlItemLogoRight.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-			this.layoutControlItemLogoRight.Size = new System.Drawing.Size(320, 821);
-			this.layoutControlItemLogoRight.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemLogoRight.Text = "Logo Right";
-			this.layoutControlItemLogoRight.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemLogoRight.TextVisible = false;
-			this.layoutControlItemLogoRight.TrimClientAreaToControl = false;
-			// 
-			// layoutControlItemLogoFooter
-			// 
-			this.layoutControlItemLogoFooter.Control = this.pictureEditLogoFooter;
-			this.layoutControlItemLogoFooter.ControlAlignment = System.Drawing.ContentAlignment.BottomLeft;
-			this.layoutControlItemLogoFooter.FillControlToClientArea = false;
-			this.layoutControlItemLogoFooter.Location = new System.Drawing.Point(0, 721);
-			this.layoutControlItemLogoFooter.MaxSize = new System.Drawing.Size(0, 100);
-			this.layoutControlItemLogoFooter.MinSize = new System.Drawing.Size(1, 100);
-			this.layoutControlItemLogoFooter.Name = "layoutControlItemLogoFooter";
-			this.layoutControlItemLogoFooter.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-			this.layoutControlItemLogoFooter.Size = new System.Drawing.Size(541, 100);
-			this.layoutControlItemLogoFooter.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemLogoFooter.Text = "Logo Footer";
-			this.layoutControlItemLogoFooter.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemLogoFooter.TextVisible = false;
-			this.layoutControlItemLogoFooter.TrimClientAreaToControl = false;
 			// 
 			// tabbedControlGroupData
 			// 
@@ -530,9 +458,71 @@
 			this.layoutControlItemAddAsPageOne.TextVisible = false;
 			this.layoutControlItemAddAsPageOne.TrimClientAreaToControl = false;
 			// 
+			// panelLogoRight
+			// 
+			this.panelLogoRight.BackColor = System.Drawing.Color.Transparent;
+			this.panelLogoRight.Controls.Add(this.pictureEditLogoRight);
+			this.panelLogoRight.Dock = System.Windows.Forms.DockStyle.Right;
+			this.panelLogoRight.Location = new System.Drawing.Point(541, 0);
+			this.panelLogoRight.MaximumSize = new System.Drawing.Size(320, 0);
+			this.panelLogoRight.MinimumSize = new System.Drawing.Size(320, 0);
+			this.panelLogoRight.Name = "panelLogoRight";
+			this.panelLogoRight.Padding = new System.Windows.Forms.Padding(10);
+			this.panelLogoRight.Size = new System.Drawing.Size(320, 821);
+			this.panelLogoRight.TabIndex = 72;
+			// 
+			// pictureEditLogoRight
+			// 
+			this.pictureEditLogoRight.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditLogoRight.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureEditLogoRight.Location = new System.Drawing.Point(10, 10);
+			this.pictureEditLogoRight.Name = "pictureEditLogoRight";
+			this.pictureEditLogoRight.Properties.AllowFocused = false;
+			this.pictureEditLogoRight.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditLogoRight.Properties.NullText = " ";
+			this.pictureEditLogoRight.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopRight;
+			this.pictureEditLogoRight.Properties.ReadOnly = true;
+			this.pictureEditLogoRight.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditLogoRight.Properties.ShowMenu = false;
+			this.pictureEditLogoRight.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditLogoRight.Size = new System.Drawing.Size(300, 801);
+			this.pictureEditLogoRight.TabIndex = 1;
+			// 
+			// panelLogoBottom
+			// 
+			this.panelLogoBottom.Controls.Add(this.pictureEditLogoFooter);
+			this.panelLogoBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panelLogoBottom.Location = new System.Drawing.Point(0, 721);
+			this.panelLogoBottom.MaximumSize = new System.Drawing.Size(0, 100);
+			this.panelLogoBottom.MinimumSize = new System.Drawing.Size(0, 100);
+			this.panelLogoBottom.Name = "panelLogoBottom";
+			this.panelLogoBottom.Padding = new System.Windows.Forms.Padding(10);
+			this.panelLogoBottom.Size = new System.Drawing.Size(541, 100);
+			this.panelLogoBottom.TabIndex = 73;
+			// 
+			// pictureEditLogoFooter
+			// 
+			this.pictureEditLogoFooter.Cursor = System.Windows.Forms.Cursors.Default;
+			this.pictureEditLogoFooter.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureEditLogoFooter.Location = new System.Drawing.Point(10, 10);
+			this.pictureEditLogoFooter.Name = "pictureEditLogoFooter";
+			this.pictureEditLogoFooter.Properties.AllowFocused = false;
+			this.pictureEditLogoFooter.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditLogoFooter.Properties.NullText = " ";
+			this.pictureEditLogoFooter.Properties.PictureAlignment = System.Drawing.ContentAlignment.BottomLeft;
+			this.pictureEditLogoFooter.Properties.ReadOnly = true;
+			this.pictureEditLogoFooter.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+			this.pictureEditLogoFooter.Properties.ShowMenu = false;
+			this.pictureEditLogoFooter.Properties.ZoomAccelerationFactor = 1D;
+			this.pictureEditLogoFooter.Size = new System.Drawing.Size(521, 80);
+			this.pictureEditLogoFooter.TabIndex = 1;
+			// 
 			// CoverControl
 			// 
 			this.Controls.Add(this.layoutControl);
+			this.Controls.Add(this.panelLogoBottom);
+			this.Controls.Add(this.panelLogoRight);
+			this.Name = "CoverControl";
 			this.Size = new System.Drawing.Size(861, 821);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).EndInit();
@@ -543,15 +533,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSubheader1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCalendar1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCombo1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogoRight)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemLogoFooter)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemClipart1)).EndInit();
@@ -561,6 +547,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCalendar1Value)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCombo1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemAddAsPageOne)).EndInit();
+			this.panelLogoRight.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
+			this.panelLogoBottom.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -570,13 +560,9 @@
 		private DevExpress.XtraEditors.CheckEdit checkEditAddAsPageOne;
 		protected DevExpress.XtraLayout.LayoutControl layoutControl;
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
-		protected DevExpress.XtraEditors.PictureEdit pictureEditLogoRight;
-		private DevExpress.XtraEditors.PictureEdit pictureEditLogoFooter;
 		protected DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
 		protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 		protected DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-		protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemLogoRight;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemLogoFooter;
 		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroupData;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabA;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemAddAsPageOne;
@@ -591,5 +577,9 @@
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCalendar1Toggle;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCombo1;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupCalendar;
+		private System.Windows.Forms.Panel panelLogoRight;
+		protected DevExpress.XtraEditors.PictureEdit pictureEditLogoRight;
+		private System.Windows.Forms.Panel panelLogoBottom;
+		private DevExpress.XtraEditors.PictureEdit pictureEditLogoFooter;
 	}
 }

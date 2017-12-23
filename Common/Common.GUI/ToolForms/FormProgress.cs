@@ -97,7 +97,8 @@ namespace Asa.Common.GUI.ToolForms
 				_instance.StartPosition = FormStartPosition.Manual;
 				_instance.Top = parentForm.Top + (parentForm.Height - _instance.Height) / 2;
 				_instance.Left = parentForm.Left + (parentForm.Width - _instance.Width) / 2;
-				_instance.Show(parentForm);
+				if (!_instance.Visible)
+					_instance.Show(parentForm);
 			}
 			else
 			{
@@ -129,12 +130,14 @@ namespace Asa.Common.GUI.ToolForms
 			if (_instance.InvokeRequired)
 				_instance.BeginInvoke(new MethodInvoker(() =>
 				{
-					_instance.Close();
+					if (_instance.Visible)
+						_instance.Close();
 					_instance = null;
 				}));
 			else
 			{
-				_instance.Close();
+				if (_instance.Visible)
+					_instance.Close();
 				_instance = null;
 			}
 		}

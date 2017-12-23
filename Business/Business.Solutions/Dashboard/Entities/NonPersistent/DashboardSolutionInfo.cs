@@ -64,9 +64,8 @@ namespace Asa.Business.Solutions.Dashboard.Entities.NonPersistent
 				var useImage = Boolean.Parse(document.SelectSingleNode(@"//Settings/ButtonImage")?.InnerText ?? "false");
 				if (useImage)
 					ToggleImagePath = Path.Combine(DataFolder.LocalPath, String.Format("{0}.png", Id.ToLower()));
-				else
-					ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
 
+				ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
 				CleanslateTitle = document.SelectSingleNode(@"//Settings/Tab_0")?.InnerText;
 				CoverTitle = document.SelectSingleNode(@"//Settings/Tab_1/Name")?.InnerText;
 				LeadoffStatementTitle = document.SelectSingleNode(@"//Settings/Tab_2/Name")?.InnerText;

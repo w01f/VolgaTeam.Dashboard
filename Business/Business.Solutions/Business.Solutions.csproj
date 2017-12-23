@@ -90,8 +90,8 @@
     <Compile Include="StarApp\Configuration\AudienceConfiguration.cs" />
     <Compile Include="StarApp\Configuration\VideoConfiguration.cs" />
     <Compile Include="StarApp\Configuration\MarketConfiguration.cs" />
-    <Compile Include="StarApp\Configuration\ROILists.cs" />
-    <Compile Include="StarApp\Configuration\ShareLists.cs" />
+    <Compile Include="StarApp\Configuration\ROIConfiguration.cs" />
+    <Compile Include="StarApp\Configuration\ShareConfiguration.cs" />
     <Compile Include="StarApp\Configuration\CustomerConfiguration.cs" />
     <Compile Include="StarApp\Configuration\FishingConfiguration.cs" />
     <Compile Include="StarApp\Configuration\SlideHeader.cs" />

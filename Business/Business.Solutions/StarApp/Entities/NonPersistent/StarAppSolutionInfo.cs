@@ -14,6 +14,11 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 	{
 		public TitlesConfiguration Titles { get; } = new TitlesConfiguration();
 
+		#region Cleanslate
+		public Image CleanslateHeaderLogo { get; private set; }
+		public Image CleanslateSplashLogo { get; private set; }
+		#endregion
+
 		#region Tab 1
 		public CoverConfiguration CoverConfiguration { get; }
 
@@ -68,7 +73,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		#endregion
 
 		#region Tab 5
-		public ShareLists ShareLists { get; }
+		public ShareConfiguration ShareConfiguration { get; }
 
 		public Image Tab5SubARightLogo { get; private set; }
 		public Image Tab5SubAFooterLogo { get; private set; }
@@ -80,10 +85,30 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab5SubDFooterLogo { get; private set; }
 		public Image Tab5SubERightLogo { get; private set; }
 		public Image Tab5SubEFooterLogo { get; private set; }
+
+		public Image Tab5SubAClipart1Image { get; private set; }
+		public Image Tab5SubAClipart2Image { get; private set; }
+		public Image Tab5SubAClipart3Image { get; private set; }
+
+		public Image Tab5SubBClipart1Image { get; private set; }
+		public Image Tab5SubBClipart2Image { get; private set; }
+		public Image Tab5SubBClipart3Image { get; private set; }
+
+		public Image Tab5SubCClipart1Image { get; private set; }
+		public Image Tab5SubCClipart2Image { get; private set; }
+		public Image Tab5SubCClipart3Image { get; private set; }
+
+		public Image Tab5SubDClipart1Image { get; private set; }
+		public Image Tab5SubDClipart2Image { get; private set; }
+		public Image Tab5SubDClipart3Image { get; private set; }
+
+		public Image Tab5SubEClipart1Image { get; private set; }
+		public Image Tab5SubEClipart2Image { get; private set; }
+		public Image Tab5SubEClipart3Image { get; private set; }
 		#endregion
 
 		#region Tab 6
-		public ROILists ROILists { get; }
+		public ROIConfiguration ROIConfiguration { get; }
 
 		public Image Tab6SubARightLogo { get; private set; }
 		public Image Tab6SubAFooterLogo { get; private set; }
@@ -93,6 +118,22 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab6SubCFooterLogo { get; private set; }
 		public Image Tab6SubDRightLogo { get; private set; }
 		public Image Tab6SubDFooterLogo { get; private set; }
+
+		public Image Tab6SubAClipart1Image { get; private set; }
+		public Image Tab6SubAClipart2Image { get; private set; }
+		public Image Tab6SubAClipart3Image { get; private set; }
+
+		public Image Tab6SubBClipart1Image { get; private set; }
+		public Image Tab6SubBClipart2Image { get; private set; }
+		public Image Tab6SubBClipart3Image { get; private set; }
+
+		public Image Tab6SubCClipart1Image { get; private set; }
+		public Image Tab6SubCClipart2Image { get; private set; }
+		public Image Tab6SubCClipart3Image { get; private set; }
+
+		public Image Tab6SubDClipart1Image { get; private set; }
+		public Image Tab6SubDClipart2Image { get; private set; }
+		public Image Tab6SubDClipart3Image { get; private set; }
 		#endregion
 
 		#region Tab 7
@@ -192,8 +233,8 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			CNAConfiguration = new CNAConfiguration();
 			FishingConfiguration = new FishingConfiguration();
 			CustomerConfiguration = new CustomerConfiguration();
-			ShareLists = new ShareLists();
-			ROILists = new ROILists();
+			ShareConfiguration = new ShareConfiguration();
+			ROIConfiguration = new ROIConfiguration();
 			MarketConfiguration = new MarketConfiguration();
 			VideoConfiguration = new VideoConfiguration();
 			AudienceConfiguration = new AudienceConfiguration();
@@ -219,11 +260,20 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				var useImage = Boolean.Parse(document.SelectSingleNode(@"//Settings/ButtonImage")?.InnerText ?? "false");
 				if (useImage)
 					ToggleImagePath = Path.Combine(DataFolder.LocalPath, String.Format("{0}.png", Id.ToLower()));
-				else
-					ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
+
+				ToggleTitle = document.SelectSingleNode(@"//Settings/RightPanelButton")?.InnerText ?? ToggleTitle;
 			}
 
 			Titles.Load(resourceManager.SettingsFile);
+
+			#region Cleanslate
+			CleanslateHeaderLogo = resourceManager.LogoCleanslateHeaderFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoCleanslateHeaderFile.LocalPath)
+				: null;
+			CleanslateSplashLogo = resourceManager.LogoCleanslateSplashFile.ExistsLocal()
+				? Image.FromFile(resourceManager.LogoCleanslateSplashFile.LocalPath)
+				: null;
+			#endregion
 
 			#region Tab 1
 			CoverConfiguration.Load(resourceManager);
@@ -340,7 +390,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			#endregion
 
 			#region Tab 5
-			ShareLists.Load(resourceManager);
+			ShareConfiguration.Load(resourceManager);
 
 			Tab5SubARightLogo = resourceManager.LogoTab5SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubARightFile.LocalPath)
@@ -372,10 +422,60 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			Tab5SubEFooterLogo = resourceManager.LogoTab5SubEFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab5SubEFooterFile.LocalPath)
 				: null;
+
+			Tab5SubAClipart1Image = resourceManager.ClipartTab5SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubA1File.LocalPath)
+				: null;
+			Tab5SubAClipart2Image = resourceManager.ClipartTab5SubA2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubA2File.LocalPath)
+				: null;
+			Tab5SubAClipart3Image = resourceManager.ClipartTab5SubA3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubA3File.LocalPath)
+				: null;
+
+			Tab5SubBClipart1Image = resourceManager.ClipartTab5SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubB1File.LocalPath)
+				: null;
+			Tab5SubBClipart2Image = resourceManager.ClipartTab5SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubB2File.LocalPath)
+				: null;
+			Tab5SubBClipart3Image = resourceManager.ClipartTab5SubB3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubB3File.LocalPath)
+				: null;
+
+			Tab5SubCClipart1Image = resourceManager.ClipartTab5SubC1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubC1File.LocalPath)
+				: null;
+			Tab5SubCClipart2Image = resourceManager.ClipartTab5SubC2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubC2File.LocalPath)
+				: null;
+			Tab5SubCClipart3Image = resourceManager.ClipartTab5SubC3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubC3File.LocalPath)
+				: null;
+
+			Tab5SubDClipart1Image = resourceManager.ClipartTab5SubD1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubD1File.LocalPath)
+				: null;
+			Tab5SubDClipart2Image = resourceManager.ClipartTab5SubD2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubD2File.LocalPath)
+				: null;
+			Tab5SubDClipart3Image = resourceManager.ClipartTab5SubD3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubD3File.LocalPath)
+				: null;
+
+			Tab5SubEClipart1Image = resourceManager.ClipartTab5SubE1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubE1File.LocalPath)
+				: null;
+			Tab5SubEClipart2Image = resourceManager.ClipartTab5SubE2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubE2File.LocalPath)
+				: null;
+			Tab5SubEClipart3Image = resourceManager.ClipartTab5SubE3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab5SubE3File.LocalPath)
+				: null;
 			#endregion
 
 			#region Tab 6
-			ROILists.Load(resourceManager);
+			ROIConfiguration.Load(resourceManager);
 
 			Tab6SubARightLogo = resourceManager.LogoTab6SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubARightFile.LocalPath)
@@ -400,6 +500,46 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab6SubDFooterLogo = resourceManager.LogoTab6SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab6SubDFooterFile.LocalPath)
+				: null;
+
+			Tab6SubAClipart1Image = resourceManager.ClipartTab6SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubA1File.LocalPath)
+				: null;
+			Tab6SubAClipart2Image = resourceManager.ClipartTab6SubA2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubA2File.LocalPath)
+				: null;
+			Tab6SubAClipart3Image = resourceManager.ClipartTab6SubA3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubA3File.LocalPath)
+				: null;
+
+			Tab6SubBClipart1Image = resourceManager.ClipartTab6SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubB1File.LocalPath)
+				: null;
+			Tab6SubBClipart2Image = resourceManager.ClipartTab6SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubB2File.LocalPath)
+				: null;
+			Tab6SubBClipart3Image = resourceManager.ClipartTab6SubB3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubB3File.LocalPath)
+				: null;
+
+			Tab6SubCClipart1Image = resourceManager.ClipartTab6SubC1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubC1File.LocalPath)
+				: null;
+			Tab6SubCClipart2Image = resourceManager.ClipartTab6SubC2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubC2File.LocalPath)
+				: null;
+			Tab6SubCClipart3Image = resourceManager.ClipartTab6SubC3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubC3File.LocalPath)
+				: null;
+
+			Tab6SubDClipart1Image = resourceManager.ClipartTab6SubD1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubD1File.LocalPath)
+				: null;
+			Tab6SubDClipart2Image = resourceManager.ClipartTab6SubD2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubD2File.LocalPath)
+				: null;
+			Tab6SubDClipart3Image = resourceManager.ClipartTab6SubD3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab6SubD3File.LocalPath)
 				: null;
 			#endregion
 

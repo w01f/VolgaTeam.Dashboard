@@ -9,7 +9,6 @@ using Asa.Common.GUI.Preview;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
-using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -38,10 +37,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
-			layoutControlItemLogoRight.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MaxSize, scaleFactor);
-			layoutControlItemLogoRight.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MinSize, scaleFactor);
-			layoutControlItemLogoFooter.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MaxSize, scaleFactor);
-			layoutControlItemLogoFooter.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MinSize, scaleFactor);
 
 			OnResize(this, EventArgs.Empty);
 		}
@@ -112,10 +107,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnResize(object sender, EventArgs e)
 		{
-			var showLogos = Width > 1000;
-			layoutControlItemLogoFooter.Visibility =
-				layoutControlItemLogoRight.Visibility =
-					showLogos ? LayoutVisibility.Always : LayoutVisibility.Never;
+			panelLogoRight.Visible = panelLogoBottom.Visible = Width > 1000;
 		}
 
 		#region Output Staff

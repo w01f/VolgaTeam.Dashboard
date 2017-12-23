@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
+using Asa.Common.Core.Enums;
+using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Common.Helpers
@@ -34,6 +38,38 @@ namespace Asa.Business.Solutions.Common.Helpers
 		public void LoadSolutionData(StorageDirectory holderAppDataFolder)
 		{
 			Solutions.ForEach(s => s.LoadData(holderAppDataFolder));
+
+			if (FileStorageManager.Instance.DataState != DataActualityState.Updated)
+			{
+				var excessFolders = Directory.GetDirectories(holderAppDataFolder.LocalPath)
+					.Where(path => !Solutions.Any(solutionInfo =>
+						String.Equals(Path.GetFileName(path), solutionInfo.Id, StringComparison.OrdinalIgnoreCase)))
+					.ToList();
+				foreach (var excessFolder in excessFolders)
+				{
+					try
+					{
+						Utilities.DeleteFolder(excessFolder);
+					}
+					catch
+					{
+					}
+				}
+				var excessArchives = Directory.GetFiles(holderAppDataFolder.LocalPath,"*.rar")
+					.Where(path => !Solutions.Any(solutionInfo =>
+						String.Equals(Path.GetFileNameWithoutExtension(path), solutionInfo.Id, StringComparison.OrdinalIgnoreCase)))
+					.ToList();
+				foreach (var path in excessArchives)
+				{
+					try
+					{
+						File.Delete(path);
+					}
+					catch
+					{
+					}
+				}
+			}
 		}
 	}
 }

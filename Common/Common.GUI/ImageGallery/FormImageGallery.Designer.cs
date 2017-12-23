@@ -69,7 +69,7 @@
 			this.xtraTabControlGroups.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlGroups.Location = new System.Drawing.Point(12, 12);
 			this.xtraTabControlGroups.Name = "xtraTabControlGroups";
-			this.xtraTabControlGroups.Size = new System.Drawing.Size(695, 318);
+			this.xtraTabControlGroups.Size = new System.Drawing.Size(920, 447);
 			this.xtraTabControlGroups.TabIndex = 8;
 			// 
 			// layoutControl
@@ -96,7 +96,7 @@
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(719, 392);
+			this.layoutControl.Size = new System.Drawing.Size(944, 521);
 			this.layoutControl.TabIndex = 67;
 			this.layoutControl.Text = "layoutControl1";
 			// 
@@ -106,7 +106,7 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(451, 344);
+			this.buttonXOK.Location = new System.Drawing.Point(676, 473);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(116, 36);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -120,7 +120,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(591, 344);
+			this.buttonXCancel.Location = new System.Drawing.Point(816, 473);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(116, 36);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -154,15 +154,15 @@
             this.layoutControlItemGallery});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(719, 392);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(944, 521);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// emptySpaceItem4
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(0, 332);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(0, 461);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(439, 40);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(664, 40);
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemCancel
@@ -170,7 +170,7 @@
 			this.layoutControlItemCancel.Control = this.buttonXCancel;
 			this.layoutControlItemCancel.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCancel.FillControlToClientArea = false;
-			this.layoutControlItemCancel.Location = new System.Drawing.Point(579, 332);
+			this.layoutControlItemCancel.Location = new System.Drawing.Point(804, 461);
 			this.layoutControlItemCancel.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemCancel.Name = "layoutControlItemCancel";
@@ -186,7 +186,7 @@
 			this.layoutControlItemOK.Control = this.buttonXOK;
 			this.layoutControlItemOK.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemOK.FillControlToClientArea = false;
-			this.layoutControlItemOK.Location = new System.Drawing.Point(439, 332);
+			this.layoutControlItemOK.Location = new System.Drawing.Point(664, 461);
 			this.layoutControlItemOK.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOK.Name = "layoutControlItemOK";
@@ -200,7 +200,7 @@
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(559, 332);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(784, 461);
 			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(20, 0);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(20, 10);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
@@ -211,11 +211,11 @@
 			// emptySpaceItem3
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 322);
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 451);
 			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(699, 10);
+			this.emptySpaceItem3.Size = new System.Drawing.Size(924, 10);
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -226,7 +226,7 @@
 			this.layoutControlItemGallery.FillControlToClientArea = false;
 			this.layoutControlItemGallery.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemGallery.Name = "layoutControlItemGallery";
-			this.layoutControlItemGallery.Size = new System.Drawing.Size(699, 322);
+			this.layoutControlItemGallery.Size = new System.Drawing.Size(924, 451);
 			this.layoutControlItemGallery.Text = "Gallery";
 			this.layoutControlItemGallery.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemGallery.TextVisible = false;
@@ -237,13 +237,14 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(719, 392);
+			this.ClientSize = new System.Drawing.Size(944, 521);
 			this.Controls.Add(this.layoutControl);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(735, 430);
+			this.MinimumSize = new System.Drawing.Size(960, 560);
 			this.Name = "FormImageGallery";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

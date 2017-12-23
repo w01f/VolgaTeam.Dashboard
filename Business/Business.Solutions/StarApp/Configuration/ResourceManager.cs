@@ -7,6 +7,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	{
 		public StorageFile SettingsFile { get; private set; }
 
+		#region Cleanslate
+		public StorageFile LogoCleanslateHeaderFile { get; private set; }
+		public StorageFile LogoCleanslateSplashFile { get; private set; }
+		#endregion
+
 		#region Tab 1
 		public StorageFile DataCoverPartAFile { get; private set; }
 
@@ -14,7 +19,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public StorageFile LogoTab1SubAFooterFile { get; private set; }
 
 		public StorageFile ClipartTab1SubA1File { get; private set; }
-		#endregion Tab 1
+		#endregion
 
 		#region Tab 2
 		public StorageFile DataCNAPartAFile { get; private set; }
@@ -82,6 +87,26 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public StorageFile LogoTab5SubDFooterFile { get; private set; }
 		public StorageFile LogoTab5SubERightFile { get; private set; }
 		public StorageFile LogoTab5SubEFooterFile { get; private set; }
+
+		public StorageFile ClipartTab5SubA1File { get; private set; }
+		public StorageFile ClipartTab5SubA2File { get; private set; }
+		public StorageFile ClipartTab5SubA3File { get; private set; }
+
+		public StorageFile ClipartTab5SubB1File { get; private set; }
+		public StorageFile ClipartTab5SubB2File { get; private set; }
+		public StorageFile ClipartTab5SubB3File { get; private set; }
+
+		public StorageFile ClipartTab5SubC1File { get; private set; }
+		public StorageFile ClipartTab5SubC2File { get; private set; }
+		public StorageFile ClipartTab5SubC3File { get; private set; }
+
+		public StorageFile ClipartTab5SubD1File { get; private set; }
+		public StorageFile ClipartTab5SubD2File { get; private set; }
+		public StorageFile ClipartTab5SubD3File { get; private set; }
+
+		public StorageFile ClipartTab5SubE1File { get; private set; }
+		public StorageFile ClipartTab5SubE2File { get; private set; }
+		public StorageFile ClipartTab5SubE3File { get; private set; }
 		#endregion
 
 		#region Tab 6
@@ -98,6 +123,22 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public StorageFile LogoTab6SubCFooterFile { get; private set; }
 		public StorageFile LogoTab6SubDRightFile { get; private set; }
 		public StorageFile LogoTab6SubDFooterFile { get; private set; }
+
+		public StorageFile ClipartTab6SubA1File { get; private set; }
+		public StorageFile ClipartTab6SubA2File { get; private set; }
+		public StorageFile ClipartTab6SubA3File { get; private set; }
+
+		public StorageFile ClipartTab6SubB1File { get; private set; }
+		public StorageFile ClipartTab6SubB2File { get; private set; }
+		public StorageFile ClipartTab6SubB3File { get; private set; }
+
+		public StorageFile ClipartTab6SubC1File { get; private set; }
+		public StorageFile ClipartTab6SubC2File { get; private set; }
+		public StorageFile ClipartTab6SubC3File { get; private set; }
+
+		public StorageFile ClipartTab6SubD1File { get; private set; }
+		public StorageFile ClipartTab6SubD2File { get; private set; }
+		public StorageFile ClipartTab6SubD3File { get; private set; }
 		#endregion
 
 		#region Tab 7
@@ -205,6 +246,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		{
 			SettingsFile = new StorageFile(dataFolder.RelativePathParts.Merge("settings.xml"));
 
+			#region Cleanslate
+			LogoCleanslateHeaderFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_star", "design_branding", "tab_1_header.png" }));
+			LogoCleanslateSplashFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_star", "design_branding", "tab_1.png" }));
+			#endregion
+
 			#region Tab 1
 			DataCoverPartAFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "subtab_a", "data", "CP01A.xml" }));
 
@@ -272,11 +318,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			#endregion
 
 			#region Tab 5
-			DataSharePartAFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_a", "data", "5a.xml" }));
-			DataSharePartBFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_b", "data", "5b.xml" }));
-			DataSharePartCFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_c", "data", "5c.xml" }));
-			DataSharePartDFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_d", "data", "5d.xml" }));
-			DataSharePartEFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_e", "data", "5e.xml" }));
+			DataSharePartAFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_a", "data", "CP05A.xml" }));
+			DataSharePartBFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_b", "data", "CP05B.xml" }));
+			DataSharePartCFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_c", "data", "CP05C.xml" }));
+			DataSharePartDFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_d", "data", "CP05D.xml" }));
+			DataSharePartEFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_e", "data", "CP05E.xml" }));
 
 			LogoTab5SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_a", "design_branding", "5a_right.png" }));
 			LogoTab5SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_a", "design_branding", "5a_footer.png" }));
@@ -292,13 +338,33 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 			LogoTab5SubERightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_e", "design_branding", "5e_right.png" }));
 			LogoTab5SubEFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_e", "design_branding", "5e_footer.png" }));
+
+			ClipartTab5SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_a", "placeholders", "CP05AClipart1.png" }));
+			ClipartTab5SubA2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_a", "placeholders", "CP05AClipart2.png" }));
+			ClipartTab5SubA3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_a", "placeholders", "CP05AClipart3.png" }));
+
+			ClipartTab5SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_b", "placeholders", "CP05BClipart1.png" }));
+			ClipartTab5SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_b", "placeholders", "CP05BClipart2.png" }));
+			ClipartTab5SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_b", "placeholders", "CP05BClipart3.png" }));
+
+			ClipartTab5SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_c", "placeholders", "CP05CClipart1.png" }));
+			ClipartTab5SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_c", "placeholders", "CP05CClipart2.png" }));
+			ClipartTab5SubC3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_c", "placeholders", "CP05CClipart3.png" }));
+
+			ClipartTab5SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_d", "placeholders", "CP05DClipart1.png" }));
+			ClipartTab5SubD2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_d", "placeholders", "CP05DClipart2.png" }));
+			ClipartTab5SubD3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_d", "placeholders", "CP05DClipart3.png" }));
+
+			ClipartTab5SubE1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_e", "placeholders", "CP05EClipart1.png" }));
+			ClipartTab5SubE2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_e", "placeholders", "CP05EClipart2.png" }));
+			ClipartTab5SubE3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_share", "subtab_e", "placeholders", "CP05EClipart3.png" }));
 			#endregion
 
 			#region Tab 6
-			DataROIPartAFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_a", "data", "6a.xml" }));
-			DataROIPartBFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_b", "data", "6b.xml" }));
-			DataROIPartCFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_c", "data", "6c.xml" }));
-			DataROIPartDFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_d", "data", "6d.xml" }));
+			DataROIPartAFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_a", "data", "CP06A.xml" }));
+			DataROIPartBFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_b", "data", "CP06B.xml" }));
+			DataROIPartCFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_c", "data", "CP06C.xml" }));
+			DataROIPartDFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_d", "data", "CP06D.xml" }));
 
 			LogoTab6SubARightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_a", "design_branding", "6a_right.png" }));
 			LogoTab6SubAFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_a", "design_branding", "6a_footer.png" }));
@@ -311,6 +377,22 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 			LogoTab6SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_d", "design_branding", "6d_right.png" }));
 			LogoTab6SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_d", "design_branding", "6d_footer.png" }));
+
+			ClipartTab6SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_a", "placeholders", "CP06AClipart1.png" }));
+			ClipartTab6SubA2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_a", "placeholders", "CP06AClipart2.png" }));
+			ClipartTab6SubA3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_a", "placeholders", "CP06AClipart3.png" }));
+
+			ClipartTab6SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_b", "placeholders", "CP06BClipart1.png" }));
+			ClipartTab6SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_b", "placeholders", "CP06BClipart2.png" }));
+			ClipartTab6SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_b", "placeholders", "CP06BClipart3.png" }));
+
+			ClipartTab6SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_c", "placeholders", "CP06CClipart1.png" }));
+			ClipartTab6SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_c", "placeholders", "CP06CClipart2.png" }));
+			ClipartTab6SubC3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_c", "placeholders", "CP06CClipart3.png" }));
+
+			ClipartTab6SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_d", "placeholders", "CP06DClipart1.png" }));
+			ClipartTab6SubD2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_d", "placeholders", "CP06DClipart2.png" }));
+			ClipartTab6SubD3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "06_roi", "subtab_d", "placeholders", "CP06DClipart3.png" }));
 			#endregion
 
 			#region Tab 7

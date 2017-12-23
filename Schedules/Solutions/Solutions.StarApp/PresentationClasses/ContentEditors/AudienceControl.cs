@@ -1,13 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 using DevExpress.Skins;
 using DevExpress.XtraLayout;
-using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -36,10 +36,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			memoEditTabBSubheader4.EnableSelectAll();
 			memoEditTabBSubheader5.EnableSelectAll();
 			memoEditTabBSubheader6.EnableSelectAll();
+			Application.DoEvents();
 
 			layoutControlGroupTabA.Text = SlideContainer.StarInfo.Titles.Tab9SubATitle;
 			layoutControlGroupTabB.Text = SlideContainer.StarInfo.Titles.Tab9SubBTitle;
 			layoutControlGroupTabC.Text = SlideContainer.StarInfo.Titles.Tab9SubCTitle;
+			Application.DoEvents();
 
 			pictureEditTabAClipart1.Image = SlideContainer.StarInfo.Tab9SubAClipart1Image;
 			pictureEditTabAClipart1.Properties.PictureAlignment =
@@ -68,16 +70,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabCClipart4.Image = SlideContainer.StarInfo.Tab9SubCClipart4Image;
 			pictureEditTabCClipart4.Properties.PictureAlignment =
 				SlideContainer.StarInfo.AudienceConfiguration.PartCClipart4Configuration.Alignment;
+			Application.DoEvents();
 
 			comboBoxEditTabCCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.AudienceConfiguration.PartCCombo1Items);
+			Application.DoEvents();
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);
-			layoutControlItemLogoRight.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MaxSize, scaleFactor);
-			layoutControlItemLogoRight.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoRight.MinSize, scaleFactor);
-			layoutControlItemLogoFooter.MaxSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MaxSize, scaleFactor);
-			layoutControlItemLogoFooter.MinSize = RectangleHelper.ScaleSize(layoutControlItemLogoFooter.MinSize, scaleFactor);
 
 			OnResize(this, EventArgs.Empty);
 		}
@@ -162,10 +162,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnResize(object sender, EventArgs e)
 		{
-			var showLogos = Width > 1000;
-			layoutControlItemLogoFooter.Visibility =
-				layoutControlItemLogoRight.Visibility =
-					showLogos ? LayoutVisibility.Always : LayoutVisibility.Never;
+			panelLogoRight.Visible = panelLogoBottom.Visible = Width > 1000;
 		}
 
 		#region Output Staff

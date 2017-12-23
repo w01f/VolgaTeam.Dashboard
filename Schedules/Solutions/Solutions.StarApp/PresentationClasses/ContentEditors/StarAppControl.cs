@@ -10,8 +10,7 @@ using Asa.Solutions.StarApp.PresentationClasses.Output;
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
 	[ToolboxItem(false)]
-	//public partial class StarAppControl : UserControl
-	public partial class StarAppControl : XtraTabPage, IStarAppSlide
+	public partial class StarAppControl : UserControl, IStarAppSlide
 	{
 		protected BaseStarAppContainer SlideContainer { get; }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Asa.Browser.Controls.Controls;
 using Asa.Common.Core.OfficeInterops;
@@ -13,6 +14,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			=> BusinessObjects.Instance.PowerPointManager.Processor;
 
 		public override Form MainForm => Controller.Instance.FormMain;
+		public override Image SplashLogo => BusinessObjects.Instance.ImageResourcesManager.BrowserSplash ?? base.SplashLogo;
 
 		public MediaSiteContainer()
 		{

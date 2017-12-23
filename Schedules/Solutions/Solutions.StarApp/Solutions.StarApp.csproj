@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
@@ -64,79 +65,86 @@
       <DependentUpon>BaseStarAppContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.Designer.cs">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CustomerControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CustomerControl.Designer.cs">
       <DependentUpon>CustomerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\IStarAppTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\ROIControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ROIControl.Designer.cs">
       <DependentUpon>ROIControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\MarketControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\MarketControl.Designer.cs">
       <DependentUpon>MarketControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\AudienceControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\AudienceControl.Designer.cs">
       <DependentUpon>AudienceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ClosersControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ClosersControl.Designer.cs">
       <DependentUpon>ClosersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\SolutionControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\SolutionControl.Designer.cs">
       <DependentUpon>SolutionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ContentEditors\VideoControl.cs">
+    <Compile Include="PresentationClasses\ContentEditors\TabPageContainerControl.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\TabPageContainerControl.Designer.cs">
+      <DependentUpon>TabPageContainerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\VideoControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\VideoControl.Designer.cs">
       <DependentUpon>VideoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ShareControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ShareControl.Designer.cs">
       <DependentUpon>ShareControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\FishingControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\FishingControl.Designer.cs">
       <DependentUpon>FishingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CNAControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CNAControl.Designer.cs">
       <DependentUpon>CNAControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CoverControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CoverControl.Designer.cs">
       <DependentUpon>CoverControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\StarAppControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\StarAppControl.Designer.cs">
       <DependentUpon>StarAppControl.cs</DependentUpon>
@@ -195,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\SolutionControl.resx">
       <DependentUpon>SolutionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\TabPageContainerControl.resx">
+      <DependentUpon>TabPageContainerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\VideoControl.resx">
       <DependentUpon>VideoControl.cs</DependentUpon>

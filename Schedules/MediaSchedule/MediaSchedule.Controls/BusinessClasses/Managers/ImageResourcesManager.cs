@@ -130,6 +130,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		#endregion
 
 		#region Browser Resources
+		public Image BrowserSplash { get; private set; }
 		public Image BrowserNavigationBack { get; private set; }
 		public Image BrowserNavigationForward { get; private set; }
 		public Image BrowserNavigationRefresh { get; private set; }
@@ -510,6 +511,9 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			#endregion
 
 			#region Browser Resources
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_splash.png");
+			if (File.Exists(resourceFile))
+				BrowserSplash = Image.FromFile(resourceFile);
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "eo_left.png");
 			if (File.Exists(resourceFile))
 				BrowserNavigationBack = Image.FromFile(resourceFile);

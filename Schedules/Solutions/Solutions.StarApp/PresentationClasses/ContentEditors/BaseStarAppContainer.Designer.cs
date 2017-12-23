@@ -61,7 +61,7 @@
 			this.layoutControl.Name = "layoutControl";
 			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(802, 383, 250, 350);
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(585, 661);
+			this.layoutControl.Size = new System.Drawing.Size(1100, 661);
 			this.layoutControl.TabIndex = 66;
 			this.layoutControl.Text = "layoutControl1";
 			// 
@@ -93,7 +93,7 @@
 			this.xtraTabControl.AppearancePage.PageClient.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.Size = new System.Drawing.Size(585, 661);
+			this.xtraTabControl.Size = new System.Drawing.Size(1100, 661);
 			this.xtraTabControl.TabIndex = 0;
 			// 
 			// layoutControlGroupRoot
@@ -118,7 +118,7 @@
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(585, 661);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(1100, 661);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemContainer
@@ -129,7 +129,7 @@
 			this.layoutControlItemContainer.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemContainer.Name = "layoutControlItemContainer";
 			this.layoutControlItemContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemContainer.Size = new System.Drawing.Size(585, 661);
+			this.layoutControlItemContainer.Size = new System.Drawing.Size(1100, 661);
 			this.layoutControlItemContainer.Text = "Container";
 			this.layoutControlItemContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemContainer.TextVisible = false;
@@ -137,11 +137,11 @@
 			// 
 			// BaseStarAppContainer
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Controls.Add(this.layoutControl);
 			this.Name = "BaseStarAppContainer";
-			this.Size = new System.Drawing.Size(585, 661);
+			this.Size = new System.Drawing.Size(1100, 661);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();

@@ -44,8 +44,6 @@ namespace Asa.SlideTemplateViewer
 				_slideContainer.Dispose();
 			}
 
-			laSlideSize.Text = String.Format("Slide Size: {0}", SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
-
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
 			_slideContainer.InitSlides(AppManager.Instance.SlideManager);
@@ -59,9 +57,9 @@ namespace Asa.SlideTemplateViewer
 		{
 			if (!AppManager.Instance.CheckPowerPointRunning()) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
+			FormProgress.ShowOutputProgress();
 			AppManager.Instance.ShowFloater(() =>
 			{
-				FormProgress.ShowProgress();
 				AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath());
 				FormProgress.CloseProgress();
 			});
@@ -71,7 +69,7 @@ namespace Asa.SlideTemplateViewer
 		{
 			if (!AppManager.Instance.CheckPowerPointRunning()) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nPreparing Preview...");
-			FormProgress.ShowProgress();
+			FormProgress.ShowProgress(FormMain.Instance);
 			var tempFileName = Path.Combine(Common.Core.Configuration.ResourceManager.Instance.TempFolder.LocalPath, Path.GetFileName(Path.GetTempFileName()));
 			AppManager.Instance.PowerPointManager.Processor.PreparePresentation(tempFileName, presentation => AppManager.Instance.PowerPointManager.Processor.AppendSlideMaster(slideMaster.GetMasterPath(), presentation));
 			Utilities.ActivateForm(FormMain.Instance.Handle, false, false);

@@ -11,10 +11,8 @@ namespace Asa.Common.Core.Helpers
 {
 	public class SlideManager
 	{
-		public string FormTitle { get; private set; }
 		public string TabTitle { get; private set; }
 		public Image RibbonBarLogo { get; private set; }
-		public Icon FormIcon { get; private set; }
 		public List<SlideMaster> Slides { get; }
 
 		public SlideManager()
@@ -32,18 +30,12 @@ namespace Asa.Common.Core.Helpers
 			{
 				var titleConfig = new XmlDocument();
 				titleConfig.Load(titleConfigFile);
-
-				FormTitle = titleConfig.SelectSingleNode(@"/Settings/addslides/TitleBar")?.InnerText;
 				TabTitle = titleConfig.SelectSingleNode(@"/Settings/addslides/RibbonTab")?.InnerText;
 			}
 
 			var ribbonBarLogoFile = Path.Combine(storageDirectory.LocalPath, "app_logo.png");
 			if (File.Exists(ribbonBarLogoFile))
 				RibbonBarLogo = Image.FromFile(ribbonBarLogoFile);
-
-			var formIconFile = Path.Combine(storageDirectory.LocalPath, "app_icon.ico");
-			if (File.Exists(formIconFile))
-				FormIcon = new Icon(formIconFile);
 
 			LoadSlides(storageDirectory);
 		}

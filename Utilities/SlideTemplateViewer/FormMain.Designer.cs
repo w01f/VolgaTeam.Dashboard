@@ -32,30 +32,38 @@ namespace Asa.SlideTemplateViewer
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarSlidesExit = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSlidesExit = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSlidesFloater = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSlidesFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSlidesHelp = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSlidesHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
 			this.labelItemSlidesLogo = new DevComponents.DotNetBar.LabelItem();
+			this.applicationButtonApplicationMenu = new DevComponents.DotNetBar.ApplicationButton();
+			this.buttonItemApplicationMenuSlideSettings = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemApplicationMenuHelp = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemApplicationMenuExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
-			this.buttonItemSlideSettings = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemCollapse = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemExpand = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemPin = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemQatHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.barBottom = new DevComponents.DotNetBar.Bar();
+			this.itemContainerStatusBarMainInfo = new DevComponents.DotNetBar.ItemContainer();
+			this.labelItemAppTitle = new DevComponents.DotNetBar.LabelItem();
+			this.labelItemStatusBarSeparator = new DevComponents.DotNetBar.LabelItem();
+			this.itemContainerStatusBarAdditionalInfo = new DevComponents.DotNetBar.ItemContainer();
+			this.labelItemSlideSize = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.barBottom)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// ribbonControl
 			// 
-			this.ribbonControl.AutoExpand = false;
 			this.ribbonControl.BackColor = System.Drawing.Color.White;
 			// 
 			// 
@@ -66,13 +74,19 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.applicationButtonApplicationMenu,
             this.ribbonTabItemSlides,
-            this.buttonItemSlideSettings});
+            this.buttonItemCollapse,
+            this.buttonItemExpand,
+            this.buttonItemPin});
 			this.ribbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
 			this.ribbonControl.Location = new System.Drawing.Point(5, 1);
 			this.ribbonControl.MdiSystemItemVisible = false;
 			this.ribbonControl.Name = "ribbonControl";
-			this.ribbonControl.Size = new System.Drawing.Size(915, 185);
+			this.ribbonControl.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemQatFloater,
+            this.buttonItemQatHelp});
+			this.ribbonControl.Size = new System.Drawing.Size(915, 156);
 			this.ribbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonControl.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
 			this.ribbonControl.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
@@ -91,21 +105,21 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonControl.SystemText.QatRemoveItemText = "&Remove from Quick Access Toolbar";
 			this.ribbonControl.TabGroupHeight = 14;
 			this.ribbonControl.TabIndex = 5;
+			this.ribbonControl.AfterRibbonPanelPopup += new System.EventHandler(this.OnRibbonAfterPanelPopup);
+			this.ribbonControl.AfterRibbonPanelPopupClose += new System.EventHandler(this.OnRibbonAfterPanelPopupClose);
+			this.ribbonControl.ExpandedChanged += new System.EventHandler(this.OnRibbonExpandedChanged);
 			// 
 			// ribbonPanelSlides
 			// 
 			this.ribbonPanelSlides.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesExit);
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesFloater);
-			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesHelp);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPowerPoint);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPreview);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesLogo);
 			this.ribbonPanelSlides.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 53);
+			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 54);
 			this.ribbonPanelSlides.Name = "ribbonPanelSlides";
 			this.ribbonPanelSlides.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelSlides.Size = new System.Drawing.Size(915, 132);
+			this.ribbonPanelSlides.Size = new System.Drawing.Size(915, 102);
 			// 
 			// 
 			// 
@@ -119,131 +133,6 @@ namespace Asa.SlideTemplateViewer
 			// 
 			this.ribbonPanelSlides.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelSlides.TabIndex = 23;
-			// 
-			// ribbonBarSlidesExit
-			// 
-			this.ribbonBarSlidesExit.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesExit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesExit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesExit.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesExit.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesExit.DragDropSupport = true;
-			this.ribbonBarSlidesExit.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-			this.ribbonBarSlidesExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSlidesExit});
-			this.ribbonBarSlidesExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesExit.Location = new System.Drawing.Point(558, 0);
-			this.ribbonBarSlidesExit.Name = "ribbonBarSlidesExit";
-			this.ribbonBarSlidesExit.Size = new System.Drawing.Size(85, 130);
-			this.ribbonBarSlidesExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesExit.TabIndex = 29;
-			this.ribbonBarSlidesExit.Text = "EXIT";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesExit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-			// 
-			// buttonItemSlidesExit
-			// 
-			this.buttonItemSlidesExit.Image = global::Asa.SlideTemplateViewer.Properties.Resources.Exit;
-			this.buttonItemSlidesExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSlidesExit.Name = "buttonItemSlidesExit";
-			this.buttonItemSlidesExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesExit, new DevComponents.DotNetBar.SuperTooltipInfo("Exit", "", "Close this app…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
-			this.buttonItemSlidesExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// ribbonBarSlidesFloater
-			// 
-			this.ribbonBarSlidesFloater.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesFloater.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesFloater.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesFloater.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesFloater.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesFloater.DragDropSupport = true;
-			this.ribbonBarSlidesFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSlidesFloater});
-			this.ribbonBarSlidesFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesFloater.Location = new System.Drawing.Point(470, 0);
-			this.ribbonBarSlidesFloater.Name = "ribbonBarSlidesFloater";
-			this.ribbonBarSlidesFloater.Size = new System.Drawing.Size(88, 130);
-			this.ribbonBarSlidesFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesFloater.TabIndex = 32;
-			this.ribbonBarSlidesFloater.Text = "Floater";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesFloater.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSlidesFloater
-			// 
-			this.buttonItemSlidesFloater.Image = global::Asa.SlideTemplateViewer.Properties.Resources.Floater;
-			this.buttonItemSlidesFloater.Name = "buttonItemSlidesFloater";
-			this.buttonItemSlidesFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Minimize this app to the floater bar…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemSlidesFloater.Text = "Floater";
-			this.buttonItemSlidesFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// ribbonBarSlidesHelp
-			// 
-			this.ribbonBarSlidesHelp.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesHelp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesHelp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSlidesHelp.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSlidesHelp.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSlidesHelp.DragDropSupport = true;
-			this.ribbonBarSlidesHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSlidesHelp});
-			this.ribbonBarSlidesHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesHelp.Location = new System.Drawing.Point(386, 0);
-			this.ribbonBarSlidesHelp.Name = "ribbonBarSlidesHelp";
-			this.ribbonBarSlidesHelp.Size = new System.Drawing.Size(84, 130);
-			this.ribbonBarSlidesHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSlidesHelp.TabIndex = 31;
-			this.ribbonBarSlidesHelp.Text = "HELP";
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesHelp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSlidesHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSlidesHelp
-			// 
-			this.buttonItemSlidesHelp.Image = global::Asa.SlideTemplateViewer.Properties.Resources.Help;
-			this.buttonItemSlidesHelp.Name = "buttonItemSlidesHelp";
-			this.buttonItemSlidesHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Help", "", "Learn more about this app…", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemSlidesHelp.Text = "buttonItem1";
-			this.buttonItemSlidesHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
 			// 
 			// ribbonBarSlidesPowerPoint
 			// 
@@ -264,7 +153,7 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonBarSlidesPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(298, 0);
 			this.ribbonBarSlidesPowerPoint.Name = "ribbonBarSlidesPowerPoint";
-			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(88, 130);
+			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(88, 100);
 			this.ribbonBarSlidesPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesPowerPoint.TabIndex = 30;
 			this.ribbonBarSlidesPowerPoint.Text = "PowerPoint";
@@ -303,7 +192,7 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonBarSlidesPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesPreview.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarSlidesPreview.Name = "ribbonBarSlidesPreview";
-			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(94, 130);
+			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(94, 100);
 			this.ribbonBarSlidesPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesPreview.TabIndex = 33;
 			this.ribbonBarSlidesPreview.Text = "Preview";
@@ -344,7 +233,7 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonBarSlidesLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarSlidesLogo.Name = "ribbonBarSlidesLogo";
-			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 130);
+			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 100);
 			this.ribbonBarSlidesLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesLogo.TabIndex = 23;
 			this.ribbonBarSlidesLogo.Text = "GO GET YOUR BIZ!";
@@ -363,6 +252,55 @@ namespace Asa.SlideTemplateViewer
 			this.labelItemSlidesLogo.Image = global::Asa.SlideTemplateViewer.Properties.Resources.AddSlidesLogo;
 			this.labelItemSlidesLogo.Name = "labelItemSlidesLogo";
 			// 
+			// applicationButtonApplicationMenu
+			// 
+			this.applicationButtonApplicationMenu.AutoExpandOnClick = true;
+			this.applicationButtonApplicationMenu.CanCustomize = false;
+			this.applicationButtonApplicationMenu.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.Image;
+			this.applicationButtonApplicationMenu.Image = ((System.Drawing.Image)(resources.GetObject("applicationButtonApplicationMenu.Image")));
+			this.applicationButtonApplicationMenu.ImageFixedSize = new System.Drawing.Size(16, 16);
+			this.applicationButtonApplicationMenu.ImagePaddingHorizontal = 0;
+			this.applicationButtonApplicationMenu.ImagePaddingVertical = 1;
+			this.applicationButtonApplicationMenu.Name = "applicationButtonApplicationMenu";
+			this.applicationButtonApplicationMenu.ShowSubItems = false;
+			this.applicationButtonApplicationMenu.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemApplicationMenuSlideSettings,
+            this.buttonItemApplicationMenuHelp,
+            this.buttonItemApplicationMenuExit});
+			this.applicationButtonApplicationMenu.Text = "File";
+			// 
+			// buttonItemApplicationMenuSlideSettings
+			// 
+			this.buttonItemApplicationMenuSlideSettings.BeginGroup = true;
+			this.buttonItemApplicationMenuSlideSettings.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+			this.buttonItemApplicationMenuSlideSettings.Image = global::Asa.SlideTemplateViewer.Properties.Resources.ApplicationMenuSettings;
+			this.buttonItemApplicationMenuSlideSettings.Name = "buttonItemApplicationMenuSlideSettings";
+			this.buttonItemApplicationMenuSlideSettings.Shortcuts.Add(DevComponents.DotNetBar.eShortcut.F2);
+			this.buttonItemApplicationMenuSlideSettings.SubItemsExpandWidth = 24;
+			this.buttonItemApplicationMenuSlideSettings.Text = "Slide Settings...";
+			this.buttonItemApplicationMenuSlideSettings.Click += new System.EventHandler(this.OnSlideSettingsClick);
+			// 
+			// buttonItemApplicationMenuHelp
+			// 
+			this.buttonItemApplicationMenuHelp.BeginGroup = true;
+			this.buttonItemApplicationMenuHelp.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+			this.buttonItemApplicationMenuHelp.Image = global::Asa.SlideTemplateViewer.Properties.Resources.ApplicationMenuHelp;
+			this.buttonItemApplicationMenuHelp.Name = "buttonItemApplicationMenuHelp";
+			this.buttonItemApplicationMenuHelp.Shortcuts.Add(DevComponents.DotNetBar.eShortcut.F1);
+			this.buttonItemApplicationMenuHelp.SubItemsExpandWidth = 24;
+			this.buttonItemApplicationMenuHelp.Text = "Help";
+			this.buttonItemApplicationMenuHelp.Click += new System.EventHandler(this.OnHelpClick);
+			// 
+			// buttonItemApplicationMenuExit
+			// 
+			this.buttonItemApplicationMenuExit.BeginGroup = true;
+			this.buttonItemApplicationMenuExit.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+			this.buttonItemApplicationMenuExit.Image = global::Asa.SlideTemplateViewer.Properties.Resources.ApplicationMenuExit;
+			this.buttonItemApplicationMenuExit.Name = "buttonItemApplicationMenuExit";
+			this.buttonItemApplicationMenuExit.Shortcuts.Add(DevComponents.DotNetBar.eShortcut.AltF4);
+			this.buttonItemApplicationMenuExit.Text = "Exit";
+			this.buttonItemApplicationMenuExit.Click += new System.EventHandler(this.OnExitClick);
+			// 
 			// ribbonTabItemSlides
 			// 
 			this.ribbonTabItemSlides.Checked = true;
@@ -370,12 +308,50 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
 			this.ribbonTabItemSlides.Text = "Slides";
 			// 
-			// buttonItemSlideSettings
+			// buttonItemCollapse
 			// 
-			this.buttonItemSlideSettings.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
-			this.buttonItemSlideSettings.Name = "buttonItemSlideSettings";
-			this.buttonItemSlideSettings.Text = "Slide Settings";
-			this.buttonItemSlideSettings.Click += new System.EventHandler(this.buttonItemSlideSettings_Click);
+			this.buttonItemCollapse.Image = global::Asa.SlideTemplateViewer.Properties.Resources.RibbonCollapse;
+			this.buttonItemCollapse.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemCollapse.Name = "buttonItemCollapse";
+			this.superTooltip.SetSuperTooltip(this.buttonItemCollapse, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Collpase", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, false, new System.Drawing.Size(60, 18)));
+			this.buttonItemCollapse.Text = "buttonItem2";
+			this.buttonItemCollapse.Click += new System.EventHandler(this.OnRibbonCollapseClick);
+			// 
+			// buttonItemExpand
+			// 
+			this.buttonItemExpand.Image = global::Asa.SlideTemplateViewer.Properties.Resources.RibbonExpand;
+			this.buttonItemExpand.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemExpand.Name = "buttonItemExpand";
+			this.superTooltip.SetSuperTooltip(this.buttonItemExpand, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Expand", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, true, new System.Drawing.Size(60, 18)));
+			this.buttonItemExpand.Text = "buttonItem1";
+			this.buttonItemExpand.Visible = false;
+			this.buttonItemExpand.Click += new System.EventHandler(this.OnRibbonExpandClick);
+			// 
+			// buttonItemPin
+			// 
+			this.buttonItemPin.Image = global::Asa.SlideTemplateViewer.Properties.Resources.RibbonPin;
+			this.buttonItemPin.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.buttonItemPin.Name = "buttonItemPin";
+			this.superTooltip.SetSuperTooltip(this.buttonItemPin, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Lock", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, false, true, new System.Drawing.Size(40, 18)));
+			this.buttonItemPin.Text = "buttonItem3";
+			this.buttonItemPin.Visible = false;
+			this.buttonItemPin.Click += new System.EventHandler(this.OnRibbonPinClick);
+			// 
+			// buttonItemQatFloater
+			// 
+			this.buttonItemQatFloater.Image = global::Asa.SlideTemplateViewer.Properties.Resources.QatFloater;
+			this.buttonItemQatFloater.Name = "buttonItemQatFloater";
+			this.superTooltip.SetSuperTooltip(this.buttonItemQatFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to Floater", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
+			this.buttonItemQatFloater.Text = "buttonItem1";
+			this.buttonItemQatFloater.Click += new System.EventHandler(this.OnFloaterClick);
+			// 
+			// buttonItemQatHelp
+			// 
+			this.buttonItemQatHelp.Image = global::Asa.SlideTemplateViewer.Properties.Resources.QatHelp;
+			this.buttonItemQatHelp.Name = "buttonItemQatHelp";
+			this.superTooltip.SetSuperTooltip(this.buttonItemQatHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn MORE about building schedules for PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
+			this.buttonItemQatHelp.Text = "buttonItem1";
+			this.buttonItemQatHelp.Click += new System.EventHandler(this.OnHelpClick);
 			// 
 			// superTooltip
 			// 
@@ -391,16 +367,92 @@ namespace Asa.SlideTemplateViewer
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Office 2013";
 			// 
+			// barBottom
+			// 
+			this.barBottom.AntiAlias = true;
+			this.barBottom.BarType = DevComponents.DotNetBar.eBarType.StatusBar;
+			this.barBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.barBottom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.barBottom.IsMaximized = false;
+			this.barBottom.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.itemContainerStatusBarMainInfo,
+            this.labelItemStatusBarSeparator,
+            this.itemContainerStatusBarAdditionalInfo});
+			this.barBottom.Location = new System.Drawing.Point(5, 672);
+			this.barBottom.Name = "barBottom";
+			this.barBottom.PaddingBottom = 0;
+			this.barBottom.PaddingTop = 0;
+			this.barBottom.Size = new System.Drawing.Size(915, 26);
+			this.barBottom.Stretch = true;
+			this.barBottom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.barBottom.TabIndex = 6;
+			this.barBottom.TabStop = false;
+			// 
+			// itemContainerStatusBarMainInfo
+			// 
+			// 
+			// 
+			// 
+			this.itemContainerStatusBarMainInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainerStatusBarMainInfo.ItemSpacing = 20;
+			this.itemContainerStatusBarMainInfo.MinimumSize = new System.Drawing.Size(0, 24);
+			this.itemContainerStatusBarMainInfo.Name = "itemContainerStatusBarMainInfo";
+			this.itemContainerStatusBarMainInfo.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItemAppTitle});
+			// 
+			// 
+			// 
+			this.itemContainerStatusBarMainInfo.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.itemContainerStatusBarMainInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainerStatusBarMainInfo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// labelItemAppTitle
+			// 
+			this.labelItemAppTitle.Name = "labelItemAppTitle";
+			this.labelItemAppTitle.Text = "Slide Gallery";
+			// 
+			// labelItemStatusBarSeparator
+			// 
+			this.labelItemStatusBarSeparator.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
+			this.labelItemStatusBarSeparator.Name = "labelItemStatusBarSeparator";
+			// 
+			// itemContainerStatusBarAdditionalInfo
+			// 
+			// 
+			// 
+			// 
+			this.itemContainerStatusBarAdditionalInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainerStatusBarAdditionalInfo.ItemSpacing = 5;
+			this.itemContainerStatusBarAdditionalInfo.MinimumSize = new System.Drawing.Size(0, 24);
+			this.itemContainerStatusBarAdditionalInfo.Name = "itemContainerStatusBarAdditionalInfo";
+			this.itemContainerStatusBarAdditionalInfo.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItemSlideSize});
+			// 
+			// 
+			// 
+			this.itemContainerStatusBarAdditionalInfo.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.itemContainerStatusBarAdditionalInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainerStatusBarAdditionalInfo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// labelItemSlideSize
+			// 
+			this.labelItemSlideSize.Name = "labelItemSlideSize";
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(925, 699);
+			this.ClientSize = new System.Drawing.Size(925, 700);
+			this.Controls.Add(this.barBottom);
 			this.Controls.Add(this.ribbonControl);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MaximizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(925, 700);
 			this.Name = "FormMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -411,6 +463,7 @@ namespace Asa.SlideTemplateViewer
 			this.ribbonControl.ResumeLayout(false);
 			this.ribbonControl.PerformLayout();
 			this.ribbonPanelSlides.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.barBottom)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -421,20 +474,28 @@ namespace Asa.SlideTemplateViewer
 		private DevComponents.DotNetBar.RibbonPanel ribbonPanelSlides;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesLogo;
 		public DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSlides;
-		private DevComponents.DotNetBar.ButtonItem buttonItemSlideSettings;
 		private DevComponents.DotNetBar.StyleManager styleManager;
 		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevComponents.DotNetBar.LabelItem labelItemSlidesLogo;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesExit;
-		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesExit;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesFloater;
-		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesFloater;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesHelp;
-		public DevComponents.DotNetBar.ButtonItem buttonItemSlidesHelp;
 		public DevComponents.DotNetBar.RibbonBar ribbonBarSlidesPowerPoint;
 		public DevComponents.DotNetBar.ButtonItem buttonItemSlidesPowerPoint;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesPreview;
 		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesPreview;
+		private DevComponents.DotNetBar.ButtonItem buttonItemQatFloater;
+		private DevComponents.DotNetBar.ButtonItem buttonItemQatHelp;
+		private DevComponents.DotNetBar.ApplicationButton applicationButtonApplicationMenu;
+		private DevComponents.DotNetBar.ButtonItem buttonItemApplicationMenuSlideSettings;
+		private DevComponents.DotNetBar.ButtonItem buttonItemApplicationMenuHelp;
+		private DevComponents.DotNetBar.ButtonItem buttonItemApplicationMenuExit;
+		private DevComponents.DotNetBar.ButtonItem buttonItemCollapse;
+		private DevComponents.DotNetBar.ButtonItem buttonItemExpand;
+		private DevComponents.DotNetBar.ButtonItem buttonItemPin;
+		private DevComponents.DotNetBar.Bar barBottom;
+		private DevComponents.DotNetBar.ItemContainer itemContainerStatusBarMainInfo;
+		private DevComponents.DotNetBar.LabelItem labelItemAppTitle;
+		private DevComponents.DotNetBar.LabelItem labelItemStatusBarSeparator;
+		private DevComponents.DotNetBar.ItemContainer itemContainerStatusBarAdditionalInfo;
+		private DevComponents.DotNetBar.LabelItem labelItemSlideSize;
 	}
 }
 

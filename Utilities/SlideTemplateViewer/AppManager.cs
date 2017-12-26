@@ -9,7 +9,6 @@ using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.Activities;
 using Asa.Common.Core.Objects.Output;
-using Asa.Common.GUI.Common;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
 using Asa.Common.GUI.ToolForms;
@@ -23,6 +22,9 @@ namespace Asa.SlideTemplateViewer
 		public HelpManager HelpManager { get; }
 		public ActivityManager ActivityManager { get; private set; }
 		public PowerPointManager<SlideTemplateViewerPowerPointHelper> PowerPointManager { get; }
+		public TextResourcesManager TextResourcesManager { get; }
+		public ImageResourcesManager ImageResourcesManager { get; }
+		public FormStyleManager FormStyleManager { get; set; }
 
 		private readonly FloaterManager _floater = new FloaterManager();
 
@@ -31,12 +33,14 @@ namespace Asa.SlideTemplateViewer
 			SlideManager = new SlideManager();
 			HelpManager = new HelpManager();
 			PowerPointManager = new PowerPointManager<SlideTemplateViewerPowerPointHelper>();
+			ImageResourcesManager = new ImageResourcesManager();
+			TextResourcesManager = new TextResourcesManager();
 		}
 
 		public static AppManager Instance { get; } = new AppManager();
 
 		public string FormCaption => String.Format("{0} v{1}- {2}",
-			SlideManager.FormTitle ?? "Add Slides",
+			TextResourcesManager.FormText?? "Add Slides",
 			FileStorageManager.Instance.Version,
 			SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
 
@@ -168,6 +172,11 @@ namespace Asa.SlideTemplateViewer
 			SlideManager.Load();
 
 			HelpManager.LoadHelpLinks();
+
+			TextResourcesManager.Load();
+			ImageResourcesManager.Load();
+
+			FormStyleManager = new FormStyleManager(Business.Dashboard.Configuration.ResourceManager.Instance.FormStyleConfigFile);
 
 			ActivityManager = ActivityManager.OpenStorage();
 			ActivityManager.AddActivity(new UserActivity("Application started"));

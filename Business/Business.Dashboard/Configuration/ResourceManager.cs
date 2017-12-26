@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -14,6 +15,10 @@ namespace Asa.Business.Dashboard.Configuration
 		public StorageFile DataClientGoalsFile { get; private set; }
 		public StorageFile DataLeadoffStatementFile { get; private set; }
 		public StorageFile DataTargetCustomersFile { get; private set; }
+
+		public StorageFile TextResourcesFile { get; private set; }
+		public ArchiveDirectory ImageResourcesFolder { get; private set; }
+		public StorageFile FormStyleConfigFile { get; private set; }
 
 		private ResourceManager() { }
 
@@ -40,6 +45,35 @@ namespace Asa.Business.Dashboard.Configuration
 			DataTargetCustomersFile = new StorageFile(
 				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Target Customer.xml"));
 			await DataTargetCustomersFile.Download();
+
+			TextResourcesFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"app_branding.xml"
+			});
+			if (await TextResourcesFile.Exists(true))
+				await TextResourcesFile.Download();
+
+			ImageResourcesFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources"
+			});
+			if (await ImageResourcesFolder.Exists(true))
+				await ImageResourcesFolder.Download();
+
+			FormStyleConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"style.xml"
+			});
+			if (await FormStyleConfigFile.Exists(true))
+				await FormStyleConfigFile.Download();
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Configuration;
@@ -11,6 +10,7 @@ using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.SlideSettingsEditors;
 using Asa.SlideTemplateViewer.Properties;
 using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Metro.ColorTables;
 
 namespace Asa.SlideTemplateViewer
 {
@@ -22,10 +22,12 @@ namespace Asa.SlideTemplateViewer
 		{
 			_instance = this;
 			InitializeComponent();
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
-			}
+
+			Width = (Int32)(Screen.PrimaryScreen.Bounds.Width * 0.8);
+			Height = (Int32)(Screen.PrimaryScreen.Bounds.Height * 0.8);
+			Left = (Screen.PrimaryScreen.Bounds.Width - Width) / 2;
+			Top = (Screen.PrimaryScreen.Bounds.Height - Height) / 2;
+
 			SlideSettingsManager.Instance.SettingsChanged += (o, e) =>
 			{
 				Text = AppManager.Instance.FormCaption;
@@ -48,18 +50,59 @@ namespace Asa.SlideTemplateViewer
 			FormStateHelper.Init(this, ResourceManager.Instance.AppSettingsFolder, "add slides", false).LoadState();
 
 			Text = AppManager.Instance.FormCaption;
-			Icon = AppManager.Instance.SlideManager.FormIcon ?? Icon;
+			Icon = AppManager.Instance.ImageResourcesManager.MainAppIcon ?? Icon;
 
-			ribbonTabItemSlides.Text = AppManager.Instance.SlideManager.TabTitle ?? ribbonTabItemSlides.Text;
+			ribbonTabItemSlides.Text = AppManager.Instance.TextResourcesManager.RibbonTabTitle ?? AppManager.Instance.SlideManager.TabTitle ?? ribbonTabItemSlides.Text;
 			ribbonBarSlidesLogo.Text = Environment.UserName;
-			labelItemSlidesLogo.Image = AppManager.Instance.SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo;
+			labelItemSlidesLogo.Image = AppManager.Instance.ImageResourcesManager.MainAppRibbonLogo ?? AppManager.Instance.SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo;
+			labelItemAppTitle.Text = AppManager.Instance.TextResourcesManager.RibbonTabTitle ?? labelItemAppTitle.Text;
+			itemContainerStatusBarMainInfo.RecalcSize();
+			barBottom.RecalcLayout();
 
+			buttonItemSlidesPowerPoint.Image =
+				AppManager.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemSlidesPowerPoint.Image;
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
+
+			buttonItemSlidesPreview.Image = AppManager.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemSlidesPreview.Image;
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
 
-			buttonItemSlideSettings.Visible =
+			buttonItemApplicationMenuSlideSettings.Image = AppManager.Instance.ImageResourcesManager.MainMenuSlideSettingsImage ??
+												 buttonItemApplicationMenuSlideSettings.Image;
+			buttonItemApplicationMenuHelp.Image = AppManager.Instance.ImageResourcesManager.MainMenuHelpImage ??
+												 buttonItemApplicationMenuHelp.Image;
+			buttonItemApplicationMenuExit.Image = AppManager.Instance.ImageResourcesManager.MainMenuExitImage ??
+												 buttonItemApplicationMenuExit.Image;
+
+			
+			buttonItemQatFloater.Image = AppManager.Instance.ImageResourcesManager.QatFloaterImage ??
+									  buttonItemQatFloater.Image;
+			buttonItemQatHelp.Image = AppManager.Instance.ImageResourcesManager.QatHelpImage ??
+									  buttonItemQatHelp.Image;
+
+			buttonItemApplicationMenuSlideSettings.Visible =
 				MasterWizardManager.Instance.MasterWizards.Count > 1 ||
 				(MasterWizardManager.Instance.MasterWizards.Count == 1 && SlideSettings.GetAvailableConfigurations().Count(MasterWizardManager.Instance.MasterWizards.First().Value.HasSlideConfiguration) > 1);
+
+			if (AppManager.Instance.FormStyleManager.Style.AccentColor.HasValue)
+				styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
+					styleManager.MetroColorParameters.CanvasColor,
+					AppManager.Instance.FormStyleManager.Style.AccentColor.Value);
+
+			if (AppManager.Instance.FormStyleManager.Style.StatusBarTextColor.HasValue)
+			{
+				labelItemAppTitle.ForeColor = AppManager.Instance.FormStyleManager.Style.StatusBarTextColor.Value;
+				labelItemSlideSize.ForeColor = AppManager.Instance.FormStyleManager.Style.StatusBarTextColor.Value;
+			}
+
+			SlideSettingsManager.Instance.SettingsChanged += OnSlideSettingsChanged;
+			OnSlideSettingsChanged(null, EventArgs.Empty);
+		}
+
+		private void OnSlideSettingsChanged(Object sender, EventArgs e)
+		{
+			labelItemSlideSize.Text = String.Format("Slide Size:  {0}", SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
+			itemContainerStatusBarAdditionalInfo.RecalcSize();
+			barBottom.RecalcLayout();
 		}
 
 		private void FormMain_Shown(object sender, EventArgs e)
@@ -84,7 +127,7 @@ namespace Asa.SlideTemplateViewer
 		#endregion
 
 		#region Ribbon Buttons's Clicks Event Handlers
-		public void buttonItemFloater_Click(object sender, EventArgs e)
+		public void OnFloaterClick(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
 			if (formSender != null && formSender.IsDisposed) return;
@@ -93,22 +136,61 @@ namespace Asa.SlideTemplateViewer
 				new FloaterRequestedEventArgs());
 		}
 
-		public void buttonItemExit_Click(object sender, EventArgs e)
+		public void OnExitClick(object sender, EventArgs e)
 		{
 			Close();
 		}
 
-		private void buttonItemHelp_Click(object sender, EventArgs e)
+		private void OnHelpClick(object sender, EventArgs e)
 		{
 			AppManager.Instance.HelpManager.OpenHelpLink("Slides");
 		}
 
-		private void buttonItemSlideSettings_Click(object sender, EventArgs e)
+		private void OnSlideSettingsClick(object sender, EventArgs e)
 		{
 			using (var form = new FormEditSlideSettings(AppManager.Instance.PowerPointManager.Processor))
 			{
 				form.ShowDialog(this);
 			}
+		}
+
+		private void OnRibbonExpandedChanged(object sender, EventArgs e)
+		{
+			buttonItemExpand.Visible = !ribbonControl.Expanded;
+			buttonItemCollapse.Visible = ribbonControl.Expanded;
+			buttonItemPin.Visible = false;
+			ribbonControl.RecalcLayout();
+		}
+
+		private void OnRibbonAfterPanelPopup(object sender, EventArgs e)
+		{
+			buttonItemExpand.Visible = false;
+			buttonItemCollapse.Visible = false;
+			buttonItemPin.Visible = true;
+			ribbonControl.RecalcLayout();
+		}
+
+		private void OnRibbonAfterPanelPopupClose(object sender, EventArgs e)
+		{
+			buttonItemExpand.Visible = !ribbonControl.Expanded;
+			buttonItemCollapse.Visible = ribbonControl.Expanded;
+			buttonItemPin.Visible = false;
+			ribbonControl.RecalcLayout();
+		}
+
+		private void OnRibbonExpandClick(object sender, EventArgs e)
+		{
+			ribbonControl.Expanded = true;
+		}
+
+		private void OnRibbonCollapseClick(object sender, EventArgs e)
+		{
+			ribbonControl.Expanded = false;
+		}
+
+		private void OnRibbonPinClick(object sender, EventArgs e)
+		{
+			ribbonControl.Expanded = true;
 		}
 		#endregion
 	}

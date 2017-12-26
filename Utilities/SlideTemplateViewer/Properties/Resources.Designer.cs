@@ -19,7 +19,7 @@ namespace Asa.SlideTemplateViewer.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -73,9 +73,9 @@ namespace Asa.SlideTemplateViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Exit {
+        internal static System.Drawing.Bitmap ApplicationMenuExit {
             get {
-                object obj = ResourceManager.GetObject("Exit", resourceCulture);
+                object obj = ResourceManager.GetObject("ApplicationMenuExit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Asa.SlideTemplateViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Floater {
+        internal static System.Drawing.Bitmap ApplicationMenuHelp {
             get {
-                object obj = ResourceManager.GetObject("Floater", resourceCulture);
+                object obj = ResourceManager.GetObject("ApplicationMenuHelp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace Asa.SlideTemplateViewer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Help {
+        internal static System.Drawing.Bitmap ApplicationMenuSettings {
             get {
-                object obj = ResourceManager.GetObject("Help", resourceCulture);
+                object obj = ResourceManager.GetObject("ApplicationMenuSettings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +116,56 @@ namespace Asa.SlideTemplateViewer.Properties {
         internal static System.Drawing.Bitmap Preview {
             get {
                 object obj = ResourceManager.GetObject("Preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap QatFloater {
+            get {
+                object obj = ResourceManager.GetObject("QatFloater", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap QatHelp {
+            get {
+                object obj = ResourceManager.GetObject("QatHelp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RibbonCollapse {
+            get {
+                object obj = ResourceManager.GetObject("RibbonCollapse", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RibbonExpand {
+            get {
+                object obj = ResourceManager.GetObject("RibbonExpand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RibbonPin {
+            get {
+                object obj = ResourceManager.GetObject("RibbonPin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

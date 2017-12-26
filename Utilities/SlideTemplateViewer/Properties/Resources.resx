@@ -121,19 +121,34 @@
   <data name="AddSlidesLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddSlidesLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ApplicationMenuExit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ApplicationMenuExit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ApplicationMenuHelp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ApplicationMenuHelp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ApplicationMenuSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ApplicationMenuSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Output" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Output.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QatFloater" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QatFloater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QatHelp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QatHelp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RibbonCollapse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonCollapse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RibbonExpand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonExpand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RibbonPin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonPin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

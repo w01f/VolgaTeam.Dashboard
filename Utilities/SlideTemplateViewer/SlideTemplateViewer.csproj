@@ -63,6 +63,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageResourcesManager.cs" />
     <Compile Include="SlideTemplateViewerPowerPointProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="TabSlidesMainPage.Designer.cs">
       <DependentUpon>TabSlidesMainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextResourcesManager.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,26 +106,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\RibbonPin.png" />
+    <None Include="Resources\RibbonExpand.png" />
+    <None Include="Resources\RibbonCollapse.png" />
+    <None Include="Resources\QatHelp.png" />
+    <None Include="Resources\QatFloater.png" />
+    <None Include="Resources\ApplicationMenuSettings.png" />
+    <None Include="Resources\ApplicationMenuHelp.png" />
+    <None Include="Resources\ApplicationMenuExit.png" />
     <None Include="Resources\AddSlidesLogo.png" />
     <None Include="Resources\Preview.png" />
     <None Include="Resources\Output.png" />
-    <None Include="Resources\Help.png" />
-    <None Include="Resources\Floater.png" />
-    <None Include="Resources\Exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Business\Business.Dashboard\Business.Dashboard.csproj">
-      <Project>{b256a0ef-6fa9-4eb0-ba85-581ee07fa9ee}</Project>
-      <Name>Business.Dashboard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
-      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
-      <Name>Common.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common.GUI\Common.GUI.csproj">
-      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
-      <Name>Common.GUI</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -153,6 +146,20 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\Business.Dashboard\Business.Dashboard.csproj">
+      <Project>{b256a0ef-6fa9-4eb0-ba85-581ee07fa9ee}</Project>
+      <Name>Business.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.GUI\Common.GUI.csproj">
+      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
+      <Name>Common.GUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

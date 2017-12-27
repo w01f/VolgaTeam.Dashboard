@@ -31,6 +31,7 @@ namespace Asa.Business.Media.Configuration
 		{
 			await Asa.Common.Core.Configuration.ResourceManager.Instance.Load();
 
+			await Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.Download();
 			await Asa.Common.Core.Configuration.ResourceManager.Instance.ScheduleSlideTemplatesFolder.Download();
 			await Asa.Common.Core.Configuration.ResourceManager.Instance.CalendarSlideTemplatesFolder.Download();
 			await Asa.Common.Core.Configuration.ResourceManager.Instance.ArtworkFolder.Download();
@@ -82,9 +83,8 @@ namespace Asa.Business.Media.Configuration
 			await FormStyleConfigFile.Download();
 
 			MediaListsFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge(
+				Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge(
 					String.Format("{0} Strategy.xml", MediaMetaData.Instance.DataTypeString)));
-			await MediaListsFile.Download();
 
 			SolutionsConfigFile = new StorageFile(new[]
 {
@@ -94,6 +94,7 @@ namespace Asa.Business.Media.Configuration
 				"solution_templates.xml"
 			});
 			await SolutionsConfigFile.Download();
+
 			SolutionsDataFolder = new StorageDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,

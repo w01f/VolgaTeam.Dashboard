@@ -26,25 +26,22 @@ namespace Asa.Business.Dashboard.Configuration
 		{
 			await Asa.Common.Core.Configuration.ResourceManager.Instance.Load();
 
+			await Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.Download();
+
 			DataUsersFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Users.xml"));
-			await DataUsersFile.Download();
+				Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Users.xml"));
 
 			DataCoverFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Add Cover.xml"));
-			await DataCoverFile.Download();
+				Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Add Cover.xml"));
 
 			DataClientGoalsFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Needs Analysis.xml"));
-			await DataClientGoalsFile.Download();
+				Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Needs Analysis.xml"));
 
 			DataLeadoffStatementFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Intro Slide.xml"));
-			await DataLeadoffStatementFile.Download();
+				Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Intro Slide.xml"));
 
 			DataTargetCustomersFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Target Customer.xml"));
-			await DataTargetCustomersFile.Download();
+				Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Target Customer.xml"));
 
 			TextResourcesFile = new StorageFile(new[]
 			{

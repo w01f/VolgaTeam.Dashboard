@@ -364,24 +364,6 @@
     <None Include="Resources\Calendar.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.Common\Business.Common.csproj">
-      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
-      <Name>Business.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business\Business.Dashboard\Business.Dashboard.csproj">
-      <Project>{b256a0ef-6fa9-4eb0-ba85-581ee07fa9ee}</Project>
-      <Name>Business.Dashboard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.Core\Common.Core.csproj">
-      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
-      <Name>Common.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.GUI\Common.GUI.csproj">
-      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
-      <Name>Common.GUI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
@@ -402,6 +384,24 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.Common\Business.Common.csproj">
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business\Business.Dashboard\Business.Dashboard.csproj">
+      <Project>{b256a0ef-6fa9-4eb0-ba85-581ee07fa9ee}</Project>
+      <Name>Business.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.Core\Common.Core.csproj">
+      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.GUI\Common.GUI.csproj">
+      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
+      <Name>Common.GUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

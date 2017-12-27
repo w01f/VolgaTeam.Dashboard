@@ -25,12 +25,14 @@ namespace Asa.Business.Solutions.Dashboard.Configuration
 		public void Init(StorageDirectory dataFolder)
 		{
 			SettingsFile = new StorageFile(dataFolder.RelativePathParts.Merge("settings.xml"));
-			DataUsersFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "data", "Users.xml" }));
-			DataCoverFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "data", "Add Cover.xml" }));
-			DataClientGoalsFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "03_cna", "data", "Needs Analysis.xml" }));
-			DataLeadoffStatementFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "02_intro", "data", "Intro Slide.xml" }));
-			DataTargetCustomersFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "04_tgtcust", "data", "Target Customer.xml" }));
-			DataSimpleSummaryFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "05_closing", "data", "Closing Summary.xml" }));
+
+			DataUsersFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Users.xml"));
+			DataCoverFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Add Cover.xml"));
+			DataClientGoalsFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Needs Analysis.xml"));
+			DataLeadoffStatementFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Intro Slide.xml"));
+			DataTargetCustomersFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Target Customer.xml"));
+			DataSimpleSummaryFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Closing Summary.xml"));
+
 			LogoCleanslateHeaderFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_6ms", "design_branding", "tab_1_header.png" }));
 			LogoCleanslateSplashFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_6ms", "design_branding", "tab_1.png" }));
 			LogoCoverSplashFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "01_cover", "design_branding", "tab_2.png" }));

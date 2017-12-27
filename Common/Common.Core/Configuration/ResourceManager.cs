@@ -7,9 +7,7 @@ namespace Asa.Common.Core.Configuration
 {
 	public class ResourceManager
 	{
-		private static readonly ResourceManager _instance = new ResourceManager();
-
-		public static ResourceManager Instance => _instance;
+		public static ResourceManager Instance { get; } = new ResourceManager();
 
 		#region Local
 		public StorageDirectory AppSettingsFolder { get; private set; }
@@ -22,6 +20,7 @@ namespace Asa.Common.Core.Configuration
 		#endregion
 
 		#region Remote
+		public ArchiveDirectory DictionariesFolder { get; private set; }
 		public ArchiveDirectory RateCardFolder { get; private set; }
 		public ArchiveDirectory MasterWizardsFolder { get; private set; }
 		public ArchiveDirectory ScheduleSlideTemplatesFolder { get; private set; }
@@ -95,6 +94,14 @@ namespace Asa.Common.Core.Configuration
 			#endregion
 
 			#region Remote
+			DictionariesFolder = new ArchiveDirectory(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				FileStorageManager.CommonIncomingFolderName,
+				"ad_sales_data"
+			});
+			await DictionariesFolder.Download();
+
 			MasterWizardsFolder = new ArchiveDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,
@@ -213,14 +220,11 @@ namespace Asa.Common.Core.Configuration
 			await HelpBrowserFile.Download();
 
 			OnlineListsFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Online Strategy.xml"));
-			if (await OnlineListsFile.Exists(true))
-				await OnlineListsFile.Download();
-
+				DictionariesFolder.RelativePathParts.Merge("Online Strategy.xml"));
+			
 			DataSimpleSummaryFile = new StorageFile(
-				AppProfileManager.Instance.AppDataFolder.RelativePathParts.Merge("Closing Summary.xml"));
-			if (await DataSimpleSummaryFile.Exists(true))
-				await DataSimpleSummaryFile.Download();
+				DictionariesFolder.RelativePathParts.Merge("Closing Summary.xml"));
+			
 			#endregion
 		}
 	}

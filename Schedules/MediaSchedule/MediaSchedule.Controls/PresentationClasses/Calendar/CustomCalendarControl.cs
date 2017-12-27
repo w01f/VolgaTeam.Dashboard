@@ -3,7 +3,6 @@ using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
 
 namespace Asa.Media.Controls.PresentationClasses.Calendar
@@ -25,14 +24,8 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 		#region BaseContentEditControl Override
 		protected override bool IsContentChanged => EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
-		                                                                      ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
-		                                                                      ContentUpdateInfo.ChangeInfo.CalendarTypeChanged);
-
-		public override void InitControl()
-		{
-			base.InitControl();
-			InitSlideInfo<CalendarSlideInfoControl>();
-		}
+																			  ContentUpdateInfo.ChangeInfo.ScheduleDatesChanged ||
+																			  ContentUpdateInfo.ChangeInfo.CalendarTypeChanged);
 
 		protected override void SaveData()
 		{

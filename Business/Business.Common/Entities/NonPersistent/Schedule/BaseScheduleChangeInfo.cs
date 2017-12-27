@@ -10,6 +10,7 @@
 		{
 			WholeScheduleChanged = false;
 			ScheduleDatesChanged = false;
+			ScheduleInfoChanged = false;
 		}
 
 		public virtual void Merge(BaseScheduleChangeInfo newInfo)

@@ -39,7 +39,7 @@ namespace Asa.SlideTemplateViewer
 
 		public static AppManager Instance { get; } = new AppManager();
 
-		public string FormCaption => String.Format("{0} v{1}- {2}",
+		public string FormCaption => String.Format("{0} v{1} - {2}",
 			TextResourcesManager.FormText?? "Add Slides",
 			FileStorageManager.Instance.Version,
 			SlideSettingsManager.Instance.SlideSettings.SizeFormatted);

@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Windows.Forms;
 using Asa.Business.Common.Enums;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
+using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
@@ -11,6 +14,9 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 {
 	public class BroadcastCalendarControl : MediaCalendarControl
 	{
+		#region Properties
+		private MediaScheduleSettings ScheduleSettings => Schedule.Settings;
+
 		public override string Identifier => ContentIdentifiers.BroadcastCalendar;
 
 		public override RibbonTabItem TabPage => Controller.Instance.TabCalendar1;
@@ -23,6 +29,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 
 		public override ButtonItem CloneButton => Controller.Instance.Calendar1Clone;
 		public override ButtonItem ResetButton => Controller.Instance.Calendar1Reset;
+		#endregion
 
 		#region BaseContentEditControl Override
 		protected override bool IsContentChanged => EditedContent == null || (ContentUpdateInfo.ChangeInfo.WholeScheduleChanged ||
@@ -35,18 +42,49 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override void InitControl()
 		{
 			base.InitControl();
-			InitSlideInfo<BroadcastSlideInfoControl>();
-			SlideInfo.PropertyChanged += (sender, e) =>
-			{
-				if (!(e is DataSourceChangedEventArgs)) return;
-				Reset();
-			};
+
+			Controller.Instance.Calendar1DataSourceSchedule.Tag = BroadcastDataTypeEnum.Schedule;
+			Controller.Instance.Calendar1DataSourceSnapshots.Tag = BroadcastDataTypeEnum.Snapshots;
+			Controller.Instance.Calendar1DataSourceEmpty.Tag = BroadcastDataTypeEnum.Empty;
+			Controller.Instance.Calendar1DataSourceSchedule.Click += OnDataSourceButtonClick;
+			Controller.Instance.Calendar1DataSourceSnapshots.Click += OnDataSourceButtonClick;
+			Controller.Instance.Calendar1DataSourceEmpty.Click += OnDataSourceButtonClick;
+			Controller.Instance.Calendar1DataSourceSchedule.CheckedChanged += OnDataSourceButtonCheckedChanged;
+			Controller.Instance.Calendar1DataSourceSnapshots.CheckedChanged += OnDataSourceButtonCheckedChanged;
+			Controller.Instance.Calendar1DataSourceEmpty.CheckedChanged += OnDataSourceButtonCheckedChanged;
 		}
 
 		protected override void UpdateEditedContet()
 		{
 			base.UpdateEditedContet();
-			retractableBarControl.AddButtons(SlideInfo.SlideInfoControl.GetChapters());
+
+			AllowToSave = false;
+
+			Controller.Instance.Calendar1DataSourceSchedule.Enabled =
+				ScheduleSettings.SelectedSpotType == SpotType.Week && Schedule.ProgramSchedule.TotalSpots > 0;
+			Controller.Instance.Calendar1DataSourceSnapshots.Enabled = 
+				Schedule.SnapshotContent.Snapshots.Any(s => s.Programs.Count > 0);
+
+			switch (((BroadcastCalendar)EditedContent).DataSourceType)
+			{
+				case BroadcastDataTypeEnum.Schedule:
+					Controller.Instance.Calendar1DataSourceSchedule.Checked = true;
+					Controller.Instance.Calendar1DataSourceSnapshots.Checked = false;
+					Controller.Instance.Calendar1DataSourceEmpty.Checked = false;
+					break;
+				case BroadcastDataTypeEnum.Snapshots:
+					Controller.Instance.Calendar1DataSourceSchedule.Checked = false;
+					Controller.Instance.Calendar1DataSourceSnapshots.Checked = true;
+					Controller.Instance.Calendar1DataSourceEmpty.Checked = false;
+					break;
+				case BroadcastDataTypeEnum.Undefined:
+				case BroadcastDataTypeEnum.Empty:
+					Controller.Instance.Calendar1DataSourceSchedule.Checked = false;
+					Controller.Instance.Calendar1DataSourceSnapshots.Checked = false;
+					Controller.Instance.Calendar1DataSourceEmpty.Checked = true;
+					break;
+			}
+			AllowToSave = true;
 		}
 
 		protected override void SaveData()
@@ -67,6 +105,31 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override void GetHelp()
 		{
 			OpenHelp("calendar");
+		}
+		#endregion
+
+		#region Data Source processing
+		private void OnDataSourceButtonClick(object sender, EventArgs e)
+		{
+			var buttonItem = (ButtonItem)sender;
+			if (buttonItem.Checked)
+				return;
+			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you SURE you want to change Data Source and RESET your calendar to the default Information?") != DialogResult.Yes)
+				return;
+			Controller.Instance.Calendar1DataSourceSchedule.Checked = false;
+			Controller.Instance.Calendar1DataSourceSnapshots.Checked = false;
+			Controller.Instance.Calendar1DataSourceEmpty.Checked = false;
+			buttonItem.Checked = true;
+		}
+
+		private void OnDataSourceButtonCheckedChanged(object sender, EventArgs e)
+		{
+
+			if (!AllowToSave) return;
+			var buttonItem = (ButtonItem)sender;
+			if (!buttonItem.Checked) return;
+			((BroadcastCalendar)EditedContent).DataSourceType = (BroadcastDataTypeEnum)buttonItem.Tag;
+			Reset();
 		}
 		#endregion
 
@@ -98,7 +161,10 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			}
 
 			pictureEditDefaultLogo.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarNoDataLogo ?? Properties.Resources.CalendarDisabled;
-			
+
+			Controller.Instance.Calendar1DataSourceSchedule.Enabled = enable;
+			Controller.Instance.Calendar1DataSourceSnapshots.Enabled = enable;
+			Controller.Instance.Calendar1DataSourceEmpty.Enabled = enable;
 			Controller.Instance.Calendar1Reset.Enabled = enable;
 
 			Controller.Instance.Calendar1PowerPoint.Enabled = enable;

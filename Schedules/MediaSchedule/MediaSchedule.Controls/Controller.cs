@@ -178,8 +178,8 @@ namespace Asa.Media.Controls
 
 		private void OnScheduleInfoChanged(Object sender, EventArgs e)
 		{
-			if (ContentController.ActiveControl != null && 
-				ContentController.ActiveControl.ShowScheduleInfo && 
+			if (ContentController.ActiveControl != null &&
+				ContentController.ActiveControl.ShowScheduleInfo &&
 				(!String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.BusinessName) ||
 				!String.IsNullOrEmpty(BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.FlightDates)))
 			{
@@ -466,6 +466,9 @@ namespace Asa.Media.Controls
 		public ButtonItem Calendar1Clone { get; set; }
 		public ButtonItem Calendar1Preview { get; set; }
 		public ButtonItem Calendar1PowerPoint { get; set; }
+		public ButtonItem Calendar1DataSourceSchedule { get; set; }
+		public ButtonItem Calendar1DataSourceSnapshots { get; set; }
+		public ButtonItem Calendar1DataSourceEmpty { get; set; }
 		public ButtonItem Calendar1Reset { get; set; }
 		#endregion
 

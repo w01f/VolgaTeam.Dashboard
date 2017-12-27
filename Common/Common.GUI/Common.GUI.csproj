@@ -467,7 +467,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common.Core\Common.Core.csproj">
-      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
       <Name>Common.Core</Name>
     </ProjectReference>
   </ItemGroup>

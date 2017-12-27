@@ -2,8 +2,9 @@
 {
 	public enum BroadcastDataTypeEnum
 	{
-		None,
+		Undefined,
 		Schedule,
-		Snapshots
+		Snapshots,
+		Empty,
 	}
 }

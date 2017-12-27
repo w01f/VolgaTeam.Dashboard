@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Media.Enums;
 using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.Output;
 using Newtonsoft.Json;
@@ -12,12 +13,14 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 		public bool EditedByUser { get; private set; }
 		public bool Splitted { get; set; }
 
+		public BroadcastCalendar ParentBroadcastCalendar => (BroadcastCalendar)Parent;
+
 		public override ITextItem Note
 		{
-			get { return _note ?? MediaData; }
+			get => _note ?? (ParentBroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Schedule || ParentBroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Snapshots ? MediaData : null);
 			set
 			{
-				if (!MediaData.IsEqual(value))
+				if (!MediaData.IsEqual(value) || !(ParentBroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Schedule || ParentBroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Snapshots))
 					_note = value;
 				EditedByUser = EditedByUser || _note != null;
 			}
@@ -25,7 +28,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 
 		public override Color BackgroundColor
 		{
-			get { return _backgroundColor; }
+			get => _backgroundColor;
 			set
 			{
 				_backgroundColor = value;
@@ -36,7 +39,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 		[JsonConstructor]
 		private MediaDataNote() { }
 
-		public MediaDataNote(BroadcastCalendar parent) : base(parent) { }
+		public MediaDataNote(BroadcastCalendar parent) : base(parent)
+		{
+			EditedByUser = !(ParentBroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Schedule ||
+							 ParentBroadcastCalendar.DataSourceType == BroadcastDataTypeEnum.Snapshots);
+		}
 
 		public void Reset()
 		{

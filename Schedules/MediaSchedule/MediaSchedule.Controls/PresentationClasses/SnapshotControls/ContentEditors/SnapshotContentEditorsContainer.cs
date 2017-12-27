@@ -127,6 +127,8 @@ namespace Asa.Media.Controls.PresentationClasses.SnapshotControls.ContentEditors
 			foreach (var editorsContainer in xtraTabControlContentEditors.TabPages.OfType<SnapshotEditorsContainer>())
 				editorsContainer.SaveData();
 			Summary.SaveData();
+
+			ChangeInfo.SnapshotsChanged = ChangeInfo.SnapshotsChanged || SettingsNotSaved;
 		}
 
 		protected override void SaveData()

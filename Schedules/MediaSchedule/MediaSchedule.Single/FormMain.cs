@@ -159,12 +159,30 @@ namespace Asa.Media.Single
 			ribbonBarDigitalSchedulePreview.RecalcLayout();
 			ribbonPanelDigitalSchedule.PerformLayout();
 
+			buttonItemCalendar1DataSourceSchedule.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataSourceScheduleImage ?? buttonItemCalendar1DataSourceSchedule.Image;
+			ribbonBarCalendar1DataSourceSchedule.RecalcLayout();
+			buttonItemCalendar1DataSourceSnapshots.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataSourceSnapshotsImage ?? buttonItemCalendar1DataSourceSnapshots.Image;
+			ribbonBarCalendar1DataSourceSnapshots.RecalcLayout();
+			buttonItemCalendar1DataSourceEmpty.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataSourceEmptyImage ?? buttonItemCalendar1DataSourceEmpty.Image;
+			ribbonBarCalendar1DataSourceEmpty.RecalcLayout();
+			buttonItemCalendar1Reset.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarResetImage ?? buttonItemCalendar1Reset.Image;
+			ribbonBarCalendar1Reset.RecalcLayout();
+			buttonItemCalendar1Copy.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataCopyImage ?? buttonItemCalendar1Copy.Image;
+			buttonItemCalendar1Paste.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataPasteImage ?? buttonItemCalendar1Paste.Image;
+			buttonItemCalendar1Clone.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataCloneImage ?? buttonItemCalendar1Clone.Image;
+			ribbonBarCalendar1Edit.RecalcLayout();
 			buttonItemCalendar1PowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemCalendar1PowerPoint.Image;
 			ribbonBarCalendar1PowerPoint.RecalcLayout();
 			buttonItemCalendar1Preview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemCalendar1Preview.Image;
 			ribbonBarCalendar1Preview.RecalcLayout();
 			ribbonPanelCalendar1.PerformLayout();
 
+			buttonItemCalendar2Reset.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarResetImage ?? buttonItemCalendar2Reset.Image;
+			ribbonBarCalendar2Reset.RecalcLayout();
+			buttonItemCalendar2Copy.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataCopyImage ?? buttonItemCalendar2Copy.Image;
+			buttonItemCalendar2Paste.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataPasteImage ?? buttonItemCalendar2Paste.Image;
+			buttonItemCalendar2Clone.Image = BusinessObjects.Instance.ImageResourcesManager.CalendarDataCloneImage ?? buttonItemCalendar2Clone.Image;
+			ribbonBarCalendar2Edit.RecalcLayout();
 			buttonItemCalendar2PowerPoint.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonOutputImage ?? buttonItemCalendar2PowerPoint.Image;
 			ribbonBarCalendar2PowerPoint.RecalcLayout();
 			buttonItemCalendar2Preview.Image = BusinessObjects.Instance.ImageResourcesManager.RibbonPreviewImage ?? buttonItemCalendar2Preview.Image;
@@ -284,6 +302,9 @@ namespace Asa.Media.Single
 			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
 			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
 			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
+			Controller.Instance.Calendar1DataSourceSchedule = buttonItemCalendar1DataSourceSchedule;
+			Controller.Instance.Calendar1DataSourceSnapshots = buttonItemCalendar1DataSourceSnapshots;
+			Controller.Instance.Calendar1DataSourceEmpty = buttonItemCalendar1DataSourceEmpty;
 			Controller.Instance.Calendar1Reset = buttonItemCalendar1Reset;
 			#endregion
 
@@ -449,7 +470,7 @@ namespace Asa.Media.Single
 
 			itemContainerStatusBarMainContentInfo.SubItems.Clear();
 			var appInfoLabel = new LabelItem();
-			appInfoLabel.Text = String.Format("{0} v{1}",
+			appInfoLabel.Text = String.Format("{0}  v{1}",
 				PopupMessageHelper.Instance.Title,
 				FileStorageManager.Instance.Version
 			);

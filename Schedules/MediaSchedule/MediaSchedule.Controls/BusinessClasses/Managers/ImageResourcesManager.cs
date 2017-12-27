@@ -123,7 +123,13 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 
 		#region Calendar Resources
 		public Image CalendarNoDataLogo { get; private set; }
-		public Image CalendarRetractableBarDataSourceImage { get; private set; }
+		public Image CalendarResetImage { get; private set; }
+		public Image CalendarDataSourceScheduleImage { get; private set; }
+		public Image CalendarDataSourceSnapshotsImage { get; private set; }
+		public Image CalendarDataSourceEmptyImage { get; private set; }
+		public Image CalendarDataCopyImage { get; private set; }
+		public Image CalendarDataPasteImage { get; private set; }
+		public Image CalendarDataCloneImage { get; private set; }
 		public Image CalendarRetractableBarFavoritesImage { get; private set; }
 		public Image CalendarRetractableBarStyleImage { get; private set; }
 		public Image CalendarRetractableBarCommentsImage { get; private set; }
@@ -493,9 +499,33 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			if (File.Exists(resourceFile))
 				CalendarNoDataLogo = Image.FromFile(resourceFile);
 
-			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_cal_data_source.png");
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_cal_reset.png");
 			if (File.Exists(resourceFile))
-				CalendarRetractableBarDataSourceImage = Image.FromFile(resourceFile);
+				CalendarResetImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_cal_sched.png");
+			if (File.Exists(resourceFile))
+				CalendarDataSourceScheduleImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_cal_snap.png");
+			if (File.Exists(resourceFile))
+				CalendarDataSourceSnapshotsImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_cal_custom.png");
+			if (File.Exists(resourceFile))
+				CalendarDataSourceEmptyImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_cal_copy.png");
+			if (File.Exists(resourceFile))
+				CalendarDataCopyImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_cal_paste.png");
+			if (File.Exists(resourceFile))
+				CalendarDataPasteImage = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_cal_clone.png");
+			if (File.Exists(resourceFile))
+				CalendarDataCloneImage = Image.FromFile(resourceFile);
 
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "leftbar_cal_gallery.png");
 			if (File.Exists(resourceFile))

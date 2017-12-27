@@ -119,31 +119,31 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
-      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Project>{CCFAD4DA-48C4-454B-930D-6A81D2626E76}</Project>
       <Name>Business.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
-      <Project>{8248763f-1b88-43c4-bb98-30bedeef6434}</Project>
+      <Project>{8248763F-1B88-43C4-BB98-30BEDEEF6434}</Project>
       <Name>Business.Media</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Online\Business.Online.csproj">
-      <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
+      <Project>{886DC89E-77E0-438E-9FB0-A5D76063C93A}</Project>
       <Name>Business.Online</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
-      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
       <Name>Common.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
-      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
+      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
       <Name>Common.GUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
-      <Project>{18f20eb4-6552-4f0a-ab13-d417a2d53cd4}</Project>
+      <Project>{18F20EB4-6552-4F0A-AB13-D417A2D53CD4}</Project>
       <Name>Common.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaSchedule.Controls\Media.Controls.csproj">
-      <Project>{f3572a95-e99d-485f-b4f3-ef26f49c094b}</Project>
+      <Project>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</Project>
       <Name>Media.Controls</Name>
     </ProjectReference>
   </ItemGroup>

@@ -22,7 +22,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 		{
 			StatusBarMainItemsContainer.SubItems.Clear();
 			var appInfoLabel = new LabelItem();
-			appInfoLabel.Text = String.Format("{0} v{1}",
+			appInfoLabel.Text = String.Format("{0}  v{1}",
 				PopupMessageHelper.Instance.Title,
 				FileStorageManager.Instance.Version
 			);

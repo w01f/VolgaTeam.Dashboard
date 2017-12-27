@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.checkEditDataSourceSnapshots = new DevExpress.XtraEditors.CheckEdit();
+			this.components = new System.ComponentModel.Container();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.favoriteImagesControl = new Asa.Common.GUI.FavoriteImages.FavoriteImagesControl();
-			this.checkEditDataSourceSchedule = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.outputColorSelector = new Asa.Common.GUI.OutputColors.OutputColorSelector();
 			this.calendarHeaderSelector = new Asa.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector();
@@ -83,22 +82,9 @@
 			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupFavorites = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemFavoriteImages = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlGroupDataSettings = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.simpleLabelItemdataSettingsTitle = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem25 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem24 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem26 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem27 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemDataSourceSchedule = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem28 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlItemDataSourceSnapshots = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem29 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditDataSourceSnapshots.Properties)).BeginInit();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditDataSourceSchedule.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStyleBigDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowLogo.Properties)).BeginInit();
@@ -147,31 +133,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFavorites)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemFavoriteImages)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDataSettings)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemdataSettingsTitle)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem25)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem26)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDataSourceSchedule)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem28)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDataSourceSnapshots)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem29)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// checkEditDataSourceSnapshots
-			// 
-			this.checkEditDataSourceSnapshots.Location = new System.Drawing.Point(25, 165);
-			this.checkEditDataSourceSnapshots.Name = "checkEditDataSourceSnapshots";
-			this.checkEditDataSourceSnapshots.Properties.AutoWidth = true;
-			this.checkEditDataSourceSnapshots.Properties.Caption = "Snapshots";
-			this.checkEditDataSourceSnapshots.Properties.RadioGroupIndex = 1;
-			this.checkEditDataSourceSnapshots.Size = new System.Drawing.Size(84, 20);
-			this.checkEditDataSourceSnapshots.StyleController = this.layoutControl;
-			this.checkEditDataSourceSnapshots.TabIndex = 1;
-			this.checkEditDataSourceSnapshots.TabStop = false;
 			// 
 			// layoutControl
 			// 
@@ -188,9 +151,7 @@
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
-			this.layoutControl.Controls.Add(this.checkEditDataSourceSnapshots);
 			this.layoutControl.Controls.Add(this.favoriteImagesControl);
-			this.layoutControl.Controls.Add(this.checkEditDataSourceSchedule);
 			this.layoutControl.Controls.Add(this.checkEditThemeColorApplyForAll);
 			this.layoutControl.Controls.Add(this.outputColorSelector);
 			this.layoutControl.Controls.Add(this.calendarHeaderSelector);
@@ -221,18 +182,6 @@
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
 			this.favoriteImagesControl.Size = new System.Drawing.Size(290, 489);
 			this.favoriteImagesControl.TabIndex = 1;
-			// 
-			// checkEditDataSourceSchedule
-			// 
-			this.checkEditDataSourceSchedule.Location = new System.Drawing.Point(25, 91);
-			this.checkEditDataSourceSchedule.Name = "checkEditDataSourceSchedule";
-			this.checkEditDataSourceSchedule.Properties.AutoWidth = true;
-			this.checkEditDataSourceSchedule.Properties.Caption = "Schedule";
-			this.checkEditDataSourceSchedule.Properties.RadioGroupIndex = 1;
-			this.checkEditDataSourceSchedule.Size = new System.Drawing.Size(76, 20);
-			this.checkEditDataSourceSchedule.StyleController = this.layoutControl;
-			this.checkEditDataSourceSchedule.TabIndex = 1;
-			this.checkEditDataSourceSchedule.TabStop = false;
 			// 
 			// checkEditThemeColorApplyForAll
 			// 
@@ -332,7 +281,7 @@
 			this.checkEditCommentApplyForAll.Name = "checkEditCommentApplyForAll";
 			this.checkEditCommentApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditCommentApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditCommentApplyForAll.Properties.Caption = "Show this Comment on all calendar slides";
+			this.checkEditCommentApplyForAll.Properties.Caption = "Show this Comment on all slides";
 			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(270, 20);
 			this.checkEditCommentApplyForAll.StyleController = this.layoutControl;
 			this.checkEditCommentApplyForAll.TabIndex = 3;
@@ -401,8 +350,7 @@
 			this.tabbedControlGroup.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupComments,
             this.layoutControlGroupStyle,
-            this.layoutControlGroupFavorites,
-            this.layoutControlGroupDataSettings});
+            this.layoutControlGroupFavorites});
 			this.tabbedControlGroup.Text = "Main Tabs";
 			// 
 			// layoutControlGroupComments
@@ -894,140 +842,6 @@
 			this.layoutControlItemFavoriteImages.TextVisible = false;
 			this.layoutControlItemFavoriteImages.TrimClientAreaToControl = false;
 			// 
-			// layoutControlGroupDataSettings
-			// 
-			this.layoutControlGroupDataSettings.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem23,
-            this.simpleLabelItemdataSettingsTitle,
-            this.emptySpaceItem25,
-            this.emptySpaceItem24,
-            this.emptySpaceItem26,
-            this.emptySpaceItem27,
-            this.layoutControlItemDataSourceSchedule,
-            this.emptySpaceItem28,
-            this.layoutControlItemDataSourceSnapshots,
-            this.emptySpaceItem29});
-			this.layoutControlGroupDataSettings.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupDataSettings.Name = "layoutControlGroupDataSettings";
-			this.layoutControlGroupDataSettings.Size = new System.Drawing.Size(294, 493);
-			this.layoutControlGroupDataSettings.Text = "Data";
-			this.layoutControlGroupDataSettings.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-			// 
-			// emptySpaceItem23
-			// 
-			this.emptySpaceItem23.AllowHotTrack = false;
-			this.emptySpaceItem23.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem23.MaxSize = new System.Drawing.Size(0, 10);
-			this.emptySpaceItem23.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem23.Name = "emptySpaceItem23";
-			this.emptySpaceItem23.Size = new System.Drawing.Size(294, 10);
-			this.emptySpaceItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// simpleLabelItemdataSettingsTitle
-			// 
-			this.simpleLabelItemdataSettingsTitle.AllowHotTrack = false;
-			this.simpleLabelItemdataSettingsTitle.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemdataSettingsTitle.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemdataSettingsTitle.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.simpleLabelItemdataSettingsTitle.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemdataSettingsTitle.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemdataSettingsTitle.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemdataSettingsTitle.Location = new System.Drawing.Point(10, 10);
-			this.simpleLabelItemdataSettingsTitle.Name = "simpleLabelItemdataSettingsTitle";
-			this.simpleLabelItemdataSettingsTitle.Size = new System.Drawing.Size(284, 20);
-			this.simpleLabelItemdataSettingsTitle.Text = "<size=+1>Select Data Source:</size>";
-			this.simpleLabelItemdataSettingsTitle.TextSize = new System.Drawing.Size(170, 16);
-			// 
-			// emptySpaceItem25
-			// 
-			this.emptySpaceItem25.AllowHotTrack = false;
-			this.emptySpaceItem25.Location = new System.Drawing.Point(0, 30);
-			this.emptySpaceItem25.MaxSize = new System.Drawing.Size(0, 30);
-			this.emptySpaceItem25.MinSize = new System.Drawing.Size(10, 30);
-			this.emptySpaceItem25.Name = "emptySpaceItem25";
-			this.emptySpaceItem25.Size = new System.Drawing.Size(294, 30);
-			this.emptySpaceItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem25.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// emptySpaceItem24
-			// 
-			this.emptySpaceItem24.AllowHotTrack = false;
-			this.emptySpaceItem24.Location = new System.Drawing.Point(0, 10);
-			this.emptySpaceItem24.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem24.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem24.Name = "emptySpaceItem24";
-			this.emptySpaceItem24.Size = new System.Drawing.Size(10, 20);
-			this.emptySpaceItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// emptySpaceItem26
-			// 
-			this.emptySpaceItem26.AllowHotTrack = false;
-			this.emptySpaceItem26.Location = new System.Drawing.Point(0, 84);
-			this.emptySpaceItem26.MaxSize = new System.Drawing.Size(0, 50);
-			this.emptySpaceItem26.MinSize = new System.Drawing.Size(10, 50);
-			this.emptySpaceItem26.Name = "emptySpaceItem26";
-			this.emptySpaceItem26.Size = new System.Drawing.Size(294, 50);
-			this.emptySpaceItem26.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem26.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// emptySpaceItem27
-			// 
-			this.emptySpaceItem27.AllowHotTrack = false;
-			this.emptySpaceItem27.Location = new System.Drawing.Point(0, 158);
-			this.emptySpaceItem27.Name = "emptySpaceItem27";
-			this.emptySpaceItem27.Size = new System.Drawing.Size(294, 335);
-			this.emptySpaceItem27.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemDataSourceSchedule
-			// 
-			this.layoutControlItemDataSourceSchedule.Control = this.checkEditDataSourceSchedule;
-			this.layoutControlItemDataSourceSchedule.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemDataSourceSchedule.FillControlToClientArea = false;
-			this.layoutControlItemDataSourceSchedule.Location = new System.Drawing.Point(20, 60);
-			this.layoutControlItemDataSourceSchedule.Name = "layoutControlItemDataSourceSchedule";
-			this.layoutControlItemDataSourceSchedule.Size = new System.Drawing.Size(274, 24);
-			this.layoutControlItemDataSourceSchedule.Text = "Data Source Schedule";
-			this.layoutControlItemDataSourceSchedule.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemDataSourceSchedule.TextVisible = false;
-			this.layoutControlItemDataSourceSchedule.TrimClientAreaToControl = false;
-			// 
-			// emptySpaceItem28
-			// 
-			this.emptySpaceItem28.AllowHotTrack = false;
-			this.emptySpaceItem28.Location = new System.Drawing.Point(0, 60);
-			this.emptySpaceItem28.MaxSize = new System.Drawing.Size(20, 0);
-			this.emptySpaceItem28.MinSize = new System.Drawing.Size(20, 10);
-			this.emptySpaceItem28.Name = "emptySpaceItem28";
-			this.emptySpaceItem28.Size = new System.Drawing.Size(20, 24);
-			this.emptySpaceItem28.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem28.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlItemDataSourceSnapshots
-			// 
-			this.layoutControlItemDataSourceSnapshots.Control = this.checkEditDataSourceSnapshots;
-			this.layoutControlItemDataSourceSnapshots.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemDataSourceSnapshots.FillControlToClientArea = false;
-			this.layoutControlItemDataSourceSnapshots.Location = new System.Drawing.Point(20, 134);
-			this.layoutControlItemDataSourceSnapshots.Name = "layoutControlItemDataSourceSnapshots";
-			this.layoutControlItemDataSourceSnapshots.Size = new System.Drawing.Size(274, 24);
-			this.layoutControlItemDataSourceSnapshots.Text = "Data Source Snapshots";
-			this.layoutControlItemDataSourceSnapshots.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemDataSourceSnapshots.TextVisible = false;
-			this.layoutControlItemDataSourceSnapshots.TrimClientAreaToControl = false;
-			// 
-			// emptySpaceItem29
-			// 
-			this.emptySpaceItem29.AllowHotTrack = false;
-			this.emptySpaceItem29.Location = new System.Drawing.Point(0, 134);
-			this.emptySpaceItem29.MaxSize = new System.Drawing.Size(20, 0);
-			this.emptySpaceItem29.MinSize = new System.Drawing.Size(20, 10);
-			this.emptySpaceItem29.Name = "emptySpaceItem29";
-			this.emptySpaceItem29.Size = new System.Drawing.Size(20, 24);
-			this.emptySpaceItem29.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem29.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// styleController
 			// 
 			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1052,10 +866,8 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "CalendarSlideInfoControl";
 			this.Size = new System.Drawing.Size(300, 525);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditDataSourceSnapshots.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditDataSourceSchedule.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStyleBigDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowLogo.Properties)).EndInit();
@@ -1104,17 +916,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFavorites)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemFavoriteImages)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDataSettings)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemdataSettingsTitle)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem25)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem26)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDataSourceSchedule)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem28)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDataSourceSnapshots)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem29)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.ResumeLayout(false);
 
@@ -1133,8 +934,6 @@
 		private Common.GUI.OutputColors.OutputColorSelector outputColorSelector;
 		private DevExpress.XtraEditors.CheckEdit checkEditShowLogo;
 		private Asa.Calendar.Controls.PresentationClasses.SlideInfo.CalendarHeaderSelector calendarHeaderSelector;
-		protected DevExpress.XtraEditors.CheckEdit checkEditDataSourceSnapshots;
-		protected DevExpress.XtraEditors.CheckEdit checkEditDataSourceSchedule;
 		private DevExpress.XtraLayout.LayoutControl layoutControl;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
 	    protected DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup;
@@ -1176,18 +975,7 @@
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem21;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem22;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemColorApplyForAll;
-	    protected DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupDataSettings;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem23;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemdataSettingsTitle;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem25;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem24;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem26;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem27;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupFavorites;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemFavoriteImages;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDataSourceSchedule;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem28;
-		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDataSourceSnapshots;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem29;
 	}
 }

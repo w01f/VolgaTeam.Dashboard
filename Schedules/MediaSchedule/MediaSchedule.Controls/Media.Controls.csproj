@@ -151,9 +151,6 @@
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Calendar\BroadcastSlideInfoControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -942,9 +939,6 @@
     <None Include="Resources\OptionsNoRecords.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CalendarOptionsDataSource.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SnapshotSettingsActiveWeeks.png" />
   </ItemGroup>
   <ItemGroup>
@@ -961,7 +955,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Browser\Browser.Controls\Browser.Controls.csproj">
-      <Project>{0DB1BAD7-D7AA-46F8-BDE6-0212C8A4CAA6}</Project>
+      <Project>{0db1bad7-d7aa-46f8-bde6-0212c8a4caa6}</Project>
       <Name>Browser.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Calendar\Business.Calendar.csproj">
@@ -981,7 +975,7 @@
       <Name>Business.Online</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">
-      <Project>{4F118EA5-97AA-43F9-A8F5-601B8596825C}</Project>
+      <Project>{4f118ea5-97aa-43f9-a8f5-601b8596825c}</Project>
       <Name>Business.Solutions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">

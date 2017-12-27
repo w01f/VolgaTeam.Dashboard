@@ -15,21 +15,11 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 	{
 		public BroadcastDataTypeEnum DataSourceType { get; set; }
 
-		public override bool AllowCustomNotes => false;
-
-		public bool AllowSelectDataSource
-		{
-			get
-			{
-				var hasSchedule = ScheduleSettings.SelectedSpotType == SpotType.Week && Schedule.ProgramSchedule.TotalSpots > 0;
-				var hasSnapshots = Schedule.SnapshotContent.Snapshots.Any(s => s.Programs.Count > 0);
-				return hasSchedule && hasSnapshots;
-			}
-		}
+		public override bool AllowCustomNotes => !(DataSourceType == BroadcastDataTypeEnum.Schedule || DataSourceType == BroadcastDataTypeEnum.Snapshots);
 
 		protected override void AfterConstruction()
 		{
-			UpdateDataSource();
+			SetDefaultDataSource();
 			base.AfterConstruction();
 		}
 
@@ -48,79 +38,83 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 		public override void UpdateNotesCollection()
 		{
 			var noteSeparator = String.Empty;
-
 			var notes = new List<MediaDataNote>();
-			switch (DataSourceType)
-			{
-				case BroadcastDataTypeEnum.Schedule:
-					noteSeparator = "   ";
-					notes.AddRange(GetNotesFromSchedule());
-					break;
-				case BroadcastDataTypeEnum.Snapshots:
-					noteSeparator = "  |  ";
-					notes.AddRange(GetNotesFromSnapshots());
-					break;
-			}
 
-			bool needToSplit;
-			notes.ForEach(n => n.Splitted = false);
-			var splittedNotes = new List<MediaDataNote>(notes);
-			do
+			if (DataSourceType == BroadcastDataTypeEnum.Schedule || DataSourceType == BroadcastDataTypeEnum.Snapshots)
 			{
-				needToSplit = false;
-				foreach (var calendarNote in notes.OrderByDescending(n => n.Length))
+				switch (DataSourceType)
 				{
-					if (calendarNote.Splitted) continue;
-					var intersectedNote = splittedNotes.Where(sn => sn != calendarNote).OrderBy(n => n.Length).FirstOrDefault(mn =>
-						(mn.StartDay >= calendarNote.StartDay && mn.StartDay <= calendarNote.FinishDay) ||
-						(mn.FinishDay >= calendarNote.StartDay && mn.FinishDay <= calendarNote.FinishDay));
-					if (intersectedNote == null) continue;
-					needToSplit = true;
-					if ((intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay) &&
-						(intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay))
-					{
-						calendarNote.MediaData = new[] { calendarNote.MediaData, intersectedNote.MediaData }.Join(noteSeparator);
-						splittedNotes.Remove(intersectedNote);
-						intersectedNote.Splitted = true;
-					}
-					else if (intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay)
-					{
-						splittedNotes.Add(new MediaDataNote(this)
-						{
-							StartDay = calendarNote.StartDay,
-							FinishDay = intersectedNote.FinishDay,
-							MediaData = new[] { calendarNote.MediaData, intersectedNote.MediaData }.Join(noteSeparator)
-						});
-						splittedNotes.Remove(calendarNote);
-						splittedNotes.Remove(intersectedNote);
-						intersectedNote.Splitted = true;
-					}
-					else if (intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay)
-					{
-						splittedNotes.Add(new MediaDataNote(this)
-						{
-							StartDay = intersectedNote.StartDay,
-							FinishDay = calendarNote.FinishDay,
-							MediaData = new[] { calendarNote.MediaData, intersectedNote.MediaData }.Join(noteSeparator)
-						});
-						splittedNotes.Remove(calendarNote);
-						splittedNotes.Remove(intersectedNote);
-						intersectedNote.Splitted = true;
-					}
+					case BroadcastDataTypeEnum.Schedule:
+						noteSeparator = "   ";
+						notes.AddRange(GetNotesFromSchedule());
+						break;
+					case BroadcastDataTypeEnum.Snapshots:
+						noteSeparator = "  |  ";
+						notes.AddRange(GetNotesFromSnapshots());
+						break;
 				}
-				notes.Clear();
-				notes.AddRange(splittedNotes);
-				notes.ForEach(n => n.Splitted = false);
-			}
-			while (needToSplit);
 
-			foreach (var calendarNote in Notes.OfType<MediaDataNote>().Where(n => n.EditedByUser))
-			{
-				notes.Where(n => n.StartDay.Date == calendarNote.StartDay.Date && n.FinishDay.Date == calendarNote.FinishDay.Date).ToList().ForEach(n =>
+				bool needToSplit;
+				notes.ForEach(n => n.Splitted = false);
+				var splittedNotes = new List<MediaDataNote>(notes);
+				do
 				{
-					n.Note = calendarNote.Note;
-					n.BackgroundColor = calendarNote.BackgroundColor;
-				});
+					needToSplit = false;
+					foreach (var calendarNote in notes.OrderByDescending(n => n.Length))
+					{
+						if (calendarNote.Splitted) continue;
+						var intersectedNote = splittedNotes.Where(sn => sn != calendarNote).OrderBy(n => n.Length).FirstOrDefault(mn =>
+							(mn.StartDay >= calendarNote.StartDay && mn.StartDay <= calendarNote.FinishDay) ||
+							(mn.FinishDay >= calendarNote.StartDay && mn.FinishDay <= calendarNote.FinishDay));
+						if (intersectedNote == null) continue;
+						needToSplit = true;
+						if ((intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay) &&
+						    (intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay))
+						{
+							calendarNote.MediaData = new[] {calendarNote.MediaData, intersectedNote.MediaData}.Join(noteSeparator);
+							splittedNotes.Remove(intersectedNote);
+							intersectedNote.Splitted = true;
+						}
+						else if (intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay)
+						{
+							splittedNotes.Add(new MediaDataNote(this)
+							{
+								StartDay = calendarNote.StartDay,
+								FinishDay = intersectedNote.FinishDay,
+								MediaData = new[] {calendarNote.MediaData, intersectedNote.MediaData}.Join(noteSeparator)
+							});
+							splittedNotes.Remove(calendarNote);
+							splittedNotes.Remove(intersectedNote);
+							intersectedNote.Splitted = true;
+						}
+						else if (intersectedNote.FinishDay >= calendarNote.StartDay &&
+						         intersectedNote.FinishDay <= calendarNote.FinishDay)
+						{
+							splittedNotes.Add(new MediaDataNote(this)
+							{
+								StartDay = intersectedNote.StartDay,
+								FinishDay = calendarNote.FinishDay,
+								MediaData = new[] {calendarNote.MediaData, intersectedNote.MediaData}.Join(noteSeparator)
+							});
+							splittedNotes.Remove(calendarNote);
+							splittedNotes.Remove(intersectedNote);
+							intersectedNote.Splitted = true;
+						}
+					}
+					notes.Clear();
+					notes.AddRange(splittedNotes);
+					notes.ForEach(n => n.Splitted = false);
+				} while (needToSplit);
+
+				foreach (var calendarNote in Notes.OfType<MediaDataNote>().Where(n => n.EditedByUser))
+				{
+					notes.Where(n => n.StartDay.Date == calendarNote.StartDay.Date && n.FinishDay.Date == calendarNote.FinishDay.Date)
+						.ToList().ForEach(n =>
+						{
+							n.Note = calendarNote.Note;
+							n.BackgroundColor = calendarNote.BackgroundColor;
+						});
+				}
 			}
 
 			Notes.Clear();
@@ -209,26 +203,29 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 			{
 				case SchedulePartitionType.WeeklySchedule:
 				case SchedulePartitionType.MonthlySchedule:
+					SetDefaultDataSource();
 					needToUpdateNotes = DataSourceType == BroadcastDataTypeEnum.Schedule;
-					UpdateDataSource();
 					break;
 				case SchedulePartitionType.Snapshots:
+					SetDefaultDataSource();
 					needToUpdateNotes = DataSourceType == BroadcastDataTypeEnum.Snapshots;
-					UpdateDataSource();
 					break;
 			}
 			if (needToUpdateNotes)
 				UpdateNotesCollection();
 		}
 
-		private void UpdateDataSource()
+		private void SetDefaultDataSource()
 		{
-			var hasSchedule = ScheduleSettings.SelectedSpotType == SpotType.Week && Schedule.ProgramSchedule.TotalSpots > 0;
-			var hasSnapshots = Schedule.SnapshotContent.Snapshots.Any(s => s.Programs.Count > 0);
-			if (AllowSelectDataSource && DataSourceType != BroadcastDataTypeEnum.None) return;
-			if (hasSchedule) DataSourceType = BroadcastDataTypeEnum.Schedule;
-			else if (hasSnapshots) DataSourceType = BroadcastDataTypeEnum.Snapshots;
-			else DataSourceType = BroadcastDataTypeEnum.None;
+			if (DataSourceType != BroadcastDataTypeEnum.Undefined)
+				return;
+			if (ScheduleSettings.SelectedSpotType == SpotType.Week && Schedule.ProgramSchedule.TotalSpots > 0)
+			{
+				DataSourceType = BroadcastDataTypeEnum.Schedule;
+				return;
+			}
+			if (Schedule.SnapshotContent.Snapshots.Any(s => s.Programs.Count > 0))
+				DataSourceType = BroadcastDataTypeEnum.Snapshots;
 		}
 	}
 }

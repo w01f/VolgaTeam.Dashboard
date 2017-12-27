@@ -34,6 +34,7 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		{
 			base.InitControl();
 			ResetButton.Click += OnCalendarResetClick;
+			InitSlideInfo<CalendarSlideInfoControl>();
 		}
 
 		protected override void UpdateEditedContet()

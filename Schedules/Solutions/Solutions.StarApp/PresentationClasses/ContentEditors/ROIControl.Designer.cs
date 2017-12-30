@@ -1414,6 +1414,7 @@
 			// 
 			// layoutControlMain
 			// 
+	        this.layoutControlMain.AllowCustomization = false;
 			this.layoutControlMain.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlMain.Appearance.Control.Options.UseFont = true;
 			this.layoutControlMain.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -1492,6 +1493,7 @@
 			// 
 			// layoutControlTabB
 			// 
+	        this.layoutControlTabB.AllowCustomization = false;
 			this.layoutControlTabB.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabB.Appearance.Control.Options.UseFont = true;
 			this.layoutControlTabB.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -4057,6 +4059,7 @@
 			// 
 			// layoutControlTabC
 			// 
+	        this.layoutControlTabC.AllowCustomization = false;
 			this.layoutControlTabC.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabC.Appearance.Control.Options.UseFont = true;
 			this.layoutControlTabC.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -5950,6 +5953,7 @@
 			// 
 			// layoutControlTabD
 			// 
+	        this.layoutControlTabD.AllowCustomization = false;
 			this.layoutControlTabD.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabD.Appearance.Control.Options.UseFont = true;
 			this.layoutControlTabD.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -10201,7 +10205,7 @@
 		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart1;
 		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart2;
 		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart3;
-		protected DevExpress.XtraLayout.LayoutControl layoutControlTabB;
+		private DevExpress.XtraLayout.LayoutControl layoutControlTabB;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabBInner;
 		private System.Windows.Forms.Panel panelTabBContentContainer;
 		private DevExpress.XtraEditors.CheckEdit checkEditTabBGroup1;

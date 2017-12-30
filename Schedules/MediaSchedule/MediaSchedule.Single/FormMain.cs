@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Common.Enums;
 using Asa.Business.Media.Configuration;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
@@ -437,7 +438,8 @@ namespace Asa.Media.Single
 		{
 			UpdateFormTitle();
 			ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(ContentIdentifiers.ScheduleSettings);
-			Controller.Instance.CheckPowerPointRunning();
+			if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
+				Controller.Instance.CheckPowerPointRunning();
 		}
 
 		private void AddNewRegularSchedule()

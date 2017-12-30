@@ -67,12 +67,13 @@
 			this.pnClosed.Controls.Add(this.layoutControlClosed);
 			this.pnClosed.Location = new System.Drawing.Point(6, 3);
 			this.pnClosed.Name = "pnClosed";
-			this.pnClosed.Size = new System.Drawing.Size(55, 151);
+			this.pnClosed.Size = new System.Drawing.Size(58, 151);
 			this.pnClosed.TabIndex = 0;
 			this.pnClosed.Visible = false;
 			// 
 			// layoutControlClosed
 			// 
+			this.layoutControlClosed.AllowCustomization = false;
 			this.layoutControlClosed.Controls.Add(this.simpleButtonExpand);
 			this.layoutControlClosed.Controls.Add(this.pnAdditionalButtons);
 			this.layoutControlClosed.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -81,7 +82,7 @@
 			this.layoutControlClosed.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(372, 273, 450, 400);
 			this.layoutControlClosed.OptionsView.ShareLookAndFeelWithChildren = false;
 			this.layoutControlClosed.Root = this.layoutControlGroupClosedRoot;
-			this.layoutControlClosed.Size = new System.Drawing.Size(51, 147);
+			this.layoutControlClosed.Size = new System.Drawing.Size(54, 147);
 			this.layoutControlClosed.TabIndex = 0;
 			this.layoutControlClosed.Text = "layoutControl1";
 			// 
@@ -89,7 +90,8 @@
 			// 
 			this.simpleButtonExpand.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
 			this.simpleButtonExpand.Image = global::Asa.Common.GUI.Properties.Resources.RetractableBarExpand;
-			this.simpleButtonExpand.Location = new System.Drawing.Point(2, 3);
+			this.simpleButtonExpand.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+			this.simpleButtonExpand.Location = new System.Drawing.Point(3, 3);
 			this.simpleButtonExpand.Name = "simpleButtonExpand";
 			this.simpleButtonExpand.Size = new System.Drawing.Size(47, 38);
 			this.simpleButtonExpand.TabIndex = 0;
@@ -98,7 +100,7 @@
 			// 
 			// pnAdditionalButtons
 			// 
-			this.pnAdditionalButtons.Location = new System.Drawing.Point(2, 42);
+			this.pnAdditionalButtons.Location = new System.Drawing.Point(3, 42);
 			this.pnAdditionalButtons.Name = "pnAdditionalButtons";
 			this.pnAdditionalButtons.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
 			this.pnAdditionalButtons.Size = new System.Drawing.Size(47, 103);
@@ -115,7 +117,7 @@
 			this.layoutControlGroupClosedRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupClosedRoot.Name = "Root";
 			this.layoutControlGroupClosedRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-			this.layoutControlGroupClosedRoot.Size = new System.Drawing.Size(51, 147);
+			this.layoutControlGroupClosedRoot.Size = new System.Drawing.Size(54, 147);
 			this.layoutControlGroupClosedRoot.TextVisible = false;
 			// 
 			// layoutControlItemAdditionalButtons
@@ -128,7 +130,7 @@
 			this.layoutControlItemAdditionalButtons.MinSize = new System.Drawing.Size(47, 1);
 			this.layoutControlItemAdditionalButtons.Name = "layoutControlItemAdditionalButtons";
 			this.layoutControlItemAdditionalButtons.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemAdditionalButtons.Size = new System.Drawing.Size(47, 103);
+			this.layoutControlItemAdditionalButtons.Size = new System.Drawing.Size(50, 103);
 			this.layoutControlItemAdditionalButtons.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemAdditionalButtons.Text = "Additional Buttons";
 			this.layoutControlItemAdditionalButtons.TextSize = new System.Drawing.Size(0, 0);
@@ -145,7 +147,7 @@
 			this.layoutControlItemButtonExpand.MinSize = new System.Drawing.Size(47, 40);
 			this.layoutControlItemButtonExpand.Name = "layoutControlItemButtonExpand";
 			this.layoutControlItemButtonExpand.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemButtonExpand.Size = new System.Drawing.Size(47, 40);
+			this.layoutControlItemButtonExpand.Size = new System.Drawing.Size(50, 40);
 			this.layoutControlItemButtonExpand.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemButtonExpand.Text = "Expand Button";
 			this.layoutControlItemButtonExpand.TextSize = new System.Drawing.Size(0, 0);
@@ -163,6 +165,7 @@
 			// 
 			// layoutControlOpened
 			// 
+			this.layoutControlOpened.AllowCustomization = false;
 			this.layoutControlOpened.Controls.Add(this.simpleButtonCollapse);
 			this.layoutControlOpened.Controls.Add(this.pnHeaderContent);
 			this.layoutControlOpened.Controls.Add(this.pnContent);
@@ -180,6 +183,7 @@
 			// 
 			this.simpleButtonCollapse.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
 			this.simpleButtonCollapse.Image = global::Asa.Common.GUI.Properties.Resources.RetractableBarCollapse;
+			this.simpleButtonCollapse.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
 			this.simpleButtonCollapse.Location = new System.Drawing.Point(2, 3);
 			this.simpleButtonCollapse.Name = "simpleButtonCollapse";
 			this.simpleButtonCollapse.Size = new System.Drawing.Size(47, 38);

@@ -173,6 +173,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			// 
 			// layoutControlSections
 			// 
+	        this.layoutControlSections.AllowCustomization = false;
 			this.layoutControlSections.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlSections.Appearance.Control.Options.UseFont = true;
 			this.layoutControlSections.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -345,6 +346,7 @@ namespace Asa.Media.Controls.PresentationClasses.ScheduleControls.ContentEditors
 			// 
 			// layoutControlMain
 			// 
+	        this.layoutControlMain.AllowCustomization = false;
 			this.layoutControlMain.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlMain.Appearance.Control.Options.UseFont = true;
 			this.layoutControlMain.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);

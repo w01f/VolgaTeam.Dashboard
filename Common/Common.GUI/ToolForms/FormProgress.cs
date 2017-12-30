@@ -89,6 +89,7 @@ namespace Asa.Common.GUI.ToolForms
 				_instance = new FormProgress();
 			_instance.Closed += (o, e) =>
 			{
+				if (_instance == null) return;
 				_instance.Dispose();
 				_instance = null;
 			};

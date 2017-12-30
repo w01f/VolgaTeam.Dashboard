@@ -33,6 +33,12 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override void InitControl()
 		{
 			base.InitControl();
+
+			retractableBarControl.simpleButtonExpand.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarExpandImage ??
+															 retractableBarControl.simpleButtonExpand.Image;
+			retractableBarControl.simpleButtonCollapse.Image = BusinessObjects.Instance.ImageResourcesManager.RetractableBarCollpaseImage ??
+															   retractableBarControl.simpleButtonCollapse.Image;
+
 			ResetButton.Click += OnCalendarResetClick;
 			InitSlideInfo<CalendarSlideInfoControl>();
 		}
@@ -169,9 +175,9 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			FormProgress.CloseProgress();
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formPreview = new FormPreview(
-				Controller.Instance.FormMain, 
-				BusinessObjects.Instance.PowerPointManager.Processor, 
-				BusinessObjects.Instance.HelpManager, 
+				Controller.Instance.FormMain,
+				BusinessObjects.Instance.PowerPointManager.Processor,
+				BusinessObjects.Instance.HelpManager,
 				Controller.Instance.ShowFloater,
 				Controller.Instance.CheckPowerPointRunning))
 			{

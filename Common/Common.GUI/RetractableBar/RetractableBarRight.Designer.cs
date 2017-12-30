@@ -29,9 +29,7 @@
 		private void InitializeComponent()
 		{
 			((System.ComponentModel.ISupportInitialize)(this.pnClosed)).BeginInit();
-			this.pnClosed.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).BeginInit();
-			this.pnOpened.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnClosed
@@ -39,8 +37,8 @@
 			this.pnClosed.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.pnClosed.Appearance.Options.UseBackColor = true;
 			this.pnClosed.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pnClosed.Location = new System.Drawing.Point(304, 0);
-			this.pnClosed.Size = new System.Drawing.Size(55, 388);
+			this.pnClosed.Location = new System.Drawing.Point(301, 0);
+			this.pnClosed.Size = new System.Drawing.Size(58, 388);
 			// 
 			// pnOpened
 			// 
@@ -48,27 +46,25 @@
 			this.pnOpened.Appearance.Options.UseBackColor = true;
 			this.pnOpened.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOpened.Location = new System.Drawing.Point(0, 0);
-			this.pnOpened.Size = new System.Drawing.Size(304, 388);
+			this.pnOpened.Size = new System.Drawing.Size(301, 388);
+			// 
+			// pnContent
+			// 
+			this.pnContent.Size = new System.Drawing.Size(293, 340);
+			// 
+			// pnHeaderContent
+			// 
+			this.pnHeaderContent.Size = new System.Drawing.Size(246, 40);
 			// 
 			// simpleButtonExpand
 			// 
 			this.simpleButtonExpand.Image = global::Asa.Common.GUI.Properties.Resources.RetractableBarCollapse;
-			this.simpleButtonExpand.Size = new System.Drawing.Size(47, 36);
-			// 
-			// pnContent
-			// 
-			this.pnContent.Size = new System.Drawing.Size(300, 344);
+			this.simpleButtonExpand.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
 			// 
 			// simpleButtonCollapse
 			// 
-			this.simpleButtonCollapse.Dock = System.Windows.Forms.DockStyle.Right;
 			this.simpleButtonCollapse.Image = global::Asa.Common.GUI.Properties.Resources.RetractableBarExpand;
-			this.simpleButtonCollapse.Location = new System.Drawing.Point(251, 2);
-			// 
-			// pnHeaderContent
-			// 
-			this.pnHeaderContent.Location = new System.Drawing.Point(2, 2);
-			this.pnHeaderContent.Size = new System.Drawing.Size(249, 36);
+			this.simpleButtonCollapse.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
 			// 
 			// RetractableBarRight
 			// 
@@ -76,9 +72,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Name = "RetractableBarRight";
 			((System.ComponentModel.ISupportInitialize)(this.pnClosed)).EndInit();
-			this.pnClosed.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).EndInit();
-			this.pnOpened.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

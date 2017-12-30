@@ -66,32 +66,27 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\BaseSolutionContainerControl.resx">
+      <DependentUpon>BaseSolutionContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
-      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Project>{CCFAD4DA-48C4-454B-930D-6A81D2626E76}</Project>
       <Name>Business.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">
-      <Project>{4f118ea5-97aa-43f9-a8f5-601b8596825c}</Project>
+      <Project>{4F118EA5-97AA-43F9-A8F5-601B8596825C}</Project>
       <Name>Business.Solutions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
-      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
       <Name>Common.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
-      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
-      <Name>Common.GUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
       <Project>{18F20EB4-6552-4F0A-AB13-D417A2D53CD4}</Project>
       <Name>Common.Controls</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="PresentationClasses\BaseSolutionContainerControl.resx">
-      <DependentUpon>BaseSolutionContainerControl.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

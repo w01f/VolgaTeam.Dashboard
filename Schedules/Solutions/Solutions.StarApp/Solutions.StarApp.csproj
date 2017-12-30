@@ -158,28 +158,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
-      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
-      <Name>Business.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">
-      <Project>{4F118EA5-97AA-43F9-A8F5-601B8596825C}</Project>
-      <Name>Business.Solutions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
-      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
-      <Name>Common.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
-      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
-      <Name>Common.GUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Solutions.Common\Solutions.Common.csproj">
-      <Project>{5265E59C-B925-4494-AA69-A40D8A8E50E0}</Project>
-      <Name>Solutions.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\BaseStarAppContainer.resx">
       <DependentUpon>BaseStarAppContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,9 +208,30 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\ButtonCalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">
+      <Project>{4F118EA5-97AA-43F9-A8F5-601B8596825C}</Project>
+      <Name>Business.Solutions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
+      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
+      <Name>Common.GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solutions.Common\Solutions.Common.csproj">
+      <Project>{5265E59C-B925-4494-AA69-A40D8A8E50E0}</Project>
+      <Name>Solutions.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

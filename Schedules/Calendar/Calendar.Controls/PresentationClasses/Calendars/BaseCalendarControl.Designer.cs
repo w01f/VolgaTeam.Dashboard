@@ -119,6 +119,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			// 
 			// layoutControlData
 			// 
+	        this.layoutControlData.AllowCustomization = false;
 			this.layoutControlData.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlData.Appearance.Control.Options.UseFont = true;
 			this.layoutControlData.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -195,6 +196,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			// 
 			// layoutControlMain
 			// 
+	        this.layoutControlMain.AllowCustomization = false;
 			this.layoutControlMain.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlMain.Appearance.Control.Options.UseFont = true;
 			this.layoutControlMain.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);

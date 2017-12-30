@@ -954,64 +954,6 @@
     <None Include="Resources\SummaryOptionsInfo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Browser\Browser.Controls\Browser.Controls.csproj">
-      <Project>{0db1bad7-d7aa-46f8-bde6-0212c8a4caa6}</Project>
-      <Name>Browser.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Business\Business.Calendar\Business.Calendar.csproj">
-      <Project>{d8982923-ed22-4102-a228-6bb5111f07e4}</Project>
-      <Name>Business.Calendar</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
-      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
-      <Name>Business.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
-      <Project>{8248763f-1b88-43c4-bb98-30bedeef6434}</Project>
-      <Name>Business.Media</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Business\Business.Online\Business.Online.csproj">
-      <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
-      <Name>Business.Online</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">
-      <Project>{4f118ea5-97aa-43f9-a8f5-601b8596825c}</Project>
-      <Name>Business.Solutions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
-      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
-      <Name>Common.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
-      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
-      <Name>Common.GUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Calendar\Calendar.Controls\Calendar.Controls.csproj">
-      <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>
-      <Name>Calendar.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
-      <Project>{18f20eb4-6552-4f0a-ab13-d417a2d53cd4}</Project>
-      <Name>Common.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\OnlineSchedule\OnlineSchedule.Controls\Online.Controls.csproj">
-      <Project>{1c9b33cd-0fe1-431c-bbc4-88463568f891}</Project>
-      <Name>Online.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Solutions\Solutions.Common\Solutions.Common.csproj">
-      <Project>{5265E59C-B925-4494-AA69-A40D8A8E50E0}</Project>
-      <Name>Solutions.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Solutions\Solutions.Dashboard\Solutions.Dashboard.csproj">
-      <Project>{9399D618-8C42-483C-8B87-3BD111B07B88}</Project>
-      <Name>Solutions.Dashboard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Solutions\Solutions.StarApp\Solutions.StarApp.csproj">
-      <Project>{D3C4FE3F-D410-4FDF-ABFE-4359487DB9DB}</Project>
-      <Name>Solutions.StarApp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\RibbonLogo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1154,6 +1096,64 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RibbonSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Browser\Browser.Controls\Browser.Controls.csproj">
+      <Project>{0db1bad7-d7aa-46f8-bde6-0212c8a4caa6}</Project>
+      <Name>Browser.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Calendar\Business.Calendar.csproj">
+      <Project>{d8982923-ed22-4102-a228-6bb5111f07e4}</Project>
+      <Name>Business.Calendar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
+      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
+      <Project>{8248763f-1b88-43c4-bb98-30bedeef6434}</Project>
+      <Name>Business.Media</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Online\Business.Online.csproj">
+      <Project>{886dc89e-77e0-438e-9fb0-a5d76063c93a}</Project>
+      <Name>Business.Online</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">
+      <Project>{4f118ea5-97aa-43f9-a8f5-601b8596825c}</Project>
+      <Name>Business.Solutions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
+      <Project>{a97255f0-74b3-4c03-b623-ec0e37e80a3c}</Project>
+      <Name>Common.GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Calendar\Calendar.Controls\Calendar.Controls.csproj">
+      <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>
+      <Name>Calendar.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Controls\Common.Controls.csproj">
+      <Project>{18f20eb4-6552-4f0a-ab13-d417a2d53cd4}</Project>
+      <Name>Common.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OnlineSchedule\OnlineSchedule.Controls\Online.Controls.csproj">
+      <Project>{1c9b33cd-0fe1-431c-bbc4-88463568f891}</Project>
+      <Name>Online.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solutions\Solutions.Common\Solutions.Common.csproj">
+      <Project>{5265e59c-b925-4494-aa69-a40d8a8e50e0}</Project>
+      <Name>Solutions.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solutions\Solutions.Dashboard\Solutions.Dashboard.csproj">
+      <Project>{9399d618-8c42-483c-8b87-3bd111b07b88}</Project>
+      <Name>Solutions.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solutions\Solutions.StarApp\Solutions.StarApp.csproj">
+      <Project>{d3c4fe3f-d410-4fdf-abfe-4359487db9db}</Project>
+      <Name>Solutions.StarApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

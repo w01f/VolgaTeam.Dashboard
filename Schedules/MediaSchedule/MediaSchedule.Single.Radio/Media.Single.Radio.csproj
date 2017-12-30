@@ -154,28 +154,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
-      <Project>{8248763F-1B88-43C4-BB98-30BEDEEF6434}</Project>
-      <Name>Business.Media</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
-      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
-      <Name>Common.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common.GUI\Common.GUI.csproj">
-      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
-      <Name>Common.GUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaSchedule.Controls\Media.Controls.csproj">
-      <Project>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</Project>
-      <Name>Media.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaSchedule.Single\Media.Single.csproj">
-      <Project>{B8FA28E9-7142-42D1-9C69-780B71D3940D}</Project>
-      <Name>Media.Single</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.1 %28x86 and x64%29</ProductName>
@@ -189,6 +167,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Business\Business.Media\Business.Media.csproj">
+      <Project>{8248763F-1B88-43C4-BB98-30BEDEEF6434}</Project>
+      <Name>Business.Media</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{ADEB2DFE-615C-4D0C-A283-A155B55E443D}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaSchedule.Controls\Media.Controls.csproj">
+      <Project>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</Project>
+      <Name>Media.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaSchedule.Single\Media.Single.csproj">
+      <Project>{B8FA28E9-7142-42D1-9C69-780B71D3940D}</Project>
+      <Name>Media.Single</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

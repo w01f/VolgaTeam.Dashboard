@@ -59,12 +59,13 @@ namespace Asa.Common.GUI.RetractableBar
 		{
 			if (silent || AnimationDelay == 0)
 			{
-				Width = pnClosed.Width;
 				pnOpened.Visible = false;
+				Width = pnClosed.Width;
 				pnClosed.Visible = true;
 			}
 			else
 			{
+				pnOpened.Visible = false;
 				var timer = new Timer();
 				timer.Interval = AnimationDelay > ContentSize ? AnimationDelay / ContentSize : 100;
 				timer.Tick += (o, e) =>
@@ -74,7 +75,6 @@ namespace Asa.Common.GUI.RetractableBar
 					else
 					{
 						Width = pnClosed.Width;
-						pnOpened.Visible = false;
 						pnClosed.Visible = true;
 						timer.Stop();
 						timer.Dispose();
@@ -93,8 +93,8 @@ namespace Asa.Common.GUI.RetractableBar
 			if (silent || AnimationDelay == 0)
 			{
 				Width = ContentSize;
-				pnOpened.Visible = true;
 				pnClosed.Visible = false;
+				pnOpened.Visible = true;
 			}
 			else
 			{
@@ -107,8 +107,8 @@ namespace Asa.Common.GUI.RetractableBar
 					else
 					{
 						Width = ContentSize;
-						pnOpened.Visible = true;
 						pnClosed.Visible = false;
+						pnOpened.Visible = true;
 						timer.Stop();
 						timer.Dispose();
 						timer = null;

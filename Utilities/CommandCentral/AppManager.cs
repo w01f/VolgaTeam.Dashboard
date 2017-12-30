@@ -1,64 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
+using Asa.Common.Core.Helpers;
+using CommandCentral.Configuraion;
 
 namespace CommandCentral
 {
 	public class AppManager
 	{
-		public delegate void NoParamDelegate();
-
-		private AppManager()
-		{
-		}
-
 		public static AppManager Instance { get; } = new AppManager();
+		public ResourceManager AppResources { get; } = new ResourceManager();
+		public Settings AppSettings { get; private set; }
+
+		private AppManager() { }
 
 		public void Run()
 		{
-			Application.Run(FormMain.Instance);
+			AppSettings = Settings.Load(AppResources.SettingsFilePath);
+
+			var mainForm = new FormMain();
+			mainForm.Closed += OnMainFormClosed;
+
+			PopupMessageHelper.Instance.Title = mainForm.Text;
+
+			Application.Run(mainForm);
 		}
 
-		public void ActivateMainForm()
+		private void OnMainFormClosed(object sender, EventArgs e)
 		{
-			IntPtr mainFormHandle = InteropClasses.WinAPIHelper.FindWindow(null, "Command Central      ");
-			InteropClasses.WinAPIHelper.ShowWindow(mainFormHandle, InteropClasses.WindowShowStyle.ShowNormal);
-			uint lpdwProcessId = 0;
-			InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
-			InteropClasses.WinAPIHelper.SetForegroundWindow(mainFormHandle);
-			InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
-			InteropClasses.WinAPIHelper.MakeNormal(mainFormHandle);
-		}
-
-		public void ShowWarning(string text)
-		{
-			MessageBox.Show(text, "Command Central", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-		}
-
-		public void ShowInformation(string text)
-		{
-			MessageBox.Show(text, "Command Central", MessageBoxButtons.OK, MessageBoxIcon.Information);
-		}
-
-		public void OpenFile(string fileName)
-		{
-			if (File.Exists(fileName))
-			{
-				try
-				{
-					Process.Start(fileName);
-				}
-				catch
-				{
-					ShowWarning("Couldn't open file.");
-				}
-			}
-			else
-				ShowWarning("File is not existed.");
+			Settings.Save(AppSettings, AppResources.SettingsFilePath);
 		}
 	}
 }

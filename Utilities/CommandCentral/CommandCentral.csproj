@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CommandCentral</RootNamespace>
     <AssemblyName>CommandCentral</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -63,15 +63,24 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.12, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -111,104 +120,47 @@
     <Compile Include="..\..\Business\Business.Online\Configuration\DigitalControlsConfiguration.cs">
       <Link>Entities\Online\DigitalControlsConfiguration.cs</Link>
     </Compile>
-    <Compile Include="..\..\Common\Common.Core\Json\JsonImageConverter.cs">
-      <Link>InteropClasses\JsonImageConverter.cs</Link>
-    </Compile>
     <Compile Include="AppManager.cs" />
-    <Compile Include="Entities\Newspaper\AdSize.cs" />
-    <Compile Include="Entities\Media\BroadcastMonthTemplate.cs" />
-    <Compile Include="Entities\Online\Category.cs" />
-    <Compile Include="Entities\Online\DigitalViewSettings.cs" />
-    <Compile Include="Entities\Online\DigitalProductInfo.cs" />
-    <Compile Include="Entities\Newspaper\ViewSettings.cs" />
-    <Compile Include="Entities\SalesDepot\SalesDepotUserLibraries.cs" />
-    <Compile Include="Entities\Online\SpecialLinkButton.cs" />
-    <Compile Include="Entities\Newspaper\ShareUnit.cs" />
-    <Compile Include="Entities\Common\NameCodePair.cs" />
-    <Compile Include="Entities\Media\DaypartRotation.cs" />
-    <Compile Include="Entities\Newspaper\MechanicalItem.cs" />
-    <Compile Include="Entities\Newspaper\MechanicalType.cs" />
-    <Compile Include="Entities\Online\Product.cs" />
-    <Compile Include="Entities\Newspaper\Publication.cs" />
-    <Compile Include="Entities\Media\RadioProgram.cs" />
-    <Compile Include="Entities\Media\RadioStation.cs" />
-    <Compile Include="Entities\SalesDepot\SearchGroup.cs" />
-    <Compile Include="Entities\Newspaper\Section.cs" />
-    <Compile Include="Entities\Dashboard\Step.cs" />
-    <Compile Include="Entities\Media\TVProgram.cs" />
-    <Compile Include="DataControl.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="BusinessClasses\Common\ConversionException.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\ClosingSummaryConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\OnlineDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MediaDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\TargetCustomersConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\ClientGoalsConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\LeadoffStatementsConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\IExcel2XmlConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\CoverConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\RadioDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\TVDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\SalesLibrariesDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\UsersConvertor.cs" />
+    <Compile Include="BusinessClasses\Common\OutputFolder.cs" />
+    <Compile Include="Configuraion\ResourceManager.cs" />
+    <Compile Include="Configuraion\Settings.cs" />
+    <Compile Include="BusinessClasses\Entities\Media\BroadcastMonthTemplate.cs" />
+    <Compile Include="BusinessClasses\Entities\Online\Category.cs" />
+    <Compile Include="BusinessClasses\Entities\Online\DigitalViewSettings.cs" />
+    <Compile Include="BusinessClasses\Entities\Online\DigitalProductInfo.cs" />
+    <Compile Include="BusinessClasses\Entities\SalesDepot\SalesDepotUserLibraries.cs" />
+    <Compile Include="BusinessClasses\Entities\Online\SpecialLinkButton.cs" />
+    <Compile Include="BusinessClasses\Entities\Common\NameCodePair.cs" />
+    <Compile Include="BusinessClasses\Entities\Online\Product.cs" />
+    <Compile Include="BusinessClasses\Entities\Media\MediaProgram.cs" />
+    <Compile Include="BusinessClasses\Entities\SalesDepot\SearchGroup.cs" />
+    <Compile Include="BusinessClasses\Entities\Dashboard\Quote.cs" />
+    <Compile Include="BusinessClasses\Entities\Common\SlideHeader.cs" />
+    <Compile Include="BusinessClasses\Entities\Dashboard\User.cs" />
+    <Compile Include="FolderBrowserDialogEx.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DataControl.Designer.cs">
-      <DependentUpon>DataControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Dashboard\Quote.cs" />
-    <Compile Include="Entities\Common\SlideHeader.cs" />
-    <Compile Include="Entities\Dashboard\User.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="InteropClasses\WinAPIHelper.cs" />
-    <Compile Include="ProductionFilesUpdateHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TabMainDashboardForms\QuickListManager.cs" />
-    <Compile Include="TabMainDashboardForms\TVStrategyManager.cs" />
-    <Compile Include="TabSalesDepotForms\SalesDepotAccessRightsManager.cs" />
-    <Compile Include="TabSalesProForms\SalesProMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabSalesProForms\SalesProMainPage.Designer.cs">
-      <DependentUpon>SalesProMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabSalesProForms\BigIdeaManager.cs" />
-    <Compile Include="TabSalesProForms\CampaignSummaryManager.cs" />
-    <Compile Include="TabSalesProForms\CampaignTimelineManager.cs" />
-    <Compile Include="TabSalesProForms\ClientBenefitsManager.cs" />
-    <Compile Include="TabSalesProForms\ValueAnalysisManager.cs" />
-    <Compile Include="TabSalesProForms\ROIFormulaManager.cs" />
-    <Compile Include="TabSalesProForms\InvestmentCalendarManager.cs" />
-    <Compile Include="TabSalesProForms\CreativeStrategyManager.cs" />
-    <Compile Include="TabMainDashboardForms\MainDashboardPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabMainDashboardForms\MainDashboardPage.Designer.cs">
-      <DependentUpon>MainDashboardPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabMainDashboardForms\ClosingSummaryManager.cs" />
-    <Compile Include="TabMainDashboardForms\TargetCustomerManager.cs" />
-    <Compile Include="TabMainDashboardForms\NeedsAnalysisManager.cs" />
-    <Compile Include="TabMainDashboardForms\IntroSlideManager.cs" />
-    <Compile Include="TabMainDashboardForms\CoverManager.cs" />
-    <Compile Include="TabMarketProForms\MarketProManager.cs" />
-    <Compile Include="TabMarketProForms\MarketProMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabMarketProForms\MarketProMainPage.Designer.cs">
-      <DependentUpon>MarketProMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabMainDashboardForms\NewspaperStrategyManager.cs" />
-    <Compile Include="TabMainDashboardForms\OnlineStrategyManager.cs" />
-    <Compile Include="TabMainDashboardForms\RadioStrategyManager.cs" />
-    <Compile Include="TabMainDashboardForms\UsersControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabMainDashboardForms\UsersControl.Designer.cs">
-      <DependentUpon>UsersControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabSalesDepotForms\SalesDepotSearchManager.cs" />
-    <Compile Include="TabSalesDepotForms\SalesDepotMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabSalesDepotForms\SalesDepotMainPage.Designer.cs">
-      <DependentUpon>SalesDepotMainPage.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="DataControl.resx">
-      <DependentUpon>DataControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,99 +174,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TabSalesProForms\SalesProMainPage.resx">
-      <DependentUpon>SalesProMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabMainDashboardForms\MainDashboardPage.resx">
-      <DependentUpon>MainDashboardPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabMarketProForms\MarketProMainPage.resx">
-      <DependentUpon>MarketProMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabMainDashboardForms\UsersControl.resx">
-      <DependentUpon>UsersControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabSalesDepotForms\SalesDepotMainPage.resx">
-      <DependentUpon>SalesDepotMainPage.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />
     <None Include="packages.config" />
-    <None Include="Resources\Users.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CableLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DirectMailLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MobileLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NewspaperLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OutdoorLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RadioLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TVLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\WebLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\YellowPagesLittle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MediaStrategy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Cover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\IntroSlide.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NeedsAnalysis.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TargetCustomer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ClosingSummary.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ClientBenefits.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BigIdea.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CreativeStrategy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CampaignTimeline.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ROIFormula.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\InvestmentCalendar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ValueAnalysis.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CampaignSummary.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SalesDepotSearch.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -339,14 +203,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\EmptyImage.png" />
+    <ProjectReference Include="..\..\Common\Common.Core\Common.Core.csproj">
+      <Project>{adeb2dfe-615c-4d0c-a283-a155b55e443d}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\QuickList.png" />
+    <None Include="Resources\ButtonDelete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>robocopy /s /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\CommandCentral.exe" "*.dll" "CommandCentral.exe"
+    <PostBuildEvent>if %25errorlevel%25 leq 1 robocopy /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\CommandCentral.exe" "*.dll" "CommandCentral.exe"
 if %25errorlevel%25 leq 1 exit 0 else exit %25errorlevel%25</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

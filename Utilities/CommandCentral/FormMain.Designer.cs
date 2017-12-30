@@ -1,1213 +1,932 @@
 ﻿namespace CommandCentral
 {
-    partial class FormMain
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class FormMain
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
-			this.ribbonPanelMainDashboard = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarQuickListSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemQuickList = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarOnlineSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemOnlineStrategy = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioStrategy = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarTVSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemTVStrategy = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarNewspaperSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemNewspaperStrategy = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarBasicSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemBasicCover = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBasicIntroSlide = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBasicNeedsAnalysis = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBasicTargetCustomer = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBasicClosingSummary = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarUsers = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemUsers = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarMainDashboardData = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemMainDashboardViewFile = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMainDashboardUpdate = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonPanelSalesDepot = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarSalesDepotAccessRights = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSalesDepotAccessRights = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSalesDepotSearch = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSalesDepotSearch = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSalesDepotData = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSalesDepotViewFile = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesDepotUpdate = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonPanelSalesPro = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarSalesProSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSalesProClientBenefits = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProBigIdea = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProCreativeStrategy = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProCampaignTimeline = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProROIFormula = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProInvestmentCalendar = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProValueAnalysis = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProCampaignSummary = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarSalesProData = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemSalesProViewFile = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSalesProUpdate = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonPanelMarketPro = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarMarketProSource = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemMarketProTV = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProWeb = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProMobile = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProPrint = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProRadio = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProCable = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProYellowPages = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProDirectMail = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProOutdoor = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProMediaStrategy = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarMarketProData = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemMarketProViewFile = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMarketProUpdate = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonTabItemMainDashboard = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemMarketPro = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemSalesPro = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemSalesDepot = new DevComponents.DotNetBar.RibbonTabItem();
-			this.pnMain = new System.Windows.Forms.Panel();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager();
-			this.ribbonControl.SuspendLayout();
-			this.ribbonPanelMainDashboard.SuspendLayout();
-			this.ribbonPanelSalesDepot.SuspendLayout();
-			this.ribbonPanelSalesPro.SuspendLayout();
-			this.ribbonPanelMarketPro.SuspendLayout();
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition5 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition6 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition7 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition8 = new DevExpress.XtraLayout.RowDefinition();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
+			this.buttonXOutputFoldersAdd = new DevComponents.DotNetBar.ButtonX();
+			this.gridControlOutputFolders = new DevExpress.XtraGrid.GridControl();
+			this.gridViewOutputFolders = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridColumnOutputFoldersPath = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemButtonEditOutputFoldersPath = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+			this.buttonXMainDataButtonUsers = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXContinue = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonCover = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonLeadoffStatements = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonClientGoals = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonTargetCustomers = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonSummary = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonTV = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonRadio = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonOnline = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMainDataButtonSDSearch = new DevComponents.DotNetBar.ButtonX();
+			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
+			this.tabbedControlGroup = new DevExpress.XtraLayout.TabbedControlGroup();
+			this.layoutControlGroupMainData = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlGroupMainDataButtons = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemMainDataButtonUsers = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonCover = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonLeadoffStatements = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonClientGoals = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonTargetCustomers = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonSummary = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonTV = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonRadio = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonOnline = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemMainDataButtonSDSearch = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlGroupStarAppData = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemOutputFolders = new DevExpress.XtraLayout.LayoutControlItem();
+			this.simpleLabelItemOutputFoldersTitle = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlItemOutputFoldersAdd = new DevExpress.XtraLayout.LayoutControlItem();
+			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
+			this.layoutControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlOutputFolders)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewOutputFolders)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditOutputFoldersPath)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonCover)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonLeadoffStatements)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonClientGoals)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTargetCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSummary)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTV)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFolders)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemOutputFoldersTitle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFoldersAdd)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// ribbonControl
-			// 
-			this.ribbonControl.AutoExpand = false;
-			this.ribbonControl.BackColor = System.Drawing.Color.White;
-			// 
-			// 
-			// 
-			this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonControl.CanCustomize = false;
-			this.ribbonControl.CaptionVisible = true;
-			this.ribbonControl.Controls.Add(this.ribbonPanelMainDashboard);
-			this.ribbonControl.Controls.Add(this.ribbonPanelMarketPro);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSalesPro);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
-			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
-			this.ribbonControl.EnableQatPlacement = false;
-			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
-			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.ribbonTabItemMainDashboard,
-            this.ribbonTabItemMarketPro,
-            this.ribbonTabItemSalesPro,
-            this.ribbonTabItemSalesDepot});
-			this.ribbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
-			this.ribbonControl.Location = new System.Drawing.Point(5, 1);
-			this.ribbonControl.MdiSystemItemVisible = false;
-			this.ribbonControl.Name = "ribbonControl";
-			this.ribbonControl.Size = new System.Drawing.Size(1010, 165);
-			this.ribbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonControl.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
-			this.ribbonControl.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
-			this.ribbonControl.SystemText.QatAddItemText = "&Add to Quick Access Toolbar";
-			this.ribbonControl.SystemText.QatCustomizeMenuLabel = "<b>Customize Quick Access Toolbar</b>";
-			this.ribbonControl.SystemText.QatCustomizeText = "&Customize Quick Access Toolbar...";
-			this.ribbonControl.SystemText.QatDialogAddButton = "&Add >>";
-			this.ribbonControl.SystemText.QatDialogCancelButton = "Cancel";
-			this.ribbonControl.SystemText.QatDialogCaption = "Customize Quick Access Toolbar";
-			this.ribbonControl.SystemText.QatDialogCategoriesLabel = "&Choose commands from:";
-			this.ribbonControl.SystemText.QatDialogOkButton = "OK";
-			this.ribbonControl.SystemText.QatDialogPlacementCheckbox = "&Place Quick Access Toolbar below the Ribbon";
-			this.ribbonControl.SystemText.QatDialogRemoveButton = "&Remove";
-			this.ribbonControl.SystemText.QatPlaceAboveRibbonText = "&Place Quick Access Toolbar above the Ribbon";
-			this.ribbonControl.SystemText.QatPlaceBelowRibbonText = "&Place Quick Access Toolbar below the Ribbon";
-			this.ribbonControl.SystemText.QatRemoveItemText = "&Remove from Quick Access Toolbar";
-			this.ribbonControl.TabGroupHeight = 14;
-			this.ribbonControl.TabIndex = 0;
-			// 
-			// ribbonPanelMainDashboard
-			// 
-			this.ribbonPanelMainDashboard.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarQuickListSource);
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarOnlineSource);
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarRadioSource);
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarTVSource);
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarNewspaperSource);
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarBasicSource);
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarUsers);
-			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarMainDashboardData);
-			this.ribbonPanelMainDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelMainDashboard.Location = new System.Drawing.Point(0, 53);
-			this.ribbonPanelMainDashboard.Name = "ribbonPanelMainDashboard";
-			this.ribbonPanelMainDashboard.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelMainDashboard.Size = new System.Drawing.Size(1010, 112);
-			// 
-			// 
-			// 
-			this.ribbonPanelMainDashboard.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelMainDashboard.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelMainDashboard.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelMainDashboard.TabIndex = 3;
-			// 
-			// ribbonBarQuickListSource
-			// 
-			this.ribbonBarQuickListSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarQuickListSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarQuickListSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarQuickListSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarQuickListSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarQuickListSource.DragDropSupport = true;
-			this.ribbonBarQuickListSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemQuickList});
-			this.ribbonBarQuickListSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarQuickListSource.Location = new System.Drawing.Point(733, 0);
-			this.ribbonBarQuickListSource.Name = "ribbonBarQuickListSource";
-			this.ribbonBarQuickListSource.Size = new System.Drawing.Size(68, 110);
-			this.ribbonBarQuickListSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarQuickListSource.TabIndex = 26;
-			this.ribbonBarQuickListSource.Text = "Quick List";
-			// 
-			// 
-			// 
-			this.ribbonBarQuickListSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarQuickListSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemQuickList
-			// 
-			this.buttonItemQuickList.Image = global::CommandCentral.Properties.Resources.QuickList;
-			this.buttonItemQuickList.ImagePaddingVertical = 0;
-			this.buttonItemQuickList.Name = "buttonItemQuickList";
-			this.buttonItemQuickList.SubItemsExpandWidth = 14;
-			// 
-			// ribbonBarOnlineSource
-			// 
-			this.ribbonBarOnlineSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarOnlineSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarOnlineSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarOnlineSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarOnlineSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarOnlineSource.DragDropSupport = true;
-			this.ribbonBarOnlineSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemOnlineStrategy});
-			this.ribbonBarOnlineSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarOnlineSource.Location = new System.Drawing.Point(674, 0);
-			this.ribbonBarOnlineSource.Name = "ribbonBarOnlineSource";
-			this.ribbonBarOnlineSource.Size = new System.Drawing.Size(59, 110);
-			this.ribbonBarOnlineSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarOnlineSource.TabIndex = 22;
-			this.ribbonBarOnlineSource.Text = "Online";
-			// 
-			// 
-			// 
-			this.ribbonBarOnlineSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarOnlineSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemOnlineStrategy
-			// 
-			this.buttonItemOnlineStrategy.Image = global::CommandCentral.Properties.Resources.WebLittle;
-			this.buttonItemOnlineStrategy.ImagePaddingVertical = 0;
-			this.buttonItemOnlineStrategy.Name = "buttonItemOnlineStrategy";
-			this.buttonItemOnlineStrategy.SubItemsExpandWidth = 14;
-			// 
-			// ribbonBarRadioSource
-			// 
-			this.ribbonBarRadioSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioSource.DragDropSupport = true;
-			this.ribbonBarRadioSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioStrategy});
-			this.ribbonBarRadioSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioSource.Location = new System.Drawing.Point(615, 0);
-			this.ribbonBarRadioSource.Name = "ribbonBarRadioSource";
-			this.ribbonBarRadioSource.Size = new System.Drawing.Size(59, 110);
-			this.ribbonBarRadioSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioSource.TabIndex = 21;
-			this.ribbonBarRadioSource.Text = "Radio";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemRadioStrategy
-			// 
-			this.buttonItemRadioStrategy.Image = global::CommandCentral.Properties.Resources.RadioLittle;
-			this.buttonItemRadioStrategy.ImagePaddingVertical = 0;
-			this.buttonItemRadioStrategy.Name = "buttonItemRadioStrategy";
-			this.buttonItemRadioStrategy.SubItemsExpandWidth = 14;
-			// 
-			// ribbonBarTVSource
-			// 
-			this.ribbonBarTVSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarTVSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarTVSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarTVSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarTVSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarTVSource.DragDropSupport = true;
-			this.ribbonBarTVSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemTVStrategy});
-			this.ribbonBarTVSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarTVSource.Location = new System.Drawing.Point(547, 0);
-			this.ribbonBarTVSource.Name = "ribbonBarTVSource";
-			this.ribbonBarTVSource.Size = new System.Drawing.Size(68, 110);
-			this.ribbonBarTVSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarTVSource.TabIndex = 25;
-			this.ribbonBarTVSource.Text = "TV";
-			// 
-			// 
-			// 
-			this.ribbonBarTVSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarTVSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemTVStrategy
-			// 
-			this.buttonItemTVStrategy.Image = global::CommandCentral.Properties.Resources.TVLittle;
-			this.buttonItemTVStrategy.ImagePaddingVertical = 0;
-			this.buttonItemTVStrategy.Name = "buttonItemTVStrategy";
-			this.buttonItemTVStrategy.SubItemsExpandWidth = 14;
-			// 
-			// ribbonBarNewspaperSource
-			// 
-			this.ribbonBarNewspaperSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarNewspaperSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarNewspaperSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarNewspaperSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarNewspaperSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarNewspaperSource.DragDropSupport = true;
-			this.ribbonBarNewspaperSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemNewspaperStrategy});
-			this.ribbonBarNewspaperSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarNewspaperSource.Location = new System.Drawing.Point(473, 0);
-			this.ribbonBarNewspaperSource.Name = "ribbonBarNewspaperSource";
-			this.ribbonBarNewspaperSource.Size = new System.Drawing.Size(74, 110);
-			this.ribbonBarNewspaperSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarNewspaperSource.TabIndex = 19;
-			this.ribbonBarNewspaperSource.Text = "Newspaper";
-			// 
-			// 
-			// 
-			this.ribbonBarNewspaperSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarNewspaperSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemNewspaperStrategy
-			// 
-			this.buttonItemNewspaperStrategy.Image = global::CommandCentral.Properties.Resources.NewspaperLittle;
-			this.buttonItemNewspaperStrategy.ImagePaddingVertical = 0;
-			this.buttonItemNewspaperStrategy.Name = "buttonItemNewspaperStrategy";
-			this.buttonItemNewspaperStrategy.SubItemsExpandWidth = 14;
-			// 
-			// ribbonBarBasicSource
-			// 
-			this.ribbonBarBasicSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarBasicSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarBasicSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarBasicSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarBasicSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarBasicSource.DragDropSupport = true;
-			this.ribbonBarBasicSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemBasicCover,
-            this.buttonItemBasicIntroSlide,
-            this.buttonItemBasicNeedsAnalysis,
-            this.buttonItemBasicTargetCustomer,
-            this.buttonItemBasicClosingSummary});
-			this.ribbonBarBasicSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarBasicSource.Location = new System.Drawing.Point(187, 0);
-			this.ribbonBarBasicSource.Name = "ribbonBarBasicSource";
-			this.ribbonBarBasicSource.Size = new System.Drawing.Size(286, 110);
-			this.ribbonBarBasicSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarBasicSource.TabIndex = 15;
-			this.ribbonBarBasicSource.Text = "Basic Slides";
-			// 
-			// 
-			// 
-			this.ribbonBarBasicSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarBasicSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemBasicCover
-			// 
-			this.buttonItemBasicCover.Image = global::CommandCentral.Properties.Resources.Cover;
-			this.buttonItemBasicCover.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemBasicCover.Name = "buttonItemBasicCover";
-			this.buttonItemBasicCover.SubItemsExpandWidth = 14;
-			this.buttonItemBasicCover.Text = "Cover";
-			// 
-			// buttonItemBasicIntroSlide
-			// 
-			this.buttonItemBasicIntroSlide.Image = global::CommandCentral.Properties.Resources.IntroSlide;
-			this.buttonItemBasicIntroSlide.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemBasicIntroSlide.Name = "buttonItemBasicIntroSlide";
-			this.buttonItemBasicIntroSlide.SubItemsExpandWidth = 14;
-			this.buttonItemBasicIntroSlide.Text = "Intro\r\nSlide";
-			// 
-			// buttonItemBasicNeedsAnalysis
-			// 
-			this.buttonItemBasicNeedsAnalysis.Image = global::CommandCentral.Properties.Resources.NeedsAnalysis;
-			this.buttonItemBasicNeedsAnalysis.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemBasicNeedsAnalysis.Name = "buttonItemBasicNeedsAnalysis";
-			this.buttonItemBasicNeedsAnalysis.SubItemsExpandWidth = 14;
-			this.buttonItemBasicNeedsAnalysis.Text = "Needs\r\nAnalysis";
-			// 
-			// buttonItemBasicTargetCustomer
-			// 
-			this.buttonItemBasicTargetCustomer.Image = global::CommandCentral.Properties.Resources.TargetCustomer;
-			this.buttonItemBasicTargetCustomer.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemBasicTargetCustomer.Name = "buttonItemBasicTargetCustomer";
-			this.buttonItemBasicTargetCustomer.SubItemsExpandWidth = 14;
-			this.buttonItemBasicTargetCustomer.Text = "Target\r\nCustomer";
-			// 
-			// buttonItemBasicClosingSummary
-			// 
-			this.buttonItemBasicClosingSummary.Image = global::CommandCentral.Properties.Resources.ClosingSummary;
-			this.buttonItemBasicClosingSummary.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemBasicClosingSummary.Name = "buttonItemBasicClosingSummary";
-			this.buttonItemBasicClosingSummary.SubItemsExpandWidth = 14;
-			this.buttonItemBasicClosingSummary.Text = "Closing\r\nSummary";
-			// 
-			// ribbonBarUsers
-			// 
-			this.ribbonBarUsers.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarUsers.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarUsers.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarUsers.ContainerControlProcessDialogKey = true;
-			this.ribbonBarUsers.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarUsers.DragDropSupport = true;
-			this.ribbonBarUsers.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemUsers});
-			this.ribbonBarUsers.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarUsers.Location = new System.Drawing.Point(105, 0);
-			this.ribbonBarUsers.Name = "ribbonBarUsers";
-			this.ribbonBarUsers.Size = new System.Drawing.Size(82, 110);
-			this.ribbonBarUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarUsers.TabIndex = 16;
-			this.ribbonBarUsers.Text = "Users";
-			// 
-			// 
-			// 
-			this.ribbonBarUsers.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarUsers.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemUsers
-			// 
-			this.buttonItemUsers.Checked = true;
-			this.buttonItemUsers.Image = global::CommandCentral.Properties.Resources.Users;
-			this.buttonItemUsers.ImageFixedSize = new System.Drawing.Size(64, 64);
-			this.buttonItemUsers.Name = "buttonItemUsers";
-			this.buttonItemUsers.SubItemsExpandWidth = 14;
-			// 
-			// ribbonBarMainDashboardData
-			// 
-			this.ribbonBarMainDashboardData.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarMainDashboardData.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMainDashboardData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarMainDashboardData.ContainerControlProcessDialogKey = true;
-			this.ribbonBarMainDashboardData.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarMainDashboardData.DragDropSupport = true;
-			this.ribbonBarMainDashboardData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemMainDashboardViewFile,
-            this.buttonItemMainDashboardUpdate});
-			this.ribbonBarMainDashboardData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarMainDashboardData.Location = new System.Drawing.Point(3, 0);
-			this.ribbonBarMainDashboardData.Name = "ribbonBarMainDashboardData";
-			this.ribbonBarMainDashboardData.Size = new System.Drawing.Size(102, 110);
-			this.ribbonBarMainDashboardData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarMainDashboardData.TabIndex = 1;
-			this.ribbonBarMainDashboardData.Text = "Data";
-			// 
-			// 
-			// 
-			this.ribbonBarMainDashboardData.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMainDashboardData.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemMainDashboardViewFile
-			// 
-			this.buttonItemMainDashboardViewFile.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemMainDashboardViewFile.Image = global::CommandCentral.Properties.Resources.EmptyImage;
-			this.buttonItemMainDashboardViewFile.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-			this.buttonItemMainDashboardViewFile.Name = "buttonItemMainDashboardViewFile";
-			this.buttonItemMainDashboardViewFile.SubItemsExpandWidth = 14;
-			this.buttonItemMainDashboardViewFile.Text = "View File";
-			// 
-			// buttonItemMainDashboardUpdate
-			// 
-			this.buttonItemMainDashboardUpdate.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemMainDashboardUpdate.Image = global::CommandCentral.Properties.Resources.EmptyImage;
-			this.buttonItemMainDashboardUpdate.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-			this.buttonItemMainDashboardUpdate.Name = "buttonItemMainDashboardUpdate";
-			this.buttonItemMainDashboardUpdate.SubItemsExpandWidth = 14;
-			this.buttonItemMainDashboardUpdate.Text = "Update";
-			// 
-			// ribbonPanelSalesDepot
-			// 
-			this.ribbonPanelSalesDepot.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepotAccessRights);
-			this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepotSearch);
-			this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepotData);
-			this.ribbonPanelSalesDepot.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelSalesDepot.Location = new System.Drawing.Point(0, 53);
-			this.ribbonPanelSalesDepot.Name = "ribbonPanelSalesDepot";
-			this.ribbonPanelSalesDepot.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelSalesDepot.Size = new System.Drawing.Size(1010, 112);
-			// 
-			// 
-			// 
-			this.ribbonPanelSalesDepot.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelSalesDepot.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelSalesDepot.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelSalesDepot.TabIndex = 6;
-			this.ribbonPanelSalesDepot.Visible = false;
-			// 
-			// ribbonBarSalesDepotAccessRights
-			// 
-			this.ribbonBarSalesDepotAccessRights.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotAccessRights.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotAccessRights.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSalesDepotAccessRights.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSalesDepotAccessRights.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSalesDepotAccessRights.DragDropSupport = true;
-			this.ribbonBarSalesDepotAccessRights.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSalesDepotAccessRights});
-			this.ribbonBarSalesDepotAccessRights.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSalesDepotAccessRights.Location = new System.Drawing.Point(195, 0);
-			this.ribbonBarSalesDepotAccessRights.Name = "ribbonBarSalesDepotAccessRights";
-			this.ribbonBarSalesDepotAccessRights.Size = new System.Drawing.Size(83, 110);
-			this.ribbonBarSalesDepotAccessRights.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSalesDepotAccessRights.TabIndex = 4;
-			this.ribbonBarSalesDepotAccessRights.Text = "Access Rights";
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotAccessRights.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotAccessRights.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSalesDepotAccessRights
-			// 
-			this.buttonItemSalesDepotAccessRights.Image = global::CommandCentral.Properties.Resources.Users;
-			this.buttonItemSalesDepotAccessRights.ImageFixedSize = new System.Drawing.Size(64, 64);
-			this.buttonItemSalesDepotAccessRights.Name = "buttonItemSalesDepotAccessRights";
-			this.buttonItemSalesDepotAccessRights.SubItemsExpandWidth = 14;
-			this.buttonItemSalesDepotAccessRights.Text = "buttonItem1";
-			// 
-			// ribbonBarSalesDepotSearch
-			// 
-			this.ribbonBarSalesDepotSearch.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotSearch.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotSearch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSalesDepotSearch.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSalesDepotSearch.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSalesDepotSearch.DragDropSupport = true;
-			this.ribbonBarSalesDepotSearch.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSalesDepotSearch});
-			this.ribbonBarSalesDepotSearch.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSalesDepotSearch.Location = new System.Drawing.Point(105, 0);
-			this.ribbonBarSalesDepotSearch.Name = "ribbonBarSalesDepotSearch";
-			this.ribbonBarSalesDepotSearch.Size = new System.Drawing.Size(90, 110);
-			this.ribbonBarSalesDepotSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSalesDepotSearch.TabIndex = 3;
-			this.ribbonBarSalesDepotSearch.Text = "SD Search";
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotSearch.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotSearch.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSalesDepotSearch
-			// 
-			this.buttonItemSalesDepotSearch.Checked = true;
-			this.buttonItemSalesDepotSearch.Image = global::CommandCentral.Properties.Resources.SalesDepotSearch;
-			this.buttonItemSalesDepotSearch.Name = "buttonItemSalesDepotSearch";
-			this.buttonItemSalesDepotSearch.SubItemsExpandWidth = 14;
-			this.buttonItemSalesDepotSearch.Text = "buttonItem1";
-			// 
-			// ribbonBarSalesDepotData
-			// 
-			this.ribbonBarSalesDepotData.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotData.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSalesDepotData.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSalesDepotData.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSalesDepotData.DragDropSupport = true;
-			this.ribbonBarSalesDepotData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSalesDepotViewFile,
-            this.buttonItemSalesDepotUpdate});
-			this.ribbonBarSalesDepotData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSalesDepotData.Location = new System.Drawing.Point(3, 0);
-			this.ribbonBarSalesDepotData.Name = "ribbonBarSalesDepotData";
-			this.ribbonBarSalesDepotData.Size = new System.Drawing.Size(102, 110);
-			this.ribbonBarSalesDepotData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSalesDepotData.TabIndex = 2;
-			this.ribbonBarSalesDepotData.Text = "Data";
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotData.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesDepotData.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSalesDepotViewFile
-			// 
-			this.buttonItemSalesDepotViewFile.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemSalesDepotViewFile.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSalesDepotViewFile.Image")));
-			this.buttonItemSalesDepotViewFile.Name = "buttonItemSalesDepotViewFile";
-			this.buttonItemSalesDepotViewFile.SubItemsExpandWidth = 14;
-			this.buttonItemSalesDepotViewFile.Text = "View File";
-			// 
-			// buttonItemSalesDepotUpdate
-			// 
-			this.buttonItemSalesDepotUpdate.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemSalesDepotUpdate.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSalesDepotUpdate.Image")));
-			this.buttonItemSalesDepotUpdate.Name = "buttonItemSalesDepotUpdate";
-			this.buttonItemSalesDepotUpdate.SubItemsExpandWidth = 14;
-			this.buttonItemSalesDepotUpdate.Text = "Update";
-			// 
-			// ribbonPanelSalesPro
-			// 
-			this.ribbonPanelSalesPro.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelSalesPro.Controls.Add(this.ribbonBarSalesProSource);
-			this.ribbonPanelSalesPro.Controls.Add(this.ribbonBarSalesProData);
-			this.ribbonPanelSalesPro.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelSalesPro.Location = new System.Drawing.Point(0, 53);
-			this.ribbonPanelSalesPro.Name = "ribbonPanelSalesPro";
-			this.ribbonPanelSalesPro.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelSalesPro.Size = new System.Drawing.Size(1010, 112);
-			// 
-			// 
-			// 
-			this.ribbonPanelSalesPro.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelSalesPro.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelSalesPro.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelSalesPro.TabIndex = 4;
-			this.ribbonPanelSalesPro.Visible = false;
-			// 
-			// ribbonBarSalesProSource
-			// 
-			this.ribbonBarSalesProSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSalesProSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSalesProSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSalesProSource.DragDropSupport = true;
-			this.ribbonBarSalesProSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSalesProClientBenefits,
-            this.buttonItemSalesProBigIdea,
-            this.buttonItemSalesProCreativeStrategy,
-            this.buttonItemSalesProCampaignTimeline,
-            this.buttonItemSalesProROIFormula,
-            this.buttonItemSalesProInvestmentCalendar,
-            this.buttonItemSalesProValueAnalysis,
-            this.buttonItemSalesProCampaignSummary});
-			this.ribbonBarSalesProSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSalesProSource.Location = new System.Drawing.Point(105, 0);
-			this.ribbonBarSalesProSource.Name = "ribbonBarSalesProSource";
-			this.ribbonBarSalesProSource.Size = new System.Drawing.Size(445, 110);
-			this.ribbonBarSalesProSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSalesProSource.TabIndex = 16;
-			this.ribbonBarSalesProSource.Text = "Source";
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSalesProClientBenefits
-			// 
-			this.buttonItemSalesProClientBenefits.Checked = true;
-			this.buttonItemSalesProClientBenefits.Image = global::CommandCentral.Properties.Resources.ClientBenefits;
-			this.buttonItemSalesProClientBenefits.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProClientBenefits.Name = "buttonItemSalesProClientBenefits";
-			this.buttonItemSalesProClientBenefits.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProClientBenefits.Text = "Client\r\nBenefits";
-			// 
-			// buttonItemSalesProBigIdea
-			// 
-			this.buttonItemSalesProBigIdea.Image = global::CommandCentral.Properties.Resources.BigIdea;
-			this.buttonItemSalesProBigIdea.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProBigIdea.Name = "buttonItemSalesProBigIdea";
-			this.buttonItemSalesProBigIdea.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProBigIdea.Text = "Big\r\nIdea";
-			// 
-			// buttonItemSalesProCreativeStrategy
-			// 
-			this.buttonItemSalesProCreativeStrategy.Image = global::CommandCentral.Properties.Resources.CreativeStrategy;
-			this.buttonItemSalesProCreativeStrategy.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProCreativeStrategy.Name = "buttonItemSalesProCreativeStrategy";
-			this.buttonItemSalesProCreativeStrategy.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProCreativeStrategy.Text = "Creative\r\nStrategy";
-			// 
-			// buttonItemSalesProCampaignTimeline
-			// 
-			this.buttonItemSalesProCampaignTimeline.Image = global::CommandCentral.Properties.Resources.CampaignTimeline;
-			this.buttonItemSalesProCampaignTimeline.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProCampaignTimeline.Name = "buttonItemSalesProCampaignTimeline";
-			this.buttonItemSalesProCampaignTimeline.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProCampaignTimeline.Text = "Campaign\r\nTimeline";
-			// 
-			// buttonItemSalesProROIFormula
-			// 
-			this.buttonItemSalesProROIFormula.Image = global::CommandCentral.Properties.Resources.ROIFormula;
-			this.buttonItemSalesProROIFormula.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProROIFormula.Name = "buttonItemSalesProROIFormula";
-			this.buttonItemSalesProROIFormula.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProROIFormula.Text = "ROI\r\nFormula";
-			// 
-			// buttonItemSalesProInvestmentCalendar
-			// 
-			this.buttonItemSalesProInvestmentCalendar.Image = global::CommandCentral.Properties.Resources.InvestmentCalendar;
-			this.buttonItemSalesProInvestmentCalendar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProInvestmentCalendar.Name = "buttonItemSalesProInvestmentCalendar";
-			this.buttonItemSalesProInvestmentCalendar.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProInvestmentCalendar.Text = "Investment\r\nCalendar";
-			// 
-			// buttonItemSalesProValueAnalysis
-			// 
-			this.buttonItemSalesProValueAnalysis.Image = global::CommandCentral.Properties.Resources.ValueAnalysis;
-			this.buttonItemSalesProValueAnalysis.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProValueAnalysis.Name = "buttonItemSalesProValueAnalysis";
-			this.buttonItemSalesProValueAnalysis.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProValueAnalysis.Text = "Value\r\nAnalysis";
-			// 
-			// buttonItemSalesProCampaignSummary
-			// 
-			this.buttonItemSalesProCampaignSummary.Image = global::CommandCentral.Properties.Resources.CampaignSummary;
-			this.buttonItemSalesProCampaignSummary.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSalesProCampaignSummary.Name = "buttonItemSalesProCampaignSummary";
-			this.buttonItemSalesProCampaignSummary.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProCampaignSummary.Text = "Campaign\r\nSummary";
-			// 
-			// ribbonBarSalesProData
-			// 
-			this.ribbonBarSalesProData.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProData.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarSalesProData.ContainerControlProcessDialogKey = true;
-			this.ribbonBarSalesProData.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarSalesProData.DragDropSupport = true;
-			this.ribbonBarSalesProData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSalesProViewFile,
-            this.buttonItemSalesProUpdate});
-			this.ribbonBarSalesProData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSalesProData.Location = new System.Drawing.Point(3, 0);
-			this.ribbonBarSalesProData.Name = "ribbonBarSalesProData";
-			this.ribbonBarSalesProData.Size = new System.Drawing.Size(102, 110);
-			this.ribbonBarSalesProData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarSalesProData.TabIndex = 2;
-			this.ribbonBarSalesProData.Text = "Data";
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProData.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarSalesProData.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemSalesProViewFile
-			// 
-			this.buttonItemSalesProViewFile.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemSalesProViewFile.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSalesProViewFile.Image")));
-			this.buttonItemSalesProViewFile.Name = "buttonItemSalesProViewFile";
-			this.buttonItemSalesProViewFile.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProViewFile.Text = "View File";
-			// 
-			// buttonItemSalesProUpdate
-			// 
-			this.buttonItemSalesProUpdate.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemSalesProUpdate.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSalesProUpdate.Image")));
-			this.buttonItemSalesProUpdate.Name = "buttonItemSalesProUpdate";
-			this.buttonItemSalesProUpdate.SubItemsExpandWidth = 14;
-			this.buttonItemSalesProUpdate.Text = "Update";
-			// 
-			// ribbonPanelMarketPro
-			// 
-			this.ribbonPanelMarketPro.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelMarketPro.Controls.Add(this.ribbonBarMarketProSource);
-			this.ribbonPanelMarketPro.Controls.Add(this.ribbonBarMarketProData);
-			this.ribbonPanelMarketPro.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelMarketPro.Location = new System.Drawing.Point(0, 53);
-			this.ribbonPanelMarketPro.Name = "ribbonPanelMarketPro";
-			this.ribbonPanelMarketPro.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelMarketPro.Size = new System.Drawing.Size(1010, 112);
-			// 
-			// 
-			// 
-			this.ribbonPanelMarketPro.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelMarketPro.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelMarketPro.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelMarketPro.TabIndex = 5;
-			this.ribbonPanelMarketPro.Visible = false;
-			// 
-			// ribbonBarMarketProSource
-			// 
-			this.ribbonBarMarketProSource.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProSource.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarMarketProSource.ContainerControlProcessDialogKey = true;
-			this.ribbonBarMarketProSource.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarMarketProSource.DragDropSupport = true;
-			this.ribbonBarMarketProSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemMarketProTV,
-            this.buttonItemMarketProWeb,
-            this.buttonItemMarketProMobile,
-            this.buttonItemMarketProPrint,
-            this.buttonItemMarketProRadio,
-            this.buttonItemMarketProCable,
-            this.buttonItemMarketProYellowPages,
-            this.buttonItemMarketProDirectMail,
-            this.buttonItemMarketProOutdoor,
-            this.buttonItemMarketProMediaStrategy});
-			this.ribbonBarMarketProSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarMarketProSource.Location = new System.Drawing.Point(105, 0);
-			this.ribbonBarMarketProSource.Name = "ribbonBarMarketProSource";
-			this.ribbonBarMarketProSource.Size = new System.Drawing.Size(528, 110);
-			this.ribbonBarMarketProSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarMarketProSource.TabIndex = 17;
-			this.ribbonBarMarketProSource.Text = "Source";
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProSource.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProSource.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemMarketProTV
-			// 
-			this.buttonItemMarketProTV.Checked = true;
-			this.buttonItemMarketProTV.Image = global::CommandCentral.Properties.Resources.TVLittle;
-			this.buttonItemMarketProTV.ImagePaddingVertical = 0;
-			this.buttonItemMarketProTV.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProTV.Name = "buttonItemMarketProTV";
-			this.buttonItemMarketProTV.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProTV.Text = "\r\nTV";
-			// 
-			// buttonItemMarketProWeb
-			// 
-			this.buttonItemMarketProWeb.Image = global::CommandCentral.Properties.Resources.WebLittle;
-			this.buttonItemMarketProWeb.ImagePaddingVertical = 0;
-			this.buttonItemMarketProWeb.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProWeb.Name = "buttonItemMarketProWeb";
-			this.buttonItemMarketProWeb.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProWeb.Text = "\r\nWeb";
-			// 
-			// buttonItemMarketProMobile
-			// 
-			this.buttonItemMarketProMobile.Image = global::CommandCentral.Properties.Resources.MobileLittle;
-			this.buttonItemMarketProMobile.ImagePaddingVertical = 0;
-			this.buttonItemMarketProMobile.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProMobile.Name = "buttonItemMarketProMobile";
-			this.buttonItemMarketProMobile.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProMobile.Text = "\r\nMobile";
-			// 
-			// buttonItemMarketProPrint
-			// 
-			this.buttonItemMarketProPrint.Image = global::CommandCentral.Properties.Resources.NewspaperLittle;
-			this.buttonItemMarketProPrint.ImagePaddingVertical = 0;
-			this.buttonItemMarketProPrint.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProPrint.Name = "buttonItemMarketProPrint";
-			this.buttonItemMarketProPrint.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProPrint.Text = "\r\nPrint";
-			// 
-			// buttonItemMarketProRadio
-			// 
-			this.buttonItemMarketProRadio.Image = global::CommandCentral.Properties.Resources.RadioLittle;
-			this.buttonItemMarketProRadio.ImagePaddingVertical = 0;
-			this.buttonItemMarketProRadio.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProRadio.Name = "buttonItemMarketProRadio";
-			this.buttonItemMarketProRadio.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProRadio.Text = "\r\nRadio";
-			// 
-			// buttonItemMarketProCable
-			// 
-			this.buttonItemMarketProCable.Image = global::CommandCentral.Properties.Resources.CableLittle;
-			this.buttonItemMarketProCable.ImagePaddingVertical = 0;
-			this.buttonItemMarketProCable.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProCable.Name = "buttonItemMarketProCable";
-			this.buttonItemMarketProCable.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProCable.Text = "\r\nCable";
-			// 
-			// buttonItemMarketProYellowPages
-			// 
-			this.buttonItemMarketProYellowPages.Image = global::CommandCentral.Properties.Resources.YellowPagesLittle;
-			this.buttonItemMarketProYellowPages.ImagePaddingVertical = 0;
-			this.buttonItemMarketProYellowPages.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProYellowPages.Name = "buttonItemMarketProYellowPages";
-			this.buttonItemMarketProYellowPages.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProYellowPages.Text = "Yellow\r\nPages";
-			// 
-			// buttonItemMarketProDirectMail
-			// 
-			this.buttonItemMarketProDirectMail.Image = global::CommandCentral.Properties.Resources.DirectMailLittle;
-			this.buttonItemMarketProDirectMail.ImagePaddingVertical = 0;
-			this.buttonItemMarketProDirectMail.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProDirectMail.Name = "buttonItemMarketProDirectMail";
-			this.buttonItemMarketProDirectMail.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProDirectMail.Text = "Direct\r\nMail";
-			// 
-			// buttonItemMarketProOutdoor
-			// 
-			this.buttonItemMarketProOutdoor.Image = global::CommandCentral.Properties.Resources.OutdoorLittle;
-			this.buttonItemMarketProOutdoor.ImagePaddingVertical = 0;
-			this.buttonItemMarketProOutdoor.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProOutdoor.Name = "buttonItemMarketProOutdoor";
-			this.buttonItemMarketProOutdoor.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProOutdoor.Text = "\r\nOutdoor";
-			// 
-			// buttonItemMarketProMediaStrategy
-			// 
-			this.buttonItemMarketProMediaStrategy.Image = global::CommandCentral.Properties.Resources.MediaStrategy;
-			this.buttonItemMarketProMediaStrategy.ImagePaddingVertical = 0;
-			this.buttonItemMarketProMediaStrategy.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemMarketProMediaStrategy.Name = "buttonItemMarketProMediaStrategy";
-			this.buttonItemMarketProMediaStrategy.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProMediaStrategy.Text = "Media\r\nStrategy";
-			// 
-			// ribbonBarMarketProData
-			// 
-			this.ribbonBarMarketProData.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProData.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarMarketProData.ContainerControlProcessDialogKey = true;
-			this.ribbonBarMarketProData.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarMarketProData.DragDropSupport = true;
-			this.ribbonBarMarketProData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemMarketProViewFile,
-            this.buttonItemMarketProUpdate});
-			this.ribbonBarMarketProData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarMarketProData.Location = new System.Drawing.Point(3, 0);
-			this.ribbonBarMarketProData.Name = "ribbonBarMarketProData";
-			this.ribbonBarMarketProData.Size = new System.Drawing.Size(102, 110);
-			this.ribbonBarMarketProData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarMarketProData.TabIndex = 3;
-			this.ribbonBarMarketProData.Text = "Data";
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProData.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMarketProData.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemMarketProViewFile
-			// 
-			this.buttonItemMarketProViewFile.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemMarketProViewFile.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemMarketProViewFile.Image")));
-			this.buttonItemMarketProViewFile.Name = "buttonItemMarketProViewFile";
-			this.buttonItemMarketProViewFile.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProViewFile.Text = "View File";
-			// 
-			// buttonItemMarketProUpdate
-			// 
-			this.buttonItemMarketProUpdate.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.TextOnlyAlways;
-			this.buttonItemMarketProUpdate.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemMarketProUpdate.Image")));
-			this.buttonItemMarketProUpdate.Name = "buttonItemMarketProUpdate";
-			this.buttonItemMarketProUpdate.SubItemsExpandWidth = 14;
-			this.buttonItemMarketProUpdate.Text = "Update";
-			// 
-			// ribbonTabItemMainDashboard
-			// 
-			this.ribbonTabItemMainDashboard.Checked = true;
-			this.ribbonTabItemMainDashboard.Name = "ribbonTabItemMainDashboard";
-			this.ribbonTabItemMainDashboard.Panel = this.ribbonPanelMainDashboard;
-			this.ribbonTabItemMainDashboard.Text = "Main Dashboard";
-			// 
-			// ribbonTabItemMarketPro
-			// 
-			this.ribbonTabItemMarketPro.Name = "ribbonTabItemMarketPro";
-			this.ribbonTabItemMarketPro.Panel = this.ribbonPanelMarketPro;
-			this.ribbonTabItemMarketPro.Text = "marketPRO";
-			// 
-			// ribbonTabItemSalesPro
-			// 
-			this.ribbonTabItemSalesPro.Name = "ribbonTabItemSalesPro";
-			this.ribbonTabItemSalesPro.Panel = this.ribbonPanelSalesPro;
-			this.ribbonTabItemSalesPro.Text = "salesPRO";
-			// 
-			// ribbonTabItemSalesDepot
-			// 
-			this.ribbonTabItemSalesDepot.Name = "ribbonTabItemSalesDepot";
-			this.ribbonTabItemSalesDepot.Panel = this.ribbonPanelSalesDepot;
-			this.ribbonTabItemSalesDepot.Text = "Sales Depot";
-			// 
-			// pnMain
-			// 
-			this.pnMain.BackColor = System.Drawing.Color.Transparent;
-			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMain.Location = new System.Drawing.Point(5, 166);
-			this.pnMain.Name = "pnMain";
-			this.pnMain.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-			this.pnMain.Size = new System.Drawing.Size(1010, 509);
-			this.pnMain.TabIndex = 1;
 			// 
 			// styleManager
 			// 
 			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
 			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
 			// 
+			// layoutControl
+			// 
+			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.layoutControl.Appearance.Control.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDisabled.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDown.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlDropDownHeader.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlFocused.Options.UseFont = true;
+			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
+			this.layoutControl.Appearance.DisabledLayoutGroupCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.DisabledLayoutGroupCaption.Options.UseFont = true;
+			this.layoutControl.Appearance.DisabledLayoutItem.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.layoutControl.Appearance.DisabledLayoutItem.Options.UseFont = true;
+			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.buttonXOutputFoldersAdd);
+			this.layoutControl.Controls.Add(this.gridControlOutputFolders);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonUsers);
+			this.layoutControl.Controls.Add(this.buttonXClose);
+			this.layoutControl.Controls.Add(this.buttonXContinue);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonCover);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonLeadoffStatements);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonClientGoals);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonTargetCustomers);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonSummary);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonTV);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonRadio);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonOnline);
+			this.layoutControl.Controls.Add(this.buttonXMainDataButtonSDSearch);
+			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutControl.ForeColor = System.Drawing.Color.Black;
+			this.layoutControl.Location = new System.Drawing.Point(0, 0);
+			this.layoutControl.Name = "layoutControl";
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(783, 306, 450, 400);
+			this.layoutControl.OptionsFocus.AllowFocusTabbedGroups = false;
+			this.layoutControl.Root = this.layoutControlGroupRoot;
+			this.layoutControl.Size = new System.Drawing.Size(462, 554);
+			this.layoutControl.StyleController = this.styleController;
+			this.layoutControl.TabIndex = 0;
+			this.layoutControl.Text = "layoutControl";
+			// 
+			// buttonXOutputFoldersAdd
+			// 
+			this.buttonXOutputFoldersAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXOutputFoldersAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXOutputFoldersAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXOutputFoldersAdd.Location = new System.Drawing.Point(334, 319);
+			this.buttonXOutputFoldersAdd.Name = "buttonXOutputFoldersAdd";
+			this.buttonXOutputFoldersAdd.Size = new System.Drawing.Size(116, 36);
+			this.buttonXOutputFoldersAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXOutputFoldersAdd.TabIndex = 21;
+			this.buttonXOutputFoldersAdd.Text = "Add Path";
+			this.buttonXOutputFoldersAdd.TextColor = System.Drawing.Color.Black;
+			this.buttonXOutputFoldersAdd.Click += new System.EventHandler(this.OnOutputFoldersAddClick);
+			// 
+			// gridControlOutputFolders
+			// 
+			this.gridControlOutputFolders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.gridControlOutputFolders.Cursor = System.Windows.Forms.Cursors.Default;
+			this.gridControlOutputFolders.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
+			this.gridControlOutputFolders.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.gridControlOutputFolders.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+			this.gridControlOutputFolders.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
+			this.gridControlOutputFolders.Location = new System.Drawing.Point(12, 369);
+			this.gridControlOutputFolders.MainView = this.gridViewOutputFolders;
+			this.gridControlOutputFolders.Name = "gridControlOutputFolders";
+			this.gridControlOutputFolders.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEditOutputFoldersPath});
+			this.gridControlOutputFolders.Size = new System.Drawing.Size(438, 123);
+			this.gridControlOutputFolders.TabIndex = 20;
+			this.gridControlOutputFolders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewOutputFolders});
+			// 
+			// gridViewOutputFolders
+			// 
+			this.gridViewOutputFolders.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.gridViewOutputFolders.Appearance.FocusedCell.Options.UseFont = true;
+			this.gridViewOutputFolders.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.gridViewOutputFolders.Appearance.FocusedRow.Options.UseFont = true;
+			this.gridViewOutputFolders.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.gridViewOutputFolders.Appearance.HeaderPanel.Options.UseFont = true;
+			this.gridViewOutputFolders.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.gridViewOutputFolders.Appearance.Row.Options.UseFont = true;
+			this.gridViewOutputFolders.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.gridViewOutputFolders.Appearance.SelectedRow.Options.UseFont = true;
+			this.gridViewOutputFolders.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnOutputFoldersPath});
+			this.gridViewOutputFolders.GridControl = this.gridControlOutputFolders;
+			this.gridViewOutputFolders.Name = "gridViewOutputFolders";
+			this.gridViewOutputFolders.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewOutputFolders.OptionsCustomization.AllowColumnMoving = false;
+			this.gridViewOutputFolders.OptionsCustomization.AllowColumnResizing = false;
+			this.gridViewOutputFolders.OptionsCustomization.AllowFilter = false;
+			this.gridViewOutputFolders.OptionsCustomization.AllowGroup = false;
+			this.gridViewOutputFolders.OptionsCustomization.AllowQuickHideColumns = false;
+			this.gridViewOutputFolders.OptionsCustomization.AllowSort = false;
+			this.gridViewOutputFolders.OptionsSelection.EnableAppearanceFocusedCell = false;
+			this.gridViewOutputFolders.OptionsSelection.EnableAppearanceFocusedRow = false;
+			this.gridViewOutputFolders.OptionsSelection.EnableAppearanceHideSelection = false;
+			this.gridViewOutputFolders.OptionsView.ShowColumnHeaders = false;
+			this.gridViewOutputFolders.OptionsView.ShowGroupExpandCollapseButtons = false;
+			this.gridViewOutputFolders.OptionsView.ShowGroupPanel = false;
+			this.gridViewOutputFolders.OptionsView.ShowIndicator = false;
+			this.gridViewOutputFolders.OptionsView.ShowPreviewRowLines = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewOutputFolders.RowHeight = 20;
+			// 
+			// gridColumnOutputFoldersPath
+			// 
+			this.gridColumnOutputFoldersPath.Caption = "Name";
+			this.gridColumnOutputFoldersPath.ColumnEdit = this.repositoryItemButtonEditOutputFoldersPath;
+			this.gridColumnOutputFoldersPath.FieldName = "Path";
+			this.gridColumnOutputFoldersPath.Name = "gridColumnOutputFoldersPath";
+			this.gridColumnOutputFoldersPath.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.gridColumnOutputFoldersPath.Visible = true;
+			this.gridColumnOutputFoldersPath.VisibleIndex = 0;
+			// 
+			// repositoryItemButtonEditOutputFoldersPath
+			// 
+			this.repositoryItemButtonEditOutputFoldersPath.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.repositoryItemButtonEditOutputFoldersPath.Appearance.Options.UseFont = true;
+			this.repositoryItemButtonEditOutputFoldersPath.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.repositoryItemButtonEditOutputFoldersPath.AppearanceDisabled.Options.UseFont = true;
+			this.repositoryItemButtonEditOutputFoldersPath.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.repositoryItemButtonEditOutputFoldersPath.AppearanceFocused.Options.UseFont = true;
+			this.repositoryItemButtonEditOutputFoldersPath.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.repositoryItemButtonEditOutputFoldersPath.AppearanceReadOnly.Options.UseFont = true;
+			this.repositoryItemButtonEditOutputFoldersPath.AutoHeight = false;
+			this.repositoryItemButtonEditOutputFoldersPath.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 32, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::CommandCentral.Properties.Resources.ButtonDelete, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Delete", "Delete", null, true)});
+			this.repositoryItemButtonEditOutputFoldersPath.Name = "repositoryItemButtonEditOutputFoldersPath";
+			this.repositoryItemButtonEditOutputFoldersPath.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.OnOutputFoldersButtonClick);
+			// 
+			// buttonXMainDataButtonUsers
+			// 
+			this.buttonXMainDataButtonUsers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonUsers.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonUsers.Location = new System.Drawing.Point(24, 60);
+			this.buttonXMainDataButtonUsers.Name = "buttonXMainDataButtonUsers";
+			this.buttonXMainDataButtonUsers.Size = new System.Drawing.Size(115, 32);
+			this.buttonXMainDataButtonUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonUsers.TabIndex = 0;
+			this.buttonXMainDataButtonUsers.Text = "Users";
+			this.buttonXMainDataButtonUsers.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonUsers.Click += new System.EventHandler(this.OnUsersButtonClick);
+			// 
+			// buttonXClose
+			// 
+			this.buttonXClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.buttonXClose.Location = new System.Drawing.Point(334, 506);
+			this.buttonXClose.Name = "buttonXClose";
+			this.buttonXClose.Size = new System.Drawing.Size(116, 36);
+			this.buttonXClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXClose.TabIndex = 9;
+			this.buttonXClose.Text = "Cancel";
+			this.buttonXClose.TextColor = System.Drawing.Color.Black;
+			this.buttonXClose.Click += new System.EventHandler(this.OnFormCloseClick);
+			// 
+			// buttonXContinue
+			// 
+			this.buttonXContinue.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXContinue.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXContinue.Location = new System.Drawing.Point(12, 506);
+			this.buttonXContinue.Name = "buttonXContinue";
+			this.buttonXContinue.Size = new System.Drawing.Size(116, 36);
+			this.buttonXContinue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXContinue.TabIndex = 8;
+			this.buttonXContinue.Text = "Update ALL";
+			this.buttonXContinue.TextColor = System.Drawing.Color.Black;
+			this.buttonXContinue.Click += new System.EventHandler(this.OnUpdateAllClick);
+			// 
+			// buttonXMainDataButtonCover
+			// 
+			this.buttonXMainDataButtonCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonCover.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonCover.Location = new System.Drawing.Point(173, 60);
+			this.buttonXMainDataButtonCover.Name = "buttonXMainDataButtonCover";
+			this.buttonXMainDataButtonCover.Size = new System.Drawing.Size(115, 32);
+			this.buttonXMainDataButtonCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonCover.TabIndex = 2;
+			this.buttonXMainDataButtonCover.Text = "Cover";
+			this.buttonXMainDataButtonCover.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonCover.Click += new System.EventHandler(this.OnCoverButtonClick);
+			// 
+			// buttonXMainDataButtonLeadoffStatements
+			// 
+			this.buttonXMainDataButtonLeadoffStatements.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonLeadoffStatements.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonLeadoffStatements.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonLeadoffStatements.Location = new System.Drawing.Point(322, 60);
+			this.buttonXMainDataButtonLeadoffStatements.Name = "buttonXMainDataButtonLeadoffStatements";
+			this.buttonXMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(116, 32);
+			this.buttonXMainDataButtonLeadoffStatements.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonLeadoffStatements.TabIndex = 3;
+			this.buttonXMainDataButtonLeadoffStatements.Text = "Intro";
+			this.buttonXMainDataButtonLeadoffStatements.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonLeadoffStatements.Click += new System.EventHandler(this.OnLeadoffStatementsButtonClick);
+			// 
+			// buttonXMainDataButtonClientGoals
+			// 
+			this.buttonXMainDataButtonClientGoals.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonClientGoals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonClientGoals.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonClientGoals.Location = new System.Drawing.Point(24, 126);
+			this.buttonXMainDataButtonClientGoals.Name = "buttonXMainDataButtonClientGoals";
+			this.buttonXMainDataButtonClientGoals.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonClientGoals.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonClientGoals.TabIndex = 4;
+			this.buttonXMainDataButtonClientGoals.Text = "CNA";
+			this.buttonXMainDataButtonClientGoals.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonClientGoals.Click += new System.EventHandler(this.OnClientGoalsButtonClick);
+			// 
+			// buttonXMainDataButtonTargetCustomers
+			// 
+			this.buttonXMainDataButtonTargetCustomers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonTargetCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonTargetCustomers.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonTargetCustomers.Location = new System.Drawing.Point(173, 126);
+			this.buttonXMainDataButtonTargetCustomers.Name = "buttonXMainDataButtonTargetCustomers";
+			this.buttonXMainDataButtonTargetCustomers.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonTargetCustomers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonTargetCustomers.TabIndex = 5;
+			this.buttonXMainDataButtonTargetCustomers.Text = "Tgt Customer";
+			this.buttonXMainDataButtonTargetCustomers.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonTargetCustomers.Click += new System.EventHandler(this.OnTargetCustomersButtonClick);
+			// 
+			// buttonXMainDataButtonSummary
+			// 
+			this.buttonXMainDataButtonSummary.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonSummary.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonSummary.Location = new System.Drawing.Point(322, 126);
+			this.buttonXMainDataButtonSummary.Name = "buttonXMainDataButtonSummary";
+			this.buttonXMainDataButtonSummary.Size = new System.Drawing.Size(116, 33);
+			this.buttonXMainDataButtonSummary.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonSummary.TabIndex = 6;
+			this.buttonXMainDataButtonSummary.Text = "Summary";
+			this.buttonXMainDataButtonSummary.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonSummary.Click += new System.EventHandler(this.OnClosingSummaryButtonClick);
+			// 
+			// buttonXMainDataButtonTV
+			// 
+			this.buttonXMainDataButtonTV.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonTV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonTV.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonTV.Location = new System.Drawing.Point(24, 193);
+			this.buttonXMainDataButtonTV.Name = "buttonXMainDataButtonTV";
+			this.buttonXMainDataButtonTV.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonTV.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonTV.TabIndex = 7;
+			this.buttonXMainDataButtonTV.Text = "TV";
+			this.buttonXMainDataButtonTV.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonTV.Click += new System.EventHandler(this.OnTVDataButtonClick);
+			// 
+			// buttonXMainDataButtonRadio
+			// 
+			this.buttonXMainDataButtonRadio.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonRadio.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonRadio.Location = new System.Drawing.Point(173, 193);
+			this.buttonXMainDataButtonRadio.Name = "buttonXMainDataButtonRadio";
+			this.buttonXMainDataButtonRadio.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonRadio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonRadio.TabIndex = 10;
+			this.buttonXMainDataButtonRadio.Text = "Radio";
+			this.buttonXMainDataButtonRadio.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonRadio.Click += new System.EventHandler(this.OnRadioDataButtonClick);
+			// 
+			// buttonXMainDataButtonOnline
+			// 
+			this.buttonXMainDataButtonOnline.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonOnline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonOnline.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonOnline.Location = new System.Drawing.Point(322, 193);
+			this.buttonXMainDataButtonOnline.Name = "buttonXMainDataButtonOnline";
+			this.buttonXMainDataButtonOnline.Size = new System.Drawing.Size(116, 33);
+			this.buttonXMainDataButtonOnline.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonOnline.TabIndex = 11;
+			this.buttonXMainDataButtonOnline.Text = "Digital";
+			this.buttonXMainDataButtonOnline.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonOnline.Click += new System.EventHandler(this.OnOnlineDataButtonClick);
+			// 
+			// buttonXMainDataButtonSDSearch
+			// 
+			this.buttonXMainDataButtonSDSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMainDataButtonSDSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXMainDataButtonSDSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMainDataButtonSDSearch.Location = new System.Drawing.Point(24, 260);
+			this.buttonXMainDataButtonSDSearch.Name = "buttonXMainDataButtonSDSearch";
+			this.buttonXMainDataButtonSDSearch.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonSDSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMainDataButtonSDSearch.TabIndex = 12;
+			this.buttonXMainDataButtonSDSearch.Text = "SDSearch";
+			this.buttonXMainDataButtonSDSearch.TextColor = System.Drawing.Color.Black;
+			this.buttonXMainDataButtonSDSearch.Click += new System.EventHandler(this.OnSalesLibrariesDataButtonClick);
+			// 
+			// layoutControlGroupRoot
+			// 
+			this.layoutControlGroupRoot.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+			this.layoutControlGroupRoot.GroupBordersVisible = false;
+			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemOK,
+            this.emptySpaceItem5,
+            this.layoutControlItemCancel,
+            this.tabbedControlGroup,
+            this.layoutControlItemOutputFolders,
+            this.simpleLabelItemOutputFoldersTitle,
+            this.emptySpaceItem1,
+            this.emptySpaceItem2,
+            this.layoutControlItemOutputFoldersAdd,
+            this.emptySpaceItem3});
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRoot.Name = "Root";
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(462, 554);
+			this.layoutControlGroupRoot.TextVisible = false;
+			// 
+			// layoutControlItemOK
+			// 
+			this.layoutControlItemOK.Control = this.buttonXContinue;
+			this.layoutControlItemOK.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemOK.CustomizationFormText = "OK";
+			this.layoutControlItemOK.Location = new System.Drawing.Point(0, 494);
+			this.layoutControlItemOK.MaxSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemOK.MinSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemOK.Name = "layoutControlItemOK";
+			this.layoutControlItemOK.Size = new System.Drawing.Size(120, 40);
+			this.layoutControlItemOK.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemOK.Text = "OK";
+			this.layoutControlItemOK.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemOK.TextVisible = false;
+			this.layoutControlItemOK.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem5
+			// 
+			this.emptySpaceItem5.AllowHotTrack = false;
+			this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem5";
+			this.emptySpaceItem5.Location = new System.Drawing.Point(120, 494);
+			this.emptySpaceItem5.Name = "emptySpaceItem5";
+			this.emptySpaceItem5.Size = new System.Drawing.Size(202, 40);
+			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemCancel
+			// 
+			this.layoutControlItemCancel.Control = this.buttonXClose;
+			this.layoutControlItemCancel.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemCancel.CustomizationFormText = "Cancel";
+			this.layoutControlItemCancel.Location = new System.Drawing.Point(322, 494);
+			this.layoutControlItemCancel.MaxSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCancel.MinSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCancel.Name = "layoutControlItemCancel";
+			this.layoutControlItemCancel.Size = new System.Drawing.Size(120, 40);
+			this.layoutControlItemCancel.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemCancel.Text = "Cancel";
+			this.layoutControlItemCancel.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemCancel.TextVisible = false;
+			this.layoutControlItemCancel.TrimClientAreaToControl = false;
+			// 
+			// tabbedControlGroup
+			// 
+			this.tabbedControlGroup.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tabbedControlGroup.AppearanceTabPage.Header.Options.UseFont = true;
+			this.tabbedControlGroup.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tabbedControlGroup.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+			this.tabbedControlGroup.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.tabbedControlGroup.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
+			this.tabbedControlGroup.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.tabbedControlGroup.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+			this.tabbedControlGroup.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.tabbedControlGroup.AppearanceTabPage.PageClient.Options.UseFont = true;
+			this.tabbedControlGroup.Location = new System.Drawing.Point(0, 0);
+			this.tabbedControlGroup.Name = "tabbedControlGroup";
+			this.tabbedControlGroup.SelectedTabPage = this.layoutControlGroupMainData;
+			this.tabbedControlGroup.SelectedTabPageIndex = 0;
+			this.tabbedControlGroup.Size = new System.Drawing.Size(442, 297);
+			this.tabbedControlGroup.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroupMainData,
+            this.layoutControlGroupStarAppData});
+			this.tabbedControlGroup.Text = "Tabs";
+			// 
+			// layoutControlGroupMainData
+			// 
+			this.layoutControlGroupMainData.CustomizationFormText = "Main Data";
+			this.layoutControlGroupMainData.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroupMainDataButtons});
+			this.layoutControlGroupMainData.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupMainData.Name = "layoutControlGroupMainData";
+			this.layoutControlGroupMainData.Size = new System.Drawing.Size(418, 247);
+			this.layoutControlGroupMainData.Text = "Data Files";
+			// 
+			// layoutControlGroupMainDataButtons
+			// 
+			this.layoutControlGroupMainDataButtons.GroupBordersVisible = false;
+			this.layoutControlGroupMainDataButtons.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemMainDataButtonUsers,
+            this.layoutControlItemMainDataButtonCover,
+            this.layoutControlItemMainDataButtonLeadoffStatements,
+            this.layoutControlItemMainDataButtonClientGoals,
+            this.layoutControlItemMainDataButtonTargetCustomers,
+            this.layoutControlItemMainDataButtonSummary,
+            this.layoutControlItemMainDataButtonTV,
+            this.layoutControlItemMainDataButtonRadio,
+            this.layoutControlItemMainDataButtonOnline,
+            this.layoutControlItemMainDataButtonSDSearch});
+			this.layoutControlGroupMainDataButtons.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupMainDataButtons.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupMainDataButtons.Name = "layoutControlGroupMainDataButtons";
+			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition1.Width = 33.333333333333336D;
+			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition2.Width = 30D;
+			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition3.Width = 33.333333333333336D;
+			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition4.Width = 30D;
+			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition5.Width = 33.333333333333336D;
+			this.layoutControlGroupMainDataButtons.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition1,
+            columnDefinition2,
+            columnDefinition3,
+            columnDefinition4,
+            columnDefinition5});
+			rowDefinition1.Height = 10D;
+			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition2.Height = 25D;
+			rowDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition3.Height = 30D;
+			rowDefinition3.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition4.Height = 25D;
+			rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition5.Height = 30D;
+			rowDefinition5.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition6.Height = 25D;
+			rowDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition7.Height = 30D;
+			rowDefinition7.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition8.Height = 25D;
+			rowDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			this.layoutControlGroupMainDataButtons.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition1,
+            rowDefinition2,
+            rowDefinition3,
+            rowDefinition4,
+            rowDefinition5,
+            rowDefinition6,
+            rowDefinition7,
+            rowDefinition8});
+			this.layoutControlGroupMainDataButtons.Size = new System.Drawing.Size(418, 247);
+			this.layoutControlGroupMainDataButtons.Text = "Buttons";
+			this.layoutControlGroupMainDataButtons.TextVisible = false;
+			// 
+			// layoutControlItemMainDataButtonUsers
+			// 
+			this.layoutControlItemMainDataButtonUsers.Control = this.buttonXMainDataButtonUsers;
+			this.layoutControlItemMainDataButtonUsers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonUsers.FillControlToClientArea = false;
+			this.layoutControlItemMainDataButtonUsers.Location = new System.Drawing.Point(0, 10);
+			this.layoutControlItemMainDataButtonUsers.Name = "layoutControlItemMainDataButtonUsers";
+			this.layoutControlItemMainDataButtonUsers.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemMainDataButtonUsers.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonUsers.Text = "Users";
+			this.layoutControlItemMainDataButtonUsers.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonUsers.TextVisible = false;
+			this.layoutControlItemMainDataButtonUsers.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonCover
+			// 
+			this.layoutControlItemMainDataButtonCover.Control = this.buttonXMainDataButtonCover;
+			this.layoutControlItemMainDataButtonCover.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonCover.Location = new System.Drawing.Point(149, 10);
+			this.layoutControlItemMainDataButtonCover.Name = "layoutControlItemMainDataButtonCover";
+			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemMainDataButtonCover.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonCover.Text = "Cover";
+			this.layoutControlItemMainDataButtonCover.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonCover.TextVisible = false;
+			this.layoutControlItemMainDataButtonCover.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonLeadoffStatements
+			// 
+			this.layoutControlItemMainDataButtonLeadoffStatements.Control = this.buttonXMainDataButtonLeadoffStatements;
+			this.layoutControlItemMainDataButtonLeadoffStatements.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonLeadoffStatements.Location = new System.Drawing.Point(298, 10);
+			this.layoutControlItemMainDataButtonLeadoffStatements.Name = "layoutControlItemMainDataButtonLeadoffStatements";
+			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(120, 36);
+			this.layoutControlItemMainDataButtonLeadoffStatements.Text = "Leadoff Statements";
+			this.layoutControlItemMainDataButtonLeadoffStatements.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonLeadoffStatements.TextVisible = false;
+			this.layoutControlItemMainDataButtonLeadoffStatements.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonClientGoals
+			// 
+			this.layoutControlItemMainDataButtonClientGoals.Control = this.buttonXMainDataButtonClientGoals;
+			this.layoutControlItemMainDataButtonClientGoals.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonClientGoals.Location = new System.Drawing.Point(0, 76);
+			this.layoutControlItemMainDataButtonClientGoals.Name = "layoutControlItemMainDataButtonClientGoals";
+			this.layoutControlItemMainDataButtonClientGoals.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemMainDataButtonClientGoals.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonClientGoals.Text = "Client Goals";
+			this.layoutControlItemMainDataButtonClientGoals.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonClientGoals.TextVisible = false;
+			this.layoutControlItemMainDataButtonClientGoals.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonTargetCustomers
+			// 
+			this.layoutControlItemMainDataButtonTargetCustomers.Control = this.buttonXMainDataButtonTargetCustomers;
+			this.layoutControlItemMainDataButtonTargetCustomers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonTargetCustomers.Location = new System.Drawing.Point(149, 76);
+			this.layoutControlItemMainDataButtonTargetCustomers.Name = "layoutControlItemMainDataButtonTargetCustomers";
+			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemMainDataButtonTargetCustomers.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonTargetCustomers.Text = "Target Customers";
+			this.layoutControlItemMainDataButtonTargetCustomers.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonTargetCustomers.TextVisible = false;
+			this.layoutControlItemMainDataButtonTargetCustomers.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonSummary
+			// 
+			this.layoutControlItemMainDataButtonSummary.Control = this.buttonXMainDataButtonSummary;
+			this.layoutControlItemMainDataButtonSummary.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonSummary.Location = new System.Drawing.Point(298, 76);
+			this.layoutControlItemMainDataButtonSummary.Name = "layoutControlItemMainDataButtonSummary";
+			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemMainDataButtonSummary.Size = new System.Drawing.Size(120, 37);
+			this.layoutControlItemMainDataButtonSummary.Text = "Summary";
+			this.layoutControlItemMainDataButtonSummary.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonSummary.TextVisible = false;
+			this.layoutControlItemMainDataButtonSummary.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonTV
+			// 
+			this.layoutControlItemMainDataButtonTV.Control = this.buttonXMainDataButtonTV;
+			this.layoutControlItemMainDataButtonTV.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonTV.Location = new System.Drawing.Point(0, 143);
+			this.layoutControlItemMainDataButtonTV.Name = "layoutControlItemMainDataButtonTV";
+			this.layoutControlItemMainDataButtonTV.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemMainDataButtonTV.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonTV.Text = "TV";
+			this.layoutControlItemMainDataButtonTV.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonTV.TextVisible = false;
+			this.layoutControlItemMainDataButtonTV.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonRadio
+			// 
+			this.layoutControlItemMainDataButtonRadio.Control = this.buttonXMainDataButtonRadio;
+			this.layoutControlItemMainDataButtonRadio.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonRadio.Location = new System.Drawing.Point(149, 143);
+			this.layoutControlItemMainDataButtonRadio.Name = "layoutControlItemMainDataButtonRadio";
+			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemMainDataButtonRadio.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonRadio.Text = "Radio";
+			this.layoutControlItemMainDataButtonRadio.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonRadio.TextVisible = false;
+			this.layoutControlItemMainDataButtonRadio.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonOnline
+			// 
+			this.layoutControlItemMainDataButtonOnline.Control = this.buttonXMainDataButtonOnline;
+			this.layoutControlItemMainDataButtonOnline.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonOnline.Location = new System.Drawing.Point(298, 143);
+			this.layoutControlItemMainDataButtonOnline.Name = "layoutControlItemMainDataButtonOnline";
+			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemMainDataButtonOnline.Size = new System.Drawing.Size(120, 37);
+			this.layoutControlItemMainDataButtonOnline.Text = "Online";
+			this.layoutControlItemMainDataButtonOnline.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonOnline.TextVisible = false;
+			this.layoutControlItemMainDataButtonOnline.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemMainDataButtonSDSearch
+			// 
+			this.layoutControlItemMainDataButtonSDSearch.Control = this.buttonXMainDataButtonSDSearch;
+			this.layoutControlItemMainDataButtonSDSearch.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonSDSearch.Location = new System.Drawing.Point(0, 210);
+			this.layoutControlItemMainDataButtonSDSearch.Name = "layoutControlItemMainDataButtonSDSearch";
+			this.layoutControlItemMainDataButtonSDSearch.OptionsTableLayoutItem.RowIndex = 7;
+			this.layoutControlItemMainDataButtonSDSearch.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonSDSearch.Text = "SDSearch";
+			this.layoutControlItemMainDataButtonSDSearch.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonSDSearch.TextVisible = false;
+			this.layoutControlItemMainDataButtonSDSearch.TrimClientAreaToControl = false;
+			// 
+			// layoutControlGroupStarAppData
+			// 
+			this.layoutControlGroupStarAppData.CustomizationFormText = "Star App Data";
+			this.layoutControlGroupStarAppData.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupStarAppData.Name = "layoutControlGroupStarAppData";
+			this.layoutControlGroupStarAppData.Size = new System.Drawing.Size(418, 247);
+			this.layoutControlGroupStarAppData.Text = "STAR";
+			// 
+			// layoutControlItemOutputFolders
+			// 
+			this.layoutControlItemOutputFolders.Control = this.gridControlOutputFolders;
+			this.layoutControlItemOutputFolders.Location = new System.Drawing.Point(0, 357);
+			this.layoutControlItemOutputFolders.Name = "layoutControlItemOutputFolders";
+			this.layoutControlItemOutputFolders.OptionsTableLayoutItem.RowIndex = 9;
+			this.layoutControlItemOutputFolders.Size = new System.Drawing.Size(442, 127);
+			this.layoutControlItemOutputFolders.Text = "Output Folders List";
+			this.layoutControlItemOutputFolders.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemOutputFolders.TextVisible = false;
+			// 
+			// simpleLabelItemOutputFoldersTitle
+			// 
+			this.simpleLabelItemOutputFoldersTitle.AllowHotTrack = false;
+			this.simpleLabelItemOutputFoldersTitle.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.Options.UseFont = true;
+			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemOutputFoldersTitle.Location = new System.Drawing.Point(0, 307);
+			this.simpleLabelItemOutputFoldersTitle.Name = "simpleLabelItemOutputFoldersTitle";
+			this.simpleLabelItemOutputFoldersTitle.Size = new System.Drawing.Size(322, 40);
+			this.simpleLabelItemOutputFoldersTitle.Text = "Output Locations:";
+			this.simpleLabelItemOutputFoldersTitle.TextSize = new System.Drawing.Size(103, 16);
+			// 
+			// emptySpaceItem1
+			// 
+			this.emptySpaceItem1.AllowHotTrack = false;
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 297);
+			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem1.Name = "emptySpaceItem1";
+			this.emptySpaceItem1.Size = new System.Drawing.Size(442, 10);
+			this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 347);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(442, 10);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// layoutControlItemOutputFoldersAdd
+			// 
+			this.layoutControlItemOutputFoldersAdd.Control = this.buttonXOutputFoldersAdd;
+			this.layoutControlItemOutputFoldersAdd.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemOutputFoldersAdd.FillControlToClientArea = false;
+			this.layoutControlItemOutputFoldersAdd.Location = new System.Drawing.Point(322, 307);
+			this.layoutControlItemOutputFoldersAdd.MaxSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemOutputFoldersAdd.MinSize = new System.Drawing.Size(120, 40);
+			this.layoutControlItemOutputFoldersAdd.Name = "layoutControlItemOutputFoldersAdd";
+			this.layoutControlItemOutputFoldersAdd.Size = new System.Drawing.Size(120, 40);
+			this.layoutControlItemOutputFoldersAdd.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemOutputFoldersAdd.Text = "Add Output Locations";
+			this.layoutControlItemOutputFoldersAdd.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemOutputFoldersAdd.TextVisible = false;
+			this.layoutControlItemOutputFoldersAdd.TrimClientAreaToControl = false;
+			// 
+			// emptySpaceItem3
+			// 
+			this.emptySpaceItem3.AllowHotTrack = false;
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 484);
+			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 10);
+			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem3.Name = "emptySpaceItem3";
+			this.emptySpaceItem3.Size = new System.Drawing.Size(442, 10);
+			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// styleController
+			// 
+			this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.styleController.Appearance.Options.UseFont = true;
+			this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDisabled.Options.UseFont = true;
+			this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDown.Options.UseFont = true;
+			this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+			this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceFocused.Options.UseFont = true;
+			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.styleController.AppearanceReadOnly.Options.UseFont = true;
+			// 
+			// defaultLookAndFeel
+			// 
+			this.defaultLookAndFeel.LookAndFeel.SkinName = "Office 2013";
+			// 
 			// FormMain
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1020, 677);
-			this.Controls.Add(this.pnMain);
-			this.Controls.Add(this.ribbonControl);
-			this.MinimumSize = new System.Drawing.Size(1020, 677);
+			this.ClientSize = new System.Drawing.Size(462, 554);
+			this.Controls.Add(this.layoutControl);
+			this.DoubleBuffered = true;
+			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.ForeColor = System.Drawing.Color.Black;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FormMain";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Command Central      ";
-			this.Load += new System.EventHandler(this.FormMain_Load);
-			this.ribbonControl.ResumeLayout(false);
-			this.ribbonControl.PerformLayout();
-			this.ribbonPanelMainDashboard.ResumeLayout(false);
-			this.ribbonPanelSalesDepot.ResumeLayout(false);
-			this.ribbonPanelSalesPro.ResumeLayout(false);
-			this.ribbonPanelMarketPro.ResumeLayout(false);
+			this.Text = "Command Central 2.0";
+			this.Load += new System.EventHandler(this.OnFormLoad);
+			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
+			this.layoutControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gridControlOutputFolders)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewOutputFolders)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditOutputFoldersPath)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOK)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonCover)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonLeadoffStatements)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonClientGoals)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTargetCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSummary)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonTV)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFolders)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemOutputFoldersTitle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFoldersAdd)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private DevComponents.DotNetBar.RibbonControl ribbonControl;
-        private System.Windows.Forms.Panel pnMain;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelMainDashboard;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemMainDashboard;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarMainDashboardData;
-        private DevComponents.DotNetBar.ButtonItem buttonItemMainDashboardViewFile;
-        private DevComponents.DotNetBar.ButtonItem buttonItemMainDashboardUpdate;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarBasicSource;
-        public DevComponents.DotNetBar.ButtonItem buttonItemBasicCover;
-        public DevComponents.DotNetBar.ButtonItem buttonItemBasicIntroSlide;
-        public DevComponents.DotNetBar.ButtonItem buttonItemBasicNeedsAnalysis;
-        public DevComponents.DotNetBar.ButtonItem buttonItemBasicTargetCustomer;
-        public DevComponents.DotNetBar.ButtonItem buttonItemBasicClosingSummary;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelSalesPro;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSalesPro;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarSalesProData;
-        private DevComponents.DotNetBar.ButtonItem buttonItemSalesProViewFile;
-        private DevComponents.DotNetBar.ButtonItem buttonItemSalesProUpdate;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarSalesProSource;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProClientBenefits;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProBigIdea;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProCreativeStrategy;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProCampaignTimeline;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProROIFormula;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProInvestmentCalendar;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProValueAnalysis;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesProCampaignSummary;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelMarketPro;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemMarketPro;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarMarketProData;
-        private DevComponents.DotNetBar.ButtonItem buttonItemMarketProViewFile;
-        private DevComponents.DotNetBar.ButtonItem buttonItemMarketProUpdate;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarMarketProSource;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProTV;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProWeb;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProMobile;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProPrint;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProRadio;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProCable;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProYellowPages;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProDirectMail;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProOutdoor;
-        public DevComponents.DotNetBar.ButtonItem buttonItemMarketProMediaStrategy;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarUsers;
-        public DevComponents.DotNetBar.ButtonItem buttonItemUsers;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarNewspaperSource;
-		public DevComponents.DotNetBar.ButtonItem buttonItemNewspaperStrategy;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarOnlineSource;
-        public DevComponents.DotNetBar.ButtonItem buttonItemOnlineStrategy;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarRadioSource;
-        public DevComponents.DotNetBar.ButtonItem buttonItemRadioStrategy;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelSalesDepot;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarSalesDepotSearch;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarSalesDepotData;
-        private DevComponents.DotNetBar.ButtonItem buttonItemSalesDepotViewFile;
-        private DevComponents.DotNetBar.ButtonItem buttonItemSalesDepotUpdate;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSalesDepot;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesDepotSearch;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarTVSource;
-        public DevComponents.DotNetBar.ButtonItem buttonItemTVStrategy;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarQuickListSource;
-        public DevComponents.DotNetBar.ButtonItem buttonItemQuickList;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarSalesDepotAccessRights;
-        public DevComponents.DotNetBar.ButtonItem buttonItemSalesDepotAccessRights;
 		private DevComponents.DotNetBar.StyleManager styleManager;
-    }
+		private DevExpress.XtraLayout.LayoutControl layoutControl;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
+		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
+		private DevExpress.XtraEditors.StyleController styleController;
+		private DevComponents.DotNetBar.ButtonX buttonXClose;
+		private DevComponents.DotNetBar.ButtonX buttonXContinue;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOK;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemCancel;
+		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupMainData;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonUsers;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupMainDataButtons;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonUsers;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupStarAppData;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonCover;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonLeadoffStatements;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonClientGoals;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonTargetCustomers;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonSummary;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonTV;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonRadio;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonOnline;
+		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonSDSearch;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonCover;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonLeadoffStatements;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonClientGoals;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonTargetCustomers;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonSummary;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonTV;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonRadio;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonOnline;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonSDSearch;
+		private DevExpress.XtraGrid.GridControl gridControlOutputFolders;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridViewOutputFolders;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumnOutputFoldersPath;
+		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditOutputFoldersPath;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOutputFolders;
+		private DevComponents.DotNetBar.ButtonX buttonXOutputFoldersAdd;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemOutputFoldersTitle;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOutputFoldersAdd;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+	}
 }
-

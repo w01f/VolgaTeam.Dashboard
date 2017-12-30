@@ -56,127 +56,109 @@ namespace Asa.Business.Media.Configuration
 				{
 					case "ShowStation":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowStation = temp;
 						}
 						break;
 					case "ShowProgram":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowProgram = temp;
 						}
 						break;
 					case "ShowDay":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowDay = temp;
 						}
 						break;
 					case "ShowTime":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTime = temp;
 						}
 						break;
 					case "ShowRate":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowRate = temp;
 						}
 						break;
 					case "ShowLenght":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowLenght = temp;
 						}
 						break;
 					case "ShowLogo":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowLogo = temp;
 						}
 						break;
 					case "ShowWeeklySpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowWeeklySpots = temp;
 						}
 						break;
 					case "ShowMonthlySpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowMonthlySpots = temp;
 						}
 						break;
 					case "ShowTotalSpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTotalSpots = temp;
 						}
 						break;
 					case "ShowLineId":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowLineId = temp;
 						}
 						break;
 					case "ShowCost":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowCost = temp;
 						}
 						break;
 					case "ShowTallySpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTallySpots = temp;
 						}
 						break;
 					case "ShowTallyCost":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTallyCost = temp;
 						}
 						break;
 					case "ShowAverageRate":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowAverageRate = temp;
 						}
 						break;
 					case "UseDecimalRates":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								UseDecimalRates = temp;
 						}
 						break;
 					case "ShowSpotsX":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowSpotsX = temp;
 						}
 						break;
 					case "UniversalToggles":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								UniversalToggles = temp;
 						}
 						break;
@@ -189,127 +171,109 @@ namespace Asa.Business.Media.Configuration
 			{
 				case "Station":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowStation = temp;
 					}
 					break;
 				case "Program":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowProgram = temp;
 					}
 					break;
 				case "Day":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowDay = temp;
 					}
 					break;
 				case "Time":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTime = temp;
 					}
 					break;
 				case "Rate":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowRate = temp;
 					}
 					break;
 				case "Length":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLenght = temp;
 					}
 					break;
 				case "Logo":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLogo = temp;
 					}
 					break;
 				case "Weekly Spots":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowWeeklySpots = temp;
 					}
 					break;
 				case "Monthly Spots":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowMonthlySpots = temp;
 					}
 					break;
 				case "Total Spots":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTotalSpots = temp;
 					}
 					break;
 				case "Line ID":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLineId = temp;
 					}
 					break;
 				case "Cost Column":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowCost = temp;
 					}
 					break;
 				case "Tally Spots":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTallySpots = temp;
 					}
 					break;
 				case "Tally Cost":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTallyCost = temp;
 					}
 					break;
 				case "Average Rate":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowAverageRate = temp;
 					}
 					break;
 				case "Use Decimals with Rates":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							UseDecimalRates = temp;
 					}
 					break;
 				case "Universal Toggles":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							UniversalToggles = temp;
 					}
 					break;
 				case "Show X in spot #s":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowSpotsX = temp;
 					}
 					break;

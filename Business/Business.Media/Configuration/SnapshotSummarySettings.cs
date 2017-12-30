@@ -45,85 +45,73 @@ namespace Asa.Business.Media.Configuration
 					#region Options
 					case "ShowLineId":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowLineId = temp;
 						}
 						break;
 					case "ShowLogo":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowLogo = temp;
 						}
 						break;
 					case "ShowCampaign":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowCampaign = temp;
 						}
 						break;
 					case "ShowComments":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowComments = temp;
 						}
 						break;
 					case "ShowSpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowSpots = temp;
 						}
 						break;
 					case "ShowCost":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowCost = temp;
 						}
 						break;
 					case "ShowTotalWeeks":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTotalWeeks = temp;
 						}
 						break;
 					case "ShowTotalCost":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTotalCost = temp;
 						}
 						break;
 					case "ShowTallySpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTallySpots = temp;
 						}
 						break;
 					case "ShowTallyCost":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTallyCost = temp;
 						}
 						break;
 					case "UseDecimalRates":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								UseDecimalRates = temp;
 						}
 						break;
 					case "ShowSpotsX":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowSpotsX = temp;
 						}
 						break;
@@ -137,85 +125,73 @@ namespace Asa.Business.Media.Configuration
 			{
 				case "Line ID":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLineId = temp;
 					}
 					break;
 				case "Logo":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLogo = temp;
 					}
 					break;
 				case "Campaign":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowCampaign = temp;
 					}
 					break;
 				case "Comments":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowComments = temp;
 					}
 					break;
 				case "Weekly Spots":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowSpots = temp;
 					}
 					break;
 				case "Weekly Cost":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowCost = temp;
 					}
 					break;
 				case "Total Weeks":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTotalWeeks = temp;
 					}
 					break;
 				case "Cost Column":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTotalCost = temp;
 					}
 					break;
 				case "Tally Spots":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTallySpots = temp;
 					}
 					break;
 				case "Tally Cost":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTallyCost = temp;
 					}
 					break;
 				case "Use Decimals with Rates":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							UseDecimalRates = temp;
 					}
 					break;
 				case "Show X in spot #s":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowSpotsX = temp;
 					}
 					break;

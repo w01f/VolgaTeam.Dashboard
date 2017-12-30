@@ -1,124 +1,197 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
-using CommandCentral.TabMainDashboardForms;
-using CommandCentral.TabMarketProForms;
-using CommandCentral.TabSalesDepotForms;
-using CommandCentral.TabSalesProForms;
-using DevComponents.DotNetBar;
+using Asa.Common.Core.Helpers;
+using CommandCentral.BusinessClasses.Common;
+using CommandCentral.BusinessClasses.DataConvertors;
+using DevComponents.DotNetBar.Metro;
+using DevExpress.Skins;
+using DevExpress.XtraEditors.Controls;
 
 namespace CommandCentral
 {
-	public partial class FormMain : RibbonForm
+	public partial class FormMain : MetroForm
 	{
-		private static FormMain _instance;
-
-		private FormMain()
+		public FormMain()
 		{
 			InitializeComponent();
 
-			#region Main Dashboard Buttons
-
-			buttonItemMainDashboardViewFile.Click += MainDashboardPage.Instance.buttonItemMainDashboardViewFile_Click;
-			buttonItemMainDashboardUpdate.Click += MainDashboardPage.Instance.buttonItemMainDashboardUpdate_Click;
-			buttonItemUsers.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemBasicCover.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemBasicIntroSlide.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemBasicNeedsAnalysis.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemBasicTargetCustomer.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemBasicClosingSummary.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemOnlineStrategy.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemRadioStrategy.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemNewspaperStrategy.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemTVStrategy.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-			buttonItemQuickList.Click += MainDashboardPage.Instance.MainDashboardButton_Click;
-
-			#endregion
-
-			#region Media Library Buttons
-
-			buttonItemMarketProViewFile.Click += MarketProMainPage.Instance.buttonItemMediaLibraryViewFile_Click;
-			buttonItemMarketProUpdate.Click += MarketProMainPage.Instance.buttonItemMediaLibraryUpdate_Click;
-			buttonItemMarketProCable.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProDirectMail.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProMediaStrategy.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProMobile.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProOutdoor.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProPrint.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProRadio.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProTV.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProWeb.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-			buttonItemMarketProYellowPages.Click += MarketProMainPage.Instance.MediaLibraryButton_Click;
-
-			#endregion
-
-			#region Pro Slides Buttons
-
-			buttonItemSalesProViewFile.Click += SalesProMainPage.Instance.buttonItemAdvancedViewFile_Click;
-			buttonItemSalesProUpdate.Click += SalesProMainPage.Instance.buttonItemAdvancedUpdate_Click;
-			buttonItemSalesProBigIdea.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-			buttonItemSalesProCampaignSummary.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-			buttonItemSalesProCampaignTimeline.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-			buttonItemSalesProClientBenefits.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-			buttonItemSalesProCreativeStrategy.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-			buttonItemSalesProInvestmentCalendar.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-			buttonItemSalesProROIFormula.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-			buttonItemSalesProValueAnalysis.Click += SalesProMainPage.Instance.AdvancedButton_Click;
-
-			#endregion
-
-			#region Sales Depot Buttons
-
-			buttonItemSalesDepotViewFile.Click += SalesDepotMainPage.Instance.buttonItemSalesDepotViewFile_Click;
-			buttonItemSalesDepotUpdate.Click += SalesDepotMainPage.Instance.buttonItemSalesDepotUpdate_Click;
-			buttonItemSalesDepotSearch.Click += SalesDepotMainPage.Instance.SalesDepotButton_Click;
-			buttonItemSalesDepotAccessRights.Click += SalesDepotMainPage.Instance.SalesDepotButton_Click;
-
-			#endregion
+			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
+			layoutControlItemOutputFoldersAdd.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOutputFoldersAdd.MaxSize, scaleFactor);
+			layoutControlItemOutputFoldersAdd.MinSize = RectangleHelper.ScaleSize(layoutControlItemOutputFoldersAdd.MinSize, scaleFactor);
+			layoutControlItemOK.MaxSize = RectangleHelper.ScaleSize(layoutControlItemOK.MaxSize, scaleFactor);
+			layoutControlItemOK.MinSize = RectangleHelper.ScaleSize(layoutControlItemOK.MinSize, scaleFactor);
+			layoutControlItemCancel.MaxSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MaxSize, scaleFactor);
+			layoutControlItemCancel.MinSize = RectangleHelper.ScaleSize(layoutControlItemCancel.MinSize, scaleFactor);
 		}
 
-		public static FormMain Instance
+		private void OnFormLoad(object sender, EventArgs e)
 		{
-			get
+			LoadOutputFolders();
+			ConfigureConvertors();
+		}
+
+		private void OnFormCloseClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+
+		#region Main Data Processing
+		private readonly List<IExcel2XmlConvertor> _convertors = new List<IExcel2XmlConvertor>();
+
+		private void ConfigureConvertors()
+		{
+			_convertors.Add(new UsersConvertor(AppManager.Instance.AppResources.MainDataSourceFilePath));
+			_convertors.Add(new CoverConvertor(AppManager.Instance.AppResources.MainDataSourceFilePath));
+			_convertors.Add(new LeadoffStatementsConvertor(AppManager.Instance.AppResources.MainDataSourceFilePath));
+			_convertors.Add(new ClientGoalsConvertor(AppManager.Instance.AppResources.MainDataSourceFilePath));
+			_convertors.Add(new TargetCustomersConvertor(AppManager.Instance.AppResources.MainDataSourceFilePath));
+			_convertors.Add(new ClosingSummaryConvertor(AppManager.Instance.AppResources.MainDataSourceFilePath));
+			_convertors.Add(new TVDataConvertor(
+				AppManager.Instance.AppResources.TVDataSourceFilePath,
+				AppManager.Instance.AppResources.CalendarDataSourceFilePath,
+				AppManager.Instance.AppResources.TVImagesFolderPath
+				));
+			_convertors.Add(new RadioDataConvertor(
+				AppManager.Instance.AppResources.RadioDataSourceFilePath,
+				AppManager.Instance.AppResources.CalendarDataSourceFilePath,
+				AppManager.Instance.AppResources.RadioImagesFolderPath
+			));
+			_convertors.Add(new OnlineDataConvertor(
+				AppManager.Instance.AppResources.OnlineDataSourceFilePath,
+				AppManager.Instance.AppResources.OnlineImagesFolderPath
+			));
+			_convertors.Add(new SalesLibrariesDataConvertor(AppManager.Instance.AppResources.SalesLibrariesDataSourceFilePath));
+		}
+
+		private void RunConvertors(IEnumerable<IExcel2XmlConvertor> convertors)
+		{
+			foreach (var convertor in convertors)
 			{
-				if (_instance == null)
-					_instance = new FormMain();
-				return _instance;
+				try
+				{
+					convertor.Convert(AppManager.Instance.AppSettings.OutputFolders.Select(folder => folder.Path).ToList());
+				}
+				catch (ConversionException ex)
+				{
+					PopupMessageHelper.Instance.ShowWarning(String.Format("Excel file reading error: {0}", Path.GetFileName(ex.SourceFilePath)));
+					return;
+				}
+				catch (Exception)
+				{
+					PopupMessageHelper.Instance.ShowWarning("Excel file reading error");
+					return;
+				}
+			}
+			PopupMessageHelper.Instance.ShowInformation("Data was updated");
+		}
+
+		private void OnUsersButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<UsersConvertor>());
+		}
+
+		private void OnCoverButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<CoverConvertor>());
+		}
+
+		private void OnLeadoffStatementsButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<LeadoffStatementsConvertor>());
+		}
+
+		private void OnClientGoalsButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<ClientGoalsConvertor>());
+		}
+
+		private void OnTargetCustomersButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<TargetCustomersConvertor>());
+		}
+
+		private void OnClosingSummaryButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<ClosingSummaryConvertor>());
+		}
+
+		private void OnTVDataButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<TVDataConvertor>());
+		}
+
+		private void OnRadioDataButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<RadioDataConvertor>());
+		}
+
+		private void OnOnlineDataButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<OnlineDataConvertor>());
+		}
+
+		private void OnSalesLibrariesDataButtonClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors.OfType<SalesLibrariesDataConvertor>());
+		}
+
+		private void OnUpdateAllClick(object sender, EventArgs e)
+		{
+			RunConvertors(_convertors);
+		}
+		#endregion
+
+		#region Output Folders Processing
+		private void LoadOutputFolders()
+		{
+			gridControlOutputFolders.DataSource = AppManager.Instance.AppSettings.OutputFolders;
+			gridViewOutputFolders.RefreshData();
+		}
+
+		private void OnOutputFoldersAddClick(object sender, EventArgs e)
+		{
+			gridViewOutputFolders.CloseEditor();
+			AppManager.Instance.AppSettings.OutputFolders.RemoveAll(outputFolder => String.IsNullOrEmpty(outputFolder.Path));
+			AppManager.Instance.AppSettings.OutputFolders.Add(new OutputFolder());
+
+			LoadOutputFolders();
+
+			if (gridViewOutputFolders.RowCount > 0)
+			{
+				gridViewOutputFolders.FocusedRowHandle = gridViewOutputFolders.RowCount - 1;
+				gridViewOutputFolders.MakeRowVisible(gridViewOutputFolders.FocusedRowHandle, true);
 			}
 		}
 
-		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
+		private void OnOutputFoldersButtonClick(object sender, ButtonPressedEventArgs e)
 		{
-			Control parent = pnMain.Parent;
-			pnMain.Parent = null;
-			pnMain.Controls.Clear();
-			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMainDashboard)
+			var outputFolder = (OutputFolder)gridViewOutputFolders.GetFocusedRow();
+			switch (e.Button.Index)
 			{
-				pnMain.Controls.Add(MainDashboardPage.Instance);
-				MainDashboardPage.Instance.UpdatePageAccordingToggledButton();
+				case 0:
+					using (var dialog = new FolderBrowserDialogEx())
+					{
+						dialog.ShowEditBox = true;
+						dialog.ShowFullPathInEditBox = true;
+						dialog.SelectedPath = outputFolder.Path;
+						if (dialog.ShowDialog(this) != DialogResult.OK) return;
+						outputFolder.Path = dialog.SelectedPath;
+						gridViewOutputFolders.CloseEditor();
+						LoadOutputFolders();
+					}
+					break;
+				case 1:
+					if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure want to delete path?") == DialogResult.Yes)
+					{
+						AppManager.Instance.AppSettings.OutputFolders.Remove(outputFolder);
+						LoadOutputFolders();
+					}
+					break;
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSalesPro)
-			{
-				pnMain.Controls.Add(SalesProMainPage.Instance);
-				SalesProMainPage.Instance.UpdatePageAccordingToggledButton();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMarketPro)
-			{
-				pnMain.Controls.Add(MarketProMainPage.Instance);
-				MarketProMainPage.Instance.UpdatePageAccordingToggledButton();
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSalesDepot)
-			{
-				pnMain.Controls.Add(SalesDepotMainPage.Instance);
-				SalesDepotMainPage.Instance.UpdatePageAccordingToggledButton();
-			}
-			pnMain.Parent = parent;
-			pnMain.BringToFront();
 		}
-
-		private void FormMain_Load(object sender, EventArgs e)
-		{
-			ribbonControl_SelectedRibbonTabChanged(null, null);
-			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-		}
+		#endregion
 	}
 }

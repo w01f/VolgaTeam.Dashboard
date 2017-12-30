@@ -111,8 +111,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Schedule
 
 		public void Dispose()
 		{
-			if (Logo != null)
-				Logo.Dispose();
+			Logo?.Dispose();
 		}
 	}
 }

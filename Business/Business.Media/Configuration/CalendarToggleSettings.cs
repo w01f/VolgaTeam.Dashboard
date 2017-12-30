@@ -46,15 +46,13 @@ namespace Asa.Business.Media.Configuration
 			{
 				case "Show Logo at Top of Slide":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLogo = temp;
 					}
 					break;
 				case "Show BIG Date numbers":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowBigDate = temp;
 					}
 					break;

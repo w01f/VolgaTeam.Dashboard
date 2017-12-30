@@ -60,141 +60,121 @@ namespace Asa.Business.Media.Configuration
 				{
 					case "ShowStation":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowStation = temp;
 						}
 						break;
 					case "ShowProgram":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowProgram = temp;
 						}
 						break;
 					case "ShowLenght":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowLenght = temp;
 						}
 						break;
 					case "ShowDaypart":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowDaypart = temp;
 						}
 						break;
 					case "ShowSpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowSpots = temp;
 						}
 						break;
 					case "ShowDay":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowDay = temp;
 						}
 						break;
 					case "ShowTime":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTime = temp;
 						}
 						break;
 					case "ShowRate":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowRate = temp;
 						}
 						break;
 					case "ShowCost":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowCost = temp;
 						}
 						break;
 					case "ShowLogo":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowLogo = temp;
 						}
 						break;
 					case "UseGenericDateColumns":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								UseGenericDateColumns = temp;
 						}
 						break;
 					case "UseDecimalRates":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								UseDecimalRates = temp;
 						}
 						break;
 					case "OutputNoBrackets":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								OutputNoBrackets = temp;
 						}
 						break;
 					case "ShowTotalPeriods":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTotalPeriods = temp;
 						}
 						break;
 					case "ShowTotalSpots":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTotalSpots = temp;
 						}
 						break;
 					case "ShowAverageRate":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowAverageRate = temp;
 						}
 						break;
 					case "ShowTotalRate":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowTotalRate = temp;
 						}
 						break;
 					case "ShowNetRate":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowNetRate = temp;
 						}
 						break;
 					case "ShowDiscount":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								ShowDiscount = temp;
 						}
 						break;
 					case "UniversalToggles":
 						{
-							bool temp;
-							if (Boolean.TryParse(childNode.InnerText, out temp))
+							if (Boolean.TryParse(childNode.InnerText, out var temp))
 								UniversalToggles = temp;
 						}
 						break;
@@ -207,143 +187,123 @@ namespace Asa.Business.Media.Configuration
 			{
 				case "Station":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowStation = temp;
 					}
 					break;
 				case "Program":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowProgram = temp;
 					}
 					break;
 				case "Length":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLenght = temp;
 					}
 					break;
 				case "Daypart":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowDaypart = temp;
 					}
 					break;
 				case "Weeks":
 				case "Months":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowSpots = temp;
 					}
 					break;
 				case "Day":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowDay = temp;
 					}
 					break;
 				case "Time":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTime = temp;
 					}
 					break;
 				case "Rate":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowRate = temp;
 					}
 					break;
 				case "Total Cost":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowCost = temp;
 					}
 					break;
 				case "Logo":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowLogo = temp;
 					}
 					break;
 				case "Generic Dates":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							UseGenericDateColumns = temp;
 					}
 					break;
 				case "Use Decimals with Rates":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							UseDecimalRates = temp;
 					}
 					break;
 				case "Universal Toggles":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							UniversalToggles = temp;
 					}
 					break;
 				case "No Brackets for Station on slide":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							OutputNoBrackets = temp;
 					}
 					break;
 				case "Info-Total Weeks":
 				case "Info-Total Months":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTotalPeriods = temp;
 					}
 					break;
 				case "Info-Total Spots":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTotalSpots = temp;
 					}
 					break;
 				case "Info-Average Rate":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowAverageRate = temp;
 					}
 					break;
 				case "Info-Gross Investment":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowTotalRate = temp;
 					}
 					break;
 				case "Info-Net Investment":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowNetRate = temp;
 					}
 					break;
 				case "Info-Agency Discount":
 					{
-						bool temp;
-						if (Boolean.TryParse(value, out temp))
+						if (Boolean.TryParse(value, out var temp))
 							ShowDiscount = temp;
 					}
 					break;

@@ -1,6 +1,6 @@
 ﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
-	partial class TabPageContainerControl<TStarAppControl>
+	partial class ShareTabPageContainerControl<TShareTabControl>
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -32,7 +32,7 @@
 			// 
 			// TabPageContainerControl
 			// 
-			this.Name = "TabPageContainerControl";
+			this.Name = "StarAppTabPageContainerControl";
 			this.Size = new System.Drawing.Size(531, 485);
 			this.ResumeLayout(false);
 

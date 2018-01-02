@@ -15,7 +15,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public CleanslateControl(BaseStarAppContainer slideContainer) : base(slideContainer)
 		{
 			InitializeComponent();
-			Text = SlideContainer.StarInfo.Titles.Tab0Title;
 			pictureEditHeader.Image = SlideContainer.StarInfo.CleanslateHeaderLogo;
 			pictureEditSplash.Image = SlideContainer.StarInfo.CleanslateSplashLogo;
 		}

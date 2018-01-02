@@ -51,29 +51,29 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			FormProgress.SetTitle("Loading data...");
 			FormProgress.ShowProgress();
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<CleanslateControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<CleanslateControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<CoverControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<CoverControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<CNAControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<CNAControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<FishingControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<FishingControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<CustomerControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<CustomerControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<ShareControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<ShareControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<ROIControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<ROIControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<MarketControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<MarketControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<VideoControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<VideoControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<AudienceControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<AudienceControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<SolutionControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<SolutionControl>(this));
 			Application.DoEvents();
-			_slides.Add(new TabPageContainerControl<ClosersControl>(this));
+			_slides.Add(new StarAppTabPageContainerControl<ClosersControl>(this));
 			Application.DoEvents();
 
 			xtraTabControl.TabPages.AddRange(_slides.OfType<XtraTabPage>().ToArray());
@@ -106,13 +106,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnSelectedSlideChanged(object sender, TabPageChangedEventArgs e)
 		{
-			var prevTabPageContainer = e.PrevPage as IStarAppTabPageContainer;
-			if (prevTabPageContainer?.ContentControl != null)
-			{
-				var prevSlide = prevTabPageContainer?.ContentControl;
-				prevSlide?.ApplyChanges();
-			}
-
 			RaiseSlideTypeChanged();
 			RaiseOutputStatuesChanged();
 		}
@@ -143,7 +136,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override void ApplyChanges()
 		{
-			_slides.OfType<StarAppControl>().ToList().ForEach(s => s.ApplyChanges());
+			_slides
+				.OfType<IStarAppTabPageContainer>()
+				.Where(container => container.ContentControl != null)
+				.Select(container => container.ContentControl)
+				.ToList()
+				.ForEach(s => s.ApplyChanges());
 		}
 		#endregion
 

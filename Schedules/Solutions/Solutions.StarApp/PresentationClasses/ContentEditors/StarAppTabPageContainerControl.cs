@@ -5,13 +5,13 @@ using DevExpress.XtraTab;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
-	public partial class TabPageContainerControl<TStarAppControl> : XtraTabPage, IStarAppTabPageContainer where TStarAppControl : StarAppControl
+	public partial class StarAppTabPageContainerControl<TStarAppControl> : XtraTabPage, IStarAppTabPageContainer where TStarAppControl : StarAppControl
 	{
 		private TStarAppControl _contentControl;
 		private readonly BaseStarAppContainer _slideContainer;
 		public StarAppControl ContentControl => _contentControl;
 
-		public TabPageContainerControl(BaseStarAppContainer slideContainer)
+		public StarAppTabPageContainerControl(BaseStarAppContainer slideContainer)
 		{
 			_slideContainer = slideContainer;
 			InitializeComponent();

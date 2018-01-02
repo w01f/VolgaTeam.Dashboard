@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.Themes;
 using Asa.Common.GUI.Preview;
-using DevExpress.XtraTab;
 using Asa.Solutions.StarApp.PresentationClasses.Output;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
@@ -12,7 +11,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	[ToolboxItem(false)]
 	public partial class StarAppControl : UserControl, IStarAppSlide
 	{
-		protected BaseStarAppContainer SlideContainer { get; }
+		public BaseStarAppContainer SlideContainer { get; }
 
 		public virtual SlideType SlideType { get; }
 		public virtual bool ReadyForOutput { get; }

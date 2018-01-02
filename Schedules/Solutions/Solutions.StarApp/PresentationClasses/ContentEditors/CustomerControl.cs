@@ -26,8 +26,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			Resize += OnResize;
 
-			Text = SlideName;
-
 			comboBoxEditSlideHeader.EnableSelectAll();
 			comboBoxEditTabACombo1.EnableSelectAll();
 			comboBoxEditTabACombo2.EnableSelectAll();

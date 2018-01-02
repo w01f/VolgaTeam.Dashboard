@@ -53,10 +53,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabBClipart2.Properties.PictureAlignment =
 				SlideContainer.StarInfo.FishingConfiguration.PartBClipart2Configuration.Alignment;
 
-			comboBoxEditTabBCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.PartBCombo1Items);
-			comboBoxEditTabBCombo2.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.PartBCombo2Items);
-			comboBoxEditTabBCombo3.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.PartBCombo3Items);
-			comboBoxEditTabBCombo4.Properties.Items.AddRange(SlideContainer.StarInfo.FishingConfiguration.PartBCombo4Items);
+			comboBoxEditTabBCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList);
+			comboBoxEditTabBCombo2.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList);
+			comboBoxEditTabBCombo3.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList);
+			comboBoxEditTabBCombo4.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList);
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -68,16 +68,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
-
-			comboBoxEditTabBCombo1.EditValue =
-				SlideContainer.StarInfo.FishingConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo2.EditValue =
-				SlideContainer.StarInfo.FishingConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo3.EditValue =
-				SlideContainer.StarInfo.FishingConfiguration.PartBCombo3Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo4.EditValue =
-				SlideContainer.StarInfo.FishingConfiguration.PartBCombo4Items.FirstOrDefault(item => item.IsDefault);
-
 			_allowToSave = true;
 
 			LoadPartData();
@@ -140,6 +130,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			if (_allowToSave)
 				ApplyChanges();
 			LoadPartData();
+		}
+
+		private void OnTabbedGroupClick(object sender, EventArgs e)
+		{
+			labelFocusFake.Focus();
 		}
 
 		private void OnResize(object sender, EventArgs e)

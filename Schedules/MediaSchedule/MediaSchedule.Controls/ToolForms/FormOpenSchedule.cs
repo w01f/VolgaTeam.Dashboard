@@ -24,7 +24,7 @@ namespace Asa.Media.Controls.ToolForms
 		public FormOpenSchedule()
 		{
 			InitializeComponent();
-			barStaticItemLogo.Glyph = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? barStaticItemLogo.Glyph;
+			barStaticItemLogo.Glyph = BusinessObjects.Instance.ImageResourcesManager.FloaterLogo ?? barStaticItemLogo.Glyph;
 			barLargeButtonItemOpen.Glyph = BusinessObjects.Instance.ImageResourcesManager.HomeOpenSchedulePopupImage ?? barLargeButtonItemOpen.Glyph;
 			barLargeButtonItemDelete.Glyph = BusinessObjects.Instance.ImageResourcesManager.HomeDeleteSchedulePopupImage ?? barLargeButtonItemDelete.Glyph;
 			gridColumnRegularSchedulesLastModifiedDate.SortIndex = 0;

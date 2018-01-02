@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Xml;
+using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.Dashboard.Configuration;

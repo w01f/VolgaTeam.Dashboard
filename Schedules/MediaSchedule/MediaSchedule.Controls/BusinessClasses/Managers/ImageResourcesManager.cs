@@ -8,6 +8,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 	{
 		public Icon MainAppIcon { get; private set; }
 		public Image MainAppRibbonLogo { get; private set; }
+		public Image FloaterLogo { get; private set; }
 
 		#region Start Form
 		public Image StartFormBackgroundLogo { get; private set; }
@@ -159,9 +160,13 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			if (File.Exists(resourceFile))
 				MainAppIcon = new Icon(resourceFile);
 
-			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "branding_image.png");
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "app_logo.png");
 			if (File.Exists(resourceFile))
 				MainAppRibbonLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "branding_image.png");
+			if (File.Exists(resourceFile))
+				FloaterLogo = Image.FromFile(resourceFile);
 
 			#region Start Form
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "launch_brand_large.png");

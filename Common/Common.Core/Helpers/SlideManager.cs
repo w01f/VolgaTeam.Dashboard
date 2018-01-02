@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Xml;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -11,8 +9,6 @@ namespace Asa.Common.Core.Helpers
 {
 	public class SlideManager
 	{
-		public string TabTitle { get; private set; }
-		public Image RibbonBarLogo { get; private set; }
 		public List<SlideMaster> Slides { get; }
 
 		public SlideManager()
@@ -24,19 +20,6 @@ namespace Asa.Common.Core.Helpers
 		{
 			var storageDirectory = ResourceManager.Instance.SlideMastersFolder;
 			if (!storageDirectory.ExistsLocal()) return;
-
-			var titleConfigFile = Path.Combine(storageDirectory.LocalPath, "app_branding.xml");
-			if (File.Exists(titleConfigFile))
-			{
-				var titleConfig = new XmlDocument();
-				titleConfig.Load(titleConfigFile);
-				TabTitle = titleConfig.SelectSingleNode(@"/Settings/addslides/RibbonTab")?.InnerText;
-			}
-
-			var ribbonBarLogoFile = Path.Combine(storageDirectory.LocalPath, "app_logo.png");
-			if (File.Exists(ribbonBarLogoFile))
-				RibbonBarLogo = Image.FromFile(ribbonBarLogoFile);
-
 			LoadSlides(storageDirectory);
 		}
 

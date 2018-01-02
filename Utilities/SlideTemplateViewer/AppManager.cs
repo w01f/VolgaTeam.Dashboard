@@ -207,7 +207,7 @@ namespace Asa.SlideTemplateViewer
 		{
 			ShowFloater(null, new FloaterRequestedEventArgs
 			{
-				Logo = SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo,
+				Logo = ImageResourcesManager.FloaterLogo ?? Resources.AddSlidesLogo,
 				AfterShow = afterShow,
 				AfterBack = afterBack
 			});
@@ -216,7 +216,7 @@ namespace Asa.SlideTemplateViewer
 		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
 			var afterBack = new Action<bool>(b => ActivateMainForm());
-			_floater.ShowFloater(sender ?? FormMain.Instance, null, e.Logo ?? SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo, e.AfterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, null, e.Logo ?? ImageResourcesManager.FloaterLogo ?? Resources.AddSlidesLogo, e.AfterShow, null, afterBack);
 		}
 	}
 }

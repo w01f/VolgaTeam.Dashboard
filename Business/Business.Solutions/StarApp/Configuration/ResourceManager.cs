@@ -7,6 +7,10 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	{
 		public StorageFile SettingsFile { get; private set; }
 
+		public StorageFile DataUsersFile { get; private set; }
+		public StorageFile DataClientGoalsFile { get; private set; }
+		public StorageFile DataTargetCustomersFile { get; private set; }
+
 		#region Cleanslate
 		public StorageFile LogoCleanslateHeaderFile { get; private set; }
 		public StorageFile LogoCleanslateSplashFile { get; private set; }
@@ -227,6 +231,14 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public StorageFile LogoTab10SubCFooterFile { get; private set; }
 		public StorageFile LogoTab10SubDRightFile { get; private set; }
 		public StorageFile LogoTab10SubDFooterFile { get; private set; }
+
+		public StorageFile ClipartTab10SubA1File { get; private set; }
+		public StorageFile ClipartTab10SubB1File { get; private set; }
+		public StorageFile ClipartTab10SubB2File { get; private set; }
+		public StorageFile ClipartTab10SubB3File { get; private set; }
+		public StorageFile ClipartTab10SubC1File { get; private set; }
+		public StorageFile ClipartTab10SubC2File { get; private set; }
+		public StorageFile ClipartTab10SubD1File { get; private set; }
 		#endregion
 
 		#region Tab 11
@@ -245,6 +257,10 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public void Init(StorageDirectory dataFolder)
 		{
 			SettingsFile = new StorageFile(dataFolder.RelativePathParts.Merge("settings.xml"));
+
+			DataUsersFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Users.xml"));
+			DataClientGoalsFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Needs Analysis.xml"));
+			DataTargetCustomersFile = new StorageFile(Asa.Common.Core.Configuration.ResourceManager.Instance.DictionariesFolder.RelativePathParts.Merge("Target Customer.xml"));
 
 			#region Cleanslate
 			LogoCleanslateHeaderFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "00_star", "design_branding", "tab_1_header.png" }));
@@ -494,6 +510,17 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 			LogoTab10SubDRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_d", "design_branding", "10d_right.png" }));
 			LogoTab10SubDFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_d", "design_branding", "10d_footer.png" }));
+
+			ClipartTab10SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_a", "placeholders", "CP10AClipart1.png" }));
+
+			ClipartTab10SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_b", "placeholders", "CP10BClipart1.png" }));
+			ClipartTab10SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_b", "placeholders", "CP10BClipart2.png" }));
+			ClipartTab10SubB3File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_b", "placeholders", "CP10BClipart3.png" }));
+
+			ClipartTab10SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_c", "placeholders", "CP10CClipart1.png" }));
+			ClipartTab10SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_c", "placeholders", "CP10CClipart2.png" }));
+
+			ClipartTab10SubD1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "10_solution", "subtab_d", "placeholders", "CP10DClipart1.png" }));
 			#endregion
 
 			#region Tab 11

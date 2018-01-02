@@ -52,9 +52,9 @@ namespace Asa.SlideTemplateViewer
 			Text = AppManager.Instance.FormCaption;
 			Icon = AppManager.Instance.ImageResourcesManager.MainAppIcon ?? Icon;
 
-			ribbonTabItemSlides.Text = AppManager.Instance.TextResourcesManager.RibbonTabTitle ?? AppManager.Instance.SlideManager.TabTitle ?? ribbonTabItemSlides.Text;
+			ribbonTabItemSlides.Text = AppManager.Instance.TextResourcesManager.RibbonTabTitle ?? ribbonTabItemSlides.Text;
 			ribbonBarSlidesLogo.Text = Environment.UserName;
-			labelItemSlidesLogo.Image = AppManager.Instance.ImageResourcesManager.MainAppRibbonLogo ?? AppManager.Instance.SlideManager.RibbonBarLogo ?? Resources.AddSlidesLogo;
+			labelItemSlidesLogo.Image = AppManager.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Resources.AddSlidesLogo;
 			labelItemAppTitle.Text = AppManager.Instance.TextResourcesManager.RibbonTabTitle ?? labelItemAppTitle.Text;
 			itemContainerStatusBarMainInfo.RecalcSize();
 			barBottom.RecalcLayout();

@@ -2,22 +2,25 @@
 using System.Xml;
 using Asa.Common.Core.Objects.RemoteStorage;
 
-namespace Asa.Business.Solutions.Dashboard.Dictionaries
+namespace Asa.Business.Solutions.Common.Dictionaries
 {
 	public class TargetCustomersLists
 	{
+		public List<string> Headers { get; set; }
+		public List<string> Demos { get; set; }
+		public List<string> HHIs { get; set; }
+		public List<string> Geographies { get; set; }
+
+		public List<string> CombinedList { get; set; }
+
 		public TargetCustomersLists()
 		{
 			Headers = new List<string>();
 			Demos = new List<string>();
 			HHIs = new List<string>();
 			Geographies = new List<string>();
+			CombinedList = new List<string>();
 		}
-
-		public List<string> Headers { get; set; }
-		public List<string> Demos { get; set; }
-		public List<string> HHIs { get; set; }
-		public List<string> Geographies { get; set; }
 
 		public void Load(StorageFile dataFile)
 		{
@@ -80,6 +83,10 @@ namespace Asa.Business.Solutions.Dashboard.Dictionaries
 						break;
 				}
 			}
+
+			CombinedList.AddRange(Demos);
+			CombinedList.AddRange(HHIs);
+			CombinedList.AddRange(Geographies);
 		}
 	}
 }

@@ -2,7 +2,7 @@
 using System.Xml;
 using Asa.Common.Core.Objects.RemoteStorage;
 
-namespace Asa.Business.Solutions.Dashboard.Dictionaries
+namespace Asa.Business.Solutions.Common.Dictionaries
 {
 	public class ClientGoalsLists
 	{

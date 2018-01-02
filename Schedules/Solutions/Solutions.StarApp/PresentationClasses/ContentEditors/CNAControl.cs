@@ -50,11 +50,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabBClipart2.Properties.PictureAlignment =
 				SlideContainer.StarInfo.CNAConfiguration.PartBClipart2Configuration.Alignment;
 
-			comboBoxEditTabBCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.CNAConfiguration.PartBCombo1Items);
-			comboBoxEditTabBCombo2.Properties.Items.AddRange(SlideContainer.StarInfo.CNAConfiguration.PartBCombo2Items);
-			comboBoxEditTabBCombo3.Properties.Items.AddRange(SlideContainer.StarInfo.CNAConfiguration.PartBCombo3Items);
-			comboBoxEditTabBCombo4.Properties.Items.AddRange(SlideContainer.StarInfo.CNAConfiguration.PartBCombo4Items);
-			comboBoxEditTabBCombo5.Properties.Items.AddRange(SlideContainer.StarInfo.CNAConfiguration.PartBCombo5Items);
+			comboBoxEditTabBCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.ClientGoalsLists.Goals);
+			comboBoxEditTabBCombo2.Properties.Items.AddRange(SlideContainer.StarInfo.ClientGoalsLists.Goals);
+			comboBoxEditTabBCombo3.Properties.Items.AddRange(SlideContainer.StarInfo.ClientGoalsLists.Goals);
+			comboBoxEditTabBCombo4.Properties.Items.AddRange(SlideContainer.StarInfo.ClientGoalsLists.Goals);
+			comboBoxEditTabBCombo5.Properties.Items.AddRange(SlideContainer.StarInfo.ClientGoalsLists.Goals);
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -66,18 +66,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
-
-			comboBoxEditTabBCombo1.EditValue =
-				SlideContainer.StarInfo.CNAConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo2.EditValue =
-				SlideContainer.StarInfo.CNAConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo3.EditValue =
-				SlideContainer.StarInfo.CNAConfiguration.PartBCombo3Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo4.EditValue =
-				SlideContainer.StarInfo.CNAConfiguration.PartBCombo4Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo5.EditValue =
-				SlideContainer.StarInfo.CNAConfiguration.PartBCombo5Items.FirstOrDefault(item => item.IsDefault);
-
 			_allowToSave = true;
 
 			LoadPartData();
@@ -132,6 +120,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			if(_allowToSave)
 				ApplyChanges();
 			LoadPartData();
+		}
+
+		private void OnTabbedGroupClick(object sender, EventArgs e)
+		{
+			labelFocusFake.Focus();
 		}
 
 		private void OnResize(object sender, EventArgs e)

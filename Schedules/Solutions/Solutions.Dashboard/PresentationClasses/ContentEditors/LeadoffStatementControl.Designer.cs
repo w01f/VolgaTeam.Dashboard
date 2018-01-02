@@ -52,6 +52,7 @@
 			this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.item0 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
@@ -79,9 +80,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
 			this.SuspendLayout();
 			// 
+			// pictureEditSplash
+			// 
+			// 
 			// layoutControl
 			// 
-	        this.layoutControl.AllowCustomization = false;
+			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -119,7 +123,7 @@
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(12, 14);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(42, 29);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlideHeader.Properties.Appearance.Options.UseFont = true;
@@ -142,11 +146,11 @@
 			// 
 			this.memoEditA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditA.Location = new System.Drawing.Point(62, 92);
+			this.memoEditA.Location = new System.Drawing.Point(92, 122);
 			this.memoEditA.Name = "memoEditA";
 			this.memoEditA.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditA.Properties.Appearance.Options.UseFont = true;
-			this.memoEditA.Size = new System.Drawing.Size(726, 80);
+			this.memoEditA.Size = new System.Drawing.Size(666, 80);
 			this.memoEditA.StyleController = this.layoutControl;
 			this.memoEditA.TabIndex = 29;
 			this.memoEditA.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -155,11 +159,11 @@
 			// 
 			this.memoEditB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditB.Location = new System.Drawing.Point(62, 216);
+			this.memoEditB.Location = new System.Drawing.Point(92, 246);
 			this.memoEditB.Name = "memoEditB";
 			this.memoEditB.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditB.Properties.Appearance.Options.UseFont = true;
-			this.memoEditB.Size = new System.Drawing.Size(726, 80);
+			this.memoEditB.Size = new System.Drawing.Size(666, 80);
 			this.memoEditB.StyleController = this.layoutControl;
 			this.memoEditB.TabIndex = 30;
 			this.memoEditB.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
@@ -168,18 +172,18 @@
 			// 
 			this.memoEditC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditC.Location = new System.Drawing.Point(62, 340);
+			this.memoEditC.Location = new System.Drawing.Point(92, 370);
 			this.memoEditC.Name = "memoEditC";
 			this.memoEditC.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditC.Properties.Appearance.Options.UseFont = true;
-			this.memoEditC.Size = new System.Drawing.Size(726, 80);
+			this.memoEditC.Size = new System.Drawing.Size(666, 80);
 			this.memoEditC.StyleController = this.layoutControl;
 			this.memoEditC.TabIndex = 31;
 			this.memoEditC.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditA
 			// 
-			this.checkEditA.Location = new System.Drawing.Point(12, 92);
+			this.checkEditA.Location = new System.Drawing.Point(42, 122);
 			this.checkEditA.Name = "checkEditA";
 			this.checkEditA.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditA.Properties.AutoWidth = true;
@@ -191,7 +195,7 @@
 			// 
 			// checkEditB
 			// 
-			this.checkEditB.Location = new System.Drawing.Point(12, 216);
+			this.checkEditB.Location = new System.Drawing.Point(42, 246);
 			this.checkEditB.Name = "checkEditB";
 			this.checkEditB.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditB.Properties.AutoWidth = true;
@@ -203,7 +207,7 @@
 			// 
 			// checkEditC
 			// 
-			this.checkEditC.Location = new System.Drawing.Point(12, 340);
+			this.checkEditC.Location = new System.Drawing.Point(42, 370);
 			this.checkEditC.Name = "checkEditC";
 			this.checkEditC.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditC.Properties.AutoWidth = true;
@@ -257,11 +261,11 @@
 			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
 			this.layoutControlItemSlideHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemSlideHeader.FillControlToClientArea = false;
-			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(10, 0);
-			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 50);
-			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(40, 0);
+			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 80);
+			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
-			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSlideHeader.Text = "Slide Header";
 			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
@@ -271,9 +275,9 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(370, 0);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(400, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(330, 50);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(360, 80);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem2
@@ -283,18 +287,18 @@
 			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 50);
+			this.emptySpaceItem2.Size = new System.Drawing.Size(40, 80);
 			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItemMain
 			// 
 			this.emptySpaceItemMain.AllowHotTrack = false;
-			this.emptySpaceItemMain.Location = new System.Drawing.Point(10, 50);
+			this.emptySpaceItemMain.Location = new System.Drawing.Point(40, 80);
 			this.emptySpaceItemMain.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItemMain.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItemMain.Name = "emptySpaceItemMain";
-			this.emptySpaceItemMain.Size = new System.Drawing.Size(680, 40);
+			this.emptySpaceItemMain.Size = new System.Drawing.Size(720, 40);
 			this.emptySpaceItemMain.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItemMain.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -302,11 +306,11 @@
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
 			this.emptySpaceItem4.CustomizationFormText = "emptySpaceItem4";
-			this.emptySpaceItem4.Location = new System.Drawing.Point(10, 174);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(40, 204);
 			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(680, 40);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(720, 40);
 			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -315,11 +319,11 @@
 			this.layoutControlItemAValue.Control = this.memoEditA;
 			this.layoutControlItemAValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemAValue.CustomizationFormText = "A Value";
-			this.layoutControlItemAValue.Location = new System.Drawing.Point(60, 90);
+			this.layoutControlItemAValue.Location = new System.Drawing.Point(90, 120);
 			this.layoutControlItemAValue.MaxSize = new System.Drawing.Size(0, 84);
 			this.layoutControlItemAValue.MinSize = new System.Drawing.Size(14, 84);
 			this.layoutControlItemAValue.Name = "layoutControlItemAValue";
-			this.layoutControlItemAValue.Size = new System.Drawing.Size(730, 84);
+			this.layoutControlItemAValue.Size = new System.Drawing.Size(670, 84);
 			this.layoutControlItemAValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemAValue.Text = "A Value";
 			this.layoutControlItemAValue.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -332,11 +336,11 @@
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
 			this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem5";
-			this.emptySpaceItem5.Location = new System.Drawing.Point(10, 298);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(40, 328);
 			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(680, 40);
+			this.emptySpaceItem5.Size = new System.Drawing.Size(720, 40);
 			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -345,11 +349,11 @@
 			this.layoutControlItemBValue.Control = this.memoEditB;
 			this.layoutControlItemBValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemBValue.CustomizationFormText = "B Value";
-			this.layoutControlItemBValue.Location = new System.Drawing.Point(60, 214);
+			this.layoutControlItemBValue.Location = new System.Drawing.Point(90, 244);
 			this.layoutControlItemBValue.MaxSize = new System.Drawing.Size(0, 84);
 			this.layoutControlItemBValue.MinSize = new System.Drawing.Size(14, 84);
 			this.layoutControlItemBValue.Name = "layoutControlItemBValue";
-			this.layoutControlItemBValue.Size = new System.Drawing.Size(730, 84);
+			this.layoutControlItemBValue.Size = new System.Drawing.Size(670, 84);
 			this.layoutControlItemBValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemBValue.Text = "B Value";
 			this.layoutControlItemBValue.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -363,11 +367,11 @@
 			this.layoutControlItemCValue.Control = this.memoEditC;
 			this.layoutControlItemCValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemCValue.CustomizationFormText = "C Value";
-			this.layoutControlItemCValue.Location = new System.Drawing.Point(60, 338);
+			this.layoutControlItemCValue.Location = new System.Drawing.Point(90, 368);
 			this.layoutControlItemCValue.MaxSize = new System.Drawing.Size(0, 84);
 			this.layoutControlItemCValue.MinSize = new System.Drawing.Size(14, 84);
 			this.layoutControlItemCValue.Name = "layoutControlItemCValue";
-			this.layoutControlItemCValue.Size = new System.Drawing.Size(730, 84);
+			this.layoutControlItemCValue.Size = new System.Drawing.Size(670, 84);
 			this.layoutControlItemCValue.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemCValue.Text = "C Value";
 			this.layoutControlItemCValue.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -381,7 +385,7 @@
 			this.layoutControlItemAToggle.Control = this.checkEditA;
 			this.layoutControlItemAToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemAToggle.CustomizationFormText = "A Toggle";
-			this.layoutControlItemAToggle.Location = new System.Drawing.Point(10, 90);
+			this.layoutControlItemAToggle.Location = new System.Drawing.Point(40, 120);
 			this.layoutControlItemAToggle.MaxSize = new System.Drawing.Size(50, 0);
 			this.layoutControlItemAToggle.MinSize = new System.Drawing.Size(50, 1);
 			this.layoutControlItemAToggle.Name = "layoutControlItemAToggle";
@@ -399,7 +403,7 @@
 			this.layoutControlItemBToggle.Control = this.checkEditB;
 			this.layoutControlItemBToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemBToggle.CustomizationFormText = "B Toggle";
-			this.layoutControlItemBToggle.Location = new System.Drawing.Point(10, 214);
+			this.layoutControlItemBToggle.Location = new System.Drawing.Point(40, 244);
 			this.layoutControlItemBToggle.MaxSize = new System.Drawing.Size(50, 0);
 			this.layoutControlItemBToggle.MinSize = new System.Drawing.Size(50, 1);
 			this.layoutControlItemBToggle.Name = "layoutControlItemBToggle";
@@ -417,7 +421,7 @@
 			this.layoutControlItemCToggle.Control = this.checkEditC;
 			this.layoutControlItemCToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemCToggle.CustomizationFormText = "C Toggle";
-			this.layoutControlItemCToggle.Location = new System.Drawing.Point(10, 338);
+			this.layoutControlItemCToggle.Location = new System.Drawing.Point(40, 368);
 			this.layoutControlItemCToggle.MaxSize = new System.Drawing.Size(50, 0);
 			this.layoutControlItemCToggle.MinSize = new System.Drawing.Size(50, 1);
 			this.layoutControlItemCToggle.Name = "layoutControlItemCToggle";
@@ -434,20 +438,20 @@
 			// 
 			this.emptySpaceItem6.AllowHotTrack = false;
 			this.emptySpaceItem6.CustomizationFormText = "emptySpaceItem6";
-			this.emptySpaceItem6.Location = new System.Drawing.Point(10, 422);
+			this.emptySpaceItem6.Location = new System.Drawing.Point(40, 452);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(680, 244);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(720, 214);
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// item0
 			// 
 			this.item0.AllowHotTrack = false;
 			this.item0.CustomizationFormText = "item0";
-			this.item0.Location = new System.Drawing.Point(0, 50);
-			this.item0.MaxSize = new System.Drawing.Size(10, 0);
-			this.item0.MinSize = new System.Drawing.Size(10, 10);
+			this.item0.Location = new System.Drawing.Point(0, 80);
+			this.item0.MaxSize = new System.Drawing.Size(40, 0);
+			this.item0.MinSize = new System.Drawing.Size(40, 10);
 			this.item0.Name = "item0";
-			this.item0.Size = new System.Drawing.Size(10, 616);
+			this.item0.Size = new System.Drawing.Size(40, 586);
 			this.item0.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.item0.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -455,11 +459,11 @@
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
 			this.emptySpaceItem3.CustomizationFormText = "emptySpaceItem3";
-			this.emptySpaceItem3.Location = new System.Drawing.Point(690, 50);
-			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem3.Location = new System.Drawing.Point(760, 0);
+			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(40, 0);
+			this.emptySpaceItem3.MinSize = new System.Drawing.Size(40, 10);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(10, 616);
+			this.emptySpaceItem3.Size = new System.Drawing.Size(40, 666);
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -468,6 +472,9 @@
 			this.Controls.Add(this.layoutControl);
 			this.Name = "LeadoffStatementControl";
 			this.Size = new System.Drawing.Size(881, 666);
+			this.Controls.SetChildIndex(this.layoutControl, 0);
+			this.Controls.SetChildIndex(this.pictureEditSplash, 0);
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();

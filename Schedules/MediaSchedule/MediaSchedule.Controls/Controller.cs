@@ -362,7 +362,7 @@ namespace Asa.Media.Controls
 			{
 				AfterShow = afterShow,
 				AfterBack = afterBack,
-				Logo = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Properties.Resources.RibbonLogo
+				Logo = BusinessObjects.Instance.ImageResourcesManager.FloaterLogo ?? Properties.Resources.RibbonLogo
 			};
 			FloaterRequested?.Invoke(null, args);
 		}

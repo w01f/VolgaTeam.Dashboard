@@ -77,7 +77,6 @@
 			this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemDateValue = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemDateTitle = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem20 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupDecisionMaker = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemDecisionMakerLogo = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -98,6 +97,7 @@
 			this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.emptySpaceItem21 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupPaymentDetails = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemItemsContainer = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupInvestments = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -159,7 +159,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDateValue)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemDateTitle)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDecisionMaker)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDecisionMakerLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
@@ -180,6 +179,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupPaymentDetails)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemItemsContainer)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupInvestments)).BeginInit();
@@ -203,7 +203,7 @@
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(12, 9);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(42, 29);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlideHeader.Properties.Appearance.Options.UseFont = true;
@@ -269,14 +269,14 @@
 			this.layoutControl.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControl.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControl.Root = this.layoutControlGroupRoot;
-			this.layoutControl.Size = new System.Drawing.Size(800, 577);
+			this.layoutControl.Size = new System.Drawing.Size(800, 637);
 			this.layoutControl.TabIndex = 65;
 			this.layoutControl.Text = "layoutControl1";
 			// 
 			// checkEditFlightDates
 			// 
 			this.checkEditFlightDates.EditValue = true;
-			this.checkEditFlightDates.Location = new System.Drawing.Point(25, 427);
+			this.checkEditFlightDates.Location = new System.Drawing.Point(85, 462);
 			this.checkEditFlightDates.Name = "checkEditFlightDates";
 			this.checkEditFlightDates.Properties.Caption = "";
 			this.checkEditFlightDates.Size = new System.Drawing.Size(36, 19);
@@ -288,7 +288,7 @@
 			// 
 			this.dateEditFligtDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesEnd.EditValue = null;
-			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(469, 425);
+			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(529, 460);
 			this.dateEditFligtDatesEnd.Name = "dateEditFligtDatesEnd";
 			this.dateEditFligtDatesEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -315,7 +315,7 @@
 			// 
 			this.dateEditFligtDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesStart.EditValue = null;
-			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(319, 425);
+			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(379, 460);
 			this.dateEditFligtDatesStart.Name = "dateEditFligtDatesStart";
 			this.dateEditFligtDatesStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -342,7 +342,7 @@
 			// 
 			this.pictureEditFlightDates.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditFlightDates.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryFlightDates;
-			this.pictureEditFlightDates.Location = new System.Drawing.Point(63, 405);
+			this.pictureEditFlightDates.Location = new System.Drawing.Point(123, 440);
 			this.pictureEditFlightDates.Name = "pictureEditFlightDates";
 			this.pictureEditFlightDates.Properties.AllowFocused = false;
 			this.pictureEditFlightDates.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -360,7 +360,7 @@
 			// checkEditDate
 			// 
 			this.checkEditDate.EditValue = true;
-			this.checkEditDate.Location = new System.Drawing.Point(25, 323);
+			this.checkEditDate.Location = new System.Drawing.Point(85, 358);
 			this.checkEditDate.Name = "checkEditDate";
 			this.checkEditDate.Properties.Caption = "";
 			this.checkEditDate.Size = new System.Drawing.Size(36, 19);
@@ -371,7 +371,7 @@
 			// dateEditDate
 			// 
 			this.dateEditDate.EditValue = null;
-			this.dateEditDate.Location = new System.Drawing.Point(319, 318);
+			this.dateEditDate.Location = new System.Drawing.Point(379, 353);
 			this.dateEditDate.Name = "dateEditDate";
 			this.dateEditDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -398,7 +398,7 @@
 			// 
 			this.pictureEditDateLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDateLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryPresentationDate;
-			this.pictureEditDateLogo.Location = new System.Drawing.Point(63, 301);
+			this.pictureEditDateLogo.Location = new System.Drawing.Point(123, 336);
 			this.pictureEditDateLogo.Name = "pictureEditDateLogo";
 			this.pictureEditDateLogo.Properties.AllowFocused = false;
 			this.pictureEditDateLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -416,7 +416,7 @@
 			// checkEditDecisionMaker
 			// 
 			this.checkEditDecisionMaker.EditValue = true;
-			this.checkEditDecisionMaker.Location = new System.Drawing.Point(25, 219);
+			this.checkEditDecisionMaker.Location = new System.Drawing.Point(85, 254);
 			this.checkEditDecisionMaker.Name = "checkEditDecisionMaker";
 			this.checkEditDecisionMaker.Properties.Caption = "";
 			this.checkEditDecisionMaker.Size = new System.Drawing.Size(36, 19);
@@ -427,7 +427,7 @@
 			// checkEditAdvertiser
 			// 
 			this.checkEditAdvertiser.EditValue = true;
-			this.checkEditAdvertiser.Location = new System.Drawing.Point(25, 115);
+			this.checkEditAdvertiser.Location = new System.Drawing.Point(85, 150);
 			this.checkEditAdvertiser.Name = "checkEditAdvertiser";
 			this.checkEditAdvertiser.Properties.Caption = "";
 			this.checkEditAdvertiser.Size = new System.Drawing.Size(36, 19);
@@ -438,7 +438,7 @@
 			// comboBoxEditDecisionMaker
 			// 
 			this.comboBoxEditDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(319, 218);
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(379, 253);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
 			this.comboBoxEditDecisionMaker.OverrideTab = false;
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -465,7 +465,7 @@
 			// 
 			this.pictureEditDecisionMakerLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDecisionMakerLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryDecisionMaker;
-			this.pictureEditDecisionMakerLogo.Location = new System.Drawing.Point(63, 197);
+			this.pictureEditDecisionMakerLogo.Location = new System.Drawing.Point(123, 232);
 			this.pictureEditDecisionMakerLogo.Name = "pictureEditDecisionMakerLogo";
 			this.pictureEditDecisionMakerLogo.Properties.AllowFocused = false;
 			this.pictureEditDecisionMakerLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -482,7 +482,7 @@
 			// 
 			// comboBoxEditAdvertiser
 			// 
-			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(319, 114);
+			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(379, 149);
 			this.comboBoxEditAdvertiser.Name = "comboBoxEditAdvertiser";
 			this.comboBoxEditAdvertiser.OverrideTab = false;
 			this.comboBoxEditAdvertiser.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -507,7 +507,7 @@
 			// 
 			// checkEditMonthlyInvestment
 			// 
-			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(10, 525);
+			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(310, 590);
 			this.checkEditMonthlyInvestment.Name = "checkEditMonthlyInvestment";
 			this.checkEditMonthlyInvestment.Properties.AllowFocused = false;
 			this.checkEditMonthlyInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -523,7 +523,7 @@
 			// 
 			// checkEditTotalInvestment
 			// 
-			this.checkEditTotalInvestment.Location = new System.Drawing.Point(264, 525);
+			this.checkEditTotalInvestment.Location = new System.Drawing.Point(564, 590);
 			this.checkEditTotalInvestment.Name = "checkEditTotalInvestment";
 			this.checkEditTotalInvestment.Properties.AllowFocused = false;
 			this.checkEditTotalInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -544,7 +544,7 @@
             0,
             0,
             0});
-			this.spinEditMonthly.Location = new System.Drawing.Point(92, 515);
+			this.spinEditMonthly.Location = new System.Drawing.Point(392, 580);
 			this.spinEditMonthly.Name = "spinEditMonthly";
 			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true),
@@ -565,7 +565,7 @@
 			this.buttonXAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(635, 514);
+			this.buttonXAddItem.Location = new System.Drawing.Point(622, 19);
 			this.buttonXAddItem.Name = "buttonXAddItem";
 			this.buttonXAddItem.Size = new System.Drawing.Size(136, 41);
 			this.buttonXAddItem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -582,7 +582,7 @@
             0,
             0,
             0});
-			this.spinEditTotal.Location = new System.Drawing.Point(328, 515);
+			this.spinEditTotal.Location = new System.Drawing.Point(628, 580);
 			this.spinEditTotal.Name = "spinEditTotal";
 			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true),
@@ -601,7 +601,7 @@
 			// 
 			this.pictureEditAdvertiserLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditAdvertiserLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SummaryBusinessName;
-			this.pictureEditAdvertiserLogo.Location = new System.Drawing.Point(63, 93);
+			this.pictureEditAdvertiserLogo.Location = new System.Drawing.Point(123, 128);
 			this.pictureEditAdvertiserLogo.Name = "pictureEditAdvertiserLogo";
 			this.pictureEditAdvertiserLogo.Properties.AllowFocused = false;
 			this.pictureEditAdvertiserLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -619,10 +619,10 @@
 			// simpleSummaryItemContainer
 			// 
 			this.simpleSummaryItemContainer.BackColor = System.Drawing.Color.White;
-			this.simpleSummaryItemContainer.Location = new System.Drawing.Point(13, 73);
+			this.simpleSummaryItemContainer.Location = new System.Drawing.Point(43, 108);
 			this.simpleSummaryItemContainer.Name = "simpleSummaryItemContainer";
 			this.simpleSummaryItemContainer.SelectedIndex = -1;
-			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(757, 416);
+			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(714, 451);
 			this.simpleSummaryItemContainer.TabIndex = 1;
 			this.simpleSummaryItemContainer.TabStop = false;
 			// 
@@ -651,11 +651,12 @@
             this.emptySpaceItem5,
             this.emptySpaceItem23,
             this.emptySpaceItem24,
-            this.emptySpaceItem25});
-			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, -5);
+            this.emptySpaceItem25,
+            this.layoutControlItemAddItem});
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupRoot.Size = new System.Drawing.Size(783, 582);
+			this.layoutControlGroupRoot.Size = new System.Drawing.Size(800, 637);
 			this.layoutControlGroupRoot.TextVisible = false;
 			// 
 			// layoutControlItemSlideHeader
@@ -663,11 +664,11 @@
 			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
 			this.layoutControlItemSlideHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemSlideHeader.FillControlToClientArea = false;
-			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(10, 0);
-			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 50);
-			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(40, 0);
+			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 80);
+			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
-			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSlideHeader.Text = "Slide Header";
 			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
@@ -677,9 +678,9 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(370, 0);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(400, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(403, 50);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(220, 80);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// tabbedControlGroupData
@@ -694,12 +695,12 @@
 			this.tabbedControlGroupData.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
 			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Options.UseFont = true;
-			this.tabbedControlGroupData.Location = new System.Drawing.Point(10, 50);
+			this.tabbedControlGroupData.Location = new System.Drawing.Point(40, 80);
 			this.tabbedControlGroupData.Name = "tabbedControlGroupData";
 			this.tabbedControlGroupData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.tabbedControlGroupData.SelectedTabPage = this.layoutControlGroupBasicInfo;
 			this.tabbedControlGroupData.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupData.Size = new System.Drawing.Size(763, 447);
+			this.tabbedControlGroupData.Size = new System.Drawing.Size(720, 482);
 			this.tabbedControlGroupData.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupBasicInfo,
             this.layoutControlGroupPaymentDetails});
@@ -726,7 +727,6 @@
             this.layoutControlItemAdvertiserToggle,
             this.layoutControlGroupAdvertiser,
             this.layoutControlGroupDate,
-            this.emptySpaceItem20,
             this.layoutControlGroupDecisionMaker,
             this.layoutControlItemDecisionMakerToggle,
             this.layoutControlGroupFlightDates,
@@ -734,28 +734,29 @@
             this.layoutControlItemFlightDatesToggle,
             this.emptySpaceItem15,
             this.emptySpaceItem19,
-            this.emptySpaceItem21});
+            this.emptySpaceItem21,
+            this.emptySpaceItem2});
 			this.layoutControlGroupBasicInfo.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupBasicInfo.Name = "layoutControlGroupBasicInfo";
-			this.layoutControlGroupBasicInfo.Size = new System.Drawing.Size(757, 416);
+			this.layoutControlGroupBasicInfo.Size = new System.Drawing.Size(714, 451);
 			this.layoutControlGroupBasicInfo.Text = "Basic Info";
 			// 
 			// emptySpaceItem4
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(604, 20);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(634, 20);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(143, 64);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(70, 64);
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem6
 			// 
 			this.emptySpaceItem6.AllowHotTrack = false;
-			this.emptySpaceItem6.Location = new System.Drawing.Point(10, 0);
+			this.emptySpaceItem6.Location = new System.Drawing.Point(40, 0);
 			this.emptySpaceItem6.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItem6.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(737, 20);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(664, 20);
 			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -763,21 +764,21 @@
 			// 
 			this.emptySpaceItem7.AllowHotTrack = false;
 			this.emptySpaceItem7.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem7.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem7.MaxSize = new System.Drawing.Size(40, 0);
+			this.emptySpaceItem7.MinSize = new System.Drawing.Size(40, 10);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
-			this.emptySpaceItem7.Size = new System.Drawing.Size(10, 396);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(40, 396);
 			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem8
 			// 
 			this.emptySpaceItem8.AllowHotTrack = false;
-			this.emptySpaceItem8.Location = new System.Drawing.Point(747, 0);
+			this.emptySpaceItem8.Location = new System.Drawing.Point(704, 0);
 			this.emptySpaceItem8.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem8.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(10, 396);
+			this.emptySpaceItem8.Size = new System.Drawing.Size(10, 451);
 			this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -786,7 +787,7 @@
 			this.layoutControlItemAdvertiserToggle.Control = this.checkEditAdvertiser;
 			this.layoutControlItemAdvertiserToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemAdvertiserToggle.FillControlToClientArea = false;
-			this.layoutControlItemAdvertiserToggle.Location = new System.Drawing.Point(10, 20);
+			this.layoutControlItemAdvertiserToggle.Location = new System.Drawing.Point(40, 20);
 			this.layoutControlItemAdvertiserToggle.MaxSize = new System.Drawing.Size(40, 0);
 			this.layoutControlItemAdvertiserToggle.MinSize = new System.Drawing.Size(40, 1);
 			this.layoutControlItemAdvertiserToggle.Name = "layoutControlItemAdvertiserToggle";
@@ -805,7 +806,7 @@
             this.layoutControlItemAdvertiserValue,
             this.simpleLabelItemAdvertiserTitle,
             this.emptySpaceItem11});
-			this.layoutControlGroupAdvertiser.Location = new System.Drawing.Point(50, 20);
+			this.layoutControlGroupAdvertiser.Location = new System.Drawing.Point(80, 20);
 			this.layoutControlGroupAdvertiser.Name = "layoutControlGroupAdvertiser";
 			this.layoutControlGroupAdvertiser.Size = new System.Drawing.Size(554, 64);
 			this.layoutControlGroupAdvertiser.Text = "Advertiser";
@@ -881,9 +882,9 @@
             this.emptySpaceItem13,
             this.layoutControlItemDateValue,
             this.simpleLabelItemDateTitle});
-			this.layoutControlGroupDate.Location = new System.Drawing.Point(50, 228);
+			this.layoutControlGroupDate.Location = new System.Drawing.Point(80, 228);
 			this.layoutControlGroupDate.Name = "layoutControlGroupDate";
-			this.layoutControlGroupDate.Size = new System.Drawing.Size(697, 64);
+			this.layoutControlGroupDate.Size = new System.Drawing.Size(624, 64);
 			this.layoutControlGroupDate.Text = "Date";
 			this.layoutControlGroupDate.TextVisible = false;
 			// 
@@ -910,7 +911,7 @@
 			this.emptySpaceItem9.AllowHotTrack = false;
 			this.emptySpaceItem9.Location = new System.Drawing.Point(404, 0);
 			this.emptySpaceItem9.Name = "emptySpaceItem9";
-			this.emptySpaceItem9.Size = new System.Drawing.Size(293, 64);
+			this.emptySpaceItem9.Size = new System.Drawing.Size(220, 64);
 			this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem13
@@ -958,16 +959,6 @@
 			this.simpleLabelItemDateTitle.Text = "<size=+2>Presentation Date</size>";
 			this.simpleLabelItemDateTitle.TextSize = new System.Drawing.Size(126, 18);
 			// 
-			// emptySpaceItem20
-			// 
-			this.emptySpaceItem20.AllowHotTrack = false;
-			this.emptySpaceItem20.Location = new System.Drawing.Point(0, 396);
-			this.emptySpaceItem20.MinSize = new System.Drawing.Size(10, 20);
-			this.emptySpaceItem20.Name = "emptySpaceItem20";
-			this.emptySpaceItem20.Size = new System.Drawing.Size(757, 20);
-			this.emptySpaceItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// layoutControlGroupDecisionMaker
 			// 
 			this.layoutControlGroupDecisionMaker.GroupBordersVisible = false;
@@ -977,9 +968,9 @@
             this.layoutControlItemDecisionMakerValue,
             this.simpleLabelItemDecisionMakerTitle,
             this.emptySpaceItem14});
-			this.layoutControlGroupDecisionMaker.Location = new System.Drawing.Point(50, 124);
+			this.layoutControlGroupDecisionMaker.Location = new System.Drawing.Point(80, 124);
 			this.layoutControlGroupDecisionMaker.Name = "layoutControlGroupDecisionMaker";
-			this.layoutControlGroupDecisionMaker.Size = new System.Drawing.Size(697, 64);
+			this.layoutControlGroupDecisionMaker.Size = new System.Drawing.Size(624, 64);
 			this.layoutControlGroupDecisionMaker.Text = "Decision Maker";
 			this.layoutControlGroupDecisionMaker.TextVisible = false;
 			// 
@@ -1051,7 +1042,7 @@
 			this.emptySpaceItem14.AllowHotTrack = false;
 			this.emptySpaceItem14.Location = new System.Drawing.Point(554, 0);
 			this.emptySpaceItem14.Name = "emptySpaceItem14";
-			this.emptySpaceItem14.Size = new System.Drawing.Size(143, 64);
+			this.emptySpaceItem14.Size = new System.Drawing.Size(70, 64);
 			this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemDecisionMakerToggle
@@ -1059,7 +1050,7 @@
 			this.layoutControlItemDecisionMakerToggle.Control = this.checkEditDecisionMaker;
 			this.layoutControlItemDecisionMakerToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemDecisionMakerToggle.FillControlToClientArea = false;
-			this.layoutControlItemDecisionMakerToggle.Location = new System.Drawing.Point(10, 124);
+			this.layoutControlItemDecisionMakerToggle.Location = new System.Drawing.Point(40, 124);
 			this.layoutControlItemDecisionMakerToggle.MaxSize = new System.Drawing.Size(40, 0);
 			this.layoutControlItemDecisionMakerToggle.MinSize = new System.Drawing.Size(40, 1);
 			this.layoutControlItemDecisionMakerToggle.Name = "layoutControlItemDecisionMakerToggle";
@@ -1081,9 +1072,9 @@
             this.emptySpaceItem17,
             this.layoutControlItemFlightDatesEnd,
             this.simpleLabelItemFlightDatesTitle});
-			this.layoutControlGroupFlightDates.Location = new System.Drawing.Point(50, 332);
+			this.layoutControlGroupFlightDates.Location = new System.Drawing.Point(80, 332);
 			this.layoutControlGroupFlightDates.Name = "layoutControlGroupFlightDates";
-			this.layoutControlGroupFlightDates.Size = new System.Drawing.Size(697, 64);
+			this.layoutControlGroupFlightDates.Size = new System.Drawing.Size(624, 64);
 			this.layoutControlGroupFlightDates.Text = "Flight Dates";
 			this.layoutControlGroupFlightDates.TextVisible = false;
 			// 
@@ -1110,7 +1101,7 @@
 			this.emptySpaceItem18.AllowHotTrack = false;
 			this.emptySpaceItem18.Location = new System.Drawing.Point(534, 0);
 			this.emptySpaceItem18.Name = "emptySpaceItem18";
-			this.emptySpaceItem18.Size = new System.Drawing.Size(163, 64);
+			this.emptySpaceItem18.Size = new System.Drawing.Size(90, 64);
 			this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem16
@@ -1186,7 +1177,7 @@
 			this.layoutControlItemDateToggle.Control = this.checkEditDate;
 			this.layoutControlItemDateToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemDateToggle.FillControlToClientArea = false;
-			this.layoutControlItemDateToggle.Location = new System.Drawing.Point(10, 228);
+			this.layoutControlItemDateToggle.Location = new System.Drawing.Point(40, 228);
 			this.layoutControlItemDateToggle.MaxSize = new System.Drawing.Size(40, 0);
 			this.layoutControlItemDateToggle.MinSize = new System.Drawing.Size(40, 1);
 			this.layoutControlItemDateToggle.Name = "layoutControlItemDateToggle";
@@ -1202,7 +1193,7 @@
 			this.layoutControlItemFlightDatesToggle.Control = this.checkEditFlightDates;
 			this.layoutControlItemFlightDatesToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemFlightDatesToggle.FillControlToClientArea = false;
-			this.layoutControlItemFlightDatesToggle.Location = new System.Drawing.Point(10, 332);
+			this.layoutControlItemFlightDatesToggle.Location = new System.Drawing.Point(40, 332);
 			this.layoutControlItemFlightDatesToggle.MaxSize = new System.Drawing.Size(40, 0);
 			this.layoutControlItemFlightDatesToggle.MinSize = new System.Drawing.Size(40, 1);
 			this.layoutControlItemFlightDatesToggle.Name = "layoutControlItemFlightDatesToggle";
@@ -1216,35 +1207,45 @@
 			// emptySpaceItem15
 			// 
 			this.emptySpaceItem15.AllowHotTrack = false;
-			this.emptySpaceItem15.Location = new System.Drawing.Point(10, 84);
+			this.emptySpaceItem15.Location = new System.Drawing.Point(40, 84);
 			this.emptySpaceItem15.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem15.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem15.Name = "emptySpaceItem15";
-			this.emptySpaceItem15.Size = new System.Drawing.Size(737, 40);
+			this.emptySpaceItem15.Size = new System.Drawing.Size(664, 40);
 			this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem19
 			// 
 			this.emptySpaceItem19.AllowHotTrack = false;
-			this.emptySpaceItem19.Location = new System.Drawing.Point(10, 188);
+			this.emptySpaceItem19.Location = new System.Drawing.Point(40, 188);
 			this.emptySpaceItem19.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem19.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem19.Name = "emptySpaceItem19";
-			this.emptySpaceItem19.Size = new System.Drawing.Size(737, 40);
+			this.emptySpaceItem19.Size = new System.Drawing.Size(664, 40);
 			this.emptySpaceItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem21
 			// 
 			this.emptySpaceItem21.AllowHotTrack = false;
-			this.emptySpaceItem21.Location = new System.Drawing.Point(10, 292);
+			this.emptySpaceItem21.Location = new System.Drawing.Point(40, 292);
 			this.emptySpaceItem21.MaxSize = new System.Drawing.Size(0, 40);
 			this.emptySpaceItem21.MinSize = new System.Drawing.Size(10, 40);
 			this.emptySpaceItem21.Name = "emptySpaceItem21";
-			this.emptySpaceItem21.Size = new System.Drawing.Size(737, 40);
+			this.emptySpaceItem21.Size = new System.Drawing.Size(664, 40);
 			this.emptySpaceItem21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
+			// 
+			// emptySpaceItem2
+			// 
+			this.emptySpaceItem2.AllowHotTrack = false;
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 396);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem2.Name = "emptySpaceItem2";
+			this.emptySpaceItem2.Size = new System.Drawing.Size(704, 55);
+			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlGroupPaymentDetails
 			// 
@@ -1253,7 +1254,7 @@
 			this.layoutControlGroupPaymentDetails.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupPaymentDetails.Name = "layoutControlGroupPaymentDetails";
 			this.layoutControlGroupPaymentDetails.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupPaymentDetails.Size = new System.Drawing.Size(757, 416);
+			this.layoutControlGroupPaymentDetails.Size = new System.Drawing.Size(714, 451);
 			this.layoutControlGroupPaymentDetails.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupPaymentDetails.Text = "What are you Selling?";
 			// 
@@ -1265,7 +1266,7 @@
 			this.layoutControlItemItemsContainer.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemItemsContainer.Name = "layoutControlItemItemsContainer";
 			this.layoutControlItemItemsContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemItemsContainer.Size = new System.Drawing.Size(757, 416);
+			this.layoutControlItemItemsContainer.Size = new System.Drawing.Size(714, 451);
 			this.layoutControlItemItemsContainer.Text = "Items Container";
 			this.layoutControlItemItemsContainer.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemItemsContainer.TextVisible = false;
@@ -1279,14 +1280,13 @@
             this.emptySpaceItem3,
             this.layoutControlItemTotalInvestmentToggle,
             this.layoutControlItemTotalInvestementValue,
-            this.item1,
-            this.layoutControlItemAddItem,
             this.layoutControlItemMonthlyInvestmentToggle,
             this.emptySpaceItem22,
-            this.emptySpaceItem99});
-			this.layoutControlGroupInvestments.Location = new System.Drawing.Point(0, 497);
+            this.emptySpaceItem99,
+            this.item1});
+			this.layoutControlGroupInvestments.Location = new System.Drawing.Point(0, 562);
 			this.layoutControlGroupInvestments.Name = "layoutControlGroupInvestments";
-			this.layoutControlGroupInvestments.Size = new System.Drawing.Size(773, 65);
+			this.layoutControlGroupInvestments.Size = new System.Drawing.Size(760, 60);
 			this.layoutControlGroupInvestments.Text = "Investments";
 			this.layoutControlGroupInvestments.TextVisible = false;
 			this.layoutControlGroupInvestments.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1297,7 +1297,7 @@
 			this.layoutControlItemMonthlyInvestmentValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemMonthlyInvestmentValue.Enabled = false;
 			this.layoutControlItemMonthlyInvestmentValue.FillControlToClientArea = false;
-			this.layoutControlItemMonthlyInvestmentValue.Location = new System.Drawing.Point(30, 20);
+			this.layoutControlItemMonthlyInvestmentValue.Location = new System.Drawing.Point(330, 15);
 			this.layoutControlItemMonthlyInvestmentValue.MaxSize = new System.Drawing.Size(194, 0);
 			this.layoutControlItemMonthlyInvestmentValue.MinSize = new System.Drawing.Size(194, 5);
 			this.layoutControlItemMonthlyInvestmentValue.Name = "layoutControlItemMonthlyInvestmentValue";
@@ -1312,7 +1312,7 @@
 			// emptySpaceItem3
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(224, 20);
+			this.emptySpaceItem3.Location = new System.Drawing.Point(524, 15);
 			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(40, 0);
 			this.emptySpaceItem3.MinSize = new System.Drawing.Size(40, 1);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
@@ -1325,7 +1325,7 @@
 			this.layoutControlItemTotalInvestmentToggle.Control = this.checkEditTotalInvestment;
 			this.layoutControlItemTotalInvestmentToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
 			this.layoutControlItemTotalInvestmentToggle.FillControlToClientArea = false;
-			this.layoutControlItemTotalInvestmentToggle.Location = new System.Drawing.Point(264, 20);
+			this.layoutControlItemTotalInvestmentToggle.Location = new System.Drawing.Point(564, 15);
 			this.layoutControlItemTotalInvestmentToggle.MaxSize = new System.Drawing.Size(20, 0);
 			this.layoutControlItemTotalInvestmentToggle.MinSize = new System.Drawing.Size(20, 1);
 			this.layoutControlItemTotalInvestmentToggle.Name = "layoutControlItemTotalInvestmentToggle";
@@ -1344,7 +1344,7 @@
 			this.layoutControlItemTotalInvestementValue.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTotalInvestementValue.Enabled = false;
 			this.layoutControlItemTotalInvestementValue.FillControlToClientArea = false;
-			this.layoutControlItemTotalInvestementValue.Location = new System.Drawing.Point(284, 20);
+			this.layoutControlItemTotalInvestementValue.Location = new System.Drawing.Point(584, 15);
 			this.layoutControlItemTotalInvestementValue.MaxSize = new System.Drawing.Size(176, 0);
 			this.layoutControlItemTotalInvestementValue.MinSize = new System.Drawing.Size(176, 5);
 			this.layoutControlItemTotalInvestementValue.Name = "layoutControlItemTotalInvestementValue";
@@ -1359,9 +1359,9 @@
 			// item1
 			// 
 			this.item1.AllowHotTrack = false;
-			this.item1.Location = new System.Drawing.Point(460, 20);
+			this.item1.Location = new System.Drawing.Point(40, 15);
 			this.item1.Name = "item1";
-			this.item1.Size = new System.Drawing.Size(173, 45);
+			this.item1.Size = new System.Drawing.Size(270, 45);
 			this.item1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlItemAddItem
@@ -1369,23 +1369,24 @@
 			this.layoutControlItemAddItem.Control = this.buttonXAddItem;
 			this.layoutControlItemAddItem.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemAddItem.FillControlToClientArea = false;
-			this.layoutControlItemAddItem.Location = new System.Drawing.Point(633, 20);
+			this.layoutControlItemAddItem.Location = new System.Drawing.Point(620, 0);
 			this.layoutControlItemAddItem.MaxSize = new System.Drawing.Size(140, 45);
 			this.layoutControlItemAddItem.MinSize = new System.Drawing.Size(140, 45);
 			this.layoutControlItemAddItem.Name = "layoutControlItemAddItem";
-			this.layoutControlItemAddItem.Size = new System.Drawing.Size(140, 45);
+			this.layoutControlItemAddItem.Size = new System.Drawing.Size(140, 80);
 			this.layoutControlItemAddItem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemAddItem.Text = "Add Item";
 			this.layoutControlItemAddItem.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemAddItem.TextVisible = false;
 			this.layoutControlItemAddItem.TrimClientAreaToControl = false;
+			this.layoutControlItemAddItem.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 			// 
 			// layoutControlItemMonthlyInvestmentToggle
 			// 
 			this.layoutControlItemMonthlyInvestmentToggle.Control = this.checkEditMonthlyInvestment;
 			this.layoutControlItemMonthlyInvestmentToggle.ControlAlignment = System.Drawing.ContentAlignment.MiddleRight;
 			this.layoutControlItemMonthlyInvestmentToggle.FillControlToClientArea = false;
-			this.layoutControlItemMonthlyInvestmentToggle.Location = new System.Drawing.Point(10, 20);
+			this.layoutControlItemMonthlyInvestmentToggle.Location = new System.Drawing.Point(310, 15);
 			this.layoutControlItemMonthlyInvestmentToggle.MaxSize = new System.Drawing.Size(20, 0);
 			this.layoutControlItemMonthlyInvestmentToggle.MinSize = new System.Drawing.Size(20, 1);
 			this.layoutControlItemMonthlyInvestmentToggle.Name = "layoutControlItemMonthlyInvestmentToggle";
@@ -1400,11 +1401,11 @@
 			// emptySpaceItem22
 			// 
 			this.emptySpaceItem22.AllowHotTrack = false;
-			this.emptySpaceItem22.Location = new System.Drawing.Point(0, 20);
-			this.emptySpaceItem22.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem22.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem22.Location = new System.Drawing.Point(0, 15);
+			this.emptySpaceItem22.MaxSize = new System.Drawing.Size(40, 0);
+			this.emptySpaceItem22.MinSize = new System.Drawing.Size(40, 10);
 			this.emptySpaceItem22.Name = "emptySpaceItem22";
-			this.emptySpaceItem22.Size = new System.Drawing.Size(10, 45);
+			this.emptySpaceItem22.Size = new System.Drawing.Size(40, 45);
 			this.emptySpaceItem22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1412,21 +1413,21 @@
 			// 
 			this.emptySpaceItem99.AllowHotTrack = false;
 			this.emptySpaceItem99.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem99.MaxSize = new System.Drawing.Size(0, 20);
-			this.emptySpaceItem99.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem99.MaxSize = new System.Drawing.Size(0, 15);
+			this.emptySpaceItem99.MinSize = new System.Drawing.Size(10, 15);
 			this.emptySpaceItem99.Name = "emptySpaceItem99";
-			this.emptySpaceItem99.Size = new System.Drawing.Size(773, 20);
+			this.emptySpaceItem99.Size = new System.Drawing.Size(760, 15);
 			this.emptySpaceItem99.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem99.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem5
 			// 
 			this.emptySpaceItem5.AllowHotTrack = false;
-			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 562);
-			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(0, 20);
-			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 20);
+			this.emptySpaceItem5.Location = new System.Drawing.Point(0, 622);
+			this.emptySpaceItem5.MaxSize = new System.Drawing.Size(0, 15);
+			this.emptySpaceItem5.MinSize = new System.Drawing.Size(10, 15);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(773, 20);
+			this.emptySpaceItem5.Size = new System.Drawing.Size(760, 15);
 			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1437,29 +1438,29 @@
 			this.emptySpaceItem23.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem23.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem23.Name = "emptySpaceItem23";
-			this.emptySpaceItem23.Size = new System.Drawing.Size(10, 50);
+			this.emptySpaceItem23.Size = new System.Drawing.Size(40, 80);
 			this.emptySpaceItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem24
 			// 
 			this.emptySpaceItem24.AllowHotTrack = false;
-			this.emptySpaceItem24.Location = new System.Drawing.Point(0, 50);
-			this.emptySpaceItem24.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem24.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem24.Location = new System.Drawing.Point(0, 80);
+			this.emptySpaceItem24.MaxSize = new System.Drawing.Size(40, 0);
+			this.emptySpaceItem24.MinSize = new System.Drawing.Size(40, 10);
 			this.emptySpaceItem24.Name = "emptySpaceItem24";
-			this.emptySpaceItem24.Size = new System.Drawing.Size(10, 447);
+			this.emptySpaceItem24.Size = new System.Drawing.Size(40, 482);
 			this.emptySpaceItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem25
 			// 
 			this.emptySpaceItem25.AllowHotTrack = false;
-			this.emptySpaceItem25.Location = new System.Drawing.Point(773, 0);
-			this.emptySpaceItem25.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem25.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem25.Location = new System.Drawing.Point(760, 0);
+			this.emptySpaceItem25.MaxSize = new System.Drawing.Size(40, 0);
+			this.emptySpaceItem25.MinSize = new System.Drawing.Size(40, 10);
 			this.emptySpaceItem25.Name = "emptySpaceItem25";
-			this.emptySpaceItem25.Size = new System.Drawing.Size(10, 582);
+			this.emptySpaceItem25.Size = new System.Drawing.Size(40, 637);
 			this.emptySpaceItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem25.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -1468,7 +1469,7 @@
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.layoutControl);
 			this.Name = "SimpleSummaryControl";
-			this.Size = new System.Drawing.Size(987, 577);
+			this.Size = new System.Drawing.Size(987, 637);
 			this.Controls.SetChildIndex(this.layoutControl, 0);
 			this.Controls.SetChildIndex(this.pictureEditSplash, 0);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditSplash.Properties)).EndInit();
@@ -1516,7 +1517,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDateValue)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemDateTitle)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDecisionMaker)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDecisionMakerLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
@@ -1537,6 +1537,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupPaymentDetails)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemItemsContainer)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupInvestments)).EndInit();
@@ -1621,7 +1622,6 @@
 		private DevExpress.XtraLayout.EmptySpaceItem item1;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemAddItem;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMonthlyInvestmentToggle;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem20;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem22;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem23;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem24;
@@ -1638,5 +1638,6 @@
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem15;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem19;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem21;
+		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 	}
 }

@@ -515,6 +515,16 @@ namespace Asa.Media.Single
 
 		private void OnFormMainClosing(object sender, FormClosingEventArgs e)
 		{
+			using (var form = new FormExitConfirmation())
+			{
+				form.Text = PopupMessageHelper.Instance.Title;
+				if (form.ShowDialog(this) != DialogResult.OK)
+				{
+					e.Cancel = true;
+					return;
+				}
+			}
+
 			var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.AppClosing };
 			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
 				Controller.Instance.ContentController.ActiveEditor,
@@ -558,7 +568,7 @@ namespace Asa.Media.Single
 				formSender ?? this,
 				new FloaterRequestedEventArgs
 				{
-					Logo = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Resources.RibbonLogo
+					Logo = BusinessObjects.Instance.ImageResourcesManager.FloaterLogo ?? Resources.RibbonLogo
 				});
 		}
 

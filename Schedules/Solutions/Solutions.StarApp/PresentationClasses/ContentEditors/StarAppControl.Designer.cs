@@ -28,16 +28,31 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.labelFocusFake = new System.Windows.Forms.Label();
 			this.SuspendLayout();
+			// 
+			// labelFocusFake
+			// 
+			this.labelFocusFake.AutoSize = true;
+			this.labelFocusFake.Location = new System.Drawing.Point(-100, -100);
+			this.labelFocusFake.Name = "labelFocusFake";
+			this.labelFocusFake.Size = new System.Drawing.Size(35, 13);
+			this.labelFocusFake.TabIndex = 0;
+			this.labelFocusFake.Text = "label1";
 			// 
 			// StarAppControl
 			// 
+			this.Controls.Add(this.labelFocusFake);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "StarAppControl";
 			this.Size = new System.Drawing.Size(997, 512);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
+
+		public System.Windows.Forms.Label labelFocusFake;
 	}
 }

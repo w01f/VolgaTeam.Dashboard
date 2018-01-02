@@ -14,7 +14,6 @@ using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
-using DevExpress.Skins;
 
 namespace Asa.Media.Controls.PresentationClasses.Slides
 {
@@ -25,17 +24,13 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		public bool IsActive { get; set; }
 		public string Identifier => ContentIdentifiers.Slides;
 		public bool RequreScheduleInfo => false;
-		public bool ShowScheduleInfo => true;
+		public bool ShowScheduleInfo => false;
 		public RibbonTabItem TabPage => Controller.Instance.TabSlides;
 
 		public MediaSlidesControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
-
-			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
-			simpleLabelItemSlideSize.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSlideSize.MaxSize, scaleFactor);
-			simpleLabelItemSlideSize.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSlideSize.MinSize, scaleFactor);
 		}
 
 		private void LoadSlides()
@@ -45,8 +40,6 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 				pnMain.Controls.Remove(_slideContainer);
 				_slideContainer.Dispose();
 			}
-
-			simpleLabelItemSlideSize.Text = string.Format("<size=+4>Slide Size: {0}</size>", SlideSettingsManager.Instance.SlideSettings.SizeFormatted);
 
 			_slideContainer = new SlidesContainerControl();
 			_slideContainer.BackColor = BackColor;
@@ -64,7 +57,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 
 		public void InitControl()
 		{
-			Controller.Instance.SlidesLogoLabel.Image = BusinessObjects.Instance.SlideManager.RibbonBarLogo ?? Controller.Instance.SlidesLogoLabel.Image;
+			Controller.Instance.SlidesLogoLabel.Image = BusinessObjects.Instance.ImageResourcesManager.MainAppRibbonLogo ?? Controller.Instance.SlidesLogoLabel.Image;
 			Controller.Instance.SlidesLogoBar.RecalcLayout();
 			Controller.Instance.SlidesPanel.PerformLayout();
 

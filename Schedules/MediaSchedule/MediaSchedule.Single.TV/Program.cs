@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Asa.Business.Media.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
-using Asa.Media.Controls.InteropClasses;
 
 namespace Asa.Media.Single.TV
 {
@@ -17,8 +16,7 @@ namespace Asa.Media.Single.TV
 		private static void Main()
 		{
 			bool firstInstance;
-			const string uniqueIdentifier = "Local\\TVSellerApplication";
-			var mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			var mutex = new Mutex(false, "Local\\TVSellerApplication", out firstInstance);
 			if (firstInstance)
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += SharedAssemblyHelper.OnAssemblyResolve;

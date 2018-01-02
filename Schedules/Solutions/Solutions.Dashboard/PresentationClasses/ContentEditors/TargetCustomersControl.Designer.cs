@@ -77,7 +77,7 @@
 			// 
 			// layoutControl
 			// 
-	        this.layoutControl.AllowCustomization = false;
+			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -112,7 +112,7 @@
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(12, 14);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(42, 29);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlideHeader.Properties.Appearance.Options.UseFont = true;
@@ -140,10 +140,10 @@
 			this.checkedListBoxControlTargetDemo.CheckOnClick = true;
 			this.checkedListBoxControlTargetDemo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.checkedListBoxControlTargetDemo.ItemHeight = 30;
-			this.checkedListBoxControlTargetDemo.Location = new System.Drawing.Point(13, 78);
+			this.checkedListBoxControlTargetDemo.Location = new System.Drawing.Point(43, 109);
 			this.checkedListBoxControlTargetDemo.Name = "checkedListBoxControlTargetDemo";
 			this.checkedListBoxControlTargetDemo.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(774, 548);
+			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(614, 517);
 			this.checkedListBoxControlTargetDemo.StyleController = this.layoutControl;
 			this.checkedListBoxControlTargetDemo.TabIndex = 2;
 			this.checkedListBoxControlTargetDemo.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.OnCheckedListBoxControlItemCheck);
@@ -157,10 +157,10 @@
 			this.checkedListBoxControlHouseholdIncome.CheckOnClick = true;
 			this.checkedListBoxControlHouseholdIncome.Cursor = System.Windows.Forms.Cursors.Default;
 			this.checkedListBoxControlHouseholdIncome.ItemHeight = 30;
-			this.checkedListBoxControlHouseholdIncome.Location = new System.Drawing.Point(13, 78);
+			this.checkedListBoxControlHouseholdIncome.Location = new System.Drawing.Point(43, 109);
 			this.checkedListBoxControlHouseholdIncome.Name = "checkedListBoxControlHouseholdIncome";
 			this.checkedListBoxControlHouseholdIncome.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlHouseholdIncome.Size = new System.Drawing.Size(774, 548);
+			this.checkedListBoxControlHouseholdIncome.Size = new System.Drawing.Size(614, 517);
 			this.checkedListBoxControlHouseholdIncome.StyleController = this.layoutControl;
 			this.checkedListBoxControlHouseholdIncome.TabIndex = 1;
 			this.checkedListBoxControlHouseholdIncome.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.OnCheckedListBoxControlItemCheck);
@@ -174,10 +174,10 @@
 			this.checkedListBoxControlGeographicResidence.CheckOnClick = true;
 			this.checkedListBoxControlGeographicResidence.Cursor = System.Windows.Forms.Cursors.Default;
 			this.checkedListBoxControlGeographicResidence.ItemHeight = 30;
-			this.checkedListBoxControlGeographicResidence.Location = new System.Drawing.Point(13, 78);
+			this.checkedListBoxControlGeographicResidence.Location = new System.Drawing.Point(43, 109);
 			this.checkedListBoxControlGeographicResidence.Name = "checkedListBoxControlGeographicResidence";
 			this.checkedListBoxControlGeographicResidence.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlGeographicResidence.Size = new System.Drawing.Size(774, 548);
+			this.checkedListBoxControlGeographicResidence.Size = new System.Drawing.Size(614, 517);
 			this.checkedListBoxControlGeographicResidence.StyleController = this.layoutControl;
 			this.checkedListBoxControlGeographicResidence.TabIndex = 1;
 			this.checkedListBoxControlGeographicResidence.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.OnCheckedListBoxControlItemCheck);
@@ -218,11 +218,11 @@
 			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
 			this.layoutControlItemSlideHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemSlideHeader.FillControlToClientArea = false;
-			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(10, 0);
-			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 50);
-			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(40, 0);
+			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 80);
+			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
-			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSlideHeader.Text = "Slide Header";
 			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
@@ -232,19 +232,19 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(370, 0);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(400, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(420, 50);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(260, 80);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem2
 			// 
 			this.emptySpaceItem2.AllowHotTrack = false;
 			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(40, 0);
+			this.emptySpaceItem2.MinSize = new System.Drawing.Size(40, 10);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 50);
+			this.emptySpaceItem2.Size = new System.Drawing.Size(40, 80);
 			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -261,12 +261,12 @@
 			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Options.UseFont = true;
 			this.tabbedControlGroupData.CustomizationFormText = "Data";
-			this.tabbedControlGroupData.Location = new System.Drawing.Point(10, 50);
+			this.tabbedControlGroupData.Location = new System.Drawing.Point(40, 80);
 			this.tabbedControlGroupData.Name = "tabbedControlGroupData";
 			this.tabbedControlGroupData.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.tabbedControlGroupData.SelectedTabPage = this.layoutControlGroupTargetDemo;
 			this.tabbedControlGroupData.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupData.Size = new System.Drawing.Size(780, 579);
+			this.tabbedControlGroupData.Size = new System.Drawing.Size(620, 549);
 			this.tabbedControlGroupData.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupTargetDemo,
             this.layoutControlGroupHouseholdIncome,
@@ -280,7 +280,7 @@
             this.layoutControlItemTargetDemo});
 			this.layoutControlGroupTargetDemo.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTargetDemo.Name = "layoutControlGroupTargetDemo";
-			this.layoutControlGroupTargetDemo.Size = new System.Drawing.Size(774, 548);
+			this.layoutControlGroupTargetDemo.Size = new System.Drawing.Size(614, 517);
 			this.layoutControlGroupTargetDemo.Text = "Target Demo";
 			// 
 			// layoutControlItemTargetDemo
@@ -291,7 +291,7 @@
 			this.layoutControlItemTargetDemo.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemTargetDemo.Name = "layoutControlItemTargetDemo";
 			this.layoutControlItemTargetDemo.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTargetDemo.Size = new System.Drawing.Size(774, 548);
+			this.layoutControlItemTargetDemo.Size = new System.Drawing.Size(614, 517);
 			this.layoutControlItemTargetDemo.Text = "Target Demo";
 			this.layoutControlItemTargetDemo.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTargetDemo.TextSize = new System.Drawing.Size(0, 0);
@@ -306,7 +306,7 @@
             this.layoutControlItemHouseholdIncome});
 			this.layoutControlGroupHouseholdIncome.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupHouseholdIncome.Name = "layoutControlGroupHouseholdIncome";
-			this.layoutControlGroupHouseholdIncome.Size = new System.Drawing.Size(774, 548);
+			this.layoutControlGroupHouseholdIncome.Size = new System.Drawing.Size(614, 517);
 			this.layoutControlGroupHouseholdIncome.Text = "Household Income";
 			// 
 			// layoutControlItemHouseholdIncome
@@ -317,7 +317,7 @@
 			this.layoutControlItemHouseholdIncome.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemHouseholdIncome.Name = "layoutControlItemHouseholdIncome";
 			this.layoutControlItemHouseholdIncome.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemHouseholdIncome.Size = new System.Drawing.Size(774, 548);
+			this.layoutControlItemHouseholdIncome.Size = new System.Drawing.Size(614, 517);
 			this.layoutControlItemHouseholdIncome.Text = "Household Income";
 			this.layoutControlItemHouseholdIncome.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemHouseholdIncome.TextVisible = false;
@@ -330,7 +330,7 @@
             this.layoutControlItemGeographicResidence});
 			this.layoutControlGroupGeographicResidence.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupGeographicResidence.Name = "layoutControlGroupGeographicResidence";
-			this.layoutControlGroupGeographicResidence.Size = new System.Drawing.Size(774, 548);
+			this.layoutControlGroupGeographicResidence.Size = new System.Drawing.Size(614, 517);
 			this.layoutControlGroupGeographicResidence.Text = "Geographic Residence";
 			// 
 			// layoutControlItemGeographicResidence
@@ -341,7 +341,7 @@
 			this.layoutControlItemGeographicResidence.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemGeographicResidence.Name = "layoutControlItemGeographicResidence";
 			this.layoutControlItemGeographicResidence.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemGeographicResidence.Size = new System.Drawing.Size(774, 548);
+			this.layoutControlItemGeographicResidence.Size = new System.Drawing.Size(614, 517);
 			this.layoutControlItemGeographicResidence.Text = "Geographic Residence";
 			this.layoutControlItemGeographicResidence.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemGeographicResidence.TextVisible = false;
@@ -351,33 +351,33 @@
 			// 
 			this.emptySpaceItem3.AllowHotTrack = false;
 			this.emptySpaceItem3.CustomizationFormText = "emptySpaceItem3";
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 50);
+			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 80);
 			this.emptySpaceItem3.MaxSize = new System.Drawing.Size(10, 0);
 			this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(10, 599);
+			this.emptySpaceItem3.Size = new System.Drawing.Size(40, 569);
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItemMain
 			// 
 			this.emptySpaceItemMain.AllowHotTrack = false;
-			this.emptySpaceItemMain.Location = new System.Drawing.Point(10, 629);
+			this.emptySpaceItemMain.Location = new System.Drawing.Point(40, 629);
 			this.emptySpaceItemMain.MaxSize = new System.Drawing.Size(0, 20);
 			this.emptySpaceItemMain.MinSize = new System.Drawing.Size(10, 20);
 			this.emptySpaceItemMain.Name = "emptySpaceItemMain";
-			this.emptySpaceItemMain.Size = new System.Drawing.Size(780, 20);
+			this.emptySpaceItemMain.Size = new System.Drawing.Size(620, 20);
 			this.emptySpaceItemMain.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItemMain.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// emptySpaceItem4
 			// 
 			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(790, 0);
-			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 10);
+			this.emptySpaceItem4.Location = new System.Drawing.Point(660, 0);
+			this.emptySpaceItem4.MaxSize = new System.Drawing.Size(140, 0);
+			this.emptySpaceItem4.MinSize = new System.Drawing.Size(140, 10);
 			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(10, 649);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(140, 649);
 			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 

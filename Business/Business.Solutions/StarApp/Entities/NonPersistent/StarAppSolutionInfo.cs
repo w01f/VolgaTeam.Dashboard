@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Xml;
+using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.StarApp.Configuration;
@@ -13,6 +14,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 	public class StarAppSolutionInfo : BaseSolutionInfo
 	{
 		public TitlesConfiguration Titles { get; } = new TitlesConfiguration();
+
+		public Users UsersList { get; }
+		public ClientGoalsLists ClientGoalsLists { get; }
+		public TargetCustomersLists TargetCustomersLists { get; }
 
 		#region Cleanslate
 		public Image CleanslateHeaderLogo { get; private set; }
@@ -202,7 +207,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		#endregion
 
 		#region Tab 10
-		public SolutionLists SolutionLists { get; }
+		public SolutionConfiguration SolutionConfiguration { get; }
 
 		public Image Tab10SubARightLogo { get; private set; }
 		public Image Tab10SubAFooterLogo { get; private set; }
@@ -212,6 +217,17 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab10SubCFooterLogo { get; private set; }
 		public Image Tab10SubDRightLogo { get; private set; }
 		public Image Tab10SubDFooterLogo { get; private set; }
+
+		public Image Tab10SubAClipart1Image { get; private set; }
+
+		public Image Tab10SubBClipart1Image { get; private set; }
+		public Image Tab10SubBClipart2Image { get; private set; }
+		public Image Tab10SubBClipart3Image { get; private set; }
+
+		public Image Tab10SubCClipart1Image { get; private set; }
+		public Image Tab10SubCClipart2Image { get; private set; }
+
+		public Image Tab10SubDClipart1Image { get; private set; }
 		#endregion
 
 		#region Tab 11
@@ -229,6 +245,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		{
 			Type = SolutionType.StarApp;
 
+			UsersList = new Users();
+			ClientGoalsLists = new ClientGoalsLists();
+			TargetCustomersLists = new TargetCustomersLists();
+
 			CoverConfiguration = new CoverConfiguration();
 			CNAConfiguration = new CNAConfiguration();
 			FishingConfiguration = new FishingConfiguration();
@@ -238,7 +258,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			MarketConfiguration = new MarketConfiguration();
 			VideoConfiguration = new VideoConfiguration();
 			AudienceConfiguration = new AudienceConfiguration();
-			SolutionLists = new SolutionLists();
+			SolutionConfiguration = new SolutionConfiguration();
 			ClosersLists = new ClosersLists();
 		}
 
@@ -265,6 +285,10 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			}
 
 			Titles.Load(resourceManager.SettingsFile);
+
+			UsersList.Load(resourceManager.DataUsersFile);
+			ClientGoalsLists.Load(resourceManager.DataClientGoalsFile);
+			TargetCustomersLists.Load(resourceManager.DataTargetCustomersFile);
 
 			#region Cleanslate
 			CleanslateHeaderLogo = resourceManager.LogoCleanslateHeaderFile.ExistsLocal()
@@ -695,7 +719,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			#endregion
 
 			#region Tab 10
-			SolutionLists.Load(resourceManager);
+			SolutionConfiguration.Load(resourceManager);
 
 			Tab10SubARightLogo = resourceManager.LogoTab10SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab10SubARightFile.LocalPath)
@@ -720,6 +744,31 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab10SubDFooterLogo = resourceManager.LogoTab10SubDFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab10SubDFooterFile.LocalPath)
+				: null;
+
+			Tab10SubAClipart1Image = resourceManager.ClipartTab10SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab10SubA1File.LocalPath)
+				: null;
+
+			Tab10SubBClipart1Image = resourceManager.ClipartTab10SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab10SubB1File.LocalPath)
+				: null;
+			Tab10SubBClipart2Image = resourceManager.ClipartTab10SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab10SubB2File.LocalPath)
+				: null;
+			Tab10SubBClipart3Image = resourceManager.ClipartTab10SubB3File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab10SubB3File.LocalPath)
+				: null;
+
+			Tab10SubCClipart1Image = resourceManager.ClipartTab10SubC1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab10SubC1File.LocalPath)
+				: null;
+			Tab10SubCClipart2Image = resourceManager.ClipartTab10SubC2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab10SubC2File.LocalPath)
+				: null;
+
+			Tab10SubDClipart1Image = resourceManager.ClipartTab10SubD1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab10SubD1File.LocalPath)
 				: null;
 			#endregion
 

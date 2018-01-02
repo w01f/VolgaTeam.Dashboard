@@ -38,7 +38,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditClipart1.Properties.PictureAlignment =
 				SlideContainer.StarInfo.CoverConfiguration.PartAClipart1Configuration.Alignment;
 
-			comboBoxEditCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.PartACombo1Items);
+			comboBoxEditCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
+
+			dateEditCalendar1.DateTime = DateTime.Today;
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -57,7 +59,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
 			comboBoxEditCombo1.EditValue =
-				SlideContainer.StarInfo.CoverConfiguration.PartACombo1Items.FirstOrDefault(item => item.IsDefault);
+				SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name).FirstOrDefault();
 
 			_allowToSave = true;
 
@@ -104,6 +106,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				ApplyChanges();
 
 			LoadPartData();
+		}
+
+		private void OnTabbedGroupClick(object sender, EventArgs e)
+		{
+			labelFocusFake.Focus();
 		}
 
 		private void OnCalendar1ToggleCheckedChanged(object sender, EventArgs e)

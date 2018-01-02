@@ -197,7 +197,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		private void OnSelectedTabPageChanged(object sender, LayoutTabPageChangedEventArgs e)
 		{
-			layoutControlGroupInvestments.Visibility = e.Page == layoutControlGroupPaymentDetails ? LayoutVisibility.Always : LayoutVisibility.Never;
+			layoutControlGroupInvestments.Visibility =
+				layoutControlItemAddItem.Visibility =
+				e.Page == layoutControlGroupPaymentDetails ? LayoutVisibility.Always : LayoutVisibility.Never;
 		}
 
 		private void OnAddItemClick(object sender, EventArgs e)

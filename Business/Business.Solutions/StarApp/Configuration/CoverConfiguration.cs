@@ -8,14 +8,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	public class CoverConfiguration
 	{
 		public List<SlideHeader> HeaderPartAItems { get; }
-		public List<ComboboxItem> PartACombo1Items { get; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public string SubHeader1DefaultValue { get; private set; }
 
 		public CoverConfiguration()
 		{
 			HeaderPartAItems = new List<SlideHeader>();
-			PartACombo1Items = new List<ComboboxItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
 		}
 
@@ -37,13 +35,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								var item = SlideHeader.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeaderPartAItems.Add(item);
-							}
-							break;
-						case "CP01ACombo1":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartACombo1Items.Add(item);
 							}
 							break;
 						case "CP01ASubheader1":

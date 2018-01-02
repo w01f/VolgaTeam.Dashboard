@@ -253,7 +253,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Business\Business.Common\Business.Common.csproj">
-      <Project>{ccfad4da-48c4-454b-930d-6a81d2626e76}</Project>
+      <Project>{CCFAD4DA-48C4-454B-930D-6A81D2626E76}</Project>
       <Name>Business.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Business\Business.Solutions\Business.Solutions.csproj">

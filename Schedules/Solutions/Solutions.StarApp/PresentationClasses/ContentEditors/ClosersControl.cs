@@ -105,6 +105,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			LoadPartData();
 		}
 
+		private void OnTabbedGroupClick(object sender, EventArgs e)
+		{
+			labelFocusFake.Focus();
+		}
+
 		private void OnResize(object sender, EventArgs e)
 		{
 			panelLogoRight.Visible = panelLogoBottom.Visible = Width > 1000;

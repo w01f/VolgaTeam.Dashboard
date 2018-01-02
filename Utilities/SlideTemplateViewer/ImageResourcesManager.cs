@@ -8,6 +8,7 @@ namespace Asa.SlideTemplateViewer
 	{
 		public Icon MainAppIcon { get; private set; }
 		public Image MainAppRibbonLogo { get; private set; }
+		public Image FloaterLogo { get; private set; }
 
 		#region Common Ribbon Resources
 		public Image RibbonOutputImage { get; private set; }
@@ -33,9 +34,13 @@ namespace Asa.SlideTemplateViewer
 			if (File.Exists(resourceFile))
 				MainAppIcon = new Icon(resourceFile);
 
-			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "branding_image.png");
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "app_logo.png");
 			if (File.Exists(resourceFile))
 				MainAppRibbonLogo = Image.FromFile(resourceFile);
+
+			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "branding_image.png");
+			if (File.Exists(resourceFile))
+				FloaterLogo = Image.FromFile(resourceFile);
 
 			#region Common Ribbon Resources
 			resourceFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, "ribbon_output.png");

@@ -10,11 +10,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 
 		public List<SlideHeader> HeadersPartBItems { get; set; }
-		public List<ComboboxItem> PartBCombo1Items { get; }
-		public List<ComboboxItem> PartBCombo2Items { get; }
-		public List<ComboboxItem> PartBCombo3Items { get; }
-		public List<ComboboxItem> PartBCombo4Items { get; }
-		public List<ComboboxItem> PartBCombo5Items { get; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
 
@@ -24,11 +19,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			PartAClipart1Configuration = new ClipartConfiguration();
 
 			HeadersPartBItems = new List<SlideHeader>();
-			PartBCombo1Items = new List<ComboboxItem>();
-			PartBCombo2Items = new List<ComboboxItem>();
-			PartBCombo3Items = new List<ComboboxItem>();
-			PartBCombo4Items = new List<ComboboxItem>();
-			PartBCombo5Items = new List<ComboboxItem>();
 			PartBClipart1Configuration = new ClipartConfiguration();
 			PartBClipart2Configuration = new ClipartConfiguration();
 		}
@@ -75,41 +65,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								var item = SlideHeader.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartBItems.Add(item);
-							}
-							break;
-						case "CP02BCombo1":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo1Items.Add(item);
-							}
-							break;
-						case "CP02BCombo2":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo2Items.Add(item);
-							}
-							break;
-						case "CP02BCombo3":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo3Items.Add(item);
-							}
-							break;
-						case "CP02BCombo4":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo4Items.Add(item);
-							}
-							break;
-						case "CP02BCombo5":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartBCombo5Items.Add(item);
 							}
 							break;
 					}

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition59 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition14 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition15 = new DevExpress.XtraLayout.RowDefinition();
@@ -284,6 +283,7 @@
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition149 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition150 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition151 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition152 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition145 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition146 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition147 = new DevExpress.XtraLayout.RowDefinition();
@@ -299,6 +299,13 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition157 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition158 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition159 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition117 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition118 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition119 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition120 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition121 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition122 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition137 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition123 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition124 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition125 = new DevExpress.XtraLayout.ColumnDefinition();
@@ -317,31 +324,24 @@
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition136 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition137 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition138 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition139 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition140 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition140 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition141 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition142 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition143 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition144 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition141 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition142 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition139 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition140 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition141 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition142 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition143 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition117 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition118 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition119 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition120 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition121 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition122 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.RowDefinition rowDefinition137 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition143 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition144 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition145 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition146 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition147 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition148 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition144 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition152 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition153 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition154 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition155 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition160 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition161 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition162 = new DevExpress.XtraLayout.RowDefinition();
@@ -357,9 +357,9 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition172 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition173 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition174 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition155 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition156 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition157 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition158 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition175 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition176 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition177 = new DevExpress.XtraLayout.RowDefinition();
@@ -375,9 +375,9 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition187 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition188 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition189 = new DevExpress.XtraLayout.RowDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition158 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition159 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition160 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition161 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition190 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition191 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition192 = new DevExpress.XtraLayout.RowDefinition();
@@ -393,7 +393,7 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition202 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition203 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition204 = new DevExpress.XtraLayout.RowDefinition();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.layoutControlMain = new DevExpress.XtraLayout.LayoutControl();
 			this.panelTabBContentContainer = new System.Windows.Forms.Panel();
 			this.layoutControlTabB = new DevExpress.XtraLayout.LayoutControl();
@@ -811,7 +811,6 @@
 			this.layoutControlGroupRootMain = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.tabbedControlGroupData = new DevExpress.XtraLayout.TabbedControlGroup();
 			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlGroupTabAGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -853,14 +852,6 @@
 			this.layoutControlItemTabAClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabAClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabAClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlGroupTabAGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemTabAGroup4Toggle = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlGroupTabAGroup4Inner = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.layoutControlItemTabASubheader10 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.simpleLabelItemTabAGroup4Title = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.layoutControlItemTabASubheader11 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.simpleLabelItemTabAFormula1 = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupTabAGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlGroupTabAGroup5Inner = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabASubheader12 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -869,7 +860,14 @@
 			this.simpleLabelItemTabAFormula2 = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemTabAGroup2Toggle2 = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
+			this.layoutControlGroupTabAGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemTabAGroup4Toggle = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlGroupTabAGroup4Inner = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemTabASubheader10 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.simpleLabelItemTabAGroup4Title = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.layoutControlItemTabASubheader11 = new DevExpress.XtraLayout.LayoutControlItem();
+			this.simpleLabelItemTabAFormula1 = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupTabB = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabBClipart1 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemTabBClipart2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -1314,7 +1312,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup1)).BeginInit();
@@ -1356,14 +1353,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAGroup4Toggle)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4Inner)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader10)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAGroup4Title)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader11)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup5Inner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader12)).BeginInit();
@@ -1372,7 +1361,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAGroup2Toggle2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAGroup4Toggle)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4Inner)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader10)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAGroup4Title)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader11)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart2)).BeginInit();
@@ -1414,7 +1410,7 @@
 			// 
 			// layoutControlMain
 			// 
-	        this.layoutControlMain.AllowCustomization = false;
+			this.layoutControlMain.AllowCustomization = false;
 			this.layoutControlMain.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlMain.Appearance.Control.Options.UseFont = true;
 			this.layoutControlMain.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -1469,11 +1465,10 @@
 			this.layoutControlMain.Controls.Add(this.panelTabDContentContainer);
 			this.layoutControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControlMain.ForeColor = System.Drawing.Color.Black;
-			this.layoutControlMain.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroupTabAGroup4});
 			this.layoutControlMain.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlMain.Name = "layoutControlMain";
 			this.layoutControlMain.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(-832, 177, 522, 671);
+			this.layoutControlMain.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControlMain.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControlMain.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControlMain.OptionsFocus.AllowFocusTabbedGroups = false;
@@ -1486,14 +1481,14 @@
 			// panelTabBContentContainer
 			// 
 			this.panelTabBContentContainer.Controls.Add(this.layoutControlTabB);
-			this.panelTabBContentContainer.Location = new System.Drawing.Point(159, 117);
+			this.panelTabBContentContainer.Location = new System.Drawing.Point(220, 147);
 			this.panelTabBContentContainer.Name = "panelTabBContentContainer";
-			this.panelTabBContentContainer.Size = new System.Drawing.Size(661, 480);
+			this.panelTabBContentContainer.Size = new System.Drawing.Size(609, 450);
 			this.panelTabBContentContainer.TabIndex = 1;
 			// 
 			// layoutControlTabB
 			// 
-	        this.layoutControlTabB.AllowCustomization = false;
+			this.layoutControlTabB.AllowCustomization = false;
 			this.layoutControlTabB.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabB.Appearance.Control.Options.UseFont = true;
 			this.layoutControlTabB.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -1550,11 +1545,12 @@
 			this.layoutControlTabB.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlTabB.Name = "layoutControlTabB";
 			this.layoutControlTabB.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(-729, 294, 689, 522);
+			this.layoutControlTabB.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControlTabB.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControlTabB.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControlTabB.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControlTabB.Root = this.layoutControlGroupTabBInner;
-			this.layoutControlTabB.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlTabB.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlTabB.StyleController = this.styleController;
 			this.layoutControlTabB.TabIndex = 71;
 			this.layoutControlTabB.Text = "layoutControl1";
@@ -1576,24 +1572,24 @@
 			this.textEditTabBSubheader1.Location = new System.Drawing.Point(85, 2);
 			this.textEditTabBSubheader1.Name = "textEditTabBSubheader1";
 			this.textEditTabBSubheader1.Properties.NullText = "Type here";
-			this.textEditTabBSubheader1.Size = new System.Drawing.Size(305, 22);
+			this.textEditTabBSubheader1.Size = new System.Drawing.Size(262, 22);
 			this.textEditTabBSubheader1.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader1.TabIndex = 1;
 			// 
 			// textEditTabBSubheader2
 			// 
-			this.textEditTabBSubheader2.Location = new System.Drawing.Point(404, 2);
+			this.textEditTabBSubheader2.Location = new System.Drawing.Point(361, 2);
 			this.textEditTabBSubheader2.Name = "textEditTabBSubheader2";
-			this.textEditTabBSubheader2.Size = new System.Drawing.Size(99, 22);
+			this.textEditTabBSubheader2.Size = new System.Drawing.Size(85, 22);
 			this.textEditTabBSubheader2.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader2.TabIndex = 1;
 			this.textEditTabBSubheader2.EditValueChanged += new System.EventHandler(this.OnTabBFormulaSourceEditValueChanged);
 			// 
 			// textEditTabBSubheader3
 			// 
-			this.textEditTabBSubheader3.Location = new System.Drawing.Point(517, 2);
+			this.textEditTabBSubheader3.Location = new System.Drawing.Point(460, 2);
 			this.textEditTabBSubheader3.Name = "textEditTabBSubheader3";
-			this.textEditTabBSubheader3.Size = new System.Drawing.Size(125, 22);
+			this.textEditTabBSubheader3.Size = new System.Drawing.Size(107, 22);
 			this.textEditTabBSubheader3.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader3.TabIndex = 1;
 			// 
@@ -1614,24 +1610,24 @@
 			this.textEditTabBSubheader4.Location = new System.Drawing.Point(85, 56);
 			this.textEditTabBSubheader4.Name = "textEditTabBSubheader4";
 			this.textEditTabBSubheader4.Properties.NullText = "Type here";
-			this.textEditTabBSubheader4.Size = new System.Drawing.Size(305, 22);
+			this.textEditTabBSubheader4.Size = new System.Drawing.Size(262, 22);
 			this.textEditTabBSubheader4.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader4.TabIndex = 1;
 			// 
 			// textEditTabBSubheader5
 			// 
-			this.textEditTabBSubheader5.Location = new System.Drawing.Point(404, 56);
+			this.textEditTabBSubheader5.Location = new System.Drawing.Point(361, 56);
 			this.textEditTabBSubheader5.Name = "textEditTabBSubheader5";
-			this.textEditTabBSubheader5.Size = new System.Drawing.Size(99, 22);
+			this.textEditTabBSubheader5.Size = new System.Drawing.Size(85, 22);
 			this.textEditTabBSubheader5.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader5.TabIndex = 1;
 			this.textEditTabBSubheader5.EditValueChanged += new System.EventHandler(this.OnTabBFormulaSourceEditValueChanged);
 			// 
 			// textEditTabBSubheader6
 			// 
-			this.textEditTabBSubheader6.Location = new System.Drawing.Point(517, 56);
+			this.textEditTabBSubheader6.Location = new System.Drawing.Point(460, 56);
 			this.textEditTabBSubheader6.Name = "textEditTabBSubheader6";
-			this.textEditTabBSubheader6.Size = new System.Drawing.Size(125, 22);
+			this.textEditTabBSubheader6.Size = new System.Drawing.Size(107, 22);
 			this.textEditTabBSubheader6.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader6.TabIndex = 1;
 			// 
@@ -1652,26 +1648,26 @@
 			this.textEditTabBSubheader7.Location = new System.Drawing.Point(85, 110);
 			this.textEditTabBSubheader7.Name = "textEditTabBSubheader7";
 			this.textEditTabBSubheader7.Properties.NullText = "Type here";
-			this.textEditTabBSubheader7.Size = new System.Drawing.Size(131, 22);
+			this.textEditTabBSubheader7.Size = new System.Drawing.Size(112, 22);
 			this.textEditTabBSubheader7.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader7.TabIndex = 11;
 			// 
 			// textEditTabBSubheader8
 			// 
-			this.textEditTabBSubheader8.Location = new System.Drawing.Point(230, 110);
+			this.textEditTabBSubheader8.Location = new System.Drawing.Point(211, 110);
 			this.textEditTabBSubheader8.Name = "textEditTabBSubheader8";
 			this.textEditTabBSubheader8.Properties.NullText = "Type here";
-			this.textEditTabBSubheader8.Size = new System.Drawing.Size(104, 22);
+			this.textEditTabBSubheader8.Size = new System.Drawing.Size(89, 22);
 			this.textEditTabBSubheader8.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader8.TabIndex = 12;
 			this.textEditTabBSubheader8.EditValueChanged += new System.EventHandler(this.OnTabBFormulaSourceEditValueChanged);
 			// 
 			// textEditTabBSubheader9
 			// 
-			this.textEditTabBSubheader9.Location = new System.Drawing.Point(348, 110);
+			this.textEditTabBSubheader9.Location = new System.Drawing.Point(314, 110);
 			this.textEditTabBSubheader9.Name = "textEditTabBSubheader9";
 			this.textEditTabBSubheader9.Properties.NullText = "Type here";
-			this.textEditTabBSubheader9.Size = new System.Drawing.Size(294, 22);
+			this.textEditTabBSubheader9.Size = new System.Drawing.Size(253, 22);
 			this.textEditTabBSubheader9.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader9.TabIndex = 13;
 			// 
@@ -1692,26 +1688,26 @@
 			this.textEditTabBSubheader10.Location = new System.Drawing.Point(85, 164);
 			this.textEditTabBSubheader10.Name = "textEditTabBSubheader10";
 			this.textEditTabBSubheader10.Properties.NullText = "Type here";
-			this.textEditTabBSubheader10.Size = new System.Drawing.Size(131, 22);
+			this.textEditTabBSubheader10.Size = new System.Drawing.Size(112, 22);
 			this.textEditTabBSubheader10.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader10.TabIndex = 11;
 			// 
 			// textEditTabBSubheader11
 			// 
-			this.textEditTabBSubheader11.Location = new System.Drawing.Point(230, 164);
+			this.textEditTabBSubheader11.Location = new System.Drawing.Point(211, 164);
 			this.textEditTabBSubheader11.Name = "textEditTabBSubheader11";
 			this.textEditTabBSubheader11.Properties.NullText = "Type here";
-			this.textEditTabBSubheader11.Size = new System.Drawing.Size(104, 22);
+			this.textEditTabBSubheader11.Size = new System.Drawing.Size(89, 22);
 			this.textEditTabBSubheader11.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader11.TabIndex = 12;
 			this.textEditTabBSubheader11.EditValueChanged += new System.EventHandler(this.OnTabBFormulaSourceEditValueChanged);
 			// 
 			// textEditTabBSubheader12
 			// 
-			this.textEditTabBSubheader12.Location = new System.Drawing.Point(348, 164);
+			this.textEditTabBSubheader12.Location = new System.Drawing.Point(314, 164);
 			this.textEditTabBSubheader12.Name = "textEditTabBSubheader12";
 			this.textEditTabBSubheader12.Properties.NullText = "Type here";
-			this.textEditTabBSubheader12.Size = new System.Drawing.Size(294, 22);
+			this.textEditTabBSubheader12.Size = new System.Drawing.Size(253, 22);
 			this.textEditTabBSubheader12.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader12.TabIndex = 13;
 			// 
@@ -1732,16 +1728,16 @@
 			this.textEditTabBSubheader13.Location = new System.Drawing.Point(85, 218);
 			this.textEditTabBSubheader13.Name = "textEditTabBSubheader13";
 			this.textEditTabBSubheader13.Properties.NullText = "Type here";
-			this.textEditTabBSubheader13.Size = new System.Drawing.Size(131, 22);
+			this.textEditTabBSubheader13.Size = new System.Drawing.Size(112, 22);
 			this.textEditTabBSubheader13.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader13.TabIndex = 15;
 			// 
 			// textEditTabBSubheader14
 			// 
-			this.textEditTabBSubheader14.Location = new System.Drawing.Point(348, 218);
+			this.textEditTabBSubheader14.Location = new System.Drawing.Point(314, 218);
 			this.textEditTabBSubheader14.Name = "textEditTabBSubheader14";
 			this.textEditTabBSubheader14.Properties.NullText = "Type here";
-			this.textEditTabBSubheader14.Size = new System.Drawing.Size(294, 22);
+			this.textEditTabBSubheader14.Size = new System.Drawing.Size(253, 22);
 			this.textEditTabBSubheader14.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader14.TabIndex = 16;
 			// 
@@ -1750,7 +1746,7 @@
 			this.textEditTabBSubheader15.Location = new System.Drawing.Point(85, 272);
 			this.textEditTabBSubheader15.Name = "textEditTabBSubheader15";
 			this.textEditTabBSubheader15.Properties.NullText = "Type here";
-			this.textEditTabBSubheader15.Size = new System.Drawing.Size(389, 22);
+			this.textEditTabBSubheader15.Size = new System.Drawing.Size(336, 22);
 			this.textEditTabBSubheader15.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader15.TabIndex = 18;
 			// 
@@ -1783,26 +1779,26 @@
 			this.textEditTabBSubheader16.Location = new System.Drawing.Point(85, 326);
 			this.textEditTabBSubheader16.Name = "textEditTabBSubheader16";
 			this.textEditTabBSubheader16.Properties.NullText = "Type here";
-			this.textEditTabBSubheader16.Size = new System.Drawing.Size(131, 22);
+			this.textEditTabBSubheader16.Size = new System.Drawing.Size(112, 22);
 			this.textEditTabBSubheader16.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader16.TabIndex = 11;
 			// 
 			// textEditTabBSubheader17
 			// 
-			this.textEditTabBSubheader17.Location = new System.Drawing.Point(230, 326);
+			this.textEditTabBSubheader17.Location = new System.Drawing.Point(211, 326);
 			this.textEditTabBSubheader17.Name = "textEditTabBSubheader17";
 			this.textEditTabBSubheader17.Properties.NullText = "Type here";
-			this.textEditTabBSubheader17.Size = new System.Drawing.Size(104, 22);
+			this.textEditTabBSubheader17.Size = new System.Drawing.Size(89, 22);
 			this.textEditTabBSubheader17.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader17.TabIndex = 12;
 			this.textEditTabBSubheader17.EditValueChanged += new System.EventHandler(this.OnTabBFormulaSourceEditValueChanged);
 			// 
 			// textEditTabBSubheader18
 			// 
-			this.textEditTabBSubheader18.Location = new System.Drawing.Point(348, 326);
+			this.textEditTabBSubheader18.Location = new System.Drawing.Point(314, 326);
 			this.textEditTabBSubheader18.Name = "textEditTabBSubheader18";
 			this.textEditTabBSubheader18.Properties.NullText = "Type here";
-			this.textEditTabBSubheader18.Size = new System.Drawing.Size(294, 22);
+			this.textEditTabBSubheader18.Size = new System.Drawing.Size(253, 22);
 			this.textEditTabBSubheader18.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader18.TabIndex = 13;
 			// 
@@ -1823,16 +1819,16 @@
 			this.textEditTabBSubheader19.Location = new System.Drawing.Point(85, 380);
 			this.textEditTabBSubheader19.Name = "textEditTabBSubheader19";
 			this.textEditTabBSubheader19.Properties.NullText = "Type here";
-			this.textEditTabBSubheader19.Size = new System.Drawing.Size(131, 22);
+			this.textEditTabBSubheader19.Size = new System.Drawing.Size(112, 22);
 			this.textEditTabBSubheader19.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader19.TabIndex = 15;
 			// 
 			// textEditTabBSubheader20
 			// 
-			this.textEditTabBSubheader20.Location = new System.Drawing.Point(348, 380);
+			this.textEditTabBSubheader20.Location = new System.Drawing.Point(314, 380);
 			this.textEditTabBSubheader20.Name = "textEditTabBSubheader20";
 			this.textEditTabBSubheader20.Properties.NullText = "Type here";
-			this.textEditTabBSubheader20.Size = new System.Drawing.Size(294, 22);
+			this.textEditTabBSubheader20.Size = new System.Drawing.Size(253, 22);
 			this.textEditTabBSubheader20.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader20.TabIndex = 16;
 			// 
@@ -1841,7 +1837,7 @@
 			this.textEditTabBSubheader21.Location = new System.Drawing.Point(85, 434);
 			this.textEditTabBSubheader21.Name = "textEditTabBSubheader21";
 			this.textEditTabBSubheader21.Properties.NullText = "Type here";
-			this.textEditTabBSubheader21.Size = new System.Drawing.Size(389, 22);
+			this.textEditTabBSubheader21.Size = new System.Drawing.Size(336, 22);
 			this.textEditTabBSubheader21.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader21.TabIndex = 18;
 			// 
@@ -1862,7 +1858,7 @@
 			this.textEditTabBSubheader22.Location = new System.Drawing.Point(85, 488);
 			this.textEditTabBSubheader22.Name = "textEditTabBSubheader22";
 			this.textEditTabBSubheader22.Properties.NullText = "Type here";
-			this.textEditTabBSubheader22.Size = new System.Drawing.Size(389, 22);
+			this.textEditTabBSubheader22.Size = new System.Drawing.Size(336, 22);
 			this.textEditTabBSubheader22.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader22.TabIndex = 18;
 			// 
@@ -1907,7 +1903,7 @@
 			this.textEditTabBSubheader24.Location = new System.Drawing.Point(108, 583);
 			this.textEditTabBSubheader24.Name = "textEditTabBSubheader24";
 			this.textEditTabBSubheader24.Properties.NullText = "Type here";
-			this.textEditTabBSubheader24.Size = new System.Drawing.Size(148, 22);
+			this.textEditTabBSubheader24.Size = new System.Drawing.Size(111, 22);
 			this.textEditTabBSubheader24.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader24.TabIndex = 22;
 			this.textEditTabBSubheader24.EditValueChanged += new System.EventHandler(this.OnTabBFormulaSourceEditValueChanged);
@@ -1917,7 +1913,7 @@
 			this.textEditTabBSubheader23.Location = new System.Drawing.Point(85, 542);
 			this.textEditTabBSubheader23.Name = "textEditTabBSubheader23";
 			this.textEditTabBSubheader23.Properties.NullText = "Type here";
-			this.textEditTabBSubheader23.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabBSubheader23.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabBSubheader23.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader23.TabIndex = 20;
 			// 
@@ -1925,7 +1921,7 @@
 			// 
 			this.checkEditTabBSubheader25.AutoSizeInLayoutControl = true;
 			this.checkEditTabBSubheader25.EditValue = true;
-			this.checkEditTabBSubheader25.Location = new System.Drawing.Point(390, 584);
+			this.checkEditTabBSubheader25.Location = new System.Drawing.Point(353, 584);
 			this.checkEditTabBSubheader25.Name = "checkEditTabBSubheader25";
 			this.checkEditTabBSubheader25.Properties.Caption = "";
 			this.checkEditTabBSubheader25.Size = new System.Drawing.Size(19, 19);
@@ -1935,10 +1931,10 @@
 			// 
 			// textEditTabBSubheader25
 			// 
-			this.textEditTabBSubheader25.Location = new System.Drawing.Point(413, 583);
+			this.textEditTabBSubheader25.Location = new System.Drawing.Point(376, 583);
 			this.textEditTabBSubheader25.Name = "textEditTabBSubheader25";
 			this.textEditTabBSubheader25.Properties.NullText = "Type here";
-			this.textEditTabBSubheader25.Size = new System.Drawing.Size(190, 22);
+			this.textEditTabBSubheader25.Size = new System.Drawing.Size(152, 22);
 			this.textEditTabBSubheader25.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader25.TabIndex = 24;
 			// 
@@ -2048,8 +2044,8 @@
             rowDefinition34,
             rowDefinition35,
             rowDefinition36});
-			this.layoutControlGroupTabBInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupTabBInner.Size = new System.Drawing.Size(644, 621);
+			this.layoutControlGroupTabBInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 40, 0, 0);
+			this.layoutControlGroupTabBInner.Size = new System.Drawing.Size(609, 621);
 			this.layoutControlGroupTabBInner.Text = "Tab B";
 			this.layoutControlGroupTabBInner.TextVisible = false;
 			// 
@@ -2063,7 +2059,7 @@
             this.emptySpaceItem3});
 			this.layoutControlGroupTabBGroup1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabBGroup1.Name = "layoutControlGroupTabBGroup1";
-			this.layoutControlGroupTabBGroup1.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup1.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup1.Text = "Group 1";
 			this.layoutControlGroupTabBGroup1.TextVisible = false;
 			// 
@@ -2116,7 +2112,7 @@
 			rowDefinition1.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabBGroup1Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition1});
-			this.layoutControlGroupTabBGroup1Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup1Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup1Inner.Text = "Group 1 Inner";
 			this.layoutControlGroupTabBGroup1Inner.TextVisible = false;
 			// 
@@ -2130,7 +2126,7 @@
 			this.layoutControlItemTabBSubheader1.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader1.Name = "layoutControlItemTabBSubheader1";
 			this.layoutControlItemTabBSubheader1.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader1.Size = new System.Drawing.Size(309, 26);
+			this.layoutControlItemTabBSubheader1.Size = new System.Drawing.Size(266, 26);
 			this.layoutControlItemTabBSubheader1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader1.Text = "Subheader 1";
 			this.layoutControlItemTabBSubheader1.TextSize = new System.Drawing.Size(0, 0);
@@ -2159,11 +2155,11 @@
 			this.layoutControlItemTabBSubheader2.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader2.CustomizationFormText = "Subheader 2";
 			this.layoutControlItemTabBSubheader2.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader2.Location = new System.Drawing.Point(379, 0);
+			this.layoutControlItemTabBSubheader2.Location = new System.Drawing.Point(336, 0);
 			this.layoutControlItemTabBSubheader2.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader2.Name = "layoutControlItemTabBSubheader2";
 			this.layoutControlItemTabBSubheader2.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabBSubheader2.Size = new System.Drawing.Size(103, 26);
+			this.layoutControlItemTabBSubheader2.Size = new System.Drawing.Size(89, 26);
 			this.layoutControlItemTabBSubheader2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader2.Text = "Subheader 2";
 			this.layoutControlItemTabBSubheader2.TextSize = new System.Drawing.Size(0, 0);
@@ -2176,10 +2172,10 @@
 			this.layoutControlItemTabBSubheader3.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader3.CustomizationFormText = "Subheader 3";
 			this.layoutControlItemTabBSubheader3.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader3.Location = new System.Drawing.Point(492, 0);
+			this.layoutControlItemTabBSubheader3.Location = new System.Drawing.Point(435, 0);
 			this.layoutControlItemTabBSubheader3.Name = "layoutControlItemTabBSubheader3";
 			this.layoutControlItemTabBSubheader3.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBSubheader3.Size = new System.Drawing.Size(129, 26);
+			this.layoutControlItemTabBSubheader3.Size = new System.Drawing.Size(111, 26);
 			this.layoutControlItemTabBSubheader3.Text = "Subheader 3";
 			this.layoutControlItemTabBSubheader3.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader3.TextVisible = false;
@@ -2192,7 +2188,7 @@
 			this.emptySpaceItem3.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem3.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem3.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -2206,7 +2202,7 @@
 			this.layoutControlGroupTabBGroup2.Location = new System.Drawing.Point(0, 54);
 			this.layoutControlGroupTabBGroup2.Name = "layoutControlGroupTabBGroup2";
 			this.layoutControlGroupTabBGroup2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabBGroup2.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup2.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup2.Text = "Group 2";
 			this.layoutControlGroupTabBGroup2.TextVisible = false;
 			// 
@@ -2257,7 +2253,7 @@
 			rowDefinition2.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabBGroup2Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition2});
-			this.layoutControlGroupTabBGroup2Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup2Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup2Inner.Text = "Group 2 Inner";
 			this.layoutControlGroupTabBGroup2Inner.TextVisible = false;
 			// 
@@ -2270,7 +2266,7 @@
 			this.layoutControlItemTabBSubheader4.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader4.Name = "layoutControlItemTabBSubheader4";
 			this.layoutControlItemTabBSubheader4.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader4.Size = new System.Drawing.Size(309, 26);
+			this.layoutControlItemTabBSubheader4.Size = new System.Drawing.Size(266, 26);
 			this.layoutControlItemTabBSubheader4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader4.Text = "Subheader 4";
 			this.layoutControlItemTabBSubheader4.TextSize = new System.Drawing.Size(0, 0);
@@ -2297,11 +2293,11 @@
 			this.layoutControlItemTabBSubheader5.Control = this.textEditTabBSubheader5;
 			this.layoutControlItemTabBSubheader5.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader5.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader5.Location = new System.Drawing.Point(379, 0);
+			this.layoutControlItemTabBSubheader5.Location = new System.Drawing.Point(336, 0);
 			this.layoutControlItemTabBSubheader5.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader5.Name = "layoutControlItemTabBSubheader5";
 			this.layoutControlItemTabBSubheader5.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabBSubheader5.Size = new System.Drawing.Size(103, 26);
+			this.layoutControlItemTabBSubheader5.Size = new System.Drawing.Size(89, 26);
 			this.layoutControlItemTabBSubheader5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader5.Text = "Subheader 5";
 			this.layoutControlItemTabBSubheader5.TextSize = new System.Drawing.Size(0, 0);
@@ -2313,10 +2309,10 @@
 			this.layoutControlItemTabBSubheader6.Control = this.textEditTabBSubheader6;
 			this.layoutControlItemTabBSubheader6.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader6.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader6.Location = new System.Drawing.Point(492, 0);
+			this.layoutControlItemTabBSubheader6.Location = new System.Drawing.Point(435, 0);
 			this.layoutControlItemTabBSubheader6.Name = "layoutControlItemTabBSubheader6";
 			this.layoutControlItemTabBSubheader6.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBSubheader6.Size = new System.Drawing.Size(129, 26);
+			this.layoutControlItemTabBSubheader6.Size = new System.Drawing.Size(111, 26);
 			this.layoutControlItemTabBSubheader6.Text = "Subheader 6";
 			this.layoutControlItemTabBSubheader6.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader6.TextVisible = false;
@@ -2329,7 +2325,7 @@
 			this.emptySpaceItem14.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem14.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem14.Name = "emptySpaceItem14";
-			this.emptySpaceItem14.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem14.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem14.Text = "emptySpaceItem3";
 			this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
@@ -2345,7 +2341,7 @@
 			this.layoutControlGroupTabBGroup3.Location = new System.Drawing.Point(0, 108);
 			this.layoutControlGroupTabBGroup3.Name = "layoutControlGroupTabBGroup3";
 			this.layoutControlGroupTabBGroup3.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlGroupTabBGroup3.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup3.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup3.Text = "Group 3";
 			this.layoutControlGroupTabBGroup3.TextVisible = false;
 			// 
@@ -2398,7 +2394,7 @@
 			rowDefinition3.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabBGroup3Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition3});
-			this.layoutControlGroupTabBGroup3Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup3Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup3Inner.Text = "Group 3 Inner";
 			this.layoutControlGroupTabBGroup3Inner.TextVisible = false;
 			// 
@@ -2412,7 +2408,7 @@
 			this.layoutControlItemTabBSubheader7.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader7.Name = "layoutControlItemTabBSubheader7";
 			this.layoutControlItemTabBSubheader7.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader7.Size = new System.Drawing.Size(135, 26);
+			this.layoutControlItemTabBSubheader7.Size = new System.Drawing.Size(116, 26);
 			this.layoutControlItemTabBSubheader7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader7.Text = "Subheader 7";
 			this.layoutControlItemTabBSubheader7.TextSize = new System.Drawing.Size(0, 0);
@@ -2440,10 +2436,10 @@
 			this.layoutControlItemTabBSubheader8.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader8.CustomizationFormText = "Subheader 8";
 			this.layoutControlItemTabBSubheader8.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader8.Location = new System.Drawing.Point(205, 0);
+			this.layoutControlItemTabBSubheader8.Location = new System.Drawing.Point(186, 0);
 			this.layoutControlItemTabBSubheader8.Name = "layoutControlItemTabBSubheader8";
 			this.layoutControlItemTabBSubheader8.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabBSubheader8.Size = new System.Drawing.Size(108, 26);
+			this.layoutControlItemTabBSubheader8.Size = new System.Drawing.Size(93, 26);
 			this.layoutControlItemTabBSubheader8.Text = "Subheader 8";
 			this.layoutControlItemTabBSubheader8.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader8.TextVisible = false;
@@ -2455,10 +2451,10 @@
 			this.layoutControlItemTabBSubheader9.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader9.CustomizationFormText = "Subheader 9";
 			this.layoutControlItemTabBSubheader9.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader9.Location = new System.Drawing.Point(323, 0);
+			this.layoutControlItemTabBSubheader9.Location = new System.Drawing.Point(289, 0);
 			this.layoutControlItemTabBSubheader9.Name = "layoutControlItemTabBSubheader9";
 			this.layoutControlItemTabBSubheader9.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBSubheader9.Size = new System.Drawing.Size(298, 26);
+			this.layoutControlItemTabBSubheader9.Size = new System.Drawing.Size(257, 26);
 			this.layoutControlItemTabBSubheader9.Text = "Subheader 9";
 			this.layoutControlItemTabBSubheader9.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader9.TextVisible = false;
@@ -2471,7 +2467,7 @@
 			this.emptySpaceItem12.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem12.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem12.Name = "emptySpaceItem12";
-			this.emptySpaceItem12.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem12.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem12.Text = "emptySpaceItem5";
 			this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
@@ -2486,7 +2482,7 @@
 			this.layoutControlGroupTabBGroup4.Location = new System.Drawing.Point(0, 162);
 			this.layoutControlGroupTabBGroup4.Name = "layoutControlGroupTabBGroup4";
 			this.layoutControlGroupTabBGroup4.OptionsTableLayoutItem.RowIndex = 6;
-			this.layoutControlGroupTabBGroup4.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup4.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup4.Text = "Group 4";
 			this.layoutControlGroupTabBGroup4.TextVisible = false;
 			// 
@@ -2537,7 +2533,7 @@
 			rowDefinition4.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabBGroup4Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition4});
-			this.layoutControlGroupTabBGroup4Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup4Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup4Inner.Text = "Group 4 Inner";
 			this.layoutControlGroupTabBGroup4Inner.TextVisible = false;
 			// 
@@ -2550,7 +2546,7 @@
 			this.layoutControlItemTabBSubheader10.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader10.Name = "layoutControlItemTabBSubheader10";
 			this.layoutControlItemTabBSubheader10.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader10.Size = new System.Drawing.Size(135, 26);
+			this.layoutControlItemTabBSubheader10.Size = new System.Drawing.Size(116, 26);
 			this.layoutControlItemTabBSubheader10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader10.Text = "Subheader 10";
 			this.layoutControlItemTabBSubheader10.TextSize = new System.Drawing.Size(0, 0);
@@ -2577,10 +2573,10 @@
 			this.layoutControlItemTabBSubheader11.Control = this.textEditTabBSubheader11;
 			this.layoutControlItemTabBSubheader11.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader11.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader11.Location = new System.Drawing.Point(205, 0);
+			this.layoutControlItemTabBSubheader11.Location = new System.Drawing.Point(186, 0);
 			this.layoutControlItemTabBSubheader11.Name = "layoutControlItemTabBSubheader11";
 			this.layoutControlItemTabBSubheader11.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabBSubheader11.Size = new System.Drawing.Size(108, 26);
+			this.layoutControlItemTabBSubheader11.Size = new System.Drawing.Size(93, 26);
 			this.layoutControlItemTabBSubheader11.Text = "Subheader 11";
 			this.layoutControlItemTabBSubheader11.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader11.TextVisible = false;
@@ -2591,10 +2587,10 @@
 			this.layoutControlItemTabBSubheader12.Control = this.textEditTabBSubheader12;
 			this.layoutControlItemTabBSubheader12.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader12.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader12.Location = new System.Drawing.Point(323, 0);
+			this.layoutControlItemTabBSubheader12.Location = new System.Drawing.Point(289, 0);
 			this.layoutControlItemTabBSubheader12.Name = "layoutControlItemTabBSubheader12";
 			this.layoutControlItemTabBSubheader12.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBSubheader12.Size = new System.Drawing.Size(298, 26);
+			this.layoutControlItemTabBSubheader12.Size = new System.Drawing.Size(257, 26);
 			this.layoutControlItemTabBSubheader12.Text = "Subheader 12";
 			this.layoutControlItemTabBSubheader12.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader12.TextVisible = false;
@@ -2607,7 +2603,7 @@
 			this.emptySpaceItem16.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem16.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem16.Name = "emptySpaceItem16";
-			this.emptySpaceItem16.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem16.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem16.Text = "emptySpaceItem5";
 			this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
@@ -2622,7 +2618,7 @@
 			this.layoutControlGroupTabBGroup5.Location = new System.Drawing.Point(0, 216);
 			this.layoutControlGroupTabBGroup5.Name = "layoutControlGroupTabBGroup5";
 			this.layoutControlGroupTabBGroup5.OptionsTableLayoutItem.RowIndex = 8;
-			this.layoutControlGroupTabBGroup5.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup5.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup5.Text = "Group 5";
 			this.layoutControlGroupTabBGroup5.TextVisible = false;
 			// 
@@ -2674,7 +2670,7 @@
 			this.layoutControlGroupTabBGroup5Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition5});
 			this.layoutControlGroupTabBGroup5Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabBGroup5Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup5Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup5Inner.Text = "Group 5 Inner";
 			this.layoutControlGroupTabBGroup5Inner.TextVisible = false;
 			// 
@@ -2687,7 +2683,7 @@
 			this.layoutControlItemTabBSubheader13.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader13.Name = "layoutControlItemTabBSubheader13";
 			this.layoutControlItemTabBSubheader13.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader13.Size = new System.Drawing.Size(135, 26);
+			this.layoutControlItemTabBSubheader13.Size = new System.Drawing.Size(116, 26);
 			this.layoutControlItemTabBSubheader13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader13.Text = "Subheader 13";
 			this.layoutControlItemTabBSubheader13.TextSize = new System.Drawing.Size(0, 0);
@@ -2714,10 +2710,10 @@
 			this.layoutControlItemTabBSubheader14.Control = this.textEditTabBSubheader14;
 			this.layoutControlItemTabBSubheader14.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader14.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader14.Location = new System.Drawing.Point(323, 0);
+			this.layoutControlItemTabBSubheader14.Location = new System.Drawing.Point(289, 0);
 			this.layoutControlItemTabBSubheader14.Name = "layoutControlItemTabBSubheader14";
 			this.layoutControlItemTabBSubheader14.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBSubheader14.Size = new System.Drawing.Size(298, 26);
+			this.layoutControlItemTabBSubheader14.Size = new System.Drawing.Size(257, 26);
 			this.layoutControlItemTabBSubheader14.Text = "Subheader 14";
 			this.layoutControlItemTabBSubheader14.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader14.TextVisible = false;
@@ -2733,10 +2729,10 @@
 			this.simpleLabelItemTabBFormula1.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula1.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula1.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabBFormula1.Location = new System.Drawing.Point(205, 0);
+			this.simpleLabelItemTabBFormula1.Location = new System.Drawing.Point(186, 0);
 			this.simpleLabelItemTabBFormula1.Name = "simpleLabelItemTabBFormula1";
 			this.simpleLabelItemTabBFormula1.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabBFormula1.Size = new System.Drawing.Size(108, 26);
+			this.simpleLabelItemTabBFormula1.Size = new System.Drawing.Size(93, 26);
 			this.simpleLabelItemTabBFormula1.Text = "<b>0</b>";
 			this.simpleLabelItemTabBFormula1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula1.TextSize = new System.Drawing.Size(7, 16);
@@ -2749,7 +2745,7 @@
 			this.emptySpaceItem17.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem17.Name = "emptySpaceItem17";
 			this.emptySpaceItem17.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem17.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem17.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem17.Text = "emptySpaceItem4";
 			this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
@@ -2764,7 +2760,7 @@
 			this.layoutControlGroupTabBGroup6.Location = new System.Drawing.Point(0, 270);
 			this.layoutControlGroupTabBGroup6.Name = "layoutControlGroupTabBGroup6";
 			this.layoutControlGroupTabBGroup6.OptionsTableLayoutItem.RowIndex = 10;
-			this.layoutControlGroupTabBGroup6.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup6.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup6.Text = "Group 6";
 			this.layoutControlGroupTabBGroup6.TextVisible = false;
 			// 
@@ -2797,7 +2793,7 @@
 			this.layoutControlGroupTabBGroup6Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition6});
 			this.layoutControlGroupTabBGroup6Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabBGroup6Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup6Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup6Inner.Text = "Group 6 Inner";
 			this.layoutControlGroupTabBGroup6Inner.TextVisible = false;
 			// 
@@ -2810,7 +2806,7 @@
 			this.layoutControlItemTabBSubheader15.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader15.Name = "layoutControlItemTabBSubheader15";
 			this.layoutControlItemTabBSubheader15.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader15.Size = new System.Drawing.Size(393, 26);
+			this.layoutControlItemTabBSubheader15.Size = new System.Drawing.Size(340, 26);
 			this.layoutControlItemTabBSubheader15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader15.Text = "Subheader 15";
 			this.layoutControlItemTabBSubheader15.TextSize = new System.Drawing.Size(0, 0);
@@ -2842,10 +2838,10 @@
 			this.simpleLabelItemTabBFormula2EqualSign.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula2EqualSign.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula2EqualSign.CustomizationFormText = "<b>=</b>";
-			this.simpleLabelItemTabBFormula2EqualSign.Location = new System.Drawing.Point(453, 0);
+			this.simpleLabelItemTabBFormula2EqualSign.Location = new System.Drawing.Point(400, 0);
 			this.simpleLabelItemTabBFormula2EqualSign.Name = "simpleLabelItemTabBFormula2EqualSign";
 			this.simpleLabelItemTabBFormula2EqualSign.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.simpleLabelItemTabBFormula2EqualSign.Size = new System.Drawing.Size(28, 26);
+			this.simpleLabelItemTabBFormula2EqualSign.Size = new System.Drawing.Size(24, 26);
 			this.simpleLabelItemTabBFormula2EqualSign.Text = "<b>=</b>";
 			this.simpleLabelItemTabBFormula2EqualSign.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula2EqualSign.TextSize = new System.Drawing.Size(8, 16);
@@ -2860,10 +2856,10 @@
 			this.simpleLabelItemTabBFormula2.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula2.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula2.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabBFormula2.Location = new System.Drawing.Point(481, 0);
+			this.simpleLabelItemTabBFormula2.Location = new System.Drawing.Point(424, 0);
 			this.simpleLabelItemTabBFormula2.Name = "simpleLabelItemTabBFormula2";
 			this.simpleLabelItemTabBFormula2.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabBFormula2.Size = new System.Drawing.Size(140, 26);
+			this.simpleLabelItemTabBFormula2.Size = new System.Drawing.Size(122, 26);
 			this.simpleLabelItemTabBFormula2.Text = "<b>0</b>";
 			this.simpleLabelItemTabBFormula2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula2.TextSize = new System.Drawing.Size(7, 16);
@@ -2876,7 +2872,7 @@
 			this.emptySpaceItem18.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem18.Name = "emptySpaceItem18";
 			this.emptySpaceItem18.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem18.Size = new System.Drawing.Size(644, 1);
+			this.emptySpaceItem18.Size = new System.Drawing.Size(569, 1);
 			this.emptySpaceItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem18.Text = "emptySpaceItem4";
 			this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
@@ -2905,7 +2901,7 @@
 			this.layoutControlGroupTabBGroup7.Location = new System.Drawing.Point(0, 324);
 			this.layoutControlGroupTabBGroup7.Name = "layoutControlGroupTabBGroup7";
 			this.layoutControlGroupTabBGroup7.OptionsTableLayoutItem.RowIndex = 12;
-			this.layoutControlGroupTabBGroup7.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup7.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup7.Text = "Group 7";
 			this.layoutControlGroupTabBGroup7.TextVisible = false;
 			// 
@@ -2956,7 +2952,7 @@
 			rowDefinition7.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabBGroup7Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition7});
-			this.layoutControlGroupTabBGroup7Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup7Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup7Inner.Text = "Group 7 Inner";
 			this.layoutControlGroupTabBGroup7Inner.TextVisible = false;
 			// 
@@ -2969,7 +2965,7 @@
 			this.layoutControlItemTabBSubheader16.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader16.Name = "layoutControlItemTabBSubheader16";
 			this.layoutControlItemTabBSubheader16.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader16.Size = new System.Drawing.Size(135, 26);
+			this.layoutControlItemTabBSubheader16.Size = new System.Drawing.Size(116, 26);
 			this.layoutControlItemTabBSubheader16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader16.Text = "Subheader 16";
 			this.layoutControlItemTabBSubheader16.TextSize = new System.Drawing.Size(0, 0);
@@ -2996,10 +2992,10 @@
 			this.layoutControlItemTabBSubheader17.Control = this.textEditTabBSubheader17;
 			this.layoutControlItemTabBSubheader17.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader17.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader17.Location = new System.Drawing.Point(205, 0);
+			this.layoutControlItemTabBSubheader17.Location = new System.Drawing.Point(186, 0);
 			this.layoutControlItemTabBSubheader17.Name = "layoutControlItemTabBSubheader17";
 			this.layoutControlItemTabBSubheader17.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabBSubheader17.Size = new System.Drawing.Size(108, 26);
+			this.layoutControlItemTabBSubheader17.Size = new System.Drawing.Size(93, 26);
 			this.layoutControlItemTabBSubheader17.Text = "Subheader 17";
 			this.layoutControlItemTabBSubheader17.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader17.TextVisible = false;
@@ -3010,10 +3006,10 @@
 			this.layoutControlItemTabBSubheader18.Control = this.textEditTabBSubheader18;
 			this.layoutControlItemTabBSubheader18.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader18.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader18.Location = new System.Drawing.Point(323, 0);
+			this.layoutControlItemTabBSubheader18.Location = new System.Drawing.Point(289, 0);
 			this.layoutControlItemTabBSubheader18.Name = "layoutControlItemTabBSubheader18";
 			this.layoutControlItemTabBSubheader18.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBSubheader18.Size = new System.Drawing.Size(298, 26);
+			this.layoutControlItemTabBSubheader18.Size = new System.Drawing.Size(257, 26);
 			this.layoutControlItemTabBSubheader18.Text = "Subheader 18";
 			this.layoutControlItemTabBSubheader18.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader18.TextVisible = false;
@@ -3026,7 +3022,7 @@
 			this.emptySpaceItem19.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem19.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem19.Name = "emptySpaceItem19";
-			this.emptySpaceItem19.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem19.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem19.Text = "emptySpaceItem5";
 			this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
@@ -3041,7 +3037,7 @@
 			this.layoutControlGroupTabBGroup8.Location = new System.Drawing.Point(0, 378);
 			this.layoutControlGroupTabBGroup8.Name = "layoutControlGroupTabBGroup8";
 			this.layoutControlGroupTabBGroup8.OptionsTableLayoutItem.RowIndex = 14;
-			this.layoutControlGroupTabBGroup8.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup8.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup8.Text = "Group 8";
 			this.layoutControlGroupTabBGroup8.TextVisible = false;
 			// 
@@ -3093,7 +3089,7 @@
 			this.layoutControlGroupTabBGroup8Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition8});
 			this.layoutControlGroupTabBGroup8Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabBGroup8Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup8Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup8Inner.Text = "Group 8 Inner";
 			this.layoutControlGroupTabBGroup8Inner.TextVisible = false;
 			// 
@@ -3106,7 +3102,7 @@
 			this.layoutControlItemTabBSubheader19.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader19.Name = "layoutControlItemTabBSubheader19";
 			this.layoutControlItemTabBSubheader19.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader19.Size = new System.Drawing.Size(135, 26);
+			this.layoutControlItemTabBSubheader19.Size = new System.Drawing.Size(116, 26);
 			this.layoutControlItemTabBSubheader19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader19.Text = "Subheader 19";
 			this.layoutControlItemTabBSubheader19.TextSize = new System.Drawing.Size(0, 0);
@@ -3133,10 +3129,10 @@
 			this.layoutControlItemTabBSubheader20.Control = this.textEditTabBSubheader20;
 			this.layoutControlItemTabBSubheader20.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabBSubheader20.FillControlToClientArea = false;
-			this.layoutControlItemTabBSubheader20.Location = new System.Drawing.Point(323, 0);
+			this.layoutControlItemTabBSubheader20.Location = new System.Drawing.Point(289, 0);
 			this.layoutControlItemTabBSubheader20.Name = "layoutControlItemTabBSubheader20";
 			this.layoutControlItemTabBSubheader20.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabBSubheader20.Size = new System.Drawing.Size(298, 26);
+			this.layoutControlItemTabBSubheader20.Size = new System.Drawing.Size(257, 26);
 			this.layoutControlItemTabBSubheader20.Text = "Subheader 20";
 			this.layoutControlItemTabBSubheader20.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBSubheader20.TextVisible = false;
@@ -3152,10 +3148,10 @@
 			this.simpleLabelItemTabBFormula3.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula3.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula3.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabBFormula3.Location = new System.Drawing.Point(205, 0);
+			this.simpleLabelItemTabBFormula3.Location = new System.Drawing.Point(186, 0);
 			this.simpleLabelItemTabBFormula3.Name = "simpleLabelItemTabBFormula3";
 			this.simpleLabelItemTabBFormula3.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabBFormula3.Size = new System.Drawing.Size(108, 26);
+			this.simpleLabelItemTabBFormula3.Size = new System.Drawing.Size(93, 26);
 			this.simpleLabelItemTabBFormula3.Text = "<b>0</b>";
 			this.simpleLabelItemTabBFormula3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula3.TextSize = new System.Drawing.Size(7, 16);
@@ -3168,7 +3164,7 @@
 			this.emptySpaceItem20.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem20.Name = "emptySpaceItem20";
 			this.emptySpaceItem20.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem20.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem20.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem20.Text = "emptySpaceItem4";
 			this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
@@ -3183,7 +3179,7 @@
 			this.layoutControlGroupTabBGroup9.Location = new System.Drawing.Point(0, 432);
 			this.layoutControlGroupTabBGroup9.Name = "layoutControlGroupTabBGroup9";
 			this.layoutControlGroupTabBGroup9.OptionsTableLayoutItem.RowIndex = 16;
-			this.layoutControlGroupTabBGroup9.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup9.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup9.Text = "Group 9";
 			this.layoutControlGroupTabBGroup9.TextVisible = false;
 			// 
@@ -3216,7 +3212,7 @@
 			this.layoutControlGroupTabBGroup9Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition9});
 			this.layoutControlGroupTabBGroup9Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabBGroup9Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup9Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup9Inner.Text = "Group 9 Inner";
 			this.layoutControlGroupTabBGroup9Inner.TextVisible = false;
 			// 
@@ -3229,7 +3225,7 @@
 			this.layoutControlItemTabBSubheader21.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader21.Name = "layoutControlItemTabBSubheader21";
 			this.layoutControlItemTabBSubheader21.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader21.Size = new System.Drawing.Size(393, 26);
+			this.layoutControlItemTabBSubheader21.Size = new System.Drawing.Size(340, 26);
 			this.layoutControlItemTabBSubheader21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader21.Text = "Subheader 21";
 			this.layoutControlItemTabBSubheader21.TextSize = new System.Drawing.Size(0, 0);
@@ -3261,10 +3257,10 @@
 			this.simpleLabelItemTabBFormula4EqualSign.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula4EqualSign.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula4EqualSign.CustomizationFormText = "<b>=</b>";
-			this.simpleLabelItemTabBFormula4EqualSign.Location = new System.Drawing.Point(453, 0);
+			this.simpleLabelItemTabBFormula4EqualSign.Location = new System.Drawing.Point(400, 0);
 			this.simpleLabelItemTabBFormula4EqualSign.Name = "simpleLabelItemTabBFormula4EqualSign";
 			this.simpleLabelItemTabBFormula4EqualSign.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.simpleLabelItemTabBFormula4EqualSign.Size = new System.Drawing.Size(28, 26);
+			this.simpleLabelItemTabBFormula4EqualSign.Size = new System.Drawing.Size(24, 26);
 			this.simpleLabelItemTabBFormula4EqualSign.Text = "<b>=</b>";
 			this.simpleLabelItemTabBFormula4EqualSign.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula4EqualSign.TextSize = new System.Drawing.Size(8, 16);
@@ -3279,10 +3275,10 @@
 			this.simpleLabelItemTabBFormula4.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula4.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula4.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabBFormula4.Location = new System.Drawing.Point(481, 0);
+			this.simpleLabelItemTabBFormula4.Location = new System.Drawing.Point(424, 0);
 			this.simpleLabelItemTabBFormula4.Name = "simpleLabelItemTabBFormula4";
 			this.simpleLabelItemTabBFormula4.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabBFormula4.Size = new System.Drawing.Size(140, 26);
+			this.simpleLabelItemTabBFormula4.Size = new System.Drawing.Size(122, 26);
 			this.simpleLabelItemTabBFormula4.Text = "<b>0</b>";
 			this.simpleLabelItemTabBFormula4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula4.TextSize = new System.Drawing.Size(7, 16);
@@ -3295,7 +3291,7 @@
 			this.emptySpaceItem21.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem21.Name = "emptySpaceItem21";
 			this.emptySpaceItem21.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem21.Size = new System.Drawing.Size(644, 1);
+			this.emptySpaceItem21.Size = new System.Drawing.Size(569, 1);
 			this.emptySpaceItem21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem21.Text = "emptySpaceItem4";
 			this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
@@ -3324,7 +3320,7 @@
 			this.layoutControlGroupTabBGroup10.Location = new System.Drawing.Point(0, 486);
 			this.layoutControlGroupTabBGroup10.Name = "layoutControlGroupTabBGroup10";
 			this.layoutControlGroupTabBGroup10.OptionsTableLayoutItem.RowIndex = 18;
-			this.layoutControlGroupTabBGroup10.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabBGroup10.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabBGroup10.Text = "Group 10";
 			this.layoutControlGroupTabBGroup10.TextVisible = false;
 			// 
@@ -3357,7 +3353,7 @@
 			this.layoutControlGroupTabBGroup10Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition10});
 			this.layoutControlGroupTabBGroup10Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabBGroup10Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabBGroup10Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabBGroup10Inner.Text = "Group 10 Inner";
 			this.layoutControlGroupTabBGroup10Inner.TextVisible = false;
 			// 
@@ -3370,7 +3366,7 @@
 			this.layoutControlItemTabBSubheader22.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabBSubheader22.Name = "layoutControlItemTabBSubheader22";
 			this.layoutControlItemTabBSubheader22.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabBSubheader22.Size = new System.Drawing.Size(393, 26);
+			this.layoutControlItemTabBSubheader22.Size = new System.Drawing.Size(340, 26);
 			this.layoutControlItemTabBSubheader22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader22.Text = "Subheader 22";
 			this.layoutControlItemTabBSubheader22.TextSize = new System.Drawing.Size(0, 0);
@@ -3402,10 +3398,10 @@
 			this.simpleLabelItemTabBFormula5EqualSign.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula5EqualSign.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula5EqualSign.CustomizationFormText = "<b>=</b>";
-			this.simpleLabelItemTabBFormula5EqualSign.Location = new System.Drawing.Point(453, 0);
+			this.simpleLabelItemTabBFormula5EqualSign.Location = new System.Drawing.Point(400, 0);
 			this.simpleLabelItemTabBFormula5EqualSign.Name = "simpleLabelItemTabBFormula5EqualSign";
 			this.simpleLabelItemTabBFormula5EqualSign.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.simpleLabelItemTabBFormula5EqualSign.Size = new System.Drawing.Size(28, 26);
+			this.simpleLabelItemTabBFormula5EqualSign.Size = new System.Drawing.Size(24, 26);
 			this.simpleLabelItemTabBFormula5EqualSign.Text = "<b>=</b>";
 			this.simpleLabelItemTabBFormula5EqualSign.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula5EqualSign.TextSize = new System.Drawing.Size(8, 16);
@@ -3420,10 +3416,10 @@
 			this.simpleLabelItemTabBFormula5.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabBFormula5.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabBFormula5.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabBFormula5.Location = new System.Drawing.Point(481, 0);
+			this.simpleLabelItemTabBFormula5.Location = new System.Drawing.Point(424, 0);
 			this.simpleLabelItemTabBFormula5.Name = "simpleLabelItemTabBFormula5";
 			this.simpleLabelItemTabBFormula5.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabBFormula5.Size = new System.Drawing.Size(140, 26);
+			this.simpleLabelItemTabBFormula5.Size = new System.Drawing.Size(122, 26);
 			this.simpleLabelItemTabBFormula5.Text = "<b>0</b>";
 			this.simpleLabelItemTabBFormula5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabBFormula5.TextSize = new System.Drawing.Size(7, 16);
@@ -3436,7 +3432,7 @@
 			this.emptySpaceItem22.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem22.Name = "emptySpaceItem22";
 			this.emptySpaceItem22.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem22.Size = new System.Drawing.Size(644, 1);
+			this.emptySpaceItem22.Size = new System.Drawing.Size(569, 1);
 			this.emptySpaceItem22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem22.Text = "emptySpaceItem4";
 			this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
@@ -3466,7 +3462,7 @@
 			this.layoutControlGroupTabBGroup11.Name = "layoutControlGroupTabBGroup11";
 			this.layoutControlGroupTabBGroup11.OptionsTableLayoutItem.RowIndex = 20;
 			this.layoutControlGroupTabBGroup11.OptionsTableLayoutItem.RowSpan = 3;
-			this.layoutControlGroupTabBGroup11.Size = new System.Drawing.Size(644, 81);
+			this.layoutControlGroupTabBGroup11.Size = new System.Drawing.Size(569, 81);
 			this.layoutControlGroupTabBGroup11.Text = "Group 11";
 			this.layoutControlGroupTabBGroup11.TextVisible = false;
 			// 
@@ -3517,7 +3513,7 @@
             rowDefinition11,
             rowDefinition12,
             rowDefinition13});
-			this.layoutControlGroupTabBGroup11Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabBGroup11Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabBGroup11Inner.Text = "Group 11 Inner";
 			this.layoutControlGroupTabBGroup11Inner.TextVisible = false;
 			// 
@@ -3546,7 +3542,7 @@
 			this.layoutControlGroupTabBSubheader24.Name = "layoutControlGroupTabBSubheader24";
 			this.layoutControlGroupTabBSubheader24.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabBSubheader24.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabBSubheader24.Size = new System.Drawing.Size(255, 26);
+			this.layoutControlGroupTabBSubheader24.Size = new System.Drawing.Size(218, 26);
 			this.layoutControlGroupTabBSubheader24.Text = "Subheader 24";
 			this.layoutControlGroupTabBSubheader24.TextVisible = false;
 			// 
@@ -3570,7 +3566,7 @@
 			this.layoutControlItemTabBSubheader24Value.FillControlToClientArea = false;
 			this.layoutControlItemTabBSubheader24Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabBSubheader24Value.Name = "layoutControlItemTabBSubheader24Value";
-			this.layoutControlItemTabBSubheader24Value.Size = new System.Drawing.Size(232, 26);
+			this.layoutControlItemTabBSubheader24Value.Size = new System.Drawing.Size(195, 26);
 			this.layoutControlItemTabBSubheader24Value.Text = "Per Month";
 			this.layoutControlItemTabBSubheader24Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabBSubheader24Value.TextLocation = DevExpress.Utils.Locations.Right;
@@ -3589,7 +3585,7 @@
 			this.layoutControlItemTabBSubheader23.Name = "layoutControlItemTabBSubheader23";
 			this.layoutControlItemTabBSubheader23.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabBSubheader23.OptionsTableLayoutItem.ColumnSpan = 3;
-			this.layoutControlItemTabBSubheader23.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabBSubheader23.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabBSubheader23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabBSubheader23.Text = "Subheader 23";
 			this.layoutControlItemTabBSubheader23.TextSize = new System.Drawing.Size(0, 0);
@@ -3602,11 +3598,11 @@
 			this.layoutControlGroupTabBSubheader25.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabBSubheader25Toggle,
             this.layoutControlItemTabBSubheader25Value});
-			this.layoutControlGroupTabBSubheader25.Location = new System.Drawing.Point(365, 41);
+			this.layoutControlGroupTabBSubheader25.Location = new System.Drawing.Point(328, 41);
 			this.layoutControlGroupTabBSubheader25.Name = "layoutControlGroupTabBSubheader25";
 			this.layoutControlGroupTabBSubheader25.OptionsTableLayoutItem.ColumnIndex = 3;
 			this.layoutControlGroupTabBSubheader25.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabBSubheader25.Size = new System.Drawing.Size(256, 26);
+			this.layoutControlGroupTabBSubheader25.Size = new System.Drawing.Size(218, 26);
 			this.layoutControlGroupTabBSubheader25.Text = "Subheader 25";
 			this.layoutControlGroupTabBSubheader25.TextVisible = false;
 			// 
@@ -3631,7 +3627,7 @@
 			this.layoutControlItemTabBSubheader25Value.FillControlToClientArea = false;
 			this.layoutControlItemTabBSubheader25Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabBSubheader25Value.Name = "layoutControlItemTabBSubheader25Value";
-			this.layoutControlItemTabBSubheader25Value.Size = new System.Drawing.Size(233, 26);
+			this.layoutControlItemTabBSubheader25Value.Size = new System.Drawing.Size(195, 26);
 			this.layoutControlItemTabBSubheader25Value.Text = "<b>= 0</b>";
 			this.layoutControlItemTabBSubheader25Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabBSubheader25Value.TextLocation = DevExpress.Utils.Locations.Right;
@@ -3646,70 +3642,70 @@
 			this.emptySpaceItem23.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem23.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem23.Name = "emptySpaceItem23";
-			this.emptySpaceItem23.Size = new System.Drawing.Size(621, 14);
+			this.emptySpaceItem23.Size = new System.Drawing.Size(546, 14);
 			this.emptySpaceItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem23.Text = "emptySpaceItem6";
 			this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// textEditTabASubheader9
 			// 
-			this.textEditTabASubheader9.Location = new System.Drawing.Point(515, 255);
+			this.textEditTabASubheader9.Location = new System.Drawing.Point(531, 277);
 			this.textEditTabASubheader9.Name = "textEditTabASubheader9";
 			this.textEditTabASubheader9.Properties.NullText = "Type here";
-			this.textEditTabASubheader9.Size = new System.Drawing.Size(303, 22);
+			this.textEditTabASubheader9.Size = new System.Drawing.Size(256, 22);
 			this.textEditTabASubheader9.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader9.TabIndex = 13;
 			// 
 			// textEditTabASubheader8
 			// 
-			this.textEditTabASubheader8.Location = new System.Drawing.Point(393, 255);
+			this.textEditTabASubheader8.Location = new System.Drawing.Point(427, 277);
 			this.textEditTabASubheader8.Name = "textEditTabASubheader8";
 			this.textEditTabASubheader8.Properties.NullText = "Type here";
-			this.textEditTabASubheader8.Size = new System.Drawing.Size(108, 22);
+			this.textEditTabASubheader8.Size = new System.Drawing.Size(90, 22);
 			this.textEditTabASubheader8.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader8.TabIndex = 12;
 			this.textEditTabASubheader8.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
 			// 
 			// textEditTabASubheader6
 			// 
-			this.textEditTabASubheader6.Location = new System.Drawing.Point(515, 187);
+			this.textEditTabASubheader6.Location = new System.Drawing.Point(531, 213);
 			this.textEditTabASubheader6.Name = "textEditTabASubheader6";
 			this.textEditTabASubheader6.Properties.NullText = "Type here";
-			this.textEditTabASubheader6.Size = new System.Drawing.Size(303, 22);
+			this.textEditTabASubheader6.Size = new System.Drawing.Size(256, 22);
 			this.textEditTabASubheader6.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader6.TabIndex = 9;
 			// 
 			// textEditTabASubheader5
 			// 
-			this.textEditTabASubheader5.Location = new System.Drawing.Point(393, 187);
+			this.textEditTabASubheader5.Location = new System.Drawing.Point(427, 213);
 			this.textEditTabASubheader5.Name = "textEditTabASubheader5";
 			this.textEditTabASubheader5.Properties.NullText = "Type here";
-			this.textEditTabASubheader5.Size = new System.Drawing.Size(108, 22);
+			this.textEditTabASubheader5.Size = new System.Drawing.Size(90, 22);
 			this.textEditTabASubheader5.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader5.TabIndex = 8;
 			this.textEditTabASubheader5.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
 			// 
 			// textEditTabASubheader3
 			// 
-			this.textEditTabASubheader3.Location = new System.Drawing.Point(689, 119);
+			this.textEditTabASubheader3.Location = new System.Drawing.Point(679, 149);
 			this.textEditTabASubheader3.Name = "textEditTabASubheader3";
-			this.textEditTabASubheader3.Size = new System.Drawing.Size(129, 22);
+			this.textEditTabASubheader3.Size = new System.Drawing.Size(108, 22);
 			this.textEditTabASubheader3.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader3.TabIndex = 5;
 			// 
 			// textEditTabASubheader14
 			// 
-			this.textEditTabASubheader14.Location = new System.Drawing.Point(267, 500);
+			this.textEditTabASubheader14.Location = new System.Drawing.Point(322, 510);
 			this.textEditTabASubheader14.Name = "textEditTabASubheader14";
 			this.textEditTabASubheader14.Properties.NullText = "Type here";
-			this.textEditTabASubheader14.Size = new System.Drawing.Size(157, 22);
+			this.textEditTabASubheader14.Size = new System.Drawing.Size(114, 22);
 			this.textEditTabASubheader14.StyleController = this.layoutControlMain;
-			this.textEditTabASubheader14.TabIndex = 19;
+			this.textEditTabASubheader14.TabIndex = 22;
 			this.textEditTabASubheader14.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(12, 14);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(42, 29);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlideHeader.Properties.Appearance.Options.UseFont = true;
@@ -3732,7 +3728,7 @@
 			// 
 			this.checkEditTabAGroup1.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup1.EditValue = true;
-			this.checkEditTabAGroup1.Location = new System.Drawing.Point(161, 121);
+			this.checkEditTabAGroup1.Location = new System.Drawing.Point(216, 151);
 			this.checkEditTabAGroup1.Name = "checkEditTabAGroup1";
 			this.checkEditTabAGroup1.Properties.Caption = "";
 			this.checkEditTabAGroup1.Size = new System.Drawing.Size(19, 19);
@@ -3742,28 +3738,28 @@
 			// 
 			// textEditTabASubheader1
 			// 
-			this.textEditTabASubheader1.Location = new System.Drawing.Point(244, 119);
+			this.textEditTabASubheader1.Location = new System.Drawing.Point(299, 149);
 			this.textEditTabASubheader1.Name = "textEditTabASubheader1";
 			this.textEditTabASubheader1.Properties.NullText = "Type here";
-			this.textEditTabASubheader1.Size = new System.Drawing.Size(315, 22);
+			this.textEditTabASubheader1.Size = new System.Drawing.Size(266, 22);
 			this.textEditTabASubheader1.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader1.TabIndex = 3;
 			// 
 			// textEditTabASubheader2
 			// 
-			this.textEditTabASubheader2.Location = new System.Drawing.Point(573, 119);
+			this.textEditTabASubheader2.Location = new System.Drawing.Point(579, 149);
 			this.textEditTabASubheader2.Name = "textEditTabASubheader2";
-			this.textEditTabASubheader2.Size = new System.Drawing.Size(102, 22);
+			this.textEditTabASubheader2.Size = new System.Drawing.Size(86, 22);
 			this.textEditTabASubheader2.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader2.TabIndex = 4;
 			this.textEditTabASubheader2.EditValueChanged += new System.EventHandler(this.OnTabAFormulaSourceEditValueChanged);
 			// 
 			// textEditTabASubheader4
 			// 
-			this.textEditTabASubheader4.Location = new System.Drawing.Point(244, 187);
+			this.textEditTabASubheader4.Location = new System.Drawing.Point(299, 213);
 			this.textEditTabASubheader4.Name = "textEditTabASubheader4";
 			this.textEditTabASubheader4.Properties.NullText = "Type here";
-			this.textEditTabASubheader4.Size = new System.Drawing.Size(135, 22);
+			this.textEditTabASubheader4.Size = new System.Drawing.Size(114, 22);
 			this.textEditTabASubheader4.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader4.TabIndex = 7;
 			// 
@@ -3771,7 +3767,7 @@
 			// 
 			this.checkEditTabAGroup2.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup2.EditValue = true;
-			this.checkEditTabAGroup2.Location = new System.Drawing.Point(161, 189);
+			this.checkEditTabAGroup2.Location = new System.Drawing.Point(216, 215);
 			this.checkEditTabAGroup2.Name = "checkEditTabAGroup2";
 			this.checkEditTabAGroup2.Properties.Caption = "";
 			this.checkEditTabAGroup2.Size = new System.Drawing.Size(19, 19);
@@ -3783,7 +3779,7 @@
 			// 
 			this.checkEditTabAGroup3.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup3.EditValue = true;
-			this.checkEditTabAGroup3.Location = new System.Drawing.Point(161, 257);
+			this.checkEditTabAGroup3.Location = new System.Drawing.Point(216, 279);
 			this.checkEditTabAGroup3.Name = "checkEditTabAGroup3";
 			this.checkEditTabAGroup3.Properties.Caption = "";
 			this.checkEditTabAGroup3.Size = new System.Drawing.Size(19, 19);
@@ -3793,10 +3789,10 @@
 			// 
 			// textEditTabASubheader7
 			// 
-			this.textEditTabASubheader7.Location = new System.Drawing.Point(244, 255);
+			this.textEditTabASubheader7.Location = new System.Drawing.Point(299, 277);
 			this.textEditTabASubheader7.Name = "textEditTabASubheader7";
 			this.textEditTabASubheader7.Properties.NullText = "Type here";
-			this.textEditTabASubheader7.Size = new System.Drawing.Size(135, 22);
+			this.textEditTabASubheader7.Size = new System.Drawing.Size(114, 22);
 			this.textEditTabASubheader7.StyleController = this.layoutControlMain;
 			this.textEditTabASubheader7.TabIndex = 11;
 			// 
@@ -3804,39 +3800,39 @@
 			// 
 			this.checkEditTabAGroup6.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup6.EditValue = true;
-			this.checkEditTabAGroup6.Location = new System.Drawing.Point(161, 461);
+			this.checkEditTabAGroup6.Location = new System.Drawing.Point(216, 471);
 			this.checkEditTabAGroup6.Name = "checkEditTabAGroup6";
 			this.checkEditTabAGroup6.Properties.Caption = "";
 			this.checkEditTabAGroup6.Size = new System.Drawing.Size(19, 19);
 			this.checkEditTabAGroup6.StyleController = this.layoutControlMain;
-			this.checkEditTabAGroup6.TabIndex = 16;
+			this.checkEditTabAGroup6.TabIndex = 19;
 			this.checkEditTabAGroup6.CheckedChanged += new System.EventHandler(this.OnTabAGroup6CheckedChanged);
 			// 
 			// checkEditTabASubheader14
 			// 
 			this.checkEditTabASubheader14.AutoSizeInLayoutControl = true;
 			this.checkEditTabASubheader14.EditValue = true;
-			this.checkEditTabASubheader14.Location = new System.Drawing.Point(244, 501);
+			this.checkEditTabASubheader14.Location = new System.Drawing.Point(299, 511);
 			this.checkEditTabASubheader14.Name = "checkEditTabASubheader14";
 			this.checkEditTabASubheader14.Properties.Caption = "";
 			this.checkEditTabASubheader14.Size = new System.Drawing.Size(19, 19);
 			this.checkEditTabASubheader14.StyleController = this.layoutControlMain;
-			this.checkEditTabASubheader14.TabIndex = 18;
+			this.checkEditTabASubheader14.TabIndex = 21;
 			this.checkEditTabASubheader14.CheckedChanged += new System.EventHandler(this.OnTabASubheader14CheckedChanged);
 			// 
 			// textEditTabASubheader13
 			// 
-			this.textEditTabASubheader13.Location = new System.Drawing.Point(244, 459);
+			this.textEditTabASubheader13.Location = new System.Drawing.Point(299, 469);
 			this.textEditTabASubheader13.Name = "textEditTabASubheader13";
 			this.textEditTabASubheader13.Properties.NullText = "Type here";
-			this.textEditTabASubheader13.Size = new System.Drawing.Size(574, 22);
+			this.textEditTabASubheader13.Size = new System.Drawing.Size(488, 22);
 			this.textEditTabASubheader13.StyleController = this.layoutControlMain;
-			this.textEditTabASubheader13.TabIndex = 17;
+			this.textEditTabASubheader13.TabIndex = 20;
 			// 
 			// pictureEditTabAClipart1
 			// 
 			this.pictureEditTabAClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabAClipart1.Location = new System.Drawing.Point(14, 119);
+			this.pictureEditTabAClipart1.Location = new System.Drawing.Point(85, 149);
 			this.pictureEditTabAClipart1.Name = "pictureEditTabAClipart1";
 			this.pictureEditTabAClipart1.Properties.AllowFocused = false;
 			this.pictureEditTabAClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -3845,14 +3841,14 @@
 			this.pictureEditTabAClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabAClipart1.Properties.ShowMenu = false;
 			this.pictureEditTabAClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabAClipart1.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabAClipart1.Size = new System.Drawing.Size(97, 124);
 			this.pictureEditTabAClipart1.StyleController = this.layoutControlMain;
 			this.pictureEditTabAClipart1.TabIndex = 1;
 			// 
 			// pictureEditTabAClipart2
 			// 
 			this.pictureEditTabAClipart2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabAClipart2.Location = new System.Drawing.Point(14, 289);
+			this.pictureEditTabAClipart2.Location = new System.Drawing.Point(85, 309);
 			this.pictureEditTabAClipart2.Name = "pictureEditTabAClipart2";
 			this.pictureEditTabAClipart2.Properties.AllowFocused = false;
 			this.pictureEditTabAClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -3861,14 +3857,14 @@
 			this.pictureEditTabAClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabAClipart2.Properties.ShowMenu = false;
 			this.pictureEditTabAClipart2.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabAClipart2.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabAClipart2.Size = new System.Drawing.Size(97, 124);
 			this.pictureEditTabAClipart2.StyleController = this.layoutControlMain;
 			this.pictureEditTabAClipart2.TabIndex = 1;
 			// 
 			// pictureEditTabAClipart3
 			// 
 			this.pictureEditTabAClipart3.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabAClipart3.Location = new System.Drawing.Point(14, 459);
+			this.pictureEditTabAClipart3.Location = new System.Drawing.Point(85, 469);
 			this.pictureEditTabAClipart3.Name = "pictureEditTabAClipart3";
 			this.pictureEditTabAClipart3.Properties.AllowFocused = false;
 			this.pictureEditTabAClipart3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -3877,7 +3873,7 @@
 			this.pictureEditTabAClipart3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabAClipart3.Properties.ShowMenu = false;
 			this.pictureEditTabAClipart3.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabAClipart3.Size = new System.Drawing.Size(113, 136);
+			this.pictureEditTabAClipart3.Size = new System.Drawing.Size(97, 126);
 			this.pictureEditTabAClipart3.StyleController = this.layoutControlMain;
 			this.pictureEditTabAClipart3.TabIndex = 1;
 			// 
@@ -3885,78 +3881,78 @@
 			// 
 			this.checkEditTabASubheader15.AutoSizeInLayoutControl = true;
 			this.checkEditTabASubheader15.EditValue = true;
-			this.checkEditTabASubheader15.Location = new System.Drawing.Point(558, 501);
+			this.checkEditTabASubheader15.Location = new System.Drawing.Point(570, 511);
 			this.checkEditTabASubheader15.Name = "checkEditTabASubheader15";
 			this.checkEditTabASubheader15.Properties.Caption = "";
 			this.checkEditTabASubheader15.Size = new System.Drawing.Size(19, 19);
 			this.checkEditTabASubheader15.StyleController = this.layoutControlMain;
-			this.checkEditTabASubheader15.TabIndex = 20;
+			this.checkEditTabASubheader15.TabIndex = 23;
 			this.checkEditTabASubheader15.CheckedChanged += new System.EventHandler(this.OnTabASubheader15CheckedChanged);
 			// 
 			// textEditTabASubheader15
 			// 
-			this.textEditTabASubheader15.Location = new System.Drawing.Point(581, 500);
+			this.textEditTabASubheader15.Location = new System.Drawing.Point(593, 510);
 			this.textEditTabASubheader15.Name = "textEditTabASubheader15";
 			this.textEditTabASubheader15.Properties.NullText = "Type here";
-			this.textEditTabASubheader15.Size = new System.Drawing.Size(198, 22);
+			this.textEditTabASubheader15.Size = new System.Drawing.Size(155, 22);
 			this.textEditTabASubheader15.StyleController = this.layoutControlMain;
-			this.textEditTabASubheader15.TabIndex = 21;
+			this.textEditTabASubheader15.TabIndex = 24;
 			// 
 			// checkEditTabAGroup4
 			// 
 			this.checkEditTabAGroup4.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup4.EditValue = true;
-			this.checkEditTabAGroup4.Location = new System.Drawing.Point(161, 325);
+			this.checkEditTabAGroup4.Location = new System.Drawing.Point(216, 343);
 			this.checkEditTabAGroup4.Name = "checkEditTabAGroup4";
 			this.checkEditTabAGroup4.Properties.Caption = "";
 			this.checkEditTabAGroup4.Size = new System.Drawing.Size(19, 19);
 			this.checkEditTabAGroup4.StyleController = this.layoutControlMain;
-			this.checkEditTabAGroup4.TabIndex = 1;
+			this.checkEditTabAGroup4.TabIndex = 14;
 			this.checkEditTabAGroup4.CheckedChanged += new System.EventHandler(this.OnTabAGroup4CheckedChanged);
 			// 
 			// textEditTabASubheader10
 			// 
-			this.textEditTabASubheader10.Location = new System.Drawing.Point(244, 323);
+			this.textEditTabASubheader10.Location = new System.Drawing.Point(299, 341);
 			this.textEditTabASubheader10.Name = "textEditTabASubheader10";
 			this.textEditTabASubheader10.Properties.NullText = "Type here";
-			this.textEditTabASubheader10.Size = new System.Drawing.Size(135, 22);
+			this.textEditTabASubheader10.Size = new System.Drawing.Size(114, 22);
 			this.textEditTabASubheader10.StyleController = this.layoutControlMain;
-			this.textEditTabASubheader10.TabIndex = 1;
+			this.textEditTabASubheader10.TabIndex = 15;
 			// 
 			// textEditTabASubheader11
 			// 
-			this.textEditTabASubheader11.Location = new System.Drawing.Point(515, 323);
+			this.textEditTabASubheader11.Location = new System.Drawing.Point(531, 341);
 			this.textEditTabASubheader11.Name = "textEditTabASubheader11";
 			this.textEditTabASubheader11.Properties.NullText = "Type here";
-			this.textEditTabASubheader11.Size = new System.Drawing.Size(303, 22);
+			this.textEditTabASubheader11.Size = new System.Drawing.Size(256, 22);
 			this.textEditTabASubheader11.StyleController = this.layoutControlMain;
-			this.textEditTabASubheader11.TabIndex = 1;
+			this.textEditTabASubheader11.TabIndex = 16;
 			// 
 			// checkEditTabAGroup5
 			// 
 			this.checkEditTabAGroup5.AutoSizeInLayoutControl = true;
 			this.checkEditTabAGroup5.EditValue = true;
-			this.checkEditTabAGroup5.Location = new System.Drawing.Point(161, 393);
+			this.checkEditTabAGroup5.Location = new System.Drawing.Point(216, 407);
 			this.checkEditTabAGroup5.Name = "checkEditTabAGroup5";
 			this.checkEditTabAGroup5.Properties.Caption = "";
 			this.checkEditTabAGroup5.Size = new System.Drawing.Size(19, 19);
 			this.checkEditTabAGroup5.StyleController = this.layoutControlMain;
-			this.checkEditTabAGroup5.TabIndex = 14;
+			this.checkEditTabAGroup5.TabIndex = 17;
 			this.checkEditTabAGroup5.CheckedChanged += new System.EventHandler(this.OnTabAGroup5CheckedChanged);
 			// 
 			// textEditTabASubheader12
 			// 
-			this.textEditTabASubheader12.Location = new System.Drawing.Point(244, 391);
+			this.textEditTabASubheader12.Location = new System.Drawing.Point(299, 405);
 			this.textEditTabASubheader12.Name = "textEditTabASubheader12";
 			this.textEditTabASubheader12.Properties.NullText = "Type here";
-			this.textEditTabASubheader12.Size = new System.Drawing.Size(401, 22);
+			this.textEditTabASubheader12.Size = new System.Drawing.Size(340, 22);
 			this.textEditTabASubheader12.StyleController = this.layoutControlMain;
-			this.textEditTabASubheader12.TabIndex = 15;
+			this.textEditTabASubheader12.TabIndex = 18;
 			// 
 			// pictureEditTabBClipart1
 			// 
 			this.pictureEditTabBClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart1.Location = new System.Drawing.Point(14, 119);
+			this.pictureEditTabBClipart1.Location = new System.Drawing.Point(85, 149);
 			this.pictureEditTabBClipart1.Name = "pictureEditTabBClipart1";
 			this.pictureEditTabBClipart1.Properties.AllowFocused = false;
 			this.pictureEditTabBClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -3965,14 +3961,14 @@
 			this.pictureEditTabBClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabBClipart1.Properties.ShowMenu = false;
 			this.pictureEditTabBClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart1.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabBClipart1.Size = new System.Drawing.Size(103, 124);
 			this.pictureEditTabBClipart1.StyleController = this.layoutControlMain;
 			this.pictureEditTabBClipart1.TabIndex = 1;
 			// 
 			// pictureEditTabBClipart2
 			// 
 			this.pictureEditTabBClipart2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart2.Location = new System.Drawing.Point(14, 289);
+			this.pictureEditTabBClipart2.Location = new System.Drawing.Point(85, 309);
 			this.pictureEditTabBClipart2.Name = "pictureEditTabBClipart2";
 			this.pictureEditTabBClipart2.Properties.AllowFocused = false;
 			this.pictureEditTabBClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -3981,14 +3977,14 @@
 			this.pictureEditTabBClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabBClipart2.Properties.ShowMenu = false;
 			this.pictureEditTabBClipart2.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart2.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabBClipart2.Size = new System.Drawing.Size(103, 124);
 			this.pictureEditTabBClipart2.StyleController = this.layoutControlMain;
 			this.pictureEditTabBClipart2.TabIndex = 1;
 			// 
 			// pictureEditTabBClipart3
 			// 
 			this.pictureEditTabBClipart3.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabBClipart3.Location = new System.Drawing.Point(14, 459);
+			this.pictureEditTabBClipart3.Location = new System.Drawing.Point(85, 469);
 			this.pictureEditTabBClipart3.Name = "pictureEditTabBClipart3";
 			this.pictureEditTabBClipart3.Properties.AllowFocused = false;
 			this.pictureEditTabBClipart3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -3997,14 +3993,14 @@
 			this.pictureEditTabBClipart3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabBClipart3.Properties.ShowMenu = false;
 			this.pictureEditTabBClipart3.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabBClipart3.Size = new System.Drawing.Size(113, 136);
+			this.pictureEditTabBClipart3.Size = new System.Drawing.Size(103, 126);
 			this.pictureEditTabBClipart3.StyleController = this.layoutControlMain;
 			this.pictureEditTabBClipart3.TabIndex = 1;
 			// 
 			// pictureEditTabCClipart1
 			// 
 			this.pictureEditTabCClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabCClipart1.Location = new System.Drawing.Point(14, 119);
+			this.pictureEditTabCClipart1.Location = new System.Drawing.Point(85, 149);
 			this.pictureEditTabCClipart1.Name = "pictureEditTabCClipart1";
 			this.pictureEditTabCClipart1.Properties.AllowFocused = false;
 			this.pictureEditTabCClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -4013,14 +4009,14 @@
 			this.pictureEditTabCClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabCClipart1.Properties.ShowMenu = false;
 			this.pictureEditTabCClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabCClipart1.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabCClipart1.Size = new System.Drawing.Size(103, 124);
 			this.pictureEditTabCClipart1.StyleController = this.layoutControlMain;
 			this.pictureEditTabCClipart1.TabIndex = 1;
 			// 
 			// pictureEditTabCClipart2
 			// 
 			this.pictureEditTabCClipart2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabCClipart2.Location = new System.Drawing.Point(14, 289);
+			this.pictureEditTabCClipart2.Location = new System.Drawing.Point(85, 309);
 			this.pictureEditTabCClipart2.Name = "pictureEditTabCClipart2";
 			this.pictureEditTabCClipart2.Properties.AllowFocused = false;
 			this.pictureEditTabCClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -4029,14 +4025,14 @@
 			this.pictureEditTabCClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabCClipart2.Properties.ShowMenu = false;
 			this.pictureEditTabCClipart2.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabCClipart2.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabCClipart2.Size = new System.Drawing.Size(103, 124);
 			this.pictureEditTabCClipart2.StyleController = this.layoutControlMain;
 			this.pictureEditTabCClipart2.TabIndex = 1;
 			// 
 			// pictureEditTabCClipart3
 			// 
 			this.pictureEditTabCClipart3.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabCClipart3.Location = new System.Drawing.Point(14, 459);
+			this.pictureEditTabCClipart3.Location = new System.Drawing.Point(85, 469);
 			this.pictureEditTabCClipart3.Name = "pictureEditTabCClipart3";
 			this.pictureEditTabCClipart3.Properties.AllowFocused = false;
 			this.pictureEditTabCClipart3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -4045,21 +4041,21 @@
 			this.pictureEditTabCClipart3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabCClipart3.Properties.ShowMenu = false;
 			this.pictureEditTabCClipart3.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabCClipart3.Size = new System.Drawing.Size(113, 136);
+			this.pictureEditTabCClipart3.Size = new System.Drawing.Size(103, 126);
 			this.pictureEditTabCClipart3.StyleController = this.layoutControlMain;
 			this.pictureEditTabCClipart3.TabIndex = 1;
 			// 
 			// panelTabCContentContainer
 			// 
 			this.panelTabCContentContainer.Controls.Add(this.layoutControlTabC);
-			this.panelTabCContentContainer.Location = new System.Drawing.Point(159, 117);
+			this.panelTabCContentContainer.Location = new System.Drawing.Point(220, 147);
 			this.panelTabCContentContainer.Name = "panelTabCContentContainer";
-			this.panelTabCContentContainer.Size = new System.Drawing.Size(661, 480);
+			this.panelTabCContentContainer.Size = new System.Drawing.Size(609, 450);
 			this.panelTabCContentContainer.TabIndex = 1;
 			// 
 			// layoutControlTabC
 			// 
-	        this.layoutControlTabC.AllowCustomization = false;
+			this.layoutControlTabC.AllowCustomization = false;
 			this.layoutControlTabC.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabC.Appearance.Control.Options.UseFont = true;
 			this.layoutControlTabC.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -4111,11 +4107,12 @@
 			this.layoutControlTabC.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlTabC.Name = "layoutControlTabC";
 			this.layoutControlTabC.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1184, 210, 689, 575);
+			this.layoutControlTabC.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControlTabC.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControlTabC.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControlTabC.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControlTabC.Root = this.layoutControlGroupTabCInner;
-			this.layoutControlTabC.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlTabC.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlTabC.StyleController = this.styleController;
 			this.layoutControlTabC.TabIndex = 71;
 			this.layoutControlTabC.Text = "layoutControl1";
@@ -4137,7 +4134,7 @@
 			this.textEditTabCSubheader1.Location = new System.Drawing.Point(85, 2);
 			this.textEditTabCSubheader1.Name = "textEditTabCSubheader1";
 			this.textEditTabCSubheader1.Properties.NullText = "Type here";
-			this.textEditTabCSubheader1.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabCSubheader1.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabCSubheader1.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader1.TabIndex = 1;
 			// 
@@ -4146,7 +4143,7 @@
 			this.textEditTabCSubheader12.Location = new System.Drawing.Point(85, 623);
 			this.textEditTabCSubheader12.Name = "textEditTabCSubheader12";
 			this.textEditTabCSubheader12.Properties.NullText = "Type here";
-			this.textEditTabCSubheader12.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabCSubheader12.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabCSubheader12.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader12.TabIndex = 18;
 			// 
@@ -4179,7 +4176,7 @@
 			this.textEditTabCSubheader2.Location = new System.Drawing.Point(108, 43);
 			this.textEditTabCSubheader2.Name = "textEditTabCSubheader2";
 			this.textEditTabCSubheader2.Properties.NullText = "Type here";
-			this.textEditTabCSubheader2.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabCSubheader2.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabCSubheader2.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader2.TabIndex = 22;
 			this.textEditTabCSubheader2.EditValueChanged += new System.EventHandler(this.OnTabCFormulaSourceEditValueChanged);
@@ -4201,7 +4198,7 @@
 			this.textEditTabCSubheader3.Location = new System.Drawing.Point(85, 110);
 			this.textEditTabCSubheader3.Name = "textEditTabCSubheader3";
 			this.textEditTabCSubheader3.Properties.NullText = "Type here";
-			this.textEditTabCSubheader3.Size = new System.Drawing.Size(80, 22);
+			this.textEditTabCSubheader3.Size = new System.Drawing.Size(69, 22);
 			this.textEditTabCSubheader3.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader3.TabIndex = 1;
 			// 
@@ -4222,7 +4219,7 @@
 			this.textEditTabCSubheader4.Location = new System.Drawing.Point(108, 151);
 			this.textEditTabCSubheader4.Name = "textEditTabCSubheader4";
 			this.textEditTabCSubheader4.Properties.NullText = "Type here";
-			this.textEditTabCSubheader4.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabCSubheader4.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabCSubheader4.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader4.TabIndex = 22;
 			this.textEditTabCSubheader4.EditValueChanged += new System.EventHandler(this.OnTabCFormulaSourceEditValueChanged);
@@ -4244,7 +4241,7 @@
 			this.textEditTabCSubheader5.Location = new System.Drawing.Point(108, 192);
 			this.textEditTabCSubheader5.Name = "textEditTabCSubheader5";
 			this.textEditTabCSubheader5.Properties.NullText = "Type here";
-			this.textEditTabCSubheader5.Size = new System.Drawing.Size(534, 22);
+			this.textEditTabCSubheader5.Size = new System.Drawing.Size(459, 22);
 			this.textEditTabCSubheader5.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader5.TabIndex = 22;
 			// 
@@ -4265,7 +4262,7 @@
 			this.textEditTabCSubheader6.Location = new System.Drawing.Point(85, 245);
 			this.textEditTabCSubheader6.Name = "textEditTabCSubheader6";
 			this.textEditTabCSubheader6.Properties.NullText = "Type here";
-			this.textEditTabCSubheader6.Size = new System.Drawing.Size(192, 22);
+			this.textEditTabCSubheader6.Size = new System.Drawing.Size(166, 22);
 			this.textEditTabCSubheader6.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader6.TabIndex = 1;
 			// 
@@ -4286,7 +4283,7 @@
 			this.textEditTabCSubheader7.Location = new System.Drawing.Point(108, 286);
 			this.textEditTabCSubheader7.Name = "textEditTabCSubheader7";
 			this.textEditTabCSubheader7.Properties.NullText = "Type here";
-			this.textEditTabCSubheader7.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabCSubheader7.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabCSubheader7.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader7.TabIndex = 22;
 			this.textEditTabCSubheader7.EditValueChanged += new System.EventHandler(this.OnTabCFormulaSourceEditValueChanged);
@@ -4308,7 +4305,7 @@
 			this.textEditTabCSubheader8.Location = new System.Drawing.Point(108, 327);
 			this.textEditTabCSubheader8.Name = "textEditTabCSubheader8";
 			this.textEditTabCSubheader8.Properties.NullText = "Type here";
-			this.textEditTabCSubheader8.Size = new System.Drawing.Size(534, 22);
+			this.textEditTabCSubheader8.Size = new System.Drawing.Size(459, 22);
 			this.textEditTabCSubheader8.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader8.TabIndex = 22;
 			// 
@@ -4329,7 +4326,7 @@
 			this.textEditTabCSubheader9.Location = new System.Drawing.Point(85, 380);
 			this.textEditTabCSubheader9.Name = "textEditTabCSubheader9";
 			this.textEditTabCSubheader9.Properties.NullText = "Type here";
-			this.textEditTabCSubheader9.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabCSubheader9.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabCSubheader9.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader9.TabIndex = 1;
 			// 
@@ -4362,7 +4359,7 @@
 			this.textEditTabCSubheader10.Location = new System.Drawing.Point(108, 459);
 			this.textEditTabCSubheader10.Name = "textEditTabCSubheader10";
 			this.textEditTabCSubheader10.Properties.NullText = "Type here";
-			this.textEditTabCSubheader10.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabCSubheader10.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabCSubheader10.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader10.TabIndex = 22;
 			// 
@@ -4383,7 +4380,7 @@
 			this.textEditTabCSubheader11.Location = new System.Drawing.Point(85, 515);
 			this.textEditTabCSubheader11.Name = "textEditTabCSubheader11";
 			this.textEditTabCSubheader11.Properties.NullText = "Type here";
-			this.textEditTabCSubheader11.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabCSubheader11.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabCSubheader11.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader11.TabIndex = 1;
 			// 
@@ -4416,7 +4413,7 @@
 			this.textEditTabCSubheader13.Location = new System.Drawing.Point(85, 677);
 			this.textEditTabCSubheader13.Name = "textEditTabCSubheader13";
 			this.textEditTabCSubheader13.Properties.NullText = "Type here";
-			this.textEditTabCSubheader13.Size = new System.Drawing.Size(276, 22);
+			this.textEditTabCSubheader13.Size = new System.Drawing.Size(239, 22);
 			this.textEditTabCSubheader13.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader13.TabIndex = 1;
 			this.textEditTabCSubheader13.EditValueChanged += new System.EventHandler(this.OnTabCFormulaSourceEditValueChanged);
@@ -4438,7 +4435,7 @@
 			this.textEditTabCSubheader14.Location = new System.Drawing.Point(108, 718);
 			this.textEditTabCSubheader14.Name = "textEditTabCSubheader14";
 			this.textEditTabCSubheader14.Properties.NullText = "Type here";
-			this.textEditTabCSubheader14.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabCSubheader14.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabCSubheader14.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader14.TabIndex = 22;
 			// 
@@ -4459,7 +4456,7 @@
 			this.textEditTabCSubheader15.Location = new System.Drawing.Point(85, 785);
 			this.textEditTabCSubheader15.Name = "textEditTabCSubheader15";
 			this.textEditTabCSubheader15.Properties.NullText = "Type here";
-			this.textEditTabCSubheader15.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabCSubheader15.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabCSubheader15.StyleController = this.layoutControlTabC;
 			this.textEditTabCSubheader15.TabIndex = 1;
 			// 
@@ -4605,8 +4602,8 @@
             rowDefinition94,
             rowDefinition95,
             rowDefinition96});
-			this.layoutControlGroupTabCInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupTabCInner.Size = new System.Drawing.Size(644, 864);
+			this.layoutControlGroupTabCInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 40, 0, 0);
+			this.layoutControlGroupTabCInner.Size = new System.Drawing.Size(609, 864);
 			this.layoutControlGroupTabCInner.Text = "Tab C";
 			this.layoutControlGroupTabCInner.TextVisible = false;
 			// 
@@ -4621,7 +4618,7 @@
 			this.layoutControlGroupTabCGroup1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabCGroup1.Name = "layoutControlGroupTabCGroup1";
 			this.layoutControlGroupTabCGroup1.OptionsTableLayoutItem.RowSpan = 3;
-			this.layoutControlGroupTabCGroup1.Size = new System.Drawing.Size(644, 81);
+			this.layoutControlGroupTabCGroup1.Size = new System.Drawing.Size(569, 81);
 			this.layoutControlGroupTabCGroup1.Text = "Group 1";
 			this.layoutControlGroupTabCGroup1.TextVisible = false;
 			// 
@@ -4670,7 +4667,7 @@
             rowDefinition37,
             rowDefinition38,
             rowDefinition39});
-			this.layoutControlGroupTabCGroup1Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabCGroup1Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabCGroup1Inner.Text = "Group 1 Inner";
 			this.layoutControlGroupTabCGroup1Inner.TextVisible = false;
 			// 
@@ -4685,7 +4682,7 @@
 			this.layoutControlItemTabCSubheader1.Name = "layoutControlItemTabCSubheader1";
 			this.layoutControlItemTabCSubheader1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCSubheader1.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabCSubheader1.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabCSubheader1.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabCSubheader1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader1.Text = "Subheader 1";
 			this.layoutControlItemTabCSubheader1.TextSize = new System.Drawing.Size(0, 0);
@@ -4718,7 +4715,7 @@
 			this.layoutControlGroupTabCSubheader2.Name = "layoutControlGroupTabCSubheader2";
 			this.layoutControlGroupTabCSubheader2.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCSubheader2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabCSubheader2.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabCSubheader2.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabCSubheader2.Text = "Subheader 2";
 			this.layoutControlGroupTabCSubheader2.TextVisible = false;
 			// 
@@ -4741,7 +4738,7 @@
 			this.layoutControlItemTabCSubheader2Value.FillControlToClientArea = false;
 			this.layoutControlItemTabCSubheader2Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabCSubheader2Value.Name = "layoutControlItemTabCSubheader2Value";
-			this.layoutControlItemTabCSubheader2Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabCSubheader2Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabCSubheader2Value.Text = "Subheader 2 Value";
 			this.layoutControlItemTabCSubheader2Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCSubheader2Value.TextSize = new System.Drawing.Size(0, 0);
@@ -4756,7 +4753,7 @@
 			this.emptySpaceItem4.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem4.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem4.Name = "emptySpaceItem3";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(621, 14);
+			this.emptySpaceItem4.Size = new System.Drawing.Size(546, 14);
 			this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
@@ -4770,7 +4767,7 @@
 			this.layoutControlGroupTabCGroup6.Location = new System.Drawing.Point(0, 621);
 			this.layoutControlGroupTabCGroup6.Name = "layoutControlGroupTabCGroup6";
 			this.layoutControlGroupTabCGroup6.OptionsTableLayoutItem.RowIndex = 23;
-			this.layoutControlGroupTabCGroup6.Size = new System.Drawing.Size(644, 27);
+			this.layoutControlGroupTabCGroup6.Size = new System.Drawing.Size(569, 27);
 			this.layoutControlGroupTabCGroup6.Text = "Group 6";
 			this.layoutControlGroupTabCGroup6.TextVisible = false;
 			// 
@@ -4795,7 +4792,7 @@
 			this.layoutControlGroupTabCGroup6Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
             rowDefinition40});
 			this.layoutControlGroupTabCGroup6Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabCGroup6Inner.Size = new System.Drawing.Size(621, 26);
+			this.layoutControlGroupTabCGroup6Inner.Size = new System.Drawing.Size(546, 26);
 			this.layoutControlGroupTabCGroup6Inner.Text = "Group 6 Inner";
 			this.layoutControlGroupTabCGroup6Inner.TextVisible = false;
 			// 
@@ -4808,7 +4805,7 @@
 			this.layoutControlItemTabCSubheader12.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabCSubheader12.Name = "layoutControlItemTabCSubheader12";
 			this.layoutControlItemTabCSubheader12.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabCSubheader12.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabCSubheader12.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabCSubheader12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader12.Text = "Subheader 12";
 			this.layoutControlItemTabCSubheader12.TextSize = new System.Drawing.Size(0, 0);
@@ -4838,7 +4835,7 @@
 			this.emptySpaceItem28.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem28.Name = "emptySpaceItem18";
 			this.emptySpaceItem28.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem28.Size = new System.Drawing.Size(644, 1);
+			this.emptySpaceItem28.Size = new System.Drawing.Size(569, 1);
 			this.emptySpaceItem28.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem28.Text = "emptySpaceItem4";
 			this.emptySpaceItem28.TextSize = new System.Drawing.Size(0, 0);
@@ -4868,7 +4865,7 @@
 			this.layoutControlGroupTabCGroup2.Name = "layoutControlGroupTabCGroup2";
 			this.layoutControlGroupTabCGroup2.OptionsTableLayoutItem.RowIndex = 4;
 			this.layoutControlGroupTabCGroup2.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlGroupTabCGroup2.Size = new System.Drawing.Size(644, 108);
+			this.layoutControlGroupTabCGroup2.Size = new System.Drawing.Size(569, 108);
 			this.layoutControlGroupTabCGroup2.Text = "Group 2";
 			this.layoutControlGroupTabCGroup2.TextVisible = false;
 			// 
@@ -4925,7 +4922,7 @@
             rowDefinition43,
             rowDefinition44,
             rowDefinition45});
-			this.layoutControlGroupTabCGroup2Inner.Size = new System.Drawing.Size(621, 108);
+			this.layoutControlGroupTabCGroup2Inner.Size = new System.Drawing.Size(546, 108);
 			this.layoutControlGroupTabCGroup2Inner.Text = "Group 2 Inner";
 			this.layoutControlGroupTabCGroup2Inner.TextVisible = false;
 			// 
@@ -4938,7 +4935,7 @@
 			this.layoutControlItemTabCSubheader3.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabCSubheader3.Name = "layoutControlItemTabCSubheader3";
 			this.layoutControlItemTabCSubheader3.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabCSubheader3.Size = new System.Drawing.Size(84, 26);
+			this.layoutControlItemTabCSubheader3.Size = new System.Drawing.Size(73, 26);
 			this.layoutControlItemTabCSubheader3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader3.Text = "Subheader 3";
 			this.layoutControlItemTabCSubheader3.TextSize = new System.Drawing.Size(0, 0);
@@ -4971,7 +4968,7 @@
 			this.layoutControlGroupTabCSubheader4.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCSubheader4.OptionsTableLayoutItem.ColumnSpan = 2;
 			this.layoutControlGroupTabCSubheader4.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabCSubheader4.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabCSubheader4.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabCSubheader4.Text = "Subheader 4";
 			this.layoutControlGroupTabCSubheader4.TextVisible = false;
 			// 
@@ -4994,7 +4991,7 @@
 			this.layoutControlItemTabCSubheader4Value.FillControlToClientArea = false;
 			this.layoutControlItemTabCSubheader4Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabCSubheader4Value.Name = "layoutControlItemTabCSubheader4Value";
-			this.layoutControlItemTabCSubheader4Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabCSubheader4Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabCSubheader4Value.Text = "Subheader 4 Value";
 			this.layoutControlItemTabCSubheader4Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCSubheader4Value.TextSize = new System.Drawing.Size(0, 0);
@@ -5013,7 +5010,7 @@
 			this.layoutControlGroupTabCSubheader5.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCSubheader5.OptionsTableLayoutItem.ColumnSpan = 3;
 			this.layoutControlGroupTabCSubheader5.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlGroupTabCSubheader5.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlGroupTabCSubheader5.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlGroupTabCSubheader5.Text = "Subheader 5";
 			this.layoutControlGroupTabCSubheader5.TextVisible = false;
 			// 
@@ -5036,7 +5033,7 @@
 			this.layoutControlItemTabCSubheader5Value.FillControlToClientArea = false;
 			this.layoutControlItemTabCSubheader5Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabCSubheader5Value.Name = "layoutControlItemTabCSubheader5Value";
-			this.layoutControlItemTabCSubheader5Value.Size = new System.Drawing.Size(538, 26);
+			this.layoutControlItemTabCSubheader5Value.Size = new System.Drawing.Size(463, 26);
 			this.layoutControlItemTabCSubheader5Value.Text = "Subheader 5 Value";
 			this.layoutControlItemTabCSubheader5Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCSubheader5Value.TextSize = new System.Drawing.Size(0, 0);
@@ -5051,7 +5048,7 @@
 			this.emptySpaceItem24.Location = new System.Drawing.Point(23, 108);
 			this.emptySpaceItem24.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem24.Name = "emptySpaceItem24";
-			this.emptySpaceItem24.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem24.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem24.Text = "emptySpaceItem3";
 			this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
@@ -5067,7 +5064,7 @@
 			this.layoutControlGroupTabCGroup3.Name = "layoutControlGroupTabCGroup3";
 			this.layoutControlGroupTabCGroup3.OptionsTableLayoutItem.RowIndex = 9;
 			this.layoutControlGroupTabCGroup3.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlGroupTabCGroup3.Size = new System.Drawing.Size(644, 108);
+			this.layoutControlGroupTabCGroup3.Size = new System.Drawing.Size(569, 108);
 			this.layoutControlGroupTabCGroup3.Text = "Group 3";
 			this.layoutControlGroupTabCGroup3.TextVisible = false;
 			// 
@@ -5124,7 +5121,7 @@
             rowDefinition48,
             rowDefinition49,
             rowDefinition50});
-			this.layoutControlGroupTabCGroup3Inner.Size = new System.Drawing.Size(621, 108);
+			this.layoutControlGroupTabCGroup3Inner.Size = new System.Drawing.Size(546, 108);
 			this.layoutControlGroupTabCGroup3Inner.Text = "Group 3 Inner";
 			this.layoutControlGroupTabCGroup3Inner.TextVisible = false;
 			// 
@@ -5137,7 +5134,7 @@
 			this.layoutControlItemTabCSubheader6.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabCSubheader6.Name = "layoutControlItemTabCSubheader6";
 			this.layoutControlItemTabCSubheader6.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabCSubheader6.Size = new System.Drawing.Size(196, 26);
+			this.layoutControlItemTabCSubheader6.Size = new System.Drawing.Size(170, 26);
 			this.layoutControlItemTabCSubheader6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader6.Text = "Subheader 6";
 			this.layoutControlItemTabCSubheader6.TextSize = new System.Drawing.Size(0, 0);
@@ -5170,7 +5167,7 @@
 			this.layoutControlGroupTabCSubheader7.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCSubheader7.OptionsTableLayoutItem.ColumnSpan = 2;
 			this.layoutControlGroupTabCSubheader7.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabCSubheader7.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabCSubheader7.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabCSubheader7.Text = "Subheader 7";
 			this.layoutControlGroupTabCSubheader7.TextVisible = false;
 			// 
@@ -5193,7 +5190,7 @@
 			this.layoutControlItemTabCSubheader7Value.FillControlToClientArea = false;
 			this.layoutControlItemTabCSubheader7Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabCSubheader7Value.Name = "layoutControlItemTabCSubheader7Value";
-			this.layoutControlItemTabCSubheader7Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabCSubheader7Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabCSubheader7Value.Text = "Subheader 7 Value";
 			this.layoutControlItemTabCSubheader7Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCSubheader7Value.TextSize = new System.Drawing.Size(0, 0);
@@ -5212,7 +5209,7 @@
 			this.layoutControlGroupTabCSubheader8.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCSubheader8.OptionsTableLayoutItem.ColumnSpan = 3;
 			this.layoutControlGroupTabCSubheader8.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlGroupTabCSubheader8.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlGroupTabCSubheader8.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlGroupTabCSubheader8.Text = "Subheader 8";
 			this.layoutControlGroupTabCSubheader8.TextVisible = false;
 			// 
@@ -5235,7 +5232,7 @@
 			this.layoutControlItemTabCSubheader8Value.FillControlToClientArea = false;
 			this.layoutControlItemTabCSubheader8Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabCSubheader8Value.Name = "layoutControlItemTabCSubheader8Value";
-			this.layoutControlItemTabCSubheader8Value.Size = new System.Drawing.Size(538, 26);
+			this.layoutControlItemTabCSubheader8Value.Size = new System.Drawing.Size(463, 26);
 			this.layoutControlItemTabCSubheader8Value.Text = "Subheader 8 Value";
 			this.layoutControlItemTabCSubheader8Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCSubheader8Value.TextSize = new System.Drawing.Size(0, 0);
@@ -5250,7 +5247,7 @@
 			this.emptySpaceItem25.Location = new System.Drawing.Point(23, 108);
 			this.emptySpaceItem25.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem25.Name = "emptySpaceItem25";
-			this.emptySpaceItem25.Size = new System.Drawing.Size(621, 1);
+			this.emptySpaceItem25.Size = new System.Drawing.Size(546, 1);
 			this.emptySpaceItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem25.Text = "emptySpaceItem3";
 			this.emptySpaceItem25.TextSize = new System.Drawing.Size(0, 0);
@@ -5266,7 +5263,7 @@
 			this.layoutControlGroupTabCGroup4.Name = "layoutControlGroupTabCGroup4";
 			this.layoutControlGroupTabCGroup4.OptionsTableLayoutItem.RowIndex = 14;
 			this.layoutControlGroupTabCGroup4.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlGroupTabCGroup4.Size = new System.Drawing.Size(644, 108);
+			this.layoutControlGroupTabCGroup4.Size = new System.Drawing.Size(569, 108);
 			this.layoutControlGroupTabCGroup4.Text = "Group 4";
 			this.layoutControlGroupTabCGroup4.TextVisible = false;
 			// 
@@ -5320,7 +5317,7 @@
             rowDefinition53,
             rowDefinition54,
             rowDefinition55});
-			this.layoutControlGroupTabCGroup4Inner.Size = new System.Drawing.Size(621, 105);
+			this.layoutControlGroupTabCGroup4Inner.Size = new System.Drawing.Size(546, 105);
 			this.layoutControlGroupTabCGroup4Inner.Text = "Group 4 Inner";
 			this.layoutControlGroupTabCGroup4Inner.TextVisible = false;
 			// 
@@ -5334,7 +5331,7 @@
 			this.layoutControlItemTabCSubheader9.Name = "layoutControlItemTabCSubheader9";
 			this.layoutControlItemTabCSubheader9.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCSubheader9.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabCSubheader9.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabCSubheader9.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabCSubheader9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader9.Text = "Subheader 9";
 			this.layoutControlItemTabCSubheader9.TextSize = new System.Drawing.Size(0, 0);
@@ -5366,7 +5363,7 @@
 			this.layoutControlGroupTabCFormula1.Name = "layoutControlGroupTabCFormula1";
 			this.layoutControlGroupTabCFormula1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCFormula1.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabCFormula1.Size = new System.Drawing.Size(280, 23);
+			this.layoutControlGroupTabCFormula1.Size = new System.Drawing.Size(243, 23);
 			this.layoutControlGroupTabCFormula1.Text = "Formula 1";
 			this.layoutControlGroupTabCFormula1.TextVisible = false;
 			// 
@@ -5394,7 +5391,7 @@
 			this.simpleLabelItemTabCFormula1.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabCFormula1.Location = new System.Drawing.Point(23, 0);
 			this.simpleLabelItemTabCFormula1.Name = "simpleLabelItemTabCFormula1";
-			this.simpleLabelItemTabCFormula1.Size = new System.Drawing.Size(257, 23);
+			this.simpleLabelItemTabCFormula1.Size = new System.Drawing.Size(220, 23);
 			this.simpleLabelItemTabCFormula1.Text = "<b>0</b>";
 			this.simpleLabelItemTabCFormula1.TextSize = new System.Drawing.Size(12, 16);
 			// 
@@ -5408,7 +5405,7 @@
 			this.layoutControlGroupTabCSubheader10.Name = "layoutControlGroupTabCSubheader10";
 			this.layoutControlGroupTabCSubheader10.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCSubheader10.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlGroupTabCSubheader10.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabCSubheader10.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabCSubheader10.Text = "Subheader 10";
 			this.layoutControlGroupTabCSubheader10.TextVisible = false;
 			// 
@@ -5431,7 +5428,7 @@
 			this.layoutControlItemTabCSubheader10Value.FillControlToClientArea = false;
 			this.layoutControlItemTabCSubheader10Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabCSubheader10Value.Name = "layoutControlItemTabCSubheader10Value";
-			this.layoutControlItemTabCSubheader10Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabCSubheader10Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabCSubheader10Value.Text = "Subheader 10 Value";
 			this.layoutControlItemTabCSubheader10Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCSubheader10Value.TextSize = new System.Drawing.Size(0, 0);
@@ -5446,7 +5443,7 @@
 			this.emptySpaceItem26.Location = new System.Drawing.Point(23, 105);
 			this.emptySpaceItem26.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem26.Name = "emptySpaceItem26";
-			this.emptySpaceItem26.Size = new System.Drawing.Size(621, 3);
+			this.emptySpaceItem26.Size = new System.Drawing.Size(546, 3);
 			this.emptySpaceItem26.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem26.Text = "emptySpaceItem3";
 			this.emptySpaceItem26.TextSize = new System.Drawing.Size(0, 0);
@@ -5462,7 +5459,7 @@
 			this.layoutControlGroupTabCGroup5.Name = "layoutControlGroupTabCGroup5";
 			this.layoutControlGroupTabCGroup5.OptionsTableLayoutItem.RowIndex = 19;
 			this.layoutControlGroupTabCGroup5.OptionsTableLayoutItem.RowSpan = 3;
-			this.layoutControlGroupTabCGroup5.Size = new System.Drawing.Size(644, 81);
+			this.layoutControlGroupTabCGroup5.Size = new System.Drawing.Size(569, 81);
 			this.layoutControlGroupTabCGroup5.Text = "Group 5";
 			this.layoutControlGroupTabCGroup5.TextVisible = false;
 			// 
@@ -5509,7 +5506,7 @@
             rowDefinition56,
             rowDefinition57,
             rowDefinition58});
-			this.layoutControlGroupTabCGroup5Inner.Size = new System.Drawing.Size(621, 64);
+			this.layoutControlGroupTabCGroup5Inner.Size = new System.Drawing.Size(546, 64);
 			this.layoutControlGroupTabCGroup5Inner.Text = "Group 5 Inner";
 			this.layoutControlGroupTabCGroup5Inner.TextVisible = false;
 			// 
@@ -5523,7 +5520,7 @@
 			this.layoutControlItemTabCSubheader11.Name = "layoutControlItemTabCSubheader11";
 			this.layoutControlItemTabCSubheader11.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCSubheader11.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabCSubheader11.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabCSubheader11.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabCSubheader11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader11.Text = "Subheader 11";
 			this.layoutControlItemTabCSubheader11.TextSize = new System.Drawing.Size(0, 0);
@@ -5555,7 +5552,7 @@
 			this.layoutControlGroupTabCFormula2.Name = "layoutControlGroupTabCFormula2";
 			this.layoutControlGroupTabCFormula2.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCFormula2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabCFormula2.Size = new System.Drawing.Size(280, 23);
+			this.layoutControlGroupTabCFormula2.Size = new System.Drawing.Size(243, 23);
 			this.layoutControlGroupTabCFormula2.Text = "Formula 2";
 			this.layoutControlGroupTabCFormula2.TextVisible = false;
 			// 
@@ -5584,7 +5581,7 @@
 			this.simpleLabelItemTabCFormula2.CustomizationFormText = "<b>0</b>";
 			this.simpleLabelItemTabCFormula2.Location = new System.Drawing.Point(23, 0);
 			this.simpleLabelItemTabCFormula2.Name = "simpleLabelItemTabCFormula2";
-			this.simpleLabelItemTabCFormula2.Size = new System.Drawing.Size(257, 23);
+			this.simpleLabelItemTabCFormula2.Size = new System.Drawing.Size(220, 23);
 			this.simpleLabelItemTabCFormula2.Text = "<b>0</b>";
 			this.simpleLabelItemTabCFormula2.TextSize = new System.Drawing.Size(12, 16);
 			// 
@@ -5595,7 +5592,7 @@
 			this.emptySpaceItem27.Location = new System.Drawing.Point(23, 64);
 			this.emptySpaceItem27.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem27.Name = "emptySpaceItem27";
-			this.emptySpaceItem27.Size = new System.Drawing.Size(621, 17);
+			this.emptySpaceItem27.Size = new System.Drawing.Size(546, 17);
 			this.emptySpaceItem27.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem27.Text = "emptySpaceItem3";
 			this.emptySpaceItem27.TextSize = new System.Drawing.Size(0, 0);
@@ -5611,7 +5608,7 @@
 			this.layoutControlGroupTabCGroup7.Name = "layoutControlGroupTabCGroup7";
 			this.layoutControlGroupTabCGroup7.OptionsTableLayoutItem.RowIndex = 25;
 			this.layoutControlGroupTabCGroup7.OptionsTableLayoutItem.RowSpan = 3;
-			this.layoutControlGroupTabCGroup7.Size = new System.Drawing.Size(644, 81);
+			this.layoutControlGroupTabCGroup7.Size = new System.Drawing.Size(569, 81);
 			this.layoutControlGroupTabCGroup7.Text = "Group 7";
 			this.layoutControlGroupTabCGroup7.TextVisible = false;
 			// 
@@ -5658,7 +5655,7 @@
             rowDefinition59,
             rowDefinition60,
             rowDefinition61});
-			this.layoutControlGroupTabCGroup7Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabCGroup7Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabCGroup7Inner.Text = "Group 7 Inner";
 			this.layoutControlGroupTabCGroup7Inner.TextVisible = false;
 			// 
@@ -5671,7 +5668,7 @@
 			this.layoutControlItemTabCSubheader13.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabCSubheader13.Name = "layoutControlItemTabCSubheader13";
 			this.layoutControlItemTabCSubheader13.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabCSubheader13.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlItemTabCSubheader13.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlItemTabCSubheader13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader13.Text = "Subheader 13";
 			this.layoutControlItemTabCSubheader13.TextSize = new System.Drawing.Size(0, 0);
@@ -5703,7 +5700,7 @@
 			this.layoutControlGroupTabCSubheader14.Name = "layoutControlGroupTabCSubheader14";
 			this.layoutControlGroupTabCSubheader14.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCSubheader14.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabCSubheader14.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabCSubheader14.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabCSubheader14.Text = "Subheader 14";
 			this.layoutControlGroupTabCSubheader14.TextVisible = false;
 			// 
@@ -5726,7 +5723,7 @@
 			this.layoutControlItemTabCSubheader14Value.FillControlToClientArea = false;
 			this.layoutControlItemTabCSubheader14Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabCSubheader14Value.Name = "layoutControlItemTabCSubheader14Value";
-			this.layoutControlItemTabCSubheader14Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabCSubheader14Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabCSubheader14Value.Text = "Subheader 14 Value";
 			this.layoutControlItemTabCSubheader14Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCSubheader14Value.TextSize = new System.Drawing.Size(0, 0);
@@ -5741,7 +5738,7 @@
 			this.emptySpaceItem15.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem15.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem15.Name = "emptySpaceItem15";
-			this.emptySpaceItem15.Size = new System.Drawing.Size(621, 14);
+			this.emptySpaceItem15.Size = new System.Drawing.Size(546, 14);
 			this.emptySpaceItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem15.Text = "emptySpaceItem3";
 			this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
@@ -5757,7 +5754,7 @@
 			this.layoutControlGroupTabCGroup8.Name = "layoutControlGroupTabCGroup8";
 			this.layoutControlGroupTabCGroup8.OptionsTableLayoutItem.RowIndex = 29;
 			this.layoutControlGroupTabCGroup8.OptionsTableLayoutItem.RowSpan = 3;
-			this.layoutControlGroupTabCGroup8.Size = new System.Drawing.Size(644, 81);
+			this.layoutControlGroupTabCGroup8.Size = new System.Drawing.Size(569, 81);
 			this.layoutControlGroupTabCGroup8.Text = "Group 8";
 			this.layoutControlGroupTabCGroup8.TextVisible = false;
 			// 
@@ -5804,7 +5801,7 @@
             rowDefinition62,
             rowDefinition63,
             rowDefinition64});
-			this.layoutControlGroupTabCGroup8Inner.Size = new System.Drawing.Size(621, 64);
+			this.layoutControlGroupTabCGroup8Inner.Size = new System.Drawing.Size(546, 64);
 			this.layoutControlGroupTabCGroup8Inner.Text = "Group 8 Inner";
 			this.layoutControlGroupTabCGroup8Inner.TextVisible = false;
 			// 
@@ -5818,7 +5815,7 @@
 			this.layoutControlItemTabCSubheader15.Name = "layoutControlItemTabCSubheader15";
 			this.layoutControlItemTabCSubheader15.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCSubheader15.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabCSubheader15.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabCSubheader15.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabCSubheader15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCSubheader15.Text = "Subheader 15";
 			this.layoutControlItemTabCSubheader15.TextSize = new System.Drawing.Size(0, 0);
@@ -5850,7 +5847,7 @@
 			this.layoutControlGroupTabCFormula3.Name = "layoutControlGroupTabCFormula3";
 			this.layoutControlGroupTabCFormula3.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCFormula3.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabCFormula3.Size = new System.Drawing.Size(280, 23);
+			this.layoutControlGroupTabCFormula3.Size = new System.Drawing.Size(243, 23);
 			this.layoutControlGroupTabCFormula3.Text = "Formula 3";
 			this.layoutControlGroupTabCFormula3.TextVisible = false;
 			// 
@@ -5879,7 +5876,7 @@
 			this.simpleLabelItemTabCFormula3.CustomizationFormText = "<b>0</b>";
 			this.simpleLabelItemTabCFormula3.Location = new System.Drawing.Point(23, 0);
 			this.simpleLabelItemTabCFormula3.Name = "simpleLabelItemTabCFormula3";
-			this.simpleLabelItemTabCFormula3.Size = new System.Drawing.Size(257, 23);
+			this.simpleLabelItemTabCFormula3.Size = new System.Drawing.Size(220, 23);
 			this.simpleLabelItemTabCFormula3.Text = "<b>0</b>";
 			this.simpleLabelItemTabCFormula3.TextSize = new System.Drawing.Size(12, 16);
 			// 
@@ -5890,7 +5887,7 @@
 			this.emptySpaceItem29.Location = new System.Drawing.Point(23, 64);
 			this.emptySpaceItem29.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem29.Name = "emptySpaceItem29";
-			this.emptySpaceItem29.Size = new System.Drawing.Size(621, 17);
+			this.emptySpaceItem29.Size = new System.Drawing.Size(546, 17);
 			this.emptySpaceItem29.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem29.Text = "emptySpaceItem3";
 			this.emptySpaceItem29.TextSize = new System.Drawing.Size(0, 0);
@@ -5898,7 +5895,7 @@
 			// pictureEditTabDClipart1
 			// 
 			this.pictureEditTabDClipart1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabDClipart1.Location = new System.Drawing.Point(14, 119);
+			this.pictureEditTabDClipart1.Location = new System.Drawing.Point(85, 149);
 			this.pictureEditTabDClipart1.Name = "pictureEditTabDClipart1";
 			this.pictureEditTabDClipart1.Properties.AllowFocused = false;
 			this.pictureEditTabDClipart1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -5907,14 +5904,14 @@
 			this.pictureEditTabDClipart1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabDClipart1.Properties.ShowMenu = false;
 			this.pictureEditTabDClipart1.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabDClipart1.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabDClipart1.Size = new System.Drawing.Size(103, 124);
 			this.pictureEditTabDClipart1.StyleController = this.layoutControlMain;
 			this.pictureEditTabDClipart1.TabIndex = 1;
 			// 
 			// pictureEditTabDClipart2
 			// 
 			this.pictureEditTabDClipart2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabDClipart2.Location = new System.Drawing.Point(14, 289);
+			this.pictureEditTabDClipart2.Location = new System.Drawing.Point(85, 309);
 			this.pictureEditTabDClipart2.Name = "pictureEditTabDClipart2";
 			this.pictureEditTabDClipart2.Properties.AllowFocused = false;
 			this.pictureEditTabDClipart2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -5923,14 +5920,14 @@
 			this.pictureEditTabDClipart2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabDClipart2.Properties.ShowMenu = false;
 			this.pictureEditTabDClipart2.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabDClipart2.Size = new System.Drawing.Size(113, 132);
+			this.pictureEditTabDClipart2.Size = new System.Drawing.Size(103, 124);
 			this.pictureEditTabDClipart2.StyleController = this.layoutControlMain;
 			this.pictureEditTabDClipart2.TabIndex = 1;
 			// 
 			// pictureEditTabDClipart3
 			// 
 			this.pictureEditTabDClipart3.Cursor = System.Windows.Forms.Cursors.Default;
-			this.pictureEditTabDClipart3.Location = new System.Drawing.Point(14, 459);
+			this.pictureEditTabDClipart3.Location = new System.Drawing.Point(85, 469);
 			this.pictureEditTabDClipart3.Name = "pictureEditTabDClipart3";
 			this.pictureEditTabDClipart3.Properties.AllowFocused = false;
 			this.pictureEditTabDClipart3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -5939,21 +5936,21 @@
 			this.pictureEditTabDClipart3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditTabDClipart3.Properties.ShowMenu = false;
 			this.pictureEditTabDClipart3.Properties.ZoomAccelerationFactor = 1D;
-			this.pictureEditTabDClipart3.Size = new System.Drawing.Size(113, 136);
+			this.pictureEditTabDClipart3.Size = new System.Drawing.Size(103, 126);
 			this.pictureEditTabDClipart3.StyleController = this.layoutControlMain;
 			this.pictureEditTabDClipart3.TabIndex = 1;
 			// 
 			// panelTabDContentContainer
 			// 
 			this.panelTabDContentContainer.Controls.Add(this.layoutControlTabD);
-			this.panelTabDContentContainer.Location = new System.Drawing.Point(159, 117);
+			this.panelTabDContentContainer.Location = new System.Drawing.Point(220, 147);
 			this.panelTabDContentContainer.Name = "panelTabDContentContainer";
-			this.panelTabDContentContainer.Size = new System.Drawing.Size(661, 480);
+			this.panelTabDContentContainer.Size = new System.Drawing.Size(609, 450);
 			this.panelTabDContentContainer.TabIndex = 1;
 			// 
 			// layoutControlTabD
 			// 
-	        this.layoutControlTabD.AllowCustomization = false;
+			this.layoutControlTabD.AllowCustomization = false;
 			this.layoutControlTabD.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabD.Appearance.Control.Options.UseFont = true;
 			this.layoutControlTabD.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -6009,11 +6006,12 @@
 			this.layoutControlTabD.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlTabD.Name = "layoutControlTabD";
 			this.layoutControlTabD.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(-828, 278, 689, 575);
+			this.layoutControlTabD.OptionsFocus.ActivateSelectedControlOnGotFocus = false;
 			this.layoutControlTabD.OptionsFocus.AllowFocusGroups = false;
 			this.layoutControlTabD.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControlTabD.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControlTabD.Root = this.layoutControlGroupTabDInner;
-			this.layoutControlTabD.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlTabD.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlTabD.StyleController = this.styleController;
 			this.layoutControlTabD.TabIndex = 71;
 			this.layoutControlTabD.Text = "layoutControl1";
@@ -6035,7 +6033,7 @@
 			this.textEditTabDSubheader1.Location = new System.Drawing.Point(85, 2);
 			this.textEditTabDSubheader1.Name = "textEditTabDSubheader1";
 			this.textEditTabDSubheader1.Properties.NullText = "Type here";
-			this.textEditTabDSubheader1.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader1.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader1.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader1.TabIndex = 1;
 			// 
@@ -6056,7 +6054,7 @@
 			this.textEditTabDSubheader2.Location = new System.Drawing.Point(108, 43);
 			this.textEditTabDSubheader2.Name = "textEditTabDSubheader2";
 			this.textEditTabDSubheader2.Properties.NullText = "Type here";
-			this.textEditTabDSubheader2.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabDSubheader2.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabDSubheader2.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader2.TabIndex = 22;
 			this.textEditTabDSubheader2.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
@@ -6078,7 +6076,7 @@
 			this.textEditTabDSubheader3.Location = new System.Drawing.Point(85, 99);
 			this.textEditTabDSubheader3.Name = "textEditTabDSubheader3";
 			this.textEditTabDSubheader3.Properties.NullText = "Type here";
-			this.textEditTabDSubheader3.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader3.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader3.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader3.TabIndex = 1;
 			// 
@@ -6099,7 +6097,7 @@
 			this.textEditTabDSubheader4.Location = new System.Drawing.Point(108, 140);
 			this.textEditTabDSubheader4.Name = "textEditTabDSubheader4";
 			this.textEditTabDSubheader4.Properties.NullText = "Type here";
-			this.textEditTabDSubheader4.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabDSubheader4.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabDSubheader4.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader4.TabIndex = 22;
 			this.textEditTabDSubheader4.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
@@ -6121,7 +6119,7 @@
 			this.textEditTabDSubheader5.Location = new System.Drawing.Point(85, 196);
 			this.textEditTabDSubheader5.Name = "textEditTabDSubheader5";
 			this.textEditTabDSubheader5.Properties.NullText = "Type here";
-			this.textEditTabDSubheader5.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader5.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader5.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader5.TabIndex = 1;
 			// 
@@ -6142,7 +6140,7 @@
 			this.textEditTabDSubheader6.Location = new System.Drawing.Point(108, 237);
 			this.textEditTabDSubheader6.Name = "textEditTabDSubheader6";
 			this.textEditTabDSubheader6.Properties.NullText = "Type here";
-			this.textEditTabDSubheader6.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabDSubheader6.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabDSubheader6.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader6.TabIndex = 22;
 			this.textEditTabDSubheader6.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
@@ -6164,7 +6162,7 @@
 			this.textEditTabDSubheader7.Location = new System.Drawing.Point(85, 293);
 			this.textEditTabDSubheader7.Name = "textEditTabDSubheader7";
 			this.textEditTabDSubheader7.Properties.NullText = "Type here";
-			this.textEditTabDSubheader7.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader7.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader7.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader7.TabIndex = 1;
 			// 
@@ -6185,7 +6183,7 @@
 			this.textEditTabDSubheader8.Location = new System.Drawing.Point(108, 334);
 			this.textEditTabDSubheader8.Name = "textEditTabDSubheader8";
 			this.textEditTabDSubheader8.Properties.NullText = "Type here";
-			this.textEditTabDSubheader8.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabDSubheader8.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabDSubheader8.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader8.TabIndex = 22;
 			this.textEditTabDSubheader8.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
@@ -6207,7 +6205,7 @@
 			this.textEditTabDSubheader9.Location = new System.Drawing.Point(85, 390);
 			this.textEditTabDSubheader9.Name = "textEditTabDSubheader9";
 			this.textEditTabDSubheader9.Properties.NullText = "Type here";
-			this.textEditTabDSubheader9.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader9.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader9.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader9.TabIndex = 1;
 			// 
@@ -6228,7 +6226,7 @@
 			this.textEditTabDSubheader10.Location = new System.Drawing.Point(108, 431);
 			this.textEditTabDSubheader10.Name = "textEditTabDSubheader10";
 			this.textEditTabDSubheader10.Properties.NullText = "Type here";
-			this.textEditTabDSubheader10.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabDSubheader10.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabDSubheader10.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader10.TabIndex = 22;
 			// 
@@ -6249,7 +6247,7 @@
 			this.textEditTabDSubheader11.Location = new System.Drawing.Point(85, 487);
 			this.textEditTabDSubheader11.Name = "textEditTabDSubheader11";
 			this.textEditTabDSubheader11.Properties.NullText = "Type here";
-			this.textEditTabDSubheader11.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader11.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader11.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader11.TabIndex = 1;
 			// 
@@ -6270,7 +6268,7 @@
 			this.textEditTabDSubheader12.Location = new System.Drawing.Point(108, 528);
 			this.textEditTabDSubheader12.Name = "textEditTabDSubheader12";
 			this.textEditTabDSubheader12.Properties.NullText = "Type here";
-			this.textEditTabDSubheader12.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabDSubheader12.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabDSubheader12.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader12.TabIndex = 22;
 			// 
@@ -6291,7 +6289,7 @@
 			this.textEditTabDSubheader13.Location = new System.Drawing.Point(85, 584);
 			this.textEditTabDSubheader13.Name = "textEditTabDSubheader13";
 			this.textEditTabDSubheader13.Properties.NullText = "Type here";
-			this.textEditTabDSubheader13.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader13.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader13.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader13.TabIndex = 1;
 			// 
@@ -6324,7 +6322,7 @@
 			this.textEditTabDSubheader14.Location = new System.Drawing.Point(85, 681);
 			this.textEditTabDSubheader14.Name = "textEditTabDSubheader14";
 			this.textEditTabDSubheader14.Properties.NullText = "Type here";
-			this.textEditTabDSubheader14.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader14.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader14.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader14.TabIndex = 1;
 			// 
@@ -6345,7 +6343,7 @@
 			this.textEditTabDSubheader15.Location = new System.Drawing.Point(108, 722);
 			this.textEditTabDSubheader15.Name = "textEditTabDSubheader15";
 			this.textEditTabDSubheader15.Properties.NullText = "Type here";
-			this.textEditTabDSubheader15.Size = new System.Drawing.Size(253, 22);
+			this.textEditTabDSubheader15.Size = new System.Drawing.Size(216, 22);
 			this.textEditTabDSubheader15.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader15.TabIndex = 22;
 			this.textEditTabDSubheader15.EditValueChanged += new System.EventHandler(this.OnTabDFormulaSourceEditValueChanged);
@@ -6367,7 +6365,7 @@
 			this.textEditTabDSubheader16.Location = new System.Drawing.Point(85, 778);
 			this.textEditTabDSubheader16.Name = "textEditTabDSubheader16";
 			this.textEditTabDSubheader16.Properties.NullText = "Type here";
-			this.textEditTabDSubheader16.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader16.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader16.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader16.TabIndex = 1;
 			// 
@@ -6400,7 +6398,7 @@
 			this.textEditTabDSubheader17.Location = new System.Drawing.Point(85, 875);
 			this.textEditTabDSubheader17.Name = "textEditTabDSubheader17";
 			this.textEditTabDSubheader17.Properties.NullText = "Type here";
-			this.textEditTabDSubheader17.Size = new System.Drawing.Size(557, 22);
+			this.textEditTabDSubheader17.Size = new System.Drawing.Size(482, 22);
 			this.textEditTabDSubheader17.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader17.TabIndex = 1;
 			// 
@@ -6481,8 +6479,8 @@
             rowDefinition134,
             rowDefinition135,
             rowDefinition136});
-			this.layoutControlGroupTabDInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlGroupTabDInner.Size = new System.Drawing.Size(644, 970);
+			this.layoutControlGroupTabDInner.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 40, 0, 0);
+			this.layoutControlGroupTabDInner.Size = new System.Drawing.Size(609, 970);
 			this.layoutControlGroupTabDInner.Text = "Tab D";
 			this.layoutControlGroupTabDInner.TextVisible = false;
 			// 
@@ -6495,7 +6493,7 @@
             this.emptySpaceItem5});
 			this.layoutControlGroupTabDGroup1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabDGroup1.Name = "layoutControlGroupTabDGroup1";
-			this.layoutControlGroupTabDGroup1.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup1.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup1.Text = "Group 1";
 			this.layoutControlGroupTabDGroup1.TextVisible = false;
 			// 
@@ -6543,7 +6541,7 @@
             rowDefinition97,
             rowDefinition98,
             rowDefinition99});
-			this.layoutControlGroupTabDGroup1Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabDGroup1Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabDGroup1Inner.Text = "Group 1 Inner";
 			this.layoutControlGroupTabDGroup1Inner.TextVisible = false;
 			// 
@@ -6557,7 +6555,7 @@
 			this.layoutControlItemTabDSubheader1.Name = "layoutControlItemTabDSubheader1";
 			this.layoutControlItemTabDSubheader1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader1.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader1.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader1.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader1.Text = "Subheader 1";
 			this.layoutControlItemTabDSubheader1.TextSize = new System.Drawing.Size(0, 0);
@@ -6591,7 +6589,7 @@
 			this.layoutControlGroupTabDSubheader2.Name = "layoutControlGroupTabDSubheader2";
 			this.layoutControlGroupTabDSubheader2.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDSubheader2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDSubheader2.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabDSubheader2.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabDSubheader2.Text = "Subheader 2";
 			this.layoutControlGroupTabDSubheader2.TextVisible = false;
 			// 
@@ -6614,7 +6612,7 @@
 			this.layoutControlItemTabDSubheader2Value.CustomizationFormText = "Subheader 2 Value";
 			this.layoutControlItemTabDSubheader2Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader2Value.Name = "layoutControlItemTabDSubheader2Value";
-			this.layoutControlItemTabDSubheader2Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabDSubheader2Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabDSubheader2Value.Text = "Subheader 2 Value";
 			this.layoutControlItemTabDSubheader2Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabDSubheader2Value.TextSize = new System.Drawing.Size(0, 0);
@@ -6629,7 +6627,7 @@
 			this.emptySpaceItem5.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem5.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem5.Name = "emptySpaceItem5";
-			this.emptySpaceItem5.Size = new System.Drawing.Size(621, 30);
+			this.emptySpaceItem5.Size = new System.Drawing.Size(546, 30);
 			this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem5.Text = "emptySpaceItem3";
 			this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -6644,7 +6642,7 @@
 			this.layoutControlGroupTabDGroup2.Location = new System.Drawing.Point(0, 97);
 			this.layoutControlGroupTabDGroup2.Name = "layoutControlGroupTabDGroup2";
 			this.layoutControlGroupTabDGroup2.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlGroupTabDGroup2.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup2.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup2.Text = "Group 2";
 			this.layoutControlGroupTabDGroup2.TextVisible = false;
 			// 
@@ -6691,7 +6689,7 @@
             rowDefinition100,
             rowDefinition101,
             rowDefinition102});
-			this.layoutControlGroupTabDGroup2Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabDGroup2Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabDGroup2Inner.Text = "Group 2 Inner";
 			this.layoutControlGroupTabDGroup2Inner.TextVisible = false;
 			// 
@@ -6705,7 +6703,7 @@
 			this.layoutControlItemTabDSubheader3.Name = "layoutControlItemTabDSubheader3";
 			this.layoutControlItemTabDSubheader3.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader3.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader3.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader3.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader3.Text = "Subheader 3";
 			this.layoutControlItemTabDSubheader3.TextSize = new System.Drawing.Size(0, 0);
@@ -6737,7 +6735,7 @@
 			this.layoutControlGroupTabDSubheader4.Name = "layoutControlGroupTabDSubheader4";
 			this.layoutControlGroupTabDSubheader4.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDSubheader4.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDSubheader4.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabDSubheader4.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabDSubheader4.Text = "Subheader 4";
 			this.layoutControlGroupTabDSubheader4.TextVisible = false;
 			// 
@@ -6760,7 +6758,7 @@
 			this.layoutControlItemTabDSubheader4Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader4Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader4Value.Name = "layoutControlItemTabDSubheader4Value";
-			this.layoutControlItemTabDSubheader4Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabDSubheader4Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabDSubheader4Value.Text = "Subheader 4 Value";
 			this.layoutControlItemTabDSubheader4Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabDSubheader4Value.TextSize = new System.Drawing.Size(0, 0);
@@ -6775,7 +6773,7 @@
 			this.emptySpaceItem30.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem30.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem30.Name = "emptySpaceItem30";
-			this.emptySpaceItem30.Size = new System.Drawing.Size(621, 30);
+			this.emptySpaceItem30.Size = new System.Drawing.Size(546, 30);
 			this.emptySpaceItem30.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem30.Text = "emptySpaceItem3";
 			this.emptySpaceItem30.TextSize = new System.Drawing.Size(0, 0);
@@ -6790,7 +6788,7 @@
 			this.layoutControlGroupTabDGroup3.Location = new System.Drawing.Point(0, 194);
 			this.layoutControlGroupTabDGroup3.Name = "layoutControlGroupTabDGroup3";
 			this.layoutControlGroupTabDGroup3.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDGroup3.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup3.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup3.Text = "Group 3";
 			this.layoutControlGroupTabDGroup3.TextVisible = false;
 			// 
@@ -6837,7 +6835,7 @@
             rowDefinition103,
             rowDefinition104,
             rowDefinition105});
-			this.layoutControlGroupTabDGroup3Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabDGroup3Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabDGroup3Inner.Text = "Group 3 Inner";
 			this.layoutControlGroupTabDGroup3Inner.TextVisible = false;
 			// 
@@ -6851,7 +6849,7 @@
 			this.layoutControlItemTabDSubheader5.Name = "layoutControlItemTabDSubheader5";
 			this.layoutControlItemTabDSubheader5.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader5.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader5.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader5.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader5.Text = "Subheader 5";
 			this.layoutControlItemTabDSubheader5.TextSize = new System.Drawing.Size(0, 0);
@@ -6883,7 +6881,7 @@
 			this.layoutControlGroupTabDSubheader6.Name = "layoutControlGroupTabDSubheader6";
 			this.layoutControlGroupTabDSubheader6.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDSubheader6.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDSubheader6.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabDSubheader6.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabDSubheader6.Text = "Subheader 6";
 			this.layoutControlGroupTabDSubheader6.TextVisible = false;
 			// 
@@ -6906,7 +6904,7 @@
 			this.layoutControlItemTabDSubheader6Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader6Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader6Value.Name = "layoutControlItemTabDSubheader6Value";
-			this.layoutControlItemTabDSubheader6Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabDSubheader6Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabDSubheader6Value.Text = "Subheader 6 Value";
 			this.layoutControlItemTabDSubheader6Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabDSubheader6Value.TextSize = new System.Drawing.Size(0, 0);
@@ -6921,7 +6919,7 @@
 			this.emptySpaceItem31.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem31.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem31.Name = "emptySpaceItem31";
-			this.emptySpaceItem31.Size = new System.Drawing.Size(621, 30);
+			this.emptySpaceItem31.Size = new System.Drawing.Size(546, 30);
 			this.emptySpaceItem31.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem31.Text = "emptySpaceItem3";
 			this.emptySpaceItem31.TextSize = new System.Drawing.Size(0, 0);
@@ -6936,7 +6934,7 @@
 			this.layoutControlGroupTabDGroup4.Location = new System.Drawing.Point(0, 291);
 			this.layoutControlGroupTabDGroup4.Name = "layoutControlGroupTabDGroup4";
 			this.layoutControlGroupTabDGroup4.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlGroupTabDGroup4.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup4.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup4.Text = "Group 4";
 			this.layoutControlGroupTabDGroup4.TextVisible = false;
 			// 
@@ -6983,7 +6981,7 @@
             rowDefinition106,
             rowDefinition107,
             rowDefinition108});
-			this.layoutControlGroupTabDGroup4Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabDGroup4Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabDGroup4Inner.Text = "Group 4 Inner";
 			this.layoutControlGroupTabDGroup4Inner.TextVisible = false;
 			// 
@@ -6997,7 +6995,7 @@
 			this.layoutControlItemTabDSubheader7.Name = "layoutControlItemTabDSubheader7";
 			this.layoutControlItemTabDSubheader7.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader7.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader7.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader7.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader7.Text = "Subheader 7";
 			this.layoutControlItemTabDSubheader7.TextSize = new System.Drawing.Size(0, 0);
@@ -7029,7 +7027,7 @@
 			this.layoutControlGroupTabDSubheader8.Name = "layoutControlGroupTabDSubheader8";
 			this.layoutControlGroupTabDSubheader8.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDSubheader8.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDSubheader8.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabDSubheader8.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabDSubheader8.Text = "Subheader 8";
 			this.layoutControlGroupTabDSubheader8.TextVisible = false;
 			// 
@@ -7052,7 +7050,7 @@
 			this.layoutControlItemTabDSubheader8Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader8Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader8Value.Name = "layoutControlItemTabDSubheader8Value";
-			this.layoutControlItemTabDSubheader8Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabDSubheader8Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabDSubheader8Value.Text = "Subheader 8 Value";
 			this.layoutControlItemTabDSubheader8Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabDSubheader8Value.TextSize = new System.Drawing.Size(0, 0);
@@ -7067,7 +7065,7 @@
 			this.emptySpaceItem32.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem32.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem32.Name = "emptySpaceItem32";
-			this.emptySpaceItem32.Size = new System.Drawing.Size(621, 30);
+			this.emptySpaceItem32.Size = new System.Drawing.Size(546, 30);
 			this.emptySpaceItem32.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem32.Text = "emptySpaceItem3";
 			this.emptySpaceItem32.TextSize = new System.Drawing.Size(0, 0);
@@ -7082,7 +7080,7 @@
 			this.layoutControlGroupTabDGroup5.Location = new System.Drawing.Point(0, 388);
 			this.layoutControlGroupTabDGroup5.Name = "layoutControlGroupTabDGroup5";
 			this.layoutControlGroupTabDGroup5.OptionsTableLayoutItem.RowIndex = 4;
-			this.layoutControlGroupTabDGroup5.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup5.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup5.Text = "Group 5";
 			this.layoutControlGroupTabDGroup5.TextVisible = false;
 			// 
@@ -7129,7 +7127,7 @@
             rowDefinition109,
             rowDefinition110,
             rowDefinition111});
-			this.layoutControlGroupTabDGroup5Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabDGroup5Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabDGroup5Inner.Text = "Group 5 Inner";
 			this.layoutControlGroupTabDGroup5Inner.TextVisible = false;
 			// 
@@ -7143,7 +7141,7 @@
 			this.layoutControlItemTabDSubheader9.Name = "layoutControlItemTabDSubheader9";
 			this.layoutControlItemTabDSubheader9.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader9.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader9.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader9.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader9.Text = "Subheader 9";
 			this.layoutControlItemTabDSubheader9.TextSize = new System.Drawing.Size(0, 0);
@@ -7175,7 +7173,7 @@
 			this.layoutControlGroupTabDSubheader10.Name = "layoutControlGroupTabDSubheader10";
 			this.layoutControlGroupTabDSubheader10.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDSubheader10.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDSubheader10.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabDSubheader10.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabDSubheader10.Text = "Subheader 10";
 			this.layoutControlGroupTabDSubheader10.TextVisible = false;
 			// 
@@ -7198,7 +7196,7 @@
 			this.layoutControlItemTabDSubheader10Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader10Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader10Value.Name = "layoutControlItemTabDSubheader10Value";
-			this.layoutControlItemTabDSubheader10Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabDSubheader10Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabDSubheader10Value.Text = "Subheader 10 Value";
 			this.layoutControlItemTabDSubheader10Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabDSubheader10Value.TextSize = new System.Drawing.Size(0, 0);
@@ -7213,7 +7211,7 @@
 			this.emptySpaceItem33.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem33.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem33.Name = "emptySpaceItem33";
-			this.emptySpaceItem33.Size = new System.Drawing.Size(621, 30);
+			this.emptySpaceItem33.Size = new System.Drawing.Size(546, 30);
 			this.emptySpaceItem33.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem33.Text = "emptySpaceItem3";
 			this.emptySpaceItem33.TextSize = new System.Drawing.Size(0, 0);
@@ -7228,7 +7226,7 @@
 			this.layoutControlGroupTabDGroup6.Location = new System.Drawing.Point(0, 485);
 			this.layoutControlGroupTabDGroup6.Name = "layoutControlGroupTabDGroup6";
 			this.layoutControlGroupTabDGroup6.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlGroupTabDGroup6.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup6.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup6.Text = "Group 6";
 			this.layoutControlGroupTabDGroup6.TextVisible = false;
 			// 
@@ -7275,7 +7273,7 @@
             rowDefinition112,
             rowDefinition113,
             rowDefinition114});
-			this.layoutControlGroupTabDGroup6Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabDGroup6Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabDGroup6Inner.Text = "Group 6 Inner";
 			this.layoutControlGroupTabDGroup6Inner.TextVisible = false;
 			// 
@@ -7289,7 +7287,7 @@
 			this.layoutControlItemTabDSubheader11.Name = "layoutControlItemTabDSubheader11";
 			this.layoutControlItemTabDSubheader11.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader11.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader11.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader11.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader11.Text = "Subheader 11";
 			this.layoutControlItemTabDSubheader11.TextSize = new System.Drawing.Size(0, 0);
@@ -7321,7 +7319,7 @@
 			this.layoutControlGroupTabDSubheader12.Name = "layoutControlGroupTabDSubheader12";
 			this.layoutControlGroupTabDSubheader12.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDSubheader12.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDSubheader12.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabDSubheader12.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabDSubheader12.Text = "Subheader 12";
 			this.layoutControlGroupTabDSubheader12.TextVisible = false;
 			// 
@@ -7344,7 +7342,7 @@
 			this.layoutControlItemTabDSubheader12Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader12Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader12Value.Name = "layoutControlItemTabDSubheader12Value";
-			this.layoutControlItemTabDSubheader12Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabDSubheader12Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabDSubheader12Value.Text = "Subheader 12 Value";
 			this.layoutControlItemTabDSubheader12Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabDSubheader12Value.TextSize = new System.Drawing.Size(0, 0);
@@ -7359,7 +7357,7 @@
 			this.emptySpaceItem34.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem34.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem34.Name = "emptySpaceItem34";
-			this.emptySpaceItem34.Size = new System.Drawing.Size(621, 30);
+			this.emptySpaceItem34.Size = new System.Drawing.Size(546, 30);
 			this.emptySpaceItem34.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem34.Text = "emptySpaceItem3";
 			this.emptySpaceItem34.TextSize = new System.Drawing.Size(0, 0);
@@ -7374,7 +7372,7 @@
 			this.layoutControlGroupTabDGroup7.Location = new System.Drawing.Point(0, 582);
 			this.layoutControlGroupTabDGroup7.Name = "layoutControlGroupTabDGroup7";
 			this.layoutControlGroupTabDGroup7.OptionsTableLayoutItem.RowIndex = 6;
-			this.layoutControlGroupTabDGroup7.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup7.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup7.Text = "Group 7";
 			this.layoutControlGroupTabDGroup7.TextVisible = false;
 			// 
@@ -7421,7 +7419,7 @@
             rowDefinition115,
             rowDefinition116,
             rowDefinition117});
-			this.layoutControlGroupTabDGroup7Inner.Size = new System.Drawing.Size(621, 64);
+			this.layoutControlGroupTabDGroup7Inner.Size = new System.Drawing.Size(546, 64);
 			this.layoutControlGroupTabDGroup7Inner.Text = "Group 7 Inner";
 			this.layoutControlGroupTabDGroup7Inner.TextVisible = false;
 			// 
@@ -7435,7 +7433,7 @@
 			this.layoutControlItemTabDSubheader13.Name = "layoutControlItemTabDSubheader13";
 			this.layoutControlItemTabDSubheader13.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader13.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader13.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader13.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader13.Text = "Subheader 13";
 			this.layoutControlItemTabDSubheader13.TextSize = new System.Drawing.Size(0, 0);
@@ -7467,7 +7465,7 @@
 			this.layoutControlGroupTabDFormula1.Name = "layoutControlGroupTabDFormula1";
 			this.layoutControlGroupTabDFormula1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDFormula1.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDFormula1.Size = new System.Drawing.Size(280, 23);
+			this.layoutControlGroupTabDFormula1.Size = new System.Drawing.Size(243, 23);
 			this.layoutControlGroupTabDFormula1.Text = "Formula 1";
 			this.layoutControlGroupTabDFormula1.TextVisible = false;
 			// 
@@ -7496,7 +7494,7 @@
 			this.simpleLabelItemTabDFormula1.CustomizationFormText = "Formula 1";
 			this.simpleLabelItemTabDFormula1.Location = new System.Drawing.Point(23, 0);
 			this.simpleLabelItemTabDFormula1.Name = "simpleLabelItemTabDFormula1";
-			this.simpleLabelItemTabDFormula1.Size = new System.Drawing.Size(257, 23);
+			this.simpleLabelItemTabDFormula1.Size = new System.Drawing.Size(220, 23);
 			this.simpleLabelItemTabDFormula1.Text = "<b>0</b>";
 			this.simpleLabelItemTabDFormula1.TextSize = new System.Drawing.Size(20, 16);
 			// 
@@ -7507,7 +7505,7 @@
 			this.emptySpaceItem35.Location = new System.Drawing.Point(23, 64);
 			this.emptySpaceItem35.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem35.Name = "emptySpaceItem35";
-			this.emptySpaceItem35.Size = new System.Drawing.Size(621, 33);
+			this.emptySpaceItem35.Size = new System.Drawing.Size(546, 33);
 			this.emptySpaceItem35.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem35.Text = "emptySpaceItem3";
 			this.emptySpaceItem35.TextSize = new System.Drawing.Size(0, 0);
@@ -7522,7 +7520,7 @@
 			this.layoutControlGroupTabDGroup8.Location = new System.Drawing.Point(0, 679);
 			this.layoutControlGroupTabDGroup8.Name = "layoutControlGroupTabDGroup8";
 			this.layoutControlGroupTabDGroup8.OptionsTableLayoutItem.RowIndex = 7;
-			this.layoutControlGroupTabDGroup8.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup8.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup8.Text = "Group 8";
 			this.layoutControlGroupTabDGroup8.TextVisible = false;
 			// 
@@ -7569,7 +7567,7 @@
             rowDefinition118,
             rowDefinition119,
             rowDefinition120});
-			this.layoutControlGroupTabDGroup8Inner.Size = new System.Drawing.Size(621, 67);
+			this.layoutControlGroupTabDGroup8Inner.Size = new System.Drawing.Size(546, 67);
 			this.layoutControlGroupTabDGroup8Inner.Text = "Group 8 Inner";
 			this.layoutControlGroupTabDGroup8Inner.TextVisible = false;
 			// 
@@ -7583,7 +7581,7 @@
 			this.layoutControlItemTabDSubheader14.Name = "layoutControlItemTabDSubheader14";
 			this.layoutControlItemTabDSubheader14.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader14.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader14.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader14.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader14.Text = "Subheader 14";
 			this.layoutControlItemTabDSubheader14.TextSize = new System.Drawing.Size(0, 0);
@@ -7615,7 +7613,7 @@
 			this.layoutControlGroupTabDSubheader15.Name = "layoutControlGroupTabDSubheader15";
 			this.layoutControlGroupTabDSubheader15.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDSubheader15.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDSubheader15.Size = new System.Drawing.Size(280, 26);
+			this.layoutControlGroupTabDSubheader15.Size = new System.Drawing.Size(243, 26);
 			this.layoutControlGroupTabDSubheader15.Text = "Subheader 15";
 			this.layoutControlGroupTabDSubheader15.TextVisible = false;
 			// 
@@ -7638,7 +7636,7 @@
 			this.layoutControlItemTabDSubheader15Value.FillControlToClientArea = false;
 			this.layoutControlItemTabDSubheader15Value.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlItemTabDSubheader15Value.Name = "layoutControlItemTabDSubheader15Value";
-			this.layoutControlItemTabDSubheader15Value.Size = new System.Drawing.Size(257, 26);
+			this.layoutControlItemTabDSubheader15Value.Size = new System.Drawing.Size(220, 26);
 			this.layoutControlItemTabDSubheader15Value.Text = "Subheader 15 Value";
 			this.layoutControlItemTabDSubheader15Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabDSubheader15Value.TextSize = new System.Drawing.Size(0, 0);
@@ -7653,7 +7651,7 @@
 			this.emptySpaceItem36.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem36.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem36.Name = "emptySpaceItem36";
-			this.emptySpaceItem36.Size = new System.Drawing.Size(621, 30);
+			this.emptySpaceItem36.Size = new System.Drawing.Size(546, 30);
 			this.emptySpaceItem36.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem36.Text = "emptySpaceItem3";
 			this.emptySpaceItem36.TextSize = new System.Drawing.Size(0, 0);
@@ -7668,7 +7666,7 @@
 			this.layoutControlGroupTabDGroup9.Location = new System.Drawing.Point(0, 776);
 			this.layoutControlGroupTabDGroup9.Name = "layoutControlGroupTabDGroup9";
 			this.layoutControlGroupTabDGroup9.OptionsTableLayoutItem.RowIndex = 8;
-			this.layoutControlGroupTabDGroup9.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup9.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup9.Text = "Group 9";
 			this.layoutControlGroupTabDGroup9.TextVisible = false;
 			// 
@@ -7715,7 +7713,7 @@
             rowDefinition121,
             rowDefinition122,
             rowDefinition123});
-			this.layoutControlGroupTabDGroup9Inner.Size = new System.Drawing.Size(621, 64);
+			this.layoutControlGroupTabDGroup9Inner.Size = new System.Drawing.Size(546, 64);
 			this.layoutControlGroupTabDGroup9Inner.Text = "Group 9 Inner";
 			this.layoutControlGroupTabDGroup9Inner.TextVisible = false;
 			// 
@@ -7729,7 +7727,7 @@
 			this.layoutControlItemTabDSubheader16.Name = "layoutControlItemTabDSubheader16";
 			this.layoutControlItemTabDSubheader16.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader16.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader16.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader16.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader16.Text = "Subheader 16";
 			this.layoutControlItemTabDSubheader16.TextSize = new System.Drawing.Size(0, 0);
@@ -7761,7 +7759,7 @@
 			this.layoutControlGroupTabDFormula2.Name = "layoutControlGroupTabDFormula2";
 			this.layoutControlGroupTabDFormula2.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDFormula2.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDFormula2.Size = new System.Drawing.Size(280, 23);
+			this.layoutControlGroupTabDFormula2.Size = new System.Drawing.Size(243, 23);
 			this.layoutControlGroupTabDFormula2.Text = "Formula 2";
 			this.layoutControlGroupTabDFormula2.TextVisible = false;
 			// 
@@ -7790,7 +7788,7 @@
 			this.simpleLabelItemTabDFormula2.CustomizationFormText = "Formula 2";
 			this.simpleLabelItemTabDFormula2.Location = new System.Drawing.Point(23, 0);
 			this.simpleLabelItemTabDFormula2.Name = "simpleLabelItemTabDFormula2";
-			this.simpleLabelItemTabDFormula2.Size = new System.Drawing.Size(257, 23);
+			this.simpleLabelItemTabDFormula2.Size = new System.Drawing.Size(220, 23);
 			this.simpleLabelItemTabDFormula2.Text = "<b>0</b>";
 			this.simpleLabelItemTabDFormula2.TextSize = new System.Drawing.Size(20, 16);
 			// 
@@ -7801,7 +7799,7 @@
 			this.emptySpaceItem37.Location = new System.Drawing.Point(23, 64);
 			this.emptySpaceItem37.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem37.Name = "emptySpaceItem37";
-			this.emptySpaceItem37.Size = new System.Drawing.Size(621, 33);
+			this.emptySpaceItem37.Size = new System.Drawing.Size(546, 33);
 			this.emptySpaceItem37.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem37.Text = "emptySpaceItem3";
 			this.emptySpaceItem37.TextSize = new System.Drawing.Size(0, 0);
@@ -7816,7 +7814,7 @@
 			this.layoutControlGroupTabDGroup10.Location = new System.Drawing.Point(0, 873);
 			this.layoutControlGroupTabDGroup10.Name = "layoutControlGroupTabDGroup10";
 			this.layoutControlGroupTabDGroup10.OptionsTableLayoutItem.RowIndex = 9;
-			this.layoutControlGroupTabDGroup10.Size = new System.Drawing.Size(644, 97);
+			this.layoutControlGroupTabDGroup10.Size = new System.Drawing.Size(569, 97);
 			this.layoutControlGroupTabDGroup10.Text = "Group 10";
 			this.layoutControlGroupTabDGroup10.TextVisible = false;
 			// 
@@ -7863,7 +7861,7 @@
             rowDefinition124,
             rowDefinition125,
             rowDefinition126});
-			this.layoutControlGroupTabDGroup10Inner.Size = new System.Drawing.Size(621, 64);
+			this.layoutControlGroupTabDGroup10Inner.Size = new System.Drawing.Size(546, 64);
 			this.layoutControlGroupTabDGroup10Inner.Text = "Group 10 Inner";
 			this.layoutControlGroupTabDGroup10Inner.TextVisible = false;
 			// 
@@ -7877,7 +7875,7 @@
 			this.layoutControlItemTabDSubheader17.Name = "layoutControlItemTabDSubheader17";
 			this.layoutControlItemTabDSubheader17.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabDSubheader17.OptionsTableLayoutItem.ColumnSpan = 2;
-			this.layoutControlItemTabDSubheader17.Size = new System.Drawing.Size(561, 26);
+			this.layoutControlItemTabDSubheader17.Size = new System.Drawing.Size(486, 26);
 			this.layoutControlItemTabDSubheader17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabDSubheader17.Text = "Subheader 17";
 			this.layoutControlItemTabDSubheader17.TextSize = new System.Drawing.Size(0, 0);
@@ -7909,7 +7907,7 @@
 			this.layoutControlGroupTabDFormula3.Name = "layoutControlGroupTabDFormula3";
 			this.layoutControlGroupTabDFormula3.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabDFormula3.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabDFormula3.Size = new System.Drawing.Size(280, 23);
+			this.layoutControlGroupTabDFormula3.Size = new System.Drawing.Size(243, 23);
 			this.layoutControlGroupTabDFormula3.Text = "Formula 3";
 			this.layoutControlGroupTabDFormula3.TextVisible = false;
 			// 
@@ -7938,7 +7936,7 @@
 			this.simpleLabelItemTabDFormula3.CustomizationFormText = "Formula 3";
 			this.simpleLabelItemTabDFormula3.Location = new System.Drawing.Point(23, 0);
 			this.simpleLabelItemTabDFormula3.Name = "simpleLabelItemTabDFormula3";
-			this.simpleLabelItemTabDFormula3.Size = new System.Drawing.Size(257, 23);
+			this.simpleLabelItemTabDFormula3.Size = new System.Drawing.Size(220, 23);
 			this.simpleLabelItemTabDFormula3.Text = "<b>0</b>";
 			this.simpleLabelItemTabDFormula3.TextSize = new System.Drawing.Size(20, 16);
 			// 
@@ -7949,7 +7947,7 @@
 			this.emptySpaceItem38.Location = new System.Drawing.Point(23, 64);
 			this.emptySpaceItem38.MinSize = new System.Drawing.Size(1, 30);
 			this.emptySpaceItem38.Name = "emptySpaceItem38";
-			this.emptySpaceItem38.Size = new System.Drawing.Size(621, 33);
+			this.emptySpaceItem38.Size = new System.Drawing.Size(546, 33);
 			this.emptySpaceItem38.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem38.Text = "emptySpaceItem3";
 			this.emptySpaceItem38.TextSize = new System.Drawing.Size(0, 0);
@@ -7974,11 +7972,10 @@
 			this.layoutControlGroupRootMain.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemSlideHeader,
             this.emptySpaceItem1,
-            this.emptySpaceItem2,
             this.tabbedControlGroupData});
 			this.layoutControlGroupRootMain.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRootMain.Name = "Root";
-			this.layoutControlGroupRootMain.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlGroupRootMain.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 0, 0, 0);
 			this.layoutControlGroupRootMain.Size = new System.Drawing.Size(832, 609);
 			this.layoutControlGroupRootMain.TextVisible = false;
 			// 
@@ -7987,11 +7984,11 @@
 			this.layoutControlItemSlideHeader.Control = this.comboBoxEditSlideHeader;
 			this.layoutControlItemSlideHeader.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemSlideHeader.FillControlToClientArea = false;
-			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(10, 0);
-			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 50);
-			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemSlideHeader.MaxSize = new System.Drawing.Size(360, 80);
+			this.layoutControlItemSlideHeader.MinSize = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.Name = "layoutControlItemSlideHeader";
-			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 50);
+			this.layoutControlItemSlideHeader.Size = new System.Drawing.Size(360, 80);
 			this.layoutControlItemSlideHeader.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemSlideHeader.Text = "Slide Header";
 			this.layoutControlItemSlideHeader.TextSize = new System.Drawing.Size(0, 0);
@@ -8001,21 +7998,10 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(370, 0);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(360, 0);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.Size = new System.Drawing.Size(462, 50);
+			this.emptySpaceItem1.Size = new System.Drawing.Size(432, 80);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// emptySpaceItem2
-			// 
-			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(10, 0);
-			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
-			this.emptySpaceItem2.Name = "emptySpaceItem2";
-			this.emptySpaceItem2.Size = new System.Drawing.Size(10, 50);
-			this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// tabbedControlGroupData
 			// 
@@ -8029,11 +8015,12 @@
 			this.tabbedControlGroupData.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
 			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Options.UseFont = true;
-			this.tabbedControlGroupData.Location = new System.Drawing.Point(0, 50);
+			this.tabbedControlGroupData.Location = new System.Drawing.Point(0, 80);
 			this.tabbedControlGroupData.Name = "tabbedControlGroupData";
+			this.tabbedControlGroupData.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 0, 9, 9);
 			this.tabbedControlGroupData.SelectedTabPage = this.layoutControlGroupTabA;
 			this.tabbedControlGroupData.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupData.Size = new System.Drawing.Size(832, 559);
+			this.tabbedControlGroupData.Size = new System.Drawing.Size(792, 529);
 			this.tabbedControlGroupData.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupTabA,
             this.layoutControlGroupTabB,
@@ -8041,6 +8028,7 @@
             this.layoutControlGroupTabD});
 			this.tabbedControlGroupData.Text = "Data";
 			this.tabbedControlGroupData.SelectedPageChanged += new DevExpress.XtraLayout.LayoutTabPageChangedEventHandler(this.OnSelectedPageChanged);
+			this.tabbedControlGroupData.Click += new System.EventHandler(this.OnTabbedGroupClick);
 			// 
 			// layoutControlGroupTabA
 			// 
@@ -8054,7 +8042,7 @@
             this.layoutControlItemTabAClipart2,
             this.layoutControlItemTabAClipart3,
             this.layoutControlGroupTabAGroup5,
-            this.emptySpaceItem13});
+            this.layoutControlGroupTabAGroup4});
 			this.layoutControlGroupTabA.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabA.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
@@ -8064,10 +8052,13 @@
 			columnDefinition150.Width = 30D;
 			columnDefinition151.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition151.Width = 85D;
+			columnDefinition152.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition152.Width = 40D;
 			this.layoutControlGroupTabA.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
             columnDefinition149,
             columnDefinition150,
-            columnDefinition151});
+            columnDefinition151,
+            columnDefinition152});
 			rowDefinition145.Height = 30D;
 			rowDefinition145.SizeType = System.Windows.Forms.SizeType.Absolute;
 			rowDefinition146.Height = 7.1428571428571432D;
@@ -8114,7 +8105,7 @@
             rowDefinition157,
             rowDefinition158,
             rowDefinition159});
-			this.layoutControlGroupTabA.Size = new System.Drawing.Size(808, 510);
+			this.layoutControlGroupTabA.Size = new System.Drawing.Size(746, 480);
 			this.layoutControlGroupTabA.Text = "Tab A";
 			// 
 			// layoutControlGroupTabAGroup1
@@ -8125,11 +8116,11 @@
             this.layoutControlItemTabAGroup1Toggle,
             this.layoutControlGroupTabAGroup1Inner,
             this.emptySpaceItem6});
-			this.layoutControlGroupTabAGroup1.Location = new System.Drawing.Point(147, 30);
+			this.layoutControlGroupTabAGroup1.Location = new System.Drawing.Point(131, 30);
 			this.layoutControlGroupTabAGroup1.Name = "layoutControlGroupTabAGroup1";
 			this.layoutControlGroupTabAGroup1.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabAGroup1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlGroupTabAGroup1.Size = new System.Drawing.Size(661, 34);
+			this.layoutControlGroupTabAGroup1.Size = new System.Drawing.Size(575, 32);
 			this.layoutControlGroupTabAGroup1.Text = "Group 1";
 			this.layoutControlGroupTabAGroup1.TextVisible = false;
 			// 
@@ -8141,7 +8132,7 @@
 			this.layoutControlItemTabAGroup1Toggle.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemTabAGroup1Toggle.Name = "layoutControlItemTabAGroup1Toggle";
 			this.layoutControlItemTabAGroup1Toggle.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
-			this.layoutControlItemTabAGroup1Toggle.Size = new System.Drawing.Size(23, 34);
+			this.layoutControlItemTabAGroup1Toggle.Size = new System.Drawing.Size(23, 32);
 			this.layoutControlItemTabAGroup1Toggle.Text = "Group 1 Toggle";
 			this.layoutControlItemTabAGroup1Toggle.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAGroup1Toggle.TextVisible = false;
@@ -8159,30 +8150,30 @@
 			this.layoutControlGroupTabAGroup1Inner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabAGroup1Inner.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlGroupTabAGroup1Inner.Name = "layoutControlGroupTabAGroup1Inner";
-			columnDefinition123.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition123.Width = 60D;
-			columnDefinition124.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition124.Width = 57.142857142857139D;
-			columnDefinition125.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition125.Width = 10D;
-			columnDefinition126.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition126.Width = 19.047619047619047D;
-			columnDefinition127.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition127.Width = 10D;
-			columnDefinition128.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition128.Width = 23.809523809523807D;
+			columnDefinition117.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition117.Width = 60D;
+			columnDefinition118.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition118.Width = 57.142857142857139D;
+			columnDefinition119.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition119.Width = 10D;
+			columnDefinition120.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition120.Width = 19.047619047619047D;
+			columnDefinition121.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition121.Width = 10D;
+			columnDefinition122.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition122.Width = 23.809523809523807D;
 			this.layoutControlGroupTabAGroup1Inner.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition123,
-            columnDefinition124,
-            columnDefinition125,
-            columnDefinition126,
-            columnDefinition127,
-            columnDefinition128});
-			rowDefinition138.Height = 26D;
-			rowDefinition138.SizeType = System.Windows.Forms.SizeType.AutoSize;
+            columnDefinition117,
+            columnDefinition118,
+            columnDefinition119,
+            columnDefinition120,
+            columnDefinition121,
+            columnDefinition122});
+			rowDefinition137.Height = 26D;
+			rowDefinition137.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabAGroup1Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition138});
-			this.layoutControlGroupTabAGroup1Inner.Size = new System.Drawing.Size(638, 26);
+            rowDefinition137});
+			this.layoutControlGroupTabAGroup1Inner.Size = new System.Drawing.Size(552, 26);
 			this.layoutControlGroupTabAGroup1Inner.Text = "Group 1 Inner";
 			this.layoutControlGroupTabAGroup1Inner.TextVisible = false;
 			// 
@@ -8196,7 +8187,7 @@
 			this.layoutControlItemTabASubheader1.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader1.Name = "layoutControlItemTabASubheader1";
 			this.layoutControlItemTabASubheader1.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader1.Size = new System.Drawing.Size(319, 26);
+			this.layoutControlItemTabASubheader1.Size = new System.Drawing.Size(270, 26);
 			this.layoutControlItemTabASubheader1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader1.Text = "Subheader 1";
 			this.layoutControlItemTabASubheader1.TextSize = new System.Drawing.Size(0, 0);
@@ -8225,11 +8216,11 @@
 			this.layoutControlItemTabASubheader2.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader2.CustomizationFormText = "Subheader 2";
 			this.layoutControlItemTabASubheader2.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader2.Location = new System.Drawing.Point(389, 0);
+			this.layoutControlItemTabASubheader2.Location = new System.Drawing.Point(340, 0);
 			this.layoutControlItemTabASubheader2.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader2.Name = "layoutControlItemTabASubheader2";
 			this.layoutControlItemTabASubheader2.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabASubheader2.Size = new System.Drawing.Size(106, 26);
+			this.layoutControlItemTabASubheader2.Size = new System.Drawing.Size(90, 26);
 			this.layoutControlItemTabASubheader2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader2.Text = "Subheader 2";
 			this.layoutControlItemTabASubheader2.TextSize = new System.Drawing.Size(0, 0);
@@ -8241,10 +8232,12 @@
 			this.layoutControlItemTabASubheader3.Control = this.textEditTabASubheader3;
 			this.layoutControlItemTabASubheader3.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader3.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader3.Location = new System.Drawing.Point(505, 0);
+			this.layoutControlItemTabASubheader3.Location = new System.Drawing.Point(440, 0);
+			this.layoutControlItemTabASubheader3.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader3.Name = "layoutControlItemTabASubheader3";
 			this.layoutControlItemTabASubheader3.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader3.Size = new System.Drawing.Size(133, 26);
+			this.layoutControlItemTabASubheader3.Size = new System.Drawing.Size(112, 26);
+			this.layoutControlItemTabASubheader3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader3.Text = "Subheader 3";
 			this.layoutControlItemTabASubheader3.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabASubheader3.TextVisible = false;
@@ -8257,7 +8250,7 @@
 			this.emptySpaceItem6.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem6.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem6.Name = "emptySpaceItem6";
-			this.emptySpaceItem6.Size = new System.Drawing.Size(638, 8);
+			this.emptySpaceItem6.Size = new System.Drawing.Size(552, 6);
 			this.emptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem6.Text = "emptySpaceItem3";
 			this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -8270,11 +8263,11 @@
             this.layoutControlItemTabAGroup2Toggle,
             this.layoutControlGroupTabAGroup2Inner,
             this.emptySpaceItem7});
-			this.layoutControlGroupTabAGroup2.Location = new System.Drawing.Point(147, 98);
+			this.layoutControlGroupTabAGroup2.Location = new System.Drawing.Point(131, 94);
 			this.layoutControlGroupTabAGroup2.Name = "layoutControlGroupTabAGroup2";
 			this.layoutControlGroupTabAGroup2.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabAGroup2.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlGroupTabAGroup2.Size = new System.Drawing.Size(661, 34);
+			this.layoutControlGroupTabAGroup2.Size = new System.Drawing.Size(575, 32);
 			this.layoutControlGroupTabAGroup2.Text = "Group 2";
 			this.layoutControlGroupTabAGroup2.TextVisible = false;
 			// 
@@ -8286,7 +8279,7 @@
 			this.layoutControlItemTabAGroup2Toggle.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemTabAGroup2Toggle.Name = "layoutControlItemTabAGroup2Toggle";
 			this.layoutControlItemTabAGroup2Toggle.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
-			this.layoutControlItemTabAGroup2Toggle.Size = new System.Drawing.Size(23, 34);
+			this.layoutControlItemTabAGroup2Toggle.Size = new System.Drawing.Size(23, 32);
 			this.layoutControlItemTabAGroup2Toggle.Text = "Group 2 Toggle";
 			this.layoutControlItemTabAGroup2Toggle.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAGroup2Toggle.TextVisible = false;
@@ -8304,31 +8297,31 @@
 			this.layoutControlGroupTabAGroup2Inner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabAGroup2Inner.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlGroupTabAGroup2Inner.Name = "layoutControlGroupTabAGroup2Inner";
-			columnDefinition129.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition129.Width = 60D;
-			columnDefinition130.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition130.Width = 25D;
-			columnDefinition131.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition131.Width = 10D;
-			columnDefinition132.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition132.Width = 20D;
-			columnDefinition133.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition133.Width = 10D;
-			columnDefinition134.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition134.Width = 55D;
+			columnDefinition123.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition123.Width = 60D;
+			columnDefinition124.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition124.Width = 25D;
+			columnDefinition125.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition125.Width = 10D;
+			columnDefinition126.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition126.Width = 20D;
+			columnDefinition127.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition127.Width = 10D;
+			columnDefinition128.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition128.Width = 55D;
 			this.layoutControlGroupTabAGroup2Inner.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition129,
-            columnDefinition130,
-            columnDefinition131,
-            columnDefinition132,
-            columnDefinition133,
-            columnDefinition134});
-			rowDefinition139.Height = 26D;
-			rowDefinition139.SizeType = System.Windows.Forms.SizeType.AutoSize;
+            columnDefinition123,
+            columnDefinition124,
+            columnDefinition125,
+            columnDefinition126,
+            columnDefinition127,
+            columnDefinition128});
+			rowDefinition138.Height = 26D;
+			rowDefinition138.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabAGroup2Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition139});
+            rowDefinition138});
 			this.layoutControlGroupTabAGroup2Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabAGroup2Inner.Size = new System.Drawing.Size(638, 26);
+			this.layoutControlGroupTabAGroup2Inner.Size = new System.Drawing.Size(552, 26);
 			this.layoutControlGroupTabAGroup2Inner.Text = "Group 2 Inner";
 			this.layoutControlGroupTabAGroup2Inner.TextVisible = false;
 			// 
@@ -8342,7 +8335,7 @@
 			this.layoutControlItemTabASubheader4.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader4.Name = "layoutControlItemTabASubheader4";
 			this.layoutControlItemTabASubheader4.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader4.Size = new System.Drawing.Size(139, 26);
+			this.layoutControlItemTabASubheader4.Size = new System.Drawing.Size(118, 26);
 			this.layoutControlItemTabASubheader4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader4.Text = "Subheader 4";
 			this.layoutControlItemTabASubheader4.TextSize = new System.Drawing.Size(0, 0);
@@ -8370,10 +8363,12 @@
 			this.layoutControlItemTabASubheader5.Control = this.textEditTabASubheader5;
 			this.layoutControlItemTabASubheader5.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader5.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader5.Location = new System.Drawing.Point(209, 0);
+			this.layoutControlItemTabASubheader5.Location = new System.Drawing.Point(188, 0);
+			this.layoutControlItemTabASubheader5.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader5.Name = "layoutControlItemTabASubheader5";
 			this.layoutControlItemTabASubheader5.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabASubheader5.Size = new System.Drawing.Size(112, 26);
+			this.layoutControlItemTabASubheader5.Size = new System.Drawing.Size(94, 26);
+			this.layoutControlItemTabASubheader5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader5.Text = "Subheader 5";
 			this.layoutControlItemTabASubheader5.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabASubheader5.TextVisible = false;
@@ -8384,10 +8379,12 @@
 			this.layoutControlItemTabASubheader6.Control = this.textEditTabASubheader6;
 			this.layoutControlItemTabASubheader6.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader6.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader6.Location = new System.Drawing.Point(331, 0);
+			this.layoutControlItemTabASubheader6.Location = new System.Drawing.Point(292, 0);
+			this.layoutControlItemTabASubheader6.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader6.Name = "layoutControlItemTabASubheader6";
 			this.layoutControlItemTabASubheader6.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader6.Size = new System.Drawing.Size(307, 26);
+			this.layoutControlItemTabASubheader6.Size = new System.Drawing.Size(260, 26);
+			this.layoutControlItemTabASubheader6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader6.Text = "Subheader 6";
 			this.layoutControlItemTabASubheader6.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabASubheader6.TextVisible = false;
@@ -8401,7 +8398,7 @@
 			this.emptySpaceItem7.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem7.Name = "emptySpaceItem7";
 			this.emptySpaceItem7.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem7.Size = new System.Drawing.Size(638, 8);
+			this.emptySpaceItem7.Size = new System.Drawing.Size(552, 6);
 			this.emptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem7.Text = "emptySpaceItem4";
 			this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
@@ -8414,11 +8411,11 @@
             this.layoutControlItemTabAGroup3Toggle,
             this.layoutControlGroupTabAGroup3Inner,
             this.emptySpaceItem8});
-			this.layoutControlGroupTabAGroup3.Location = new System.Drawing.Point(147, 166);
+			this.layoutControlGroupTabAGroup3.Location = new System.Drawing.Point(131, 158);
 			this.layoutControlGroupTabAGroup3.Name = "layoutControlGroupTabAGroup3";
 			this.layoutControlGroupTabAGroup3.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabAGroup3.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlGroupTabAGroup3.Size = new System.Drawing.Size(661, 34);
+			this.layoutControlGroupTabAGroup3.Size = new System.Drawing.Size(575, 32);
 			this.layoutControlGroupTabAGroup3.Text = "Group 3";
 			this.layoutControlGroupTabAGroup3.TextVisible = false;
 			// 
@@ -8429,7 +8426,7 @@
 			this.layoutControlItemTabAGroup3Toggle.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemTabAGroup3Toggle.Name = "layoutControlItemTabAGroup3Toggle";
 			this.layoutControlItemTabAGroup3Toggle.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
-			this.layoutControlItemTabAGroup3Toggle.Size = new System.Drawing.Size(23, 34);
+			this.layoutControlItemTabAGroup3Toggle.Size = new System.Drawing.Size(23, 32);
 			this.layoutControlItemTabAGroup3Toggle.Text = "Group 3 Toggle";
 			this.layoutControlItemTabAGroup3Toggle.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAGroup3Toggle.TextVisible = false;
@@ -8447,30 +8444,30 @@
 			this.layoutControlGroupTabAGroup3Inner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabAGroup3Inner.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlGroupTabAGroup3Inner.Name = "layoutControlGroupTabAGroup3Inner";
-			columnDefinition135.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition135.Width = 60D;
-			columnDefinition136.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition136.Width = 25D;
-			columnDefinition137.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition137.Width = 10D;
-			columnDefinition138.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition138.Width = 20D;
-			columnDefinition139.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition139.Width = 10D;
-			columnDefinition140.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition140.Width = 55D;
+			columnDefinition129.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition129.Width = 60D;
+			columnDefinition130.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition130.Width = 25D;
+			columnDefinition131.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition131.Width = 10D;
+			columnDefinition132.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition132.Width = 20D;
+			columnDefinition133.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition133.Width = 10D;
+			columnDefinition134.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition134.Width = 55D;
 			this.layoutControlGroupTabAGroup3Inner.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition135,
-            columnDefinition136,
-            columnDefinition137,
-            columnDefinition138,
-            columnDefinition139,
-            columnDefinition140});
-			rowDefinition140.Height = 26D;
-			rowDefinition140.SizeType = System.Windows.Forms.SizeType.AutoSize;
+            columnDefinition129,
+            columnDefinition130,
+            columnDefinition131,
+            columnDefinition132,
+            columnDefinition133,
+            columnDefinition134});
+			rowDefinition139.Height = 26D;
+			rowDefinition139.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabAGroup3Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition140});
-			this.layoutControlGroupTabAGroup3Inner.Size = new System.Drawing.Size(638, 26);
+            rowDefinition139});
+			this.layoutControlGroupTabAGroup3Inner.Size = new System.Drawing.Size(552, 26);
 			this.layoutControlGroupTabAGroup3Inner.Text = "Group 3 Inner";
 			this.layoutControlGroupTabAGroup3Inner.TextVisible = false;
 			// 
@@ -8483,7 +8480,7 @@
 			this.layoutControlItemTabASubheader7.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader7.Name = "layoutControlItemTabASubheader7";
 			this.layoutControlItemTabASubheader7.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader7.Size = new System.Drawing.Size(139, 26);
+			this.layoutControlItemTabASubheader7.Size = new System.Drawing.Size(118, 26);
 			this.layoutControlItemTabASubheader7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader7.Text = "Subheader 7";
 			this.layoutControlItemTabASubheader7.TextSize = new System.Drawing.Size(0, 0);
@@ -8511,10 +8508,12 @@
 			this.layoutControlItemTabASubheader8.Control = this.textEditTabASubheader8;
 			this.layoutControlItemTabASubheader8.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader8.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader8.Location = new System.Drawing.Point(209, 0);
+			this.layoutControlItemTabASubheader8.Location = new System.Drawing.Point(188, 0);
+			this.layoutControlItemTabASubheader8.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader8.Name = "layoutControlItemTabASubheader8";
 			this.layoutControlItemTabASubheader8.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlItemTabASubheader8.Size = new System.Drawing.Size(112, 26);
+			this.layoutControlItemTabASubheader8.Size = new System.Drawing.Size(94, 26);
+			this.layoutControlItemTabASubheader8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader8.Text = "Subheader 8";
 			this.layoutControlItemTabASubheader8.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabASubheader8.TextVisible = false;
@@ -8525,10 +8524,12 @@
 			this.layoutControlItemTabASubheader9.Control = this.textEditTabASubheader9;
 			this.layoutControlItemTabASubheader9.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader9.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader9.Location = new System.Drawing.Point(331, 0);
+			this.layoutControlItemTabASubheader9.Location = new System.Drawing.Point(292, 0);
+			this.layoutControlItemTabASubheader9.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader9.Name = "layoutControlItemTabASubheader9";
 			this.layoutControlItemTabASubheader9.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader9.Size = new System.Drawing.Size(307, 26);
+			this.layoutControlItemTabASubheader9.Size = new System.Drawing.Size(260, 26);
+			this.layoutControlItemTabASubheader9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader9.Text = "Subheader 9";
 			this.layoutControlItemTabASubheader9.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabASubheader9.TextVisible = false;
@@ -8541,7 +8542,7 @@
 			this.emptySpaceItem8.Location = new System.Drawing.Point(23, 26);
 			this.emptySpaceItem8.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem8.Name = "emptySpaceItem8";
-			this.emptySpaceItem8.Size = new System.Drawing.Size(638, 8);
+			this.emptySpaceItem8.Size = new System.Drawing.Size(552, 6);
 			this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem8.Text = "emptySpaceItem5";
 			this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
@@ -8553,12 +8554,12 @@
             this.layoutControlItemTabAGroup6Toggle,
             this.layoutControlGroupTabAGroup6Inner,
             this.emptySpaceItem9});
-			this.layoutControlGroupTabAGroup6.Location = new System.Drawing.Point(147, 370);
+			this.layoutControlGroupTabAGroup6.Location = new System.Drawing.Point(131, 350);
 			this.layoutControlGroupTabAGroup6.Name = "layoutControlGroupTabAGroup6";
 			this.layoutControlGroupTabAGroup6.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabAGroup6.OptionsTableLayoutItem.RowIndex = 11;
 			this.layoutControlGroupTabAGroup6.OptionsTableLayoutItem.RowSpan = 3;
-			this.layoutControlGroupTabAGroup6.Size = new System.Drawing.Size(661, 102);
+			this.layoutControlGroupTabAGroup6.Size = new System.Drawing.Size(575, 96);
 			this.layoutControlGroupTabAGroup6.Text = "Group 6";
 			this.layoutControlGroupTabAGroup6.TextVisible = false;
 			// 
@@ -8569,7 +8570,7 @@
 			this.layoutControlItemTabAGroup6Toggle.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemTabAGroup6Toggle.Name = "layoutControlItemTabAGroup6Toggle";
 			this.layoutControlItemTabAGroup6Toggle.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
-			this.layoutControlItemTabAGroup6Toggle.Size = new System.Drawing.Size(23, 102);
+			this.layoutControlItemTabAGroup6Toggle.Size = new System.Drawing.Size(23, 96);
 			this.layoutControlItemTabAGroup6Toggle.Text = "Group 6 Toggle";
 			this.layoutControlItemTabAGroup6Toggle.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAGroup6Toggle.TextVisible = false;
@@ -8586,30 +8587,30 @@
 			this.layoutControlGroupTabAGroup6Inner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabAGroup6Inner.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlGroupTabAGroup6Inner.Name = "layoutControlGroupTabAGroup6Inner";
-			columnDefinition141.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition141.Width = 60D;
-			columnDefinition142.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition142.Width = 50D;
-			columnDefinition143.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition143.Width = 50D;
-			columnDefinition144.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition144.Width = 50D;
+			columnDefinition135.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition135.Width = 60D;
+			columnDefinition136.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition136.Width = 50D;
+			columnDefinition137.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition137.Width = 50D;
+			columnDefinition138.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition138.Width = 50D;
 			this.layoutControlGroupTabAGroup6Inner.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition141,
-            columnDefinition142,
-            columnDefinition143,
-            columnDefinition144});
-			rowDefinition141.Height = 26D;
-			rowDefinition141.SizeType = System.Windows.Forms.SizeType.AutoSize;
-			rowDefinition142.Height = 15D;
-			rowDefinition142.SizeType = System.Windows.Forms.SizeType.Absolute;
-			rowDefinition143.Height = 26D;
-			rowDefinition143.SizeType = System.Windows.Forms.SizeType.AutoSize;
+            columnDefinition135,
+            columnDefinition136,
+            columnDefinition137,
+            columnDefinition138});
+			rowDefinition140.Height = 26D;
+			rowDefinition140.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			rowDefinition141.Height = 15D;
+			rowDefinition141.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition142.Height = 26D;
+			rowDefinition142.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabAGroup6Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition140,
             rowDefinition141,
-            rowDefinition142,
-            rowDefinition143});
-			this.layoutControlGroupTabAGroup6Inner.Size = new System.Drawing.Size(638, 67);
+            rowDefinition142});
+			this.layoutControlGroupTabAGroup6Inner.Size = new System.Drawing.Size(552, 67);
 			this.layoutControlGroupTabAGroup6Inner.Text = "Group 6 Inner";
 			this.layoutControlGroupTabAGroup6Inner.TextVisible = false;
 			// 
@@ -8638,7 +8639,7 @@
 			this.layoutControlGroupTabASubheader14.Name = "layoutControlGroupTabASubheader14";
 			this.layoutControlGroupTabASubheader14.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabASubheader14.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabASubheader14.Size = new System.Drawing.Size(264, 26);
+			this.layoutControlGroupTabASubheader14.Size = new System.Drawing.Size(221, 26);
 			this.layoutControlGroupTabASubheader14.Text = "Subheader 14";
 			this.layoutControlGroupTabASubheader14.TextVisible = false;
 			// 
@@ -8666,8 +8667,10 @@
 			this.layoutControlItemTabASubheader14Value.CustomizationFormText = "Subheader 14 Value";
 			this.layoutControlItemTabASubheader14Value.FillControlToClientArea = false;
 			this.layoutControlItemTabASubheader14Value.Location = new System.Drawing.Point(23, 0);
+			this.layoutControlItemTabASubheader14Value.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader14Value.Name = "layoutControlItemTabASubheader14Value";
-			this.layoutControlItemTabASubheader14Value.Size = new System.Drawing.Size(241, 26);
+			this.layoutControlItemTabASubheader14Value.Size = new System.Drawing.Size(198, 26);
+			this.layoutControlItemTabASubheader14Value.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader14Value.Text = "Per Month";
 			this.layoutControlItemTabASubheader14Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabASubheader14Value.TextLocation = DevExpress.Utils.Locations.Right;
@@ -8680,12 +8683,11 @@
 			this.layoutControlItemTabASubheader13.Control = this.textEditTabASubheader13;
 			this.layoutControlItemTabASubheader13.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
 			this.layoutControlItemTabASubheader13.Location = new System.Drawing.Point(60, 0);
-			this.layoutControlItemTabASubheader13.MaxSize = new System.Drawing.Size(0, 26);
 			this.layoutControlItemTabASubheader13.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader13.Name = "layoutControlItemTabASubheader13";
 			this.layoutControlItemTabASubheader13.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabASubheader13.OptionsTableLayoutItem.ColumnSpan = 3;
-			this.layoutControlItemTabASubheader13.Size = new System.Drawing.Size(578, 26);
+			this.layoutControlItemTabASubheader13.Size = new System.Drawing.Size(492, 26);
 			this.layoutControlItemTabASubheader13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader13.Text = "Subheader 13";
 			this.layoutControlItemTabASubheader13.TextSize = new System.Drawing.Size(0, 0);
@@ -8698,11 +8700,11 @@
 			this.layoutControlGroupTabASubheader15.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabASubheader15Toggle,
             this.layoutControlItemTabASubheader15Value});
-			this.layoutControlGroupTabASubheader15.Location = new System.Drawing.Point(374, 41);
+			this.layoutControlGroupTabASubheader15.Location = new System.Drawing.Point(331, 41);
 			this.layoutControlGroupTabASubheader15.Name = "layoutControlGroupTabASubheader15";
 			this.layoutControlGroupTabASubheader15.OptionsTableLayoutItem.ColumnIndex = 3;
 			this.layoutControlGroupTabASubheader15.OptionsTableLayoutItem.RowIndex = 2;
-			this.layoutControlGroupTabASubheader15.Size = new System.Drawing.Size(264, 26);
+			this.layoutControlGroupTabASubheader15.Size = new System.Drawing.Size(221, 26);
 			this.layoutControlGroupTabASubheader15.Text = "Subheader 15";
 			this.layoutControlGroupTabASubheader15.TextVisible = false;
 			// 
@@ -8731,8 +8733,10 @@
 			this.layoutControlItemTabASubheader15Value.CustomizationFormText = "Subheader 15 Value";
 			this.layoutControlItemTabASubheader15Value.FillControlToClientArea = false;
 			this.layoutControlItemTabASubheader15Value.Location = new System.Drawing.Point(23, 0);
+			this.layoutControlItemTabASubheader15Value.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader15Value.Name = "layoutControlItemTabASubheader15Value";
-			this.layoutControlItemTabASubheader15Value.Size = new System.Drawing.Size(241, 26);
+			this.layoutControlItemTabASubheader15Value.Size = new System.Drawing.Size(198, 26);
+			this.layoutControlItemTabASubheader15Value.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader15Value.Text = "<b>= 0</b>";
 			this.layoutControlItemTabASubheader15Value.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabASubheader15Value.TextLocation = DevExpress.Utils.Locations.Right;
@@ -8747,7 +8751,7 @@
 			this.emptySpaceItem9.Location = new System.Drawing.Point(23, 67);
 			this.emptySpaceItem9.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem9.Name = "emptySpaceItem9";
-			this.emptySpaceItem9.Size = new System.Drawing.Size(638, 35);
+			this.emptySpaceItem9.Size = new System.Drawing.Size(552, 29);
 			this.emptySpaceItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem9.Text = "emptySpaceItem6";
 			this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
@@ -8762,7 +8766,7 @@
 			this.layoutControlItemTabAClipart1.Name = "layoutControlItemTabAClipart1";
 			this.layoutControlItemTabAClipart1.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlItemTabAClipart1.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabAClipart1.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabAClipart1.Size = new System.Drawing.Size(101, 128);
 			this.layoutControlItemTabAClipart1.Text = "Clipart 1";
 			this.layoutControlItemTabAClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAClipart1.TextVisible = false;
@@ -8774,11 +8778,11 @@
 			this.layoutControlItemTabAClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabAClipart2.CustomizationFormText = "Clipart 2";
 			this.layoutControlItemTabAClipart2.FillControlToClientArea = false;
-			this.layoutControlItemTabAClipart2.Location = new System.Drawing.Point(0, 200);
+			this.layoutControlItemTabAClipart2.Location = new System.Drawing.Point(0, 190);
 			this.layoutControlItemTabAClipart2.Name = "layoutControlItemTabAClipart2";
 			this.layoutControlItemTabAClipart2.OptionsTableLayoutItem.RowIndex = 6;
 			this.layoutControlItemTabAClipart2.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabAClipart2.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabAClipart2.Size = new System.Drawing.Size(101, 128);
 			this.layoutControlItemTabAClipart2.Text = "Clipart 2";
 			this.layoutControlItemTabAClipart2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAClipart2.TextVisible = false;
@@ -8790,157 +8794,15 @@
 			this.layoutControlItemTabAClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabAClipart3.CustomizationFormText = "Clipart 3";
 			this.layoutControlItemTabAClipart3.FillControlToClientArea = false;
-			this.layoutControlItemTabAClipart3.Location = new System.Drawing.Point(0, 370);
+			this.layoutControlItemTabAClipart3.Location = new System.Drawing.Point(0, 350);
 			this.layoutControlItemTabAClipart3.Name = "layoutControlItemTabAClipart3";
 			this.layoutControlItemTabAClipart3.OptionsTableLayoutItem.RowIndex = 11;
 			this.layoutControlItemTabAClipart3.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabAClipart3.Size = new System.Drawing.Size(117, 140);
+			this.layoutControlItemTabAClipart3.Size = new System.Drawing.Size(101, 130);
 			this.layoutControlItemTabAClipart3.Text = "Clipart 3";
 			this.layoutControlItemTabAClipart3.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabAClipart3.TextVisible = false;
 			this.layoutControlItemTabAClipart3.TrimClientAreaToControl = false;
-			// 
-			// layoutControlGroupTabAGroup4
-			// 
-			this.layoutControlGroupTabAGroup4.GroupBordersVisible = false;
-			this.layoutControlGroupTabAGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemTabAGroup4Toggle,
-            this.layoutControlGroupTabAGroup4Inner,
-            this.emptySpaceItem10});
-			this.layoutControlGroupTabAGroup4.Location = new System.Drawing.Point(147, 234);
-			this.layoutControlGroupTabAGroup4.Name = "layoutControlGroupTabAGroup4";
-			this.layoutControlGroupTabAGroup4.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.layoutControlGroupTabAGroup4.OptionsTableLayoutItem.RowIndex = 7;
-			this.layoutControlGroupTabAGroup4.Size = new System.Drawing.Size(661, 34);
-			this.layoutControlGroupTabAGroup4.Text = "Group 4";
-			this.layoutControlGroupTabAGroup4.TextVisible = false;
-			// 
-			// layoutControlItemTabAGroup4Toggle
-			// 
-			this.layoutControlItemTabAGroup4Toggle.Control = this.checkEditTabAGroup4;
-			this.layoutControlItemTabAGroup4Toggle.FillControlToClientArea = false;
-			this.layoutControlItemTabAGroup4Toggle.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlItemTabAGroup4Toggle.Name = "layoutControlItemTabAGroup4Toggle";
-			this.layoutControlItemTabAGroup4Toggle.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
-			this.layoutControlItemTabAGroup4Toggle.Size = new System.Drawing.Size(23, 34);
-			this.layoutControlItemTabAGroup4Toggle.Text = "Group 4 Toggle";
-			this.layoutControlItemTabAGroup4Toggle.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabAGroup4Toggle.TextVisible = false;
-			this.layoutControlItemTabAGroup4Toggle.TrimClientAreaToControl = false;
-			// 
-			// layoutControlGroupTabAGroup4Inner
-			// 
-			this.layoutControlGroupTabAGroup4Inner.GroupBordersVisible = false;
-			this.layoutControlGroupTabAGroup4Inner.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItemTabASubheader10,
-            this.simpleLabelItemTabAGroup4Title,
-            this.layoutControlItemTabASubheader11,
-            this.simpleLabelItemTabAFormula1});
-			this.layoutControlGroupTabAGroup4Inner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupTabAGroup4Inner.Location = new System.Drawing.Point(23, 0);
-			this.layoutControlGroupTabAGroup4Inner.Name = "layoutControlGroupTabAGroup4Inner";
-			columnDefinition117.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition117.Width = 60D;
-			columnDefinition118.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition118.Width = 25D;
-			columnDefinition119.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition119.Width = 10D;
-			columnDefinition120.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition120.Width = 20D;
-			columnDefinition121.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition121.Width = 10D;
-			columnDefinition122.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition122.Width = 55D;
-			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition117,
-            columnDefinition118,
-            columnDefinition119,
-            columnDefinition120,
-            columnDefinition121,
-            columnDefinition122});
-			rowDefinition137.Height = 26D;
-			rowDefinition137.SizeType = System.Windows.Forms.SizeType.AutoSize;
-			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition137});
-			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabAGroup4Inner.Size = new System.Drawing.Size(638, 26);
-			this.layoutControlGroupTabAGroup4Inner.Text = "Group 4 Inner";
-			this.layoutControlGroupTabAGroup4Inner.TextVisible = false;
-			// 
-			// layoutControlItemTabASubheader10
-			// 
-			this.layoutControlItemTabASubheader10.Control = this.textEditTabASubheader10;
-			this.layoutControlItemTabASubheader10.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemTabASubheader10.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader10.Location = new System.Drawing.Point(60, 0);
-			this.layoutControlItemTabASubheader10.MinSize = new System.Drawing.Size(1, 26);
-			this.layoutControlItemTabASubheader10.Name = "layoutControlItemTabASubheader10";
-			this.layoutControlItemTabASubheader10.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader10.Size = new System.Drawing.Size(139, 26);
-			this.layoutControlItemTabASubheader10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.layoutControlItemTabASubheader10.Text = "Subheader 10";
-			this.layoutControlItemTabASubheader10.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabASubheader10.TextVisible = false;
-			this.layoutControlItemTabASubheader10.TrimClientAreaToControl = false;
-			// 
-			// simpleLabelItemTabAGroup4Title
-			// 
-			this.simpleLabelItemTabAGroup4Title.AllowHotTrack = false;
-			this.simpleLabelItemTabAGroup4Title.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemTabAGroup4Title.Location = new System.Drawing.Point(0, 0);
-			this.simpleLabelItemTabAGroup4Title.Name = "simpleLabelItemTabAGroup4Title";
-			this.simpleLabelItemTabAGroup4Title.Size = new System.Drawing.Size(60, 26);
-			this.simpleLabelItemTabAGroup4Title.Text = "<size=+1><b>4.</b></size>";
-			this.simpleLabelItemTabAGroup4Title.TextSize = new System.Drawing.Size(12, 14);
-			// 
-			// layoutControlItemTabASubheader11
-			// 
-			this.layoutControlItemTabASubheader11.Control = this.textEditTabASubheader11;
-			this.layoutControlItemTabASubheader11.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.layoutControlItemTabASubheader11.FillControlToClientArea = false;
-			this.layoutControlItemTabASubheader11.Location = new System.Drawing.Point(331, 0);
-			this.layoutControlItemTabASubheader11.Name = "layoutControlItemTabASubheader11";
-			this.layoutControlItemTabASubheader11.OptionsTableLayoutItem.ColumnIndex = 5;
-			this.layoutControlItemTabASubheader11.Size = new System.Drawing.Size(307, 26);
-			this.layoutControlItemTabASubheader11.Text = "Subheader 11";
-			this.layoutControlItemTabASubheader11.TextSize = new System.Drawing.Size(0, 0);
-			this.layoutControlItemTabASubheader11.TextVisible = false;
-			this.layoutControlItemTabASubheader11.TrimClientAreaToControl = false;
-			// 
-			// simpleLabelItemTabAFormula1
-			// 
-			this.simpleLabelItemTabAFormula1.AllowHotTrack = false;
-			this.simpleLabelItemTabAFormula1.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemTabAFormula1.Location = new System.Drawing.Point(209, 0);
-			this.simpleLabelItemTabAFormula1.Name = "simpleLabelItemTabAFormula1";
-			this.simpleLabelItemTabAFormula1.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabAFormula1.Size = new System.Drawing.Size(112, 26);
-			this.simpleLabelItemTabAFormula1.Text = "<b>0</b>";
-			this.simpleLabelItemTabAFormula1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-			this.simpleLabelItemTabAFormula1.TextSize = new System.Drawing.Size(7, 13);
-			// 
-			// emptySpaceItem10
-			// 
-			this.emptySpaceItem10.AllowHotTrack = false;
-			this.emptySpaceItem10.CustomizationFormText = "emptySpaceItem4";
-			this.emptySpaceItem10.Location = new System.Drawing.Point(23, 26);
-			this.emptySpaceItem10.MinSize = new System.Drawing.Size(1, 1);
-			this.emptySpaceItem10.Name = "emptySpaceItem10";
-			this.emptySpaceItem10.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem10.Size = new System.Drawing.Size(638, 8);
-			this.emptySpaceItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.emptySpaceItem10.Text = "emptySpaceItem4";
-			this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlGroupTabAGroup5
 			// 
@@ -8949,11 +8811,11 @@
             this.layoutControlGroupTabAGroup5Inner,
             this.emptySpaceItem11,
             this.layoutControlItemTabAGroup2Toggle2});
-			this.layoutControlGroupTabAGroup5.Location = new System.Drawing.Point(147, 302);
+			this.layoutControlGroupTabAGroup5.Location = new System.Drawing.Point(131, 286);
 			this.layoutControlGroupTabAGroup5.Name = "layoutControlGroupTabAGroup5";
 			this.layoutControlGroupTabAGroup5.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabAGroup5.OptionsTableLayoutItem.RowIndex = 9;
-			this.layoutControlGroupTabAGroup5.Size = new System.Drawing.Size(661, 34);
+			this.layoutControlGroupTabAGroup5.Size = new System.Drawing.Size(575, 32);
 			this.layoutControlGroupTabAGroup5.Text = "Group 5";
 			this.layoutControlGroupTabAGroup5.TextVisible = false;
 			// 
@@ -8968,25 +8830,25 @@
 			this.layoutControlGroupTabAGroup5Inner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabAGroup5Inner.Location = new System.Drawing.Point(23, 0);
 			this.layoutControlGroupTabAGroup5Inner.Name = "layoutControlGroupTabAGroup5Inner";
-			columnDefinition145.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition145.Width = 60D;
-			columnDefinition146.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition146.Width = 70D;
-			columnDefinition147.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition147.Width = 5D;
-			columnDefinition148.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition148.Width = 25D;
+			columnDefinition139.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition139.Width = 60D;
+			columnDefinition140.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition140.Width = 70D;
+			columnDefinition141.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition141.Width = 5D;
+			columnDefinition142.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition142.Width = 25D;
 			this.layoutControlGroupTabAGroup5Inner.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition145,
-            columnDefinition146,
-            columnDefinition147,
-            columnDefinition148});
-			rowDefinition144.Height = 26D;
-			rowDefinition144.SizeType = System.Windows.Forms.SizeType.AutoSize;
+            columnDefinition139,
+            columnDefinition140,
+            columnDefinition141,
+            columnDefinition142});
+			rowDefinition143.Height = 26D;
+			rowDefinition143.SizeType = System.Windows.Forms.SizeType.AutoSize;
 			this.layoutControlGroupTabAGroup5Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition144});
+            rowDefinition143});
 			this.layoutControlGroupTabAGroup5Inner.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.layoutControlGroupTabAGroup5Inner.Size = new System.Drawing.Size(638, 26);
+			this.layoutControlGroupTabAGroup5Inner.Size = new System.Drawing.Size(552, 26);
 			this.layoutControlGroupTabAGroup5Inner.Text = "Group 5 Inner";
 			this.layoutControlGroupTabAGroup5Inner.TextVisible = false;
 			// 
@@ -8999,7 +8861,7 @@
 			this.layoutControlItemTabASubheader12.MinSize = new System.Drawing.Size(1, 26);
 			this.layoutControlItemTabASubheader12.Name = "layoutControlItemTabASubheader12";
 			this.layoutControlItemTabASubheader12.OptionsTableLayoutItem.ColumnIndex = 1;
-			this.layoutControlItemTabASubheader12.Size = new System.Drawing.Size(405, 26);
+			this.layoutControlItemTabASubheader12.Size = new System.Drawing.Size(344, 26);
 			this.layoutControlItemTabASubheader12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabASubheader12.Text = "Subheader 12";
 			this.layoutControlItemTabASubheader12.TextSize = new System.Drawing.Size(0, 0);
@@ -9030,10 +8892,12 @@
 			this.simpleLabelItemTabAFormula2EqualSign.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.simpleLabelItemTabAFormula2EqualSign.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabAFormula2EqualSign.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemTabAFormula2EqualSign.Location = new System.Drawing.Point(465, 0);
+			this.simpleLabelItemTabAFormula2EqualSign.Location = new System.Drawing.Point(404, 0);
+			this.simpleLabelItemTabAFormula2EqualSign.MinSize = new System.Drawing.Size(1, 26);
 			this.simpleLabelItemTabAFormula2EqualSign.Name = "simpleLabelItemTabAFormula2EqualSign";
 			this.simpleLabelItemTabAFormula2EqualSign.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.simpleLabelItemTabAFormula2EqualSign.Size = new System.Drawing.Size(29, 26);
+			this.simpleLabelItemTabAFormula2EqualSign.Size = new System.Drawing.Size(25, 26);
+			this.simpleLabelItemTabAFormula2EqualSign.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTabAFormula2EqualSign.Text = "<b>=</b>";
 			this.simpleLabelItemTabAFormula2EqualSign.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabAFormula2EqualSign.TextSize = new System.Drawing.Size(8, 16);
@@ -9048,10 +8912,12 @@
 			this.simpleLabelItemTabAFormula2.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemTabAFormula2.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabAFormula2.CustomizationFormText = "<b>0</b>";
-			this.simpleLabelItemTabAFormula2.Location = new System.Drawing.Point(494, 0);
+			this.simpleLabelItemTabAFormula2.Location = new System.Drawing.Point(429, 0);
+			this.simpleLabelItemTabAFormula2.MinSize = new System.Drawing.Size(1, 26);
 			this.simpleLabelItemTabAFormula2.Name = "simpleLabelItemTabAFormula2";
 			this.simpleLabelItemTabAFormula2.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.simpleLabelItemTabAFormula2.Size = new System.Drawing.Size(144, 26);
+			this.simpleLabelItemTabAFormula2.Size = new System.Drawing.Size(123, 26);
+			this.simpleLabelItemTabAFormula2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTabAFormula2.Text = "<b>0</b>";
 			this.simpleLabelItemTabAFormula2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.simpleLabelItemTabAFormula2.TextSize = new System.Drawing.Size(7, 16);
@@ -9064,7 +8930,7 @@
 			this.emptySpaceItem11.MinSize = new System.Drawing.Size(1, 1);
 			this.emptySpaceItem11.Name = "emptySpaceItem11";
 			this.emptySpaceItem11.OptionsTableLayoutItem.ColumnIndex = 3;
-			this.emptySpaceItem11.Size = new System.Drawing.Size(661, 8);
+			this.emptySpaceItem11.Size = new System.Drawing.Size(575, 6);
 			this.emptySpaceItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.emptySpaceItem11.Text = "emptySpaceItem4";
 			this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
@@ -9083,15 +8949,151 @@
 			this.layoutControlItemTabAGroup2Toggle2.TextVisible = false;
 			this.layoutControlItemTabAGroup2Toggle2.TrimClientAreaToControl = false;
 			// 
-			// emptySpaceItem13
+			// layoutControlGroupTabAGroup4
 			// 
-			this.emptySpaceItem13.AllowHotTrack = false;
-			this.emptySpaceItem13.Location = new System.Drawing.Point(147, 234);
-			this.emptySpaceItem13.Name = "emptySpaceItem13";
-			this.emptySpaceItem13.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.emptySpaceItem13.OptionsTableLayoutItem.RowIndex = 7;
-			this.emptySpaceItem13.Size = new System.Drawing.Size(661, 34);
-			this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlGroupTabAGroup4.GroupBordersVisible = false;
+			this.layoutControlGroupTabAGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemTabAGroup4Toggle,
+            this.layoutControlGroupTabAGroup4Inner,
+            this.emptySpaceItem10});
+			this.layoutControlGroupTabAGroup4.Location = new System.Drawing.Point(131, 222);
+			this.layoutControlGroupTabAGroup4.Name = "layoutControlGroupTabAGroup4";
+			this.layoutControlGroupTabAGroup4.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlGroupTabAGroup4.OptionsTableLayoutItem.RowIndex = 7;
+			this.layoutControlGroupTabAGroup4.Size = new System.Drawing.Size(575, 32);
+			this.layoutControlGroupTabAGroup4.Text = "Group 4";
+			this.layoutControlGroupTabAGroup4.TextVisible = false;
+			// 
+			// layoutControlItemTabAGroup4Toggle
+			// 
+			this.layoutControlItemTabAGroup4Toggle.Control = this.checkEditTabAGroup4;
+			this.layoutControlItemTabAGroup4Toggle.FillControlToClientArea = false;
+			this.layoutControlItemTabAGroup4Toggle.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlItemTabAGroup4Toggle.Name = "layoutControlItemTabAGroup4Toggle";
+			this.layoutControlItemTabAGroup4Toggle.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
+			this.layoutControlItemTabAGroup4Toggle.Size = new System.Drawing.Size(23, 32);
+			this.layoutControlItemTabAGroup4Toggle.Text = "Group 4 Toggle";
+			this.layoutControlItemTabAGroup4Toggle.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabAGroup4Toggle.TextVisible = false;
+			this.layoutControlItemTabAGroup4Toggle.TrimClientAreaToControl = false;
+			// 
+			// layoutControlGroupTabAGroup4Inner
+			// 
+			this.layoutControlGroupTabAGroup4Inner.GroupBordersVisible = false;
+			this.layoutControlGroupTabAGroup4Inner.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemTabASubheader10,
+            this.simpleLabelItemTabAGroup4Title,
+            this.layoutControlItemTabASubheader11,
+            this.simpleLabelItemTabAFormula1});
+			this.layoutControlGroupTabAGroup4Inner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupTabAGroup4Inner.Location = new System.Drawing.Point(23, 0);
+			this.layoutControlGroupTabAGroup4Inner.Name = "layoutControlGroupTabAGroup4Inner";
+			columnDefinition143.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition143.Width = 60D;
+			columnDefinition144.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition144.Width = 25D;
+			columnDefinition145.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition145.Width = 10D;
+			columnDefinition146.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition146.Width = 20D;
+			columnDefinition147.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition147.Width = 10D;
+			columnDefinition148.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition148.Width = 55D;
+			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition143,
+            columnDefinition144,
+            columnDefinition145,
+            columnDefinition146,
+            columnDefinition147,
+            columnDefinition148});
+			rowDefinition144.Height = 26D;
+			rowDefinition144.SizeType = System.Windows.Forms.SizeType.AutoSize;
+			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition144});
+			this.layoutControlGroupTabAGroup4Inner.OptionsTableLayoutItem.ColumnIndex = 3;
+			this.layoutControlGroupTabAGroup4Inner.Size = new System.Drawing.Size(552, 26);
+			this.layoutControlGroupTabAGroup4Inner.Text = "Group 4 Inner";
+			this.layoutControlGroupTabAGroup4Inner.TextVisible = false;
+			// 
+			// layoutControlItemTabASubheader10
+			// 
+			this.layoutControlItemTabASubheader10.Control = this.textEditTabASubheader10;
+			this.layoutControlItemTabASubheader10.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemTabASubheader10.FillControlToClientArea = false;
+			this.layoutControlItemTabASubheader10.Location = new System.Drawing.Point(60, 0);
+			this.layoutControlItemTabASubheader10.MinSize = new System.Drawing.Size(1, 26);
+			this.layoutControlItemTabASubheader10.Name = "layoutControlItemTabASubheader10";
+			this.layoutControlItemTabASubheader10.OptionsTableLayoutItem.ColumnIndex = 1;
+			this.layoutControlItemTabASubheader10.Size = new System.Drawing.Size(118, 26);
+			this.layoutControlItemTabASubheader10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemTabASubheader10.Text = "Subheader 10";
+			this.layoutControlItemTabASubheader10.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabASubheader10.TextVisible = false;
+			this.layoutControlItemTabASubheader10.TrimClientAreaToControl = false;
+			// 
+			// simpleLabelItemTabAGroup4Title
+			// 
+			this.simpleLabelItemTabAGroup4Title.AllowHotTrack = false;
+			this.simpleLabelItemTabAGroup4Title.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemTabAGroup4Title.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemTabAGroup4Title.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemTabAGroup4Title.Name = "simpleLabelItemTabAGroup4Title";
+			this.simpleLabelItemTabAGroup4Title.Size = new System.Drawing.Size(60, 26);
+			this.simpleLabelItemTabAGroup4Title.Text = "<size=+1><b>4.</b></size>";
+			this.simpleLabelItemTabAGroup4Title.TextSize = new System.Drawing.Size(12, 16);
+			// 
+			// layoutControlItemTabASubheader11
+			// 
+			this.layoutControlItemTabASubheader11.Control = this.textEditTabASubheader11;
+			this.layoutControlItemTabASubheader11.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemTabASubheader11.FillControlToClientArea = false;
+			this.layoutControlItemTabASubheader11.Location = new System.Drawing.Point(292, 0);
+			this.layoutControlItemTabASubheader11.MinSize = new System.Drawing.Size(1, 26);
+			this.layoutControlItemTabASubheader11.Name = "layoutControlItemTabASubheader11";
+			this.layoutControlItemTabASubheader11.OptionsTableLayoutItem.ColumnIndex = 5;
+			this.layoutControlItemTabASubheader11.Size = new System.Drawing.Size(260, 26);
+			this.layoutControlItemTabASubheader11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.layoutControlItemTabASubheader11.Text = "Subheader 11";
+			this.layoutControlItemTabASubheader11.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabASubheader11.TextVisible = false;
+			this.layoutControlItemTabASubheader11.TrimClientAreaToControl = false;
+			// 
+			// simpleLabelItemTabAFormula1
+			// 
+			this.simpleLabelItemTabAFormula1.AllowHotTrack = false;
+			this.simpleLabelItemTabAFormula1.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemTabAFormula1.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemTabAFormula1.Location = new System.Drawing.Point(188, 0);
+			this.simpleLabelItemTabAFormula1.MinSize = new System.Drawing.Size(1, 26);
+			this.simpleLabelItemTabAFormula1.Name = "simpleLabelItemTabAFormula1";
+			this.simpleLabelItemTabAFormula1.OptionsTableLayoutItem.ColumnIndex = 3;
+			this.simpleLabelItemTabAFormula1.Size = new System.Drawing.Size(94, 26);
+			this.simpleLabelItemTabAFormula1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemTabAFormula1.Text = "<b>0</b>";
+			this.simpleLabelItemTabAFormula1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+			this.simpleLabelItemTabAFormula1.TextSize = new System.Drawing.Size(7, 16);
+			// 
+			// emptySpaceItem10
+			// 
+			this.emptySpaceItem10.AllowHotTrack = false;
+			this.emptySpaceItem10.CustomizationFormText = "emptySpaceItem4";
+			this.emptySpaceItem10.Location = new System.Drawing.Point(23, 26);
+			this.emptySpaceItem10.MinSize = new System.Drawing.Size(1, 1);
+			this.emptySpaceItem10.Name = "emptySpaceItem10";
+			this.emptySpaceItem10.OptionsTableLayoutItem.ColumnIndex = 3;
+			this.emptySpaceItem10.Size = new System.Drawing.Size(552, 6);
+			this.emptySpaceItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.emptySpaceItem10.Text = "emptySpaceItem4";
+			this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// layoutControlGroupTabB
 			// 
@@ -9104,16 +9106,16 @@
 			this.layoutControlGroupTabB.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabB.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabB.Name = "layoutControlGroupTabB";
-			columnDefinition152.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition152.Width = 15D;
-			columnDefinition153.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition153.Width = 30D;
-			columnDefinition154.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition154.Width = 85D;
+			columnDefinition153.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition153.Width = 15D;
+			columnDefinition154.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition154.Width = 30D;
+			columnDefinition155.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition155.Width = 85D;
 			this.layoutControlGroupTabB.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition152,
             columnDefinition153,
-            columnDefinition154});
+            columnDefinition154,
+            columnDefinition155});
 			rowDefinition160.Height = 30D;
 			rowDefinition160.SizeType = System.Windows.Forms.SizeType.Absolute;
 			rowDefinition161.Height = 7.148D;
@@ -9160,7 +9162,7 @@
             rowDefinition172,
             rowDefinition173,
             rowDefinition174});
-			this.layoutControlGroupTabB.Size = new System.Drawing.Size(808, 510);
+			this.layoutControlGroupTabB.Size = new System.Drawing.Size(746, 480);
 			this.layoutControlGroupTabB.Text = "Tab B";
 			// 
 			// layoutControlItemTabBClipart1
@@ -9173,7 +9175,7 @@
 			this.layoutControlItemTabBClipart1.Name = "layoutControlItemTabBClipart1";
 			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlItemTabBClipart1.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabBClipart1.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabBClipart1.Size = new System.Drawing.Size(107, 128);
 			this.layoutControlItemTabBClipart1.Text = "Clipart 1";
 			this.layoutControlItemTabBClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBClipart1.TextVisible = false;
@@ -9185,11 +9187,11 @@
 			this.layoutControlItemTabBClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabBClipart2.CustomizationFormText = "Clipart 2";
 			this.layoutControlItemTabBClipart2.FillControlToClientArea = false;
-			this.layoutControlItemTabBClipart2.Location = new System.Drawing.Point(0, 200);
+			this.layoutControlItemTabBClipart2.Location = new System.Drawing.Point(0, 190);
 			this.layoutControlItemTabBClipart2.Name = "layoutControlItemTabBClipart2";
 			this.layoutControlItemTabBClipart2.OptionsTableLayoutItem.RowIndex = 6;
 			this.layoutControlItemTabBClipart2.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabBClipart2.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabBClipart2.Size = new System.Drawing.Size(107, 128);
 			this.layoutControlItemTabBClipart2.Text = "Clipart 2";
 			this.layoutControlItemTabBClipart2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBClipart2.TextVisible = false;
@@ -9201,11 +9203,11 @@
 			this.layoutControlItemTabBClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabBClipart3.CustomizationFormText = "Clipart 3";
 			this.layoutControlItemTabBClipart3.FillControlToClientArea = false;
-			this.layoutControlItemTabBClipart3.Location = new System.Drawing.Point(0, 370);
+			this.layoutControlItemTabBClipart3.Location = new System.Drawing.Point(0, 350);
 			this.layoutControlItemTabBClipart3.Name = "layoutControlItemTabBClipart3";
 			this.layoutControlItemTabBClipart3.OptionsTableLayoutItem.RowIndex = 11;
 			this.layoutControlItemTabBClipart3.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabBClipart3.Size = new System.Drawing.Size(117, 140);
+			this.layoutControlItemTabBClipart3.Size = new System.Drawing.Size(107, 130);
 			this.layoutControlItemTabBClipart3.Text = "Clipart 3";
 			this.layoutControlItemTabBClipart3.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabBClipart3.TextVisible = false;
@@ -9216,12 +9218,12 @@
 			this.layoutControlGroupTabBScroll.GroupBordersVisible = false;
 			this.layoutControlGroupTabBScroll.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabB});
-			this.layoutControlGroupTabBScroll.Location = new System.Drawing.Point(147, 30);
+			this.layoutControlGroupTabBScroll.Location = new System.Drawing.Point(137, 30);
 			this.layoutControlGroupTabBScroll.Name = "layoutControlGroupTabBScroll";
 			this.layoutControlGroupTabBScroll.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabBScroll.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlGroupTabBScroll.OptionsTableLayoutItem.RowSpan = 14;
-			this.layoutControlGroupTabBScroll.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlGroupTabBScroll.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlGroupTabBScroll.Text = "Scroll";
 			this.layoutControlGroupTabBScroll.TextVisible = false;
 			// 
@@ -9235,7 +9237,7 @@
 			this.layoutControlItemTabB.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabB.OptionsTableLayoutItem.RowIndex = 3;
 			this.layoutControlItemTabB.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabB.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlItemTabB.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlItemTabB.Text = "Tab B Content Container";
 			this.layoutControlItemTabB.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabB.TextVisible = false;
@@ -9251,16 +9253,16 @@
 			this.layoutControlGroupTabC.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabC.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabC.Name = "layoutControlGroupTabC";
-			columnDefinition155.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition155.Width = 15D;
-			columnDefinition156.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition156.Width = 30D;
-			columnDefinition157.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition157.Width = 85D;
+			columnDefinition156.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition156.Width = 15D;
+			columnDefinition157.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition157.Width = 30D;
+			columnDefinition158.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition158.Width = 85D;
 			this.layoutControlGroupTabC.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition155,
             columnDefinition156,
-            columnDefinition157});
+            columnDefinition157,
+            columnDefinition158});
 			rowDefinition175.Height = 30D;
 			rowDefinition175.SizeType = System.Windows.Forms.SizeType.Absolute;
 			rowDefinition176.Height = 7.148D;
@@ -9307,7 +9309,7 @@
             rowDefinition187,
             rowDefinition188,
             rowDefinition189});
-			this.layoutControlGroupTabC.Size = new System.Drawing.Size(808, 510);
+			this.layoutControlGroupTabC.Size = new System.Drawing.Size(746, 480);
 			this.layoutControlGroupTabC.Text = "Tab C";
 			// 
 			// layoutControlItemTabCClipart1
@@ -9320,7 +9322,7 @@
 			this.layoutControlItemTabCClipart1.Name = "layoutControlItemTabCClipart1";
 			this.layoutControlItemTabCClipart1.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlItemTabCClipart1.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabCClipart1.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabCClipart1.Size = new System.Drawing.Size(107, 128);
 			this.layoutControlItemTabCClipart1.Text = "Clipart 1";
 			this.layoutControlItemTabCClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabCClipart1.TextVisible = false;
@@ -9332,11 +9334,11 @@
 			this.layoutControlItemTabCClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabCClipart2.CustomizationFormText = "Clipart 2";
 			this.layoutControlItemTabCClipart2.FillControlToClientArea = false;
-			this.layoutControlItemTabCClipart2.Location = new System.Drawing.Point(0, 200);
+			this.layoutControlItemTabCClipart2.Location = new System.Drawing.Point(0, 190);
 			this.layoutControlItemTabCClipart2.Name = "layoutControlItemTabCClipart2";
 			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.RowIndex = 6;
 			this.layoutControlItemTabCClipart2.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabCClipart2.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabCClipart2.Size = new System.Drawing.Size(107, 128);
 			this.layoutControlItemTabCClipart2.Text = "Clipart 2";
 			this.layoutControlItemTabCClipart2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabCClipart2.TextVisible = false;
@@ -9348,11 +9350,11 @@
 			this.layoutControlItemTabCClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabCClipart3.CustomizationFormText = "Clipart 3";
 			this.layoutControlItemTabCClipart3.FillControlToClientArea = false;
-			this.layoutControlItemTabCClipart3.Location = new System.Drawing.Point(0, 370);
+			this.layoutControlItemTabCClipart3.Location = new System.Drawing.Point(0, 350);
 			this.layoutControlItemTabCClipart3.Name = "layoutControlItemTabCClipart3";
 			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.RowIndex = 11;
 			this.layoutControlItemTabCClipart3.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabCClipart3.Size = new System.Drawing.Size(117, 140);
+			this.layoutControlItemTabCClipart3.Size = new System.Drawing.Size(107, 130);
 			this.layoutControlItemTabCClipart3.Text = "Clipart 3";
 			this.layoutControlItemTabCClipart3.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabCClipart3.TextVisible = false;
@@ -9364,12 +9366,12 @@
 			this.layoutControlGroupTabСScroll.GroupBordersVisible = false;
 			this.layoutControlGroupTabСScroll.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabС});
-			this.layoutControlGroupTabСScroll.Location = new System.Drawing.Point(147, 30);
+			this.layoutControlGroupTabСScroll.Location = new System.Drawing.Point(137, 30);
 			this.layoutControlGroupTabСScroll.Name = "layoutControlGroupTabСScroll";
 			this.layoutControlGroupTabСScroll.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabСScroll.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlGroupTabСScroll.OptionsTableLayoutItem.RowSpan = 14;
-			this.layoutControlGroupTabСScroll.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlGroupTabСScroll.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlGroupTabСScroll.Text = "Scroll";
 			this.layoutControlGroupTabСScroll.TextVisible = false;
 			// 
@@ -9382,7 +9384,7 @@
 			this.layoutControlItemTabС.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabС.OptionsTableLayoutItem.RowIndex = 3;
 			this.layoutControlItemTabС.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabС.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlItemTabС.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlItemTabС.Text = "Tab С Content Container";
 			this.layoutControlItemTabС.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabС.TextVisible = false;
@@ -9398,16 +9400,16 @@
 			this.layoutControlGroupTabD.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabD.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabD.Name = "layoutControlGroupTabD";
-			columnDefinition158.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition158.Width = 15D;
-			columnDefinition159.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition159.Width = 30D;
-			columnDefinition160.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition160.Width = 85D;
+			columnDefinition159.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition159.Width = 15D;
+			columnDefinition160.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition160.Width = 30D;
+			columnDefinition161.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition161.Width = 85D;
 			this.layoutControlGroupTabD.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition158,
             columnDefinition159,
-            columnDefinition160});
+            columnDefinition160,
+            columnDefinition161});
 			rowDefinition190.Height = 30D;
 			rowDefinition190.SizeType = System.Windows.Forms.SizeType.Absolute;
 			rowDefinition191.Height = 7.1428571428571432D;
@@ -9454,7 +9456,7 @@
             rowDefinition202,
             rowDefinition203,
             rowDefinition204});
-			this.layoutControlGroupTabD.Size = new System.Drawing.Size(808, 510);
+			this.layoutControlGroupTabD.Size = new System.Drawing.Size(746, 480);
 			this.layoutControlGroupTabD.Text = "Tab D";
 			// 
 			// layoutControlItemTabDClipart1
@@ -9466,7 +9468,7 @@
 			this.layoutControlItemTabDClipart1.Name = "layoutControlItemTabDClipart1";
 			this.layoutControlItemTabDClipart1.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlItemTabDClipart1.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabDClipart1.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabDClipart1.Size = new System.Drawing.Size(107, 128);
 			this.layoutControlItemTabDClipart1.Text = "Clipart 1";
 			this.layoutControlItemTabDClipart1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabDClipart1.TextVisible = false;
@@ -9477,11 +9479,11 @@
 			this.layoutControlItemTabDClipart2.Control = this.pictureEditTabDClipart2;
 			this.layoutControlItemTabDClipart2.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabDClipart2.CustomizationFormText = "Clipart 2";
-			this.layoutControlItemTabDClipart2.Location = new System.Drawing.Point(0, 200);
+			this.layoutControlItemTabDClipart2.Location = new System.Drawing.Point(0, 190);
 			this.layoutControlItemTabDClipart2.Name = "layoutControlItemTabDClipart2";
 			this.layoutControlItemTabDClipart2.OptionsTableLayoutItem.RowIndex = 6;
 			this.layoutControlItemTabDClipart2.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabDClipart2.Size = new System.Drawing.Size(117, 136);
+			this.layoutControlItemTabDClipart2.Size = new System.Drawing.Size(107, 128);
 			this.layoutControlItemTabDClipart2.Text = "Clipart 2";
 			this.layoutControlItemTabDClipart2.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabDClipart2.TextVisible = false;
@@ -9492,11 +9494,11 @@
 			this.layoutControlItemTabDClipart3.Control = this.pictureEditTabDClipart3;
 			this.layoutControlItemTabDClipart3.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemTabDClipart3.CustomizationFormText = "Clipart 3";
-			this.layoutControlItemTabDClipart3.Location = new System.Drawing.Point(0, 370);
+			this.layoutControlItemTabDClipart3.Location = new System.Drawing.Point(0, 350);
 			this.layoutControlItemTabDClipart3.Name = "layoutControlItemTabDClipart3";
 			this.layoutControlItemTabDClipart3.OptionsTableLayoutItem.RowIndex = 11;
 			this.layoutControlItemTabDClipart3.OptionsTableLayoutItem.RowSpan = 4;
-			this.layoutControlItemTabDClipart3.Size = new System.Drawing.Size(117, 140);
+			this.layoutControlItemTabDClipart3.Size = new System.Drawing.Size(107, 130);
 			this.layoutControlItemTabDClipart3.Text = "Clipart 3";
 			this.layoutControlItemTabDClipart3.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabDClipart3.TextVisible = false;
@@ -9508,12 +9510,12 @@
 			this.layoutControlGroupTabDScroll.GroupBordersVisible = false;
 			this.layoutControlGroupTabDScroll.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabD});
-			this.layoutControlGroupTabDScroll.Location = new System.Drawing.Point(147, 30);
+			this.layoutControlGroupTabDScroll.Location = new System.Drawing.Point(137, 30);
 			this.layoutControlGroupTabDScroll.Name = "layoutControlGroupTabDScroll";
 			this.layoutControlGroupTabDScroll.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlGroupTabDScroll.OptionsTableLayoutItem.RowIndex = 1;
 			this.layoutControlGroupTabDScroll.OptionsTableLayoutItem.RowSpan = 14;
-			this.layoutControlGroupTabDScroll.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlGroupTabDScroll.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlGroupTabDScroll.Text = "Scroll";
 			this.layoutControlGroupTabDScroll.TextVisible = false;
 			// 
@@ -9526,7 +9528,7 @@
 			this.layoutControlItemTabD.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabD.OptionsTableLayoutItem.RowIndex = 3;
 			this.layoutControlItemTabD.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabD.Size = new System.Drawing.Size(661, 480);
+			this.layoutControlItemTabD.Size = new System.Drawing.Size(609, 450);
 			this.layoutControlItemTabD.Text = "Tab D Content Container";
 			this.layoutControlItemTabD.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemTabD.TextVisible = false;
@@ -9599,6 +9601,10 @@
 			this.Controls.Add(this.panelLogoRight);
 			this.Name = "ROIControl";
 			this.Size = new System.Drawing.Size(1152, 709);
+			this.Controls.SetChildIndex(this.labelFocusFake, 0);
+			this.Controls.SetChildIndex(this.panelLogoRight, 0);
+			this.Controls.SetChildIndex(this.panelLogoBottom, 0);
+			this.Controls.SetChildIndex(this.layoutControlMain, 0);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlMain)).EndInit();
 			this.layoutControlMain.ResumeLayout(false);
@@ -10021,7 +10027,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRootMain)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup1)).EndInit();
@@ -10063,14 +10068,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAClipart3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAGroup4Toggle)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4Inner)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader10)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAGroup4Title)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader11)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup5Inner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader12)).EndInit();
@@ -10079,7 +10076,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAGroup2Toggle2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabAGroup4Toggle)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabAGroup4Inner)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader10)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAGroup4Title)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabASubheader11)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabAFormula1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart2)).EndInit();
@@ -10103,6 +10107,7 @@
 			this.panelLogoBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
@@ -10113,7 +10118,6 @@
 		protected DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRootMain;
 		protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 		protected DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroupData;
 		private System.Windows.Forms.Panel panelLogoRight;
 		protected DevExpress.XtraEditors.PictureEdit pictureEditLogoRight;
@@ -10199,7 +10203,6 @@
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabAGroup2Toggle2;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabAFormula1;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem13;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabAFormula2EqualSign;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabAFormula2;
 		private DevExpress.XtraEditors.PictureEdit pictureEditTabBClipart1;

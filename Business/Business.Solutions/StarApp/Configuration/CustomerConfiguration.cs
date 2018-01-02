@@ -7,10 +7,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	public class CustomerConfiguration
 	{
 		public List<SlideHeader> HeadersPartAItems { get; set; }
-		public List<ComboboxItem> PartACombo1Items { get; }
-		public List<ComboboxItem> PartACombo2Items { get; }
-		public List<ComboboxItem> PartACombo3Items { get; }
-		public List<ComboboxItem> PartACombo4Items { get; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartAClipart2Configuration { get; private set; }
 
@@ -23,10 +19,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public CustomerConfiguration()
 		{
 			HeadersPartAItems = new List<SlideHeader>();
-			PartACombo1Items = new List<ComboboxItem>();
-			PartACombo2Items = new List<ComboboxItem>();
-			PartACombo3Items = new List<ComboboxItem>();
-			PartACombo4Items = new List<ComboboxItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
 			PartAClipart2Configuration = new ClipartConfiguration();
 
@@ -55,34 +47,6 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								var header = SlideHeader.FromXml(childNode);
 								if (!String.IsNullOrEmpty(header.Value))
 									HeadersPartAItems.Add(header);
-							}
-							break;
-						case "CP04ACombo1":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartACombo1Items.Add(item);
-							}
-							break;
-						case "CP04ACombo2":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartACombo2Items.Add(item);
-							}
-							break;
-						case "CP04ACombo3":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartACombo3Items.Add(item);
-							}
-							break;
-						case "CP04ACombo4":
-							{
-								var item = ComboboxItem.FromXml(childNode);
-								if (!String.IsNullOrEmpty(item.Value))
-									PartACombo4Items.Add(item);
 							}
 							break;
 					}

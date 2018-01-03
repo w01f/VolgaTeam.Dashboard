@@ -26,6 +26,7 @@ namespace Asa.Media.Single
 	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
+		private bool _processAppClosing = false;
 
 		private FormMain()
 		{
@@ -504,6 +505,7 @@ namespace Asa.Media.Single
 				else
 					Close();
 			}
+			_processAppClosing = true;
 		}
 
 		private void FormMainResize(object sender, EventArgs e)
@@ -515,6 +517,7 @@ namespace Asa.Media.Single
 
 		private void OnFormMainClosing(object sender, FormClosingEventArgs e)
 		{
+			if (!_processAppClosing) return;
 			using (var form = new FormExitConfirmation())
 			{
 				form.Text = PopupMessageHelper.Instance.Title;
@@ -525,7 +528,7 @@ namespace Asa.Media.Single
 				}
 			}
 
-			var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.AppClosing };
+			var savingArgs = new ContentSavingEventArgs {SavingReason = ContentSavingReason.AppClosing};
 			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
 				Controller.Instance.ContentController.ActiveEditor,
 				savingArgs);

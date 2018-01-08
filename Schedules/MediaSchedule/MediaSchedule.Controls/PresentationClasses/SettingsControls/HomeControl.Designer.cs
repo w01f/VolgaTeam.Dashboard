@@ -263,8 +263,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.superTooltip.SetSuperTooltip(this.buttonXWeeklySchedule, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Build a Weekly Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonXWeeklySchedule.TabIndex = 0;
 			this.buttonXWeeklySchedule.TextColor = System.Drawing.Color.Black;
-			this.buttonXWeeklySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
-			this.buttonXWeeklySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
+			this.buttonXWeeklySchedule.CheckedChanged += new System.EventHandler(this.OnScheduleTypeCheckedChanged);
+			this.buttonXWeeklySchedule.Click += new System.EventHandler(this.OnScheduleTypeClick);
 			// 
 			// buttonXMonthlySchedule
 			// 
@@ -278,8 +278,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.superTooltip.SetSuperTooltip(this.buttonXMonthlySchedule, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Build a Monthly Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonXMonthlySchedule.TabIndex = 2;
 			this.buttonXMonthlySchedule.TextColor = System.Drawing.Color.Black;
-			this.buttonXMonthlySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
-			this.buttonXMonthlySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
+			this.buttonXMonthlySchedule.CheckedChanged += new System.EventHandler(this.OnScheduleTypeCheckedChanged);
+			this.buttonXMonthlySchedule.Click += new System.EventHandler(this.OnScheduleTypeClick);
 			// 
 			// buttonXSnapshot
 			// 
@@ -292,7 +292,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXSnapshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXSnapshot.TabIndex = 3;
 			this.buttonXSnapshot.TextColor = System.Drawing.Color.Black;
-			this.buttonXSnapshot.Click += new System.EventHandler(this.buttonXSnapshot_Click);
+			this.buttonXSnapshot.Click += new System.EventHandler(this.OnSnapshotsClick);
 			// 
 			// buttonXOptions
 			// 
@@ -305,7 +305,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOptions.TabIndex = 4;
 			this.buttonXOptions.TextColor = System.Drawing.Color.Black;
-			this.buttonXOptions.Click += new System.EventHandler(this.buttonXOptions_Click);
+			this.buttonXOptions.Click += new System.EventHandler(this.OnOptionsClick);
 			// 
 			// buttonXCalendar
 			// 
@@ -318,7 +318,7 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			this.buttonXCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCalendar.TabIndex = 5;
 			this.buttonXCalendar.TextColor = System.Drawing.Color.Black;
-			this.buttonXCalendar.Click += new System.EventHandler(this.buttonXCalendar_Click);
+			this.buttonXCalendar.Click += new System.EventHandler(this.OnCalendarClick);
 			// 
 			// layoutControlGroupRoot
 			// 

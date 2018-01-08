@@ -15,7 +15,7 @@ using Padding = System.Windows.Forms.Padding;
 namespace Asa.Browser.Controls.Controls.WebPage
 {
 	public sealed partial class WebKitPage : XtraTabPage
-	//public sealed partial class WebKitPage : UserControl
+		//public sealed partial class WebKitPage : UserControl
 	{
 		private readonly SiteContainerControl _siteContainer;
 		private readonly WebControl _webKit;

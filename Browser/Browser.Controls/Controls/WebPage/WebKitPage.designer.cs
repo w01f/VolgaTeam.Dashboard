@@ -43,12 +43,12 @@
 			// 
 			// 
 			this.circularProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.circularProgress.Dock = System.Windows.Forms.DockStyle.Left;
-			this.circularProgress.Location = new System.Drawing.Point(180, 216);
+			this.circularProgress.Dock = System.Windows.Forms.DockStyle.Top;
+			this.circularProgress.Location = new System.Drawing.Point(180, 294);
 			this.circularProgress.Name = "circularProgress";
 			this.circularProgress.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot;
-			this.circularProgress.ProgressColor = System.Drawing.Color.MediumSeaGreen;
-			this.circularProgress.Size = new System.Drawing.Size(50, 315);
+			this.circularProgress.ProgressColor = System.Drawing.Color.Gray;
+			this.circularProgress.Size = new System.Drawing.Size(420, 50);
 			this.circularProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
 			this.circularProgress.TabIndex = 2;
 			this.circularProgress.TabStop = false;
@@ -61,25 +61,27 @@
 			this.pnProgress.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnProgress.Location = new System.Drawing.Point(0, 0);
 			this.pnProgress.Name = "pnProgress";
-			this.pnProgress.Padding = new System.Windows.Forms.Padding(180, 50, 200, 50);
-			this.pnProgress.Size = new System.Drawing.Size(800, 581);
+			this.pnProgress.Padding = new System.Windows.Forms.Padding(180, 50, 200, 200);
+			this.pnProgress.Size = new System.Drawing.Size(800, 708);
 			this.pnProgress.TabIndex = 3;
 			// 
 			// labelControlProgressText
 			// 
 			this.labelControlProgressText.AllowHtmlString = true;
 			this.labelControlProgressText.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlProgressText.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.labelControlProgressText.Appearance.Options.UseFont = true;
+			this.labelControlProgressText.Appearance.Options.UseTextOptions = true;
+			this.labelControlProgressText.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.labelControlProgressText.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
 			this.labelControlProgressText.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlProgressText.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlProgressText.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelControlProgressText.Location = new System.Drawing.Point(230, 216);
+			this.labelControlProgressText.Location = new System.Drawing.Point(180, 344);
 			this.labelControlProgressText.Name = "labelControlProgressText";
-			this.labelControlProgressText.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-			this.labelControlProgressText.Size = new System.Drawing.Size(370, 315);
+			this.labelControlProgressText.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+			this.labelControlProgressText.Size = new System.Drawing.Size(420, 164);
 			this.labelControlProgressText.TabIndex = 4;
-			this.labelControlProgressText.Text = "<color=MediumSeaGreen>Chill out for just a few seconds…<br>Your app is connecting" +
-    " to the server…</color>";
+			this.labelControlProgressText.Text = "<color=gray>connecting</color>";
 			// 
 			// pbProgressLogo
 			// 
@@ -87,14 +89,15 @@
 			this.pbProgressLogo.Image = global::Asa.Browser.Controls.Properties.Resources.ProgressLogo;
 			this.pbProgressLogo.Location = new System.Drawing.Point(180, 50);
 			this.pbProgressLogo.Name = "pbProgressLogo";
-			this.pbProgressLogo.Size = new System.Drawing.Size(420, 166);
+			this.pbProgressLogo.Size = new System.Drawing.Size(420, 244);
 			this.pbProgressLogo.TabIndex = 3;
 			this.pbProgressLogo.TabStop = false;
 			// 
 			// WebKitPage
 			// 
 			this.Controls.Add(this.pnProgress);
-			this.Size = new System.Drawing.Size(800, 581);
+			this.Name = "WebKitPage";
+			this.Size = new System.Drawing.Size(800, 708);
 			this.Resize += new System.EventHandler(this.OnWebPageResize);
 			this.pnProgress.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbProgressLogo)).EndInit();

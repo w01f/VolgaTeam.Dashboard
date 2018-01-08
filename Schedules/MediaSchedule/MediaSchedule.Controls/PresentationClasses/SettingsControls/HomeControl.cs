@@ -296,7 +296,8 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		{
 			buttonXSnapshot.Enabled = Controller.Instance.TabSnapshot.Visible && Controller.Instance.TabSnapshot.Enabled;
 			buttonXOptions.Enabled = Controller.Instance.TabOptions.Visible && Controller.Instance.TabOptions.Enabled;
-			buttonXCalendar.Enabled = Controller.Instance.TabCalendar2.Visible && Controller.Instance.TabCalendar2.Enabled;
+			layoutControlItemMainScheduleCalendar.Visibility = Controller.Instance.TabCalendar1.Visible || Controller.Instance.TabCalendar2.Visible ? LayoutVisibility.Always : LayoutVisibility.Never;
+			buttonXCalendar.Enabled = Controller.Instance.TabCalendar1.Enabled || Controller.Instance.TabCalendar2.Enabled;
 		}
 		#endregion
 
@@ -383,20 +384,18 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 		#endregion
 
 		#region Buttons Clicks Events
-		private void buttonXScheduleType_Click(object sender, EventArgs e)
+		private void OnScheduleTypeClick(object sender, EventArgs e)
 		{
-			var button = sender as ButtonX;
-			if (button == null) return;
+			if (!(sender is ButtonX button)) return;
 			if (button.Checked) return;
 			buttonXWeeklySchedule.Checked = false;
 			buttonXMonthlySchedule.Checked = false;
 			button.Checked = true;
 		}
 
-		private void buttonXScheduleType_CheckedChanged(object sender, EventArgs e)
+		private void OnScheduleTypeCheckedChanged(object sender, EventArgs e)
 		{
-			var button = sender as ButtonX;
-			if (button == null) return;
+			if (!(sender is ButtonX button)) return;
 			if (!button.Checked) return;
 			if (!_allowToSave) return;
 			if (buttonXWeeklySchedule.Checked)
@@ -406,19 +405,22 @@ namespace Asa.Media.Controls.PresentationClasses.SettingsControls
 			SettingsNotSaved = true;
 		}
 
-		private void buttonXSnapshot_Click(object sender, EventArgs e)
+		private void OnSnapshotsClick(object sender, EventArgs e)
 		{
 			Controller.Instance.TabSnapshot.Select();
 		}
 
-		private void buttonXOptions_Click(object sender, EventArgs e)
+		private void OnOptionsClick(object sender, EventArgs e)
 		{
 			Controller.Instance.TabOptions.Select();
 		}
 
-		private void buttonXCalendar_Click(object sender, EventArgs e)
+		private void OnCalendarClick(object sender, EventArgs e)
 		{
-			Controller.Instance.TabCalendar2.Select();
+			if (Controller.Instance.TabCalendar2.Enabled)
+				Controller.Instance.TabCalendar2.Select();
+			else if (Controller.Instance.TabCalendar1.Enabled)
+				Controller.Instance.TabCalendar1.Select();
 		}
 		#endregion
 

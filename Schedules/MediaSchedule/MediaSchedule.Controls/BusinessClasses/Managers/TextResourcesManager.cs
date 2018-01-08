@@ -14,7 +14,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		public const string SolutionsAdditionalTab1Id = "SolutionTemplates";
 		public const string SolutionsAdditionalTab2Id = "Resources";
 
-		public List<TabPageConfig> TabPageSettings { get; } = new List<TabPageConfig>();
+		public List<ContentTabPageConfig> TabPageSettings { get; } = new List<ContentTabPageConfig>();
 
 		public void LoadTabPageSettings(StorageFile contentFile)
 		{
@@ -23,11 +23,10 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			document.Load(contentFile.LocalPath);
 			foreach (var node in document.SelectNodes(@"//Root/SubTab").OfType<XmlNode>().ToList())
 			{
-				var tabPageConfig = new TabPageConfig();
+				var tabPageConfig = new ContentTabPageConfig();
 				tabPageConfig.Deserialize(node);
 				TabPageSettings.Add(tabPageConfig);
 			}
-			TabPageSettings.Sort((x, y) => x.Order.CompareTo(y.Order));
 		}
 	}
 }

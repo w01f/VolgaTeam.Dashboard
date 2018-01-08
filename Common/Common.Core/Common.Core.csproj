@@ -157,6 +157,8 @@
     <Compile Include="Objects\RemoteStorage\StorageItem.cs" />
     <Compile Include="Objects\Slides\SlideMaster.cs" />
     <Compile Include="Objects\Slides\SlideMasterEventArgs.cs" />
+    <Compile Include="Objects\TabPages\ContentTabPageConfig.cs" />
+    <Compile Include="Objects\TabPages\RibbonTabPageConfig.cs" />
     <Compile Include="Objects\TabPages\TabPageConfig.cs" />
     <Compile Include="Objects\Themes\SlideApprovedThemeInfo.cs" />
     <Compile Include="Objects\Themes\Theme.cs" />

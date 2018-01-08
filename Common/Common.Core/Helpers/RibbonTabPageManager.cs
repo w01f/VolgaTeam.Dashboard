@@ -9,12 +9,12 @@ namespace Asa.Common.Core.Helpers
 	{
 		private readonly StorageFile _contentFile;
 
-		public List<TabPageConfig> RibbonTabPageSettings { get; private set; }
+		public List<RibbonTabPageConfig> RibbonTabPageSettings { get; }
 
 		public RibbonTabPageManager(StorageFile contentFile)
 		{
 			_contentFile = contentFile;
-			RibbonTabPageSettings = new List<TabPageConfig>();
+			RibbonTabPageSettings = new List<RibbonTabPageConfig>();
 			LoadConfig();
 		}
 
@@ -28,7 +28,7 @@ namespace Asa.Common.Core.Helpers
 			if (node == null) return;
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
-				var tabPageConfig = new TabPageConfig();
+				var tabPageConfig = new RibbonTabPageConfig();
 				tabPageConfig.Deserialize(childNode);
 				if (tabPageConfig.Visible)
 					RibbonTabPageSettings.Add(tabPageConfig);

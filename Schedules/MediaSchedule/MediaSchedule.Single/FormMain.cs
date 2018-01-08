@@ -438,9 +438,15 @@ namespace Asa.Media.Single
 		private void LoadData()
 		{
 			UpdateFormTitle();
-			ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(ContentIdentifiers.ScheduleSettings);
 			if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
+			{
+				ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(ContentIdentifiers.ScheduleSettings);
 				Controller.Instance.CheckPowerPointRunning();
+			}
+			else if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Quick)
+				ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings
+					.Where(item => item.DefaultInQuickMode)
+					.Select(item => item.Id).FirstOrDefault() ?? ContentIdentifiers.ScheduleSettings);
 		}
 
 		private void AddNewRegularSchedule()
@@ -528,7 +534,7 @@ namespace Asa.Media.Single
 				}
 			}
 
-			var savingArgs = new ContentSavingEventArgs {SavingReason = ContentSavingReason.AppClosing};
+			var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.AppClosing };
 			ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
 				Controller.Instance.ContentController.ActiveEditor,
 				savingArgs);

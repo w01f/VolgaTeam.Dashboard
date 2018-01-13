@@ -49,7 +49,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			Release();
 
-			xtraTabControl.TabPages.AddRange(Calendar.CalendarContent.Months.Select(monthData =>
+			xtraTabControl.TabPages.AddRange(Calendar.ActiveCalendarSection.Months.Select(monthData =>
 			{
 				var month = (MonthControl)ReflectionHelper.GetControlInstance(typeof(MonthControl), monthData.GetType());
 				month.Text = monthData.Date.ToString("MMM, yyyy");
@@ -135,7 +135,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				form.OnHelpClick = () => Calendar.OpenHelp("clone");
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					var clonedDays = Calendar.CalendarContent.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToList();
+					var clonedDays = Calendar.ActiveCalendarSection.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToList();
 					CopyPasteManager.CloneDay(selectedDay, clonedDays);
 				}
 			}
@@ -174,7 +174,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				{
 					var week = new List<DayControl>();
 					foreach (var calendarDay in weekDays.Select(weekDay =>
-						Calendar.CalendarContent.Days.FirstOrDefault(x => x.Date.Equals(weekDay))))
+						Calendar.ActiveCalendarSection.Days.FirstOrDefault(x => x.Date.Equals(weekDay))))
 					{
 						if (calendarDay != null)
 						{
@@ -318,7 +318,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 				var weekNotes = new List<CalendarNoteControl>();
 				foreach (var weekDay in weekDays)
 				{
-					var note = Calendar.CalendarContent.Notes.FirstOrDefault(x => weekDay.Equals(x.StartDay));
+					var note = Calendar.ActiveCalendarSection.Notes.FirstOrDefault(x => weekDay.Equals(x.StartDay));
 					if (note == null) continue;
 					var noteControl = (CalendarNoteControl)ReflectionHelper.GetControlInstance(typeof(CalendarNoteControl), note.GetType(), note);
 					noteControl.NoteChanged += (sender, e) =>
@@ -356,7 +356,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 							if (form.ShowDialog() != DialogResult.OK) return;
 							note.BackgroundColor = form.NoteColor;
 							if (form.ApplyForAll)
-								foreach (var calendarNote in Calendar.CalendarContent.Notes)
+								foreach (var calendarNote in Calendar.ActiveCalendarSection.Notes)
 									calendarNote.BackgroundColor = note.BackgroundColor;
 							foreach (var monthControl in xtraTabControl.TabPages.OfType<MonthControl>().ToList())
 								monthControl.RefreshNotes();
@@ -373,10 +373,10 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		private void AddNote(DateRange noteRange, string noteText = "")
 		{
 			if (noteRange == null) return;
-			Calendar.CalendarContent.AddNote(noteRange, noteText);
+			Calendar.ActiveCalendarSection.AddNote(noteRange, noteText);
 			Calendar.SettingsNotSaved = true;
 
-			var calendarMonth = Calendar.CalendarContent.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Value.Date && x.DaysRangeEnd >= noteRange.FinishDate.Value.Date);
+			var calendarMonth = Calendar.ActiveCalendarSection.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Value.Date && x.DaysRangeEnd >= noteRange.FinishDate.Value.Date);
 			if (calendarMonth != null)
 			{
 				var notes = GetNotesByWeeeks(calendarMonth);
@@ -393,10 +393,10 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 		private void AddNote(DateRange noteRange, ITextItem note)
 		{
 			if (noteRange == null) return;
-			Calendar.CalendarContent.AddNote(noteRange, note);
+			Calendar.ActiveCalendarSection.AddNote(noteRange, note);
 			Calendar.SettingsNotSaved = true;
 
-			var calendarMonth = Calendar.CalendarContent.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Value.Date && x.DaysRangeEnd >= noteRange.FinishDate.Value.Date);
+			var calendarMonth = Calendar.ActiveCalendarSection.Months.FirstOrDefault(x => x.DaysRangeBegin <= noteRange.FinishDate.Value.Date && x.DaysRangeEnd >= noteRange.FinishDate.Value.Date);
 			if (calendarMonth != null)
 				GetMonthControlByData(calendarMonth).AddNotes(GetNotesByWeeeks(calendarMonth));
 		}
@@ -410,9 +410,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void DeleteNote(CalendarNote note)
 		{
-			var calendarMonth = Calendar.CalendarContent.Months.FirstOrDefault(x => x.DaysRangeBegin <= note.FinishDay.Date && x.DaysRangeEnd >= note.FinishDay.Date);
+			var calendarMonth = Calendar.ActiveCalendarSection.Months.FirstOrDefault(x => x.DaysRangeBegin <= note.FinishDay.Date && x.DaysRangeEnd >= note.FinishDay.Date);
 			if (calendarMonth == null) return;
-			Calendar.CalendarContent.DeleteNote(note);
+			Calendar.ActiveCalendarSection.DeleteNote(note);
 			Calendar.SettingsNotSaved = true;
 			GetMonthControlByData(calendarMonth).AddNotes(GetNotesByWeeeks(calendarMonth));
 		}

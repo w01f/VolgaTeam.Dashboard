@@ -16,7 +16,6 @@ using Asa.Common.GUI.SlideSettingsEditors;
 using Asa.Common.GUI.ToolForms;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls;
-using Utilities = Asa.Common.Core.Helpers.Utilities;
 
 namespace Asa.Media.Single
 {

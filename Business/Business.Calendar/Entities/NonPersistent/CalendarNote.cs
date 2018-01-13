@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using Asa.Business.Calendar.Interfaces;
 using Asa.Common.Core.Interfaces;
 using Newtonsoft.Json;
 
@@ -13,25 +12,23 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		protected ITextItem _note;
 		protected Color _backgroundColor;
 
-		public ICalendarContent Parent { get; private set; }
+		public CalendarSection Parent { get; private set; }
 		public DateTime StartDay { get; set; }
 		public DateTime FinishDay { get; set; }
 		public bool UserAdded { get; set; }
 
-		public ICalendarContent ParentCalendar => Parent;
-
 		[JsonIgnore]
 		public virtual ITextItem Note
 		{
-			get { return _note; }
-			set { _note = value; }
+			get => _note;
+			set => _note = value;
 		}
 
 		[JsonIgnore]
 		public virtual Color BackgroundColor
 		{
-			get { return _backgroundColor; }
-			set { _backgroundColor = value; }
+			get => _backgroundColor;
+			set => _backgroundColor = value;
 		}
 
 		public int Length => FinishDay.Subtract(StartDay).Days;
@@ -69,7 +66,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 			StaticWidth = StaticHeight = 25f;
 		}
 
-		protected CalendarNote(ICalendarContent parent)
+		protected CalendarNote(CalendarSection parent)
 		{
 			Parent = parent;
 			_backgroundColor = DefaultBackgroundColor;

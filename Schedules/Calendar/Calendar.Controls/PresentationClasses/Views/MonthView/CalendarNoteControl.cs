@@ -48,7 +48,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 
 			if (calendarNote.UserAdded)
 			{
-				labelControl_Click(null, EventArgs.Empty);
+				OnLabelControlClick(null, EventArgs.Empty);
 				calendarNote.UserAdded = false;
 			}
 
@@ -91,7 +91,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			labelControl.ForeColor = CalendarNote.ForeColor;
 		}
 
-		private void memoEdit_EditValueChanged(object sender, EventArgs e)
+		private void OnMemoEditEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			var newText = memoEdit.EditValue?.ToString();
@@ -100,7 +100,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			NoteChanged?.Invoke(this, new EventArgs());
 		}
 
-		private void memoEdit_EditValueChanging(object sender, ChangingEventArgs e)
+		private void OnMemoEditEditValueChanging(object sender, ChangingEventArgs e)
 		{
 			textBox.Text = e.NewValue?.ToString() ?? string.Empty;
 			if (!_allowToSave) return;
@@ -110,7 +110,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			e.Cancel = true;
 		}
 
-		private void memoEdit_Leave(object sender, EventArgs e)
+		private void OnMemoEditLeave(object sender, EventArgs e)
 		{
 			memoEdit.Visible = false;
 			labelControl.Text = CalendarNote.Note.FormattedText;
@@ -118,30 +118,30 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			labelControl.BringToFront();
 		}
 
-		private void labelControl_Click(object sender, EventArgs e)
+		private void OnLabelControlClick(object sender, EventArgs e)
 		{
 			memoEdit.Visible = true;
 			memoEdit.Focus();
 			labelControl.Visible = false;
 		}
 
-		private void pbClose_Click(object sender, EventArgs e)
+		private void OnCloseClick(object sender, EventArgs e)
 		{
 			if (PopupMessageHelper.Instance.ShowWarningQuestion("Do you want to delete note?") != DialogResult.Yes) return;
 			NoteDeleted?.Invoke(sender, new EventArgs());
 		}
 
-		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
+		private void OnMenuItemCopyClick(object sender, EventArgs e)
 		{
 			NoteCopied?.Invoke(sender, new EventArgs());
 		}
 
-		private void toolStripMenuItemClone_Click(object sender, EventArgs e)
+		private void OnMenuItemCloneClick(object sender, EventArgs e)
 		{
 			NoteCloned?.Invoke(sender, new EventArgs());
 		}
 
-		private void toolStripMenuItemColor_Click(object sender, EventArgs e)
+		private void OnMenuItemColorClick(object sender, EventArgs e)
 		{
 			ColorChanging?.Invoke(sender, new EventArgs());
 		}

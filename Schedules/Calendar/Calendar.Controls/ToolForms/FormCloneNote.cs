@@ -113,8 +113,7 @@ namespace Asa.Calendar.Controls.ToolForms
 		{
 			if ((ModifierKeys & Keys.Shift) == Keys.Shift || (ModifierKeys & Keys.Control) == Keys.Control)
 			{
-				DateTime temp;
-				if (DateTime.TryParse(e.Date, out temp))
+				if (DateTime.TryParse(e.Date, out var temp))
 				{
 					if (temp >= _flightDateStart && temp <= _flightDateEnd)
 					{
@@ -128,11 +127,11 @@ namespace Asa.Calendar.Controls.ToolForms
 									var finishDate = _selectedDate.Value > temp ? _selectedDate.Value : temp;
 									if (startDate < _sourceNote.StartDay && finishDate > _sourceNote.FinishDay)
 										startDate = _sourceNote.FinishDay.AddDays(1);
-									var _rangesToDelete = new List<DateRange>();
-									_rangesToDelete.AddRange(_selectedRanges.Where(x => x.StartDate >= startDate && x.FinishDate <= finishDate));
-									foreach (DateRange rande in _rangesToDelete)
+									var rangesToDelete = new List<DateRange>();
+									rangesToDelete.AddRange(_selectedRanges.Where(x => x.StartDate >= startDate && x.FinishDate <= finishDate));
+									foreach (DateRange rande in rangesToDelete)
 										_selectedRanges.Remove(rande);
-									_selectedRanges.AddRange(_sourceNote.ParentCalendar.CalculateDateRange(new[] { startDate, finishDate }));
+									_selectedRanges.AddRange(_sourceNote.Parent.Parent.CalculateDateRange(new[] { startDate, finishDate }));
 									UpdateSelectedDates();
 									_selectedDate = null;
 								}

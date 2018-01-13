@@ -1,16 +1,15 @@
-﻿using Asa.Business.Calendar.Entities.NonPersistent;
-using Asa.Business.Media.Configuration;
+﻿using System.Linq;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 {
 	public class CustomCalendar : MediaCalendar
 	{
-		public override bool AllowCustomNotes => true;
-
-		protected override void ApplyDefaultMonthSettings(CalendarMonth targetMonth)
+		protected override void InitSections()
 		{
-			targetMonth.OutputData.ShowLogo = MediaMetaData.Instance.ListManager.DefaultCustomCalendarSettings.ShowLogo;
-			targetMonth.OutputData.ShowBigDate = MediaMetaData.Instance.ListManager.DefaultCustomCalendarSettings.ShowBigDate;
+			if (Sections.Any()) return;
+			Sections.Add(new CustomDataCalendarSection(this));
+			foreach (var calendarSection in Sections)
+				calendarSection.AfterConstraction();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Asa.Business.Calendar.Configuration;
+using Asa.Business.Calendar.Entities.NonPersistent;
 using Asa.Business.Calendar.Interfaces;
 using Asa.Common.Core.Objects.Output;
 using DevComponents.DotNetBar;
@@ -15,6 +16,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		ICalendarContent CalendarContent { get; }
 		CalendarSettings CalendarSettings { get; }
+		CalendarSection ActiveCalendarSection { get; }
 		IView CalendarView { get; }
 		SlideInfoWrapper SlideInfo { get; }
 		ButtonItem CopyButton { get; }

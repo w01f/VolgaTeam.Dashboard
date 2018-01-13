@@ -1,4 +1,6 @@
-﻿using Asa.Business.Common.Enums;
+﻿using System.Linq;
+using Asa.Business.Calendar.Entities.NonPersistent;
+using Asa.Business.Common.Enums;
 using Asa.Business.Media.Entities.NonPersistent.Calendar;
 using Asa.Common.Core.Helpers;
 using Asa.Media.Controls.BusinessClasses.Managers;
@@ -14,6 +16,8 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 		public override RibbonTabItem TabPage => Controller.Instance.TabCalendar2;
 
 		protected override RibbonControl Ribbon => Controller.Instance.Ribbon;
+
+		public override CalendarSection ActiveCalendarSection => CalendarContent.Sections.Single();
 
 		public override ButtonItem CopyButton => Controller.Instance.Calendar2Copy;
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asa.Business.Calendar.Interfaces;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Calendar.Entities.NonPersistent
@@ -9,7 +8,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 	{
 		protected DateTime _date;
 
-		public ICalendarContent Parent { get; private set; }
+		public CalendarSection Parent { get; private set; }
 		public DateTime DaysRangeBegin { get; set; }
 		public DateTime DaysRangeEnd { get; set; }
 		public List<CalendarDay> Days { get; private set; }
@@ -20,7 +19,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		[JsonConstructor]
 		protected CalendarMonth() { }
 
-		protected CalendarMonth(ICalendarContent parent)
+		protected CalendarMonth(CalendarSection parent)
 		{
 			Parent = parent;
 			Days = new List<CalendarDay>();

@@ -17,22 +17,19 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 				{
 					case "Month":
 						{
-							DateTime tempDateTime;
-							if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
+							if (DateTime.TryParse(childNode.InnerText, out var tempDateTime))
 								Month = tempDateTime;
 						}
 						break;
 					case "StartDate":
 						{
-							DateTime tempDateTime;
-							if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
+							if (DateTime.TryParse(childNode.InnerText, out var tempDateTime))
 								StartDate = tempDateTime;
 						}
 						break;
 					case "EndDate":
 						{
-							DateTime tempDateTime;
-							if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
+							if (DateTime.TryParse(childNode.InnerText, out var tempDateTime))
 								EndDate = tempDateTime;
 						}
 						break;

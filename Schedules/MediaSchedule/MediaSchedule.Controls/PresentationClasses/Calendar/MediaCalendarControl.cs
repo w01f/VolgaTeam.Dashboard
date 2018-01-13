@@ -65,8 +65,8 @@ namespace Asa.Media.Controls.PresentationClasses.Calendar
 			FormProgress.ShowProgress("Loading Data...", () =>
 			{
 				ReleaseControls();
-				EditedContent.Reset();
-				base.UpdateEditedContet();
+				ActiveCalendarSection.Reset();
+				LoadCalendar();
 			});
 			Splash(false);
 			SettingsNotSaved = true;

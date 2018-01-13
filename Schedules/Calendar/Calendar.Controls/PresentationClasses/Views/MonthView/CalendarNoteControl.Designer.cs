@@ -77,9 +77,9 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.memoEdit.TabIndex = 3;
 			this.memoEdit.UseOptimizedRendering = true;
 			this.memoEdit.Visible = false;
-			this.memoEdit.EditValueChanged += new System.EventHandler(this.memoEdit_EditValueChanged);
-			this.memoEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit_EditValueChanging);
-			this.memoEdit.Leave += new System.EventHandler(this.memoEdit_Leave);
+			this.memoEdit.EditValueChanged += new System.EventHandler(this.OnMemoEditEditValueChanged);
+			this.memoEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.OnMemoEditEditValueChanging);
+			this.memoEdit.Leave += new System.EventHandler(this.OnMemoEditLeave);
 			// 
 			// contextMenuStrip
 			// 
@@ -98,7 +98,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
 			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(169, 40);
 			this.toolStripMenuItemCopy.Text = "Copy Note";
-			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
+			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
 			// 
 			// toolStripMenuItemClone
 			// 
@@ -108,7 +108,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
 			this.toolStripMenuItemClone.Size = new System.Drawing.Size(169, 40);
 			this.toolStripMenuItemClone.Text = "Clone Note...";
-			this.toolStripMenuItemClone.Click += new System.EventHandler(this.toolStripMenuItemClone_Click);
+			this.toolStripMenuItemClone.Click += new System.EventHandler(this.OnMenuItemCloneClick);
 			// 
 			// toolStripMenuItemColor
 			// 
@@ -118,7 +118,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.toolStripMenuItemColor.Name = "toolStripMenuItemColor";
 			this.toolStripMenuItemColor.Size = new System.Drawing.Size(169, 40);
 			this.toolStripMenuItemColor.Text = "Color...";
-			this.toolStripMenuItemColor.Click += new System.EventHandler(this.toolStripMenuItemColor_Click);
+			this.toolStripMenuItemColor.Click += new System.EventHandler(this.OnMenuItemColorClick);
 			// 
 			// textBox
 			// 
@@ -143,7 +143,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbClose.TabIndex = 1;
 			this.pbClose.TabStop = false;
-			this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
+			this.pbClose.Click += new System.EventHandler(this.OnCloseClick);
 			// 
 			// labelControl
 			// 
@@ -160,7 +160,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			this.labelControl.Size = new System.Drawing.Size(463, 27);
 			this.labelControl.TabIndex = 5;
 			this.labelControl.Text = "test";
-			this.labelControl.Click += new System.EventHandler(this.labelControl_Click);
+			this.labelControl.Click += new System.EventHandler(this.OnLabelControlClick);
 			// 
 			// CalendarNoteControl
 			// 

@@ -10,7 +10,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 	{
 		protected string _userData;
 
-		public ICalendarContent Parent { get; private set; }
+		public CalendarSection Parent { get; private set; }
 		public DateTime Date { get; set; }
 		public bool BelongsToSchedules { get; set; }
 		public bool HasNotes { get; set; }
@@ -21,7 +21,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		[JsonIgnore]
 		public string Comment
 		{
-			get { return !String.IsNullOrEmpty(_userData) ? _userData : ImportedData; }
+			get => !String.IsNullOrEmpty(_userData) ? _userData : ImportedData;
 			set
 			{
 				if (ImportedData != value && !String.IsNullOrEmpty(value))
@@ -58,7 +58,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		[JsonConstructor]
 		protected CalendarDay() { }
 
-		protected CalendarDay(ICalendarContent parent)
+		protected CalendarDay(CalendarSection parent)
 		{
 			Parent = parent;
 			Logo = new ImageSource();
@@ -73,8 +73,7 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 
 		public virtual void Dispose()
 		{
-			if (Logo != null)
-				Logo.Dispose();
+			Logo?.Dispose();
 			Logo = null;
 			Parent = null;
 		}

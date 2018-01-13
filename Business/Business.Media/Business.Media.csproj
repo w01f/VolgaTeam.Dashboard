@@ -67,11 +67,16 @@
     <Compile Include="Entities\NonPersistent\Calendar\CalendarMonthMediaMondayBased.cs" />
     <Compile Include="Entities\NonPersistent\Calendar\CalendarMonthMediaSundayBased.cs" />
     <Compile Include="Entities\NonPersistent\Calendar\CustomCalendar.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\CustomDataCalendarSection.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\DataLinkedCalendarSection.cs" />
     <Compile Include="Entities\NonPersistent\Calendar\MediaCalendar.cs" />
     <Compile Include="Entities\NonPersistent\Calendar\MediaCalendarOutputData.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\MediaCalendarSection.cs" />
     <Compile Include="Entities\NonPersistent\Calendar\MediaDataNote.cs" />
     <Compile Include="Entities\NonPersistent\Calendar\MediaMonthTemplate.cs" />
     <Compile Include="Configuration\OptionsSettings.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\SnapshotCalendarSection.cs" />
+    <Compile Include="Entities\NonPersistent\Calendar\ScheduleCalendarSection.cs" />
     <Compile Include="Entities\NonPersistent\Common\MediaScheduleContent.cs" />
     <Compile Include="Configuration\OptionsSummarySettings.cs" />
     <Compile Include="Entities\NonPersistent\Common\MediaSolutionContent.cs" />

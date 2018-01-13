@@ -36,6 +36,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		#region ICalendarControl Members
 		public bool AllowToSave { get; set; }
 		public abstract CalendarSettings CalendarSettings { get; }
+		public abstract CalendarSection ActiveCalendarSection { get; }
 		public ICalendarContent CalendarContent => EditedContent;
 		public IView CalendarView { get; private set; }
 		public SlideInfoWrapper SlideInfo { get; private set; }
@@ -70,9 +71,18 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		protected override void UpdateEditedContet()
 		{
-			AllowToSave = false;
+			LoadCalendar();
+		}
 
-			if (!CalendarContent.Months.Any()) return;
+		protected override void ApplyChanges()
+		{
+			CalendarView.Save();
+			SlideInfo.SaveData();
+		}
+
+		protected void LoadCalendar()
+		{
+			AllowToSave = false;
 
 			CalendarView.LoadData();
 			((Control)CalendarView).BringToFront();
@@ -84,12 +94,6 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 			UpdateDataManagementAndOutputFunctions();
 
 			AllowToSave = true;
-		}
-
-		protected override void ApplyChanges()
-		{
-			CalendarView.Save();
-			SlideInfo.SaveData();
 		}
 		#endregion
 
@@ -119,14 +123,14 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		public void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
 			if (control.GetType() == typeof(TextEdit) ||
-				control.GetType() == typeof(MemoEdit) ||
-				control.GetType() == typeof(ComboBoxEdit) ||
-				control.GetType() == typeof(LookUpEdit) ||
-				control.GetType() == typeof(DateEdit) ||
-				control.GetType() == typeof(CheckedListBoxControl) ||
-				control.GetType() == typeof(SpinEdit) ||
-				control.GetType() == typeof(CheckEdit) ||
-				control.GetType() == typeof(ImageListBoxControl))
+			    control.GetType() == typeof(MemoEdit) ||
+			    control.GetType() == typeof(ComboBoxEdit) ||
+			    control.GetType() == typeof(LookUpEdit) ||
+			    control.GetType() == typeof(DateEdit) ||
+			    control.GetType() == typeof(CheckedListBoxControl) ||
+			    control.GetType() == typeof(SpinEdit) ||
+			    control.GetType() == typeof(CheckEdit) ||
+			    control.GetType() == typeof(ImageListBoxControl))
 				return;
 			control.Click += CloseActiveEditorsonOutSideClick;
 			foreach (Control childControl in control.Controls)
@@ -196,20 +200,20 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 
 		protected virtual bool IsOutputEnabled
 		{
-			get { return CalendarContent.Months.SelectMany(m => m.Days).Any(d => d.ContainsData || d.HasNotes); }
+			get { return ActiveCalendarSection.Months.SelectMany(m => m.Days).Any(d => d.ContainsData || d.HasNotes); }
 		}
 
 		public override void OutputPowerPoint()
 		{
 			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarContent.Months)
+			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarContent.Months.Count > 1)
+			if (ActiveCalendarSection.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -225,7 +229,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarContent.Months);
+				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;
 			OutpuPowerPointSlides(selectedMonths.Select(m => m.OutputData));
 		}
@@ -234,13 +238,13 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		{
 			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarContent.Months)
+			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarContent.Months.Count > 1)
+			if (ActiveCalendarSection.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -256,7 +260,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarContent.Months);
+				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;
 			OutputPdfSlides(selectedMonths.Select(m => m.OutputData));
 		}
@@ -265,13 +269,13 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		{
 			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarContent.Months)
+			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarContent.Months.Count > 1)
+			if (ActiveCalendarSection.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -287,7 +291,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarContent.Months);
+				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;
 			PreviewSlides(selectedMonths.Select(m => m.OutputData));
 		}
@@ -296,13 +300,13 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 		{
 			var currentMonth = CalendarView.SelectedMonthData;
 			var selectedMonths = new List<CalendarMonth>();
-			foreach (var month in CalendarContent.Months)
+			foreach (var month in ActiveCalendarSection.Months)
 				month.OutputData.PrepareNotes();
-			if (CalendarContent.Months.Count > 1)
+			if (ActiveCalendarSection.Months.Count > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Months";
-					foreach (var month in CalendarContent.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					foreach (var month in ActiveCalendarSection.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 					{
 						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
@@ -318,7 +322,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Calendars
 							OfType<CalendarMonth>());
 				}
 			else
-				selectedMonths.AddRange(CalendarContent.Months);
+				selectedMonths.AddRange(ActiveCalendarSection.Months);
 			if (!selectedMonths.Any()) return;
 			EmailSlides(selectedMonths.Select(m => m.OutputData));
 		}

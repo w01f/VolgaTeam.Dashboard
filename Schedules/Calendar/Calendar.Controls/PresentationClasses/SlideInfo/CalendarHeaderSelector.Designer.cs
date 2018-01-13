@@ -47,14 +47,14 @@
 			this.contextMenuStrip.Name = "contextMenuStrip";
 			this.contextMenuStrip.ShowImageMargin = false;
 			this.contextMenuStrip.Size = new System.Drawing.Size(138, 54);
-			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.OnMenuOpening);
 			// 
 			// toolStripMenuItemCopy
 			// 
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
 			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(137, 22);
 			this.toolStripMenuItemCopy.Text = "Copy this Image";
-			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
+			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
 			// 
 			// toolStripSeparator1
 			// 
@@ -66,7 +66,7 @@
 			this.toolStripMenuItemFavorites.Name = "toolStripMenuItemFavorites";
 			this.toolStripMenuItemFavorites.Size = new System.Drawing.Size(137, 22);
 			this.toolStripMenuItemFavorites.Text = "Save to Favorites";
-			this.toolStripMenuItemFavorites.Click += new System.EventHandler(this.toolStripMenuItemFavorites_Click);
+			this.toolStripMenuItemFavorites.Click += new System.EventHandler(this.OnMenuItemFavoritesClick);
 			// 
 			// toolTip
 			// 
@@ -90,12 +90,12 @@
 			this.imageListView.Size = new System.Drawing.Size(244, 446);
 			this.imageListView.TabIndex = 40;
 			this.imageListView.ThumbnailSize = new System.Drawing.Size(120, 54);
-			this.imageListView.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.imageListView_ItemHover);
-			this.imageListView.SelectionChanged += new System.EventHandler(this.imageListView_SelectionChanged);
-			this.imageListView.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.imageListView_GiveFeedback);
+			this.imageListView.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.OnImageListViewItemHover);
+			this.imageListView.SelectionChanged += new System.EventHandler(this.OnImageListViewSelectionChanged);
+			this.imageListView.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.OnImageListViewGiveFeedback);
 			this.imageListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseDown);
-			this.imageListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseMove);
-			this.imageListView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageListView_MouseUp);
+			this.imageListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnImageListViewMouseMove);
+			this.imageListView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnImageListViewMouseUp);
 			// 
 			// CalendarHeaderSelector
 			// 

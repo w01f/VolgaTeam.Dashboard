@@ -1,4 +1,4 @@
-﻿using Asa.Business.Calendar.Interfaces;
+﻿using Asa.Business.Calendar.Entities.NonPersistent;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Calendar
@@ -7,6 +7,6 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 	{
 		[JsonConstructor]
 		private CalendarMonthMediaSundayBased() { }
-		public CalendarMonthMediaSundayBased(ICalendarContent parent) : base(parent) { }
+		public CalendarMonthMediaSundayBased(CalendarSection parent) : base(parent) { }
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Asa.Business.Calendar.Entities.NonPersistent;
-using Asa.Business.Calendar.Interfaces;
 using Newtonsoft.Json;
 
 namespace Asa.Business.Media.Entities.NonPersistent.Calendar
@@ -10,7 +9,7 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 		[JsonConstructor]
 		protected CalendarMonthMedia() { }
 
-		protected CalendarMonthMedia(ICalendarContent parent)
+		protected CalendarMonthMedia(CalendarSection parent)
 			: base(parent)
 		{
 			OutputData = new MediaCalendarOutputData(this);
@@ -18,8 +17,8 @@ namespace Asa.Business.Media.Entities.NonPersistent.Calendar
 
 		public override DateTime Date
 		{
-			get { return _date; }
-			set { _date = value; }
+			get => _date;
+			set => _date = value;
 		}
 	}
 }

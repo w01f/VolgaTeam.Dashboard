@@ -62,13 +62,12 @@
     <Compile Include="Entities\NonPersistent\CalendarDayMondayBased.cs" />
     <Compile Include="Entities\NonPersistent\CalendarDaySundayBased.cs" />
     <Compile Include="Entities\NonPersistent\CalendarLegend.cs" />
-    <Compile Include="Entities\NonPersistent\CalendarMondayBased.cs" />
     <Compile Include="Entities\NonPersistent\CalendarMonth.cs" />
     <Compile Include="Entities\NonPersistent\CalendarMonthMondayBased.cs" />
     <Compile Include="Entities\NonPersistent\CalendarMonthSundayBased.cs" />
     <Compile Include="Entities\NonPersistent\CalendarNote.cs" />
     <Compile Include="Entities\NonPersistent\CalendarOutputData.cs" />
-    <Compile Include="Entities\NonPersistent\CalendarSundayBased.cs" />
+    <Compile Include="Entities\NonPersistent\CalendarSection.cs" />
     <Compile Include="Entities\NonPersistent\CommonCalendarNote.cs" />
     <Compile Include="Entities\NonPersistent\CommonCalendarOutputData.cs" />
     <Compile Include="Interfaces\ICalendarContent.cs" />

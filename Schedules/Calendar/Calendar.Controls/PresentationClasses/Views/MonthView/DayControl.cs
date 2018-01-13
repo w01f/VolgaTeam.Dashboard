@@ -173,7 +173,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			toolStripMenuItemPasteNote.Text = "Paste Note";
 			toolStripMenuItemPasteNote.Enabled = false;
 			if (selectedDays.Count() <= 1) return;
-			var noteDateRange = Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
+			var noteDateRange = Day.Parent.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
 			if (noteDateRange == null) return;
 			toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.Value.ToString("MM/dd"), noteDateRange.FinishDate.Value.ToString("MM/dd") });
 			toolStripMenuItemAddNote.Enabled = !Day.HasNotes;

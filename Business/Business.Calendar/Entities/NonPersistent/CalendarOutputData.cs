@@ -44,9 +44,9 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 		#region Calculated Options
 		public string SlideTitle => ShowHeader ? Header : string.Empty;
 
-		public string BusinessName => !ShowBusinessName ? string.Empty : Parent.Parent.Settings.BusinessName;
+		public string BusinessName => !ShowBusinessName ? string.Empty : Parent.Parent.ParentScheduleSettings.BusinessName;
 
-		public string DecisionMaker => !ShowDecisionMaker ? string.Empty : Parent.Parent.Settings.DecisionMaker;
+		public string DecisionMaker => !ShowDecisionMaker ? string.Empty : Parent.Parent.ParentScheduleSettings.DecisionMaker;
 
 		public int SlideRGB
 		{

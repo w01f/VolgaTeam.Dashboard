@@ -9,8 +9,8 @@ namespace Asa.Calendar.Controls.PresentationClasses
 {
 	public class SelectionManager
 	{
-		public IView ParentView { get; private set; }
-		public List<CalendarDay> SelectedDays { get; private set; }
+		public IView ParentView { get; }
+		public List<CalendarDay> SelectedDays { get; }
 
 		public event EventHandler<EventArgs> SelectionStateResponse;
 
@@ -51,7 +51,7 @@ namespace Asa.Calendar.Controls.PresentationClasses
 				{
 					var minDate = prevSelectedDay.Date > day.Date ? day.Date : prevSelectedDay.Date;
 					var maxDate = prevSelectedDay.Date < day.Date ? day.Date : prevSelectedDay.Date;
-					foreach (var dayToSelect in ParentView.Calendar.CalendarContent.Days.Where(x => (x.Date >= minDate && x.Date < maxDate) && !SelectedDays.Contains(x)))
+					foreach (var dayToSelect in ParentView.Calendar.ActiveCalendarSection.Days.Where(x => (x.Date >= minDate && x.Date < maxDate) && !SelectedDays.Contains(x)))
 					{
 						ParentView.SelectDay(dayToSelect, true);
 						SelectedDays.Add(dayToSelect);

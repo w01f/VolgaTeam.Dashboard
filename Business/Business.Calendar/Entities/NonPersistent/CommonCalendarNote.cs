@@ -1,5 +1,4 @@
-﻿using Asa.Business.Calendar.Interfaces;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Asa.Business.Calendar.Entities.NonPersistent
 {
@@ -7,6 +6,6 @@ namespace Asa.Business.Calendar.Entities.NonPersistent
 	{
 		[JsonConstructor]
 		private CommonCalendarNote() { }
-		public CommonCalendarNote(ICalendarContent parent) : base(parent) { }
+		public CommonCalendarNote(CalendarSection parent) : base(parent) { }
 	}
 }

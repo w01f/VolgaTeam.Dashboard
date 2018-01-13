@@ -107,27 +107,25 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 			return originalImage.GetThumbnailImage(newSize, newHeight, null, IntPtr.Zero);
 		}
 
-		private void imageListView_SelectionChanged(object sender, EventArgs e)
+		private void OnImageListViewSelectionChanged(object sender, EventArgs e)
 		{
 			if (_isLoading) return;
 			SelectionChanged?.Invoke(sender, e);
 		}
 
-		private void imageListView_ItemHover(object sender, ItemHoverEventArgs e)
+		private void OnImageListViewItemHover(object sender, ItemHoverEventArgs e)
 		{
 			toolTip.RemoveAll();
-			var sourceItem = e.Item != null ? e.Item.Tag as ImageSource : null;
-			if (sourceItem == null) return;
+			if (!(e.Item?.Tag is ImageSource sourceItem)) return;
 			var toolTipText = Path.GetFileName(sourceItem.FileName);
 			toolTip.SetToolTip(imageListView, toolTipText);
 		}
 
-		private void imageListView_MouseMove(object sender, MouseEventArgs e)
+		private void OnImageListViewMouseMove(object sender, MouseEventArgs e)
 		{
 			imageListView.Focus();
 			if (e.Button != MouseButtons.Left || _downHitInfo == null || _downHitInfo.ItemIndex < 0) return;
-			var sourceItem = imageListView.Items[_downHitInfo.ItemIndex].Tag as ImageSource;
-			if (sourceItem == null) return;
+			if (!(imageListView.Items[_downHitInfo.ItemIndex].Tag is ImageSource sourceItem)) return;
 			var dragSize = SystemInformation.DragSize;
 			var dragRect = new Rectangle(new Point(_hitPoint.X - dragSize.Width / 2,
 				_hitPoint.Y - dragSize.Height / 2), dragSize);
@@ -142,8 +140,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 			_downHitInfo = null;
 			_menuHitInfo = null;
 			_hitPoint = new Point(e.X, e.Y);
-			ImageListView.HitInfo hitInfo;
-			imageListView.HitTest(_hitPoint, out hitInfo);
+			imageListView.HitTest(_hitPoint, out var hitInfo);
 			if (ModifierKeys != Keys.None)
 				return;
 			if (!hitInfo.InItemArea) return;
@@ -159,24 +156,24 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 			}
 		}
 
-		private void imageListView_MouseUp(object sender, MouseEventArgs e)
+		private void OnImageListViewMouseUp(object sender, MouseEventArgs e)
 		{
 			_downHitInfo = null;
 		}
 
-		private void imageListView_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+		private void OnImageListViewGiveFeedback(object sender, GiveFeedbackEventArgs e)
 		{
 			if (_downHitInfo == null) return;
 			e.UseDefaultCursors = false;
 			Cursor.Current = _dragRowCursor;
 		}
 
-		private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+		private void OnMenuOpening(object sender, CancelEventArgs e)
 		{
 			e.Cancel = !(_menuHitInfo != null && _menuHitInfo.InItemArea && _menuHitInfo.ItemIndex >= 0);
 		}
 
-		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
+		private void OnMenuItemCopyClick(object sender, EventArgs e)
 		{
 			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
 			if (imageSource == null || !imageSource.ContainsData) return;
@@ -184,7 +181,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.SlideInfo
 			_menuHitInfo = null;
 		}
 
-		private void toolStripMenuItemFavorites_Click(object sender, EventArgs e)
+		private void OnMenuItemFavoritesClick(object sender, EventArgs e)
 		{
 			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
 			if (imageSource == null) return;

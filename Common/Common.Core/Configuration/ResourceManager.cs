@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -10,6 +11,7 @@ namespace Asa.Common.Core.Configuration
 		public static ResourceManager Instance { get; } = new ResourceManager();
 
 		#region Local
+		public string AppRootFolderPath { get; }
 		public StorageDirectory AppSettingsFolder { get; private set; }
 		public StorageDirectory TempFolder { get; private set; }
 		public StorageDirectory FavoriteImagesFolder { get; private set; }
@@ -40,7 +42,10 @@ namespace Asa.Common.Core.Configuration
 		public StorageFile DataSimpleSummaryFile { get; private set; }
 		#endregion
 
-		private ResourceManager() { }
+		private ResourceManager()
+		{
+			AppRootFolderPath = Path.GetDirectoryName(typeof(ResourceManager).Assembly.Location);
+		}
 
 		public async Task Load()
 		{

@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace Asa.Common.Core.Objects.FormStyle
 {
-	public class StyleConfiguration
+	public class MainFormStyleConfiguration
 	{
 		public Color? AccentColor { get; set; }
 		public Color? StatusBarTextColor { get; set; }

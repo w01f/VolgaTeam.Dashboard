@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Xml;
 using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Objects.RemoteStorage;
@@ -81,7 +84,12 @@ namespace Asa.Common.Core.Helpers
 			await InitCredentials();
 			SiteCredentialsManager.Instance.Init();
 			if (Activated)
-				await CheckDataSate();
+			{
+				if (IsBlockingProcessRunning())
+					DataState = DataActualityState.Updated;
+				else
+					await CheckDataSate();
+			}
 			if (Activated)
 				Authorize();
 		}
@@ -190,6 +198,21 @@ namespace Asa.Common.Core.Helpers
 		{
 			UsingLocalMode?.Invoke(this, EventArgs.Empty);
 			UseLocalMode = true;
+		}
+
+		private bool IsBlockingProcessRunning()
+		{
+			var blockingProcessesConfigFilePath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "NoSync.xml");
+			if (!File.Exists(blockingProcessesConfigFilePath)) return false;
+			var document = new XmlDocument();
+			document.Load(blockingProcessesConfigFilePath);
+			var blockingProcessList = document.SelectNodes(@"/Applications/Application")
+				.OfType<XmlNode>()
+				.Select(node => node.InnerText)
+				.ToList();
+			return Process.GetProcesses().Select(process => process.ProcessName).Any(processName =>
+				blockingProcessList.Any(blockingProcessName =>
+					String.Equals(blockingProcessName, processName, StringComparison.OrdinalIgnoreCase)));
 		}
 	}
 }

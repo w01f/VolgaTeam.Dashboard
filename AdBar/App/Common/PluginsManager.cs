@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Asa.Bar.App.Configuration;
 using Asa.Bar.Plugins.Core;
 
 namespace Asa.Bar.App.Common
 {
 	public class PluginsManager
 	{
-		private readonly string _root = Path.Combine(Path.GetDirectoryName(typeof(PluginsManager).Assembly.Location), "plugins");
+		private readonly string _root;
 
 		public List<IAdBarControl> Controls { get; private set; }
 
@@ -25,6 +26,7 @@ namespace Asa.Bar.App.Common
 
 		private PluginsManager()
 		{
+			_root = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "plugins");
 			Controls = new List<IAdBarControl>();
 			Load();
 		}

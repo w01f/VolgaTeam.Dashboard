@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using Asa.Common.Core.Configuration;
 using Asa.Common.Core.Helpers;
+using Asa.Common.Core.Objects.FormStyle;
 
 namespace Asa.Common.GUI.ToolForms
 {
@@ -13,6 +16,18 @@ namespace Asa.Common.GUI.ToolForms
 		private FormStart()
 		{
 			InitializeComponent();
+
+			var styleSettings = new StartFormStyleConfiguration();
+			styleSettings.Load(Path.Combine(ResourceManager.Instance.AppRootFolderPath, "sync_color.xml"));
+			BackColor = panelCancel.BackColor = styleSettings.SyncBorderColor ?? BackColor;
+			panelMain.BackColor = panelCancelInner.BackColor = styleSettings.SyncBackColor ?? panelMain.BackColor;
+			laTitle.ForeColor = laDetails.ForeColor = styleSettings.SyncTextColor ?? laTitle.ForeColor;
+			circularProgress.ProgressColor = styleSettings.SyncCircleColor ?? circularProgress.ProgressColor;
+
+			var cancelLogoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "ProgressCancel.png");
+			if (File.Exists(cancelLogoPath))
+				pbCancel.Image = Image.FromFile(cancelLogoPath);
+
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 2, laTitle.Font.Style);

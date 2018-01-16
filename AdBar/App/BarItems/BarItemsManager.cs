@@ -28,7 +28,8 @@ namespace Asa.Bar.App.BarItems
 			{
 				var pageConfigContent = m.Groups[1].Value;
 				var tab = new TabPage(pageConfigContent);
-				Tabs.Add(tab);
+				if (tab.UserGranted)
+					Tabs.Add(tab);
 			}
 		}
 
@@ -45,3 +46,4 @@ namespace Asa.Bar.App.BarItems
 		}
 	}
 }
+

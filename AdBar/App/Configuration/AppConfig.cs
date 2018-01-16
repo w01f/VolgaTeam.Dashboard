@@ -20,7 +20,11 @@ namespace Asa.Bar.App.Configuration
 
 		public eSuperTabStyle TabStyle { get; private set; }
 		public eStyle ManagerStyle { get; private set; }
+
 		public Color AccentColor { get; private set; }
+		public Color SplashBackColor { get; private set; }
+		public Color SplashBorderColor { get; private set; }
+		public Color SplashTextColor { get; private set; }
 
 		public int UpdateWindowInterval { get; private set; }
 		public int CheckProcessesInterval { get; private set; }
@@ -45,11 +49,15 @@ namespace Asa.Bar.App.Configuration
 			TabStyle = (eSuperTabStyle)(Enum.GetValues(typeof(eSuperTabStyle)).GetValue(Math.Min(5, Math.Max(0, Int32.Parse(ConfigHelper.GetValueRegex("<theme>(.*)</theme>", configContent))))));
 			ManagerStyle = (eStyle)(Enum.GetValues(typeof(eStyle)).GetValue(Math.Min(10, Math.Max(0, Int32.Parse(ConfigHelper.GetValueRegex("<subtheme>(.*)</subtheme>", configContent))))));
 
-			var colorConfig = ConfigHelper.GetValueRegex("<accent>(.*)</accent>", configContent);
-			AccentColor = !String.IsNullOrEmpty(colorConfig) ? Color.FromName(colorConfig) : Color.Chocolate;
-			if (AppManager.Instance.Settings.UserSettings.AccentColor == Color.Transparent)
+			AccentColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<accent>(.*)</accent>", configContent) ?? "#D2691E");
+			SplashBackColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<AppSplashBackColor>(.*)</AppSplashBackColor>", configContent) ?? "#228B22");
+			SplashBorderColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<AppSplashBorderColor>(.*)</AppSplashBorderColor>", configContent) ?? "#228B22");
+			SplashTextColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<AppSplashTextColor>(.*)</AppSplashTextColor>", configContent) ?? "#ffffff");
+
+			if (!AppManager.Instance.Settings.UserSettings.DefaultAccentColor.HasValue || AppManager.Instance.Settings.UserSettings.DefaultAccentColor.Value.Color != AccentColor)
 			{
-				AppManager.Instance.Settings.UserSettings.AccentColor = AccentColor;
+				AppManager.Instance.Settings.UserSettings.DefaultAccentColor = AccentColor;
+				AppManager.Instance.Settings.UserSettings.UserAccentColor = null;
 				AppManager.Instance.Settings.UserSettings.Save();
 			}
 		}

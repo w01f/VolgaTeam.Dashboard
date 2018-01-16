@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using Asa.Bar.App.Configuration;
 using DevComponents.DotNetBar;
@@ -17,6 +18,11 @@ namespace Asa.Bar.App.Forms
 		public FormLogin()
 		{
 			InitializeComponent();
+
+			var logoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "app_logo.png");
+			if (File.Exists(logoPath))
+				pictureBoxMainLogo.Image = Image.FromFile(logoPath);
+
 			if ((CreateGraphics()).DpiX > 96)
 			{
 				labelXErrorText.Font = new Font(labelXErrorText.Font.FontFamily, labelXErrorText.Font.Size - 2, labelXErrorText.Font.Style);

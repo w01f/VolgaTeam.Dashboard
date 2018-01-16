@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -6,11 +7,10 @@ namespace Asa.Bar.App.Configuration
 {
 	public class ResourceManager
 	{
-		private static readonly ResourceManager _instance = new ResourceManager();
-
-		public static ResourceManager Instance => _instance;
+		public static ResourceManager Instance { get; } = new ResourceManager();
 
 		#region Local
+		public string AppRootFolderPath { get; }
 		public StorageDirectory TempFolder { get; private set; }
 		public StorageDirectory AppSettingsFolder { get; private set; }
 		public StorageFile AppSettingsFile { get; private set; }
@@ -20,6 +20,7 @@ namespace Asa.Bar.App.Configuration
 		public StorageFile AppConfigFile { get; private set; }
 		public StorageFile TabsConfigFile { get; private set; }
 		public StorageFile WatchedProcessesFile { get; private set; }
+		public StorageFile MaintenanceConfigFile { get; private set; }
 		public ArchiveDirectory SpecialAppsFolder { get; private set; }
 		public ArchiveDirectory SharedAssembliesFolder { get; private set; }
 		public StorageDirectory DataFolder { get; private set; }
@@ -27,7 +28,10 @@ namespace Asa.Bar.App.Configuration
 		public StorageDirectory CloudFilesFolder { get; private set; }
 		#endregion
 
-		private ResourceManager() { }
+		private ResourceManager()
+		{
+			AppRootFolderPath = Path.GetDirectoryName(typeof(ResourceManager).Assembly.Location);
+		}
 
 		public async Task Load()
 		{
@@ -83,6 +87,16 @@ namespace Asa.Bar.App.Configuration
 				"HideList.xml"
 			});
 			await WatchedProcessesFile.Download();
+
+			MaintenanceConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"maintenance.xml"
+			});
+			if (await MaintenanceConfigFile.Exists(true))
+				await MaintenanceConfigFile.Download();
 
 			SharedAssembliesFolder = new ArchiveDirectory(new[]
 			{

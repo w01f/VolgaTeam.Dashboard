@@ -30,7 +30,7 @@ namespace Asa.Bar.App.Configuration
 			catch
 			{
 			}
-			return String.Empty;
+			return null;
 		}
 
 		public static List<string> GetValuesRegex(string expression, string input)

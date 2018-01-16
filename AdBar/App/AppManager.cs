@@ -16,17 +16,17 @@ namespace Asa.Bar.App
 {
 	class AppManager
 	{
-		protected FormMain MainForm { get; private set; }
+		protected FormMain MainForm { get; }
 
-		public SettingsManager Settings { get; private set; }
+		public SettingsManager Settings { get; }
 
 		public ActivityManager ActivityManager { get; private set; }
 
-		public BarItemsManager BarItemsManager { get; private set; }
+		public BarItemsManager BarItemsManager { get; }
 
-		public ExternalProcessesWatcher ExternalProcessesWatcher { get; private set; }
-		public MonitorConfigurationWatcher MonitorConfigurationWatcher { get; private set; }
-		public WebBrowserManager WebBrowserManager { get; private set; }
+		public ExternalProcessesWatcher ExternalProcessesWatcher { get; }
+		public MonitorConfigurationWatcher MonitorConfigurationWatcher { get; }
+		public WebBrowserManager WebBrowserManager { get; }
 
 		public static AppManager Instance { get; } = new AppManager();
 
@@ -112,7 +112,13 @@ namespace Asa.Bar.App
 
 			if (FileStorageManager.Instance.Activated)
 			{
-				Application.Run(MainForm);
+				if (Settings.MaintenanceConfig.MaintenanceEnabled)
+				{
+					if(Settings.MaintenanceConfig.ShowInfo)
+						Application.Run(new FormMaintenance());
+				}
+				else
+					Application.Run(MainForm);
 			}
 			else
 				PopupMessageHelper.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");

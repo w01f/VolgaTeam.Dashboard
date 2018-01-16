@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Xml.Serialization;
 using Asa.Common.Core.Helpers;
 
 namespace Asa.Bar.App.Configuration
@@ -9,8 +10,22 @@ namespace Asa.Bar.App.Configuration
 	{
 		public string SelectedBrowser { get; set; }
 		public int PreferedMonitor { get; set; }
-		public ColorEx AccentColor { get; set; }
 		public bool LoadAtStartup { get; set; }
+
+		public ColorEx? DefaultAccentColor { get; set; }
+
+		public ColorEx? UserAccentColor { get; set; }
+
+		[XmlIgnore]
+		public Color AccentColor
+		{
+			get => UserAccentColor ?? DefaultAccentColor ?? Color.Chocolate;
+			set
+			{
+				if (DefaultAccentColor != value)
+					UserAccentColor = value;
+			}
+		}
 
 		public UserSettings()
 		{
@@ -29,8 +44,8 @@ namespace Asa.Bar.App.Configuration
 
 		private void Reset()
 		{
+			UserAccentColor = null;
 			PreferedMonitor = 0;
-			AccentColor = Color.Transparent;
 			SelectedBrowser = null;
 			LoadAtStartup = true;
 		}

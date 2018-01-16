@@ -15,7 +15,7 @@ namespace Asa.Bar.App.Configuration
 
 		public void Load()
 		{
-			var configPath = Path.Combine(Path.GetDirectoryName(typeof(SuportEmailConfig).Assembly.Location), "mailto.txt");
+			var configPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "mailto.txt");
 			if (!File.Exists(configPath))
 				throw new FileNotFoundException("File mailto.txt not found");
 			Emails.AddRange(File.ReadAllLines(configPath).Select(line => line.Trim()));

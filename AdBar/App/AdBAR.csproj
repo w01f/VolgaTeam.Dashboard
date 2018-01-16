@@ -73,6 +73,7 @@
     <Compile Include="Authorization\AdBarAuthManager.cs" />
     <Compile Include="Common\LoadAtStartupHelper.cs" />
     <Compile Include="Common\MonitorConfigurationWatcher.cs" />
+    <Compile Include="Configuration\MaintenanceConfiguration.cs" />
     <Compile Include="Configuration\SuportEmailConfig.cs" />
     <Compile Include="ExternalProcesses\ProcessStatusEventArgs.cs" />
     <Compile Include="ExternalProcesses\Enums.cs" />
@@ -104,6 +105,12 @@
       <DependentUpon>FormPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\PluginsManager.cs" />
+    <Compile Include="Forms\FormMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMaintenance.designer.cs">
+      <DependentUpon>FormMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormStart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPassword.resx">
       <DependentUpon>FormPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMaintenance.resx">
+      <DependentUpon>FormMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormStart.resx">
       <DependentUpon>FormStart.cs</DependentUpon>

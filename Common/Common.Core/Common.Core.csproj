@@ -131,7 +131,8 @@
     <Compile Include="Json\JsonImageConverter.cs" />
     <Compile Include="Json\ContentResolver.cs" />
     <Compile Include="Objects\Activities\UserActivity.cs" />
-    <Compile Include="Objects\FormStyle\StyleConfiguration.cs" />
+    <Compile Include="Objects\FormStyle\StartFormStyleConfiguration.cs" />
+    <Compile Include="Objects\FormStyle\MainFormStyleConfiguration.cs" />
     <Compile Include="Objects\Gallery\SnapshotCollection.cs" />
     <Compile Include="Objects\Gallery\SnapshotItem.cs" />
     <Compile Include="Objects\Images\ImageSource.cs" />

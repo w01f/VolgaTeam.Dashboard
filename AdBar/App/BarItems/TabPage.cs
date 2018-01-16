@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Asa.Bar.App.Configuration;
 
 namespace Asa.Bar.App.BarItems
@@ -12,6 +14,7 @@ namespace Asa.Bar.App.BarItems
 		public string Name { get; set; }
 		public bool Enabled { get; set; }
 		public bool Visible { get; set; }
+		public bool UserGranted { get; private set; }
 
 		public List<TabGroup> Groups { get; set; }
 
@@ -28,6 +31,9 @@ namespace Asa.Bar.App.BarItems
 			Name = ConfigHelper.GetValueRegex("<Name>(.*)</Name>", _configContent);
 			Enabled = ConfigHelper.GetValueRegex("<Enabled>(.*)</Enabled>", _configContent) != "false";
 			Visible = ConfigHelper.GetValueRegex("<Visible>(.*)</Visible>", _configContent) != "false";
+			UserGranted = !_configContent.ToLower().Contains("approvedusers") ||
+						  ConfigHelper.GetValuesRegex("<user>(.*?)</user>", _configContent)
+							  .Any(user => user.Equals(Environment.UserName, StringComparison.OrdinalIgnoreCase));
 
 			var tabDirectoryPath = Path.Combine(ResourceManager.Instance.DataFolder.LocalPath, Id);
 			if (Directory.Exists(tabDirectoryPath))

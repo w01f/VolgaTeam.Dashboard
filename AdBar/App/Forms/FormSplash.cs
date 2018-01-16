@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using Asa.Bar.App.Configuration;
 
 namespace Asa.Bar.App.Forms
 {
@@ -8,6 +11,14 @@ namespace Asa.Bar.App.Forms
 		public FormSplash()
 		{
 			InitializeComponent();
+
+			BackColor = AppManager.Instance.Settings.Config.SplashBorderColor;
+			panelMain.BackColor = AppManager.Instance.Settings.Config.SplashBackColor;
+			laTitle.ForeColor = AppManager.Instance.Settings.Config.SplashTextColor;
+
+			var logoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "splash_logo.png");
+			if (File.Exists(logoPath))
+				pictureBoxLogo.Image = Image.FromFile(logoPath);
 		}
 
 		#region Drag and Move Form Processing

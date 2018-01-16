@@ -11,11 +11,11 @@ namespace Asa.Common.Core.Helpers
 		public FormStyleManager(StorageFile contentFile)
 		{
 			_contentFile = contentFile;
-			Style = new StyleConfiguration();
+			Style = new MainFormStyleConfiguration();
 			LoadConfig();
 		}
 
-		public StyleConfiguration Style { get; }
+		public MainFormStyleConfiguration Style { get; }
 
 		private void LoadConfig()
 		{

@@ -37,7 +37,7 @@ namespace Asa.Common.Core.Objects.RemoteStorage
 						{
 							using (var localStream = File.Create(LocalPath))
 							{
-								var contentLenght = remoteFile.ContentLength.HasValue ? remoteFile.ContentLength.Value : 0;
+								var contentLenght = remoteFile.ContentLength ?? 0;
 								var buffer = new byte[1024];
 								int bytesRead;
 								int alreadyRead = 0;

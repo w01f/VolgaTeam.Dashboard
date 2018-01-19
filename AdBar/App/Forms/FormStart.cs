@@ -26,7 +26,11 @@ namespace Asa.Bar.App.Forms
 
 			var cancelLogoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "ProgressCancel.png");
 			if (File.Exists(cancelLogoPath))
-				pbCancel.Image = Image.FromFile(cancelLogoPath);
+			{
+				var tempPath = Path.GetTempFileName();
+				File.Copy(cancelLogoPath, tempPath, true);
+				pbCancel.Image = Image.FromFile(tempPath);
+			}
 
 			if ((CreateGraphics()).DpiX > 96)
 			{

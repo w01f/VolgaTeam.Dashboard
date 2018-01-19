@@ -21,6 +21,11 @@ namespace Asa.Bar.App.Configuration
 		public StorageFile TabsConfigFile { get; private set; }
 		public StorageFile WatchedProcessesFile { get; private set; }
 		public StorageFile MaintenanceConfigFile { get; private set; }
+		public StorageFile NoSyncConfigFile { get; private set; }
+		public StorageFile SyncFormColorConfigFile { get; private set; }
+		public StorageFile LoginLogoFile { get; private set; }
+		public StorageFile SplashLogoFile { get; private set; }
+		public StorageFile SyncFormCloseImageFile { get; private set; }
 		public ArchiveDirectory SpecialAppsFolder { get; private set; }
 		public ArchiveDirectory SharedAssembliesFolder { get; private set; }
 		public StorageDirectory DataFolder { get; private set; }
@@ -98,6 +103,56 @@ namespace Asa.Bar.App.Configuration
 			if (await MaintenanceConfigFile.Exists(true))
 				await MaintenanceConfigFile.Download();
 
+			NoSyncConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"NoSync.xml"
+			});
+			if (await NoSyncConfigFile.Exists(true))
+				await NoSyncConfigFile.Download();
+
+			SyncFormColorConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"sync_color.xml"
+			});
+			if (await SyncFormColorConfigFile.Exists(true))
+				await SyncFormColorConfigFile.Download();
+
+			LoginLogoFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"app_logo.png"
+			});
+			if (await LoginLogoFile.Exists(true))
+				await LoginLogoFile.Download();
+
+			SplashLogoFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"splash_logo.png"
+			});
+			if (await SplashLogoFile.Exists(true))
+				await SplashLogoFile.Download();
+
+			SyncFormCloseImageFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"ProgressCancel.png"
+			});
+			if (await SyncFormCloseImageFile.Exists(true))
+				await SyncFormCloseImageFile.Download();
+
 			SharedAssembliesFolder = new ArchiveDirectory(new[]
 			{
 				FileStorageManager.IncomingFolderName,
@@ -139,6 +194,17 @@ namespace Asa.Bar.App.Configuration
 				FileStorageManager.CommonIncomingFolderName,
 				"CloudFiles",
 			});
+			#endregion
+
+			#region Make local copy
+			if (NoSyncConfigFile.ExistsLocal())
+				File.Copy(NoSyncConfigFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(NoSyncConfigFile.LocalPath)), true);
+			if (SyncFormColorConfigFile.ExistsLocal())
+				File.Copy(SyncFormColorConfigFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(SyncFormColorConfigFile.LocalPath)), true);
+			if (LoginLogoFile.ExistsLocal())
+				File.Copy(LoginLogoFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(LoginLogoFile.LocalPath)), true);
+			if (SyncFormCloseImageFile.ExistsLocal())
+				File.Copy(SyncFormCloseImageFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(SyncFormCloseImageFile.LocalPath)), true);
 			#endregion
 		}
 	}

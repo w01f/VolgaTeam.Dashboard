@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using Asa.Bar.App.Configuration;
 
@@ -16,9 +15,8 @@ namespace Asa.Bar.App.Forms
 			panelMain.BackColor = AppManager.Instance.Settings.Config.SplashBackColor;
 			laTitle.ForeColor = AppManager.Instance.Settings.Config.SplashTextColor;
 
-			var logoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "splash_logo.png");
-			if (File.Exists(logoPath))
-				pictureBoxLogo.Image = Image.FromFile(logoPath);
+			if (ResourceManager.Instance.SplashLogoFile.ExistsLocal())
+				pictureBoxLogo.Image = Image.FromFile(ResourceManager.Instance.SplashLogoFile.LocalPath);
 		}
 
 		#region Drag and Move Form Processing

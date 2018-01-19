@@ -95,21 +95,21 @@ namespace Asa.Bar.App.Common
                 Debug.WriteLine(lpRect.top + "-------------------");*/
 			}
 
-			public Rectangle VisibleBounds { get; private set; }
+			public Rectangle VisibleBounds { get; }
 
-			public Rectangle Bounds { get; private set; }
+			public Rectangle Bounds { get; }
 
-			public TaskbarPosition Position { get; private set; }
+			public TaskbarPosition Position { get; }
 
 			public Point Location => VisibleBounds.Location;
 
 			public Size Size => Bounds.Size;
 
 			//Always returns false under Windows 7
-			public bool AlwaysOnTop { get; private set; }
-			public bool AutoHide { get; private set; }
+			public bool AlwaysOnTop { get; }
+			public bool AutoHide { get; }
 
-			public IntPtr Handle { get; private set; }
+			public IntPtr Handle { get; }
 		}
 
 		internal enum TaskbarPosition

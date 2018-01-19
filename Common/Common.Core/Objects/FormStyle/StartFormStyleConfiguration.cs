@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Xml;
 
@@ -10,6 +11,7 @@ namespace Asa.Common.Core.Objects.FormStyle
 		public Color? SyncBorderColor { get; private set; }
 		public Color? SyncTextColor { get; private set; }
 		public Color? SyncCircleColor { get; private set; }
+		public int? SyncCircleStyle { get; private set; }
 
 		public void Load(string settingsFilePath)
 		{
@@ -33,6 +35,9 @@ namespace Asa.Common.Core.Objects.FormStyle
 							break;
 						case "SyncCircleColor":
 							SyncCircleColor = ColorTranslator.FromHtml(childNode.InnerText);
+							break;
+						case "CircleStyle":
+							SyncCircleStyle = Int32.Parse(childNode.InnerText);
 							break;
 					}
 				}

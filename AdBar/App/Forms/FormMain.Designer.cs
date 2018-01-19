@@ -29,15 +29,21 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			DevComponents.DotNetBar.Rendering.SuperTabColorTable superTabColorTable1 = new DevComponents.DotNetBar.Rendering.SuperTabColorTable();
+			DevComponents.DotNetBar.Rendering.SuperTabControlBoxStateColorTable superTabControlBoxStateColorTable1 = new DevComponents.DotNetBar.Rendering.SuperTabControlBoxStateColorTable();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+			DevComponents.DotNetBar.Rendering.SuperTabItemColorTable superTabItemColorTable1 = new DevComponents.DotNetBar.Rendering.SuperTabItemColorTable();
+			DevComponents.DotNetBar.Rendering.SuperTabColorStates superTabColorStates1 = new DevComponents.DotNetBar.Rendering.SuperTabColorStates();
+			DevComponents.DotNetBar.Rendering.SuperTabItemStateColorTable superTabItemStateColorTable1 = new DevComponents.DotNetBar.Rendering.SuperTabItemStateColorTable();
 			this.superTabControlMain = new DevComponents.DotNetBar.SuperTabControl();
 			this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
 			this.ribbonBarSettings = new DevComponents.DotNetBar.RibbonBar();
+			this.itemContainer6 = new DevComponents.DotNetBar.ItemContainer();
+			this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainer3 = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainer4 = new DevComponents.DotNetBar.ItemContainer();
 			this.colorPickerDropDownInterface = new DevComponents.DotNetBar.ColorPickerDropDown();
 			this.itemContainerMonitors = new DevComponents.DotNetBar.ItemContainer();
-			this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
 			this.buttonItemScreen1 = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemScreen2 = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemScreen3 = new DevComponents.DotNetBar.ButtonItem();
@@ -46,17 +52,18 @@
 			this.buttonItemScreen6 = new DevComponents.DotNetBar.ButtonItem();
 			this.itemContainer5 = new DevComponents.DotNetBar.ItemContainer();
 			this.checkBoxItemLoadAtStartup = new DevComponents.DotNetBar.CheckBoxItem();
+			this.checkBoxItemDocked = new DevComponents.DotNetBar.CheckBoxItem();
 			this.ribbonBarBrowsers = new DevComponents.DotNetBar.RibbonBar();
 			this.itemContainer1 = new DevComponents.DotNetBar.ItemContainer();
+			this.buttonItemBrowserCh = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemBrowserEdge = new DevComponents.DotNetBar.ButtonItem();
 			this.itemContainer2 = new DevComponents.DotNetBar.ItemContainer();
+			this.buttonItemBrowserFF = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			this.superTabItemTemplates = new DevComponents.DotNetBar.SuperTabItem();
 			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
 			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
 			this.timerUpdateWindow = new System.Windows.Forms.Timer(this.components);
-			this.buttonItemBrowserCh = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBrowserEdge = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBrowserFF = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemBrowserIE = new DevComponents.DotNetBar.ButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.superTabControlMain)).BeginInit();
 			this.superTabControlMain.SuspendLayout();
 			this.superTabControlPanel2.SuspendLayout();
@@ -98,7 +105,9 @@
 			this.superTabControlMain.TabLayoutType = DevComponents.DotNetBar.eSuperTabLayoutType.SingleLineFit;
 			this.superTabControlMain.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabItemTemplates});
-			this.superTabControlMain.Text = "superTabControl1";
+			superTabControlBoxStateColorTable1.Image = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			superTabColorTable1.ControlBoxDefault = superTabControlBoxStateColorTable1;
+			this.superTabControlMain.TabStripColor = superTabColorTable1;
 			this.superTabControlMain.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
 			this.superTabControlMain.SelectedTabChanged += new System.EventHandler<DevComponents.DotNetBar.SuperTabStripSelectedTabChangedEventArgs>(this.OnTabControlSelectedTabChanged);
 			this.superTabControlMain.TabStripMouseMove += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.OnTabControlTabStripMouseMove);
@@ -128,12 +137,13 @@
 			this.ribbonBarSettings.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSettings.DragDropSupport = true;
 			this.ribbonBarSettings.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.itemContainer6,
             this.itemContainer3});
 			this.ribbonBarSettings.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSettings.Location = new System.Drawing.Point(172, 16);
+			this.ribbonBarSettings.Location = new System.Drawing.Point(172, 13);
 			this.ribbonBarSettings.Name = "ribbonBarSettings";
-			this.ribbonBarSettings.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.ribbonBarSettings.Size = new System.Drawing.Size(140, 145);
+			this.ribbonBarSettings.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+			this.ribbonBarSettings.Size = new System.Drawing.Size(188, 145);
 			this.ribbonBarSettings.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSettings.TabIndex = 2;
 			this.ribbonBarSettings.Text = "Extras";
@@ -145,6 +155,32 @@
 			// 
 			// 
 			this.ribbonBarSettings.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSettings.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// itemContainer6
+			// 
+			// 
+			// 
+			// 
+			this.itemContainer6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainer6.FixedSize = new System.Drawing.Size(10, 0);
+			this.itemContainer6.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+			this.itemContainer6.Name = "itemContainer6";
+			this.itemContainer6.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItem1});
+			// 
+			// 
+			// 
+			this.itemContainer6.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.itemContainer6.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// labelItem1
+			// 
+			this.labelItem1.Name = "labelItem1";
+			this.labelItem1.Text = "  ";
 			// 
 			// itemContainer3
 			// 
@@ -153,13 +189,16 @@
 			// 
 			this.itemContainer3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainer3.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-			this.itemContainer3.ItemSpacing = 10;
+			this.itemContainer3.ItemSpacing = 30;
 			this.itemContainer3.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.itemContainer3.Name = "itemContainer3";
 			this.itemContainer3.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.itemContainer4,
-            this.itemContainerMonitors,
             this.itemContainer5});
+			// 
+			// 
+			// 
+			this.itemContainer3.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -171,9 +210,15 @@
 			// 
 			// 
 			this.itemContainer4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainer4.ItemSpacing = 20;
 			this.itemContainer4.Name = "itemContainer4";
 			this.itemContainer4.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.colorPickerDropDownInterface});
+            this.colorPickerDropDownInterface,
+            this.itemContainerMonitors});
+			// 
+			// 
+			// 
+			this.itemContainer4.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -185,7 +230,7 @@
 			this.colorPickerDropDownInterface.Name = "colorPickerDropDownInterface";
 			this.colorPickerDropDownInterface.PopupAnimation = DevComponents.DotNetBar.ePopupAnimation.None;
 			this.colorPickerDropDownInterface.SplitButton = true;
-			this.colorPickerDropDownInterface.Text = "     AdBar Color";
+			this.colorPickerDropDownInterface.Text = " color";
 			this.colorPickerDropDownInterface.SelectedColorChanged += new System.EventHandler(this.OnSelectedColorChanged);
 			this.colorPickerDropDownInterface.ColorPreview += new DevComponents.DotNetBar.ColorPreviewEventHandler(this.OnColorPreview);
 			this.colorPickerDropDownInterface.PopupClose += new System.EventHandler(this.OnColorPopupClose);
@@ -198,7 +243,6 @@
 			this.itemContainerMonitors.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerMonitors.Name = "itemContainerMonitors";
 			this.itemContainerMonitors.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItem2,
             this.buttonItemScreen1,
             this.buttonItemScreen2,
             this.buttonItemScreen3,
@@ -208,12 +252,11 @@
 			// 
 			// 
 			// 
+			this.itemContainerMonitors.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainerMonitors.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// labelItem2
-			// 
-			this.labelItem2.Name = "labelItem2";
-			this.labelItem2.Text = "     Screen:";
 			// 
 			// buttonItemScreen1
 			// 
@@ -263,9 +306,15 @@
 			// 
 			// 
 			this.itemContainer5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainer5.ItemSpacing = 20;
 			this.itemContainer5.Name = "itemContainer5";
 			this.itemContainer5.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.checkBoxItemLoadAtStartup});
+            this.checkBoxItemLoadAtStartup,
+            this.checkBoxItemDocked});
+			// 
+			// 
+			// 
+			this.itemContainer5.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
@@ -273,10 +322,14 @@
 			// 
 			// checkBoxItemLoadAtStartup
 			// 
-			this.checkBoxItemLoadAtStartup.CheckBoxPosition = DevComponents.DotNetBar.eCheckBoxPosition.Right;
 			this.checkBoxItemLoadAtStartup.Name = "checkBoxItemLoadAtStartup";
-			this.checkBoxItemLoadAtStartup.Text = "     Load at Startup";
+			this.checkBoxItemLoadAtStartup.Text = "start";
 			this.checkBoxItemLoadAtStartup.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(this.OnLoadAtStartupCheckedChanged);
+			// 
+			// checkBoxItemDocked
+			// 
+			this.checkBoxItemDocked.Name = "checkBoxItemDocked";
+			this.checkBoxItemDocked.Text = "dock";
 			// 
 			// ribbonBarBrowsers
 			// 
@@ -324,49 +377,11 @@
 			// 
 			// 
 			// 
+			this.itemContainer1.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
 			this.itemContainer1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// itemContainer2
-			// 
-			// 
-			// 
-			// 
-			this.itemContainer2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.itemContainer2.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-			this.itemContainer2.Name = "itemContainer2";
-			this.itemContainer2.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemBrowserFF,
-            this.buttonItemBrowserIE});
-			// 
-			// 
-			// 
-			this.itemContainer2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// superTabItemTemplates
-			// 
-			this.superTabItemTemplates.AttachedControl = this.superTabControlPanel2;
-			this.superTabItemTemplates.GlobalItem = false;
-			this.superTabItemTemplates.Name = "superTabItemTemplates";
-			this.superTabItemTemplates.Text = "Custom ribbonBar templates to use";
-			this.superTabItemTemplates.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-			// 
-			// superTabControlPanel1
-			// 
-			this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superTabControlPanel1.Location = new System.Drawing.Point(0, 0);
-			this.superTabControlPanel1.Name = "superTabControlPanel1";
-			this.superTabControlPanel1.Size = new System.Drawing.Size(600, 200);
-			this.superTabControlPanel1.TabIndex = 1;
-			// 
-			// styleManager
-			// 
-			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2007Blue;
-			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
-			// 
-			// timerUpdateWindow
-			// 
-			this.timerUpdateWindow.Interval = 5000;
-			this.timerUpdateWindow.Tick += new System.EventHandler(this.OnUpdateWindowTimerTick);
 			// 
 			// buttonItemBrowserCh
 			// 
@@ -388,6 +403,26 @@
 			this.buttonItemBrowserEdge.Tooltip = "Edge";
 			this.buttonItemBrowserEdge.Click += new System.EventHandler(this.OnBrowserSelectorClick);
 			// 
+			// itemContainer2
+			// 
+			// 
+			// 
+			// 
+			this.itemContainer2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainer2.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+			this.itemContainer2.Name = "itemContainer2";
+			this.itemContainer2.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemBrowserFF,
+            this.buttonItemBrowserIE});
+			// 
+			// 
+			// 
+			this.itemContainer2.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.itemContainer2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
 			// buttonItemBrowserFF
 			// 
 			this.buttonItemBrowserFF.Enabled = false;
@@ -407,6 +442,36 @@
 			this.buttonItemBrowserIE.Text = "buttonItem4";
 			this.buttonItemBrowserIE.Tooltip = "Internet Explorer";
 			this.buttonItemBrowserIE.Click += new System.EventHandler(this.OnBrowserSelectorClick);
+			// 
+			// superTabItemTemplates
+			// 
+			this.superTabItemTemplates.AttachedControl = this.superTabControlPanel2;
+			this.superTabItemTemplates.GlobalItem = false;
+			this.superTabItemTemplates.Name = "superTabItemTemplates";
+			superTabItemStateColorTable1.Text = System.Drawing.Color.Red;
+			superTabColorStates1.Normal = superTabItemStateColorTable1;
+			superTabItemColorTable1.Default = superTabColorStates1;
+			this.superTabItemTemplates.TabColor = superTabItemColorTable1;
+			this.superTabItemTemplates.Text = "Custom ribbonBar templates to use";
+			this.superTabItemTemplates.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+			// 
+			// superTabControlPanel1
+			// 
+			this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.superTabControlPanel1.Location = new System.Drawing.Point(0, 0);
+			this.superTabControlPanel1.Name = "superTabControlPanel1";
+			this.superTabControlPanel1.Size = new System.Drawing.Size(600, 200);
+			this.superTabControlPanel1.TabIndex = 1;
+			// 
+			// styleManager
+			// 
+			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
+			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255))))), System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199))))));
+			// 
+			// timerUpdateWindow
+			// 
+			this.timerUpdateWindow.Interval = 5000;
+			this.timerUpdateWindow.Tick += new System.EventHandler(this.OnUpdateWindowTimerTick);
 			// 
 			// FormMain
 			// 
@@ -460,9 +525,11 @@
         private DevComponents.DotNetBar.ButtonItem buttonItemScreen6;
         private DevComponents.DotNetBar.ItemContainer itemContainer4;
 		private DevComponents.DotNetBar.ColorPickerDropDown colorPickerDropDownInterface;
-		private DevComponents.DotNetBar.LabelItem labelItem2;
 		private DevComponents.DotNetBar.ItemContainer itemContainer5;
 		private DevComponents.DotNetBar.CheckBoxItem checkBoxItemLoadAtStartup;
-    }
+		private DevComponents.DotNetBar.CheckBoxItem checkBoxItemDocked;
+		private DevComponents.DotNetBar.ItemContainer itemContainer6;
+		private DevComponents.DotNetBar.LabelItem labelItem1;
+	}
 }
 

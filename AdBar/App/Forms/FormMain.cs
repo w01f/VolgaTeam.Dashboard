@@ -6,7 +6,9 @@ using System.Windows.Forms;
 using Asa.Bar.App.BarItems;
 using Asa.Bar.App.Common;
 using Asa.Bar.App.ExternalProcesses;
+using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Metro.ColorTables;
 
 namespace Asa.Bar.App.Forms
 {
@@ -33,6 +35,9 @@ namespace Asa.Bar.App.Forms
 			superTabControlMain.TabStyle = AppManager.Instance.Settings.Config.TabStyle;
 			styleManager.ManagerStyle = AppManager.Instance.Settings.Config.ManagerStyle;
 			ApplyAccentColor(AppManager.Instance.Settings.UserSettings.AccentColor);
+			superTabControlMain.TabStripColor.ControlBoxDefault.Image =
+				superTabControlMain.TabStripColor.ControlBoxPressed.Image =
+					superTabControlMain.TabStripColor.ControlBoxMouseOver.Image = AppManager.Instance.Settings.Config.TextColor;
 			timerUpdateWindow.Interval = AppManager.Instance.Settings.Config.UpdateWindowInterval;
 		}
 
@@ -72,6 +77,7 @@ namespace Asa.Bar.App.Forms
 
 		public void AdjustWindowPosition(bool forced = false)
 		{
+			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle && AppManager.Instance.Settings.UserSettings.FormLocationLeft.HasValue && AppManager.Instance.Settings.UserSettings.FormLocationTop.HasValue) return;
 			var screens = Screen.AllScreens;
 			var currentScreenIndex = AppManager.Instance.Settings.UserSettings.PreferedMonitor < screens.Length ?
 				AppManager.Instance.Settings.UserSettings.PreferedMonitor :
@@ -79,6 +85,7 @@ namespace Asa.Bar.App.Forms
 			var screen = screens[currentScreenIndex];
 			var taskbar = new TaskBarHelper.Taskbar(!Screen.PrimaryScreen.Equals(screen));
 
+			var x = screen.Bounds.X + (screen.Bounds.Width / 2) - (Width / 2);
 			int y;
 			if (taskbar.Handle != IntPtr.Zero && taskbar.Position == TaskBarHelper.TaskbarPosition.Bottom)
 			{
@@ -94,14 +101,13 @@ namespace Asa.Bar.App.Forms
 			if (y == _lastYVisible && !forced)
 				return;
 
+			Left = x;
 			Top = y;
-			Left = screen.Bounds.X + (screen.Bounds.Width / 2) - (Width / 2);
 			_lastYVisible = y;
 		}
 
 		private void OnUpdateWindowTimerTick(object sender, EventArgs e)
 		{
-			// Not optimal but it works
 			AdjustWindowPosition();
 		}
 		#endregion
@@ -119,8 +125,15 @@ namespace Asa.Bar.App.Forms
 				var left = 0;
 				var shortItemWidth = (superTabControlMain.Width / AppManager.Instance.Settings.Config.MaxShortButtons) + 1;
 				var longItemWidth = shortItemWidth * 2;
-				
+
 				tab.Enabled = tabPage.Enabled;
+				tab.MouseDown += OnTabControlMouseDown;
+
+				tab.TabColor.Default.Normal.Text =
+					tab.TabColor.Default.Disabled.Text =
+						tab.TabColor.Default.MouseOver.Text =
+							tab.TabColor.Default.Selected.Text =
+								tab.TabColor.Default.SelectedMouseOver.Text = AppManager.Instance.Settings.Config.TextColor;
 
 				foreach (var tabGroup in tabPage.Groups)
 				{
@@ -310,7 +323,7 @@ namespace Asa.Bar.App.Forms
 
 		private void ApplyAccentColor(Color color, bool previewOnly = false)
 		{
-			styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(
+			styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
 					styleManager.MetroColorParameters.CanvasColor, color);
 
 			if (previewOnly) return;
@@ -449,6 +462,60 @@ namespace Asa.Bar.App.Forms
 		}
 		#endregion
 
+		#region Docked Style Setting Management
+		private void InitDockedStyleSettings()
+		{
+			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle)
+			{
+				Top = AppManager.Instance.Settings.UserSettings.FormLocationTop ?? Top;
+				Left = AppManager.Instance.Settings.UserSettings.FormLocationLeft ?? Left;
+				AdjustWindowPosition(true);
+
+				buttonItemScreen1.Enabled = false;
+				buttonItemScreen2.Enabled = false;
+				buttonItemScreen3.Enabled = false;
+				buttonItemScreen4.Enabled = false;
+				buttonItemScreen5.Enabled = false;
+				buttonItemScreen6.Enabled = false;
+			}
+			checkBoxItemDocked.Checked = AppManager.Instance.Settings.UserSettings.UseDockedStyle;
+
+			checkBoxItemDocked.CheckedChanged += OnDockedStyleCheckedChanged;
+		}
+
+		private void OnDockedStyleCheckedChanged(object sender, CheckBoxChangeEventArgs e)
+		{
+			if (checkBoxItemDocked.Checked)
+			{
+				AppManager.Instance.Settings.UserSettings.FormLocationLeft = null;
+				AppManager.Instance.Settings.UserSettings.FormLocationTop = null;
+				AdjustWindowPosition(true);
+
+				buttonItemScreen1.Enabled = true;
+				buttonItemScreen2.Enabled = true;
+				buttonItemScreen3.Enabled = true;
+				buttonItemScreen4.Enabled = true;
+				buttonItemScreen5.Enabled = true;
+				buttonItemScreen6.Enabled = true;
+			}
+			else
+			{
+				AppManager.Instance.Settings.UserSettings.FormLocationLeft = Left;
+				AppManager.Instance.Settings.UserSettings.FormLocationTop = Top;
+
+				buttonItemScreen1.Enabled = false;
+				buttonItemScreen2.Enabled = false;
+				buttonItemScreen3.Enabled = false;
+				buttonItemScreen4.Enabled = false;
+				buttonItemScreen5.Enabled = false;
+				buttonItemScreen6.Enabled = false;
+			}
+
+			AppManager.Instance.Settings.UserSettings.UseDockedStyle = checkBoxItemDocked.Checked;
+			AppManager.Instance.Settings.UserSettings.Save();
+		}
+		#endregion
+
 		#region Form Event Handlers
 		private void OnFormLoad(object sender, EventArgs e)
 		{
@@ -463,6 +530,8 @@ namespace Asa.Bar.App.Forms
 			UpdateMonitorControls();
 
 			InitLoadAtStartupSettings();
+
+			InitDockedStyleSettings();
 
 			LoadBarContent();
 
@@ -480,6 +549,13 @@ namespace Asa.Bar.App.Forms
 
 		private void OnFormClosed(object sender, FormClosedEventArgs e)
 		{
+			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle)
+			{
+				AppManager.Instance.Settings.UserSettings.FormLocationLeft = Left;
+				AppManager.Instance.Settings.UserSettings.FormLocationTop = Top;
+				AppManager.Instance.Settings.UserSettings.Save();
+			}
+
 			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationClose));
 			AppManager.Instance.ExternalProcessesWatcher.StopWatching();
 			Application.Exit();
@@ -506,6 +582,14 @@ namespace Asa.Bar.App.Forms
 		private void OnTabControlCloseClick(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private void OnTabControlMouseDown(object sender, MouseEventArgs e)
+		{
+			if (AppManager.Instance.Settings.UserSettings.UseDockedStyle) return;
+			if (e.Button != MouseButtons.Left) return;
+			WinAPIHelper.ReleaseCapture();
+			WinAPIHelper.SendMessage(Handle, WinAPIHelper.WM_NCLBUTTONDOWN, WinAPIHelper.HTCAPTION, IntPtr.Zero);
 		}
 		#endregion
 	}

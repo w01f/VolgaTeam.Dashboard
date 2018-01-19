@@ -104,7 +104,7 @@
 			this.labelCaption.TabIndex = 3;
 			this.labelCaption.Text = "labelCaption";
 			this.labelCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.labelCaption.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCaption_MouseDown);
+			this.labelCaption.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnCaptionMouseDown);
 			// 
 			// FormFloater
 			// 

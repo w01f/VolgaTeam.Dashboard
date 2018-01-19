@@ -11,6 +11,9 @@ namespace Asa.Bar.App.Configuration
 		public string SelectedBrowser { get; set; }
 		public int PreferedMonitor { get; set; }
 		public bool LoadAtStartup { get; set; }
+		public bool UseDockedStyle { get; set; }
+		public int? FormLocationLeft { get; set; }
+		public int? FormLocationTop { get; set; }
 
 		public ColorEx? DefaultAccentColor { get; set; }
 
@@ -48,6 +51,7 @@ namespace Asa.Bar.App.Configuration
 			PreferedMonitor = 0;
 			SelectedBrowser = null;
 			LoadAtStartup = true;
+			UseDockedStyle = true;
 		}
 	}
 }

@@ -22,6 +22,7 @@ namespace Asa.Bar.App.Configuration
 		public eStyle ManagerStyle { get; private set; }
 
 		public Color AccentColor { get; private set; }
+		public Color TextColor { get; private set; }
 		public Color SplashBackColor { get; private set; }
 		public Color SplashBorderColor { get; private set; }
 		public Color SplashTextColor { get; private set; }
@@ -50,6 +51,7 @@ namespace Asa.Bar.App.Configuration
 			ManagerStyle = (eStyle)(Enum.GetValues(typeof(eStyle)).GetValue(Math.Min(10, Math.Max(0, Int32.Parse(ConfigHelper.GetValueRegex("<subtheme>(.*)</subtheme>", configContent))))));
 
 			AccentColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<accent>(.*)</accent>", configContent) ?? "#D2691E");
+			TextColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<textcolor>(.*)</textcolor>", configContent) ?? "#000000");
 			SplashBackColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<AppSplashBackColor>(.*)</AppSplashBackColor>", configContent) ?? "#228B22");
 			SplashBorderColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<AppSplashBorderColor>(.*)</AppSplashBorderColor>", configContent) ?? "#228B22");
 			SplashTextColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<AppSplashTextColor>(.*)</AppSplashTextColor>", configContent) ?? "#ffffff");

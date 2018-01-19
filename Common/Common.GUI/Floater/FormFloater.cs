@@ -28,7 +28,7 @@ namespace Asa.Common.GUI.Floater
 			DialogResult = DialogResult.Yes;
 		}
 
-		private void labelCaption_MouseDown(object sender, MouseEventArgs e)
+		private void OnCaptionMouseDown(object sender, MouseEventArgs e)
 		{
 			if (e.Button != MouseButtons.Left) return;
 			WinAPIHelper.ReleaseCapture();

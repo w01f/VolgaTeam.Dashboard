@@ -6,8 +6,8 @@ namespace Asa.Browser.Controls.Controls.WebPage
 	{
 		public void UpdateYouTubeState()
 		{
-			_siteContainer.ButtonExtensionsDownloadYouTube.Visible = YouTubeHelper.IsUrlYouTubeWatch(_webKit.WebView.Url);
-			_siteContainer.barMain.RecalcLayout();
+			_siteContainer.ParentBundle.ButtonExtensionsDownloadYouTube.Visible = YouTubeHelper.IsUrlYouTubeWatch(_webKit.WebView.Url);
+			_siteContainer.ParentBundle.barMain.RecalcLayout();
 		}
 
 		public void DownloadYouTube()

@@ -69,6 +69,7 @@ namespace Asa.Schedules.Common.Controls.Gallery
 		public bool ShowScheduleInfo => true;
 		public abstract string Identifier { get; }
 		public bool IsActive { get; set; }
+		public bool RibbonAlwaysCollapsed => false;
 		public abstract RibbonTabItem TabPage { get; }
 
 		public void InitMetaData()

@@ -8,21 +8,25 @@ using Asa.Common.GUI.ToolForms;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
 
-namespace Asa.Media.Controls.PresentationClasses.Browser
+namespace Asa.Browser.Controls.Controls
 {
-	public partial class SimpleSiteControl : UserControl, IMediaSite
+	public partial class SimpleSiteControl : UserControl, ISiteContainer
 	{
 		private bool _loaded;
+
 		private readonly WebControl _browser;
 		private readonly WebControl _childBrowser;
 
+		public SiteBundleControl ParentBundle { get; }
 		public SiteSettings SiteSettings { get; }
+		public string CurrentUrl => SiteSettings?.BaseUrl;
 
-		public SimpleSiteControl(SiteSettings siteSettings)
+		public SimpleSiteControl(SiteSettings siteSettings, SiteBundleControl parentBundle)
 		{
 			InitializeComponent();
 
 			SiteSettings = siteSettings;
+			ParentBundle = parentBundle;
 
 			_childBrowser = new WebControl();
 			_childBrowser.WebView = new WebView();
@@ -46,7 +50,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			_browser.BringToFront();
 		}
 
-		public void LoadSite()
+		public void InitSite()
 		{
 			if (_loaded) return;
 			FormProgress.SetTitle("Chill-Out for a few seconds...\nLoading Page...");
@@ -68,6 +72,50 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 				Process.Start(Uri.EscapeUriString(String.Format("mailto:{0}?Body={1}", String.Empty, SiteSettings.BaseUrl)));
 			}
 			catch { }
+		}
+
+		public void UpdateExtensionsState()
+		{
+			ParentBundle.ButtonExtensionsAddSlide.Visible = false;
+			ParentBundle.ButtonExtensionsAddSlides.Visible = false;
+			ParentBundle.ButtonExtensionsPrint.Visible = false;
+			ParentBundle.ButtonExtensionsAddVideo.Visible = false;
+			ParentBundle.LabelExtensionsWarning.Text = String.Empty;
+		}
+
+		public void UpdateYouTubeState()
+		{
+			ParentBundle.ButtonExtensionsDownloadYouTube.Visible = false;
+			ParentBundle.barMain.RecalcLayout();
+		}
+
+		public void UpdateNavigationButtons()
+		{
+			ParentBundle.ButtonNavigationBack.Enabled = _browser.WebView.CanGoBack;
+			ParentBundle.ButtonNavigationForward.Enabled = _browser.WebView.CanGoForward;
+			ParentBundle.barMain.RecalcLayout();
+		}
+
+		public void NavigateBack()
+		{
+			_browser.WebView.GoBack();
+		}
+
+		public void NavigateForward()
+		{
+			_browser.WebView.GoForward();
+		}
+
+		public void RefreshPage()
+		{
+			_browser.WebView.Reload();
+		}
+
+		public void UpdateNavigationButtonsState()
+		{
+			ParentBundle.ButtonNavigationBack.Enabled = _browser.WebView.CanGoBack;
+			ParentBundle.ButtonNavigationForward.Enabled = _browser.WebView.CanGoForward;
+			ParentBundle.barMain.RecalcLayout();
 		}
 
 		private void OnMainWebViewLoadComplete(Object sender, LoadCompletedEventArgs e)

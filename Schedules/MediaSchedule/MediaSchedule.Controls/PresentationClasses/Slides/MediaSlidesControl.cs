@@ -25,6 +25,7 @@ namespace Asa.Media.Controls.PresentationClasses.Slides
 		public string Identifier => ContentIdentifiers.Slides;
 		public bool RequreScheduleInfo => false;
 		public bool ShowScheduleInfo => false;
+		public bool RibbonAlwaysCollapsed => false;
 		public RibbonTabItem TabPage => Controller.Instance.TabSlides;
 
 		public MediaSlidesControl()

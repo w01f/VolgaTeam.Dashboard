@@ -18,6 +18,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Controls
 		public bool IsActive { get; set; }
 		public virtual bool RequreScheduleInfo => true;
 		public virtual bool ShowScheduleInfo => true;
+		public bool RibbonAlwaysCollapsed => false;
 		public abstract string Identifier { get; }
 		public abstract RibbonTabItem TabPage { get; }
 		protected TChangeInfo ChangeInfo { get; }

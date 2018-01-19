@@ -9,20 +9,22 @@ using Asa.Common.GUI.Floater;
 
 namespace Asa.Browser.Single
 {
-	class SingleSiteContainerControl : SiteContainerControl
+	class SingleSiteContainerControl : SiteBundleControl
 	{
-		public override PowerPointSingletonProcessor PowerPointSingleton=>new BrowserPowerPointSingleton();
+		public override PowerPointSingletonProcessor PowerPointSingleton => new BrowserPowerPointSingleton();
 		public override Form MainForm => FormMain.Instance;
 		public override Image SplashLogo => AppSettingsManager.Instance.SplashLogo;
 
 		public override void ShowFloater(FloaterRequestedEventArgs args)
 		{
-			AppManager.Instance.ShowFloater(args.AfterShow,args.AfterBack);
+			AppManager.Instance.ShowFloater(args.AfterShow, args.AfterBack);
 		}
 
 		public override bool CheckPowerPointRunning(Action afterRun)
 		{
 			return BrowserPowerPointSingleton.Instance.CheckPowerPointRunning(afterRun);
 		}
+
+		public override void UpdateMainStatusBarInfo() { }
 	}
 }

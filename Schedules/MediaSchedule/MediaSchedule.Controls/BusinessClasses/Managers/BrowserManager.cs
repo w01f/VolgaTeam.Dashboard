@@ -38,7 +38,7 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 					case "website":
 						siteSettings.SiteType = SiteType.SimpleSite;
 						break;
-					case "salesvloud":
+					case "salescloud":
 						siteSettings.SiteType = SiteType.SalesCloud;
 						break;
 					default:

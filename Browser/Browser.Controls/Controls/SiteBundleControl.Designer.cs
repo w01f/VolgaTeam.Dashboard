@@ -1,6 +1,6 @@
 ﻿namespace Asa.Browser.Controls.Controls
 {
-	partial class SiteContainerControl
+	partial class SiteBundleControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -31,10 +31,6 @@
 			this.buttonItemMenuNavigationBack = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuNavigationForward = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuNavigationRefresh = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMenuBrowserChrome = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMenuBrowserFirefox = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMenuBrowserIE = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMenuBrowserEdge = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlide = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsAddSlides = new DevComponents.DotNetBar.ButtonItem();
@@ -42,10 +38,10 @@
 			this.buttonItemMenuExtensionsAddVideo = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemMenuExtensionsDownloadYouTube = new DevComponents.DotNetBar.ButtonItem();
 			this.barMain = new DevComponents.DotNetBar.Bar();
+			this.comboBoxItemSites = new DevComponents.DotNetBar.ComboBoxItem();
 			this.labelItemMenuWarning = new DevComponents.DotNetBar.LabelItem();
-			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
+			this.panelMain = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.barMain)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonItemMenuNavigationBack
@@ -76,47 +72,6 @@
 			this.buttonItemMenuNavigationRefresh.Text = "buttonItem1";
 			this.buttonItemMenuNavigationRefresh.Tooltip = "Reload Page";
 			this.buttonItemMenuNavigationRefresh.Click += new System.EventHandler(this.OnMenuNavigationRefreshClick);
-			// 
-			// buttonItemMenuBrowserChrome
-			// 
-			this.buttonItemMenuBrowserChrome.BeginGroup = true;
-			this.buttonItemMenuBrowserChrome.Image = global::Asa.Browser.Controls.Properties.Resources.ExternalBrowserChrome;
-			this.buttonItemMenuBrowserChrome.Name = "buttonItemMenuBrowserChrome";
-			this.buttonItemMenuBrowserChrome.Tag = "chrome";
-			this.buttonItemMenuBrowserChrome.Text = "buttonItem1";
-			this.buttonItemMenuBrowserChrome.Tooltip = "Chrome";
-			this.buttonItemMenuBrowserChrome.Visible = false;
-			this.buttonItemMenuBrowserChrome.Click += new System.EventHandler(this.OnExternalBrowserOpenClick);
-			// 
-			// buttonItemMenuBrowserFirefox
-			// 
-			this.buttonItemMenuBrowserFirefox.Image = global::Asa.Browser.Controls.Properties.Resources.ExternalBrowserFirefox;
-			this.buttonItemMenuBrowserFirefox.Name = "buttonItemMenuBrowserFirefox";
-			this.buttonItemMenuBrowserFirefox.Tag = "firefox";
-			this.buttonItemMenuBrowserFirefox.Text = "buttonItem1";
-			this.buttonItemMenuBrowserFirefox.Tooltip = "Firefox";
-			this.buttonItemMenuBrowserFirefox.Visible = false;
-			this.buttonItemMenuBrowserFirefox.Click += new System.EventHandler(this.OnExternalBrowserOpenClick);
-			// 
-			// buttonItemMenuBrowserIE
-			// 
-			this.buttonItemMenuBrowserIE.Image = global::Asa.Browser.Controls.Properties.Resources.ExternalBrowserInternetExplorer;
-			this.buttonItemMenuBrowserIE.Name = "buttonItemMenuBrowserIE";
-			this.buttonItemMenuBrowserIE.Tag = "iexplore";
-			this.buttonItemMenuBrowserIE.Text = "buttonItem1";
-			this.buttonItemMenuBrowserIE.Tooltip = "IE";
-			this.buttonItemMenuBrowserIE.Visible = false;
-			this.buttonItemMenuBrowserIE.Click += new System.EventHandler(this.OnExternalBrowserOpenClick);
-			// 
-			// buttonItemMenuBrowserEdge
-			// 
-			this.buttonItemMenuBrowserEdge.Image = global::Asa.Browser.Controls.Properties.Resources.ExternalBrowserEdge;
-			this.buttonItemMenuBrowserEdge.Name = "buttonItemMenuBrowserEdge";
-			this.buttonItemMenuBrowserEdge.Tag = "edge";
-			this.buttonItemMenuBrowserEdge.Text = "buttonItem1";
-			this.buttonItemMenuBrowserEdge.Tooltip = "Edge";
-			this.buttonItemMenuBrowserEdge.Visible = false;
-			this.buttonItemMenuBrowserEdge.Click += new System.EventHandler(this.OnExternalBrowserOpenClick);
 			// 
 			// buttonItemFloater
 			// 
@@ -195,10 +150,7 @@
 			this.barMain.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.barMain.IsMaximized = false;
 			this.barMain.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemMenuBrowserChrome,
-            this.buttonItemMenuBrowserFirefox,
-            this.buttonItemMenuBrowserIE,
-            this.buttonItemMenuBrowserEdge,
+            this.comboBoxItemSites,
             this.buttonItemFloater,
             this.buttonItemMenuExtensionsAddSlide,
             this.buttonItemMenuExtensionsAddSlides,
@@ -219,6 +171,14 @@
 			this.barMain.TabStop = false;
 			this.barMain.Text = "Main Menu";
 			// 
+			// comboBoxItemSites
+			// 
+			this.comboBoxItemSites.ComboWidth = 200;
+			this.comboBoxItemSites.DropDownHeight = 106;
+			this.comboBoxItemSites.ItemHeight = 18;
+			this.comboBoxItemSites.Name = "comboBoxItemSites";
+			this.comboBoxItemSites.SelectedIndexChanged += new System.EventHandler(this.OnSelectedSiteChanged);
+			// 
 			// labelItemMenuWarning
 			// 
 			this.labelItemMenuWarning.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -226,48 +186,24 @@
 			this.labelItemMenuWarning.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
 			this.labelItemMenuWarning.Name = "labelItemMenuWarning";
 			// 
-			// xtraTabControl
+			// panelMain
 			// 
-			this.xtraTabControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.xtraTabControl.Appearance.Options.UseFont = true;
-			this.xtraTabControl.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
-			this.xtraTabControl.AppearancePage.Header.Options.UseTextOptions = true;
-			this.xtraTabControl.AppearancePage.Header.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter;
-			this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseFont = true;
-			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseTextOptions = true;
-			this.xtraTabControl.AppearancePage.HeaderActive.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter;
-			this.xtraTabControl.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.xtraTabControl.AppearancePage.HeaderDisabled.Options.UseFont = true;
-			this.xtraTabControl.AppearancePage.HeaderDisabled.Options.UseTextOptions = true;
-			this.xtraTabControl.AppearancePage.HeaderDisabled.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter;
-			this.xtraTabControl.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.xtraTabControl.AppearancePage.HeaderHotTracked.Options.UseFont = true;
-			this.xtraTabControl.AppearancePage.HeaderHotTracked.Options.UseTextOptions = true;
-			this.xtraTabControl.AppearancePage.HeaderHotTracked.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisCharacter;
-			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
-			this.xtraTabControl.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
-			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 33);
-			this.xtraTabControl.MaxTabPageWidth = 200;
-			this.xtraTabControl.Name = "xtraTabControl";
-			this.xtraTabControl.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-			this.xtraTabControl.Size = new System.Drawing.Size(1800, 474);
-			this.xtraTabControl.TabIndex = 2;
+			this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelMain.Location = new System.Drawing.Point(0, 33);
+			this.panelMain.Name = "panelMain";
+			this.panelMain.Size = new System.Drawing.Size(1800, 474);
+			this.panelMain.TabIndex = 2;
 			// 
-			// SiteContainerControl
+			// SiteBundleControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.xtraTabControl);
+			this.Controls.Add(this.panelMain);
 			this.Controls.Add(this.barMain);
-			this.Name = "SiteContainerControl";
+			this.Name = "SiteBundleControl";
 			this.Size = new System.Drawing.Size(1800, 507);
 			((System.ComponentModel.ISupportInitialize)(this.barMain)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -277,17 +213,14 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuNavigationBack;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuNavigationForward;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuNavigationRefresh;
-		private DevComponents.DotNetBar.ButtonItem buttonItemMenuBrowserChrome;
-		private DevComponents.DotNetBar.ButtonItem buttonItemMenuBrowserFirefox;
-		private DevComponents.DotNetBar.ButtonItem buttonItemMenuBrowserIE;
-		private DevComponents.DotNetBar.ButtonItem buttonItemMenuBrowserEdge;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsAddSlide;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsAddSlides;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsPrint;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsAddVideo;
 		private DevComponents.DotNetBar.ButtonItem buttonItemMenuExtensionsDownloadYouTube;
 		private DevComponents.DotNetBar.LabelItem labelItemMenuWarning;
-		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
 		public DevComponents.DotNetBar.ButtonItem buttonItemFloater;
+		private System.Windows.Forms.Panel panelMain;
+		private DevComponents.DotNetBar.ComboBoxItem comboBoxItemSites;
 	}
 }

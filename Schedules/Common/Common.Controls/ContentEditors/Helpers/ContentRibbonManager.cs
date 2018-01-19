@@ -24,10 +24,7 @@ namespace Asa.Schedules.Common.Controls.ContentEditors.Helpers
 		public static void ShowRibbonTab(string contentIdentifier, ContentOpenEventArgs args = null)
 		{
 			var tabPage = _controller.ContentControls.FirstOrDefault(c => c.Identifier == contentIdentifier)?.TabPage;
-			_tabChangeInProgress = true;
 			_controller.ContentRibbon.SelectedRibbonTabItem = tabPage;
-			_tabChangeInProgress = false;
-			OnSelectedRibbonTabChanged(null, args ?? EventArgs.Empty);
 		}
 
 		private static void OnSelectedRibbonTabChanged(object sender, EventArgs e)

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
+using Asa.Browser.Controls.BusinessClasses.Enums;
+using Asa.Browser.Controls.BusinessClasses.Helpers;
 using Asa.Browser.Controls.BusinessClasses.Objects;
 using Asa.Browser.Single.Configuration;
 using Asa.Browser.Single.InteropClasses;
 using Asa.Browser.Single.Properties;
+using Asa.Common.Core.Extensions;
 using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
 using DevComponents.DotNetBar;
@@ -15,7 +19,7 @@ namespace Asa.Browser.Single
 	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
-		private readonly SingleSiteContainerControl _siteContainer;
+		private readonly SingleSiteContainerControl _siteBundleContainer;
 
 		public static FormMain Instance => _instance ?? (_instance = new FormMain());
 
@@ -23,13 +27,12 @@ namespace Asa.Browser.Single
 		{
 			InitializeComponent();
 
-			Shown += (o, e) => _siteContainer.LoadPages();
 			Closing += SaveSettings;
 			Resize += OnFormResize;
 
-			_siteContainer = new SingleSiteContainerControl();
-			_siteContainer.Dock = DockStyle.Fill;
-			panelMain.Controls.Add(_siteContainer);
+			_siteBundleContainer = new SingleSiteContainerControl();
+			_siteBundleContainer.Dock = DockStyle.Fill;
+			panelMain.Controls.Add(_siteBundleContainer);
 		}
 
 		public void InitForm()
@@ -54,41 +57,87 @@ namespace Asa.Browser.Single
 				labelItemUrl.ForeColor = AppSettingsManager.Instance.StatusBarTextColor.Value;
 			}
 
-			_siteContainer.InitSite(new SiteSettings
+			_siteBundleContainer.LoadSites(new[]{new SiteSettings
 			{
+				SiteType = SiteType.SalesCloud,
 				BaseUrl = AppSettingsManager.Instance.BaseUrl,
 				EnableMenu = AppSettingsManager.Instance.EnableMenu,
 				EnableScroll = AppSettingsManager.Instance.EnableScroll,
-			});
+			}});
 
-			_siteContainer.ButtonNavigationBack.Image = ResourceManager.Instance.BrowserNavigationBack ??
-														_siteContainer.ButtonNavigationBack.Image;
-			_siteContainer.ButtonNavigationForward.Image = ResourceManager.Instance.BrowserNavigationForward ??
-														   _siteContainer.ButtonNavigationForward.Image;
-			_siteContainer.ButtonNavigationRefresh.Image = ResourceManager.Instance.BrowserNavigationRefresh ??
-														   _siteContainer.ButtonNavigationRefresh.Image;
-			_siteContainer.ButtonExternalBrowserChrome.Image = ResourceManager.Instance.BrowserExternalChrome ??
-															   _siteContainer.ButtonExternalBrowserChrome.Image;
-			_siteContainer.ButtonExternalBrowserFirefox.Image = ResourceManager.Instance.BrowserExternalFirefox ??
-																_siteContainer.ButtonExternalBrowserFirefox.Image;
-			_siteContainer.ButtonExternalBrowserIE.Image = ResourceManager.Instance.BrowserExternalIE ??
-														   _siteContainer.ButtonExternalBrowserIE.Image;
-			_siteContainer.ButtonExternalBrowserEdge.Image = ResourceManager.Instance.BrowserExternalEdge ??
-															 _siteContainer.ButtonExternalBrowserEdge.Image;
-			_siteContainer.ButtonExtensionsAddSlide.Image = ResourceManager.Instance.BrowserPowerPointAddSlide ??
-															_siteContainer.ButtonExtensionsAddSlide.Image;
-			_siteContainer.ButtonExtensionsAddSlides.Image = ResourceManager.Instance.BrowserPowerPointAddSlides ??
-															 _siteContainer.ButtonExtensionsAddSlides.Image;
-			_siteContainer.ButtonExtensionsPrint.Image = ResourceManager.Instance.BrowserPowerPointPrint ??
-														 _siteContainer.ButtonExtensionsPrint.Image;
-			_siteContainer.ButtonExtensionsAddVideo.Image = ResourceManager.Instance.BrowserVideoAdd ??
-															_siteContainer.ButtonExtensionsAddVideo.Image;
-			_siteContainer.ButtonExtensionsDownloadYouTube.Image = ResourceManager.Instance.BrowserYoutubeAdd ??
-																   _siteContainer.ButtonExtensionsDownloadYouTube.Image;
-			_siteContainer.buttonItemFloater.Image = ResourceManager.Instance.BrowserFloater ??
-			                                         _siteContainer.buttonItemFloater.Image;
-			buttonItemUrlEmail.Image = ResourceManager.Instance.BrowserUrlEmail;
-			buttonItemUrlCopy.Image = ResourceManager.Instance.BrowserUrlCopy;
+			ExternalBrowserManager.Load();
+
+			_siteBundleContainer.ButtonNavigationBack.Image = ResourceManager.Instance.BrowserNavigationBack ??
+														_siteBundleContainer.ButtonNavigationBack.Image;
+			_siteBundleContainer.ButtonNavigationForward.Image = ResourceManager.Instance.BrowserNavigationForward ??
+														   _siteBundleContainer.ButtonNavigationForward.Image;
+			_siteBundleContainer.ButtonNavigationRefresh.Image = ResourceManager.Instance.BrowserNavigationRefresh ??
+														   _siteBundleContainer.ButtonNavigationRefresh.Image;
+			_siteBundleContainer.ButtonExtensionsAddSlide.Image = ResourceManager.Instance.BrowserPowerPointAddSlide ??
+															_siteBundleContainer.ButtonExtensionsAddSlide.Image;
+			_siteBundleContainer.ButtonExtensionsAddSlides.Image = ResourceManager.Instance.BrowserPowerPointAddSlides ??
+															 _siteBundleContainer.ButtonExtensionsAddSlides.Image;
+			_siteBundleContainer.ButtonExtensionsPrint.Image = ResourceManager.Instance.BrowserPowerPointPrint ??
+														 _siteBundleContainer.ButtonExtensionsPrint.Image;
+			_siteBundleContainer.ButtonExtensionsAddVideo.Image = ResourceManager.Instance.BrowserVideoAdd ??
+															_siteBundleContainer.ButtonExtensionsAddVideo.Image;
+			_siteBundleContainer.ButtonExtensionsDownloadYouTube.Image = ResourceManager.Instance.BrowserYoutubeAdd ??
+																   _siteBundleContainer.ButtonExtensionsDownloadYouTube.Image;
+			_siteBundleContainer.buttonItemFloater.Image = ResourceManager.Instance.BrowserFloater ??
+													 _siteBundleContainer.buttonItemFloater.Image;
+
+			LoadUrlActionButtons();
+		}
+
+		private void LoadUrlActionButtons()
+		{
+			itemContainerStatusBarActionButtons.SubItems.Clear();
+
+			foreach (var browserTag in ExternalBrowserManager.AvailableBrowsers.Keys)
+			{
+				var browserButton = new ButtonItem();
+				browserButton.Tag = browserTag;
+				browserButton.Click += OnExternalBrowserOpenClick;
+				Image buttonImage = null;
+				switch (browserTag)
+				{
+					case ExternalBrowserManager.BrowserChromeTag:
+						buttonImage = ResourceManager.Instance.BrowserExternalChrome;
+						browserButton.Tooltip = "Chrome";
+						break;
+					case ExternalBrowserManager.BrowserFirefoxTag:
+						buttonImage = ResourceManager.Instance.BrowserExternalFirefox;
+						browserButton.Tooltip = "Firefox";
+						break;
+					case ExternalBrowserManager.BrowserIETag:
+						buttonImage = ResourceManager.Instance.BrowserExternalIE;
+						browserButton.Tooltip = "IE";
+						break;
+					case ExternalBrowserManager.BrowserEdgeTag:
+						buttonImage = ResourceManager.Instance.BrowserExternalEdge;
+						browserButton.Tooltip = "Edge";
+						break;
+				}
+				if (buttonImage != null && buttonImage.Height > 16)
+					buttonImage = buttonImage.Resize(new Size(buttonImage.Width, 16));
+				browserButton.Image = buttonImage;
+				itemContainerStatusBarActionButtons.SubItems.Add(browserButton);
+				
+			}
+
+			var emailUrlButton = new ButtonItem();
+			emailUrlButton.BeginGroup = true;
+			emailUrlButton.Image = ResourceManager.Instance.BrowserUrlEmail;
+			emailUrlButton.Click += OnUrlEmailClick;
+			itemContainerStatusBarActionButtons.SubItems.Add(emailUrlButton);
+
+			var copyUrlButton = new ButtonItem();
+			copyUrlButton.Image = ResourceManager.Instance.BrowserUrlCopy;
+			copyUrlButton.Click += OnUrlCopyClick;
+			itemContainerStatusBarActionButtons.SubItems.Add(copyUrlButton);
+
+			itemContainerStatusBarActionButtons.RecalcSize();
+			barBottom.RecalcLayout();
 		}
 
 		private void OnFormResize(object sender, EventArgs e)
@@ -105,12 +154,19 @@ namespace Asa.Browser.Single
 
 		private void OnUrlEmailClick(object sender, EventArgs e)
 		{
-			_siteContainer.EmailUrl();
+			_siteBundleContainer.EmailUrl();
 		}
 
 		private void OnUrlCopyClick(object sender, EventArgs e)
 		{
-			_siteContainer.CopyUrl();
+			_siteBundleContainer.CopyUrl();
+		}
+
+		private void OnExternalBrowserOpenClick(object sender, EventArgs e)
+		{
+			var browserButton = (ButtonItem)sender;
+			var browserTag = browserButton.Tag as String;
+			ExternalBrowserManager.OpenUrl(browserTag, _siteBundleContainer.SelectedSite?.CurrentUrl);
 		}
 
 		#region Form Settings

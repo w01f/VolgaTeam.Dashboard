@@ -165,9 +165,6 @@ namespace Asa.Media.Controls
 				ribbonButton.Click += ContentController.OnEditOutputSettings;
 			}
 
-			BrowserSitesBar.Text = BusinessObjects.Instance.BrowserManager.RibbonBarTitle;
-			BrowserSitesTitle.Text = BusinessObjects.Instance.BrowserManager.SiteListTitle;
-
 			BusinessObjects.Instance.ScheduleManager.ScheduleOpened +=
 				OnScheduleInfoChanged;
 			ContentEditManager<MediaScheduleChangeInfo>.ScheduleInfoChanged +=
@@ -322,7 +319,6 @@ namespace Asa.Media.Controls
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
 				Gallery2SpecialButtons,
-				BrowserSpecialButtons
 			};
 			foreach (var ribbonBar in specialLinkContainers)
 			{
@@ -573,10 +569,6 @@ namespace Asa.Media.Controls
 
 		#region Browser
 		public RibbonPanel BrowserPanel { get; set; }
-		public RibbonBar BrowserSpecialButtons { get; set; }
-		public RibbonBar BrowserSitesBar { get; set; }
-		public LabelItem BrowserSitesTitle { get; set; }
-		public ComboBoxEdit BrowserSitesCombo { get; set; }
 		#endregion
 
 		#endregion

@@ -411,13 +411,11 @@ namespace Asa.Media.Single
 
 			#region Browser
 			Controller.Instance.BrowserPanel = ribbonPanelBrowser;
-			Controller.Instance.BrowserSpecialButtons = ribbonBarBrowserSpecialButtons;
-			Controller.Instance.BrowserSitesBar = ribbonBarBrowserSites;
-			Controller.Instance.BrowserSitesTitle = labelItemBrowserSites;
-			Controller.Instance.BrowserSitesCombo = comboBoxEditBrowserSites;
 			#endregion
 
 			#endregion
+
+			ribbonControl.SelectedRibbonTabChanged += OnRibbonTabChanged;
 
 			Controller.Instance.InitForm();
 
@@ -439,10 +437,7 @@ namespace Asa.Media.Single
 		{
 			UpdateFormTitle();
 			if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
-			{
 				ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(ContentIdentifiers.ScheduleSettings);
-				Controller.Instance.CheckPowerPointRunning();
-			}
 			else if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Quick)
 				ContentRibbonManager<MediaScheduleChangeInfo>.ShowRibbonTab(BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings
 					.Where(item => item.DefaultInQuickMode)
@@ -505,8 +500,11 @@ namespace Asa.Media.Single
 				{
 					emptySpaceItem.Visibility = LayoutVisibility.Always;
 					layoutControlItemDefaultLogo.Visibility = LayoutVisibility.Never;
-					ribbonControl.Enabled = true;
 					LoadData();
+					ribbonControl.Expanded = Controller.Instance.ContentController.ActiveControl != null && !Controller.Instance.ContentController.ActiveControl.RibbonAlwaysCollapsed;
+					ribbonControl.Enabled = true;
+					if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
+						Controller.Instance.CheckPowerPointRunning();
 				}
 				else
 					Close();
@@ -581,8 +579,44 @@ namespace Asa.Media.Single
 				});
 		}
 
+		#region Expand/Collapse Processing
+		private bool? _lastRibbonExpanded = true;
+		private bool _allowRibbonStateChangeProcessing = true;
+
+		private void OnRibbonTabChanged(object sender, EventArgs e)
+		{
+			var activeControl = Controller.Instance.ContentController.ContentControls.FirstOrDefault(c => c.Identifier == (String)ribbonControl.SelectedRibbonTabItem.Tag);
+			if (activeControl == null) return;
+			if (activeControl.RibbonAlwaysCollapsed)
+			{
+				if (!_lastRibbonExpanded.HasValue)
+					_lastRibbonExpanded = ribbonControl.Expanded;
+				_allowRibbonStateChangeProcessing = false;
+				ribbonControl.AutoExpand = false;
+				ribbonControl.Expanded = false;
+				buttonItemExpand.Visible = false;
+				buttonItemCollapse.Visible = false;
+				buttonItemPin.Visible = false;
+				ribbonControl.RecalcLayout();
+				pnMain.Refresh();
+				Application.DoEvents();
+				_allowRibbonStateChangeProcessing = true;
+			}
+			else
+			{
+				if (_lastRibbonExpanded.HasValue)
+				{
+					ribbonControl.Expanded = _lastRibbonExpanded.Value;
+					_lastRibbonExpanded = null;
+				}
+				ribbonControl.AutoExpand = true;
+				OnRibbonExpandedChanged(sender, e);
+			}
+		}
+
 		private void OnRibbonExpandedChanged(object sender, EventArgs e)
 		{
+			if (!_allowRibbonStateChangeProcessing) return;
 			buttonItemExpand.Visible = !ribbonControl.Expanded;
 			buttonItemCollapse.Visible = ribbonControl.Expanded;
 			buttonItemPin.Visible = false;
@@ -619,5 +653,6 @@ namespace Asa.Media.Single
 		{
 			ribbonControl.Expanded = true;
 		}
+		#endregion
 	}
 }

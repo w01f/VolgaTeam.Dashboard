@@ -1,25 +1,26 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Asa.Browser.Controls.BusinessClasses.Enums;
-using Asa.Browser.Controls.BusinessClasses.Objects;
+using Asa.Browser.Controls.BusinessClasses.Helpers;
+using Asa.Common.Core.Extensions;
 using Asa.Media.Controls.BusinessClasses.Managers;
 using Asa.Schedules.Common.Controls.ContentEditors.Events;
 using Asa.Schedules.Common.Controls.ContentEditors.Helpers;
 using Asa.Schedules.Common.Controls.ContentEditors.Interfaces;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 
 namespace Asa.Media.Controls.PresentationClasses.Browser
 {
 	public partial class BrowserContentControl : UserControl, IContentControl
 	{
-		private ComboBoxEdit _listControl;
+		private MediaSiteBundleControl _siteBundleControl;
 
 		public string Identifier => ContentIdentifiers.Browser;
 		public bool IsActive { get; set; }
 		public bool RequreScheduleInfo => false;
-		public Boolean ShowScheduleInfo => false;
+		public bool ShowScheduleInfo => false;
+		public bool RibbonAlwaysCollapsed => true;
 		public RibbonTabItem TabPage => Controller.Instance.TabBrowser;
 
 		public BrowserContentControl()
@@ -35,23 +36,25 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 
 		public virtual void InitControl()
 		{
-			_listControl = Controller.Instance.BrowserSitesCombo;
+			if (BusinessObjects.Instance.BrowserManager.Sites.Any())
+			{
+				_siteBundleControl = new MediaSiteBundleControl();
+				_siteBundleControl.Dock = DockStyle.Fill;
+				Controls.Add(_siteBundleControl);
 
-			LoadSites();
+				_siteBundleControl.LoadSites(BusinessObjects.Instance.BrowserManager.Sites);
 
-			_listControl.SelectedIndexChanged -= OnSitesListEditValueChanged;
-			_listControl.SelectedIndexChanged += OnSitesListEditValueChanged;
+				ExternalBrowserManager.Load();
+			}
 		}
 
-		public virtual void ShowControl(ContentOpenEventArgs args = null)
+		public void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
+			if (!BusinessObjects.Instance.BrowserManager.Sites.Any()) return;
 
-			UpdateMainStatusBarInfo();
+			_siteBundleControl.UpdateMainStatusBarInfo();
 			LoadUrlActionButtons();
-
-			if (_listControl.EditValue == null)
-				_listControl.SelectedIndex = 0;
 		}
 
 		public void GetHelp()
@@ -59,35 +62,43 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			BusinessObjects.Instance.HelpManager.OpenHelpLink("eo");
 		}
 
-		private void UpdateMainStatusBarInfo()
-		{
-			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Clear();
-
-			var titleLabel = new LabelItem();
-			titleLabel.Text = BusinessObjects.Instance.BrowserManager.StatusBarTitle;
-			if (ContentStatusBarManager.Instance.TextColor.HasValue)
-				titleLabel.ForeColor = ContentStatusBarManager.Instance.TextColor.Value;
-			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Add(titleLabel);
-
-			var selectedSiteSettings = _listControl?.EditValue as SiteSettings;
-			if (selectedSiteSettings != null)
-			{
-				var urlLabel = new LabelItem();
-				urlLabel.Text = selectedSiteSettings.BaseUrl;
-				if (ContentStatusBarManager.Instance.TextColor.HasValue)
-					urlLabel.ForeColor = ContentStatusBarManager.Instance.TextColor.Value;
-				ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Add(urlLabel);
-			}
-
-			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.RecalcSize();
-			ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
-		}
-
 		private void LoadUrlActionButtons()
 		{
 			ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer.SubItems.Clear();
 
+			foreach (var browserTag in ExternalBrowserManager.AvailableBrowsers.Keys)
+			{
+				var browserButton = new ButtonItem();
+				browserButton.Tag = browserTag;
+				browserButton.Click += OnExternalBrowserOpenClick;
+				Image buttonImage = null;
+				switch (browserTag)
+				{
+					case ExternalBrowserManager.BrowserChromeTag:
+						buttonImage = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalChrome;
+						browserButton.Tooltip = "Chrome";
+						break;
+					case ExternalBrowserManager.BrowserFirefoxTag:
+						buttonImage = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalFirefox;
+						browserButton.Tooltip = "Firefox";
+						break;
+					case ExternalBrowserManager.BrowserIETag:
+						buttonImage = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalIE;
+						browserButton.Tooltip = "IE";
+						break;
+					case ExternalBrowserManager.BrowserEdgeTag:
+						buttonImage = BusinessObjects.Instance.ImageResourcesManager.BrowserExternalEdge;
+						browserButton.Tooltip = "Edge";
+						break;
+				}
+				if (buttonImage != null && buttonImage.Height > 16)
+					buttonImage = buttonImage.Resize(new Size(buttonImage.Width, 16));
+				browserButton.Image = buttonImage;
+				ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer.SubItems.Add(browserButton);
+			}
+
 			var emailUrlButton = new ButtonItem();
+			emailUrlButton.BeginGroup = true;
 			emailUrlButton.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserUrlEmail;
 			emailUrlButton.Click += OnUrlEmail;
 			ContentStatusBarManager.Instance.StatusBarAdditionalItemsContainer.SubItems.Add(emailUrlButton);
@@ -101,62 +112,21 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			ContentStatusBarManager.Instance.StatusBar.RecalcLayout();
 		}
 
-		private void LoadSites()
-		{
-			if (!BusinessObjects.Instance.BrowserManager.Sites.Any()) return;
-			_listControl.Properties.Items.Clear();
-			_listControl.Properties.Items.AddRange(BusinessObjects.Instance.BrowserManager.Sites);
-		}
-
-		private void OnSitesListEditValueChanged(object sender, EventArgs e)
-		{
-			var comboBox = sender as ComboBoxEdit;
-			var selectedSiteSettings = comboBox?.EditValue as SiteSettings;
-			if (selectedSiteSettings == null) return;
-
-			UpdateMainStatusBarInfo();
-
-			var siteContainer = Controls.OfType<IMediaSite>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
-			if (siteContainer == null)
-			{
-				switch (selectedSiteSettings.SiteType)
-				{
-					case SiteType.SalesCloud:
-						var mediaSiteContainer = new MediaSiteContainer();
-						mediaSiteContainer.Dock = DockStyle.Fill;
-						Controls.Add(mediaSiteContainer);
-						mediaSiteContainer.InitSite(selectedSiteSettings);
-						mediaSiteContainer.LoadPages();
-						siteContainer = mediaSiteContainer;
-						break;
-					case SiteType.SimpleSite:
-						var simpleSiteControl = new SimpleSiteControl(selectedSiteSettings);
-						simpleSiteControl.Dock = DockStyle.Fill;
-						Controls.Add(simpleSiteControl);
-						simpleSiteControl.LoadSite();
-						siteContainer = simpleSiteControl;
-						break;
-					default:
-						throw new ArgumentOutOfRangeException("Undefined site type");
-				}
-			}
-			((Control)siteContainer).BringToFront();
-		}
-
 		private void OnUrlEmail(object sender, EventArgs e)
 		{
-			var selectedSiteSettings = _listControl?.EditValue as SiteSettings;
-			if (selectedSiteSettings == null) return;
-			var siteContainer = Controls.OfType<IMediaSite>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
-			siteContainer?.EmailUrl();
+			_siteBundleControl.EmailUrl();
 		}
 
 		private void OnUrlCopy(object sender, EventArgs e)
 		{
-			var selectedSiteSettings = _listControl?.EditValue as SiteSettings;
-			if (selectedSiteSettings == null) return;
-			var siteContainer = Controls.OfType<IMediaSite>().FirstOrDefault(sc => sc.SiteSettings.Id == selectedSiteSettings.Id);
-			siteContainer?.CopyUrl();
+			_siteBundleControl.CopyUrl();
+		}
+
+		private void OnExternalBrowserOpenClick(object sender, EventArgs e)
+		{
+			var browserButton = (ButtonItem)sender;
+			var browserTag = browserButton.Tag as String;
+			ExternalBrowserManager.OpenUrl(browserTag, _siteBundleControl.SelectedSite?.CurrentUrl);
 		}
 	}
 }

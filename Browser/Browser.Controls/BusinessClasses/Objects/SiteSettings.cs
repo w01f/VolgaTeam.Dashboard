@@ -5,7 +5,7 @@ namespace Asa.Browser.Controls.BusinessClasses.Objects
 {
 	public class SiteSettings
 	{
-		public Guid Id { get; private set; }
+		public Guid Id { get; }
 		public SiteType SiteType { get; set; }
 		public string BaseUrl { get; set; }
 		public string Title { get; set; }

@@ -37,8 +37,6 @@
 			this.labelItemUrl = new DevComponents.DotNetBar.LabelItem();
 			this.labelItemStatusBarSeparator = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainerStatusBarActionButtons = new DevComponents.DotNetBar.ItemContainer();
-			this.buttonItemUrlEmail = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemUrlCopy = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.panelMain = new System.Windows.Forms.Panel();
 			this.panelEmpty = new System.Windows.Forms.Panel();
@@ -120,9 +118,6 @@
 			this.itemContainerStatusBarActionButtons.ItemSpacing = 5;
 			this.itemContainerStatusBarActionButtons.MinimumSize = new System.Drawing.Size(0, 24);
 			this.itemContainerStatusBarActionButtons.Name = "itemContainerStatusBarActionButtons";
-			this.itemContainerStatusBarActionButtons.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemUrlEmail,
-            this.buttonItemUrlCopy});
 			// 
 			// 
 			// 
@@ -132,16 +127,6 @@
 			// 
 			this.itemContainerStatusBarActionButtons.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.itemContainerStatusBarActionButtons.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-			// 
-			// buttonItemUrlEmail
-			// 
-			this.buttonItemUrlEmail.Name = "buttonItemUrlEmail";
-			this.buttonItemUrlEmail.Click += new System.EventHandler(this.OnUrlEmailClick);
-			// 
-			// buttonItemUrlCopy
-			// 
-			this.buttonItemUrlCopy.Name = "buttonItemUrlCopy";
-			this.buttonItemUrlCopy.Click += new System.EventHandler(this.OnUrlCopyClick);
 			// 
 			// ribbonControl
 			// 
@@ -220,17 +205,15 @@
 
 		private DevComponents.DotNetBar.StyleManager styleManager;
 		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-		private DevComponents.DotNetBar.Bar barBottom;
 		private DevComponents.DotNetBar.ItemContainer itemContainerStatusBarInfo;
 		private DevComponents.DotNetBar.LabelItem labelItemStatusBarSeparator;
-		private DevComponents.DotNetBar.ItemContainer itemContainerStatusBarActionButtons;
 		private DevComponents.DotNetBar.LabelItem labelItemAppTitle;
 		private DevComponents.DotNetBar.LabelItem labelItemUrl;
-		private DevComponents.DotNetBar.ButtonItem buttonItemUrlEmail;
-		private DevComponents.DotNetBar.ButtonItem buttonItemUrlCopy;
 		private DevComponents.DotNetBar.RibbonControl ribbonControl;
 		private System.Windows.Forms.Panel panelMain;
 		private System.Windows.Forms.Panel panelEmpty;
+		public DevComponents.DotNetBar.Bar barBottom;
+		public DevComponents.DotNetBar.ItemContainer itemContainerStatusBarActionButtons;
 	}
 }
 

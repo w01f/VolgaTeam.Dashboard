@@ -138,15 +138,8 @@
     <Compile Include="PresentationClasses\Browser\BrowserContentControl.Designer.cs">
       <DependentUpon>BrowserContentControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\Browser\IMediaSite.cs" />
-    <Compile Include="PresentationClasses\Browser\MediaSiteContainer.cs">
+    <Compile Include="PresentationClasses\Browser\MediaSiteBundleControl.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Browser\SimpleSiteControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Browser\SimpleSiteControl.designer.cs">
-      <DependentUpon>SimpleSiteControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
@@ -649,9 +642,6 @@
   <ItemGroup>
     <EmbeddedResource Include="PresentationClasses\Browser\BrowserContentControl.resx">
       <DependentUpon>BrowserContentControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Browser\SimpleSiteControl.resx">
-      <DependentUpon>SimpleSiteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>

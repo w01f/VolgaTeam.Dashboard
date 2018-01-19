@@ -113,46 +113,6 @@ namespace Asa.Browser.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ExternalBrowserChrome {
-            get {
-                object obj = ResourceManager.GetObject("ExternalBrowserChrome", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ExternalBrowserEdge {
-            get {
-                object obj = ResourceManager.GetObject("ExternalBrowserEdge", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ExternalBrowserFirefox {
-            get {
-                object obj = ResourceManager.GetObject("ExternalBrowserFirefox", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ExternalBrowserInternetExplorer {
-            get {
-                object obj = ResourceManager.GetObject("ExternalBrowserInternetExplorer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap FloaterMenu {
             get {
                 object obj = ResourceManager.GetObject("FloaterMenu", resourceCulture);

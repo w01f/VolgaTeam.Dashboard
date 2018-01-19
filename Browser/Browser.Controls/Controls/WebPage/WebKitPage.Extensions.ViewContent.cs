@@ -32,52 +32,52 @@ namespace Asa.Browser.Controls.Controls.WebPage
 
 		public void UpdateViewContentState()
 		{
-			_siteContainer.ButtonExtensionsAddSlide.Visible = false;
-			_siteContainer.ButtonExtensionsAddSlides.Visible = false;
+			_siteContainer.ParentBundle.ButtonExtensionsAddSlide.Visible = false;
+			_siteContainer.ParentBundle.ButtonExtensionsAddSlides.Visible = false;
 
-			_siteContainer.ButtonExtensionsPrint.Visible = false;
+			_siteContainer.ParentBundle.ButtonExtensionsPrint.Visible = false;
 
-			_siteContainer.ButtonExtensionsAddVideo.Visible = false;
+			_siteContainer.ParentBundle.ButtonExtensionsAddVideo.Visible = false;
 
-			_siteContainer.LabelExtensionsWarning.Text = String.Empty;
+			_siteContainer.ParentBundle.LabelExtensionsWarning.Text = String.Empty;
 
 			if (_extensionsManager.LinkViewContentExtension.PowerPointEnabled)
 			{
-				_siteContainer.ButtonExtensionsAddSlide.Visible = true;
-				_siteContainer.ButtonExtensionsAddSlides.Visible = true;
-				_siteContainer.ButtonExtensionsPrint.Visible = true;
+				_siteContainer.ParentBundle.ButtonExtensionsAddSlide.Visible = true;
+				_siteContainer.ParentBundle.ButtonExtensionsAddSlides.Visible = true;
+				_siteContainer.ParentBundle.ButtonExtensionsPrint.Visible = true;
 
-				_siteContainer.PowerPointSingleton.Connect();
-				var slideSettings = _siteContainer.PowerPointSingleton.GetActiveSlideSettings();
+				_siteContainer.ParentBundle.PowerPointSingleton.Connect();
+				var slideSettings = _siteContainer.ParentBundle.PowerPointSingleton.GetActiveSlideSettings();
 				var currentPageContent = _extensionsManager.LinkViewContentExtension.CurrentPowerPointContent;
 				if (slideSettings != null && !currentPageContent.IsFitToInsert(slideSettings))
-					_siteContainer.LabelExtensionsWarning.Text = "Slide Size Conflict: The slides may not insert correctly…";
+					_siteContainer.ParentBundle.LabelExtensionsWarning.Text = "Slide Size Conflict: The slides may not insert correctly…";
 
-				_siteContainer.ButtonExtensionsAddSlides.Text = String.Format("   ({0})", _extensionsManager.LinkViewContentExtension.CurrentPowerPointContent.PartsCount);
+				_siteContainer.ParentBundle.ButtonExtensionsAddSlides.Text = String.Format("   ({0})", _extensionsManager.LinkViewContentExtension.CurrentPowerPointContent.PartsCount);
 			}
 			if (_extensionsManager.LinkViewContentExtension.PrintEnabled)
 			{
-				_siteContainer.ButtonExtensionsPrint.Visible = true;
+				_siteContainer.ParentBundle.ButtonExtensionsPrint.Visible = true;
 			}
 			if (_extensionsManager.LinkViewContentExtension.VideoEnabled)
 			{
-				_siteContainer.PowerPointSingleton.Connect();
+				_siteContainer.ParentBundle.PowerPointSingleton.Connect();
 
-				var activePresentation = _siteContainer.PowerPointSingleton.GetActivePresentation();
+				var activePresentation = _siteContainer.ParentBundle.PowerPointSingleton.GetActivePresentation();
 				var allowVideoInsert = activePresentation != null && File.Exists(activePresentation.FullName);
 
-				_siteContainer.ButtonExtensionsAddVideo.Visible = allowVideoInsert;
+				_siteContainer.ParentBundle.ButtonExtensionsAddVideo.Visible = allowVideoInsert;
 
 				if (activePresentation != null && !allowVideoInsert)
-					_siteContainer.LabelExtensionsWarning.Text = "Save your presentation if you want to add this video…";
+					_siteContainer.ParentBundle.LabelExtensionsWarning.Text = "Save your presentation if you want to add this video…";
 			}
-			_siteContainer.barMain.RecalcLayout();
+			_siteContainer.ParentBundle.barMain.RecalcLayout();
 		}
 
 		public void AddVideo()
 		{
-			if (!_siteContainer.CheckPowerPointRunning(UpdateViewContentState)) return;
-			var activePresentation = _siteContainer.PowerPointSingleton.GetActivePresentation();
+			if (!_siteContainer.ParentBundle.CheckPowerPointRunning(UpdateViewContentState)) return;
+			var activePresentation = _siteContainer.ParentBundle.PowerPointSingleton.GetActivePresentation();
 			if (activePresentation != null && File.Exists(activePresentation.FullName))
 			{
 				DownloadFile(_extensionsManager.LinkViewContentExtension.CurrentVideoContent.GetMp4Url());
@@ -86,7 +86,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 
 		public void AddSlide()
 		{
-			if (!_siteContainer.CheckPowerPointRunning(UpdateViewContentState)) return;
+			if (!_siteContainer.ParentBundle.CheckPowerPointRunning(UpdateViewContentState)) return;
 			DownloadFile(
 				_extensionsManager.LinkViewContentExtension.CurrentPageContent.GetPartFileUrl(),
 				AfterDownloadAction.Open);
@@ -94,7 +94,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 
 		public void AddSlides()
 		{
-			if (!_siteContainer.CheckPowerPointRunning(UpdateViewContentState)) return;
+			if (!_siteContainer.ParentBundle.CheckPowerPointRunning(UpdateViewContentState)) return;
 			DownloadFile(
 				_extensionsManager.LinkViewContentExtension.CurrentPageContent.OriginalFileUrl,
 				AfterDownloadAction.Open);
@@ -109,22 +109,22 @@ namespace Asa.Browser.Controls.Controls.WebPage
 
 		private bool HandleVideoDownloaded(string filePath)
 		{
-			_siteContainer.PowerPointSingleton.Connect();
-			var activePresentation = _siteContainer.PowerPointSingleton.GetActivePresentation();
+			_siteContainer.ParentBundle.PowerPointSingleton.Connect();
+			var activePresentation = _siteContainer.ParentBundle.PowerPointSingleton.GetActivePresentation();
 			var allowVideoInsert = activePresentation != null && File.Exists(activePresentation.FullName);
 			if (allowVideoInsert)
 			{
 				using (var formComplete = new FormVideoDownloadComplete(filePath))
 				{
-					var result = formComplete.ShowDialog(_siteContainer.MainForm);
+					var result = formComplete.ShowDialog(_siteContainer.ParentBundle.MainForm);
 					if (result == DialogResult.Abort)
-						_siteContainer.ShowFloater(new FloaterRequestedEventArgs
+						_siteContainer.ParentBundle.ShowFloater(new FloaterRequestedEventArgs
 						{
 							AfterShow = () =>
 							{
 								FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 								FormProgress.ShowOutputProgress();
-								_siteContainer.PowerPointSingleton.InsertVideoIntoActivePresentation(filePath);
+								_siteContainer.ParentBundle.PowerPointSingleton.InsertVideoIntoActivePresentation(filePath);
 								FormProgress.CloseProgress();
 							}
 						});
@@ -145,7 +145,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 						(_extensionsManager.LinkViewContentExtension.CurrentPrintableContent.CurrentPage + 1) ?? 1);
 					break;
 				default:
-					_siteContainer.ShowFloater(new FloaterRequestedEventArgs
+					_siteContainer.ParentBundle.ShowFloater(new FloaterRequestedEventArgs
 					{
 						AfterShow = () =>
 						{
@@ -153,14 +153,14 @@ namespace Asa.Browser.Controls.Controls.WebPage
 							{
 								FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 								FormProgress.ShowOutputProgress();
-								_siteContainer.PowerPointSingleton.InsertVideoIntoActivePresentation(e.Item.FullPath);
+								_siteContainer.ParentBundle.PowerPointSingleton.InsertVideoIntoActivePresentation(e.Item.FullPath);
 								FormProgress.CloseProgress();
 							}
 							else if (_extensionsManager.LinkViewContentExtension.CurrentLinkViewContent?.ContentType == LinkContentType.PowerPoint)
 							{
 								FormProgress.SetTitle("Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!");
 								FormProgress.ShowOutputProgress();
-								_siteContainer.PowerPointSingleton.AppendSlidesFromFile(e.Item.FullPath);
+								_siteContainer.ParentBundle.PowerPointSingleton.AppendSlidesFromFile(e.Item.FullPath);
 								FormProgress.CloseProgress();
 							}
 						}

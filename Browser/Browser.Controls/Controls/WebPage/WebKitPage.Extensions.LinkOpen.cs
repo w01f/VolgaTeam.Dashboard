@@ -76,7 +76,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 		private void OnLinkOpenWebViewDownloadCompleted(Object sender, DownloadEventArgs e)
 		{
 			if (_extensionsManager.LinkOpenExtension.LinkData == null) return;
-			_siteContainer.ShowFloater(new FloaterRequestedEventArgs
+			_siteContainer.ParentBundle.ShowFloater(new FloaterRequestedEventArgs
 			{
 				AfterShow = () =>
 				{

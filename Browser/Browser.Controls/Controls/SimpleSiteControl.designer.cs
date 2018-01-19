@@ -1,4 +1,4 @@
-﻿namespace Asa.Media.Controls.PresentationClasses.Browser
+﻿namespace Asa.Browser.Controls.Controls
 {
 	partial class SimpleSiteControl
 	{

@@ -17,7 +17,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 	public sealed partial class WebKitPage : XtraTabPage
 		//public sealed partial class WebKitPage : UserControl
 	{
-		private readonly SiteContainerControl _siteContainer;
+		private readonly WallbinSiteControl _siteContainer;
 		private readonly WebControl _webKit;
 		private readonly string _startUrl;
 		private bool _initialLoadComplete;
@@ -38,11 +38,11 @@ namespace Asa.Browser.Controls.Controls.WebPage
 			Text = _webKit.WebView.Title;
 		}
 
-		public WebKitPage(SiteContainerControl siteContainer, string url) : this()
+		public WebKitPage(WallbinSiteControl siteContainer, string url) : this()
 		{
 			_siteContainer = siteContainer;
 			_startUrl = url;
-			pbProgressLogo.Image = _siteContainer.SplashLogo;
+			pbProgressLogo.Image = _siteContainer.ParentBundle.SplashLogo;
 			ExtensionsManager.MakeUrlTrusted(_startUrl);
 			InitSiteLoading();
 			InitDownloading();
@@ -169,9 +169,9 @@ namespace Asa.Browser.Controls.Controls.WebPage
 						saveDialog.InitialDirectory = Path.Combine(
 							Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
 							"Downloads");
-						if (saveDialog.ShowDialog(_siteContainer.MainForm) != DialogResult.Cancel)
+						if (saveDialog.ShowDialog(_siteContainer.ParentBundle.MainForm) != DialogResult.Cancel)
 						{
-							FormDownloadProgress.ShowProgress(_siteContainer.MainForm);
+							FormDownloadProgress.ShowProgress(_siteContainer.ParentBundle.MainForm);
 							Application.DoEvents();
 							FormDownloadProgress.SetTitle("Downloading…");
 							Application.DoEvents();
@@ -215,7 +215,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 			}
 			using (var formComplete = new FormFileDownloadComplete(e.Item.FullPath))
 			{
-				formComplete.ShowDialog(_siteContainer.MainForm);
+				formComplete.ShowDialog(_siteContainer.ParentBundle.MainForm);
 			}
 		}
 
@@ -229,9 +229,9 @@ namespace Asa.Browser.Controls.Controls.WebPage
 		#region Navigation
 		public void UpdateNavigationButtonsState()
 		{
-			_siteContainer.ButtonNavigationBack.Enabled = _webKit.WebView.CanGoBack;
-			_siteContainer.ButtonNavigationForward.Enabled = _webKit.WebView.CanGoForward;
-			_siteContainer.barMain.RecalcLayout();
+			_siteContainer.ParentBundle.ButtonNavigationBack.Enabled = _webKit.WebView.CanGoBack;
+			_siteContainer.ParentBundle.ButtonNavigationForward.Enabled = _webKit.WebView.CanGoForward;
+			_siteContainer.ParentBundle.barMain.RecalcLayout();
 		}
 
 		private void OnWebViewNavigationStateChaged(object sender, EventArgs e)
@@ -249,7 +249,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 			_webKit.WebView.GoForward();
 		}
 
-		public void Refresh()
+		public void RefreshPage()
 		{
 			pnProgress.BringToFront();
 			circularProgress.IsRunning = true;

@@ -28,6 +28,7 @@ namespace Asa.Schedules.Common.Controls.RateCard
 		public bool IsActive { get; set; }
 		public bool RequreScheduleInfo => false;
 		public bool ShowScheduleInfo => true;
+		public bool RibbonAlwaysCollapsed => false;
 		public abstract RibbonTabItem TabPage { get;  }
 
 		public void InitMetaData()

@@ -39,7 +39,7 @@ namespace Asa.Browser.Controls.Controls.WebPage
 		private void DownloadFile(string url, AfterDownloadAction afterDownloadAction = AfterDownloadAction.None)
 		{
 			_afterDownloadAction = afterDownloadAction;
-			FormDownloadProgress.ShowProgress(_siteContainer.MainForm);
+			FormDownloadProgress.ShowProgress(_siteContainer.ParentBundle.MainForm);
 			FormDownloadProgress.SetTitle("Downloading…");
 			_siteContainer.SuspendPages();
 			Application.DoEvents();

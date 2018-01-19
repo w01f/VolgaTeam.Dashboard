@@ -8,7 +8,7 @@ using Microsoft.Win32;
 
 namespace Asa.Browser.Controls.BusinessClasses.Helpers
 {
-	class ExternalBrowserManager
+	public class ExternalBrowserManager
 	{
 		public const string BrowserChromeTag = "chrome";
 		public const string BrowserFirefoxTag = "firefox";

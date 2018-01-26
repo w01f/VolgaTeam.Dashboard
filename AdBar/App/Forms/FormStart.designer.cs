@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStart));
 			this.laTitle = new System.Windows.Forms.Label();
 			this.laDetails = new System.Windows.Forms.Label();
 			this.circularProgress = new DevComponents.DotNetBar.Controls.CircularProgress();
 			this.pbCancel = new System.Windows.Forms.PictureBox();
-			this.notifyIcon = new System.Windows.Forms.NotifyIcon();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemShowProgress = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemKillApp = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +83,7 @@
 			// 
 			// circularProgress
 			// 
+			this.circularProgress.AnimationSpeed = 150;
 			this.circularProgress.BackColor = System.Drawing.Color.Transparent;
 			// 
 			// 

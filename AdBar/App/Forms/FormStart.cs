@@ -24,6 +24,7 @@ namespace Asa.Bar.App.Forms
 			laTitle.ForeColor = laDetails.ForeColor = styleSettings.SyncTextColor ?? laTitle.ForeColor;
 			circularProgress.ProgressColor = styleSettings.SyncCircleColor ?? circularProgress.ProgressColor;
 			circularProgress.ProgressBarType = (DevComponents.DotNetBar.eCircularProgressType)((styleSettings.SyncCircleStyle ?? 2) - 1);
+			circularProgress.AnimationSpeed = styleSettings.SyncCircleSpeed ?? 150;
 
 			var cancelLogoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "ProgressCancel.png");
 			if (File.Exists(cancelLogoPath))
@@ -31,6 +32,14 @@ namespace Asa.Bar.App.Forms
 				var tempPath = Path.GetTempFileName();
 				File.Copy(cancelLogoPath, tempPath, true);
 				pbCancel.Image = Image.FromFile(tempPath);
+			}
+
+			var iconPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "icon.ico");
+			if (File.Exists(iconPath))
+			{
+				var tempPath = Path.GetTempFileName();
+				File.Copy(iconPath, tempPath, true);
+				notifyIcon.Icon = new Icon(tempPath);
 			}
 
 			if ((CreateGraphics()).DpiX > 96)

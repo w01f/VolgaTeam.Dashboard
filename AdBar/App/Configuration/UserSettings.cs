@@ -12,12 +12,22 @@ namespace Asa.Bar.App.Configuration
 		public int PreferedMonitor { get; set; }
 		public bool LoadAtStartup { get; set; }
 		public bool UseDockedStyle { get; set; }
+		public bool DefaultAlwaysExpanded { get; set; }
+		public bool AlwaysExpanded { get; set; }
+		public bool DefaultShowFloaterWhenUndock { get; set; }
+		public bool ShowFloaterWhenUndock { get; set; }
 		public int? FormLocationLeft { get; set; }
 		public int? FormLocationTop { get; set; }
+		public int? FloaterLocationLeft { get; set; }
+		public int? FloaterLocationTop { get; set; }
 
 		public ColorEx? DefaultAccentColor { get; set; }
+		public ColorEx? DefaultTextColor { get; set; }
 
 		public ColorEx? UserAccentColor { get; set; }
+		public ColorEx? UserTextColor { get; set; }
+
+		public DateTime? LastPatchUpdate { get; set; }
 
 		[XmlIgnore]
 		public Color AccentColor
@@ -27,6 +37,17 @@ namespace Asa.Bar.App.Configuration
 			{
 				if (DefaultAccentColor != value)
 					UserAccentColor = value;
+			}
+		}
+
+		[XmlIgnore]
+		public Color TextColor
+		{
+			get => UserTextColor ?? DefaultTextColor ?? Color.Chocolate;
+			set
+			{
+				if (DefaultTextColor != value)
+					UserTextColor = value;
 			}
 		}
 
@@ -48,10 +69,17 @@ namespace Asa.Bar.App.Configuration
 		private void Reset()
 		{
 			UserAccentColor = null;
+			UserTextColor = null;
 			PreferedMonitor = 0;
 			SelectedBrowser = null;
 			LoadAtStartup = true;
 			UseDockedStyle = true;
+			AlwaysExpanded = false;
+			ShowFloaterWhenUndock = false;
+			FormLocationLeft = null;
+			FormLocationTop = null;
+			FloaterLocationLeft = null;
+			FloaterLocationTop = null;
 		}
 	}
 }

@@ -12,6 +12,7 @@ namespace Asa.Common.Core.Objects.FormStyle
 		public Color? SyncTextColor { get; private set; }
 		public Color? SyncCircleColor { get; private set; }
 		public int? SyncCircleStyle { get; private set; }
+		public int? SyncCircleSpeed { get; private set; }
 
 		public void Load(string settingsFilePath)
 		{
@@ -38,6 +39,9 @@ namespace Asa.Common.Core.Objects.FormStyle
 							break;
 						case "CircleStyle":
 							SyncCircleStyle = Int32.Parse(childNode.InnerText);
+							break;
+						case "CircleSpeed":
+							SyncCircleSpeed = Int32.Parse(childNode.InnerText);
 							break;
 					}
 				}

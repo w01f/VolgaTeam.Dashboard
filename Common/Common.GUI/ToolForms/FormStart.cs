@@ -24,6 +24,7 @@ namespace Asa.Common.GUI.ToolForms
 			laTitle.ForeColor = laDetails.ForeColor = styleSettings.SyncTextColor ?? laTitle.ForeColor;
 			circularProgress.ProgressColor = styleSettings.SyncCircleColor ?? circularProgress.ProgressColor;
 			circularProgress.ProgressBarType = (DevComponents.DotNetBar.eCircularProgressType)((styleSettings.SyncCircleStyle ?? 2) - 1);
+			circularProgress.AnimationSpeed = styleSettings.SyncCircleSpeed ?? 150;
 
 			var cancelLogoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "ProgressCancel.png");
 			if (File.Exists(cancelLogoPath))

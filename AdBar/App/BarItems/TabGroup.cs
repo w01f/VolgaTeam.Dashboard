@@ -14,6 +14,8 @@ namespace Asa.Bar.App.BarItems
 		public TabGroupType Type;
 		public string Name { get; set; }
 		public string Tag { get; set; }
+		public bool Visible { get; set; }
+		public bool UserGranted { get; private set; }
 		public List<TabGroupItem> Items { get; set; }
 
 
@@ -22,7 +24,8 @@ namespace Asa.Bar.App.BarItems
 			_rootPath = path;
 			Items = new List<TabGroupItem>();
 			Init();
-			LoadItems();
+			if (Visible && UserGranted)
+				LoadItems();
 		}
 
 		private void Init()
@@ -30,6 +33,10 @@ namespace Asa.Bar.App.BarItems
 			var configContent = ConfigHelper.GetTextFromFile(Path.Combine(_rootPath, GroupConfigFileName));
 			Name = ConfigHelper.GetValueRegex("<groupname>(.*)</groupname>", configContent);
 			Tag = ConfigHelper.GetValueRegex("<content>(.*)</content>", configContent);
+			Visible = ConfigHelper.GetValueRegex("<Visible>(.*)</Visible>", configContent) != "false";
+			UserGranted = !configContent.ToLower().Contains("approvedusers") ||
+						  ConfigHelper.GetValuesRegex("<user>(.*?)</user>", configContent)
+							  .Any(user => user.Equals(Environment.UserName, StringComparison.OrdinalIgnoreCase));
 			switch (Tag)
 			{
 				case "shortbutton":

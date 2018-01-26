@@ -35,10 +35,17 @@ namespace Asa.Bar.App.BarItems
 						  ConfigHelper.GetValuesRegex("<user>(.*?)</user>", _configContent)
 							  .Any(user => user.Equals(Environment.UserName, StringComparison.OrdinalIgnoreCase));
 
-			var tabDirectoryPath = Path.Combine(ResourceManager.Instance.DataFolder.LocalPath, Id);
-			if (Directory.Exists(tabDirectoryPath))
-				foreach (var p in Directory.GetDirectories(tabDirectoryPath))
-					Groups.Add(new TabGroup(p));
+			if (Visible && UserGranted)
+			{
+				var tabDirectoryPath = Path.Combine(ResourceManager.Instance.DataFolder.LocalPath, Id);
+				if (Directory.Exists(tabDirectoryPath))
+					foreach (var p in Directory.GetDirectories(tabDirectoryPath))
+					{
+						var tabGroup = new TabGroup(p);
+						if (tabGroup.Visible && tabGroup.UserGranted)
+							Groups.Add(tabGroup);
+					}
+			}
 		}
 	}
 }

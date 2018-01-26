@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Asa.Bar.App.BarItems;
 using Asa.Bar.App.Common;
+using Asa.Bar.App.Configuration;
 using Asa.Bar.App.ExternalProcesses;
 using Asa.Common.Core.Helpers;
 using DevComponents.DotNetBar;
@@ -14,18 +15,50 @@ namespace Asa.Bar.App.Forms
 {
 	public partial class FormMain : Form
 	{
-		private int _lastYVisible;
 		private readonly List<RibbonBar> _browsersPanels = new List<RibbonBar>();
+		private readonly ButtonItem _buttonItemDock;
+		private readonly ButtonItem _buttonItemUndock;
+		private readonly ButtonItem _buttonItemCollapse;
+		private bool _floaterOnTop = false;
 
 		public FormMain()
 		{
 			InitializeComponent();
+
+			_buttonItemDock = new ButtonItem();
+			_buttonItemDock.Visible = false;
+			_buttonItemDock.ItemAlignment = eItemAlignment.Far;
+			_buttonItemDock.Tooltip = "Dock";
+			_buttonItemDock.Click += OnDockButtonClick;
+
+			_buttonItemUndock = new ButtonItem();
+			_buttonItemUndock.Visible = false;
+			_buttonItemUndock.ItemAlignment = eItemAlignment.Far;
+			_buttonItemUndock.Tooltip = "Undock";
+			_buttonItemUndock.Click += OnUndockButtonClick;
+
+			_buttonItemCollapse = new ButtonItem();
+			_buttonItemCollapse.Visible = false;
+			_buttonItemCollapse.ItemAlignment = eItemAlignment.Far;
+			_buttonItemCollapse.Tooltip = "Mini-Floater";
+			_buttonItemCollapse.Click += OnCollapseClick;
 		}
 
 		#region Windows Management
-
 		private void InitFromConfig()
 		{
+			if (ResourceManager.Instance.IconFile.ExistsLocal())
+				Icon = notifyIcon.Icon = new Icon(ResourceManager.Instance.IconFile.LocalPath);
+
+			if (ResourceManager.Instance.DockRegularImageFile.ExistsLocal())
+				_buttonItemDock.Image = Image.FromFile(ResourceManager.Instance.DockRegularImageFile.LocalPath);
+
+			if (ResourceManager.Instance.UndockFormImageFile.ExistsLocal())
+				_buttonItemUndock.Image = Image.FromFile(ResourceManager.Instance.UndockFormImageFile.LocalPath);
+
+			if (ResourceManager.Instance.CollapseFormImageFile.ExistsLocal())
+				_buttonItemCollapse.Image = Image.FromFile(ResourceManager.Instance.CollapseFormImageFile.LocalPath);
+
 			Font = new Font(Font.FontFamily, AppManager.Instance.Settings.Config.FontSize, Font.Style);
 			superTabControlMain.TabFont = new Font(superTabControlMain.TabFont.FontFamily, AppManager.Instance.Settings.Config.FontSize, superTabControlMain.TabFont.Style);
 			superTabControlMain.SelectedTabFont = new Font(superTabControlMain.SelectedTabFont.FontFamily, AppManager.Instance.Settings.Config.FontSize, superTabControlMain.SelectedTabFont.Style);
@@ -34,10 +67,8 @@ namespace Asa.Bar.App.Forms
 			Height = AppManager.Instance.Settings.Config.Height;
 			superTabControlMain.TabStyle = AppManager.Instance.Settings.Config.TabStyle;
 			styleManager.ManagerStyle = AppManager.Instance.Settings.Config.ManagerStyle;
-			ApplyAccentColor(AppManager.Instance.Settings.UserSettings.AccentColor);
-			superTabControlMain.TabStripColor.ControlBoxDefault.Image =
-				superTabControlMain.TabStripColor.ControlBoxPressed.Image =
-					superTabControlMain.TabStripColor.ControlBoxMouseOver.Image = AppManager.Instance.Settings.Config.TextColor;
+			ApplyAccentColor(AppManager.Instance.Settings.UserSettings.AccentColor, false);
+			ApplyTextColor(AppManager.Instance.Settings.UserSettings.TextColor, false);
 			timerUpdateWindow.Interval = AppManager.Instance.Settings.Config.UpdateWindowInterval;
 		}
 
@@ -58,6 +89,7 @@ namespace Asa.Bar.App.Forms
 
 		public void CollapseWindow()
 		{
+			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle && AppManager.Instance.Settings.UserSettings.AlwaysExpanded) return;
 			superTabControlMain.SelectedTab = null;
 			ChangeWindowHeight(AppManager.Instance.Settings.Config.CollapsedHeight);
 		}
@@ -65,9 +97,7 @@ namespace Asa.Bar.App.Forms
 		private void ChangeWindowHeight(int height)
 		{
 			Height = height;
-			_lastYVisible--;
-
-			AdjustWindowPosition(true);
+			AdjustWindowPosition();
 		}
 
 		public void UncollapseWindow()
@@ -75,7 +105,7 @@ namespace Asa.Bar.App.Forms
 			ChangeWindowHeight(AppManager.Instance.Settings.Config.Height);
 		}
 
-		public void AdjustWindowPosition(bool forced = false)
+		public void AdjustWindowPosition()
 		{
 			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle && AppManager.Instance.Settings.UserSettings.FormLocationLeft.HasValue && AppManager.Instance.Settings.UserSettings.FormLocationTop.HasValue) return;
 			var screens = Screen.AllScreens;
@@ -98,12 +128,8 @@ namespace Asa.Bar.App.Forms
 			else
 				y = screen.Bounds.Bottom - Height;
 
-			if (y == _lastYVisible && !forced)
-				return;
-
 			Left = x;
 			Top = y;
-			_lastYVisible = y;
 		}
 
 		private void OnUpdateWindowTimerTick(object sender, EventArgs e)
@@ -116,24 +142,20 @@ namespace Asa.Bar.App.Forms
 		private void LoadBarContent()
 		{
 			var heightCoeff = 1f / (0.9f + (0.1f * AppManager.Instance.Settings.Config.VirtualDpi));
-			var itemHeight = heightCoeff * (Height - superTabControlMain.TabStrip.Height - 3);
+			var itemHeight = heightCoeff * (AppManager.Instance.Settings.Config.Height - superTabControlMain.TabStrip.Height - 3);
+
+			var shortItemWidth = (superTabControlMain.Width / AppManager.Instance.Settings.Config.MaxShortButtons) + 1;
+			var longItemWidth = shortItemWidth * 2;
 
 			superTabControlMain.Tabs.Clear();
 			foreach (var tabPage in AppManager.Instance.BarItemsManager.Tabs.Where(tab => tab.Visible))
 			{
 				var tab = superTabControlMain.CreateTab(tabPage.Name);
 				var left = 0;
-				var shortItemWidth = (superTabControlMain.Width / AppManager.Instance.Settings.Config.MaxShortButtons) + 1;
-				var longItemWidth = shortItemWidth * 2;
 
 				tab.Enabled = tabPage.Enabled;
+				tab.Click += OnTabControlPageClick;
 				tab.MouseDown += OnTabControlMouseDown;
-
-				tab.TabColor.Default.Normal.Text =
-					tab.TabColor.Default.Disabled.Text =
-						tab.TabColor.Default.MouseOver.Text =
-							tab.TabColor.Default.Selected.Text =
-								tab.TabColor.Default.SelectedMouseOver.Text = AppManager.Instance.Settings.Config.TextColor;
 
 				foreach (var tabGroup in tabPage.Groups)
 				{
@@ -167,6 +189,9 @@ namespace Asa.Bar.App.Forms
 								ribbonBar.Width = shortItemWidth;
 								ribbonBar.Height = (Int32)itemHeight;
 								ribbonBar.Left = left;
+								ribbonBar.TitleStyle.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextColor;
+								ribbonBar.TitleStyleMouseOver.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextHoverColor;
+								ribbonBar.TitleStyle.TextAlignment = ribbonBar.TitleStyleMouseOver.TextAlignment = eStyleTextAlignment.Center;
 								tab.AttachedControl.Controls.Add(ribbonBar);
 								_browsersPanels.Add(ribbonBar);
 								left += shortItemWidth;
@@ -178,6 +203,9 @@ namespace Asa.Bar.App.Forms
 							ribbonBarSettings.Width = shortItemWidth;
 							ribbonBarSettings.Height = (Int32)itemHeight;
 							ribbonBarSettings.Left = left;
+							ribbonBarSettings.TitleStyle.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextColor;
+							ribbonBarSettings.TitleStyleMouseOver.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextHoverColor;
+							ribbonBarSettings.TitleStyle.TextAlignment = ribbonBarSettings.TitleStyleMouseOver.TextAlignment = eStyleTextAlignment.Center;
 							tab.AttachedControl.Controls.Add(ribbonBarSettings);
 							left += shortItemWidth;
 							break;
@@ -197,6 +225,9 @@ namespace Asa.Bar.App.Forms
 								ribbonBar.HorizontalItemAlignment = eHorizontalItemsAlignment.Center;
 								ribbonBar.VerticalItemAlignment = eVerticalItemsAlignment.Middle;
 								ribbonBar.AutoOverflowEnabled = false;
+								ribbonBar.TitleStyle.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextColor;
+								ribbonBar.TitleStyleMouseOver.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextHoverColor;
+								ribbonBar.TitleStyle.TextAlignment = ribbonBar.TitleStyleMouseOver.TextAlignment = eStyleTextAlignment.Center;
 								tab.AttachedControl.Controls.Add(ribbonBar);
 								left += ribbonBar.Width;
 							}
@@ -204,6 +235,10 @@ namespace Asa.Bar.App.Forms
 					}
 				}
 			}
+			superTabControlMain.Tabs.Add(_buttonItemDock);
+			superTabControlMain.Tabs.Add(_buttonItemUndock);
+			superTabControlMain.Tabs.Add(_buttonItemCollapse);
+			ApplyTextColor(AppManager.Instance.Settings.UserSettings.TextColor, false);
 		}
 
 		private RibbonBar CreateGroupBar(TabGroup groupConfig)
@@ -215,6 +250,9 @@ namespace Asa.Bar.App.Forms
 				VerticalItemAlignment = eVerticalItemsAlignment.Middle,
 				AutoOverflowEnabled = false
 			};
+			ribbonBar.TitleStyle.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextColor;
+			ribbonBar.TitleStyleMouseOver.TextColor = AppManager.Instance.Settings.Config.RibbonBarTextHoverColor;
+			ribbonBar.TitleStyle.TextAlignment = ribbonBar.TitleStyleMouseOver.TextAlignment = eStyleTextAlignment.Center;
 			ribbonBar.Items.Add(CreateBarItem(groupConfig.Items));
 			return ribbonBar;
 		}
@@ -306,29 +344,63 @@ namespace Asa.Bar.App.Forms
 		#endregion
 
 		#region Color Settings Management
-		private void OnSelectedColorChanged(object sender, EventArgs e)
+		private void OnSelectedAccentColorChanged(object sender, EventArgs e)
 		{
-			ApplyAccentColor(colorPickerDropDownInterface.SelectedColor);
+			ApplyAccentColor(colorPickerDropDownAccent.SelectedColor, true);
 		}
 
-		private void OnColorPreview(object sender, ColorPreviewEventArgs e)
+		private void OnAccentColorPreview(object sender, ColorPreviewEventArgs e)
 		{
-			ApplyAccentColor(e.Color, true);
+			ApplyAccentColor(e.Color, false);
 		}
 
-		private void OnColorPopupClose(object sender, EventArgs e)
+		private void OnAccentColorPopupClose(object sender, EventArgs e)
 		{
-			ApplyAccentColor(AppManager.Instance.Settings.UserSettings.AccentColor);
+			ApplyAccentColor(AppManager.Instance.Settings.UserSettings.AccentColor, true);
 		}
 
-		private void ApplyAccentColor(Color color, bool previewOnly = false)
+		private void ApplyAccentColor(Color color, bool saveSettings)
 		{
 			styleManager.MetroColorParameters = new MetroColorGeneratorParameters(
 					styleManager.MetroColorParameters.CanvasColor, color);
 
-			if (previewOnly) return;
+			if (!saveSettings) return;
 
 			AppManager.Instance.Settings.UserSettings.AccentColor = color;
+			AppManager.Instance.Settings.UserSettings.Save();
+		}
+
+		private void OnSelectedTextColorChanged(object sender, EventArgs e)
+		{
+			ApplyTextColor(colorPickerDropDownText.SelectedColor, true);
+		}
+
+		private void OnTextColorPreview(object sender, ColorPreviewEventArgs e)
+		{
+			ApplyTextColor(e.Color, false);
+		}
+
+		private void OnTextColorPopupClose(object sender, EventArgs e)
+		{
+			ApplyTextColor(AppManager.Instance.Settings.UserSettings.TextColor, true);
+		}
+
+		private void ApplyTextColor(Color color, bool saveSettings)
+		{
+			superTabControlMain.TabStripColor.ControlBoxDefault.Image =
+				superTabControlMain.TabStripColor.ControlBoxPressed.Image =
+					superTabControlMain.TabStripColor.ControlBoxMouseOver.Image = color;
+
+			foreach (var tab in superTabControlMain.Tabs.OfType<SuperTabItem>())
+				tab.TabColor.Default.Normal.Text =
+					tab.TabColor.Default.Disabled.Text =
+						tab.TabColor.Default.MouseOver.Text =
+							tab.TabColor.Default.Selected.Text =
+								tab.TabColor.Default.SelectedMouseOver.Text = AppManager.Instance.Settings.UserSettings.TextColor;
+
+			if (!saveSettings) return;
+
+			AppManager.Instance.Settings.UserSettings.TextColor = color;
 			AppManager.Instance.Settings.UserSettings.Save();
 		}
 		#endregion
@@ -374,13 +446,13 @@ namespace Asa.Bar.App.Forms
 			AppManager.Instance.Settings.UserSettings.PreferedMonitor = Int32.Parse(button.Tag as String);
 			AppManager.Instance.Settings.UserSettings.Save();
 
-			AdjustWindowPosition(true);
+			AdjustWindowPosition();
 		}
 
 		private void OnMonitorConfigurationChanged(object sender, EventArgs e)
 		{
 			UpdateMonitorControls();
-			AdjustWindowPosition(true);
+			AdjustWindowPosition();
 		}
 		#endregion
 
@@ -389,23 +461,30 @@ namespace Asa.Bar.App.Forms
 		{
 			Invoke(new MethodInvoker(() =>
 			{
-				switch (e.Status)
+				if (_floaterOnTop)
 				{
-					case BarVsProcessStatus.OnTop:
-						Opacity = 100;
-						TopMost = true;
-						Select();
-						break;
+					Opacity = 0;
+				}
+				else
+				{
+					switch (e.Status)
+					{
+						case BarVsProcessStatus.OnTop:
+							Opacity = 1;
+							TopMost = true;
+							Select();
+							break;
 
-					case BarVsProcessStatus.Hidden:
-						Opacity = 0;
-						break;
+						case BarVsProcessStatus.Hidden:
+							Opacity = 0;
+							break;
 
-					case BarVsProcessStatus.NotOnTop:
-						Opacity = 100;
-						TopMost = false;
-						SendToBack();
-						break;
+						case BarVsProcessStatus.NotOnTop:
+							Opacity = 1;
+							TopMost = false;
+							SendToBack();
+							break;
+					}
 				}
 				Application.DoEvents();
 			}));
@@ -469,7 +548,23 @@ namespace Asa.Bar.App.Forms
 			{
 				Top = AppManager.Instance.Settings.UserSettings.FormLocationTop ?? Top;
 				Left = AppManager.Instance.Settings.UserSettings.FormLocationLeft ?? Left;
-				AdjustWindowPosition(true);
+
+				var minX = Screen.AllScreens.Min(screen => screen.Bounds.Left) + (Int32)(Width * 0.2);
+				var maxX = Screen.AllScreens.Max(screen => screen.Bounds.Right) - (Int32)(Width * 0.2);
+				var minY = Screen.AllScreens.Min(screen => screen.Bounds.Top) + (Int32)(Height * 0.2);
+				var maxY = Screen.AllScreens.Max(screen => screen.Bounds.Bottom) - (Int32)(Height * 0.2);
+
+				if (Right < minX)
+					Left = minX - Width;
+				else if (Left > maxX)
+					Left = maxX;
+
+				if (Bottom < minY)
+					Top = minY - Height;
+				else if (Top > maxY)
+					Top = maxY;
+
+				AdjustWindowPosition();
 
 				buttonItemScreen1.Enabled = false;
 				buttonItemScreen2.Enabled = false;
@@ -478,18 +573,67 @@ namespace Asa.Bar.App.Forms
 				buttonItemScreen5.Enabled = false;
 				buttonItemScreen6.Enabled = false;
 			}
+			_buttonItemDock.Visible = !AppManager.Instance.Settings.UserSettings.UseDockedStyle && AppManager.Instance.Settings.Config.ShowDockRegularButton;
+			_buttonItemUndock.Visible = AppManager.Instance.Settings.UserSettings.UseDockedStyle && AppManager.Instance.Settings.Config.ShowUndockButton;
+			_buttonItemCollapse.Visible = !AppManager.Instance.Settings.UserSettings.UseDockedStyle;
+			notifyIcon.Visible = !AppManager.Instance.Settings.UserSettings.UseDockedStyle;
 			checkBoxItemDocked.Checked = AppManager.Instance.Settings.UserSettings.UseDockedStyle;
 
 			checkBoxItemDocked.CheckedChanged += OnDockedStyleCheckedChanged;
 		}
 
+		private void ShowFloaterForm()
+		{
+			Opacity = 0;
+			notifyIcon.Visible = false;
+			using (var form = new FormFloater())
+			{
+				if (AppManager.Instance.Settings.UserSettings.FloaterLocationLeft.HasValue &&
+					AppManager.Instance.Settings.UserSettings.FloaterLocationTop.HasValue)
+				{
+					form.Top = AppManager.Instance.Settings.UserSettings.FloaterLocationTop.Value;
+					form.Left = AppManager.Instance.Settings.UserSettings.FloaterLocationLeft.Value;
+				}
+				else
+				{
+					form.Top = Screen.PrimaryScreen.Bounds.Top + 50;
+					form.Left = Screen.PrimaryScreen.Bounds.Right - form.Width - 50;
+				}
+				_floaterOnTop = true;
+				var result = form.ShowDialog(this);
+				_floaterOnTop = false;
+				AppManager.Instance.Settings.UserSettings.FloaterLocationLeft = form.Left;
+				AppManager.Instance.Settings.UserSettings.FloaterLocationTop = form.Top;
+				AppManager.Instance.Settings.UserSettings.Save();
+
+				if (result == DialogResult.Yes || result == DialogResult.Abort)
+				{
+					Opacity = 1;
+					notifyIcon.Visible = true;
+					if (result == DialogResult.Yes)
+					{
+						AppManager.Instance.Settings.UserSettings.ShowFloaterWhenUndock = false;
+						AppManager.Instance.Settings.UserSettings.Save();
+					}
+					else
+					{
+						checkBoxItemDocked.Checked = true;
+					}
+				}
+				else if (result == DialogResult.No)
+					Close();
+			}
+		}
+
 		private void OnDockedStyleCheckedChanged(object sender, CheckBoxChangeEventArgs e)
 		{
+			AppManager.Instance.Settings.UserSettings.UseDockedStyle = checkBoxItemDocked.Checked;
+			AppManager.Instance.Settings.UserSettings.Save();
+
 			if (checkBoxItemDocked.Checked)
 			{
-				AppManager.Instance.Settings.UserSettings.FormLocationLeft = null;
-				AppManager.Instance.Settings.UserSettings.FormLocationTop = null;
-				AdjustWindowPosition(true);
+				AppManager.Instance.Settings.UserSettings.AlwaysExpanded = AppManager.Instance.Settings.UserSettings.DefaultAlwaysExpanded;
+				AdjustWindowPosition();
 
 				buttonItemScreen1.Enabled = true;
 				buttonItemScreen2.Enabled = true;
@@ -497,22 +641,75 @@ namespace Asa.Bar.App.Forms
 				buttonItemScreen4.Enabled = true;
 				buttonItemScreen5.Enabled = true;
 				buttonItemScreen6.Enabled = true;
+
+				_buttonItemDock.Visible = false;
+				_buttonItemUndock.Visible = AppManager.Instance.Settings.Config.ShowUndockButton;
+				_buttonItemCollapse.Visible = false;
+				notifyIcon.Visible = false;
 			}
 			else
 			{
-				AppManager.Instance.Settings.UserSettings.FormLocationLeft = Left;
-				AppManager.Instance.Settings.UserSettings.FormLocationTop = Top;
-
 				buttonItemScreen1.Enabled = false;
 				buttonItemScreen2.Enabled = false;
 				buttonItemScreen3.Enabled = false;
 				buttonItemScreen4.Enabled = false;
 				buttonItemScreen5.Enabled = false;
 				buttonItemScreen6.Enabled = false;
-			}
 
-			AppManager.Instance.Settings.UserSettings.UseDockedStyle = checkBoxItemDocked.Checked;
+				_buttonItemDock.Visible = AppManager.Instance.Settings.Config.ShowDockRegularButton;
+				_buttonItemUndock.Visible = false;
+				_buttonItemCollapse.Visible = true;
+				notifyIcon.Visible = true;
+
+				if (AppManager.Instance.Settings.UserSettings.DefaultShowFloaterWhenUndock)
+					Opacity = 0;
+
+				Move -= OnFormMainMove;
+				Top = AppManager.Instance.Settings.UserSettings.FormLocationTop ?? Top;
+				Left = AppManager.Instance.Settings.UserSettings.FormLocationLeft ?? Left;
+				Move += OnFormMainMove;
+
+				if (AppManager.Instance.Settings.UserSettings.AlwaysExpanded)
+					UncollapseWindow();
+
+				if (AppManager.Instance.Settings.UserSettings.DefaultShowFloaterWhenUndock)
+				{
+					AppManager.Instance.Settings.UserSettings.ShowFloaterWhenUndock = true;
+					AppManager.Instance.Settings.UserSettings.Save();
+					ShowFloaterForm();
+				}
+			}
+		}
+
+		private void OnUndockButtonClick(Object sender, EventArgs e)
+		{
+			checkBoxItemDocked.Checked = false;
+			if (Height == AppManager.Instance.Settings.Config.CollapsedHeight)
+				Top -= AppManager.Instance.Settings.Config.Height;
+		}
+
+		private void OnDockButtonClick(Object sender, EventArgs e)
+		{
+			checkBoxItemDocked.Checked = true;
+		}
+
+		private void OnCollapseClick(object sender, EventArgs e)
+		{
+			AppManager.Instance.Settings.UserSettings.ShowFloaterWhenUndock = true;
 			AppManager.Instance.Settings.UserSettings.Save();
+			ShowFloaterForm();
+		}
+
+		private void OnToolStripMenuItemDockClick(object sender, EventArgs e)
+		{
+			checkBoxItemDocked.Checked = true;
+		}
+
+		private void OnToolStripMenuItemCenterScreenClick(object sender, EventArgs e)
+		{
+			var screen = Screen.PrimaryScreen;
+			Top = screen.Bounds.Height / 2;
+			Left = (screen.Bounds.Width - Width) / 2;
 		}
 		#endregion
 
@@ -528,22 +725,38 @@ namespace Asa.Bar.App.Forms
 			AppManager.Instance.MonitorConfigurationWatcher.ConfigurationChanged += OnMonitorConfigurationChanged;
 
 			UpdateMonitorControls();
-
 			InitLoadAtStartupSettings();
-
 			InitDockedStyleSettings();
-
-			LoadBarContent();
-
-			UpdateBrowserButtons();
-
-			CollapseWindow();
-
-			timerUpdateWindow.Start();
 		}
 
 		private void OnFormShown(object sender, EventArgs e)
 		{
+			LoadBarContent();
+			UpdateBrowserButtons();
+
+			superTabControlMain.RecalcLayout();
+			superTabControlMain.PerformLayout();
+
+			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle && AppManager.Instance.Settings.UserSettings.ShowFloaterWhenUndock)
+			{
+				CollapseWindow();
+				ShowFloaterForm();
+			}
+			else if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle && AppManager.Instance.Settings.UserSettings.AlwaysExpanded)
+			{
+				UncollapseWindow();
+				Opacity = 1;
+				Refresh();
+			}
+			else
+			{
+				CollapseWindow();
+				Opacity = 1;
+				Refresh();
+			}
+
+			timerUpdateWindow.Start();
+
 			AppManager.Instance.ActivityManager.AddActivity(new AdBarActivity(AdBarActivityType.ApplicationOpen));
 		}
 
@@ -565,12 +778,29 @@ namespace Asa.Bar.App.Forms
 		{
 			CollapseWindow();
 		}
+
+		private void OnFormMainMove(object sender, EventArgs e)
+		{
+			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle)
+			{
+				AppManager.Instance.Settings.UserSettings.FormLocationLeft = Left;
+				AppManager.Instance.Settings.UserSettings.FormLocationTop = Top;
+				AppManager.Instance.Settings.UserSettings.Save();
+			}
+		}
 		#endregion
 
 		#region Ribbon Event Handlers
-		private void OnTabControlSelectedTabChanged(object sender, SuperTabStripSelectedTabChangedEventArgs e)
+		private void OnTabControlPageClick(object sender, EventArgs e)
 		{
-			UncollapseWindow();
+			if (AppManager.Instance.Settings.UserSettings.UseDockedStyle)
+				UncollapseWindow();
+		}
+
+		private void OnTabControlPageChanged(object sender, SuperTabStripSelectedTabChangedEventArgs e)
+		{
+			if (!AppManager.Instance.Settings.UserSettings.UseDockedStyle)
+				UncollapseWindow();
 		}
 
 		private void OnTabControlTabStripMouseMove(object sender, MouseEventArgs e)
@@ -588,8 +818,17 @@ namespace Asa.Bar.App.Forms
 		{
 			if (AppManager.Instance.Settings.UserSettings.UseDockedStyle) return;
 			if (e.Button != MouseButtons.Left) return;
+			if (e.Clicks > 1) return;
 			WinAPIHelper.ReleaseCapture();
 			WinAPIHelper.SendMessage(Handle, WinAPIHelper.WM_NCLBUTTONDOWN, WinAPIHelper.HTCAPTION, IntPtr.Zero);
+		}
+
+		private void OnTabControlDoubleClick(object sender, MouseEventArgs e)
+		{
+			if (AppManager.Instance.Settings.UserSettings.UseDockedStyle) return;
+			AppManager.Instance.Settings.UserSettings.AlwaysExpanded =
+				!AppManager.Instance.Settings.UserSettings.AlwaysExpanded;
+			CollapseWindow();
 		}
 		#endregion
 	}

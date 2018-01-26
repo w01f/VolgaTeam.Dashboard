@@ -21,11 +21,21 @@ namespace Asa.Bar.App.Configuration
 		public StorageFile TabsConfigFile { get; private set; }
 		public StorageFile WatchedProcessesFile { get; private set; }
 		public StorageFile MaintenanceConfigFile { get; private set; }
+		public StorageFile PatchUpdaterConfigFile { get; private set; }
+		public StorageFile UpdaterConfigFile { get; private set; }
 		public StorageFile NoSyncConfigFile { get; private set; }
 		public StorageFile SyncFormColorConfigFile { get; private set; }
+		public StorageFile IconFile { get; private set; }
 		public StorageFile LoginLogoFile { get; private set; }
 		public StorageFile SplashLogoFile { get; private set; }
 		public StorageFile SyncFormCloseImageFile { get; private set; }
+		public StorageFile UndockFormImageFile { get; private set; }
+		public StorageFile DockRegularImageFile { get; private set; }
+		public StorageFile DockFloaterImageFile { get; private set; }
+		public StorageFile ExpandFormImageFile { get; private set; }
+		public StorageFile CollapseFormImageFile { get; private set; }
+		public StorageFile FloaterLogoFile { get; private set; }
+		public StorageFile FloaterCancelImageFile { get; private set; }
 		public ArchiveDirectory SpecialAppsFolder { get; private set; }
 		public ArchiveDirectory SharedAssembliesFolder { get; private set; }
 		public StorageDirectory DataFolder { get; private set; }
@@ -103,6 +113,26 @@ namespace Asa.Bar.App.Configuration
 			if (await MaintenanceConfigFile.Exists(true))
 				await MaintenanceConfigFile.Download();
 
+			PatchUpdaterConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"sfx_update.xml"
+			});
+			if (await PatchUpdaterConfigFile.Exists(true))
+				await PatchUpdaterConfigFile.Download();
+
+			UpdaterConfigFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"updater.xml"
+			});
+			if (await UpdaterConfigFile.Exists(true))
+				await UpdaterConfigFile.Download();
+
 			NoSyncConfigFile = new StorageFile(new[]
 			{
 				FileStorageManager.IncomingFolderName,
@@ -122,6 +152,16 @@ namespace Asa.Bar.App.Configuration
 			});
 			if (await SyncFormColorConfigFile.Exists(true))
 				await SyncFormColorConfigFile.Download();
+
+			IconFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"icon.ico"
+			});
+			if (await IconFile.Exists(true))
+				await IconFile.Download();
 
 			LoginLogoFile = new StorageFile(new[]
 			{
@@ -152,6 +192,76 @@ namespace Asa.Bar.App.Configuration
 			});
 			if (await SyncFormCloseImageFile.Exists(true))
 				await SyncFormCloseImageFile.Download();
+
+			UndockFormImageFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"undock_arrow.png"
+			});
+			if (await UndockFormImageFile.Exists(true))
+				await UndockFormImageFile.Download();
+
+			DockRegularImageFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"dock_arrow_ribbon.png"
+			});
+			if (await DockRegularImageFile.Exists(true))
+				await DockRegularImageFile.Download();
+
+			DockFloaterImageFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"dock_arrow_floater.png"
+			});
+			if (await DockFloaterImageFile.Exists(true))
+				await DockFloaterImageFile.Download();
+
+			ExpandFormImageFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"undocked_expand.png"
+			});
+			if (await ExpandFormImageFile.Exists(true))
+				await ExpandFormImageFile.Download();
+
+			CollapseFormImageFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"undocked_collapse.png"
+			});
+			if (await CollapseFormImageFile.Exists(true))
+				await CollapseFormImageFile.Download();
+
+			FloaterLogoFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"collapsed_undocked_logo.png"
+			});
+			if (await FloaterLogoFile.Exists(true))
+				await FloaterLogoFile.Download();
+
+			FloaterCancelImageFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"Resources",
+				"undockedCancel.png"
+			});
+			if (await FloaterCancelImageFile.Exists(true))
+				await FloaterCancelImageFile.Download();
 
 			SharedAssembliesFolder = new ArchiveDirectory(new[]
 			{
@@ -199,8 +309,12 @@ namespace Asa.Bar.App.Configuration
 			#region Make local copy
 			if (NoSyncConfigFile.ExistsLocal())
 				File.Copy(NoSyncConfigFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(NoSyncConfigFile.LocalPath)), true);
+			if (UpdaterConfigFile.ExistsLocal())
+				File.Copy(UpdaterConfigFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(UpdaterConfigFile.LocalPath)), true);
 			if (SyncFormColorConfigFile.ExistsLocal())
 				File.Copy(SyncFormColorConfigFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(SyncFormColorConfigFile.LocalPath)), true);
+			if (IconFile.ExistsLocal())
+				File.Copy(IconFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(IconFile.LocalPath)), true);
 			if (LoginLogoFile.ExistsLocal())
 				File.Copy(LoginLogoFile.LocalPath, Path.Combine(AppRootFolderPath, Path.GetFileName(LoginLogoFile.LocalPath)), true);
 			if (SyncFormCloseImageFile.ExistsLocal())

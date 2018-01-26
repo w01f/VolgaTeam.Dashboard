@@ -42,7 +42,9 @@
 			this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
 			this.itemContainer3 = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainer4 = new DevComponents.DotNetBar.ItemContainer();
-			this.colorPickerDropDownInterface = new DevComponents.DotNetBar.ColorPickerDropDown();
+			this.buttonItemColorSelector = new DevComponents.DotNetBar.ButtonItem();
+			this.colorPickerDropDownAccent = new DevComponents.DotNetBar.ColorPickerDropDown();
+			this.colorPickerDropDownText = new DevComponents.DotNetBar.ColorPickerDropDown();
 			this.itemContainerMonitors = new DevComponents.DotNetBar.ItemContainer();
 			this.buttonItemScreen1 = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemScreen2 = new DevComponents.DotNetBar.ButtonItem();
@@ -53,6 +55,8 @@
 			this.itemContainer5 = new DevComponents.DotNetBar.ItemContainer();
 			this.checkBoxItemLoadAtStartup = new DevComponents.DotNetBar.CheckBoxItem();
 			this.checkBoxItemDocked = new DevComponents.DotNetBar.CheckBoxItem();
+			this.itemContainer7 = new DevComponents.DotNetBar.ItemContainer();
+			this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarBrowsers = new DevComponents.DotNetBar.RibbonBar();
 			this.itemContainer1 = new DevComponents.DotNetBar.ItemContainer();
 			this.buttonItemBrowserCh = new DevComponents.DotNetBar.ButtonItem();
@@ -64,9 +68,17 @@
 			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
 			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
 			this.timerUpdateWindow = new System.Windows.Forms.Timer(this.components);
+			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripMenuItemCenterScreen = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripMenuItemDock = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.superTabControlMain)).BeginInit();
 			this.superTabControlMain.SuspendLayout();
 			this.superTabControlPanel2.SuspendLayout();
+			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// superTabControlMain
@@ -86,6 +98,7 @@
 			// 
 			this.superTabControlMain.ControlBox.MenuBox.Name = "";
 			this.superTabControlMain.ControlBox.MenuBox.Visible = false;
+			this.superTabControlMain.ControlBox.MenuBox.Click += new System.EventHandler(this.OnCollapseClick);
 			this.superTabControlMain.ControlBox.Name = "";
 			this.superTabControlMain.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabControlMain.ControlBox.MenuBox,
@@ -109,8 +122,9 @@
 			superTabColorTable1.ControlBoxDefault = superTabControlBoxStateColorTable1;
 			this.superTabControlMain.TabStripColor = superTabColorTable1;
 			this.superTabControlMain.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-			this.superTabControlMain.SelectedTabChanged += new System.EventHandler<DevComponents.DotNetBar.SuperTabStripSelectedTabChangedEventArgs>(this.OnTabControlSelectedTabChanged);
+			this.superTabControlMain.SelectedTabChanged += new System.EventHandler<DevComponents.DotNetBar.SuperTabStripSelectedTabChangedEventArgs>(this.OnTabControlPageChanged);
 			this.superTabControlMain.TabStripMouseMove += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.OnTabControlTabStripMouseMove);
+			this.superTabControlMain.TabStripMouseDoubleClick += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.OnTabControlDoubleClick);
 			// 
 			// superTabControlPanel2
 			// 
@@ -136,14 +150,16 @@
 			this.ribbonBarSettings.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSettings.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSettings.DragDropSupport = true;
+			this.ribbonBarSettings.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
 			this.ribbonBarSettings.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.itemContainer6,
-            this.itemContainer3});
+            this.itemContainer3,
+            this.itemContainer7});
 			this.ribbonBarSettings.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSettings.Location = new System.Drawing.Point(172, 13);
 			this.ribbonBarSettings.Name = "ribbonBarSettings";
 			this.ribbonBarSettings.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-			this.ribbonBarSettings.Size = new System.Drawing.Size(188, 145);
+			this.ribbonBarSettings.Size = new System.Drawing.Size(193, 145);
 			this.ribbonBarSettings.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSettings.TabIndex = 2;
 			this.ribbonBarSettings.Text = "Extras";
@@ -151,6 +167,8 @@
 			// 
 			// 
 			this.ribbonBarSettings.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSettings.TitleStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+			this.ribbonBarSettings.TitleStyle.TextColor = System.Drawing.Color.Red;
 			// 
 			// 
 			// 
@@ -213,7 +231,7 @@
 			this.itemContainer4.ItemSpacing = 20;
 			this.itemContainer4.Name = "itemContainer4";
 			this.itemContainer4.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.colorPickerDropDownInterface,
+            this.buttonItemColorSelector,
             this.itemContainerMonitors});
 			// 
 			// 
@@ -224,16 +242,33 @@
 			// 
 			this.itemContainer4.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
-			// colorPickerDropDownInterface
+			// buttonItemColorSelector
 			// 
-			this.colorPickerDropDownInterface.AutoExpandOnClick = true;
-			this.colorPickerDropDownInterface.Name = "colorPickerDropDownInterface";
-			this.colorPickerDropDownInterface.PopupAnimation = DevComponents.DotNetBar.ePopupAnimation.None;
-			this.colorPickerDropDownInterface.SplitButton = true;
-			this.colorPickerDropDownInterface.Text = " color";
-			this.colorPickerDropDownInterface.SelectedColorChanged += new System.EventHandler(this.OnSelectedColorChanged);
-			this.colorPickerDropDownInterface.ColorPreview += new DevComponents.DotNetBar.ColorPreviewEventHandler(this.OnColorPreview);
-			this.colorPickerDropDownInterface.PopupClose += new System.EventHandler(this.OnColorPopupClose);
+			this.buttonItemColorSelector.Name = "buttonItemColorSelector";
+			this.buttonItemColorSelector.SplitButton = true;
+			this.buttonItemColorSelector.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.colorPickerDropDownAccent,
+            this.colorPickerDropDownText});
+			this.buttonItemColorSelector.Text = "color";
+			// 
+			// colorPickerDropDownAccent
+			// 
+			this.colorPickerDropDownAccent.Name = "colorPickerDropDownAccent";
+			this.colorPickerDropDownAccent.SplitButton = true;
+			this.colorPickerDropDownAccent.Text = "Ribbon Color";
+			this.colorPickerDropDownAccent.SelectedColorChanged += new System.EventHandler(this.OnSelectedAccentColorChanged);
+			this.colorPickerDropDownAccent.ColorPreview += new DevComponents.DotNetBar.ColorPreviewEventHandler(this.OnAccentColorPreview);
+			this.colorPickerDropDownAccent.PopupClose += new System.EventHandler(this.OnAccentColorPopupClose);
+			// 
+			// colorPickerDropDownText
+			// 
+			this.colorPickerDropDownText.BeginGroup = true;
+			this.colorPickerDropDownText.Name = "colorPickerDropDownText";
+			this.colorPickerDropDownText.SplitButton = true;
+			this.colorPickerDropDownText.Text = "Text Color";
+			this.colorPickerDropDownText.SelectedColorChanged += new System.EventHandler(this.OnSelectedTextColorChanged);
+			this.colorPickerDropDownText.ColorPreview += new DevComponents.DotNetBar.ColorPreviewEventHandler(this.OnTextColorPreview);
+			this.colorPickerDropDownText.PopupClose += new System.EventHandler(this.OnTextColorPopupClose);
 			// 
 			// itemContainerMonitors
 			// 
@@ -330,6 +365,31 @@
 			// 
 			this.checkBoxItemDocked.Name = "checkBoxItemDocked";
 			this.checkBoxItemDocked.Text = "dock";
+			// 
+			// itemContainer7
+			// 
+			// 
+			// 
+			// 
+			this.itemContainer7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.itemContainer7.FixedSize = new System.Drawing.Size(10, 0);
+			this.itemContainer7.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+			this.itemContainer7.Name = "itemContainer7";
+			this.itemContainer7.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItem2});
+			// 
+			// 
+			// 
+			this.itemContainer7.TitleMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.itemContainer7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// labelItem2
+			// 
+			this.labelItem2.Name = "labelItem2";
+			this.labelItem2.Text = "  ";
 			// 
 			// ribbonBarBrowsers
 			// 
@@ -473,6 +533,55 @@
 			this.timerUpdateWindow.Interval = 5000;
 			this.timerUpdateWindow.Tick += new System.EventHandler(this.OnUpdateWindowTimerTick);
 			// 
+			// notifyIcon
+			// 
+			this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+			this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
+			this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+			this.notifyIcon.Text = "Minibar";
+			// 
+			// contextMenuStrip
+			// 
+			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemCenterScreen,
+            this.toolStripSeparator1,
+            this.toolStripMenuItemDock,
+            this.toolStripSeparator2,
+            this.toolStripMenuItemExit});
+			this.contextMenuStrip.Name = "contextMenuStrip";
+			this.contextMenuStrip.Size = new System.Drawing.Size(148, 82);
+			// 
+			// toolStripMenuItemCenterScreen
+			// 
+			this.toolStripMenuItemCenterScreen.Name = "toolStripMenuItemCenterScreen";
+			this.toolStripMenuItemCenterScreen.Size = new System.Drawing.Size(147, 22);
+			this.toolStripMenuItemCenterScreen.Text = "Center Screen";
+			this.toolStripMenuItemCenterScreen.Click += new System.EventHandler(this.OnToolStripMenuItemCenterScreenClick);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(144, 6);
+			// 
+			// toolStripMenuItemDock
+			// 
+			this.toolStripMenuItemDock.Name = "toolStripMenuItemDock";
+			this.toolStripMenuItemDock.Size = new System.Drawing.Size(147, 22);
+			this.toolStripMenuItemDock.Text = "Taskbar Dock";
+			this.toolStripMenuItemDock.Click += new System.EventHandler(this.OnToolStripMenuItemDockClick);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
+			// 
+			// toolStripMenuItemExit
+			// 
+			this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
+			this.toolStripMenuItemExit.Size = new System.Drawing.Size(147, 22);
+			this.toolStripMenuItemExit.Text = "Exit Minibar";
+			this.toolStripMenuItemExit.Click += new System.EventHandler(this.OnTabControlCloseClick);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -484,6 +593,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormMain";
+			this.Opacity = 0D;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "adsalesapps";
@@ -495,6 +605,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.superTabControlMain)).EndInit();
 			this.superTabControlMain.ResumeLayout(false);
 			this.superTabControlPanel2.ResumeLayout(false);
+			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -524,12 +635,23 @@
         private DevComponents.DotNetBar.ButtonItem buttonItemScreen5;
         private DevComponents.DotNetBar.ButtonItem buttonItemScreen6;
         private DevComponents.DotNetBar.ItemContainer itemContainer4;
-		private DevComponents.DotNetBar.ColorPickerDropDown colorPickerDropDownInterface;
 		private DevComponents.DotNetBar.ItemContainer itemContainer5;
 		private DevComponents.DotNetBar.CheckBoxItem checkBoxItemLoadAtStartup;
 		private DevComponents.DotNetBar.CheckBoxItem checkBoxItemDocked;
 		private DevComponents.DotNetBar.ItemContainer itemContainer6;
 		private DevComponents.DotNetBar.LabelItem labelItem1;
+		private DevComponents.DotNetBar.ItemContainer itemContainer7;
+		private DevComponents.DotNetBar.LabelItem labelItem2;
+		private DevComponents.DotNetBar.ButtonItem buttonItemColorSelector;
+		private DevComponents.DotNetBar.ColorPickerDropDown colorPickerDropDownAccent;
+		private DevComponents.DotNetBar.ColorPickerDropDown colorPickerDropDownText;
+		private System.Windows.Forms.NotifyIcon notifyIcon;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCenterScreen;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDock;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
 	}
 }
 

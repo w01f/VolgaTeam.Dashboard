@@ -5,11 +5,10 @@ using System.IO;
 using System.Windows.Forms;
 using Asa.Bar.App.Configuration;
 using DevComponents.DotNetBar;
-using DevComponents.DotNetBar.Metro;
 
 namespace Asa.Bar.App.Forms
 {
-	public partial class FormLogin : MetroForm
+	public partial class FormLogin : Form
 	{
 		private const string ErrorTextFormat = "<span align=\"center\"><font color=\"#ED1C24\">{0}</font></span>";
 
@@ -21,7 +20,11 @@ namespace Asa.Bar.App.Forms
 
 			var logoPath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "app_logo.png");
 			if (File.Exists(logoPath))
-				pictureBoxMainLogo.Image = Image.FromFile(logoPath);
+			{
+				var tempPath = Path.GetTempFileName();
+				File.Copy(logoPath, tempPath, true);
+				pictureBoxMainLogo.Image = Image.FromFile(tempPath);
+			}
 
 			if ((CreateGraphics()).DpiX > 96)
 			{

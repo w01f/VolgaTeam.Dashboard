@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,6 +11,7 @@ using Asa.Bar.App.Configuration;
 using Asa.Bar.App.ExternalProcesses;
 using Asa.Bar.App.Forms;
 using Asa.Common.Core.Enums;
+using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -16,8 +19,6 @@ namespace Asa.Bar.App
 {
 	class AppManager
 	{
-		protected FormMain MainForm { get; }
-
 		public SettingsManager Settings { get; }
 
 		public ActivityManager ActivityManager { get; private set; }
@@ -37,8 +38,6 @@ namespace Asa.Bar.App
 			ExternalProcessesWatcher = new ExternalProcessesWatcher();
 			MonitorConfigurationWatcher = new MonitorConfigurationWatcher();
 			WebBrowserManager = new WebBrowserManager();
-
-			MainForm = new FormMain();
 		}
 
 		public void RunApplication()
@@ -112,13 +111,43 @@ namespace Asa.Bar.App
 
 			if (FileStorageManager.Instance.Activated)
 			{
-				if (Settings.MaintenanceConfig.MaintenanceEnabled)
+				if (Settings.PatchUpdaterConfig.RunUpdater && (!Settings.UserSettings.LastPatchUpdate.HasValue || Settings.UserSettings.LastPatchUpdate.Value < Settings.PatchUpdaterConfig.PatchDate))
 				{
-					if(Settings.MaintenanceConfig.ShowInfo)
+					var confirm = true;
+					if (Settings.PatchUpdaterConfig.ShowUpdaterInfo && !String.IsNullOrEmpty(Settings.PatchUpdaterConfig.UpdaterText))
+					{
+						confirm = PopupMessageHelper.Instance.ShowWarningQuestion(
+									  String.Format("{0}. Do you want to apply?", Settings.PatchUpdaterConfig.UpdaterText)) == DialogResult.Yes;
+					}
+					if (confirm)
+					{
+						Settings.UserSettings.LastPatchUpdate = Settings.PatchUpdaterConfig.PatchDate;
+						Settings.UserSettings.Save();
+
+						var updaterExecutablePath = Path.Combine(ResourceManager.Instance.AppRootFolderPath, "PatchUpdater.exe");
+						var pathRootFolder = new StorageDirectory(ResourceManager.Instance.SpecialAppsFolder.RelativePathParts.Merge(new[] { "special_apps", "sfx_updater" }));
+						if (File.Exists(updaterExecutablePath))
+						{
+							try
+							{
+								var process = new Process();
+								process.StartInfo.FileName = updaterExecutablePath;
+								process.StartInfo.Arguments = String.Format("\"{0}\"", pathRootFolder.LocalPath);
+								process.Start();
+							}
+							catch
+							{
+							}
+						}
+					}
+				}
+				else if (Settings.MaintenanceConfig.MaintenanceEnabled)
+				{
+					if (Settings.MaintenanceConfig.ShowInfo)
 						Application.Run(new FormMaintenance());
 				}
 				else
-					Application.Run(MainForm);
+					Application.Run(new FormMain());
 			}
 			else
 				PopupMessageHelper.Instance.ShowWarning("This app is not activated. Contact adSALESapps Support (help@adSALESapps.com)");

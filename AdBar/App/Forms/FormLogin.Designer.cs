@@ -45,6 +45,7 @@
 			this.pnInfo = new System.Windows.Forms.Panel();
 			this.circularProgress = new DevComponents.DotNetBar.Controls.CircularProgress();
 			this.labelXSiteCheck = new DevComponents.DotNetBar.LabelX();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPasswordLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxMainLogo)).BeginInit();
@@ -55,7 +56,7 @@
 			// 
 			this.labelXMainTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelXMainTitle.BackColor = System.Drawing.Color.White;
+			this.labelXMainTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -64,7 +65,7 @@
 			this.labelXMainTitle.ForeColor = System.Drawing.Color.Black;
 			this.labelXMainTitle.Location = new System.Drawing.Point(154, 12);
 			this.labelXMainTitle.Name = "labelXMainTitle";
-			this.labelXMainTitle.Size = new System.Drawing.Size(367, 47);
+			this.labelXMainTitle.Size = new System.Drawing.Size(400, 47);
 			this.labelXMainTitle.TabIndex = 1;
 			this.labelXMainTitle.Text = "<i>Enter your account info in the fields below.<br/>This is the only time you wil" +
     "l be asked for this information.</i>";
@@ -83,7 +84,7 @@
 			this.textBoxXPassword.ForeColor = System.Drawing.Color.Black;
 			this.textBoxXPassword.Location = new System.Drawing.Point(171, 185);
 			this.textBoxXPassword.Name = "textBoxXPassword";
-			this.textBoxXPassword.Size = new System.Drawing.Size(350, 22);
+			this.textBoxXPassword.Size = new System.Drawing.Size(383, 22);
 			this.textBoxXPassword.TabIndex = 2;
 			this.textBoxXPassword.UseSystemPasswordChar = true;
 			this.textBoxXPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnEnterKeyPress);
@@ -92,7 +93,7 @@
 			// 
 			this.labelXUserDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelXUserDescription.BackColor = System.Drawing.Color.White;
+			this.labelXUserDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -101,14 +102,14 @@
 			this.labelXUserDescription.ForeColor = System.Drawing.Color.Black;
 			this.labelXUserDescription.Location = new System.Drawing.Point(171, 116);
 			this.labelXUserDescription.Name = "labelXUserDescription";
-			this.labelXUserDescription.Size = new System.Drawing.Size(350, 19);
+			this.labelXUserDescription.Size = new System.Drawing.Size(383, 19);
 			this.labelXUserDescription.TabIndex = 9;
 			this.labelXUserDescription.Text = "<font color=\"#8C8C8C\">(Type your username or email address here)</font>";
 			// 
 			// labelXUserTitle
 			// 
 			this.labelXUserTitle.AutoSize = true;
-			this.labelXUserTitle.BackColor = System.Drawing.Color.White;
+			this.labelXUserTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -135,7 +136,7 @@
 			this.textBoxXUser.ForeColor = System.Drawing.Color.Black;
 			this.textBoxXUser.Location = new System.Drawing.Point(171, 88);
 			this.textBoxXUser.Name = "textBoxXUser";
-			this.textBoxXUser.Size = new System.Drawing.Size(350, 22);
+			this.textBoxXUser.Size = new System.Drawing.Size(383, 22);
 			this.textBoxXUser.TabIndex = 1;
 			this.textBoxXUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnEnterKeyPress);
 			// 
@@ -143,7 +144,7 @@
 			// 
 			this.labelXPasswordDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelXPasswordDescription.BackColor = System.Drawing.Color.White;
+			this.labelXPasswordDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -152,7 +153,7 @@
 			this.labelXPasswordDescription.ForeColor = System.Drawing.Color.Black;
 			this.labelXPasswordDescription.Location = new System.Drawing.Point(171, 213);
 			this.labelXPasswordDescription.Name = "labelXPasswordDescription";
-			this.labelXPasswordDescription.Size = new System.Drawing.Size(350, 19);
+			this.labelXPasswordDescription.Size = new System.Drawing.Size(383, 19);
 			this.labelXPasswordDescription.TabIndex = 13;
 			this.labelXPasswordDescription.Text = "<font color=\"#8C8C8C\">(Type your account password here)</font>";
 			this.labelXPasswordDescription.UseMnemonic = false;
@@ -160,7 +161,7 @@
 			// labelXPasswordTitle
 			// 
 			this.labelXPasswordTitle.AutoSize = true;
-			this.labelXPasswordTitle.BackColor = System.Drawing.Color.White;
+			this.labelXPasswordTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -178,7 +179,7 @@
 			this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOK.Location = new System.Drawing.Point(312, 325);
+			this.buttonXOK.Location = new System.Drawing.Point(345, 360);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(95, 33);
 			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -192,7 +193,7 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(426, 325);
+			this.buttonXCancel.Location = new System.Drawing.Point(459, 360);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(95, 33);
 			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -201,7 +202,7 @@
 			// 
 			// pictureBoxPasswordLogo
 			// 
-			this.pictureBoxPasswordLogo.BackColor = System.Drawing.Color.White;
+			this.pictureBoxPasswordLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			this.pictureBoxPasswordLogo.ForeColor = System.Drawing.Color.Black;
 			this.pictureBoxPasswordLogo.Image = global::Asa.Bar.App.Properties.Resources.PasswordLogo;
 			this.pictureBoxPasswordLogo.Location = new System.Drawing.Point(12, 185);
@@ -213,7 +214,7 @@
 			// 
 			// pictureBoxUserLogo
 			// 
-			this.pictureBoxUserLogo.BackColor = System.Drawing.Color.White;
+			this.pictureBoxUserLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			this.pictureBoxUserLogo.ForeColor = System.Drawing.Color.Black;
 			this.pictureBoxUserLogo.Image = global::Asa.Bar.App.Properties.Resources.UserLogo;
 			this.pictureBoxUserLogo.Location = new System.Drawing.Point(12, 88);
@@ -225,7 +226,7 @@
 			// 
 			// pictureBoxMainLogo
 			// 
-			this.pictureBoxMainLogo.BackColor = System.Drawing.Color.White;
+			this.pictureBoxMainLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			this.pictureBoxMainLogo.ForeColor = System.Drawing.Color.Black;
 			this.pictureBoxMainLogo.Image = global::Asa.Bar.App.Properties.Resources.LoginLogo;
 			this.pictureBoxMainLogo.Location = new System.Drawing.Point(12, 12);
@@ -238,7 +239,7 @@
 			// labelXForgotPassword
 			// 
 			this.labelXForgotPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.labelXForgotPassword.BackColor = System.Drawing.Color.White;
+			this.labelXForgotPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -246,7 +247,7 @@
 			this.labelXForgotPassword.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.labelXForgotPassword.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelXForgotPassword.ForeColor = System.Drawing.Color.Black;
-			this.labelXForgotPassword.Location = new System.Drawing.Point(12, 335);
+			this.labelXForgotPassword.Location = new System.Drawing.Point(12, 370);
 			this.labelXForgotPassword.Name = "labelXForgotPassword";
 			this.labelXForgotPassword.Size = new System.Drawing.Size(255, 23);
 			this.labelXForgotPassword.TabIndex = 16;
@@ -256,7 +257,7 @@
 			// 
 			// labelXErrorText
 			// 
-			this.labelXErrorText.BackColor = System.Drawing.Color.White;
+			this.labelXErrorText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -265,7 +266,7 @@
 			this.labelXErrorText.ForeColor = System.Drawing.Color.Black;
 			this.labelXErrorText.Location = new System.Drawing.Point(0, 0);
 			this.labelXErrorText.Name = "labelXErrorText";
-			this.labelXErrorText.Size = new System.Drawing.Size(509, 36);
+			this.labelXErrorText.Size = new System.Drawing.Size(542, 36);
 			this.labelXErrorText.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.labelXErrorText.SymbolColor = System.Drawing.Color.Red;
 			this.labelXErrorText.TabIndex = 17;
@@ -281,9 +282,9 @@
 			this.pnInfo.Controls.Add(this.circularProgress);
 			this.pnInfo.Controls.Add(this.labelXErrorText);
 			this.pnInfo.ForeColor = System.Drawing.Color.Black;
-			this.pnInfo.Location = new System.Drawing.Point(12, 286);
+			this.pnInfo.Location = new System.Drawing.Point(12, 321);
 			this.pnInfo.Name = "pnInfo";
-			this.pnInfo.Size = new System.Drawing.Size(509, 36);
+			this.pnInfo.Size = new System.Drawing.Size(542, 36);
 			this.pnInfo.TabIndex = 18;
 			// 
 			// circularProgress
@@ -301,7 +302,7 @@
 			this.circularProgress.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot;
 			this.circularProgress.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
 			this.circularProgress.ProgressTextFormat = "";
-			this.circularProgress.Size = new System.Drawing.Size(509, 36);
+			this.circularProgress.Size = new System.Drawing.Size(542, 36);
 			this.circularProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
 			this.circularProgress.TabIndex = 18;
 			this.circularProgress.Visible = false;
@@ -309,7 +310,7 @@
 			// labelXSiteCheck
 			// 
 			this.labelXSiteCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.labelXSiteCheck.BackColor = System.Drawing.Color.White;
+			this.labelXSiteCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			// 
 			// 
 			// 
@@ -317,18 +318,24 @@
 			this.labelXSiteCheck.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.labelXSiteCheck.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelXSiteCheck.ForeColor = System.Drawing.Color.Black;
-			this.labelXSiteCheck.Location = new System.Drawing.Point(12, 262);
+			this.labelXSiteCheck.Location = new System.Drawing.Point(12, 297);
 			this.labelXSiteCheck.Name = "labelXSiteCheck";
 			this.labelXSiteCheck.Size = new System.Drawing.Size(509, 23);
 			this.labelXSiteCheck.TabIndex = 19;
 			this.labelXSiteCheck.Text = "I need to check my account at:<a href=\"{0}\">{0}</a>";
 			this.labelXSiteCheck.MarkupLinkClick += new DevComponents.DotNetBar.MarkupLinkClickEventHandler(this.OnUrlLabelClick);
 			// 
+			// styleManager
+			// 
+			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
+			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
+			// 
 			// FormLogin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(533, 370);
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(566, 405);
 			this.Controls.Add(this.labelXSiteCheck);
 			this.Controls.Add(this.pnInfo);
 			this.Controls.Add(this.labelXForgotPassword);
@@ -346,7 +353,6 @@
 			this.Controls.Add(this.pictureBoxMainLogo);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
@@ -384,5 +390,6 @@
 		private System.Windows.Forms.Panel pnInfo;
 		private DevComponents.DotNetBar.Controls.CircularProgress circularProgress;
 		private DevComponents.DotNetBar.LabelX labelXSiteCheck;
+		private DevComponents.DotNetBar.StyleManager styleManager;
 	}
 }

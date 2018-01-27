@@ -78,17 +78,22 @@ namespace Asa.Common.Core.Helpers
 			};
 		}
 
-		public async Task Init()
+		public async Task Init(bool forceUpdateMode = false)
 		{
 			_versionFile = new ConfigFile(new[] { IncomingFolderName, AppProfileManager.Instance.AppName, "version.txt" });
 			await InitCredentials();
 			SiteCredentialsManager.Instance.Init();
 			if (Activated)
 			{
+
 				if (IsBlockingProcessRunning())
 					DataState = DataActualityState.Updated;
 				else
+				{
 					await CheckDataSate();
+					if (DataState == DataActualityState.Updated && forceUpdateMode)
+						DataState = DataActualityState.Outdated;
+				}
 			}
 			if (Activated)
 				Authorize();

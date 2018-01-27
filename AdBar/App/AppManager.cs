@@ -40,7 +40,7 @@ namespace Asa.Bar.App
 			WebBrowserManager = new WebBrowserManager();
 		}
 
-		public void RunApplication()
+		public void RunApplication(bool forceUpdateMode)
 		{
 			bool stopRun = false;
 
@@ -75,7 +75,7 @@ namespace Asa.Bar.App
 
 			FormStart.ShowProgress();
 			FormStart.SetTitle("Connecting to adSALEScloud…");
-			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
+			var thread = new Thread(() => AsyncHelper.RunSync(() => FileStorageManager.Instance.Init(forceUpdateMode)));
 			thread.Start();
 			while (thread.IsAlive)
 				Application.DoEvents();

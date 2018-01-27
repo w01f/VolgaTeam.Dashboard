@@ -26,7 +26,7 @@ namespace Asa.Dashboard
 		public delegate void EmptyParametersDelegate();
 		#endregion
 
-		public HelpManager HelpManager { get; private set; }
+		public HelpManager HelpManager { get; }
 		public ActivityManager ActivityManager { get; private set; }
 		public PowerPointManager<DashboardPowerPointProcessor> PowerPointManager { get; }
 
@@ -92,7 +92,7 @@ namespace Asa.Dashboard
 
 			FormStart.ShowProgress();
 			FormStart.SetTitle("Connecting to adSALEScloud…");
-			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
+			var thread = new Thread(() => AsyncHelper.RunSync(() => FileStorageManager.Instance.Init()));
 			thread.Start();
 			while (thread.IsAlive)
 				Application.DoEvents();

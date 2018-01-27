@@ -12,8 +12,10 @@ namespace Asa.Bar.App
 		/// Punto de entrada principal para la aplicación.
 		/// </summary>
 		[STAThread]
-		static void Main()
+		static void Main(string[] args)
 		{
+			var forceUpadteMode = args != null && args.Length > 0 && args[0]?.ToLower() == "update";
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
@@ -27,7 +29,7 @@ namespace Asa.Bar.App
 				foreach (var p in Process.GetProcessesByName(c.ProcessName).Where(p => p.Id != c.Id))
 					p.Kill();
 			}
-			AppManager.Instance.RunApplication();
+			AppManager.Instance.RunApplication(forceUpadteMode);
 			GC.KeepAlive(mutex);
 		}
 	}

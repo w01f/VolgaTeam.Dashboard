@@ -90,7 +90,7 @@ namespace Asa.SlideTemplateViewer
 
 			FormStart.ShowProgress();
 			FormStart.SetTitle("Connecting to adSALEScloud…");
-			var thread = new Thread(() => AsyncHelper.RunSync(FileStorageManager.Instance.Init));
+			var thread = new Thread(() => AsyncHelper.RunSync(() => FileStorageManager.Instance.Init()));
 			thread.Start();
 			while (thread.IsAlive)
 				Application.DoEvents();

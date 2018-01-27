@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace Asa.Media.Controls
 		public RibbonTabItem TabOptions { get; set; }
 		public RibbonTabItem TabSolutions { get; set; }
 		public RibbonTabItem TabSlides { get; set; }
-		public RibbonTabItem TabBrowser { get; set; }
+		public List<RibbonTabItem> BrowserTabs { get; } = new List<RibbonTabItem>();
 
 		private Controller()
 		{
@@ -109,7 +110,6 @@ namespace Asa.Media.Controls
 				TabGallery1,
 				TabGallery2,
 				TabRateCard,
-				TabBrowser
 			})
 				tabPage.Visible = false;
 
@@ -565,10 +565,6 @@ namespace Asa.Media.Controls
 		public ButtonItem Gallery2Copy { get; set; }
 		public ComboBoxEdit Gallery2Sections { get; set; }
 		public ComboBoxEdit Gallery2Groups { get; set; }
-		#endregion
-
-		#region Browser
-		public RibbonPanel BrowserPanel { get; set; }
 		#endregion
 
 		#endregion

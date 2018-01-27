@@ -15,17 +15,19 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 	public partial class BrowserContentControl : UserControl, IContentControl
 	{
 		private MediaSiteBundleControl _siteBundleControl;
-
-		public string Identifier => ContentIdentifiers.Browser;
+		public BrowserSettings BrowserSettings { get; }
+		public string Identifier => String.Format("{0}{1}", ContentIdentifiers.Browser, BrowserSettings.Id);
 		public bool IsActive { get; set; }
 		public bool RequreScheduleInfo => false;
 		public bool ShowScheduleInfo => false;
 		public bool RibbonAlwaysCollapsed => true;
-		public RibbonTabItem TabPage => Controller.Instance.TabBrowser;
+		public RibbonTabItem TabPage { get; }
 
-		public BrowserContentControl()
+		public BrowserContentControl(BrowserSettings settings, RibbonTabItem tabPage)
 		{
 			InitializeComponent();
+			BrowserSettings = settings;
+			TabPage = tabPage;
 			Dock = DockStyle.Fill;
 		}
 
@@ -36,13 +38,13 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 
 		public virtual void InitControl()
 		{
-			if (BusinessObjects.Instance.BrowserManager.Sites.Any())
+			if (BrowserSettings.Sites.Any())
 			{
-				_siteBundleControl = new MediaSiteBundleControl();
+				_siteBundleControl = new MediaSiteBundleControl(this);
 				_siteBundleControl.Dock = DockStyle.Fill;
 				Controls.Add(_siteBundleControl);
 
-				_siteBundleControl.LoadSites(BusinessObjects.Instance.BrowserManager.Sites);
+				_siteBundleControl.LoadSites(BrowserSettings.Sites);
 
 				ExternalBrowserManager.Load();
 			}
@@ -51,7 +53,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 		public void ShowControl(ContentOpenEventArgs args = null)
 		{
 			IsActive = true;
-			if (!BusinessObjects.Instance.BrowserManager.Sites.Any()) return;
+			if (!BrowserSettings.Sites.Any()) return;
 
 			_siteBundleControl.UpdateMainStatusBarInfo();
 			LoadUrlActionButtons();

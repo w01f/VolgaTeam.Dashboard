@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Asa.Business.Media.Entities.NonPersistent.Schedule;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
@@ -111,11 +112,22 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 		{
 			foreach (var tabPageConfig in BusinessObjects.Instance.RibbonTabPageManager.RibbonTabPageSettings)
 			{
-				var contentEditControl = CreateContentEditor(tabPageConfig.Id);
-				if (contentEditControl == null) continue;
-				contentEditControl.TabPage.Text = tabPageConfig.Name;
-				contentEditControl.TabPage.Visible = true;
-				ContentControls.Add(contentEditControl);
+				if (tabPageConfig.Id.StartsWith(ContentIdentifiers.Browser, StringComparison.OrdinalIgnoreCase))
+				{
+					var browserControl = CreateBrowser(tabPageConfig.Id);
+					if (browserControl == null) continue;
+					browserControl.TabPage.Text = tabPageConfig.Name;
+					browserControl.TabPage.Visible = true;
+					ContentControls.Add(browserControl);
+				}
+				else
+				{
+					var contentEditControl = CreateContentEditor(tabPageConfig.Id);
+					if (contentEditControl == null) continue;
+					contentEditControl.TabPage.Text = tabPageConfig.Name;
+					contentEditControl.TabPage.Visible = true;
+					ContentControls.Add(contentEditControl);
+				}
 			}
 			ContentControls.ForEach(c => c.InitMetaData());
 			ContentEditManager<MediaScheduleChangeInfo>.Init(this);
@@ -165,11 +177,26 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 					return new MediaGallery2Control();
 				case ContentIdentifiers.RateCard:
 					return new MediaRateCardControl();
-				case ContentIdentifiers.Browser:
-					return new BrowserContentControl();
 				default:
 					return null;
 			}
+		}
+
+		private BrowserContentControl CreateBrowser(string id)
+		{
+			var browserId = id.Replace(ContentIdentifiers.Browser, String.Empty);
+			var browserSettings = BusinessObjects.Instance.BrowserManager.Browsers.FirstOrDefault(settings => String.Equals(settings.Id, browserId, StringComparison.OrdinalIgnoreCase));
+			if (browserSettings == null) return null;
+
+			var browserPanel = new RibbonPanel();
+			browserPanel.ColorSchemeStyle = eDotNetBarStyle.StyleManagerControlled;
+			browserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			ContentRibbon.Controls.Add(browserPanel);
+			var browserTabPage = new RibbonTabItem();
+			browserTabPage.Panel = browserPanel;
+
+			var browserControl = new BrowserContentControl(browserSettings, browserTabPage);
+			return browserControl;
 		}
 
 		public void OnSaveSchedule(object sender, EventArgs e)

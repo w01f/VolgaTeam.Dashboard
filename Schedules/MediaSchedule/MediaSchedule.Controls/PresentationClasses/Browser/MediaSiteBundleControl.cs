@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using Asa.Browser.Controls.Controls;
+using Asa.Business.Media.Configuration;
 using Asa.Common.Core.OfficeInterops;
 using Asa.Common.GUI.Floater;
 using Asa.Media.Controls.BusinessClasses.Managers;
@@ -12,15 +14,22 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 {
 	class MediaSiteBundleControl : SiteBundleControl
 	{
+		private readonly BrowserContentControl _browserControl;
+
 		public override PowerPointSingletonProcessor PowerPointSingleton
 			=> BusinessObjects.Instance.PowerPointManager.Processor;
 
 		public override Form MainForm => Controller.Instance.FormMain;
-		public override Image SplashLogo => BusinessObjects.Instance.ImageResourcesManager.BrowserSplash ?? base.SplashLogo;
+		public override Image SplashLogo { get; }
 
-		public MediaSiteBundleControl()
+		public MediaSiteBundleControl(BrowserContentControl browserControl)
 		{
 			buttonItemFloater.Visible = false;
+
+			_browserControl = browserControl;
+
+			var splashLogoFile = Path.Combine(ResourceManager.Instance.ImageResourcesFolder.LocalPath, String.Format("eo_splash_{0}.png", _browserControl.BrowserSettings.Id));
+			SplashLogo = File.Exists(splashLogoFile) ? Image.FromFile(splashLogoFile) : base.SplashLogo;
 
 			ButtonNavigationBack.Image = BusinessObjects.Instance.ImageResourcesManager.BrowserNavigationBack ??
 										 ButtonNavigationBack.Image;
@@ -55,7 +64,7 @@ namespace Asa.Media.Controls.PresentationClasses.Browser
 			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Clear();
 
 			var titleLabel = new LabelItem();
-			titleLabel.Text = BusinessObjects.Instance.BrowserManager.StatusBarTitle;
+			titleLabel.Text = _browserControl.BrowserSettings.StatusBarTitle;
 			if (ContentStatusBarManager.Instance.TextColor.HasValue)
 				titleLabel.ForeColor = ContentStatusBarManager.Instance.TextColor.Value;
 			ContentStatusBarManager.Instance.StatusBarMainItemsContainer.SubItems.Add(titleLabel);

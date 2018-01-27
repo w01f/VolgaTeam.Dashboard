@@ -53,7 +53,6 @@
 			this.comboBoxEditDecisionMaker = new Asa.Common.GUI.Common.ComboBoxListEdit();
 			this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
 			this.controlContainerItemDecisionMaker = new DevComponents.DotNetBar.ControlContainerItem();
-			this.ribbonPanelBrowser = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelProgramSchedule = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarProgramScheduleSpecialButtons = new DevComponents.DotNetBar.RibbonBar();
 			this.ribbonBarProgramScheduleSettings = new DevComponents.DotNetBar.RibbonBar();
@@ -230,7 +229,6 @@
 			this.ribbonTabItemOptions = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSolutions = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemBrowser = new DevComponents.DotNetBar.RibbonTabItem();
 			this.buttonItemExpand = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemCollapse = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemPin = new DevComponents.DotNetBar.ButtonItem();
@@ -313,7 +311,6 @@
 			this.ribbonControl.CanCustomize = false;
 			this.ribbonControl.CaptionVisible = true;
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-			this.ribbonControl.Controls.Add(this.ribbonPanelBrowser);
 			this.ribbonControl.Controls.Add(this.ribbonPanelProgramSchedule);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
 			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar1);
@@ -344,7 +341,6 @@
             this.ribbonTabItemOptions,
             this.ribbonTabItemSolutions,
             this.ribbonTabItemSlides,
-            this.ribbonTabItemBrowser,
             this.buttonItemExpand,
             this.buttonItemCollapse,
             this.buttonItemPin});
@@ -759,30 +755,6 @@
 			this.controlContainerItemDecisionMaker.Control = this.comboBoxEditDecisionMaker;
 			this.controlContainerItemDecisionMaker.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
 			this.controlContainerItemDecisionMaker.Name = "controlContainerItemDecisionMaker";
-			// 
-			// ribbonPanelBrowser
-			// 
-			this.ribbonPanelBrowser.AutoSize = true;
-			this.ribbonPanelBrowser.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelBrowser.Location = new System.Drawing.Point(0, 54);
-			this.ribbonPanelBrowser.Name = "ribbonPanelBrowser";
-			this.ribbonPanelBrowser.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-			this.ribbonPanelBrowser.Size = new System.Drawing.Size(1040, 102);
-			// 
-			// 
-			// 
-			this.ribbonPanelBrowser.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelBrowser.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelBrowser.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelBrowser.TabIndex = 24;
-			this.ribbonPanelBrowser.Visible = false;
 			// 
 			// ribbonPanelProgramSchedule
 			// 
@@ -4039,12 +4011,6 @@
 			this.ribbonTabItemSlides.Panel = this.ribbonPanelSlides;
 			this.ribbonTabItemSlides.Text = "Slides";
 			// 
-			// ribbonTabItemBrowser
-			// 
-			this.ribbonTabItemBrowser.Name = "ribbonTabItemBrowser";
-			this.ribbonTabItemBrowser.Panel = this.ribbonPanelBrowser;
-			this.ribbonTabItemBrowser.Text = "Browser";
-			// 
 			// buttonItemExpand
 			// 
 			this.buttonItemExpand.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemExpand.Image")));
@@ -4658,8 +4624,6 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemExpand;
 		private DevComponents.DotNetBar.ButtonItem buttonItemCollapse;
 		private DevComponents.DotNetBar.ButtonItem buttonItemPin;
-		private DevComponents.DotNetBar.RibbonPanel ribbonPanelBrowser;
-		private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemBrowser;
 		private DevComponents.DotNetBar.ControlContainerItem controlContainerItemPresentationDate;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarOptionsSettings;
 		private DevComponents.DotNetBar.ButtonItem buttonItemOptionsSettings;

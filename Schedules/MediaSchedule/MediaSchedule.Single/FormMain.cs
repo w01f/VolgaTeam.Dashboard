@@ -226,7 +226,6 @@ namespace Asa.Media.Single
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
 			Controller.Instance.TabSolutions = ribbonTabItemSolutions;
 			Controller.Instance.TabSlides = ribbonTabItemSlides;
-			Controller.Instance.TabBrowser = ribbonTabItemBrowser;
 
 			ContentStatusBarManager.Instance.StatusBar = barBottom;
 			ContentStatusBarManager.Instance.StatusBarMainItemsContainer = itemContainerStatusBarMainContentInfo;
@@ -407,10 +406,6 @@ namespace Asa.Media.Single
 			Controller.Instance.RateCardPanel = ribbonPanelRateCard;
 			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
-			#endregion
-
-			#region Browser
-			Controller.Instance.BrowserPanel = ribbonPanelBrowser;
 			#endregion
 
 			#endregion

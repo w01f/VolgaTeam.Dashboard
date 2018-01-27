@@ -10,14 +10,11 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 {
 	public class BrowserManager
 	{
-		public string RibbonBarTitle { get; private set; }
-		public string SiteListTitle { get; private set; }
-		public string StatusBarTitle { get; private set; }
-		public List<SiteSettings> Sites { get; }
+		public List<BrowserSettings> Browsers { get; }
 
 		public BrowserManager()
 		{
-			Sites = new List<SiteSettings>();
+			Browsers = new List<BrowserSettings>();
 		}
 
 		public void Init(StorageFile settingsFile)
@@ -26,11 +23,28 @@ namespace Asa.Media.Controls.BusinessClasses.Managers
 			var document = new XmlDocument();
 			document.Load(settingsFile.LocalPath);
 
-			RibbonBarTitle = document.SelectSingleNode(@"//Root/Group1Labels/Group1")?.InnerText ?? "adSALESapps.com";
-			SiteListTitle = document.SelectSingleNode(@"//Root/Group1Labels/ComboHeader")?.InnerText ?? "Sites";
-			StatusBarTitle = document.SelectSingleNode(@"//Root/Footer")?.InnerText ?? "Sales Cloud";
+			foreach (var browserNode in document.SelectNodes(@"//Root/Browser").OfType<XmlNode>())
+			{
+				var browserSettings = new BrowserSettings(browserNode);
+				Browsers.Add(browserSettings);
+			}
+		}
+	}
 
-			foreach (var siteNode in document.SelectNodes(@"//Root/Site").OfType<XmlNode>())
+	public class BrowserSettings
+	{
+		public string Id { get; }
+		public string StatusBarTitle { get; }
+		public List<SiteSettings> Sites { get; }
+
+		public BrowserSettings(XmlNode rootNode)
+		{
+			Sites = new List<SiteSettings>();
+
+			Id = rootNode.SelectSingleNode(@"./Id")?.InnerText;
+			StatusBarTitle = rootNode.SelectSingleNode(@"./Footer")?.InnerText ?? "Sales Cloud";
+
+			foreach (var siteNode in rootNode.SelectNodes(@"./Site").OfType<XmlNode>())
 			{
 				var siteSettings = new SiteSettings();
 				switch (siteNode.SelectSingleNode("./Type")?.InnerText.ToLower())

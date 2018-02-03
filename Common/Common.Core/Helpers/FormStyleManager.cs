@@ -8,14 +8,14 @@ namespace Asa.Common.Core.Helpers
 	{
 		private readonly StorageFile _contentFile;
 
+		public MainFormStyleConfiguration Style { get; }
+
 		public FormStyleManager(StorageFile contentFile)
 		{
 			_contentFile = contentFile;
 			Style = new MainFormStyleConfiguration();
 			LoadConfig();
 		}
-
-		public MainFormStyleConfiguration Style { get; }
 
 		private void LoadConfig()
 		{

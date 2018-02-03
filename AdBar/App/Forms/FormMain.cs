@@ -396,7 +396,7 @@ namespace Asa.Bar.App.Forms
 					tab.TabColor.Default.Disabled.Text =
 						tab.TabColor.Default.MouseOver.Text =
 							tab.TabColor.Default.Selected.Text =
-								tab.TabColor.Default.SelectedMouseOver.Text = AppManager.Instance.Settings.UserSettings.TextColor;
+								tab.TabColor.Default.SelectedMouseOver.Text = color;
 
 			if (!saveSettings) return;
 

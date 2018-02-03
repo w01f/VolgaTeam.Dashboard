@@ -29,6 +29,7 @@ namespace Asa.SlideTemplateViewer
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
@@ -49,8 +50,8 @@ namespace Asa.SlideTemplateViewer
 			this.buttonItemQatFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemQatHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.styleManager = new DevComponents.DotNetBar.StyleManager();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.barBottom = new DevComponents.DotNetBar.Bar();
 			this.itemContainerStatusBarMainInfo = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemAppTitle = new DevComponents.DotNetBar.LabelItem();

@@ -76,17 +76,17 @@ namespace Asa.Bar.App.Configuration
 			FloaterBackColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<UndockedCollapsedBackColor>(.*)</UndockedCollapsedBackColor>", configContent) ?? "#228B22");
 			FloaterBorderColor = ColorTranslator.FromHtml(ConfigHelper.GetValueRegex("<UndockedCollapsedBorderColor>(.*)</UndockedCollapsedBorderColor>", configContent) ?? "#228B22");
 
-			if (!AppManager.Instance.Settings.UserSettings.DefaultAccentColor.HasValue || AppManager.Instance.Settings.UserSettings.DefaultAccentColor.Value.Color != AccentColor)
+			if ((!AppManager.Instance.Settings.UserSettings.DefaultAccentColor.HasValue || AppManager.Instance.Settings.UserSettings.DefaultAccentColor.Value.Color != AccentColor) ||
+				(!AppManager.Instance.Settings.UserSettings.DefaultTextColor.HasValue || AppManager.Instance.Settings.UserSettings.DefaultTextColor.Value.Color != TextColor) ||
+				(!AppManager.Instance.Settings.UserSettings.DefaultRibbonBarTextColor.HasValue || AppManager.Instance.Settings.UserSettings.DefaultRibbonBarTextColor.Value != RibbonBarTextColor) ||
+				(!AppManager.Instance.Settings.UserSettings.DefaultRibbonBarHoverTextColor.HasValue || AppManager.Instance.Settings.UserSettings.DefaultRibbonBarHoverTextColor.Value != RibbonBarTextHoverColor))
 			{
 				AppManager.Instance.Settings.UserSettings.DefaultAccentColor = AccentColor;
 				AppManager.Instance.Settings.UserSettings.UserAccentColor = null;
-				AppManager.Instance.Settings.UserSettings.Save();
-			}
-
-			if (!AppManager.Instance.Settings.UserSettings.DefaultTextColor.HasValue || AppManager.Instance.Settings.UserSettings.DefaultTextColor.Value.Color != TextColor)
-			{
 				AppManager.Instance.Settings.UserSettings.DefaultTextColor = TextColor;
 				AppManager.Instance.Settings.UserSettings.UserTextColor = null;
+				AppManager.Instance.Settings.UserSettings.DefaultRibbonBarTextColor = RibbonBarTextColor;
+				AppManager.Instance.Settings.UserSettings.DefaultRibbonBarHoverTextColor = RibbonBarTextHoverColor;
 				AppManager.Instance.Settings.UserSettings.Save();
 			}
 

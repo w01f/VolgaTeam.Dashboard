@@ -23,6 +23,8 @@ namespace Asa.Bar.App.Configuration
 
 		public ColorEx? DefaultAccentColor { get; set; }
 		public ColorEx? DefaultTextColor { get; set; }
+		public ColorEx? DefaultRibbonBarTextColor { get; set; }
+		public ColorEx? DefaultRibbonBarHoverTextColor { get; set; }
 
 		public ColorEx? UserAccentColor { get; set; }
 		public ColorEx? UserTextColor { get; set; }

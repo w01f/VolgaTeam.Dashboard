@@ -123,7 +123,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_allowToSave) return;
 
-			var multiplierText = (comboBoxEditTabCCombo1.EditValue as ComboboxItem)?.Value ?? String.Empty;
+			var multiplierText = (comboBoxEditTabCCombo1.EditValue as ListDataItem)?.Value ?? String.Empty;
 
 			var sourceValue = 0.0;
 			try
@@ -144,7 +144,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			try
 			{
 				householdPercent =
-					Double.Parse((comboBoxEditTabCCombo4.EditValue as ComboboxItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
+					Double.Parse((comboBoxEditTabCCombo4.EditValue as ListDataItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
 						NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 			}
 			catch
@@ -155,7 +155,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			try
 			{
 				sharePercent =
-					Double.Parse((comboBoxEditTabCCombo6.EditValue as ComboboxItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
+					Double.Parse((comboBoxEditTabCCombo6.EditValue as ListDataItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
 						NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 			}
 			catch
@@ -168,14 +168,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			simpleLabelItemTabCFormula1.CustomizationFormText = formula1Value.ToString();
 			simpleLabelItemTabCFormula1.Text = String.Format("{0} {1} x {2} = <b>{3:$#,##0}</b>",
 				(textEditTabCSubheader1.EditValue as String)?.Trim(),
-				(comboBoxEditTabCCombo1.EditValue as ComboboxItem)?.Value?.Trim(),
-				(comboBoxEditTabCCombo4.EditValue as ComboboxItem)?.Value?.Trim(),
+				(comboBoxEditTabCCombo1.EditValue as ListDataItem)?.Value?.Trim(),
+				(comboBoxEditTabCCombo4.EditValue as ListDataItem)?.Value?.Trim(),
 				formula1Value);
 			simpleLabelItemTabCFormula2.Text = String.Format("<b>{0:$#,##0}</b>", formula1Value);
 			simpleLabelItemTabCFormula3.Text = String.Format("Total Estimated Revenue in {0}",
-				(comboBoxEditTabCCombo3.EditValue as ComboboxItem)?.Value?.Trim());
+				(comboBoxEditTabCCombo3.EditValue as ListDataItem)?.Value?.Trim());
 			simpleLabelItemTabCFormula4.Text = String.Format("Share Growth in {0}",
-				(comboBoxEditTabCCombo3.EditValue as ComboboxItem)?.Value?.Trim());
+				(comboBoxEditTabCCombo3.EditValue as ListDataItem)?.Value?.Trim());
 			simpleLabelItemTabCFormula5.CustomizationFormText = formula2Value.ToString();
 			simpleLabelItemTabCFormula5.Text = String.Format("<b>{0:$#,##0}</b> (annually)", formula2Value);
 

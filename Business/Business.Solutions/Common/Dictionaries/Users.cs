@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using Asa.Common.Core.Objects.RemoteStorage;
 
@@ -13,41 +14,39 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 			var document = new XmlDocument();
 			document.Load(dataFile.LocalPath);
 
-			var node = document.SelectSingleNode(@"/Users");
-			if (node == null) return;
-			foreach (XmlNode childNode in node.ChildNodes)
+			var userNodes = document.SelectNodes(@"//Users/User");
+			if (userNodes == null) return;
+			foreach (var userNode in userNodes.OfType<XmlNode>())
 			{
-				if (childNode.Name.Equals("User"))
+				var user = new User();
+				foreach (XmlAttribute attribute in userNode.Attributes)
 				{
-					var user = new User();
-					foreach (XmlAttribute attribute in childNode.Attributes)
+					switch (attribute.Name)
 					{
-						switch (attribute.Name)
-						{
-							case "Station":
-								user.Station = attribute.Value;
-								break;
-							case "FirstName":
-								user.FirstName = attribute.Value;
-								break;
-							case "LastName":
-								user.LastName = attribute.Value;
-								break;
-							case "Phone":
-								user.Phone = attribute.Value;
-								break;
-							case "Email":
-								user.Email = attribute.Value;
-								break;
-							case "IsAdmin":
-								bool tempBool;
-								bool.TryParse(attribute.Value, out tempBool);
-								user.IsAdmin = tempBool;
-								break;
-						}
+						case "FirstName":
+							user.FirstName = attribute.Value;
+							break;
+						case "LastName":
+							user.LastName = attribute.Value;
+							break;
+						case "Phone":
+							user.Phone = attribute.Value;
+							break;
+						case "Email":
+							user.Email = attribute.Value;
+							break;
+						case "IsAdmin":
+							bool.TryParse(attribute.Value, out var tempBool);
+							user.IsAdmin = tempBool;
+							break;
 					}
-					_users.Add(user);
 				}
+
+				var groupNodes = userNode.SelectNodes("./Group");
+				if (groupNodes != null)
+					user.Groups.AddRange(groupNodes.OfType<XmlNode>().Select(node => node.InnerText));
+
+				_users.Add(user);
 			}
 		}
 

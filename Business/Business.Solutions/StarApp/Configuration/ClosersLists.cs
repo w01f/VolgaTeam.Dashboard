@@ -7,15 +7,15 @@ namespace Asa.Business.Solutions.StarApp.Dictionaries
 {
 	public class ClosersLists
 	{
-		public List<SlideHeader> HeadersPartA { get; set; }
-		public List<SlideHeader> HeadersPartB { get; set; }
-		public List<SlideHeader> HeadersPartC { get; set; }
+		public List<ListDataItem> HeadersPartA { get; set; }
+		public List<ListDataItem> HeadersPartB { get; set; }
+		public List<ListDataItem> HeadersPartC { get; set; }
 
 		public ClosersLists()
 		{
-			HeadersPartA = new List<SlideHeader>();
-			HeadersPartB = new List<SlideHeader>();
-			HeadersPartC = new List<SlideHeader>();
+			HeadersPartA = new List<ListDataItem>();
+			HeadersPartB = new List<ListDataItem>();
+			HeadersPartC = new List<ListDataItem>();
 		}
 
 		public void Load(ResourceManager resourceManager)
@@ -32,7 +32,7 @@ namespace Asa.Business.Solutions.StarApp.Dictionaries
 					switch (childNode.Name)
 					{
 						case "SlideHeader":
-							var header = SlideHeader.FromXml(childNode);
+							var header = ListDataItem.FromXml(childNode);
 							if (!String.IsNullOrEmpty(header.Value))
 								HeadersPartA.Add(header);
 							break;
@@ -52,7 +52,7 @@ namespace Asa.Business.Solutions.StarApp.Dictionaries
 					switch (childNode.Name)
 					{
 						case "SlideHeader":
-							var header = SlideHeader.FromXml(childNode);
+							var header = ListDataItem.FromXml(childNode);
 							if (!String.IsNullOrEmpty(header.Value))
 								HeadersPartB.Add(header);
 							break;
@@ -72,7 +72,7 @@ namespace Asa.Business.Solutions.StarApp.Dictionaries
 					switch (childNode.Name)
 					{
 						case "SlideHeader":
-							var header = SlideHeader.FromXml(childNode);
+							var header = ListDataItem.FromXml(childNode);
 							if (!String.IsNullOrEmpty(header.Value))
 								HeadersPartC.Add(header);
 							break;

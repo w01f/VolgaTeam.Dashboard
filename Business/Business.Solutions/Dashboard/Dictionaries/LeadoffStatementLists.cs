@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
+using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Dashboard.Dictionaries
 {
 	public class LeadoffStatementLists
 	{
+		public List<ListDataItem> Headers { get; set; }
+		public List<ListDataItem> Statements { get; set; }
+
 		public LeadoffStatementLists()
 		{
-			Headers = new List<string>();
-			Statements = new List<string>();
+			Headers = new List<ListDataItem>();
+			Statements = new List<ListDataItem>();
 		}
-
-		public List<string> Headers { get; set; }
-		public List<string> Statements { get; set; }
 
 		public void Load(StorageFile dataFile)
 		{
@@ -27,28 +28,10 @@ namespace Asa.Business.Solutions.Dashboard.Dictionaries
 				switch (childNode.Name)
 				{
 					case "SlideHeader":
-						foreach (XmlAttribute attribute in childNode.Attributes)
-						{
-							switch (attribute.Name)
-							{
-								case "Value":
-									if (!string.IsNullOrEmpty(attribute.Value))
-										Headers.Add(attribute.Value);
-									break;
-							}
-						}
+						Headers.Add(ListDataItem.FromXml(childNode));
 						break;
 					case "Statement":
-						foreach (XmlAttribute attribute in childNode.Attributes)
-						{
-							switch (attribute.Name)
-							{
-								case "Value":
-									if (!string.IsNullOrEmpty(attribute.Value))
-										Statements.Add(attribute.Value);
-									break;
-							}
-						}
+						Statements.Add(ListDataItem.FromXml(childNode));
 						break;
 				}
 			}

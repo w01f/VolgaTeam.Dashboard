@@ -3,14 +3,14 @@ using System.Xml;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
 {
-	public class ComboboxItem
+	public class ListDataItem
 	{
 		public string Value { get; set; }
 		public bool IsDefault { get; set; }
 
-		public ComboboxItem()
+		public ListDataItem()
 		{
-			Value = String.Empty;
+			Value = string.Empty;
 			IsDefault = false;
 		}
 
@@ -19,24 +19,23 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 			return Value;
 		}
 
-		public static ComboboxItem FromXml(XmlNode node)
+		public static ListDataItem FromXml(XmlNode node)
 		{
-			var comboboxItem = new ComboboxItem();
+			var listDataItem = new ListDataItem();
 			foreach (XmlAttribute attribute in node.Attributes)
 			{
 				switch (attribute.Name)
 				{
 					case "Value":
-						comboboxItem.Value = attribute.Value;
+						listDataItem.Value = attribute.Value;
 						break;
 					case "IsDefault":
-						bool temp;
-						if (Boolean.TryParse(attribute.Value, out temp))
-							comboboxItem.IsDefault = temp;
+						if (Boolean.TryParse(attribute.Value, out var temp))
+							listDataItem.IsDefault = temp;
 						break;
 				}
 			}
-			return comboboxItem;
+			return listDataItem;
 		}
 	}
 }

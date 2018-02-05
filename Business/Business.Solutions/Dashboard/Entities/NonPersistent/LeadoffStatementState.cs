@@ -2,9 +2,9 @@
 {
 	public class LeadoffStatementState
 	{
-		public bool ShowStatement1 { get; set; }
-		public bool ShowStatement2 { get; set; }
-		public bool ShowStatement3 { get; set; }
+		public bool? ShowStatement1 { get; set; }
+		public bool? ShowStatement2 { get; set; }
+		public bool? ShowStatement3 { get; set; }
 		public string SlideHeader { get; set; }
 		public string Statement1 { get; set; }
 		public string Statement2 { get; set; }

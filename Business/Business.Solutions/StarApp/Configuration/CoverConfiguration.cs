@@ -7,13 +7,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class CoverConfiguration
 	{
-		public List<SlideHeader> HeaderPartAItems { get; }
+		public List<ListDataItem> HeaderPartAItems { get; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public string SubHeader1DefaultValue { get; private set; }
 
 		public CoverConfiguration()
 		{
-			HeaderPartAItems = new List<SlideHeader>();
+			HeaderPartAItems = new List<ListDataItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
 		}
 
@@ -32,7 +32,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP01AHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeaderPartAItems.Add(item);
 							}

@@ -64,6 +64,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
+			comboBoxEditTabBCombo1.EditValue = SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0);
+			comboBoxEditTabBCombo2.EditValue = SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1);
+			comboBoxEditTabBCombo3.EditValue = SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2);
+			comboBoxEditTabBCombo4.EditValue = SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3);
+			comboBoxEditTabBCombo5.EditValue = SlideContainer.StarInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(4);
 			_allowToSave = true;
 
 			LoadPartData();
@@ -115,7 +120,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnSelectedPageChanged(object sender, LayoutTabPageChangedEventArgs e)
 		{
-			if(_allowToSave)
+			if (_allowToSave)
 				ApplyChanges();
 			LoadPartData();
 		}

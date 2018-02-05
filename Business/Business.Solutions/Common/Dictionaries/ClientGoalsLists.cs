@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
+using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Common.Dictionaries
 {
 	public class ClientGoalsLists
 	{
+		public List<ListDataItem> Headers { get; set; }
+		public List<ListDataItem> Goals { get; set; }
+
 		public ClientGoalsLists()
 		{
-			Headers = new List<string>();
-			Goals = new List<string>();
+			Headers = new List<ListDataItem>();
+			Goals = new List<ListDataItem>();
 		}
-
-		public List<string> Headers { get; set; }
-		public List<string> Goals { get; set; }
 
 		public void Load(StorageFile dataFile)
 		{
@@ -27,28 +28,10 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 				switch (childNode.Name)
 				{
 					case "SlideHeader":
-						foreach (XmlAttribute attribute in childNode.Attributes)
-						{
-							switch (attribute.Name)
-							{
-								case "Value":
-									if (!string.IsNullOrEmpty(attribute.Value))
-										Headers.Add(attribute.Value);
-									break;
-							}
-						}
+						Headers.Add(ListDataItem.FromXml(childNode));
 						break;
 					case "Goal":
-						foreach (XmlAttribute attribute in childNode.Attributes)
-						{
-							switch (attribute.Name)
-							{
-								case "Value":
-									if (!string.IsNullOrEmpty(attribute.Value))
-										Goals.Add(attribute.Value);
-									break;
-							}
-						}
+						Goals.Add(ListDataItem.FromXml(childNode));
 						break;
 				}
 			}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -70,11 +71,21 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			else
 				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClientGoalsState.SlideHeader;
 
-			comboBoxEditGoal1.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal1) ? SlideContainer.EditedContent.ClientGoalsState.Goal1 : null;
-			comboBoxEditGoal2.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal2) ? SlideContainer.EditedContent.ClientGoalsState.Goal2 : null;
-			comboBoxEditGoal3.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal3) ? SlideContainer.EditedContent.ClientGoalsState.Goal3 : null;
-			comboBoxEditGoal4.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal4) ? SlideContainer.EditedContent.ClientGoalsState.Goal4 : null;
-			comboBoxEditGoal5.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal5) ? SlideContainer.EditedContent.ClientGoalsState.Goal5 : null;
+			comboBoxEditGoal1.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal1) ? 
+				SlideContainer.EditedContent.ClientGoalsState.Goal1 : 
+				SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).Select(listDataItem => listDataItem.Value).ElementAtOrDefault(0);
+			comboBoxEditGoal2.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal2) ? 
+				SlideContainer.EditedContent.ClientGoalsState.Goal2 :
+				SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).Select(listDataItem => listDataItem.Value).ElementAtOrDefault(1);
+			comboBoxEditGoal3.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal3) ? 
+				SlideContainer.EditedContent.ClientGoalsState.Goal3 :
+				SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).Select(listDataItem => listDataItem.Value).ElementAtOrDefault(2);
+			comboBoxEditGoal4.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal4) ? 
+				SlideContainer.EditedContent.ClientGoalsState.Goal4 :
+				SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).Select(listDataItem => listDataItem.Value).ElementAtOrDefault(3);
+			comboBoxEditGoal5.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.ClientGoalsState.Goal5) ? 
+				SlideContainer.EditedContent.ClientGoalsState.Goal5 :
+				SlideContainer.DashboardInfo.ClientGoalsLists.Goals.Where(listDataItem => listDataItem.IsDefault).Select(listDataItem => listDataItem.Value).ElementAtOrDefault(4);
 
 			_allowToSave = true;
 		}

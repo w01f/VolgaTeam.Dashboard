@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
+using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.Dashboard.Dictionaries
 {
 	public class SimpleSummaryLists
 	{
+		public List<ListDataItem> Headers { get; set; }
+		public List<string> Details { get; set; }
+
 		public SimpleSummaryLists()
 		{
-			Headers = new List<string>();
+			Headers = new List<ListDataItem>();
 			Details = new List<string>();
 		}
-
-		public List<string> Headers { get; set; }
-		public List<string> Details { get; set; }
 
 		public void Load(StorageFile dataFile)
 		{
@@ -28,16 +29,7 @@ namespace Asa.Business.Solutions.Dashboard.Dictionaries
 					switch (childNode.Name)
 					{
 						case "SlideHeader":
-							foreach (XmlAttribute attribute in childNode.Attributes)
-							{
-								switch (attribute.Name)
-								{
-									case "Value":
-										if (!string.IsNullOrEmpty(attribute.Value))
-											Headers.Add(attribute.Value);
-										break;
-								}
-							}
+							Headers.Add(ListDataItem.FromXml(childNode));
 							break;
 						case "Detail":
 							foreach (XmlAttribute attribute in childNode.Attributes)

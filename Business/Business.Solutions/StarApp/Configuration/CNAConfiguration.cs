@@ -6,19 +6,19 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class CNAConfiguration
 	{
-		public List<SlideHeader> HeadersPartAItems { get; set; }
+		public List<ListDataItem> HeadersPartAItems { get; set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartBItems { get; set; }
+		public List<ListDataItem> HeadersPartBItems { get; set; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
 
 		public CNAConfiguration()
 		{
-			HeadersPartAItems = new List<SlideHeader>();
+			HeadersPartAItems = new List<ListDataItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
 
-			HeadersPartBItems = new List<SlideHeader>();
+			HeadersPartBItems = new List<ListDataItem>();
 			PartBClipart1Configuration = new ClipartConfiguration();
 			PartBClipart2Configuration = new ClipartConfiguration();
 		}
@@ -38,7 +38,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP02AHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartAItems.Add(item);
 							}
@@ -62,7 +62,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP02BHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartBItems.Add(item);
 							}

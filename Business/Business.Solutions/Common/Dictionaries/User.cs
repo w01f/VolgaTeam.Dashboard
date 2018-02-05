@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Asa.Business.Solutions.Common.Dictionaries
 {
 	public class User
 	{
-		public string Station { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public string Phone { get; set; }
 		public string Email { get; set; }
 		public bool IsAdmin { get; set; }
+
+		public List<string> Groups { get; }
 
 		public string FullName => String.Format("{0} {1}", FirstName, LastName);
 
@@ -17,11 +19,12 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 
 		public User()
 		{
-			Station = string.Empty;
 			FirstName = string.Empty;
 			LastName = string.Empty;
 			Phone = string.Empty;
 			Email = string.Empty;
+
+			Groups = new List<String>();
 		}
 
 		public override String ToString()

@@ -46,7 +46,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 					if (columnsCount > 0)
 						foreach (DataRow row in dataTable.Rows)
 						{
-							
+
 							var rowValue = row[0]?.ToString().Trim() ?? String.Empty;
 							if (String.IsNullOrEmpty(rowValue))
 								break;
@@ -58,32 +58,20 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 							user.Phone = row[3]?.ToString().Trim() ?? String.Empty;
 							user.Login = row[4]?.ToString().Trim() ?? String.Empty;
 							user.IsAdmin = String.Equals(row[5]?.ToString().Trim(), "yes", StringComparison.OrdinalIgnoreCase);
-							user.Station = row[7]?.ToString().Trim() ?? String.Empty;
+
+							var groupColumnCount = 7;
+							while (columnsCount > groupColumnCount)
+							{
+								var station = row[groupColumnCount]?.ToString().Trim() ?? String.Empty;
+								if (String.IsNullOrWhiteSpace(station))
+									break;
+
+								user.Groups.Add(station);
+								groupColumnCount++;
+							}
 
 							if (!String.IsNullOrEmpty(user.FirstName) && !String.IsNullOrEmpty(user.LastName))
-							{
 								users.Add(user);
-								var groupColumnCount = 8;
-								while (columnsCount > groupColumnCount)
-								{
-									var station = row[groupColumnCount]?.ToString().Trim() ?? String.Empty;
-									if (String.IsNullOrEmpty(station))
-										break;
-
-									var userClone = new User
-									{
-										FirstName = user.FirstName,
-										LastName = user.LastName,
-										Email = user.Email,
-										Phone = user.Phone,
-										Login = user.Login,
-										IsAdmin = user.IsAdmin,
-									};
-									userClone.Station = row[groupColumnCount]?.ToString().Trim() ?? String.Empty;
-									users.Add(userClone);
-									groupColumnCount++;
-								}
-							}
 						}
 				}
 				catch
@@ -97,29 +85,21 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 				}
 				connection.Close();
 
-				users.Sort((x, y) =>
-				{
-					var result = String.Compare(x.Station, y.Station, StringComparison.OrdinalIgnoreCase);
-					if (result != 0) return result;
-					result = String.Compare(x.FirstName, y.FirstName, StringComparison.OrdinalIgnoreCase);
-					return result == 0 ?
-						String.Compare(x.LastName, y.LastName, StringComparison.OrdinalIgnoreCase) :
-						result;
-				});
-
 				var xml = new StringBuilder();
 				xml.AppendLine("<Users>");
 				xml.AppendLine("<TotalUsers>" + users.Count + "</TotalUsers>");
 				foreach (User user in users)
 				{
 					xml.Append(@"<User ");
-					xml.Append("Station = \"" + user.Station.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("FirstName = \"" + user.FirstName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("LastName = \"" + user.LastName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("Phone = \"" + user.Phone.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("Email = \"" + user.Email.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("IsAdmin = \"" + user.IsAdmin + "\" ");
-					xml.AppendLine(@"/>");
+					xml.AppendLine(@">");
+					foreach (var userGroup in user.Groups)
+						xml.AppendLine(String.Format("<Group>{0}</Group>", userGroup));
+					xml.AppendLine(@"</User>");
 				}
 				xml.AppendLine(@"</Users>");
 

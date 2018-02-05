@@ -37,10 +37,10 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 			}
 			if (connection.State == ConnectionState.Open)
 			{
-				var slideHeaders = new List<SlideHeader>();
-				var demos = new List<string>();
-				var hhis = new List<string>();
-				var geographies = new List<string>();
+				var slideHeaders = new List<ListDataItem>();
+				var demos = new List<ListDataItem>();
+				var hhis = new List<ListDataItem>();
+				var geographies = new List<ListDataItem>();
 
 				{
 					var dataAdapter = new OleDbDataAdapter("SELECT * FROM [6ms$]", connection);
@@ -67,10 +67,10 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								var slideHeader = new SlideHeader();
-								slideHeader.Value = rowValue;
-								slideHeader.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
-								slideHeaders.Add(slideHeader);
+								var listDataItem = new ListDataItem();
+								listDataItem.Value = rowValue;
+								listDataItem.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
+								slideHeaders.Add(listDataItem);
 							}
 						}
 					}
@@ -117,7 +117,10 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								demos.Add(rowValue);
+								var listDataItem = new ListDataItem();
+								listDataItem.Value = rowValue;
+								listDataItem.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
+								demos.Add(listDataItem);
 							}
 
 							processReading = false;
@@ -136,7 +139,10 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								hhis.Add(rowValue);
+								var listDataItem = new ListDataItem();
+								listDataItem.Value = rowValue;
+								listDataItem.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
+								hhis.Add(listDataItem);
 							}
 
 							processReading = false;
@@ -155,7 +161,10 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								geographies.Add(rowValue);
+								var listDataItem = new ListDataItem();
+								listDataItem.Value = rowValue;
+								listDataItem.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
+								geographies.Add(listDataItem);
 							}
 						}
 					}
@@ -169,38 +178,41 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						dataTable.Dispose();
 					}
 
-					demos.Sort(WinAPIHelper.StrCmpLogicalW);
-					hhis.Sort(WinAPIHelper.StrCmpLogicalW);
-					geographies.Sort(WinAPIHelper.StrCmpLogicalW);
+					demos.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.Value, y.Value));
+					hhis.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.Value, y.Value));
+					geographies.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.Value, y.Value));
 				}
 
 				connection.Close();
 
 				var xml = new StringBuilder();
 				xml.AppendLine("<TargetCustomers>");
-				foreach (SlideHeader header in slideHeaders)
+				foreach (var listDataItem in slideHeaders)
 				{
 					xml.Append(@"<SlideHeader ");
-					xml.Append("Value = \"" + header.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-					xml.Append("IsDefault = \"" + header.IsDefault + "\" ");
+					xml.Append("Value = \"" + listDataItem.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("IsDefault = \"" + listDataItem.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
-				foreach (string demo in demos)
+				foreach (var listDataItem in demos)
 				{
 					xml.Append(@"<Demo ");
-					xml.Append("Value = \"" + demo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("Value = \"" + listDataItem.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("IsDefault = \"" + listDataItem.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
-				foreach (string hhi in hhis)
+				foreach (var listDataItem in hhis)
 				{
 					xml.Append(@"<HHI ");
-					xml.Append("Value = \"" + hhi.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("Value = \"" + listDataItem.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("IsDefault = \"" + listDataItem.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
-				foreach (string geography in geographies)
+				foreach (var listDataItem in geographies)
 				{
 					xml.Append(@"<Geography ");
-					xml.Append("Value = \"" + geography.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("Value = \"" + listDataItem.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("IsDefault = \"" + listDataItem.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
 				xml.AppendLine(@"</TargetCustomers>");

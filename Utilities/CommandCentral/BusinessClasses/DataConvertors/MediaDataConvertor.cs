@@ -38,13 +38,13 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 
 		public void Convert(IList<string> destinationFolderPaths)
 		{
-			var slideHeaders = new List<SlideHeader>();
+			var slideHeaders = new List<ListDataItem>();
 			var positioningPoints = new List<string>();
 			var lenghts = new List<string>();
 			var clientTypes = new List<string>();
 			var flexFlightDatesAllowed = false;
 			var customDemos = new List<string>();
-			var statuses = new List<SlideHeader>();
+			var statuses = new List<ListDataItem>();
 			var stations = new List<Station>();
 			var broadcastTemplates = new List<BroadcastMonthTemplate>();
 			var defaultWeeklyScheduleSettings = new ScheduleSectionSettings();
@@ -95,7 +95,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 
 								if (loadHeaders)
 								{
-									var title = new SlideHeader();
+									var title = new ListDataItem();
 									title.Value = row[0].ToString().Trim();
 									if (dataTable.Columns.Count > 1)
 										if (row[1] != null)
@@ -142,7 +142,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
 							foreach (DataRow row in dataTable.Rows)
 							{
-								var status = new SlideHeader();
+								var status = new ListDataItem();
 								status.Value = row[0].ToString().Trim();
 								if (dataTable.Columns.Count > 1)
 									if (row[1] != null)

@@ -83,7 +83,6 @@
     <Compile Include="StarApp\Configuration\ClipartConfiguration.cs" />
     <Compile Include="StarApp\Configuration\TitlesConfiguration.cs" />
     <Compile Include="StarApp\Configuration\ClosersLists.cs" />
-    <Compile Include="StarApp\Configuration\ComboboxItem.cs" />
     <Compile Include="StarApp\Configuration\SolutionConfiguration.cs" />
     <Compile Include="StarApp\Configuration\CNAConfiguration.cs" />
     <Compile Include="StarApp\Configuration\CoverConfiguration.cs" />
@@ -94,7 +93,7 @@
     <Compile Include="StarApp\Configuration\ShareConfiguration.cs" />
     <Compile Include="StarApp\Configuration\CustomerConfiguration.cs" />
     <Compile Include="StarApp\Configuration\FishingConfiguration.cs" />
-    <Compile Include="StarApp\Configuration\SlideHeader.cs" />
+    <Compile Include="StarApp\Configuration\ListDataItem.cs" />
     <Compile Include="StarApp\Entities\NonPersistent\VideoState.cs" />
     <Compile Include="StarApp\Entities\NonPersistent\SolutionState.cs" />
     <Compile Include="StarApp\Entities\NonPersistent\ShareState.cs" />

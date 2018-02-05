@@ -131,7 +131,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_allowToSave) return;
 
-			var multiplierText = (comboBoxEditTabECombo1.EditValue as ComboboxItem)?.Value ?? String.Empty;
+			var multiplierText = (comboBoxEditTabECombo1.EditValue as ListDataItem)?.Value ?? String.Empty;
 
 			var sourceValue = 0.0;
 			try
@@ -162,7 +162,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			try
 			{
 				householdPercent =
-					Double.Parse((comboBoxEditTabECombo2.EditValue as ComboboxItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
+					Double.Parse((comboBoxEditTabECombo2.EditValue as ListDataItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
 						NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 			}
 			catch
@@ -173,7 +173,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			try
 			{
 				sharePercent =
-					Double.Parse((comboBoxEditTabECombo4.EditValue as ComboboxItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
+					Double.Parse((comboBoxEditTabECombo4.EditValue as ListDataItem)?.Value?.Trim()?.Replace("%", "") ?? "0",
 						NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 			}
 			catch

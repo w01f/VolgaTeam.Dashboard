@@ -125,7 +125,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			if (!_allowToSave) return;
 
-			var multiplierText = (comboBoxEditTabACombo1.EditValue as ComboboxItem)?.Value ?? String.Empty;
+			var multiplierText = (comboBoxEditTabACombo1.EditValue as ListDataItem)?.Value ?? String.Empty;
 
 			var sourceValue = 0.0;
 			try
@@ -145,14 +145,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var percent = 0.0;
 			try
 			{
-				percent = Double.Parse((comboBoxEditTabACombo2.EditValue as ComboboxItem)?.Value?.Trim()?.Replace("%", "") ?? "0");
+				percent = Double.Parse((comboBoxEditTabACombo2.EditValue as ListDataItem)?.Value?.Trim()?.Replace("%", "") ?? "0");
 			}
 			catch
 			{
 			}
 
 			var formula1Value = (Int64)(sourceValue / 100 * percent);
-			var sharepointFactor = (comboBoxEditTabACombo4.EditValue as ComboboxItem)?.Value ?? String.Empty;
+			var sharepointFactor = (comboBoxEditTabACombo4.EditValue as ListDataItem)?.Value ?? String.Empty;
 			var formula2Value = formula1Value / 100 *
 								(sharepointFactor.StartsWith("ONE",
 									StringComparison.InvariantCultureIgnoreCase)

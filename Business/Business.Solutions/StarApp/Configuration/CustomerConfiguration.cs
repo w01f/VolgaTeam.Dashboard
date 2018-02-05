@@ -6,27 +6,27 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class CustomerConfiguration
 	{
-		public List<SlideHeader> HeadersPartAItems { get; set; }
+		public List<ListDataItem> HeadersPartAItems { get; set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartAClipart2Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartBItems { get; set; }
+		public List<ListDataItem> HeadersPartBItems { get; set; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartCItems { get; set; }
+		public List<ListDataItem> HeadersPartCItems { get; set; }
 
 		public CustomerConfiguration()
 		{
-			HeadersPartAItems = new List<SlideHeader>();
+			HeadersPartAItems = new List<ListDataItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
 			PartAClipart2Configuration = new ClipartConfiguration();
 
-			HeadersPartBItems = new List<SlideHeader>();
+			HeadersPartBItems = new List<ListDataItem>();
 			PartBClipart1Configuration = new ClipartConfiguration();
 			PartBClipart2Configuration = new ClipartConfiguration();
 
-			HeadersPartCItems = new List<SlideHeader>();
+			HeadersPartCItems = new List<ListDataItem>();
 		}
 
 		public void Load(ResourceManager resourceManager)
@@ -44,7 +44,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP04AHeader":
 							{
-								var header = SlideHeader.FromXml(childNode);
+								var header = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(header.Value))
 									HeadersPartAItems.Add(header);
 							}
@@ -70,7 +70,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP04BHeader":
 							{
-								var header = SlideHeader.FromXml(childNode);
+								var header = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(header.Value))
 									HeadersPartBItems.Add(header);
 							}
@@ -95,7 +95,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP04CHeader":
 							{
-								var header = SlideHeader.FromXml(childNode);
+								var header = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(header.Value))
 									HeadersPartCItems.Add(header);
 							}

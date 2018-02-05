@@ -91,34 +91,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Business\Business.Media\Configuration\CalendarToggleSettings.cs">
-      <Link>Entities\Media\CalendarToggleSettings.cs</Link>
+      <Link>BusinessClasses\Entities\Media\CalendarToggleSettings.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Configuration\OptionsSettings.cs">
-      <Link>Entities\Media\OptionsSettings.cs</Link>
+      <Link>BusinessClasses\Entities\Media\OptionsSettings.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Configuration\OptionsSummarySettings.cs">
-      <Link>Entities\Media\OptionsSummarySettings.cs</Link>
+      <Link>BusinessClasses\Entities\Media\OptionsSummarySettings.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Configuration\ScheduleSectionSettings.cs">
-      <Link>Entities\Media\ScheduleSectionSettings.cs</Link>
+      <Link>BusinessClasses\Entities\Media\ScheduleSectionSettings.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Configuration\SnapshotSettings.cs">
-      <Link>Entities\Media\SnapshotSettings.cs</Link>
+      <Link>BusinessClasses\Entities\Media\SnapshotSettings.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Configuration\SnapshotSummarySettings.cs">
-      <Link>Entities\Media\SnapshotSummarySettings.cs</Link>
+      <Link>BusinessClasses\Entities\Media\SnapshotSummarySettings.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Entities\NonPersistent\Schedule\Demo.cs">
-      <Link>Entities\Media\Demo.cs</Link>
+      <Link>BusinessClasses\Entities\Media\Demo.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Entities\NonPersistent\Schedule\Station.cs">
-      <Link>Entities\Media\Station.cs</Link>
+      <Link>BusinessClasses\Entities\Media\Station.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Media\Enums\DemoType.cs">
-      <Link>Entities\Media\DemoType.cs</Link>
+      <Link>BusinessClasses\Entities\Media\DemoType.cs</Link>
     </Compile>
     <Compile Include="..\..\Business\Business.Online\Configuration\DigitalControlsConfiguration.cs">
-      <Link>Entities\Online\DigitalControlsConfiguration.cs</Link>
+      <Link>BusinessClasses\Entities\Online\DigitalControlsConfiguration.cs</Link>
     </Compile>
     <Compile Include="AppManager.cs" />
     <Compile Include="BusinessClasses\Common\ConversionException.cs" />
@@ -148,7 +148,7 @@
     <Compile Include="BusinessClasses\Entities\Media\MediaProgram.cs" />
     <Compile Include="BusinessClasses\Entities\SalesDepot\SearchGroup.cs" />
     <Compile Include="BusinessClasses\Entities\Dashboard\Quote.cs" />
-    <Compile Include="BusinessClasses\Entities\Common\SlideHeader.cs" />
+    <Compile Include="BusinessClasses\Entities\Common\ListDataItem.cs" />
     <Compile Include="BusinessClasses\Entities\Dashboard\User.cs" />
     <Compile Include="FolderBrowserDialogEx.cs">
       <SubType>Component</SubType>

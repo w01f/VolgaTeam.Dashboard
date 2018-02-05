@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
@@ -24,7 +25,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 		{
 			InitializeComponent();
 			Text = ControlName;
-			
+
 			UpdateEditState();
 
 			comboBoxEditSlideHeader.EnableSelectAll();
@@ -73,12 +74,18 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			}
 			else
 				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.LeadoffStatementState.SlideHeader;
-			checkEditA.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement1;
-			checkEditB.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement2;
-			checkEditC.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement3;
-			memoEditA.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.LeadoffStatementState.Statement1) ? SlideContainer.EditedContent.LeadoffStatementState.Statement1 : (SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.Count > 0 ? SlideContainer.DashboardInfo.LeadoffStatementLists.Statements[0] : string.Empty);
-			memoEditB.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.LeadoffStatementState.Statement2) ? SlideContainer.EditedContent.LeadoffStatementState.Statement2 : (SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.Count > 1 ? SlideContainer.DashboardInfo.LeadoffStatementLists.Statements[1] : string.Empty);
-			memoEditC.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.LeadoffStatementState.Statement3) ? SlideContainer.EditedContent.LeadoffStatementState.Statement3 : (SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.Count > 2 ? SlideContainer.DashboardInfo.LeadoffStatementLists.Statements[2] : string.Empty);
+			checkEditA.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement1 ?? SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.ElementAtOrDefault(0)?.IsDefault ?? false;
+			checkEditB.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement2 ?? SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.ElementAtOrDefault(1)?.IsDefault ?? false;
+			checkEditC.Checked = SlideContainer.EditedContent.LeadoffStatementState.ShowStatement3 ?? SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.ElementAtOrDefault(2)?.IsDefault ?? false;
+			memoEditA.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.LeadoffStatementState.Statement1) ?
+				SlideContainer.EditedContent.LeadoffStatementState.Statement1 :
+				SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.Select(listDataItem => listDataItem.Value).ElementAtOrDefault(0);
+			memoEditB.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.LeadoffStatementState.Statement2) ?
+				SlideContainer.EditedContent.LeadoffStatementState.Statement2 :
+				SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.Select(listDataItem => listDataItem.Value).ElementAtOrDefault(1);
+			memoEditC.EditValue = !String.IsNullOrEmpty(SlideContainer.EditedContent.LeadoffStatementState.Statement3) ?
+				SlideContainer.EditedContent.LeadoffStatementState.Statement3 :
+				SlideContainer.DashboardInfo.LeadoffStatementLists.Statements.Select(listDataItem => listDataItem.Value).ElementAtOrDefault(2);
 
 			_allowToSave = true;
 		}

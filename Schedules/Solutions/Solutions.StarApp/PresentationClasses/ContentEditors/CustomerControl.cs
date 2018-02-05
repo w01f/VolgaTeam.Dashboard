@@ -69,6 +69,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
+			comboBoxEditTabACombo1.EditValue =
+				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0);
+			comboBoxEditTabACombo2.EditValue =
+				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1);
+			comboBoxEditTabACombo3.EditValue =
+				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2);
+			comboBoxEditTabACombo4.EditValue =
+				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3);
 			_allowToSave = true;
 
 			LoadPartData();

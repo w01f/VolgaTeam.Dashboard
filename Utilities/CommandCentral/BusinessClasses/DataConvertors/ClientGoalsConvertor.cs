@@ -37,8 +37,8 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 			}
 			if (connection.State == ConnectionState.Open)
 			{
-				var slideHeaders = new List<SlideHeader>();
-				var clientGoals = new List<string>();
+				var slideHeaders = new List<ListDataItem>();
+				var clientGoals = new List<ListDataItem>();
 
 				{
 					var dataAdapter = new OleDbDataAdapter("SELECT * FROM [6ms$]", connection);
@@ -65,10 +65,10 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								var slideHeader = new SlideHeader();
-								slideHeader.Value = rowValue;
-								slideHeader.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
-								slideHeaders.Add(slideHeader);
+								var listDataItem = new ListDataItem();
+								listDataItem.Value = rowValue;
+								listDataItem.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
+								slideHeaders.Add(listDataItem);
 							}
 						}
 					}
@@ -104,7 +104,17 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (String.IsNullOrEmpty(rowValue))
 									break;
 								if (!rowValue.StartsWith("*", StringComparison.OrdinalIgnoreCase))
-									clientGoals.Add(rowValue);
+								{
+									var listDataItem = new ListDataItem();
+									listDataItem.Value = rowValue;
+
+									var defaultValue = row[1]?.ToString().Trim();
+									listDataItem.IsDefault = defaultValue?.StartsWith("D", StringComparison.OrdinalIgnoreCase) ?? false;
+									if (listDataItem.IsDefault && Int32.TryParse(defaultValue?.ToUpper().Replace("D", ""), out var temp))
+										listDataItem.DefaultOrder = temp;
+
+									clientGoals.Add(listDataItem);
+								}
 							}
 					}
 					catch
@@ -116,24 +126,33 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						dataAdapter.Dispose();
 						dataTable.Dispose();
 					}
-					clientGoals.Sort(WinAPIHelper.StrCmpLogicalW);
+					clientGoals.Sort((x, y) =>
+					{
+						var result = y.IsDefault.CompareTo(x.IsDefault);
+						if (result == 0)
+							result = x.DefaultOrder.CompareTo(y.DefaultOrder);
+						if (result == 0)
+							result = WinAPIHelper.StrCmpLogicalW(x.Value, y.Value);
+						return result;
+					});
 				}
 
 				connection.Close();
 
 				var xml = new StringBuilder();
 				xml.AppendLine("<ClientGoals>");
-				foreach (SlideHeader header in slideHeaders)
+				foreach (var header in slideHeaders)
 				{
 					xml.Append(@"<SlideHeader ");
 					xml.Append("Value = \"" + header.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("IsDefault = \"" + header.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
-				foreach (string goal in clientGoals)
+				foreach (var goal in clientGoals)
 				{
 					xml.Append(@"<Goal ");
-					xml.Append("Value = \"" + goal.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("Value = \"" + goal.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("IsDefault = \"" + goal.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
 				xml.AppendLine(@"</ClientGoals>");

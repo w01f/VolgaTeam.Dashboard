@@ -37,7 +37,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 			}
 			if (connection.State == ConnectionState.Open)
 			{
-				var slideHeaders = new List<SlideHeader>();
+				var slideHeaders = new List<ListDataItem>();
 				var details = new List<string>();
 
 				{
@@ -65,7 +65,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								var slideHeader = new SlideHeader();
+								var slideHeader = new ListDataItem();
 								slideHeader.Value = rowValue;
 								slideHeader.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
 								slideHeaders.Add(slideHeader);
@@ -123,7 +123,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 
 				var xml = new StringBuilder();
 				xml.AppendLine("<SimpleSummary>");
-				foreach (SlideHeader header in slideHeaders)
+				foreach (ListDataItem header in slideHeaders)
 				{
 					xml.Append(@"<SlideHeader ");
 					xml.Append("Value = \"" + header.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");

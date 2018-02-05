@@ -7,11 +7,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class AudienceConfiguration
 	{
-		public List<SlideHeader> HeadersPartAItems { get; set; }
+		public List<ListDataItem> HeadersPartAItems { get; set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartAClipart2Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartBItems { get; set; }
+		public List<ListDataItem> HeadersPartBItems { get; set; }
 		public string PartBSubHeader1DefaultValue { get; private set; }
 		public string PartBSubHeader2DefaultValue { get; private set; }
 		public string PartBSubHeader3DefaultValue { get; private set; }
@@ -22,8 +22,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart3Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartCItems { get; set; }
-		public List<ComboboxItem> PartCCombo1Items { get; }
+		public List<ListDataItem> HeadersPartCItems { get; set; }
+		public List<ListDataItem> PartCCombo1Items { get; }
 		public ClipartConfiguration PartCClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartCClipart2Configuration { get; private set; }
 		public ClipartConfiguration PartCClipart3Configuration { get; private set; }
@@ -31,17 +31,17 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 		public AudienceConfiguration()
 		{
-			HeadersPartAItems = new List<SlideHeader>();
+			HeadersPartAItems = new List<ListDataItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
 			PartAClipart2Configuration = new ClipartConfiguration();
 
-			HeadersPartBItems = new List<SlideHeader>();
+			HeadersPartBItems = new List<ListDataItem>();
 			PartBClipart1Configuration = new ClipartConfiguration();
 			PartBClipart2Configuration = new ClipartConfiguration();
 			PartBClipart3Configuration = new ClipartConfiguration();
 
-			HeadersPartCItems = new List<SlideHeader>();
-			PartCCombo1Items = new List<ComboboxItem>();
+			HeadersPartCItems = new List<ListDataItem>();
+			PartCCombo1Items = new List<ListDataItem>();
 			PartCClipart1Configuration = new ClipartConfiguration();
 			PartCClipart2Configuration = new ClipartConfiguration();
 			PartCClipart3Configuration = new ClipartConfiguration();
@@ -63,7 +63,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP09AHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartAItems.Add(item);
 							}
@@ -88,7 +88,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP09BHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartBItems.Add(item);
 							}
@@ -132,14 +132,14 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP09CHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartCItems.Add(item);
 							}
 							break;
 						case "CP09CCombo1":
 							{
-								var item = ComboboxItem.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									PartCCombo1Items.Add(item);
 							}

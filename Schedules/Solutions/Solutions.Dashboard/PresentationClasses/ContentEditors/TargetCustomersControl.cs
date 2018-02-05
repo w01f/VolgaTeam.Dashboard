@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -66,17 +68,43 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 				comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.TargetCustomersState.SlideHeader;
 
 			checkedListBoxControlTargetDemo.UnCheckAll();
-			foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.Items)
-				if (SlideContainer.EditedContent.TargetCustomersState.Demo.Contains(item.Value.ToString()))
-					item.CheckState = CheckState.Checked;
+			if (SlideContainer.EditedContent.TargetCustomersState.Demo.Any())
+			{
+				foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.Items)
+					if (SlideContainer.EditedContent.TargetCustomersState.Demo.Contains(item.Value.ToString()))
+						item.CheckState = CheckState.Checked;
+			}
+			else
+			{
+				foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.Items)
+					item.CheckState = ((ListDataItem)item.Value).IsDefault ? CheckState.Checked : CheckState.Unchecked;
+			}
+
 			checkedListBoxControlHouseholdIncome.UnCheckAll();
-			foreach (CheckedListBoxItem item in checkedListBoxControlHouseholdIncome.Items)
-				if (SlideContainer.EditedContent.TargetCustomersState.Income.Contains(item.Value.ToString()))
-					item.CheckState = CheckState.Checked;
+			if (SlideContainer.EditedContent.TargetCustomersState.Income.Any())
+			{
+				foreach (CheckedListBoxItem item in checkedListBoxControlHouseholdIncome.Items)
+					if (SlideContainer.EditedContent.TargetCustomersState.Income.Contains(item.Value.ToString()))
+						item.CheckState = CheckState.Checked;
+			}
+			else
+			{
+				foreach (CheckedListBoxItem item in checkedListBoxControlHouseholdIncome.Items)
+					item.CheckState = ((ListDataItem)item.Value).IsDefault ? CheckState.Checked : CheckState.Unchecked;
+			}
+
 			checkedListBoxControlGeographicResidence.UnCheckAll();
-			foreach (CheckedListBoxItem item in checkedListBoxControlGeographicResidence.Items)
-				if (SlideContainer.EditedContent.TargetCustomersState.Geographic.Contains(item.Value.ToString()))
-					item.CheckState = CheckState.Checked;
+			if (SlideContainer.EditedContent.TargetCustomersState.Geographic.Any())
+			{
+				foreach (CheckedListBoxItem item in checkedListBoxControlGeographicResidence.Items)
+					if (SlideContainer.EditedContent.TargetCustomersState.Geographic.Contains(item.Value.ToString()))
+						item.CheckState = CheckState.Checked;
+			}
+			else
+			{
+				foreach (CheckedListBoxItem item in checkedListBoxControlGeographicResidence.Items)
+					item.CheckState = ((ListDataItem) item.Value).IsDefault ? CheckState.Checked : CheckState.Unchecked;
+			}
 
 			_allowToSave = true;
 		}

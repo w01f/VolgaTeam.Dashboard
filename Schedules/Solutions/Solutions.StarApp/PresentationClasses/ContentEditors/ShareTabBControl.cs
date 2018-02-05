@@ -117,7 +117,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			var sourceValue = 0.0;
 			try
 			{
-				sourceValue = Double.Parse((comboBoxEditTabBCombo1.EditValue as ComboboxItem)?.Value ?? "0",
+				sourceValue = Double.Parse((comboBoxEditTabBCombo1.EditValue as ListDataItem)?.Value ?? "0",
 					NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 			}
 			catch
@@ -144,7 +144,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			{
 			}
 
-			var sharepointFactor = (comboBoxEditTabBCombo2.EditValue as ComboboxItem)?.Value ?? String.Empty;
+			var sharepointFactor = (comboBoxEditTabBCombo2.EditValue as ListDataItem)?.Value ?? String.Empty;
 
 			var formula1Value = (Int64)(sourceValue / 100 * percent);
 			var formula2Value = formula1Value * costValue;

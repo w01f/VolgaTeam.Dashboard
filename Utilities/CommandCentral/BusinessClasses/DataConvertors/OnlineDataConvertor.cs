@@ -35,11 +35,11 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 
 		public void Convert(IList<string> destinationFolderPaths)
 		{
-			var slideHeaders = new List<SlideHeader>();
-			var sites = new List<SlideHeader>();
-			var strengths = new List<SlideHeader>();
+			var slideHeaders = new List<ListDataItem>();
+			var sites = new List<ListDataItem>();
+			var strengths = new List<ListDataItem>();
 			var products = new List<Product>();
-			var statuses = new List<SlideHeader>();
+			var statuses = new List<ListDataItem>();
 			var defaultFormula = String.Empty;
 			var lockedMode = false;
 			var pricingStrategies = new List<string>();
@@ -85,7 +85,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
 							foreach (DataRow row in dataTable.Rows)
 							{
-								var title = new SlideHeader();
+								var title = new ListDataItem();
 								title.Value = row[0].ToString().Trim();
 								if (dataTable.Columns.Count > 1)
 									if (row[1] != null)
@@ -123,7 +123,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
 							foreach (DataRow row in dataTable.Rows)
 							{
-								var status = new SlideHeader();
+								var status = new ListDataItem();
 								status.Value = row[0].ToString().Trim();
 								if (dataTable.Columns.Count > 1)
 									if (row[1] != null)
@@ -161,7 +161,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
 							foreach (DataRow row in dataTable.Rows)
 							{
-								var site = new SlideHeader();
+								var site = new ListDataItem();
 								site.Value = row[0].ToString().Trim();
 								if (dataTable.Columns.Count > 1)
 									if (row[1] != null)
@@ -191,7 +191,7 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
 							foreach (DataRow row in dataTable.Rows)
 							{
-								var strength = new SlideHeader();
+								var strength = new ListDataItem();
 								strength.Value = row[0].ToString().Trim();
 								if (dataTable.Columns.Count > 1)
 									if (row[1] != null)

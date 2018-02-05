@@ -7,37 +7,37 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 {
 	public class SolutionConfiguration
 	{
-		public List<SlideHeader> HeadersPartAItems { get; set; }
+		public List<ListDataItem> HeadersPartAItems { get; set; }
 		public string PartASubHeader1DefaultValue { get; private set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartBItems { get; set; }
+		public List<ListDataItem> HeadersPartBItems { get; set; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart3Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartCItems { get; set; }
+		public List<ListDataItem> HeadersPartCItems { get; set; }
 		public ClipartConfiguration PartCClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartCClipart2Configuration { get; private set; }
 
-		public List<SlideHeader> HeadersPartDItems { get; set; }
+		public List<ListDataItem> HeadersPartDItems { get; set; }
 		public ClipartConfiguration PartDClipart1Configuration { get; private set; }
 
 		public SolutionConfiguration()
 		{
-			HeadersPartAItems = new List<SlideHeader>();
+			HeadersPartAItems = new List<ListDataItem>();
 			PartAClipart1Configuration = new ClipartConfiguration();
 
-			HeadersPartBItems = new List<SlideHeader>();
+			HeadersPartBItems = new List<ListDataItem>();
 			PartBClipart1Configuration = new ClipartConfiguration();
 			PartBClipart2Configuration = new ClipartConfiguration();
 			PartBClipart3Configuration = new ClipartConfiguration();
 
-			HeadersPartCItems = new List<SlideHeader>();
+			HeadersPartCItems = new List<ListDataItem>();
 			PartCClipart1Configuration = new ClipartConfiguration();
 			PartCClipart2Configuration = new ClipartConfiguration();
 
-			HeadersPartDItems = new List<SlideHeader>();
+			HeadersPartDItems = new List<ListDataItem>();
 			PartDClipart1Configuration = new ClipartConfiguration();
 		}
 
@@ -56,7 +56,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP10AHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartAItems.Add(item);
 							}
@@ -82,7 +82,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP10BHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartBItems.Add(item);
 							}
@@ -107,7 +107,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP10CHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartCItems.Add(item);
 							}
@@ -131,7 +131,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 					{
 						case "CP10DHeader":
 							{
-								var item = SlideHeader.FromXml(childNode);
+								var item = ListDataItem.FromXml(childNode);
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartDItems.Add(item);
 							}

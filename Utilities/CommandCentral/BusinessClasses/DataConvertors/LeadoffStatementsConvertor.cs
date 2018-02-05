@@ -37,8 +37,8 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 			}
 			if (connection.State == ConnectionState.Open)
 			{
-				var slideHeaders = new List<SlideHeader>();
-				var statements = new List<string>();
+				var slideHeaders = new List<ListDataItem>();
+				var statements = new List<ListDataItem>();
 
 				{
 					var dataAdapter = new OleDbDataAdapter("SELECT * FROM [6ms$]", connection);
@@ -65,10 +65,10 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								var slideHeader = new SlideHeader();
-								slideHeader.Value = rowValue;
-								slideHeader.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
-								slideHeaders.Add(slideHeader);
+								var listDataItem = new ListDataItem();
+								listDataItem.Value = rowValue;
+								listDataItem.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
+								slideHeaders.Add(listDataItem);
 							}
 
 							processReading = false;
@@ -87,13 +87,16 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 								if (!processReading)
 									continue;
 
-								statements.Add(rowValue);
+								var listDataItem = new ListDataItem();
+								listDataItem.Value = rowValue;
+								listDataItem.IsDefault = String.Equals(row[1]?.ToString().Trim(), "D", StringComparison.OrdinalIgnoreCase);
+								statements.Add(listDataItem);
 							}
 						}
 					}
 					catch
 					{
-						throw new ConversionException {SourceFilePath = _sourceFilePath};
+						throw new ConversionException { SourceFilePath = _sourceFilePath };
 					}
 					finally
 					{
@@ -103,29 +106,29 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 
 					slideHeaders.Sort((x, y) =>
 					{
-						int result = y.IsDefault.CompareTo(x.IsDefault);
+						var result = y.IsDefault.CompareTo(x.IsDefault);
 						if (result == 0)
 							result = WinAPIHelper.StrCmpLogicalW(x.Value, y.Value);
 						return result;
 					});
-					statements.Sort(WinAPIHelper.StrCmpLogicalW);
 				}
 
 				connection.Close();
 
 				var xml = new StringBuilder();
 				xml.AppendLine("<LeadOff>");
-				foreach (SlideHeader slideHeader in slideHeaders)
+				foreach (var slideHeader in slideHeaders)
 				{
 					xml.Append(@"<SlideHeader ");
 					xml.Append("Value = \"" + slideHeader.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 					xml.Append("IsDefault = \"" + slideHeader.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
-				foreach (string statement in statements)
+				foreach (var statement in statements)
 				{
 					xml.Append(@"<Statement ");
-					xml.Append("Value = \"" + statement.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("Value = \"" + statement.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+					xml.Append("IsDefault = \"" + statement.IsDefault + "\" ");
 					xml.AppendLine(@"/>");
 				}
 				xml.AppendLine(@"</LeadOff>");

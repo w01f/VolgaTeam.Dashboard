@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -11,10 +12,15 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public ClipartConfiguration PartAClipart2Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartBItems { get; set; }
+		public string PartBSubHeader1DefaultValue { get; private set; }
+		public string PartBSubHeader2DefaultValue { get; private set; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartCItems { get; set; }
+		public string PartCSubHeader1DefaultValue { get; private set; }
+		public string PartCSubHeader2DefaultValue { get; private set; }
+		public string PartCSubHeader3DefaultValue { get; private set; }
 
 		public CustomerConfiguration()
 		{
@@ -75,6 +81,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 									HeadersPartBItems.Add(header);
 							}
 							break;
+						case "CP04BSubheader1":
+							PartBSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
+						case "CP04BSubheader2":
+							PartBSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
 					}
 				}
 
@@ -99,6 +111,15 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								if (!String.IsNullOrEmpty(header.Value))
 									HeadersPartCItems.Add(header);
 							}
+							break;
+						case "CP04CSubheader1":
+							PartCSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
+						case "CP04CSubheader2":
+							PartCSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
+						case "CP04CSubheader3":
+							PartCSubHeader3DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 					}
 				}

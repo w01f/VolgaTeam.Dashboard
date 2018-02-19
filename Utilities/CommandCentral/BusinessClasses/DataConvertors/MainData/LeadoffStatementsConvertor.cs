@@ -8,7 +8,7 @@ using Asa.Common.Core.Helpers;
 using CommandCentral.BusinessClasses.Common;
 using CommandCentral.BusinessClasses.Entities.Common;
 
-namespace CommandCentral.BusinessClasses.DataConvertors
+namespace CommandCentral.BusinessClasses.DataConvertors.MainData
 {
 	class LeadoffStatementsConvertor : IExcel2XmlConvertor
 	{
@@ -22,24 +22,25 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 
 		public void Convert(IList<string> destinationFolderPaths)
 		{
+			var slideHeaders = new List<ListDataItem>();
+			var statements = new List<ListDataItem>();
+
 			var connnectionString =
 				String.Format(
 					@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=No;IMEX=1"";",
 					_sourceFilePath);
-			var connection = new OleDbConnection(connnectionString);
-			try
-			{
-				connection.Open();
-			}
-			catch (Exception)
-			{
-				throw new ConversionException { SourceFilePath = _sourceFilePath };
-			}
-			if (connection.State == ConnectionState.Open)
-			{
-				var slideHeaders = new List<ListDataItem>();
-				var statements = new List<ListDataItem>();
 
+			using (var connection = new OleDbConnection(connnectionString))
+			{
+				try
+				{
+					connection.Open();
+				}
+				catch (Exception)
+				{
+					throw new ConversionException { SourceFilePath = _sourceFilePath };
+				}
+				if (connection.State == ConnectionState.Open)
 				{
 					var dataAdapter = new OleDbDataAdapter("SELECT * FROM [6ms$]", connection);
 					var dataTable = new DataTable();
@@ -112,39 +113,38 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 						return result;
 					});
 				}
-
+				else
+					throw new ConversionException { SourceFilePath = _sourceFilePath };
 				connection.Close();
+			}
 
-				var xml = new StringBuilder();
-				xml.AppendLine("<LeadOff>");
-				foreach (var slideHeader in slideHeaders)
-				{
-					xml.Append(@"<SlideHeader ");
-					xml.Append("Value = \"" + slideHeader.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-					xml.Append("IsDefault = \"" + slideHeader.IsDefault + "\" ");
-					xml.AppendLine(@"/>");
-				}
-				foreach (var statement in statements)
-				{
-					xml.Append(@"<Statement ");
-					xml.Append("Value = \"" + statement.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-					xml.Append("IsDefault = \"" + statement.IsDefault + "\" ");
-					xml.AppendLine(@"/>");
-				}
-				xml.AppendLine(@"</LeadOff>");
+			var xml = new StringBuilder();
+			xml.AppendLine("<LeadOff>");
+			foreach (var slideHeader in slideHeaders)
+			{
+				xml.Append(@"<SlideHeader ");
+				xml.Append("Value = \"" + slideHeader.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.Append("IsDefault = \"" + slideHeader.IsDefault + "\" ");
+				xml.AppendLine(@"/>");
+			}
+			foreach (var statement in statements)
+			{
+				xml.Append(@"<Statement ");
+				xml.Append("Value = \"" + statement.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.Append("IsDefault = \"" + statement.IsDefault + "\" ");
+				xml.AppendLine(@"/>");
+			}
+			xml.AppendLine(@"</LeadOff>");
 
-				foreach (var folderPath in destinationFolderPaths)
+			foreach (var folderPath in destinationFolderPaths)
+			{
+				var xmlPath = Path.Combine(folderPath, DestinationFileName);
+				using (var sw = new StreamWriter(xmlPath, false))
 				{
-					var xmlPath = Path.Combine(folderPath, DestinationFileName);
-					using (var sw = new StreamWriter(xmlPath, false))
-					{
-						sw.Write(xml.ToString());
-						sw.Flush();
-					}
+					sw.Write(xml.ToString());
+					sw.Flush();
 				}
 			}
-			else
-				throw new ConversionException { SourceFilePath = _sourceFilePath };
 		}
 	}
 }

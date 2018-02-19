@@ -77,6 +77,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2);
 			comboBoxEditTabACombo4.EditValue =
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3);
+
+			memoEditTabBSubheader1.EditValue = SlideContainer.StarInfo.CustomerConfiguration.PartBSubHeader1DefaultValue;
+			memoEditTabBSubheader2.EditValue = SlideContainer.StarInfo.CustomerConfiguration.PartBSubHeader2DefaultValue;
+
+			memoEditTabCSubheader1.EditValue = SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader1DefaultValue;
+			memoEditTabCSubheader2.EditValue = SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader2DefaultValue;
+			memoEditTabCSubheader3.EditValue = SlideContainer.StarInfo.CustomerConfiguration.PartCSubHeader3DefaultValue;
+
 			_allowToSave = true;
 
 			LoadPartData();

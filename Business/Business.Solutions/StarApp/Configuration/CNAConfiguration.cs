@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 namespace Asa.Business.Solutions.StarApp.Configuration
@@ -7,6 +8,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	public class CNAConfiguration
 	{
 		public List<ListDataItem> HeadersPartAItems { get; set; }
+		public string PartASubHeader1DefaultValue { get; private set; }
+		public string PartASubHeader2DefaultValue { get; private set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartBItems { get; set; }
@@ -42,6 +45,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartAItems.Add(item);
 							}
+							break;
+						case "CP02ASubheader1":
+							PartASubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
+						case "CP02ASubheader2":
+							PartASubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 					}
 				}

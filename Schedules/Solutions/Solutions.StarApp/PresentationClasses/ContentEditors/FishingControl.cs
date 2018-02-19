@@ -66,6 +66,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
+			memoEditTabASubheader1.EditValue = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader1DefaultValue;
+			memoEditTabASubheader2.EditValue = SlideContainer.StarInfo.FishingConfiguration.PartASubHeader2DefaultValue;
+
 			comboBoxEditTabBCombo1.EditValue =
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0);
 			comboBoxEditTabBCombo2.EditValue =
@@ -74,6 +77,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2);
 			comboBoxEditTabBCombo4.EditValue =
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3);
+
+			memoEditTabCSubheader1.EditValue = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader1DefaultValue;
+			memoEditTabCSubheader2.EditValue = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader2DefaultValue;
+			memoEditTabCSubheader3.EditValue = SlideContainer.StarInfo.FishingConfiguration.PartCSubHeader3DefaultValue;
 			_allowToSave = true;
 
 			LoadPartData();

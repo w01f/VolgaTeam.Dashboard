@@ -31,6 +31,19 @@
 			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition7 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition8 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition9 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition10 = new DevExpress.XtraLayout.ColumnDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition9 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition10 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition11 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition12 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition13 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition14 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition15 = new DevExpress.XtraLayout.RowDefinition();
+			DevExpress.XtraLayout.RowDefinition rowDefinition16 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
@@ -63,11 +76,35 @@
 			this.buttonXMainDataButtonRadio = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXMainDataButtonOnline = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXMainDataButtonSDSearch = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataCover = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataCNA = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataFishing = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataCustomer = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataShare = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataROI = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataMarket = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataVideo = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataAudience = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataSolution = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXStarAppDataClosers = new DevComponents.DotNetBar.ButtonX();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemOK = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemCancel = new DevExpress.XtraLayout.LayoutControlItem();
 			this.tabbedControlGroup = new DevExpress.XtraLayout.TabbedControlGroup();
+			this.layoutControlGroupStarAppData = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlGroupStarAppDataButtons = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonCNA = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonFishing = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonCustomer = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonShare = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonROI = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonMarket = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonVideo = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonAudience = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonSolution = new DevExpress.XtraLayout.LayoutControlItem();
+			this.layoutControlItemStarAppDataButtonClosers = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupMainData = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlGroupMainDataButtons = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemMainDataButtonUsers = new DevExpress.XtraLayout.LayoutControlItem();
@@ -80,7 +117,6 @@
 			this.layoutControlItemMainDataButtonRadio = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemMainDataButtonOnline = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlItemMainDataButtonSDSearch = new DevExpress.XtraLayout.LayoutControlItem();
-			this.layoutControlGroupStarAppData = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemOutputFolders = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemOutputFoldersTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -89,6 +125,7 @@
 			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::CommandCentral.FormProgress), true, true);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlOutputFolders)).BeginInit();
@@ -99,6 +136,19 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppDataButtons)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonCNA)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonFishing)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonCustomer)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonShare)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonROI)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonMarket)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonVideo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonAudience)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonSolution)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonClosers)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).BeginInit();
@@ -111,7 +161,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFolders)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemOutputFoldersTitle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -160,11 +209,22 @@
 			this.layoutControl.Controls.Add(this.buttonXMainDataButtonRadio);
 			this.layoutControl.Controls.Add(this.buttonXMainDataButtonOnline);
 			this.layoutControl.Controls.Add(this.buttonXMainDataButtonSDSearch);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataCover);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataCNA);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataFishing);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataCustomer);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataShare);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataROI);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataMarket);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataVideo);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataAudience);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataSolution);
+			this.layoutControl.Controls.Add(this.buttonXStarAppDataClosers);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
 			this.layoutControl.Location = new System.Drawing.Point(0, 0);
 			this.layoutControl.Name = "layoutControl";
-			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(783, 306, 450, 400);
+			this.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(698, 367, 450, 400);
 			this.layoutControl.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControl.Root = this.layoutControlGroupRoot;
 			this.layoutControl.Size = new System.Drawing.Size(462, 554);
@@ -177,11 +237,11 @@
 			this.buttonXOutputFoldersAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXOutputFoldersAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXOutputFoldersAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXOutputFoldersAdd.Location = new System.Drawing.Point(334, 319);
+			this.buttonXOutputFoldersAdd.Location = new System.Drawing.Point(334, 315);
 			this.buttonXOutputFoldersAdd.Name = "buttonXOutputFoldersAdd";
 			this.buttonXOutputFoldersAdd.Size = new System.Drawing.Size(116, 36);
 			this.buttonXOutputFoldersAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXOutputFoldersAdd.TabIndex = 21;
+			this.buttonXOutputFoldersAdd.TabIndex = 11;
 			this.buttonXOutputFoldersAdd.Text = "Add Path";
 			this.buttonXOutputFoldersAdd.TextColor = System.Drawing.Color.Black;
 			this.buttonXOutputFoldersAdd.Click += new System.EventHandler(this.OnOutputFoldersAddClick);
@@ -195,13 +255,13 @@
 			this.gridControlOutputFolders.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.gridControlOutputFolders.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
 			this.gridControlOutputFolders.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
-			this.gridControlOutputFolders.Location = new System.Drawing.Point(12, 369);
+			this.gridControlOutputFolders.Location = new System.Drawing.Point(12, 365);
 			this.gridControlOutputFolders.MainView = this.gridViewOutputFolders;
 			this.gridControlOutputFolders.Name = "gridControlOutputFolders";
 			this.gridControlOutputFolders.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEditOutputFoldersPath});
-			this.gridControlOutputFolders.Size = new System.Drawing.Size(438, 123);
-			this.gridControlOutputFolders.TabIndex = 20;
+			this.gridControlOutputFolders.Size = new System.Drawing.Size(438, 127);
+			this.gridControlOutputFolders.TabIndex = 12;
 			this.gridControlOutputFolders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOutputFolders});
 			// 
@@ -272,7 +332,7 @@
 			this.buttonXMainDataButtonUsers.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXMainDataButtonUsers.Location = new System.Drawing.Point(24, 60);
 			this.buttonXMainDataButtonUsers.Name = "buttonXMainDataButtonUsers";
-			this.buttonXMainDataButtonUsers.Size = new System.Drawing.Size(115, 32);
+			this.buttonXMainDataButtonUsers.Size = new System.Drawing.Size(115, 31);
 			this.buttonXMainDataButtonUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMainDataButtonUsers.TabIndex = 0;
 			this.buttonXMainDataButtonUsers.Text = "Users";
@@ -289,7 +349,7 @@
 			this.buttonXClose.Name = "buttonXClose";
 			this.buttonXClose.Size = new System.Drawing.Size(116, 36);
 			this.buttonXClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXClose.TabIndex = 9;
+			this.buttonXClose.TabIndex = 14;
 			this.buttonXClose.Text = "Cancel";
 			this.buttonXClose.TextColor = System.Drawing.Color.Black;
 			this.buttonXClose.Click += new System.EventHandler(this.OnFormCloseClick);
@@ -303,7 +363,7 @@
 			this.buttonXContinue.Name = "buttonXContinue";
 			this.buttonXContinue.Size = new System.Drawing.Size(116, 36);
 			this.buttonXContinue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXContinue.TabIndex = 8;
+			this.buttonXContinue.TabIndex = 13;
 			this.buttonXContinue.Text = "Update ALL";
 			this.buttonXContinue.TextColor = System.Drawing.Color.Black;
 			this.buttonXContinue.Click += new System.EventHandler(this.OnUpdateAllClick);
@@ -315,7 +375,7 @@
 			this.buttonXMainDataButtonCover.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXMainDataButtonCover.Location = new System.Drawing.Point(173, 60);
 			this.buttonXMainDataButtonCover.Name = "buttonXMainDataButtonCover";
-			this.buttonXMainDataButtonCover.Size = new System.Drawing.Size(115, 32);
+			this.buttonXMainDataButtonCover.Size = new System.Drawing.Size(115, 31);
 			this.buttonXMainDataButtonCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMainDataButtonCover.TabIndex = 2;
 			this.buttonXMainDataButtonCover.Text = "Cover";
@@ -329,7 +389,7 @@
 			this.buttonXMainDataButtonLeadoffStatements.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXMainDataButtonLeadoffStatements.Location = new System.Drawing.Point(322, 60);
 			this.buttonXMainDataButtonLeadoffStatements.Name = "buttonXMainDataButtonLeadoffStatements";
-			this.buttonXMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(116, 32);
+			this.buttonXMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(116, 31);
 			this.buttonXMainDataButtonLeadoffStatements.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMainDataButtonLeadoffStatements.TabIndex = 3;
 			this.buttonXMainDataButtonLeadoffStatements.Text = "Intro";
@@ -341,9 +401,9 @@
 			this.buttonXMainDataButtonClientGoals.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMainDataButtonClientGoals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXMainDataButtonClientGoals.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMainDataButtonClientGoals.Location = new System.Drawing.Point(24, 126);
+			this.buttonXMainDataButtonClientGoals.Location = new System.Drawing.Point(24, 125);
 			this.buttonXMainDataButtonClientGoals.Name = "buttonXMainDataButtonClientGoals";
-			this.buttonXMainDataButtonClientGoals.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonClientGoals.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonClientGoals.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMainDataButtonClientGoals.TabIndex = 4;
 			this.buttonXMainDataButtonClientGoals.Text = "CNA";
@@ -355,9 +415,9 @@
 			this.buttonXMainDataButtonTargetCustomers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMainDataButtonTargetCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXMainDataButtonTargetCustomers.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMainDataButtonTargetCustomers.Location = new System.Drawing.Point(173, 126);
+			this.buttonXMainDataButtonTargetCustomers.Location = new System.Drawing.Point(173, 125);
 			this.buttonXMainDataButtonTargetCustomers.Name = "buttonXMainDataButtonTargetCustomers";
-			this.buttonXMainDataButtonTargetCustomers.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonTargetCustomers.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonTargetCustomers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMainDataButtonTargetCustomers.TabIndex = 5;
 			this.buttonXMainDataButtonTargetCustomers.Text = "Tgt Customer";
@@ -369,9 +429,9 @@
 			this.buttonXMainDataButtonSummary.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMainDataButtonSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXMainDataButtonSummary.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMainDataButtonSummary.Location = new System.Drawing.Point(322, 126);
+			this.buttonXMainDataButtonSummary.Location = new System.Drawing.Point(322, 125);
 			this.buttonXMainDataButtonSummary.Name = "buttonXMainDataButtonSummary";
-			this.buttonXMainDataButtonSummary.Size = new System.Drawing.Size(116, 33);
+			this.buttonXMainDataButtonSummary.Size = new System.Drawing.Size(116, 32);
 			this.buttonXMainDataButtonSummary.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMainDataButtonSummary.TabIndex = 6;
 			this.buttonXMainDataButtonSummary.Text = "Summary";
@@ -383,9 +443,9 @@
 			this.buttonXMainDataButtonTV.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMainDataButtonTV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXMainDataButtonTV.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMainDataButtonTV.Location = new System.Drawing.Point(24, 193);
+			this.buttonXMainDataButtonTV.Location = new System.Drawing.Point(24, 191);
 			this.buttonXMainDataButtonTV.Name = "buttonXMainDataButtonTV";
-			this.buttonXMainDataButtonTV.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonTV.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonTV.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXMainDataButtonTV.TabIndex = 7;
 			this.buttonXMainDataButtonTV.Text = "TV";
@@ -397,11 +457,11 @@
 			this.buttonXMainDataButtonRadio.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMainDataButtonRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXMainDataButtonRadio.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMainDataButtonRadio.Location = new System.Drawing.Point(173, 193);
+			this.buttonXMainDataButtonRadio.Location = new System.Drawing.Point(173, 191);
 			this.buttonXMainDataButtonRadio.Name = "buttonXMainDataButtonRadio";
-			this.buttonXMainDataButtonRadio.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonRadio.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonRadio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonRadio.TabIndex = 10;
+			this.buttonXMainDataButtonRadio.TabIndex = 8;
 			this.buttonXMainDataButtonRadio.Text = "Radio";
 			this.buttonXMainDataButtonRadio.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonRadio.Click += new System.EventHandler(this.OnRadioDataButtonClick);
@@ -411,11 +471,11 @@
 			this.buttonXMainDataButtonOnline.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMainDataButtonOnline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXMainDataButtonOnline.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMainDataButtonOnline.Location = new System.Drawing.Point(322, 193);
+			this.buttonXMainDataButtonOnline.Location = new System.Drawing.Point(322, 191);
 			this.buttonXMainDataButtonOnline.Name = "buttonXMainDataButtonOnline";
-			this.buttonXMainDataButtonOnline.Size = new System.Drawing.Size(116, 33);
+			this.buttonXMainDataButtonOnline.Size = new System.Drawing.Size(116, 32);
 			this.buttonXMainDataButtonOnline.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonOnline.TabIndex = 11;
+			this.buttonXMainDataButtonOnline.TabIndex = 9;
 			this.buttonXMainDataButtonOnline.Text = "Digital";
 			this.buttonXMainDataButtonOnline.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonOnline.Click += new System.EventHandler(this.OnOnlineDataButtonClick);
@@ -425,14 +485,168 @@
 			this.buttonXMainDataButtonSDSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMainDataButtonSDSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonXMainDataButtonSDSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMainDataButtonSDSearch.Location = new System.Drawing.Point(24, 260);
+			this.buttonXMainDataButtonSDSearch.Location = new System.Drawing.Point(24, 257);
 			this.buttonXMainDataButtonSDSearch.Name = "buttonXMainDataButtonSDSearch";
-			this.buttonXMainDataButtonSDSearch.Size = new System.Drawing.Size(115, 33);
+			this.buttonXMainDataButtonSDSearch.Size = new System.Drawing.Size(115, 32);
 			this.buttonXMainDataButtonSDSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMainDataButtonSDSearch.TabIndex = 12;
+			this.buttonXMainDataButtonSDSearch.TabIndex = 10;
 			this.buttonXMainDataButtonSDSearch.Text = "SDSearch";
 			this.buttonXMainDataButtonSDSearch.TextColor = System.Drawing.Color.Black;
 			this.buttonXMainDataButtonSDSearch.Click += new System.EventHandler(this.OnSalesLibrariesDataButtonClick);
+			// 
+			// buttonXStarAppDataCover
+			// 
+			this.buttonXStarAppDataCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataCover.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataCover.Location = new System.Drawing.Point(24, 60);
+			this.buttonXStarAppDataCover.Name = "buttonXStarAppDataCover";
+			this.buttonXStarAppDataCover.Size = new System.Drawing.Size(115, 31);
+			this.buttonXStarAppDataCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataCover.TabIndex = 1;
+			this.buttonXStarAppDataCover.Text = "1. Cover";
+			this.buttonXStarAppDataCover.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataCover.Click += new System.EventHandler(this.OnStarAppDataCoverClick);
+			// 
+			// buttonXStarAppDataCNA
+			// 
+			this.buttonXStarAppDataCNA.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataCNA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataCNA.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataCNA.Location = new System.Drawing.Point(173, 60);
+			this.buttonXStarAppDataCNA.Name = "buttonXStarAppDataCNA";
+			this.buttonXStarAppDataCNA.Size = new System.Drawing.Size(115, 31);
+			this.buttonXStarAppDataCNA.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataCNA.TabIndex = 1;
+			this.buttonXStarAppDataCNA.Text = "2. CNA";
+			this.buttonXStarAppDataCNA.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataCNA.Click += new System.EventHandler(this.OnStarAppDataCNAClick);
+			// 
+			// buttonXStarAppDataFishing
+			// 
+			this.buttonXStarAppDataFishing.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataFishing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataFishing.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataFishing.Location = new System.Drawing.Point(322, 60);
+			this.buttonXStarAppDataFishing.Name = "buttonXStarAppDataFishing";
+			this.buttonXStarAppDataFishing.Size = new System.Drawing.Size(116, 31);
+			this.buttonXStarAppDataFishing.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataFishing.TabIndex = 1;
+			this.buttonXStarAppDataFishing.Text = "3. FISH-ing";
+			this.buttonXStarAppDataFishing.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataFishing.Click += new System.EventHandler(this.OnStarAppDataFishingClick);
+			// 
+			// buttonXStarAppDataCustomer
+			// 
+			this.buttonXStarAppDataCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataCustomer.Location = new System.Drawing.Point(24, 125);
+			this.buttonXStarAppDataCustomer.Name = "buttonXStarAppDataCustomer";
+			this.buttonXStarAppDataCustomer.Size = new System.Drawing.Size(115, 32);
+			this.buttonXStarAppDataCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataCustomer.TabIndex = 1;
+			this.buttonXStarAppDataCustomer.Text = "4. Customer";
+			this.buttonXStarAppDataCustomer.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataCustomer.Click += new System.EventHandler(this.OnStarAppDataCustomerClick);
+			// 
+			// buttonXStarAppDataShare
+			// 
+			this.buttonXStarAppDataShare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataShare.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataShare.Location = new System.Drawing.Point(173, 125);
+			this.buttonXStarAppDataShare.Name = "buttonXStarAppDataShare";
+			this.buttonXStarAppDataShare.Size = new System.Drawing.Size(115, 32);
+			this.buttonXStarAppDataShare.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataShare.TabIndex = 1;
+			this.buttonXStarAppDataShare.Text = "5. Share";
+			this.buttonXStarAppDataShare.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataShare.Click += new System.EventHandler(this.OnStarAppDataShareClick);
+			// 
+			// buttonXStarAppDataROI
+			// 
+			this.buttonXStarAppDataROI.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataROI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataROI.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataROI.Location = new System.Drawing.Point(322, 125);
+			this.buttonXStarAppDataROI.Name = "buttonXStarAppDataROI";
+			this.buttonXStarAppDataROI.Size = new System.Drawing.Size(116, 32);
+			this.buttonXStarAppDataROI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataROI.TabIndex = 1;
+			this.buttonXStarAppDataROI.Text = "6. ROI";
+			this.buttonXStarAppDataROI.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataROI.Click += new System.EventHandler(this.OnStarAppDataROIClick);
+			// 
+			// buttonXStarAppDataMarket
+			// 
+			this.buttonXStarAppDataMarket.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataMarket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataMarket.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataMarket.Location = new System.Drawing.Point(24, 191);
+			this.buttonXStarAppDataMarket.Name = "buttonXStarAppDataMarket";
+			this.buttonXStarAppDataMarket.Size = new System.Drawing.Size(115, 32);
+			this.buttonXStarAppDataMarket.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataMarket.TabIndex = 1;
+			this.buttonXStarAppDataMarket.Text = "7. Market";
+			this.buttonXStarAppDataMarket.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataMarket.Click += new System.EventHandler(this.OnStarAppDataMarketClick);
+			// 
+			// buttonXStarAppDataVideo
+			// 
+			this.buttonXStarAppDataVideo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataVideo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataVideo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataVideo.Location = new System.Drawing.Point(173, 191);
+			this.buttonXStarAppDataVideo.Name = "buttonXStarAppDataVideo";
+			this.buttonXStarAppDataVideo.Size = new System.Drawing.Size(115, 32);
+			this.buttonXStarAppDataVideo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataVideo.TabIndex = 1;
+			this.buttonXStarAppDataVideo.Text = "8. Video";
+			this.buttonXStarAppDataVideo.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataVideo.Click += new System.EventHandler(this.OnStarAppDataVideoClick);
+			// 
+			// buttonXStarAppDataAudience
+			// 
+			this.buttonXStarAppDataAudience.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataAudience.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataAudience.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataAudience.Location = new System.Drawing.Point(322, 191);
+			this.buttonXStarAppDataAudience.Name = "buttonXStarAppDataAudience";
+			this.buttonXStarAppDataAudience.Size = new System.Drawing.Size(116, 32);
+			this.buttonXStarAppDataAudience.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataAudience.TabIndex = 1;
+			this.buttonXStarAppDataAudience.Text = "9. Audience";
+			this.buttonXStarAppDataAudience.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataAudience.Click += new System.EventHandler(this.OnStarAppDataAudienceClick);
+			// 
+			// buttonXStarAppDataSolution
+			// 
+			this.buttonXStarAppDataSolution.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataSolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataSolution.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataSolution.Location = new System.Drawing.Point(24, 257);
+			this.buttonXStarAppDataSolution.Name = "buttonXStarAppDataSolution";
+			this.buttonXStarAppDataSolution.Size = new System.Drawing.Size(115, 32);
+			this.buttonXStarAppDataSolution.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataSolution.TabIndex = 1;
+			this.buttonXStarAppDataSolution.Text = "10. Solution";
+			this.buttonXStarAppDataSolution.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataSolution.Click += new System.EventHandler(this.OnStarAppDataSolutionClick);
+			// 
+			// buttonXStarAppDataClosers
+			// 
+			this.buttonXStarAppDataClosers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXStarAppDataClosers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonXStarAppDataClosers.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXStarAppDataClosers.Location = new System.Drawing.Point(173, 257);
+			this.buttonXStarAppDataClosers.Name = "buttonXStarAppDataClosers";
+			this.buttonXStarAppDataClosers.Size = new System.Drawing.Size(115, 32);
+			this.buttonXStarAppDataClosers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXStarAppDataClosers.TabIndex = 1;
+			this.buttonXStarAppDataClosers.Text = "11. Closers";
+			this.buttonXStarAppDataClosers.TextColor = System.Drawing.Color.Black;
+			this.buttonXStarAppDataClosers.Click += new System.EventHandler(this.OnStarAppDataClosersClick);
 			// 
 			// layoutControlGroupRoot
 			// 
@@ -511,11 +725,249 @@
 			this.tabbedControlGroup.Name = "tabbedControlGroup";
 			this.tabbedControlGroup.SelectedTabPage = this.layoutControlGroupMainData;
 			this.tabbedControlGroup.SelectedTabPageIndex = 0;
-			this.tabbedControlGroup.Size = new System.Drawing.Size(442, 297);
+			this.tabbedControlGroup.Size = new System.Drawing.Size(442, 293);
 			this.tabbedControlGroup.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupMainData,
             this.layoutControlGroupStarAppData});
 			this.tabbedControlGroup.Text = "Tabs";
+			// 
+			// layoutControlGroupStarAppData
+			// 
+			this.layoutControlGroupStarAppData.CustomizationFormText = "Star App Data";
+			this.layoutControlGroupStarAppData.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroupStarAppDataButtons});
+			this.layoutControlGroupStarAppData.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupStarAppData.Name = "layoutControlGroupStarAppData";
+			this.layoutControlGroupStarAppData.Size = new System.Drawing.Size(418, 243);
+			this.layoutControlGroupStarAppData.Text = "STAR";
+			// 
+			// layoutControlGroupStarAppDataButtons
+			// 
+			this.layoutControlGroupStarAppDataButtons.CustomizationFormText = "Buttons";
+			this.layoutControlGroupStarAppDataButtons.GroupBordersVisible = false;
+			this.layoutControlGroupStarAppDataButtons.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover,
+            this.layoutControlItemStarAppDataButtonCNA,
+            this.layoutControlItemStarAppDataButtonFishing,
+            this.layoutControlItemStarAppDataButtonCustomer,
+            this.layoutControlItemStarAppDataButtonShare,
+            this.layoutControlItemStarAppDataButtonROI,
+            this.layoutControlItemStarAppDataButtonMarket,
+            this.layoutControlItemStarAppDataButtonVideo,
+            this.layoutControlItemStarAppDataButtonAudience,
+            this.layoutControlItemStarAppDataButtonSolution,
+            this.layoutControlItemStarAppDataButtonClosers});
+			this.layoutControlGroupStarAppDataButtons.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+			this.layoutControlGroupStarAppDataButtons.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupStarAppDataButtons.Name = "layoutControlGroupStarAppDataButtons";
+			columnDefinition6.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition6.Width = 33.333333333333336D;
+			columnDefinition7.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition7.Width = 30D;
+			columnDefinition8.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition8.Width = 33.333333333333336D;
+			columnDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition9.Width = 30D;
+			columnDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition10.Width = 33.333333333333336D;
+			this.layoutControlGroupStarAppDataButtons.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition6,
+            columnDefinition7,
+            columnDefinition8,
+            columnDefinition9,
+            columnDefinition10});
+			rowDefinition9.Height = 10D;
+			rowDefinition9.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition10.Height = 25D;
+			rowDefinition10.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition11.Height = 30D;
+			rowDefinition11.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition12.Height = 25D;
+			rowDefinition12.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition13.Height = 30D;
+			rowDefinition13.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition14.Height = 25D;
+			rowDefinition14.SizeType = System.Windows.Forms.SizeType.Percent;
+			rowDefinition15.Height = 30D;
+			rowDefinition15.SizeType = System.Windows.Forms.SizeType.Absolute;
+			rowDefinition16.Height = 25D;
+			rowDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
+			this.layoutControlGroupStarAppDataButtons.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
+            rowDefinition9,
+            rowDefinition10,
+            rowDefinition11,
+            rowDefinition12,
+            rowDefinition13,
+            rowDefinition14,
+            rowDefinition15,
+            rowDefinition16});
+			this.layoutControlGroupStarAppDataButtons.Size = new System.Drawing.Size(418, 243);
+			this.layoutControlGroupStarAppDataButtons.Text = "Buttons";
+			this.layoutControlGroupStarAppDataButtons.TextVisible = false;
+			// 
+			// layoutControlItemMainDataButtonUsersStarAppDataButtonCover
+			// 
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.Control = this.buttonXStarAppDataCover;
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.FillControlToClientArea = false;
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.Location = new System.Drawing.Point(0, 10);
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.Name = "layoutControlItemMainDataButtonUsersStarAppDataButtonCover";
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.Size = new System.Drawing.Size(119, 35);
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.Text = "Cover";
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.TextVisible = false;
+			this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonCNA
+			// 
+			this.layoutControlItemStarAppDataButtonCNA.Control = this.buttonXStarAppDataCNA;
+			this.layoutControlItemStarAppDataButtonCNA.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonCNA.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonCNA.Location = new System.Drawing.Point(149, 10);
+			this.layoutControlItemStarAppDataButtonCNA.Name = "layoutControlItemStarAppDataButtonCNA";
+			this.layoutControlItemStarAppDataButtonCNA.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemStarAppDataButtonCNA.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemStarAppDataButtonCNA.Size = new System.Drawing.Size(119, 35);
+			this.layoutControlItemStarAppDataButtonCNA.Text = "CNA";
+			this.layoutControlItemStarAppDataButtonCNA.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonCNA.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonCNA.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonFishing
+			// 
+			this.layoutControlItemStarAppDataButtonFishing.Control = this.buttonXStarAppDataFishing;
+			this.layoutControlItemStarAppDataButtonFishing.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonFishing.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonFishing.Location = new System.Drawing.Point(298, 10);
+			this.layoutControlItemStarAppDataButtonFishing.Name = "layoutControlItemStarAppDataButtonFishing";
+			this.layoutControlItemStarAppDataButtonFishing.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemStarAppDataButtonFishing.OptionsTableLayoutItem.RowIndex = 1;
+			this.layoutControlItemStarAppDataButtonFishing.Size = new System.Drawing.Size(120, 35);
+			this.layoutControlItemStarAppDataButtonFishing.Text = "Fishing";
+			this.layoutControlItemStarAppDataButtonFishing.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonFishing.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonFishing.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonCustomer
+			// 
+			this.layoutControlItemStarAppDataButtonCustomer.Control = this.buttonXStarAppDataCustomer;
+			this.layoutControlItemStarAppDataButtonCustomer.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonCustomer.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonCustomer.Location = new System.Drawing.Point(0, 75);
+			this.layoutControlItemStarAppDataButtonCustomer.Name = "layoutControlItemStarAppDataButtonCustomer";
+			this.layoutControlItemStarAppDataButtonCustomer.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemStarAppDataButtonCustomer.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemStarAppDataButtonCustomer.Text = "Customer";
+			this.layoutControlItemStarAppDataButtonCustomer.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonCustomer.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonCustomer.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonShare
+			// 
+			this.layoutControlItemStarAppDataButtonShare.Control = this.buttonXStarAppDataShare;
+			this.layoutControlItemStarAppDataButtonShare.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonShare.Enabled = false;
+			this.layoutControlItemStarAppDataButtonShare.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonShare.Location = new System.Drawing.Point(149, 75);
+			this.layoutControlItemStarAppDataButtonShare.Name = "layoutControlItemStarAppDataButtonShare";
+			this.layoutControlItemStarAppDataButtonShare.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemStarAppDataButtonShare.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemStarAppDataButtonShare.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemStarAppDataButtonShare.Text = "Share";
+			this.layoutControlItemStarAppDataButtonShare.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonShare.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonShare.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonROI
+			// 
+			this.layoutControlItemStarAppDataButtonROI.Control = this.buttonXStarAppDataROI;
+			this.layoutControlItemStarAppDataButtonROI.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonROI.Enabled = false;
+			this.layoutControlItemStarAppDataButtonROI.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonROI.Location = new System.Drawing.Point(298, 75);
+			this.layoutControlItemStarAppDataButtonROI.Name = "layoutControlItemStarAppDataButtonROI";
+			this.layoutControlItemStarAppDataButtonROI.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemStarAppDataButtonROI.OptionsTableLayoutItem.RowIndex = 3;
+			this.layoutControlItemStarAppDataButtonROI.Size = new System.Drawing.Size(120, 36);
+			this.layoutControlItemStarAppDataButtonROI.Text = "ROI";
+			this.layoutControlItemStarAppDataButtonROI.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonROI.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonROI.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonMarket
+			// 
+			this.layoutControlItemStarAppDataButtonMarket.Control = this.buttonXStarAppDataMarket;
+			this.layoutControlItemStarAppDataButtonMarket.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonMarket.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonMarket.Location = new System.Drawing.Point(0, 141);
+			this.layoutControlItemStarAppDataButtonMarket.Name = "layoutControlItemStarAppDataButtonMarket";
+			this.layoutControlItemStarAppDataButtonMarket.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemStarAppDataButtonMarket.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemStarAppDataButtonMarket.Text = "Market";
+			this.layoutControlItemStarAppDataButtonMarket.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonMarket.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonMarket.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonVideo
+			// 
+			this.layoutControlItemStarAppDataButtonVideo.Control = this.buttonXStarAppDataVideo;
+			this.layoutControlItemStarAppDataButtonVideo.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonVideo.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonVideo.Location = new System.Drawing.Point(149, 141);
+			this.layoutControlItemStarAppDataButtonVideo.Name = "layoutControlItemStarAppDataButtonVideo";
+			this.layoutControlItemStarAppDataButtonVideo.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemStarAppDataButtonVideo.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemStarAppDataButtonVideo.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemStarAppDataButtonVideo.Text = "Video";
+			this.layoutControlItemStarAppDataButtonVideo.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonVideo.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonVideo.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonAudience
+			// 
+			this.layoutControlItemStarAppDataButtonAudience.Control = this.buttonXStarAppDataAudience;
+			this.layoutControlItemStarAppDataButtonAudience.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonAudience.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonAudience.Location = new System.Drawing.Point(298, 141);
+			this.layoutControlItemStarAppDataButtonAudience.Name = "layoutControlItemStarAppDataButtonAudience";
+			this.layoutControlItemStarAppDataButtonAudience.OptionsTableLayoutItem.ColumnIndex = 4;
+			this.layoutControlItemStarAppDataButtonAudience.OptionsTableLayoutItem.RowIndex = 5;
+			this.layoutControlItemStarAppDataButtonAudience.Size = new System.Drawing.Size(120, 36);
+			this.layoutControlItemStarAppDataButtonAudience.Text = "Audience";
+			this.layoutControlItemStarAppDataButtonAudience.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonAudience.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonAudience.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonSolution
+			// 
+			this.layoutControlItemStarAppDataButtonSolution.Control = this.buttonXStarAppDataSolution;
+			this.layoutControlItemStarAppDataButtonSolution.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonSolution.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonSolution.Location = new System.Drawing.Point(0, 207);
+			this.layoutControlItemStarAppDataButtonSolution.Name = "layoutControlItemStarAppDataButtonSolution";
+			this.layoutControlItemStarAppDataButtonSolution.OptionsTableLayoutItem.RowIndex = 7;
+			this.layoutControlItemStarAppDataButtonSolution.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemStarAppDataButtonSolution.Text = "Solution";
+			this.layoutControlItemStarAppDataButtonSolution.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonSolution.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonSolution.TrimClientAreaToControl = false;
+			// 
+			// layoutControlItemStarAppDataButtonClosers
+			// 
+			this.layoutControlItemStarAppDataButtonClosers.Control = this.buttonXStarAppDataClosers;
+			this.layoutControlItemStarAppDataButtonClosers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemStarAppDataButtonClosers.Enabled = false;
+			this.layoutControlItemStarAppDataButtonClosers.FillControlToClientArea = false;
+			this.layoutControlItemStarAppDataButtonClosers.Location = new System.Drawing.Point(149, 207);
+			this.layoutControlItemStarAppDataButtonClosers.Name = "layoutControlItemStarAppDataButtonClosers";
+			this.layoutControlItemStarAppDataButtonClosers.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.layoutControlItemStarAppDataButtonClosers.OptionsTableLayoutItem.RowIndex = 7;
+			this.layoutControlItemStarAppDataButtonClosers.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemStarAppDataButtonClosers.Text = "Closers";
+			this.layoutControlItemStarAppDataButtonClosers.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemStarAppDataButtonClosers.TextVisible = false;
+			this.layoutControlItemStarAppDataButtonClosers.TrimClientAreaToControl = false;
 			// 
 			// layoutControlGroupMainData
 			// 
@@ -524,7 +976,7 @@
             this.layoutControlGroupMainDataButtons});
 			this.layoutControlGroupMainData.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupMainData.Name = "layoutControlGroupMainData";
-			this.layoutControlGroupMainData.Size = new System.Drawing.Size(418, 247);
+			this.layoutControlGroupMainData.Size = new System.Drawing.Size(418, 243);
 			this.layoutControlGroupMainData.Text = "Data Files";
 			// 
 			// layoutControlGroupMainDataButtons
@@ -585,7 +1037,7 @@
             rowDefinition6,
             rowDefinition7,
             rowDefinition8});
-			this.layoutControlGroupMainDataButtons.Size = new System.Drawing.Size(418, 247);
+			this.layoutControlGroupMainDataButtons.Size = new System.Drawing.Size(418, 243);
 			this.layoutControlGroupMainDataButtons.Text = "Buttons";
 			this.layoutControlGroupMainDataButtons.TextVisible = false;
 			// 
@@ -597,7 +1049,7 @@
 			this.layoutControlItemMainDataButtonUsers.Location = new System.Drawing.Point(0, 10);
 			this.layoutControlItemMainDataButtonUsers.Name = "layoutControlItemMainDataButtonUsers";
 			this.layoutControlItemMainDataButtonUsers.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemMainDataButtonUsers.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonUsers.Size = new System.Drawing.Size(119, 35);
 			this.layoutControlItemMainDataButtonUsers.Text = "Users";
 			this.layoutControlItemMainDataButtonUsers.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonUsers.TextVisible = false;
@@ -611,7 +1063,7 @@
 			this.layoutControlItemMainDataButtonCover.Name = "layoutControlItemMainDataButtonCover";
 			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlItemMainDataButtonCover.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemMainDataButtonCover.Size = new System.Drawing.Size(119, 36);
+			this.layoutControlItemMainDataButtonCover.Size = new System.Drawing.Size(119, 35);
 			this.layoutControlItemMainDataButtonCover.Text = "Cover";
 			this.layoutControlItemMainDataButtonCover.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonCover.TextVisible = false;
@@ -625,7 +1077,7 @@
 			this.layoutControlItemMainDataButtonLeadoffStatements.Name = "layoutControlItemMainDataButtonLeadoffStatements";
 			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.ColumnIndex = 4;
 			this.layoutControlItemMainDataButtonLeadoffStatements.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(120, 36);
+			this.layoutControlItemMainDataButtonLeadoffStatements.Size = new System.Drawing.Size(120, 35);
 			this.layoutControlItemMainDataButtonLeadoffStatements.Text = "Leadoff Statements";
 			this.layoutControlItemMainDataButtonLeadoffStatements.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonLeadoffStatements.TextVisible = false;
@@ -635,10 +1087,10 @@
 			// 
 			this.layoutControlItemMainDataButtonClientGoals.Control = this.buttonXMainDataButtonClientGoals;
 			this.layoutControlItemMainDataButtonClientGoals.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonClientGoals.Location = new System.Drawing.Point(0, 76);
+			this.layoutControlItemMainDataButtonClientGoals.Location = new System.Drawing.Point(0, 75);
 			this.layoutControlItemMainDataButtonClientGoals.Name = "layoutControlItemMainDataButtonClientGoals";
 			this.layoutControlItemMainDataButtonClientGoals.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemMainDataButtonClientGoals.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonClientGoals.Size = new System.Drawing.Size(119, 36);
 			this.layoutControlItemMainDataButtonClientGoals.Text = "Client Goals";
 			this.layoutControlItemMainDataButtonClientGoals.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonClientGoals.TextVisible = false;
@@ -648,11 +1100,11 @@
 			// 
 			this.layoutControlItemMainDataButtonTargetCustomers.Control = this.buttonXMainDataButtonTargetCustomers;
 			this.layoutControlItemMainDataButtonTargetCustomers.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonTargetCustomers.Location = new System.Drawing.Point(149, 76);
+			this.layoutControlItemMainDataButtonTargetCustomers.Location = new System.Drawing.Point(149, 75);
 			this.layoutControlItemMainDataButtonTargetCustomers.Name = "layoutControlItemMainDataButtonTargetCustomers";
 			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlItemMainDataButtonTargetCustomers.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemMainDataButtonTargetCustomers.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonTargetCustomers.Size = new System.Drawing.Size(119, 36);
 			this.layoutControlItemMainDataButtonTargetCustomers.Text = "Target Customers";
 			this.layoutControlItemMainDataButtonTargetCustomers.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonTargetCustomers.TextVisible = false;
@@ -662,11 +1114,11 @@
 			// 
 			this.layoutControlItemMainDataButtonSummary.Control = this.buttonXMainDataButtonSummary;
 			this.layoutControlItemMainDataButtonSummary.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonSummary.Location = new System.Drawing.Point(298, 76);
+			this.layoutControlItemMainDataButtonSummary.Location = new System.Drawing.Point(298, 75);
 			this.layoutControlItemMainDataButtonSummary.Name = "layoutControlItemMainDataButtonSummary";
 			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.ColumnIndex = 4;
 			this.layoutControlItemMainDataButtonSummary.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemMainDataButtonSummary.Size = new System.Drawing.Size(120, 37);
+			this.layoutControlItemMainDataButtonSummary.Size = new System.Drawing.Size(120, 36);
 			this.layoutControlItemMainDataButtonSummary.Text = "Summary";
 			this.layoutControlItemMainDataButtonSummary.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonSummary.TextVisible = false;
@@ -676,10 +1128,10 @@
 			// 
 			this.layoutControlItemMainDataButtonTV.Control = this.buttonXMainDataButtonTV;
 			this.layoutControlItemMainDataButtonTV.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonTV.Location = new System.Drawing.Point(0, 143);
+			this.layoutControlItemMainDataButtonTV.Location = new System.Drawing.Point(0, 141);
 			this.layoutControlItemMainDataButtonTV.Name = "layoutControlItemMainDataButtonTV";
 			this.layoutControlItemMainDataButtonTV.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlItemMainDataButtonTV.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonTV.Size = new System.Drawing.Size(119, 36);
 			this.layoutControlItemMainDataButtonTV.Text = "TV";
 			this.layoutControlItemMainDataButtonTV.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonTV.TextVisible = false;
@@ -689,11 +1141,11 @@
 			// 
 			this.layoutControlItemMainDataButtonRadio.Control = this.buttonXMainDataButtonRadio;
 			this.layoutControlItemMainDataButtonRadio.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonRadio.Location = new System.Drawing.Point(149, 143);
+			this.layoutControlItemMainDataButtonRadio.Location = new System.Drawing.Point(149, 141);
 			this.layoutControlItemMainDataButtonRadio.Name = "layoutControlItemMainDataButtonRadio";
 			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.ColumnIndex = 2;
 			this.layoutControlItemMainDataButtonRadio.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlItemMainDataButtonRadio.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonRadio.Size = new System.Drawing.Size(119, 36);
 			this.layoutControlItemMainDataButtonRadio.Text = "Radio";
 			this.layoutControlItemMainDataButtonRadio.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonRadio.TextVisible = false;
@@ -703,11 +1155,11 @@
 			// 
 			this.layoutControlItemMainDataButtonOnline.Control = this.buttonXMainDataButtonOnline;
 			this.layoutControlItemMainDataButtonOnline.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonOnline.Location = new System.Drawing.Point(298, 143);
+			this.layoutControlItemMainDataButtonOnline.Location = new System.Drawing.Point(298, 141);
 			this.layoutControlItemMainDataButtonOnline.Name = "layoutControlItemMainDataButtonOnline";
 			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.ColumnIndex = 4;
 			this.layoutControlItemMainDataButtonOnline.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlItemMainDataButtonOnline.Size = new System.Drawing.Size(120, 37);
+			this.layoutControlItemMainDataButtonOnline.Size = new System.Drawing.Size(120, 36);
 			this.layoutControlItemMainDataButtonOnline.Text = "Online";
 			this.layoutControlItemMainDataButtonOnline.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonOnline.TextVisible = false;
@@ -717,30 +1169,22 @@
 			// 
 			this.layoutControlItemMainDataButtonSDSearch.Control = this.buttonXMainDataButtonSDSearch;
 			this.layoutControlItemMainDataButtonSDSearch.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-			this.layoutControlItemMainDataButtonSDSearch.Location = new System.Drawing.Point(0, 210);
+			this.layoutControlItemMainDataButtonSDSearch.Location = new System.Drawing.Point(0, 207);
 			this.layoutControlItemMainDataButtonSDSearch.Name = "layoutControlItemMainDataButtonSDSearch";
 			this.layoutControlItemMainDataButtonSDSearch.OptionsTableLayoutItem.RowIndex = 7;
-			this.layoutControlItemMainDataButtonSDSearch.Size = new System.Drawing.Size(119, 37);
+			this.layoutControlItemMainDataButtonSDSearch.Size = new System.Drawing.Size(119, 36);
 			this.layoutControlItemMainDataButtonSDSearch.Text = "SDSearch";
 			this.layoutControlItemMainDataButtonSDSearch.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemMainDataButtonSDSearch.TextVisible = false;
 			this.layoutControlItemMainDataButtonSDSearch.TrimClientAreaToControl = false;
 			// 
-			// layoutControlGroupStarAppData
-			// 
-			this.layoutControlGroupStarAppData.CustomizationFormText = "Star App Data";
-			this.layoutControlGroupStarAppData.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupStarAppData.Name = "layoutControlGroupStarAppData";
-			this.layoutControlGroupStarAppData.Size = new System.Drawing.Size(418, 247);
-			this.layoutControlGroupStarAppData.Text = "STAR";
-			// 
 			// layoutControlItemOutputFolders
 			// 
 			this.layoutControlItemOutputFolders.Control = this.gridControlOutputFolders;
-			this.layoutControlItemOutputFolders.Location = new System.Drawing.Point(0, 357);
+			this.layoutControlItemOutputFolders.Location = new System.Drawing.Point(0, 353);
 			this.layoutControlItemOutputFolders.Name = "layoutControlItemOutputFolders";
 			this.layoutControlItemOutputFolders.OptionsTableLayoutItem.RowIndex = 9;
-			this.layoutControlItemOutputFolders.Size = new System.Drawing.Size(442, 127);
+			this.layoutControlItemOutputFolders.Size = new System.Drawing.Size(442, 131);
 			this.layoutControlItemOutputFolders.Text = "Output Folders List";
 			this.layoutControlItemOutputFolders.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutControlItemOutputFolders.TextVisible = false;
@@ -756,7 +1200,7 @@
 			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
 			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.simpleLabelItemOutputFoldersTitle.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemOutputFoldersTitle.Location = new System.Drawing.Point(0, 307);
+			this.simpleLabelItemOutputFoldersTitle.Location = new System.Drawing.Point(0, 303);
 			this.simpleLabelItemOutputFoldersTitle.Name = "simpleLabelItemOutputFoldersTitle";
 			this.simpleLabelItemOutputFoldersTitle.Size = new System.Drawing.Size(322, 40);
 			this.simpleLabelItemOutputFoldersTitle.Text = "Output Locations:";
@@ -765,7 +1209,7 @@
 			// emptySpaceItem1
 			// 
 			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 297);
+			this.emptySpaceItem1.Location = new System.Drawing.Point(0, 293);
 			this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -776,7 +1220,7 @@
 			// emptySpaceItem2
 			// 
 			this.emptySpaceItem2.AllowHotTrack = false;
-			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 347);
+			this.emptySpaceItem2.Location = new System.Drawing.Point(0, 343);
 			this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 10);
 			this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 10);
 			this.emptySpaceItem2.Name = "emptySpaceItem2";
@@ -789,7 +1233,7 @@
 			this.layoutControlItemOutputFoldersAdd.Control = this.buttonXOutputFoldersAdd;
 			this.layoutControlItemOutputFoldersAdd.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
 			this.layoutControlItemOutputFoldersAdd.FillControlToClientArea = false;
-			this.layoutControlItemOutputFoldersAdd.Location = new System.Drawing.Point(322, 307);
+			this.layoutControlItemOutputFoldersAdd.Location = new System.Drawing.Point(322, 303);
 			this.layoutControlItemOutputFoldersAdd.MaxSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOutputFoldersAdd.MinSize = new System.Drawing.Size(120, 40);
 			this.layoutControlItemOutputFoldersAdd.Name = "layoutControlItemOutputFoldersAdd";
@@ -830,6 +1274,10 @@
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Office 2013";
 			// 
+			// splashScreenManager
+			// 
+			this.splashScreenManager.ClosingDelay = 500;
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -858,6 +1306,19 @@
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCancel)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppDataButtons)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsersStarAppDataButtonCover)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonCNA)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonFishing)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonCustomer)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonShare)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonROI)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonMarket)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonVideo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonAudience)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonSolution)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStarAppDataButtonClosers)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupMainDataButtons)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonUsers)).EndInit();
@@ -870,7 +1331,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonRadio)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonOnline)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMainDataButtonSDSearch)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStarAppData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOutputFolders)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemOutputFoldersTitle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -899,7 +1359,6 @@
 		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonUsers;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupMainDataButtons;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonUsers;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupStarAppData;
 		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonCover;
 		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonLeadoffStatements;
 		private DevComponents.DotNetBar.ButtonX buttonXMainDataButtonClientGoals;
@@ -929,5 +1388,30 @@
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOutputFoldersAdd;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataCover;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataCNA;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataFishing;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataCustomer;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataShare;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataROI;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataMarket;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataVideo;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataAudience;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataSolution;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupStarAppData;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupStarAppDataButtons;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemMainDataButtonUsersStarAppDataButtonCover;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonCNA;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonFishing;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonCustomer;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonShare;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonROI;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonMarket;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonVideo;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonAudience;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonSolution;
+		private DevComponents.DotNetBar.ButtonX buttonXStarAppDataClosers;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStarAppDataButtonClosers;
+		private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
 	}
 }

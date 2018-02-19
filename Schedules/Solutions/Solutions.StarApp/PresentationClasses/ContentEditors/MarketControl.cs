@@ -79,6 +79,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		public override void LoadData()
 		{
 			_allowToSave = false;
+			memoEditTabASubheader1.EditValue = SlideContainer.StarInfo.MarketConfiguration.PartASubHeader1DefaultValue;
+
+			textEditTabBSubheader1.EditValue = SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader1DefaultValue;
+			memoEditTabBSubheader2.EditValue = SlideContainer.StarInfo.MarketConfiguration.PartBSubHeader2DefaultValue;
 
 			comboBoxEditTabCCombo1.EditValue =
 				SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items.FirstOrDefault(item => item.IsDefault);

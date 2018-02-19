@@ -16,9 +16,11 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartCItems { get; set; }
+		public string PartCSubHeader1DefaultValue { get; private set; }
 		public ClipartConfiguration PartCClipart1Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartDItems { get; set; }
+		public string PartDSubHeader1DefaultValue { get; private set; }
 		public ClipartConfiguration PartDClipart1Configuration { get; private set; }
 
 		public VideoConfiguration()
@@ -110,6 +112,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 									HeadersPartCItems.Add(item);
 							}
 							break;
+						case "CP08CSubheader1":
+							PartCSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
 					}
 				}
 
@@ -133,6 +138,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartDItems.Add(item);
 							}
+							break;
+						case "CP08DSubheader1":
+							PartDSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 					}
 				}

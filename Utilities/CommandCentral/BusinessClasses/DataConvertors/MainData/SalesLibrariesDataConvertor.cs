@@ -8,7 +8,7 @@ using System.Text;
 using CommandCentral.BusinessClasses.Common;
 using CommandCentral.BusinessClasses.Entities.SalesDepot;
 
-namespace CommandCentral.BusinessClasses.DataConvertors
+namespace CommandCentral.BusinessClasses.DataConvertors.MainData
 {
 	class SalesLibrariesDataConvertor : IExcel2XmlConvertor
 	{
@@ -33,136 +33,138 @@ namespace CommandCentral.BusinessClasses.DataConvertors
 				String.Format(
 					@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=Yes;IMEX=1"";",
 					_sourceFilePath);
-			var connection = new OleDbConnection(connnectionString);
-			try
+			using (var connection = new OleDbConnection(connnectionString))
 			{
-				connection.Open();
-			}
-			catch (Exception)
-			{
-				throw new ConversionException { SourceFilePath = _sourceFilePath };
-			}
-			if (connection.State == ConnectionState.Open)
-			{
-				//Load Settings
+				try
 				{
-					var dataAdapter = new OleDbDataAdapter("SELECT * FROM [Settings$]", connection);
-					var dataTable = new DataTable();
-					try
-					{
-						dataAdapter.Fill(dataTable);
-						foreach (DataRow row in dataTable.Rows)
-						{
-							if (row[0].ToString().Equals("Max Tags") && int.TryParse(row[1].ToString(), out int tempInt))
-								maxTags = tempInt;
-							else
-							{
-								if (row[0].ToString().Equals("Tag Count") && bool.TryParse(row[1].ToString(), out bool tempBool))
-									tagCount = tempBool;
-							}
-						}
-					}
-					catch
-					{
-					}
-					finally
-					{
-						dataAdapter.Dispose();
-						dataTable.Dispose();
-					}
+					connection.Open();
 				}
-
-				//Load Top Group Icons
+				catch (Exception)
 				{
-					var dataAdapter = new OleDbDataAdapter("SELECT * FROM [Groups$]", connection);
-					var dataTable = new DataTable();
-					try
-					{
-						dataAdapter.Fill(dataTable);
-						foreach (DataRow row in dataTable.Rows)
-						{
-							var topGroupName = row[0].ToString().Trim();
-							var topGroupIcon = row[1].ToString().Trim();
-							searchTopGroupIcons.Add(topGroupName, topGroupIcon);
-						}
-					}
-					catch
-					{
-					}
-					finally
-					{
-						dataAdapter.Dispose();
-						dataTable.Dispose();
-					}
+					throw new ConversionException { SourceFilePath = _sourceFilePath };
 				}
-
-				//Load Groups
+				if (connection.State == ConnectionState.Open)
 				{
-					GetCategories(connection);
-					var dataAdapter = new OleDbDataAdapter("SELECT * FROM [Categories$]", connection);
-					var dataTable = new DataTable();
-					try
+					//Load Settings
 					{
-						dataAdapter.Fill(dataTable);
-						if (dataTable.Rows.Count > 1 && dataTable.Columns.Count > 1)
+						var dataAdapter = new OleDbDataAdapter("SELECT * FROM [Settings$]", connection);
+						var dataTable = new DataTable();
+						try
+						{
+							dataAdapter.Fill(dataTable);
 							foreach (DataRow row in dataTable.Rows)
 							{
-								string groupName = row[0].ToString().Trim();
-								SearchGroup searchGroup = _categories.FirstOrDefault(x => x.Name.Equals(groupName));
-								if (searchGroup != null)
+								if (row[0].ToString().Equals("Max Tags") && int.TryParse(row[1].ToString(), out int tempInt))
+									maxTags = tempInt;
+								else
 								{
-									searchGroup.Description = row[1].ToString().Trim();
-
-									var topGroupName = row[2].ToString().Trim();
-									searchGroup.TopGroupName = topGroupName;
-									if (searchTopGroupIcons.ContainsKey(topGroupName))
-										searchGroup.TopGroupIcon = searchTopGroupIcons[topGroupName];
-
-									searchGroups.Add(searchGroup);
+									if (row[0].ToString().Equals("Tag Count") && bool.TryParse(row[1].ToString(), out bool tempBool))
+										tagCount = tempBool;
 								}
 							}
+						}
+						catch
+						{
+						}
+						finally
+						{
+							dataAdapter.Dispose();
+							dataTable.Dispose();
+						}
 					}
-					catch
-					{
-					}
-					finally
-					{
-						dataAdapter.Dispose();
-						dataTable.Dispose();
-					}
-				}
 
-				//Load Tags
-				foreach (SearchGroup searchGroup in searchGroups)
-				{
-					searchGroup.Tags.Clear();
-					var dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", searchGroup.Name.Replace(".", "#")),
-						connection);
-					var dataTable = new DataTable();
-					try
+					//Load Top Group Icons
 					{
-						dataAdapter.Fill(dataTable);
-						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+						var dataAdapter = new OleDbDataAdapter("SELECT * FROM [Groups$]", connection);
+						var dataTable = new DataTable();
+						try
+						{
+							dataAdapter.Fill(dataTable);
 							foreach (DataRow row in dataTable.Rows)
 							{
-								string value = row[0].ToString().Trim();
-								if (!string.IsNullOrEmpty(value))
-									searchGroup.Tags.Add(value);
+								var topGroupName = row[0].ToString().Trim();
+								var topGroupIcon = row[1].ToString().Trim();
+								searchTopGroupIcons.Add(topGroupName, topGroupIcon);
 							}
+						}
+						catch
+						{
+						}
+						finally
+						{
+							dataAdapter.Dispose();
+							dataTable.Dispose();
+						}
 					}
-					catch
+
+					//Load Groups
 					{
+						GetCategories(connection);
+						var dataAdapter = new OleDbDataAdapter("SELECT * FROM [Categories$]", connection);
+						var dataTable = new DataTable();
+						try
+						{
+							dataAdapter.Fill(dataTable);
+							if (dataTable.Rows.Count > 1 && dataTable.Columns.Count > 1)
+								foreach (DataRow row in dataTable.Rows)
+								{
+									string groupName = row[0].ToString().Trim();
+									SearchGroup searchGroup = _categories.FirstOrDefault(x => x.Name.Equals(groupName));
+									if (searchGroup != null)
+									{
+										searchGroup.Description = row[1].ToString().Trim();
+
+										var topGroupName = row[2].ToString().Trim();
+										searchGroup.TopGroupName = topGroupName;
+										if (searchTopGroupIcons.ContainsKey(topGroupName))
+											searchGroup.TopGroupIcon = searchTopGroupIcons[topGroupName];
+
+										searchGroups.Add(searchGroup);
+									}
+								}
+						}
+						catch
+						{
+						}
+						finally
+						{
+							dataAdapter.Dispose();
+							dataTable.Dispose();
+						}
 					}
-					finally
+
+					//Load Tags
+					foreach (SearchGroup searchGroup in searchGroups)
 					{
-						dataAdapter.Dispose();
-						dataTable.Dispose();
+						searchGroup.Tags.Clear();
+						var dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", searchGroup.Name.Replace(".", "#")),
+							connection);
+						var dataTable = new DataTable();
+						try
+						{
+							dataAdapter.Fill(dataTable);
+							if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+								foreach (DataRow row in dataTable.Rows)
+								{
+									string value = row[0].ToString().Trim();
+									if (!string.IsNullOrEmpty(value))
+										searchGroup.Tags.Add(value);
+								}
+						}
+						catch
+						{
+						}
+						finally
+						{
+							dataAdapter.Dispose();
+							dataTable.Dispose();
+						}
 					}
 				}
+				else
+					throw new ConversionException { SourceFilePath = _sourceFilePath };
 				connection.Close();
 			}
-			else
-				throw new ConversionException { SourceFilePath = _sourceFilePath };
 
 			var xml = new StringBuilder();
 			xml.AppendLine("<SDSearch>");

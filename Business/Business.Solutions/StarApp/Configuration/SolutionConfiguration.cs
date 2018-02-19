@@ -12,15 +12,19 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartBItems { get; set; }
+		public string PartBSubHeader1DefaultValue { get; private set; }
 		public ClipartConfiguration PartBClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart2Configuration { get; private set; }
 		public ClipartConfiguration PartBClipart3Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartCItems { get; set; }
+		public string PartCSubHeader1DefaultValue { get; private set; }
+		public string PartCSubHeader2DefaultValue { get; private set; }
 		public ClipartConfiguration PartCClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartCClipart2Configuration { get; private set; }
 
 		public List<ListDataItem> HeadersPartDItems { get; set; }
+		public string PartDSubHeader1DefaultValue { get; private set; }
 		public ClipartConfiguration PartDClipart1Configuration { get; private set; }
 
 		public SolutionConfiguration()
@@ -61,7 +65,7 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 									HeadersPartAItems.Add(item);
 							}
 							break;
-						case "CP10ASubHeader1":
+						case "CP10ASubheader1":
 							PartASubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 					}
@@ -86,6 +90,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartBItems.Add(item);
 							}
+							break;
+						case "CP10BSubheader1":
+							PartBSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 					}
 				}
@@ -112,6 +119,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 									HeadersPartCItems.Add(item);
 							}
 							break;
+						case "CP10CSubheader1":
+							PartCSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
+						case "CP10CSubheader2":
+							PartCSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
 					}
 				}
 				PartCClipart1Configuration = ClipartConfiguration.FromXml(node, "CP10CClipart1");
@@ -135,6 +148,9 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 								if (!String.IsNullOrEmpty(item.Value))
 									HeadersPartDItems.Add(item);
 							}
+							break;
+						case "CP10DSubheader1":
+							PartDSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 					}
 				}

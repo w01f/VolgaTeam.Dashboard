@@ -1,4 +1,4 @@
-﻿namespace CommandCentral.BusinessClasses.DataConvertors
+﻿namespace CommandCentral.BusinessClasses.DataConvertors.MainData
 {
 	class TVDataConvertor : MediaDataConvertor
 	{

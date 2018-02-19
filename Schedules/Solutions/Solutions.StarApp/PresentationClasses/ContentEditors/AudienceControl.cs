@@ -87,6 +87,9 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			comboBoxEditTabCCombo1.EditValue =
 				SlideContainer.StarInfo.AudienceConfiguration.PartCCombo1Items.FirstOrDefault(item => item.IsDefault);
 
+			memoEditTabASubheader1.EditValue = SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader1DefaultValue;
+			memoEditTabASubheader2.EditValue = SlideContainer.StarInfo.AudienceConfiguration.PartASubHeader2DefaultValue;
+
 			textEditTabBSubheader1.EditValue = SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader1DefaultValue;
 			textEditTabBSubheader2.EditValue = SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader2DefaultValue;
 			textEditTabBSubheader3.EditValue = SlideContainer.StarInfo.AudienceConfiguration.PartBSubHeader3DefaultValue;

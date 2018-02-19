@@ -8,6 +8,8 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 	public class AudienceConfiguration
 	{
 		public List<ListDataItem> HeadersPartAItems { get; set; }
+		public string PartASubHeader1DefaultValue { get; private set; }
+		public string PartASubHeader2DefaultValue { get; private set; }
 		public ClipartConfiguration PartAClipart1Configuration { get; private set; }
 		public ClipartConfiguration PartAClipart2Configuration { get; private set; }
 
@@ -68,6 +70,12 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 									HeadersPartAItems.Add(item);
 							}
 							break;
+						case "CP09ASubheader1":
+							PartASubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
+						case "CP09ASubheader2":
+							PartASubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
+							break;
 					}
 				}
 
@@ -93,22 +101,22 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 									HeadersPartBItems.Add(item);
 							}
 							break;
-						case "CP09BSubHeader1":
+						case "CP09BSubheader1":
 							PartBSubHeader1DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
-						case "CP09BSubHeader2":
+						case "CP09BSubheader2":
 							PartBSubHeader2DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
-						case "CP09BSubHeader3":
+						case "CP09BSubheader3":
 							PartBSubHeader3DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
-						case "CP09BSubHeader4":
+						case "CP09BSubheader4":
 							PartBSubHeader4DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
-						case "CP09BSubHeader5":
+						case "CP09BSubheader5":
 							PartBSubHeader5DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
-						case "CP09BSubHeader6":
+						case "CP09BSubheader6":
 							PartBSubHeader6DefaultValue = childNode.Attributes.OfType<XmlAttribute>().FirstOrDefault(a => String.Equals(a.Name, "Value"))?.Value;
 							break;
 					}

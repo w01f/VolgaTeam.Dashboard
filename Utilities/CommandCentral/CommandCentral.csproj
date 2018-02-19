@@ -66,6 +66,7 @@
     <Reference Include="Accessibility" />
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.12, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -122,19 +123,52 @@
     </Compile>
     <Compile Include="AppManager.cs" />
     <Compile Include="BusinessClasses\Common\ConversionException.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\ClosingSummaryConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\OnlineDataConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\MediaDataConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\TargetCustomersConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\ClientGoalsConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\LeadoffStatementsConvertor.cs" />
+    <Compile Include="BusinessClasses\Common\ConvertorExtensions.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\ClosingSummaryConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\OnlineDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\MediaDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\TargetCustomersConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\ClientGoalsConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\LeadoffStatementsConvertor.cs" />
     <Compile Include="BusinessClasses\DataConvertors\IExcel2XmlConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\CoverConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\RadioDataConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\TVDataConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\SalesLibrariesDataConvertor.cs" />
-    <Compile Include="BusinessClasses\DataConvertors\UsersConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\DashboardCoverConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\RadioDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\TVDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\SalesLibrariesDataConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\MainData\UsersConvertor.cs" />
     <Compile Include="BusinessClasses\Common\OutputFolder.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Audience\AudiencePartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Audience\AudiencePartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Audience\AudiencePartCConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Audience\IAudienceConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\BaseStarAppConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\CNA\CNAPartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\CNA\CNAPartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\CNA\ICNAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Customer\CustomerPartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Customer\CustomerPartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Customer\CustomerPartCConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Customer\ICustomerConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Fishing\FishingPartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Fishing\FishingPartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Fishing\FishingPartCConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Fishing\IFishingConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Market\IMarketConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Market\MarketPartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Market\MarketPartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Market\MarketPartCConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Solution\ISolutionConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Solution\SolutionPartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Solution\SolutionPartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Solution\SolutionPartCConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Solution\SolutionPartDConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\StarAppCoverConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Video\IVideoConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Video\VideoPartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Video\VideoPartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Video\VideoPartCConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Video\VideoPartDConvertor.cs" />
+    <Compile Include="BusinessClasses\Entities\StarApp\StartAppDictionaryConfiguration.cs" />
     <Compile Include="Configuraion\ResourceManager.cs" />
     <Compile Include="Configuraion\Settings.cs" />
     <Compile Include="BusinessClasses\Entities\Media\BroadcastMonthTemplate.cs" />
@@ -159,10 +193,19 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProgress.Designer.cs">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProgress.resx">
+      <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

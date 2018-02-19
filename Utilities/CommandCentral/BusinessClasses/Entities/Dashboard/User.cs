@@ -10,6 +10,7 @@ namespace CommandCentral.BusinessClasses.Entities.Dashboard
 		public string Phone { get; set; }
 		public string Email { get; set; }
 		public string Login { get; set; }
+		public string Title { get; set; }
 		public bool IsAdmin { get; set; }
 
 		public List<string> Groups { get; }
@@ -21,6 +22,7 @@ namespace CommandCentral.BusinessClasses.Entities.Dashboard
 			Phone = String.Empty;
 			Email = String.Empty;
 			Login = String.Empty;
+			Title = String.Empty;
 
 			Groups = new List<String>();
 		}

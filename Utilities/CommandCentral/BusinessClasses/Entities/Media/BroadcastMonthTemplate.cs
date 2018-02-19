@@ -27,101 +27,106 @@ namespace CommandCentral.BusinessClasses.Entities.Media
 		public static IEnumerable<BroadcastMonthTemplate> Load(string path)
 		{
 			var result = new List<BroadcastMonthTemplate>();
-			var connnectionString = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=Yes;IMEX=1"";", path);
-			var connection = new OleDbConnection(connnectionString);
-			try
+			var connnectionString =
+				string.Format(
+					@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0;HDR=Yes;IMEX=1"";", path);
+			using (var connection = new OleDbConnection(connnectionString))
 			{
-				connection.Open();
-			}
-			catch
-			{
-				//AppManager.Instance.ShowInformation("Couldn't open legend file");
-				return result;
-			}
-			if (connection.State != ConnectionState.Open) return result;
-			var yearPages = new List<string>();
-			var dataTable = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-			yearPages.AddRange(dataTable.Rows.OfType<DataRow>().Select(r => r["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "")));
-			foreach (var yearPage in yearPages)
-			{
-				if (!Int32.TryParse(yearPage, out var year)) continue;
-				var dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", yearPage), connection);
-				dataTable = new DataTable();
 				try
 				{
-					dataAdapter.Fill(dataTable);
-					BroadcastMonthTemplate broadcastMonth = null;
-					foreach (var row in dataTable.Rows.OfType<DataRow>())
-					{
-						var monthName = row[0].ToString();
-						var weekNumber = row[1].ToString();
-						if (!String.IsNullOrEmpty(monthName))
-						{
-							if (broadcastMonth?.Month != null && broadcastMonth.StartDate.HasValue && broadcastMonth.EndDate.HasValue)
-								result.Add(broadcastMonth);
-							broadcastMonth = new BroadcastMonthTemplate();
-							switch (monthName.Replace("*", "").ToUpper())
-							{
-								case "JAN":
-									broadcastMonth.Month = new DateTime(year, 1, 1);
-									break;
-								case "FEB":
-									broadcastMonth.Month = new DateTime(year, 2, 1);
-									break;
-								case "MAR":
-									broadcastMonth.Month = new DateTime(year, 3, 1);
-									break;
-								case "APR":
-									broadcastMonth.Month = new DateTime(year, 4, 1);
-									break;
-								case "MAY":
-									broadcastMonth.Month = new DateTime(year, 5, 1);
-									break;
-								case "JUN":
-									broadcastMonth.Month = new DateTime(year, 6, 1);
-									break;
-								case "JUL":
-									broadcastMonth.Month = new DateTime(year, 7, 1);
-									break;
-								case "AUG":
-									broadcastMonth.Month = new DateTime(year, 8, 1);
-									break;
-								case "SEP":
-									broadcastMonth.Month = new DateTime(year, 9, 1);
-									break;
-								case "OCT":
-									broadcastMonth.Month = new DateTime(year, 10, 1);
-									break;
-								case "NOV":
-									broadcastMonth.Month = new DateTime(year, 11, 1);
-									break;
-								case "DEC":
-									broadcastMonth.Month = new DateTime(year, 12, 1);
-									break;
-							}
-							if (DateTime.TryParse(row[2].ToString(), out var date))
-								broadcastMonth.StartDate = date;
-						}
-						else if (!String.IsNullOrEmpty(weekNumber))
-						{
-							if (DateTime.TryParse(row[8].ToString(), out var date))
-								broadcastMonth.EndDate = date;
-						}
-						else break;
-					}
-					if (broadcastMonth?.Month != null && broadcastMonth.StartDate.HasValue && broadcastMonth.EndDate.HasValue)
-						result.Add(broadcastMonth);
+					connection.Open();
 				}
 				catch
 				{
+					//AppManager.Instance.ShowInformation("Couldn't open legend file");
+					return result;
 				}
-				finally
+				if (connection.State != ConnectionState.Open) return result;
+				var yearPages = new List<string>();
+				var dataTable = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+				yearPages.AddRange(dataTable.Rows.OfType<DataRow>().Select(r =>
+					r["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "")));
+				foreach (var yearPage in yearPages)
 				{
-					dataAdapter.Dispose();
-					dataTable.Dispose();
+					if (!Int32.TryParse(yearPage, out var year)) continue;
+					var dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", yearPage), connection);
+					dataTable = new DataTable();
+					try
+					{
+						dataAdapter.Fill(dataTable);
+						BroadcastMonthTemplate broadcastMonth = null;
+						foreach (var row in dataTable.Rows.OfType<DataRow>())
+						{
+							var monthName = row[0].ToString();
+							var weekNumber = row[1].ToString();
+							if (!String.IsNullOrEmpty(monthName))
+							{
+								if (broadcastMonth?.Month != null && broadcastMonth.StartDate.HasValue && broadcastMonth.EndDate.HasValue)
+									result.Add(broadcastMonth);
+								broadcastMonth = new BroadcastMonthTemplate();
+								switch (monthName.Replace("*", "").ToUpper())
+								{
+									case "JAN":
+										broadcastMonth.Month = new DateTime(year, 1, 1);
+										break;
+									case "FEB":
+										broadcastMonth.Month = new DateTime(year, 2, 1);
+										break;
+									case "MAR":
+										broadcastMonth.Month = new DateTime(year, 3, 1);
+										break;
+									case "APR":
+										broadcastMonth.Month = new DateTime(year, 4, 1);
+										break;
+									case "MAY":
+										broadcastMonth.Month = new DateTime(year, 5, 1);
+										break;
+									case "JUN":
+										broadcastMonth.Month = new DateTime(year, 6, 1);
+										break;
+									case "JUL":
+										broadcastMonth.Month = new DateTime(year, 7, 1);
+										break;
+									case "AUG":
+										broadcastMonth.Month = new DateTime(year, 8, 1);
+										break;
+									case "SEP":
+										broadcastMonth.Month = new DateTime(year, 9, 1);
+										break;
+									case "OCT":
+										broadcastMonth.Month = new DateTime(year, 10, 1);
+										break;
+									case "NOV":
+										broadcastMonth.Month = new DateTime(year, 11, 1);
+										break;
+									case "DEC":
+										broadcastMonth.Month = new DateTime(year, 12, 1);
+										break;
+								}
+								if (DateTime.TryParse(row[2].ToString(), out var date))
+									broadcastMonth.StartDate = date;
+							}
+							else if (!String.IsNullOrEmpty(weekNumber))
+							{
+								if (DateTime.TryParse(row[8].ToString(), out var date))
+									broadcastMonth.EndDate = date;
+							}
+							else break;
+						}
+						if (broadcastMonth?.Month != null && broadcastMonth.StartDate.HasValue && broadcastMonth.EndDate.HasValue)
+							result.Add(broadcastMonth);
+					}
+					catch
+					{
+					}
+					finally
+					{
+						dataAdapter.Dispose();
+						dataTable.Dispose();
+					}
 				}
+				connection.Close();
 			}
-			connection.Close();
 			return result;
 		}
 	}

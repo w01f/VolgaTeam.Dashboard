@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using Asa.Common.Core.Objects.Slides;
 using Asa.Common.Core.Objects.Themes;
 using Manina.Windows.Forms;
 

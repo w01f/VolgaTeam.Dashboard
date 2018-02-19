@@ -13,6 +13,7 @@ namespace CommandCentral.Configuraion
 		public string CalendarDataSourceFilePath { get; }
 		public string OnlineDataSourceFilePath { get; }
 		public string SalesLibrariesDataSourceFilePath { get; }
+		public string StarAppDataSourceFilePath { get; }
 
 		public string TVImagesFolderPath { get; }
 		public string RadioImagesFolderPath { get; }
@@ -29,6 +30,7 @@ namespace CommandCentral.Configuraion
 			CalendarDataSourceFilePath = Path.Combine(appFolderPath, "cc_source_files", "broadcast_legend.xlsx");
 			OnlineDataSourceFilePath = Path.Combine(appFolderPath, "cc_source_files", "digital_strategy.xlsx");
 			SalesLibrariesDataSourceFilePath = Path.Combine(appFolderPath, "cc_source_files", "sd_search.xlsx");
+			StarAppDataSourceFilePath = Path.Combine(appFolderPath, "cc_source_files", "star.xlsx");
 
 			TVImagesFolderPath = Path.Combine(appFolderPath, "cc_source_files", "artwork", "tv_images");
 			RadioImagesFolderPath = Path.Combine(appFolderPath, "cc_source_files", "artwork", "radio_images");

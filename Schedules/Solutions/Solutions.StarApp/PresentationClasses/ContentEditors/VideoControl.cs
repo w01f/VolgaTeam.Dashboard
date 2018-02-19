@@ -63,6 +63,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 			memoEditTabASubheader1.EditValue = SlideContainer.StarInfo.VideoConfiguration.PartASubHeader1DefaultValue;
 			memoEditTabBSubheader1.EditValue = SlideContainer.StarInfo.VideoConfiguration.PartBSubHeader1DefaultValue;
+			memoEditTabCSubheader1.EditValue = SlideContainer.StarInfo.VideoConfiguration.PartCSubHeader1DefaultValue;
+			memoEditTabDSubheader1.EditValue = SlideContainer.StarInfo.VideoConfiguration.PartDSubHeader1DefaultValue;
 
 			_allowToSave = true;
 

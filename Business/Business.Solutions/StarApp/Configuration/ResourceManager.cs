@@ -252,6 +252,13 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 		public StorageFile LogoTab11SubBFooterFile { get; private set; }
 		public StorageFile LogoTab11SubCRightFile { get; private set; }
 		public StorageFile LogoTab11SubCFooterFile { get; private set; }
+
+		public StorageFile ClipartTab11SubA1File { get; private set; }
+		public StorageFile ClipartTab11SubA2File { get; private set; }
+		public StorageFile ClipartTab11SubB1File { get; private set; }
+		public StorageFile ClipartTab11SubB2File { get; private set; }
+		public StorageFile ClipartTab11SubC1File { get; private set; }
+		public StorageFile ClipartTab11SubC2File { get; private set; }
 		#endregion
 
 		public void Init(StorageDirectory dataFolder)
@@ -536,6 +543,15 @@ namespace Asa.Business.Solutions.StarApp.Configuration
 
 			LogoTab11SubCRightFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_c", "design_branding", "11c_right.png" }));
 			LogoTab11SubCFooterFile = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_c", "design_branding", "11c_footer.png" }));
+
+			ClipartTab11SubA1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_a", "place_holders", "CP11AClipart1.png" }));
+			ClipartTab11SubA2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_a", "place_holders", "CP11AClipart2.png" }));
+
+			ClipartTab11SubB1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_b", "place_holders", "CP11BClipart1.png" }));
+			ClipartTab11SubB2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_b", "place_holders", "CP11BClipart2.png" }));
+			
+			ClipartTab11SubC1File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_c", "place_holders", "CP11CClipart1.png" }));
+			ClipartTab11SubC2File = new StorageFile(dataFolder.RelativePathParts.Merge(new[] { "11_closers", "subtab_c", "place_holders", "CP11CClipart2.png" }));
 			#endregion
 		}
 	}

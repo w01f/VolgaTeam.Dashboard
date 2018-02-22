@@ -82,7 +82,7 @@
     <Compile Include="StarApp\Configuration\ResourceManager.cs" />
     <Compile Include="StarApp\Configuration\ClipartConfiguration.cs" />
     <Compile Include="StarApp\Configuration\TitlesConfiguration.cs" />
-    <Compile Include="StarApp\Configuration\ClosersLists.cs" />
+    <Compile Include="StarApp\Configuration\ClosersConfiguration.cs" />
     <Compile Include="StarApp\Configuration\SolutionConfiguration.cs" />
     <Compile Include="StarApp\Configuration\CNAConfiguration.cs" />
     <Compile Include="StarApp\Configuration\CoverConfiguration.cs" />

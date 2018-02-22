@@ -135,7 +135,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>robocopy /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\AdSalesBrowser.shared.exe" "Asa*.dll" "SimpleBrowser.exe"
+    <PostBuildEvent>robocopy /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\AdSalesBrowser.shared.exe" "Asa*.dll" "Microsoft*.dll" "office.dll" "stdole.dll" "SimpleBrowser.exe"
 if %25errorlevel%25 leq 1 robocopy /z /r:100 "$(TargetDir)\" "d:\WorkingFiles\NewBizWiz\AdSalesBrowser.standalone.exe" "*.dll" "SimpleBrowser.exe"
 if %25errorlevel%25 leq 1 exit 0 else exit %25errorlevel%25</PostBuildEvent>
   </PropertyGroup>

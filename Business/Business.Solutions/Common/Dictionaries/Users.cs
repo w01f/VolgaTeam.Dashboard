@@ -35,6 +35,9 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 						case "Email":
 							user.Email = attribute.Value;
 							break;
+						case "Title":
+							user.Title = attribute.Value;
+							break;
 						case "IsAdmin":
 							bool.TryParse(attribute.Value, out var tempBool);
 							user.IsAdmin = tempBool;

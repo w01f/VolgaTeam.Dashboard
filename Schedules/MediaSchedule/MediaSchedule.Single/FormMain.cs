@@ -500,6 +500,9 @@ namespace Asa.Media.Single
 					ribbonControl.Enabled = true;
 					if (BusinessObjects.Instance.ScheduleManager.ActiveSchedule.Settings.EditMode == ScheduleEditMode.Regular)
 						Controller.Instance.CheckPowerPointRunning();
+
+					BusinessObjects.Instance.IdleManager.LinkToApplication(this);
+					BusinessObjects.Instance.IdleManager.BeforeCloseOnTimerExpired += OnCloseOnIdleTimerExpired;
 				}
 				else
 					Close();
@@ -556,6 +559,18 @@ namespace Asa.Media.Single
 				savingArgs);
 			if (!savingArgs.Cancel)
 				OpenSchedule();
+		}
+
+		private void OnCloseOnIdleTimerExpired(Object sender, EventArgs e)
+		{
+			_processAppClosing = false;
+			if (BusinessObjects.Instance.IdleManager.SaveOnClose)
+			{
+				var savingArgs = new ContentSavingEventArgs { SavingReason = ContentSavingReason.AppClosing };
+				ContentEditManager<MediaScheduleChangeInfo>.ProcessContentEditChanges(
+					Controller.Instance.ContentController.ActiveEditor,
+					savingArgs);
+			}
 		}
 
 		private void OnExitClick(object sender, EventArgs e)

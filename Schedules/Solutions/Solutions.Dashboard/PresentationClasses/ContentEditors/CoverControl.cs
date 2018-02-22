@@ -41,7 +41,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			_users.Clear();
 			_users.AddRange(slideContainer.DashboardInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
 			comboBoxEditSalesRep.Properties.Items.Clear();
-			comboBoxEditSalesRep.Properties.Items.AddRange(_users.Select(it => it.FullName).ToArray());
+			comboBoxEditSalesRep.Properties.Items.AddRange(_users);
 
 			pictureEditSplash.Image = SlideContainer.DashboardInfo.CoverSplashLogo;
 
@@ -78,10 +78,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			simpleLabelItemSalesRepTitle.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepTitle.MinSize, scaleFactor);
 			layoutControlItemSalesRepValue.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepValue.MaxSize, scaleFactor);
 			layoutControlItemSalesRepValue.MinSize = RectangleHelper.ScaleSize(layoutControlItemSalesRepValue.MinSize, scaleFactor);
-			simpleLabelItemSalesRepEmail.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepEmail.MaxSize, scaleFactor);
-			simpleLabelItemSalesRepEmail.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepEmail.MinSize, scaleFactor);
-			simpleLabelItemSalesRepPhone.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepPhone.MaxSize, scaleFactor);
-			simpleLabelItemSalesRepPhone.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepPhone.MinSize, scaleFactor);
+			simpleLabelItemSalesRepDescription.MaxSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepDescription.MaxSize, scaleFactor);
+			simpleLabelItemSalesRepDescription.MinSize = RectangleHelper.ScaleSize(simpleLabelItemSalesRepDescription.MinSize, scaleFactor);
 			emptySpaceItemSalesRepValueUnder.MaxSize = RectangleHelper.ScaleSize(emptySpaceItemSalesRepValueUnder.MaxSize, scaleFactor);
 			emptySpaceItemSalesRepValueUnder.MinSize = RectangleHelper.ScaleSize(emptySpaceItemSalesRepValueUnder.MinSize, scaleFactor);
 			layoutControlItemDateToggle.MaxSize = RectangleHelper.ScaleSize(layoutControlItemDateToggle.MaxSize, scaleFactor);
@@ -125,7 +123,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
 			checkEditSalesRep.Checked = !String.IsNullOrEmpty(SlideContainer.SettingsContainer.SalesRep);
 			comboBoxEditSalesRep.Enabled = checkEditSalesRep.Checked;
-			comboBoxEditSalesRep.EditValue = SlideContainer.SettingsContainer.SalesRep;
+			comboBoxEditSalesRep.EditValue = _users.FirstOrDefault(user => user.FullName == SlideContainer.SettingsContainer.SalesRep);
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
 
 			if (SlideContainer.EditedContent.CoverState.Quote.IsSet)
@@ -172,7 +170,7 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
 			Business.Common.Dictionaries.ListManager.Instance.DecisionMakers.Save();
 
-			SlideContainer.SettingsContainer.SalesRep = comboBoxEditSalesRep.EditValue as String;
+			SlideContainer.SettingsContainer.SalesRep = (comboBoxEditSalesRep.EditValue as User)?.FullName;
 			SlideContainer.SettingsContainer.SaveSettings();
 		}
 
@@ -192,9 +190,8 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		private void OnSalesRepEditValueChanged(object sender, EventArgs e)
 		{
-			var user = _users.FirstOrDefault(u => u.FullName.Equals(comboBoxEditSalesRep.EditValue as String));
-			simpleLabelItemSalesRepEmail.Text = String.Format("<color=dimgray>{0}</color>", user?.Email) ?? " ";
-			simpleLabelItemSalesRepPhone.Text = String.Format("<color=dimgray>{0}</color>", user?.Phone) ?? " ";
+			var user = comboBoxEditSalesRep.EditValue as User;
+			simpleLabelItemSalesRepDescription.Text = String.Format("<color=dimgray>{0}</color>", String.Join("        ", user?.Email, user?.Phone));
 			OnEditValueChanged(sender, e);
 		}
 
@@ -251,17 +248,9 @@ namespace Asa.Solutions.Dashboard.PresentationClasses.ContentEditors
 
 		public string DecisionMaker => (comboBoxEditDecisionMaker.EditValue as String) ?? String.Empty;
 
-		public string SalesRep
-		{
-			get
-			{
-				var userName = comboBoxEditSalesRep.EditValue as String;
-				var user = _users.FirstOrDefault(u => u.FullName.Equals(userName));
-				return user != null ?
-					(user.FullName + "          " + user.Email + "          " + user.Phone) :
-					(userName ?? String.Empty);
-			}
-		}
+		public string SalesRep => comboBoxEditSalesRep.EditValue is User user ?
+			String.Join("          ", user.FullName, user.Email, user.Phone) :
+			String.Empty;
 
 		public bool AddAsPageOne => checkEditAddAsPageOne.Checked;
 

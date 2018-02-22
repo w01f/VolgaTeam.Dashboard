@@ -178,6 +178,5 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			OnEditValueChanged(sender, e);
 		}
 		#endregion
-
 	}
 }

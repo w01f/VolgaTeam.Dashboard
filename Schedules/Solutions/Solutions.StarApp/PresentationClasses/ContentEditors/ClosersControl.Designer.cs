@@ -28,23 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.components = new System.ComponentModel.Container();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemSlideHeader = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.tabbedControlGroupData = new DevExpress.XtraLayout.TabbedControlGroup();
-			this.layoutControlGroupTabA = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItemMain = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlGroupTabB = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-			this.layoutControlGroupTabC = new DevExpress.XtraLayout.LayoutControlGroup();
-			this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoRight = new System.Windows.Forms.Panel();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
+			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
+			this.layoutControlItemTabPages = new DevExpress.XtraLayout.LayoutControlItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -52,17 +48,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemMain)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabC)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).BeginInit();
 			this.panelLogoRight.SuspendLayout();
 			this.panelLogoBottom.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabPages)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -96,6 +87,7 @@
 			this.layoutControl.Appearance.ControlReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.ControlReadOnly.Options.UseFont = true;
 			this.layoutControl.BackColor = System.Drawing.Color.White;
+			this.layoutControl.Controls.Add(this.xtraTabControl);
 			this.layoutControl.Controls.Add(this.comboBoxEditSlideHeader);
 			this.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutControl.ForeColor = System.Drawing.Color.Black;
@@ -153,7 +145,7 @@
 			this.layoutControlGroupRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemSlideHeader,
             this.emptySpaceItem1,
-            this.tabbedControlGroupData});
+            this.layoutControlItemTabPages});
 			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 0, 0, 0);
@@ -183,82 +175,6 @@
 			this.emptySpaceItem1.Name = "emptySpaceItem1";
 			this.emptySpaceItem1.Size = new System.Drawing.Size(277, 80);
 			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// tabbedControlGroupData
-			// 
-			this.tabbedControlGroupData.AppearanceTabPage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.tabbedControlGroupData.AppearanceTabPage.Header.Options.UseFont = true;
-			this.tabbedControlGroupData.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.tabbedControlGroupData.AppearanceTabPage.HeaderActive.Options.UseFont = true;
-			this.tabbedControlGroupData.AppearanceTabPage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.tabbedControlGroupData.AppearanceTabPage.HeaderDisabled.Options.UseFont = true;
-			this.tabbedControlGroupData.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.tabbedControlGroupData.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
-			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.tabbedControlGroupData.AppearanceTabPage.PageClient.Options.UseFont = true;
-			this.tabbedControlGroupData.Location = new System.Drawing.Point(0, 80);
-			this.tabbedControlGroupData.Name = "tabbedControlGroupData";
-			this.tabbedControlGroupData.Padding = new DevExpress.XtraLayout.Utils.Padding(40, 40, 9, 9);
-			this.tabbedControlGroupData.SelectedTabPage = this.layoutControlGroupTabA;
-			this.tabbedControlGroupData.SelectedTabPageIndex = 0;
-			this.tabbedControlGroupData.Size = new System.Drawing.Size(637, 332);
-			this.tabbedControlGroupData.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroupTabA,
-            this.layoutControlGroupTabB,
-            this.layoutControlGroupTabC});
-			this.tabbedControlGroupData.SelectedPageChanged += new DevExpress.XtraLayout.LayoutTabPageChangedEventHandler(this.OnSelectedPageChanged);
-			this.tabbedControlGroupData.Click += new System.EventHandler(this.OnTabbedGroupClick);
-			// 
-			// layoutControlGroupTabA
-			// 
-			this.layoutControlGroupTabA.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItemMain});
-			this.layoutControlGroupTabA.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupTabA.Name = "layoutControlGroupTabA";
-			this.layoutControlGroupTabA.Size = new System.Drawing.Size(551, 283);
-			this.layoutControlGroupTabA.Text = "Tab A";
-			// 
-			// emptySpaceItemMain
-			// 
-			this.emptySpaceItemMain.AllowHotTrack = false;
-			this.emptySpaceItemMain.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItemMain.Name = "emptySpaceItemMain";
-			this.emptySpaceItemMain.Size = new System.Drawing.Size(551, 283);
-			this.emptySpaceItemMain.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlGroupTabB
-			// 
-			this.layoutControlGroupTabB.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem3});
-			this.layoutControlGroupTabB.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupTabB.Name = "layoutControlGroupTabB";
-			this.layoutControlGroupTabB.Size = new System.Drawing.Size(551, 283);
-			this.layoutControlGroupTabB.Text = "Tab B";
-			// 
-			// emptySpaceItem3
-			// 
-			this.emptySpaceItem3.AllowHotTrack = false;
-			this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem3.Name = "emptySpaceItem3";
-			this.emptySpaceItem3.Size = new System.Drawing.Size(551, 283);
-			this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-			// 
-			// layoutControlGroupTabC
-			// 
-			this.layoutControlGroupTabC.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem4});
-			this.layoutControlGroupTabC.Location = new System.Drawing.Point(0, 0);
-			this.layoutControlGroupTabC.Name = "layoutControlGroupTabC";
-			this.layoutControlGroupTabC.Size = new System.Drawing.Size(551, 283);
-			this.layoutControlGroupTabC.Text = "Tab C";
-			// 
-			// emptySpaceItem4
-			// 
-			this.emptySpaceItem4.AllowHotTrack = false;
-			this.emptySpaceItem4.Location = new System.Drawing.Point(0, 0);
-			this.emptySpaceItem4.Name = "emptySpaceItem4";
-			this.emptySpaceItem4.Size = new System.Drawing.Size(551, 283);
-			this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
 			// 
 			// pictureEditLogoRight
 			// 
@@ -319,6 +235,51 @@
 			this.panelLogoBottom.Size = new System.Drawing.Size(677, 100);
 			this.panelLogoBottom.TabIndex = 73;
 			// 
+			// xtraTabControl
+			// 
+			this.xtraTabControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControl.Appearance.Options.UseFont = true;
+			this.xtraTabControl.Appearance.Options.UseTextOptions = true;
+			this.xtraTabControl.Appearance.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.xtraTabControl.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.Header.Options.UseTextOptions = true;
+			this.xtraTabControl.AppearancePage.Header.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseTextOptions = true;
+			this.xtraTabControl.AppearancePage.HeaderActive.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.xtraTabControl.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.HeaderDisabled.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.HeaderDisabled.Options.UseTextOptions = true;
+			this.xtraTabControl.AppearancePage.HeaderDisabled.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.xtraTabControl.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.HeaderHotTracked.Options.UseTextOptions = true;
+			this.xtraTabControl.AppearancePage.HeaderHotTracked.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.PageClient.Options.UseTextOptions = true;
+			this.xtraTabControl.AppearancePage.PageClient.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.xtraTabControl.Location = new System.Drawing.Point(40, 80);
+			this.xtraTabControl.Name = "xtraTabControl";
+			this.xtraTabControl.Size = new System.Drawing.Size(637, 332);
+			this.xtraTabControl.TabIndex = 29;
+			// 
+			// layoutControlItemTabPages
+			// 
+			this.layoutControlItemTabPages.Control = this.xtraTabControl;
+			this.layoutControlItemTabPages.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+			this.layoutControlItemTabPages.FillControlToClientArea = false;
+			this.layoutControlItemTabPages.Location = new System.Drawing.Point(0, 80);
+			this.layoutControlItemTabPages.Name = "layoutControlItemTabPages";
+			this.layoutControlItemTabPages.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+			this.layoutControlItemTabPages.Size = new System.Drawing.Size(637, 332);
+			this.layoutControlItemTabPages.Text = "Tab Pages";
+			this.layoutControlItemTabPages.TextSize = new System.Drawing.Size(0, 0);
+			this.layoutControlItemTabPages.TextVisible = false;
+			this.layoutControlItemTabPages.TrimClientAreaToControl = false;
+			// 
 			// ClosersControl
 			// 
 			this.BackColor = System.Drawing.Color.White;
@@ -337,17 +298,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSlideHeader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroupData)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabA)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItemMain)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabC)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoRight.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditLogoFooter.Properties)).EndInit();
 			this.panelLogoRight.ResumeLayout(false);
 			this.panelLogoBottom.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabPages)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -362,14 +318,9 @@
 		protected DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupRoot;
 		protected DevExpress.XtraLayout.LayoutControlItem layoutControlItemSlideHeader;
 		protected DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-		private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroupData;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabA;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemMain;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabB;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabC;
-		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
 		private System.Windows.Forms.Panel panelLogoRight;
 		private System.Windows.Forms.Panel panelLogoBottom;
+		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
+		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabPages;
 	}
 }

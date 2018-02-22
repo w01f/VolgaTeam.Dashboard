@@ -81,8 +81,7 @@
 			this.layoutControlItemSalesRepLogo = new DevExpress.XtraLayout.LayoutControlItem();
 			this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlItemSalesRepValue = new DevExpress.XtraLayout.LayoutControlItem();
-			this.simpleLabelItemSalesRepEmail = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemSalesRepPhone = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.simpleLabelItemSalesRepDescription = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.simpleLabelItemSalesRepTitle = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.layoutControlGroupDate = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -150,8 +149,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSalesRepLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSalesRepValue)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepEmail)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepPhone)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepTitle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDate)).BeginInit();
@@ -974,8 +972,7 @@
             this.layoutControlItemSalesRepLogo,
             this.emptySpaceItem23,
             this.layoutControlItemSalesRepValue,
-            this.simpleLabelItemSalesRepEmail,
-            this.simpleLabelItemSalesRepPhone,
+            this.simpleLabelItemSalesRepDescription,
             this.emptySpaceItem5,
             this.simpleLabelItemSalesRepTitle});
 			this.layoutControlGroupSalesRep.Location = new System.Drawing.Point(80, 288);
@@ -1033,39 +1030,21 @@
 			// 
 			// simpleLabelItemSalesRepEmail
 			// 
-			this.simpleLabelItemSalesRepEmail.AllowHotTrack = false;
-			this.simpleLabelItemSalesRepEmail.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemSalesRepEmail.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemSalesRepEmail.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.simpleLabelItemSalesRepEmail.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemSalesRepEmail.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemSalesRepEmail.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemSalesRepEmail.Location = new System.Drawing.Point(254, 40);
-			this.simpleLabelItemSalesRepEmail.MaxSize = new System.Drawing.Size(200, 24);
-			this.simpleLabelItemSalesRepEmail.MinSize = new System.Drawing.Size(200, 24);
-			this.simpleLabelItemSalesRepEmail.Name = "simpleLabelItemSalesRepEmail";
-			this.simpleLabelItemSalesRepEmail.Size = new System.Drawing.Size(200, 24);
-			this.simpleLabelItemSalesRepEmail.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemSalesRepEmail.Text = " ";
-			this.simpleLabelItemSalesRepEmail.TextSize = new System.Drawing.Size(130, 16);
-			// 
-			// simpleLabelItemSalesRepPhone
-			// 
-			this.simpleLabelItemSalesRepPhone.AllowHotTrack = false;
-			this.simpleLabelItemSalesRepPhone.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemSalesRepPhone.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemSalesRepPhone.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.simpleLabelItemSalesRepPhone.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
-			this.simpleLabelItemSalesRepPhone.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemSalesRepPhone.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.simpleLabelItemSalesRepPhone.Location = new System.Drawing.Point(454, 40);
-			this.simpleLabelItemSalesRepPhone.MaxSize = new System.Drawing.Size(160, 24);
-			this.simpleLabelItemSalesRepPhone.MinSize = new System.Drawing.Size(160, 24);
-			this.simpleLabelItemSalesRepPhone.Name = "simpleLabelItemSalesRepPhone";
-			this.simpleLabelItemSalesRepPhone.Size = new System.Drawing.Size(160, 24);
-			this.simpleLabelItemSalesRepPhone.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-			this.simpleLabelItemSalesRepPhone.Text = " ";
-			this.simpleLabelItemSalesRepPhone.TextSize = new System.Drawing.Size(130, 16);
+			this.simpleLabelItemSalesRepDescription.AllowHotTrack = false;
+			this.simpleLabelItemSalesRepDescription.AllowHtmlStringInCaption = true;
+			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.Options.UseTextOptions = true;
+			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemSalesRepDescription.Location = new System.Drawing.Point(254, 40);
+			this.simpleLabelItemSalesRepDescription.MaxSize = new System.Drawing.Size(360, 24);
+			this.simpleLabelItemSalesRepDescription.MinSize = new System.Drawing.Size(360, 24);
+			this.simpleLabelItemSalesRepDescription.Name = "simpleLabelItemSalesRepDescription";
+			this.simpleLabelItemSalesRepDescription.Size = new System.Drawing.Size(360, 24);
+			this.simpleLabelItemSalesRepDescription.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+			this.simpleLabelItemSalesRepDescription.Text = " ";
+			this.simpleLabelItemSalesRepDescription.TextSize = new System.Drawing.Size(130, 16);
 			// 
 			// emptySpaceItem5
 			// 
@@ -1289,8 +1268,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSalesRepLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemSalesRepValue)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepEmail)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepPhone)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemSalesRepTitle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupDate)).EndInit();
@@ -1334,8 +1312,7 @@
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSalesRep;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemSalesRepValue;
 		private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItemDecisionmakerUnder;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemSalesRepEmail;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemSalesRepPhone;
+		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemSalesRepDescription;
 		private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDateToggle;
 		private DevExpress.XtraEditors.DateEdit dateEditPresentationDate;

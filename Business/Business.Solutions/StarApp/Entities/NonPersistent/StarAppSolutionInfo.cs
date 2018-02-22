@@ -6,7 +6,6 @@ using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Business.Solutions.Common.Entities.NonPersistent;
 using Asa.Business.Solutions.Common.Enums;
 using Asa.Business.Solutions.StarApp.Configuration;
-using Asa.Business.Solutions.StarApp.Dictionaries;
 using Asa.Common.Core.Objects.RemoteStorage;
 
 namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
@@ -231,7 +230,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		#endregion
 
 		#region Tab 11
-		public ClosersLists ClosersLists { get; }
+		public ClosersConfiguration ClosersConfiguration { get; }
 
 		public Image Tab11SubARightLogo { get; private set; }
 		public Image Tab11SubAFooterLogo { get; private set; }
@@ -239,6 +238,15 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 		public Image Tab11SubBFooterLogo { get; private set; }
 		public Image Tab11SubCRightLogo { get; private set; }
 		public Image Tab11SubCFooterLogo { get; private set; }
+
+		public Image Tab11SubAClipart1Image { get; private set; }
+		public Image Tab11SubAClipart2Image { get; private set; }
+
+		public Image Tab11SubBClipart1Image { get; private set; }
+		public Image Tab11SubBClipart2Image { get; private set; }
+
+		public Image Tab11SubCClipart1Image { get; private set; }
+		public Image Tab11SubCClipart2Image { get; private set; }
 		#endregion
 
 		public StarAppSolutionInfo()
@@ -259,7 +267,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			VideoConfiguration = new VideoConfiguration();
 			AudienceConfiguration = new AudienceConfiguration();
 			SolutionConfiguration = new SolutionConfiguration();
-			ClosersLists = new ClosersLists();
+			ClosersConfiguration = new ClosersConfiguration();
 		}
 
 		public override void LoadData(StorageDirectory holderAppDataFolder)
@@ -773,7 +781,7 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 			#endregion
 
 			#region Tab 11
-			ClosersLists.Load(resourceManager);
+			ClosersConfiguration.Load(resourceManager);
 
 			Tab11SubARightLogo = resourceManager.LogoTab11SubARightFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab11SubARightFile.LocalPath)
@@ -792,6 +800,27 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 				: null;
 			Tab11SubCFooterLogo = resourceManager.LogoTab11SubCFooterFile.ExistsLocal()
 				? Image.FromFile(resourceManager.LogoTab11SubCFooterFile.LocalPath)
+				: null;
+
+			Tab11SubAClipart1Image = resourceManager.ClipartTab11SubA1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab11SubA1File.LocalPath)
+				: null;
+			Tab11SubAClipart2Image = resourceManager.ClipartTab11SubA2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab11SubA2File.LocalPath)
+				: null;
+
+			Tab11SubBClipart1Image = resourceManager.ClipartTab11SubB1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab11SubB1File.LocalPath)
+				: null;
+			Tab11SubBClipart2Image = resourceManager.ClipartTab11SubB2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab11SubB2File.LocalPath)
+				: null;
+
+			Tab11SubCClipart1Image = resourceManager.ClipartTab11SubC1File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab11SubC1File.LocalPath)
+				: null;
+			Tab11SubCClipart2Image = resourceManager.ClipartTab11SubC2File.ExistsLocal()
+				? Image.FromFile(resourceManager.ClipartTab11SubC2File.LocalPath)
 				: null;
 			#endregion
 		}

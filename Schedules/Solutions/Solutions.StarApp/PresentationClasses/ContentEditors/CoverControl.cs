@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using Asa.Business.Solutions.Common.Dictionaries;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -56,8 +57,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			memoEditSubheader1.EditValue = SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
 
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
-			comboBoxEditCombo1.EditValue =
-				SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name).FirstOrDefault();
+			comboBoxEditCombo1.EditValue = comboBoxEditCombo1.Properties.Items.Count > 0 ? comboBoxEditCombo1.Properties.Items[0] : null;
+			SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name).FirstOrDefault();
 
 			_allowToSave = true;
 
@@ -114,6 +115,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void OnCalendar1ToggleCheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlItemCalendar1Value.Enabled = checkEditCalendar1.Checked;
+		}
+
+		private void OnCombo1EditValueChanged(object sender, EventArgs e)
+		{
+			var user = comboBoxEditCombo1.EditValue as User;
+			simpleLabelItemCombo1Description1.Text = String.Format("<color=dimgray>{0}</color>", String.Join("        ", user?.Email, user?.Phone));
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnResize(object sender, EventArgs e)

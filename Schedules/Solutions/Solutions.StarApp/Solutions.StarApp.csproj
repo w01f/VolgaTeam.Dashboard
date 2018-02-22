@@ -70,6 +70,24 @@
     <Compile Include="PresentationClasses\ContentEditors\CleanslateControl.Designer.cs">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabBControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabBControl.Designer.cs">
+      <DependentUpon>ClosersTabBControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabAControl.Designer.cs">
+      <DependentUpon>ClosersTabAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabCControl.Designer.cs">
+      <DependentUpon>ClosersTabCControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\CustomerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -77,6 +95,7 @@
       <DependentUpon>CustomerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\IROITabPageContainer.cs" />
+    <Compile Include="PresentationClasses\ContentEditors\IClosersTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IShareTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IStarAppTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\ROIControl.cs">
@@ -133,6 +152,12 @@
     <Compile Include="PresentationClasses\ContentEditors\ROITabBControl.Designer.cs">
       <DependentUpon>ROITabBControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabBaseControl.Designer.cs">
+      <DependentUpon>ClosersTabBaseControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ShareTabBaseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +199,12 @@
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\ROITabPageContainerControl.Designer.cs">
       <DependentUpon>ROITabPageContainerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabPageContainerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ContentEditors\ClosersTabPageContainerControl.Designer.cs">
+      <DependentUpon>ClosersTabPageContainerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ContentEditors\SolutionControl.cs">
       <SubType>UserControl</SubType>
@@ -245,6 +276,15 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CleanslateControl.resx">
       <DependentUpon>CleanslateControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersTabBControl.resx">
+      <DependentUpon>ClosersTabBControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersTabAControl.resx">
+      <DependentUpon>ClosersTabAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersTabCControl.resx">
+      <DependentUpon>ClosersTabCControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\CustomerControl.resx">
       <DependentUpon>CustomerControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +315,9 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ROITabBControl.resx">
       <DependentUpon>ROITabBControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersTabBaseControl.resx">
+      <DependentUpon>ClosersTabBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ShareTabBaseControl.resx">
       <DependentUpon>ShareTabBaseControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\ROITabPageContainerControl.resx">
       <DependentUpon>ROITabPageContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ContentEditors\ClosersTabPageContainerControl.resx">
+      <DependentUpon>ClosersTabPageContainerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ContentEditors\SolutionControl.resx">
       <DependentUpon>SolutionControl.cs</DependentUpon>

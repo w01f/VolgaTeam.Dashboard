@@ -9,6 +9,7 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 		public string LastName { get; set; }
 		public string Phone { get; set; }
 		public string Email { get; set; }
+		public string Title { get; set; }
 		public bool IsAdmin { get; set; }
 
 		public List<string> Groups { get; }
@@ -19,17 +20,18 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 
 		public User()
 		{
-			FirstName = string.Empty;
-			LastName = string.Empty;
-			Phone = string.Empty;
-			Email = string.Empty;
+			FirstName = String.Empty;
+			LastName = String.Empty;
+			Phone = String.Empty;
+			Email = String.Empty;
+			Title = String.Empty;
 
 			Groups = new List<String>();
 		}
 
 		public override String ToString()
 		{
-			return NameWithAdress;
+			return String.Join("  |  ", FullName, Title);
 		}
 	}
 }

@@ -23,6 +23,7 @@ namespace Asa.Business.Media.Configuration
 
 		public StorageFile MainAppTitleTextFile { get; private set; }
 		public StorageFile TextResourcesFile { get; private set; }
+		public StorageFile IdleSettingsFile { get; private set; }
 		public ArchiveDirectory ImageResourcesFolder { get; private set; }
 
 		private ResourceManager() { }
@@ -121,6 +122,16 @@ namespace Asa.Business.Media.Configuration
 			});
 			if (await TextResourcesFile.Exists(true))
 				await TextResourcesFile.Download();
+
+			IdleSettingsFile = new StorageFile(new[]
+			{
+				FileStorageManager.IncomingFolderName,
+				AppProfileManager.Instance.AppName,
+				"AppSettings",
+				"autoclose.xml"
+			});
+			if (await IdleSettingsFile.Exists(true))
+				await IdleSettingsFile.Download();
 
 			ImageResourcesFolder = new ArchiveDirectory(new[]
 			{

@@ -1,6 +1,6 @@
 ﻿namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
-	partial class ShareTabBaseControl
+	partial class ClosersTabBaseControl
 	{
 		/// <summary> 
 		/// Required designer variable.

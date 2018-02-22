@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessClasses\Managers\ApplicationIdleManager.cs" />
     <Compile Include="BusinessClasses\Managers\BrowserManager.cs" />
     <Compile Include="BusinessClasses\Managers\BusinessObjects.cs" />
     <Compile Include="BusinessClasses\Managers\ContentController.cs" />

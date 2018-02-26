@@ -37,6 +37,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabAClipart3.Image = ROIContentContainer.SlideContainer.StarInfo.Tab5SubAClipart3Image;
 			pictureEditTabAClipart3.Properties.PictureAlignment =
 				ROIContentContainer.SlideContainer.StarInfo.ROIConfiguration.PartAClipart3Configuration.Alignment;
+
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabAClipart1,
+				pictureEditTabAClipart2,
+			});
+			
 			Application.DoEvents();
 		}
 

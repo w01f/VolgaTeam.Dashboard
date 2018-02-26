@@ -9,12 +9,10 @@ namespace Asa.Common.Core.Helpers
 {
 	public class FavoriteImagesManager
 	{
-		private static readonly FavoriteImagesManager _instance = new FavoriteImagesManager();
-
-		public List<ImageSource> Images { get; private set; }
+		public List<ImageSource> Images { get; }
 		public event EventHandler<EventArgs> CollectionChanged;
 
-		public static FavoriteImagesManager Instance => _instance;
+		public static FavoriteImagesManager Instance { get; } = new FavoriteImagesManager();
 
 		private FavoriteImagesManager()
 		{

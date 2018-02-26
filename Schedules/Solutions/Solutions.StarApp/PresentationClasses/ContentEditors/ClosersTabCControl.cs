@@ -22,6 +22,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabCClipart2.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubCClipart2Image;
 			//pictureEditTabCClipart2.Properties.PictureAlignment =
 			//	ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartAClipart2Configuration.Alignment;
+
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabCClipart1,
+				pictureEditTabCClipart2,
+			});
+
 			Application.DoEvents();
 
 			var users = ClosersContentContainer.SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name);

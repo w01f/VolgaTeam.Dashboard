@@ -25,6 +25,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabBClipart2.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image;
 			//pictureEditTabBClipart2.Properties.PictureAlignment =
 			//	ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartAClipart2Configuration.Alignment;
+
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabBClipart1,
+				pictureEditTabBClipart2,
+			});
+
 			Application.DoEvents();
 		}
 

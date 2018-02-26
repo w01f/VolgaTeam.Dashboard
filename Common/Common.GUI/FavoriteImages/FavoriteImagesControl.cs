@@ -22,7 +22,19 @@ namespace Asa.Common.GUI.FavoriteImages
 		private ImageListView.HitInfo _downHitInfo;
 		private ImageListView.HitInfo _menuHitInfo;
 
+		public event EventHandler<EventArgs> OnImageDoubleClick;
+
 		public string ImageTooltip { get; set; }
+
+		public ImageSource SelectedImageSource
+		{
+			get
+			{
+				return imageListView.SelectedItems.Count > 0 ?
+					imageListView.SelectedItems.Select(item => (ImageSource)item.Tag).FirstOrDefault() :
+					null;
+			}
+		}
 
 		public FavoriteImagesControl()
 		{
@@ -92,13 +104,24 @@ namespace Asa.Common.GUI.FavoriteImages
 			return GridDragDropHelper.CreateCursor(result, offset);
 		}
 
+		private void OnGalleryItemClick(object sender, ItemClickEventArgs e)
+		{
+			imageListView.ClearSelection();
+			e.Item.Selected = true;
+		}
+
+		private void OnGalleryItemDoubleClick(object sender, ItemClickEventArgs e)
+		{
+			OnGalleryItemClick(sender, e);
+			OnImageDoubleClick?.Invoke(this, EventArgs.Empty);
+		}
+
 		private void OnGalleryMouseDown(object sender, MouseEventArgs e)
 		{
 			_downHitInfo = null;
 			_menuHitInfo = null;
 			_hitPoint = new Point(e.X, e.Y);
-			ImageListView.HitInfo hitInfo;
-			imageListView.HitTest(_hitPoint, out hitInfo);
+			imageListView.HitTest(_hitPoint, out var hitInfo);
 			if (ModifierKeys != Keys.None)
 				return;
 			if (!hitInfo.InItemArea) return;
@@ -118,8 +141,7 @@ namespace Asa.Common.GUI.FavoriteImages
 		{
 			imageListView.Focus();
 			if (e.Button != MouseButtons.Left || _downHitInfo == null || _downHitInfo.ItemIndex < 0) return;
-			var sourceItem = imageListView.Items[_downHitInfo.ItemIndex].Tag as ImageSource;
-			if (sourceItem == null) return;
+			if (!(imageListView.Items[_downHitInfo.ItemIndex].Tag is ImageSource sourceItem)) return;
 			var dragSize = SystemInformation.DragSize;
 			var dragRect = new Rectangle(new Point(_hitPoint.X - dragSize.Width / 2,
 				_hitPoint.Y - dragSize.Height / 2), dragSize);
@@ -137,8 +159,7 @@ namespace Asa.Common.GUI.FavoriteImages
 		private void OnGalleryItemHover(object sender, ItemHoverEventArgs e)
 		{
 			toolTip.RemoveAll();
-			var sourceItem = e.Item != null ? e.Item.Tag as ImageSource : null;
-			if (sourceItem == null) return;
+			if (!(e.Item?.Tag is ImageSource sourceItem)) return;
 			var toolTipText = !String.IsNullOrEmpty(ImageTooltip) ? ImageTooltip : Path.GetFileName(sourceItem.FileName);
 			toolTip.SetToolTip(imageListView, toolTipText);
 		}
@@ -150,23 +171,21 @@ namespace Asa.Common.GUI.FavoriteImages
 			Cursor.Current = _dragRowCursor;
 		}
 
-		private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		private void OnMenuStripOpening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			e.Cancel = !(_menuHitInfo != null && _menuHitInfo.InItemArea && _menuHitInfo.ItemIndex >= 0);
 		}
 
-		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
+		private void OnMenuItemCopyClick(object sender, EventArgs e)
 		{
-			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
-			if (imageSource == null || !imageSource.ContainsData) return;
+			if (!(imageListView.Items[_menuHitInfo.ItemIndex].Tag is ImageSource imageSource) || !imageSource.ContainsData) return;
 			Clipboard.SetText(String.Format("<ImageSource>{0}</ImageSource>", imageSource.Serialize()), TextDataFormat.Html);
 			_menuHitInfo = null;
 		}
 
-		private void toolStripMenuItemRename_Click(object sender, EventArgs e)
+		private void OnMenuItemRenameClick(object sender, EventArgs e)
 		{
-			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
-			if (imageSource == null) return;
+			if (!(imageListView.Items[_menuHitInfo.ItemIndex].Tag is ImageSource imageSource)) return;
 			var image = imageSource.BigImage.Clone() as Image;
 			using (var form = new FormAddFavoriteImage(image, null, _manager.Images.Select(i => i.Name.ToLower())))
 			{
@@ -179,10 +198,9 @@ namespace Asa.Common.GUI.FavoriteImages
 			_menuHitInfo = null;
 		}
 
-		private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
+		private void OnMenuItemDeleteClick(object sender, EventArgs e)
 		{
-			var imageSource = imageListView.Items[_menuHitInfo.ItemIndex].Tag as ImageSource;
-			if (imageSource == null) return;
+			if (!(imageListView.Items[_menuHitInfo.ItemIndex].Tag is ImageSource imageSource)) return;
 			if (PopupMessageHelper.Instance.ShowWarningQuestion("Are you sure you want to delete image?") != DialogResult.Yes) return;
 			_manager.DeleteImage(imageSource);
 			_menuHitInfo = null;

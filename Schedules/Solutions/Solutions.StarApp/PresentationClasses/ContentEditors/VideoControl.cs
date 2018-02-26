@@ -49,7 +49,14 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabDClipart1.Image = SlideContainer.StarInfo.Tab8SubDClipart1Image;
 			pictureEditTabDClipart1.Properties.PictureAlignment =
 				SlideContainer.StarInfo.VideoConfiguration.PartDClipart1Configuration.Alignment;
-			
+
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabAClipart1,
+				pictureEditTabBClipart1,
+				pictureEditTabCClipart1,
+				pictureEditTabDClipart1,
+			});
+
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);

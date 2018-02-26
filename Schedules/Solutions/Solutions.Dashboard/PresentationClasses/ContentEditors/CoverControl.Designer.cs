@@ -186,7 +186,7 @@
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(42, 29);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(42, 10);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlideHeader.Properties.Appearance.Options.UseFont = true;
@@ -254,7 +254,7 @@
 			this.hyperLinkEditResetProductName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.hyperLinkEditResetProductName.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hyperLinkEditResetProductName.EditValue = "<size=+2><color=green><i><u>Add Sales Quote</u></i></color></size>";
-			this.hyperLinkEditResetProductName.Location = new System.Drawing.Point(42, 478);
+			this.hyperLinkEditResetProductName.Location = new System.Drawing.Point(42, 459);
 			this.hyperLinkEditResetProductName.Name = "hyperLinkEditResetProductName";
 			this.hyperLinkEditResetProductName.Properties.AllowFocused = false;
 			this.hyperLinkEditResetProductName.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
@@ -267,7 +267,7 @@
 			// dateEditPresentationDate
 			// 
 			this.dateEditPresentationDate.EditValue = null;
-			this.dateEditPresentationDate.Location = new System.Drawing.Point(336, 399);
+			this.dateEditPresentationDate.Location = new System.Drawing.Point(336, 380);
 			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
 			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -294,7 +294,7 @@
 			// checkEditPresentationDate
 			// 
 			this.checkEditPresentationDate.EditValue = true;
-			this.checkEditPresentationDate.Location = new System.Drawing.Point(42, 404);
+			this.checkEditPresentationDate.Location = new System.Drawing.Point(42, 385);
 			this.checkEditPresentationDate.Name = "checkEditPresentationDate";
 			this.checkEditPresentationDate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditPresentationDate.Properties.Caption = "";
@@ -305,7 +305,7 @@
 			// 
 			// comboBoxEditSalesRep
 			// 
-			this.comboBoxEditSalesRep.Location = new System.Drawing.Point(336, 306);
+			this.comboBoxEditSalesRep.Location = new System.Drawing.Point(336, 287);
 			this.comboBoxEditSalesRep.Name = "comboBoxEditSalesRep";
 			this.comboBoxEditSalesRep.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSalesRep.Properties.Appearance.Options.UseFont = true;
@@ -328,7 +328,7 @@
 			// checkEditSalesRep
 			// 
 			this.checkEditSalesRep.EditValue = true;
-			this.checkEditSalesRep.Location = new System.Drawing.Point(42, 310);
+			this.checkEditSalesRep.Location = new System.Drawing.Point(42, 291);
 			this.checkEditSalesRep.Name = "checkEditSalesRep";
 			this.checkEditSalesRep.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditSalesRep.Properties.Caption = "";
@@ -339,7 +339,7 @@
 			// 
 			// comboBoxEditDecisionMaker
 			// 
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(336, 215);
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(336, 196);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
 			this.comboBoxEditDecisionMaker.OverrideTab = false;
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -364,7 +364,7 @@
 			// 
 			// comboBoxEditAdvertiser
 			// 
-			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(336, 121);
+			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(336, 102);
 			this.comboBoxEditAdvertiser.Name = "comboBoxEditAdvertiser";
 			this.comboBoxEditAdvertiser.OverrideTab = false;
 			this.comboBoxEditAdvertiser.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -392,7 +392,7 @@
 			// 
 			this.pictureEditDateLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDateLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.Date;
-			this.pictureEditDateLogo.Location = new System.Drawing.Point(82, 384);
+			this.pictureEditDateLogo.Location = new System.Drawing.Point(82, 365);
 			this.pictureEditDateLogo.Name = "pictureEditDateLogo";
 			this.pictureEditDateLogo.Properties.AllowFocused = false;
 			this.pictureEditDateLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -416,7 +416,7 @@
 			// 
 			this.pictureEditSalesRepLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditSalesRepLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.SalesRep;
-			this.pictureEditSalesRepLogo.Location = new System.Drawing.Point(80, 288);
+			this.pictureEditSalesRepLogo.Location = new System.Drawing.Point(80, 269);
 			this.pictureEditSalesRepLogo.Name = "pictureEditSalesRepLogo";
 			this.pictureEditSalesRepLogo.Properties.AllowFocused = false;
 			this.pictureEditSalesRepLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -440,7 +440,7 @@
 			// 
 			this.pictureEditDecisionMakerLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditDecisionMakerLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.DecisionMaker;
-			this.pictureEditDecisionMakerLogo.Location = new System.Drawing.Point(80, 194);
+			this.pictureEditDecisionMakerLogo.Location = new System.Drawing.Point(80, 175);
 			this.pictureEditDecisionMakerLogo.Name = "pictureEditDecisionMakerLogo";
 			this.pictureEditDecisionMakerLogo.Properties.AllowFocused = false;
 			this.pictureEditDecisionMakerLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -463,7 +463,7 @@
 			// checkEditAddAsPageOne
 			// 
 			this.checkEditAddAsPageOne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditAddAsPageOne.Location = new System.Drawing.Point(42, 552);
+			this.checkEditAddAsPageOne.Location = new System.Drawing.Point(42, 533);
 			this.checkEditAddAsPageOne.Name = "checkEditAddAsPageOne";
 			this.checkEditAddAsPageOne.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditAddAsPageOne.Properties.Caption = "<color=gray>Always Output to Page 1</color>";
@@ -476,7 +476,7 @@
 			// 
 			this.pictureEditAdvertiserLogo.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditAdvertiserLogo.EditValue = global::Asa.Solutions.Dashboard.Properties.Resources.Advertiser;
-			this.pictureEditAdvertiserLogo.Location = new System.Drawing.Point(80, 100);
+			this.pictureEditAdvertiserLogo.Location = new System.Drawing.Point(80, 81);
 			this.pictureEditAdvertiserLogo.Name = "pictureEditAdvertiserLogo";
 			this.pictureEditAdvertiserLogo.Properties.AllowFocused = false;
 			this.pictureEditAdvertiserLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -542,7 +542,7 @@
             this.emptySpaceItem16,
             this.emptySpaceItemSalesQuoteDefault,
             this.emptySpaceItemSalesRepValueUnder});
-			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, 0);
+			this.layoutControlGroupRoot.Location = new System.Drawing.Point(0, -19);
 			this.layoutControlGroupRoot.Name = "Root";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(783, 584);
@@ -1028,15 +1028,16 @@
 			this.layoutControlItemSalesRepValue.TextVisible = false;
 			this.layoutControlItemSalesRepValue.TrimClientAreaToControl = false;
 			// 
-			// simpleLabelItemSalesRepEmail
+			// simpleLabelItemSalesRepDescription
 			// 
 			this.simpleLabelItemSalesRepDescription.AllowHotTrack = false;
 			this.simpleLabelItemSalesRepDescription.AllowHtmlStringInCaption = true;
 			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.Options.UseTextOptions = true;
 			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.None;
+			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.Trimming = DevExpress.Utils.Trimming.EllipsisWord;
 			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.simpleLabelItemSalesRepDescription.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
 			this.simpleLabelItemSalesRepDescription.Location = new System.Drawing.Point(254, 40);
 			this.simpleLabelItemSalesRepDescription.MaxSize = new System.Drawing.Size(360, 24);
 			this.simpleLabelItemSalesRepDescription.MinSize = new System.Drawing.Size(360, 24);

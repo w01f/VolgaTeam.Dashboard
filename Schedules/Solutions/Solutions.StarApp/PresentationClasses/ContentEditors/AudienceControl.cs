@@ -68,6 +68,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabCClipart4.Image = SlideContainer.StarInfo.Tab9SubCClipart4Image;
 			pictureEditTabCClipart4.Properties.PictureAlignment =
 				SlideContainer.StarInfo.AudienceConfiguration.PartCClipart4Configuration.Alignment;
+
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabAClipart1,
+				pictureEditTabAClipart2,
+				pictureEditTabBClipart1,
+				pictureEditTabBClipart2,
+				pictureEditTabBClipart3,
+				pictureEditTabCClipart1,
+				pictureEditTabCClipart2,
+				pictureEditTabCClipart3,
+				pictureEditTabCClipart4,
+			});
+
 			Application.DoEvents();
 
 			comboBoxEditTabCCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.AudienceConfiguration.PartCCombo1Items);

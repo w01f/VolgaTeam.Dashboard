@@ -79,7 +79,7 @@
 			// 
 			// layoutControl
 			// 
-	        this.layoutControl.AllowCustomization = false;
+			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -140,7 +140,7 @@
 			this.pictureEditImage.Cursor = System.Windows.Forms.Cursors.Default;
 			this.pictureEditImage.Location = new System.Drawing.Point(12, 94);
 			this.pictureEditImage.Name = "pictureEditImage";
-	        this.pictureEditImage.Properties.AllowFocused = false;
+			this.pictureEditImage.Properties.AllowFocused = false;
 			this.pictureEditImage.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.pictureEditImage.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.pictureEditImage.Properties.Appearance.Options.UseBackColor = true;
@@ -149,7 +149,7 @@
 			this.pictureEditImage.Properties.ReadOnly = true;
 			this.pictureEditImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEditImage.Properties.ShowMenu = false;
-			this.pictureEditImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+			this.pictureEditImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
 			this.pictureEditImage.Properties.ZoomAccelerationFactor = 1D;
 			this.pictureEditImage.Size = new System.Drawing.Size(366, 255);
 			this.pictureEditImage.StyleController = this.layoutControl;
@@ -245,8 +245,10 @@
 			this.simpleLabelItemTitle.AppearanceItemCaption.Options.UseTextOptions = true;
 			this.simpleLabelItemTitle.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTitle.Location = new System.Drawing.Point(0, 0);
+			this.simpleLabelItemTitle.MinSize = new System.Drawing.Size(1, 36);
 			this.simpleLabelItemTitle.Name = "simpleLabelItemTitle";
 			this.simpleLabelItemTitle.Size = new System.Drawing.Size(370, 36);
+			this.simpleLabelItemTitle.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.simpleLabelItemTitle.Text = "Save this Image in your Favorites folder for future<br>presentations";
 			this.simpleLabelItemTitle.TextSize = new System.Drawing.Size(280, 32);
 			// 

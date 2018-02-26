@@ -49,14 +49,14 @@
 			this.contextMenuStrip.Name = "contextMenuStrip";
 			this.contextMenuStrip.ShowImageMargin = false;
 			this.contextMenuStrip.Size = new System.Drawing.Size(102, 76);
-			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.OnMenuStripOpening);
 			// 
 			// toolStripMenuItemCopy
 			// 
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
 			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(101, 22);
 			this.toolStripMenuItemCopy.Text = "Copy";
-			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
+			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.OnMenuItemCopyClick);
 			// 
 			// toolStripMenuItemRename
 			// 
@@ -64,7 +64,7 @@
 			this.toolStripMenuItemRename.Name = "toolStripMenuItemRename";
 			this.toolStripMenuItemRename.Size = new System.Drawing.Size(101, 22);
 			this.toolStripMenuItemRename.Text = "Rename...";
-			this.toolStripMenuItemRename.Click += new System.EventHandler(this.toolStripMenuItemRename_Click);
+			this.toolStripMenuItemRename.Click += new System.EventHandler(this.OnMenuItemRenameClick);
 			// 
 			// toolStripSeparator1
 			// 
@@ -76,7 +76,7 @@
 			this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
 			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(101, 22);
 			this.toolStripMenuItemDelete.Text = "Delete";
-			this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
+			this.toolStripMenuItemDelete.Click += new System.EventHandler(this.OnMenuItemDeleteClick);
 			// 
 			// imageListView
 			// 
@@ -95,7 +95,9 @@
 			this.imageListView.Size = new System.Drawing.Size(251, 391);
 			this.imageListView.TabIndex = 39;
 			this.imageListView.ThumbnailSize = new System.Drawing.Size(120, 54);
+			this.imageListView.ItemClick += new Manina.Windows.Forms.ItemClickEventHandler(this.OnGalleryItemClick);
 			this.imageListView.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.OnGalleryItemHover);
+			this.imageListView.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.OnGalleryItemDoubleClick);
 			this.imageListView.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.OnGalleryGiveFeedback);
 			this.imageListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnGalleryMouseDown);
 			this.imageListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnGalleryMouseMove);
@@ -109,6 +111,7 @@
 			// 
 			// FavoriteImagesControl
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.imageListView);

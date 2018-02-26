@@ -54,6 +54,13 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabBClipart2.Properties.PictureAlignment =
 				SlideContainer.StarInfo.CustomerConfiguration.PartBClipart2Configuration.Alignment;
 
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabAClipart1,
+				pictureEditTabAClipart2,
+				pictureEditTabBClipart1,
+				pictureEditTabBClipart2,
+			});
+
 			comboBoxEditTabACombo1.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList);
 			comboBoxEditTabACombo2.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList);
 			comboBoxEditTabACombo3.Properties.Items.AddRange(SlideContainer.StarInfo.TargetCustomersLists.CombinedList);

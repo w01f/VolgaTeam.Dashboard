@@ -28,6 +28,7 @@ namespace Asa.Common.Core.Objects.Images
 
 		public Guid Identifier { get; set; }
 		public bool IsDefault { get; set; }
+		public Image OriginalImage { get; set; }
 		public Image BigImage { get; set; }
 		public Image SmallImage { get; set; }
 		public Image TinyImage { get; set; }
@@ -45,6 +46,8 @@ namespace Asa.Common.Core.Objects.Images
 
 		public void Dispose()
 		{
+			OriginalImage?.Dispose();
+			OriginalImage = null;
 			BigImage?.Dispose();
 			BigImage = null;
 			SmallImage?.Dispose();
@@ -66,6 +69,7 @@ namespace Asa.Common.Core.Objects.Images
 			var imageSource = new ImageSource();
 			if (image != null)
 			{
+				imageSource.OriginalImage = (Image)image.Clone();
 				imageSource.BigImage = image.Resize(new Size((Int32)BigWidth, (Int32)BigHeight));
 				imageSource.SmallImage = image.Resize(new Size((Int32)SmallWidth, (Int32)SmallHeight));
 				imageSource.TinyImage = image.Resize(new Size((Int32)TinyWidth, (Int32)TinyHeight));

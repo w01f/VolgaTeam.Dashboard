@@ -37,6 +37,10 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditClipart1.Properties.PictureAlignment =
 				SlideContainer.StarInfo.CoverConfiguration.PartAClipart1Configuration.Alignment;
 
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditClipart1
+			});
+
 			comboBoxEditCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
 
 			dateEditCalendar1.DateTime = DateTime.Today;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Asa.Solutions.StarApp.PresentationClasses.ImageEdit;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -8,10 +9,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected bool _allowToSave;
 
 		protected ShareControl ShareContentContainer { get; }
+		protected ShareControlImageEditorHelper ImageEditorHelper { get; }
 
 		public ShareTabBaseControl()
 		{
 			InitializeComponent();
+			ImageEditorHelper = new ShareControlImageEditorHelper(this);
 		}
 
 		public ShareTabBaseControl(ShareControl shareContentContainer) : this()

@@ -60,6 +60,16 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabDClipart1.Properties.PictureAlignment =
 				SlideContainer.StarInfo.SolutionConfiguration.PartDClipart1Configuration.Alignment;
 
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabAClipart1,
+				pictureEditTabBClipart1,
+				pictureEditTabBClipart2,
+				pictureEditTabBClipart3,
+				pictureEditTabCClipart1,
+				pictureEditTabCClipart2,
+				pictureEditTabDClipart1,
+			});
+
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
 			layoutControlItemSlideHeader.MinSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MinSize, scaleFactor);

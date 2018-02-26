@@ -67,6 +67,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			pictureEditTabCClipart4.Properties.PictureAlignment =
 				SlideContainer.StarInfo.MarketConfiguration.PartCClipart4Configuration.Alignment;
 
+			ImageEditorHelper.AssignImageEditors(new[]{
+				pictureEditTabAClipart1,
+				pictureEditTabBClipart1,
+				pictureEditTabBClipart2,
+				pictureEditTabBClipart3,
+				pictureEditTabBClipart4,
+				pictureEditTabBClipart5,
+				pictureEditTabCClipart1,
+				pictureEditTabCClipart2,
+				pictureEditTabCClipart3,
+				pictureEditTabCClipart4,
+			});
+
 			comboBoxEditTabCCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.MarketConfiguration.PartCCombo1Items);
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);

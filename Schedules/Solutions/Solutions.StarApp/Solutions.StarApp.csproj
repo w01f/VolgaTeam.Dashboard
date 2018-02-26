@@ -37,6 +37,7 @@
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -94,6 +95,19 @@
     <Compile Include="PresentationClasses\ContentEditors\CustomerControl.Designer.cs">
       <DependentUpon>CustomerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ImageEdit\FormFavoritesOpen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ImageEdit\FormFavoritesOpen.Designer.cs">
+      <DependentUpon>FormFavoritesOpen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ImageEdit\FormPreviewImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ImageEdit\FormPreviewImage.Designer.cs">
+      <DependentUpon>FormPreviewImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ImageEdit\ImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IROITabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IClosersTabPageContainer.cs" />
     <Compile Include="PresentationClasses\ContentEditors\IShareTabPageContainer.cs" />
@@ -260,6 +274,11 @@
     <Compile Include="PresentationClasses\ContentEditors\StarAppControl.Designer.cs">
       <DependentUpon>StarAppControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ImageEdit\ImageEditorSettings.cs" />
+    <Compile Include="PresentationClasses\ImageEdit\ClosersControlImageEditorHelper.cs" />
+    <Compile Include="PresentationClasses\ImageEdit\ROIControlImageEditorHelper.cs" />
+    <Compile Include="PresentationClasses\ImageEdit\ShareControlImageEditorHelper.cs" />
+    <Compile Include="PresentationClasses\ImageEdit\StarAppCommonControlImageEditorHelper.cs" />
     <Compile Include="PresentationClasses\IStarAppShareContentControl.cs" />
     <Compile Include="PresentationClasses\Output\IStarAppSlide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -369,6 +388,12 @@
     <EmbeddedResource Include="PresentationClasses\ContentEditors\StarAppControl.resx">
       <DependentUpon>StarAppControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ImageEdit\FormFavoritesOpen.resx">
+      <DependentUpon>FormFavoritesOpen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ImageEdit\FormPreviewImage.resx">
+      <DependentUpon>FormPreviewImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -399,6 +424,7 @@
       <Name>Solutions.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

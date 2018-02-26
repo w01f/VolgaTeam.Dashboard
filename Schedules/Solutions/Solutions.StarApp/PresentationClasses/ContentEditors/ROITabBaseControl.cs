@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Asa.Solutions.StarApp.PresentationClasses.ImageEdit;
 
 namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 {
@@ -8,10 +9,12 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		protected bool _allowToSave;
 
 		protected ROIControl ROIContentContainer { get; }
+		protected ROIControlImageEditorHelper ImageEditorHelper { get; }
 
 		public ROITabBaseControl()
 		{
 			InitializeComponent();
+			ImageEditorHelper = new ROIControlImageEditorHelper(this);
 		}
 
 		public ROITabBaseControl(ROIControl shareContentContainer) : this()

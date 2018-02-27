@@ -84,6 +84,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ImageEdit
 			{
 				var imageFilePath = (e.Data.GetData(DataFormats.FileDrop) as String[] ?? new string[] { }).FirstOrDefault();
 				if (imageFilePath == null) return;
+				var tempFile = Path.GetTempFileName();
+				File.Copy(imageFilePath, tempFile, true);
 				imageEditor.Image =
 					((ImageEditorSettings)imageEditor.Tag).CurrentImage =
 					Image.FromFile(imageFilePath);
@@ -179,9 +181,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ImageEdit
 				openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 				if (openFileDialog.ShowDialog() == DialogResult.OK)
 				{
+					var tempFile = Path.GetTempFileName();
+					File.Copy(openFileDialog.FileName, tempFile, true);
 					_activeImageEditor.Image =
 						((ImageEditorSettings)_activeImageEditor.Tag).CurrentImage =
-						Image.FromFile(openFileDialog.FileName);
+						Image.FromFile(tempFile);
 					((ImageEditorSettings)_activeImageEditor.Tag).CurrentImageName =
 						Path.GetFileNameWithoutExtension(openFileDialog.FileName);
 				}

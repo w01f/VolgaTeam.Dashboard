@@ -7,7 +7,7 @@ namespace Asa.Common.Core.Helpers
 {
 	public static class ClipboardHelper
 	{
-		public static void PutImageToClipboard(Image imageData)
+		public static void PutPngToClipboard(Image imageData)
 		{
 			if (imageData == null) return;
 			using (var stream = new MemoryStream())
@@ -19,10 +19,16 @@ namespace Asa.Common.Core.Helpers
 			}
 		}
 
-		public static Image GetImageFormClipboard()
+		public static Image GetPngFormClipboard()
 		{
 			if (!Clipboard.ContainsData("PNG")) return null;
 			return Image.FromStream((Stream)Clipboard.GetData("PNG"));
+		}
+
+		public static Image GetImageFormClipboard()
+		{
+			if (!Clipboard.ContainsImage()) return null;
+			return Clipboard.GetImage();
 		}
 	}
 }

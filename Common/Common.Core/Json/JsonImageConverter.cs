@@ -22,11 +22,7 @@ namespace Asa.Common.Core.Json
 		{
 			if (!(value is Bitmap bmp)) return;
 			var converter = new ImageConverter();
-			try
-			{
-				writer.WriteValue(Convert.ToBase64String((byte[])converter.ConvertTo(bmp, typeof(byte[]))));
-			}
-			catch { }
+			writer.WriteValue(Convert.ToBase64String((byte[]) converter.ConvertTo(bmp, typeof(byte[]))));
 		}
 	}
 }

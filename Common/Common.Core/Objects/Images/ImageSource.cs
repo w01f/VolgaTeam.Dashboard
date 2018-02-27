@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Asa.Common.Core.Extensions;
 using Asa.Common.Core.Helpers;
 using Asa.Common.Core.Interfaces;
 using Asa.Common.Core.Objects.RemoteStorage;
+using Newtonsoft.Json;
 
 namespace Asa.Common.Core.Objects.Images
 {
@@ -35,8 +38,9 @@ namespace Asa.Common.Core.Objects.Images
 		public Image XtraTinyImage { get; set; }
 		public string Name { get; set; }
 		public string FileName { get; set; }
+		[JsonIgnore]
 		public string OutputFilePath { get; set; }
-
+		[JsonIgnore]
 		public bool ContainsData => XtraTinyImage != null;
 
 		public ImageSource()
@@ -81,7 +85,12 @@ namespace Asa.Common.Core.Objects.Images
 		public static ImageSource FromString(string encoded)
 		{
 			if (String.IsNullOrEmpty(encoded)) return null;
-			var imageSource = CloneHelper.Deserialize<ImageSource, ImageSource>(encoded);
+			var jsonContent = new Regex("<ImageSource>(.*?)</ImageSource>", RegexOptions.IgnoreCase)
+				.Match(encoded).Groups
+				.OfType<Capture>()
+				.ElementAtOrDefault(1)?.Value;
+			if (jsonContent == null) return null;
+			var imageSource = CloneHelper.Deserialize<ImageSource, ImageSource>(jsonContent);
 			return imageSource;
 		}
 

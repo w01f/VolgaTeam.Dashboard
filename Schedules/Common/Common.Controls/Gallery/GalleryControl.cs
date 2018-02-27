@@ -375,7 +375,7 @@ namespace Asa.Schedules.Common.Controls.Gallery
 			{
 				var images = DownloadImages(new[] { e.MenuInfo.SourceUrl });
 				if (images.Any())
-					ClipboardHelper.PutImageToClipboard(images.First().Value);
+					ClipboardHelper.PutPngToClipboard(images.First().Value);
 			}
 		}
 
@@ -435,13 +435,13 @@ namespace Asa.Schedules.Common.Controls.Gallery
 
 		private void Copy_Click(object sender, EventArgs e)
 		{
-			ClipboardHelper.PutImageToClipboard(_imageContainer.Image.GetAsBitmap());
+			ClipboardHelper.PutPngToClipboard(_imageContainer.Image.GetAsBitmap());
 		}
 
 		private void Favorites_Click(object sender, EventArgs e)
 		{
-			ClipboardHelper.PutImageToClipboard(_imageContainer.Image.GetAsBitmap());
-			var clipboardImage = ClipboardHelper.GetImageFormClipboard();
+			ClipboardHelper.PutPngToClipboard(_imageContainer.Image.GetAsBitmap());
+			var clipboardImage = ClipboardHelper.GetPngFormClipboard();
 			if (clipboardImage != null)
 				AddToFavorites(clipboardImage, null);
 		}

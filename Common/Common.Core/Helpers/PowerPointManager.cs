@@ -53,8 +53,12 @@ namespace Asa.Common.Core.Helpers
 
 		public bool IsPowerPointMultipleInstances()
 		{
-			if (Process.GetProcesses().Count(p => p.ProcessName.ToUpper().Contains("POWERPNT")) > 1)
+			Process.GetProcesses().Where(p => p.ProcessName.ToUpper().Contains("POWERPNT") && (String.IsNullOrEmpty(p.MainWindowTitle) || String.Equals(p.MainWindowTitle, "PowerPoint", StringComparison.OrdinalIgnoreCase))).ToList().ForEach(p => p.Kill());
+
+			var powerPointProcesses = Process.GetProcesses().Where(p => p.ProcessName.ToUpper().Contains("POWERPNT")).ToList();
+			if (powerPointProcesses.Count > 1)
 				return true;
+
 			try
 			{
 				if (!Processor.Connect(false))

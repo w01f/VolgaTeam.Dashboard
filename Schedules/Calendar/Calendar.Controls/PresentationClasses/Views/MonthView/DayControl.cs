@@ -255,7 +255,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 			else SelectionStateRequested?.Invoke(sender, new EventArgs());
 			toolStripMenuItemCopyImage.Enabled = Day.Logo.ContainsData;
 			toolStripMenuItemDeleteImage.Enabled = Day.Logo.ContainsData;
-			var clipBoardImage = ClipboardHelper.GetImageFormClipboard();
+			var clipBoardImage = ClipboardHelper.GetPngFormClipboard();
 			toolStripMenuItemPasteImage.Enabled = clipBoardImage != null || Clipboard.ContainsText(TextDataFormat.Html);
 		}
 

@@ -233,7 +233,7 @@ namespace Asa.Calendar.Controls.PresentationClasses.Views.MonthView
 							dayControl.ImagePasted += (sender, e) =>
 							{
 								ImageSource imageSource = null;
-								var clipboardImage = ClipboardHelper.GetImageFormClipboard();
+								var clipboardImage = ClipboardHelper.GetPngFormClipboard();
 								if (clipboardImage != null)
 									imageSource = ImageSource.FromImage(clipboardImage);
 								else if (Clipboard.ContainsText(TextDataFormat.Html))

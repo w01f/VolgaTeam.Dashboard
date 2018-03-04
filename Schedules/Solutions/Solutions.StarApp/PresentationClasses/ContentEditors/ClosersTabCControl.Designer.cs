@@ -28,9 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition23 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition24 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition25 = new DevExpress.XtraLayout.RowDefinition();
@@ -42,7 +42,6 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition31 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition32 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
-			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
@@ -89,16 +88,6 @@
 			this.layoutControlGroupTabCCombo2 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabCCombo2 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemTabCCombo2Description1 = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo2Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo3Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo4Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo5Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo6Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo7Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo8Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo9Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo10Index = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.simpleLabelItemTabCCombo11Index = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.layoutControlGroupTabCCombo3 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabCCombo3 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemTabCCombo3Description1 = new DevExpress.XtraLayout.SimpleLabelItem();
@@ -137,6 +126,7 @@
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabC)).BeginInit();
@@ -162,16 +152,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabCCombo2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCCombo2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo2Description1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo2Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo3Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo4Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo5Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo6Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo7Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo8Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo9Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo10Index)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo11Index)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabCCombo3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCCombo3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo3Description1)).BeginInit();
@@ -317,16 +297,16 @@
 			this.layoutControlGroupTabC.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
 			this.layoutControlGroupTabC.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabC.Name = "layoutControlGroupTabC";
-			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition3.Width = 70D;
-			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition2.Width = 70D;
+			columnDefinition3.SizeType = System.Windows.Forms.SizeType.Absolute;
+			columnDefinition3.Width = 30D;
+			columnDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition4.Width = 30D;
-			columnDefinition5.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition5.Width = 30D;
 			this.layoutControlGroupTabC.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
+            columnDefinition2,
             columnDefinition3,
-            columnDefinition4,
-            columnDefinition5});
+            columnDefinition4});
 			rowDefinition23.Height = 30D;
 			rowDefinition23.SizeType = System.Windows.Forms.SizeType.Absolute;
 			rowDefinition24.Height = 11.111111111111111D;
@@ -429,7 +409,7 @@
 			this.layoutControlItemTabCUsersContainer.OptionsTableLayoutItem.RowIndex = 5;
 			this.layoutControlItemTabCUsersContainer.OptionsTableLayoutItem.RowSpan = 6;
 			this.layoutControlItemTabCUsersContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabCUsersContainer.Size = new System.Drawing.Size(525, 290);
+			this.layoutControlItemTabCUsersContainer.Size = new System.Drawing.Size(525, 292);
 			this.layoutControlItemTabCUsersContainer.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCUsersContainer.Text = "Users";
 			this.layoutControlItemTabCUsersContainer.TextSize = new System.Drawing.Size(0, 0);
@@ -439,9 +419,9 @@
 			// panelTabCContentContainer
 			// 
 			this.panelTabCContentContainer.Controls.Add(this.layoutControlTabCUsers);
-			this.panelTabCContentContainer.Location = new System.Drawing.Point(43, 316);
+			this.panelTabCContentContainer.Location = new System.Drawing.Point(43, 314);
 			this.panelTabCContentContainer.Name = "panelTabCContentContainer";
-			this.panelTabCContentContainer.Size = new System.Drawing.Size(525, 290);
+			this.panelTabCContentContainer.Size = new System.Drawing.Size(525, 292);
 			this.panelTabCContentContainer.TabIndex = 4;
 			// 
 			// layoutControlTabCUsers
@@ -478,138 +458,138 @@
 			this.layoutControlTabCUsers.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControlTabCUsers.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControlTabCUsers.Root = this.layoutControlGroupTabCUsersRoot;
-			this.layoutControlTabCUsers.Size = new System.Drawing.Size(525, 290);
+			this.layoutControlTabCUsers.Size = new System.Drawing.Size(525, 292);
 			this.layoutControlTabCUsers.StyleController = this.styleController;
 			this.layoutControlTabCUsers.TabIndex = 1;
 			// 
 			// comboBoxEditTabCCombo2
 			// 
-			this.comboBoxEditTabCCombo2.Location = new System.Drawing.Point(62, -803);
+			this.comboBoxEditTabCCombo2.Location = new System.Drawing.Point(22, 164);
 			this.comboBoxEditTabCCombo2.Name = "comboBoxEditTabCCombo2";
 			this.comboBoxEditTabCCombo2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo2.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo2.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo2.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo2.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo2.TabIndex = 4;
 			this.comboBoxEditTabCCombo2.EditValueChanged += new System.EventHandler(this.OnTabCCombo2EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo3
 			// 
-			this.comboBoxEditTabCCombo3.Location = new System.Drawing.Point(62, -684);
+			this.comboBoxEditTabCCombo3.Location = new System.Drawing.Point(22, 283);
 			this.comboBoxEditTabCCombo3.Name = "comboBoxEditTabCCombo3";
 			this.comboBoxEditTabCCombo3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo3.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo3.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo3.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo3.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo3.TabIndex = 4;
 			this.comboBoxEditTabCCombo3.EditValueChanged += new System.EventHandler(this.OnTabCCombo3EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo4
 			// 
-			this.comboBoxEditTabCCombo4.Location = new System.Drawing.Point(62, -565);
+			this.comboBoxEditTabCCombo4.Location = new System.Drawing.Point(22, 402);
 			this.comboBoxEditTabCCombo4.Name = "comboBoxEditTabCCombo4";
 			this.comboBoxEditTabCCombo4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo4.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo4.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo4.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo4.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo4.TabIndex = 4;
 			this.comboBoxEditTabCCombo4.EditValueChanged += new System.EventHandler(this.OnTabCCombo4EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo5
 			// 
-			this.comboBoxEditTabCCombo5.Location = new System.Drawing.Point(62, -446);
+			this.comboBoxEditTabCCombo5.Location = new System.Drawing.Point(22, 521);
 			this.comboBoxEditTabCCombo5.Name = "comboBoxEditTabCCombo5";
 			this.comboBoxEditTabCCombo5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo5.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo5.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo5.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo5.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo5.TabIndex = 4;
 			this.comboBoxEditTabCCombo5.EditValueChanged += new System.EventHandler(this.OnTabCCombo5EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo7
 			// 
-			this.comboBoxEditTabCCombo7.Location = new System.Drawing.Point(62, -208);
+			this.comboBoxEditTabCCombo7.Location = new System.Drawing.Point(22, 759);
 			this.comboBoxEditTabCCombo7.Name = "comboBoxEditTabCCombo7";
 			this.comboBoxEditTabCCombo7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo7.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo7.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo7.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo7.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo7.TabIndex = 4;
 			this.comboBoxEditTabCCombo7.EditValueChanged += new System.EventHandler(this.OnTabCCombo7EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo6
 			// 
-			this.comboBoxEditTabCCombo6.Location = new System.Drawing.Point(62, -327);
+			this.comboBoxEditTabCCombo6.Location = new System.Drawing.Point(22, 640);
 			this.comboBoxEditTabCCombo6.Name = "comboBoxEditTabCCombo6";
 			this.comboBoxEditTabCCombo6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo6.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo6.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo6.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo6.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo6.TabIndex = 4;
 			this.comboBoxEditTabCCombo6.EditValueChanged += new System.EventHandler(this.OnTabCCombo6EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo8
 			// 
-			this.comboBoxEditTabCCombo8.Location = new System.Drawing.Point(62, -89);
+			this.comboBoxEditTabCCombo8.Location = new System.Drawing.Point(22, 878);
 			this.comboBoxEditTabCCombo8.Name = "comboBoxEditTabCCombo8";
 			this.comboBoxEditTabCCombo8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo8.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo8.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo8.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo8.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo8.TabIndex = 4;
 			this.comboBoxEditTabCCombo8.EditValueChanged += new System.EventHandler(this.OnTabCCombo8EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo9
 			// 
-			this.comboBoxEditTabCCombo9.Location = new System.Drawing.Point(62, 30);
+			this.comboBoxEditTabCCombo9.Location = new System.Drawing.Point(22, 997);
 			this.comboBoxEditTabCCombo9.Name = "comboBoxEditTabCCombo9";
 			this.comboBoxEditTabCCombo9.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo9.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo9.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo9.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo9.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo9.TabIndex = 4;
 			this.comboBoxEditTabCCombo9.EditValueChanged += new System.EventHandler(this.OnTabCCombo9EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo10
 			// 
-			this.comboBoxEditTabCCombo10.Location = new System.Drawing.Point(62, 149);
+			this.comboBoxEditTabCCombo10.Location = new System.Drawing.Point(22, 1116);
 			this.comboBoxEditTabCCombo10.Name = "comboBoxEditTabCCombo10";
 			this.comboBoxEditTabCCombo10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo10.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo10.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo10.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo10.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo10.TabIndex = 4;
 			this.comboBoxEditTabCCombo10.EditValueChanged += new System.EventHandler(this.OnTabCCombo10EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo11
 			// 
-			this.comboBoxEditTabCCombo11.Location = new System.Drawing.Point(62, 268);
+			this.comboBoxEditTabCCombo11.Location = new System.Drawing.Point(22, 1235);
 			this.comboBoxEditTabCCombo11.Name = "comboBoxEditTabCCombo11";
 			this.comboBoxEditTabCCombo11.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo11.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo11.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo11.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo11.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo11.TabIndex = 4;
 			this.comboBoxEditTabCCombo11.EditValueChanged += new System.EventHandler(this.OnTabCCombo11EditValueChanged);
 			// 
 			// comboBoxEditTabCCombo1
 			// 
-			this.comboBoxEditTabCCombo1.Location = new System.Drawing.Point(62, -922);
+			this.comboBoxEditTabCCombo1.Location = new System.Drawing.Point(22, 45);
 			this.comboBoxEditTabCCombo1.Name = "comboBoxEditTabCCombo1";
 			this.comboBoxEditTabCCombo1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditTabCCombo1.Properties.NullText = "Select or type";
-			this.comboBoxEditTabCCombo1.Size = new System.Drawing.Size(424, 22);
+			this.comboBoxEditTabCCombo1.Size = new System.Drawing.Size(464, 22);
 			this.comboBoxEditTabCCombo1.StyleController = this.layoutControlTabCUsers;
 			this.comboBoxEditTabCCombo1.TabIndex = 2;
 			this.comboBoxEditTabCCombo1.EditValueChanged += new System.EventHandler(this.OnTabCCombo1EditValueChanged);
@@ -634,16 +614,6 @@
 			this.layoutControlGroupTabCUsersRoot.GroupBordersVisible = false;
 			this.layoutControlGroupTabCUsersRoot.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroupTabCCombo2,
-            this.simpleLabelItemTabCCombo2Index,
-            this.simpleLabelItemTabCCombo3Index,
-            this.simpleLabelItemTabCCombo4Index,
-            this.simpleLabelItemTabCCombo5Index,
-            this.simpleLabelItemTabCCombo6Index,
-            this.simpleLabelItemTabCCombo7Index,
-            this.simpleLabelItemTabCCombo8Index,
-            this.simpleLabelItemTabCCombo9Index,
-            this.simpleLabelItemTabCCombo10Index,
-            this.simpleLabelItemTabCCombo11Index,
             this.layoutControlGroupTabCCombo3,
             this.layoutControlGroupTabCCombo4,
             this.layoutControlGroupTabCCombo5,
@@ -655,15 +625,12 @@
             this.layoutControlGroupTabCCombo11,
             this.layoutControlGroupTabCCombo1});
 			this.layoutControlGroupTabCUsersRoot.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupTabCUsersRoot.Location = new System.Drawing.Point(0, -967);
+			this.layoutControlGroupTabCUsersRoot.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlGroupTabCUsersRoot.Name = "Root";
-			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
-			columnDefinition1.Width = 60D;
-			columnDefinition2.SizeType = System.Windows.Forms.SizeType.Percent;
-			columnDefinition2.Width = 100D;
+			columnDefinition1.SizeType = System.Windows.Forms.SizeType.Percent;
+			columnDefinition1.Width = 100D;
 			this.layoutControlGroupTabCUsersRoot.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition1,
-            columnDefinition2});
+            columnDefinition1});
 			rowDefinition1.Height = 20D;
 			rowDefinition1.SizeType = System.Windows.Forms.SizeType.Absolute;
 			rowDefinition2.Height = 9.09090909090909D;
@@ -731,7 +698,7 @@
             rowDefinition20,
             rowDefinition21,
             rowDefinition22});
-			this.layoutControlGroupTabCUsersRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 20, 0, 0);
+			this.layoutControlGroupTabCUsersRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(20, 20, 0, 0);
 			this.layoutControlGroupTabCUsersRoot.Size = new System.Drawing.Size(508, 1279);
 			this.layoutControlGroupTabCUsersRoot.TextVisible = false;
 			// 
@@ -741,11 +708,10 @@
 			this.layoutControlGroupTabCCombo2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo2,
             this.simpleLabelItemTabCCombo2Description1});
-			this.layoutControlGroupTabCCombo2.Location = new System.Drawing.Point(60, 139);
+			this.layoutControlGroupTabCCombo2.Location = new System.Drawing.Point(0, 139);
 			this.layoutControlGroupTabCCombo2.Name = "layoutControlGroupTabCCombo2";
-			this.layoutControlGroupTabCCombo2.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo2.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlGroupTabCCombo2.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo2.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo2.Text = "Combo 2";
 			// 
 			// layoutControlItemTabCCombo2
@@ -757,11 +723,11 @@
 			this.layoutControlItemTabCCombo2.Name = "layoutControlItemTabCCombo2";
 			this.layoutControlItemTabCCombo2.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo2.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo2.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo2.Text = "Team Member";
+			this.layoutControlItemTabCCombo2.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo2.Text = "<color=gray>Team Member #1</color>";
 			this.layoutControlItemTabCCombo2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo2.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo2.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo2.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo2.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo2.TrimClientAreaToControl = false;
 			// 
@@ -776,149 +742,9 @@
 			this.simpleLabelItemTabCCombo2Description1.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.simpleLabelItemTabCCombo2Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo2Description1.Name = "simpleLabelItemTabCCombo2Description1";
-			this.simpleLabelItemTabCCombo2Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo2Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo2Description1.Text = " ";
-			this.simpleLabelItemTabCCombo2Description1.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo2Index
-			// 
-			this.simpleLabelItemTabCCombo2Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo2Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo2Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo2Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo2Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo2Index.Location = new System.Drawing.Point(0, 139);
-			this.simpleLabelItemTabCCombo2Index.Name = "simpleLabelItemTabCCombo2Index";
-			this.simpleLabelItemTabCCombo2Index.OptionsTableLayoutItem.RowIndex = 3;
-			this.simpleLabelItemTabCCombo2Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo2Index.Text = "<color=gray>#1</color>";
-			this.simpleLabelItemTabCCombo2Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo3Index
-			// 
-			this.simpleLabelItemTabCCombo3Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo3Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo3Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo3Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo3Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo3Index.Location = new System.Drawing.Point(0, 258);
-			this.simpleLabelItemTabCCombo3Index.Name = "simpleLabelItemTabCCombo3Index";
-			this.simpleLabelItemTabCCombo3Index.OptionsTableLayoutItem.RowIndex = 5;
-			this.simpleLabelItemTabCCombo3Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo3Index.Text = "<color=gray>#2</color>";
-			this.simpleLabelItemTabCCombo3Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo4Index
-			// 
-			this.simpleLabelItemTabCCombo4Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo4Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo4Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo4Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo4Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo4Index.Location = new System.Drawing.Point(0, 377);
-			this.simpleLabelItemTabCCombo4Index.Name = "simpleLabelItemTabCCombo4Index";
-			this.simpleLabelItemTabCCombo4Index.OptionsTableLayoutItem.RowIndex = 7;
-			this.simpleLabelItemTabCCombo4Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo4Index.Text = "<color=gray>#3</color>";
-			this.simpleLabelItemTabCCombo4Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo5Index
-			// 
-			this.simpleLabelItemTabCCombo5Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo5Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo5Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo5Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo5Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo5Index.Location = new System.Drawing.Point(0, 496);
-			this.simpleLabelItemTabCCombo5Index.Name = "simpleLabelItemTabCCombo5Index";
-			this.simpleLabelItemTabCCombo5Index.OptionsTableLayoutItem.RowIndex = 9;
-			this.simpleLabelItemTabCCombo5Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo5Index.Text = "<color=gray>#4</color>";
-			this.simpleLabelItemTabCCombo5Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo6Index
-			// 
-			this.simpleLabelItemTabCCombo6Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo6Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo6Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo6Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo6Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo6Index.Location = new System.Drawing.Point(0, 615);
-			this.simpleLabelItemTabCCombo6Index.Name = "simpleLabelItemTabCCombo6Index";
-			this.simpleLabelItemTabCCombo6Index.OptionsTableLayoutItem.RowIndex = 11;
-			this.simpleLabelItemTabCCombo6Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo6Index.Text = "<color=gray>#5</color>";
-			this.simpleLabelItemTabCCombo6Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo7Index
-			// 
-			this.simpleLabelItemTabCCombo7Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo7Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo7Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo7Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo7Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo7Index.Location = new System.Drawing.Point(0, 734);
-			this.simpleLabelItemTabCCombo7Index.Name = "simpleLabelItemTabCCombo7Index";
-			this.simpleLabelItemTabCCombo7Index.OptionsTableLayoutItem.RowIndex = 13;
-			this.simpleLabelItemTabCCombo7Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo7Index.Text = "<color=gray>#6</color>";
-			this.simpleLabelItemTabCCombo7Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo8Index
-			// 
-			this.simpleLabelItemTabCCombo8Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo8Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo8Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo8Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo8Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo8Index.Location = new System.Drawing.Point(0, 853);
-			this.simpleLabelItemTabCCombo8Index.Name = "simpleLabelItemTabCCombo8Index";
-			this.simpleLabelItemTabCCombo8Index.OptionsTableLayoutItem.RowIndex = 15;
-			this.simpleLabelItemTabCCombo8Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo8Index.Text = "<color=gray>#7</color>";
-			this.simpleLabelItemTabCCombo8Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo9Index
-			// 
-			this.simpleLabelItemTabCCombo9Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo9Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo9Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo9Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo9Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo9Index.Location = new System.Drawing.Point(0, 972);
-			this.simpleLabelItemTabCCombo9Index.Name = "simpleLabelItemTabCCombo9Index";
-			this.simpleLabelItemTabCCombo9Index.OptionsTableLayoutItem.RowIndex = 17;
-			this.simpleLabelItemTabCCombo9Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo9Index.Text = "<color=gray>#8</color>";
-			this.simpleLabelItemTabCCombo9Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo10Index
-			// 
-			this.simpleLabelItemTabCCombo10Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo10Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo10Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo10Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo10Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo10Index.Location = new System.Drawing.Point(0, 1091);
-			this.simpleLabelItemTabCCombo10Index.Name = "simpleLabelItemTabCCombo10Index";
-			this.simpleLabelItemTabCCombo10Index.OptionsTableLayoutItem.RowIndex = 19;
-			this.simpleLabelItemTabCCombo10Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo10Index.Text = "<color=gray>#9</color>";
-			this.simpleLabelItemTabCCombo10Index.TextSize = new System.Drawing.Size(21, 16);
-			// 
-			// simpleLabelItemTabCCombo11Index
-			// 
-			this.simpleLabelItemTabCCombo11Index.AllowHotTrack = false;
-			this.simpleLabelItemTabCCombo11Index.AllowHtmlStringInCaption = true;
-			this.simpleLabelItemTabCCombo11Index.AppearanceItemCaption.Options.UseTextOptions = true;
-			this.simpleLabelItemTabCCombo11Index.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.simpleLabelItemTabCCombo11Index.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-			this.simpleLabelItemTabCCombo11Index.Location = new System.Drawing.Point(0, 1210);
-			this.simpleLabelItemTabCCombo11Index.Name = "simpleLabelItemTabCCombo11Index";
-			this.simpleLabelItemTabCCombo11Index.OptionsTableLayoutItem.RowIndex = 21;
-			this.simpleLabelItemTabCCombo11Index.Size = new System.Drawing.Size(60, 69);
-			this.simpleLabelItemTabCCombo11Index.Text = "<color=gray>#10</color>";
-			this.simpleLabelItemTabCCombo11Index.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo2Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo3
 			// 
@@ -926,11 +752,10 @@
 			this.layoutControlGroupTabCCombo3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo3,
             this.simpleLabelItemTabCCombo3Description1});
-			this.layoutControlGroupTabCCombo3.Location = new System.Drawing.Point(60, 258);
+			this.layoutControlGroupTabCCombo3.Location = new System.Drawing.Point(0, 258);
 			this.layoutControlGroupTabCCombo3.Name = "layoutControlGroupTabCCombo3";
-			this.layoutControlGroupTabCCombo3.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo3.OptionsTableLayoutItem.RowIndex = 5;
-			this.layoutControlGroupTabCCombo3.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo3.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo3.Text = "Combo 3";
 			// 
 			// layoutControlItemTabCCombo3
@@ -943,11 +768,11 @@
 			this.layoutControlItemTabCCombo3.Name = "layoutControlItemTabCCombo3";
 			this.layoutControlItemTabCCombo3.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo3.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo3.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo3.Text = "Team Member";
+			this.layoutControlItemTabCCombo3.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo3.Text = "<color=gray>Team Member #2</color>";
 			this.layoutControlItemTabCCombo3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo3.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo3.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo3.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo3.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo3.TrimClientAreaToControl = false;
 			// 
@@ -963,9 +788,9 @@
 			this.simpleLabelItemTabCCombo3Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo3Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo3Description1.Name = "simpleLabelItemTabCCombo3Description1";
-			this.simpleLabelItemTabCCombo3Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo3Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo3Description1.Text = " ";
-			this.simpleLabelItemTabCCombo3Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo3Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo4
 			// 
@@ -973,11 +798,10 @@
 			this.layoutControlGroupTabCCombo4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo4,
             this.simpleLabelItemTabCCombo4Description1});
-			this.layoutControlGroupTabCCombo4.Location = new System.Drawing.Point(60, 377);
+			this.layoutControlGroupTabCCombo4.Location = new System.Drawing.Point(0, 377);
 			this.layoutControlGroupTabCCombo4.Name = "layoutControlGroupTabCCombo4";
-			this.layoutControlGroupTabCCombo4.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo4.OptionsTableLayoutItem.RowIndex = 7;
-			this.layoutControlGroupTabCCombo4.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo4.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo4.Text = "Combo 4";
 			// 
 			// layoutControlItemTabCCombo4
@@ -990,11 +814,11 @@
 			this.layoutControlItemTabCCombo4.Name = "layoutControlItemTabCCombo4";
 			this.layoutControlItemTabCCombo4.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo4.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo4.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo4.Text = "Team Member";
+			this.layoutControlItemTabCCombo4.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo4.Text = "<color=gray>Team Member #3</color>";
 			this.layoutControlItemTabCCombo4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo4.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo4.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo4.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo4.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo4.TrimClientAreaToControl = false;
 			// 
@@ -1010,9 +834,9 @@
 			this.simpleLabelItemTabCCombo4Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo4Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo4Description1.Name = "simpleLabelItemTabCCombo4Description1";
-			this.simpleLabelItemTabCCombo4Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo4Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo4Description1.Text = " ";
-			this.simpleLabelItemTabCCombo4Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo4Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo5
 			// 
@@ -1020,11 +844,10 @@
 			this.layoutControlGroupTabCCombo5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo5,
             this.simpleLabelItemTabCCombo5Description1});
-			this.layoutControlGroupTabCCombo5.Location = new System.Drawing.Point(60, 496);
+			this.layoutControlGroupTabCCombo5.Location = new System.Drawing.Point(0, 496);
 			this.layoutControlGroupTabCCombo5.Name = "layoutControlGroupTabCCombo5";
-			this.layoutControlGroupTabCCombo5.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo5.OptionsTableLayoutItem.RowIndex = 9;
-			this.layoutControlGroupTabCCombo5.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo5.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo5.Text = "Combo 5";
 			// 
 			// layoutControlItemTabCCombo5
@@ -1037,11 +860,11 @@
 			this.layoutControlItemTabCCombo5.Name = "layoutControlItemTabCCombo5";
 			this.layoutControlItemTabCCombo5.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo5.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo5.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo5.Text = "Team Member";
+			this.layoutControlItemTabCCombo5.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo5.Text = "<color=gray>Team Member #4</color>";
 			this.layoutControlItemTabCCombo5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo5.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo5.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo5.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo5.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo5.TrimClientAreaToControl = false;
 			// 
@@ -1057,9 +880,9 @@
 			this.simpleLabelItemTabCCombo5Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo5Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo5Description1.Name = "simpleLabelItemTabCCombo5Description1";
-			this.simpleLabelItemTabCCombo5Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo5Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo5Description1.Text = " ";
-			this.simpleLabelItemTabCCombo5Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo5Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo7
 			// 
@@ -1067,11 +890,10 @@
 			this.layoutControlGroupTabCCombo7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo7,
             this.simpleLabelItemTabCCombo7Description1});
-			this.layoutControlGroupTabCCombo7.Location = new System.Drawing.Point(60, 734);
+			this.layoutControlGroupTabCCombo7.Location = new System.Drawing.Point(0, 734);
 			this.layoutControlGroupTabCCombo7.Name = "layoutControlGroupTabCCombo7";
-			this.layoutControlGroupTabCCombo7.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo7.OptionsTableLayoutItem.RowIndex = 13;
-			this.layoutControlGroupTabCCombo7.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo7.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo7.Text = "Combo 7";
 			// 
 			// layoutControlItemTabCCombo7
@@ -1084,11 +906,11 @@
 			this.layoutControlItemTabCCombo7.Name = "layoutControlItemTabCCombo7";
 			this.layoutControlItemTabCCombo7.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo7.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo7.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo7.Text = "Team Member";
+			this.layoutControlItemTabCCombo7.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo7.Text = "<color=gray>Team Member #6</color>";
 			this.layoutControlItemTabCCombo7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo7.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo7.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo7.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo7.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo7.TrimClientAreaToControl = false;
 			// 
@@ -1104,9 +926,9 @@
 			this.simpleLabelItemTabCCombo7Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo7Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo7Description1.Name = "simpleLabelItemTabCCombo7Description1";
-			this.simpleLabelItemTabCCombo7Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo7Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo7Description1.Text = " ";
-			this.simpleLabelItemTabCCombo7Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo7Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo6
 			// 
@@ -1114,11 +936,10 @@
 			this.layoutControlGroupTabCCombo6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo6,
             this.simpleLabelItemTabCCombo6Description1});
-			this.layoutControlGroupTabCCombo6.Location = new System.Drawing.Point(60, 615);
+			this.layoutControlGroupTabCCombo6.Location = new System.Drawing.Point(0, 615);
 			this.layoutControlGroupTabCCombo6.Name = "layoutControlGroupTabCCombo6";
-			this.layoutControlGroupTabCCombo6.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo6.OptionsTableLayoutItem.RowIndex = 11;
-			this.layoutControlGroupTabCCombo6.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo6.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo6.Text = "Combo 6";
 			// 
 			// layoutControlItemTabCCombo6
@@ -1131,11 +952,11 @@
 			this.layoutControlItemTabCCombo6.Name = "layoutControlItemTabCCombo6";
 			this.layoutControlItemTabCCombo6.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo6.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo6.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo6.Text = "Team Member";
+			this.layoutControlItemTabCCombo6.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo6.Text = "<color=gray>Team Member #5</color>";
 			this.layoutControlItemTabCCombo6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo6.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo6.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo6.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo6.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo6.TrimClientAreaToControl = false;
 			// 
@@ -1151,9 +972,9 @@
 			this.simpleLabelItemTabCCombo6Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo6Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo6Description1.Name = "simpleLabelItemTabCCombo6Description1";
-			this.simpleLabelItemTabCCombo6Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo6Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo6Description1.Text = " ";
-			this.simpleLabelItemTabCCombo6Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo6Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo8
 			// 
@@ -1161,11 +982,10 @@
 			this.layoutControlGroupTabCCombo8.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo8,
             this.simpleLabelItemTabCCombo8Description1});
-			this.layoutControlGroupTabCCombo8.Location = new System.Drawing.Point(60, 853);
+			this.layoutControlGroupTabCCombo8.Location = new System.Drawing.Point(0, 853);
 			this.layoutControlGroupTabCCombo8.Name = "layoutControlGroupTabCCombo8";
-			this.layoutControlGroupTabCCombo8.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo8.OptionsTableLayoutItem.RowIndex = 15;
-			this.layoutControlGroupTabCCombo8.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo8.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo8.Text = "Combo 8";
 			// 
 			// layoutControlItemTabCCombo8
@@ -1178,11 +998,11 @@
 			this.layoutControlItemTabCCombo8.Name = "layoutControlItemTabCCombo8";
 			this.layoutControlItemTabCCombo8.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo8.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo8.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo8.Text = "Team Member";
+			this.layoutControlItemTabCCombo8.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo8.Text = "<color=gray>Team Member #7</color>";
 			this.layoutControlItemTabCCombo8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo8.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo8.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo8.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo8.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo8.TrimClientAreaToControl = false;
 			// 
@@ -1198,9 +1018,9 @@
 			this.simpleLabelItemTabCCombo8Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo8Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo8Description1.Name = "simpleLabelItemTabCCombo8Description1";
-			this.simpleLabelItemTabCCombo8Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo8Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo8Description1.Text = " ";
-			this.simpleLabelItemTabCCombo8Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo8Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo9
 			// 
@@ -1208,11 +1028,10 @@
 			this.layoutControlGroupTabCCombo9.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo9,
             this.simpleLabelItemTabCCombo9Description1});
-			this.layoutControlGroupTabCCombo9.Location = new System.Drawing.Point(60, 972);
+			this.layoutControlGroupTabCCombo9.Location = new System.Drawing.Point(0, 972);
 			this.layoutControlGroupTabCCombo9.Name = "layoutControlGroupTabCCombo9";
-			this.layoutControlGroupTabCCombo9.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo9.OptionsTableLayoutItem.RowIndex = 17;
-			this.layoutControlGroupTabCCombo9.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo9.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo9.Text = "Combo 9";
 			// 
 			// layoutControlItemTabCCombo9
@@ -1225,11 +1044,11 @@
 			this.layoutControlItemTabCCombo9.Name = "layoutControlItemTabCCombo9";
 			this.layoutControlItemTabCCombo9.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo9.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo9.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo9.Text = "Team Member";
+			this.layoutControlItemTabCCombo9.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo9.Text = "<color=gray>Team Member #8</color>";
 			this.layoutControlItemTabCCombo9.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo9.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo9.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo9.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo9.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo9.TrimClientAreaToControl = false;
 			// 
@@ -1245,9 +1064,9 @@
 			this.simpleLabelItemTabCCombo9Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo9Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo9Description1.Name = "simpleLabelItemTabCCombo9Description1";
-			this.simpleLabelItemTabCCombo9Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo9Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo9Description1.Text = " ";
-			this.simpleLabelItemTabCCombo9Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo9Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo10
 			// 
@@ -1255,11 +1074,10 @@
 			this.layoutControlGroupTabCCombo10.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo10,
             this.simpleLabelItemTabCCombo10Description1});
-			this.layoutControlGroupTabCCombo10.Location = new System.Drawing.Point(60, 1091);
+			this.layoutControlGroupTabCCombo10.Location = new System.Drawing.Point(0, 1091);
 			this.layoutControlGroupTabCCombo10.Name = "layoutControlGroupTabCCombo10";
-			this.layoutControlGroupTabCCombo10.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo10.OptionsTableLayoutItem.RowIndex = 19;
-			this.layoutControlGroupTabCCombo10.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo10.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo10.Text = "Combo 10";
 			// 
 			// layoutControlItemTabCCombo10
@@ -1272,11 +1090,11 @@
 			this.layoutControlItemTabCCombo10.Name = "layoutControlItemTabCCombo10";
 			this.layoutControlItemTabCCombo10.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo10.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo10.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo10.Text = "Team Member";
+			this.layoutControlItemTabCCombo10.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo10.Text = "<color=gray>Team Member #9</color>";
 			this.layoutControlItemTabCCombo10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo10.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo10.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo10.TextSize = new System.Drawing.Size(101, 16);
 			this.layoutControlItemTabCCombo10.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo10.TrimClientAreaToControl = false;
 			// 
@@ -1292,9 +1110,9 @@
 			this.simpleLabelItemTabCCombo10Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo10Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo10Description1.Name = "simpleLabelItemTabCCombo10Description1";
-			this.simpleLabelItemTabCCombo10Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo10Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo10Description1.Text = " ";
-			this.simpleLabelItemTabCCombo10Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo10Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo11
 			// 
@@ -1302,11 +1120,10 @@
 			this.layoutControlGroupTabCCombo11.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo11,
             this.simpleLabelItemTabCCombo11Description1});
-			this.layoutControlGroupTabCCombo11.Location = new System.Drawing.Point(60, 1210);
+			this.layoutControlGroupTabCCombo11.Location = new System.Drawing.Point(0, 1210);
 			this.layoutControlGroupTabCCombo11.Name = "layoutControlGroupTabCCombo11";
-			this.layoutControlGroupTabCCombo11.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo11.OptionsTableLayoutItem.RowIndex = 21;
-			this.layoutControlGroupTabCCombo11.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo11.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo11.Text = "Combo 11";
 			// 
 			// layoutControlItemTabCCombo11
@@ -1319,11 +1136,11 @@
 			this.layoutControlItemTabCCombo11.Name = "layoutControlItemTabCCombo11";
 			this.layoutControlItemTabCCombo11.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlItemTabCCombo11.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlItemTabCCombo11.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo11.Text = "Team Member";
+			this.layoutControlItemTabCCombo11.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo11.Text = "<color=gray>Team Member #10</color>";
 			this.layoutControlItemTabCCombo11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo11.TextLocation = DevExpress.Utils.Locations.Top;
-			this.layoutControlItemTabCCombo11.TextSize = new System.Drawing.Size(84, 16);
+			this.layoutControlItemTabCCombo11.TextSize = new System.Drawing.Size(108, 16);
 			this.layoutControlItemTabCCombo11.TextToControlDistance = 7;
 			this.layoutControlItemTabCCombo11.TrimClientAreaToControl = false;
 			// 
@@ -1339,9 +1156,9 @@
 			this.simpleLabelItemTabCCombo11Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo11Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo11Description1.Name = "simpleLabelItemTabCCombo11Description1";
-			this.simpleLabelItemTabCCombo11Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo11Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo11Description1.Text = " ";
-			this.simpleLabelItemTabCCombo11Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo11Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlGroupTabCCombo1
 			// 
@@ -1350,24 +1167,24 @@
 			this.layoutControlGroupTabCCombo1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemTabCCombo1,
             this.simpleLabelItemTabCCombo1Description1});
-			this.layoutControlGroupTabCCombo1.Location = new System.Drawing.Point(60, 20);
+			this.layoutControlGroupTabCCombo1.Location = new System.Drawing.Point(0, 20);
 			this.layoutControlGroupTabCCombo1.Name = "layoutControlGroupTabCCombo1";
-			this.layoutControlGroupTabCCombo1.OptionsTableLayoutItem.ColumnIndex = 1;
 			this.layoutControlGroupTabCCombo1.OptionsTableLayoutItem.RowIndex = 1;
-			this.layoutControlGroupTabCCombo1.Size = new System.Drawing.Size(428, 69);
+			this.layoutControlGroupTabCCombo1.Size = new System.Drawing.Size(468, 69);
 			this.layoutControlGroupTabCCombo1.Text = "Combo 1";
 			this.layoutControlGroupTabCCombo1.TextVisible = false;
 			// 
 			// layoutControlItemTabCCombo1
 			// 
+			this.layoutControlItemTabCCombo1.AllowHtmlStringInCaption = true;
 			this.layoutControlItemTabCCombo1.Control = this.comboBoxEditTabCCombo1;
 			this.layoutControlItemTabCCombo1.CustomizationFormText = "Combo 1";
 			this.layoutControlItemTabCCombo1.FillControlToClientArea = false;
 			this.layoutControlItemTabCCombo1.Location = new System.Drawing.Point(0, 0);
 			this.layoutControlItemTabCCombo1.Name = "layoutControlItemTabCCombo1";
 			this.layoutControlItemTabCCombo1.OptionsTableLayoutItem.RowIndex = 3;
-			this.layoutControlItemTabCCombo1.Size = new System.Drawing.Size(428, 49);
-			this.layoutControlItemTabCCombo1.Text = "Project Team Leader";
+			this.layoutControlItemTabCCombo1.Size = new System.Drawing.Size(468, 49);
+			this.layoutControlItemTabCCombo1.Text = "<color=gray>Project Team Leader</color>";
 			this.layoutControlItemTabCCombo1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
 			this.layoutControlItemTabCCombo1.TextLocation = DevExpress.Utils.Locations.Top;
 			this.layoutControlItemTabCCombo1.TextSize = new System.Drawing.Size(121, 16);
@@ -1386,9 +1203,9 @@
 			this.simpleLabelItemTabCCombo1Description1.CustomizationFormText = " ";
 			this.simpleLabelItemTabCCombo1Description1.Location = new System.Drawing.Point(0, 49);
 			this.simpleLabelItemTabCCombo1Description1.Name = "simpleLabelItemTabCCombo1Description1";
-			this.simpleLabelItemTabCCombo1Description1.Size = new System.Drawing.Size(428, 20);
+			this.simpleLabelItemTabCCombo1Description1.Size = new System.Drawing.Size(468, 20);
 			this.simpleLabelItemTabCCombo1Description1.Text = " ";
-			this.simpleLabelItemTabCCombo1Description1.TextSize = new System.Drawing.Size(21, 16);
+			this.simpleLabelItemTabCCombo1Description1.TextSize = new System.Drawing.Size(0, 16);
 			// 
 			// layoutControlItemTabCSubheader1
 			// 
@@ -1447,6 +1264,7 @@
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabCClipart2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabC)).EndInit();
@@ -1472,16 +1290,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabCCombo2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCCombo2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo2Description1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo2Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo3Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo4Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo5Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo6Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo7Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo8Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo9Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo10Index)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo11Index)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabCCombo3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCCombo3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabCCombo3Description1)).EndInit();
@@ -1517,6 +1325,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabCSubheader2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditTabCSubheader2.Properties)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -1536,16 +1345,6 @@
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditTabCCombo2;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabCCombo2;
 		private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTabCCombo2;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo2Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo3Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo4Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo5Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo6Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo7Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo8Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo9Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo10Index;
-		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo11Index;
 		private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItemTabCCombo2Description1;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditTabCCombo3;
 		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupTabCCombo3;

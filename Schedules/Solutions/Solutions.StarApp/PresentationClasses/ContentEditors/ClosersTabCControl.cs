@@ -17,11 +17,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			Application.DoEvents();
 
 			pictureEditTabCClipart1.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubCClipart1Image;
-			//pictureEditTabCClipart1.Properties.PictureAlignment =
-			//	ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartAClipart1Configuration.Alignment;
+			pictureEditTabCClipart1.Properties.PictureAlignment =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartCClipart1Configuration.Alignment;
 			pictureEditTabCClipart2.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubCClipart2Image;
-			//pictureEditTabCClipart2.Properties.PictureAlignment =
-			//	ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartAClipart2Configuration.Alignment;
+			pictureEditTabCClipart2.Properties.PictureAlignment =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartCClipart2Configuration.Alignment;
 
 			ImageEditorHelper.AssignImageEditors(new[]{
 				pictureEditTabCClipart1,
@@ -49,6 +49,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
+			memoEditTabCSubheader1.EditValue = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartCSubHeader1DefaultValue;
+			memoEditTabCSubheader2.EditValue = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartCSubHeader2DefaultValue;
 			Application.DoEvents();
 
 			_allowToSave = true;

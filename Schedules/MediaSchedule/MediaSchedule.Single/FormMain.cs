@@ -599,6 +599,8 @@ namespace Asa.Media.Single
 			if (activeControl == null) return;
 			if (activeControl.RibbonAlwaysCollapsed)
 			{
+				if (ribbonControl.Expanded && Controller.Instance.ContentController.ActiveControl != null)
+					((Control)Controller.Instance.ContentController.ActiveControl).Visible = false;
 				if (!_lastRibbonExpanded.HasValue)
 					_lastRibbonExpanded = ribbonControl.Expanded;
 				_allowRibbonStateChangeProcessing = false;
@@ -616,6 +618,8 @@ namespace Asa.Media.Single
 			{
 				if (_lastRibbonExpanded.HasValue)
 				{
+					if (ribbonControl.Expanded != _lastRibbonExpanded.Value && Controller.Instance.ContentController.ActiveControl != null)
+						((Control)Controller.Instance.ContentController.ActiveControl).Visible = false;
 					ribbonControl.Expanded = _lastRibbonExpanded.Value;
 					_lastRibbonExpanded = null;
 				}

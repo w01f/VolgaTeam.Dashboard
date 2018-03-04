@@ -68,7 +68,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ImageEdit
 			_activeImageEditor = (PictureEdit)sender;
 			var imageSettings = (ImageEditorSettings)_activeImageEditor.Tag;
 
-			MenuItemPaste.Enabled = ClipboardHelper.GetImageFormClipboard() != null || Clipboard.ContainsText(TextDataFormat.Html);
+			MenuItemPaste.Enabled = ClipboardHelper.GetImageFormClipboard() != null || ClipboardHelper.GetPngFormClipboard() != null || Clipboard.ContainsText(TextDataFormat.Html);
 			MenuItemFavoritesAdd.Enabled = imageSettings.CurrentImage != null;
 			MenuItemFavoritesOpen.Enabled = FavoriteImagesManager.Instance.Images.Any();
 			MenuItemReset.Enabled = imageSettings.CurrentImage != null;
@@ -88,7 +88,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ImageEdit
 				File.Copy(imageFilePath, tempFile, true);
 				imageEditor.Image =
 					((ImageEditorSettings)imageEditor.Tag).CurrentImage =
-					Image.FromFile(imageFilePath);
+					Image.FromFile(tempFile);
 				((ImageEditorSettings)imageEditor.Tag).CurrentImageName =
 					Path.GetFileNameWithoutExtension(imageFilePath);
 			}
@@ -118,7 +118,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ImageEdit
 		private void OnPasteItemClick(object sender, ItemClickEventArgs e)
 		{
 			ImageSource imageSource = null;
-			var clipboardImage = ClipboardHelper.GetImageFormClipboard();
+			var clipboardImage = ClipboardHelper.GetPngFormClipboard() ?? ClipboardHelper.GetImageFormClipboard();
 			if (clipboardImage != null)
 				imageSource = ImageSource.FromImage(clipboardImage);
 			else if (Clipboard.ContainsText(TextDataFormat.Html))

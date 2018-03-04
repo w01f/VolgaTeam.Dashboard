@@ -10,6 +10,7 @@ using CommandCentral.BusinessClasses.DataConvertors;
 using CommandCentral.BusinessClasses.DataConvertors.MainData;
 using CommandCentral.BusinessClasses.DataConvertors.StarAppData;
 using CommandCentral.BusinessClasses.DataConvertors.StarAppData.Audience;
+using CommandCentral.BusinessClasses.DataConvertors.StarAppData.Closers;
 using CommandCentral.BusinessClasses.DataConvertors.StarAppData.CNA;
 using CommandCentral.BusinessClasses.DataConvertors.StarAppData.Customer;
 using CommandCentral.BusinessClasses.DataConvertors.StarAppData.Fishing;
@@ -108,6 +109,10 @@ namespace CommandCentral
 			_convertors.Add(new VideoPartBConvertor(AppManager.Instance.AppResources.StarAppDataSourceFilePath));
 			_convertors.Add(new VideoPartCConvertor(AppManager.Instance.AppResources.StarAppDataSourceFilePath));
 			_convertors.Add(new VideoPartDConvertor(AppManager.Instance.AppResources.StarAppDataSourceFilePath));
+
+			_convertors.Add(new ClosersPartAConvertor(AppManager.Instance.AppResources.StarAppDataSourceFilePath));
+			_convertors.Add(new ClosersPartBConvertor(AppManager.Instance.AppResources.StarAppDataSourceFilePath));
+			_convertors.Add(new ClosersPartCConvertor(AppManager.Instance.AppResources.StarAppDataSourceFilePath));
 			#endregion
 		}
 
@@ -250,8 +255,9 @@ namespace CommandCentral
 			await RunConvertors(_convertors.OfType<ISolutionConvertor>());
 		}
 
-		private void OnStarAppDataClosersClick(object sender, EventArgs e)
+		private async void OnStarAppDataClosersClick(object sender, EventArgs e)
 		{
+			await RunConvertors(_convertors.OfType<IClosersConvertor>());
 		}
 		#endregion
 

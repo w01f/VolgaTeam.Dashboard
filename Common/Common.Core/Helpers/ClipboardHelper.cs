@@ -1,6 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Asa.Common.Core.Helpers
@@ -27,8 +29,32 @@ namespace Asa.Common.Core.Helpers
 
 		public static Image GetImageFormClipboard()
 		{
-			if (!Clipboard.ContainsImage()) return null;
-			return Clipboard.GetImage();
+			if (Clipboard.GetDataObject() == null) return null;
+			if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Dib))
+			{
+				var dib = ((MemoryStream)Clipboard.GetData(DataFormats.Dib)).ToArray();
+				var width = BitConverter.ToInt32(dib, 4);
+				var height = BitConverter.ToInt32(dib, 8);
+				var bpp = BitConverter.ToInt16(dib, 14);
+				if (bpp == 32)
+				{
+					var gch = GCHandle.Alloc(dib, GCHandleType.Pinned);
+					Bitmap bmp = null;
+					try
+					{
+						var ptr = new IntPtr((long)gch.AddrOfPinnedObject() + 40);
+						bmp = new Bitmap(width, height, width * 4, PixelFormat.Format32bppArgb, ptr);
+						bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
+						return new Bitmap(bmp);
+					}
+					finally
+					{
+						gch.Free();
+						bmp?.Dispose();
+					}
+				}
+			}
+			return Clipboard.ContainsImage() ? Clipboard.GetImage() : null;
 		}
 	}
 }

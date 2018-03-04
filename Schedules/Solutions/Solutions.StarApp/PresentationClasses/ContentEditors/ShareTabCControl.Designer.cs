@@ -264,6 +264,7 @@
 			// 
 			// layoutControl
 			// 
+			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -488,6 +489,7 @@
 			// 
 			// layoutControlInner
 			// 
+			this.layoutControlInner.AllowCustomization = false;
 			this.layoutControlInner.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControlInner.Appearance.Control.Options.UseFont = true;
 			this.layoutControlInner.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);

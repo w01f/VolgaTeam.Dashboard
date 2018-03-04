@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Asa.Common.GUI.Common;
 
@@ -20,11 +21,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			Application.DoEvents();
 
 			pictureEditTabBClipart1.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart1Image;
-			//pictureEditTabBClipart1.Properties.PictureAlignment =
-			//	ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartAClipart1Configuration.Alignment;
+			pictureEditTabBClipart1.Properties.PictureAlignment =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBClipart1Configuration.Alignment;
 			pictureEditTabBClipart2.Image = ClosersContentContainer.SlideContainer.StarInfo.Tab11SubBClipart2Image;
-			//pictureEditTabBClipart2.Properties.PictureAlignment =
-			//	ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartAClipart2Configuration.Alignment;
+			pictureEditTabBClipart2.Properties.PictureAlignment =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBClipart2Configuration.Alignment;
 
 			ImageEditorHelper.AssignImageEditors(new[]{
 				pictureEditTabBClipart1,
@@ -32,12 +33,30 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 			});
 
 			Application.DoEvents();
+
+			comboBoxEditTabBCombo1.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items);
+			comboBoxEditTabBCombo2.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items);
+			comboBoxEditTabBCombo3.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items);
+			comboBoxEditTabBCombo4.Properties.Items.AddRange(ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items);
+			Application.DoEvents();
 		}
 
 		public override void LoadData()
 		{
 			_allowToSave = false;
 
+			comboBoxEditTabBCombo1.EditValue =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault);
+			comboBoxEditTabBCombo2.EditValue =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsDefault);
+			comboBoxEditTabBCombo3.EditValue =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo3Items.FirstOrDefault(item => item.IsDefault);
+			comboBoxEditTabBCombo4.EditValue =
+				ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBCombo4Items.FirstOrDefault(item => item.IsDefault);
+
+			memoEditTabBSubheader1.EditValue = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader1DefaultValue;
+			memoEditTabBSubheader2.EditValue = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader2DefaultValue;
+			memoEditTabBSubheader3.EditValue = ClosersContentContainer.SlideContainer.StarInfo.ClosersConfiguration.PartBSubHeader3DefaultValue;
 			Application.DoEvents();
 
 			_allowToSave = true;

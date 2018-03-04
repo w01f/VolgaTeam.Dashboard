@@ -142,6 +142,10 @@
     <Compile Include="BusinessClasses\DataConvertors\StarAppData\Audience\AudiencePartCConvertor.cs" />
     <Compile Include="BusinessClasses\DataConvertors\StarAppData\Audience\IAudienceConvertor.cs" />
     <Compile Include="BusinessClasses\DataConvertors\StarAppData\BaseStarAppConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Closers\ClosersPartCConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Closers\ClosersPartBConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Closers\ClosersPartAConvertor.cs" />
+    <Compile Include="BusinessClasses\DataConvertors\StarAppData\Closers\IClosersConvertor.cs" />
     <Compile Include="BusinessClasses\DataConvertors\StarAppData\CNA\CNAPartAConvertor.cs" />
     <Compile Include="BusinessClasses\DataConvertors\StarAppData\CNA\CNAPartBConvertor.cs" />
     <Compile Include="BusinessClasses\DataConvertors\StarAppData\CNA\ICNAConvertor.cs" />

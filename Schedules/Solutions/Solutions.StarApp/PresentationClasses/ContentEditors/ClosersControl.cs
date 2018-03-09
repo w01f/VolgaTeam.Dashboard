@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -18,8 +19,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	[ToolboxItem(false)]
 	public sealed partial class ClosersControl : StarAppControl, IStarAppSlide
 	{
-		private bool _allowToSave;
-
 		private readonly List<XtraTabPage> _tabPages = new List<XtraTabPage>();
 
 		public override SlideType SlideType => SlideType.StarAppClosers;
@@ -68,7 +67,26 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override void ApplyChanges()
 		{
-			SlideContainer.EditedContent.ClosersState.SlideHeader = comboBoxEditSlideHeader.EditValue as String;
+			if (!_dataChanged) return;
+
+			switch (xtraTabControl.SelectedTabPageIndex)
+			{
+				case 0:
+					SlideContainer.EditedContent.ClosersState.TabA.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						null;
+					break;
+				case 1:
+					SlideContainer.EditedContent.ClosersState.TabB.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						null;
+					break;
+				case 2:
+					SlideContainer.EditedContent.ClosersState.TabC.SlideHeader = SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+						null;
+					break;
+			}
 
 			_tabPages
 				.OfType<IClosersTabPageContainer>()
@@ -77,7 +95,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				.ToList()
 				.ForEach(control => control.ApplyChanges());
 
-			SlideContainer.SettingsContainer.SaveSettings();
+			_dataChanged = false;
 		}
 
 		private void LoadPartData()
@@ -91,10 +109,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
 					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems);
-					comboBoxEditSlideHeader.EditValue =
-						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.FirstOrDefault(h =>
-							String.Equals(h.Value, SlideContainer.EditedContent.ClosersState.SlideHeader,
-								StringComparison.OrdinalIgnoreCase)) ??
+					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabA.SlideHeader ??
 						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 				case 1:
@@ -103,10 +118,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
 					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems);
-					comboBoxEditSlideHeader.EditValue =
-						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.FirstOrDefault(h =>
-							String.Equals(h.Value, SlideContainer.EditedContent.ClosersState.SlideHeader,
-								StringComparison.OrdinalIgnoreCase)) ??
+					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabB.SlideHeader ??
 						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartBItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 				case 2:
@@ -115,24 +127,31 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 					comboBoxEditSlideHeader.Properties.Items.Clear();
 					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems);
-					comboBoxEditSlideHeader.EditValue =
-						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.FirstOrDefault(h =>
-							String.Equals(h.Value, SlideContainer.EditedContent.ClosersState.SlideHeader,
-								StringComparison.OrdinalIgnoreCase)) ??
+					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.ClosersState.TabC.SlideHeader ??
 						SlideContainer.StarInfo.ClosersConfiguration.HeadersPartCItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 			}
 			_allowToSave = true;
 		}
 
+		public void RaiseDataChanged()
+		{
+			_dataChanged = true;
+			SlideContainer.RaiseDataChanged();
+		}
+
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			SlideContainer.RaiseDataChanged();
+			RaiseDataChanged();
 		}
 
 		private void OnSelectedTabPageChanging(object sender, TabPageChangingEventArgs e)
 		{
+			if (_allowToSave)
+				ApplyChanges();
+			((IClosersTabPageContainer)e.PrevPage)?.ContentControl?.ApplyChanges();
+
 			var tabPageContainer = e.Page as IClosersTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
 			FormProgress.SetTitle("Loading data...");
@@ -146,8 +165,6 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnSelectedTabPageChanged(object sender, TabPageChangedEventArgs e)
 		{
-			if (_allowToSave)
-				ApplyChanges();
 			LoadPartData();
 		}
 

@@ -79,6 +79,7 @@
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).BeginInit();
@@ -108,7 +109,6 @@
 			// 
 			// layoutControl
 			// 
-			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -189,6 +189,7 @@
 			this.pictureEditTabBClipart1.Size = new System.Drawing.Size(224, 242);
 			this.pictureEditTabBClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart1.TabIndex = 1;
+			this.pictureEditTabBClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabBClipart2
 			// 
@@ -206,6 +207,7 @@
 			this.pictureEditTabBClipart2.Size = new System.Drawing.Size(224, 241);
 			this.pictureEditTabBClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart2.TabIndex = 1;
+			this.pictureEditTabBClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupTabB
 			// 
@@ -355,6 +357,7 @@
 			this.comboBoxEditTabBCombo1.Size = new System.Drawing.Size(527, 22);
 			this.comboBoxEditTabBCombo1.StyleController = this.layoutControl;
 			this.comboBoxEditTabBCombo1.TabIndex = 4;
+			this.comboBoxEditTabBCombo1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupTabBSubheader1
 			// 
@@ -394,6 +397,7 @@
 			this.memoEditTabBSubheader1.Size = new System.Drawing.Size(527, 61);
 			this.memoEditTabBSubheader1.StyleController = this.layoutControl;
 			this.memoEditTabBSubheader1.TabIndex = 2;
+			this.memoEditTabBSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// emptySpaceItem1
 			// 
@@ -430,6 +434,7 @@
 			this.comboBoxEditTabBCombo2.Size = new System.Drawing.Size(527, 22);
 			this.comboBoxEditTabBCombo2.StyleController = this.layoutControl;
 			this.comboBoxEditTabBCombo2.TabIndex = 5;
+			this.comboBoxEditTabBCombo2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupTabBSubheader2
 			// 
@@ -468,6 +473,7 @@
 			this.memoEditTabBSubheader2.Size = new System.Drawing.Size(527, 61);
 			this.memoEditTabBSubheader2.StyleController = this.layoutControl;
 			this.memoEditTabBSubheader2.TabIndex = 2;
+			this.memoEditTabBSubheader2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// emptySpaceItem2
 			// 
@@ -505,6 +511,7 @@
 			this.comboBoxEditTabBCombo3.Size = new System.Drawing.Size(527, 22);
 			this.comboBoxEditTabBCombo3.StyleController = this.layoutControl;
 			this.comboBoxEditTabBCombo3.TabIndex = 5;
+			this.comboBoxEditTabBCombo3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupTabBSubheader3
 			// 
@@ -544,6 +551,7 @@
 			this.memoEditTabBSubheader3.Size = new System.Drawing.Size(527, 85);
 			this.memoEditTabBSubheader3.StyleController = this.layoutControl;
 			this.memoEditTabBSubheader3.TabIndex = 2;
+			this.memoEditTabBSubheader3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// emptySpaceItem3
 			// 
@@ -581,6 +589,7 @@
 			this.comboBoxEditTabBCombo4.Size = new System.Drawing.Size(527, 22);
 			this.comboBoxEditTabBCombo4.StyleController = this.layoutControl;
 			this.comboBoxEditTabBCombo4.TabIndex = 5;
+			this.comboBoxEditTabBCombo4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// ClosersTabBControl
 			// 
@@ -593,6 +602,7 @@
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabB)).EndInit();
@@ -619,6 +629,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBCombo4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditTabBCombo4.Properties)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 

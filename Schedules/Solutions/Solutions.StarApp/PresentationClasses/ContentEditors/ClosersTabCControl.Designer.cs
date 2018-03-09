@@ -266,6 +266,7 @@
 			this.pictureEditTabCClipart1.Size = new System.Drawing.Size(224, 248);
 			this.pictureEditTabCClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabCClipart1.TabIndex = 1;
+			this.pictureEditTabCClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabCClipart2
 			// 
@@ -283,6 +284,7 @@
 			this.pictureEditTabCClipart2.Size = new System.Drawing.Size(224, 250);
 			this.pictureEditTabCClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabCClipart2.TabIndex = 1;
+			this.pictureEditTabCClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupTabC
 			// 
@@ -409,7 +411,7 @@
 			this.layoutControlItemTabCUsersContainer.OptionsTableLayoutItem.RowIndex = 5;
 			this.layoutControlItemTabCUsersContainer.OptionsTableLayoutItem.RowSpan = 6;
 			this.layoutControlItemTabCUsersContainer.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-			this.layoutControlItemTabCUsersContainer.Size = new System.Drawing.Size(525, 292);
+			this.layoutControlItemTabCUsersContainer.Size = new System.Drawing.Size(525, 290);
 			this.layoutControlItemTabCUsersContainer.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
 			this.layoutControlItemTabCUsersContainer.Text = "Users";
 			this.layoutControlItemTabCUsersContainer.TextSize = new System.Drawing.Size(0, 0);
@@ -419,9 +421,9 @@
 			// panelTabCContentContainer
 			// 
 			this.panelTabCContentContainer.Controls.Add(this.layoutControlTabCUsers);
-			this.panelTabCContentContainer.Location = new System.Drawing.Point(43, 314);
+			this.panelTabCContentContainer.Location = new System.Drawing.Point(43, 316);
 			this.panelTabCContentContainer.Name = "panelTabCContentContainer";
-			this.panelTabCContentContainer.Size = new System.Drawing.Size(525, 292);
+			this.panelTabCContentContainer.Size = new System.Drawing.Size(525, 290);
 			this.panelTabCContentContainer.TabIndex = 4;
 			// 
 			// layoutControlTabCUsers
@@ -458,7 +460,7 @@
 			this.layoutControlTabCUsers.OptionsFocus.AllowFocusReadonlyEditors = false;
 			this.layoutControlTabCUsers.OptionsFocus.AllowFocusTabbedGroups = false;
 			this.layoutControlTabCUsers.Root = this.layoutControlGroupTabCUsersRoot;
-			this.layoutControlTabCUsers.Size = new System.Drawing.Size(525, 292);
+			this.layoutControlTabCUsers.Size = new System.Drawing.Size(525, 290);
 			this.layoutControlTabCUsers.StyleController = this.styleController;
 			this.layoutControlTabCUsers.TabIndex = 1;
 			// 
@@ -1229,6 +1231,7 @@
 			this.memoEditTabCSubheader1.Size = new System.Drawing.Size(527, 59);
 			this.memoEditTabCSubheader1.StyleController = this.layoutControl;
 			this.memoEditTabCSubheader1.TabIndex = 2;
+			this.memoEditTabCSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlItemTabCSubheader2
 			// 
@@ -1252,6 +1255,7 @@
 			this.memoEditTabCSubheader2.Size = new System.Drawing.Size(527, 59);
 			this.memoEditTabCSubheader2.StyleController = this.layoutControl;
 			this.memoEditTabCSubheader2.TabIndex = 5;
+			this.memoEditTabCSubheader2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// ClosersTabCControl
 			// 

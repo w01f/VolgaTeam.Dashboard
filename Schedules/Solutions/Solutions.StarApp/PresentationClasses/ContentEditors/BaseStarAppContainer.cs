@@ -1,4 +1,4 @@
-﻿using System;
+﻿	using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -93,6 +93,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		private void OnSelectedSlideChanging(object sender, TabPageChangingEventArgs e)
 		{
+			((IStarAppTabPageContainer) e.PrevPage)?.ContentControl?.ApplyChanges();
+
 			var tabPageContainer = e.Page as IStarAppTabPageContainer;
 			if (tabPageContainer?.ContentControl != null) return;
 			FormProgress.SetTitle("Loading data...");

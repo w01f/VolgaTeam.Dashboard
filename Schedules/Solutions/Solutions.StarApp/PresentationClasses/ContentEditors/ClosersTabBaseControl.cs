@@ -7,6 +7,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	public partial class ClosersTabBaseControl : UserControl
 	{
 		protected bool _allowToSave;
+		protected bool _dataChanged;
 
 		protected ClosersControl ClosersContentContainer { get; }
 		protected ClosersControlImageEditorHelper ImageEditorHelper { get; }

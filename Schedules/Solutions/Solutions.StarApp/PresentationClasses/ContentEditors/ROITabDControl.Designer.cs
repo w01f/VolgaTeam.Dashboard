@@ -229,6 +229,7 @@
 			this.layoutControlGroupTabDFormula1 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabDFormula1Toggle = new DevExpress.XtraLayout.LayoutControlItem();
 			this.simpleLabelItemTabDFormula1 = new DevExpress.XtraLayout.SimpleLabelItem();
+			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			this.layoutControlGroupTabDGroup8 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabDGroup8Toggle = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupTabDGroup8Inner = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -264,11 +265,11 @@
 			this.layoutControlItemTabDClipart3 = new DevExpress.XtraLayout.LayoutControlItem();
 			this.layoutControlGroupTabDScroll = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.layoutControlItemTabD = new DevExpress.XtraLayout.LayoutControlItem();
-			this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabDClipart3.Properties)).BeginInit();
 			this.panelTabDContentContainer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlTabD)).BeginInit();
@@ -373,6 +374,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDFormula1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDFormula1Toggle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabDFormula1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDGroup8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDGroup8Toggle)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDGroup8Inner)).BeginInit();
@@ -408,7 +410,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDClipart3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDScroll)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabD)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -428,7 +429,6 @@
 			// 
 			// layoutControl
 			// 
-			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -489,6 +489,7 @@
 			this.pictureEditTabDClipart3.Size = new System.Drawing.Size(114, 180);
 			this.pictureEditTabDClipart3.StyleController = this.layoutControl;
 			this.pictureEditTabDClipart3.TabIndex = 1;
+			this.pictureEditTabDClipart3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// panelTabDContentContainer
 			// 
@@ -500,7 +501,6 @@
 			// 
 			// layoutControlTabD
 			// 
-			this.layoutControlTabD.AllowCustomization = false;
 			this.layoutControlTabD.AllowCustomization = false;
 			this.layoutControlTabD.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabD.Appearance.Control.Options.UseFont = true;
@@ -587,6 +587,7 @@
 			this.textEditTabDSubheader1.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader1.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader1.TabIndex = 1;
+			this.textEditTabDSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDSubheader2
 			// 
@@ -630,6 +631,7 @@
 			this.textEditTabDSubheader3.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader3.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader3.TabIndex = 1;
+			this.textEditTabDSubheader3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDSubheader4
 			// 
@@ -673,6 +675,7 @@
 			this.textEditTabDSubheader5.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader5.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader5.TabIndex = 1;
+			this.textEditTabDSubheader5.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDSubheader6
 			// 
@@ -716,6 +719,7 @@
 			this.textEditTabDSubheader7.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader7.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader7.TabIndex = 1;
+			this.textEditTabDSubheader7.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDSubheader8
 			// 
@@ -759,6 +763,7 @@
 			this.textEditTabDSubheader9.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader9.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader9.TabIndex = 1;
+			this.textEditTabDSubheader9.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDSubheader10
 			// 
@@ -780,6 +785,7 @@
 			this.textEditTabDSubheader10.Size = new System.Drawing.Size(237, 22);
 			this.textEditTabDSubheader10.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader10.TabIndex = 22;
+			this.textEditTabDSubheader10.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDGroup6
 			// 
@@ -801,6 +807,7 @@
 			this.textEditTabDSubheader11.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader11.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader11.TabIndex = 1;
+			this.textEditTabDSubheader11.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDSubheader12
 			// 
@@ -822,6 +829,7 @@
 			this.textEditTabDSubheader12.Size = new System.Drawing.Size(237, 22);
 			this.textEditTabDSubheader12.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader12.TabIndex = 22;
+			this.textEditTabDSubheader12.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDGroup7
 			// 
@@ -843,6 +851,7 @@
 			this.textEditTabDSubheader13.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader13.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader13.TabIndex = 1;
+			this.textEditTabDSubheader13.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDFormula1
 			// 
@@ -876,6 +885,7 @@
 			this.textEditTabDSubheader14.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader14.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader14.TabIndex = 1;
+			this.textEditTabDSubheader14.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDSubheader15
 			// 
@@ -919,6 +929,7 @@
 			this.textEditTabDSubheader16.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader16.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader16.TabIndex = 1;
+			this.textEditTabDSubheader16.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDFormula2
 			// 
@@ -952,6 +963,7 @@
 			this.textEditTabDSubheader17.Size = new System.Drawing.Size(525, 22);
 			this.textEditTabDSubheader17.StyleController = this.layoutControlTabD;
 			this.textEditTabDSubheader17.TabIndex = 1;
+			this.textEditTabDSubheader17.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabDFormula3
 			// 
@@ -2064,6 +2076,16 @@
 			this.simpleLabelItemTabDFormula1.Text = "<b>0</b>";
 			this.simpleLabelItemTabDFormula1.TextSize = new System.Drawing.Size(20, 16);
 			// 
+			// emptySpaceItem1
+			// 
+			this.emptySpaceItem1.AllowHotTrack = false;
+			this.emptySpaceItem1.Location = new System.Drawing.Point(23, 64);
+			this.emptySpaceItem1.Name = "emptySpaceItem1";
+			this.emptySpaceItem1.OptionsTableLayoutItem.ColumnIndex = 2;
+			this.emptySpaceItem1.OptionsTableLayoutItem.RowIndex = 2;
+			this.emptySpaceItem1.Size = new System.Drawing.Size(589, 13);
+			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+			// 
 			// layoutControlGroupTabDGroup8
 			// 
 			this.layoutControlGroupTabDGroup8.GroupBordersVisible = false;
@@ -2515,6 +2537,7 @@
 			this.pictureEditTabDClipart2.Size = new System.Drawing.Size(114, 180);
 			this.pictureEditTabDClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabDClipart2.TabIndex = 1;
+			this.pictureEditTabDClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabDClipart1
 			// 
@@ -2531,6 +2554,7 @@
 			this.pictureEditTabDClipart1.Size = new System.Drawing.Size(114, 178);
 			this.pictureEditTabDClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabDClipart1.TabIndex = 1;
+			this.pictureEditTabDClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupTabD
 			// 
@@ -2684,16 +2708,6 @@
 			this.layoutControlItemTabD.TextVisible = false;
 			this.layoutControlItemTabD.TrimClientAreaToControl = false;
 			// 
-			// emptySpaceItem1
-			// 
-			this.emptySpaceItem1.AllowHotTrack = false;
-			this.emptySpaceItem1.Location = new System.Drawing.Point(23, 64);
-			this.emptySpaceItem1.Name = "emptySpaceItem1";
-			this.emptySpaceItem1.OptionsTableLayoutItem.ColumnIndex = 2;
-			this.emptySpaceItem1.OptionsTableLayoutItem.RowIndex = 2;
-			this.emptySpaceItem1.Size = new System.Drawing.Size(589, 13);
-			this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-			// 
 			// ROITabDControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2704,6 +2718,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabDClipart3.Properties)).EndInit();
 			this.panelTabDContentContainer.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlTabD)).EndInit();
@@ -2808,6 +2823,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDFormula1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDFormula1Toggle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.simpleLabelItemTabDFormula1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDGroup8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDGroup8Toggle)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDGroup8Inner)).EndInit();
@@ -2843,8 +2859,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabDClipart3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupTabDScroll)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabD)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 

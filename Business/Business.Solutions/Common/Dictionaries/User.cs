@@ -14,24 +14,47 @@ namespace Asa.Business.Solutions.Common.Dictionaries
 
 		public List<string> Groups { get; }
 
-		public string FullName => String.Format("{0} {1}", FirstName, LastName);
+		public string FullName
+		{
+			get
+			{
+				var values = new List<string>();
+				if (!String.IsNullOrEmpty(FirstName))
+					values.Add(FirstName);
+				if (!String.IsNullOrEmpty(LastName))
+					values.Add(LastName);
+				return String.Join(" ", values);
+			}
+		}
 
-		public string NameWithAdress => String.Join(" | ", FullName, Phone, Email);
+		public string NameWithAdress
+		{
+			get
+			{
+				var values = new List<string>();
+				if (!String.IsNullOrEmpty(FullName))
+					values.Add(FullName);
+				if (!String.IsNullOrEmpty(Phone))
+					values.Add(Phone);
+				if (!String.IsNullOrEmpty(Email))
+					values.Add(Email);
+				return String.Join(" | ", values);
+			}
+		}
 
 		public User()
 		{
-			FirstName = String.Empty;
-			LastName = String.Empty;
-			Phone = String.Empty;
-			Email = String.Empty;
-			Title = String.Empty;
-
 			Groups = new List<String>();
 		}
 
 		public override String ToString()
 		{
-			return String.Join("  |  ", FullName, Title);
+			var values = new List<string>();
+			if (!String.IsNullOrEmpty(FullName))
+				values.Add(FullName);
+			if (!String.IsNullOrEmpty(Title))
+				values.Add(Title);
+			return String.Join("  |  ", values);
 		}
 	}
 }

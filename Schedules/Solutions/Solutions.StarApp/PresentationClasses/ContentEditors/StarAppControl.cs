@@ -12,6 +12,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	[ToolboxItem(false)]
 	public partial class StarAppControl : UserControl, IStarAppSlide
 	{
+		protected bool _allowToSave;
+		protected bool _dataChanged;
 		protected StarAppCommonControlImageEditorHelper ImageEditorHelper { get; }
 
 		public BaseStarAppContainer SlideContainer { get; }

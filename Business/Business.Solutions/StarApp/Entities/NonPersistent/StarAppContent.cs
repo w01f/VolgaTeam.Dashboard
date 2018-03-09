@@ -7,17 +7,17 @@ namespace Asa.Business.Solutions.StarApp.Entities.NonPersistent
 	{
 		public abstract BaseScheduleSettings ScheduleSettings { get; }
 
-		public CoverState CoverState { get; private set; }
-		public CNAState CNAState { get; private set; }
-		public FishingState FishingState { get; private set; }
-		public CustomerState CustomerState { get; private set; }
-		public ShareState ShareState { get; private set; }
-		public ROIState ROIState { get; private set; }
-		public MarketState MarketState { get; private set; }
-		public VideoState VideoState { get; private set; }
-		public AudienceState AudienceState { get; private set; }
-		public SolutionState SolutionState { get; private set; }
-		public ClosersState ClosersState { get; private set; }
+		public CoverState CoverState { get; }
+		public CNAState CNAState { get; }
+		public FishingState FishingState { get; }
+		public CustomerState CustomerState { get; }
+		public ShareState ShareState { get; }
+		public ROIState ROIState { get; }
+		public MarketState MarketState { get; }
+		public VideoState VideoState { get; }
+		public AudienceState AudienceState { get; }
+		public SolutionState SolutionState { get; }
+		public ClosersState ClosersState { get; }
 
 		protected StarAppContent()
 		{

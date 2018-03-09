@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
 			DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
@@ -77,7 +78,7 @@
 			DevExpress.XtraLayout.RowDefinition rowDefinition29 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition30 = new DevExpress.XtraLayout.RowDefinition();
 			DevExpress.XtraLayout.RowDefinition rowDefinition31 = new DevExpress.XtraLayout.RowDefinition();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.textEditTabBSubheader3 = new DevExpress.XtraEditors.TextEdit();
 			this.textEditTabBSubheader2 = new DevExpress.XtraEditors.TextEdit();
@@ -130,6 +131,7 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
@@ -259,6 +261,7 @@
 			this.textEditTabBSubheader3.Size = new System.Drawing.Size(156, 22);
 			this.textEditTabBSubheader3.StyleController = this.layoutControl;
 			this.textEditTabBSubheader3.TabIndex = 1;
+			this.textEditTabBSubheader3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader2
 			// 
@@ -268,6 +271,7 @@
 			this.textEditTabBSubheader2.Size = new System.Drawing.Size(156, 22);
 			this.textEditTabBSubheader2.StyleController = this.layoutControl;
 			this.textEditTabBSubheader2.TabIndex = 1;
+			this.textEditTabBSubheader2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditTabBSubheader6
 			// 
@@ -277,6 +281,7 @@
 			this.memoEditTabBSubheader6.Size = new System.Drawing.Size(156, 104);
 			this.memoEditTabBSubheader6.StyleController = this.layoutControl;
 			this.memoEditTabBSubheader6.TabIndex = 1;
+			this.memoEditTabBSubheader6.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditTabBSubheader5
 			// 
@@ -286,6 +291,7 @@
 			this.memoEditTabBSubheader5.Size = new System.Drawing.Size(156, 103);
 			this.memoEditTabBSubheader5.StyleController = this.layoutControl;
 			this.memoEditTabBSubheader5.TabIndex = 1;
+			this.memoEditTabBSubheader5.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditTabBSubheader4
 			// 
@@ -295,6 +301,7 @@
 			this.memoEditTabBSubheader4.Size = new System.Drawing.Size(154, 103);
 			this.memoEditTabBSubheader4.StyleController = this.layoutControl;
 			this.memoEditTabBSubheader4.TabIndex = 1;
+			this.memoEditTabBSubheader4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabBClipart3
 			// 
@@ -311,6 +318,7 @@
 			this.pictureEditTabBClipart3.Size = new System.Drawing.Size(156, 150);
 			this.pictureEditTabBClipart3.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart3.TabIndex = 1;
+			this.pictureEditTabBClipart3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabBClipart2
 			// 
@@ -327,6 +335,7 @@
 			this.pictureEditTabBClipart2.Size = new System.Drawing.Size(156, 149);
 			this.pictureEditTabBClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart2.TabIndex = 1;
+			this.pictureEditTabBClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabBClipart1
 			// 
@@ -343,6 +352,7 @@
 			this.pictureEditTabBClipart1.Size = new System.Drawing.Size(154, 149);
 			this.pictureEditTabBClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart1.TabIndex = 1;
+			this.pictureEditTabBClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -373,6 +383,7 @@
 			this.memoEditTabASubheader1.Size = new System.Drawing.Size(297, 182);
 			this.memoEditTabASubheader1.StyleController = this.layoutControl;
 			this.memoEditTabASubheader1.TabIndex = 2;
+			this.memoEditTabASubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabAClipart1
 			// 
@@ -389,6 +400,7 @@
 			this.pictureEditTabAClipart1.Size = new System.Drawing.Size(197, 182);
 			this.pictureEditTabAClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabAClipart1.TabIndex = 1;
+			this.pictureEditTabAClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditTabASubheader2
 			// 
@@ -398,6 +410,7 @@
 			this.memoEditTabASubheader2.Size = new System.Drawing.Size(297, 182);
 			this.memoEditTabASubheader2.StyleController = this.layoutControl;
 			this.memoEditTabASubheader2.TabIndex = 3;
+			this.memoEditTabASubheader2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabAClipart2
 			// 
@@ -414,6 +427,7 @@
 			this.pictureEditTabAClipart2.Size = new System.Drawing.Size(197, 182);
 			this.pictureEditTabAClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabAClipart2.TabIndex = 1;
+			this.pictureEditTabAClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditTabCCombo1
 			// 
@@ -435,6 +449,7 @@
 			this.comboBoxEditTabCCombo1.Size = new System.Drawing.Size(528, 22);
 			this.comboBoxEditTabCCombo1.StyleController = this.layoutControl;
 			this.comboBoxEditTabCCombo1.TabIndex = 1;
+			this.comboBoxEditTabCCombo1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabCClipart1
 			// 
@@ -451,6 +466,7 @@
 			this.pictureEditTabCClipart1.Size = new System.Drawing.Size(81, 108);
 			this.pictureEditTabCClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabCClipart1.TabIndex = 1;
+			this.pictureEditTabCClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabCClipart2
 			// 
@@ -467,6 +483,7 @@
 			this.pictureEditTabCClipart2.Size = new System.Drawing.Size(81, 108);
 			this.pictureEditTabCClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabCClipart2.TabIndex = 1;
+			this.pictureEditTabCClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabCClipart3
 			// 
@@ -483,6 +500,7 @@
 			this.pictureEditTabCClipart3.Size = new System.Drawing.Size(81, 108);
 			this.pictureEditTabCClipart3.StyleController = this.layoutControl;
 			this.pictureEditTabCClipart3.TabIndex = 1;
+			this.pictureEditTabCClipart3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabCClipart4
 			// 
@@ -499,6 +517,7 @@
 			this.pictureEditTabCClipart4.Size = new System.Drawing.Size(81, 108);
 			this.pictureEditTabCClipart4.StyleController = this.layoutControl;
 			this.pictureEditTabCClipart4.TabIndex = 1;
+			this.pictureEditTabCClipart4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader1
 			// 
@@ -508,6 +527,7 @@
 			this.textEditTabBSubheader1.Size = new System.Drawing.Size(154, 22);
 			this.textEditTabBSubheader1.StyleController = this.layoutControl;
 			this.textEditTabBSubheader1.TabIndex = 1;
+			this.textEditTabBSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupRoot
 			// 
@@ -583,6 +603,7 @@
             this.layoutControlGroupTabB,
             this.layoutControlGroupTabC});
 			this.tabbedControlGroupData.SelectedPageChanged += new DevExpress.XtraLayout.LayoutTabPageChangedEventHandler(this.OnSelectedPageChanged);
+			this.tabbedControlGroupData.SelectedPageChanging += new DevExpress.XtraLayout.LayoutTabPageChangingEventHandler(this.OnSelectedPageChanging);
 			this.tabbedControlGroupData.Click += new System.EventHandler(this.OnTabbedGroupClick);
 			// 
 			// layoutControlGroupTabA
@@ -1159,6 +1180,7 @@
 			this.Controls.SetChildIndex(this.panelLogoBottom, 0);
 			this.Controls.SetChildIndex(this.layoutControl, 0);
 			this.Controls.SetChildIndex(this.labelFocusFake, 0);
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);

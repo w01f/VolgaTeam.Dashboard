@@ -50,19 +50,42 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			comboBoxEditTabBCombo1.EditValue =
+			pictureEditTabBClipart1.Image = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1 ??
+				pictureEditTabBClipart1.Image;
+			pictureEditTabBClipart2.Image = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2 ??
+				pictureEditTabBClipart2.Image;
+			pictureEditTabBClipart3.Image = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3 ??
+				pictureEditTabBClipart3.Image;
+
+			checkEditTabBGroup1.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group1Toggle;
+			checkEditTabBGroup2.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group2Toggle;
+			checkEditTabBGroup3.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group3Toggle;
+			checkEditTabBGroup4.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group4Toggle;
+			checkEditTabBGroup5.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group5Toggle;
+			checkEditTabBSubheader2.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader2Toggle;
+			checkEditTabBSubheader7.Checked = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader7Toggle;
+
+			comboBoxEditTabBCombo1.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Combo1 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBCombo1Items.FirstOrDefault(item => item.IsDefault);
-			comboBoxEditTabBCombo2.EditValue =
+			comboBoxEditTabBCombo2.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Combo2 ??
 				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBCombo2Items.FirstOrDefault(item => item.IsDefault);
 
-			textEditTabBSubheader1.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader1DefaultValue;
-			textEditTabBSubheader2.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader2DefaultValue;
-			textEditTabBSubheader3.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader3DefaultValue;
-			textEditTabBSubheader4.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader4DefaultValue;
-			textEditTabBSubheader5.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader5DefaultValue;
-			textEditTabBSubheader6.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader6DefaultValue;
-			textEditTabBSubheader7.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader7DefaultValue;
-			textEditTabBSubheader8.EditValue = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader8DefaultValue;
+			textEditTabBSubheader1.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader1 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader1DefaultValue;
+			textEditTabBSubheader2.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader2 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader2DefaultValue;
+			textEditTabBSubheader3.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader3 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader3DefaultValue;
+			textEditTabBSubheader4.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader4 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader4DefaultValue;
+			textEditTabBSubheader5.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader5 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader5DefaultValue;
+			textEditTabBSubheader6.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader6 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader6DefaultValue;
+			textEditTabBSubheader7.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader7 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader7DefaultValue;
+			textEditTabBSubheader8.EditValue = ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader8 ??
+				ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader8DefaultValue;
 			Application.DoEvents();
 
 			_allowToSave = true;
@@ -73,47 +96,107 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override void ApplyChanges()
 		{
+			if (!_dataChanged) return;
+
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart1 = pictureEditTabBClipart1.Image != ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart1Image ?
+				pictureEditTabBClipart1.Image :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart2 = pictureEditTabBClipart2.Image != ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart2Image ?
+				pictureEditTabBClipart2.Image :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Clipart3 = pictureEditTabBClipart3.Image != ShareContentContainer.SlideContainer.StarInfo.Tab5SubBClipart3Image ?
+				pictureEditTabBClipart3.Image :
+				null;
+
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group1Toggle = checkEditTabBGroup1.Checked;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group2Toggle = checkEditTabBGroup2.Checked;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group3Toggle = checkEditTabBGroup3.Checked;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Group4Toggle = checkEditTabBGroup4.Checked;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader2Toggle = checkEditTabBSubheader2.Checked;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader7Toggle = checkEditTabBSubheader7.Checked;
+			
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Combo1 = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBCombo1Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabBCombo1.EditValue ?
+				comboBoxEditTabBCombo1.EditValue as ListDataItem ?? (comboBoxEditTabBCombo1.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabBCombo1.EditValue } : null) :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Combo2 = ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBCombo2Items.FirstOrDefault(h => h.IsDefault) != comboBoxEditTabBCombo2.EditValue ?
+				comboBoxEditTabBCombo2.EditValue as ListDataItem ?? (comboBoxEditTabBCombo2.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditTabBCombo2.EditValue } : null) :
+				null;
+			
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader1 = textEditTabBSubheader1.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader1DefaultValue ?
+				textEditTabBSubheader1.EditValue as String :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader2 = textEditTabBSubheader2.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader2DefaultValue ?
+				textEditTabBSubheader2.EditValue as String :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader3 = textEditTabBSubheader3.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader3DefaultValue ?
+				textEditTabBSubheader3.EditValue as String :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader4 = textEditTabBSubheader4.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader4DefaultValue ?
+				textEditTabBSubheader4.EditValue as String :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader5 = textEditTabBSubheader5.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader5DefaultValue ?
+				textEditTabBSubheader5.EditValue as String :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader6 = textEditTabBSubheader6.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader6DefaultValue ?
+				textEditTabBSubheader6.EditValue as String :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader7 = textEditTabBSubheader7.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader7DefaultValue ?
+				textEditTabBSubheader7.EditValue as String :
+				null;
+			ShareContentContainer.SlideContainer.EditedContent.ShareState.TabB.Subheader8 = textEditTabBSubheader8.EditValue as String != ShareContentContainer.SlideContainer.StarInfo.ShareConfiguration.PartBSubHeader8DefaultValue ?
+				textEditTabBSubheader8.EditValue as String :
+				null;
+
+			_dataChanged = false;
 		}
 
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			ShareContentContainer.SlideContainer.RaiseDataChanged();
+			_dataChanged = true;
+			ShareContentContainer.RaiseDataChanged();
 		}
 
 		private void OnTabBGroup1CheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlGroupTabBGroup1Inner.Enabled = checkEditTabBGroup1.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnTabBSubheader2CheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlItemTabBSubheader2Value.Enabled = checkEditTabBSubheader2.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnTabBGroup2CheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlGroupTabBGroup2Inner.Enabled = checkEditTabBGroup2.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnTabBGroup3CheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlGroupTabBGroup3Inner.Enabled = checkEditTabBGroup3.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnTabBSubheader7CheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlItemTabBSubheader7Value.Enabled = checkEditTabBSubheader7.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnTabBGroup4CheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlGroupTabBGroup4Inner.Enabled = checkEditTabBGroup4.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnTabBGroup5CheckedChanged(object sender, EventArgs e)
 		{
 			layoutControlGroupTabBGroup5Inner.Enabled = checkEditTabBGroup5.Checked;
+			OnEditValueChanged(sender, e);
 		}
 
 		private void OnTabBFormulaSourceEditValueChanged(object sender, EventArgs e)

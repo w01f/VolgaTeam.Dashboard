@@ -43,8 +43,7 @@ namespace Asa.Business.Media.Configuration
 			node = document.SelectSingleNode(@"/Settings/UseSlideMaster");
 			if (node != null)
 			{
-				bool tempBool;
-				if (Boolean.TryParse(node.InnerText, out tempBool))
+				if (Boolean.TryParse(node.InnerText, out var tempBool))
 					UseSlideMaster = tempBool;
 			}
 			node = document.SelectSingleNode(@"/Settings/BroadcastCalendarSettings");
@@ -56,8 +55,7 @@ namespace Asa.Business.Media.Configuration
 			node = document.SelectSingleNode(@"/Settings/ApplyThemeForAllSlideTypes");
 			if (node != null)
 			{
-				bool tempBool;
-				if (Boolean.TryParse(node.InnerText, out tempBool))
+				if (Boolean.TryParse(node.InnerText, out var tempBool))
 					ApplyThemeForAllSlideTypes = tempBool;
 			}
 			_themeSaveHelper.Deserialize(document.SelectNodes(@"//Settings/SelectedTheme").OfType<XmlNode>());

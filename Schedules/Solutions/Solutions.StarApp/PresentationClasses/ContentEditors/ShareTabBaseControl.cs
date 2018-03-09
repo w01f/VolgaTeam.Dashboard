@@ -7,6 +7,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	public partial class ShareTabBaseControl : UserControl
 	{
 		protected bool _allowToSave;
+		protected bool _dataChanged;
 
 		protected ShareControl ShareContentContainer { get; }
 		protected ShareControlImageEditorHelper ImageEditorHelper { get; }

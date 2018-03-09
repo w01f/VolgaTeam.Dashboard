@@ -7,6 +7,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	public partial class ROITabBaseControl : UserControl
 	{
 		protected bool _allowToSave;
+		protected bool _dataChanged;
 
 		protected ROIControl ROIContentContainer { get; }
 		protected ROIControlImageEditorHelper ImageEditorHelper { get; }

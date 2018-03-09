@@ -66,6 +66,7 @@
 			this.pictureEditLogoRight = new DevExpress.XtraEditors.PictureEdit();
 			this.panelLogoBottom = new System.Windows.Forms.Panel();
 			this.pictureEditLogoFooter = new DevExpress.XtraEditors.PictureEdit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
@@ -188,6 +189,7 @@
 			this.dateEditCalendar1.Size = new System.Drawing.Size(148, 22);
 			this.dateEditCalendar1.StyleController = this.layoutControl;
 			this.dateEditCalendar1.TabIndex = 5;
+			this.dateEditCalendar1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// memoEditSubheader1
 			// 
@@ -197,6 +199,7 @@
 			this.memoEditSubheader1.Size = new System.Drawing.Size(324, 221);
 			this.memoEditSubheader1.StyleController = this.layoutControl;
 			this.memoEditSubheader1.TabIndex = 3;
+			this.memoEditSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditClipart1
 			// 
@@ -214,6 +217,7 @@
 			this.pictureEditClipart1.Size = new System.Drawing.Size(173, 221);
 			this.pictureEditClipart1.StyleController = this.layoutControl;
 			this.pictureEditClipart1.TabIndex = 1;
+			this.pictureEditClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -238,7 +242,6 @@
 			// 
 			// checkEditCalendar1
 			// 
-			this.checkEditCalendar1.EditValue = true;
 			this.checkEditCalendar1.Location = new System.Drawing.Point(85, 447);
 			this.checkEditCalendar1.Name = "checkEditCalendar1";
 			this.checkEditCalendar1.Properties.Caption = "";
@@ -432,6 +435,7 @@
 			// 
 			this.layoutControlItemCalendar1Value.Control = this.dateEditCalendar1;
 			this.layoutControlItemCalendar1Value.ControlAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.layoutControlItemCalendar1Value.Enabled = false;
 			this.layoutControlItemCalendar1Value.FillControlToClientArea = false;
 			this.layoutControlItemCalendar1Value.Location = new System.Drawing.Point(25, 0);
 			this.layoutControlItemCalendar1Value.Name = "layoutControlItemCalendar1Value";
@@ -577,6 +581,7 @@
 			this.Controls.SetChildIndex(this.panelLogoBottom, 0);
 			this.Controls.SetChildIndex(this.layoutControl, 0);
 			this.Controls.SetChildIndex(this.labelFocusFake, 0);
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAddAsPageOne.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();

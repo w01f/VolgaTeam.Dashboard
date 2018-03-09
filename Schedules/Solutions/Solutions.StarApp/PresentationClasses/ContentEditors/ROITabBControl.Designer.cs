@@ -284,6 +284,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			this.layoutControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart3.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart2.Properties)).BeginInit();
@@ -445,7 +446,6 @@
 			// 
 			// layoutControl
 			// 
-			this.layoutControl.AllowCustomization = false;
 			this.layoutControl.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.layoutControl.Appearance.Control.Options.UseFont = true;
 			this.layoutControl.Appearance.ControlDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -506,6 +506,7 @@
 			this.pictureEditTabBClipart3.Size = new System.Drawing.Size(105, 129);
 			this.pictureEditTabBClipart3.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart3.TabIndex = 1;
+			this.pictureEditTabBClipart3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabBClipart1
 			// 
@@ -522,6 +523,7 @@
 			this.pictureEditTabBClipart1.Size = new System.Drawing.Size(105, 128);
 			this.pictureEditTabBClipart1.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart1.TabIndex = 1;
+			this.pictureEditTabBClipart1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// pictureEditTabBClipart2
 			// 
@@ -538,6 +540,7 @@
 			this.pictureEditTabBClipart2.Size = new System.Drawing.Size(105, 128);
 			this.pictureEditTabBClipart2.StyleController = this.layoutControl;
 			this.pictureEditTabBClipart2.TabIndex = 1;
+			this.pictureEditTabBClipart2.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// panelTabBContentContainer
 			// 
@@ -549,7 +552,6 @@
 			// 
 			// layoutControlTabB
 			// 
-			this.layoutControlTabB.AllowCustomization = false;
 			this.layoutControlTabB.AllowCustomization = false;
 			this.layoutControlTabB.Appearance.Control.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.layoutControlTabB.Appearance.Control.Options.UseFont = true;
@@ -621,7 +623,7 @@
 			// 
 			this.checkEditTabBGroup1.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup1.EditValue = true;
-			this.checkEditTabBGroup1.Location = new System.Drawing.Point(2, -16);
+			this.checkEditTabBGroup1.Location = new System.Drawing.Point(2, -961);
 			this.checkEditTabBGroup1.Name = "checkEditTabBGroup1";
 			this.checkEditTabBGroup1.Properties.Caption = "";
 			this.checkEditTabBGroup1.Size = new System.Drawing.Size(19, 19);
@@ -631,16 +633,17 @@
 			// 
 			// textEditTabBSubheader1
 			// 
-			this.textEditTabBSubheader1.Location = new System.Drawing.Point(85, -18);
+			this.textEditTabBSubheader1.Location = new System.Drawing.Point(85, -963);
 			this.textEditTabBSubheader1.Name = "textEditTabBSubheader1";
 			this.textEditTabBSubheader1.Properties.NullText = "Type here";
 			this.textEditTabBSubheader1.Size = new System.Drawing.Size(256, 22);
 			this.textEditTabBSubheader1.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader1.TabIndex = 1;
+			this.textEditTabBSubheader1.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader2
 			// 
-			this.textEditTabBSubheader2.Location = new System.Drawing.Point(355, -18);
+			this.textEditTabBSubheader2.Location = new System.Drawing.Point(355, -963);
 			this.textEditTabBSubheader2.Name = "textEditTabBSubheader2";
 			this.textEditTabBSubheader2.Size = new System.Drawing.Size(83, 22);
 			this.textEditTabBSubheader2.StyleController = this.layoutControlTabB;
@@ -649,17 +652,18 @@
 			// 
 			// textEditTabBSubheader3
 			// 
-			this.textEditTabBSubheader3.Location = new System.Drawing.Point(452, -18);
+			this.textEditTabBSubheader3.Location = new System.Drawing.Point(452, -963);
 			this.textEditTabBSubheader3.Name = "textEditTabBSubheader3";
 			this.textEditTabBSubheader3.Size = new System.Drawing.Size(104, 22);
 			this.textEditTabBSubheader3.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader3.TabIndex = 1;
+			this.textEditTabBSubheader3.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup2
 			// 
 			this.checkEditTabBGroup2.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup2.EditValue = true;
-			this.checkEditTabBGroup2.Location = new System.Drawing.Point(2, 120);
+			this.checkEditTabBGroup2.Location = new System.Drawing.Point(2, -825);
 			this.checkEditTabBGroup2.Name = "checkEditTabBGroup2";
 			this.checkEditTabBGroup2.Properties.Caption = "";
 			this.checkEditTabBGroup2.Size = new System.Drawing.Size(19, 19);
@@ -669,16 +673,17 @@
 			// 
 			// textEditTabBSubheader4
 			// 
-			this.textEditTabBSubheader4.Location = new System.Drawing.Point(85, 118);
+			this.textEditTabBSubheader4.Location = new System.Drawing.Point(85, -827);
 			this.textEditTabBSubheader4.Name = "textEditTabBSubheader4";
 			this.textEditTabBSubheader4.Properties.NullText = "Type here";
 			this.textEditTabBSubheader4.Size = new System.Drawing.Size(256, 22);
 			this.textEditTabBSubheader4.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader4.TabIndex = 1;
+			this.textEditTabBSubheader4.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader5
 			// 
-			this.textEditTabBSubheader5.Location = new System.Drawing.Point(355, 118);
+			this.textEditTabBSubheader5.Location = new System.Drawing.Point(355, -827);
 			this.textEditTabBSubheader5.Name = "textEditTabBSubheader5";
 			this.textEditTabBSubheader5.Size = new System.Drawing.Size(83, 22);
 			this.textEditTabBSubheader5.StyleController = this.layoutControlTabB;
@@ -687,17 +692,18 @@
 			// 
 			// textEditTabBSubheader6
 			// 
-			this.textEditTabBSubheader6.Location = new System.Drawing.Point(452, 118);
+			this.textEditTabBSubheader6.Location = new System.Drawing.Point(452, -827);
 			this.textEditTabBSubheader6.Name = "textEditTabBSubheader6";
 			this.textEditTabBSubheader6.Size = new System.Drawing.Size(104, 22);
 			this.textEditTabBSubheader6.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader6.TabIndex = 1;
+			this.textEditTabBSubheader6.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup3
 			// 
 			this.checkEditTabBGroup3.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup3.EditValue = true;
-			this.checkEditTabBGroup3.Location = new System.Drawing.Point(2, 256);
+			this.checkEditTabBGroup3.Location = new System.Drawing.Point(2, -689);
 			this.checkEditTabBGroup3.Name = "checkEditTabBGroup3";
 			this.checkEditTabBGroup3.Properties.Caption = "";
 			this.checkEditTabBGroup3.Size = new System.Drawing.Size(19, 19);
@@ -707,16 +713,17 @@
 			// 
 			// textEditTabBSubheader7
 			// 
-			this.textEditTabBSubheader7.Location = new System.Drawing.Point(85, 254);
+			this.textEditTabBSubheader7.Location = new System.Drawing.Point(85, -691);
 			this.textEditTabBSubheader7.Name = "textEditTabBSubheader7";
 			this.textEditTabBSubheader7.Properties.NullText = "Type here";
 			this.textEditTabBSubheader7.Size = new System.Drawing.Size(110, 22);
 			this.textEditTabBSubheader7.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader7.TabIndex = 11;
+			this.textEditTabBSubheader7.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader8
 			// 
-			this.textEditTabBSubheader8.Location = new System.Drawing.Point(209, 254);
+			this.textEditTabBSubheader8.Location = new System.Drawing.Point(209, -691);
 			this.textEditTabBSubheader8.Name = "textEditTabBSubheader8";
 			this.textEditTabBSubheader8.Properties.NullText = "Type here";
 			this.textEditTabBSubheader8.Size = new System.Drawing.Size(87, 22);
@@ -726,18 +733,19 @@
 			// 
 			// textEditTabBSubheader9
 			// 
-			this.textEditTabBSubheader9.Location = new System.Drawing.Point(310, 254);
+			this.textEditTabBSubheader9.Location = new System.Drawing.Point(310, -691);
 			this.textEditTabBSubheader9.Name = "textEditTabBSubheader9";
 			this.textEditTabBSubheader9.Properties.NullText = "Type here";
 			this.textEditTabBSubheader9.Size = new System.Drawing.Size(246, 22);
 			this.textEditTabBSubheader9.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader9.TabIndex = 13;
+			this.textEditTabBSubheader9.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup4
 			// 
 			this.checkEditTabBGroup4.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup4.EditValue = true;
-			this.checkEditTabBGroup4.Location = new System.Drawing.Point(2, 392);
+			this.checkEditTabBGroup4.Location = new System.Drawing.Point(2, -553);
 			this.checkEditTabBGroup4.Name = "checkEditTabBGroup4";
 			this.checkEditTabBGroup4.Properties.Caption = "";
 			this.checkEditTabBGroup4.Size = new System.Drawing.Size(19, 19);
@@ -747,16 +755,17 @@
 			// 
 			// textEditTabBSubheader10
 			// 
-			this.textEditTabBSubheader10.Location = new System.Drawing.Point(85, 390);
+			this.textEditTabBSubheader10.Location = new System.Drawing.Point(85, -555);
 			this.textEditTabBSubheader10.Name = "textEditTabBSubheader10";
 			this.textEditTabBSubheader10.Properties.NullText = "Type here";
 			this.textEditTabBSubheader10.Size = new System.Drawing.Size(110, 22);
 			this.textEditTabBSubheader10.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader10.TabIndex = 11;
+			this.textEditTabBSubheader10.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader11
 			// 
-			this.textEditTabBSubheader11.Location = new System.Drawing.Point(209, 390);
+			this.textEditTabBSubheader11.Location = new System.Drawing.Point(209, -555);
 			this.textEditTabBSubheader11.Name = "textEditTabBSubheader11";
 			this.textEditTabBSubheader11.Properties.NullText = "Type here";
 			this.textEditTabBSubheader11.Size = new System.Drawing.Size(87, 22);
@@ -766,18 +775,19 @@
 			// 
 			// textEditTabBSubheader12
 			// 
-			this.textEditTabBSubheader12.Location = new System.Drawing.Point(310, 390);
+			this.textEditTabBSubheader12.Location = new System.Drawing.Point(310, -555);
 			this.textEditTabBSubheader12.Name = "textEditTabBSubheader12";
 			this.textEditTabBSubheader12.Properties.NullText = "Type here";
 			this.textEditTabBSubheader12.Size = new System.Drawing.Size(246, 22);
 			this.textEditTabBSubheader12.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader12.TabIndex = 13;
+			this.textEditTabBSubheader12.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup5
 			// 
 			this.checkEditTabBGroup5.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup5.EditValue = true;
-			this.checkEditTabBGroup5.Location = new System.Drawing.Point(2, 528);
+			this.checkEditTabBGroup5.Location = new System.Drawing.Point(2, -417);
 			this.checkEditTabBGroup5.Name = "checkEditTabBGroup5";
 			this.checkEditTabBGroup5.Properties.Caption = "";
 			this.checkEditTabBGroup5.Size = new System.Drawing.Size(19, 19);
@@ -787,36 +797,39 @@
 			// 
 			// textEditTabBSubheader13
 			// 
-			this.textEditTabBSubheader13.Location = new System.Drawing.Point(85, 526);
+			this.textEditTabBSubheader13.Location = new System.Drawing.Point(85, -419);
 			this.textEditTabBSubheader13.Name = "textEditTabBSubheader13";
 			this.textEditTabBSubheader13.Properties.NullText = "Type here";
 			this.textEditTabBSubheader13.Size = new System.Drawing.Size(110, 22);
 			this.textEditTabBSubheader13.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader13.TabIndex = 15;
+			this.textEditTabBSubheader13.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader14
 			// 
-			this.textEditTabBSubheader14.Location = new System.Drawing.Point(310, 526);
+			this.textEditTabBSubheader14.Location = new System.Drawing.Point(310, -419);
 			this.textEditTabBSubheader14.Name = "textEditTabBSubheader14";
 			this.textEditTabBSubheader14.Properties.NullText = "Type here";
 			this.textEditTabBSubheader14.Size = new System.Drawing.Size(246, 22);
 			this.textEditTabBSubheader14.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader14.TabIndex = 16;
+			this.textEditTabBSubheader14.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader15
 			// 
-			this.textEditTabBSubheader15.Location = new System.Drawing.Point(85, 662);
+			this.textEditTabBSubheader15.Location = new System.Drawing.Point(85, -283);
 			this.textEditTabBSubheader15.Name = "textEditTabBSubheader15";
 			this.textEditTabBSubheader15.Properties.NullText = "Type here";
 			this.textEditTabBSubheader15.Size = new System.Drawing.Size(328, 22);
 			this.textEditTabBSubheader15.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader15.TabIndex = 18;
+			this.textEditTabBSubheader15.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup6
 			// 
 			this.checkEditTabBGroup6.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup6.EditValue = true;
-			this.checkEditTabBGroup6.Location = new System.Drawing.Point(2, 664);
+			this.checkEditTabBGroup6.Location = new System.Drawing.Point(2, -281);
 			this.checkEditTabBGroup6.Name = "checkEditTabBGroup6";
 			this.checkEditTabBGroup6.Properties.Caption = "";
 			this.checkEditTabBGroup6.Size = new System.Drawing.Size(19, 19);
@@ -828,7 +841,7 @@
 			// 
 			this.checkEditTabBGroup7.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup7.EditValue = true;
-			this.checkEditTabBGroup7.Location = new System.Drawing.Point(2, 800);
+			this.checkEditTabBGroup7.Location = new System.Drawing.Point(2, -145);
 			this.checkEditTabBGroup7.Name = "checkEditTabBGroup7";
 			this.checkEditTabBGroup7.Properties.Caption = "";
 			this.checkEditTabBGroup7.Size = new System.Drawing.Size(19, 19);
@@ -838,16 +851,17 @@
 			// 
 			// textEditTabBSubheader16
 			// 
-			this.textEditTabBSubheader16.Location = new System.Drawing.Point(85, 798);
+			this.textEditTabBSubheader16.Location = new System.Drawing.Point(85, -147);
 			this.textEditTabBSubheader16.Name = "textEditTabBSubheader16";
 			this.textEditTabBSubheader16.Properties.NullText = "Type here";
 			this.textEditTabBSubheader16.Size = new System.Drawing.Size(110, 22);
 			this.textEditTabBSubheader16.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader16.TabIndex = 11;
+			this.textEditTabBSubheader16.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader17
 			// 
-			this.textEditTabBSubheader17.Location = new System.Drawing.Point(209, 798);
+			this.textEditTabBSubheader17.Location = new System.Drawing.Point(209, -147);
 			this.textEditTabBSubheader17.Name = "textEditTabBSubheader17";
 			this.textEditTabBSubheader17.Properties.NullText = "Type here";
 			this.textEditTabBSubheader17.Size = new System.Drawing.Size(87, 22);
@@ -857,18 +871,19 @@
 			// 
 			// textEditTabBSubheader18
 			// 
-			this.textEditTabBSubheader18.Location = new System.Drawing.Point(310, 798);
+			this.textEditTabBSubheader18.Location = new System.Drawing.Point(310, -147);
 			this.textEditTabBSubheader18.Name = "textEditTabBSubheader18";
 			this.textEditTabBSubheader18.Properties.NullText = "Type here";
 			this.textEditTabBSubheader18.Size = new System.Drawing.Size(246, 22);
 			this.textEditTabBSubheader18.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader18.TabIndex = 13;
+			this.textEditTabBSubheader18.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup8
 			// 
 			this.checkEditTabBGroup8.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup8.EditValue = true;
-			this.checkEditTabBGroup8.Location = new System.Drawing.Point(2, 936);
+			this.checkEditTabBGroup8.Location = new System.Drawing.Point(2, -9);
 			this.checkEditTabBGroup8.Name = "checkEditTabBGroup8";
 			this.checkEditTabBGroup8.Properties.Caption = "";
 			this.checkEditTabBGroup8.Size = new System.Drawing.Size(19, 19);
@@ -878,36 +893,39 @@
 			// 
 			// textEditTabBSubheader19
 			// 
-			this.textEditTabBSubheader19.Location = new System.Drawing.Point(85, 934);
+			this.textEditTabBSubheader19.Location = new System.Drawing.Point(85, -11);
 			this.textEditTabBSubheader19.Name = "textEditTabBSubheader19";
 			this.textEditTabBSubheader19.Properties.NullText = "Type here";
 			this.textEditTabBSubheader19.Size = new System.Drawing.Size(110, 22);
 			this.textEditTabBSubheader19.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader19.TabIndex = 15;
+			this.textEditTabBSubheader19.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader20
 			// 
-			this.textEditTabBSubheader20.Location = new System.Drawing.Point(310, 934);
+			this.textEditTabBSubheader20.Location = new System.Drawing.Point(310, -11);
 			this.textEditTabBSubheader20.Name = "textEditTabBSubheader20";
 			this.textEditTabBSubheader20.Properties.NullText = "Type here";
 			this.textEditTabBSubheader20.Size = new System.Drawing.Size(246, 22);
 			this.textEditTabBSubheader20.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader20.TabIndex = 16;
+			this.textEditTabBSubheader20.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// textEditTabBSubheader21
 			// 
-			this.textEditTabBSubheader21.Location = new System.Drawing.Point(85, 1070);
+			this.textEditTabBSubheader21.Location = new System.Drawing.Point(85, 125);
 			this.textEditTabBSubheader21.Name = "textEditTabBSubheader21";
 			this.textEditTabBSubheader21.Properties.NullText = "Type here";
 			this.textEditTabBSubheader21.Size = new System.Drawing.Size(328, 22);
 			this.textEditTabBSubheader21.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader21.TabIndex = 18;
+			this.textEditTabBSubheader21.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup9
 			// 
 			this.checkEditTabBGroup9.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup9.EditValue = true;
-			this.checkEditTabBGroup9.Location = new System.Drawing.Point(2, 1072);
+			this.checkEditTabBGroup9.Location = new System.Drawing.Point(2, 127);
 			this.checkEditTabBGroup9.Name = "checkEditTabBGroup9";
 			this.checkEditTabBGroup9.Properties.Caption = "";
 			this.checkEditTabBGroup9.Size = new System.Drawing.Size(19, 19);
@@ -917,18 +935,19 @@
 			// 
 			// textEditTabBSubheader22
 			// 
-			this.textEditTabBSubheader22.Location = new System.Drawing.Point(85, 1206);
+			this.textEditTabBSubheader22.Location = new System.Drawing.Point(85, 261);
 			this.textEditTabBSubheader22.Name = "textEditTabBSubheader22";
 			this.textEditTabBSubheader22.Properties.NullText = "Type here";
 			this.textEditTabBSubheader22.Size = new System.Drawing.Size(328, 22);
 			this.textEditTabBSubheader22.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader22.TabIndex = 18;
+			this.textEditTabBSubheader22.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBGroup10
 			// 
 			this.checkEditTabBGroup10.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup10.EditValue = true;
-			this.checkEditTabBGroup10.Location = new System.Drawing.Point(2, 1208);
+			this.checkEditTabBGroup10.Location = new System.Drawing.Point(2, 263);
 			this.checkEditTabBGroup10.Name = "checkEditTabBGroup10";
 			this.checkEditTabBGroup10.Properties.Caption = "";
 			this.checkEditTabBGroup10.Size = new System.Drawing.Size(19, 19);
@@ -940,7 +959,7 @@
 			// 
 			this.checkEditTabBGroup11.AutoSizeInLayoutControl = true;
 			this.checkEditTabBGroup11.EditValue = true;
-			this.checkEditTabBGroup11.Location = new System.Drawing.Point(2, 1344);
+			this.checkEditTabBGroup11.Location = new System.Drawing.Point(2, 399);
 			this.checkEditTabBGroup11.Name = "checkEditTabBGroup11";
 			this.checkEditTabBGroup11.Properties.Caption = "";
 			this.checkEditTabBGroup11.Size = new System.Drawing.Size(19, 19);
@@ -952,7 +971,7 @@
 			// 
 			this.checkEditTabBSubheader24.AutoSizeInLayoutControl = true;
 			this.checkEditTabBSubheader24.EditValue = true;
-			this.checkEditTabBSubheader24.Location = new System.Drawing.Point(85, 1384);
+			this.checkEditTabBSubheader24.Location = new System.Drawing.Point(85, 439);
 			this.checkEditTabBSubheader24.Name = "checkEditTabBSubheader24";
 			this.checkEditTabBSubheader24.Properties.Caption = "";
 			this.checkEditTabBSubheader24.Size = new System.Drawing.Size(19, 19);
@@ -962,7 +981,7 @@
 			// 
 			// textEditTabBSubheader24
 			// 
-			this.textEditTabBSubheader24.Location = new System.Drawing.Point(108, 1383);
+			this.textEditTabBSubheader24.Location = new System.Drawing.Point(108, 438);
 			this.textEditTabBSubheader24.Name = "textEditTabBSubheader24";
 			this.textEditTabBSubheader24.Properties.NullText = "Type here";
 			this.textEditTabBSubheader24.Size = new System.Drawing.Size(105, 22);
@@ -972,18 +991,19 @@
 			// 
 			// textEditTabBSubheader23
 			// 
-			this.textEditTabBSubheader23.Location = new System.Drawing.Point(85, 1342);
+			this.textEditTabBSubheader23.Location = new System.Drawing.Point(85, 397);
 			this.textEditTabBSubheader23.Name = "textEditTabBSubheader23";
 			this.textEditTabBSubheader23.Properties.NullText = "Type here";
 			this.textEditTabBSubheader23.Size = new System.Drawing.Size(471, 22);
 			this.textEditTabBSubheader23.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader23.TabIndex = 20;
+			this.textEditTabBSubheader23.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// checkEditTabBSubheader25
 			// 
 			this.checkEditTabBSubheader25.AutoSizeInLayoutControl = true;
 			this.checkEditTabBSubheader25.EditValue = true;
-			this.checkEditTabBSubheader25.Location = new System.Drawing.Point(347, 1384);
+			this.checkEditTabBSubheader25.Location = new System.Drawing.Point(347, 439);
 			this.checkEditTabBSubheader25.Name = "checkEditTabBSubheader25";
 			this.checkEditTabBSubheader25.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.checkEditTabBSubheader25.Properties.Appearance.Options.UseBackColor = true;
@@ -995,12 +1015,13 @@
 			// 
 			// textEditTabBSubheader25
 			// 
-			this.textEditTabBSubheader25.Location = new System.Drawing.Point(370, 1383);
+			this.textEditTabBSubheader25.Location = new System.Drawing.Point(370, 438);
 			this.textEditTabBSubheader25.Name = "textEditTabBSubheader25";
 			this.textEditTabBSubheader25.Properties.NullText = "Type here";
 			this.textEditTabBSubheader25.Size = new System.Drawing.Size(147, 22);
 			this.textEditTabBSubheader25.StyleController = this.layoutControlTabB;
 			this.textEditTabBSubheader25.TabIndex = 24;
+			this.textEditTabBSubheader25.EditValueChanged += new System.EventHandler(this.OnEditValueChanged);
 			// 
 			// layoutControlGroupTabBInner
 			// 
@@ -1032,7 +1053,7 @@
             this.layoutControlGroupTabBGroup10,
             this.layoutControlGroupTabBGroup11});
 			this.layoutControlGroupTabBInner.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
-			this.layoutControlGroupTabBInner.Location = new System.Drawing.Point(0, -20);
+			this.layoutControlGroupTabBInner.Location = new System.Drawing.Point(0, -965);
 			this.layoutControlGroupTabBInner.Name = "Root";
 			columnDefinition59.SizeType = System.Windows.Forms.SizeType.Percent;
 			columnDefinition59.Width = 100D;
@@ -2854,6 +2875,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			this.layoutControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenuImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart3.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEditTabBClipart2.Properties)).EndInit();
@@ -2997,6 +3019,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabBClipart3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTabB)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 

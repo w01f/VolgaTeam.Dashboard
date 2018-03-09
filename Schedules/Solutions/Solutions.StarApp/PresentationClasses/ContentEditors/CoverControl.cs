@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Asa.Business.Solutions.Common.Dictionaries;
+using Asa.Business.Solutions.StarApp.Configuration;
 using Asa.Common.Core.Enums;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.Common;
@@ -16,7 +18,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 	[ToolboxItem(false)]
 	public sealed partial class CoverControl : StarAppControl, IStarAppSlide
 	{
-		private bool _allowToSave;
+		private readonly List<User> _usersByStation = new List<User>();
+		private readonly DateTime _defaultDate = DateTime.Today;
 
 		public override SlideType SlideType => SlideType.StarAppCover;
 		public override string SlideName => SlideContainer.StarInfo.Titles.Tab1Title;
@@ -41,9 +44,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				pictureEditClipart1
 			});
 
-			comboBoxEditCombo1.Properties.Items.AddRange(SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
-
-			dateEditCalendar1.DateTime = DateTime.Today;
+			_usersByStation.AddRange(SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name));
+			comboBoxEditCombo1.Properties.Items.AddRange(_usersByStation);
 
 			var scaleFactor = Utilities.GetScaleFactor(CreateGraphics().DpiX);
 			layoutControlItemSlideHeader.MaxSize = RectangleHelper.ScaleSize(layoutControlItemSlideHeader.MaxSize, scaleFactor);
@@ -58,11 +60,19 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		{
 			_allowToSave = false;
 
-			memoEditSubheader1.EditValue = SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
+			pictureEditClipart1.Image = SlideContainer.EditedContent.CoverState.Clipart1 ??
+				pictureEditClipart1.Image;
+
+			memoEditSubheader1.EditValue = SlideContainer.EditedContent.CoverState.Subheader1 ??
+				SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue;
 
 			checkEditAddAsPageOne.Checked = SlideContainer.EditedContent.CoverState.AddAsPageOne;
-			comboBoxEditCombo1.EditValue = comboBoxEditCombo1.Properties.Items.Count > 0 ? comboBoxEditCombo1.Properties.Items[0] : null;
-			SlideContainer.StarInfo.UsersList.GetUsersByStation(MasterWizardManager.Instance.SelectedWizard.Name).FirstOrDefault();
+
+			dateEditCalendar1.EditValue = SlideContainer.EditedContent.CoverState.Calendar1 ?? _defaultDate;
+			checkEditCalendar1.Checked = dateEditCalendar1.EditValue != null;
+
+			comboBoxEditCombo1.EditValue = SlideContainer.EditedContent.CoverState.Combo1 ??
+				_usersByStation.FirstOrDefault();
 
 			_allowToSave = true;
 
@@ -71,10 +81,33 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 
 		public override void ApplyChanges()
 		{
-			SlideContainer.EditedContent.CoverState.SlideHeader = comboBoxEditSlideHeader.EditValue as String;
+			if (!_dataChanged) return;
+
+			SlideContainer.EditedContent.CoverState.SlideHeader = SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+				comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
+				null;
+
 			SlideContainer.EditedContent.CoverState.AddAsPageOne = checkEditAddAsPageOne.Checked;
 
+			SlideContainer.EditedContent.CoverState.Clipart1 = pictureEditClipart1.Image != SlideContainer.StarInfo.Tab1SubAClipart1Image ?
+				pictureEditClipart1.Image :
+				null;
+
+			SlideContainer.EditedContent.CoverState.Subheader1 = memoEditSubheader1.EditValue as String != SlideContainer.StarInfo.CoverConfiguration.SubHeader1DefaultValue ?
+				memoEditSubheader1.EditValue as String :
+				null;
+
+			SlideContainer.EditedContent.CoverState.Calendar1 = dateEditCalendar1.EditValue != null && (DateTime?)dateEditCalendar1.EditValue != _defaultDate ?
+				(DateTime?)dateEditCalendar1.EditValue :
+				null;
+
+			SlideContainer.EditedContent.CoverState.Combo1 = _usersByStation.FirstOrDefault() != comboBoxEditCombo1.EditValue as User ?
+				comboBoxEditCombo1.EditValue as User ?? (comboBoxEditCombo1.EditValue is String ? new User { FirstName = (String)comboBoxEditCombo1.EditValue } : null) :
+				null;
+
 			SlideContainer.SettingsContainer.SaveSettings();
+
+			_dataChanged = false;
 		}
 
 		private void LoadPartData()
@@ -89,9 +122,8 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 					comboBoxEditSlideHeader.Properties.Items.Clear();
 					comboBoxEditSlideHeader.Properties.Items.AddRange(SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems);
 
-					comboBoxEditSlideHeader.EditValue =
-					SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.FirstOrDefault(h => String.Equals(h.Value, SlideContainer.EditedContent.CoverState.SlideHeader, StringComparison.OrdinalIgnoreCase)) ??
-					SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
+					comboBoxEditSlideHeader.EditValue = SlideContainer.EditedContent.CoverState.SlideHeader ??
+						SlideContainer.StarInfo.CoverConfiguration.HeaderPartAItems.OrderByDescending(h => h.IsDefault).FirstOrDefault();
 					break;
 			}
 			_allowToSave = true;
@@ -100,6 +132,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 		private void OnEditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+			_dataChanged = true;
 			SlideContainer.RaiseDataChanged();
 		}
 

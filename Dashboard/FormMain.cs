@@ -67,8 +67,8 @@ namespace Asa.Dashboard
 			ribbonBarHomeOverview.RecalcLayout();
 			ribbonPanelHome.PerformLayout();
 
-			ribbonTabItemSlides.Text = SettingsManager.Instance.SlideManager.TabTitle ?? ribbonTabItemSlides.Text;
-			buttonItemSlidesLogo.Image = SettingsManager.Instance.SlideManager.RibbonBarLogo ?? Resources.RibbonLogo;
+			ribbonTabItemSlides.Text = ribbonTabItemSlides.Text;
+			buttonItemSlidesLogo.Image = Resources.RibbonLogo;
 			ribbonBarSlidesLogo.RecalcLayout();
 			ribbonPanelSlides.PerformLayout();
 

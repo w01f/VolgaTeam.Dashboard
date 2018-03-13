@@ -5,7 +5,7 @@ using Asa.Common.GUI.RateCard;
 using Asa.Common.GUI.ToolForms;
 using DevExpress.XtraTab;
 using EO.WebBrowser;
-using EO.WebBrowser.WinForm;
+using EO.WinForm;
 
 namespace Asa.Schedules.Common.Controls.RateCard
 {

@@ -4,12 +4,11 @@ using System.IO;
 using System.Windows.Forms;
 using Asa.Browser.Controls.BusinessClasses.Events;
 using Asa.Browser.Controls.BusinessClasses.Helpers;
-using Asa.Common.GUI.Floater;
 using Asa.Common.GUI.ToolForms;
 using DevExpress.Utils;
 using DevExpress.XtraTab;
 using EO.WebBrowser;
-using EO.WebBrowser.WinForm;
+using EO.WinForm;
 using Padding = System.Windows.Forms.Padding;
 
 namespace Asa.Browser.Controls.Controls.WebPage

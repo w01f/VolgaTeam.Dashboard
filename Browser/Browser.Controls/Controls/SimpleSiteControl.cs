@@ -6,7 +6,7 @@ using Asa.Browser.Controls.BusinessClasses.Objects;
 using Asa.Common.Core.Helpers;
 using Asa.Common.GUI.ToolForms;
 using EO.WebBrowser;
-using EO.WebBrowser.WinForm;
+using EO.WinForm;
 
 namespace Asa.Browser.Controls.Controls
 {

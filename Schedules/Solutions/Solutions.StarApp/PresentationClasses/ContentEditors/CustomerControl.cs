@@ -82,11 +82,11 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 				pictureEditTabAClipart2.Image;
 			comboBoxEditTabACombo1.EditValue = SlideContainer.EditedContent.CustomerState.TabA.Combo1 ??
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(0);
-			comboBoxEditTabACombo2.EditValue = SlideContainer.EditedContent.CustomerState.TabA.Combo1 ??
+			comboBoxEditTabACombo2.EditValue = SlideContainer.EditedContent.CustomerState.TabA.Combo2 ??
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(1);
-			comboBoxEditTabACombo3.EditValue = SlideContainer.EditedContent.CustomerState.TabA.Combo1 ??
+			comboBoxEditTabACombo3.EditValue = SlideContainer.EditedContent.CustomerState.TabA.Combo3 ??
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(2);
-			comboBoxEditTabACombo4.EditValue = SlideContainer.EditedContent.CustomerState.TabA.Combo1 ??
+			comboBoxEditTabACombo4.EditValue = SlideContainer.EditedContent.CustomerState.TabA.Combo4 ??
 				SlideContainer.StarInfo.TargetCustomersLists.CombinedList.Where(listDataItem => listDataItem.IsDefault).ElementAtOrDefault(3);
 
 			pictureEditTabBClipart1.Image = SlideContainer.EditedContent.CustomerState.TabB.Clipart1 ??

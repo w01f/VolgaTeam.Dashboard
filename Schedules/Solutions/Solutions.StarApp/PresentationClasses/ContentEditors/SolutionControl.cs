@@ -151,7 +151,7 @@ namespace Asa.Solutions.StarApp.PresentationClasses.ContentEditors
 						null;
 					break;
 				case 2:
-					SlideContainer.EditedContent.MarketState.TabC.SlideHeader = SlideContainer.StarInfo.MarketConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
+					SlideContainer.EditedContent.MarketState.TabC.SlideHeader = SlideContainer.StarInfo.SolutionConfiguration.HeadersPartCItems.FirstOrDefault(h => h.IsDefault) != comboBoxEditSlideHeader.EditValue ?
 						comboBoxEditSlideHeader.EditValue as ListDataItem ?? (comboBoxEditSlideHeader.EditValue is String ? new ListDataItem { Value = (String)comboBoxEditSlideHeader.EditValue } : null) :
 						null;
 
